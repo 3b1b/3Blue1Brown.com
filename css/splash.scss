@@ -1,0 +1,21 @@
+---
+---
+
+.splash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px;
+
+  svg {
+    width: 300px;
+    max-width: 100%;
+  }
+
+  span {
+    margin-top: 20px;
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+}

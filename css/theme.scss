@@ -1,0 +1,27 @@
+// colors
+$black: #000000;
+$dark-gray: #606060;
+$gray: #a0a0a0;
+$light-gray: #e0e0e0;
+$white: #ffffff;
+$accent: #74c0e3;
+
+// fonts
+$serif: "Lora", serif;
+$sans: "Poppins", sans-serif;
+$mono: "Cousine", monospace;
+
+// line spacing
+$spacing: 1.5;
+
+// transitions
+$fast: 0.25s ease;
+$slow: 0.5s ease;
+
+// effects
+$shadow: 0 0 5px 0 #00000030;
+
+// responsive design
+$page: 900px; // max-width of the main page column
+$tablet: 800px; // screen width cutoff point for tablets
+$phone: 500px; // screen width cutoff point for phones
