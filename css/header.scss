@@ -11,8 +11,9 @@ header {
   flex-direction: column;
   padding: 40px;
   background-color: $black;
-  background-image: url("{{ 'images/grid-background.svg' | relative_url }}");
-  background-size: 100px;
+  background-image: url("{{ 'images/grid.svg' | relative_url }}");
+  background-size: cover;
+  background-position: center;
   color: $white;
   font-family: $sans;
   box-shadow: $shadow, inset 0 0 1000px 100px $black;
@@ -34,6 +35,35 @@ header {
       width: 250px;
       max-width: 100%;
       animation: fade_in 1s ease forwards;
+
+      g:nth-of-type(1) {
+        animation: dilate_outer 2s ease forwards;
+      }
+      @keyframes dilate_outer {
+        0% {
+          transform: scale(0.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      g:nth-of-type(2),
+      g:nth-of-type(3),
+      g:nth-of-type(4),
+      g:nth-of-type(5) {
+        opacity: 0;
+        animation: dilate_inner 2s ease forwards;
+      }
+      @keyframes dilate_inner {
+        0% {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
     }
 
     span {
@@ -94,7 +124,7 @@ header {
         opacity: 0;
         transition: margin $fast, opacity $fast;
       }
-      
+
       &:hover i {
         margin-right: 30px;
         opacity: 1;

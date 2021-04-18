@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000">
+  <g transform="scale(1,0.5) rotate(45)" opacity="0.5">
+    <g fill="none" stroke="#808080">
+      {% for xy in (-40..40) %}
+        <line
+          x1="{{ xy | times: 25 }}"
+          x2="{{ xy | times: 25 }}"
+          y1="-1000"
+          y2="1000"
+        />
+        <line
+          y1="{{ xy | times: 25 }}"
+          y2="{{ xy | times: 25 }}"
+          x1="-1000"
+          x2="1000"
+        />
+      {% endfor %}
+    </g>
+    <g fill="none" stroke="#74c0e3">
+      {% for xy in (-10..10) %}
+        <line
+          x1="{{ xy | times: 100 }}"
+          x2="{{ xy | times: 100 }}"
+          y1="-1000"
+          y2="1000"
+        />
+        <line
+          y1="{{ xy | times: 100 }}"
+          y2="{{ xy | times: 100 }}"
+          x1="-1000"
+          x2="1000"
+        />
+      {% endfor %}
+    </g>
+  </g>
+</svg>

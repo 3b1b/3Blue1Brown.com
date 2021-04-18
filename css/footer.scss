@@ -12,8 +12,9 @@ footer {
   align-items: center;
   padding: 40px;
   background-color: $black;
-  background-image: url({{"images/grid-background.svg"|relative_url}});
-  background-size: 100px;
+  background-image: url("{{ 'images/grid.svg' | relative_url }}");
+  background-size: cover;
+  background-position: center;
   color: $white;
   font-family: $sans;
   box-shadow: $shadow, inset 0 0 200px 0 $black;
