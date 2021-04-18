@@ -11,7 +11,7 @@ header {
   flex-direction: column;
   padding: 40px;
   background-color: $black;
-  background-image: url({{"images/grid-background.svg"|relative_url}});
+  background-image: url("{{ 'images/grid-background.svg' | relative_url }}");
   background-size: 100px;
   color: $white;
   font-family: $sans;
@@ -89,14 +89,14 @@ header {
       transition: opacity $fast, transform $fast;
 
       i {
-        margin-right: 10px;
         width: 0;
+        margin-right: 0;
         opacity: 0;
-        transition: width $fast, opacity $fast;
+        transition: margin $fast, opacity $fast;
       }
-
+      
       &:hover i {
-        width: 20px;
+        margin-right: 30px;
         opacity: 1;
       }
     }
