@@ -3,7 +3,7 @@
   viewBox="-500 -500 1000 1000"
   style="overflow: visible"
 >
-  <g transform="scale(1,0.5) rotate(45)" opacity="0.5">
+  <g transform="scale(1,0.5) rotate(45)" opacity="0.35">
     <g fill="none" stroke="#808080">
       <line x1="-1000" x2="-1000" y1="-1000" y2="1000"></line>
       <line y1="-1000" y2="-1000" x1="-1000" x2="1000"></line>

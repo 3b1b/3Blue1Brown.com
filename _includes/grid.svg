@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000">
-  <g transform="scale(1,0.5) rotate(45)" opacity="0.5">
+  <g transform="scale(1,0.5) rotate(45)" opacity="0.35">
     <g fill="none" stroke="#808080">
       {% for xy in (-40..40) %}
         <line
