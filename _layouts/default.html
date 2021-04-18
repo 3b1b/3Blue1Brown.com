@@ -1,8 +1,11 @@
 <html>
   {% include head.html %}
   <body>
+    {% include header.html %}
     <main>
-      {{ content }}
+      {% include content.html content=content %}
     </main>
+    {% include footer.html %}
+    {% include tooltip.html %}
   </body>
 </html>

@@ -1,0 +1,39 @@
+<header>
+  <nav>
+    <a href="{{ '/lessons' | relative_url }}" data-tooltip="Various maths, in text and video form">
+      <i class="fas fa-square-root-alt"></i>
+      <span>Lessons</span>
+    </a>
+    <a href="{{ '/extras' | relative_url }}" data-tooltip="Collaborations, cameos, talks, and more">
+      <i class="fas fa-ice-cream"></i>
+      <span>Extras</span>
+    </a>
+    <a href="{{ '/about' | relative_url }}" data-tooltip="About Grant, other channels, and recommended reading">
+      <i class="fas fa-bookmark"></i>
+      <span>About</span>
+    </a>
+    <a href="{{ '/contact' | relative_url }}" data-tooltip="Frequently asked questions and contact info">
+      <i class="fas fa-envelope"></i>
+      <span>Contact</span>
+    </a>
+    <span class="break_desktop"></span>
+    <a href="{{ '/store' | relative_url }}" data-tooltip="Shirts, plushies, and more. Discounts for supporters!">
+      <i class="fas fa-store"></i>
+      <span>Store</span>
+    </a>
+    <a href="{{ '/support' | relative_url }}" data-tooltip="Help the channel stay ad-free, and get Patreon rewards">
+      <i class="fas fa-heart"></i>
+      <span>Support</span>
+    </a>
+  </nav>
+
+  <a href="{{ '/' | relative_url }}" class="logo">
+    {% include logo.svg %}
+    <span>
+      {% assign letters = site.title | split: "" %} {%- for letter in letters
+      -%}
+      <span>{{ letter }}</span>
+      {%- endfor -%}
+    </span>
+  </a>
+</header>

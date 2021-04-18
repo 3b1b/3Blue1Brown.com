@@ -2,4 +2,8 @@
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 
 <!-- site-wide javascript scripts -->
-<!-- <script src="{{ 'js/tooltips.js' | relative_url }}"></script> -->
+{%- for file in site.static_files -%}
+  {%- if file.path contains "/js" -%}
+    <script src="{{ file.path | relative_url }}"></script>
+  {%- endif -%}
+{%- endfor -%}

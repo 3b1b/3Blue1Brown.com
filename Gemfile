@@ -1,10 +1,9 @@
 source "https://rubygems.org"
 
+# packages
 gem "jekyll"
-
-group :jekyll_plugins do
-  gem "jekyll-feed"
-end
+gem "jekyll-feed"
+gem "jekyll-redirect-from"
 
 # windows stuff
 platforms :mingw, :x64_mingw, :mswin, :jruby do

@@ -1,0 +1,134 @@
+---
+---
+
+@import "theme";
+
+$tablet: 1000px;
+$phone: 600px;
+
+header {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: $black;
+  background-image: url({{"images/grid-background.svg"|relative_url}});
+  background-size: 100px;
+  color: $white;
+  font-family: $sans;
+  box-shadow: $shadow, inset 0 0 1000px 100px $black;
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 60px 0;
+    text-align: center;
+
+    svg {
+      width: 250px;
+      max-width: 100%;
+      animation: fade_in 1s ease forwards;
+    }
+
+    span {
+      margin-top: 40px;
+      font-family: $serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+
+      span {
+        opacity: 0;
+        animation: fade_in 1s ease forwards;
+      }
+
+      @for $i from 1 through 11 {
+        span:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.075}s;
+        }
+      }
+
+      span:nth-child(1) {
+        color: $blue;
+      }
+      span:nth-child(6) {
+        color: $brown;
+      }
+    }
+
+    @keyframes fade_in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 100%;
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .break_desktop {
+      flex-grow: 1;
+    }
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      transition: opacity $fast, transform $fast;
+
+      i {
+        margin-right: 10px;
+        width: 0;
+        opacity: 0;
+        transition: width $fast, opacity $fast;
+      }
+
+      &:hover i {
+        width: 20px;
+        opacity: 1;
+      }
+    }
+
+    &:hover > a {
+      opacity: 0.25;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    nav {
+      order: 2;
+
+      .break_desktop {
+        flex-grow: 0;
+        width: 0;
+      }
+    }
+  }
+
+  @media (max-width: $phone) {
+    nav {
+      justify-content: center;
+      flex-direction: column;
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+}

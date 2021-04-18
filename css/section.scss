@@ -1,0 +1,25 @@
+---
+---
+
+@import "theme";
+
+section {
+  .section {
+    box-sizing: content-box;
+    max-width: $page;
+    margin: 0 auto;
+    padding: 40px;
+  }
+
+  &:nth-child(even) {
+    background: $white;
+  }
+
+  &:nth-child(even) {
+    background: $light-gray;
+  }
+
+  &:last-child {
+    flex-grow: 1;
+  }
+}

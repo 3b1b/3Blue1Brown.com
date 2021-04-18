@@ -1,0 +1,55 @@
+---
+---
+
+@import "theme";
+
+$tablet: 1000px;
+$phone: 600px;
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  background-color: $black;
+  background-image: url({{"images/grid-background.svg"|relative_url}});
+  background-size: 100px;
+  color: $white;
+  font-family: $sans;
+  box-shadow: $shadow, inset 0 0 200px 0 $black;
+
+  .copyright {
+    text-align: center;
+  }
+
+  .social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    a {
+      padding: 10px;
+      color: $white;
+      text-decoration: none;
+      transition: opacity $fast;
+    }
+
+    &:hover a {
+      opacity: 0.25;
+    }
+
+    a:hover {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: $phone) {
+    flex-direction: column-reverse;
+
+    .copyright {
+      margin-top: 10px;
+    }
+  }
+}

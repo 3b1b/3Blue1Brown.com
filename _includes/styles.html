@@ -1,4 +1,11 @@
 <!-- site-wide css styles -->
-<link href="{{ 'css/all.css' | relative_url }}" rel="stylesheet" />
-<link href="{{ 'css/body.css' | relative_url }}" rel="stylesheet" />
-<link href="{{ 'css/splash.css' | relative_url }}" rel="stylesheet" />
+
+{%- for file in site.pages -%}
+  {%- if file.url contains "/css" -%}
+    {%- unless file.url contains ".map" -%}
+      {% assign path = file.path | replace: ".scss", ".css" %}
+      <link href="{{ path | relative_url }}" rel="stylesheet" />
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+

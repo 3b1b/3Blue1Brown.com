@@ -1,0 +1,28 @@
+// reusable snippets of CSS
+
+@mixin margins {
+  margin: 20px 0;
+}
+
+@mixin trim-v-margins {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin trim-h-margins {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// font awesome icon selectors
+$icon: "i.fas, i.far, i.fab, i.fal, i.fad";
