@@ -1,34 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000">
-  <g transform="scale(1,0.5) rotate(45)" opacity="0.35">
-    <g fill="none" stroke="#808080">
-      {% for xy in (-40..40) %}
+{% assign cells = 40 %}
+{% assign major = 4 %}
+{% assign size = 50 %}
+
+{% assign bound = cells | times: size | divided_by: 2 %}
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="-{{ bound }} -{{ bound }} {{ bound | times: 2 }} {{ bound | times: 2 }}"
+>
+  <g fill="none" stroke="#808080" stroke-width="2.5">
+    {% assign from = cells | divided_by: 2 | times: -1 %}
+    {% assign to = cells | divided_by: 2 %}
+    <g>
+      {% for xy in (from..to) %}
         <line
-          x1="{{ xy | times: 25 }}"
-          x2="{{ xy | times: 25 }}"
-          y1="-1000"
-          y2="1000"
-        />
-        <line
-          y1="{{ xy | times: 25 }}"
-          y2="{{ xy | times: 25 }}"
-          x1="-1000"
-          x2="1000"
+          x1="{{ xy | times: size }}"
+          x2="{{ xy | times: size }}"
+          y1="-{{ bound }}"
+          y2="{{ bound }}"
         />
       {% endfor %}
     </g>
-    <g fill="none" stroke="#74c0e3">
-      {% for xy in (-10..10) %}
+    <g>
+      {% for xy in (from..to) %}
         <line
-          x1="{{ xy | times: 100 }}"
-          x2="{{ xy | times: 100 }}"
-          y1="-1000"
-          y2="1000"
+          y1="{{ xy | times: size }}"
+          y2="{{ xy | times: size }}"
+          x1="-{{ bound }}"
+          x2="{{ bound }}"
         />
+      {% endfor %}
+    </g>
+  </g>
+  <g fill="none" stroke="#74c0e3" stroke-width="5">
+    {% assign from = cells | divided_by: 2 | divided_by: major | times: -1 %}
+    {% assign to = cells | divided_by: 2 | divided_by: major %}
+    <g>
+      {% for xy in (from..to) %}
         <line
-          y1="{{ xy | times: 100 }}"
-          y2="{{ xy | times: 100 }}"
-          x1="-1000"
-          x2="1000"
+          x1="{{ xy | times: size | times: major }}"
+          x2="{{ xy | times: size | times: major }}"
+          y1="-{{ bound }}"
+          y2="{{ bound }}"
+        />
+      {% endfor %}
+    </g>
+    <g>
+      {% for xy in (from..to) %}
+        <line
+          y1="{{ xy | times: size | times: major }}"
+          y2="{{ xy | times: size | times: major }}"
+          x1="-{{ bound }}"
+          x2="{{ bound }}"
         />
       {% endfor %}
     </g>

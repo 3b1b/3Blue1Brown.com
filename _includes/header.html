@@ -1,7 +1,9 @@
 <header>
+  {% include grid.html %}
+
   <nav>
     <a href="{{ '/lessons' | relative_url }}" data-tooltip="Various maths, in text and video form">
-      <i class="fas fa-square-root-alt"></i>
+      {% include pi.svg %}
       <span>Lessons</span>
     </a>
     <a href="{{ '/extras' | relative_url }}" data-tooltip="Collaborations, cameos, talks, and more">

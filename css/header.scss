@@ -7,16 +7,15 @@ $tablet: 1000px;
 $phone: 600px;
 
 header {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 40px;
-  background-color: $black;
-  background-image: url("{{ 'images/grid.svg' | relative_url }}");
-  background-size: cover;
-  background-position: center;
+  background: $black;
   color: $white;
   font-family: $sans;
-  box-shadow: $shadow, inset 0 0 1000px 100px $black;
+  overflow: hidden;
+  box-shadow: $shadow;
 
   a {
     color: $white;
@@ -105,22 +104,32 @@ header {
     }
 
     a {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 10px;
       transition: opacity $fast, transform $fast;
 
-      i {
-        width: 0;
-        margin-right: 0;
+      i,
+      svg {
+        position: absolute;
+        left: 10px;
         opacity: 0;
-        transition: margin $fast, opacity $fast;
+        transition: opacity $fast;
+      }
+      
+      &:hover i,
+      &:hover svg {
+        opacity: 1;
       }
 
-      &:hover i {
-        margin-right: 30px;
-        opacity: 1;
+      span {
+        transition: margin $fast;
+      }
+
+      &:hover span {
+        margin-left: 25px;
       }
     }
 
