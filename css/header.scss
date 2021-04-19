@@ -82,13 +82,6 @@ header {
           animation-delay: #{$i * 0.075}s;
         }
       }
-
-      span:nth-child(1) {
-        color: $blue;
-      }
-      span:nth-child(6) {
-        color: $brown;
-      }
     }
 
     @keyframes fade_in {

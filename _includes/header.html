@@ -30,9 +30,9 @@
   <a href="{{ '/' | relative_url }}" class="logo">
     {% include logo.svg %}
     <span>
-      {% assign letters = site.title | split: "" %} {%- for letter in letters
-      -%}
-      <span>{{ letter }}</span>
+      {% assign letters = site.title | split: "" %}
+      {%- for letter in letters -%}
+        <span>{{ letter }}</span>
       {%- endfor -%}
     </span>
   </a>
