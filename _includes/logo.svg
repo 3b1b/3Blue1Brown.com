@@ -1,34 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
-  <style>
-    g:nth-of-type(1) {
-      animation: dilate_outer 2s ease forwards;
-    }
-    @keyframes dilate_outer {
-      0% {
-        transform: scale(0.5);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-    g:nth-of-type(2),
-    g:nth-of-type(3),
-    g:nth-of-type(4),
-    g:nth-of-type(5) {
-      opacity: 0;
-      animation: dilate_inner 2s ease forwards;
-    }
-    @keyframes dilate_inner {
-      0% {
-        opacity: 0;
-        transform: scale(0.4);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-  </style>
   <g>
     <path fill="#74C0E3" d="M 0 0 L 0 -50 A 50 50 0 1 1 -50 0 z"></path>
     <path fill="#8C6239" d="M 0 0 L 0 -50 A 50 50 0 0 0 -50 0 z"></path>

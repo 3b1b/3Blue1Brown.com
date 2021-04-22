@@ -1,0 +1,166 @@
+---
+---
+
+@import "theme";
+
+$tablet: 1000px;
+$phone: 600px;
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background: $black;
+  color: $white;
+  font-family: $sans;
+  overflow: hidden;
+  box-shadow: $shadow;
+
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+    text-align: center;
+
+    svg {
+      width: 200px;
+      max-width: 100%;
+      animation: fade_in 1s ease forwards;
+
+      g:nth-of-type(1) {
+        animation: dilate_outer 2s ease forwards;
+      }
+      @keyframes dilate_outer {
+        0% {
+          transform: scale(0.5);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      g:nth-of-type(2),
+      g:nth-of-type(3),
+      g:nth-of-type(4),
+      g:nth-of-type(5) {
+        opacity: 0;
+        animation: dilate_inner 2s ease forwards;
+      }
+      @keyframes dilate_inner {
+        0% {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    }
+
+    span {
+      margin-top: 40px;
+      font-family: $serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+
+      span {
+        opacity: 0;
+        animation: fade_in 1s ease forwards;
+      }
+
+      @for $i from 1 through 11 {
+        span:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.075}s;
+        }
+      }
+    }
+
+    @keyframes fade_in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 100%;
+      }
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .break_desktop {
+      flex-grow: 1;
+    }
+
+    a {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      transition: opacity $fast, transform $fast;
+
+      i,
+      svg {
+        position: absolute;
+        left: 10px;
+        opacity: 0;
+        transition: opacity $fast;
+      }
+      
+      &:hover i,
+      &:hover svg {
+        opacity: 1;
+      }
+
+      span {
+        transition: margin $fast;
+      }
+
+      &:hover span {
+        margin-left: 25px;
+      }
+    }
+
+    &:hover > a {
+      opacity: 0.25;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: $tablet) {
+    nav {
+      order: 2;
+
+      .break_desktop {
+        flex-grow: 0;
+        width: 0;
+      }
+    }
+  }
+
+  @media (max-width: $phone) {
+    nav {
+      justify-content: center;
+      flex-direction: column;
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+}
