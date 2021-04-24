@@ -1,0 +1,57 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+a {
+  color: $light-blue-500;
+  transition: color $fast;
+}
+
+a:hover {
+  color: currentColor;
+}
+
+.link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 10px;
+  color: inherit;
+  font-size: 0.9rem;
+  text-decoration: none;
+  vertical-align: bottom;
+  transition: background $fast, color $fast, opacity $fast;
+
+  span {
+    text-align: center;
+    font-family: $sans;
+    font-weight: $medium;
+  }
+
+  &[data-icon]:not([data-text]) {
+    i,
+    svg {
+      font-size: 1.35em;
+    }
+  }
+
+  &[data-icon][data-text] {
+    i,
+    svg {
+      margin-right: 0.75em;
+    }
+  }
+
+  &[data-style="circle"] {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 100%;
+    background: $black;
+    color: $white;
+  }
+}

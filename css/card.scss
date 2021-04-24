@@ -1,0 +1,21 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  font-family: $sans;
+  text-decoration: none;
+
+  img {
+    width: 100%;
+  }
+
+  span {
+    margin-top: 10px;
+  }
+}

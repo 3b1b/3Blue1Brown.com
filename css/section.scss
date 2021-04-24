@@ -1,14 +1,22 @@
 ---
 ---
 
+@import "palettes";
 @import "theme";
+@import "mixins";
+
+$page: 800px;
 
 section {
+  position: relative;
+  overflow: hidden;
+
   .section {
     box-sizing: content-box;
     max-width: $page;
     margin: 0 auto;
     padding: 40px;
+    text-align: center;
   }
 
   &:nth-child(even) {
@@ -16,10 +24,15 @@ section {
   }
 
   &:nth-child(even) {
-    background: $light-gray;
+    background: $gray-50;
   }
 
   &:last-child {
     flex-grow: 1;
+  }
+
+  &[data-dark="true"] {
+    background: $gray-900;
+    color: $white;
   }
 }

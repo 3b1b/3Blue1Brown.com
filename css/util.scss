@@ -1,12 +1,10 @@
 ---
 ---
 
+@import "palettes";
 @import "theme";
+@import "mixins";
 
-.blue {
-  color: $blue;
-}
-
-.brown {
-  color: $brown;
+.center {
+  text-align: center;
 }

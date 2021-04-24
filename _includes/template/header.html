@@ -1,0 +1,70 @@
+<header>
+  {% include special/grid.html %}
+
+  <nav>
+    
+    {%
+      include components/link.html
+      link="lessons"
+      icon="icons/pi.svg"
+      text="Lessons"
+      tooltip="Various maths topics, in text and video form"
+    %}
+    {%
+      include components/link.html
+      link="extras"
+      icon="fas fa-ice-cream"
+      text="Extras"
+      tooltip="Collaborations, cameos, talks, and more"
+    %}
+    {%
+      include components/link.html
+      link="about"
+      icon="fas fa-bookmark"
+      text="About"
+      tooltip="About Grant, other channels, and recommended reading"
+    %}
+    {%
+      include components/link.html
+      link="contact"
+      icon="fas fa-envelope"
+      text="Contact"
+      tooltip="Frequently asked questions and contact info"
+    %}
+
+    <span class="break_desktop"></span>
+
+    {%
+      include components/link.html
+      link="https://www.youtube.com/3blue1brown"
+      icon="fab fa-youtube"
+      text="Subscribe"
+      tooltip="Subscribe on YouTube"
+    %}
+    {%
+      include components/link.html
+      link="store"
+      icon="fas fa-store"
+      text="Store"
+      tooltip="Shirts, plushies, and more. Discounts for supporters!"
+    %}
+    {%
+      include components/link.html
+      link="support"
+      icon="fas fa-heart"
+      text="Support"
+      tooltip="Help the channel stay ad-free, and get Patreon rewards"
+    %}
+
+  </nav>
+
+  <a href="{{ '/' | relative_url }}" class="logo">
+    {% include images/logo.svg %}
+    <span>
+      {% assign letters = site.title | split: "" %}
+      {%- for letter in letters -%}
+        <span>{{ letter }}</span>
+      {%- endfor -%}
+    </span>
+  </a>
+</header>

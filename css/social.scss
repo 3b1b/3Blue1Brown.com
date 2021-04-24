@@ -1,0 +1,23 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.social {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin: 0 auto;
+
+  &:hover a {
+    opacity: 0.25;
+  }
+
+  a:hover {
+    opacity: 1;
+  }
+}

@@ -1,13 +1,5 @@
 // colors
-$black: #000000;
-$off-black: #303030;
-$dark-gray: #606060;
-$gray: #a0a0a0;
-$light-gray: #e0e0e0;
-$off-white: #f0f0f0;
-$white: #ffffff;
 $blue: #74c0e3;
-$brown: #8c6239;
 
 // fonts
 $serif: "Lora", serif;
@@ -23,8 +15,3 @@ $slow: 0.5s ease;
 
 // effects
 $shadow: 0 0 10px 0 #00000040;
-
-// responsive design
-$page: 1000px; // max-width of the main page column
-$tablet: 800px; // screen width cutoff point for tablets
-$phone: 500px; // screen width cutoff point for phones

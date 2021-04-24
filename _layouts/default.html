@@ -1,11 +1,11 @@
 <html>
-  {% include head.html %}
+  {% include template/head.html %}
   <body>
-    {% include header.html %}
+    {% include template/header.html %}
     <main>
-      {% include content.html content=content %}
+      {% include template/main.html content=content %}
     </main>
-    {% include footer.html %}
-    {% include tooltip.html %}
+    {% include template/footer.html %}
+    {% include template/tooltip.html %}
   </body>
 </html>

@@ -1,0 +1,77 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+  text-align: center;
+
+  svg {
+    width: 200px;
+    max-width: 100%;
+    animation: fade_in 1s ease forwards;
+
+    g:nth-of-type(1) {
+      animation: dilate_outer 2s ease forwards;
+    }
+    @keyframes dilate_outer {
+      0% {
+        transform: scale(0.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    g:nth-of-type(2),
+    g:nth-of-type(3),
+    g:nth-of-type(4),
+    g:nth-of-type(5) {
+      opacity: 0;
+      animation: dilate_inner 2s ease forwards;
+    }
+    @keyframes dilate_inner {
+      0% {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  span {
+    margin-top: 40px;
+    font-family: $serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+
+    span {
+      opacity: 0;
+      animation: fade_in 1s ease forwards;
+    }
+
+    @for $i from 1 through 11 {
+      span:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.075}s;
+      }
+    }
+  }
+
+  @keyframes fade_in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 100%;
+    }
+  }
+}

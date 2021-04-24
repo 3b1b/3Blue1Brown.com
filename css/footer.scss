@@ -1,7 +1,9 @@
 ---
 ---
 
+@import "palettes";
 @import "theme";
+@import "mixins";
 
 $tablet: 1000px;
 $phone: 600px;
@@ -23,26 +25,8 @@ footer {
   }
 
   .social {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 100%;
-
-    a {
-      padding: 10px;
-      color: $white;
-      text-decoration: none;
-      transition: opacity $fast;
-    }
-
-    &:hover a {
-      opacity: 0.25;
-    }
-
-    a:hover {
-      opacity: 1;
-    }
+    font-size: 1.4rem;
+    margin: unset;
   }
 
   @media (max-width: $phone) {
