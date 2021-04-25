@@ -29,6 +29,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    @include hover;
 
     .break_desktop {
       flex-grow: 1;
@@ -53,14 +54,6 @@ header {
       &:hover svg {
         width: 15px;
         margin-right: 10px;
-        opacity: 1;
-      }
-    }
-
-    &:hover > a {
-      opacity: 0.25;
-
-      &:hover {
         opacity: 1;
       }
     }

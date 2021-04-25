@@ -6,7 +6,7 @@
 // specify custom delay (in ms) in data-delay attribute
 
 const defaultPlacement = "top";
-const defaultDelay = 200;
+const defaultDelay = 100;
 
 // create tooltip listener on any element with a data-tooltip attribute
 const createTooltips = () => {

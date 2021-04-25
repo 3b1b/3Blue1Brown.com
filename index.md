@@ -16,9 +16,33 @@
 
 {% include components/section.html %}
 
+### Topics
+
+<div class="gallery">
+  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Linear Algebra" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Calculus" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Neural Networks" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Differential Equations" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="What is ___?" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Geometry" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Why π?" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
+</div>
+
+{% include components/section.html dark=true %}
+
+## Funded by the Community
+
+{% include components/figure.html link="support" image="images/special/support.png" width="400px" caption="3Blue1Brown is able to stay ad free thanks to the generosity of viewers like you!" %}
+
+{% include components/link.html link="support" icon="fas fa-heart" text="Support 3Blue1Brown" style="button" %}
+{:.center}
+
+{% include components/section.html %}
+
 ### Follow
 
-<div class="social" style="margin-top: 10px; margin-bottom: 20px;">
+<div class="social">
   {% include components/link.html link="https://www.patreon.com/bePatron?u=938934" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
   {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
   {% include components/link.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="circle" %}
@@ -28,24 +52,11 @@
 </div>
 
 The main event is, of course, the YouTube channel.
-But there are many other ways to get involved and enjoy this content.
+But there are many other ways to get involved and enjoy 3Blue1Brown content.
 
 If you want to ask questions, share interesting math, discuss videos, or just give an impassioned rant about how wonderful math is, take a look at the 3blue1brown subreddit.
-People have sometimes shared projects they’re working on here, like their own videos, animations, and interactive lessons.
+People share projects they’re working on here, like their own videos, animations, and interactive lessons.
 These sometimes get added to videos descriptions as additional resources.
 
 And of course, you can follow on all the other usual social media suspects.
 Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
-
-{% include components/section.html %}
-
-### Topics
-
-<div class="gallery">
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Topic A" %}
-</div>

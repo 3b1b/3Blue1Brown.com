@@ -51,7 +51,18 @@ a:hover {
     height: 50px;
     margin: 5px;
     border-radius: 100%;
-    background: $black;
+    background: $gray-800;
     color: $white;
+  }
+
+  &[data-style="button"] {
+    margin: 10px;
+    padding: 7.5px 20px;
+    border-radius: 5px;
+    background: $light-blue-500;
+
+    &:hover {
+      background: $gray-800;
+    }
   }
 }
