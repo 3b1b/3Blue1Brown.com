@@ -1,0 +1,24 @@
+{% assign images = site.static_files | where_exp: "image", "image.path contains include.images" %}
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {%- for image in images -%}
+      {% assign words = image.basename | split: '-' %}
+      {% capture tooltip %}{% for word in words %}{{ word | capitalize }} {% endfor %}{% endcapture %}
+      <a href="{{ include.link | append: image.basename }}" class="swiper-slide" data-tooltip="{{ tooltip }}">
+        <img src="{{ image.path | relative_url }}" />
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+<div class="swiper-pagination"></div>
+
+<div class="swiper-navigation">
+  <button class="swiper-prev">
+    <i class="fas fa-arrow-circle-left"></i>
+  </button>
+  <button class="swiper-next">
+    <i class="fas fa-arrow-circle-right"></i>
+  </button>
+</div>

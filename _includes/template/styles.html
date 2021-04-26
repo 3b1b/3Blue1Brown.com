@@ -1,5 +1,7 @@
-<!-- site-wide css styles -->
+<!-- third party styles -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
+<!-- site-wide css styles -->
 {%- for file in site.pages -%}
   {%- if file.url contains "/css" -%}
     {%- unless file.url contains ".map" -%}
@@ -8,4 +10,3 @@
     {%- endunless -%}
   {%- endif -%}
 {%- endfor -%}
-

@@ -43,12 +43,13 @@
 ### Follow
 
 <div class="social">
-  {% include components/link.html link="https://www.patreon.com/bePatron?u=938934" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
+  {% include components/link.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
   {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
   {% include components/link.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="circle" %}
   {% include components/link.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="circle" %}
   {% include components/link.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="circle" %}
   {% include components/link.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="circle" %}
+  {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="circle" %}
 </div>
 
 The main event is, of course, the YouTube channel.
@@ -60,3 +61,19 @@ These sometimes get added to videos descriptions as additional resources.
 
 And of course, you can follow on all the other usual social media suspects.
 Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
+
+{% include components/section.html %}
+
+### Store
+
+{% include components/slideshow.html images="images/store" link="https://store.dftba.com/collections/3blue1brown/products/" %}
+
+Plushie pi creatures, socks displaying mathematical objects which live most naturally on a cylinder, a knot theory tie, and another math merchandise.
+[Patrons get a hefty discount](https://www.patreon.com/posts/17090829)!
+
+{% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Shop Merch" style="button" %}
+{:.center}
+
+{% include components/section.html dark=true %}
+
+{% include components/figure.html image="images/special/pi-fourier.gif" width="400px" %}
