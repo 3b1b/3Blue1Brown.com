@@ -26,22 +26,20 @@ a:hover {
   vertical-align: bottom;
   transition: background $fast, color $fast, opacity $fast;
 
-  span {
+  .text {
     text-align: center;
     font-family: $sans;
     font-weight: $medium;
   }
 
   &[data-icon]:not([data-text]) {
-    i,
-    svg {
+    .icon {
       font-size: 1.35em;
     }
   }
 
   &[data-icon][data-text] {
-    i,
-    svg {
+    .icon {
       margin-right: 0.75em;
     }
   }

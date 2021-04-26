@@ -40,20 +40,18 @@ header {
       transition: opacity $fast;
       z-index: 1;
 
-      i,
-      svg {
+      .icon {
         width: 0;
         height: 15px;
-        margin-right: 0;
+        margin-right: 0 !important;
         opacity: 0;
         text-align: center;
         transition: width $fast, margin $fast, opacity $fast;
       }
 
-      &:hover i,
-      &:hover svg {
+      &:hover .icon {
         width: 15px;
-        margin-right: 10px;
+        margin-right: 10px !important;
         opacity: 1;
       }
     }
