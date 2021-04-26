@@ -3,9 +3,7 @@
 <div class="swiper-container">
   <div class="swiper-wrapper">
     {%- for image in images -%}
-      {% assign words = image.basename | split: '-' %}
-      {% capture tooltip %}{% for word in words %}{{ word | capitalize }} {% endfor %}{% endcapture %}
-      <a href="{{ include.link | append: image.basename }}" class="swiper-slide" data-tooltip="{{ tooltip }}">
+      <a href="{{ include.link | append: image.basename }}" class="swiper-slide">
         <img src="{{ image.path | relative_url }}" />
       </a>
     {%- endfor -%}
