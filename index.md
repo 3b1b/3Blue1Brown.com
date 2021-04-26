@@ -33,7 +33,7 @@
 
 ## Funded by the Community
 
-{% include components/figure.html link="support" image="images/special/support.png" width="400px" caption="3Blue1Brown is able to stay ad free thanks to the generosity of viewers like you!" %}
+{% include components/figure.html link="support" image="images/special/support.png" width="400px" caption="3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you!" %}
 
 {% include components/link.html link="support" icon="fas fa-heart" text="Support 3Blue1Brown" style="button" %}
 {:.center}
@@ -68,7 +68,7 @@ Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 {% include components/slideshow.html images="images/store" link="https://store.dftba.com/collections/3blue1brown/products/" %}
 
-Plushie pi creatures, socks displaying mathematical objects which live most naturally on a cylinder, a knot theory tie, and another math merchandise.
+Plushie pi creatures, socks displaying mathematical objects which live most naturally on a cylinder, a knot theory tie, and other math merchandise.
 [Patrons get a hefty discount](https://www.patreon.com/posts/17090829)!
 
 {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Shop Merch" style="button" %}
