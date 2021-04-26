@@ -54,6 +54,7 @@ a:hover {
   }
 
   &[data-style="button"] {
+    min-width: 200px;
     margin: 10px;
     padding: 7.5px 20px;
     border-radius: 5px;

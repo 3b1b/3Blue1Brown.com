@@ -4,7 +4,7 @@
 {% include components/section.html dark=true %}
 
 <!-- this link should always point to the latest video on the youtube channel -->
-{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw&controls=0&modestbranding=1" width="700px" %}
+{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
 <div>
   <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
@@ -26,7 +26,7 @@
   {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
 </div>
 
-{% include components/link.html link="lessons" icon="fas fa-list" text="See All" style="button" %}
+{% include components/link.html link="lessons" icon="fas fa-list" text="All Lessons" style="button" %}
 {:.center}
 
 {% include components/section.html %}
