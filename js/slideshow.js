@@ -24,4 +24,4 @@ const createSlideshows = () =>
   });
 
 // start script
-window.addEventListener("load", createSlideshows);
+window.addEventListener("DOMContentLoaded", createSlideshows);

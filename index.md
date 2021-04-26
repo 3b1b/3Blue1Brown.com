@@ -3,10 +3,8 @@
 
 {% include components/section.html dark=true %}
 
-### Spotlight
-
 <!-- this link should always point to the latest video on the youtube channel -->
-{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="500px" %}
+{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw&controls=0&modestbranding=1" width="700px" %}
 
 <div>
   <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
@@ -28,13 +26,7 @@
   {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
 </div>
 
-{% include components/section.html dark=true %}
-
-## Funded by the Community
-
-{% include components/figure.html link="support" image="images/special/support.png" width="400px" caption="3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you!" %}
-
-{% include components/link.html link="support" icon="fas fa-heart" text="Support 3Blue1Brown" style="button" %}
+{% include components/link.html link="lessons" icon="fas fa-list" text="See All" style="button" %}
 {:.center}
 
 {% include components/section.html %}
@@ -42,13 +34,11 @@
 ### Follow
 
 <div class="social">
-  {% include components/link.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
   {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
   {% include components/link.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="circle" %}
   {% include components/link.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="circle" %}
   {% include components/link.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="circle" %}
   {% include components/link.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="circle" %}
-  {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="circle" %}
 </div>
 
 The main event is, of course, the YouTube channel.
@@ -63,16 +53,16 @@ Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 {% include components/section.html %}
 
-### Store
+### Support
 
-{% include components/slideshow.html images="images/store" link="https://store.dftba.com/collections/3blue1brown/products/" %}
+<div class="social">
+  {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
+  {% include components/link.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
+  {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="circle" %}
+</div>
 
-Plushie pi creatures, socks displaying mathematical objects which live most naturally on a cylinder, a knot theory tie, and other math merchandise.
-[Patrons get a hefty discount](https://www.patreon.com/posts/17090829)!
+3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you.
+Become a supporter on Patreon to get early access to videos and other rewards.
 
-{% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Shop Merch" style="button" %}
-{:.center}
-
-{% include components/section.html dark=true %}
-
-{% include components/figure.html image="images/special/pi-fourier.gif" width="400px" %}
+Checkout the store for cool 3Blue1Brown and math-themed merchandise, like plushies, shirts, and more.
+Patrons get a heft store discount!

@@ -65,4 +65,4 @@ const createTooltips = () => {
 };
 
 // start script
-window.addEventListener("load", createTooltips);
+window.addEventListener("DOMContentLoaded", createTooltips);

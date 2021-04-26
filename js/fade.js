@@ -37,4 +37,4 @@ const endFade = (target) => {
 };
 
 // start script
-window.addEventListener("load", createFades);
+window.addEventListener("DOMContentLoaded", createFades);

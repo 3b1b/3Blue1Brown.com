@@ -12,16 +12,19 @@ header {
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: 30px;
   background: $black;
   color: $white;
   font-family: $sans;
   overflow: hidden;
   box-shadow: $shadow;
 
-  a {
-    color: $white;
-    text-decoration: none;
+  & > * {
+    z-index: 1;
+  }
+
+  .background {
+    z-index: 0;
   }
 
   nav {
@@ -30,30 +33,10 @@ header {
     align-items: center;
     flex-wrap: wrap;
     @include hover;
+    z-index: 1;
 
     .break_desktop {
       flex-grow: 1;
-    }
-
-    a {
-      padding: 10px;
-      transition: opacity $fast;
-      z-index: 1;
-
-      .icon {
-        width: 0;
-        height: 15px;
-        margin-right: 0 !important;
-        opacity: 0;
-        text-align: center;
-        transition: width $fast, margin $fast, opacity $fast;
-      }
-
-      &:hover .icon {
-        width: 15px;
-        margin-right: 10px !important;
-        opacity: 1;
-      }
     }
   }
 

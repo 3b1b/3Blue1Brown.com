@@ -10,11 +10,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 10px 0;
+  color: $white;
   text-align: center;
+  text-decoration: none;
 
   svg {
-    width: 200px;
+    width: 120px;
     max-width: 100%;
     animation: fade_in 1s ease forwards;
 
@@ -49,7 +51,7 @@
   }
 
   span {
-    margin-top: 40px;
+    margin-top: 20px;
     font-family: $serif;
     font-size: 1.5rem;
     letter-spacing: 2px;
