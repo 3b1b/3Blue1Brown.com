@@ -9,9 +9,8 @@
 {% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="500px" %}
 
 <div>
-  <!-- turn off markdown to prevent these images being wrapped in paragraph -->
-  <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; top: 320px; width: 100px;">
-  <img src="{{ 'images/special/pi-creature-2.svg' | relative_url }}" style="position: absolute; right: 20px; top: 320px; width: 100px;">
+  <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
+  <img src="{{ 'images/special/pi-creature-2.svg' | relative_url }}" style="position: absolute; right: 20px; bottom: -20px; width: 100px;">
 </div>
 
 {% include components/section.html %}
