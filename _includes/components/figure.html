@@ -1,0 +1,64 @@
+{%- assign width = include.width -%}
+{%- assign height = include.height -%}
+
+{%- if width contains "px" -%}
+
+  {%- capture link -%}
+  {%- endcapture -%}
+
+  {%- capture img -%}
+    width: {{ width }};
+  {%- endcapture -%}
+
+{%- elsif width contains "%" -%}
+
+  {%- capture link -%}
+    width: {{ width }};
+  {%- endcapture -%}
+
+  {%- capture img -%}
+    width: 100%;
+  {%- endcapture -%}
+
+{%- elsif height contains "px" -%}
+
+  {%- capture link -%}
+    {%- if include.image contains ".svg" -%}
+      width: 100%;
+    {%- endif -%}
+  {%- endcapture -%}
+  
+  {%- capture img -%}
+    max-height: {{ height }};
+  {%- endcapture -%}
+
+{%- else -%}
+
+  {%- capture link -%}
+  {%- endcapture -%}
+
+  {%- capture img -%}
+  {%- endcapture -%}
+
+{%- endif -%}
+
+<figure class="figure">
+  <a 
+    {% if include.link %}href="{{ include.link | relative_url }}"{% endif %}
+    class="figure_image"
+    style="{{ link }}"
+  >
+    <img
+      src="{{ include.image | relative_url }}"
+      alt="{{ include.caption }}"
+      title="{{ include.caption }}"
+      style="{{ img }}"
+      loading="lazy"
+    />
+  </a>
+  {%- if include.caption -%}
+    <figcaption class="figure_caption">
+      {{- include.caption | markdownify | remove: "<p>" | remove: "</p>" -}}
+    </figcaption>
+  {%- endif -%}
+</figure>

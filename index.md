@@ -1,12 +1,68 @@
 ---
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Dictum sit amet justo donec. Dui id ornare arcu odio ut. Massa ultricies mi quis hendrerit dolor magna. Magna etiam tempor orci eu lobortis. Habitasse platea dictumst quisque sagittis purus. Id aliquet lectus proin nibh nisl condimentum id venenatis a. Augue mauris augue neque gravida in fermentum et sollicitudin ac. Elementum eu facilisis sed odio morbi quis commodo odio. Ac turpis egestas sed tempus urna.
+{% include components/section.html dark=true %}
 
-Urna porttitor rhoncus dolor purus non. Donec massa sapien faucibus et molestie ac feugiat sed. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Non pulvinar neque laoreet suspendisse interdum consectetur libero id faucibus. Vel fringilla est ullamcorper eget nulla. Non tellus orci ac auctor augue mauris. Mauris cursus mattis molestie a iaculis at erat pellentesque adipiscing. Ultrices mi tempus imperdiet nulla. Condimentum lacinia quis vel eros donec ac odio tempor. Amet purus gravida quis blandit turpis cursus in hac habitasse. Amet porttitor eget dolor morbi non arcu risus. Vitae congue mauris rhoncus aenean vel. Id volutpat lacus laoreet non curabitur gravida arcu ac tortor. Ac orci phasellus egestas tellus rutrum. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Congue nisi vitae suscipit tellus mauris a diam. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Ac tincidunt vitae semper quis lectus nulla. Leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Tempor id eu nisl nunc mi ipsum faucibus vitae aliquet.
+<!-- this link should always point to the latest video on the youtube channel -->
+{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
-Placerat vestibulum lectus mauris ultrices. Lobortis mattis aliquam faucibus purus in massa tempor nec. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Montes nascetur ridiculus mus mauris vitae. Duis tristique sollicitudin nibh sit amet. Felis eget nunc lobortis mattis aliquam faucibus purus in. Dignissim cras tincidunt lobortis feugiat vivamus at augue eget. Consectetur a erat nam at. Dictumst quisque sagittis purus sit amet. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Mattis nunc sed blandit libero volutpat sed cras ornare arcu. Elit ullamcorper dignissim cras tincidunt. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Erat nam at lectus urna duis convallis convallis tellus id. Lacus vestibulum sed arcu non odio. Neque ornare aenean euismod elementum nisi. Fames ac turpis egestas integer.
+<div>
+  <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
+  <img src="{{ 'images/special/pi-creature-2.svg' | relative_url }}" style="position: absolute; right: 20px; bottom: -20px; width: 100px;">
+</div>
 
-Malesuada bibendum arcu vitae elementum. Sit amet risus nullam eget felis eget nunc lobortis. Leo vel orci porta non pulvinar neque. Aliquam sem fringilla ut morbi. Egestas integer eget aliquet nibh praesent tristique magna. Convallis posuere morbi leo urna molestie. Facilisi cras fermentum odio eu feugiat. Amet volutpat consequat mauris nunc congue. Arcu cursus euismod quis viverra nibh. Ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant. Mi tempus imperdiet nulla malesuada. Eget aliquet nibh praesent tristique magna sit amet purus. At auctor urna nunc id cursus metus aliquam eleifend. Erat velit scelerisque in dictum non consectetur a erat. At elementum eu facilisis sed odio morbi quis commodo odio. Amet consectetur adipiscing elit duis tristique. Posuere sollicitudin aliquam ultrices sagittis orci a. Enim nec dui nunc mattis enim ut tellus elementum. Quam elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Est velit egestas dui id ornare arcu odio.
+{% include components/section.html %}
 
-Amet cursus sit amet dictum sit amet justo. Quisque non tellus orci ac auctor. Dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc. Vel fringilla est ullamcorper eget nulla facilisi etiam. Ullamcorper eget nulla facilisi etiam dignissim. Sed nisi lacus sed viverra tellus in. In ornare quam viverra orci sagittis eu volutpat odio. Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Feugiat vivamus at augue eget arcu. Tellus mauris a diam maecenas sed enim ut sem. Duis ultricies lacus sed turpis tincidunt id.
+### Topics
+
+<div class="gallery">
+  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Linear Algebra" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Calculus" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Neural Networks" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Differential Equations" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="What is ___?" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Geometry" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Why π?" %}
+  {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
+</div>
+
+{% include components/link.html link="lessons" icon="fas fa-list" text="All Lessons" style="button" %}
+{:.center}
+
+{% include components/section.html %}
+
+### Follow
+
+<div class="social">
+  {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
+  {% include components/link.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="circle" %}
+  {% include components/link.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="circle" %}
+  {% include components/link.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="circle" %}
+  {% include components/link.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="circle" %}
+</div>
+
+The main event is, of course, the YouTube channel.
+But there are many other ways to get involved and enjoy 3Blue1Brown content.
+
+If you want to ask questions, share interesting math, discuss videos, or just give an impassioned rant about how wonderful math is, take a look at the 3blue1brown subreddit.
+People share projects they’re working on here, like their own videos, animations, and interactive lessons.
+These sometimes get added to videos descriptions as additional resources.
+
+And of course, you can follow on all the other usual social media suspects.
+Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
+
+{% include components/section.html %}
+
+### Support
+
+<div class="social">
+  {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
+  {% include components/link.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
+  {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="circle" %}
+</div>
+
+3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you.
+Become a supporter on Patreon to get early access to videos and other rewards.
+
+Checkout the store for cool 3Blue1Brown and math-themed merchandise, like plushies, shirts, and more.
+Patrons get a heft store discount!

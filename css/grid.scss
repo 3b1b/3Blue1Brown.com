@@ -1,7 +1,9 @@
 ---
 ---
 
+@import "palettes";
 @import "theme";
+@import "mixins";
 
 .background {
   position: absolute;
@@ -9,6 +11,8 @@
   top: 0;
   right: 0;
   bottom: 0;
+  z-index: -1;
+  background: $black;
 
   svg {
     position: absolute;

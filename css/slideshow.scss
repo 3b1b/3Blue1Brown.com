@@ -1,0 +1,81 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+$size: 300px;
+
+.swiper-container {
+  width: 100%;
+  height: $size;
+
+  .swiper-wrapper {
+    height: $size;
+
+    .swiper-slide {
+      width: $size;
+      height: $size;
+      transition: opacity $fast;
+
+      img {
+        object-fit: contain;
+        min-width: 100%;
+        min-height: 100%;
+      }
+    }
+  }
+}
+
+.swiper-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    padding: 20px;
+    background: none;
+    color: currentColor;
+    border: none;
+    opacity: 0.25;
+    font-size: 2rem;
+    transition: opacity $fast;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  .swiper-pagination {
+    position: unset;
+
+    .swiper-pagination-bullet {
+      width: 20px;
+      height: 20px;
+      padding: 5px;
+      border-radius: 0;
+      background: currentColor;
+      background-clip: content-box;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: 300px) {
+    & {
+      flex-wrap: wrap;
+
+      button {
+        order: 1;
+      }
+
+      .swiper-pagination {
+        width: 100%;
+      }
+    }
+  }
+}

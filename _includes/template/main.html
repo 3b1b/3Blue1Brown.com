@@ -1,0 +1,33 @@
+{%- comment -%}
+  Modify main content of page:
+  - add section breaks
+  - attach section properties
+  - wrap each table in div to allow for scrolling
+{%- endcomment -%}
+
+{%- assign content = include.content -%}
+
+{%- assign content = content | replace: "<table>", "<div class='table_wrapper'><table>" -%}
+{%- assign content = content | replace: "</table>", "</table></div>" -%}
+
+{%- assign sections = content | split: "<!-- section break -->" -%}
+
+{%- for section in sections -%}
+  
+  {%- assign section = section | strip -%}
+  {%- unless section == "" -%}
+
+    {%- assign dark = false -%}
+    {%- if section contains "<!-- section dark -->" -%}
+      {%- assign dark = true -%}
+    {%- endif -%}
+
+    <section data-dark="{{ dark }}">
+      <div class="section">
+        {{ section }}
+      </div>
+    </section>
+
+    {%- endunless -%}
+
+{%- endfor -%}

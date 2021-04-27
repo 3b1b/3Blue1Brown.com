@@ -1,0 +1,14 @@
+<head>
+  {% include template/analytics.html %}
+
+  <title>
+    {{ site.title }}{% if page.title %} - {% endif %}{{ page.title }}
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {% include template/meta.html %}
+  {% include template/favicons.html %}
+  {% include template/fonts.html %}
+  {% include template/styles.html %}
+  {% include template/scripts.html %}
+</head>
