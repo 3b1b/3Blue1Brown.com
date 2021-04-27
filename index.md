@@ -1,4 +1,5 @@
 ---
+big-header: true
 ---
 
 {% include components/section.html dark=true %}
@@ -13,25 +14,16 @@
 
 {% include components/section.html %}
 
-### Topics
+## Lessons
 
-<div class="gallery">
-  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Linear Algebra" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Calculus" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Neural Networks" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Differential Equations" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="What is ___?" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Geometry" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Why π?" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
-</div>
+{% include template/topics.html %}
 
 {% include components/link.html link="lessons" icon="fas fa-list" text="All Lessons" style="button" %}
 {:.center}
 
 {% include components/section.html %}
 
-### Follow
+## Follow
 
 <div class="social">
   {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
@@ -53,7 +45,7 @@ Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 {% include components/section.html %}
 
-### Support
+## Support
 
 <div class="social">
   {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}

@@ -1,8 +1,17 @@
-<header>
+<header data-big="{{ page.big-header | default: false }}">
   {% include special/grid.html %}
 
+  <a href="{{ '/' | relative_url }}" class="logo">
+    {% include images/logo.svg %}
+    <span>
+      {% assign letters = site.title | split: "" %}
+      {%- for letter in letters -%}
+        <span>{{ letter }}</span>
+      {%- endfor -%}
+    </span>
+  </a>
+
   <nav>
-    
     {%
       include components/link.html
       link="lessons"
@@ -17,9 +26,15 @@
     %}
     {%
       include components/link.html
+      link="recommendations"
+      text="Recommendations"
+      tooltip="Recommended channels and reading"
+    %}
+    {%
+      include components/link.html
       link="about"
       text="About"
-      tooltip="About Grant, other channels, and recommended reading"
+      tooltip="About Grant and other channels"
     %}
     {%
       include components/link.html
@@ -28,8 +43,8 @@
       tooltip="Frequently asked questions and contact info"
     %}
 
-    <span class="break_desktop"></span>
-
+    <div class="desktop_break"></div>
+    
     {%
       include components/link.html
       link="https://www.youtube.com/3blue1brown"
@@ -48,16 +63,6 @@
       text="Support"
       tooltip="Help the channel stay ad-free, and get Patreon rewards"
     %}
-
   </nav>
 
-  <a href="{{ '/' | relative_url }}" class="logo">
-    {% include images/logo.svg %}
-    <span>
-      {% assign letters = site.title | split: "" %}
-      {%- for letter in letters -%}
-        <span>{{ letter }}</span>
-      {%- endfor -%}
-    </span>
-  </a>
 </header>

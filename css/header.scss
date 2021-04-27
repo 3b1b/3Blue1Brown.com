@@ -5,23 +5,21 @@
 @import "theme";
 @import "mixins";
 
-$tablet: 1000px;
-$phone: 700px;
+$tablet: 1400px;
+$phone: 600px;
 
 header {
   position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 30px;
   background: $black;
   color: $white;
   font-family: $sans;
   overflow: hidden;
   box-shadow: $shadow;
-
-  & > * {
-    z-index: 1;
-  }
 
   .background {
     z-index: 0;
@@ -31,33 +29,96 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    align-self: flex-start;
+    width: 100%;
     @include hover;
     z-index: 1;
 
-    .break_desktop {
+    .desktop_break {
       flex-grow: 1;
-    }
-  }
 
-  @media (max-width: $tablet) {
-    nav {
-      order: 2;
-
-      .break_desktop {
+      @media (max-width: $tablet) {
         flex-grow: 0;
-        width: 0;
+      }
+    }
+
+    @media (max-width: $phone) {
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+
+      a {
+        width: 100%;
       }
     }
   }
 
-  @media (max-width: $phone) {
-    nav {
-      justify-content: center;
+  .logo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    color: $white;
+    opacity: 1 !important;
+    text-align: center;
+    text-decoration: none;
+    z-index: 2;
+
+    & > svg {
+      height: 60px;
+      max-width: 100%;
+      animation: fade_in 1s ease forwards;
+    }
+
+    & > span {
+      margin-left: 20px;
+      font-family: $serif;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+
+      span {
+        opacity: 0;
+        animation: fade_in 1s ease forwards;
+      }
+
+      @for $i from 1 through 11 {
+        span:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.075}s;
+        }
+      }
+    }
+
+    @media (max-width: $tablet) {
+      position: static;
+      flex-basis: 100%;
+      margin-bottom: 10px;
+    }
+
+    @keyframes fade_in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 100%;
+      }
+    }
+  }
+
+  &[data-big="true"] {
+    min-height: 250px;
+
+    .logo {
       flex-direction: column;
 
-      a {
-        width: 100%;
+      & > svg {
+        height: 120px !important;
+        margin-top: 20px;
+      }
+
+      & > span {
+        margin-left: 0;
+        margin-top: 20px;
       }
     }
   }
