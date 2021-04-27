@@ -1,9 +1,12 @@
 ---
 ---
 
+@import "palettes";
 @import "theme";
+@import "mixins";
 
 $arrow: 10px;
+$color: $gray-800;
 
 .tooltip {
   position: absolute;
@@ -12,7 +15,7 @@ $arrow: 10px;
   width: max-content;
   max-width: calc(100vw - 40px);
   padding: 10px 15px;
-  background: $off-black;
+  background: $color;
   color: $white;
   border-radius: 5px;
   font-family: $sans;
@@ -37,7 +40,7 @@ $arrow: 10px;
     position: absolute;
     width: $arrow;
     height: $arrow;
-    background: $off-black;
+    background: $color;
     transform: rotate(45deg);
     z-index: -1;
   }

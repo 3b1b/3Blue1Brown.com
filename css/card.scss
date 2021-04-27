@@ -1,0 +1,26 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  color: $black;
+  font-family: $sans;
+  text-decoration: none;
+
+  &:hover {
+    color: $light-blue-500;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  span {
+    margin-top: 10px;
+  }
+}

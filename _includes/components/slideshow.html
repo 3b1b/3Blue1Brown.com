@@ -1,0 +1,21 @@
+{% assign images = site.static_files | where_exp: "image", "image.path contains include.images" %}
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {%- for image in images -%}
+      <a href="{{ include.link | append: image.basename }}" class="swiper-slide">
+        <img src="{{ image.path | relative_url }}" />
+      </a>
+    {%- endfor -%}
+  </div>
+</div>
+
+<div class="swiper-navigation">
+  <button class="swiper-prev">
+    <i class="fas fa-arrow-circle-left"></i>
+  </button>
+  <div class="swiper-pagination"></div>
+  <button class="swiper-next">
+    <i class="fas fa-arrow-circle-right"></i>
+  </button>
+</div>

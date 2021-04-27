@@ -1,0 +1,16 @@
+<a href="{{ include.link | relative_url }}" class="link" data-tooltip="{{ include.tooltip }}" {% if include.icon %}data-icon{% endif %} {% if include.text %}data-text{% endif %} data-style="{{ include.style }}">
+  {%- if include.icon -%}
+    <span class="icon">
+      {%- if include.icon contains "fa-" -%}
+        <i class="{{ include.icon }}"></i>
+      {%- else -%}
+        {%- include {{ include.icon }} -%}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+
+  {%- if include.text -%}
+    <span class="text truncate">{{ include.text }}</span>
+  {%- endif -%}
+</a>
+{{- -}}

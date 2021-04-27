@@ -1,9 +1,22 @@
 // reusable snippets of CSS
 
+// standard margins for "block" items like paragraphs, figures, tables, etc
 @mixin margins {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
+// fade group of items when hovering
+@mixin hover {
+  &:hover > * {
+    opacity: 0.25;
+  }
+
+  & > *:hover {
+    opacity: 1;
+  }
+}
+
+// remove vertical margins from first and last elements
 @mixin trim-v-margins {
   &:first-child {
     margin-top: 0;
@@ -14,6 +27,7 @@
   }
 }
 
+// remove horizontal margins from first and last elements
 @mixin trim-h-margins {
   &:first-child {
     margin-left: 0;

@@ -1,0 +1,10 @@
+<!-- third party scripts -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- site-wide javascript scripts -->
+{%- for file in site.static_files -%}
+  {%- if file.path contains "/js" -%}
+    <script src="{{ file.path | relative_url }}"></script>
+  {%- endif -%}
+{%- endfor -%}
