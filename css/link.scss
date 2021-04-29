@@ -44,15 +44,6 @@ a:hover {
     }
   }
 
-  &[data-style="circle"] {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    border-radius: 100%;
-    background: $black;
-    color: $white;
-  }
-
   &[data-style="button"] {
     min-width: 200px;
     margin: 10px;
@@ -63,6 +54,20 @@ a:hover {
 
     &:hover {
       background: $gray-700;
+    }
+  }
+
+  &[data-style="circle"] {
+    min-width: 50px;
+    min-height: 50px;
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 999px;
+    background: $black;
+    color: $white;
+
+    &:hover {
+      background: $light-blue-500;
     }
   }
 }

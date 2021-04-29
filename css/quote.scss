@@ -5,9 +5,9 @@
 @import "theme";
 @import "mixins";
 
-p {
-  margin: 20px 0;
+blockquote {
+  margin: 40px 0;
   @include trim-v-margins;
-  text-align: justify;
-  line-height: $spacing + 0.3;
+  padding: 10px 20px;
+  background: $gray-300;
 }

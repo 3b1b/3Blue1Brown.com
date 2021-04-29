@@ -18,9 +18,6 @@ big-header: true
 
 {% include template/topics.html %}
 
-{% include components/link.html link="lessons" icon="fas fa-list" text="All Lessons" style="button" %}
-{:.center}
-
 {% include components/section.html %}
 
 ## Follow

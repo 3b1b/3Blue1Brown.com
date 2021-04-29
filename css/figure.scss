@@ -11,7 +11,7 @@
 
 .figure {
   flex-direction: column;
-  @include margins;
+  margin: 40px 0;
   @include trim-v-margins;
 
   .figure_image,

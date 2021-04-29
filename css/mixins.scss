@@ -1,10 +1,5 @@
 // reusable snippets of CSS
 
-// standard margins for "block" items like paragraphs, figures, tables, etc
-@mixin margins {
-  margin: 30px 0;
-}
-
 // fade group of items when hovering
 @mixin hover {
   &:hover > * {

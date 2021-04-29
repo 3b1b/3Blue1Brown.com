@@ -5,9 +5,7 @@
 @import "theme";
 @import "mixins";
 
-p {
-  margin: 20px 0;
+mjx-container[jax="CHTML"][display="true"] {
+  margin: 40px 0;
   @include trim-v-margins;
-  text-align: justify;
-  line-height: $spacing + 0.3;
 }
