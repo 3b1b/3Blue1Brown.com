@@ -5,7 +5,8 @@
 @import "theme";
 @import "mixins";
 
-i.fas,
-i.far,
-i.fab {
+#{$icon} {
+  & + span {
+    margin-left: 0.75em;
+  }
 }

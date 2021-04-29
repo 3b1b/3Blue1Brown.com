@@ -1,0 +1,20 @@
+<div class="lesson_details">
+  <div>
+    <i class="far fa-calendar"></i>
+    <span>Published {{ page.date | date: "%B %d, %Y" }}</span>
+  </div>
+
+  <div>
+    <i class="far fa-clock"></i>
+    <span>Updated {{ page.last_modified_at | default: page.date | date: "%B %d, %Y" }}</span>
+  </div>
+  
+  <br>
+
+  {% for credit in page.credits %}
+    <div>
+      <i class="fas fa-feather"></i>
+      <span>{{ credit }}</span>
+    </div>
+  {% endfor %}
+</div>

@@ -5,7 +5,7 @@ big-header: true
 {% include components/section.html dark=true %}
 
 <!-- this link should always point to the latest video on the youtube channel -->
-{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
+{% include components/embed.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
 <div>
   <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">

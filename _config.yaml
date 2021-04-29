@@ -16,7 +16,7 @@ collections:
   posts:
     output: true
 
-permalink: /:categories/:title:output_ext
+permalink: /lessons/:title:output_ext
 
 sass:
   sass_dir: css

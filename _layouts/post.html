@@ -6,40 +6,11 @@ layout: default
   {{ page.title }}
 </h1>
 
-{% assign topic = page.url | split: '/' | shift | shift | first %}
-<div>
-  {{ topic | split: "-" | join: "," | capitalize }}
-</div>
-
-<div>
-  Last updated {{ page.date | date: "%B %d, %Y" }}
-</div>
-
-{% for credit in page.credits %}
-  <div>
-    {{ credit }}
-  </div>
-{% endfor %}
-
-{% assign next = page.next | default: nil %}
-{% assign nexttopic = next.url | split: '/' | shift | shift | first %}
-{% if next and nexttopic == topic %}
-  Next lesson<br>
-  <a href="{{ next.url | relative_url }}"> {{ next.title }}</a>
-{% endif %}
-
-<br>
-
-{% assign previous = page.previous | default: nil %}
-{% assign previoustopic = previous.url | split: '/' | shift | shift | first %}
-{% if previous and previoustopic == topic %}
-  Previous lesson<br>
-  <a href="{{ previous.url | relative_url }}"> {{ previous.title }}</a>
-{% endif %}
+{% include template/lesson-details.html %}
 
 {% include components/section.html %}
 
-{% include components/video.html src=page.video %}
+{% include components/embed.html src=page.video %}
 
 {% include components/section.html %}
 
@@ -47,10 +18,4 @@ layout: default
 
 {% include components/section.html %}
 
-<h3 id="License">
-  License
-</h3>
-
-<p>
-  All rights reserved
-</p>
+{% include template/license.html %}
