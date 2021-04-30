@@ -5,19 +5,52 @@
 @import "theme";
 @import "mixins";
 
-@import "palettes";
-@import "theme";
-@import "mixins";
-
 .figure {
   flex-direction: column;
   margin: 40px 0;
   @include trim-v-margins;
 
-  .figure_image,
-  img {
+  .figure_controls {
+    text-align: right;
+
+    button {
+      border-radius: 5px 5px 0 0;
+      transition: background $fast, color $fast;
+    }
+
+    @media (max-width: 500px) {
+      text-align: center;
+    }
+  }
+
+  img,
+  video {
+    display: none;
     max-width: 100%;
-    max-height: 100%;
+  }
+
+  &[data-show="image"] {
+    img {
+      display: block;
+    }
+
+    .figure_controls {
+      button:first-child {
+        background: $light-blue-100;
+      }
+    }
+  }
+
+  &[data-show="video"] {
+    video {
+      display: block;
+    }
+
+    .figure_controls {
+      button:last-child {
+        background: $light-blue-100;
+      }
+    }
   }
 
   .figure_caption {

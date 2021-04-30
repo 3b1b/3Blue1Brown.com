@@ -86,4 +86,14 @@ $$
 {% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
 {% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="button" %}
 {% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="circle" %}
+{% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="circle" %}
 {:.center}
+
+<!-- figure with image and/or video, and caption -->
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+{% capture caption %}
+Markdown in caption.
+[Test link](https://google.com/).
+$$f(x) = \pi + e^{-i} + sin(x)$$
+{% endcapture %}
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" default="video" caption=caption %}

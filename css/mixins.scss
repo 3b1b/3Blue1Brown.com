@@ -2,12 +2,8 @@
 
 // fade group of items when hovering
 @mixin hover {
-  &:hover > * {
+  &:hover > *:not(:hover) {
     opacity: 0.25;
-  }
-
-  & > *:hover {
-    opacity: 1;
   }
 }
 

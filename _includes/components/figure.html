@@ -1,64 +1,55 @@
-{%- assign width = include.width -%}
-{%- assign height = include.height -%}
-
-{%- if width contains "px" -%}
-
-  {%- capture link -%}
-  {%- endcapture -%}
-
-  {%- capture img -%}
-    width: {{ width }};
-  {%- endcapture -%}
-
-{%- elsif width contains "%" -%}
-
-  {%- capture link -%}
-    width: {{ width }};
-  {%- endcapture -%}
-
-  {%- capture img -%}
-    width: 100%;
-  {%- endcapture -%}
-
-{%- elsif height contains "px" -%}
-
-  {%- capture link -%}
-    {%- if include.image contains ".svg" -%}
-      width: 100%;
-    {%- endif -%}
-  {%- endcapture -%}
-  
-  {%- capture img -%}
-    max-height: {{ height }};
-  {%- endcapture -%}
-
+{%- if include.width -%}
+  {%- capture size -%}width: {{ include.width }}{%- endcapture -%}
+{%- elsif include.height -%}
+  {%- capture size -%}height: {{ include.height }}{%- endcapture -%}
 {%- else -%}
-
-  {%- capture link -%}
-  {%- endcapture -%}
-
-  {%- capture img -%}
-  {%- endcapture -%}
-
+  {%- capture size -%}width: 100%{%- endcapture -%}
 {%- endif -%}
 
-<figure class="figure">
-  <a 
-    {% if include.link %}href="{{ include.link | relative_url }}"{% endif %}
-    class="figure_image"
-    style="{{ link }}"
-  >
+<figure class="figure" data-show="{{ include.default | default: 'image' }}">
+  {% if include.image and include.video %}
+    <div class="figure_controls">
+      <button
+        onclick="this.closest('.figure').dataset.show = 'image'"
+      >
+        <i class="far fa-image"></i>
+        <span>Still</span>
+      </button>
+      <button
+        onclick="this.closest('.figure').dataset.show = 'video'"
+      >
+        <i class="fas fa-film"></i>
+        <span>Animation</span>
+      </button>
+    </div>
+  {% endif %}
+
+  {% if include.image %}
     <img
       src="{{ include.image | relative_url }}"
       alt="{{ include.caption }}"
-      title="{{ include.caption }}"
-      style="{{ img }}"
+      style="{{ size }}"
       loading="lazy"
     />
-  </a>
-  {%- if include.caption -%}
+  {% endif %}
+
+  {% if include.video %}
+    <video
+      autoplay
+      controls
+      preload="metadata"
+      style="{{ size }}"
+    >
+      <source
+        src="{{ include.video | relative_url }}"
+        type="video/mp4"
+      >
+    </video>
+  {% endif %}
+    
+  {% if include.caption %}
     <figcaption class="figure_caption">
-      {{- include.caption | markdownify | remove: "<p>" | remove: "</p>" -}}
+      {{ include.caption | markdownify | remove: "<p>" | remove: "</p>" }}
     </figcaption>
-  {%- endif -%}
+  {% endif %}
 </figure>
