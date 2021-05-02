@@ -1,4 +1,3 @@
-// fade plugin
 // fades in any element with the data-fade attribute when it comes into view
 
 const duration = 500; // transition duration

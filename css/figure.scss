@@ -15,7 +15,6 @@
 
     button {
       border-radius: 5px 5px 0 0;
-      transition: background $fast, color $fast;
     }
 
     @media (max-width: 500px) {
@@ -35,8 +34,8 @@
     }
 
     .figure_controls {
-      button:first-child {
-        background: $light-blue-100;
+      button:last-child {
+        background: none;
       }
     }
   }
@@ -47,8 +46,8 @@
     }
 
     .figure_controls {
-      button:last-child {
-        background: $light-blue-100;
+      button:first-child {
+        background: none;
       }
     }
   }

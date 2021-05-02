@@ -10,9 +10,15 @@ button {
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
-  background: none;
+  background: $gray-300;
   border: none;
+  border-radius: 5px;
   font-family: $sans;
-  font-size: 0.9rem;
-  cursor: pointer;
+  font-size: 1rem;
+  transition: background $fast, color $fast;
+
+  &:hover {
+    background: $light-blue-100;
+    cursor: pointer;
+  }
 }

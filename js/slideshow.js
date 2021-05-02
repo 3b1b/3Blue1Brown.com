@@ -1,5 +1,3 @@
-// slideshow plugin, using the Swiper library
-
 // create slideshows
 const createSlideshows = () =>
   new Swiper(".swiper-container", {

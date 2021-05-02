@@ -1,0 +1,37 @@
+<div class="question">
+  <div class="question_text">{{ include.question }}</div>
+  <div class="answers">
+    {% for i in (1..10) %}
+      {% assign answer = "answer" | append: i %}
+      {% assign answer = include[answer] %}
+      {% if answer %}
+        {% if i == include.correct %}
+          {% assign correct = true %}
+        {% else %}
+          {% assign correct = false %}
+        {% endif %}
+        <label class="answer" data-correct="{{ correct }}">
+          <input type="radio" name="{{ include.question }}" value="{{ answer }}">
+          <span class="radio"></span>
+          <span class="answer_text">{{ answer }}</span>
+          <span class="icon">
+            {% if correct %}
+              <i class="fas fa-check"></i>
+            {% endif %}
+          </span>
+        </label>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <button class="check" onclick="submitAnswer(this)">
+    Check Answer
+  </button>
+  <div class="result correct">
+    <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" />
+    Correct!
+  </div>
+  <div class="result incorrect">
+    <img src="{{ 'images/special/pi-creature-3.png' | relative_url }}" />
+    Not quite...
+  </div>
+</div>

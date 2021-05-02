@@ -44,17 +44,40 @@ Centered element.
 ---
 
 # Top level heading
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ## Secondary heading
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 ### Very specific heading
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 #### Even more specific heading
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 {% include components/section.html %}
 
 | TABLE | Game 1 | Game 2 | Game 3 | Total |
 | :---- | :----: | :----: | :----: | ----: |
-| Anna  |  144   |  123   |  218   |  485  |
-| Bill  |   90   |  175   |  120   |  385  |
-| Cara  |  102   |  214   |  233   |  549  |
+| Anna  |  144   |  123   |  218   |   485 |
+| Bill  |   90   |  175   |  120   |   385 |
+| Cara  |  102   |  214   |  233   |   549 |
 
 > It was the best of times it was the worst of times.
 > It was the age of wisdom, it was the age of foolishness.
@@ -64,7 +87,8 @@ Centered element.
 // a comment
 const popup = document.querySelector("#popup");
 popup.style.width = "100%";
-popup.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+popup.innerText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 ```
 
 This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
@@ -80,7 +104,22 @@ $$
 \underbrace{\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Scaled center of mass}}
 $$
 
+<!-- section break component -->
 {% include components/section.html %}
+
+<!-- spoiler component -->
+Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
+
+<!-- question component -->
+{%
+  include components/question.html
+  question="Why did the chicken cross the road?"
+  answer1="To get to the other side"
+  answer2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
+  answer3="Cannot be determined"
+  answer4="A superposition of all the answers above"
+  correct=4
+%}
 
 <!-- link with icon and/or text -->
 {% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
