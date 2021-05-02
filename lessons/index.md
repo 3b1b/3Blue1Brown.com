@@ -2,7 +2,7 @@
 title: Lessons
 ---
 
-[template lesson]({{ "lessons/template-lesson" | relative_url }})
+[test lesson]({{ "lessons/test-lesson" | relative_url }})
 
 # Lessons
 

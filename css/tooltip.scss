@@ -6,13 +6,12 @@
 @import "mixins";
 
 $arrow: 10px;
-$color: $gray-700;
+$color: $gray-900;
 
 .tooltip {
   position: absolute;
   left: -9999px;
   top: -9999px;
-  width: max-content;
   max-width: calc(100vw - 40px);
   padding: 10px 15px;
   background: $color;
