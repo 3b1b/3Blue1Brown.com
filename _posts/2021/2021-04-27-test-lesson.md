@@ -7,7 +7,7 @@ category: Geometry
 order: 1
 credits:
   - Lesson and figures by Grant Sanderson
-  - Translated to text by James Schloss
+  - Translated to blog format by James Schloss
 tags:
   - interactive
   - geometry

@@ -2,7 +2,9 @@
 title: Lessons
 ---
 
-[test lesson]({{ "lessons/test-lesson" | relative_url }})
+{% for post in posts %}
+  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+{% endfor %}
 
 # Lessons
 
