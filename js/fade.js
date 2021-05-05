@@ -1,7 +1,8 @@
 // fades in any element with the data-fade attribute when it comes into view
 
-const duration = 500; // transition duration
-const delay = 100; // delay before transition
+// options
+const duration = 250; // transition duration
+const delay = 10; // delay before transition
 const offset = 100; // extra delay for items further to right of screen
 
 // create fade listeners

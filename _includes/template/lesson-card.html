@@ -1,0 +1,12 @@
+<a href="{{ include.lesson.url | relative_url }}" class="lesson_card" data-fade>
+  <img src="https://img.youtube.com/vi/{{ include.lesson.video }}/hqdefault.jpg" />
+  <span class="lesson_card_text">
+    {% if include.lesson.title and include.lesson.title != "" %}
+      <span>{{ include.lesson.title }}</span>
+    {% endif %}
+    {% if include.lesson.description and include.lesson.description != "" %}
+      <span>{{ include.lesson.description }}</span>
+    {% endif %}
+  </span>
+</a>
+{{- -}}

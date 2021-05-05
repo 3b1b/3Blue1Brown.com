@@ -2,10 +2,6 @@
 title: Lessons
 ---
 
-{% for post in site.posts %}
-  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-{% endfor %}
+# Topics
 
-# Lessons
-
-{% include template/topics.html %}
+{% include template/topics.html expanded="true" %}

@@ -1,0 +1,64 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+$phone: 500px;
+
+.lessons {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.lesson_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: $gray-200;
+  color: $black;
+  text-decoration: none;
+  text-align: left;
+  transition: background $fast;
+
+  &:hover {
+    background: $light-blue-100;
+  }
+
+  img {
+    height: 100px;
+  }
+
+  .lesson_card_text {
+    flex-grow: 1;
+    padding: 0 20px;
+
+    & > * {
+      margin: 10px 0;
+      @include trim-v-margins;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      &:nth-child(1) {
+        font-weight: $semi-bold;
+      }
+
+      &:nth-child(2) {
+        color: $gray-700;
+      }
+    }
+  }
+
+  @media (max-width: $phone) {
+    flex-direction: column;
+
+    .lesson_card_text {
+      padding: 10px 0;
+    }
+  }
+}

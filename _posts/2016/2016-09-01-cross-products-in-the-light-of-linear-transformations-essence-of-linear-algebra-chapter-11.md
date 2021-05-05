@@ -3,8 +3,8 @@ title: Cross products in the light of linear transformations | Essence of linear
 description: The formula for the cross product can feel like a mystery, or some kind of crazy coincidence.  But it isn't.  There is a fundamental connection between the cross product and determinants.
 video: BaM7OCEm3G0
 date: "2016-09-01"
-category: Linear algebra
-chapter: 5
+topic: Linear algebra
+order: 11
 source: _2016/eola/chapter8.py
 credits:
 - Lesson by Grant Sanderson

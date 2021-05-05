@@ -1,0 +1,14 @@
+<button
+  id="{{ include.id }}"
+  class="topic_card"
+  data-fade
+  data-expanded="{{ include.expanded |default: true }}"
+  onclick="toggleTopic(this)"
+>
+  <img src="{{ include.image | relative_url }}" />
+  <span class="topic_card_text">
+    {{ include.text }}
+    <i class="fas fa-caret-down fa-2x"></i>
+    <i class="fas fa-caret-up fa-2x"></i>
+  </span>
+</button>

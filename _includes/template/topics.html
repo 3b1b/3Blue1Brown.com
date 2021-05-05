@@ -1,10 +1,24 @@
-<div class="gallery">
-  {% include template/card.html image="images/topics/topic.jpg" text="Essence of Linear Algebra" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Essence of Calculus" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Neural Networks" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Differential Equations" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="What is ___?" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Geometry" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Why π?" %}
-  {% include template/card.html image="images/topics/topic.jpg" text="Physics" %}
+<div class="topics">
+  {% assign lessons = site.posts | sort: "order" %}
+  {% for topic in site.data.topics %}
+    {% assign hash = topic | downcase | split: " " | join: "-" %}
+    {% assign image = "images/topics/" | append: hash | append: ".jpg" %}
+    {%
+      include template/topic-card.html
+      id=hash
+      image=image
+      text=topic
+      expanded=include.expanded
+    %}
+    <div class="lessons">
+      {% for lesson in lessons %}
+        {% if lesson.topic == topic %}
+          {% include template/lesson-card.html lesson=lesson %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endfor %}
 </div>
+<p class="center">
+  <button onclick="toggleTopics(this)">Expand All</button>
+</p>

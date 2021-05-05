@@ -14,9 +14,9 @@ big-header: true
 
 {% include components/section.html %}
 
-## Lessons
+## Topics
 
-{% include template/topics.html %}
+{% include template/topics.html expanded="false" %}
 
 {% include components/section.html %}
 

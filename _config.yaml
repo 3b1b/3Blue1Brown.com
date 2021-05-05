@@ -10,7 +10,7 @@ defaults:
   - scope:
       type: "posts"
     values:
-      layout: post
+      layout: lesson
 
 collections:
   posts:

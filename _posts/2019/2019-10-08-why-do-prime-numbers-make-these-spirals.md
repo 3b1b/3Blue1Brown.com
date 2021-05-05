@@ -3,8 +3,8 @@ title: Why do prime numbers make these spirals?
 description: A curious pattern in polar plots with prime numbers, together with discussion of Dirichlet's theorem
 video: EK32jo7i5LQ
 date: "2019-10-08"
-category: Number theory
-chapter: 1
+topic: Number theory
+order: 1
 source: _2019/spirals.py
 credits:
 - Lesson by Grant Sanderson
