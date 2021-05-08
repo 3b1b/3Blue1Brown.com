@@ -13,10 +13,6 @@
   .figure_controls {
     text-align: right;
 
-    button {
-      border-radius: 5px 5px 0 0;
-    }
-
     @media (max-width: 500px) {
       text-align: center;
     }

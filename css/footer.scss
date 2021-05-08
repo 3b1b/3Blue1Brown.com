@@ -27,6 +27,10 @@ footer {
   .social {
     font-size: 1.4rem;
     margin: unset;
+
+    .link {
+      color: $white;
+    }
   }
 
   @media (max-width: $phone) {

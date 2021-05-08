@@ -1,0 +1,72 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+$phone: 600px;
+
+.toc {
+  margin: 20px 0;
+  @include trim-v-margins;
+
+  .toc_nav {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    grid-gap: 20px;
+
+    & > * {
+      border-radius: 0;
+    }
+
+    @media (max-width: $phone) {
+      grid-template-columns: 1fr;
+
+      button {
+        order: 1;
+      }
+    }
+  }
+
+  &[data-open] {
+    .toc_nav {
+      .mini_lesson_card {
+        display: none;
+      }
+    }
+  }
+
+  &[data-open] {
+    .fa-list-ul {
+      display: none;
+    }
+
+    .fa-times {
+      display: unset;
+    }
+  }
+
+  &:not([data-open]) {
+    .fa-list-ul {
+      display: unset;
+    }
+
+    .fa-times {
+      display: none;
+    }
+  }
+
+  .toc_content {
+    display: none;
+    max-height: 50vh;
+    margin-top: 20px;
+    overflow-y: auto;
+  }
+
+  &[data-open] {
+    .toc_content {
+      display: block;
+    }
+  }
+}

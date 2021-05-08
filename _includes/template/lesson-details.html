@@ -8,7 +8,7 @@
     <i class="far fa-clock"></i>
     <span>Updated {{ page.last_modified_at | default: page.date | date: "%B %d, %Y" }}</span>
   </div>
-  
+
   <br>
 
   {% for credit in page.credits %}
@@ -17,4 +17,17 @@
       <span>{{ credit }}</span>
     </div>
   {% endfor %}
+
+  <br>
+  
+  <div>
+    <i class="fas fa-book"></i>
+    <span>{{ page.topic }}</span>
+  </div>
+
+  <div>
+    <i class="fas fa-tag"></i>
+    <span>{{ page.tags | join: ", " }}</span>
+  </div>
+
 </div>

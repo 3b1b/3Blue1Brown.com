@@ -34,6 +34,10 @@ header {
     @include hover;
     z-index: 1;
 
+    .link {
+      color: $white;
+    }
+
     .desktop_break {
       flex-grow: 1;
 

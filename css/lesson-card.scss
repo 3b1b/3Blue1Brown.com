@@ -14,8 +14,9 @@ $phone: 500px;
 
 .lesson_card {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  max-width: 100%;
   padding: 20px;
   background: $gray-200;
   color: $black;
@@ -27,38 +28,77 @@ $phone: 500px;
     background: $light-blue-100;
   }
 
+  & > * {
+    margin: 0 10px;
+    @include trim-h-margins;
+  }
+
   img {
     height: 100px;
   }
 
   .lesson_card_text {
     flex-grow: 1;
-    padding: 0 20px;
+    word-break: break-word;
 
     & > * {
-      margin: 10px 0;
-      @include trim-v-margins;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      @include line-clamp(2);
 
       &:nth-child(1) {
         font-weight: $semi-bold;
       }
 
       &:nth-child(2) {
+        margin-top: 10px;
         color: $gray-700;
       }
     }
   }
 
-  @media (max-width: $phone) {
-    flex-direction: column;
+  &[data-none] {
+    visibility: hidden;
+  }
+
+  &[data-mini] {
+    padding: 10px;
+
+    & > * {
+      margin: 0 5px;
+      @include trim-h-margins;
+    }
+
+    img {
+      height: 50px;
+    }
 
     .lesson_card_text {
-      padding: 10px 0;
+      font-size: 0.9rem;
+
+      & > * {
+        @include line-clamp(3);
+      }
+    }
+  }
+
+  &[data-active] {
+    background: $light-blue-100;
+  }
+
+  @media (max-width: $phone) {
+    padding: 10px;
+
+    img {
+      height: 50px;
+    }
+
+    .lesson_card_text {
+      & > * {
+        @include line-clamp(3);
+
+        &:nth-child(2) {
+          display: none;
+        }
+      }
     }
   }
 }

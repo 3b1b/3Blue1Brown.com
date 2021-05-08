@@ -20,7 +20,6 @@ a:hover {
   align-items: center;
   max-width: 100%;
   padding: 10px;
-  color: inherit;
   font-size: 0.9rem;
   text-decoration: none;
   transition: background $fast, color $fast, opacity $fast;
@@ -47,7 +46,6 @@ a:hover {
     min-width: 200px;
     margin: 10px;
     padding: 7.5px 20px;
-    border-radius: 5px;
     background: $light-blue-500;
     color: $white;
 

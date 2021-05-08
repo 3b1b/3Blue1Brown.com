@@ -1,0 +1,37 @@
+<div class="toc">
+  {% assign lessons = site.posts | sort: "order" | where_exp: "lesson", "lesson.topic == page.topic" %}
+
+  {% assign index = nil %}
+  {% for lesson in lessons %}
+    {% if lesson.title == page.title %}
+      {% assign index = forloop.index | minus: 1 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign prevIndex = index | minus: 1 %}
+  {% assign nextIndex = index | plus: 1 %}
+  {% assign prev = nil %}
+  {% assign next = nil %}
+  {% if prevIndex >= 0 %}
+    {% assign prev = lessons[prevIndex] %}
+  {% endif %}
+  {% if nextIndex < lessons.size %}
+    {% assign next = lessons[nextIndex] %}
+  {% endif %}
+
+  <div class="toc_nav">
+    {% include template/lesson-card.html mini=true lesson=prev icon-before="fas fa-arrow-left" %}
+    <button class="toc_button" onclick="toggleToc()">
+      <i class="fas fa-list-ul"></i>
+      <i class="fas fa-times"></i>
+    </button>
+    {% include template/lesson-card.html mini=true lesson=next icon-after="fas fa-arrow-right" reverse=true %}
+  </div>
+
+  <div class="toc_content">
+    {% for lesson in lessons %}
+      {% include template/lesson-card.html mini=true lesson=lesson %}
+    {% endfor %}
+  </div>
+</div>
