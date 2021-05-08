@@ -55,8 +55,9 @@ $phone: 500px;
     }
   }
 
-  &[data-none] {
-    visibility: hidden;
+  &:not([href]) {
+    opacity: 0.25 !important;
+    pointer-events: none;
   }
 
   &[data-mini] {

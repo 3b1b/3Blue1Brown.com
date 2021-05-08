@@ -1,10 +1,14 @@
-<a href="{{ include.lesson.url | relative_url }}" class="lesson_card" {% if include.lesson.title == nil %}data-none{% endif %} {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
+<a {% if include.lesson.url %}href="{{ include.lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
   {% if include.icon-before %}
     <i class="{{ include.icon-before }}"></i>
   {% endif %}
 
-  <img src="https://img.youtube.com/vi/{{ include.lesson.video }}/hqdefault.jpg" />
-  
+  {% if include.lesson.video and include.lesson.video != "" %}
+    <img src="https://img.youtube.com/vi/{{ include.lesson.video }}/hqdefault.jpg" />
+  {% else %}
+    <img src="{{ 'images/thumbnail-placeholder.jpg' | relative_url }}" />
+  {% endif %}
+
   <span class="lesson_card_text">
     {% if include.lesson.title and include.lesson.title != "" %}
       <span>{{ include.lesson.title }}</span>
