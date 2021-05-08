@@ -20,5 +20,10 @@
   {% endfor %}
 </div>
 <p class="center">
-  <button onclick="toggleTopics(this)">Expand All</button>
+  {%
+    include components/clickable.html
+    onclick="toggleTopics(this)"
+    text="Expand All"
+    style="plain"
+  %}
 </p>

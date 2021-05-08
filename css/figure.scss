@@ -16,6 +16,10 @@
     @media (max-width: 500px) {
       text-align: center;
     }
+
+    .clickable {
+      margin: 0;
+    }
   }
 
   img,
@@ -28,23 +32,11 @@
     img {
       display: block;
     }
-
-    .figure_controls {
-      button:last-child {
-        background: none;
-      }
-    }
   }
 
   &[data-show="video"] {
     video {
       display: block;
-    }
-
-    .figure_controls {
-      button:first-child {
-        background: none;
-      }
     }
   }
 

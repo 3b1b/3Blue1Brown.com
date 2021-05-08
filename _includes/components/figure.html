@@ -5,22 +5,35 @@
 {%- else -%}
   {%- capture size -%}width: 100%{%- endcapture -%}
 {%- endif -%}
-
-<figure class="figure" data-show="{{ include.default | default: 'image' }}">
+{%- assign default = include.default | default: "image" -%}
+<figure class="figure" data-show="{{ default }}">
   {% if include.image and include.video %}
     <div class="figure_controls">
-      <button
-        onclick="this.closest('.figure').dataset.show = 'image'"
-      >
-        <i class="far fa-image"></i>
-        <span>Still</span>
-      </button>
-      <button
-        onclick="this.closest('.figure').dataset.show = 'video'"
-      >
-        <i class="fas fa-film"></i>
-        <span>Animation</span>
-      </button>
+      {% if default == "image" %}
+        {% assign active = true %}
+      {% else %}
+        {% assign active = false %}
+      {% endif %}
+      {%
+        include components/clickable.html
+        icon="far fa-image"
+        text="Still"
+        active=active
+        onclick="figureShow(this, 'image')"
+      %}
+      
+      {% if default == "video" %}
+        {% assign active = true %}
+      {% else %}
+        {% assign active = false %}
+      {% endif %}
+      {%
+        include components/clickable.html
+        icon="fas fa-film"
+        text="Animation"
+        active=active
+        onclick="figureShow(this, 'video')"
+      %}
     </div>
   {% endif %}
 

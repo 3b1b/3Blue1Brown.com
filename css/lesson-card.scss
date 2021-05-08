@@ -56,8 +56,12 @@ $phone: 500px;
   }
 
   &:not([href]) {
-    opacity: 0.25 !important;
     pointer-events: none;
+
+    i,
+    img {
+      opacity: 0.25;
+    }
   }
 
   &[data-mini] {

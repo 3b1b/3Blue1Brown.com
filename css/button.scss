@@ -9,15 +9,9 @@ button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px;
-  background: $gray-200;
   border: none;
+  background: none;
   font-family: $sans;
-  font-size: 1rem;
-  transition: background $fast, color $fast;
-
-  &:hover {
-    background: $light-blue-100;
-    cursor: pointer;
-  }
+  cursor: pointer;
+  transition: background $fast, color $fast, opacity $fast;
 }

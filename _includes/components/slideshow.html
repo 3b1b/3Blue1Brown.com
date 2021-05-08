@@ -11,11 +11,17 @@
 </div>
 
 <div class="swiper-navigation">
-  <button class="swiper-prev">
-    <i class="fas fa-arrow-circle-left"></i>
-  </button>
+  {% 
+    include components/clickable.html
+    icon="fas fa-arrow-left"
+    class="swiper-prev"
+    style="rounded"
+  %}
   <div class="swiper-pagination"></div>
-  <button class="swiper-next">
-    <i class="fas fa-arrow-circle-right"></i>
-  </button>
+  {% 
+    include components/clickable.html
+    icon="fas fa-arrow-right"
+    class="swiper-next"
+    style="rounded"
+  %}
 </div>

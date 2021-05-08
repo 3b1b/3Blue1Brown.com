@@ -33,19 +33,11 @@ $size: 300px;
   justify-content: center;
   align-items: center;
 
-  button {
-    padding: 20px;
-    background: none;
-    color: currentColor;
-    border: none;
-    opacity: 0.25;
-    font-size: 2rem;
-    transition: opacity $fast;
-
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
+  .clickable {
+    margin: 10px;
+    padding: 5px;
+    min-width: 30px;
+    min-height: 30px;
   }
 
   .swiper-pagination {

@@ -1,25 +1,27 @@
 <a {% if include.lesson.url %}href="{{ include.lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
-  {% if include.icon-before %}
-    <i class="{{ include.icon-before }}"></i>
-  {% endif %}
 
   {% if include.lesson.video and include.lesson.video != "" %}
+
+    {% if include.icon-before %}
+      <i class="{{ include.icon-before }}"></i>
+    {% endif %}
+
     <img src="https://img.youtube.com/vi/{{ include.lesson.video }}/hqdefault.jpg" />
-  {% else %}
-    <img src="{{ 'images/thumbnail-placeholder.jpg' | relative_url }}" />
+
+    <span class="lesson_card_text">
+      {% if include.lesson.title and include.lesson.title != "" %}
+        <span>{{ include.lesson.title }}</span>
+      {% endif %}
+      {% if include.mini != true and include.lesson.description and include.lesson.description != "" %}
+        <span>{{ include.lesson.description }}</span>
+      {% endif %}
+    </span>
+
+    {% if include.icon-after %}
+      <i class="{{ include.icon-after }}"></i>
+    {% endif %}
+
   {% endif %}
 
-  <span class="lesson_card_text">
-    {% if include.lesson.title and include.lesson.title != "" %}
-      <span>{{ include.lesson.title }}</span>
-    {% endif %}
-    {% if include.mini != true and include.lesson.description and include.lesson.description != "" %}
-      <span>{{ include.lesson.description }}</span>
-    {% endif %}
-  </span>
-
-  {% if include.icon-after %}
-    <i class="{{ include.icon-after }}"></i>
-  {% endif %}
 </a>
 {{- -}}

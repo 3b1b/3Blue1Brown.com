@@ -108,8 +108,12 @@ $$
 <!-- section break component -->
 {% include components/section.html %}
 
+<!-- slideshow component -->
+{% include components/slideshow.html images="images/store" %}
+
 <!-- spoiler component -->
 Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
+{% include components/spoiler.html text="$$f(x) = \pi + e^{-i} + sin(x)$$" %}
 
 <!-- question component -->
 {%
@@ -122,11 +126,11 @@ Why did the chicken cross the Mobius strip? {% include components/spoiler.html t
   correct=4
 %}
 
-<!-- link with icon and/or text -->
-{% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
-{% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="button" %}
-{% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="circle" %}
-{% include components/link.html link="https://3blu1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="circle" %}
+<!-- clickable (link or button) with icon and/or text -->
+{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="plain" %}
+{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
+{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
 {:.center}
 
 <!-- figure with image and/or video, and caption -->

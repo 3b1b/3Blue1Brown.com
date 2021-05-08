@@ -32,6 +32,18 @@
     &:hover {
       background: $light-blue-100;
     }
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    background: $gray-200;
+
+    i {
+      opacity: 1;
+    }
   }
 
   img {
@@ -53,13 +65,6 @@
     color: $light-blue-500;
     opacity: 0;
     transition: opacity $fast;
-  }
-
-  &:hover,
-  &[data-expanded="true"] {
-    i {
-      opacity: 1;
-    }
   }
 
   &[data-expanded="true"] {

@@ -7,64 +7,9 @@
 
 a {
   color: $light-blue-500;
-  transition: color $fast;
+  transition: background $fast, color $fast, opacity $fast;
 }
 
 a:hover {
   color: currentColor;
-}
-
-.link {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  padding: 10px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: background $fast, color $fast, opacity $fast;
-
-  .text {
-    text-align: center;
-    font-family: $sans;
-    font-weight: $medium;
-  }
-
-  &[data-icon]:not([data-text]) {
-    .icon {
-      font-size: 1.35em;
-    }
-  }
-
-  &[data-icon][data-text] {
-    .icon {
-      margin-right: 0.75em;
-    }
-  }
-
-  &[data-style="button"] {
-    min-width: 200px;
-    margin: 10px;
-    padding: 7.5px 20px;
-    background: $light-blue-500;
-    color: $white;
-
-    &:hover {
-      background: $gray-700;
-    }
-  }
-
-  &[data-style="circle"] {
-    min-width: 50px;
-    min-height: 50px;
-    margin: 5px;
-    padding: 10px 15px;
-    border-radius: 999px;
-    background: $black;
-    color: $white;
-
-    &:hover {
-      background: $light-blue-500;
-    }
-  }
 }
