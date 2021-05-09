@@ -6,6 +6,7 @@
 @import "mixins";
 
 $page: 1000px;
+$phone: 500px;
 
 section {
   position: relative;
@@ -17,6 +18,10 @@ section {
     margin: 0 auto;
     padding: 40px;
     text-align: center;
+
+    @media (max-width: $phone) {
+      padding: 20px;
+    }
   }
 
   &:nth-child(even) {
@@ -24,7 +29,7 @@ section {
   }
 
   &:nth-child(even) {
-    background: $gray-100;
+    background: $gray-50;
   }
 
   &:last-child {
