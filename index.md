@@ -1,10 +1,11 @@
 ---
+big-header: true
 ---
 
 {% include components/section.html dark=true %}
 
 <!-- this link should always point to the latest video on the youtube channel -->
-{% include components/video.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
+{% include components/embed.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
 <div>
   <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
@@ -13,32 +14,20 @@
 
 {% include components/section.html %}
 
-### Topics
+## Topics
 
-<div class="gallery">
-  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Linear Algebra" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Essence of Calculus" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Neural Networks" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Differential Equations" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="What is ___?" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Geometry" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Why π?" %}
-  {% include components/card.html image="images/topics/topic.jpg" text="Physics" %}
-</div>
-
-{% include components/link.html link="lessons" icon="fas fa-list" text="All Lessons" style="button" %}
-{:.center}
+{% include template/topics.html expanded="false" %}
 
 {% include components/section.html %}
 
-### Follow
+## Follow
 
 <div class="social">
-  {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
-  {% include components/link.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="circle" %}
-  {% include components/link.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="circle" %}
-  {% include components/link.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="circle" %}
-  {% include components/link.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="circle" %}
+  {% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
+  {% include components/clickable.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="rounded" %}
+  {% include components/clickable.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="rounded" %}
+  {% include components/clickable.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="rounded" %}
+  {% include components/clickable.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="rounded" %}
 </div>
 
 The main event is, of course, the YouTube channel.
@@ -53,12 +42,12 @@ Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 {% include components/section.html %}
 
-### Support
+## Support
 
 <div class="social">
-  {% include components/link.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="circle" %}
-  {% include components/link.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="circle" %}
-  {% include components/link.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="circle" %}
+  {% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
+  {% include components/clickable.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="rounded" %}
+  {% include components/clickable.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="rounded" %}
 </div>
 
 3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you.

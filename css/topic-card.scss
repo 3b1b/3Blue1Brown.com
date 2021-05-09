@@ -1,0 +1,91 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.topics {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.topic_card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 20px;
+  background: transparent;
+  color: $black;
+  border-radius: 0;
+  font-family: $sans;
+  text-decoration: none;
+  z-index: 1;
+
+  &[data-expanded="true"] {
+    width: 100%;
+    margin: 0;
+    background: $gray-200;
+
+    &:hover {
+      background: $light-blue-100;
+    }
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    background: $gray-200;
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 280px;
+  }
+
+  .topic_card_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+  }
+
+  i {
+    position: relative;
+    left: 10px;
+    width: 0;
+    color: $light-blue-500;
+    opacity: 0;
+    transition: opacity $fast;
+  }
+
+  &[data-expanded="true"] {
+    .fa-caret-down {
+      display: none;
+    }
+  }
+
+  &[data-expanded="false"] {
+    .fa-caret-up {
+      display: none;
+    }
+  }
+
+  & + .lessons {
+    display: none;
+  }
+
+  &[data-expanded="true"] {
+    & + .lessons {
+      display: unset;
+    }
+  }
+}

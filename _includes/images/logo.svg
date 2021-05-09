@@ -1,9 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
-  <g>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="-50 -50 100 100"
+  id="3b1b_logo"
+>
+  <style>
+    .dilate_outer {
+      animation: dilate_outer 2s ease forwards;
+    }
+
+    @keyframes dilate_outer {
+      0% {
+        transform: scale(0.5);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .dilate_inner {
+      opacity: 0;
+      animation: dilate_inner 2s ease forwards;
+    }
+
+    @keyframes dilate_inner {
+      0% {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+  <g class="dilate_outer">
     <path fill="#74C0E3" d="M 0 0 L 0 -50 A 50 50 0 1 1 -50 0 z"></path>
     <path fill="#8C6239" d="M 0 0 L 0 -50 A 50 50 0 0 0 -50 0 z"></path>
   </g>
-  <g>
+  <g class="dilate_inner">
     <polygon
       fill="#528EA3"
       points="-43.47,4.90 -17.99,7.77 -19.27,-3.57"
@@ -117,7 +151,7 @@
       points="-43.47,-4.90 -19.27,3.57 -17.99,-7.77"
     ></polygon>
   </g>
-  <g>
+  <g class="dilate_inner">
     <polygon
       fill="#3E6576"
       points="-50.00,0.00 -25.00,5.71 -25.00,0.00"
@@ -239,7 +273,7 @@
       points="-50.00,-0.00 -25.00,-0.00 -25.00,-5.71"
     ></polygon>
   </g>
-  <g>
+  <g class="dilate_inner">
     <polygon
       fill="#224C5B"
       points="-37.50,0.00 -12.50,5.71 -12.50,0.00"
@@ -361,7 +395,7 @@
       points="-37.50,-0.00 -12.50,-0.00 -12.50,-5.71"
     ></polygon>
   </g>
-  <g>
+  <g class="dilate_inner">
     <polygon
       fill="#000000"
       points="-30.00,0.00 -5.00,5.71 -5.00,0.00"
@@ -453,5 +487,7 @@
       points="-30.00,-0.00 -5.00,-0.00 -5.00,-5.71"
     ></polygon>
   </g>
-  <g><circle cx="0" cy="0" r="25" fill="#000000"></circle></g>
+  <g>
+    <circle cx="0" cy="0" r="25" fill="#000000"></circle>
+  </g>
 </svg>

@@ -1,18 +1,9 @@
 // reusable snippets of CSS
 
-// standard margins for "block" items like paragraphs, figures, tables, etc
-@mixin margins {
-  margin: 30px 0;
-}
-
 // fade group of items when hovering
 @mixin hover {
-  &:hover > * {
+  &:hover > *:not(:hover) {
     opacity: 0.25;
-  }
-
-  & > *:hover {
-    opacity: 1;
   }
 }
 
@@ -36,6 +27,15 @@
   &:last-child {
     margin-right: 0;
   }
+}
+
+// truncate text after N about of lines
+@mixin line-clamp($N) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $N;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 // font awesome icon selectors

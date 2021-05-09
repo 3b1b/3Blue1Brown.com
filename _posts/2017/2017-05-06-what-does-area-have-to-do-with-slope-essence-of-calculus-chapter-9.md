@@ -1,0 +1,11 @@
+---
+title: What does area have to do with slope? | Essence of calculus, chapter 9
+description: Derivatives are about slope, and integration is about area.  These ideas seem completely different, so why are they inverses?
+video: FnJqaIESC2s
+date: "2017-05-06"
+topic: Calculus
+order: 9
+source: _2017/eoc/chapter9.py
+credits:
+- Lesson by Grant Sanderson
+---

@@ -1,4 +1,3 @@
-// tooltips plugin
 // shows a popup of text on hover/focus of an element
 
 // specify text to show in data-tooltip attribute
