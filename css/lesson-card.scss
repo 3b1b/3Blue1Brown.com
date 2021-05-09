@@ -106,4 +106,12 @@ $phone: 500px;
       }
     }
   }
+
+  &[data-hidden] {
+    visibility: hidden;
+
+    @media (max-width: $phone) {
+      display: none;
+    }
+  }
 }

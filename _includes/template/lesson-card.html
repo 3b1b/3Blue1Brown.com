@@ -1,6 +1,5 @@
-<a {% if include.lesson.url %}href="{{ include.lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
-
-  {% if include.lesson.video and include.lesson.video != "" %}
+{%- if include.lesson.video and include.lesson.video != "" -%}
+  <a {% if include.lesson.url %}href="{{ include.lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
 
     {% if include.icon-before %}
       <i class="{{ include.icon-before }}"></i>
@@ -21,7 +20,7 @@
       <i class="{{ include.icon-after }}"></i>
     {% endif %}
 
-  {% endif %}
-
-</a>
-{{- -}}
+  </a>
+{%- else -%}
+  <a class="lesson_card" data-hidden></a>
+{%- endif -%}
