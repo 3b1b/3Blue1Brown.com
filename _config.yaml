@@ -28,3 +28,5 @@ theme: null
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
+  - jekyll-last-modified-at
+  - jekyll-paginate-v2
