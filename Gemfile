@@ -4,6 +4,8 @@ source "https://rubygems.org"
 gem "jekyll"
 gem "jekyll-feed"
 gem "jekyll-redirect-from"
+gem "jekyll-last-modified-at"
+gem "jekyll-paginate-v2"
 
 # windows stuff
 platforms :mingw, :x64_mingw, :mswin, :jruby do
