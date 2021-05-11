@@ -4,7 +4,7 @@ description: A look at what turbulence is (in fluid flow), and a result by Kolmo
 video: _UoTTq651dE
 date: "2018-11-07"
 topic: Physics
-order: 1
+order: 5
 source: _2018/turbulence.py
 credits:
 - Lesson by Grant Sanderson

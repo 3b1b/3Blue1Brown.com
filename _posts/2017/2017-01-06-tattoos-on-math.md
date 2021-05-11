@@ -4,7 +4,7 @@ description: After a friend of mine got a tattoo with a representation of the co
 video: IxNb1WG_Ido
 date: "2017-01-06"
 topic: Other
-order: 5
+order: 3
 source: _2017/tattoo.py
 credits:
 - Lesson by Grant Sanderson

@@ -4,7 +4,7 @@ description: A silly poem encapsulating the ideas from the video about Euler's f
 video: zLzLxVeqdQg
 date: "2015-03-05"
 topic: Other
-order: 8
+order: 6
 source: NA
 credits:
 - Lesson by Grant Sanderson

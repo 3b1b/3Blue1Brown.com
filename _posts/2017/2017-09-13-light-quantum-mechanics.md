@@ -4,7 +4,7 @@ description: An introduction to the quantum behavior of light, specifically the 
 video: MzRCDLre1b4
 date: "2017-09-13"
 topic: Physics
-order: 4
+order: 1
 source: _2017/waves.py
 credits:
 - Lesson by Grant Sanderson

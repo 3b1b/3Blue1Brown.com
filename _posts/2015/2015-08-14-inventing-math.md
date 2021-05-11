@@ -4,7 +4,7 @@ description: A journey through infinite sums, p-adic numbers, and what it feels 
 video: XFDM1ip5HdU
 date: "2015-08-14"
 topic: Analysis
-order: 5
+order: 7
 source: _2015/inventing_math.py
 credits:
 - Lesson by Grant Sanderson

@@ -4,7 +4,7 @@ description: A visual way to think about Bayes' theorem, together with discussio
 video: HZGCoVF3YvM
 date: "2019-12-22"
 topic: Probability
-order: 5
+order: 1
 source: _2019/bayes/part1.py
 credits:
 - Lesson by Grant Sanderson

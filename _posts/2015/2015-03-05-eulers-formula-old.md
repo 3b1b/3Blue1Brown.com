@@ -4,7 +4,7 @@ description: The enigmatic equation e^{pi i} = -1 is usually explained using Tay
 video: F_0yfvm0UoU
 date: "2015-03-05"
 topic: Other
-order: 9
+order: 7
 source: NA
 credits:
 - Lesson by Grant Sanderson

@@ -4,7 +4,7 @@ description: The binomial distribution, introduced as setup to talk about the be
 video: 8idr1WZ1A7Q
 date: "2020-03-15"
 topic: Probability
-order: 2
+order: 3
 source: _2020/beta/beta1.py
 credits:
 - Lesson by Grant Sanderson

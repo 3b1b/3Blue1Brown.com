@@ -4,7 +4,7 @@ description: Drawing curves that fill all of space, and a philosophical take on 
 video: 3s7h2MHQtxc
 date: "2017-07-21"
 topic: Analysis
-order: 2
+order: 5
 source: https://github.com/3b1b/videos/tree/master/_2016/hilbert
 credits:
 - Lesson by Grant Sanderson
