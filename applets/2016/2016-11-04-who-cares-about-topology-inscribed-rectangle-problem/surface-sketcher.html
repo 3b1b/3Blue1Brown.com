@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surface Sketcher</title>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #sketchpad {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: white;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="sketchpad"></canvas>
+
+  <script src="https://unpkg.com/three@0.127.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.127.0/examples/js/controls/OrbitControls.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+
+    let curve = null;
+    let surface = null;
+
+    function update3DCurve(points) {
+      let lineSegments = [];
+      for (let i = 0; i < points.length; i++) {
+        const a = points[i];
+        const b = points[(i + 1) % points.length];
+
+        lineSegments.push(new THREE.LineCurve3(
+          new THREE.Vector3(a[0], a[1], 0),
+          new THREE.Vector3(b[0], b[1], 0)
+        ));
+      }
+
+      const curvePath = new THREE.CurvePath();
+      curvePath.autoClose = true;
+      curvePath.curves = lineSegments;
+      
+      // White curve
+      if (curve !== null) {
+        curve.geometry.dispose();
+        curve.material.dispose();
+        scene.remove(curve);
+      }
+      const curveGeometry = new THREE.TubeGeometry(curvePath, 200, 0.01, 10, true);
+      const curveMaterial = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        side: THREE.DoubleSide,
+        depthTest: false,
+      });
+      curve = new THREE.Mesh(curveGeometry, curveMaterial);
+      curve.renderOrder = Number.MAX_SAFE_INTEGER;
+      curve.position.set(0, 0, -0.25);
+      scene.add(curve);
+      
+      // Blue 3D Surface
+      if (surface !== null) {
+        surface.geometry.dispose();
+        surface.material.dispose();
+        scene.remove(surface);
+      }
+      const surfaceMaterial = new THREE.MeshStandardMaterial({
+        color: 0x49ef4,
+        side: THREE.DoubleSide,
+        opacity: 0.5,
+        transparent: true,
+      });
+      const surfaceGeometry = new THREE.ParametricGeometry((u, v, vec) => {
+        u = (u + v) % 1;
+      
+        const point1 = curvePath.getPoint(u);
+        const point2 = curvePath.getPoint(v);
+        
+        vec.addVectors(point1, point2).divideScalar(2);
+        vec.z = point1.distanceTo(point2);
+      }, 50, 50);
+      surface = new THREE.Mesh(surfaceGeometry, surfaceMaterial);
+      surface.position.set(0, 0, -0.25);
+      scene.add(surface);
+    }
+
+    const sketchpadCanvas = document.querySelector("#sketchpad");
+    const sketchpadCtx = sketchpadCanvas.getContext("2d");
+
+    sketchpadCanvas.width = 150;
+    sketchpadCanvas.height = 150;
+
+    let sketchpadPoints = [[0.053,-0.147],[0.047,-0.147],[0.047,-0.147],[0.04,-0.147],[0.04,-0.153],[0.04,-0.153],[0.04,-0.153],[0.033,-0.153],[0.033,-0.153],[0.033,-0.153],[0.033,-0.16],[0.027,-0.16],[0.027,-0.16],[0.027,-0.16],[0.027,-0.167],[0.027,-0.167],[0.02,-0.167],[0.02,-0.173],[0.013,-0.173],[0.007,-0.18],[0.007,-0.18],[0,-0.187],[0,-0.187],[-0.007,-0.193],[-0.013,-0.2],[-0.013,-0.2],[-0.02,-0.207],[-0.027,-0.213],[-0.027,-0.22],[-0.033,-0.233],[-0.04,-0.24],[-0.047,-0.247],[-0.047,-0.253],[-0.053,-0.26],[-0.053,-0.267],[-0.06,-0.273],[-0.06,-0.28],[-0.067,-0.287],[-0.073,-0.3],[-0.073,-0.307],[-0.08,-0.313],[-0.08,-0.313],[-0.087,-0.32],[-0.087,-0.32],[-0.093,-0.32],[-0.093,-0.327],[-0.093,-0.327],[-0.1,-0.327],[-0.107,-0.333],[-0.113,-0.333],[-0.113,-0.34],[-0.12,-0.34],[-0.127,-0.34],[-0.133,-0.347],[-0.14,-0.347],[-0.147,-0.347],[-0.147,-0.347],[-0.153,-0.347],[-0.16,-0.347],[-0.16,-0.347],[-0.167,-0.347],[-0.173,-0.347],[-0.173,-0.347],[-0.18,-0.347],[-0.187,-0.347],[-0.193,-0.347],[-0.2,-0.347],[-0.2,-0.34],[-0.207,-0.34],[-0.207,-0.34],[-0.207,-0.333],[-0.213,-0.333],[-0.213,-0.333],[-0.213,-0.327],[-0.22,-0.327],[-0.22,-0.32],[-0.22,-0.32],[-0.227,-0.313],[-0.227,-0.313],[-0.227,-0.307],[-0.233,-0.3],[-0.24,-0.293],[-0.24,-0.287],[-0.24,-0.28],[-0.24,-0.273],[-0.247,-0.273],[-0.247,-0.267],[-0.247,-0.26],[-0.247,-0.26],[-0.247,-0.253],[-0.247,-0.253],[-0.247,-0.247],[-0.247,-0.24],[-0.247,-0.233],[-0.247,-0.233],[-0.247,-0.22],[-0.247,-0.22],[-0.247,-0.213],[-0.247,-0.207],[-0.247,-0.207],[-0.247,-0.2],[-0.24,-0.193],[-0.24,-0.193],[-0.24,-0.187],[-0.24,-0.18],[-0.24,-0.173],[-0.24,-0.173],[-0.24,-0.167],[-0.24,-0.16],[-0.24,-0.16],[-0.24,-0.153],[-0.233,-0.147],[-0.233,-0.147],[-0.233,-0.14],[-0.233,-0.133],[-0.227,-0.127],[-0.227,-0.12],[-0.227,-0.12],[-0.227,-0.113],[-0.22,-0.107],[-0.22,-0.1],[-0.22,-0.1],[-0.22,-0.093],[-0.22,-0.093],[-0.22,-0.087],[-0.22,-0.08],[-0.22,-0.08],[-0.213,-0.073],[-0.213,-0.073],[-0.213,-0.067],[-0.213,-0.06],[-0.213,-0.06],[-0.213,-0.053],[-0.213,-0.053],[-0.213,-0.047],[-0.213,-0.04],[-0.213,-0.04],[-0.213,-0.033],[-0.213,-0.033],[-0.213,-0.027],[-0.213,-0.02],[-0.213,-0.013],[-0.213,-0.007],[-0.213,0],[-0.213,0],[-0.213,0.007],[-0.213,0.02],[-0.213,0.027],[-0.213,0.033],[-0.213,0.04],[-0.213,0.047],[-0.213,0.053],[-0.213,0.06],[-0.213,0.06],[-0.213,0.067],[-0.213,0.067],[-0.22,0.08],[-0.22,0.08],[-0.22,0.087],[-0.227,0.087],[-0.227,0.093],[-0.233,0.093],[-0.233,0.1],[-0.24,0.107],[-0.24,0.107],[-0.247,0.113],[-0.247,0.12],[-0.253,0.12],[-0.26,0.127],[-0.267,0.133],[-0.273,0.147],[-0.28,0.153],[-0.287,0.167],[-0.293,0.173],[-0.3,0.18],[-0.307,0.193],[-0.307,0.193],[-0.313,0.207],[-0.32,0.207],[-0.327,0.22],[-0.327,0.227],[-0.333,0.233],[-0.34,0.24],[-0.34,0.247],[-0.347,0.253],[-0.347,0.26],[-0.353,0.267],[-0.353,0.28],[-0.36,0.287],[-0.36,0.293],[-0.36,0.3],[-0.36,0.307],[-0.36,0.313],[-0.36,0.32],[-0.36,0.327],[-0.36,0.333],[-0.36,0.347],[-0.36,0.353],[-0.353,0.367],[-0.353,0.373],[-0.347,0.373],[-0.347,0.38],[-0.34,0.38],[-0.333,0.38],[-0.333,0.38],[-0.327,0.38],[-0.32,0.38],[-0.313,0.38],[-0.313,0.38],[-0.3,0.38],[-0.3,0.38],[-0.287,0.38],[-0.28,0.38],[-0.28,0.38],[-0.267,0.38],[-0.26,0.38],[-0.253,0.38],[-0.247,0.38],[-0.24,0.38],[-0.233,0.38],[-0.227,0.373],[-0.22,0.373],[-0.22,0.367],[-0.213,0.367],[-0.213,0.367],[-0.207,0.367],[-0.207,0.367],[-0.2,0.367],[-0.193,0.36],[-0.187,0.36],[-0.18,0.36],[-0.173,0.36],[-0.16,0.36],[-0.147,0.36],[-0.133,0.353],[-0.127,0.353],[-0.12,0.347],[-0.113,0.347],[-0.107,0.347],[-0.093,0.34],[-0.087,0.34],[-0.08,0.34],[-0.073,0.34],[-0.06,0.34],[-0.053,0.333],[-0.047,0.333],[-0.027,0.333],[-0.02,0.333],[-0.007,0.333],[0.007,0.333],[0.02,0.327],[0.033,0.327],[0.047,0.327],[0.06,0.327],[0.067,0.327],[0.073,0.32],[0.087,0.32],[0.1,0.32],[0.113,0.32],[0.12,0.32],[0.14,0.32],[0.153,0.313],[0.16,0.313],[0.173,0.313],[0.18,0.313],[0.193,0.313],[0.2,0.307],[0.207,0.307],[0.213,0.307],[0.22,0.307],[0.22,0.307],[0.227,0.307],[0.233,0.3],[0.24,0.3],[0.247,0.3],[0.247,0.3],[0.253,0.293],[0.26,0.293],[0.26,0.293],[0.267,0.287],[0.273,0.287],[0.28,0.28],[0.28,0.28],[0.287,0.273],[0.293,0.267],[0.3,0.267],[0.3,0.267],[0.307,0.26],[0.307,0.26],[0.307,0.253],[0.307,0.253],[0.307,0.253],[0.307,0.247],[0.307,0.247],[0.307,0.247],[0.307,0.24],[0.307,0.24],[0.307,0.24],[0.3,0.233],[0.3,0.233],[0.3,0.233],[0.293,0.227],[0.287,0.227],[0.287,0.227],[0.28,0.227],[0.273,0.227],[0.267,0.227],[0.253,0.227],[0.253,0.227],[0.247,0.227],[0.24,0.227],[0.233,0.227],[0.227,0.22],[0.22,0.22],[0.213,0.22],[0.207,0.22],[0.2,0.22],[0.187,0.213],[0.187,0.213],[0.18,0.213],[0.173,0.213],[0.167,0.207],[0.167,0.207],[0.16,0.207],[0.153,0.2],[0.153,0.2],[0.147,0.2],[0.14,0.193],[0.14,0.193],[0.133,0.187],[0.127,0.18],[0.12,0.18],[0.113,0.173],[0.107,0.167],[0.1,0.16],[0.1,0.153],[0.1,0.147],[0.1,0.14],[0.1,0.133],[0.1,0.127],[0.1,0.127],[0.1,0.12],[0.1,0.113],[0.1,0.107],[0.1,0.107],[0.1,0.1],[0.107,0.1],[0.107,0.093],[0.113,0.093],[0.113,0.087],[0.12,0.087],[0.127,0.08],[0.133,0.08],[0.133,0.073],[0.14,0.073],[0.147,0.073],[0.16,0.067],[0.167,0.06],[0.173,0.047],[0.18,0.04],[0.193,0.027],[0.207,0.007],[0.22,-0.007],[0.233,-0.027],[0.24,-0.033],[0.247,-0.047],[0.26,-0.067],[0.267,-0.08],[0.28,-0.1],[0.293,-0.127],[0.293,-0.147],[0.3,-0.167],[0.3,-0.187],[0.3,-0.207],[0.3,-0.22],[0.3,-0.24],[0.3,-0.247],[0.287,-0.26],[0.28,-0.267],[0.273,-0.267],[0.26,-0.273],[0.253,-0.273],[0.247,-0.28],[0.233,-0.28],[0.22,-0.28],[0.213,-0.28],[0.2,-0.28],[0.193,-0.273],[0.187,-0.267],[0.18,-0.26],[0.18,-0.26],[0.173,-0.253],[0.167,-0.247],[0.167,-0.24],[0.16,-0.233],[0.16,-0.233],[0.16,-0.227],[0.153,-0.22],[0.153,-0.22],[0.153,-0.213],[0.147,-0.207],[0.147,-0.2],[0.147,-0.193],[0.14,-0.187],[0.14,-0.187],[0.133,-0.18],[0.127,-0.167],[0.12,-0.16],[0.113,-0.16],[0.107,-0.153],[0.107,-0.147],[0.1,-0.147],[0.1,-0.14],[0.1,-0.14],[0.093,-0.14],[0.093,-0.14],[0.093,-0.14],[0.087,-0.14],[0.087,-0.133],[0.08,-0.133],[0.08,-0.133],[0.073,-0.127],[0.073,-0.127]];
+    let sketching = false;
+    update3DCurve(sketchpadPoints);
+
+    function addSketchPoint(event) {
+      const rect = event.target.getBoundingClientRect();
+      sketchpadPoints.push([
+        (event.clientX - (rect.left + rect.right) / 2) / sketchpadCanvas.width,
+        (event.clientY - (rect.top + rect.bottom) / 2) / sketchpadCanvas.height
+      ]);
+      
+      renderSketchPad();
+    }
+
+    function renderSketchPad() {
+      sketchpadCtx.setTransform(1, 0, 0, 1, sketchpadCanvas.width / 2, sketchpadCanvas.height / 2);
+
+      sketchpadCtx.clearRect(
+        -sketchpadCanvas.width / 2,
+        -sketchpadCanvas.height / 2,
+        sketchpadCanvas.width,
+        sketchpadCanvas.height
+      );
+      
+      if (sketchpadPoints.length > 0) {
+        sketchpadCtx.beginPath();
+        sketchpadCtx.moveTo(
+          sketchpadPoints[0][0] * sketchpadCanvas.width,
+          sketchpadPoints[0][1] * sketchpadCanvas.height
+        );
+        for (let i = 0; i < sketchpadPoints.length; i++) {
+          sketchpadCtx.lineTo(
+            sketchpadPoints[i][0] * sketchpadCanvas.width,
+            sketchpadPoints[i][1] * sketchpadCanvas.height
+          );
+        }
+        sketchpadCtx.closePath();
+        sketchpadCtx.stroke();
+      }
+    }
+
+    renderSketchPad();
+
+    sketchpadCanvas.addEventListener("mousedown", (event) => {
+      sketchpadPoints = [];
+      sketching = true;
+      addSketchPoint(event);
+      update3DCurve(sketchpadPoints);
+    });
+
+    sketchpadCanvas.addEventListener("mousemove", (event) => {
+      if (sketching) {
+        addSketchPoint(event);
+        update3DCurve(sketchpadPoints);
+      }
+    });
+
+    document.addEventListener("mouseup", (event) => {
+      if (sketching) {
+        sketching = false;
+        update3DCurve(sketchpadPoints);
+        console.log(JSON.stringify(sketchpadPoints.map(([x, y]) => ([ Math.round(x * 1000) / 1000, Math.round(y * 1000) / 1000 ]))));
+      }
+    });
+
+    // xy plane
+    (() => {
+      const geometry = new THREE.PlaneGeometry(1.5, 1.5, 1, 1);
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xa0a0a0,
+        side: THREE.DoubleSide
+      });
+      const plane = new THREE.Mesh(geometry, material);
+      plane.z = -2;
+      scene.add(plane);
+      plane.position.set(0, 0, -0.25);
+    })();
+
+    const camera = new THREE.PerspectiveCamera(
+      40,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.up.set(0, 0, 1);
+    camera.position.x = 1;
+    camera.position.y = 1;
+    camera.position.z = 2;
+
+    const light = new THREE.AmbientLight(0x909090);
+    scene.add(light);
+
+    const light2 = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    scene.add(light2);
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.autoRotate = true;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      controls.update();
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener("resize", onWindowResize, false);
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+  </script>
+</body>
+</html>

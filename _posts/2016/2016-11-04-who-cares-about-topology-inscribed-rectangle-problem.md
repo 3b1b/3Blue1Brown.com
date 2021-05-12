@@ -9,3 +9,7 @@ source: _2016/wcat.py
 credits:
 - Lesson by Grant Sanderson
 ---
+
+Hello, world!
+
+{% include components/applet.html path="applets/2016/2016-11-04-who-cares-about-topology-inscribed-rectangle-problem/surface-sketcher.html" %}
