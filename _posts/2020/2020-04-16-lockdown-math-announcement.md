@@ -3,7 +3,7 @@ title: Lockdown math announcement
 description: ""
 video: ppWPuXsnf1Q
 date: "2020-04-16"
-topic: Livestream
+topic: Lockdown math
 order: 0
 source: _2020/ldm.py
 credits:
