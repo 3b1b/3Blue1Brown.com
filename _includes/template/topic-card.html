@@ -1,5 +1,5 @@
 {%- assign text = include.name -%}
-{%- assign image = text | downcase | split: " " | join: "-" | append: ".jpg" | prepend: "images/topics/" -%}
+{%- assign image = text | downcase | split: " " | join: "-" | append: ".jpg" | prepend: "images/topics/" | relative_url -%}
 
 <button
   class="topic_card"

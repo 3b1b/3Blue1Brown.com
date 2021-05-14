@@ -20,31 +20,52 @@ $phone: 600px;
       margin: 0;
     }
 
+    .toc_prev {
+      grid-column: 1;
+    }
+
+    .toc_list {
+      grid-column: 2;
+      background: none;
+      min-height: 40px;
+
+      &:hover {
+        background: $light-blue-100;
+      }
+    }
+
+    .toc_next {
+      grid-column: 3;
+    }
+
     @media (max-width: $phone) {
       grid-template-columns: 1fr;
 
-      button {
-        order: 1;
+      .toc_prev,
+      .toc_list,
+      .toc_next {
+        grid-column: 1;
       }
-    }
-  }
 
-  &[data-open] {
-    .toc_nav {
-      .mini_lesson_card {
-        display: none;
+      .toc_list {
+        grid-row: 3;
       }
     }
   }
 
   .toc_content {
-    display: none;
     max-height: 50vh;
     margin-top: 20px;
     overflow-y: auto;
   }
 
-  &[data-open] {
+  &[data-open="false"] {
+    .toc_content {
+      display: none;
+    }
+  }
+
+  &[data-open="true"] {
     .toc_content {
       display: block;
     }

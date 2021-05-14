@@ -1,30 +1,34 @@
-{%- assign lesson = site.posts | find: "slug", include.id -%}
+{%- assign found = false -%}
+{%- for lesson in site.posts -%}
+  {%- if lesson.slug == include.id -%}
+    {%- if lesson.title == page.title -%}
+      {%- assign active = true -%}
+    {%- else -%}
+      {%- assign active = false -%}
+    {%- endif -%}
 
-{{ lesson | inspect }}
+    <a {% if lesson.url %}href="{{ lesson.url | relative_url }}"{% endif %} class="lesson_card {{ include.class }}" data-active="{{ active }}" data-mini="{{ include.mini | default: false }}" data-reverse="{{ include.reverse | default: false }}" data-tooltip="{{ include.tooltip }}" data-fade>
 
-{%- if lesson.video and lesson.video != "" -%}
-  <a {% if lesson.url %}href="{{ lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
-
-    {% if include.icon-before %}
-      <i class="{{ include.icon-before }}"></i>
-    {% endif %}
-
-    <img src="https://img.youtube.com/vi/{{ lesson.video }}/hqdefault.jpg" />
-
-    <span class="lesson_card_text">
-      {% if lesson.title and lesson.title != "" %}
-        <span>{{ lesson.title }}</span>
+      {% if include.icon %}
+        <i class="{{ include.icon }}"></i>
       {% endif %}
-      {% if include.mini != true and lesson.description and lesson.description != "" %}
-        <span>{{ lesson.description }}</span>
-      {% endif %}
-    </span>
 
-    {% if include.icon-after %}
-      <i class="{{ include.icon-after }}"></i>
-    {% endif %}
+      <img src="https://img.youtube.com/vi/{{ lesson.video }}/hqdefault.jpg" />
 
-  </a>
-{%- else -%}
-  <a class="lesson_card" data-hidden></a>
-{%- endif -%}
+      <span class="lesson_card_text">
+        {% if lesson.title and lesson.title != "" %}
+          <span>{{ lesson.title }}</span>
+        {% endif %}
+        {% if include.mini != true and lesson.description and lesson.description != "" %}
+          <span>{{ lesson.description }}</span>
+        {% endif %}
+        {% if include.mini != true and lesson.date %}
+          <span>{{ lesson.date | date: "%B %d, %Y" }}</span>
+        {% endif %}
+      </span>
+
+    </a>
+
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}

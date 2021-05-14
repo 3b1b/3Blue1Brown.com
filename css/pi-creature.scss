@@ -1,0 +1,23 @@
+---
+---
+
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.pi_creature {
+  width: 150px;
+  max-width: 100%;
+  height: 150px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  &[data-flip="true"] {
+    svg {
+      transform: scaleX(-1);
+    }
+  }
+}

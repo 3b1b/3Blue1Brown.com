@@ -5,11 +5,11 @@
 {%- else -%}
   {%- capture size -%}width: 100%{%- endcapture -%}
 {%- endif -%}
-{%- assign default = include.default | default: "image" -%}
-<figure class="figure" data-show="{{ default }}">
+{%- assign show = include.show | default: "image" -%}
+<figure class="figure" data-show="{{ show }}">
   {% if include.image and include.video %}
     <div class="figure_controls">
-      {% if default == "image" %}
+      {% if show == "image" %}
         {% assign active = true %}
       {% else %}
         {% assign active = false %}
@@ -22,7 +22,7 @@
         onclick="figureShow(this, 'image')"
       %}
       
-      {% if default == "video" %}
+      {% if show == "video" %}
         {% assign active = true %}
       {% else %}
         {% assign active = false %}

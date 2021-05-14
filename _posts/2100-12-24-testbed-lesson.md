@@ -144,11 +144,13 @@ Markdown in caption.
 $$f(x) = \pi + e^{-i} + sin(x)$$
 {% endcapture %}
 
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" default="video" caption=caption %}
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
 
 <!-- clickable (link or button) with icon and/or text -->
+{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" %}
 {% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="plain" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" style="rounded" %}
 {% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
 {% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
 {:.center}

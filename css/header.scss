@@ -21,8 +21,11 @@ header {
   overflow: hidden;
   box-shadow: $shadow;
 
-  .background {
-    z-index: 0;
+  a {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
   }
 
   nav {

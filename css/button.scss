@@ -12,6 +12,7 @@ button {
   border: none;
   background: none;
   font-family: $sans;
+  font-size: 1em;
   cursor: pointer;
   transition: background $fast, color $fast, opacity $fast;
 }

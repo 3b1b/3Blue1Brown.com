@@ -27,12 +27,16 @@
 
   <br>
   
-  {% if page.topic %}
-    <div>
-      <i class="fas fa-book"></i>
-      <span>{{ page.topic }}</span>
-    </div>
-  {% endif %}
+  {% for topic in site.data.topics %}
+    {% for lesson in topic.lessons %}
+      {% if page.slug == lesson %}
+        <div>
+          <i class="fas fa-book"></i>
+          <span>{{ topic.name }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 
   {% if page.tags.size > 0 %}
     <div>

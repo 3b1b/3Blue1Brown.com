@@ -5,8 +5,7 @@
 @import "theme";
 @import "mixins";
 
-$tablet: 1000px;
-$phone: 600px;
+$wrap: 600px;
 
 footer {
   position: relative;
@@ -20,19 +19,28 @@ footer {
   overflow: hidden;
   box-shadow: $shadow, inset 0 0 200px 0 $black;
 
-  .copyright {
+  .footer_copyright {
     text-align: center;
   }
 
-  .social {
+  .footer_icons {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     font-size: 1.4rem;
-    margin: unset;
+    @include hover;
+
+    a {
+      color: $white;
+      padding: 10px;
+    }
   }
 
-  @media (max-width: $phone) {
+  @media (max-width: $wrap) {
     flex-direction: column-reverse;
 
-    .copyright {
+    .footer_copyright {
       margin-top: 10px;
     }
   }

@@ -1,7 +1,7 @@
 // show still or animated version of figure
-const figureShow = (button, mode) => {
+const figureShow = (button, show) => {
   const figure = button.closest(".figure");
-  figure.dataset.show = mode;
+  figure.dataset.show = show;
   figure
     .querySelectorAll("button")
     .forEach((button) => (button.dataset.active = false));

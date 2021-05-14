@@ -7,26 +7,25 @@ big-header: true
 <!-- this link should always point to the latest video on the youtube channel -->
 {% include components/embed.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
-<div>
-  <img src="{{ 'images/special/pi-creature-1.svg' | relative_url }}" style="position: absolute; left: 20px; bottom: -20px; width: 100px;">
-  <img src="{{ 'images/special/pi-creature-2.svg' | relative_url }}" style="position: absolute; right: 20px; bottom: -20px; width: 100px;">
+<div class="spotlight_pis">
+  {% include components/pi-creature.html emotion="hooray" width="150px" left="-40px" bottom="-40px" %}
+  {% include components/pi-creature.html emotion="speaking" width="150px" flip=true right="-40px" bottom="-40px" %}
 </div>
 
 {% include components/section.html %}
 
-{% include template/lesson-gallery.html tab="topics" %}
+{% include template/lesson-gallery.html show="featured" %}
 
 {% include components/section.html %}
 
 ## Follow
 
-<div class="social">
-  {% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
-  {% include components/clickable.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="rounded" %}
-  {% include components/clickable.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="rounded" %}
-  {% include components/clickable.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="rounded" %}
-  {% include components/clickable.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="rounded" %}
-</div>
+{% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
+{% include components/clickable.html link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="rounded" %}
+{% include components/clickable.html link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="rounded" %}
+{% include components/clickable.html link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="rounded" %}
+{% include components/clickable.html link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="rounded" %}
+{:.center}
 
 The main event is, of course, the YouTube channel.
 But there are many other ways to get involved and enjoy 3Blue1Brown content.
@@ -42,11 +41,10 @@ Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 ## Support
 
-<div class="social">
-  {% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
-  {% include components/clickable.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="rounded" %}
-  {% include components/clickable.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="rounded" %}
-</div>
+{% include components/clickable.html link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" %}
+{% include components/clickable.html link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="rounded" %}
+{% include components/clickable.html link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="rounded" %}
+{:.center}
 
 3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you.
 Become a supporter on Patreon to get early access to videos and other rewards.

@@ -16,16 +16,26 @@
   font-family: $sans;
   font-size: 0.9rem;
   text-decoration: none;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 5px;
+  padding: 10px 15px;
+  background: $gray-200;
+  color: $black;
 
-  .text {
+  &:hover {
+    background: $light-blue-100;
+  }
+
+  .clickable_text {
     text-align: center;
     font-family: $sans;
     font-weight: $medium;
   }
 
   &[data-icon]:not([data-text]) {
-    .icon {
-      font-size: 1.35em;
+    .clickable_icon {
+      font-size: 1.25em;
     }
   }
 
@@ -34,25 +44,8 @@
   }
 
   &[data-icon][data-text] {
-    .icon {
+    .clickable_icon {
       margin-right: 0.75em;
-    }
-  }
-
-  &[data-active="true"] {
-    background: $light-blue-100;
-  }
-
-  &[data-style="plain"] {
-    min-width: 50px;
-    min-height: 50px;
-    margin: 5px;
-    padding: 10px 15px;
-    background: $gray-200;
-    color: $black;
-
-    &:hover {
-      background: $light-blue-100;
     }
   }
 
@@ -68,5 +61,17 @@
     &:hover {
       background: $light-blue-500;
     }
+  }
+
+  &[data-active="false"] {
+    background: none;
+
+    &:hover {
+      background: $gray-200;
+    }
+  }
+
+  &[data-active="true"] {
+    background: $light-blue-100;
   }
 }
