@@ -1,18 +1,22 @@
-{%- if include.lesson.video and include.lesson.video != "" -%}
-  <a {% if include.lesson.url %}href="{{ include.lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if include.lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
+{%- assign lesson = site.posts | find: "slug", include.id -%}
+
+{{ lesson | inspect }}
+
+{%- if lesson.video and lesson.video != "" -%}
+  <a {% if lesson.url %}href="{{ lesson.url | relative_url }}"{% endif %} class="lesson_card" {% if lesson.title == page.title %}data-active{% endif %} {% if include.mini %}data-mini{% endif %} data-fade>
 
     {% if include.icon-before %}
       <i class="{{ include.icon-before }}"></i>
     {% endif %}
 
-    <img src="https://img.youtube.com/vi/{{ include.lesson.video }}/hqdefault.jpg" />
+    <img src="https://img.youtube.com/vi/{{ lesson.video }}/hqdefault.jpg" />
 
     <span class="lesson_card_text">
-      {% if include.lesson.title and include.lesson.title != "" %}
-        <span>{{ include.lesson.title }}</span>
+      {% if lesson.title and lesson.title != "" %}
+        <span>{{ lesson.title }}</span>
       {% endif %}
-      {% if include.mini != true and include.lesson.description and include.lesson.description != "" %}
-        <span>{{ include.lesson.description }}</span>
+      {% if include.mini != true and lesson.description and lesson.description != "" %}
+        <span>{{ lesson.description }}</span>
       {% endif %}
     </span>
 

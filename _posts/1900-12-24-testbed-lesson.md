@@ -2,19 +2,21 @@
 title: Testbed Lesson
 description: Brief, 1-2 sentence description of lesson. Shows under search results and elsewhere.
 video: spUNpyF58BY
-last_modified_at: 2021-05-02
 credits:
   - Lesson and figures by Grant Sanderson
   - Translated to blog format by James Schloss
 tags:
   - interactive
-  - geometry
 ---
 
 Markdown content.
 One sentence per line.
 
-<!-- comment -->
+<!-- html comment (will appear in the rendered page's source code) -->
+
+{% comment %}
+liquid comment (will not appear in the rendered page's source code)
+{% endcomment %}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -36,6 +38,17 @@ _italic text_
 3. ordered list item 3
 
 [Link](https://some-website.org/)
+
+[Link to extras page]({{ "extras" | relative_url }})
+
+3b1b.github.io/3blue1brown.com
+
+[Link to extras](extras)
+
+3b1b.github.io/extras
+3b1b.github.io/3blue1brown.com/extras
+
+3blue1brown.com
 
 Centered element.
 {:.center}
@@ -106,8 +119,6 @@ $$
 <!-- section break component -->
 {% include components/section.html %}
 
-<!-- slideshow component -->
-{% include components/slideshow.html images="images/store" %}
 
 <!-- spoiler component -->
 Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
@@ -124,18 +135,23 @@ Why did the chicken cross the Mobius strip? {% include components/spoiler.html t
   correct=4
 %}
 
-<!-- clickable (link or button) with icon and/or text -->
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="plain" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
-{:.center}
-
 <!-- figure with image and/or video, and caption -->
 {% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
 {% capture caption %}
 Markdown in caption.
 [Test link](https://google.com/).
 $$f(x) = \pi + e^{-i} + sin(x)$$
 {% endcapture %}
+
 {% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" default="video" caption=caption %}
+
+<!-- clickable (link or button) with icon and/or text -->
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="plain" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
+{:.center}
+
+<!-- slideshow component -->
+{% include components/slideshow.html images="images/store" %}

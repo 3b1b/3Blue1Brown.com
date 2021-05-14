@@ -1,0 +1,25 @@
+<div class="lesson_gallery" data-tab="{{ include.tab | default: 'topics' }}">
+
+  <div class="lesson_gallery_tab" data-tab="date">
+    
+      <div class="lessons">
+        
+      </div>
+  </div>
+
+  <div class="lesson_gallery_tab" data-tab="featured">
+
+  </div>
+  
+  <div class="lesson_gallery_tab" data-tab="topics">
+    {% for topic in site.data.topics %}
+      {% include template/topic-card.html name=topic.name %}
+      <div class="lessons">
+        {% for lesson in topic.lessons %}
+          {% include template/lesson-card.html id=lesson %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
