@@ -117,25 +117,33 @@ $$
 $$
 
 <!-- section break component -->
+
 {% include components/section.html %}
 
 
 <!-- spoiler component -->
+
 Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
 {% include components/spoiler.html text="$$f(x) = \pi + e^{-i} + sin(x)$$" %}
 
 <!-- question component -->
+
 {%
   include components/question.html
   question="Why did the chicken cross the road?"
-  answer1="To get to the other side"
-  answer2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
-  answer3="Cannot be determined"
-  answer4="A superposition of all the answers above"
+  choice1="To get to the other side"
+  choice2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
+  choice3="Cannot be determined"
+  choice4="A superposition of all the answers above"
   correct=4
 %}
 
 <!-- figure with image and/or video, and caption -->
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" %}
+
+{% include components/figure.html video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" %}
+
 {% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
 
 {% capture caption %}
@@ -147,6 +155,7 @@ $$f(x) = \pi + e^{-i} + sin(x)$$
 {% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
 
 <!-- clickable (link or button) with icon and/or text -->
+
 {% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" %}
 {% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
 {% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" %}
@@ -156,4 +165,5 @@ $$f(x) = \pi + e^{-i} + sin(x)$$
 {:.center}
 
 <!-- slideshow component -->
+
 {% include components/slideshow.html images="images/store" %}

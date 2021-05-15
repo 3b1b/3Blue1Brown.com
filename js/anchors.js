@@ -27,8 +27,7 @@ const onHashChange = () => {
   const id = window.location.hash.replace("#", "");
   let element = document.getElementById(id);
   if (!element) return;
-  element.dataset.glow = true;
-  window.setTimeout(() => (element.dataset.glow = false), 2000);
+  glowElement(element);
 };
 
 // start script and add triggers

@@ -1,15 +1,29 @@
-// shows correct answer when clicking "check answer" in a question component
+// check if answer is correct
 const submitAnswer = (button) => {
   const question = button.closest(".question");
+
   if (!question.querySelector("input:checked")) return;
-  const correct = question.querySelectorAll(
-    ".answer[data-correct='true'] input:checked"
+
+  const answeredCorrectly = question.querySelectorAll(
+    ".question_choice[data-correct='true'] input:checked"
   ).length
     ? true
     : false;
-  question.dataset.reveal = correct;
+
+  question.dataset.reveal = answeredCorrectly;
+
+  if (answeredCorrectly)
+    question
+      .querySelectorAll("input")
+      .forEach((input) => (input.disabled = true));
+  else question.querySelectorAll(".question_result").forEach(shakeElement);
+};
+
+// reset question after getting correct
+const resetAnswer = (button) => {
+  const question = button.closest(".question");
+  button.closest(".question").removeAttribute("data-reveal");
   question
-    .querySelectorAll("label input")
-    .forEach((answer) => answer.setAttribute("disabled", ""));
-  button.style.display = "none";
+    .querySelectorAll("input")
+    .forEach((input) => input.removeAttribute("disabled"));
 };

@@ -27,19 +27,3 @@ h4 {
     opacity: 1;
   }
 }
-
-[data-glow="true"] {
-  animation: highlight_glow 2s;
-}
-
-@keyframes highlight_glow {
-  0% {
-    background: none;
-  }
-  10% {
-    background: $light-blue-100;
-  }
-  100% {
-    background: none;
-  }
-}

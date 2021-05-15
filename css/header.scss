@@ -37,6 +37,10 @@ header {
     @include hover;
     z-index: 1;
 
+    button {
+      display: none;
+    }
+
     .desktop_break {
       flex-grow: 1;
 
@@ -50,8 +54,27 @@ header {
       flex-direction: column;
       width: 100%;
 
+      button {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        color: white;
+      }
+
       a {
         width: 100%;
+      }
+
+      &[data-expanded="true"] {
+        button {
+          margin-bottom: 10px;
+        }
+      }
+
+      &[data-expanded="false"] {
+        a {
+          display: none;
+        }
       }
     }
   }
@@ -95,7 +118,6 @@ header {
     @media (max-width: $tablet) {
       position: static;
       flex-basis: 100%;
-      margin-bottom: 10px;
     }
 
     @keyframes fade_in {

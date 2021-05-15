@@ -5,35 +5,44 @@
 {%- else -%}
   {%- capture size -%}width: 100%{%- endcapture -%}
 {%- endif -%}
-{%- assign show = include.show | default: "image" -%}
+{%- assign show = include.show -%}
+{%- unless show -%}
+  {%- if include.image -%}
+    {%- assign show = "image" -%}
+  {%- elsif include.video -%}
+    {%- assign show = "video" -%}
+  {%- endif -%}
+{%- endunless -%}
 <figure class="figure" data-show="{{ show }}">
   {% if include.image and include.video %}
     <div class="figure_controls">
-      {% if show == "image" %}
-        {% assign active = true %}
-      {% else %}
-        {% assign active = false %}
+      {% if include.image and include.video %}
+        {% if show == "image" %}
+          {% assign active = true %}
+        {% else %}
+          {% assign active = false %}
+        {% endif %}
+        {%
+          include components/clickable.html
+          icon="far fa-image"
+          text="Still"
+          active=active
+          onclick="figureShow(this, 'image')"
+        %}
+
+        {% if show == "video" %}
+          {% assign active = true %}
+        {% else %}
+          {% assign active = false %}
+        {% endif %}
+        {%
+          include components/clickable.html
+          icon="fas fa-film"
+          text="Animation"
+          active=active
+          onclick="figureShow(this, 'video')"
+        %}
       {% endif %}
-      {%
-        include components/clickable.html
-        icon="far fa-image"
-        text="Still"
-        active=active
-        onclick="figureShow(this, 'image')"
-      %}
-      
-      {% if show == "video" %}
-        {% assign active = true %}
-      {% else %}
-        {% assign active = false %}
-      {% endif %}
-      {%
-        include components/clickable.html
-        icon="fas fa-film"
-        text="Animation"
-        active=active
-        onclick="figureShow(this, 'video')"
-      %}
     </div>
   {% endif %}
 
@@ -48,7 +57,6 @@
 
   {% if include.video %}
     <video
-      autoplay
       controls
       preload="metadata"
       style="{{ size }}"

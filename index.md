@@ -14,6 +14,8 @@ big-header: true
 
 {% include components/section.html %}
 
+## Lessons
+
 {% include template/lesson-gallery.html show="featured" %}
 
 {% include components/section.html %}

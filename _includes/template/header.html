@@ -10,8 +10,12 @@
       {%- endfor -%}
     </span>
   </a>
-
-  <nav>
+  
+  <nav data-expanded="false">
+    <button onclick="toggleNav(this)">
+      <i class="fas fa-bars"></i>
+      <span>Menu</span>
+    </button>
     <a
       href="{{ 'lessons' | relative_url }}"
       data-tooltip="Various maths topics, in text and video form"
