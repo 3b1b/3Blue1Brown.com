@@ -4,11 +4,8 @@ const submitAnswer = (button) => {
 
   if (!question.querySelector("input:checked")) return;
 
-  const answeredCorrectly = question.querySelectorAll(
-    ".question_choice[data-correct='true'] input:checked"
-  ).length
-    ? true
-    : false;
+  const query = ".question_choice[data-correct='true'] input:checked";
+  const answeredCorrectly = question.querySelectorAll(query).length > 0;
 
   question.dataset.reveal = answeredCorrectly;
 
