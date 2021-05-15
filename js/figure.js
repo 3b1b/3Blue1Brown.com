@@ -7,3 +7,21 @@ const figureShow = (button, show) => {
     .forEach((button) => (button.dataset.active = false));
   button.dataset.active = true;
 };
+
+// autoplay video when figure and video come into view
+const createAutoplays = () => {
+  const videos = document.querySelectorAll(".figure video");
+  for (const video of videos)
+    new IntersectionObserver(videoInView).observe(video);
+};
+
+// when element comes into view
+let videoInView = (entries) => {
+  for (const { target, isIntersecting } of entries) {
+    if (isIntersecting) target.play();
+    else target.pause();
+  }
+};
+
+// start script
+window.addEventListener("DOMContentLoaded", createAutoplays);
