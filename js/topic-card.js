@@ -1,18 +1,18 @@
 // expand/collapse topic
 const toggleTopic = (target) => {
-  // save expanded state
-  const expanded = target.dataset.expanded;
+  // save open state
+  const open = target.dataset.open;
 
   // collapse all
   document
     .querySelectorAll(".topic_card")
-    .forEach((card) => (card.dataset.expanded = false));
+    .forEach((card) => (card.dataset.open = false));
 
   // toggle expand of clicked topic card
-  if (expanded === "true") {
+  if (open === "true") {
     target.scrollIntoView({ block: "nearest" });
   } else {
-    target.dataset.expanded = true;
+    target.dataset.open = true;
     target.scrollIntoView();
   }
 };

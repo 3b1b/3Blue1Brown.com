@@ -23,7 +23,7 @@
   text-decoration: none;
   z-index: 1;
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     width: 100%;
     margin: 0;
 
@@ -61,13 +61,13 @@
     transition: opacity $fast;
   }
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     .fa-caret-down {
       display: none;
     }
   }
 
-  &[data-expanded="false"] {
+  &[data-open="false"] {
     .fa-caret-up {
       display: none;
     }
@@ -77,7 +77,7 @@
     display: none;
   }
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     & + .lessons {
       display: unset;
     }
