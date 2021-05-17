@@ -41,6 +41,13 @@
         data-tooltip="Topic lesson list"
       >
         <i class="fas fa-bars"></i>
+        {% for topic in site.data.topics %}
+          {% for lesson in topic.lessons %}
+            {% if page.slug == lesson %}
+              <span>{{ topic.name }}</span>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
       </button>
       {%
         include template/lesson-card.html

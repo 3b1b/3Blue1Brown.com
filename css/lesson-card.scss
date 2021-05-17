@@ -54,6 +54,10 @@ $phone: 500px;
   &[data-mini="true"] {
     padding: 10px;
 
+    & > * {
+      margin: 0 5px;
+    }
+
     img {
       height: 50px;
     }

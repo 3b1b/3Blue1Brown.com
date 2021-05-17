@@ -42,6 +42,12 @@
   </div>
   
   <div class="question_result question_correct">
+    {%
+      include components/pi-creature.html
+      emotion="happy"
+      placement="inline"
+      style="small"
+    %}
     <span>Correct!</span>
     {% 
       include components/clickable.html

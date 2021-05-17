@@ -7,10 +7,8 @@ big-header: true
 <!-- this link should always point to the latest video on the youtube channel -->
 {% include components/embed.html src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" %}
 
-<div class="spotlight_pis">
-  {% include components/pi-creature.html emotion="hooray" width="150px" left="-40px" bottom="-40px" %}
-  {% include components/pi-creature.html emotion="speaking" width="150px" flip=true right="-40px" bottom="-40px" %}
-</div>
+{% include components/pi-creature.html emotion="hooray" placement="side" style="big" %}
+{% include components/pi-creature.html emotion="speaking" placement="side" style="big" flip=true %}
 
 {% include components/section.html %}
 

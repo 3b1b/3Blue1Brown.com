@@ -5,19 +5,72 @@
 @import "theme";
 @import "mixins";
 
-.pi_creature {
-  width: 150px;
-  max-width: 100%;
-  height: 150px;
+$page: 1400px;
 
-  svg {
-    width: 100%;
-    height: 100%;
+.pi_creature {
+  .pi_creature_frame {
+    width: 150px;
+    height: 150px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &[data-style="small"] {
+    .pi_creature_frame {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  &[data-style="big"] {
+    .pi_creature_frame {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   &[data-flip="true"] {
     svg {
       transform: scaleX(-1);
+    }
+  }
+
+  &[data-flip="false"] {
+    right: 100%;
+  }
+
+  &[data-flip="true"] {
+    left: 100%;
+  }
+
+  &[data-placement="side"] {
+    position: absolute;
+
+    .pi_creature_frame {
+      transform: translateY(-100%);
+    }
+
+    @media (max-width: $page) {
+      display: none;
+    }
+  }
+
+  &[data-placement="auto"] {
+    @media (min-width: $page) {
+      position: absolute;
+
+      .pi_creature_frame {
+        transform: translateY(-100%);
+      }
+    }
+
+    @media (max-width: $page) {
+      position: static;
     }
   }
 }

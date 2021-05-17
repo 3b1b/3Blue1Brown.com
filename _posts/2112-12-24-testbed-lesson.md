@@ -37,18 +37,11 @@ _italic text_
 2. ordered list item 2
 3. ordered list item 3
 
-[Link](https://some-website.org/)
+[Link to external page](https://some-website.org/)
 
-[Link to extras page]({{ "extras" | relative_url }})
+[Link to page in root](extras)
 
-3b1b.github.io/3blue1brown.com
-
-[Link to extras](extras)
-
-3b1b.github.io/extras
-3b1b.github.io/3blue1brown.com/extras
-
-3blue1brown.com
+[Link to page not in root]({{ "extras/cameos" | relative_url }})
 
 Centered element.
 {:.center}
@@ -120,6 +113,21 @@ $$
 
 {% include components/section.html %}
 
+<!-- figure with image and/or video, and caption -->
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" %}
+
+{% include components/figure.html video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" %}
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
+{% capture caption %}
+Markdown in caption.
+[Test link](https://google.com/).
+$$f(x) = \pi + e^{-i} + sin(x)$$
+{% endcapture %}
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
 
 <!-- spoiler component -->
 
@@ -138,21 +146,22 @@ Why did the chicken cross the Mobius strip? {% include components/spoiler.html t
   correct=4
 %}
 
-<!-- figure with image and/or video, and caption -->
+<!-- pi creatures -->
 
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" %}
+Pi creature next to paragraph of text.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% include components/figure.html video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" %}
+{% include components/pi-creature.html emotion="happy" %}
 
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% capture caption %}
-Markdown in caption.
-[Test link](https://google.com/).
-$$f(x) = \pi + e^{-i} + sin(x)$$
-{% endcapture %}
-
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
+{% include components/pi-creature.html emotion="confused" flip=true %}
 
 <!-- clickable (link or button) with icon and/or text -->
 

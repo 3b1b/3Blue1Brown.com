@@ -5,8 +5,8 @@
 @import "theme";
 @import "mixins";
 
-$tablet: 1400px;
-$phone: 600px;
+$tablet: 1200px;
+$phone: 700px;
 
 header {
   position: relative;
@@ -35,7 +35,7 @@ header {
     }
 
     a {
-      padding: 10px;
+      padding: 10px 15px;
       color: white;
       text-decoration: none;
       text-align: center;
@@ -59,6 +59,10 @@ header {
         width: 100%;
         padding: 10px;
         color: white;
+
+        span {
+          margin-left: 10px;
+        }
       }
 
       a {

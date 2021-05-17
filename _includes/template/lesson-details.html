@@ -7,14 +7,13 @@
     </div>
   {% endif %}
 
-  {% if page.last_modified_at %}
+  {% assign body = content | strip %}
+  {% if page.last_modified_at and body != "" %}
     <div>
       <i class="far fa-clock"></i>
       <span>Updated {{ page.last_modified_at | default: page.date | date: "%B %d, %Y" }}</span>
     </div>
   {% endif %}
-
-  <br>
 
   {% if page.credits.size > 0 %}
     {% for credit in page.credits %}
@@ -24,19 +23,6 @@
       </div>
     {% endfor %}
   {% endif %}
-
-  <br>
-  
-  {% for topic in site.data.topics %}
-    {% for lesson in topic.lessons %}
-      {% if page.slug == lesson %}
-        <div>
-          <i class="fas fa-book"></i>
-          <span>{{ topic.name }}</span>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
 
   {% if page.tags.size > 0 %}
     <div>

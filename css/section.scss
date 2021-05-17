@@ -9,11 +9,11 @@ $page: 1080px;
 $phone: 500px;
 
 section {
-  position: relative;
   overflow: hidden;
 
   .section {
     box-sizing: content-box;
+    position: relative;
     max-width: $page;
     margin: 0 auto;
     padding: 40px;

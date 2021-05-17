@@ -34,6 +34,8 @@
   }
 
   &[data-icon]:not([data-text]) {
+    padding: 0;
+
     .clickable_icon {
       font-size: 1.25em;
     }
