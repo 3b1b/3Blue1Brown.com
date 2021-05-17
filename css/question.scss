@@ -15,10 +15,10 @@
     font-style: italic;
   }
 
-  .answers {
+  .question_choices {
     margin: 20px 0;
 
-    .answer {
+    .question_choice {
       position: relative;
       display: flex;
       align-items: center;
@@ -62,13 +62,18 @@
         background: url("{{ '/images/icons/radio-checked.svg' | absolute_url }}");
       }
 
-      .answer_text {
+      .question_choice_text {
         padding: 10px;
         flex-grow: 1;
       }
-      
-      .icon {
-        padding: 10px;
+
+      .question_choice_icon {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        flex-shrink: 0;
         color: $green-500;
       }
     }
@@ -78,49 +83,39 @@
     }
   }
 
-  .check {
-    margin: 0;
-    padding: 5px 15px;
-  }
-
-  .result {
+  .question_result {
     display: none;
     align-items: center;
-    margin: 0;
-    padding: 5px 15px;
     font-family: $sans;
 
-    img {
-      height: 30px;
-      margin-right: 10px;
+    & > span {
+      padding: 5px 10px;
     }
   }
 
   &:not([data-reveal]) {
-    .icon {
-      display: none;
-    }
-  }
-
-  &[data-reveal] {
-    .answer[data-correct="true"] {
-      background: $green-100;
-
-      .icon {
-        display: block;
-      }
-    }
-  }
-
-  &[data-reveal="true"] {
-    .correct {
+    .question_unanswered {
       display: flex;
     }
   }
 
   &[data-reveal="false"] {
-    .incorrect {
+    .question_incorrect {
       display: flex;
+    }
+  }
+
+  &[data-reveal="true"] {
+    .question_correct {
+      display: flex;
+    }
+
+    .question_choice[data-correct="true"] {
+      background: $green-100;
+
+      .question_choice_icon {
+        display: flex;
+      }
     }
   }
 }

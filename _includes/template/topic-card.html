@@ -1,13 +1,15 @@
+{%- assign text = include.name -%}
+{%- assign image = text | downcase | split: " " | join: "-" | append: ".jpg" | prepend: "images/topics/" | relative_url -%}
+
 <button
-  id="{{ include.id }}"
   class="topic_card"
   data-fade
-  data-expanded="{{ include.expanded |default: true }}"
+  data-open="false"
   onclick="toggleTopic(this)"
 >
-  <img src="{{ include.image | relative_url }}" />
+  <img src="{{ image }}" />
   <span class="topic_card_text">
-    {{ include.text }}
+    {{ text }}
     <i class="fas fa-caret-down fa-2x"></i>
     <i class="fas fa-caret-up fa-2x"></i>
   </span>

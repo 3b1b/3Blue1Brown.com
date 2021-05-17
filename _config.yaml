@@ -16,6 +16,8 @@ collections:
   posts:
     output: true
 
+future: false
+
 permalink: /lessons/:title:output_ext
 
 sass:

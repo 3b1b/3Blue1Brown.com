@@ -2,6 +2,4 @@
 title: Lessons
 ---
 
-# Topics
-
-{% include template/topics.html expanded="true" %}
+{% include template/lesson-gallery.html tab="topics" %}

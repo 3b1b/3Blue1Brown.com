@@ -14,11 +14,10 @@ $phone: 500px;
 
 .lesson_card {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   max-width: 100%;
   padding: 20px;
-  background: $gray-200;
   color: $black;
   text-decoration: none;
   text-align: left;
@@ -30,7 +29,6 @@ $phone: 500px;
 
   & > * {
     margin: 0 10px;
-    @include trim-h-margins;
   }
 
   img {
@@ -38,38 +36,26 @@ $phone: 500px;
   }
 
   .lesson_card_text {
+    display: grid;
+    grid-gap: 10px;
     flex-grow: 1;
     word-break: break-word;
 
     & > * {
       @include line-clamp(2);
 
-      &:nth-child(1) {
-        font-weight: $semi-bold;
-      }
-
-      &:nth-child(2) {
-        margin-top: 10px;
-        color: $gray-700;
+      &:first-child {
+        font-family: $sans;
+        font-weight: $medium;
       }
     }
   }
 
-  &:not([href]) {
-    pointer-events: none;
-
-    i,
-    img {
-      opacity: 0.25;
-    }
-  }
-
-  &[data-mini] {
+  &[data-mini="true"] {
     padding: 10px;
 
     & > * {
       margin: 0 5px;
-      @include trim-h-margins;
     }
 
     img {
@@ -78,15 +64,30 @@ $phone: 500px;
 
     .lesson_card_text {
       font-size: 0.9rem;
-
-      & > * {
-        @include line-clamp(3);
-      }
     }
   }
 
-  &[data-active] {
-    background: $light-blue-100;
+  &[data-active="true"] {
+    background: $gray-200;
+  }
+
+  &[data-reverse="false"] {
+    & > * {
+      @include trim-h-margins;
+    }
+  }
+
+  &[data-reverse="true"] {
+    flex-direction: row-reverse;
+    text-align: right;
+
+    & > *:first-child {
+      margin-right: 0;
+    }
+
+    & > *:last-child {
+      margin-left: 0;
+    }
   }
 
   @media (max-width: $phone) {
@@ -97,21 +98,9 @@ $phone: 500px;
     }
 
     .lesson_card_text {
-      & > * {
-        @include line-clamp(3);
-
-        &:nth-child(2) {
-          display: none;
-        }
+      & > *:not(:first-child) {
+        display: none;
       }
-    }
-  }
-
-  &[data-hidden] {
-    visibility: hidden;
-
-    @media (max-width: $phone) {
-      display: none;
     }
   }
 }

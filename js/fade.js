@@ -9,13 +9,13 @@ const offset = 100; // extra delay for items further to right of screen
 const createFades = () => {
   const elements = document.querySelectorAll("[data-fade]");
   for (const element of elements) {
-    new IntersectionObserver(inView).observe(element);
+    new IntersectionObserver(fadeInView).observe(element);
     element.style.opacity = 0;
   }
 };
 
 // when element comes into view
-let inView = (entries) => {
+let fadeInView = (entries) => {
   for (const { target, isIntersecting } of entries)
     if (isIntersecting) {
       const x = target.getBoundingClientRect().left / window.innerWidth;
