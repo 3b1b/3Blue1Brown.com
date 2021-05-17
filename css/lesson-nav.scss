@@ -7,11 +7,11 @@
 
 $phone: 600px;
 
-.toc {
+.lesson_nav {
   margin: 20px 0;
   @include trim-v-margins;
 
-  .toc_nav {
+  .lesson_nav_controls {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     grid-gap: 20px;
@@ -20,11 +20,11 @@ $phone: 600px;
       margin: 0;
     }
 
-    .toc_prev {
+    .lesson_nav_prev {
       grid-column: 1;
     }
 
-    .toc_list {
+    .lesson_nav_expand {
       grid-column: 2;
       min-height: 40px;
       padding: 10px;
@@ -42,20 +42,20 @@ $phone: 600px;
       }
     }
 
-    .toc_next {
+    .lesson_nav_next {
       grid-column: 3;
     }
 
     @media (max-width: $phone) {
       grid-template-columns: 1fr;
 
-      .toc_prev,
-      .toc_list,
-      .toc_next {
+      .lesson_nav_prev,
+      .lesson_nav_expand,
+      .lesson_nav_next {
         grid-column: 1;
       }
 
-      .toc_list {
+      .lesson_nav_expand {
         grid-row: 3;
 
         span {
@@ -65,20 +65,20 @@ $phone: 600px;
     }
   }
 
-  .toc_content {
+  .lesson_nav_list {
     max-height: 50vh;
     margin-top: 20px;
     overflow-y: auto;
   }
 
   &[data-open="false"] {
-    .toc_content {
+    .lesson_nav_list {
       display: none;
     }
   }
 
   &[data-open="true"] {
-    .toc_content {
+    .lesson_nav_list {
       display: block;
     }
   }

@@ -25,19 +25,19 @@
 
 {% if name and lessons.size > 0 %}
 
-  <div class="toc" data-open="false">
-    <div class="toc_nav">
+  <div class="lesson_nav" data-open="false">
+    <div class="lesson_nav_controls">
       {%
         include template/lesson-card.html
         mini=true
         id=prev
         icon="fas fa-arrow-left"
         tooltip="Previous lesson"
-        class="toc_prev"
+        class="lesson_nav_prev"
       %}
       <button
-        class="toc_list"
-        onclick="toggleToc(this)"
+        class="lesson_nav_expand"
+        onclick="toggleLessonNav(this)"
         data-tooltip="Topic lesson list"
       >
         <i class="fas fa-bars"></i>
@@ -56,11 +56,11 @@
         icon="fas fa-arrow-right"
         reverse=true
         tooltip="Next lesson"
-        class="toc_next"
+        class="lesson_nav_next"
       %}
     </div>
 
-    <div class="toc_content">
+    <div class="lesson_nav_list">
       {% for lesson in lessons %}
         {% include template/lesson-card.html mini=true id=lesson %}
       {% endfor %}
