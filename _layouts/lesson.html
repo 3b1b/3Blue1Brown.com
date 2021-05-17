@@ -2,34 +2,61 @@
 layout: default
 ---
 
-<h1>{{ page.title }}</h1>
+{% include components/embed.html src=page.video %}
+
+<h2>{{ page.title }}</h2>
 
 {% include template/lesson-details.html %}
 
-{% include components/section.html %}
+{% assign in-topic = nil %}
+{% for topic in site.data.topics %}
+  {% for lesson in topic.lessons %}
+    {% if page.slug == lesson %}
+      {% assign in-topic = true %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
 
-{% include template/table-of-contents.html %}
+{% if in-topic %}
 
-{% include components/section.html %}
+  {% include components/section.html %}
 
-{% include components/embed.html src=page.video %}
+  {% include template/lesson-nav.html %}
+
+{% endif %}
 
 {% include components/section.html %}
 
 {{ content }}
 
-{% include components/section.html %}
+{% assign body = content | strip %}
 
-{% include template/table-of-contents.html %}
+{% if body != "" %}
 
-{% include components/section.html %}
+  {% if in-topic %}
 
-{% include template/patrons.html %}
+    {% include components/section.html %}
 
-{% include components/section.html %}
+    {% include template/lesson-nav.html %}
 
-{% include template/license.html %}
+  {% endif %}
+  
+  {% include components/section.html %}
 
-{% include components/section.html %}
+  {% include template/patrons.html %}
 
-{% include template/comments.html %}
+  {% include components/section.html %}
+
+  {% include template/license.html %}
+
+  {% include components/section.html %}
+
+  {% include template/comments.html %}
+
+{% else %}  
+
+<h3>Text version of this lesson coming soon</h3>
+
+{% include components/pi-creature.html emotion="thinking" placement="inline" %}
+
+{% endif %}

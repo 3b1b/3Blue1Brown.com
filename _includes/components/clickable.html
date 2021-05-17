@@ -5,7 +5,7 @@
 {%- endif -%}
 <{{ tag }} {% if include.link %}href="{{ include.link | relative_url }}"{% endif %} {% if include.onclick %}onclick="{{ include.onclick }}"{% endif %} class="clickable {{ include.class }}" data-tooltip="{{ include.tooltip }}" {% if include.icon %}data-icon{% endif %} {% if include.text %}data-text{% endif %} data-style="{{ include.style }}" {% if include.active != nil %}data-active="{{ include.active }}"{% endif %}>
   {%- if include.icon -%}
-    <span class="icon">
+    <span class="clickable_icon">
       {%- if include.icon contains "fa-" -%}
         <i class="{{ include.icon }}"></i>
       {%- else -%}
@@ -15,7 +15,7 @@
   {%- endif -%}
 
   {%- if include.text -%}
-    <span class="text truncate">{{ include.text }}</span>
+    <span class="clickable_text truncate">{{ include.text }}</span>
   {%- endif -%}
 </{{ tag }}>
 {{- -}}

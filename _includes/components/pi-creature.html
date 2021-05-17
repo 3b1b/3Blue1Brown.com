@@ -1,0 +1,10 @@
+<div
+  class="pi_creature"
+  data-flip="{{ include.flip | default: false }}"
+  data-placement="{{ include.placement | default: 'auto' }}"
+  data-style="{{ include.style }}"
+>
+  <div class="pi_creature_frame">
+    {% include {{ include.emotion | prepend: "pi-creatures/" | append: ".svg" }} %}
+  </div>
+</div>

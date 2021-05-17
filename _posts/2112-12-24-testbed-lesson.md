@@ -2,19 +2,21 @@
 title: Testbed Lesson
 description: Brief, 1-2 sentence description of lesson. Shows under search results and elsewhere.
 video: spUNpyF58BY
-last_modified_at: 2021-05-02
 credits:
   - Lesson and figures by Grant Sanderson
   - Translated to blog format by James Schloss
 tags:
   - interactive
-  - geometry
 ---
 
 Markdown content.
 One sentence per line.
 
-<!-- comment -->
+<!-- html comment (will appear in the rendered page's source code) -->
+
+{% comment %}
+liquid comment (will not appear in the rendered page's source code)
+{% endcomment %}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -35,7 +37,11 @@ _italic text_
 2. ordered list item 2
 3. ordered list item 3
 
-[Link](https://some-website.org/)
+[Link to external page](https://some-website.org/)
+
+[Link to page in root](extras)
+
+[Link to page not in root]({{ "extras/cameos" | relative_url }})
 
 Centered element.
 {:.center}
@@ -104,38 +110,69 @@ $$
 $$
 
 <!-- section break component -->
+
 {% include components/section.html %}
 
-<!-- slideshow component -->
-{% include components/slideshow.html images="images/store" %}
-
-<!-- spoiler component -->
-Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
-{% include components/spoiler.html text="$$f(x) = \pi + e^{-i} + sin(x)$$" %}
-
-<!-- question component -->
-{%
-  include components/question.html
-  question="Why did the chicken cross the road?"
-  answer1="To get to the other side"
-  answer2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
-  answer3="Cannot be determined"
-  answer4="A superposition of all the answers above"
-  correct=4
-%}
-
-<!-- clickable (link or button) with icon and/or text -->
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="plain" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
-{% include components/clickable.html link="https://3blu1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
-{:.center}
-
 <!-- figure with image and/or video, and caption -->
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" %}
+
+{% include components/figure.html video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" %}
+
 {% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+
 {% capture caption %}
 Markdown in caption.
 [Test link](https://google.com/).
 $$f(x) = \pi + e^{-i} + sin(x)$$
 {% endcapture %}
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" default="video" caption=caption %}
+
+{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
+
+<!-- spoiler component -->
+
+Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
+{% include components/spoiler.html text="$$f(x) = \pi + e^{-i} + sin(x)$$" %}
+
+<!-- question component -->
+
+{%
+  include components/question.html
+  question="Why did the chicken cross the road?"
+  choice1="To get to the other side"
+  choice2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
+  choice3="Cannot be determined"
+  choice4="A superposition of all the answers above"
+  correct=4
+%}
+
+<!-- pi creatures -->
+
+Pi creature next to paragraph of text.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+{% include components/pi-creature.html emotion="happy" %}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+{% include components/pi-creature.html emotion="confused" flip=true %}
+
+<!-- clickable (link or button) with icon and/or text -->
+
+{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" %}
+{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" style="rounded" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
+{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
+{:.center}
+
+<!-- slideshow component -->
+
+{% include components/slideshow.html images="images/store" %}

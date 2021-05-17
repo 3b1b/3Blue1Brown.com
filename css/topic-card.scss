@@ -5,7 +5,7 @@
 @import "theme";
 @import "mixins";
 
-.topics {
+[data-tab="topics"] {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -17,21 +17,15 @@
   display: inline-flex;
   flex-direction: column;
   padding: 20px;
-  background: transparent;
-  color: $black;
   border-radius: 0;
   font-family: $sans;
+  font-weight: $medium;
   text-decoration: none;
   z-index: 1;
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     width: 100%;
     margin: 0;
-    background: $gray-200;
-
-    &:hover {
-      background: $light-blue-100;
-    }
 
     i {
       opacity: 1;
@@ -39,7 +33,7 @@
   }
 
   &:hover {
-    background: $gray-200;
+    background: $light-blue-100;
 
     i {
       opacity: 1;
@@ -67,13 +61,13 @@
     transition: opacity $fast;
   }
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     .fa-caret-down {
       display: none;
     }
   }
 
-  &[data-expanded="false"] {
+  &[data-open="false"] {
     .fa-caret-up {
       display: none;
     }
@@ -83,7 +77,7 @@
     display: none;
   }
 
-  &[data-expanded="true"] {
+  &[data-open="true"] {
     & + .lessons {
       display: unset;
     }

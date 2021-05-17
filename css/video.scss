@@ -8,7 +8,8 @@
 .video {
   width: var(--width);
   max-width: 100%;
-  margin: 0 auto;
+  margin: 20px auto;
+  @include trim-v-margins;
 
   div {
     position: relative;
@@ -23,5 +24,9 @@
       border: 0;
       z-index: 10;
     }
+  }
+
+  &:first-child {
+    margin-top: 10px;
   }
 }

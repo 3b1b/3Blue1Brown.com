@@ -5,14 +5,14 @@
 @import "theme";
 @import "mixins";
 
-.background {
+.header_background {
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: -1;
   background: $black;
+  z-index: 0;
 
   svg {
     position: absolute;
@@ -58,12 +58,5 @@
         stroke-dashoffset: 2000;
       }
     }
-  }
-
-  .shadow {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 1000px 100px $black;
   }
 }

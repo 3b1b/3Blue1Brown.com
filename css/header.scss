@@ -5,8 +5,8 @@
 @import "theme";
 @import "mixins";
 
-$tablet: 1400px;
-$phone: 600px;
+$tablet: 1200px;
+$phone: 700px;
 
 header {
   position: relative;
@@ -21,10 +21,6 @@ header {
   overflow: hidden;
   box-shadow: $shadow;
 
-  .background {
-    z-index: 0;
-  }
-
   nav {
     display: flex;
     justify-content: center;
@@ -33,6 +29,17 @@ header {
     width: 100%;
     @include hover;
     z-index: 1;
+
+    button {
+      display: none;
+    }
+
+    a {
+      padding: 10px 15px;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
 
     .desktop_break {
       flex-grow: 1;
@@ -47,8 +54,32 @@ header {
       flex-direction: column;
       width: 100%;
 
+      button {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        color: white;
+
+        span {
+          margin-left: 10px;
+        }
+      }
+
       a {
         width: 100%;
+      }
+
+      
+      &[data-open="true"] {
+        button {
+          margin-bottom: 10px;
+        }
+      }
+
+      &[data-open="false"] {
+        a {
+          display: none;
+        }
       }
     }
   }
@@ -92,7 +123,7 @@ header {
     @media (max-width: $tablet) {
       position: static;
       flex-basis: 100%;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     @keyframes fade_in {

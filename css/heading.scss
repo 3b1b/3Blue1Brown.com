@@ -5,6 +5,14 @@
 @import "theme";
 @import "mixins";
 
+.video + h1,
+.video + h2,
+.video + h3,
+.video + h4 {
+  margin: 10px 0;
+  @include trim-v-margins;
+}
+
 h1,
 h2,
 h3,

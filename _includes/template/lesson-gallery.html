@@ -1,0 +1,62 @@
+{%- assign show = include.show | default: "topics" -%}
+<div class="lesson_gallery" data-show="{{ show }}">
+  <p class="lesson_gallery_controls center">
+    {% if show == "featured" %}
+      {% assign active = true %}
+    {% else %}
+      {% assign active = false %}
+    {% endif %}
+    {%
+      include components/clickable.html
+      text="Featured"
+      onclick="lessonGalleryTab(this, 'featured');"
+      active=active
+    %}
+    {% if show == "topics" %}
+      {% assign active = true %}
+    {% else %}
+      {% assign active = false %}
+    {% endif %}
+    {%
+      include components/clickable.html
+      text="By Topic"
+      onclick="lessonGalleryTab(this, 'topics');"
+      active=active
+    %}
+    {% if show == "date" %}
+      {% assign active = true %}
+    {% else %}
+      {% assign active = false %}
+    {% endif %}
+    {%
+      include components/clickable.html
+      text="By Date"
+      onclick="lessonGalleryTab(this, 'date');"
+      active=active
+    %}
+  </p>
+  
+  <div class="lesson_gallery_tab" data-tab="featured">
+    {% for lesson in site.data.featured %}
+      {% include template/lesson-card.html id=lesson %}
+    {% endfor %}
+  </div>
+  
+  <div class="lesson_gallery_tab" data-tab="topics">
+    {% for topic in site.data.topics %}
+      {% include template/topic-card.html name=topic.name %}
+      <div class="lessons">
+        {% for lesson in topic.lessons %}
+          {% include template/lesson-card.html id=lesson %}
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="lesson_gallery_tab" data-tab="date">
+    {% for lesson in site.posts %}
+      {% include template/lesson-card.html id=lesson.slug %}
+    {% endfor %}
+  </div>
+
+</div>
