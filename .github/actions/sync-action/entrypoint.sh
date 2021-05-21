@@ -36,7 +36,7 @@ echo "host_bucket = %(bucket)s.$REGION.linodeobjects.com" >> "$HOME/.s3cfg"
 
 echo "Generated .s3cfg for key $ACCESS_KEY"
 
-s3cmd sync $SOURCE_DIR s3://$BUCKET
+s3cmd sync setacl --acl-public $SOURCE_DIR s3://$BUCKET
 
 echo 'Removing .s3cfg credentials'
 rm "$HOME/.s3cfg"
