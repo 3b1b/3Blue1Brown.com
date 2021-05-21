@@ -1,0 +1,10 @@
+<head>
+  <title>
+    {{ .Site.Title }}{{ with .Title }} - {{ . }}{{ end }}
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  {{ partial "fonts.html" . }}
+  {{ partial "favicons.html" . }}
+  {{ template "_internal/google_analytics.html" . }}
+</head>
