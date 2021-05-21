@@ -11,6 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       # - name: Build site and deploy to gh-pages branch
       #   uses: helaili/jekyll-action@v2
