@@ -5,13 +5,13 @@ if [ -z "$BUCKET" ]; then
   exit 1
 fi
 
-if [ -z "$LINODE_ACCESS_KEY" ]; then
-  echo -e 'LINODE_ACCESS_KEY is not set. Quitting.'
+if [ -z "$ACCESS_KEY" ]; then
+  echo -e 'ACCESS_KEY is not set. Quitting.'
   exit 1
 fi
 
-if [ -z "$LINODE_SECRET_KEY" ]; then
-  echo -e 'LINODE_SECRET_KEY is not set. Quitting.'
+if [ -z "$SECRET_KEY" ]; then
+  echo -e 'SECRET_KEY is not set. Quitting.'
   exit 1
 fi
 
@@ -29,12 +29,12 @@ if [ -e "$HOME/.s3cfg" ]; then
 fi
 
 echo '[default]' > "$HOME/.s3cfg"
-echo "access_key=$LINODE_ACCESS_KEY" >> "$HOME/.s3cfg"
-echo "secret_key=$LINODE_SECRET_KEY" >> "$HOME/.s3cfg"
+echo "access_key=$ACCESS_KEY" >> "$HOME/.s3cfg"
+echo "secret_key=$SECRET_KEY" >> "$HOME/.s3cfg"
 echo "host_base = $REGION.linodeobjects.com" >> "$HOME/.s3cfg"
 echo "host_bucket = %(bucket)s.$REGION.linodeobjects.com" >> "$HOME/.s3cfg"
 
-echo "Generated .s3cfg for key $LINODE_ACCESS_KEY"
+echo "Generated .s3cfg for key $ACCESS_KEY"
 
 s3cmd sync $SOURCE_DIR s3://$BUCKET
 
