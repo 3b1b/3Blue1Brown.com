@@ -1,0 +1,28 @@
+name: Sync Directory with Bucket
+
+on:
+  push:
+    branches:
+      - workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # - name: Build site and deploy to gh-pages branch
+      #   uses: helaili/jekyll-action@v2
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     target_branch: "gh-pages"
+
+      - name: Sync assets with bucket
+        uses: ./.github/actions/sync-action
+        env:
+          ACCESS_KEY: ${{ secrets.LINODE_ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.LINODE_SECRET_KEY }}
+          BUCKET: 3b1b-posts
+          REGION: us-east-1
+          SOURCE_DIR: 'test'
