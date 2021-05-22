@@ -1,0 +1,6 @@
+hr {
+  margin: 40px 0;
+  background: #bdbdbd;
+  border: none;
+  width: 100%;
+  height: 2px; }

@@ -1,0 +1,24 @@
+ul,
+ol {
+  margin: 40px 0;
+  padding-left: 40px; }
+  ul:first-child,
+  ol:first-child {
+    margin-top: 0; }
+  ul:last-child,
+  ol:last-child {
+    margin-bottom: 0; }
+  ul li,
+  ol li {
+    padding-left: 10px;
+    text-align: justify;
+    line-height: 2.05; }
+    ul li:first-child,
+    ol li:first-child {
+      margin-top: 0; }
+    ul li:last-child,
+    ol li:last-child {
+      margin-bottom: 0; }
+
+ul {
+  list-style-type: square; }

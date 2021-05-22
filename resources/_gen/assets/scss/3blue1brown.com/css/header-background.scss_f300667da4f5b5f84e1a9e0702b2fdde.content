@@ -1,0 +1,118 @@
+.header_background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  z-index: 0; }
+  .header_background svg {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    opacity: 0.25;
+    animation: rotate 120s linear forwards infinite; }
+
+@keyframes rotate {
+  0% {
+    transform: translateY(-50%) perspective(1000px) rotateX(65deg) rotateZ(0deg); }
+  100% {
+    transform: translateY(-50%) perspective(1000px) rotateX(65deg) rotateZ(360deg); } }
+    .header_background svg line {
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 6000;
+      animation: draw 15s ease-in-out forwards infinite; }
+    .header_background svg line:nth-child(1) {
+      animation-delay: 2.05s; }
+    .header_background svg line:nth-child(2) {
+      animation-delay: 2.1s; }
+    .header_background svg line:nth-child(3) {
+      animation-delay: 2.15s; }
+    .header_background svg line:nth-child(4) {
+      animation-delay: 2.2s; }
+    .header_background svg line:nth-child(5) {
+      animation-delay: 2.25s; }
+    .header_background svg line:nth-child(6) {
+      animation-delay: 2.3s; }
+    .header_background svg line:nth-child(7) {
+      animation-delay: 2.35s; }
+    .header_background svg line:nth-child(8) {
+      animation-delay: 2.4s; }
+    .header_background svg line:nth-child(9) {
+      animation-delay: 2.45s; }
+    .header_background svg line:nth-child(10) {
+      animation-delay: 2.5s; }
+    .header_background svg line:nth-child(11) {
+      animation-delay: 2.55s; }
+    .header_background svg line:nth-child(12) {
+      animation-delay: 2.6s; }
+    .header_background svg line:nth-child(13) {
+      animation-delay: 2.65s; }
+    .header_background svg line:nth-child(14) {
+      animation-delay: 2.7s; }
+    .header_background svg line:nth-child(15) {
+      animation-delay: 2.75s; }
+    .header_background svg line:nth-child(16) {
+      animation-delay: 2.8s; }
+    .header_background svg line:nth-child(17) {
+      animation-delay: 2.85s; }
+    .header_background svg line:nth-child(18) {
+      animation-delay: 2.9s; }
+    .header_background svg line:nth-child(19) {
+      animation-delay: 2.95s; }
+    .header_background svg line:nth-child(20) {
+      animation-delay: 3s; }
+    .header_background svg line:nth-child(21) {
+      animation-delay: 3.05s; }
+    .header_background svg line:nth-child(22) {
+      animation-delay: 3.1s; }
+    .header_background svg line:nth-child(23) {
+      animation-delay: 3.15s; }
+    .header_background svg line:nth-child(24) {
+      animation-delay: 3.2s; }
+    .header_background svg line:nth-child(25) {
+      animation-delay: 3.25s; }
+    .header_background svg line:nth-child(26) {
+      animation-delay: 3.3s; }
+    .header_background svg line:nth-child(27) {
+      animation-delay: 3.35s; }
+    .header_background svg line:nth-child(28) {
+      animation-delay: 3.4s; }
+    .header_background svg line:nth-child(29) {
+      animation-delay: 3.45s; }
+    .header_background svg line:nth-child(30) {
+      animation-delay: 3.5s; }
+    .header_background svg line:nth-child(31) {
+      animation-delay: 3.55s; }
+    .header_background svg line:nth-child(32) {
+      animation-delay: 3.6s; }
+    .header_background svg line:nth-child(33) {
+      animation-delay: 3.65s; }
+    .header_background svg line:nth-child(34) {
+      animation-delay: 3.7s; }
+    .header_background svg line:nth-child(35) {
+      animation-delay: 3.75s; }
+    .header_background svg line:nth-child(36) {
+      animation-delay: 3.8s; }
+    .header_background svg line:nth-child(37) {
+      animation-delay: 3.85s; }
+    .header_background svg line:nth-child(38) {
+      animation-delay: 3.9s; }
+    .header_background svg line:nth-child(39) {
+      animation-delay: 3.95s; }
+    .header_background svg line:nth-child(40) {
+      animation-delay: 4s; }
+    .header_background svg line:nth-child(41) {
+      animation-delay: 4.05s; }
+    .header_background svg line:nth-child(42) {
+      animation-delay: 4.1s; }
+
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 6000; }
+  30% {
+    stroke-dashoffset: 4000; }
+  70% {
+    stroke-dashoffset: 4000; }
+  100% {
+    stroke-dashoffset: 2000; } }

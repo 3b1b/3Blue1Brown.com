@@ -1,0 +1,4 @@
+{{ range (readDir "/static/js") }}
+  {{ $js := (print "/js/" .Name) | relURL }}
+  <script src="{{ $js }}"></script>
+{{ end }}

@@ -1,0 +1,48 @@
+[data-tab="topics"] {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; }
+
+.topic_card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  z-index: 1; }
+  .topic_card[data-open="true"] {
+    width: 100%;
+    margin: 0; }
+    .topic_card[data-open="true"] i {
+      opacity: 1; }
+  .topic_card:hover {
+    background: #b3e5fc; }
+    .topic_card:hover i {
+      opacity: 1; }
+  .topic_card img {
+    width: 280px; }
+  .topic_card .topic_card_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px; }
+  .topic_card i {
+    position: relative;
+    left: 10px;
+    width: 0;
+    color: #03a9f4;
+    opacity: 0;
+    transition: opacity 0.2s ease; }
+  .topic_card[data-open="true"] .fa-caret-down {
+    display: none; }
+  .topic_card[data-open="false"] .fa-caret-up {
+    display: none; }
+  .topic_card + .lessons {
+    display: none; }
+  .topic_card[data-open="true"] + .lessons {
+    display: unset; }

@@ -1,0 +1,7 @@
+mjx-container[jax="CHTML"][display="true"] {
+  margin: 40px 0;
+  overflow-x: auto; }
+  mjx-container[jax="CHTML"][display="true"]:first-child {
+    margin-top: 0; }
+  mjx-container[jax="CHTML"][display="true"]:last-child {
+    margin-bottom: 0; }

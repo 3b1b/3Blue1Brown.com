@@ -1,0 +1,9 @@
+.not_found {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .not_found .not_found_text > * {
+    margin: 10px 0;
+    text-align: left; }
+    .not_found .not_found_text > *:first-child {
+      font-weight: 600; }

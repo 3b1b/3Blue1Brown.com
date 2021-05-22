@@ -1,0 +1,36 @@
+.tooltip {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  max-width: calc(100vw - 40px);
+  padding: 10px 15px;
+  background: #212121;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  opacity: 0;
+  z-index: 12;
+  pointer-events: none;
+  transition: opacity 0.2s ease; }
+  .tooltip[data-show="true"] {
+    opacity: 1; }
+  .tooltip .tooltip_arrow {
+    position: absolute;
+    width: 10px;
+    height: 10px; }
+  .tooltip .tooltip_arrow:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #212121;
+    transform: rotate(45deg);
+    z-index: -1; }
+  .tooltip[data-popper-placement="top"] .tooltip_arrow {
+    bottom: -5px; }
+  .tooltip[data-popper-placement="bottom"] .tooltip_arrow {
+    top: -5px; }
+  .tooltip[data-popper-placement="left"] .tooltip_arrow {
+    right: -5px; }
+  .tooltip[data-popper-placement="right"] .tooltip_arrow {
+    left: -5px; }

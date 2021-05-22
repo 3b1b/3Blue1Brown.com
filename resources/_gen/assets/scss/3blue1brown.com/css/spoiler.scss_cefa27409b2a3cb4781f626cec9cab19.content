@@ -1,0 +1,6 @@
+.spoiler {
+  background: #000000;
+  color: #000000;
+  transition: background 0.2s ease; }
+  .spoiler:hover {
+    background: none; }
