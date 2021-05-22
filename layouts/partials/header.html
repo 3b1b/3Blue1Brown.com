@@ -1,0 +1,65 @@
+<header data-big="{{ .Params.bigHeader | default false }}">
+  {{ partial "header-background.html" }}
+
+  <a href="{{ `/` | relURL }}" class="logo">
+    {{ readFile "static/images/logo.svg" | safeHTML }}
+    <span>
+      {{- range split .Site.Title "" -}}
+        <span>{{ . }}</span>
+      {{- end -}}
+    </span>
+  </a>
+  
+  <nav data-open="false">
+    <button onclick="toggleNav(this)">
+      <i class="fas fa-bars"></i>
+      <span>Menu</span>
+    </button>
+    <a
+      href="{{ `lessons` | relURL }}"
+      data-tooltip="Various maths topics, in text and video form"
+    >
+      Lessons
+    </a>
+    <a
+      href="{{ `extras` | relURL }}"
+      data-tooltip="Collaborations, cameos, talks, and more"
+    >
+      Extras
+    </a>
+    <a
+      href="{{ `about` | relURL }}"
+      data-tooltip="About Grant and other channels"
+    >
+      About
+    </a>
+    <a
+      href="{{ `contact` | relURL }}"
+      data-tooltip="Frequently asked questions and contact info"
+    >
+      Contact
+    </a>
+
+    <div class="desktop_break"></div>
+    
+    <a
+      href="https://www.youtube.com/3blue1brown"
+      data-tooltip="Subscribe on YouTube"
+    >
+      Subscribe
+    </a>
+    <a
+      href="https://store.dftba.com/collections/3blue1brown"
+      data-tooltip="Shirts, plushies, and more"
+    >
+      Store
+    </a>
+    <a
+      href="https://www.patreon.com/3blue1brown"
+      data-tooltip="Help the channel stay ad-free, and get Patreon rewards"
+    >
+      Support
+    </a>
+  </nav>
+
+</header>
