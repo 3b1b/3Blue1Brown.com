@@ -1,8 +1,0 @@
-.lesson_details {
-  color: #757575;
-  font-style: italic; }
-  .lesson_details > div {
-    display: inline-block;
-    margin: 5px 10px; }
-    .lesson_details > div span {
-      margin-left: 10px; }

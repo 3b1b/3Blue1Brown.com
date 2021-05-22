@@ -1,8 +1,0 @@
-blockquote {
-  margin: 40px 0;
-  padding: 10px 20px;
-  background: #eeeeee; }
-  blockquote:first-child {
-    margin-top: 0; }
-  blockquote:last-child {
-    margin-bottom: 0; }

@@ -1,6 +1,0 @@
-a {
-  color: #03a9f4;
-  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease; }
-
-a:hover {
-  color: currentColor; }
