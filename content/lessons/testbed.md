@@ -12,11 +12,7 @@ tags:
 Markdown content.
 One sentence per line.
 
-<!-- html comment (will appear in the rendered page's source code) -->
-
-{% comment %}
-liquid comment (will not appear in the rendered page's source code)
-{% endcomment %}
+<!-- comment -->
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -39,12 +35,7 @@ _italic text_
 
 [Link to external page](https://some-website.org/)
 
-[Link to page in root](extras)
-
-[Link to page not in root]({{ "extras/cameos" | relative_url }})
-
-Centered element.
-{:.center}
+[Link to page within site]({{< ref "extras" >}})
 
 ---
 
@@ -76,7 +67,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% include components/section.html %}
+{{< section >}}
 
 | TABLE | Game 1 | Game 2 | Game 3 | Total |
 | :---- | :----: | :----: | :----: | ----: |
@@ -98,9 +89,9 @@ popup.innerText =
 
 This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
 
-{% include components/section.html %}
+{{< section >}}
 
-An example of inline math $$f(x) = \pi + e^{-i} + sin(x)$$ in the middle of a sentence.
+An example of inline math $f(x) = \pi + e^{-i} + sin(x)$ in the middle of a sentence.
 An example a block of math:
 
 $$
@@ -111,40 +102,37 @@ $$
 
 <!-- section break component -->
 
-{% include components/section.html %}
+{{< section >}}
 
 <!-- figure with image and/or video, and caption -->
 
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" %}
+{{< figure image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" />}}
 
-{% include components/figure.html video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" %}
+{{< figure video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" />}}
 
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." %}
+{{< figure image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />}}
 
-{% capture caption %}
+{{< figure image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" >}}
 Markdown in caption.
 [Test link](https://google.com/).
 $$f(x) = \pi + e^{-i} + sin(x)$$
-{% endcapture %}
-
-{% include components/figure.html image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" caption=caption %}
+{{< /figure >}}
 
 <!-- spoiler component -->
 
-Why did the chicken cross the Mobius strip? {% include components/spoiler.html text="To get to the same side." %}
-{% include components/spoiler.html text="$$f(x) = \pi + e^{-i} + sin(x)$$" %}
+Why did the chicken cross the Mobius strip?
+{{< spoiler >}}To get to the same side. $f(x) = \pi + e^{-i} + sin(x)${{< /spoiler >}}
 
 <!-- question component -->
 
-{%
-  include components/question.html
+{{< question
   question="Why did the chicken cross the road?"
   choice1="To get to the other side"
-  choice2="For a bit of $$f(x) = \pi + e^{-i} + sin(x)$$ and some haggis"
+  choice2="For a bit of $f(x) = \pi + e^{-i} + sin(x)$ and some haggis"
   choice3="Cannot be determined"
   choice4="A superposition of all the answers above"
   correct=4
-%}
+>}}
 
 <!-- pi creatures -->
 
@@ -154,25 +142,22 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% include components/pi-creature.html emotion="happy" %}
+{{< pi-creature emotion="happy" >}}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{% include components/pi-creature.html emotion="confused" flip=true %}
+{{< pi-creature emotion="confused" flip=true >}}
 
 <!-- clickable (link or button) with icon and/or text -->
 
-{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" %}
-{% include components/clickable.html link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" style="rounded" %}
-{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" %}
-{% include components/clickable.html link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" %}
-{:.center}
-
-<!-- slideshow component -->
-
-{% include components/slideshow.html images="images/store" %}
+{{< center >}}
+  {{< clickable link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" >}}
+  {{< clickable link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" >}}
+  {{< clickable link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" >}}
+  {{< clickable link="https://3blue1brown.com" text="Link Text" tooltip="Tooltip text" style="rounded" >}}
+  {{< clickable link="https://3blue1brown.com" icon="fas fa-search" text="Link Text" tooltip="Tooltip text" style="rounded" >}}
+  {{< clickable link="https://3blue1brown.com" icon="fas fa-search" tooltip="Tooltip text" style="rounded" >}}
+{{< /center >}}

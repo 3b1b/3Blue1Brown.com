@@ -1,14 +1,12 @@
 <html>
   {{ partial "head.html" . }}
   <body>
-    {{ block "header" . }}
-    {{ end }}
+    {{ partial "header" . }}
     <main>
       {{ block "main" . }}
       {{ end }}
     </main>
-    {{ block "footer" . }}
-    {{ end }}
+    {{ partial "footer" . }}
     {{ partial "tooltip.html" }}
   </body>
 </html>

@@ -1,32 +1,3 @@
-{{- with .Params -}}
-
-  {{- $open_tag := "<button" -}}
-  {{- $close_tag := "</button>" -}}
-  {{- if .link -}}
-    {{- $open_tag = "<a" -}}
-    {{- $close_tag = "</a>" -}}
-  {{- end -}}
-
-  {{ $open_tag | safeHTML }}
-    {{ if .link }}href="{{ .link | relURL }}"{{ end }}
-    {{ if .onclick }}onclick="{{ .onclick }}"{{ end }}
-    class="clickable {{ .class }}"
-    data-tooltip="{{ .tooltip }}"
-    {{ if .icon }}data-icon="true"{{ end }}
-    {{ if .text }}data-text="true"{{ end }}
-    data-style="{{ .style }}"
-    {{ if .active }}data-active="{{ .active }}"{{ end }}
-  >
-
-    {{- with .icon -}}
-      <span class="clickable_icon">
-        <i class="{{ . }}"></i>
-      </span>
-    {{- end -}}
-
-    {{- with .text -}}
-      <span class="clickable_text truncate">{{ . }}</span>
-    {{- end -}}
-
-  {{ $close_tag | safeHTML }}
-{{- end -}}
+{{ with .Params }}
+  {{ partial "clickable.html" . }}
+{{ end }}
