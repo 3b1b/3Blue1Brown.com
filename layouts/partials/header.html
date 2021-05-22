@@ -1,4 +1,4 @@
-<header data-big="{{ .Params.bigHeader | default false }}">
+<header data-big="{{ index .Params `big-header` | default false }}">
   {{ partial "header-background.html" }}
 
   <a href="{{ `/` | relURL }}" class="logo">

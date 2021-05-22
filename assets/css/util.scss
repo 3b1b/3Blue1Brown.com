@@ -2,10 +2,6 @@
 @import "theme";
 @import "mixins";
 
-.center {
-  text-align: center;
-}
-
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;

@@ -1,0 +1,9 @@
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

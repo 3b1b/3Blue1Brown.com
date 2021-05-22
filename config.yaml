@@ -5,3 +5,5 @@ languageCode: en-us
 
 googleAnalytics: "G-MEASUREMENT_ID"
 disqusShortname: yourdiscussshortname
+
+enableInlineShortcodes: true

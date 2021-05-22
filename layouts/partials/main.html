@@ -1,0 +1,16 @@
+<!--
+  Modify main content of page:
+  - wrap each table in div to allow for scrolling
+  - delete empty sections
+ -->
+
+{{- $content := .Content -}}
+
+{{- $content = replace $content "<table>" "<div class='table_wrapper'><table>" -}}
+{{- $content = replace $content "</table>" "</table></div>" -}}
+
+{{ $content = (print `<section><div class="section">` $content `</div></section>`) }}
+
+{{- $content = replaceRE `<section.*>\s*<div.+class="section".*>\s*<\/div>\s*<\/section>` "" $content -}}
+
+{{ $content | safeHTML }}
