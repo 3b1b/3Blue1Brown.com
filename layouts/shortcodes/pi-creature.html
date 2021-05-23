@@ -1,11 +1,3 @@
-<div
-  class="pi_creature"
-  data-flip="{{ .Params.flip | default false }}"
-  data-placement="{{ .Params.placement | default `auto` }}"
-  data-style="{{ .Params.style }}"
->
-  <div class="pi_creature_frame">
-    {{ $url := (print "static/images/pi-creatures/" .Params.emotion ".svg") }}
-    {{ readFile $url | safeHTML }}
-  </div>
-</div>
+{{ with .Params }}
+  {{ partial "pi-creature" . }}
+{{ end }}

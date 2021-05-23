@@ -22,8 +22,8 @@
   <figure class="figure" data-show="{{ $show }}">
     {{ if and .image .video }}
       <div class="figure_controls">
-        {{ partial "clickable.html" (dict "icon" "far fa-image" "text" "Still" "active" (eq $show "image") "onclick" "figureShow(this, 'image')") }}
-        {{ partial "clickable.html" (dict "icon" "fas fa-film" "text" "Animation" "active" (eq $show "video") "onclick" "figureShow(this, 'video')") }}
+        {{ partial "clickable" (dict "icon" "far fa-image" "text" "Still" "active" (eq $show "image") "onclick" "figureShow(this, 'image')") }}
+        {{ partial "clickable" (dict "icon" "fas fa-film" "text" "Animation" "active" (eq $show "video") "onclick" "figureShow(this, 'video')") }}
       </div>
     {{ end }}
 

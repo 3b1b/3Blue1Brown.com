@@ -1,3 +1,30 @@
 {{ define "main" }}
-  {{ partial "main.html" . }}
+  <section>
+    <div class="section">
+      {{ partial "embed" (dict "src" .Params.video) }}
+      <h2>{{ .Params.title }}</h2>
+      {{ partial "lesson-details" . }}
+    </div>
+  </section>
+
+  {{ partial "lesson-nav" . }}
+
+  {{ if trim .Content "\n" }}
+
+    {{ partial "main" . }}
+
+    {{ partial "lesson-nav" . }}
+
+    {{ partial "license" . }}
+
+    {{ partial "patrons" . }}
+
+    {{ partial "discussion" . }}
+
+  {{ else }}
+
+      {{ partial "coming-soon" }}
+
+  {{ end }}
+
 {{ end }}

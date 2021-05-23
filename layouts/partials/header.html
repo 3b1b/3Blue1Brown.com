@@ -1,5 +1,5 @@
 <header data-big="{{ index .Params `big-header` | default false }}">
-  {{ partial "header-background.html" }}
+  {{ partial "header-background" }}
 
   <a href="{{ `/` | relURL }}" class="logo">
     {{ readFile "static/images/logo.svg" | safeHTML }}

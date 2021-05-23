@@ -27,19 +27,19 @@
     </div>
 
     <div class="question_result question_unanswered">
-      {{ partial "clickable.html" (dict "text" "Check Answer" "onclick" "submitAnswer(this)")
+      {{ partial "clickable" (dict "text" "Check Answer" "onclick" "submitAnswer(this)")
       }}
     </div>
 
     <div class="question_result question_incorrect">
       <span>Not quite...</span>
-      {{ partial "clickable.html" (dict "text" "Check Again" "onclick" "submitAnswer(this)")
+      {{ partial "clickable" (dict "text" "Check Again" "onclick" "submitAnswer(this)")
       }}
     </div>
     
     <div class="question_result question_correct">
       <span>Correct!</span>
-      {{ partial "clickable.html" (dict "text" "Reset" "onclick" "resetAnswer(this)")
+      {{ partial "clickable" (dict "text" "Reset" "onclick" "resetAnswer(this)")
       }}
     </div>
   </div>
