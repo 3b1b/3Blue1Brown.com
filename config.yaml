@@ -8,3 +8,6 @@ disqusShortname: yourdiscussshortname
 
 enableInlineShortcodes: true
 enableGitInfo: true
+
+permalinks:
+  lessons: /:section/:slug

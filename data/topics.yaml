@@ -12,7 +12,7 @@
     - higher-order-derivatives
     - taylor-series
     - derivatives-and-transforms
-- name: Linear algebra
+- name: Linear Algebra
   lessons:
     - eola-preview
     - vectors
@@ -31,13 +31,13 @@
     - eigenvalues
     - quick-eigen
     - abstract-vector-spaces
-- name: Neural networks
+- name: Neural Networks
   lessons:
     - neural-networks
     - gradient-descent
     - backpropagation
     - backpropagation-calculus
-- name: Differential equations
+- name: Differential Equations
   lessons:
     - differential-equations
     - pdes
@@ -45,7 +45,7 @@
     - fourier-series
     - eulers-formula-dynamically
     - matrix-exponents
-- name: Clever proofs
+- name: Clever Proofs
   lessons:
     - inscribed-rectangle-problem
     - sphere-area
@@ -63,7 +63,7 @@
     - chessboard-puzzle
     - moser
     - three-utilities
-- name: Why pi
+- name: Why Pi
   lessons:
     - clacks
     - clacks-solution
@@ -82,7 +82,7 @@
     - fractal-dimension
     - inventing-math
     - music-and-measure-theory
-- name: Computer science
+- name: Computer Science
   lessons:
     - hamming-codes
     - hamming-codes-2
@@ -93,16 +93,16 @@
     - exponential-and-epidemics
     - epidemic-simulations
     - dp3t
-- name: Group theory
+- name: Group Theory
   lessons:
     - groups-and-monsters
     - eulers-formula-via-group-theory
-- name: Higher dimensions
+- name: Higher Dimensions
   lessons:
     - quaternions
     - quaternions-and-3d-rotation
     - higher-dimensions
-- name: Lockdown math
+- name: Lockdown Math
   lessons:
     - lockdown-math-announcement
     - ldm-quadratic

@@ -1,5 +1,82 @@
-<section>
-  <div class="section">
-    lesson nav
-  </div>
-</section>
+{{ $lesson_index := "" }}
+{{ $topic_name := "" }}
+{{ $topic_lessons := "" }}
+{{ $this_lesson_id := .File.ContentBaseName }}
+{{ $pages := .Site.Pages }}
+
+{{ range $topic := .Site.Data.topics }}
+  {{ range $index, $lesson_id := $topic.lessons }}
+    {{ if eq $this_lesson_id $lesson_id }}
+      {{ $lesson_index = $index }}
+      {{ $topic_name = $topic.name }}
+      {{ $topic_lessons = $topic.lessons }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ with $lesson_index }}
+
+  {{ $prev_id := index $topic_lessons (sub (int .) 1) }}
+  {{ $next_id := index $topic_lessons (add (int .) 1) }}
+
+  {{ $prev_lesson := index (where $pages "File.ContentBaseName" "==" $prev_id) 0 }}
+  {{ $next_lesson := index (where $pages "File.ContentBaseName" "==" $next_id) 0 }}
+
+  <section>
+    <div class="section">
+      
+      <div class="lesson_nav" data-open="false">
+        <div class="lesson_nav_controls">
+          {{ with $prev_lesson }}
+            {{
+              partial "lesson-card"
+              (dict 
+                "lesson" .
+                "mini" true
+                "icon" "fas fa-arrow-left"
+                "tooltip" "Previous lesson"
+                "class" "lesson_nav_prev"
+              )
+            }}
+          {{ end }}
+          <button
+            class="lesson_nav_expand"
+            onclick="toggleLessonNav(this)"
+            data-tooltip="Topic lesson list"
+          >
+            <i class="fas fa-bars"></i>
+            <span>{{ $topic_name }}</span>
+          </button>
+          {{ with $next_lesson }}
+            {{
+              partial "lesson-card"
+              (dict 
+                "lesson" .
+                "mini" true
+                "icon" "fas fa-arrow-right"
+                "tooltip" "Next lesson"
+                "class" "lesson_nav_next"
+              )
+            }}
+          {{ end }}
+        </div>
+
+        <div class="lesson_nav_list">
+          {{ range $topic_lessons }}
+            {{ $lesson := index (where $pages "File.ContentBaseName" "==" .) 0 }}
+            {{ with $lesson }}
+              {{
+                partial "lesson-card"
+                (dict 
+                  "lesson" .
+                  "mini" true
+                )
+              }}
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+
+    </div>
+  </section>
+{{ end }}

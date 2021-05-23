@@ -12,6 +12,10 @@ big-header: true
 
 {{< section >}}
 
+{{< lesson-gallery show="featured" >}}
+
+{{< section >}}
+
 ## Follow
 
 {{< center >}}
