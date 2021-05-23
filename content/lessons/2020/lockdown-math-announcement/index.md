@@ -2,6 +2,7 @@
 title: Lockdown math announcement
 description: ""
 date: 2020-04-16
+slug: lockdown-math-announcement
 video: ppWPuXsnf1Q
 source: _2020/ldm.py
 credits:

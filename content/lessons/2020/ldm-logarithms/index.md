@@ -2,6 +2,7 @@
 title: Logarithm Fundamentals | Lockdown math ep. 6
 description: ""
 date: 2020-05-05
+slug: ldm-logarithms
 video: cEvgcoyZvB4
 source: _2020/ldm.py
 credits:

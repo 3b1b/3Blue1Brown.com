@@ -2,6 +2,7 @@
 title: Three-dimensional linear transformations | Essence of linear algebra, chapter 5
 description: How to think of 3x3 matrices as transforming 3d space
 date: 2016-08-09
+slug: 3d-transformations
 video: rHLEWRxRGiM
 source: _2016/eola/footnote.py
 credits:

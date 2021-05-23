@@ -2,6 +2,7 @@
 title: How colliding blocks act like a beam of light...to compute pi.
 description: The third and final part of the block collision sequence.
 date: 2019-02-03
+slug: clacks-via-light
 video: brU5yLm9DZM
 source: https://github.com/3b1b/videos/tree/master/_2019/clacks/solution2
 credits:
