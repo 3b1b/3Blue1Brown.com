@@ -1,8 +1,0 @@
----
-title: Lockdown math announcement
-description: ""
-video: ppWPuXsnf1Q
-source: _2020/ldm.py
-credits:
-- Lesson by Grant Sanderson
----

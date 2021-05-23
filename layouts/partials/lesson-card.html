@@ -1,0 +1,30 @@
+{{ $params := .lesson.Params }}
+<a {{ with .lesson.URL }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
+
+  {{ with .icon }}
+    <i class="{{ . }}"></i>
+  {{ end }}
+
+  <img src="https://img.youtube.com/vi/{{ $params.video }}/hqdefault.jpg" />
+
+  <span class="lesson_card_text">
+
+    {{ with $params.title  }}
+      <span>{{ . }}</span>
+    {{ end }}
+
+    {{ if not .mini }}
+
+      {{ with $params.description }}
+        <span>{{ . }}</span>
+      {{ end }}
+
+      {{ with $params.date }}
+        <span>{{ dateFormat "Jan 2, 2006" . }}</span>
+      {{ end }}
+
+    {{ end }}
+
+  </span>
+
+</a>

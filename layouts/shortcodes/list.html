@@ -1,0 +1,3 @@
+{{ range .Site.Pages }}
+  {{ partial "lesson-card" (dict "lesson" .) }}
+{{ end }}
