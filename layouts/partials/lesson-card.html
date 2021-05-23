@@ -1,30 +1,34 @@
-{{ $params := .lesson.Params }}
-<a {{ with .lesson.URL }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
+<!-- find lesson by slug/id, eg "wallis-product" -->
+{{ $lesson := index (where site.Pages "File.ContentBaseName" "==" .id) 0 }}
 
-  {{ with .icon }}
-    <i class="{{ . }}"></i>
-  {{ end }}
+{{ if $lesson }}
+  <a {{ with $lesson.URL }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $lesson.Params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
 
-  <img src="https://img.youtube.com/vi/{{ $params.video }}/hqdefault.jpg" />
-
-  <span class="lesson_card_text">
-
-    {{ with $params.title  }}
-      <span>{{ . }}</span>
+    {{ with .icon }}
+      <i class="{{ . }}"></i>
     {{ end }}
 
-    {{ if not .mini }}
+    <img src="https://img.youtube.com/vi/{{ $lesson.Params.video }}/hqdefault.jpg" />
 
-      {{ with $params.description }}
+    <span class="lesson_card_text">
+
+      {{ with $lesson.Params.title  }}
         <span>{{ . }}</span>
       {{ end }}
 
-      {{ with $params.date }}
-        <span>{{ dateFormat "Jan 2, 2006" . }}</span>
+      {{ if not .mini }}
+
+        {{ with $lesson.Params.description }}
+          <span>{{ . }}</span>
+        {{ end }}
+
+        {{ with $lesson.Params.date }}
+          <span>{{ dateFormat "Jan 2, 2006" . }}</span>
+        {{ end }}
+
       {{ end }}
 
-    {{ end }}
+    </span>
 
-  </span>
-
-</a>
+  </a>
+{{ end }}

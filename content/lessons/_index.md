@@ -1,3 +1,3 @@
 ### Lessons
 
-{{< list >}}
+{{< lesson-gallery show="topics" >}}

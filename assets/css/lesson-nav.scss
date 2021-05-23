@@ -2,7 +2,7 @@
 @import "theme";
 @import "mixins";
 
-$phone: 600px;
+$collapse: 800px;
 
 .lesson_nav {
   margin: 20px 0;
@@ -33,7 +33,6 @@ $phone: 600px;
       }
 
       span {
-        width: min-content;
         margin-left: 15px;
         @include line-clamp(2);
       }
@@ -43,7 +42,7 @@ $phone: 600px;
       grid-column: 3;
     }
 
-    @media (max-width: $phone) {
+    @media (max-width: $collapse) {
       grid-template-columns: 1fr;
 
       .lesson_nav_prev,

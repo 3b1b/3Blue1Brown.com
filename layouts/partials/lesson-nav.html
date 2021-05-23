@@ -14,24 +14,21 @@
   {{ end }}
 {{ end }}
 
-{{ with $lesson_index }}
+{{ if not (eq $lesson_index "") }}
 
-  {{ $prev_id := index $topic_lessons (sub (int .) 1) }}
-  {{ $next_id := index $topic_lessons (add (int .) 1) }}
-
-  {{ $prev_lesson := index (where $pages "File.ContentBaseName" "==" $prev_id) 0 }}
-  {{ $next_lesson := index (where $pages "File.ContentBaseName" "==" $next_id) 0 }}
+  {{ $prev_id := index $topic_lessons (sub (int $lesson_index) 1) }}
+  {{ $next_id := index $topic_lessons (add (int $lesson_index) 1) }}
 
   <section>
     <div class="section">
       
       <div class="lesson_nav" data-open="false">
         <div class="lesson_nav_controls">
-          {{ with $prev_lesson }}
+          {{ with $prev_id }}
             {{
               partial "lesson-card"
               (dict 
-                "lesson" .
+                "id" .
                 "mini" true
                 "icon" "fas fa-arrow-left"
                 "tooltip" "Previous lesson"
@@ -47,11 +44,11 @@
             <i class="fas fa-bars"></i>
             <span>{{ $topic_name }}</span>
           </button>
-          {{ with $next_lesson }}
+          {{ with $next_id }}
             {{
               partial "lesson-card"
               (dict 
-                "lesson" .
+                "id" .
                 "mini" true
                 "icon" "fas fa-arrow-right"
                 "tooltip" "Next lesson"
@@ -63,16 +60,13 @@
 
         <div class="lesson_nav_list">
           {{ range $topic_lessons }}
-            {{ $lesson := index (where $pages "File.ContentBaseName" "==" .) 0 }}
-            {{ with $lesson }}
-              {{
-                partial "lesson-card"
-                (dict 
-                  "lesson" .
-                  "mini" true
-                )
-              }}
-            {{ end }}
+            {{
+              partial "lesson-card"
+              (dict 
+                "id" .
+                "mini" true
+              )
+            }}
           {{ end }}
         </div>
       </div>
