@@ -2,9 +2,9 @@
 {{ $topic_name := "" }}
 {{ $topic_lessons := "" }}
 {{ $this_lesson_id := .File.ContentBaseName }}
-{{ $pages := .Site.Pages }}
+{{ $pages := site.Pages }}
 
-{{ range $topic := .Site.Data.topics }}
+{{ range $topic := site.Data.topics }}
   {{ range $index, $lesson_id := $topic.lessons }}
     {{ if eq $this_lesson_id $lesson_id }}
       {{ $lesson_index = $index }}

@@ -4,7 +4,7 @@
   <a href="{{ `/` | relURL }}" class="logo">
     {{ readFile "static/images/logo.svg" | safeHTML }}
     <span>
-      {{- range split .Site.Title "" -}}
+      {{- range split site.Title "" -}}
         <span>{{ . }}</span>
       {{- end -}}
     </span>
