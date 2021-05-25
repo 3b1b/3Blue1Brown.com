@@ -2,7 +2,7 @@
 {{- $close_tag := cond (isset . "link") "</a>" "</button>" -}}
 
 {{ $open_tag | safeHTML }}
-  {{ if .link }}href="{{ .link | relURL }}"{{ end }}
+  {{ if .link }}href="{{ partial `rel-url` .link }}"{{ end }}
   {{ if .onclick }}onclick="{{ .onclick }}"{{ end }}
   class="clickable {{ .class }}"
   data-tooltip="{{ .tooltip }}"

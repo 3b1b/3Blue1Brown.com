@@ -29,7 +29,7 @@
 
     {{ if .image }}
       <img
-        src="{{ .image | relURL }}"
+        src="{{ partial `rel-url` .image }}"
         alt="{{ .caption }}"
         style="{{ $style }}"
         loading="lazy"
@@ -45,7 +45,7 @@
         style="{{ $style }}"
       >
         <source
-          src="{{ .video | relURL }}"
+          src="{{ partial `rel-url` .video }}"
           type="video/mp4"
         >
       </video>

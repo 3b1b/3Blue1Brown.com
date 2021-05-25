@@ -6,6 +6,7 @@ video: spUNpyF58BY
 credits:
   - Lesson and figures by Grant Sanderson
   - Translated to blog format by James Schloss
+draft: true
 ---
 
 Markdown content.
