@@ -39,8 +39,8 @@ jobs:
       - name: Sync bucket
         uses: ./.github/actions/sync
         env:
-          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          BUCKET: ${{ secrets.BUCKET }}
+          ACCESS_KEY: ${{ secrets.LINODE_ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.LINODE_SECRET_KEY }}
+          BUCKET: 3b1b-posts
           REGION: us-east-1
           SOURCE_DIR: 'public/'
