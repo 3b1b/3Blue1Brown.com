@@ -2,7 +2,6 @@
 title: Euler's Formula Poem
 description: A silly poem encapsulating the ideas from the video about Euler's formula through graph theory.
 date: 2015-03-05
-slug: eulers-formula-poem
 video: zLzLxVeqdQg
 source: NA
 credits:

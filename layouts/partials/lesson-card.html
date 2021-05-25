@@ -1,8 +1,8 @@
 <!-- find lesson by slug/id, eg "wallis-product" -->
-{{ $lesson := index (where site.Pages "File.ContentBaseName" "==" .id) 0 }}
+{{ $lesson := site.GetPage .id }}
 
 {{ if $lesson }}
-  <a {{ with $lesson.URL }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $lesson.Params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
+  <a {{ with $lesson.RelPermalink }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $lesson.Params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
 
     {{ with .icon }}
       <i class="{{ . }}"></i>

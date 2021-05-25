@@ -10,4 +10,4 @@ enableInlineShortcodes: true
 enableGitInfo: true
 
 permalinks:
-  lessons: /:section/:slug
+  lessons: /:section/:filename

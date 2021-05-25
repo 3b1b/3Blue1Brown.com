@@ -1,9 +1,5 @@
-{{- $open_tag := "<button" -}}
-{{- $close_tag := "</button>" -}}
-{{- if .link -}}
-  {{- $open_tag = "<a" -}}
-  {{- $close_tag = "</a>" -}}
-{{- end -}}
+{{- $open_tag := cond (isset . "link") "<a" "<button" -}}
+{{- $close_tag := cond (isset . "link") "</a>" "</button>" -}}
 
 {{ $open_tag | safeHTML }}
   {{ if .link }}href="{{ .link | relURL }}"{{ end }}

@@ -34,7 +34,7 @@ _italic text_
 
 [Link to external page](https://some-website.org/)
 
-[Link to page within site]({{< ref "extras" >}})
+[Link to page within site](/extras)
 
 ---
 
