@@ -1,0 +1,140 @@
+- name: Calculus
+  lessons:
+    - the-essence-of-calculus-chapter-1
+    - derivatives
+    - derivative-formulas-geometrically
+    - chain-rule-and-product-rule
+    - eulers-number
+    - implicit-differentiation
+    - limits
+    - integration
+    - area-and-slope
+    - higher-order-derivatives
+    - taylor-series
+    - derivatives-and-transforms
+- name: Linear Algebra
+  lessons:
+    - eola-preview
+    - vectors
+    - span
+    - linear-transformations
+    - matrix-multiplication
+    - 3d-transformations
+    - determinant
+    - inverse-matrices
+    - nonsquare-matrices
+    - dot-products
+    - cross-products
+    - cross-products-extended
+    - cramers-rule
+    - change-of-basis
+    - eigenvalues
+    - quick-eigen
+    - abstract-vector-spaces
+- name: Neural Networks
+  lessons:
+    - neural-networks
+    - gradient-descent
+    - backpropagation
+    - backpropagation-calculus
+- name: Differential Equations
+  lessons:
+    - differential-equations
+    - pdes
+    - heat-equation
+    - fourier-series
+    - eulers-formula-dynamically
+    - matrix-exponents
+- name: Clever Proofs
+  lessons:
+    - inscribed-rectangle-problem
+    - sphere-area
+    - dandelin-spheres
+    - borsuk-ulam
+    - pythagorean-triples
+    - winding-numbers
+    - hanoi-and-sierpinski
+    - eulers-characteristic-formula
+- name: Puzzles
+  lessons:
+    - hardest-problem
+    - windmills
+    - prime-spirals
+    - chessboard-puzzle
+    - moser
+    - three-utilities
+- name: Why Pi
+  lessons:
+    - clacks
+    - clacks-solution
+    - clacks-via-light
+    - basel-problem
+    - leibniz-formula
+    - wallis-product
+    - pi-was-628
+- name: Analysis
+  lessons:
+    - fourier-transforms
+    - uncertainty-principle
+    - zeta
+    - divergence-and-curl
+    - hilbert-curve
+    - fractal-dimension
+    - inventing-math
+    - music-and-measure-theory
+- name: Computer Science
+  lessons:
+    - hamming-codes
+    - hamming-codes-2
+    - bitcoin
+    - 256-bit-security
+- name: Epidemics
+  lessons:
+    - exponential-and-epidemics
+    - epidemic-simulations
+    - dp3t
+- name: Group Theory
+  lessons:
+    - groups-and-monsters
+    - eulers-formula-via-group-theory
+- name: Higher Dimensions
+  lessons:
+    - quaternions
+    - quaternions-and-3d-rotation
+    - higher-dimensions
+- name: Lockdown Math
+  lessons:
+    - lockdown-math-announcement
+    - ldm-quadratic
+    - ldm-trigonometry
+    - ldm-complex-numbers
+    - ldm-eulers-formula
+    - ldm-imaginary-interest
+    - ldm-logarithms
+    - ldm-natural-logs
+    - ldm-power-towers
+    - ldm-i-to-i
+    - ldm-tips-to-problem-solving
+- name: Physics
+  lessons:
+    - light-quantum-mechanics
+    - feynmans-lost-lecture
+    - brachistochrone
+    - snells-law
+    - turbulence
+- name: Probability
+  lessons:
+    - bayes-theorem
+    - better-bayes
+    - binomial-distributions
+    - pdfs
+- name: Miscellaneous
+  lessons:
+    - qa1
+    - qa2
+    - qa3
+    - tattoos-on-math
+    - triangle-of-power
+    - binary-counting
+    - eulers-formula-old
+    - eulers-formula-poem
