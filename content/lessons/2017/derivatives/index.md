@@ -1,5 +1,5 @@
 ---
-title: The paradox of the derivative | Essence of calculus, chapter 2
+title: The paradox of the derivative
 description: An introduction to what a derivative is, and how it formalizes an otherwise paradoxical idea.
 date: 2017-04-29
 video: 9vKqVkMQHKk

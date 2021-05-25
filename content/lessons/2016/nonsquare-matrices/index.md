@@ -1,5 +1,5 @@
 ---
-title: Nonsquare matrices as transformations between dimensions | Essence of linear algebra, chapter 8
+title: Nonsquare matrices as transformations between dimensions
 description: How do you think about a non-square matrix as a transformation?
 date: 2016-08-16
 video: v8VSDg_WQlA

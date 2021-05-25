@@ -1,5 +1,5 @@
 ---
-title: Inverse matrices, column space and null space | Essence of linear algebra, chapter 7
+title: Inverse matrices, column space and null space
 description: How do you think about the column space and null space of a matrix visually?  How do you think about the inverse of a matrix?
 date: 2016-08-15
 video: uQhTuRlWMxw

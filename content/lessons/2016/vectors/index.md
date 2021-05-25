@@ -1,5 +1,5 @@
 ---
-title: Vectors, what even are they? | Essence of linear algebra, chapter 1
+title: Vectors, what even are they?
 description: What is a vector?  Is it an arrow in space?  A list of numbers?
 date: 2016-08-06
 video: fNk_zzaMoSs
