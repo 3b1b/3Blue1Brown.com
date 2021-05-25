@@ -1,0 +1,33 @@
+<div class="lesson_details">
+
+  {{ with .Params.date }}
+    <div>
+      <i class="far fa-calendar"></i>
+      <span>Published {{ dateFormat "Jan 2, 2006" . }}</span>
+    </div>
+  {{ end }}
+
+  {{ if and .Params.Lastmod .Content }}
+    {{ with .Params.Lastmod }}
+      <div>
+        <i class="far fa-clock"></i>
+        <span>Updated {{ dateFormat "Jan 2, 2006" . }}</span>
+      </div>
+    {{ end }}
+  {{ end }}
+
+  {{ range .Params.credits  }}
+    <div>
+      <i class="fas fa-feather-alt"></i>
+      <span>{{ . }}</span>
+    </div>
+  {{ end }}
+
+  {{ with .Params.tags }}
+    <div>
+      <i class="fas fa-tag"></i>
+      <span>{{ delimit . ", " }}</span>
+    </div>
+  {{ end }}
+
+</div>

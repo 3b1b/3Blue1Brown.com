@@ -1,0 +1,20 @@
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.not_found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .not_found_text {
+    & > * {
+      margin: 10px 0;
+      text-align: left;
+
+      &:first-child {
+        font-weight: $semi-bold;
+      }
+    }
+  }
+}

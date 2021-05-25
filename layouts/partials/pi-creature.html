@@ -1,0 +1,11 @@
+<div
+  class="pi_creature"
+  data-flip="{{ .flip | default false }}"
+  data-placement="{{ .placement | default `auto` }}"
+  data-style="{{ .style }}"
+>
+  <div class="pi_creature_frame">
+    {{ $url := (print "static/images/pi-creatures/" .emotion ".svg") }}
+    {{ readFile $url | safeHTML }}
+  </div>
+</div>
