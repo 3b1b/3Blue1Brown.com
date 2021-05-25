@@ -1,0 +1,13 @@
+title: 3Blue1Brown
+description: Mathematics with a distinct visual perspective. Linear algebra, calculus, neural networks, topology, and more.
+baseURL: ""
+languageCode: en-us
+
+googleAnalytics: "G-MEASUREMENT_ID"
+disqusShortname: yourdiscussshortname
+
+enableInlineShortcodes: true
+enableGitInfo: true
+
+permalinks:
+  lessons: /:section/:filename

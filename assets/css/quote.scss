@@ -1,0 +1,10 @@
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+blockquote {
+  margin: 40px 0;
+  @include trim-v-margins;
+  padding: 10px 20px;
+  background: $gray-200;
+}

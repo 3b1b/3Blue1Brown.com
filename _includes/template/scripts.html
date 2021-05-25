@@ -1,9 +1,0 @@
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-{%- for file in site.static_files -%}
-  {%- if file.path contains "/js" -%}
-    <script src="{{ file.path | relative_url }}"></script>
-  {%- endif -%}
-{%- endfor -%}
