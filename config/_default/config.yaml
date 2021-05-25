@@ -1,6 +1,6 @@
 title: 3Blue1Brown
 description: Mathematics with a distinct visual perspective. Linear algebra, calculus, neural networks, topology, and more.
-baseURL: 3Blue1Brown.com/3Blue1Brown.com
+baseURL: ""
 languageCode: en-us
 
 googleAnalytics: "G-MEASUREMENT_ID"
