@@ -1,5 +1,5 @@
 ---
-title: Matrix multiplication as composition | Essence of linear algebra, chapter 4
+title: Matrix multiplication as composition
 description: How to think about matrix multiplication visually as successively applying two different linear transformations.
 date: 2016-08-08
 video: XkY2DOUCWMU
