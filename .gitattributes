@@ -1,7 +1,4 @@
-_posts/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
-_posts/**/*.png filter=lfs diff=lfs merge=lfs -text
-_posts/**/*.mov filter=lfs diff=lfs merge=lfs -text
+lessons/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
+lessons/**/*.png filter=lfs diff=lfs merge=lfs -text
+lessons/**/*.mov filter=lfs diff=lfs merge=lfs -text
 
-test/*.mp4 filter=lfs diff=lfs merge=lfs -text
-test/*.png filter=lfs diff=lfs merge=lfs -text
-test/*.mov filter=lfs diff=lfs merge=lfs -text
