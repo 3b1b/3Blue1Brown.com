@@ -45,7 +45,7 @@ echo 'lessons/**/*.mov' >> "$HOME/sync-patterns"
 
 echo "Generated sync include patterns"
 
-s3cmd --dry-run --no-mime-magic --acl-public --delete-removed --delete-after --exclude "*" --include-from $HOME/sync-patterns sync $SOURCE_DIR s3://$BUCKET
+s3cmd --no-mime-magic --acl-public --delete-removed --delete-after --exclude "*" --include-from $HOME/sync-patterns sync $SOURCE_DIR s3://$BUCKET
 
 echo 'Removing .s3cfg credentials'
 rm "$HOME/.s3cfg"
