@@ -1,9 +1,0 @@
-name: "Syncs a directory with Linode Bucket"
-description: "The action syncs a source directory with a bucket hosted on Linode Object Storage"
-author: KurtBruns
-runs:
-  using: docker
-  image: Dockerfile
-branding:
-  icon: refresh-cw
-  color: green

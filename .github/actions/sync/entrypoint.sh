@@ -33,10 +33,18 @@ echo "access_key=$ACCESS_KEY" >> "$HOME/.s3cfg"
 echo "secret_key=$SECRET_KEY" >> "$HOME/.s3cfg"
 echo "host_base = $REGION.linodeobjects.com" >> "$HOME/.s3cfg"
 echo "host_bucket = %(bucket)s.$REGION.linodeobjects.com" >> "$HOME/.s3cfg"
+echo "website_endpoint = http://%(bucket)s.website-$REGION.linodeobjects.com" >> "$HOME/.s3cfg"
 
 echo "Generated .s3cfg for key $ACCESS_KEY"
 
-s3cmd sync --no-mime-magic --acl-public --delete-removed --delete-after $SOURCE_DIR s3://$BUCKET
+echo 'posts/**/*.jpg' > "$HOME/sync-patterns"
+echo 'posts/**/*.png' >> "$HOME/sync-patterns"
+echo 'posts/**/*.mp4' >> "$HOME/sync-patterns"
+echo 'posts/**/*.mov' >> "$HOME/sync-patterns"
+
+echo "Generated sync include patterns"
+
+s3cmd --dry-run --no-mime-magic --acl-public --delete-removed --delete-after --exclude "*" --include-from $HOME/sync-patterns sync $SOURCE_DIR s3://$BUCKET
 
 echo 'Removing .s3cfg credentials'
 rm "$HOME/.s3cfg"

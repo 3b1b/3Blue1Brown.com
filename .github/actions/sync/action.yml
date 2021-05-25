@@ -1,0 +1,9 @@
+name: "Sync Bucket"
+description: "Sync assets to Linode Object Storage"
+author: KurtBruns
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: refresh-cw
+  color: green
