@@ -1,16 +1,25 @@
 {{ $path := (.Get 0 )}}
 {{ $position := .Position }}
 {{ if $resource := .Page.Resources.GetMatch $path }}
+  
+  {{- if (eq .Site.Params.environment "production") -}}
+    {{ .Scratch.Set "url" (printf "%s%s" .Site.Params.Bucket $resource.RelPermalink ) }} 
+  {{- else if (eq .Site.Params.environment "staging") -}}
+    {{- .Scratch.Set "url" (printf "https://github.com/3b1b/3Blue1Brown.com/raw/%s/content/%s/%s" .Site.Params.branch .Page.File.Dir $path) -}}
+  {{- else -}}
+    {{ .Scratch.Set "url" $resource.RelPermalink }}
+  {{- end -}}
+
   {{ if (eq $resource.ResourceType "video") }}
   <video muted controls loop preload="metadata" style="width: 100%">
     <source
-      src="{{ partial "prefix" . }}{{ $resource.RelPermalink }}"
+      src="{{ .Scratch.Get `url` }}"
       type="video/mp4"
     >
   </video>
   {{ else if (eq $resource.ResourceType "image") }}
     <img
-      src="{{ partial "prefix" . }}{{ $resource.RelPermalink }}"
+      src="{{ .Scratch.Get `url` }}"
       alt="TODO"
       style="width: 100%"
       loading="lazy"
