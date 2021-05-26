@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+  <path
+    fill="#ffffff"
+    stroke="#000000"
+    stroke-width="1"
+    d="
+      M 0 -45
+      A 20 20 0 0 0 -30 -39
+      A 17.5 17.5 0 0 0 -54 -24
+      A 15 15 0 0 0 -64 0
+      A 15 15 0 0 0 -54 24
+      A 17.5 17.5 0 0 0 -30 39
+      A 20 20 0 0 0 0 45
+      A 20 20 0 0 0 30 39
+      A 17.5 17.5 0 0 0 54 24
+      A 15 15 0 0 0 64 0
+      A 15 15 0 0 0 54 -24
+      A 17.5 17.5 0 0 0 30 -39
+      A 20 20 0 0 0 0 -45
+      z
+    "
+  />
+  <circle
+    fill="#ffffff"
+    stroke="#000000"
+    stroke-width="1"
+    cx="-49"
+    cy="49"
+    r="6"
+  />
+  <circle
+    fill="#ffffff"
+    stroke="#000000"
+    stroke-width="1"
+    cx="-58"
+    cy="58"
+    r="2"
+  />
+</svg>
