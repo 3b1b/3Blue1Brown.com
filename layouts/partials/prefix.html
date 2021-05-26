@@ -1,0 +1,5 @@
+{{- if (eq .Site.Params.environment "production") -}}
+  {{- .Site.Params.bucket -}}
+{{- else if (eq .Site.Params.environment "staging") -}}
+  {{- printf "https://github.com/3b1b/3Blue1Brown.com/raw/%s" .Site.Params.branch -}}
+{{- end -}}

@@ -1,0 +1,4 @@
+
+params:
+  environment: production
+  bucket: https://3b1b-posts.us-east-1.linodeobjects.com/
