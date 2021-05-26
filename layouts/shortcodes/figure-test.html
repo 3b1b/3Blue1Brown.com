@@ -1,0 +1,23 @@
+{{ $path := (.Get 0 )}}
+{{ $position := .Position }}
+{{ if $resource := .Page.Resources.GetMatch $path }}
+  {{ if (eq $resource.ResourceType "video") }}
+  <video muted controls loop preload="metadata" style="width: 100%">
+    <source
+      src="{{ partial "prefix" . }}{{ $resource.RelPermalink }}"
+      type="video/mp4"
+    >
+  </video>
+  {{ else if (eq $resource.ResourceType "image") }}
+    <img
+      src="{{ partial "prefix" . }}{{ $resource.RelPermalink }}"
+      alt="TODO"
+      style="width: 100%"
+      loading="lazy"
+    />
+  {{ else }}
+    {{ errorf (printf "%s: Unrecognized media type: %s") .Position $resource.ResourceType }}
+  {{ end }}
+{{ else }}
+  {{ errorf (printf "%s: Unable to find resource given the path:\"%s\"" .Position $path) }}
+{{ end }}
