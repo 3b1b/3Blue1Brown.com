@@ -2,19 +2,30 @@
 @import "theme";
 @import "mixins";
 
+$phone: 600px;
+
 .not_found {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: left;
+
+  .pi_creature {
+    margin: 0;
+  }
 
   .not_found_text {
     & > * {
       margin: 10px 0;
-      text-align: left;
 
       &:first-child {
         font-weight: $semi-bold;
       }
     }
+  }
+
+  @media (max-width: $phone) {
+    flex-direction: column;
+    text-align: center;
   }
 }
