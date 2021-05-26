@@ -15,4 +15,4 @@ Animation served using `git lfs`:
 
 {{<figure-test "figure-2.01.png">}}
 
-{{<figure-test "animation-1.27-2.01.png">}}
+{{<figure-test "animation-1.27-2.01.mp4">}}
