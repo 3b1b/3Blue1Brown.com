@@ -149,7 +149,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{{< pi-creature emotion="confused" flip=true >}}
+{{< pi-creature emotion="confused" text="Wow, that's really cool! 4 lines max, people!" flip=true >}}
 
 <!-- clickable (link or button) with icon and/or text -->
 

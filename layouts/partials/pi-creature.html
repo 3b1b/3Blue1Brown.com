@@ -3,9 +3,14 @@
   data-flip="{{ .flip | default false }}"
   data-placement="{{ .placement | default `auto` }}"
   data-style="{{ .style }}"
+  data-text="{{ isset . `text` }}"
 >
   <div class="pi_creature_frame">
     {{ $url := (print "static/images/pi-creatures/" .emotion ".svg") }}
     {{ readFile $url | safeHTML }}
+    {{ with .text }}
+      {{ readFile "static/images/pi-creatures/bubble.svg" | safeHTML }}
+      <div class="pi_creature_text">{{ . }}</div>
+    {{ end }}
   </div>
 </div>
