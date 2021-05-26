@@ -7,3 +7,5 @@ source: _2016/wcat.py
 credits:
 - Lesson by Grant Sanderson
 ---
+
+{{< figure-test rotate-and-snap.mp4 >}}
