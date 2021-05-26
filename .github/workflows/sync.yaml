@@ -1,9 +1,9 @@
-name: Test sync bucket
+name: Sync Assets
 
 on:
   push:
     branches:
-      - workflow
+      - main
 
 jobs:
   deploy:
@@ -27,7 +27,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: env HUGO_PARAMS_BRANCH=`git rev-parse --abbrev-ref HEAD` hugo --environment production
+        run: hugo --environment production
 
       # - name: Deploy Site
       #   uses: peaceiris/actions-gh-pages@v3
