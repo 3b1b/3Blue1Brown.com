@@ -1,4 +1,5 @@
 
+## Getting Started
 
 To check the files currently managed by Git LFS
 
