@@ -4,4 +4,4 @@
 
 [build.environment]
   HUGO_VERSION = "0.83.1"
-  GIT_LFS_ENABLED = true
+  GIT_LFS_ENABLED = "true"
