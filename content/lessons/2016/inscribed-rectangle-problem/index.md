@@ -8,4 +8,3 @@ credits:
 - Lesson by Grant Sanderson
 ---
 
-{{< figure-test rotate-and-snap.mp4 >}}
