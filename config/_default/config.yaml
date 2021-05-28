@@ -11,6 +11,3 @@ enableGitInfo: true
 
 permalinks:
   lessons: /:section/:filename
-
-params:
-  test: 123
