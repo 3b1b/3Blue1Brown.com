@@ -1,6 +1,19 @@
 <section>
   <div class="section">
     <h3 id="patrons">Patrons</h3>
-    <p></p>
+    <p class="center">
+      This lesson was made possible by the generosity of our Patrons!
+    </p>
+    <p class="patrons" data-open="false">
+      {{ $date := .Params.date }}
+      {{ range site.Data.patrons }}
+        {{ $start := time .start }}
+        {{ $end := time .end }}
+        {{ if and ($date.After $start) ($date.Before $end) }}
+          {{ .name }}&nbsp;&nbsp;&nbsp;
+        {{ end }}
+      {{ end }}
+    </p>
+    {{ partial "clickable" (dict "text" "See More" "onclick" "togglePatrons(this)") }}
   </div>
 </section>

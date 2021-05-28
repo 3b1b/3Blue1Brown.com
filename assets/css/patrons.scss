@@ -1,0 +1,11 @@
+@import "palettes";
+@import "theme";
+@import "mixins";
+
+.patrons {
+  &[data-open="false"] {
+    max-height: 400px;
+    mask-image: linear-gradient(black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(black 75%, transparent 100%);
+  }
+}
