@@ -1,3 +1,4 @@
+{{ $context := . }}
 {{ with .Params }}
 
   {{ $style := "" }}
@@ -29,7 +30,7 @@
 
     {{ if .image }}
       <img
-        src="{{ partial `rel-url` .image }}"
+        src="{{ partial `asset-url` (dict `context` $context `source` .image) }}"
         alt="{{ .caption }}"
         style="{{ $style }}"
         loading="lazy"
@@ -45,7 +46,7 @@
         style="{{ $style }}"
       >
         <source
-          src="{{ partial `rel-url` .video }}"
+          src="{{ partial `asset-url` (dict `context` $context `source` .video) }}"
           type="video/mp4"
         >
       </video>
