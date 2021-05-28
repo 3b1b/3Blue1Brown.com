@@ -4,9 +4,9 @@
   {{ $style := "" }}
 
   {{ if .width }}
-    {{ $style = slice "width: " .width }}
+    {{ $style = printf "width:%s" .width }}
   {{ else if .height }}
-    {{ $style = slice "height: " .height }}
+    {{ $style = printf "height:%s" .height }}
   {{ else }}
     {{ $style = "width: 100%" }}
   {{ end }}
