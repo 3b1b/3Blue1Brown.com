@@ -1,0 +1,7 @@
+[build]
+  command = "hugo --environment preview"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.83.1"
+  GIT_LFS_ENABLED = "true"
