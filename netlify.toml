@@ -1,5 +1,5 @@
 [build]
-  command = "hugo"
+  command = "hugo && find public/lessons -type f \\( -name '*.mp4' -or -name '*.mov' -or -name '*.png' \\) -delete"
   publish = "public"
 
 [build.environment]
