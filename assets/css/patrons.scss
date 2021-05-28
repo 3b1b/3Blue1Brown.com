@@ -4,7 +4,7 @@
 
 .patrons {
   &[data-open="false"] {
-    max-height: 400px;
+    max-height: 300px;
     mask-image: linear-gradient(black 75%, transparent 100%);
     -webkit-mask-image: linear-gradient(black 75%, transparent 100%);
   }
