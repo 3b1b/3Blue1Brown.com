@@ -23,7 +23,8 @@
           <span>{{ . }}</span>
         {{ end }}
       </div>
-      {{ partial "clickable" (dict "text" "See More" "onclick" "togglePatrons(this)") }}
+      {{ partial "clickable" (dict "text" "See More" "icon" "fas fa-angle-down" "onclick" "togglePatrons(this)") }}
+      {{ partial "clickable" (dict "text" "Become a Supporter" "icon" "fas fa-heart" "link" "https://www.patreon.com/3blue1brown") }}
     </div>
   </section>
 {{ end }}
