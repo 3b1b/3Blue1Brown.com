@@ -2,7 +2,7 @@
 {{ $lesson := site.GetPage .id }}
 
 {{ if $lesson }}
-  <a {{ with $lesson.RelPermalink }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ eq $lesson.Params.title .Page.title }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
+  <a {{ with $lesson.RelPermalink }}href="{{ . }}"{{ end }} class="lesson_card {{ .class }}" data-active="{{ .active | default false }}" data-mini="{{ .mini | default false }}" data-reverse="{{ .reverse | default false }}" data-tooltip="{{ .tooltip }}" data-fade>
 
     {{ with .icon }}
       <i class="{{ . }}"></i>
