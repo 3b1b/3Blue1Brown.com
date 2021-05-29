@@ -26,7 +26,7 @@ const script = async () => {
   let patrons = [];
 
   // hard limit on requests
-  for (let page = 1; page < 20; page++) {
+  for (let page = 1; page < 50; page++) {
     // show progress
     console.log(`Page: ${page}`);
 
@@ -69,7 +69,7 @@ const script = async () => {
   const overrides = parse(fs.readFileSync("name-overrides.yaml", "utf-8"));
   for (const [key, value] of Object.entries(overrides)) {
     const match = patrons.find(({ name }) => name.trim() === key.trim());
-    match.name = value;
+    if (match) match.name = value;
   }
 
   // export patrons to yaml

@@ -3,8 +3,10 @@
 {{ range site.Data.patrons }}
   {{ $start := time .start }}
   {{ $end := time .end }}
-  {{ if and ($date.After $start) ($date.Before $end) }}
-    {{ $list = $list | append .name }}
+  {{ if ge .amount 16 }}
+    {{ if and ($date.After $start) ($date.Before $end) }}
+      {{ $list = $list | append .name }}
+    {{ end }}
   {{ end }}
 {{ end }}
 
@@ -15,9 +17,11 @@
       <p class="center">
         This lesson was made possible by the generosity of our Patrons!
       </p>
-      <p class="patrons" data-open="false">
-        {{ delimit . ", " }}
-      </p>
+      <div class="patrons" data-open="false">
+        {{ range $list }}
+          <span>{{ . }}</span>
+        {{ end }}
+      </div>
       {{ partial "clickable" (dict "text" "See More" "onclick" "togglePatrons(this)") }}
     </div>
   </section>
