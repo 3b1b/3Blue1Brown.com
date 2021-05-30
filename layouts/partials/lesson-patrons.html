@@ -14,7 +14,7 @@
         </p>
         <div class="patrons" data-open="false" data-shuffle="true">
           {{ range $list }}
-            <span>{{ . }}</span>
+            <span>{{ partial "patron-name" . }}</span>
           {{ end }}
         </div>
         {{ partial "clickable" (dict "text" "See More" "icon" "fas fa-angle-down" "onclick" "togglePatrons(this)") }}
