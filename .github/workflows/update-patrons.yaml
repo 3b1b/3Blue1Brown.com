@@ -3,7 +3,7 @@ name: Update patrons
 on:
   # run few times a month
   schedule:
-    - cron: "0 0 1,14 * *"
+    - cron: "0 0 1,18,15,22 * *"
 
 jobs:
   update-patrons:

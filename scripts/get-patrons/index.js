@@ -8,8 +8,7 @@ const sort = require("array-sort");
 const script = async () => {
   // request params
   const params = new URLSearchParams();
-  const fields =
-    "full_name,pledge_relationship_start,last_charge_date,lifetime_support_cents,currently_entitled_amount_cents";
+  const fields = "full_name,patron_status,lifetime_support_cents";
   params.set("fields[member]", fields);
   params.set("page[size]", "1000");
 
@@ -45,8 +44,7 @@ const script = async () => {
       // https://docs.patreon.com/?shell#member
       patrons.push({
         name: (attributes.full_name || "").trim(),
-        start: attributes.pledge_relationship_start || "",
-        end: attributes.last_charge_date || "",
+        active: attributes.patron_status === "active_patron",
         amount: Math.ceil((attributes.lifetime_support_cents || 0) / 100),
       });
     }
@@ -63,14 +61,7 @@ const script = async () => {
   console.log(`Final filtered patrons: ${patrons.length}`);
 
   // sort patrons for less hugo processing
-  patrons = sort(patrons, ["amount", "end"], { reverse: true });
-
-  // override names
-  const overrides = parse(fs.readFileSync("name-overrides.yaml", "utf-8"));
-  for (const [key, value] of Object.entries(overrides)) {
-    const match = patrons.find(({ name }) => name.trim() === key.trim());
-    if (match) match.name = value;
-  }
+  patrons = sort(patrons, ["amount"], { reverse: true });
 
   // export patrons to yaml
   fs.writeFileSync("../../data/patrons.yaml", stringify(patrons));
