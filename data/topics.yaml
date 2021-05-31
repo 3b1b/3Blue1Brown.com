@@ -1,6 +1,6 @@
 - name: Calculus
   lessons:
-    - the-essence-of-calculus-chapter-1
+    - essence-of-calculus
     - derivatives
     - derivative-formulas-geometrically
     - chain-rule-and-product-rule
