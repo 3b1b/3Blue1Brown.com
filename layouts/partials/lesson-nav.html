@@ -53,6 +53,7 @@
                 "icon" "fas fa-arrow-right"
                 "tooltip" "Next lesson"
                 "class" "lesson_nav_next"
+                "reverse" true
               )
             }}
           {{ end }}
@@ -65,6 +66,7 @@
               (dict 
                 "id" .
                 "mini" true
+                "active" (eq $this_lesson_id .)
               )
             }}
           {{ end }}

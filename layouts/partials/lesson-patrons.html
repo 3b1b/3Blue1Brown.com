@@ -1,0 +1,24 @@
+{{ $path := print .File.Dir "patrons.txt"}}
+{{ if fileExists $path }}
+  {{ $file := readFile $path }}
+  {{ $list := split $file "\n" }}
+
+  {{ with $list }}
+    <section>
+      <div class="section">
+        <h3 id="patrons">Patrons</h3>
+        <p class="center">
+          Special thanks to the patrons below for their support of this lesson.
+          Further thanks to <a href="{{ `support` | relURL }}">current patrons</a> 
+          for helping fund future projects.
+        </p>
+        <div class="patrons" data-open="false" data-shuffle="true">
+          {{ range $list }}
+            <span>{{ partial "patron-name" . }}</span>
+          {{ end }}
+        </div>
+        {{ partial "clickable" (dict "text" "See More" "icon" "fas fa-angle-down" "onclick" "togglePatrons(this)") }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

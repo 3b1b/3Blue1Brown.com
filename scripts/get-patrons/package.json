@@ -1,0 +1,16 @@
+{
+  "name": "3b1b-patrons-list",
+  "version": "1.0.0",
+  "description": "Get a list of 3Blue1Brown Patreon supporters",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "array-sort": "^1.0.0",
+    "dotenv": "^9.0.1",
+    "node-fetch": "^2.6.1",
+    "patreon": "^0.4.1",
+    "yaml": "^1.10.2"
+  }
+}

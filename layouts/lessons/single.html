@@ -18,14 +18,14 @@
 
     {{ partial "license" . }}
 
-    {{ partial "patrons" . }}
-
-    {{ partial "discussion" . }}
-
   {{ else }}
 
       {{ partial "coming-soon" }}
 
   {{ end }}
+
+  {{ partial "lesson-patrons" . }}
+
+  {{ partial "discussion" . }}
 
 {{ end }}
