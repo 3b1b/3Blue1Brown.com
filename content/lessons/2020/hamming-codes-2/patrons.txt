@@ -1,65 +1,55 @@
-773377
 1stViewMaths
 Aaron Binns
 Ada Cohen
-Adam Cedrone
 Adam Dřínek
 Adam Margulies
-Adam Miels
-Aditya Munot
-Ahmed Elkhanany
 Aidan De Angelis
 Aidan Shenkman
 Alan Stein
 Albin Egasse
 Alex
-Alex Hackman
+Alex Zernov
 Alexander Janssen
 Alexander Mai
 Alexis Olson
 Ali Yahya
-Aljoscha Schulze
-Allen Stenger
-Alonso Martinez
 Aman Karunakaran
 Andre Au
-André Sant’Anna
-André Yuji Hisatsuga
+Andre Rogatko
 Andreas Nautsch
-Andres
 Andrew Busey
 Andrew Cary
 Andrew Foster
-Andrew Guo
 Andrew Mohn
-Andrew Wyld
 Anisha Patil
 Antoine Bruguier
+Antonio Juarez
 anul kumar sinha
+Apurva Varma
 Aravind C V
 Arcus
 Arjun Chakroborty
 Arkajyoti Misra
 Arnaldo Leon
 Arne Tobias Malkenes Ødegaard
-Arthur Lazarte
 Arthur Zey
 Arun Iyer
-Ashwany Rayu
 Augustine Lim
+Awoo
 Axel Ericsson
+Ayan Doss
+Azman Ahmed
 AZsorcerer
 Barry Fam
 Bartosz Burclaf
-Beckett Madden-Woods
-Ben Campbell
+Behrgen Smith
 Ben Delo
 Ben Granger
 Ben Gutierrez
 Benjamin Bailey
-Benjamin R.² M.
 Bernd Sing
 Bill Gatliff
+Bob Sanderson
 Boris Veselinovich
 Bpendragon
 Bradley Pirtle
@@ -68,40 +58,35 @@ Brendan Coleman
 Brendan Shah
 Brian Cloutier
 Brian King
+Brian Michalowski
 Brian Staroselsky
 Britt Selvitelle
 Britton Finley
-Bruce Malcolm
 Burt Humburg
-C Carothers
 Calvin Lin
-Cardozo Family
 Carl Schell
 Carl-Johan R. Nordangård
 Carlos Iriarte
 Chandra Sripada
-Charles Pereira
 Charles Southerland
 Charlie Ellison
+Charlie N
 Chelase
 Chien Chern Khor
 Chris Connett
 Chris Druta
 Chris Sachs
 Chris Seaby
-Christian Broß
 Christian Kaiser
-Christian Opitz
+Christian Mercat
 Christopher Lorton
 Christopher Suter
 cinterloper
 Clark Gaebel
-Cody Merhoff
 Constantine Goltsev
 ConvenienceShout
 Cooper Jones
 Corey Ogburn
-Cristian Amitroaie
 Curt Elsasser
 Cy 'kkm' K'Nelson
 D Dasgupta
@@ -114,12 +99,11 @@ Dan Herbatschek
 Dan Kinch
 Dan Laffan
 Dan Martin
-dancing through life...
-Daniel Badgio
 Daniel Brown
 Daniel Herrera C
-Daniel Pang
+Darrell Thomas
 Dave B
+Dave Kester
 dave nicponski
 David B. Hill
 David Bar-On
@@ -128,19 +112,19 @@ David Clark
 David Gow
 David J Wu
 David Johnston
-Debbie Newhouse
+David Paryente
 Delton Ding
+Dhilung Kirat
+Dinesh Dharme
 Dominik Wagner
-Donal Botkin
 Doug Lundin
-Douglas Lee Hall
 DrTadPhd
-Duane Rich
 Edan Maor
-Eddy Lazzarin
+Eduardo Rodriguez
+Edward Hardy
 Eero Hippeläinen
-Elias
-Elle Nolan
+Elias R White
+Elijah Taylor
 Emilio Mendoza
 emptymachine
 Eric Flynn
@@ -154,121 +138,123 @@ Eryq Ouithaqueue
 Ettore Randazzo
 Eugene Foss
 Eugene Pakhomov
+EurghSireAwe
+Evan Fabri
 Evan Miyazono
 Everett Knag
 Federico Lebron
+Fernando Via Canel
 fluffyfunnypants
 Frank R. Brown, Jr.
-Gabriele Siino
-Garbanarba
-Gerhard van Niekerk
-Gordon Gould
+Gary Gallagher
+Giovanni Filippi
+Gordon Johnston
 Gregory Hopper
 Guillaume Sartoretti
 Hal Hildebrand
-Harald
-Harry Eakins
 Henri Stern
 Henry Reich
+Heptonion
+Hervé Guillon
 Hitoshi Yamauchi
-Ho Woo Nam
-Holger Flier
-Hugh Zhang
+Howarth Family
 Ian Mcinerney
 Ian Ray
-Illia Tulupov
+Ilya Alexeevsky
 Ilya Latushko
 Imran Ahmed
+Isaac Shamie
 Ivan
 Ivan Sorokin
-ivo galic
 Izzy Gomez
 J. Chris Wesley
 J. Dmitri Gallow
-Jack Thull
+Jackson Holiday Wheeler
+Jacob Baxter
 Jacob Harmon
 Jacob Hartmann
+Jacob Magnuson
 Jacob Taylor
 Jacob Wallingford
 Jaewon Jung
 Jalex Stark
 Jameel Syed
+James A McCormick
 James D. Woolery, M.D.
 James Golab
 James Sugrim
 James Winegar
 Jamie Warner
 Jan Pfeifer
-Jan-Hendrik Prinz
-Jarred Harvey
 Jason Hise
 Jay Ebhomenye
-JayCore
 Jayne Gabriele
 Jean-Manuel Izaret
 Jed Yeiser
 Jeff Dodds
 Jeff Linse
-Jeff R
 Jeff Straathof
 Jeremy
 Jeremy Cole
 Jeroen Swinkels
-Jerris Heaton
-Jim Caruso
+Jesmer Wong
+Ji Hyun Park
 Jim Powers
 Jimmy Yang
-JN
 Joe Pregracke
 Johan Auster
+John
 John Camp
 John Griffith
 John Haley
 John Le
 John Luttig
-John McClaskey
 John Rizzo
+John V Wertheim
 John Zelinka
-Johnny Holzeisen
 Jon Adams
+jonas.app
 Jonathan
+Jonathan Llovet
 Jonathan Whitmore
 Jonathan Wilson
+Jonathan Wright
 Jonathon Krall
 Jono Forbes
 Joseph John Cox
 Joseph Kelly
-Joseph O'Connor
 Joseph Rocca
 Josh Kinnear
 Joshua Claeys
-Joshua Davis
 Joshua Lin
 Joshua Ouellette
 Juan Benet
 Julien Dubois
-Jullcifer
 Justin Chandler
-justpwd
 Kai-Siang Ang
+Karan Sagar
 Karim Safin
 Karl Niu
 Karl WAN NAN WO
-Karma Shi
 Kartik Cating-Subramanian
+Kaustuv DeBiswas
+Keith Herndon
 Keith Smith
-Keith Tyson
 Kenneth Larsen
 Kevin
 Kevin Fowler
 Kevin Steck
+Khary Bentick
 Killian McGuinness
+Kiryl Kazlovich
+Kit Chow
+Klaas Moerman
 Krishanu Sankar
-Krishnamoorthy Venkatraman
+Kristian Georgiev
 Kros Dai
 Lael S Costa
 LAI Oscar
-lardysoft
+Lambda GPU Workstations
 Laura Gast
 Lee Burnette
 Lee Redden
@@ -277,76 +263,73 @@ Liang ChaoYi
 Linda Xie
 Linh Tran
 Luc Ritchie
-Luka Korov
+Ludwig Schubert
 Lukas Biewald
-lukvol
-Lunchbag Rodriguez
-Mads Elvheim
-Mads Munch Andreasen
+Lukas Prokop
 Magister Mugit
+Magnasium
 Magnus Dahlström
 Magnus Hiie
-Mahrlo Amposta
-Majid Alfifi
+Manoj Rewatkar - RITEK SOLUTIONS
 Manuel Garcia
 Marc Cohen
-Marc Folini
-Marcial Abrahantes
 Marek Gluszczuk
-Marina Piller
+Marina Otto
+Mark Dittmer
 Mark Heising
 Mark Mann
+MarkB
+Marko Kangrga
 Marshall McQuillen
-Martin Mauersberg
 Martin Price
 Márton Vaitkus
-Mateo Abascal
 Mathias Jansson
+Matt Alexander
 Matt Berggren
 Matt Godbolt
 Matt Parlmer
 Matt Roveto
 Matt Russell
 Mattéo Boissière
+Matteo Delabre
 Matthäus Pawelczyk
 Matthew Bouchard
-Maty Siman
+Matthew Cocke
 Max Anderson
 Max Filimon
 Max Welz
 Maxim Nitsche
-Mehmet Budak
 Mert Öz
 Michael Bos
 Michael Hardel
+Michael Medford
 Michael W White
 Mike
 Mike Dour
 Mike Dussault
+Mike G.
 Mikko
-MingFung Law
-Mitch Harding
+Mirik Gogri
 Molly Mackinlay
-MR. FANTASTIC
-Mr. William Shakespaw
 Nag Rajan
+namewithheld
 Nate Pinsky
 Nathan Winchester
-Nayantara Jain
 Nero Li
-Nick
+Nicholas Cahill
+Nicholas Freeburg
 Nick Lucas
 Nikita Lesnikov
-Nipun Ramakrishnan
 Niranjan Shivaram
-Nitu Kitchloo
+Ish Kitchloo
 Octavian Voicu
 Oleksandr Marchukov
-Olga Cooperman
 Oliver Steele
 Omar Zrien
+Omer Tuchfeld
 otavio good
-Parker Burchett
+oxt
+Pat Lynch
 Patch Kessler
 Patrick Gibson
 Patrick Lucas
@@ -354,77 +337,76 @@ Paul Pluzhnikov
 Paul Wolfgang
 Pavel Dubov
 Pāvils Jurjāns
-Perry Taga
+Tristan
 Pesho Ivanov
 Petar Veličković
-Pete Dietl
 Peter Bryan
 Peter Ehrnstrom
-Peter Freese
+Peter Francis
 Peter Mcinerney
+PeterCxy
 Pethanol
 Pi Nuessle
 Pierre Lancien
 Pradeep Gollakota
+PsiPhiTheta
+Puli Vili Takapu
 RabidCamel
-Ram Eshwar Kaundinya
 Randy C. Will
 Randy True
-Raymond Fowkes
-Rebecca Lin
+Raphael Nitsche
 rehmi post
 Rex Godby
 Rich Johnson
-RICHARD C BRIDGES
 Ripta Pasay
 Rish Kundalia
 Rob Granieri
-Robert Klock
-Robert van der Tuuk
-Robert Von Borstel
-Rod S
+Roman Sergeychik
 Ron Capelli
 Ronnie Cheng
 Roobie
+Roy Velich
 Ryan Atallah
-Samuel Cahyawijaya
+Ryan Dilbeck
 Samuel Judge
-SansWord Huang
-Scott Gibbons
+SansWord@TW
 Scott Gray
 Scott Walter, Ph.D.
 Sean Barrett
 Sean Chittenden
 Sebastian Braunert
 Sergey Ovchinnikov
+Shlomo Zippel
 Siddhesh Vichare
-Sinan Taifour
-Siobhan Durcan
+SILAS BERKOWITZ
+Simon Chiang
 Smarter Every Day
 soekul
-Sohail Farhangi
 Solara570
-SonOfSofaman
-Stefan Grunspan
+Spyridon Michalakis
 Stefan Korntreff
 Steve Cohen
 Steve Huynh
 Steve Muench
+Steve Sperandeo
 Steven Siddals
 Stevie Metke
 Sundar Subbarayan
 supershabam
 Suthen Thomas
 Tal Einav
-Tanmayan Pande
 Taras Bobrovytsky
 Tarrence N
+Tau Au
+TD
 Ted Suzman
 Terry Hayes
+THIS IS THE point OF NO RE tUUurRrhghgGHhhnnn
+Thomas J Sargent
 Thomas Peter Berntsen
+Thomas Tarler
 Tianyu Ge
 Tim Erbes
-Tim Ferreira
 Tim Kazik
 Timothy Chklovski
 Trevor Settles
@@ -433,35 +415,31 @@ Tyler Parcell
 Tyler VanValkenburg
 Tyler Veness
 Ubiquity Ventures
-Vai-Lam Mui
 Valentin Mayer-Eichberger
 Vassili Philippov
 Vasu Dubey
 Veritasium
 Victor Castillo
 Victor Kostyuk
-Vignan Velivela
+Victor Lee
 Vignesh Ganapathi Subramanian
 Vignesh Valliappan
-Vijay
 Vince Gabor
+Vinicius Reis
+Viswanathan G
+Vitalii Kalinkin
 Vladimir Solomatin
-will
+Wes Hardaker
 Wooyong Ee
 Xierumeng
-Xueqi
+Xuanji Li
 Yair kass
 Yana Chernobilsky
-Yetinother
 YinYangBalance.Asia
-Yoon Suk Oh
 Yurii Monastyrshyn
-Yushi Wang
 Zachariah Rosenberg
 Zachary Gidwitz
-Zachary Meyer
 Александр Горленко
 Максим Аласкаров
-Навальный
 噗噗兔
 泉辉致鉴

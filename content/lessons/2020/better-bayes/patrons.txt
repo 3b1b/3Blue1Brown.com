@@ -2,11 +2,9 @@
 1stViewMaths
 Aaron Binns
 Ada Cohen
-Adam Cedrone
 Adam Dřínek
 Adam Margulies
 Adam Miels
-Aditya Munot
 Ahmed Elkhanany
 Aidan De Angelis
 Aidan Shenkman
@@ -20,9 +18,9 @@ Alexis Olson
 Ali Yahya
 Aljoscha Schulze
 Allen Stenger
-Alonso Martinez
 Aman Karunakaran
 Andre Au
+Andre Rogatko
 André Sant’Anna
 André Yuji Hisatsuga
 Andreas Nautsch
@@ -34,7 +32,9 @@ Andrew Guo
 Andrew Mohn
 Andrew Wyld
 Anisha Patil
+Anson Yu
 Antoine Bruguier
+Antonio Juarez
 anul kumar sinha
 Aravind C V
 Arcus
@@ -47,17 +47,16 @@ Arthur Zey
 Arun Iyer
 Ashwany Rayu
 Augustine Lim
+Awoo
 Axel Ericsson
 AZsorcerer
 Barry Fam
 Bartosz Burclaf
-Beckett Madden-Woods
 Ben Campbell
 Ben Delo
 Ben Granger
 Ben Gutierrez
 Benjamin Bailey
-Benjamin R.² M.
 Bernd Sing
 Bill Gatliff
 Boris Veselinovich
@@ -71,7 +70,6 @@ Brian King
 Brian Staroselsky
 Britt Selvitelle
 Britton Finley
-Bruce Malcolm
 Burt Humburg
 C Carothers
 Calvin Lin
@@ -80,9 +78,9 @@ Carl Schell
 Carl-Johan R. Nordangård
 Carlos Iriarte
 Chandra Sripada
-Charles Pereira
 Charles Southerland
 Charlie Ellison
+Charlie N
 Chelase
 Chien Chern Khor
 Chris Connett
@@ -91,12 +89,11 @@ Chris Sachs
 Chris Seaby
 Christian Broß
 Christian Kaiser
-Christian Opitz
+Christopher Aden
 Christopher Lorton
 Christopher Suter
 cinterloper
 Clark Gaebel
-Cody Merhoff
 Constantine Goltsev
 ConvenienceShout
 Cooper Jones
@@ -114,12 +111,12 @@ Dan Herbatschek
 Dan Kinch
 Dan Laffan
 Dan Martin
-dancing through life...
 Daniel Badgio
 Daniel Brown
 Daniel Herrera C
 Daniel Pang
 Dave B
+Dave Kester
 dave nicponski
 David B. Hill
 David Bar-On
@@ -128,14 +125,12 @@ David Clark
 David Gow
 David J Wu
 David Johnston
-Debbie Newhouse
 Delton Ding
+Dhilung Kirat
 Dominik Wagner
 Donal Botkin
 Doug Lundin
-Douglas Lee Hall
 DrTadPhd
-Duane Rich
 Edan Maor
 Eddy Lazzarin
 Eero Hippeläinen
@@ -154,15 +149,16 @@ Eryq Ouithaqueue
 Ettore Randazzo
 Eugene Foss
 Eugene Pakhomov
+EurghSireAwe
 Evan Miyazono
 Everett Knag
 Federico Lebron
 fluffyfunnypants
 Frank R. Brown, Jr.
 Gabriele Siino
-Garbanarba
 Gerhard van Niekerk
-Gordon Gould
+Giovanni Filippi
+Gordon Johnston
 Gregory Hopper
 Guillaume Sartoretti
 Hal Hildebrand
@@ -170,9 +166,10 @@ Harald
 Harry Eakins
 Henri Stern
 Henry Reich
+Heptonion
 Hitoshi Yamauchi
-Ho Woo Nam
 Holger Flier
+Howarth Family
 Hugh Zhang
 Ian Mcinerney
 Ian Ray
@@ -185,7 +182,6 @@ ivo galic
 Izzy Gomez
 J. Chris Wesley
 J. Dmitri Gallow
-Jack Thull
 Jacob Harmon
 Jacob Hartmann
 Jacob Taylor
@@ -200,22 +196,20 @@ James Winegar
 Jamie Warner
 Jan Pfeifer
 Jan-Hendrik Prinz
-Jarred Harvey
 Jason Hise
 Jay Ebhomenye
-JayCore
 Jayne Gabriele
 Jean-Manuel Izaret
 Jed Yeiser
 Jeff Dodds
 Jeff Linse
-Jeff R
 Jeff Straathof
 Jeremy
 Jeremy Cole
 Jeroen Swinkels
 Jerris Heaton
-Jim Caruso
+Jesmer Wong
+Ji Hyun Park
 Jim Powers
 Jimmy Yang
 JN
@@ -226,10 +220,8 @@ John Griffith
 John Haley
 John Le
 John Luttig
-John McClaskey
 John Rizzo
 John Zelinka
-Johnny Holzeisen
 Jon Adams
 Jonathan
 Jonathan Whitmore
@@ -238,7 +230,6 @@ Jonathon Krall
 Jono Forbes
 Joseph John Cox
 Joseph Kelly
-Joseph O'Connor
 Joseph Rocca
 Josh Kinnear
 Joshua Claeys
@@ -249,6 +240,7 @@ Juan Benet
 Julien Dubois
 Jullcifer
 Justin Chandler
+Justin Snyder
 justpwd
 Kai-Siang Ang
 Karim Safin
@@ -257,18 +249,19 @@ Karl WAN NAN WO
 Karma Shi
 Kartik Cating-Subramanian
 Keith Smith
-Keith Tyson
 Kenneth Larsen
 Kevin
 Kevin Fowler
 Kevin Steck
 Killian McGuinness
+Kiryl Kazlovich
+Kit Chow
+Klaas Moerman
 Krishanu Sankar
-Krishnamoorthy Venkatraman
 Kros Dai
 Lael S Costa
 LAI Oscar
-lardysoft
+Lambda GPU Workstations
 Laura Gast
 Lee Burnette
 Lee Redden
@@ -277,31 +270,24 @@ Liang ChaoYi
 Linda Xie
 Linh Tran
 Luc Ritchie
-Luka Korov
 Lukas Biewald
 lukvol
-Lunchbag Rodriguez
 Mads Elvheim
-Mads Munch Andreasen
 Magister Mugit
 Magnus Dahlström
 Magnus Hiie
-Mahrlo Amposta
-Majid Alfifi
 Manuel Garcia
 Marc Cohen
-Marc Folini
-Marcial Abrahantes
 Marek Gluszczuk
 Marina Piller
 Mark Heising
 Mark Mann
 Marshall McQuillen
-Martin Mauersberg
 Martin Price
 Márton Vaitkus
 Mateo Abascal
 Mathias Jansson
+Matt Alexander
 Matt Berggren
 Matt Godbolt
 Matt Parlmer
@@ -325,16 +311,15 @@ Mike Dour
 Mike Dussault
 Mikko
 MingFung Law
+Mirik Gogri
 Mitch Harding
 Molly Mackinlay
-MR. FANTASTIC
 Mr. William Shakespaw
 Nag Rajan
+namewithheld
 Nate Pinsky
 Nathan Winchester
-Nayantara Jain
 Nero Li
-Nick
 Nick Lucas
 Nikita Lesnikov
 Nipun Ramakrishnan
@@ -343,10 +328,12 @@ Nitu Kitchloo
 Octavian Voicu
 Oleksandr Marchukov
 Olga Cooperman
+Oliver Ni
 Oliver Steele
+Omar El-Domeiri
 Omar Zrien
+Omer Tuchfeld
 otavio good
-Parker Burchett
 Patch Kessler
 Patrick Gibson
 Patrick Lucas
@@ -354,43 +341,42 @@ Paul Pluzhnikov
 Paul Wolfgang
 Pavel Dubov
 Pāvils Jurjāns
-Perry Taga
 Pesho Ivanov
 Petar Veličković
 Pete Dietl
 Peter Bryan
 Peter Ehrnstrom
-Peter Freese
 Peter Mcinerney
 Pethanol
 Pi Nuessle
 Pierre Lancien
 Pradeep Gollakota
 RabidCamel
-Ram Eshwar Kaundinya
 Randy C. Will
+Randy LeJeune
 Randy True
 Raymond Fowkes
-Rebecca Lin
 rehmi post
 Rex Godby
 Rich Johnson
+Richard Bohn
 RICHARD C BRIDGES
 Ripta Pasay
 Rish Kundalia
 Rob Granieri
 Robert Klock
-Robert van der Tuuk
 Robert Von Borstel
 Rod S
 Ron Capelli
 Ronnie Cheng
 Roobie
 Ryan Atallah
+Ryan Dilbeck
+Samar Jayachandran
 Samuel Cahyawijaya
 Samuel Judge
+Sandun Panthangi
 SansWord Huang
-Scott Gibbons
 Scott Gray
 Scott Walter, Ph.D.
 Sean Barrett
@@ -398,15 +384,16 @@ Sean Chittenden
 Sebastian Braunert
 Sergey Ovchinnikov
 Siddhesh Vichare
-Sinan Taifour
 Siobhan Durcan
 Smarter Every Day
 soekul
 Sohail Farhangi
 Solara570
 SonOfSofaman
+Spyridon Michalakis
 Stefan Grunspan
 Stefan Korntreff
+Stephen Denham
 Steve Cohen
 Steve Huynh
 Steve Muench
@@ -419,12 +406,14 @@ Tal Einav
 Tanmayan Pande
 Taras Bobrovytsky
 Tarrence N
+Tau Au
+TD
 Ted Suzman
 Terry Hayes
+THIS IS THE point OF NO RE tUUurRrhghgGHhhnnn
 Thomas Peter Berntsen
 Tianyu Ge
 Tim Erbes
-Tim Ferreira
 Tim Kazik
 Timothy Chklovski
 Trevor Settles
@@ -433,33 +422,31 @@ Tyler Parcell
 Tyler VanValkenburg
 Tyler Veness
 Ubiquity Ventures
-Vai-Lam Mui
 Valentin Mayer-Eichberger
 Vassili Philippov
 Vasu Dubey
 Veritasium
 Victor Castillo
 Victor Kostyuk
+Victor Lee
 Vignan Velivela
 Vignesh Ganapathi Subramanian
 Vignesh Valliappan
-Vijay
 Vince Gabor
+Vini Ruela
+Vinicius Reis
 Vladimir Solomatin
-will
+Wes Hardaker
 Wooyong Ee
 Xierumeng
-Xueqi
 Yair kass
 Yana Chernobilsky
-Yetinother
 YinYangBalance.Asia
 Yoon Suk Oh
 Yurii Monastyrshyn
 Yushi Wang
 Zachariah Rosenberg
 Zachary Gidwitz
-Zachary Meyer
 Александр Горленко
 Максим Аласкаров
 Навальный
