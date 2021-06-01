@@ -42,14 +42,25 @@ const closeToc = () => {
 
 // show open button only when below top of page
 const hideOpenButton = () => {
-  const top = document.querySelector("main > section:nth-child(3)");
-  const toc = document.querySelector(".toc_open");
+  const top = document.querySelector("main > section:nth-child(2)");
+  const toc = document.querySelector(".toc");
   if (!top || !toc) return;
   toc.style.opacity = top.getBoundingClientRect().top < 0 ? 1 : 0;
 };
 
+// auto hide panel based on screen width
+const autoHide = () => {
+  const toc = document.querySelector(".toc");
+  if (window.innerWidth < 2200) {
+    closeToc();
+  } else {
+    openToc();
+  }
+};
+
 // start script
 window.addEventListener("DOMContentLoaded", createToc);
-window.addEventListener("DOMContentLoaded", closeToc);
+window.addEventListener("DOMContentLoaded", autoHide);
+window.addEventListener("resize", autoHide);
 window.addEventListener("DOMContentLoaded", hideOpenButton);
 window.addEventListener("scroll", hideOpenButton);

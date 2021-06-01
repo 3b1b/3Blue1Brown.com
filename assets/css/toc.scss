@@ -13,7 +13,7 @@
   max-width: calc(100vw - 60px);
   font-family: $sans;
   background: $white;
-  box-shadow: $shadow;
+  box-shadow: 0 0 10px #00000020;
   z-index: 10;
   transition: transform $fast, opacity $fast;
 
@@ -38,7 +38,7 @@
       background: none;
 
       &:hover {
-        background: $gray-100;
+        background: $light-blue-100;
       }
     }
 
@@ -46,7 +46,7 @@
       position: absolute;
       left: 100%;
       margin: 0;
-      background: $gray-100;
+      background: $gray-200;
 
       &:hover {
         background: $light-blue-100;
