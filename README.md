@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-To serve a local version of the site start by installing [Hugo](https://gohugo.io/getting-started/installing/) and [Git LFS](https://git-lfs.github.com/). If on Windows or donwloading the tarball, make sure to download the extended version of Hugo. On macOS this can be done with [Homebrew](https://brew.sh/) using the two commands:
+To serve a local version of the site, start by installing [Hugo](https://gohugo.io/getting-started/installing/) and [Git LFS](https://git-lfs.github.com/). If on Windows or downloading the tarball, make sure to download the extended version of Hugo. On macOS this can be done with [Homebrew](https://brew.sh/) using the two commands:
 
 ```sh
 brew install hugo
@@ -11,7 +11,7 @@ brew install hugo
 brew install git-lfs
 ```
 
-If installing Git LFS for you first time, run the command below. This command only needs to be run once per user account.
+If installing Git LFS for the first time, run the command below. This command only needs to be run once per user account.
 
 ```sh
 git lfs install
