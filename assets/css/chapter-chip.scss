@@ -9,4 +9,9 @@
   border-radius: 999px;
   font-size: 0.8rem;
   vertical-align: middle;
+  letter-spacing: 0;
+
+  &[data-mini="false"] {
+    margin-right: 10px;
+  }
 }

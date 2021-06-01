@@ -4,8 +4,8 @@
     <div class="section">
       {{ partial "embed" (dict "src" .Params.video) }}
       <h1>
-        {{ partial "chapter-chip" (dict "ctx" .) }}
-        {{ .Params.title }}
+        {{- partial "chapter-chip" (dict "ctx" .) -}}
+        {{- .Params.title -}}
       </h1>
       {{ partial "lesson-details" . }}
     </div>
@@ -30,5 +30,7 @@
   {{ partial "lesson-patrons" . }}
 
   {{ partial "discussion" . }}
+
+  {{ partial "toc" . }}
 
 {{ end }}

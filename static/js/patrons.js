@@ -15,6 +15,7 @@ const togglePatrons = (button) => {
 // shuffle patrons in lesson
 const shufflePatrons = () => {
   const patrons = document.querySelector(".patrons[data-shuffle='true']");
+  if (!patrons) return;
   for (let child = patrons.children.length; child >= 0; child--)
     patrons.appendChild(patrons.children[Math.floor(Math.random() * child)]);
 };
