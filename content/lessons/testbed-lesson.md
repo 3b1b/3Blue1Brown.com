@@ -104,6 +104,10 @@ $$
 
 {{< section >}}
 
+<!-- lesson link component -->
+
+A link to {{< lesson-link text="another lesson" link="quick-eigen" >}} with a rich tooltip.
+
 <!-- figure with image and/or video, and caption -->
 
 {{< figure image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" />}}

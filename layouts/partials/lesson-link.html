@@ -1,0 +1,9 @@
+{{- $lesson := site.GetPage .link -}}
+<a
+  class="lesson_link"
+  href="{{ $lesson.RelPermalink }}"
+  data-tooltip="$next"
+>
+  {{- .text -}}
+</a>
+{{- partial "lesson-card" (dict "id" .link ) -}}

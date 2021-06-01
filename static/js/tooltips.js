@@ -37,8 +37,15 @@ const createTooltips = () => {
     if (popper) popper.destroy();
     popper = Popper.createPopper(target, tooltip, options(target.dataset));
     tooltip.dataset.show = true;
-    tooltip.querySelector(".tooltip_content").innerHTML =
-      target.dataset.tooltip;
+    const content = tooltip.querySelector(".tooltip_content");
+    if (target.dataset.tooltip === "$next") {
+      target.nextElementSibling.removeAttribute("style");
+      content.innerHTML = target.nextElementSibling.outerHTML;
+      tooltip.style.padding = "0";
+    } else {
+      content.innerHTML = target.dataset.tooltip;
+      tooltip.style.padding = "";
+    }
   };
 
   // close tooltip
