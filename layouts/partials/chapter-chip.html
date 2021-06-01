@@ -1,0 +1,4 @@
+{{ $mini := .mini | default false }}
+{{ with .ctx.Params.chapter }}
+  <span class="chapter_chip">{{ cond $mini "Ch" "Chapter" }} {{ . }}</span>
+{{ end }}
