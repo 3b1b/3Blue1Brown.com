@@ -1,7 +1,7 @@
 
 ## Getting Started
 
-To serve a local version of the 3Blue1Brown.com start by installing [Hugo](https://gohugo.io/getting-started/installing/) and [Git LFS](https://git-lfs.github.com/). If on Windows or donwloading the tarball, make sure to download the extended version of Hugo. On macOS this can be done with [Homebrew](https://brew.sh/) using the two commands:
+To serve a local version of the site start by installing [Hugo](https://gohugo.io/getting-started/installing/) and [Git LFS](https://git-lfs.github.com/). If on Windows or donwloading the tarball, make sure to download the extended version of Hugo. On macOS this can be done with [Homebrew](https://brew.sh/) using the two commands:
 
 ```sh
 brew install hugo
