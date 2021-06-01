@@ -17,9 +17,16 @@
   {{ end }}
 
   {{ range .Params.credits  }}
+    {{ $credit := . }}
+    {{ range site.Data.creators }}
+      {{ if in $credit .name }}
+        {{ $new := printf "<a href='%s'>%s</a>" .link .name }}
+        {{ $credit = replace $credit .name $new }}
+      {{ end }}
+    {{ end }}
     <div>
       <i class="fas fa-feather-alt"></i>
-      <span>{{ . }}</span>
+      <span>{{ $credit | safeHTML }}</span>
     </div>
   {{ end }}
 

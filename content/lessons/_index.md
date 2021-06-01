@@ -8,6 +8,8 @@ cascade:
     publishResources: false
 ---
 
-### Lessons
+# Lessons
 
 {{< lesson-gallery show="topics" >}}
+
+{{< section >}}

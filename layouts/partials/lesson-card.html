@@ -20,9 +20,12 @@
 
     <span class="lesson_card_text">
 
-      {{ with $lesson.Params.title  }}
-        <span>{{ . }}</span>
-      {{ end }}
+      <span>
+        {{ partial "chapter-chip" (dict "ctx" $lesson "mini" .mini)}}
+        {{ with $lesson.Params.title  }}
+          <span>{{ . }}</span>
+        {{ end }}
+      </span>
 
       {{ if not .mini }}
 

@@ -8,9 +8,8 @@ credits:
 - Lesson by Grant Sanderson
 ---
 
-# The Essence of Calculus
-
-> "The art of doing mathematics is finding that *special case* that contains all the germs of generality." -David Hilbert
+> "The art of doing mathematics is finding that *special case* that contains all the germs of generality."  
+> – David Hilbert
 
 My goal is for you to come away from this series feeling like you could have invented calculus. That is, cover these core ideas, but in a way that makes clear where they actually come from, and what they really mean, using an all-around visual approach.
 
