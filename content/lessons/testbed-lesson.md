@@ -89,9 +89,7 @@ popup.innerText =
 
 This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
 
-{{< section >}}
-
-An example of inline math $f(x) = \pi + e^{-i} + sin(x)$ in the middle of a sentence.
+An example of inline math $f(x) = e^{i \pi} + sin(x)$ in the middle of a sentence.
 An example a block of math:
 
 $$
@@ -119,20 +117,20 @@ A link to {{< lesson-link text="another lesson" link="quick-eigen" >}} with a ri
 {{< figure image="https://storage.googleapis.com/gweb-uniblog-publish-prod/images/earth-4k.max-1000x1000.jpg" video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4" show="video" >}}
 Markdown in caption.
 [Test link](https://google.com/).
-$$f(x) = \pi + e^{-i} + sin(x)$$
+$f(x) = e^{i \pi} + sin(x)$
 {{< /figure >}}
 
 <!-- spoiler component -->
 
 Why did the chicken cross the Mobius strip?
-{{< spoiler >}}To get to the same side. $f(x) = \pi + e^{-i} + sin(x)${{< /spoiler >}}
+{{< spoiler >}}To get to the same side. $f(x) = e^{i \pi} + sin(x)${{< /spoiler >}}
 
 <!-- question component -->
 
 {{< question
   question="Why did the chicken cross the road?"
   choice1="To get to the other side"
-  choice2="For a bit of $f(x) = \pi + e^{-i} + sin(x)$ and some haggis"
+  choice2="For a bit of $f(x) = e^{i \pi} + sin(x)$ and some haggis"
   choice3="Cannot be determined"
   choice4="A superposition of all the answers above"
   correct=4
@@ -153,7 +151,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-{{< pi-creature emotion="hooray" text="Wow, that's really cool!"  >}}
+{{< pi-creature emotion="hooray" text="Wow, $e^{i \pi}$ is really cool!"  >}}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

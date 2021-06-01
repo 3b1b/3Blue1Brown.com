@@ -19,7 +19,11 @@
     {{ end }}
     
     {{ with .text }}
-      <div class="pi_creature_text">{{ . }}</div>
+      <div class="pi_creature_text">
+        <span>
+          {{ . }}
+        </span>
+      </div>
     {{ end }}
   </div>
 </div>
