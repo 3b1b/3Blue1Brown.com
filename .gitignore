@@ -4,3 +4,5 @@ dist
 tmp
 public
 resources
+.env
+.vscode
