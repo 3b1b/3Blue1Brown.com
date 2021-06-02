@@ -1,0 +1,36 @@
+---
+
+Figma:
+
+Outlined text can create dramatic size increase in SVG (250KB versus 50KB when testing for "dr")
+
+---
+
+Figure width scaling notes:
+
+600 - 400
+612 -  408
+720 - 480
+1080 - 720
+
+Video restrained by same width can cause weird behavior for tall images.
+
+---
+
+Latex:
+
+Vertical scroll bar + clipping for math display equations
+
+Double escape characters in aligned environment
+
+$$
+\begin{aligned}
+\text { Area } &=\frac{1}{2} b h \\\\
+&=\frac{1}{2}(R)(2 \pi \cdot R) \\\\
+&=\pi R^{2}
+\end{aligned}
+$$
+
+---
+
+Research better way to extract video clips other than the quicktime trim tool
