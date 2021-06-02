@@ -4,8 +4,9 @@ big-header: true
 
 {{< section dark=true >}}
 
-<!-- this link should always point to the latest video on the youtube channel -->
-{{< embed src="https://www.youtube.com/embed/videoseries?list=UUYO_jab_esuFRV4b17AJtAw" width="800px" >}}
+<!-- Possibly replace with a link to the latest video on the youtube channel -->
+{{< embed src="r6sGWTCMz2k" width="800px" >}}
+
 
 {{< pi-creature emotion="hooray" placement="side" style="big" >}}
 {{< pi-creature emotion="speaking" placement="side" style="big" flip=true >}}
@@ -18,37 +19,30 @@ big-header: true
 
 ## Follow
 
+<!-- {{< section >}} -->
+
 {{< center >}}
   {{< clickable link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" >}}
-  {{< clickable link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="rounded" >}}
   {{< clickable link="https://twitter.com/3blue1brown" icon="fab fa-twitter" tooltip="Twitter" style="rounded" >}}
+  {{< clickable link="https://www.reddit.com/r/3Blue1Brown/" icon="fab fa-reddit-alien" tooltip="Reddit" style="rounded" >}}
   {{< clickable link="https://www.instagram.com/3blue1brown_animations/" icon="fab fa-instagram" tooltip="Instagram" style="rounded" >}}
   {{< clickable link="http://www.facebook.com/3blue1brown" icon="fab fa-facebook" tooltip="Facebook" style="rounded" >}}
+  {{< clickable link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="rounded" >}}
 {{< /center >}}
-
-The main event is, of course, the YouTube channel.
-But there are many other ways to get involved and enjoy 3Blue1Brown content.
-
-If you want to ask questions, share interesting math, discuss videos, or just give an impassioned rant about how wonderful math is, take a look at the 3blue1brown subreddit.
-People share projects they’re working on here, like their own videos, animations, and interactive lessons.
-These sometimes get added to videos descriptions as additional resources.
-
-And of course, you can follow on all the other usual social media suspects.
-Sometimes you'll get a sneak-peek of future animations on Twitter and Instagram!
 
 {{< section >}}
 
 ## Support
 
-{{< center >}}
-  {{< clickable link="https://www.youtube.com/3blue1brown" icon="fab fa-youtube" tooltip="YouTube" style="rounded" >}}
-  {{< clickable link="https://www.patreon.com/3blue1brown" icon="fab fa-patreon" tooltip="Patreon" style="rounded" >}}
-  {{< clickable link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" tooltip="Store" style="rounded" >}}
-{{< /center >}}
+For many YouTube channels, the main source of funding comes from video sponsorships and brand deals.
+For [various reasons](https://www.patreon.com/posts/going-sponsor-19586800), this model does not feel like a great fit for the lessons on 3blue1brown, and instead funding comes predominantly from the viewers or readers who choose to join as contributing members on Patreon.
+To learn about this model, membership benefits, future projects, and more visit the page below.
 
-3Blue1Brown is able to stay ad-free thanks to the generosity of viewers like you.
-Become a supporter on Patreon to get early access to videos and other rewards.
+{{< clickable link="https://www.patreon.com/3blue1brown" icon="fas fa-hand-holding-heart" text="3Blue1Brown on Patreon" >}}
 
-Checkout the store for cool 3Blue1Brown and math-themed merchandise, like plushies, shirts, and more.
-Patrons get a heft store discount!
+
+Alternatively, you can find various pieces of math-themed merchandise in the store below, such as socks with mathematical objects most naturally represented on a cylinder, ties and mugs which describe their own topology, and plushie pi creatures.
+
+{{< clickable link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Store" >}}
+
 
