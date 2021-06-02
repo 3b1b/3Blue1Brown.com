@@ -19,7 +19,7 @@ Inventing math is no joke, and there is a difference between being told why some
 
 In this chapter, I want to show how you might stumble into the core ideas of calculus by thinking deeply about one very specific bit of geometry: The area of a circle. Maybe you know that the area is $\pi$ multiplied by the radius $R$ squared, but why? Is there a way to think about where this formula comes from? 
 
-{{<figure image="figure-1.42.svg" video="figure-1.27-1.44.mp4" width="533.33">}}
+{{<figure image="figure-1.42.svg" video="figure-1.27-1.44.mp4" width="544">}}
 This figure illustrates the area of a circle with radius $R$ and the formula that calculates its area.
 {{</figure>}}
 
@@ -39,7 +39,7 @@ Math has a tendency to reward you when you respect symmetry, so among the divisi
 
 Focus on just one of those concentric rings, and let’s call its radius $r$, which will be some number between $0$ and $1$. If we can find a nice expression for the area of one such ring, and if we find a nice way to add them all up, it might lead us to an understanding of the full circle’s area.
 
-{{<figure image="figure-2.39.svg" width="640">}}
+{{<figure image="figure-2.39.svg" width="600">}}
 This figure highlights a band of area formed from dividing the circle into concentric rings. 
 {{</figure>}}
 
@@ -58,7 +58,7 @@ You should know that some people, perhaps even most people, would object to us u
 
 You might imagine straightening out this ring, into a shape whose width is the inner circumference of the ring, which is $2 \pi r$. This is the very definition of $\pi$, relating the circumference of a circle to its diameter, or radius. The thickness of this unwrapped shape would be $dr$.
 
-{{<figure image="figure-3.04.svg" width="960">}}
+{{<figure image="figure-3.04.svg" width="900">}}
 This figure illustrates a concentric ring with radius $r$ straightened out
 {{</figure>}}
 
@@ -66,13 +66,13 @@ If this unwrapped shape is meant to perfectly match the area of the ring, it wil
 
 The difference between the true area of the ring and the area of the rectangular approximation introduces some small error.
 
-{{<figure image="figure-3.17-3.41-rings.svg" width="960">}}
+{{<figure image="figure-3.17-3.41-rings.svg" width="900">}}
 This figure illustrates how approximating a ring’s area as a rectangle gets better and better for smaller choices of $dr$.
 {{</figure>}}
 
 However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [4].
 
-{{<figure image="figure-3.17-3.41-circles.svg" video="figure-3.35-3.53.mp4" width="960">}}
+{{<figure image="figure-3.17-3.41-circles.svg" video="figure-3.35-3.53.mp4" width="900">}}
 This figure illustrates small and smaller choices of $dr$ when dividing the circle into rings.
 {{</figure>}}
 
@@ -82,7 +82,7 @@ So you’ve broken up the area of this circle into all these rings, and you’re
 
 The size of that inner radius for the rings ranges from $0$ for the smallest ring up to $1$ for the largest, spaced out by whatever thickness we chose for $dr$, like $0.1$. Or rather, they range from $0$ up to $1 - dr$, but as $dr$ gets smaller that upper bound looks more and more like $1$.
 
-{{<figure image="figure-4.18.svg" video="figure-4.08-5.08.mp4" width="960">}}
+{{<figure image="figure-4.18.svg" video="figure-4.08-5.08.mp4" width="900">}}
 This figure shows how the area of the circle is equal to the sum of rings’ areas, where the area of each ring is given by $2 \pi \cdot r \cdot dr$.
 {{</figure>}}
 
@@ -90,7 +90,7 @@ To help draw what adding those areas looks like, think about adding together you
 
 Each rectangle has a thickness of $dr$, which is also the spacing between different values of $r$, which is why they fit so snuggly right together. The height of any rectangle above a value of $r$, is exactly $2 \pi \cdot r$. This is the circumference of the corresponding ring.
 
-{{<figure image="figure-4.14-4.57.svg" video="figure-4.08-5.08.mp4" width="960">}}
+{{<figure image="figure-4.14-4.57.svg" video="figure-4.08-5.08.mp4" width="900">}}
 This figure plots the radius of each of the circle’s rings on a numberline, where the spacing between each radius is equal to $dr$.
 {{</figure>}}
 
@@ -105,7 +105,7 @@ This figure plots the radius of each of the circle’s rings on a numberline, wh
 
 A nice way to think of this setup is to draw the graph of $2 \pi r$, which is this straight line with a slope of $2 \pi$. Each of these rectangles extends up to the point where it just barely touches the graph.
 
-{{<figure image="figure-5.35.svg" width="320" >}}
+{{<figure image="figure-5.35.svg" width="640" >}}
 The unraveled rings under the graph of $2 \pi r$.
 {{</figure>}}
 
@@ -113,13 +113,13 @@ Again, we’re being approximate here. Each of those rectangles only approximate
 
 Again, concretely adding up the areas of all these rectangles would be a royal pain, but that’s when you get a crazy thought: Maybe, just maybe, asking what this sum _approaches_ as the choice of $dr$ gets smaller will be easier than ever actually computing the sum for any specific value of $dr$.
 
-{{<figure image="figure-5.58,6.00,6.03.svg" video="figure-5.57-6.15.mp4" width="960" >}}
+{{<figure image="figure-5.58,6.00,6.03.svg" video="figure-5.57-6.15.mp4" width="840" >}}
 The unraveled rings under the graph of $2 \pi r$.
 {{</figure>}}
 
 This has a very beautiful meaning when looking at the sum of the areas of all these rectangles. For smaller and smaller choices of $dr$, notice how all their area in aggregate simply looks like the area under this graph. The smaller this value $dr$ is, the closer that aggregate area of the rectangles is to being precisely the area under the graph.
 
-{{<figure image="figure-6.34.svg" width="320">}}{{</figure>}}
+{{<figure image="figure-6.34.svg" width="640">}}{{</figure>}}
 
 This portion under the graph is a triangle, whose base is $1$, and whose height is $2 \pi \cdot 1$. So the area, which is ½ base times height, comes out to be $ \pi \cdot 1^2$. 
 
@@ -133,7 +133,7 @@ $$
 
 Or, if the radius of our original circle had been some other value, capital $R$, that area would be $R \cdot 2 \pi R$.
 
-{{<figure image="figure-6.40.svg" width="320">}}{{</figure>}}
+{{<figure image="figure-6.40.svg" width="640">}}{{</figure>}}
 
 $$
 \begin{aligned}
@@ -174,7 +174,7 @@ I’ll talk through the details of examples like this later in the series, but a
 This happens whenever the quantities that you’re adding up, the ones whose sum approximates your original problem, can be thought of as the area of many thin rectangles sitting side-by-side like this. If finer and finer approximations of your original problem correspond to thinner and thinner rectangles, the original problem will be equivalent to finding the area under some graph.
 
 {{<question
-  question="In the same way velocity measures the change in position over the change in time, acceleration measures the change in velocity over the change in time. Do you think that the current velocity of a car can be modeled as the area under the graph of acceleration?"
+  question="In the same way velocity measures the change in position over the change in time, acceleration measures the change in velocity over the change in time. Can the velocity of a car be modeled as the area under the graph of acceleration?"
   choice1="True"
   choice2="False"
   correct=1
@@ -293,9 +293,9 @@ You’ll see how this works in the following chapters.  In fact, without further
 
 ## Footnotes
 
-[1] The example in the original video uses a circle of radius $3$ as an example while this article uses a circle of radius $1$.
+[1] This article uses an example circle of radius $1$ where the original videa uses a circle of radius $3$.
 
-[2] You may notice that the other division of the circle that respects symmetry is dividing the circle into slices, like a pizza. Challenge question: How could use this advantage to provide an alternate argument for the area of the circle?
+[2] You may notice that the other division of the circle that respects symmetry is dividing the circle into slices, like a pizza. Challenge question: Can you use this to provide an alternative argument for the are of circle formula?
 
 [3] You might hypothesize that the appropriate shape would be a trapezoid, but how would you be sure that those small diagonal edges are straight lines?  It's not hard to intuitively justify but to make it rigorous you end up running into awkward questions about what we even mean by "area" in the first place.
 
