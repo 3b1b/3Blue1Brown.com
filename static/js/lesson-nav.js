@@ -4,7 +4,7 @@ const toggleLessonNav = (button) => {
   if (lessonNav.dataset.open === "true") {
     lessonNav.dataset.open = false;
     button.dataset.tooltip = "Open lesson list";
-    button.querySelector("i").className = "fas fa-bars";
+    button.querySelector("i").className = "fas fa-ellipsis-h";
   } else {
     lessonNav.dataset.open = true;
     button.dataset.tooltip = "Close lesson list";
