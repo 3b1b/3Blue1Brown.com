@@ -34,12 +34,15 @@ big-header: true
 
 ## Support
 
-These lessons are funded primarily by viewers and readers who join as contributing members on Patreon.
-To learn about this model, membership benefits, future projects, and more (or if you just want to find the secret video and other Easter eggs) visit the page below.
+For many YouTube channels, the main source of funding comes from video sponsorships and brand deals.
+For [various reasons](https://www.patreon.com/posts/going-sponsor-19586800), this model does not feel like a great fit for the lessons on 3blue1brown, and instead funding comes predominantly from the viewers or readers who choose to join as contributing members on Patreon.
+To learn about this model, membership benefits, future projects, and more visit the page below.
 
 {{< clickable link="https://www.patreon.com/3blue1brown" icon="fas fa-hand-holding-heart" text="3Blue1Brown on Patreon" >}}
 
 
-Checkout the store for cool 3Blue1Brown and math-themed merchandise, like plushies, shirts, and more.
-Patrons get a hefty store discount.
+Alternatively, you can find various pieces of math-themed merchandise in the store below, such as socks with mathematical objects most naturally represented on a cylinder, ties and mugs which describe their own topology, and plushie pie creatures.
+
+{{< clickable link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Store" >}}
+
 
