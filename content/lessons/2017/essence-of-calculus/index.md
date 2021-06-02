@@ -25,7 +25,7 @@ This figure illustrates the area of a circle with radius $R$ and the formula tha
 
 Contemplating this problem and leaving yourself open to generalizing the tools you use along the way can actually lead you to a glimpse of three big ideas in calculus: Integrals, derivatives, and the fact that they are opposites.
 
-But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ [footnote 1]. If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
+But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ [1]. If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
 
 There are many ways you might go about this, each of which may lead to its own interesting line of reasoning.
 
@@ -33,7 +33,7 @@ There are many ways you might go about this, each of which may lead to its own i
 This figure illustrates different ways to divide the area of the circle with a radius $1$.
 {{</figure>}}
 
-Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [footnote 2].
+Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [2].
 
 ## Unraveling rings
 
@@ -62,7 +62,7 @@ You might imagine straightening out this ring, into a shape whose width is the i
 This figure illustrates a concentric ring with radius $r$ straightened out
 {{</figure>}}
 
-If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [footnote 3]. However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
+If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [3]. However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
 
 The difference between the true area of the ring and the area of the rectangular approximation introduces some small error.
 
@@ -70,7 +70,7 @@ The difference between the true area of the ring and the area of the rectangular
 This figure illustrates how approximating a ring’s area as a rectangle gets better and better for smaller choices of $dr$.
 {{</figure>}}
 
-However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong[Footnote 4].
+However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [4].
 
 {{<figure image="figure-3.17-3.41-circles.svg" video="figure-3.35-3.53.mp4" width="960">}}
 This figure illustrates small and smaller choices of $dr$ when dividing the circle into rings.
@@ -82,7 +82,7 @@ So you’ve broken up the area of this circle into all these rings, and you’re
 
 The size of that inner radius for the rings ranges from $0$ for the smallest ring up to $1$ for the largest, spaced out by whatever thickness we chose for $dr$, like $0.1$. Or rather, they range from $0$ up to $1 - dr$, but as $dr$ gets smaller that upper bound looks more and more like $1$.
 
-{{<figure image="figure-4.18.svg" width="960">}}
+{{<figure image="figure-4.18.svg" video="figure-4.08-5.08.mp4" width="960">}}
 This figure shows how the area of the circle is equal to the sum of rings’ areas, where the area of each ring is given by $2 \pi \cdot r \cdot dr$.
 {{</figure>}}
 
@@ -90,7 +90,7 @@ To help draw what adding those areas looks like, think about adding together you
 
 Each rectangle has a thickness of $dr$, which is also the spacing between different values of $r$, which is why they fit so snuggly right together. The height of any rectangle above a value of $r$, is exactly $2 \pi \cdot r$. This is the circumference of the corresponding ring.
 
-{{<figure image="figure-4.14-4.57.svg" width="960">}}
+{{<figure image="figure-4.14-4.57.svg" video="figure-4.08-5.08.mp4" width="960">}}
 This figure plots the radius of each of the circle’s rings on a numberline, where the spacing between each radius is equal to $dr$.
 {{</figure>}}
 
@@ -113,7 +113,7 @@ Again, we’re being approximate here. Each of those rectangles only approximate
 
 Again, concretely adding up the areas of all these rectangles would be a royal pain, but that’s when you get a crazy thought: Maybe, just maybe, asking what this sum _approaches_ as the choice of $dr$ gets smaller will be easier than ever actually computing the sum for any specific value of $dr$.
 
-{{<figure image="figure-5.58,6.00,6.03.svg" width="960" >}}
+{{<figure image="figure-5.58,6.00,6.03.svg" video="figure-5.57-6.15.mp4" width="960" >}}
 The unraveled rings under the graph of $2 \pi r$.
 {{</figure>}}
 
@@ -163,27 +163,22 @@ So on the one hand the sum of the areas of these slices approaches the area of t
 
 A lot of other hard problems in math and science can be broken down and approximated as the sum of many small quantities. For example if you want to figure out how far a car has gone based on its velocity at each point in time, you might range through many many points in time, and multiply the velocity at each time $t$ by some tiny change in time $dt$ to get the corresponding bit of distance traveled in the little time.
 
-{{<figure image="figure-8.47.png" >}}
+{{<figure image="figure-8.47.png" video="figure-8.49-8.55.mp4">}}
 {{</figure>}}
 
 I’ll talk through the details of examples like this later in the series, but at a high level, many of these types of problems turn out to be equivalent to finding the area under some graph, in much the same way that our circle problem did.
 
-{{<figure image="figure-9.08.png" >}}
+{{<figure image="figure-9.08.png" video="figure-8.56-9.41.mp4">}}
 {{</figure>}}
 
 This happens whenever the quantities that you’re adding up, the ones whose sum approximates your original problem, can be thought of as the area of many thin rectangles sitting side-by-side like this. If finer and finer approximations of your original problem correspond to thinner and thinner rectangles, the original problem will be equivalent to finding the area under some graph.
 
-<!--
-
-TODO: Insert Non-Geometric Comprehensive question
-
-  “I was just trying to think of some other example that starts to convey what integration is all about; but maybe something quick and non-geometric would actually better serve the function of demonstrating why we might care about areas under graphs.
-
-  It could even be something like the relation between a graph of acceleration, and total change in velocity, which would mirror the example alluded to above, and therefore be more of a quick comprehension check than a flow-interrupting new topic.”
-
-  Alternative: Maybe something about how the total change in potential energy of an object looks like adding up F*dx where F is the force and dx is a little displacement.
-
--->
+{{<question
+  question="In the same way velocity measures the change in position over the change in time, acceleration measures the change in velocity over the change in time. Do you think that the current velocity of a car can be modeled as the area under the graph of acceleration?"
+  choice1="True"
+  choice2="False"
+  correct=1
+>}}
 
 Again, notice that the purpose of the small approximations is not that we intend to use them directly, per se, but that the two separate ways to think about what these approximations approach lets us reframe the question of how far the car has traveled into the question of finding the area under a certain curve.
 
@@ -191,7 +186,7 @@ We’ll see this idea in more detail later in the series, so don’t worry if it
 
 We were lucky in our circle problem that the relevant area turned out to be a triangle, but imagine instead something like a parabola, the graph of the function $x^2$. What’s the area under this curve, say between the values of $x=0$ and $x=3$? It’s hard to think about, isn’t it?
 
-{{<figure image="figure-10.17.png" >}}{{</figure>}}
+{{<figure image="figure-10.17.png" video="figure-10.01-10.09.mp4" >}}{{</figure>}}
 
 Let me frame that question a different way: Fix that left endpoint in place at $0$, and let that right endpoint vary: Can you find a function, $A(x)$, that gives you the area under this parabola between $0$ and $x$?
 
@@ -210,13 +205,13 @@ Again, the reason we care about this kind of question is not just for the sake o
 
 ## Derivatives
 
-Finding this area, this integral function, is genuinely hard. And whenever you come across a genuinely hard question in math, a good policy is to not try too hard to get to the answer directly, since you often just end up banging your head against a wall.
+Finding the area represented by this integral function is genuinely hard. And whenever you come across a genuinely hard question in math, a good policy is to not try too hard to get to the answer directly, since you often just end up banging your head against a wall.
 
-Instead, play around with this idea. Build up some familiarity with the interplay between the function defining a graph, in this case $x^2$, and the function giving the area, our unknown $A(x)$, and see if there are any other questions you can ask about the setup.
+Instead, play around with this idea. Build up some familiarity with the interplay between the function defining a graph, in this case $x^2$, and the function giving the area, our unknown function $A(x)$, and see if there are any other questions you can ask about the setup.
 
 In that playful spirit, if you’re lucky, here’s something you might notice. When you slightly increase $x$ by some tiny nudge, $dx$, look at the resulting change in area, represented by this sliver which I’m going to call $dA$, for a tiny difference in area.
 
-{{<figure image="figure-12.08.png" >}}{{</figure>}}
+{{<figure image="figure-12.08.png" video="*11.49-12.19.mp4" >}}{{</figure>}}
 
 That sliver can be pretty well approximated with a rectangle, one whose height is $x^2$ and whose width is $dx$. Well, for larger choices of $dx$ the approximation may not be that good, but for smaller and smaller choices of $dx$ that sliver will actually look more and more like a rectangle.
 
@@ -239,7 +234,7 @@ This says the ratio of a tiny change in $A$ to the tiny change in $x$ that cause
 {{<figure image="figure-13.08.png" >}}
 {{</figure>}}
 
-For example, think about two nearby inputs, like $3$ and $3.001$.  The change to $x$, then, is $dx = 0.001$.  The change $dA$ would be the difference between the mystery function evaluated at $3.001$ and evaluated $3$.  Even though we don’t know what that mystery function is, we do know something about this change, namely that this change divided by $dx = 0.001$ is approximately $3^2$
+For example, think about two nearby inputs, like $3$ and $3.001$.  The change to $x$, then, is $dx = 0.001$.  The change $dA$ would be the difference between the mystery function evaluated at $3.001$ and evaluated $3$.  Even though we don’t know what that mystery function is, we do know something about this change<!--TODO: Reference formula number from above here-->, namely that this change divided by $dx = 0.001$ is approximately $3^2$.
 
 $$
 \frac{A(3.001)-A(3)}{0.001} \approx 3^{2}
@@ -252,25 +247,20 @@ And this relationship between tiny changes to the mystery function and the value
 
 That doesn’t immediately tell us how to find $A(x)$, but it provides a very strong clue to work with. And there’s nothing special about the graph $x^2$ here. For any function $f(x)$, if we call the area under its graph $A(x)$, then this area function has the property that $dA/dx \approx f(x)$, a slight nudge to the output of $A$ divided by a slight nudge to the input that caused it is about equal to the height of the graph at that point. Again, that’s an approximation that gets better and better for smaller choices of $dx$.
 
-{{<figure image="figure-14.04.png" >}}
-This figure illustrates the property of $dA/dx$ for a more general function $f(x)$.
+{{<figure image="figure-14.17.png" >}}
+This figure illustrates the property of $\frac{dA}{dx}$ for a more general function $f(x)$.
 {{</figure>}}
 
 Here we’re stumbling onto another big idea from calculus: Derivatives. This ratio $\frac{dA}{dx}$ is called the “derivative of $A$”. Or, more technically, the derivative is whatever value this ratio approaches as $dx$ gets smaller and smaller.
-
-{{<figure image="figure-14.17.png" >}}
-{{</figure>}}
 
 You and I will dive more deeply into the idea of a derivative next chapter, but loosely speaking it’s a measure of how sensitive a function is to small changes in its input. You’ll see as the series goes on that there are many different ways to visualize a derivative, depending on what function you’re looking at and how you think about tiny nudges to its output.
 
 ## Fundamental Theorem
 
-We care about derivatives because they help us solve problems, and in our little exploration here we have a slight glimpse of one way they’re used: They are the key to solving integral problems; problems that require finding an area under a curve.
+We care about derivatives because they help us solve problems, and in our little exploration here we have a slight glimpse of one way they’re used: They are the key to solving integral problems; problems that require finding an area under a curve. When you gain enough familiarity with computing derivatives, you’ll be able to look at a situation like the one below, where you don’t know what a function is, but you do know that it’s derivative should be $x^2$, and from that reverse engineer what the function must be.
 
 {{<figure image="figure-15.10.png" >}}
 {{</figure>}}
-
-When you gain enough familiarity with computing derivatives, you’ll be able to look at a situation like this, where you don’t know what a function is, but you do know that it’s derivative should be $x^2$, and from that reverse engineer what the function must be.
 
 $$
 \begin{aligned}
@@ -281,8 +271,8 @@ $$
 
 This back and forth between integrals and derivatives, where the derivative of the function for an area under a graph gives you back the function defining the graph itself, is called the *fundamental theorem of calculus*. It ties together the two big ideas of integrals and derivatives, and shows how in some sense, each one is the inverse of the other.
 
-{{<figure image="figure-15.10.png" >}}
-<!-- TODO: replace with general f(x) -->
+{{<figure image="figure-14.17.png" >}}
+This figure illustrates the property of $\frac{dA}{dx}$ for a more general function $f(x)$.
 {{</figure>}}
 
 All of this is only a high level view. What follows in this series are the details for both these big ideas, and more. And let me reiterate, at all points in this series I want you to feel like you could have invented calculus yourself, that if you drew the right pictures and played with each idea in the right way, all of the formulas, rules, and constructs could pop out quite naturally.
@@ -311,6 +301,6 @@ You’ll see how this works in the following chapters.  In fact, without further
 
 The kind of rectangular approximations this article is leading to, and the general tools like integration that emerge from it, end up being one path to rigorously defining what we mean by area.
 
-[4] The astute among you may worry about whether the errors in our approximations accumulate too much. You might say “Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot \dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn’t remain significant as $dr$ approaches $0$?”
+[4] The astute among you may worry about whether the errors in our approximations accumulate too much. You might say “Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn’t remain significant as $dr$ approaches $0$?”
 
-If you wanted to be more precise and rigorous, you would show that the size of this error for each ring is bounded by some constant times $(dr)^2$, while the total number of rings is about $\frac{R}{dr}$, so the total size of the aggregate error is bounded by some constant times $\frac{R}{dr} (dr)^2 = R \cdot dr$. So as $dr$ goes to zero, the full aggregate error will indeed go to zero with it.]
+If you wanted to be more precise and rigorous, you would show that the size of this error for each ring is bounded by some constant times $(dr)^2$, while the total number of rings is about $\frac{R}{dr}$, so the total size of the aggregate error is bounded by some constant times $\frac{R}{dr} (dr)^2 = R \cdot dr$. So as $dr$ goes to zero, the full aggregate error will indeed go to zero with it.
