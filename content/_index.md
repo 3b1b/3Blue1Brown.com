@@ -41,7 +41,7 @@ To learn about this model, membership benefits, future projects, and more visit 
 {{< clickable link="https://www.patreon.com/3blue1brown" icon="fas fa-hand-holding-heart" text="3Blue1Brown on Patreon" >}}
 
 
-Alternatively, you can find various pieces of math-themed merchandise in the store below, such as socks with mathematical objects most naturally represented on a cylinder, ties and mugs which describe their own topology, and plushie pie creatures.
+Alternatively, you can find various pieces of math-themed merchandise in the store below, such as socks with mathematical objects most naturally represented on a cylinder, ties and mugs which describe their own topology, and plushie pi creatures.
 
 {{< clickable link="https://store.dftba.com/collections/3blue1brown" icon="fas fa-store" text="Store" >}}
 
