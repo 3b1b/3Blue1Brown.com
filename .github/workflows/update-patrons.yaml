@@ -19,18 +19,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
-      - name: Go to script directory
-        run: cd scripts/get-patrons
       - name: Install packages
         run: yarn install
-      - name: Run bot
+        working-directory: ./scripts/get-patrons
+      - name: Run script
         run: yarn start
-      - name: Go back to root
-        run: cd ../..
+        working-directory: ./scripts/get-patrons
       - name: Commit updated list of patrons
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: "data/patrons.yaml"
+          file_pattern: "./data/patrons.yaml"
           commit_message: "Update patron list"
           push_options: --force
           branch: main
