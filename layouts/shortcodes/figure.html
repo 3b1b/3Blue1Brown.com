@@ -54,7 +54,7 @@
       
     {{ with $context.Inner }}
       <figcaption class="figure_caption">
-        {{ . }}
+        {{ . | markdownify }}
       </figcaption>
     {{ end }}
   </figure>

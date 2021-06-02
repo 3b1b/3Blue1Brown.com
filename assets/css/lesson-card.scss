@@ -9,13 +9,18 @@ $phone: 500px;
   margin-bottom: 20px;
 }
 
+.lesson_link + .lesson_card {
+  display: none;
+}
+
 .lesson_card {
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 100%;
   padding: 20px;
-  color: $black;
+  color: inherit;
+  line-height: normal;
   text-decoration: none;
   text-align: left;
   transition: background $fast;
