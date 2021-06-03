@@ -12,9 +12,9 @@ draft: true
 
 ## Cryptographic hash functions
 
-The [last post](/lessons/bitcoin/) touched on the idea of a cryptographic hash function. These are functions which take in an input of arbitrary length, and return a fixed-length output, but with the added condition that the inverse function is computationally infeasible.
+The {{< lesson-link text="last post" link="bitcoin" >}} touched on the idea of a cryptographic hash function. These are functions which take in an input of arbitrary length, and return a fixed-length output, but with the added condition that the inverse function is computationally infeasible.
 
-For example, these cryptographic hash functions are used to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [[1](#footnotes)]
+For example, these cryptographic hash functions are used to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
 
 These hash functions are ubiquitous throughout cryptography, from digital signatures to proofs of work and numerous other applications. They distill a core theme of cryptography, which is to find tasks which are easy in one direction but hard in another.
 
@@ -24,17 +24,17 @@ For example, the function SHA256, which takes in inputs of arbitrary length and 
 
 If a hash function is considered cryptographically secure, it means that to find an input which produces a particular output, there is no better method than to repeatedly guess and check.
 
-The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [[2](#footnotes)]
+The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [ [2](/lessons/256-bit-security/#footnotes)]
 
 {{< dropdown title="Code Example" >}}
 
-```javascript
+```python
 key = random.randrange(LIMIT)
 while random.randrange(LIMIT) != key:
 	guesses += 1
 ```
 
-On average, the `guesses` variable will equal the `LIMIT` variable when the program terminates. Inverting a hash is mathematically equivalent to rolling a $2^{256}$ sided die until it produces the predetermined number. Consider how many times you need to roll your 6 sided die until you roll a six, on average. Other attacks are more efficient, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) which only requires $2^{128}$ guesses on average. [[3](#footnotes)]
+On average, the `guesses` variable will equal the `LIMIT` variable when the program terminates. Inverting a hash is mathematically equivalent to rolling a $2^{256}$ sided die until it produces the predetermined number. Consider how many times you need to roll your 6 sided die until you roll a six, on average. Other attacks are more efficient. [ [3](/lessons/256-bit-security/#footnotes) ]
 
 {{< /dropdown >}}
 
@@ -146,8 +146,9 @@ These are pieces of hardware specifically designed for bitcoin mining and nothin
 
 ## Footnotes
 
-[1] Once an attacker breaches a database, they only have the hash of the user's password. 
+[1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions) 
 
-[2]
+[2] This is a fun mathematical exercise if you've never seen it before. Let $X$ be the number of rolls  it takes until you roll a 1. Find $P(X = 1)$, then $P(X = 2)$, and so on. Then for the expected value of $X$, compute $$\sum_{k = 1}^\infty k \cdot P(X = k)$$. [↩](#cryptographic-hash-functions) 
 
-[3]
+[3] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions) 
+
