@@ -69,10 +69,9 @@ There are about 7.9 billion people on Earth, so imagine giving a little over hal
   choice3="$2^{96}$"
   choice4="$2^{128}$"
   correct=3
+  explanation="There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $2^{32}$ GPU-packed servers which can each run $2^{32}$ hashes per second. $2^{32}\times 2^{32}\times 2^{32}=2^{96}$."
 
 >}}
-
-Explanation: There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $2^{32}$ GPU-packed servers which can each run $2^{32}$ hashes per second. $2^{32}\times 2^{32}\times 2^{32}=2^{96}$
 
 #### **4 Billion Earths**
 
@@ -115,10 +114,9 @@ So even if you were to have your GPU-packed KiloGoogle-per-person multi-planetar
   choice3="$6\times 10^{60}$"
   choice4="$7\times 10^{70}$"
   correct=1
+  explanation="A GigaGalactic Super Computer takes 507 billion ($5.07\times 10^{11}$) years to get a success rate of 1 in 4 billion. Since a GGSC is $2^{96}$ times more powerful than a KiloGoogle, a KiloGoogle will reach a success rate of 1 in 4 billion in $5.07\times 10^{11}\times 2^{96}\approx 4\times 10^{40}$ years. Slightly longer than waiting for cookies to cool from the oven (both seem like forever though)!"
 
 >}}
-
-Explanation: A GigaGalactic Super Computer takes 507 billion ($5.07\times 10^{11}$) years to get a success rate of 1 in 4 billion. Since a GGSC is $2^{96}$ times more powerful than a KiloGoogle, a KiloGoogle will reach a success rate of 1 in 4 billion in $5.07\times 10^{11}\times 2^{96}\approx 4\times 10^{40}$ years. Slightly longer than waiting for cookies to cool from the oven (both seem like forever though)!
 
 {{< section >}} 
 
@@ -131,3 +129,4 @@ This is not because there are actually billions of GPU packed machines out there
 {{< pi-creature emotion="miner" >}}
 
 These are pieces of hardware specifically designed for bitcoin mining and nothing else. It turns out that there are a lot of efficiency gains to be had when you throw out the need for general computation, and design your integrated circuits for a single, specific task.
+
