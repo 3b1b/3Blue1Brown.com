@@ -14,7 +14,7 @@ draft: true
 
 The [last post](/lessons/bitcoin/) touched on the idea of a cryptographic hash function. These are functions which take in an input of arbitrary length, and return a fixed-length output, but with the added condition that the inverse function is computationally infeasible.
 
-For example, these cryptographic hash functions are used to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [1]
+For example, these cryptographic hash functions are used to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [[1](#footnotes)]
 
 These hash functions are ubiquitous throughout cryptography, from digital signatures to proofs of work and numerous other applications. They distill a core theme of cryptography, which is to find tasks which are easy in one direction but hard in another.
 
@@ -24,7 +24,19 @@ For example, the function SHA256, which takes in inputs of arbitrary length and 
 
 If a hash function is considered cryptographically secure, it means that to find an input which produces a particular output, there is no better method than to repeatedly guess and check.
 
-The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [2]
+The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [[2](#footnotes)]
+
+{{< dropdown title="Code Example" >}}
+
+```javascript
+key = random.randrange(LIMIT)
+while random.randrange(LIMIT) != key:
+	guesses += 1
+```
+
+On average, the `guesses` variable will equal the `LIMIT` variable when the program terminates. Inverting a hash is mathematically equivalent to rolling a $2^{256}$ sided die until it produces the predetermined number. Consider how many times you need to roll your 6 sided die until you roll a six, on average. Other attacks are more efficient, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) which only requires $2^{128}$ guesses on average. [[3](#footnotes)]
+
+{{< /dropdown >}}
 
 But here, there are not $6$ possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash. But how difficult is this, exactly? $2^{256}$ is a number so far removed from anything we ever deal with that it can be hard to appreciate its size. But let’s give it a try.
 
@@ -132,6 +144,10 @@ This is not because there are actually billions of GPU packed machines out there
 
 These are pieces of hardware specifically designed for bitcoin mining and nothing else. It turns out that there are a lot of efficiency gains to be had when you throw out the need for general computation, and design your integrated circuits for a single, specific task.
 
-[1]
+## Footnotes
+
+[1] Once an attacker breaches a database, they only have the hash of the user's password. 
 
 [2]
+
+[3]
