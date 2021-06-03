@@ -19,7 +19,7 @@ Inventing math is no joke, and there is a difference between being told why some
 
 In this chapter, I want to show how you might stumble into the core ideas of calculus by thinking deeply about one very specific bit of geometry: The area of a circle. Maybe you know that the area is $\pi$ multiplied by the radius $R$ squared, but why? Is there a way to think about where this formula comes from? 
 
-{{<figure image="figure-1.42.svg" video="figure-1.27-1.44.mp4" width="544">}}
+{{<figure image="figure-1.42.svg" width="544">}}
 This figure illustrates the area of a circle with radius $R$ and the formula that calculates its area.
 {{</figure>}}
 
@@ -29,7 +29,7 @@ But the story of finding the area starts more simply: Just you, and a circle. To
 
 There are many ways you might go about this, each of which may lead to its own interesting line of reasoning.
 
-{{<figure image="figure-2.04-2.21.svg" video="figure-2.02-2.31.mp4" width="544">}}
+{{<figure image="figure-2.04-2.21.svg" width="544">}}
 This figure illustrates different ways to divide the area of the circle with a radius $1$.
 {{</figure>}}
 
@@ -72,7 +72,7 @@ This figure illustrates how approximating a ring’s area as a rectangle gets be
 
 However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [4].
 
-{{<figure image="figure-3.17-3.41-circles.svg" video="figure-3.35-3.53.mp4" width="900">}}
+{{<figure image="figure-3.17-3.41-circles.svg" width="900">}}
 This figure illustrates small and smaller choices of $dr$ when dividing the circle into rings.
 {{</figure>}}
 
@@ -82,7 +82,7 @@ So you’ve broken up the area of this circle into all these rings, and you’re
 
 The size of that inner radius for the rings ranges from $0$ for the smallest ring up to $1$ for the largest, spaced out by whatever thickness we chose for $dr$, like $0.1$. Or rather, they range from $0$ up to $1 - dr$, but as $dr$ gets smaller that upper bound looks more and more like $1$.
 
-{{<figure image="figure-4.18.svg" video="figure-4.08-5.08.mp4" width="900">}}
+{{<figure image="figure-4.18.svg" video="figure-4.08-4.18.mp4" width="900">}}
 This figure shows how the area of the circle is equal to the sum of rings’ areas, where the area of each ring is given by $2 \pi \cdot r \cdot dr$.
 {{</figure>}}
 
@@ -90,7 +90,7 @@ To help draw what adding those areas looks like, think about adding together you
 
 Each rectangle has a thickness of $dr$, which is also the spacing between different values of $r$, which is why they fit so snuggly right together. The height of any rectangle above a value of $r$, is exactly $2 \pi \cdot r$. This is the circumference of the corresponding ring.
 
-{{<figure image="figure-4.14-4.57.svg" video="figure-4.08-5.08.mp4" width="900">}}
+{{<figure image="figure-4.14-4.57.svg" video="figure-4.18-5.08-trimmed.mp4" width="900">}}
 This figure plots the radius of each of the circle’s rings on a numberline, where the spacing between each radius is equal to $dr$.
 {{</figure>}}
 
@@ -113,7 +113,7 @@ Again, we’re being approximate here. Each of those rectangles only approximate
 
 Again, concretely adding up the areas of all these rectangles would be a royal pain, but that’s when you get a crazy thought: Maybe, just maybe, asking what this sum _approaches_ as the choice of $dr$ gets smaller will be easier than ever actually computing the sum for any specific value of $dr$.
 
-{{<figure image="figure-5.58,6.00,6.03.svg" video="figure-5.57-6.15.mp4" width="840" >}}
+{{<figure image="figure-5.58,6.00,6.03.svg" width="840" >}}
 The unraveled rings under the graph of $2 \pi r$.
 {{</figure>}}
 
@@ -163,13 +163,10 @@ So on the one hand the sum of the areas of these slices approaches the area of t
 
 A lot of other hard problems in math and science can be broken down and approximated as the sum of many small quantities. For example if you want to figure out how far a car has gone based on its velocity at each point in time, you might range through many many points in time, and multiply the velocity at each time $t$ by some tiny change in time $dt$ to get the corresponding bit of distance traveled in the little time.
 
-{{<figure image="figure-8.47.png" video="figure-8.49-8.55.mp4">}}
+{{<figure image="figure-9.08.png" video="figure-8.49-9.08-trimmed.mp4">}}
 {{</figure>}}
 
 I’ll talk through the details of examples like this later in the series, but at a high level, many of these types of problems turn out to be equivalent to finding the area under some graph, in much the same way that our circle problem did.
-
-{{<figure image="figure-9.08.png" video="figure-8.56-9.41.mp4">}}
-{{</figure>}}
 
 This happens whenever the quantities that you’re adding up, the ones whose sum approximates your original problem, can be thought of as the area of many thin rectangles sitting side-by-side like this. If finer and finer approximations of your original problem correspond to thinner and thinner rectangles, the original problem will be equivalent to finding the area under some graph.
 
@@ -211,7 +208,7 @@ Instead, play around with this idea. Build up some familiarity with the interpla
 
 In that playful spirit, if you’re lucky, here’s something you might notice. When you slightly increase $x$ by some tiny nudge, $dx$, look at the resulting change in area, represented by this sliver which I’m going to call $dA$, for a tiny difference in area.
 
-{{<figure image="figure-12.08.png" video="*11.49-12.19.mp4" >}}{{</figure>}}
+{{<figure image="figure-12.08.png" video="figure-11.49-12.19.mp4" >}}{{</figure>}}
 
 That sliver can be pretty well approximated with a rectangle, one whose height is $x^2$ and whose width is $dx$. Well, for larger choices of $dx$ the approximation may not be that good, but for smaller and smaller choices of $dx$ that sliver will actually look more and more like a rectangle.
 

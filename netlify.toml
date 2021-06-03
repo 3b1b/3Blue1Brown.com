@@ -15,7 +15,5 @@
   command = "hugo --environment preview"
 
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.83.1"
   HUGO_ENV = "development"
   HUGO_ENABLEGITINFO = "true"
-  GIT_LFS_ENABLED = "true"
