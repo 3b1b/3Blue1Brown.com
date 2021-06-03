@@ -6,7 +6,7 @@ video: S9JGmA5_unY
 source: _2017/256.py
 credits:
 - Lesson by Grant Sanderson
-- Translated to blog format by River Way
+- Blog Adaption by River Way
 draft: true
 ---
 
@@ -20,7 +20,9 @@ These hash functions are ubiquitous throughout cryptography, from digital signat
 
 For example, the function SHA256, which takes in inputs of arbitrary length and outputs 256 bits, is believed to be cryptographically secure. This means if you want to find an input which produces a particular 256-bit output, there is no more efficient method than to simply guess and check.
 
-{{< figure image="guesses.png" caption="If a hash function is considered cryptographically secure, it means that to find an input which produces a particular output, there is no better method than to repeatedly guess and check." width="60%" />}}
+{{< figure image="guesses.png" width="60%" />}}
+
+If a hash function is considered cryptographically secure, it means that to find an input which produces a particular output, there is no better method than to repeatedly guess and check.
 
 The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [2]
 
