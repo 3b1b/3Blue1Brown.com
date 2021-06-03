@@ -7,7 +7,6 @@ source: _2017/256.py
 credits:
 - Lesson by Grant Sanderson
 - Blog Adaption by River Way
-draft: true
 ---
 
 ## What is 256 bit security?
