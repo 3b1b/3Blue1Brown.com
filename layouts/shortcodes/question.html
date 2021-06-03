@@ -38,9 +38,16 @@
     </div>
     
     <div class="question_result question_correct">
+	<div>
       <span>Correct!</span>
       {{ partial "clickable" (dict "text" "Reset" "onclick" "resetAnswer(this)")
       }}
+	</div>
+    {{ if $params.explanation }}
+		<section>
+      <div>{{$params.explanation}}</div>
+    </section>
+    {{ end }}
     </div>
   </div>
 {{ end }}

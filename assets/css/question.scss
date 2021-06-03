@@ -104,7 +104,7 @@
 
   &[data-reveal="true"] {
     .question_correct {
-      display: flex;
+      display: block;
     }
 
     .question_choice[data-correct="true"] {
