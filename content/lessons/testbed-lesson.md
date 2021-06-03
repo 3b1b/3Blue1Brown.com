@@ -134,7 +134,18 @@ Why did the chicken cross the Mobius strip?
   choice3="Cannot be determined"
   choice4="A superposition of all the answers above"
   correct=4
+  explanation="Superposition is pretty neat :)"
 >}}
+
+<!-- dropdown component -->
+
+Below me is a dropdown.
+
+{{< dropdown title="Click on me!" >}}
+
+Woah, some hidden content! Click me again to hide.
+
+{{< /dropdown >}}
 
 <!-- pi creatures -->
 
