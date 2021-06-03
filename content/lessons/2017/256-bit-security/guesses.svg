@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1920 2164.47" style="enable-background:new 0 0 1920 2164.47;" xml:space="preserve">
+<style type="text/css">
+	.st0{stroke:#000000;stroke-miterlimit:10;}
+	.st1{fill:#FFFFFF;}
+	.st2{font-family:'TimesNewRomanPSMT';}
+	.st3{font-size:62.8852px;}
+	.st4{fill:#29B7EB;}
+	.st5{font-size:39.0436px;}
+	.st6{fill:#FFFFFF;stroke:#FFFFFF;stroke-width:12;stroke-miterlimit:10;}
+	.st7{font-family:'MyriadPro-Regular';}
+	.st8{font-size:12px;}
+	.st9{font-family:'Microsoft-Himalaya';}
+	.st10{font-size:817.9744px;}
+	.st11{fill:#EEE824;}
+	.st12{font-size:407.2168px;}
+	.st13{fill:#2EC1D8;}
+	.st14{fill:none;stroke:#ED1C24;stroke-width:8;stroke-miterlimit:10;}
+	.st15{fill:#ED1C24;}
+	.st16{fill:#EE3432;}
+	.st17{font-size:53.1109px;}
+	.st18{font-size:329.3745px;}
+	.st19{fill:#4BB749;}
+	.st20{fill:#F8EC28;}
+</style>
+<rect class="st0" width="1920" height="2166.88"/>
+<text transform="matrix(0.9196 0 0 1 448.8674 222.0362)"><tspan x="0" y="0" class="st1 st2 st3">SHA256(”</tspan><tspan x="268.98" y="0" class="st4 st2 st3">Guess #1</tspan><tspan x="501.3" y="0" class="st1 st2 st3">”) = </tspan></text>
+<text transform="matrix(0.9196 0 0 1 1024.1318 50.5571)"><tspan x="0" y="0" class="st1 st2 st5">11010001010111001000101011010001</tspan><tspan x="0" y="46.85" class="st1 st2 st5">01111100101100000011100100000111</tspan><tspan x="0" y="93.7" class="st1 st2 st5">11101100101001100101110111101100</tspan><tspan x="0" y="140.56" class="st1 st2 st5">00010011101000111011111000101011</tspan><tspan x="0" y="187.41" class="st1 st2 st5">10000001001111000011001100100111</tspan><tspan x="0" y="234.26" class="st1 st2 st5">10001101011011101001000110000101</tspan><tspan x="0" y="281.11" class="st1 st2 st5">11101011111101011000101011011000</tspan><tspan x="0" y="327.97" class="st1 st2 st5">10001110100000011000011010000000 </tspan></text>
+<text transform="matrix(0.9196 0 0 1 450.1596 646.0525)"><tspan x="0" y="0" class="st1 st2 st3">SHA256(”</tspan><tspan x="268.98" y="0" class="st4 st2 st3">Guess #2</tspan><tspan x="501.3" y="0" class="st1 st2 st3">”) = </tspan></text>
+<text transform="matrix(0.9196 0 0 1 1025.424 474.5735)"><tspan x="0" y="0" class="st1 st2 st5">11010111000011111110110001101110</tspan><tspan x="0" y="46.85" class="st1 st2 st5">00101010101000001011001101110001</tspan><tspan x="0" y="93.7" class="st1 st2 st5">01001101111100001111101000111010</tspan><tspan x="0" y="140.56" class="st1 st2 st5">10111000111001010110000111110010</tspan><tspan x="0" y="187.41" class="st1 st2 st5">01010011101100001100000100100001</tspan><tspan x="0" y="234.26" class="st1 st2 st5">01110000010100100011010011111000</tspan><tspan x="0" y="281.11" class="st1 st2 st5">11111001010011000101100111100101</tspan><tspan x="0" y="327.97" class="st1 st2 st5">00111101101000101101111001000000 </tspan></text>
+<text transform="matrix(0.9196 0 0 1 450.1596 1070.0271)"><tspan x="0" y="0" class="st1 st2 st3">SHA256(”</tspan><tspan x="268.98" y="0" class="st4 st2 st3">Guess #3</tspan><tspan x="501.3" y="0" class="st1 st2 st3">”) = </tspan></text>
+<text transform="matrix(0.9196 0 0 1 1025.424 898.548)"><tspan x="0" y="0" class="st1 st2 st5">11101101011010100111110011011010</tspan><tspan x="0" y="46.85" class="st1 st2 st5">00010001111010000001011100100001</tspan><tspan x="0" y="93.7" class="st1 st2 st5">01011110101110001111110110111100</tspan><tspan x="0" y="140.56" class="st1 st2 st5">11111001001011001111011001000011</tspan><tspan x="0" y="187.41" class="st1 st2 st5">10111011111011001010111010111001</tspan><tspan x="0" y="234.26" class="st1 st2 st5">01001101000110000011000101001111</tspan><tspan x="0" y="281.11" class="st1 st2 st5">01010110010101000000011101001110</tspan><tspan x="0" y="327.97" class="st1 st2 st5">10011101001110100100110000000101 </tspan></text>
+<text transform="matrix(0.9196 0 0 1 985.4706 1288.0588)"><tspan x="0" y="0" class="st6 st2 st5">.</tspan><tspan x="0" y="46.85" class="st6 st2 st5">.</tspan><tspan x="0" y="93.7" class="st6 st2 st5">.</tspan></text>
+<text transform="matrix(1 0 0 1 1099.8232 1504.0586)" class="st7 st8">Lorem ipsum</text>
+<text transform="matrix(0.9196 0 0 1 450.1595 1667.4382)"><tspan x="0" y="0" class="st1 st2 st3">SHA256(”</tspan><tspan x="268.98" y="0" class="st4 st2 st3">               </tspan><tspan x="504.8" y="0" class="st1 st2 st3">”) = </tspan></text>
+<text transform="matrix(0.9196 0 0 1 1025.424 1495.9592)"><tspan x="0" y="0" class="st1 st2 st5">10011111001111000101111001001011</tspan><tspan x="0" y="46.85" class="st1 st2 st5">11011110111011010011011010100101</tspan><tspan x="0" y="93.7" class="st1 st2 st5">01010100010001011110111011010010</tspan><tspan x="0" y="140.56" class="st1 st2 st5">10000101011100101100110011111101</tspan><tspan x="0" y="187.41" class="st1 st2 st5">00111001000111000001011001100001</tspan><tspan x="0" y="234.26" class="st1 st2 st5">00110010101100111110101100100100</tspan><tspan x="0" y="281.11" class="st1 st2 st5">00010101011010001010001000010010</tspan><tspan x="0" y="327.97" class="st1 st2 st5">11000001100001111001001110000100 </tspan></text>
+<text transform="matrix(5.304904e-17 0.3257 -1 2.301830e-17 1174.2495 1843.3292)" class="st1 st9 st10">}</text>
+<text transform="matrix(0.9196 0 0 1 1089.2354 1989)" class="st11 st2 st3">  Desired output</text>
+<text transform="matrix(5.304904e-17 0.6542 -1 4.623674e-17 736.1787 1680.8328)" class="st1 st9 st12">}</text>
+<text transform="matrix(0.9196 0 0 1 765.1356 1811.0979)" class="st13 st2 st3">???</text>
+<g>
+	<g>
+		<line class="st14" x1="1193" y1="2054.65" x2="721.94" y2="2054.65"/>
+		<g>
+			<polygon class="st15" points="727.78,2034.7 693.24,2054.65 727.78,2074.59 			"/>
+		</g>
+	</g>
+</g>
+<text transform="matrix(0.9196 0 0 1 751.8374 2120.6406)" class="st16 st2 st17">Inverse is infeasible</text>
+<text transform="matrix(2.137855e-07 -0.8088 1 4.040276e-07 601.5665 1623.7336)" class="st1 st9 st18">}</text>
+<text transform="matrix(1 0 0 1 377.7061 1476.5293)" class="st2 st8">Lorem ipsum</text>
+<text transform="matrix(0.9196 0 0 1 210.3209 1516.4182)"><tspan x="0" y="0" class="st19 st2 st3">Cryptographic</tspan><tspan x="363.25" y="0" class="st1 st2 st3"> </tspan><tspan x="378.97" y="0" class="st20 st2 st3">hash function</tspan></text>
+</svg>
