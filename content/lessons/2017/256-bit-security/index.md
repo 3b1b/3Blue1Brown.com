@@ -132,3 +132,6 @@ This is not because there are actually billions of GPU packed machines out there
 
 These are pieces of hardware specifically designed for bitcoin mining and nothing else. It turns out that there are a lot of efficiency gains to be had when you throw out the need for general computation, and design your integrated circuits for a single, specific task.
 
+[1]
+
+[2]
