@@ -10,35 +10,29 @@ credits:
 draft: true
 ---
 
-## Cryptographic hash functions
+## What is 256 bit security?
 
-The {{< lesson-link text="last post" link="bitcoin" >}} touched on the idea of a cryptographic hash function. These are functions which take in an input of arbitrary length, and return a fixed-length output, but with the added condition that the inverse function is computationally infeasible.
+If a protocol is described as having "$n$-bit security", it means an attacker would have to run some computation $2^n$ times to break the system.
 
-For example, these cryptographic hash functions are used to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
-
-These hash functions are ubiquitous throughout cryptography, from digital signatures to proofs of work and numerous other applications. They distill a core theme of cryptography, which is to find tasks which are easy in one direction but hard in another.
-
-For example, the function SHA256, which takes in inputs of arbitrary length and outputs 256 bits, is believed to be cryptographically secure. This means if you want to find an input which produces a particular 256-bit output, there is no more efficient method than to simply guess and check.
+For example, the {{< lesson-link text="last post" link="bitcoin" >}} touched on the function SHA256, which takes in an input of arbitrary length, and produces an output which is always 256 bits long. It's believed that this is a _crytographic_ hash function, which means that it's computationally infeasible to reverse it. More specifically, if you want to find an input producing a particular output, there is no better method than to repeatedly guess and check.
 
 {{< figure image="guesses.png" width="60%" />}}
 
-If a hash function is considered cryptographically secure, it means that to find an input which produces a particular output, there is no better method than to repeatedly guess and check.
+These cryptographic hash functions are used, for example, to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
 
-The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die. How many times do you need to roll a die until you get a particular number, say a $1$? On average, it’ll take $6$ rolls. [ [2](/lessons/256-bit-security/#footnotes)]
+A core theme of cryptography is to find tasks which are easy in one direction but hard in another, so it should make sense that these one-way hash functions are a very common building block in all sorts of security protocols, including not just password storage, but digital signatures, proofs of work, and many more. So how hard is this guess-and-check process, exactly? The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die.
 
-{{< dropdown title="Code Example" >}}
+{{< question
+  question="How many times, on average, do you need to roll a six-sided die until you get a particular number, say a $1$?"
+  choice1="$3$"
+  choice2="$6$"
+  choice3="$9$"
+  choice4="$12$"
+  correct=2
+  explanation="Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that your first roll is a $1$ is $\frac{1}{6}$. The probability that your first roll is not a $1$, but the second one is, is $\frac{5}{6} \cdot \frac{1}{6}$. In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is $\left(\frac{5}{6}\right)^{k-1}\frac{1}{6}$. So the expected number of rolls it will take to see a $1$ for the first time is $$1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right) $$ Forgive me for distracting from the main point of the article here, but the trick for evaluating something like this is too delightful not to show. Think about how to sum a geometric series: $$1 + x + x^2 + x^3 + \cdots = \frac{1}{1 - x}$$ Now take the derivative of both sides $$1 + 2x + 3x^2 + 4x^3 + \cdots = \frac{1}{(1 - x)^2}$$ Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. Pretty neat, isn't it?"
+>}}
 
-```python
-key = random.randrange(LIMIT)
-while random.randrange(LIMIT) != key:
-	guesses += 1
-```
-
-On average, the `guesses` variable will equal the `LIMIT` variable when the program terminates. Inverting a hash is mathematically equivalent to rolling a $2^{256}$ sided die until it produces the predetermined number. Consider how many times you need to roll your 6 sided die until you roll a six, on average. Other attacks are more efficient. [ [3](/lessons/256-bit-security/#footnotes) ]
-
-{{< /dropdown >}}
-
-But here, there are not $6$ possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash. But how difficult is this, exactly? $2^{256}$ is a number so far removed from anything we ever deal with that it can be hard to appreciate its size. But let’s give it a try.
+For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[ [2](/lessons/256-bit-security/#footnotes)]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
 
 {{< section >}} 
 
@@ -46,7 +40,7 @@ But here, there are not $6$ possible outputs, there are $2^{256}$. So on average
 
 {{< figure image="breakdown.png" width="60%" />}}
 
-The human mind is best at breaking down concepts into smaller pieces to analyze. $2^{256}$ is $2^{32}$ multiplied by itself eight times. $2^{32}$ is about 4 billion, which is a number we can at least start to think about, so all we need to do is appreciate what multiplying 4 billion times itself 8 successive times feels like.
+The human mind is best at breaking down concepts into smaller pieces to analyze. $2^{256}$ is $2^{32}$ multiplied by itself eight times. $2^{32}$ is about 4 billion, which is a number we can at least start to think about, so all we need to do is appreciate what multiplying 4 billion times itself eight successive times feels like.
 
 #### **4 Billion Hashes Per Second**
 
@@ -148,7 +142,5 @@ These are pieces of hardware specifically designed for bitcoin mining and nothin
 
 [1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions) 
 
-[2] This is a fun mathematical exercise if you've never seen it before. Let $X$ be the number of rolls  it takes until you roll a 1. Find $P(X = 1)$, then $P(X = 2)$, and so on. Then for the expected value of $X$, compute $$\sum_{k = 1}^\infty k \cdot P(X = k)$$. [↩](#cryptographic-hash-functions) 
-
-[3] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions) 
+[2] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions) 
 
