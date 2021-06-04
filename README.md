@@ -1,3 +1,5 @@
+[![Update patrons](https://github.com/3b1b/3Blue1Brown.com/actions/workflows/update-patrons.yaml/badge.svg)](https://github.com/3b1b/3Blue1Brown.com/actions/workflows/update-patrons.yaml)
+[![Sync Assets](https://github.com/3b1b/3Blue1Brown.com/actions/workflows/sync-assets.yaml/badge.svg)](https://github.com/3b1b/3Blue1Brown.com/actions/workflows/sync-assets.yaml)
 
 ## Getting Started
 

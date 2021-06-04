@@ -1,12 +1,18 @@
 {{ define "main" }}
 
-  <section>
+  <section data-dark=true>
     <div class="section">
       {{ partial "embed" (dict "src" .Params.video) }}
       <h1>
         {{- partial "chapter-chip" (dict "ctx" .) -}}
         {{- .Params.title -}}
       </h1>
+      
+    </div>
+  </section>
+
+  <section>
+    <div class="section">
       {{ partial "lesson-details" . }}
     </div>
   </section>
