@@ -172,8 +172,8 @@ This happens whenever the quantities that you’re adding up, the ones whose sum
 
 {{<question
   question="In the same way velocity measures the change in position over the change in time, acceleration measures the change in velocity over the change in time. Can the velocity of a car be modeled as the area under the graph of acceleration?"
-  choice1="True"
-  choice2="False"
+  choice1="Yes"
+  choice2="No"
   correct=1
 >}}
 
