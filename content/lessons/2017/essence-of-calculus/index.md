@@ -25,7 +25,7 @@ This figure illustrates the area of a circle with radius $R$ and the formula tha
 
 Contemplating this problem and leaving yourself open to generalizing the tools you use along the way can actually lead you to a glimpse of three big ideas in calculus: Integrals, derivatives, and the fact that they are opposites.
 
-But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ [1]. If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
+But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ [[1]](/lessons/essence-of-calculus/#footnotes). If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
 
 There are many ways you might go about this, each of which may lead to its own interesting line of reasoning.
 
@@ -33,7 +33,7 @@ There are many ways you might go about this, each of which may lead to its own i
 This figure illustrates different ways to divide the area of the circle with a radius $1$.
 {{</figure>}}
 
-Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [2].
+Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [[2]](/lessons/essence-of-calculus/#footnotes).
 
 ## Unraveling rings
 
@@ -62,7 +62,7 @@ You might imagine straightening out this ring, into a shape whose width is the i
 This figure illustrates a concentric ring with radius $r$ straightened out
 {{</figure>}}
 
-If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [3]. However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
+If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [[3]](/lessons/essence-of-calculus/#footnotes). However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
 
 The difference between the true area of the ring and the area of the rectangular approximation introduces some small error.
 
@@ -70,7 +70,7 @@ The difference between the true area of the ring and the area of the rectangular
 This figure illustrates how approximating a ring’s area as a rectangle gets better and better for smaller choices of $dr$.
 {{</figure>}}
 
-However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [4].
+However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [[4]](/lessons/essence-of-calculus/#footnotes).
 
 {{<figure image="figure-3.17-3.41-circles.svg" width="900">}}
 This figure illustrates small and smaller choices of $dr$ when dividing the circle into rings.
