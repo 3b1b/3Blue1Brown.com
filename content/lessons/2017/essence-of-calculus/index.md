@@ -196,7 +196,11 @@ show="video"
 {{</figure>}}
 
 
-A function $A(x)$ like this is called an “integral” of $x^2$. Right now it’s just a mystery function to us, giving the area under the graph of $x^2$ between some fixed left point, and some variable right point. If you can find a way to compute this explicitly, you will be inventing a big part of calculus.
+In calculus, you might call this function $A(x)$ an “integral” of $x^2$. Well, more precisely we'd say this is this is the integral of $x^2$ from $0$ up to $x$. Or rather, to disambiguate whether $x$ represents the variable for the function, or if it represents the right endpoint, it would be even better to describe this area as the integral of the function $f(t) = t^2$ between the values $0$ and $x$. In the lingo, you'd see it written like this:
+
+$$A(x) = \int_0^x t^2 dt$$
+
+But here we're getting ahead of ourselves. All that matters now is that you, as the mathematician, find yourself wondering about this mystery function $A(x)$ which gives the area under the graph of $x^2$ between some fixed left point, and some variable right point. If you can find a way to compute this explicitly, you will be inventing a big part of calculus.
 
 Again, the reason we care about this kind of question is not just for the sake of asking hard geometry questions; it’s because many practical problems that can be approximated by adding up a large number of small things can be reframed as a question about the area under a certain curve.
 
@@ -210,7 +214,7 @@ In that playful spirit, if you’re lucky, here’s something you might notice. 
 
 {{<figure image="figure-12.08.png" video="figure-11.49-12.19.mp4" >}}{{</figure>}}
 
-That sliver can be pretty well approximated with a rectangle, one whose height is $x^2$ and whose width is $dx$. Well, for larger choices of $dx$ the approximation may not be that good, but for smaller and smaller choices of $dx$ that sliver will actually look more and more like a rectangle.
+That sliver can be pretty well approximated with a rectangle, one whose height is $x^2$ and whose width is $dx$. Well, for larger choices of $dx$ the approximation may not be that good, but for smaller and smaller choices of $dx$ the error between the area of that sliver and the area of the approximating rectangle will become tiny compared to the area of the rectangle.
 
 This may prompt you to think about how $A(x)$ is related to $x^2$ in a pretty fun way. A change to the output of $A$, this little $dA$, is about equal to the height of the rectangle times its width.
 
@@ -242,7 +246,7 @@ And this relationship between tiny changes to the mystery function and the value
 {{<figure image="figure-13.41.png" >}}
 {{</figure>}}
 
-That doesn’t immediately tell us how to find $A(x)$, but it provides a very strong clue to work with. And there’s nothing special about the graph $x^2$ here. For any function $f(x)$, if we call the area under its graph $A(x)$, then this area function has the property that $dA/dx \approx f(x)$, a slight nudge to the output of $A$ divided by a slight nudge to the input that caused it is about equal to the height of the graph at that point. Again, that’s an approximation that gets better and better for smaller choices of $dx$.
+That doesn’t immediately tell us how to find $A(x)$, but it provides a very strong clue to work with. And there’s nothing special about the graph $x^2$ here. For any function $f(x)$, if we call the area under its graph $A(x)$, then this area function has the property that $dA/dx \approx f(x)$, a slight nudge to the output of $A$ divided by a slight nudge to the input that caused it is about equal to the height of the graph at that point, $f(x)$. Again, that’s an approximation that gets better and better for smaller choices of $dx$.
 
 {{<figure image="figure-14.17.png" >}}
 This figure illustrates the property of $\frac{dA}{dx}$ for a more general function $f(x)$.
@@ -250,21 +254,11 @@ This figure illustrates the property of $\frac{dA}{dx}$ for a more general funct
 
 Here we’re stumbling onto another big idea from calculus: Derivatives. This ratio $\frac{dA}{dx}$ is called the “derivative of $A$”. Or, more technically, the derivative is whatever value this ratio approaches as $dx$ gets smaller and smaller.
 
-You and I will dive more deeply into the idea of a derivative next chapter, but loosely speaking it’s a measure of how sensitive a function is to small changes in its input. You’ll see as the series goes on that there are many different ways to visualize a derivative, depending on what function you’re looking at and how you think about tiny nudges to its output.
+You and I will dive more deeply into the idea of a derivative {{< lesson-link text="next chapter" link="derivatives" >}}, but loosely speaking it’s a measure of how sensitive a function is to small changes in its input. You’ll see as the series goes on that there are many different ways to visualize a derivative, depending on what function you’re looking at and how you think about tiny nudges to its output.
 
 ## Fundamental Theorem
 
 We care about derivatives because they help us solve problems, and in our little exploration here we have a slight glimpse of one way they’re used: They are the key to solving integral problems; problems that require finding an area under a curve. When you gain enough familiarity with computing derivatives, you’ll be able to look at a situation like the one below, where you don’t know what a function is, but you do know that it’s derivative should be $x^2$, and from that reverse engineer what the function must be.
-
-{{<figure image="figure-15.10.png" >}}
-{{</figure>}}
-
-$$
-\begin{aligned}
-d A &\approx x^{2} d x \\\\
-\frac{d A}{d x} &\approx x^{2}
-\end{aligned}
-$$
 
 This back and forth between integrals and derivatives, where the derivative of the function for an area under a graph gives you back the function defining the graph itself, is called the *fundamental theorem of calculus*. It ties together the two big ideas of integrals and derivatives, and shows how in some sense, each one is the inverse of the other.
 
@@ -274,19 +268,30 @@ This figure illustrates the property of $\frac{dA}{dx}$ for a more general funct
 
 All of this is only a high level view. What follows in this series are the details for both these big ideas, and more. And let me reiterate, at all points in this series I want you to feel like you could have invented calculus yourself, that if you drew the right pictures and played with each idea in the right way, all of the formulas, rules, and constructs could pop out quite naturally.
 
-## So what is $dx$ anyway?
+## Bonus section: So what is $dx$ anyway?
 
 Calculus is littered with expressions like $dA$, $dr$, $dx$, etc, which show up in the notation for both derivatives and integrals. Despite their front-and-center role, there is a surprising amount of ambiguity and conflicting instruction on what these terms really mean.
 
-In this chapter I encouraged you to think of $dr$ as the difference in the radius of our circles from one to the next, prompting you to take a very literal interpretation and imagine an actual number, like $dr = 0.01$.  Likewise, I encouraged you to think of $dA$ as an actual number, the amount that the area under a graph changes as we nudge the right endpoint by $dx$, again an actual number.  A more common convention would be to call these changes $\Delta r$, $\Delta A$, and $\Delta x$, reserving the $dx$ notation for changes that are “infinitely small”.
+In this chapter I encouraged you to think of $dr$ as the difference in the radius of our circles from one to the next, prompting you to take a very literal interpretation and imagine an actual number, like $dr = 0.01$.  Likewise, I encouraged you to think of $dA$ as an actual number, specifically the amount that the area under a graph changes as we nudge the right endpoint by $dx$, again an actual number.  A more common convention would be to call these changes $\Delta r$, $\Delta A$, and $\Delta x$, reserving the $dx$ notation for changes that are “infinitely small”.
 
-The issue I have with this is that phrases like “infinitely small” and “infinitesimal” run the risk of, well, not actually making any sense.  What is an infinitesimal change?  Is it a number?  If so, which number?  It shouldn’t be zero, but it also shouldn’t be anything bigger than zero.  If it’s not a number then what is it, exactly?
+{{< pi-creature emotion="maybe" text="Infinitely small?"  >}}
 
-The full discussion of what it means to substitute in an actual number for terms like $dx$ is best left for when we have more specific results sitting in front of us.  In a nutshell, the idea is that your equations become wrong, but they get less wrong as the choice for $dx$ approaches $0$. Though there are a few nuances worth mentioning, but that’s the main idea. I mention all this now so that you know this is not the universal convention, and that you may hear from other sources that calculus is about grappling with the “infinitely small”, with these terms $dx$ representing those infinitely small values.
+The issue with this is that phrases like “infinitely small” and “infinitesimal” run the risk of, well, not actually making any sense.  What is an infinitesimal change?  Is it a number?  If so, which number?  It shouldn’t be zero, but it also shouldn’t be anything bigger than zero.  If it’s not a number then what is it, exactly?
 
-I believe this sentiment is well-intentioned, but ultimately misleading.  The rigorous underpinnings of calculus only ever involve real, finitely sized numbers, often followed by questions of what happens as these values get closer to 0.  The proposal of this series is that when we interpret the notation of calculus, we can do so in a way which maps closely to this rigorous underpinning.  To my taste, this actually makes calculus much more tangible and understandable than any “intuition” resting on the idea of an infinitesimal.
+In acknowledgment of this conundrum, one common sentiment is to encourage students not to take this notation too seriously. The typical dictum is that derivatives, despite being written as $\frac{df}{dx}$, are not really fractions, and that integrals, written as $\displaystyle \int f(x) dx$, are not really sums, despite the fact that the symbol $\int$ literally derives from the letter "S" for "Sum". Instead, the student is told, each of these constructs has a separate more complicated definition. But! If a student wishes for loose intuition before stepping up their game to a real analysis class, they might find it helpful to think of $dx$ as an infinitely small change in $x$, even if that phrase doesn't _quite_ make sense. It is, after all, only intuition.
 
-You’ll see how this works in the following chapters.  In fact, without further philosophical delay, let’s dive into what exactly a derivative is.
+To my taste, this sentiment is well-intentioned but ultimately misleading.  The rigorous underpinnings of calculus only ever involve real, finitely sized numbers, often followed by questions of what happens as these values get closer to 0.  The proposal of this series is that when we interpret the notation of calculus, we can do so in a way which maps closely to this rigorous underpinning.  If you're anything like I am, this actually makes calculus much more tangible and understandable than any “intuition” resting on the idea of an infinitesimal.
+
+In a nutshell, here's the philosophy for this series: When you see expressions with terms like $dx$, think of those terms as representing actual small numbers, say $dx = 0.001$. When you do this, the equations you write will become wrong, but they get less wrong as the choice for $dx$ approaches $0$. Think of the circular rings from earlier in this chapter. If you thought of $dr$ as an actual number, say $dr = 0.001$, none of these rings actually had an area of $2\pi r dr$. However, the percent error between the true area and $2\pi r \cdot dr$ gets smaller and smaller as the choice for $dr$ does as well.
+
+{{<figure image="figure-3.04.svg" width="900">}}
+{{</figure>}}
+
+There are more details and rules of thumb for _how_ you replace terms like $df$ and $dx$ with small numbers, and we'll address them as the series unfolds, but that’s the main idea.
+
+I mention all this now so that you know this is not the universal convention; again finite changes are more typically written with the greek letter $\Delta$, as in an expression like $\Delta x = 0.001$. I also want to assure you that the spirit of this notational philosophy is not to compromise rigor for intuition, but to do the exact opposite.
+
+And now, without further philosophical delay, let’s dive into what exactly a derivative is.
 
 ## Footnotes
 
