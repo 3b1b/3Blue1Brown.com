@@ -1,6 +1,0 @@
-<div class="patrons" data-open="false">
-  {{ range first 1000 (where (where site.Data.patrons "active" .Params.active) "amount" ">=" 16) }}
-    <span>{{ partial "patron-name" .name }}</span>
-  {{ end }}
-</div>
-{{ partial "clickable" (dict "text" "See More" "icon" "fas fa-angle-down" "onclick" "togglePatrons(this)") }}

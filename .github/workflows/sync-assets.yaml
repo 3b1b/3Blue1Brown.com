@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  sync:
+  deploy:
     runs-on: ubuntu-18.04
     steps:
 

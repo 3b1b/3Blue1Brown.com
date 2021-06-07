@@ -1,9 +1,0 @@
-{{- $mini := .mini | default false -}}
-{{- with .ctx.Params.chapter -}}
-  <span 
-    class="chapter_chip"
-    data-mini="{{ $mini }}"
-  >
-    {{- cond $mini "Ch" "Chapter" }} {{ . -}}
-  </span>
-{{- end -}}
