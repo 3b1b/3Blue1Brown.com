@@ -190,7 +190,7 @@ Well, Euler's formula is why.
 
 Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ is some arbitrary number (like 2.0), and $i$ is the typical complex variable of $\sqrt{-1}$, we will find ourselves on the point we would get by walking counter-clockwise $n$ units along a circle of radius 1 in the complex plane, as shown below:
 
-{{<figure image="e2i.png" video="e2i.mp4" width="75%">}}
+{{<figure image="e2i.png" video="e2i.mp4" width="60%">}}
 {{</figure>}}
 
 If you are curious, I've made multiple videos explaining why this is true, a [quick one](../differential_equations/e_to_i/e_to_i.md) offering an explanation from the perspective of differential equations, a [longer one](../misc/euler/euler.md) offering a connection to group theory, and a [longer one still](https://youtu.be/ZxYOEwM6Wbk) targeted at someone just seeing it for the first time.
@@ -240,7 +240,6 @@ Great!  Step-by-step, we have built up this kind of complicated, but, let's face
 
 And now, there is only one final distinction to point out between this and the actual, honest-to-goodness Fourier transform.
 Namely, just don't divide out by the time interval.
-
 $$
 \underbrace{\frac{1}{t_2-t_1}\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Center of mass}}
 \qquad\rightarrow\qquad
