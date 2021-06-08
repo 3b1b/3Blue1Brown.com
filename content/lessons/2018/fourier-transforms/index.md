@@ -141,6 +141,11 @@ We could do the same thing and find a peak at 2 cycles per second, as shown here
 {{<figure image="2ps.png" width="75%">}}
 {{</figure>}}
 
+Here is an interactive demonstration of how the winding machine works for different values:
+
+{{<figure image="interactive_plan.png" width="75%">}}
+{{</figure>}}
+
 The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into it's constituent waveforms.
 To show this, let's combine the 2 and 3 frequency waves and do the same operation: tracking the center of mass coordinate and look for peaks in the winding frequency plot.
 This is shown below:
