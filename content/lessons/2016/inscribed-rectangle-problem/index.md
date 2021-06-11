@@ -145,7 +145,7 @@ Ultimately we want to understand *unordered* pairs of points, but to get there w
 ### Ordered Pairs As a Surface
 We’ll start by straightening out the loop, cutting it at some point and deforming it into an interval. For the sake of having some labels, let’s say this is the interval on the number line from $0$ to $1$.
 
-{{< figure image="deform-loop-to-line.png" video="deform-loop-to-line.mov" show="video" >}}
+{{< figure image="deform-loop-to-line.png" video="deform-loop-to-line.mp4" show="video" >}}
 Every point on the loop maps to a single number between 0 and 1 (with one exception).
 {{< /figure >}}
 
@@ -222,7 +222,7 @@ Since we’re interested in unordered pairs, the points $(x, y)$ and $(y, x)$ on
 
 Once again, we capture this idea by gluing points together when they’re supposed to represent the same pair, which in this case requires folding the square diagonally.
 
-{{< figure image="fold-square.png" video="fold-square.mov" >}}
+{{< figure image="fold-square.png" video="fold-square.mp4" >}}
 Points on opposite sides of the diagonal line both correspond to the same pair of points on the loop, so we fold the square in half to prevent duplication.
 {{< /figure >}}
 
@@ -272,7 +272,7 @@ To get a hint, consider the pairs of points $(X, X)$. Where do these points fall
 
 **Answer:** {{< spoiler >}}Pairs like $(X, X)$ correspond to points on the red edge of the Möbius strip. And for the 3D surface, the corresponding points are exactly on the loop. So when the Möbius strip is mapped onto this surface, it must be done in such a way that the edge of the strip maps onto the loop in the xy-plane.{{< /spoiler >}}
 
-{{< figure video="map-strip-to-surface.mov" >}}
+{{< figure video="map-strip-to-surface.mp4" >}}
 Here we take the original Möbius strip and stretch it in all kinds of wonky ways so that every point on the Möbius strip aligns with its corresponding point on the 3D surface. The red edge of the Möbius strip aligns with the original loop in the xy-plane.
 {{< /figure >}}
 
