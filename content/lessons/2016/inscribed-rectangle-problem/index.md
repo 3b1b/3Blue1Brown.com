@@ -6,6 +6,7 @@ video: AmgkSdhK4K8
 source: _2016/wcat.py
 credits:
 - Lesson by Grant Sanderson
+- Blog adaptation by Josh Pullen
 ---
 
 When I was a kid, since I loved math and sought out mathy things, I would occasionally find myself at some talk or seminar where people wanted to get the youth excited about the things mathematicians care about.
@@ -16,7 +17,9 @@ A common go-to topic to excite our imaginations was topology. We might be shown 
 
 Or we might be told that topologists view a coffee mug and a doughnut as the same thing, since each has one hole.
 
-{{< figure video="mug-to-torus.mp4" />}}
+{{< figure video="mug-to-torus.mp4">}}
+Animation heavily inspired by [that of Lucas Vieira](https://commons.wikimedia.org/wiki/File:Mug_and_Torus_morph.gif).
+{{< /figure >}}
 
 But these kinds of demos always left a lurking question: **How is this math? How does any of this actually help solve problems?**
 
@@ -60,17 +63,13 @@ Considering the points as diagonal pairs makes the problem easier.
 
 We’ll use the following key fact about rectangles: If you label the vertices of a rectangle $a$, $b$, $c$, and $d$, then the distance between $a$ and $c$ equals the distance between $b$ and $d$, and the midpoint of $a$ and $c$ is the same as the midpoint of $b$ and $d$.
 
-{{< figure image="rectangle-properties.png" >}}
+{{< figure image="rectangle-properties.png" width="500px" >}}
 A rectangle with points labeled $a$, $b$, $c$, and $d$.
 {{< /figure >}}
 
 In fact, any time you have two separate pairs of points in space, $(a, c)$ and $(b, d)$, if you can guarantee that they share a midpoint, and the distance between $a$ and $c$ equals the distance between $b$ and $d$, it’s enough to guarantee that these four points make up a rectangle.
 
 So what we’re going to do is try to prove that for *any* closed loop it’s possible to find two distinct pairs of points on that loop that share a midpoint, and which are the same distance apart.
-
-{{< figure image="pairs-of-points.png" >}}
-This loop has two distinct pairs of points with a shared midpoint and equal distances, so we know we have a rectangle. Can we prove that *every* loop has this?
-{{< /figure >}}
 
 Take a moment to make sure that idea is clear: **We’re finding two distinct pairs of points on the loop with a common midpoint, and which are the same distance apart.**
 
@@ -103,9 +102,12 @@ By finding the 3D points associated with every possible pair of two points on th
   choice3="(2, 6, 6)"
   choice4="(2, 6, 2)"
   correct=2
+  explanation="The midpoint is (1, 3), and the points are a distance of 2 apart, so the z coordinate is 2. That means the final point in 3D space is (1, 3, 2)."
 >}}
 
 Notice how the 3D surface ends up perfectly touching the 2D loop, rather than hovering above it in 3D space or something like that. This will actually be important later, so let’s think about why it happens.
+
+{{< pi-creature emotion="confused" text="Why does the surface hug the curve?" thought="true" >}}
 
 Consider what happens when we choose two points on the loop which are close together. As the pair of points on the loop gets closer and closer, the plotted point gets lower, since its height is by definition equal to the distance between the points. Also, the midpoint gets closer and closer to the loop as the points approach each other.
 
@@ -165,7 +167,7 @@ Remember, we’re trying to find a surface that naturally represents the set of 
 
 **Stop to think:** If you have a pair of points on the loop, how do you find the corresponding point on the square?
 
-**Answer:** {{< spoiler >}}Convert each loop point to a number between 0 and 1, and then use those two numbers as the x and y coordinates in the square.{{< /spoiler >}}
+**Answer:** {{< spoiler >}}This assumes you've already chosen a parameterization of the loop, meaning a continuous way to associate individual points with numbers between 0 and 1. From there, consider the numbers associated with the two points as the x and y coordinates in the square.{{< /spoiler >}}
 
 The problem is that there’s some ambiguity when it comes to the edges of this square. Remember, the endpoints $0$ and $1$ on the interval really correspond to the same point of the loop, so they need to be glued together if we are to faithfully map back to the loop.
 
@@ -179,7 +181,7 @@ Let’s mark each edge with some arrows to remember how the edges should be line
 Matching points along opposite edges of the square both correspond to the same pair of points on the loop. To represent this faithfully, we need to glue together the edges of the square as indicated by the arrows.
 {{< /figure >}}
 
-If you bend this square to perform the gluing, first rolling it into a cylinder to glue the left and right edges, then gluing the ends of the cylinder, which represent the top and bottom edges, we get a torus (better known as the surface of a doughnut).
+If you bend this square to perform the gluing, first rolling it into a cylinder to glue the left and right edges, then gluing the ends of the cylinder, which represent the top and bottom edges, we get a torus, the surface of a doughnut.
 
 {{< figure image="roll-into-torus.png" video="roll-into-torus.mp4" >}}
 When the square is wrapped up and its edges glued together following the arrows, it becomes a torus.
@@ -187,13 +189,9 @@ When the square is wrapped up and its edges glued together following the arrows,
 
 By gluing together the corresponding edges, we’ve solved the problem of duplicate mappings. Every individual point on this torus corresponds to a *unique* pair of points on the closed loop, and likewise every pair of points on the loop corresponds to a unique point on the torus.
 
-{{< figure image="torus-and-loop-correspondence.png" >}}
-There is a unique correspondence between pairs of points on the loop and individual points on the torus.
-{{< /figure >}}
-
 The torus is to pairs of points on the loop as the xy-plane is to pairs of points on the real number line.
 
-{{< figure image="coordinate-plane-analogy.png" >}}
+{{< figure image="torus-and-loop-correspondence.png" >}}
 The torus serves as a 2D surface for encoding pairs of positions on a loop, much like how the xy-plane encodes pairs of positions on the number line.
 {{< /figure >}}
 
@@ -297,6 +295,8 @@ If you try to prove that it’s impossible to flatten the edge of a Möbius stri
 The Sudanese Möbius band is one example of a Möbius strip with its edge embedded perfectly in a 2D plane. This seemed impossible, but our intuition was wrong! ([Image by Maksim](https://en.wikipedia.org/wiki/File:MobiusSnail2B.png), distributed under a CC BY-SA 3.0 license)
 {{< /figure >}}
 
+(For a clearer view of the Sudanese Möbius band, check out [this video](https://vimeo.com/286360639) by Charles Gunn.)
+
 So our intuition, that the edge of a Möbius strip cannot exist in a 2D plane without self-intersection, was actually wrong! The important distinction, though, is that in the case of the Sudanese Möbius band, the surface dips both above and below the 2D plane, which is not the case in our original problem, where we were limited to points on or above the xy-plane.
 
 Let’s get a little more precise.  How would you phrase what fact we want to be true of the Möbius strip?
@@ -309,9 +309,9 @@ This is... well... kind of true, but it says nothing about why we’d care. The 
 
 If you’re curious about which ideas from topology are useful to this problem, there are numerous theorems about which surfaces can and cannot be embedded into 3D space. While it’s possible to represent the Möbius strip and the torus in three-dimensions, there are other surfaces, like the Klein bottle[^3], which can only live in four or more dimensions, unless you allow for self-intersection.
 
-It turns out that gluing the edge of a Möbius strip to the edge of a disk gives us a surface which is topologically equivalent to something called the "real projective plane". So the surface we defined above for the inscribed rectangle problem, combined with the interior of the closed loop on the plane which it hugs, might be described by a mathematician as an embedding of the real projective plane into 3D space. And as you may have guessed, those mathematicians are a clever bunch, and they proved that you can’t have such an embedding. That trying to jam this surface into 3D space forces it to intersect itself.
+It turns out that gluing the edge of a Möbius strip to the edge of a disk gives us a surface which is topologically equivalent to something called the "real projective plane". So the surface we defined above for the inscribed rectangle problem, combined with the interior of the closed loop on the plane which it hugs, might be described by a mathematician as an embedding of the real projective plane into 3D space. And as you may have guessed, those mathematicians are a clever bunch, and they proved that you can’t have such an embedding. That is to say, trying to jam this surface into 3D space forces it to intersect itself.
 
-The proof is, as the lazy author loves to write, beyond the scope of this article. But perhaps by now you have an appreciation for why we’d ever care.
+If you're itching to understand _why_ this is true, wonderful! Consider this an excuse to start digging more into topology. Facts about which surfaces are topologically distinct from others, and how many dimensions they can live in, can be surprisingly hard to formalize and prove. But if you understand this proof sketch to the inscribed rectangle problem, you'll understand how these kinds of facts are more than mere idle ponderings.
 
 [^1]: A curve is considered "smooth" if it has a derivative.  Intuitively, a smooth curve is one that will look approximately like a line if you zoom in enough at any point. In fact, the Toeplitz conjecture has also been proved for piecewise smooth curves, which are ones made out of finitely many smooth pieces. These are essentially all the curves you could ever actually draw.
 
