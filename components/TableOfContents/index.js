@@ -114,6 +114,7 @@ const getActive = (headings) => {
   headings = [...headings].reverse();
   for (const { id } of headings) {
     const heading = document.querySelector("#" + id);
+    if (!heading) continue;
     const bbox = heading.getBoundingClientRect();
     if (bbox.top <= 0) return id;
   }

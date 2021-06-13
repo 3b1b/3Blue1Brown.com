@@ -26,6 +26,7 @@ $collapse: 800px;
 .toggle {
   grid-column: 2;
   min-width: 70px;
+  background: none;
 
   @media (max-width: $collapse) {
     grid-row: 3;
