@@ -1,3 +1,4 @@
+// format date to string in appropriate locale
 export const formatDate = (dateString) => {
   try {
     let locale;

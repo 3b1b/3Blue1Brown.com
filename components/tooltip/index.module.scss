@@ -5,8 +5,7 @@ $color: $gray-900;
   position: absolute;
   left: -9999px;
   top: -9999px;
-  max-width: calc(100vw - 40px);
-  padding: 10px 15px;
+  max-width: min(500px, calc(100vw - 40px));
   background: $color;
   color: $white;
   font-family: $sans;
@@ -14,6 +13,11 @@ $color: $gray-900;
   z-index: 12;
   pointer-events: none;
   transition: opacity $fast;
+}
+
+.content {
+  padding: 10px 15px;
+  pointer-events: all;
 }
 
 .arrow {
@@ -46,4 +50,9 @@ $color: $gray-900;
 
 .tooltip[data-popper-placement="right"] .arrow {
   left: -0.5 * $arrow;
+}
+
+.span {
+  border-bottom: dashed 2px $gray-500;
+  cursor: help;
 }

@@ -1,6 +1,7 @@
+// convert string to dash case suitable for urls
 export const toDashCase = (string) =>
   string
-    .split(/\s/)
-    .filter((p) => p)
+    .split(/\s|\W/)
+    .filter((e) => e)
     .join("-")
     .toLowerCase();

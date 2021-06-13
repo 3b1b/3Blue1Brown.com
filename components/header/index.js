@@ -2,9 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Background from "./background";
-import Tooltip from "../tooltip";
-import Logo from "../logo";
-import { title } from "../../vars.yaml";
+import Tooltip from "../Tooltip";
+import Logo from "../Logo";
+import { title } from "../../data/site.yaml";
 import styles from "./index.module.scss";
 
 const Header = () => {

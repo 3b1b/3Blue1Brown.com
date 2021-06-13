@@ -1,4 +1,4 @@
-import NormalLayout from "../layouts/normal";
+import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
 
 export default NormalLayout;

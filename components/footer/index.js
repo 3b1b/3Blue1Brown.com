@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import Tooltip from "../tooltip";
+import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
 const Footer = () => (

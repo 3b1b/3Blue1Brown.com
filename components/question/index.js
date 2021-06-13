@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import Clickable from "../clickable";
-import PiCreature from "../pi-creature";
+import Clickable from "../Clickable";
+import PiCreature from "../PiCreature";
+import Markdownify from "../Markdownify";
 import { shakeElement } from "../../util/animation";
 import styles from "./index.module.scss";
 
@@ -43,7 +44,9 @@ const Question = ({ question, choices, answer, explanation }) => {
               disabled={state === "correct"}
             />
             <span className={styles.radio_svg}></span>
-            <span className={styles.choice_text}>{choice}</span>
+            <span className={styles.choice_text}>
+              <Markdownify>{choice}</Markdownify>
+            </span>
             <span className={styles.choice_icon}>
               {index === answer && <i className="fas fa-check" />}
             </span>
@@ -70,7 +73,9 @@ const Question = ({ question, choices, answer, explanation }) => {
         )}
       </div>
       {state === "correct" && (
-        <div className={styles.explanation}>{explanation}</div>
+        <div className={styles.explanation}>
+          <Markdownify>{explanation}</Markdownify>
+        </div>
       )}
     </div>
   );

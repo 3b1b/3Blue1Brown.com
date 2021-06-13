@@ -1,10 +1,10 @@
-import NormalLayout from "../layouts/normal";
+import NormalLayout from "../layouts/NormalLayout";
 import { pagePaths, pageProps } from "../util/pages";
 
 export default NormalLayout;
 
 export const getStaticPaths = async () => ({
-  paths: await pagePaths(),
+  paths: pagePaths,
   fallback: false,
 });
 

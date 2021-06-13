@@ -1,0 +1,143 @@
+$page: $page + 600px;
+
+.pi_creature {
+  &[data-text="false"] {
+    --size: 150px;
+
+    &[data-design="small"] {
+      --size: 100px;
+    }
+
+    &[data-design="big"] {
+      --size: 200px;
+    }
+  }
+
+  &[data-text="true"] {
+    --size: 250px;
+
+    &[data-design="small"] {
+      --size: 200px;
+    }
+
+    &[data-design="big"] {
+      --size: 300px;
+    }
+  }
+
+  width: var(--size);
+  height: var(--size);
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pi_creature[data-design="small"] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pi_creature[data-flip="false"] {
+  left: calc(-1 * var(--size) - 20px);
+}
+
+.pi_creature[data-flip="true"] {
+  right: calc(-1 * var(--size) - 20px);
+
+  svg,
+  img {
+    transform: scaleX(-1);
+  }
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+
+  & > * {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  svg,
+  img {
+    overflow: visible;
+  }
+}
+
+.pi_creature[data-flip="false"] .frame {
+  & > *:first-child {
+    left: 0;
+    bottom: 0;
+  }
+
+  & > *:not(:first-child) {
+    right: 0;
+    top: 0;
+  }
+}
+
+.pi_creature[data-flip="true"] .frame {
+  svg,
+  img {
+    transform: scaleX(-1);
+  }
+
+  & > *:first-child {
+    right: 0;
+    bottom: 0;
+  }
+
+  & > *:not(:first-child) {
+    left: 0;
+    top: 0;
+  }
+}
+
+.pi_creature[data-text="true"] .frame {
+  & > * {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $black;
+}
+
+.text p {
+  text-align: center;
+  line-height: $spacing - 0.4;
+}
+
+.pi_creature[data-placement="side"] {
+  position: absolute;
+
+  @media (max-width: $page) {
+    display: none;
+  }
+
+  .frame {
+    transform: translateY(-100%);
+  }
+}
+
+.pi_creature[data-placement="auto"] {
+  @media (min-width: $page) {
+    position: absolute;
+
+    .frame {
+      transform: translateY(-100%);
+    }
+  }
+
+  @media (max-width: $page) {
+    position: static;
+  }
+}

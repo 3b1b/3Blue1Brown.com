@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
 const Accordion = ({ title, children }) => {
@@ -7,10 +8,14 @@ const Accordion = ({ title, children }) => {
   return (
     <div className={styles.accordion}>
       <button className={styles.title} onClick={() => setOpen(!open)}>
-        <i className={open ? "fas fa-angle-down" : "fas fa-angle-up"} />
+        <i className={open ? "fas fa-angle-up" : "fas fa-angle-down"} />
         {title}
       </button>
-      {open && <div className={styles.reveal}>{children}</div>}
+      {open && (
+        <div className={styles.reveal}>
+          <Markdownify>{children}</Markdownify>
+        </div>
+      )}
     </div>
   );
 };

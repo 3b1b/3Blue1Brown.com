@@ -17,6 +17,21 @@ body,
   flex-direction: column;
 }
 
+html {
+  position: relative;
+}
+
+body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: left $fast;
+}
+
+body[data-offset="true"] {
+  left: 300px;
+}
+
 //////////////////////////////
 // all
 //////////////////////////////
@@ -229,6 +244,14 @@ pre {
 }
 
 //////////////////////////////
+// math
+//////////////////////////////
+
+.math-display {
+  overflow-x: auto;
+}
+
+//////////////////////////////
 // util
 //////////////////////////////
 
@@ -272,17 +295,6 @@ pre {
   100% {
     transform: translateX(0);
   }
-}
-
-//////////////////////////////
-// mathjax
-//////////////////////////////
-
-mjx-container[jax="CHTML"][display="true"] {
-  margin: 40px 0;
-  @include trim-v-margins;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
 
 //////////////////////////////

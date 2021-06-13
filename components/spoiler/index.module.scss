@@ -3,7 +3,8 @@
   color: $black;
   transition: background $fast;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: none;
   }
 }

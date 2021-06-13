@@ -1,6 +1,6 @@
 import seedrandom from "seedrandom";
 
-// seeded random generator, so next doesn't complain about differences betwee
+// seeded random generator, so next doesn't complain about differences between
 // server and browser random numbers/sequences
 const random = () => seedrandom(new Date().getMinutes())();
 

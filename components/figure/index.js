@@ -1,6 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import Clickable from "../clickable";
+import Markdownify from "../Markdownify";
+import Clickable from "../Clickable";
+import { bucket } from "../../data/site.yaml";
 import styles from "./index.module.scss";
+
+// change provided srcs to external bucket location for production
+const transformSrc = (src) =>
+  process.env.mode === "production" && !src.startsWith("http")
+    ? bucket + src
+    : src;
 
 const Figure = ({
   image = "",
@@ -30,7 +38,7 @@ const Figure = ({
   let style;
   if (width) style = { width };
   else if (height) style = { height };
-  else style = { with: "100%" };
+  else style = { width: "100%" };
 
   // autoplay/pause video when it goes in/out of view
   const videoRef = useRef();
@@ -63,7 +71,7 @@ const Figure = ({
       {image && (
         <img
           className={styles.image}
-          src={image}
+          src={transformSrc(image)}
           alt={imageCaption}
           style={style}
           loading="lazy"
@@ -80,11 +88,15 @@ const Figure = ({
           preload="metadata"
           style={style}
         >
-          <source src={video} />
+          <source src={transformSrc(video)} />
         </video>
       )}
 
-      {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
+      {caption && (
+        <figcaption className={styles.caption}>
+          <Markdownify>{caption}</Markdownify>
+        </figcaption>
+      )}
     </figure>
   );
 };

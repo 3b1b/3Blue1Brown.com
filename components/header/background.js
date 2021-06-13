@@ -12,7 +12,7 @@ const Minor = () => {
   const h = [];
   const v = [];
 
-  for (let i = from; i < to; i++) {
+  for (let i = from; i <= to; i++) {
     h.push(
       <line
         key={i}
@@ -44,12 +44,12 @@ const Minor = () => {
 };
 
 const Major = () => {
-  const from = (-major * cells) / 2;
-  const to = (major * cells) / 2;
+  const from = -cells / major / 2;
+  const to = cells / major / 2;
   const h = [];
   const v = [];
 
-  for (let i = from; i < to; i++) {
+  for (let i = from; i <= to; i++) {
     h.push(
       <line
         key={i}

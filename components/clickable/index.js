@@ -1,4 +1,5 @@
 import NextLink from "next/link";
+import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
 const Clickable = ({
@@ -6,10 +7,9 @@ const Clickable = ({
   icon,
   text,
   active,
-  onClick,
-  className,
+  className = "",
   design,
-  tooltip,
+  ...rest
 }) => {
   let Component;
   if (link) Component = Link;
@@ -17,11 +17,10 @@ const Clickable = ({
 
   return (
     <Component
-      link={link}
+      {...rest}
       data-icon={icon ? true : false}
       data-text={text ? true : false}
       data-active={active}
-      onClick={onClick}
       data-design={design}
       className={styles.clickable + " " + className}
     >
@@ -35,11 +34,17 @@ const Clickable = ({
   );
 };
 
-const Button = ({ ...props }) => <button {...props} />;
+const Button = ({ tooltip, ...rest }) => (
+  <Tooltip content={tooltip}>
+    <button {...rest} />
+  </Tooltip>
+);
 
-const Link = ({ link, ...props }) => (
-  <NextLink href={link}>
-    <a {...props} />
+const Link = ({ tooltip, link = "/", ...rest }) => (
+  <NextLink href={link} passHref>
+    <Tooltip content={tooltip}>
+      <a {...rest} />
+    </Tooltip>
   </NextLink>
 );
 

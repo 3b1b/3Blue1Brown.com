@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import Clickable from "../clickable";
+import Clickable from "../Clickable";
 import sitePatrons from "../../data/patrons.yaml";
 import nameOverrides from "../../data/patron-name-overrides.yaml";
 import { shuffle } from "../../util/math";
