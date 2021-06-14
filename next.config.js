@@ -1,7 +1,13 @@
 const withImages = require("next-images");
 const withYAML = require("next-yaml");
 
+
 let config = {
+  target: "serverless"
+}
+
+config = {
+  ...config,
   sassOptions: {
     prependData: `
 @use "sass:math";
@@ -10,7 +16,6 @@ let config = {
 @import "styles/mixins.scss";
     `,
   },
-  target: "serverless",
 };
 
 config = {
