@@ -1,0 +1,54 @@
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: $black;
+  z-index: 0;
+}
+
+.svg {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  opacity: 0.25;
+  animation: rotate_grid 120s linear forwards infinite;
+}
+
+.line {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 6000;
+  animation: draw_line 15s ease-in-out forwards infinite;
+
+  @for $i from 1 through 42 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{2 + math.div($i, 20)}s;
+    }
+  }
+}
+
+@keyframes rotate_grid {
+  0% {
+    transform: translateY(-50%) perspective(1000px) rotateX(65deg) rotateZ(0deg);
+  }
+  100% {
+    transform: translateY(-50%) perspective(1000px) rotateX(65deg)
+      rotateZ(360deg);
+  }
+}
+
+@keyframes draw_line {
+  0% {
+    stroke-dashoffset: 6000;
+  }
+  30% {
+    stroke-dashoffset: 4000;
+  }
+  70% {
+    stroke-dashoffset: 4000;
+  }
+  100% {
+    stroke-dashoffset: 2000;
+  }
+}
