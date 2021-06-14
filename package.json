@@ -9,6 +9,7 @@
     "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^3.4.2",
     "@popperjs/core": "^2.9.2",
     "disqus-react": "^1.0.11",
     "glob": "^7.1.7",

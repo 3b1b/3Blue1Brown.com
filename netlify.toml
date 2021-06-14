@@ -2,6 +2,9 @@
   publish = "public"
   command = "yarn build"
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [context.production.environment]
   GIT_LFS_ENABLED = "true"
 
