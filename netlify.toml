@@ -4,7 +4,6 @@
 
 [context.production.environment]
   GIT_LFS_ENABLED = "true"
-  mode = "production"
 
 [context.deploy-preview]
   command = "yarn build"
