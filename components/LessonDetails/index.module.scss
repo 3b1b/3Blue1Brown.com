@@ -1,0 +1,17 @@
+.lesson_details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $gray-600;
+  font-style: italic;
+  text-align: center;
+
+  & > div {
+    margin: 5px 10px;
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}

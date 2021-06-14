@@ -1,0 +1,8 @@
+# site variables
+
+title: 3Blue1Brown
+description: Mathematics with a distinct visual perspective. Linear algebra, calculus, neural networks, topology, and more.
+location: 3blue1brown.com
+
+bucket: "https://3b1b-posts.us-east-1.linodeobjects.com/"
+disqus: 3blue1brown

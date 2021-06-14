@@ -1,0 +1,79 @@
+.panel {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  max-width: calc(100vw - 60px);
+  font-family: $sans;
+  background: $white;
+  box-shadow: 0 0 5px #00000020;
+  z-index: 10;
+  transition: transform $fast, opacity $fast;
+
+  &[data-open="false"] {
+    transform: translateX(calc(-100% - 1px));
+  }
+}
+
+.heading {
+  & > button {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 100%;
+  }
+}
+
+.list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.link {
+  display: block;
+  padding: 14px 20px;
+  min-height: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  &:hover {
+    background: $light-blue-100;
+  }
+
+  &[data-active="true"] {
+    background: $gray-100;
+  }
+
+  &[data-level="1"] {
+    padding-left: 20px;
+  }
+  &[data-level="2"] {
+    padding-left: 30px;
+  }
+  &[data-level="3"] {
+    padding-left: 40px;
+  }
+  &[data-level="4"] {
+    padding-left: 50px;
+  }
+}
+
+.overlay {
+  background: #00000080;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity $fast;
+
+  &[data-show="true"] {
+    opacity: 1;
+    pointer-events: unset;
+  }
+}

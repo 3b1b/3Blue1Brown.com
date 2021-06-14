@@ -1,0 +1,60 @@
+// reusable snippets of CSS
+
+// fade group of items when hovering
+@mixin hover {
+  &:hover > *:not(:hover) {
+    opacity: 0.25 !important;
+  }
+}
+
+// remove vertical margins from first and last elements
+@mixin trim-v-margins {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// remove horizontal margins from first and last elements
+@mixin trim-h-margins {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+// truncate text after 1 line
+@mixin truncate {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// truncate text after N about of lines
+@mixin line-clamp($N) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $N;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// fade in
+@mixin fade-in {
+  animation: fade_in 1s ease forwards;
+}
+
+@keyframes fade_in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

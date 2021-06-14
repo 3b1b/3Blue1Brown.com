@@ -1,7 +1,0 @@
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-
-{{ range (readDir "/assets/css") }}
-  {{ $sass := (print "/css/" .Name) }}
-  {{ $css := resources.Get $sass | resources.ExecuteAsTemplate $sass . | resources.ToCSS | resources.Minify }}
-  <link rel="stylesheet" href="{{ $css.Permalink }}">
-{{ end }}

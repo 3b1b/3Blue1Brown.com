@@ -1,0 +1,49 @@
+.topic_card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 0;
+  font-family: $sans;
+  font-weight: $medium;
+  text-decoration: none;
+  z-index: 1;
+
+  &[data-open="true"] {
+    width: 100%;
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    background: $light-blue-100;
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 240px;
+    height: 135px;
+  }
+
+  i {
+    position: relative;
+    left: 10px;
+    width: 0;
+    color: $light-blue-500;
+    opacity: 0;
+    transition: opacity $fast;
+  }
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: -5px;
+}

@@ -1,5 +1,0 @@
-{{- if (hasPrefix . "http") -}}
-  {{- . -}}
-{{- else -}}
-  {{- . | relURL -}}
-{{- end -}}

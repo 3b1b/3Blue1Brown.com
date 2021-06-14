@@ -1,0 +1,335 @@
+//////////////////////////////
+// root
+//////////////////////////////
+
+html,
+body,
+#__next {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 12pt;
+  font-family: $serif;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  position: relative;
+}
+
+body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: left $fast;
+}
+
+body[data-offset="true"] {
+  left: 300px;
+}
+
+//////////////////////////////
+// all
+//////////////////////////////
+
+* {
+  box-sizing: border-box;
+}
+
+//////////////////////////////
+// headings
+//////////////////////////////
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: $sans;
+  font-weight: $regular;
+  line-height: $spacing - 0.3;
+  margin: 60px 0 30px 0;
+  @include trim-v-margins;
+  padding: 10px 0;
+}
+
+h1 {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  // text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+h4 {
+  font-size: 1rem;
+  text-align: left;
+}
+
+//////////////////////////////
+// paragraph
+//////////////////////////////
+
+p {
+  margin: 20px 0;
+  @include trim-v-margins;
+  text-align: justify;
+  line-height: $spacing + 0.3;
+}
+
+//////////////////////////////
+// link
+//////////////////////////////
+
+a {
+  color: $light-blue-500;
+  transition: background $fast, color $fast, opacity $fast;
+}
+
+a:hover {
+  color: currentColor;
+}
+
+//////////////////////////////
+// image
+//////////////////////////////
+
+img,
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+//////////////////////////////
+// button
+//////////////////////////////
+
+button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  font-family: $sans;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background $fast, color $fast, opacity $fast;
+}
+
+//////////////////////////////
+// list
+//////////////////////////////
+
+ul,
+ol {
+  margin: 40px 0;
+  @include trim-v-margins;
+  padding-left: 40px;
+
+  li {
+    @include trim-v-margins;
+    padding-left: 10px;
+    text-align: justify;
+    line-height: $spacing + 0.3;
+  }
+}
+
+ul {
+  list-style-type: square;
+}
+
+//////////////////////////////
+// table
+//////////////////////////////
+
+section > div > table {
+  // only tables that are first generation children of sections
+  // not, eg, google search widget tables
+  margin: 40px auto;
+  @include trim-v-margins;
+  border-collapse: collapse;
+  color: inherit;
+
+  th,
+  td {
+    padding: 10px 15px;
+    border: solid 1px $black;
+    word-break: break-word;
+  }
+
+  tr:first-child th {
+    border-top: 0;
+  }
+  tr:last-child td {
+    border-bottom: 0;
+  }
+  tr td:first-child,
+  tr th:first-child {
+    border-left: 0;
+  }
+  tr td:last-child,
+  tr th:last-child {
+    border-right: 0;
+  }
+}
+
+//////////////////////////////
+// horizontal rule
+//////////////////////////////
+
+hr {
+  margin: 40px 0;
+  background: $gray-400;
+  border: none;
+  width: 100%;
+  height: 2px;
+}
+
+//////////////////////////////
+// quote
+//////////////////////////////
+
+blockquote {
+  margin: 40px 0;
+  @include trim-v-margins;
+  padding: 30px 40px;
+  background: $gray-100;
+}
+
+//////////////////////////////
+// code
+//////////////////////////////
+
+pre,
+code,
+pre *,
+code * {
+  font-family: $mono;
+}
+
+pre,
+code {
+  text-align: left;
+  color: $white;
+}
+
+// inline
+:not(pre) > code {
+  padding: 2px 6px;
+  background: $gray-800;
+  line-height: $spacing;
+}
+
+// block
+pre {
+  margin: 40px 0;
+  @include trim-v-margins;
+  padding: 20px;
+  background: $gray-800;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+//////////////////////////////
+// math
+//////////////////////////////
+
+.math-display {
+  overflow-x: auto;
+}
+
+//////////////////////////////
+// util
+//////////////////////////////
+
+.center {
+  text-align: center;
+}
+
+[data-glow="true"] {
+  animation: glow 2s;
+}
+
+@keyframes glow {
+  0% {
+    background: none;
+  }
+  10% {
+    background: $light-blue-100;
+  }
+  100% {
+    background: none;
+  }
+}
+
+[data-shake="true"] {
+  animation: shake 0.25s linear forwards;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+//////////////////////////////
+// google search
+//////////////////////////////
+
+#___gcse_0 {
+  .gsc-input-box {
+    table {
+      height: 40px;
+    }
+  }
+
+  .gsc-search-button {
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+    }
+  }
+
+  .gsc-results-wrapper-visible {
+    text-align: left;
+  }
+
+  .gsc-thumbnail-inside,
+  .gsc-url-top,
+  .gsc-table-result {
+    margin: 5px 0;
+  }
+
+  .gs-image-box {
+    margin-right: 10px;
+  }
+}
