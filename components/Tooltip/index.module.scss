@@ -1,0 +1,58 @@
+$arrow: 10px;
+$color: $gray-900;
+
+.tooltip {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  max-width: min(500px, calc(100vw - 40px));
+  background: $color;
+  color: $white;
+  font-family: $sans;
+  font-size: 0.9rem;
+  z-index: 12;
+  pointer-events: none;
+  transition: opacity $fast;
+}
+
+.content {
+  padding: 10px 15px;
+  pointer-events: all;
+}
+
+.arrow {
+  position: absolute;
+  width: $arrow;
+  height: $arrow;
+}
+
+.arrow:after {
+  content: "";
+  position: absolute;
+  width: $arrow;
+  height: $arrow;
+  background: $color;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.tooltip[data-popper-placement="top"] .arrow {
+  bottom: -0.5 * $arrow;
+}
+
+.tooltip[data-popper-placement="bottom"] .arrow {
+  top: -0.5 * $arrow;
+}
+
+.tooltip[data-popper-placement="left"] .arrow {
+  right: -0.5 * $arrow;
+}
+
+.tooltip[data-popper-placement="right"] .arrow {
+  left: -0.5 * $arrow;
+}
+
+.span {
+  border-bottom: dashed 2px $gray-500;
+  cursor: help;
+}

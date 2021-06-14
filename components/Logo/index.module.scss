@@ -1,0 +1,39 @@
+.logo {
+  height: 60px;
+  max-width: 100%;
+  @include fade-in;
+
+  &[data-big="true"] {
+    height: 120px;
+    margin-top: 20px;
+  }
+}
+
+.dilate_outer {
+  animation: dilate_outer 2s ease forwards;
+}
+
+@keyframes dilate_outer {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.dilate_inner {
+  opacity: 0;
+  animation: dilate_inner 2s ease forwards;
+}
+
+@keyframes dilate_inner {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
