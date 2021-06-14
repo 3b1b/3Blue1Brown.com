@@ -10,6 +10,7 @@ let config = {
 @import "styles/mixins.scss";
     `,
   },
+  target: "serverless"
 };
 
 config = {
