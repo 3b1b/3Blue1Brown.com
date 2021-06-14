@@ -5,127 +5,123 @@ date: 2017-07-08
 video: S9JGmA5_unY
 source: _2017/256.py
 credits:
-- Lesson by Grant Sanderson
-- Blog Adaption by River Way
+  - Lesson by Grant Sanderson
+  - Blog Adaption by River Way
 ---
+
+<Section>
 
 ## What is 256 bit security?
 
 If a protocol is described as having "$n$-bit security", it means an attacker would have to run some computation $2^n$ times to break the system.
 
-For example, the {{< lesson-link text="last post" link="bitcoin" >}} touched on the function SHA256, which takes in an input of arbitrary length, and produces an output which is always 256 bits long. It's believed that this is a _crytographic_ hash function, which means that it's computationally infeasible to reverse it. More specifically, if you want to find an input producing a particular output, there is no better method than to repeatedly guess and check.
+For example, the <LessonLink id="bitcoin" >last post</LessonLink> touched on the function SHA256, which takes in an input of arbitrary length, and produces an output which is always 256 bits long. It's believed that this is a _crytographic_ hash function, which means that it's computationally infeasible to reverse it. More specifically, if you want to find an input producing a particular output, there is no better method than to repeatedly guess and check.
 
-{{< figure image="guesses.png" width="60%" />}}
+<Figure image="guesses.png" width="60%" />
 
 These cryptographic hash functions are used, for example, to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
 
 A core theme of cryptography is to find tasks which are easy in one direction but hard in another, so it should make sense that these one-way hash functions are a very common building block in all sorts of security protocols, including not just password storage, but digital signatures, proofs of work, and many more. So how hard is this guess-and-check process, exactly? The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die.
 
-{{< question
+<Question
   question="How many times, on average, do you need to roll a six-sided die until you get a particular number, say a $1$?"
-  choice1="$3$"
-  choice2="$6$"
-  choice3="$9$"
-  choice4="$12$"
-  correct=2
+  choices={["$3$", "$6$", "$9$", "$12$"]}
+  correct={2}
   explanation="Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that your first roll is a $1$ is $\frac{1}{6}$. The probability that your first roll is not a $1$, but the second one is, is $\frac{5}{6} \cdot \frac{1}{6}$. In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is $\left(\frac{5}{6}\right)^{k-1}\frac{1}{6}$. So the expected number of rolls it will take to see a $1$ for the first time is $$1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right) $$ Forgive me for distracting from the main point of the article here, but the trick for evaluating something like this is too delightful not to show. Think about how to sum a geometric series: $$1 + x + x^2 + x^3 + \cdots = \frac{1}{1 - x}$$ Now take the derivative of both sides $$1 + 2x + 3x^2 + 4x^3 + \cdots = \frac{1}{(1 - x)^2}$$ Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. Pretty neat, isn't it?"
->}}
+/>
 
 For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[ [2](/lessons/256-bit-security/#footnotes)]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
 
-{{< section >}} 
+</Section><Section>
 
 ## Appreciating Large Powers of Two
 
-{{< figure image="breakdown.png" width="60%" />}}
+<Figure image="breakdown.png" width="60%" />
 
 The human mind is best at breaking down concepts into smaller pieces to analyze. $2^{256}$ is $2^{32}$ multiplied by itself eight times. $2^{32}$ is about 4 billion, which is a number we can at least start to think about, so all we need to do is appreciate what multiplying 4 billion times itself eight successive times feels like.
 
 #### 4 Billion Hashes Per Second
 
-{{< figure image="progress1.png" />}}
+<Figure image="progress1.png" />
 
 The GPU on your computer can let you run parallel computations incredibly quickly. If you specially program a GPU to run a cryptographic hash function over and over, a really good one can do just under a [billion hashes per second](https://en.bitcoin.it/wiki/Non-specialized_hardware_comparison).
 
-{{< figure image="GPU.png" width="60%" />}}
+<Figure image="GPU.png" width="60%" />
 
 Let’s say you cram a computer with extra GPUs so that it can guess and check 4 billion times per second. So our first 4 billion is the number of hashes per second per computer.
 
 #### 4 Billion Computers
 
-{{< figure image="progress2.png" />}}
+<Figure image="progress2.png" />
 
 Now picture 4 billion of these GPU-packed computers. For comparison, even though Google does not make the number of servers it runs public, estimates have it somewhere in the single-digit millions.
 
-{{< figure image="kilogoogle.png" width="60%" />}}
+<Figure image="kilogoogle.png" width="60%" />
 
 In reality, most of those servers are much less powerful than our imagined GPU-packed machine, but if Google replaced all its millions of servers with machines like this, 4 billion machines would mean about 1,000 copies of this souped-up Google, which I’ll call one KiloGoogle++.
 
 #### 4 Billion KiloGoogles
 
-{{< figure image="progress3.png" />}}
+<Figure image="progress3.png" />
 
 There are about 7.9 billion people on Earth, so imagine giving a little over half the people on Earth their own personal KiloGoogle.
 
-{{< figure image="planet.png" width="60%" />}}
+<Figure image="planet.png" width="60%" />
 
-{{< question
+<Question
   question="If you were the president of this KiloGoogle filled Earth, how many guesses could you order to be checked per second?"
-  choice1="$2^{32}$"
-  choice2="$2^{64}$"
-  choice3="$2^{96}$"
-  choice4="$2^{128}$"
-  correct=3
+  choices={["$2^{32}$", "$2^{64}$", "$2^{96}$", "$2^{128}$"]}
+  correct={3}
   explanation="There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $2^{32}$ GPU-packed servers which can each run $2^{32}$ hashes per second. $2^{32}\times 2^{32}\times 2^{32}=2^{96}$."
-
->}}
+/>
 
 #### 4 Billion Earths
 
-{{< figure image="progress4.png" />}}
+<Figure image="progress4.png" />
 
 Now imagine 4 billion copies of this Earth. The Milky Way has between 100 and 400 billion stars, so this would be akin to 1% of all stars in the galaxy having a copy of Earth, where half the population on each has their own personal KiloGoogle.
 
-{{< figure image="milkyway.png" width="60%" />}}
+<Figure image="milkyway.png" width="60%" />
 
 #### 4 Billion Milky Ways
 
-{{< figure image="progress5.png" />}}
+<Figure image="progress5.png" />
 
 Now picture 4 billion copies of the Milky Way, and call this your GigaGalactic Super Computer, running $(2^{32})^5 = 2^{160}$ guesses per second.
 
-{{< figure image="ggsc.png" width="60%" />}}
+<Figure image="ggsc.png" width="60%" />
 
 #### 4 Billion Seconds
 
-{{< figure image="progress6.png" />}}
+<Figure image="progress6.png" />
 
 4 billion seconds is about 126 years, which is still a reasonable amount of time to want to keep something hidden. Maybe you’re hiding a digital treasure for your great-great-great grandchildren!
 
 #### 4 Billion Seconds Squared
 
-{{< figure image="progress7.png" />}}
+<Figure image="progress7.png" />
 
 4 billion times 126 years is about 507 billion years. This is roughly 37 times the age of the universe. The Earth will have been swallowed up by the sun a long time before this, hopefully nobody cares about your password anymore.
 
 #### 1 in 4 Billion Success Rate
 
-{{< figure image="progress8.png" />}}
+<Figure image="progress8.png" />
 
 So even if you were to have your GPU-packed KiloGoogle-per-person multi-planetary GigaGalactic Super Computer guessing numbers for 37 times the age of the universe, it would still only have a 1 in 4 billion chance of finding a correct guess.
 
-{{< question
+<Question
   question="If you had your very own KiloGoogle, how many years would it take you to match a GigaGalactic Super Computer with its success rate of 1 in 4 billion?"
-  choice1="$4\times 10^{40}$"
-  choice2="$5\times 10^{50}$"
-  choice3="$6\times 10^{60}$"
-  choice4="$7\times 10^{70}$"
-  correct=1
+  choices={[
+    "$4\times 10^{40}$",
+    "$5\times 10^{50}$",
+    "$6\times 10^{60}$",
+    "$7\times 10^{70}$",
+  ]}
+  correct={1}
   explanation="A GigaGalactic Super Computer takes 507 billion ($5.07\times 10^{11}$) years to get a success rate of 1 in 4 billion. Since a GGSC is $2^{96}$ times more powerful than a KiloGoogle, a KiloGoogle will reach a success rate of 1 in 4 billion in $5.07\times 10^{11}\times 2^{96}\approx 4\times 10^{40}$ years. Slightly longer than waiting for cookies to cool from the oven (both seem like forever though)!"
+/>
 
->}}
-
-{{< section >}} 
+</Section><Section>
 
 ## Modern Bitcoin Hashing
 
@@ -133,13 +129,14 @@ In 2021, all the miners put together make guesses at a rate of about [100 billio
 
 This is not because there are actually billions of GPU packed machines out there, but because miners use something about [ten thousand](https://en.bitcoin.it/wiki/Mining_hardware_comparison) times better than a GPU: Application-Specific Integrated Circuits.
 
-{{< pi-creature emotion="miner" >}}
+<PiCreature emotion="miner" />
 
 These are pieces of hardware specifically designed for bitcoin mining and nothing else. It turns out that there are a lot of efficiency gains to be had when you throw out the need for general computation, and design your integrated circuits for a single, specific task.
 
 ## Footnotes
 
-[1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions) 
+[1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions)
 
-[2] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions) 
+[2] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions)
 
+</Section>
