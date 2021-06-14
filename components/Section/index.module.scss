@@ -6,11 +6,11 @@ $phone: 500px;
   }
 
   &:nth-child(even) {
-    background: $white;
-  }
-
-  &:nth-child(even) {
     background: $gray-50;
+  }
+  
+  &:nth-child(even) {
+    background: $white;
   }
 
   &[data-dark="true"] {
