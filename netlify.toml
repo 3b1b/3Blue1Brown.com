@@ -2,11 +2,9 @@
   publish = "out"
   command = "yarn build"
 
-[context.production]
-  mode = "production"
-
 [context.production.environment]
   GIT_LFS_ENABLED = "true"
+  mode = "production"
 
 [context.deploy-preview]
   command = "yarn build"
