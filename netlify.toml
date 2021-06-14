@@ -1,8 +1,6 @@
 [build]
   publish = "public"
   command = "yarn build"
-
-[[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [context.production.environment]
