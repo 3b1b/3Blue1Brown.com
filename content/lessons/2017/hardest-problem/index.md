@@ -6,6 +6,7 @@ video: OkmNXy7er84
 source: _2017/putnam.py
 credits:
 - Lesson by Grant Sanderson
+- Translated to blog format by James Schloss
 ---
 
 ## The problem
