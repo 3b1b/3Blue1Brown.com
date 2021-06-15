@@ -1,0 +1,71 @@
+.clickable {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 10px;
+  color: inherit;
+  border: none;
+  font-family: $sans;
+  font-size: 0.9em;
+  text-decoration: none;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 10px;
+  padding: 10px 15px;
+  background: $gray-200;
+  color: $black;
+
+  &:hover {
+    background: $light-blue-100;
+  }
+
+  &[data-icon="true"][data-text="false"] {
+    padding: 0;
+  }
+
+  &[data-text="true"] {
+    padding: 10px 15px;
+  }
+
+  &[data-active="false"] {
+    background: none;
+
+    &:hover {
+      background: $gray-200;
+    }
+  }
+
+  &[data-active="true"] {
+    background: $light-blue-100;
+  }
+}
+
+.clickable[data-design="rounded"] {
+  min-width: 50px;
+  min-height: 50px;
+  margin: 5px;
+  padding: 10px 15px;
+  border-radius: 999px;
+  background: $gray-800;
+  color: $white;
+
+  &:hover {
+    background: $light-blue-500;
+  }
+}
+
+.text {
+  text-align: center;
+  font-family: $sans;
+  font-weight: $medium;
+  @include truncate;
+}
+
+.clickable[data-icon="true"][data-text="true"] .icon {
+  margin-right: 0.8em;
+}
+
+.clickable[data-icon="true"][data-text="false"] .icon {
+  font-size: 1.2em;
+}

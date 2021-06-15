@@ -1,0 +1,28 @@
+.accordion {
+  margin: 20px 0;
+  @include trim-v-margins;
+}
+
+.title {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-family: $serif;
+  font-weight: $semi-bold;
+  text-align: left;
+  transition: background $fast;
+
+  &:hover {
+    background: $light-blue-100;
+  }
+
+  i {
+    margin-right: 10px;
+  }
+}
+
+.reveal {
+  text-align: left;
+  padding: 30px;
+  background: $gray-100;
+}
