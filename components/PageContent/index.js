@@ -10,7 +10,7 @@ const PageContent = () => {
 
   // if markdown file doesn't start with section, wrap with section
   let Wrapper = Fragment;
-  if (!content.trim().startsWith("<Section>")) Wrapper = Section;
+  if (!content.trim().startsWith("<Section")) Wrapper = Section;
 
   if (!source) return <></>;
   return (

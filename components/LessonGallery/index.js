@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
@@ -70,23 +70,32 @@ const LessonGallery = ({ show = "topic" }) => {
 
 export default LessonGallery;
 
-const TopicCard = ({ topic, opened, onClick }) => (
-  <>
-    <button
-      className={styles.topic_card}
-      onClick={onClick}
-      data-open={opened}
-      data-fade
-    >
-      <img src={`images/topics/${toDashCase(topic.name)}.jpg`} />
-      <span className={styles.text}>
-        {topic.name}
-        <i className={`fas fa-caret-${opened ? "up" : "down"} fa-lg`} />
-      </span>
-    </button>
-    {opened &&
-      topic.lessons.map((lesson, index) => (
-        <LessonCard key={index} id={lesson} />
-      ))}
-  </>
-);
+const TopicCard = ({ topic, opened, onClick }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (opened) ref?.current?.scrollIntoView(true);
+  }, [opened]);
+
+  return (
+    <>
+      <button
+        ref={ref}
+        className={styles.topic_card}
+        onClick={onClick}
+        data-open={opened}
+        data-fade
+      >
+        <img src={`images/topics/${toDashCase(topic.name)}.jpg`} />
+        <span className={styles.text}>
+          {topic.name}
+          <i className={`fas fa-caret-${opened ? "up" : "down"} fa-lg`} />
+        </span>
+      </button>
+      {opened &&
+        topic.lessons.map((lesson, index) => (
+          <LessonCard key={index} id={lesson} />
+        ))}
+    </>
+  );
+};

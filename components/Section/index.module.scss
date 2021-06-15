@@ -5,7 +5,7 @@ $phone: 500px;
     flex-grow: 1;
   }
 
-  &:nth-child(even) {
+  &:nth-child(odd) {
     background: $gray-50;
   }
   
