@@ -5,7 +5,17 @@ import Markdownify from "../Markdownify";
 import { shakeElement } from "../../util/animation";
 import styles from "./index.module.scss";
 
-const Question = ({ question, choices, answer, explanation }) => {
+const Question = ({
+  question,
+  choice1,
+  choice2,
+  choice3,
+  choice4,
+  choice5,
+  choice6,
+  answer,
+  explanation,
+}) => {
   const [selected, setSelected] = useState(0);
   const [state, setState] = useState("unanswered");
   const resultRef = useRef();
@@ -15,12 +25,17 @@ const Question = ({ question, choices, answer, explanation }) => {
 
   // check answer
   const submit = () => {
+    console.log(selected, answer);
     if (selected === answer) setState("correct");
     else {
       setState("incorrect");
       shakeElement(resultRef?.current?.querySelector("button"));
     }
   };
+
+  const choices = [choice1, choice2, choice3, choice4, choice5, choice6].filter(
+    (choice) => choice
+  );
 
   // reset question
   const reset = () => setState("unanswered");
