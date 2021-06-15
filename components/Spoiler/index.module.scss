@@ -1,0 +1,10 @@
+.spoiler {
+  background: $black;
+  color: $black;
+  transition: background $fast;
+
+  &:hover,
+  &:focus {
+    background: none;
+  }
+}

@@ -1,17 +1,9 @@
 [build]
-  publish = "public"
-  command = "hugo --gc --minify"
-
-[build.environment]
-  HUGO_VERSION = "0.83.1"
-
-[context.production]
-  command = "hugo --gc --minify && find public/lessons -type f \\( -name '*.mp4' -or -name '*.mov' -or -name '*.png' \\) -delete"
+  publish = "out"
+  command = "yarn build"
 
 [context.production.environment]
-  HUGO_ENV = "production"
-  HUGO_ENABLEGITINFO = "true"
   GIT_LFS_ENABLED = "true"
 
 [context.deploy-preview]
-  command = "hugo --environment preview"
+  command = "yarn build"
