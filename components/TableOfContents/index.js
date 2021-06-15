@@ -53,7 +53,7 @@ const TableOfContents = () => {
   const onNav = useCallback((event) => {
     event.preventDefault();
     document
-      .querySelector(event.target.dataset.id)
+      .getElementById(event.target.dataset.id.slice(1))
       .scrollIntoView({ behavior: "smooth" });
   }, []);
 
@@ -113,7 +113,7 @@ const getHeadings = () =>
 const getActive = (headings) => {
   headings = [...headings].reverse();
   for (const { id } of headings) {
-    const heading = document.querySelector("#" + id);
+    const heading = document.getElementById(id);
     if (!heading) continue;
     const bbox = heading.getBoundingClientRect();
     if (bbox.top <= 0) return id;

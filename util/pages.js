@@ -31,8 +31,10 @@ const parseMdx = (file) => {
   // set flag for whether lesson has text content
   data.empty = (content || "").trim() === "";
 
-  // get id/slug from file path
+  // info about original loaded file
   data.slug = getSlugFromFile(file);
+  data.file = "/" + file.split(/[\\/]/).slice(1).join("/");
+  data.dir = "/" + file.split(/[\\/]/).slice(1, -1).join("/") + "/";
 
   // get topic of lesson
   data.topic =

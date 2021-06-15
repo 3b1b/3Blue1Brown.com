@@ -27,9 +27,7 @@ const LessonLayout = () => {
 
       {!empty && (
         <>
-          <Section>
-            <PageContent />
-          </Section>
+          <PageContent />
           <LessonNav />
           <License />
           <Thanks />

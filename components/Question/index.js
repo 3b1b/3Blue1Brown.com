@@ -27,7 +27,9 @@ const Question = ({ question, choices, answer, explanation }) => {
 
   return (
     <div className={styles.question}>
-      <div className={styles.text}>{question}</div>
+      <div className={styles.text}>
+        <Markdownify>{question}</Markdownify>
+      </div>
       <div className={styles.choices}>
         {choices.map((choice, index) => (
           <label

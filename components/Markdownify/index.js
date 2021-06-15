@@ -8,13 +8,16 @@ import rehypeKatex from "rehype-katex";
 // use 13 for this component, 12 for everything else (mdx)
 
 const Markdownify = ({ children }) => {
-  if (typeof children === "string")
+  if (typeof children === "string") {
+    // hack to convert string character escape sequences back into their 
+    // original raw strings, e.g. a tab gets converted to a literal "\t"
+    children = JSON.stringify(children).slice(1,-1)
     return (
       <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
         {children}
       </ReactMarkdown>
     );
-  else return <>{children}</>;
+  } else return <>{children}</>;
 };
 
 export default Markdownify;

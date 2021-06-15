@@ -1,14 +1,18 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import Markdownify from "../Markdownify";
 import Clickable from "../Clickable";
 import { bucket } from "../../data/site.yaml";
+import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
 // change provided srcs to external bucket location for production
-const transformSrc = (src) =>
-  process.env.mode === "production" && !src.startsWith("http")
-    ? bucket + src
-    : src;
+const transformSrc = (src, dir) => {
+  if (src.startsWith("http")) return src;
+  else {
+    if (process.env.mode === "production") return bucket + src;
+    else return dir + src;
+  }
+};
 
 const Figure = ({
   image = "",
@@ -21,6 +25,8 @@ const Figure = ({
   height = 0,
   loop = false,
 }) => {
+  const { dir } = useContext(PageContext);
+
   // determine show mode
   if (!initialShow) {
     if (image) initialShow = "image";
@@ -71,7 +77,7 @@ const Figure = ({
       {image && (
         <img
           className={styles.image}
-          src={transformSrc(image)}
+          src={transformSrc(image, dir)}
           alt={imageCaption}
           style={style}
           loading="lazy"
@@ -88,7 +94,7 @@ const Figure = ({
           preload="metadata"
           style={style}
         >
-          <source src={transformSrc(video)} />
+          <source src={transformSrc(video, dir)} />
         </video>
       )}
 

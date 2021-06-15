@@ -5,12 +5,12 @@ $phone: 500px;
     flex-grow: 1;
   }
 
+  &:nth-child(odd) {
+    background: $gray-50;
+  }
+  
   &:nth-child(even) {
     background: $white;
-  }
-
-  &:nth-child(even) {
-    background: $gray-50;
   }
 
   &[data-dark="true"] {
