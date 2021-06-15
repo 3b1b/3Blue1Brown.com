@@ -3,7 +3,7 @@ import { useEffect } from "react";
 // singleton component to glow elements on hash change
 const Glow = () => {
   const onHashChange = () =>
-    glowElement(document.querySelector(window.location.hash));
+    glowElement(document.getElementById(window.location.hash.slice(1)));
 
   useEffect(() => {
     window.addEventListener("hashchange", onHashChange);
