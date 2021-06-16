@@ -116,7 +116,7 @@ const getActive = (headings) => {
     const heading = document.getElementById(id);
     if (!heading) continue;
     const bbox = heading.getBoundingClientRect();
-    if (bbox.top <= -2) return id;
+    if (bbox.top <= window.innerHeight / 5) return id;
   }
 };
 

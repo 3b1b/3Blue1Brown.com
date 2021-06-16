@@ -16,8 +16,7 @@ export const cos = (degrees) => Math.cos(2 * Math.PI * (degrees / 360));
 export const shuffle = (array) => {
   array = [...array];
   for (let index = array.length - 1; index > 0; index--) {
-    const rand = random();
-    const newIndex = Math.floor(rand * (index + 1));
+    const newIndex = Math.floor(random() * (index + 1));
     [array[index], array[newIndex]] = [array[newIndex], array[index]];
   }
   return array;
