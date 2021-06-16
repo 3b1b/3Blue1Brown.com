@@ -4,7 +4,8 @@
 
 Peer review checklist:
 
-- [ ] I have checked the article for grammar/spelling errors.
+- [ ] The article has no grammar/spelling errors.
+- [ ] The article has no mathematical errors.
 - [ ] The table of contents effectively conveys the overall structure of the lesson.
 - [ ] The article includes well-chosen comprehension questions.
 - [ ] The article incorporates the core visuals from the video.
