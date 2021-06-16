@@ -9,14 +9,6 @@
   text-decoration: none;
   z-index: 1;
 
-  &[data-open="true"] {
-    width: 100%;
-
-    i {
-      opacity: 1;
-    }
-  }
-
   &:hover {
     background: $light-blue-100;
 
@@ -26,8 +18,9 @@
   }
 
   img {
-    width: 240px;
-    height: 135px;
+    $width: 300px;
+    width: $width;
+    height: $width * 9 / 16;
   }
 
   i {
@@ -37,6 +30,14 @@
     color: $light-blue-500;
     opacity: 0;
     transition: opacity $fast;
+  }
+
+  &[data-open="true"] {
+    width: 100%;
+
+    i {
+      opacity: 1;
+    }
   }
 }
 
