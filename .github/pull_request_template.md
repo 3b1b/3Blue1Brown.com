@@ -8,4 +8,7 @@ Pull request checklist:
 
 This pull request:
 
-<!-- make list of key items this pull request adds/changes/removes -->
+<!--
+  Make list of key items this pull request adds/changes/removes, then paste it
+  into the message box when you squash merge.
+-->
