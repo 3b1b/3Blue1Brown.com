@@ -5,7 +5,17 @@ import Markdownify from "../Markdownify";
 import { shakeElement } from "../../util/animation";
 import styles from "./index.module.scss";
 
-const Question = ({ question, choices, answer, explanation }) => {
+const Question = ({
+  question,
+  choice1,
+  choice2,
+  choice3,
+  choice4,
+  choice5,
+  choice6,
+  answer,
+  explanation,
+}) => {
   const [selected, setSelected] = useState(0);
   const [state, setState] = useState("unanswered");
   const resultRef = useRef();
@@ -22,12 +32,18 @@ const Question = ({ question, choices, answer, explanation }) => {
     }
   };
 
+  const choices = [choice1, choice2, choice3, choice4, choice5, choice6].filter(
+    (choice) => choice
+  );
+
   // reset question
   const reset = () => setState("unanswered");
 
   return (
     <div className={styles.question}>
-      <div className={styles.text}>{question}</div>
+      <div className={styles.text}>
+        <Markdownify>{question}</Markdownify>
+      </div>
       <div className={styles.choices}>
         {choices.map((choice, index) => (
           <label
@@ -72,7 +88,7 @@ const Question = ({ question, choices, answer, explanation }) => {
           </>
         )}
       </div>
-      {state === "correct" && (
+      {state === "correct" && explanation && (
         <div className={styles.explanation}>
           <Markdownify>{explanation}</Markdownify>
         </div>

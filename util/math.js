@@ -2,7 +2,7 @@ import seedrandom from "seedrandom";
 
 // seeded random generator, so next doesn't complain about differences between
 // server and browser random numbers/sequences
-const random = () => seedrandom(new Date().getMinutes())();
+const random = seedrandom(new Date().getMinutes());
 
 // generate range of integers
 export const range = (start, end) =>

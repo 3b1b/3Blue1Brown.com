@@ -6,9 +6,9 @@ const Clickable = ({
   link,
   icon,
   text,
+  design,
   active,
   className = "",
-  design,
   ...rest
 }) => {
   let Component;
@@ -18,6 +18,7 @@ const Clickable = ({
   return (
     <Component
       {...rest}
+      link={link}
       data-icon={icon ? true : false}
       data-text={text ? true : false}
       data-active={active}
