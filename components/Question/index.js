@@ -25,7 +25,6 @@ const Question = ({
 
   // check answer
   const submit = () => {
-    console.log(selected, answer);
     if (selected === answer) setState("correct");
     else {
       setState("incorrect");
@@ -89,7 +88,7 @@ const Question = ({
           </>
         )}
       </div>
-      {state === "correct" && (
+      {state === "correct" && explanation && (
         <div className={styles.explanation}>
           <Markdownify>{explanation}</Markdownify>
         </div>

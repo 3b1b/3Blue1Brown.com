@@ -6,7 +6,7 @@ const LessonLink = ({ id, children }) => (
   <>
     {id && (
       <Link href={`/lessons/${id}`} passHref>
-        <Tooltip content={<LessonCard id={id} />}>
+        <Tooltip content={<LessonCard id={id} mini={true} />}>
           <a>{children}</a>
         </Tooltip>
       </Link>

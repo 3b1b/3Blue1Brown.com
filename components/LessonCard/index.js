@@ -9,11 +9,11 @@ import Tooltip from "../Tooltip";
 const LessonCard = ({
   id,
   icon,
-  active,
   mini,
   reverse,
-  className = "",
   tooltip,
+  active,
+  className = "",
 }) => {
   const { lessons = [] } = useContext(PageContext);
 
@@ -41,12 +41,16 @@ const LessonCard = ({
     >
       {icon && <i className={icon}></i>}
 
-      <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+      <div className={styles.image}>
+        <div className={styles.frame}>
+          <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+        </div>
+      </div>
 
-      <span className={styles.text}>
+      <div className={styles.text}>
         <span>{title && <span>{title}</span>}</span>
         {description && !mini && <span>{description}</span>}
-        {(chapter || !empty) && !mini && (
+        {(chapter || !empty || date) && !mini && (
           <span>
             {chapter && (
               <Chip
@@ -65,7 +69,7 @@ const LessonCard = ({
             {date && <span>{date}</span>}{" "}
           </span>
         )}
-      </span>
+      </div>
     </Component>
   );
 };

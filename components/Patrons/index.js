@@ -1,29 +1,33 @@
 import { useState, useMemo } from "react";
 import Clickable from "../Clickable";
-import patrons from "../../data/patrons.yaml";
+import sitePatrons from "../../data/patrons.yaml";
 import nameOverrides from "../../data/patron-name-overrides.yaml";
 import { shuffle } from "../../util/math";
 import styles from "./index.module.scss";
 
-// filter by amount, active status, and top 1000 for css grid limits
-const sitePatrons = patrons
-  .filter((patron) => patron.amount >= 16)
-  .slice(0, 1000)
-  .map((patron) => patron.name)
-  .map((patron) => nameOverrides[patron] || patron)
-  .filter((patron) => patron);
-
-const Patrons = ({ active, pagePatrons }) => {
+const Patrons = ({ active, pagePatrons = [] }) => {
   const [open, setOpen] = useState(false);
 
   // shuffle to not favor alphabetical, keep random shuffle order on re-renders
-  pagePatrons = useMemo(
+  const shuffledPagePatrons = useMemo(
     () => shuffle(pagePatrons.filter((patron) => patron)),
     [pagePatrons]
   );
 
-  let patrons =
-    pagePatrons || sitePatrons.filter((patron) => patron.active === active);
+  let patrons;
+  // page specific patrons
+  if (shuffledPagePatrons.length) patrons = shuffledPagePatrons;
+  // site-wide patrons
+  else
+    patrons =
+      // filter by amount, active status, and top 1000 for css grid limits
+      sitePatrons
+        .filter((patron) => patron.amount >= 16)
+        .filter((patron) => patron.active === active)
+        .map((patron) => patron.name)
+        .map((patron) => nameOverrides[patron] || patron)
+        .filter((patron) => patron)
+        .slice(0, 1000);
 
   if (!patrons.length) return <></>;
 
