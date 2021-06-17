@@ -5,12 +5,14 @@ import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
-// change provided srcs to external bucket location for production
+// change provided srcs (png & mp4) to external bucket location for production.
 const transformSrc = (src, dir) => {
-  if (src.startsWith("http")) return src;
-  else {
-    if (process.env.mode === "production") return bucket + src;
-    else return dir + src;
+  if (src.startsWith("http")) {
+    return src;
+  } else if (process.env.mode === "production" && !src.endsWith("svg") ) {
+    return bucket + dir + src;
+  } else {
+    return dir + src;
   }
 };
 
