@@ -9,8 +9,11 @@ import styles from "./index.module.scss";
 const transformSrc = (src, dir) => {
   if (src.startsWith("http")) return src;
   else {
-    if (process.env.mode === "production") return bucket + src;
-    else return dir + src;
+    if (process.env.mode === "production") {
+      return bucket + src;
+    } else {
+      return dir + src;
+    }
   }
 };
 

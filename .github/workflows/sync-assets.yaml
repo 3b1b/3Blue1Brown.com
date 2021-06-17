@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - sync-action-update
 
 jobs:
   deploy:
@@ -19,22 +20,6 @@ jobs:
 
       - name: Checkout LFS objects
         run: git lfs checkout
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: '0.83.1'
-          extended: true
-
-      - name: Build
-        run: hugo --environment production
-
-      # - name: Deploy Site
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     exclude_assets: 'lessons/**/*.jpg,lessons/**/*.mp4,lessons/**/*.png'
-      #     publish_dir: ./public
 
       - name: Sync bucket
         uses: ./.github/actions/sync
