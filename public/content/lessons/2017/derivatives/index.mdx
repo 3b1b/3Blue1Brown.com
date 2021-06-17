@@ -23,7 +23,7 @@ Even if the phrase “instantaneous rate of change” doesn’t, strictly speaki
 
 ## Car Moving
 
-As our central example, imagine a car that starts at some point A, speeds up, then slows to a stop at some point B $100$ meters away, all over the course of $10$ seconds.
+As our central example, imagine a car that starts at some point A, speeds up, then slows to a stop at some point B, $100$ meters away, all over the course of $10$ seconds.
 
 <Figure
   image="figure-1.08-1.21.svg"
@@ -82,26 +82,45 @@ It’s worth taking a moment to think critically about what velocity actually me
   flip={true}
 />
 
-Question: At what time is the car going the fastest? (click to reveal) $t=3$
+For example, given the graph of the car's position, shown below, at what time is the car going fastest? <Spoiler>The car is going fastest at $t=3$</Spoiler>
+
+<Figure
+  image="figure-3.00-question.svg" 
+/>
+
+
+<Accordion title="Show velocity graph">
+
+<Figure
+  image="figure-3.00-question-answer.svg" 
+/>
+
+</Accordion>
 
 But the funny thing is, velocity at a single moment makes no sense. Or at least if we think of velocity as a change in distance divided by a change in time, then isolating our view to a single moment leaves no room for both these changes. If I show you a picture of a car, a snapshot in an instant, and ask you how fast it’s going, you’d have no way of telling me.
 
 <Figure
   image="figure-3.38.svg"
 />
-  
-What you need are two points in time to compare, perhaps comparing the distance traveled after $4$ seconds to the distance traveled after $5$ second. That way, you can take the change in distance over the change in time.
+
+What you need are two points in time to compare, perhaps comparing the distance traveled after $4$ seconds to the distance traveled after $5$ second. That way, you can take the change in distance over the change in time. For example, the two snapshots in time below show the position of the car.
 
 <Figure
-  image="figure-3.52.png"
+  image="figure-3.52.svg"
 />
+
+Using this information, we can calculate the velocity of the car for this time interval.
+
+$$
+\text{Velocity} \implies \frac{\text { Change in distance }}{\text { Change in time }} \implies \frac{(50-30) \text { meters }}{(5-4) \text { seconds }}
+$$
 
 That’s what velocity is, the distance traveled over a given amount of time.
 
 So how is it that we’re looking at a function for velocity that only takes in a single value for $t$, a single snapshot in time. It’s weird, isn’t it? We want to associate each individual point in time with a velocity, but computing velocity requires comparing two points in time.
 
 <Figure
-  image="figure-4.14.png"
+  image="figure-4.14.svg"
 />
 
 If that feels strange and paradoxical, good! You’re grappling with the same conflict that the inventors  of calculus did, and if you want a deep understanding of rates of change, not just for a moving car, but for all sorts of scenarios in science, you’ll need a resolution to this apparent paradox.
@@ -111,47 +130,55 @@ If that feels strange and paradoxical, good! You’re grappling with the same co
 First let’s talk about the real world, then we’ll go into a purely mathematical one. Think about how you might build an actual speedometer for a car.
 
 <Figure
-  image="figure-4.45.png"
+  image="figure-4.45.svg"
 />
 
 At some point, say $3$ seconds into the journey, the speedometer might measure how far the car goes in a very small amount of time, perhaps the distance traveled between $3$ seconds and $3.01$ seconds. Then it would compute the speed in meters per second as that tiny distance, in meters, divided by that tiny time, $0.01$ seconds.
 
 <Figure
-  image="figure-5.00.png"
+  image="figure-5.00.svg"
 />
 
 That is, a physical car can sidestep the paradox by not actually computing speed at a single point in time, and instead computing speed during *very* small amounts of time.
 
+$$
+\text{Velocity} \implies \frac{\text { Change in distance }}{\text { Change in time }} \implies\frac{(20.21-20) \text { meters }}{(3.01-3) \text { seconds }}
+$$
+
 Let’s call that difference in time “$dt$”, which you might think of as $0.01$ seconds, and call the resulting difference in distance traveled “$ds$”. So the velocity at that point in time is $ds$ over $dt$, the tiny change in distance over the tiny change in time.
 
 <Figure
-  image="figure-5.31.png"
-  caption="Velocity notation"
+  image="figure-5.31.svg"
 />
+
+<!--
+$$
+\frac{(\overbrace{20.21-20}^{d s}) \text { meters }}{(\underbrace{3.01-3}_{d t}) \text { seconds }}
+$$
+-->
 
 Graphically, imagine zooming in on the point of the distance vs. time graph above $t=3$. That $dt$ is a small step to the right, since time is on the horizontal axis, and that $ds$ is the resulting change in the height of the graph, since the vertical axis represents distance traveled.
 
 <Figure
-  image="figure-5.50.png"
+  image="figure-5.50.svg"
   video="figure-6.00-6.08.mp4"
+  captions="Zoomed in image of rise over run at $t=3$"
 />
 
-Zoomed in image of rise over run at $t=3$
-
-So $ds/dt$ is the rise-over-run slope between two *very* close points on the graph.
+So $\frac{ds}{dt}$ is the rise-over-run slope between two *very* close points on the graph.
 
 $$
 \frac{d s}{d t}=\frac{\text { rise }}{\text{run}}
 $$
 
-Of course, there’s nothing special about the value $t=3$, we could apply this to any other point in time, so we consider this expression $ds/dt$ to be a function of $t$, something where I can give you some time $t$, and you can give back to me the value of this ratio at that time; the velocity as a function of time.
+Of course, there’s nothing special about the value $t=3$, we could apply this to any other point in time, so we consider this expression $\frac{ds}{dt}$ to be a function of $t$, something where I can give you some time $t$, and you can give back to me the value of this ratio at that time; the velocity as a function of time.
 
 <Figure
-  image="figure-6.05.png"
+  image="figure-6.05.svg"
   caption="Zoomed in image of rise over run at $t=5$"
 />
 
-So for example, when I had the computer draw this bump curve (reference figure with velocity graph from above)  here representing the velocity function, the one you can think of as the slope of this distance vs. time function at each point, here’s what I had computer do:
+So for example, when I had the computer draw this bump curve representing the velocity function, the one you can think of as the slope of this distance vs. time function at each point, here’s what I had computer do:
 
 First, I chose some small value for $dt$, like $0.01$. Then, I had the computer look at many times $t$ between $0$ and $10$, and compute the distance function $s$ at $(t + dt)$, minus the value of this function at $t$. That is, the difference in the distance traveled between the given time $t$, and the time $0.01$ seconds after that. Then divide that difference by the change in time $dt$, and this gives the velocity in meters per second around each point in time.
 
@@ -165,12 +192,12 @@ With this formula, you can give the computer any curve representing the distance
 
 So now would be a good time to pause, reflect, make sure this idea of relating distance to velocity by looking at tiny changes in time $dt$ makes sense, because now we’re going to tackle the paradox of the derivative head-on.
 
-This idea of $ds/dt$, a tiny change in the value of the function $s$ divided by a tiny change in the input $t$, is *almost* what the derivative is.
+This idea of $\frac{ds}{dt}$, a tiny change in the value of the function $s$ divided by a tiny change in the input $t$, is *almost* what the derivative is.
 
-Even though our car’s speedometer will look at an actual change in time like $0.01$ seconds to compute speed, and even though my program here for finding a velocity function given a position function also uses a concrete value of $dt$, in pure math, the derivative is not this ratio $ds/dt$ for any *specific* choice of $dt$. It is whatever value that ratio *approaches* as the choice for $dt$ approaches $0$.
+Even though our car’s speedometer will look at an actual change in time like $0.01$ seconds to compute speed, and even though my program here for finding a velocity function given a position function also uses a concrete value of $dt$, in pure math, the derivative is not this ratio $\frac{ds}{dt}$ for any *specific* choice of $dt$. It is whatever value that ratio *approaches* as the choice for $dt$ approaches $0$.
 
 <Figure
-  image="figure-8.03.png"
+  image="figure-8.03.svg"
   video="figure-7.53-8.03.mp4"
 />
 
@@ -179,26 +206,26 @@ Even though our car’s speedometer will look at an actual change in time like $
 Luckily, there is a really nice visual understanding for what it means to ask what this ratio approaches: For any specific choice of $dt$, this ratio $ds/dt$ is the slope of a line passing through two points on the graph, known as a secant line.
 
 <Figure
-  image="figure-8.17.png"
+  image="figure-8.17.svg"
   video="figure-8.20-8.32.mp4"
 />
 
 Well, as $dt$ approaches $0$, and those two points approach each other, the slope of that secant line approaches the slope of a line tangent to the graph at whatever point $t$ we’re looking at. So the true, honest to goodness derivative, is not the rise-over-run slope between two nearby points on the graph; it’s equal to the slope of a line *tangent* to the graph at a single point.
 
-[figure-9.44.png]
-[figure-9.27-9.42-trimmed.mp4]
-
 <Figure
-  image="figure-9.44.png"
+  image="figure-9.44.svg"
   video="figure-9.27-9.42.mp4"
 />
 
-Question: What does it mean if the slope of the tangent line is negative?
-
-The car is slowing down.
-The car is going backwards.
-The car is upside down.
-There is a hole in the road.
+<Question
+  question="What does it mean if the slope of the tangent line is negative?"
+  choice1="The car is slowing down."
+  choice2="The car is going backwards."
+  choice3="The car is upside down."
+  choice4="There is a hole in the road."
+  answer={2}
+  explanation="A negative tangent line means that the slope is negative and the car is going backwards."
+/>
 
 Notice what I’m not saying: I’m *not* saying that the derivative is whatever happens when $dt$ is infinitely small, whatever that may mean, nor am I saying that you plug in $0$ for $dt$. Following what is a general theme in calculus, the idea is a two step process where you first consider a finitely small change, some actual number like $0.0001$, and then you ask what your answer approaches as this number approaches $0$.
 
@@ -221,14 +248,14 @@ A specific example should help here. You might think that asking about what this
 Let’s say a given distance vs. time function was exactly $t^3$. So after $1$ second, the car has traveled $1^3=1$ meters, after $2$ seconds, it’s traveled $2^3=8$ meters, and so on. This function is shown below.
 
 <Figure
-  image="figure-10.50.png"
+  image="figure-10.50.svg"
   caption="This figure graphs the position function $s(t) = t^3$ and also highlights the point at $t=2$."
 />
 
 What I’m about to do might seem somewhat complicated, but once the dust settles it really is simpler, and it’s the kind of thing you only ever have to do once in calculus. Let’s say you want the velocity, $ds/dt$, at a specific time, like $t=2$. And for now, think of $dt$ having an actual size; we’ll let it go to $0$ in just a bit.
 
 <Figure
-  image="figure-12.09.png"
+  image="figure-12.09.svg"
   caption="This figure illustrates the approximate velocity at $t=2$."
 />
 
@@ -261,7 +288,7 @@ So if we ask what happens as $dt$ approaches $0$, representing the idea of looki
 So what we’re left with is a nice clean $3*2^2$. This means the slope of a line tangent to the point at $t=2$ on the graph of $t^3$ is *exactly* $3 \cdot 2^2$, or $12$.
 
 <Figure
-  image="figure-12.59.png"
+  image="figure-12.59.svg"
   video="figure-12.20-13.00-trimmed.mp4"
 />
 
@@ -283,19 +310,23 @@ Question: What is the velocity of the car at time $t=1$?
 In practice, you would not go through all that algebra each time. Knowing that the derivative $t^3$ is $3t^2$ is one of those things all calculus students learn to do immediately without 
 rederiving each time, as quickly and automatically as you know a simple algebra rule, like $x(y + z) = xy + xz$. In the next chapter, we’ll see methods for thinking about this and many other derivative formulas in nice geometric ways.
 
-The point I want to make by showing you all of the algebraic guts here is that when you consider the change in distance over a change in time for any specific value of $dt$, something like $dlt = 0.01$, you’d have kind of a mess. But by considering what this ratio approaches as $dt$ approaches $0$, it lets you ignore much of that mess, and actually simplifies the problem.
+The point I want to make by showing you all of the algebraic guts here is that when you consider the change in distance over a change in time for any specific value of $dt$, something like $dt = 0.01$, you’d have kind of a mess.
 
 <Figure
-  image="figure-14.13.png" 
+  image="figure-14.13-messy.svg" 
+/>
+
+But by considering what this ratio approaches as $dt$ approaches $0$, it lets you ignore much of that mess, and actually simplifies the problem.
+
+<Figure
+  image="figure-14.13-simple.svg" 
 />
 
 That right there is the heart of why calculus becomes useful.
 
 ## The Paradox at Time Zero
 
-This example also sets the stage to think more concretely about why the notion of an instantaneous rate of change is paradoxical.
-
-Think about this car traveling according to this $t^3$ distance function, and consider its motion at moment $t=0$. Now ask yourself: Is the car moving at that time?
+This example also sets the stage to think more concretely about why the notion of an instantaneous rate of change is paradoxical. Think about this car traveling according to this $t^3$ distance function, and consider its motion at moment $t=0$. Now ask yourself: Is the car moving at that time?
 
 <Figure
   image="figure-14.44.png" 
@@ -314,7 +345,6 @@ Take a moment to unpack what it actually means for the derivative of the distanc
 <Figure
   image="figure-15.59.png" 
 />
-
 
 For smaller and smaller nudges in time, this ratio of the change in distance over change in time approaches $0$, though in this case it never actually hits it.
 
