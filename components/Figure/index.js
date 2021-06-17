@@ -10,7 +10,7 @@ const transformSrc = (src, dir) => {
   if (src.startsWith("http")) return src;
   else {
     if (process.env.mode === "production") {
-      return bucket + src;
+      return bucket + dir + src;
     } else {
       return dir + src;
     }
