@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - sync-action-update
 
 jobs:
   deploy:
