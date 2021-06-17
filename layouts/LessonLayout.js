@@ -68,22 +68,15 @@ const Thanks = () => {
         <Section>
           <h1 id="thanks">Thanks</h1>
           <p>
-            These lessons are funded primarily by viewers and readers who join
-            as contributing members on Patreon. To learn about this model,
-            membership benefits, future projects, and more (or if you just want
-            to find the secret video and other Easter eggs) visit the page
-            below.
-          </p>
-          <Clickable
-            link="https://www.patreon.com/3blue1brown"
-            text="3Blue1Brown Patreon"
-            icon="fab fa-patreon"
-          />
-          <p>
-            Special thanks to the individuals below for their support of the
-            original video behind this post, and further thanks to{" "}
+            Special thanks to those below for supporting the
+            original video behind this post, and to{" "}
             <Link href="/thanks">
               <a>current patrons</a>
+            </Link>
+            {" "}for funding ongoing projects.
+            If you find these lessons valuable,{" "}
+            <Link href="https://www.patreon.com/3blue1brown">
+              <a>consider joining</a>
             </Link>
             .
           </p>

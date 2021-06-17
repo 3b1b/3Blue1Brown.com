@@ -11,7 +11,7 @@ $one: 300px;
   overflow: hidden;
 
   &[data-open="false"] {
-    max-height: 300px;
+    max-height: 140px;
     mask-image: linear-gradient(black 75%, transparent 100%);
     -webkit-mask-image: linear-gradient(black 75%, transparent 100%);
   }

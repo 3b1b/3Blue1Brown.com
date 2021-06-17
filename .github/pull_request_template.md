@@ -1,11 +1,12 @@
-Pull request checklist:
+<!--
+  This template is meant for PRs which are adding a new article to the site, feel free to disregard it for other changes.
+-->
 
-- [ ] I have requested a review from the appropriate persons or have followed the appropriate review processes
-- [ ] I have checked that my changes work in the preview
-- [ ] I have checked that the rest of the site is still functioning in the preview
-- [ ] I have checked that my content/code is consistent with existing content/code
-- [ ] I have followed the guidelines in the readme
+Peer review checklist:
 
-This pull request:
-
-<!-- make list of key items this pull request adds/changes/removes -->
+- [ ] The article has no grammar/spelling errors.
+- [ ] The article has no mathematical errors.
+- [ ] The table of contents effectively conveys the overall structure of the lesson.
+- [ ] The article includes well-chosen comprehension questions.
+- [ ] The article incorporates the core visuals from the video.
+- [ ] The visuals are clear and helpful for understanding.
