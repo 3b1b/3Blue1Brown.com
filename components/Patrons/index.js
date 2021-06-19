@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Clickable from "../Clickable";
 import sitePatrons from "../../data/patrons.yaml";
 import nameOverrides from "../../data/patron-name-overrides.yaml";
@@ -7,12 +7,12 @@ import styles from "./index.module.scss";
 
 const Patrons = ({ active, pagePatrons = [] }) => {
   const [open, setOpen] = useState(false);
+  const [shuffledPagePatrons, setShuffledPagePatrons] = useState(pagePatrons);
 
-  // shuffle to not favor alphabetical, keep random shuffle order on re-renders
-  const shuffledPagePatrons = useMemo(
-    () => shuffle(pagePatrons.filter((patron) => patron)),
-    [pagePatrons]
-  );
+  // shuffle to not favor alphabetical
+  useEffect(() => {
+    setShuffledPagePatrons(shuffle(pagePatrons.filter((patron) => patron)));
+  }, [pagePatrons]);
 
   let patrons;
   // page specific patrons
