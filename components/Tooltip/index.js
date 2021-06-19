@@ -86,6 +86,9 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     return element;
   });
 
+  // if child no longer exists, close tooltip
+  if (!children) close();
+
   return (
     <>
       {children}

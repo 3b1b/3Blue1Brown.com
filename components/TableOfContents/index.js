@@ -113,9 +113,11 @@ const getHeadings = () =>
     (heading) => {
       // get clone of heading contents with nothing except plain text and math
       const clone = heading.cloneNode(true);
-      for (const node of clone.childNodes)
-        if (!(node.TEXT_NODE || node.classList?.contains("math")))
-          node.remove();
+      for (const node of clone.childNodes) {
+        const text = node.nodeType === Node.TEXT_NODE;
+        const math = node.classList?.contains("math");
+        if (!(text || math)) node.remove();
+      }
 
       // return helpful relevant info
       return {
