@@ -44,11 +44,6 @@ const TableOfContents = () => {
     setHeadings(getHeadings());
   }, []);
 
-  // when open state changes
-  useEffect(() => {
-    document.body.dataset.offset = open && wideEnough;
-  }, [open, wideEnough]);
-
   // when user clicks to on toc entry
   const onNav = useCallback((event) => {
     event.preventDefault();

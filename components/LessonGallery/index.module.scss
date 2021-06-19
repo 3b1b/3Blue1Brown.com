@@ -20,7 +20,7 @@
   img {
     $width: 300px;
     width: $width;
-    height: $width * 9 / 16;
+    height: math.div($width * 9, 16);
   }
 
   i {

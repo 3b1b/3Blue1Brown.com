@@ -6,7 +6,6 @@ import Section from "../components/Section";
 import Video from "../components/Video";
 import LessonDetails from "../components/LessonDetails";
 import Patrons from "../components/Patrons";
-import Clickable from "../components/Clickable";
 import Empty from "../components/Empty";
 import LessonNav from "../components/LessonNav";
 import Disqus from "../components/Disqus";

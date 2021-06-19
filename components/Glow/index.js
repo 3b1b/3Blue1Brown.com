@@ -9,6 +9,7 @@ const Glow = () => {
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   });
+
   return <></>;
 };
 

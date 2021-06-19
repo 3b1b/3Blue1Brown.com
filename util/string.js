@@ -3,4 +3,5 @@ export const toDashCase = (string = "") =>
   String(string)
     .split(/\s|\W/)
     .filter((e) => e)
-    .join("-");
+    .join("-")
+    .toLowerCase();

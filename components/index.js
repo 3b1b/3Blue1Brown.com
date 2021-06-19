@@ -3,7 +3,6 @@ import Center from "./Center";
 import Clickable from "./Clickable";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
-import { H1, H2, H3, H4 } from "./Heading";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
@@ -37,10 +36,6 @@ const components = {
   Video,
   // https://mdxjs.com/table-of-components
   a: RelLink,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
 };
 
 export default components;
