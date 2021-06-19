@@ -15,6 +15,7 @@ const LessonDetails = () => (
       <LastMod />
       <Credits />
       <Tags />
+      <Source />
     </div>
   </Section>
 );
@@ -106,6 +107,26 @@ const Tags = () => {
           <span>{tag}</span>
         </div>
       ))}
+    </>
+  );
+};
+
+const Source = () => {
+  const { sourceCode } = useContext(PageContext);
+  return (
+    <>
+      {sourceCode && (
+        <div>
+          <i className="fab fa-github" />
+          <span>
+            <a
+              href={`https://github.com/3b1b/videos/tree/master/${sourceCode}`}
+            >
+              Source Code
+            </a>
+          </span>
+        </div>
+      )}
     </>
   );
 };

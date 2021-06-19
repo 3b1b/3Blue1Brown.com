@@ -22,6 +22,9 @@ const parseMdx = (file) => {
   data.date = new Date(data.date || new Date()).toISOString();
   data.lastMod = new Date(statSync(file).mtime || new Date()).toISOString();
 
+  // rename github repo "source" prop to avoid conflict with mdx serialized "source"
+  data.sourceCode = data.source || "";
+
   // get patrons data
   let patrons = join(dirname(file), "patrons.txt");
   patrons = existsSync(patrons)
