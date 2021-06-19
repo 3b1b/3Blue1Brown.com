@@ -234,6 +234,10 @@ pre {
 
 .math-display {
   overflow-x: auto;
+
+  .tag {
+    display: none;
+  }
 }
 
 //////////////////////////////
