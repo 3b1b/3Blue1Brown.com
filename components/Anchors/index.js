@@ -8,6 +8,8 @@ const Anchors = () => {
   // run anchors script once after page load
   useEffect(() => {
     createAnchors();
+    window.addEventListener("scroll", scrollAway);
+    return () => window.removeEventListener("scroll", scrollAway);
   }, []);
 
   return <></>;
@@ -33,4 +35,18 @@ const createAnchors = () => {
     link.innerHTML = "<i class='fas fa-link' />";
     heading.append(link);
   }
+};
+
+// when user scrolls page, remove hash from url if user has scrolled out of
+// view of target
+const scrollAway = () => {
+  const tolerance = 100;
+  const id = window.location.hash?.slice(1) || "";
+  const target = document.getElementById(id);
+  if (!target) return;
+  if (
+    target.getBoundingClientRect().top > window.innerHeight + tolerance ||
+    target.getBoundingClientRect().bottom < 0 - tolerance
+  )
+    window.history.pushState(null, null, " ");
 };

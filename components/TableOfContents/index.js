@@ -2,30 +2,41 @@ import { useCallback, useEffect, useState } from "react";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
+// singleton component to read page headings and render table of contents panel
 const TableOfContents = () => {
   const [open, setOpen] = useState(false); // panel open state
   const [active, setActive] = useState(); // link id in view
   const [headings, setHeadings] = useState([]); // list of headings
   const [downEnough, setDownEnough] = useState(); // whether page is scrolled down far enough
+  const [upEnough, setUpEnough] = useState(); // whether page is scrolled up far enough
   const [wideEnough, setWideEnough] = useState(); // whether page is wide enough
+  const [clicked, setClicked] = useState(false); // whether user has clicked on the panel button
 
   // when page first loads
   useEffect(() => {
     setDownEnough(getDownEnough());
+    setUpEnough(getUpEnough());
     setWideEnough(getWideEnough());
   }, []);
 
   // when "enough" states change
   useEffect(() => {
-    if (wideEnough) {
-      setOpen(downEnough);
-    }
-  }, [downEnough, wideEnough]);
+    // don't open automatically if user has already interacted with panel
+    if (clicked) return;
+
+    setOpen(downEnough && upEnough && wideEnough);
+  }, [clicked, downEnough, upEnough, wideEnough]);
+
+  // when "wide enough" state changes
+  useEffect(() => {
+    if (!wideEnough) setOpen(false);
+  }, [wideEnough]);
 
   // listen for scroll
   useEffect(() => {
     const onScroll = () => {
       setDownEnough(getDownEnough());
+      setUpEnough(getUpEnough());
       setActive(getActive(headings));
     };
     window.addEventListener("scroll", onScroll);
@@ -47,9 +58,10 @@ const TableOfContents = () => {
   // when user clicks to on toc entry
   const onNav = useCallback((event) => {
     event.preventDefault();
-    document
-      .getElementById(event.target.dataset.id.slice(1))
-      .scrollIntoView({ behavior: "smooth" });
+    const id = event.target.dataset?.id?.slice(1) || "";
+    if (!id) return;
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    window.history.pushState(null, null, "#" + id);
   }, []);
 
   return (
@@ -61,9 +73,11 @@ const TableOfContents = () => {
       />
       <div className={styles.panel} data-open={open}>
         <div className={styles.heading}>
+          <span>Table of Contents</span>
           <Clickable
             icon={open ? "fas fa-times" : "fas fa-list-ul"}
             onClick={({ target }) => {
+              setClicked(true);
               setOpen(!open);
               target.blur();
             }}
@@ -84,9 +98,8 @@ const TableOfContents = () => {
               className={styles.link}
               data-level={level}
               data-active={id === active}
-            >
-              {content}
-            </a>
+              dangerouslySetInnerHTML={{ __html: content }}
+            ></a>
           ))}
         </div>
       </div>
@@ -97,11 +110,20 @@ const TableOfContents = () => {
 // get array of document headings and relevant info
 const getHeadings = () =>
   Array.from(document.querySelectorAll("h1[id], h2[id], h3[id], h4[id]")).map(
-    (heading) => ({
-      id: heading.getAttribute("id"),
-      content: heading.innerText,
-      level: Number(heading.tagName.match(/\d/)[0]),
-    })
+    (heading) => {
+      // get clone of heading contents with nothing except plain text and math
+      const clone = heading.cloneNode(true);
+      for (const node of clone.childNodes)
+        if (!(node.TEXT_NODE || node.classList?.contains("math")))
+          node.remove();
+
+      // return helpful relevant info
+      return {
+        id: heading.getAttribute("id"),
+        content: clone.innerHTML,
+        level: Number(heading.tagName.match(/\d/)[0]),
+      };
+    }
   );
 
 // get first heading in view
@@ -122,6 +144,13 @@ const getDownEnough = () =>
     : document
         .querySelector("main > section:nth-child(2)")
         .getBoundingClientRect().top < 0;
+
+// get whether page is scrolled up far enough
+const getUpEnough = () =>
+  typeof document === "undefined"
+    ? false
+    : document.querySelector("footer").getBoundingClientRect().top >
+      window.innerHeight;
 
 // get whether page is wide enough
 const getWideEnough = () =>

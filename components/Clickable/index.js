@@ -6,6 +6,7 @@ const Clickable = ({
   link,
   icon,
   text,
+  onClick,
   design,
   active,
   className = "",
@@ -18,6 +19,10 @@ const Clickable = ({
   return (
     <Component
       {...rest}
+      onClick={(event) => {
+        event.target.blur();
+        onClick(event);
+      }}
       link={link}
       data-icon={icon ? true : false}
       data-text={text ? true : false}

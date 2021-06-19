@@ -17,21 +17,6 @@ body,
   flex-direction: column;
 }
 
-html {
-  position: relative;
-}
-
-body {
-  position: absolute;
-  left: 0;
-  right: 0;
-  transition: left $fast;
-}
-
-body[data-offset="true"] {
-  left: 300px;
-}
-
 //////////////////////////////
 // all
 //////////////////////////////
@@ -319,7 +304,6 @@ h4 {
   text-decoration: none;
   transition: opacity $fast, color $fast;
 }
-
 
 //////////////////////////////
 // google search
