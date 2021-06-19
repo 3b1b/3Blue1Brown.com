@@ -91,6 +91,7 @@ const TopicCard = ({ topic, opened, onClick }) => {
           {topic.name}
           <i className={`fas fa-caret-${opened ? "up" : "down"} fa-lg`} />
         </span>
+        {opened && topic.description && <span>{topic.description}</span>}
       </button>
       {opened &&
         topic.lessons.map((lesson, index) => (

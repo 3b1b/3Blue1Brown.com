@@ -5,9 +5,16 @@
   padding: 20px;
   border-radius: 0;
   font-family: $sans;
-  font-weight: $medium;
   text-decoration: none;
   z-index: 1;
+
+  &[data-open="true"] {
+    width: 100%;
+
+    i {
+      opacity: 1;
+    }
+  }
 
   &:hover {
     background: $light-blue-100;
@@ -32,12 +39,12 @@
     transition: opacity $fast;
   }
 
-  &[data-open="true"] {
-    width: 100%;
+  span {
+    margin-top: 10px;
+  }
 
-    i {
-      opacity: 1;
-    }
+  span:nth-of-type(1) {
+    font-weight: $medium;
   }
 }
 
