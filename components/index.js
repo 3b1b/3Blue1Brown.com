@@ -9,6 +9,7 @@ import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
+import Portrait from "./Portrait";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
@@ -32,6 +33,7 @@ const components = {
   LessonLink,
   Patrons,
   PiCreature,
+  Portrait,
   Question,
   Section,
   Spoiler,

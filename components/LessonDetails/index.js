@@ -13,6 +13,7 @@ const LessonDetails = () => (
     <div className={styles.lesson_details}>
       <Published />
       <LastMod />
+      <br />
       <Credits />
       <Tags />
       <Source />
