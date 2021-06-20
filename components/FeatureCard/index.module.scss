@@ -1,0 +1,37 @@
+.feature_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 350px;
+  min-height: 300px;
+  max-width: 100%;
+  margin: 10px;
+  padding: 20px;
+  font-family: $sans;
+
+  & > * {
+    margin: 10px 0;
+    @include trim-v-margins;
+  }
+}
+
+.image {
+  width: 100%;
+  max-height: 150px;
+  transition: filter $fast;
+
+  &:hover {
+    filter: saturate(0);
+  }
+}
+
+.feature_card[data-mini="true"] {
+  width: 250px;
+  min-height: 250px;
+}
+
+.feature_card[data-mini="true"] .image {
+  width: 80px;
+  height: 80px;
+}

@@ -1,9 +1,5 @@
 import { useEffect, useRef } from "react";
-import {
-  TwitterTweetEmbed,
-  TwitterTimelineEmbed,
-  TwitterShareButton,
-} from "react-twitter-embed";
+import { TwitterTweetEmbed, TwitterShareButton } from "react-twitter-embed";
 
 import Center from "../Center";
 
@@ -16,7 +12,7 @@ const options = {
 };
 
 // twitter embed
-const Twitter = ({ tweet, timeline, share }) => {
+const Twitter = ({ tweet, share }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -39,9 +35,6 @@ const Twitter = ({ tweet, timeline, share }) => {
   return (
     <Center ref={ref}>
       {tweet && <TwitterTweetEmbed tweetId={tweet} />}
-      {timeline && (
-        <TwitterTimelineEmbed sourceType="profile" screenName={timeline} />
-      )}
       {share && typeof window !== "undefined" && (
         <TwitterShareButton
           url={window.location.href}

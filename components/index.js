@@ -1,6 +1,7 @@
 import Accordion from "./Accordion";
 import Center from "./Center";
 import Clickable from "./Clickable";
+import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
 import LessonCard from "./LessonCard";
@@ -23,6 +24,7 @@ const components = {
   Accordion,
   Center,
   Clickable,
+  FeatureCard,
   Figure,
   GoogleSearch,
   LessonCard,

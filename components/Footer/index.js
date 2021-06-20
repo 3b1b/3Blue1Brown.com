@@ -54,6 +54,11 @@ const Icons = () => (
       icon="fas fa-store"
       tooltip="Store"
     />
+    <Link
+      link="https://3blue1brown.substack.com/"
+      icon="fas fa-envelope-open-text"
+      tooltip="Mailing list"
+    />
   </div>
 );
 
