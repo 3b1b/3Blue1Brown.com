@@ -156,6 +156,6 @@ const getUpEnough = () =>
 
 // get whether page is wide enough
 const getWideEnough = () =>
-  typeof window === "undefined" ? false : window.innerWidth > 1400;
+  typeof window === "undefined" ? false : window.innerWidth > 1700;
 
 export default TableOfContents;

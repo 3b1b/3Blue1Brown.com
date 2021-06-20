@@ -23,6 +23,7 @@
     "react-markdown": "^6.0.2",
     "react-popper": "^2.2.5",
     "react-transition-group": "^4.4.2",
+    "react-twitter-embed": "^3.0.3",
     "rehype-katex": "^5.0.0",
     "remark-13-math": "npm:remark-math@^4.0.0",
     "remark-math": "^3.0.1",

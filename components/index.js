@@ -12,6 +12,7 @@ import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
 import Tooltip from "./Tooltip";
+import Twitter from "./Twitter";
 import Video from "./Video";
 
 // https://mdxjs.com/table-of-components
@@ -33,6 +34,7 @@ const components = {
   Section,
   Spoiler,
   Tooltip,
+  Twitter,
   Video,
   // https://mdxjs.com/table-of-components
   a: RelLink,

@@ -8,8 +8,8 @@ const offset = 100; // extra delay for items further to right of screen
 // singleton component to fade in any element with the data-fade attribute when it comes into view
 const Fade = () => {
   useEffect(() => {
-    const observer = new MutationObserver(onMutation);
-    observer.observe(document.body, { childList: true, subtree: true });
+    const options = { childList: true, subtree: true };
+    new MutationObserver(onMutation).observe(document.body, options);
   }, []);
 
   return <></>;

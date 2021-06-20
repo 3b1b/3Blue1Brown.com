@@ -112,11 +112,11 @@ $$
   videoCaption="Caption **just** for video. $f(x) = e^{i \pi} + sin(x)$"
 />
 
-<!-- spoiler component -->
+<!-- spoiler -->
 
 Why did the chicken cross the Mobius strip? <Spoiler>To get to the same side.</Spoiler>
 
-<!-- question component -->
+<!-- question -->
 
 <Question
   question="Why did the chicken cross the road?"
@@ -128,15 +128,15 @@ Why did the chicken cross the Mobius strip? <Spoiler>To get to the same side.</S
   explanation="Superposition is pretty neat :)"
 />
 
-<!-- lesson link component -->
+<!-- lesson link -->
 
 A link to <LessonLink id="bitcoin">another lesson</LessonLink> in a sentence, with a tooltip.
 
-<!-- tooltip component -->
+<!-- tooltip -->
 
 Use this to make <Tooltip content="$f(x) = e^{i \pi} + sin(x)$">hoverable text</Tooltip> with some minor helper content.
 
-<!-- accordion component -->
+<!-- accordion -->
 
 <Accordion title="I'm an accordion. Click on me!">
 
@@ -153,14 +153,18 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<PiCreature emotion="happy" flip={true} />
+<PiCreature emotion="happy" />
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<PiCreature emotion="hooray" text="Wow, $e^{i \pi}$ is really cool!" />
+<PiCreature
+  emotion="hooray"
+  text="Wow, $e^{i \pi}$ is really cool!"
+  flip={true}
+/>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -171,7 +175,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
   emotion="confused"
   text="Hey, that's pretty neat! 4 lines max, people!"
   thought={true}
-  flip={true}
 />
 
 <!-- clickable (link or button) with icon and/or text -->
@@ -213,3 +216,11 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     design="rounded"
   />
 </Center>
+
+<!-- twitter embed -->
+
+<Twitter tweet="1377650038055170050" />
+
+<Twitter timeline="3blue1brown" />
+
+<Twitter share="Cool lesson on temporal mechanics!" />
