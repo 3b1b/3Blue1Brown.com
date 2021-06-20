@@ -23,7 +23,7 @@ const autoSize = ({ width, height }) => {
   const ratio = 4; // width to height ratio at which image width matches page column width
 
   return {
-    width: page * Math.sqrt(width / height / ratio),
+    width: page * Math.sqrt(width / height / ratio) || "100%",
   };
 };
 

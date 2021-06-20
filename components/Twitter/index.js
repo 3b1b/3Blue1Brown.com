@@ -1,18 +1,14 @@
 import { useEffect, useRef } from "react";
-import { TwitterTweetEmbed, TwitterShareButton } from "react-twitter-embed";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 
 import Center from "../Center";
 
 // https://github.com/saurabhnemade/react-twitter-embed
 
 const width = "500px";
-const options = {
-  height: 400,
-  via: "3blue1brown",
-};
 
 // twitter embed
-const Twitter = ({ tweet, share }) => {
+const Twitter = ({ tweet }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -33,15 +29,7 @@ const Twitter = ({ tweet, share }) => {
   }, []);
 
   return (
-    <Center ref={ref}>
-      {tweet && <TwitterTweetEmbed tweetId={tweet} />}
-      {share && typeof window !== "undefined" && (
-        <TwitterShareButton
-          url={window.location.href}
-          options={{ ...options, text: share }}
-        />
-      )}
-    </Center>
+    <Center ref={ref}>{tweet && <TwitterTweetEmbed tweetId={tweet} />}</Center>
   );
 };
 
