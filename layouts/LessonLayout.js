@@ -9,6 +9,7 @@ import Patrons from "../components/Patrons";
 import Empty from "../components/Empty";
 import LessonNav from "../components/LessonNav";
 import Disqus from "../components/Disqus";
+import Jump from "../components/Jump";
 import TableOfContents from "../components/TableOfContents";
 import { PageContext } from "../pages/_app";
 
@@ -42,6 +43,7 @@ const LessonLayout = () => {
       )}
 
       <TableOfContents />
+      <Jump />
     </NormalLayout>
   );
 };
@@ -67,13 +69,12 @@ const Thanks = () => {
         <Section>
           <h1 id="thanks">Thanks</h1>
           <p>
-            Special thanks to those below for supporting the
-            original video behind this post, and to{" "}
+            Special thanks to those below for supporting the original video
+            behind this post, and to{" "}
             <Link href="/thanks">
               <a>current patrons</a>
-            </Link>
-            {" "}for funding ongoing projects.
-            If you find these lessons valuable,{" "}
+            </Link>{" "}
+            for funding ongoing projects. If you find these lessons valuable,{" "}
             <Link href="https://www.patreon.com/3blue1brown">
               <a>consider joining</a>
             </Link>

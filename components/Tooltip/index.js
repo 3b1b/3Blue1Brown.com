@@ -51,12 +51,17 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
       { name: "arrow", options: { element: arrow, padding: 10 } },
     ],
   };
+
+  // get positioning from popper.js
   const { styles, attributes, forceUpdate } = usePopper(
     target,
     popper,
     options
   );
+  // nudge tooltip 1px to left to avoid popper.js bug causing screen overflow
+  styles.popper.left = Number(styles.popper.left) - 1;
 
+  // update popper position when contents change
   useEffect(() => {
     if (forceUpdate) forceUpdate();
   }, [content, forceUpdate]);
