@@ -51,14 +51,14 @@ const Nav = () => {
       <NavLink
         link="/lessons"
         text="Lessons"
-        tooltip="Various maths topics, in text and video form"
+        tooltip="Various maths topics, in video and text form"
       />
       <NavLink
         link="/extras"
         text="Extras"
-        tooltip="Collaborations, cameos, talks, and more"
+        tooltip="Blog, podcast, and more"
       />
-      <NavLink link="/about" text="About" tooltip="What/who is 3blue1brown" />
+      <NavLink link="/about" text="About" tooltip="What and who is 3blue1brown" />
       <NavLink
         link="/contact"
         text="Contact"

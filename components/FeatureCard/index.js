@@ -1,22 +1,24 @@
-import Clickable from "../Clickable";
+import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
 // vertical card with image, text, and link
 const FeatureCard = ({
-  image,
-  text,
   link,
-  buttonIcon,
-  buttonText,
-  mini = false,
+  image,
+  title,
+  text,
+  width = 300,
+  height = 200,
 }) => (
-  <div className={styles.feature_card} data-mini={mini}>
-    <a className={styles.image} href={link}>
+  <a className={styles.feature_card} href={link} style={{ width }}>
+    <div className={styles.image} style={{ maxHeight: height }}>
       <img src={image} />
-    </a>
-    <div className={styles.text}>{text}</div>
-    <Clickable link={link} icon={buttonIcon} text={buttonText} />
-  </div>
+    </div>
+    <div className={styles.title}>{title}</div>
+    <div className={styles.text}>
+      <Markdownify noParagraph={true}>{text}</Markdownify>
+    </div>
+  </a>
 );
 
 export default FeatureCard;

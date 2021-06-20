@@ -1,37 +1,31 @@
 .feature_card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  width: 350px;
-  min-height: 300px;
   max-width: 100%;
   margin: 10px;
   padding: 20px;
+  color: $black;
   font-family: $sans;
+  text-decoration: none;
+  transition: background $fast;
 
-  & > * {
-    margin: 10px 0;
-    @include trim-v-margins;
+  &:hover {
+    background: $light-blue-50;
   }
 }
 
 .image {
+  display: block;
   width: 100%;
-  max-height: 150px;
-  transition: filter $fast;
+  margin-bottom: 10px;
 
-  &:hover {
-    filter: saturate(0);
+  img {
+    object-fit: contain;
   }
 }
 
-.feature_card[data-mini="true"] {
-  width: 250px;
-  min-height: 250px;
-}
-
-.feature_card[data-mini="true"] .image {
-  width: 80px;
-  height: 80px;
+.title {
+  font-weight: $semi-bold;
+  margin-bottom: 10px;
 }
