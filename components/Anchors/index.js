@@ -24,10 +24,6 @@ const createAnchors = () => {
 
   // process each heading
   for (const heading of headings) {
-    // if no id is set, set it based on the inner text
-    if (!heading.getAttribute("id"))
-      heading.setAttribute("id", toDashCase(heading.innerText));
-
     // make anchor
     const link = document.createElement("a");
     link.classList.add("anchor");
