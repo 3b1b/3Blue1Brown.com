@@ -30,7 +30,6 @@ const Twitter = ({ tweet, timeline, share }) => {
       wrapper.style.width = width;
       wrapper.style.maxWidth = "100%";
       wrapper.style.overflowX = "auto";
-      console.log(wrapper.style.width);
     };
 
     // listen for changes to container (when widget loads)
