@@ -4,6 +4,7 @@ import Clickable from "./Clickable";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
+import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
@@ -28,6 +29,7 @@ const components = {
   FeatureCard,
   Figure,
   GoogleSearch,
+  Interactive,
   LessonCard,
   LessonGallery,
   LessonLink,
