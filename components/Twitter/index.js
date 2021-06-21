@@ -32,7 +32,9 @@ const Twitter = ({ tweet }) => {
   if (!tweet) return null;
 
   return (
-    <Center ref={ref}>{tweet && <TwitterTweetEmbed tweetId={tweet} />}</Center>
+    <Center ref={ref}>
+      <TwitterTweetEmbed tweetId={tweet} />
+    </Center>
   );
 };
 

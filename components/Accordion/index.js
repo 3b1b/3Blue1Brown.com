@@ -6,7 +6,7 @@ import styles from "./index.module.scss";
 const Accordion = ({ title, children }) => {
   const [open, setOpen] = useState(false);
 
-  if (!title || !children) return null;
+  if (!title && !children) return null;
 
   return (
     <div className={styles.accordion}>

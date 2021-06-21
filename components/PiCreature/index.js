@@ -10,8 +10,8 @@ const PiCreature = ({
   text,
   thought,
   placement,
-  design,
   flip,
+  design,
 }) => {
   // bubble component
   let Bubble = Fragment;

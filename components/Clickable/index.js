@@ -5,9 +5,9 @@ import styles from "./index.module.scss";
 // link/button component
 const Clickable = ({
   link,
+  onClick,
   icon,
   text,
-  onClick,
   design,
   active,
   className = "",
@@ -26,11 +26,11 @@ const Clickable = ({
   return (
     <Component
       {...rest}
+      link={link}
       onClick={(event) => {
         event.target.blur();
         onClick(event);
       }}
-      link={link}
       data-icon={icon ? true : false}
       data-text={text ? true : false}
       data-active={active}
