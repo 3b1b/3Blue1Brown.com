@@ -6,6 +6,7 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+// button that links to a lesson, showing details like thumbnail, title, etc.
 const LessonCard = ({
   id,
   icon,
@@ -17,16 +18,19 @@ const LessonCard = ({
 }) => {
   const { lessons = [] } = useContext(PageContext);
 
+  // find lesson with matching slug
   const lesson = lessons.find((lesson) => lesson.slug === id);
 
-  if (!lesson) return <></>;
+  // if couldn't find lesson, don't render
+  if (!lesson) return null;
 
+  // get tag type/name for component
   let Component;
   if (active) Component = Stub;
   else Component = Link;
 
+  // get lesson details
   let { slug, title, description, date, video, chapter, topic, empty } = lesson;
-
   if (date) date = formatDate(date);
 
   return (

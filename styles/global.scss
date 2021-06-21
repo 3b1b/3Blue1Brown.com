@@ -17,21 +17,6 @@ body,
   flex-direction: column;
 }
 
-html {
-  position: relative;
-}
-
-body {
-  position: absolute;
-  left: 0;
-  right: 0;
-  transition: left $fast;
-}
-
-body[data-offset="true"] {
-  left: 300px;
-}
-
 //////////////////////////////
 // all
 //////////////////////////////
@@ -244,11 +229,27 @@ pre {
 }
 
 //////////////////////////////
+// iframe
+//////////////////////////////
+
+iframe {
+  display: block;
+  max-width: 100%;
+  margin: 40px auto;
+  @include trim-v-margins;
+  border: none;
+}
+
+//////////////////////////////
 // math
 //////////////////////////////
 
 .math-display {
   overflow-x: auto;
+
+  .tag {
+    display: none;
+  }
 }
 
 //////////////////////////////
@@ -294,6 +295,34 @@ pre {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  &:hover .anchor,
+  .anchor:focus {
+    opacity: 1;
+  }
+}
+
+.anchor {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  left: 1em;
+  color: $light-blue-500;
+  opacity: 0;
+  font-size: 0.8em;
+  text-decoration: none;
+  transition: opacity $fast, color $fast;
+
+  i,
+  i:before {
+    display: inline-block;
+    width: 0;
   }
 }
 
