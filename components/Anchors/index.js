@@ -16,6 +16,9 @@ export default Anchors;
 
 // anchors script
 const createAnchors = () => {
+  // remove any existing anchors (should only happen with local hot reloading)
+  document.querySelectorAll(".anchor").forEach((anchor) => anchor.remove());
+
   // get headings
   const headings = document.querySelectorAll("h1, h2, h3, h4");
 
@@ -28,4 +31,6 @@ const createAnchors = () => {
     link.innerHTML = "<i class='fas fa-link' />";
     heading.append(link);
   }
+
+  // TO DO: add anchors next to any element with an id attr, like figures
 };
