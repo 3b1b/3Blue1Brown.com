@@ -6,7 +6,7 @@ video: S9JGmA5_unY
 source: _2017/256.py
 credits:
   - Lesson by Grant Sanderson
-  - Blog Adaption by River Way
+  - Text adaptation by River Way
 ---
 
 <Section>
@@ -17,7 +17,7 @@ If a protocol is described as having "$n$-bit security", it means an attacker wo
 
 For example, the <LessonLink id="bitcoin" >last post</LessonLink> touched on the function SHA256, which takes in an input of arbitrary length, and produces an output which is always 256 bits long. It's believed that this is a _crytographic_ hash function, which means that it's computationally infeasible to reverse it. More specifically, if you want to find an input producing a particular output, there is no better method than to repeatedly guess and check.
 
-<Figure image="guesses.png" width="60%" />
+<Figure image="guesses.png" />
 
 These cryptographic hash functions are used, for example, to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
 
@@ -39,7 +39,7 @@ For SHA256, there are not six possible outputs, there are $2^{256}$. So on avera
 
 ## Appreciating Large Powers of Two
 
-<Figure image="breakdown.png" width="60%" />
+<Figure image="breakdown.png" />
 
 The human mind is best at breaking down concepts into smaller pieces to analyze. $2^{256}$ is $2^{32}$ multiplied by itself eight times. $2^{32}$ is about 4 billion, which is a number we can at least start to think about, so all we need to do is appreciate what multiplying 4 billion times itself eight successive times feels like.
 
@@ -49,7 +49,7 @@ The human mind is best at breaking down concepts into smaller pieces to analyze.
 
 The GPU on your computer can let you run parallel computations incredibly quickly. If you specially program a GPU to run a cryptographic hash function over and over, a really good one can do just under a [billion hashes per second](https://en.bitcoin.it/wiki/Non-specialized_hardware_comparison).
 
-<Figure image="GPU.png" width="60%" />
+<Figure image="GPU.png" />
 
 Let’s say you cram a computer with extra GPUs so that it can guess and check 4 billion times per second. So our first 4 billion is the number of hashes per second per computer.
 
@@ -59,7 +59,7 @@ Let’s say you cram a computer with extra GPUs so that it can guess and check 4
 
 Now picture 4 billion of these GPU-packed computers. For comparison, even though Google does not make the number of servers it runs public, estimates have it somewhere in the single-digit millions.
 
-<Figure image="kilogoogle.png" width="60%" />
+<Figure image="kilogoogle.png" />
 
 In reality, most of those servers are much less powerful than our imagined GPU-packed machine, but if Google replaced all its millions of servers with machines like this, 4 billion machines would mean about 1,000 copies of this souped-up Google, which I’ll call one KiloGoogle++.
 
@@ -69,7 +69,7 @@ In reality, most of those servers are much less powerful than our imagined GPU-p
 
 There are about 7.9 billion people on Earth, so imagine giving a little over half the people on Earth their own personal KiloGoogle.
 
-<Figure image="planet.png" width="60%" />
+<Figure image="planet.png" />
 
 <Question
   question="If you were the president of this KiloGoogle filled Earth, how many guesses could you order to be checked per second?"
@@ -87,7 +87,7 @@ There are about 7.9 billion people on Earth, so imagine giving a little over hal
 
 Now imagine 4 billion copies of this Earth. The Milky Way has between 100 and 400 billion stars, so this would be akin to 1% of all stars in the galaxy having a copy of Earth, where half the population on each has their own personal KiloGoogle.
 
-<Figure image="milkyway.png" width="60%" />
+<Figure image="milkyway.png" />
 
 #### 4 Billion Milky Ways
 
@@ -95,7 +95,7 @@ Now imagine 4 billion copies of this Earth. The Milky Way has between 100 and 40
 
 Now picture 4 billion copies of the Milky Way, and call this your GigaGalactic Super Computer, running $(2^{32})^5 = 2^{160}$ guesses per second.
 
-<Figure image="ggsc.png" width="60%" />
+<Figure image="ggsc.png" />
 
 #### 4 Billion Seconds
 

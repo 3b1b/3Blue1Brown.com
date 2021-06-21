@@ -7,6 +7,11 @@
   font-style: italic;
   text-align: center;
 
+  br {
+    content: "";
+    width: 100%;
+  }
+
   & > div {
     margin: 5px 10px;
 

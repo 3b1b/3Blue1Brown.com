@@ -1,4 +1,5 @@
 - name: Calculus
+  description: Brief description text of topic
   lessons:
     - essence-of-calculus
     - derivatives
@@ -13,6 +14,7 @@
     - taylor-series
     - derivatives-and-transforms
 - name: Linear Algebra
+  description: Brief description text of topic
   lessons:
     - eola-preview
     - vectors

@@ -1,11 +1,12 @@
 import styles from "./background.module.scss";
 
-const cells = 40;
-const major = 4;
-const size = 50;
+const cells = 40; // width/height of grid in minor cells
+const major = 4; // every this many minor cells becomes major
+const size = 50; // size of cell in svg units
 
-const bound = (cells * size) / 2;
+const bound = (cells * size) / 2; // grid boundary from origin
 
+// minor grid lines
 const Minor = () => {
   const from = -cells / 2;
   const to = cells / 2;
@@ -43,6 +44,7 @@ const Minor = () => {
   );
 };
 
+// major grid lines
 const Major = () => {
   const from = -cells / major / 2;
   const to = cells / major / 2;
@@ -80,6 +82,7 @@ const Major = () => {
   );
 };
 
+// grid visualization for header
 const Background = () => (
   <div className={styles.background}>
     <svg

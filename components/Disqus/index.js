@@ -4,6 +4,7 @@ import { disqus } from "../../data/site.yaml";
 import Section from "../Section";
 import { PageContext } from "../../pages/_app";
 
+// disqus comment section component
 const Disqus = () => {
   const { title } = useContext(PageContext);
   return (
