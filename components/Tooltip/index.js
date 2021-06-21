@@ -12,9 +12,12 @@ import { usePopper } from "react-popper";
 import Markdownify from "../Markdownify";
 import classNames from "./index.module.scss";
 
+// settings
 const placement = "top";
 const delay = 100;
 
+// tooltip component that wraps around a target element (children) and displays
+// a popup over it with content
 const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
   // popper elements
   const [target, setTarget] = useState(null);
@@ -80,19 +83,31 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     },
   };
   children = Children.map(children, (element, index) => {
+    // only attach props to first child
     if (index > 0) return element;
+    // if cchild is react element
     if (isValidElement(element)) return cloneElement(element, props);
+    // if child is plain text
     if (typeof element === "string")
       return (
         <span {...props} tabIndex="0" className={classNames.span}>
           {element}
         </span>
       );
+    // otherwise, pass child through untouched
     return element;
   });
 
   // if child no longer exists, close tooltip
   if (!children) close();
+
+  // if content is plain string, convert to markdown and wrap in wrapper
+  if (typeof content === "string")
+    content = (
+      <div className={classNames.content}>
+        <Markdownify>{content}</Markdownify>
+      </div>
+    );
 
   return (
     <>
@@ -105,12 +120,7 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
             style={{ ...styles.popper }}
             {...attributes.popper}
           >
-            {typeof content === "string" && (
-              <div className={classNames.content}>
-                <Markdownify>{content}</Markdownify>
-              </div>
-            )}
-            {typeof content !== "string" && content}
+            {content}
             <div
               ref={setArrow}
               className={classNames.arrow}

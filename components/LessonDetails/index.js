@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 import creditsInfo from "../../data/credits.yaml";
 import { PageContext } from "../../pages/_app";
 
+// details to show at the top of a lesson, with icons and text
 const LessonDetails = () => (
   <Section>
     <Title />

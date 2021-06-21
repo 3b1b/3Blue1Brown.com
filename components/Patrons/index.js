@@ -5,6 +5,8 @@ import nameOverrides from "../../data/patron-name-overrides.yaml";
 import { shuffle } from "../../util/math";
 import styles from "./index.module.scss";
 
+// component to display expandable/collapsible list of patrons, either site-wide
+// or page-specific
 const Patrons = ({ active, pagePatrons = [] }) => {
   const [open, setOpen] = useState(false);
   const [shuffledPagePatrons, setShuffledPagePatrons] = useState(pagePatrons);

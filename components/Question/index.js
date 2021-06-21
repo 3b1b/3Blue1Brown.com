@@ -5,6 +5,11 @@ import Markdownify from "../Markdownify";
 import { shakeElement } from "../../util/animation";
 import styles from "./index.module.scss";
 
+// interactive multiple-choice question component with explanation
+
+// component takes choices as enumerated/separate props rather than single array
+// prop, because with array, jsx syntax will escape math latex like
+// "\times" -> "[TAB]imes"
 const Question = ({
   question,
   choice1,
@@ -32,6 +37,7 @@ const Question = ({
     }
   };
 
+  // convert choices to array 
   const choices = [choice1, choice2, choice3, choice4, choice5, choice6].filter(
     (choice) => choice
   );

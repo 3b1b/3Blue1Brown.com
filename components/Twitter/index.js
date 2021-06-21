@@ -7,7 +7,7 @@ import Center from "../Center";
 
 const width = "500px";
 
-// twitter embed
+// twitter tweet embed
 const Twitter = ({ tweet }) => {
   const ref = useRef();
 

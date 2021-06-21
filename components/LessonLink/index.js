@@ -2,6 +2,7 @@ import Link from "next/link";
 import Tooltip from "../Tooltip";
 import LessonCard from "../LessonCard";
 
+// plain text link to another lesson from markdown, with tooltip preview
 const LessonLink = ({ id, children }) => (
   <>
     {id && (

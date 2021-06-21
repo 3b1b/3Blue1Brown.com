@@ -18,7 +18,7 @@ import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
 import Video from "./Video";
 
-// components you want to be able to use in .mdx files
+// components to automatically import into all .mdx files
 const components = {
   Accordion,
   Center,

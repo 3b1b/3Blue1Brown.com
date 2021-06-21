@@ -6,6 +6,7 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+// button that links to a lesson, showing details like thumbnail, title, etc.
 const LessonCard = ({
   id,
   icon,

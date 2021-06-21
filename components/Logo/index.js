@@ -21,6 +21,7 @@ const r2 = 37.5;
 const r3 = 30;
 const r4 = 25;
 
+// the 3Blue1Brown logo
 const Logo = ({ big }) => (
   <svg
     className={styles.logo}
@@ -36,6 +37,7 @@ const Logo = ({ big }) => (
   </svg>
 );
 
+// solid color backing of eye
 const IrisBack = () => (
   <g className={styles.dilate_outer}>
     <path
@@ -49,6 +51,7 @@ const IrisBack = () => (
   </g>
 );
 
+// one triangle piece of an iris layer
 const Triangle = ({ a, r, color, half }) => {
   a *= da;
   const tip = [cos(a) * r, -sin(a) * r];
@@ -65,17 +68,19 @@ const Triangle = ({ a, r, color, half }) => {
   return <polygon fill={color} points={points} />;
 };
 
+// iris layer, ring of triangles, with angle offset
 const IrisOffset = ({ r, color }) => (
   <g className={styles.dilate_inner}>
     {range(-14, 7).map((a, index) => (
-      <Triangle key={index} a={a + 0.5} r={r1} color={blue[color]} />
+      <Triangle key={index} a={a + 0.5} r={r} color={blue[color]} />
     ))}
     {range(7, 14).map((a, index) => (
-      <Triangle key={index} a={a + 0.5} r={r1} color={brown[color]} />
+      <Triangle key={index} a={a + 0.5} r={r} color={brown[color]} />
     ))}
   </g>
 );
 
+// iris layer, ring of triangles
 const Iris = ({ r, color }) => (
   <g className={styles.dilate_inner}>
     <Triangle a={-14} r={r} color={blue[color]} half="left" />
@@ -91,6 +96,7 @@ const Iris = ({ r, color }) => (
   </g>
 );
 
+// black center pupil
 const Pupil = () => (
   <g>
     <circle cx="0" cy="0" r={r4} fill={blue[4]} />

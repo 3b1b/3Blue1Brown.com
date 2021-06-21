@@ -6,6 +6,7 @@ import styles from "./index.module.scss";
 const Jump = () => {
   const [show, setShow] = useState(false);
 
+  // only show if scrolled down a bit
   useEffect(() => {
     const onScroll = () => setShow(window.scrollY > window.innerHeight);
     window.addEventListener("scroll", onScroll);
@@ -16,6 +17,7 @@ const Jump = () => {
     <Clickable
       className={styles.jump}
       style={{ opacity: show ? 1 : 0, pointerEvents: show ? "" : "none" }}
+      tabIndex={show ? 0 : -1}
       icon="fas fa-angle-up"
       design="rounded"
       tooltip="Jump to top"
@@ -24,6 +26,7 @@ const Jump = () => {
   );
 };
 
+// perform the jump
 const jumpToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
 export default Jump;

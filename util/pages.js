@@ -80,7 +80,7 @@ export const pagePaths = pageFiles.map(
   (path) => "/" + basename(path, extname(path))
 );
 
-// search for local location of lesson file, return array of results
+// search for local location of lesson file(s), return array of results
 const searchLessonFile = (slug) => [
   ...glob.sync(`public/content/lessons/*/${slug || "*"}/index.mdx`),
   ...(process.env.mode !== "production"

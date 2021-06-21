@@ -28,6 +28,8 @@ const autoSize = ({ width, height }) => {
   };
 };
 
+// figure component to show image and/or video and caption, with controls to
+// switch between
 const Figure = ({
   id = "",
   image: imageSrc = "",

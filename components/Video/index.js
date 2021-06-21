@@ -1,5 +1,6 @@
 import styles from "./index.module.scss";
 
+// youtube video embed
 const Video = ({ id, playlist, width }) => {
   let src;
   if (playlist)

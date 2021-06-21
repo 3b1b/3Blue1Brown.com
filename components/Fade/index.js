@@ -5,7 +5,8 @@ const duration = 250; // transition duration
 const delay = 10; // delay before transition
 const offset = 100; // extra delay for items further to right of screen
 
-// singleton component to fade in any element with the data-fade attribute when it comes into view
+// singleton component to fade in any element with the data-fade attribute when
+// it comes into view
 const Fade = () => {
   useEffect(() => {
     const options = { childList: true, subtree: true };

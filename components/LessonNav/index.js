@@ -6,6 +6,7 @@ import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
+// nav bar to go to prev/next lesson, and see list of lessons in topic
 const LessonNav = () => {
   const [open, setOpen] = useState(false);
   const { topic: topicName, slug } = useContext(PageContext);

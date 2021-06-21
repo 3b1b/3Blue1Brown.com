@@ -3,8 +3,9 @@ import { PageContext } from "../../pages/_app";
 import { useForceUpdate } from "../../util/hooks";
 import styles from "./index.module.scss";
 
+// component to dynamically load and embed a react component in a frame
 const Interactive = ({ filename, children = [] }) => {
-  const { dir } = useContext(PageContext); // page front matter
+  const { dir } = useContext(PageContext);
   const forceUpdate = useForceUpdate();
   // store dynamically loaded component in ref because react doesn't like a
   // component being stored with useState

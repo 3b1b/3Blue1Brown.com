@@ -5,19 +5,12 @@ import styles from "./index.module.scss";
 // singleton component to read page headings and render table of contents panel
 const TableOfContents = () => {
   const [open, setOpen] = useState(false); // panel open state
-  const [active, setActive] = useState(); // link id in view
+  const [active, setActive] = useState(); // id of heading in view
   const [headings, setHeadings] = useState([]); // list of headings
   const [downEnough, setDownEnough] = useState(); // whether page is scrolled down far enough
   const [upEnough, setUpEnough] = useState(); // whether page is scrolled up far enough
   const [wideEnough, setWideEnough] = useState(); // whether page is wide enough
   const [clicked, setClicked] = useState(false); // whether user has clicked on the panel button
-
-  // when page first loads
-  useEffect(() => {
-    setDownEnough(getDownEnough());
-    setUpEnough(getUpEnough());
-    setWideEnough(getWideEnough());
-  }, []);
 
   // when "enough" states change
   useEffect(() => {
@@ -32,8 +25,20 @@ const TableOfContents = () => {
     if (!wideEnough) setOpen(false);
   }, [wideEnough]);
 
+  // when page first loads
+  useEffect(() => {
+    // set intial "enough" states
+    setDownEnough(getDownEnough());
+    setUpEnough(getUpEnough());
+    setWideEnough(getWideEnough());
+
+    // get headings on page
+    setHeadings(getHeadings());
+  }, []);
+
   // listen for scroll
   useEffect(() => {
+    // update scroll-related "enough" states
     const onScroll = () => {
       setDownEnough(getDownEnough());
       setUpEnough(getUpEnough());
@@ -45,22 +50,25 @@ const TableOfContents = () => {
 
   // listen for resize
   useEffect(() => {
+    // update window-size-related "enough" states
     const onResize = () => setWideEnough(getWideEnough());
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // get headings relevant info from page
-  useEffect(() => {
-    setHeadings(getHeadings());
-  }, []);
-
   // when user clicks to on toc entry
   const onNav = useCallback((event) => {
+    // prevent browser default link click behavior, which includes instant jump
     event.preventDefault();
+
+    // get target element
     const id = event.target.dataset?.id?.slice(1) || "";
     if (!id) return;
+
+    // smooth scroll to target
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    
+    // manually update url with new hash, since we prevented default
     window.history.pushState(null, null, "#" + id);
   }, []);
 

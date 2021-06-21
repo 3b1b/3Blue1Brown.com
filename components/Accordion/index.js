@@ -2,6 +2,7 @@ import { useState } from "react";
 import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
+// expandable/collapsible section, like <details>
 const Accordion = ({ title, children }) => {
   const [open, setOpen] = useState(false);
 

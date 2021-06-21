@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
+// link/button component
 const Clickable = ({
   link,
   icon,
@@ -12,6 +13,7 @@ const Clickable = ({
   className = "",
   ...rest
 }) => {
+  // decide whether to use button or link
   let Component;
   if (link) Component = Link;
   else Component = Button;
@@ -40,12 +42,14 @@ const Clickable = ({
   );
 };
 
+// button component, for actions
 const Button = ({ tooltip, ...rest }) => (
   <Tooltip content={tooltip}>
     <button {...rest} />
   </Tooltip>
 );
 
+// link component, for navigating somewhere
 const Link = ({ tooltip, link = "/", ...rest }) => (
   <NextLink href={link} passHref>
     <Tooltip content={tooltip}>
