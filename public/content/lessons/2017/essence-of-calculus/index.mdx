@@ -52,13 +52,12 @@ You should know that some people, perhaps even most people, would object to us u
 
 <Question
   question="Which of the following is closest to the area of one of these rings with inner radius $r$ and thickness $dr$?"
-  choices={[
-  "$\pi r^2 \cdot dr$",
-  "$2 \pi r^2 \cdot dr$",
-  "$2 \pi r \cdot dr$",
-  "$\pi r \cdot dr$",
-  ]}
+  choice1="$\pi r^2 \cdot dr$"
+  choice2="$2 \pi r^2 \cdot dr$"
+  choice3="$2 \pi r \cdot dr$"
+  choice4="$\pi r \cdot dr$"
   answer={3}
+  explanation="The area of the ring can be approximated as the area of a rectangle with a length of $2 \pi r$ and a height of $dr$."
 />
 
 You might imagine straightening out this ring, into a shape whose width is the inner circumference of the ring, which is $2 \pi r$. This is the very definition of $\pi$, relating the circumference of a circle to its diameter, or radius. The thickness of this unwrapped shape would be $dr$.
@@ -108,13 +107,12 @@ Each rectangle has a thickness of $dr$, which is also the spacing between differ
 
 <Question
   question="What is the height of the rectangle whose left corner touches $r=0.3$? **Note:** This is the rectangle highlighted in the figure above."
-  choices={[
-    "$6 \pi$",
-    "$\frac{3}{10} \pi$",
-    "$2 \pi$",
-    "$\frac{3}{5} \pi$",
-  ]}
+  choice1="$6 \pi$"
+  choice2="$\frac{3}{10} \pi$"
+  choice3="$2 \pi$"
+  choice4="$\frac{3}{5} \pi$"
   answer={4}
+  explanation="Substituting the value of the inner radius $0.3$ into the formula for the circumference of a circle $2 \pi r$ calculates the height of the rectangle to be $\frac{3}{5} \pi$."
 />
 
 A nice way to think of this setup is to draw the graph of $2 \pi r$, which is this straight line with a slope of $2 \pi$. Each of these rectangles extends up to the point where it just barely touches the graph.
@@ -140,7 +138,7 @@ This has a very beautiful meaning when looking at the sum of the areas of all th
   caption=""
 />
 
-This portion under the graph is a triangle, whose base is $1$, and whose height is $2 \pi \cdot 1$. So the area, which is ½ base times height, comes out to be $ \pi \cdot 1^2$. 
+This portion under the graph is a triangle, whose base is $1$, and whose height is $2 \pi \cdot 1$. So the area, which is ½ base times height, comes out to be $\pi \cdot 1^2$. 
 
 $$
 \begin{aligned}
@@ -198,11 +196,10 @@ This happens whenever the quantities that you’re adding up, the ones whose sum
 
 <Question
   question="In the same way velocity measures the change in position over the change in time, acceleration measures the change in velocity over the change in time. Can the velocity of a car be modeled as the area under the graph of acceleration?"
-  choices={[
-    "Yes",
-    "No"
-  ]}
+  choice1="Yes"
+  choice2="No"
   answer={1}
+  explanation="In physics, position, velocity and acceleration are all related together. Position can be modeled as the area under the graph of veloctiy and velocity can be modeled as the area under the graph of acceleration."
 />
 
 Again, notice that the purpose of the small approximations is not that we intend to use them directly, per se, but that the two separate ways to think about what these approximations approach lets us reframe the question of how far the car has traveled into the question of finding the area under a certain curve.
