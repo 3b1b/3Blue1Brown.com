@@ -32,6 +32,8 @@ const LessonLayout = () => {
           <License />
           <Thanks />
           <Disqus />
+          <TableOfContents />
+          <Jump />
         </>
       )}
 
@@ -41,9 +43,6 @@ const LessonLayout = () => {
           <Thanks />
         </>
       )}
-
-      <TableOfContents />
-      <Jump />
     </NormalLayout>
   );
 };
