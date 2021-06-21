@@ -29,6 +29,7 @@ const autoSize = ({ width, height }) => {
 };
 
 const Figure = ({
+  id = "",
   image: imageSrc = "",
   video: videoSrc = "",
   show: initialShow = "",
@@ -96,7 +97,7 @@ const Figure = ({
   }, []);
 
   return (
-    <figure className={styles.figure} data-show={show}>
+    <figure id={id} className={styles.figure} data-show={show}>
       {imageSrc && videoSrc && (
         <div className={styles.controls} style={controls}>
           <Clickable

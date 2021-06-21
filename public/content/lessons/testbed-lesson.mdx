@@ -35,7 +35,13 @@ _italic text_
 
 [Link to external page](https://some-website.org/)
 
-[Link to page within site](/extras)
+[Link to page within site relative to root](/extras)
+
+[Link to page above current page](../lessons)
+
+[Link to page relative to current page](quick-eigen)
+
+[Link to a figure with an id](#our-planet)
 
 ---
 
@@ -99,6 +105,7 @@ $$
 <!-- figure with image and/or video, and caption -->
 
 <Figure
+  id="our-planet"
   video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4"
   caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   loop={true}

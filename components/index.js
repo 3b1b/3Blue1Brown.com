@@ -18,9 +18,6 @@ import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
 import Video from "./Video";
 
-// https://mdxjs.com/table-of-components
-import RelLink from "./RelLink";
-
 // components you want to be able to use in .mdx files
 const components = {
   Accordion,
@@ -42,8 +39,6 @@ const components = {
   Tooltip,
   Twitter,
   Video,
-  // https://mdxjs.com/table-of-components
-  a: RelLink,
 };
 
 export default components;
