@@ -36,7 +36,7 @@ As our central example, imagine a car that starts at some point $A$, speeds up, 
 We could graph this motion, letting a vertical axis represent the distance traveled, and a horizontal axis represent time.
 
 <Figure
-  image="figure-1.37-wide.svg"
+  image="figure-1.37.svg"
   video="figure-1.25-1.35.mp4"
   caption="Distance Traveled (meters)"
 />
@@ -46,14 +46,14 @@ At each time $t$, represented with a point on the horizontal axis, the height of
 For example, the height of the graph tells us that after $6$ seconds the car has traveled a little more than $70$ meters.
 
 <Figure
-  image="figure-1.43,1.50-wide.svg"
+  image="figure-1.43,1.50.svg"
   caption="Distance (meters) traveled at $t=6$."
 />
 
 Initially this curve is quite shallow, since the car is slow at the start. During the first second, the distance traveled by the car hardly changes at all. For the next few seconds, as the car speeds up, the distance traveled in a given second gets larger, corresponding to a steeper slope in the graph. And as it slows towards the end, the curve shallows out again.
 
 <Figure
-  image="figure-2.06-2.20-wide.svg"
+  image="figure-2.06-2.20.svg"
   video="figure-2.03-2.22-trimmed.mp4"
   caption="This figure highlights the slope of the graph for different intervals of time, where slope is calculated as the rise over run for each interval."
 />
@@ -61,7 +61,7 @@ Initially this curve is quite shallow, since the car is slow at the start. Durin
 If we were to plot the car’s velocity in meters per second as a function of time, it might look like this green bump shown in the graph below.
 
 <Figure
-  image="figure-2.43-wide.svg"
+  image="figure-2.43.svg"
   caption="Distance and Velocity Graphs"
 />
 
@@ -72,7 +72,7 @@ Shortly after time $t=0$, the velocity is very small. Up to the middle of the jo
 These two curves are highly related to each other; if you change the specific distance vs. time function, you’ll have some different velocity vs. time function. We want to understand the specifics of this relationship. Exactly how does velocity depend on this distance vs. time function? For example, let’s look at a different distance vs. time function.
 
 <Figure
-  image="figure-2.57-wide.svg"
+  image="figure-2.57.svg"
   caption="In this graph, the car starts from a stopped position, speeds up and slows down back to a stopped position at $5$ seconds time. Then the car speeds up and slows down again to a stopped position at $10$ seconds time."
 />
 
@@ -86,14 +86,14 @@ It’s worth taking a moment to think critically about what velocity actually me
 For example, given the graph of the car's position, shown below, at what time is the car going fastest? <Spoiler>The car is going fastest at $t=3$</Spoiler>
 
 <Figure
-  image="figure-3.00-question-wide.svg" 
+  image="figure-3.00-question.svg" 
 />
 
 
 <Accordion title="Show velocity graph">
 
 <Figure
-  image="figure-3.00-answer-wide.svg" 
+  image="figure-3.00-answer.svg" 
 />
 
 </Accordion>
@@ -121,7 +121,7 @@ That’s what velocity is, the distance traveled over a given amount of time.
 So how is it that we’re looking at a function for velocity that only takes in a single value for $t$, a single snapshot in time. It’s weird, isn’t it? We want to associate each individual point in time with a velocity, but computing velocity requires comparing two points in time.
 
 <Figure
-  image="figure-4.14-wide.svg"
+  image="figure-4.14.svg"
 />
 
 If that feels strange and paradoxical, good! You’re grappling with the same conflict that the inventors  of calculus did, and if you want a deep understanding of rates of change, not just for a moving car, but for all sorts of scenarios in science, you’ll need a resolution to this apparent paradox.
@@ -131,7 +131,7 @@ If that feels strange and paradoxical, good! You’re grappling with the same co
 First let’s talk about the real world, then we’ll go into a purely mathematical one. Think about how you might build an actual speedometer for a car.
 
 <Figure
-  image="figure-4.45-wide.svg"
+  image="figure-4.45.svg"
 />
 
 At some point, say $3$ seconds into the journey, the speedometer might measure how far the car goes in a very small amount of time, perhaps the distance traveled between $3$ seconds and $3.01$ seconds. Then it would compute the speed in meters per second as that tiny distance, in meters, divided by that tiny time, $0.01$ seconds.
@@ -161,7 +161,7 @@ $$
 Graphically, imagine zooming in on the point of the distance vs. time graph above $t=3$. That $dt$ is a small step to the right, since time is on the horizontal axis, and that $ds$ is the resulting change in the height of the graph, since the vertical axis represents distance traveled.
 
 <Figure
-  image="figure-5.50-wide.svg"
+  image="figure-5.50.svg"
   video="figure-6.00-6.08.mp4"
   captions="Zoomed in image of rise over run at $t=3$"
 />
@@ -175,7 +175,7 @@ $$
 Of course, there’s nothing special about the value $t=3$, we could apply this to any other point in time, so we consider this expression $\frac{ds}{dt}$ to be a function of $t$, something where I can give you some time $t$, and you can give back to me the value of this ratio at that time; the velocity as a function of time.
 
 <Figure
-  image="figure-6.05-wide.svg"
+  image="figure-6.05.svg"
   caption="Zoomed in image of rise over run at $t=6$"
 />
 
@@ -205,7 +205,7 @@ Even though our car’s speedometer will look at an actual change in time like $
 Luckily, there is a really nice visual understanding for what it means to ask what this ratio approaches: For any specific choice of $dt$, this ratio $ds/dt$ is the slope of a line passing through two points on the graph, known as a secant line.
 
 <Figure
-  image="figure-8.17-wide.svg"
+  image="figure-8.17.svg"
   video="figure-8.20-8.32.mp4"
   show="video"
 />
@@ -213,7 +213,7 @@ Luckily, there is a really nice visual understanding for what it means to ask wh
 Well, as $dt$ approaches $0$, and those two points approach each other, the slope of that secant line approaches the slope of a line tangent to the graph at whatever point $t$ we’re looking at. So the true, honest to goodness derivative, is not the rise-over-run slope between two nearby points on the graph; it’s equal to the slope of a line *tangent* to the graph at a single point.
 
 <Figure
-  image="figure-9.44-wide.svg"
+  image="figure-9.44.svg"
   video="figure-9.27-9.42.mp4"
 />
 
