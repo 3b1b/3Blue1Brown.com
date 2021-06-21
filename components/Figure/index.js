@@ -24,6 +24,7 @@ const autoSize = ({ width, height }) => {
 
   return {
     width: page * Math.sqrt(width / height / ratio) || "100%",
+    maxHeight: page * Math.sqrt(height / width / ratio) || "100%",
   };
 };
 
@@ -31,7 +32,7 @@ const Figure = ({
   image: imageSrc = "",
   video: videoSrc = "",
   show: initialShow = "",
-  caption: defaultCaption = "",
+  caption: neutralCaption = "",
   imageCaption = "",
   videoCaption = "",
   width: manualWidth = 0,
@@ -39,42 +40,44 @@ const Figure = ({
   loop = false,
 }) => {
   // whether to show image or video
-  const [show, setShow] = useState(
-    initialShow || (imageSrc ? "image" : "") || (videoSrc ? "video" : "")
-  );
-  // intrinsic dimensions
-  const [imageDimensions, setImageDimensions] = useState({});
-  const [videoDimensions, setVideoDimensions] = useState({});
-  // display dimensions
-  const [imageStyle, setImageStyle] = useState({});
-  const [videoStyle, setVideoStyle] = useState({});
-  // controls width
-  const [controlWidth, setControlWidth] = useState(0);
-  // caption to show
-  const [caption, setCaption] = useState("");
+  initialShow =
+    initialShow || (imageSrc ? "image" : "") || (videoSrc ? "video" : "") || "";
+  const [show, setShow] = useState(initialShow);
+  // intrinsic image/video dimensions
+  const [image, setImage] = useState({});
+  const [video, setVideo] = useState({});
   // image/video elements
   const imageRef = useRef();
   const videoRef = useRef();
   // page front matter
   const { dir } = useContext(PageContext);
 
-  // update caption
-  useEffect(() => {
-    if (show === "image") setCaption(imageCaption || defaultCaption);
-    if (show === "video") setCaption(videoCaption || defaultCaption);
-  }, [show, defaultCaption, imageCaption, videoCaption]);
+  // determine frame dimensions
+  let frame = {};
+  if (manualWidth) frame = { width: manualWidth };
+  else if (manualHeight) frame = { maxHeight: manualHeight };
+  else if (show === "image") frame = autoSize(image);
+  else if (show === "video") frame = autoSize(video);
 
-  // update intrinsic size of image and video
+  // determine controls dimensions
+  let controls = { width: frame.width };
+
+  // determine caption to show
+  let caption = "";
+  if (show === "image") caption = imageCaption || neutralCaption;
+  if (show === "video") caption = videoCaption || neutralCaption;
+
+  // update intrinsic dimensions of image/video
   const updateDimensions = useCallback(() => {
     const image = imageRef.current;
     const video = videoRef.current;
     if (image) {
       const { naturalWidth: width, naturalHeight: height } = image;
-      setImageDimensions({ width, height });
+      setImage({ width, height });
     }
     if (video) {
       const { videoWidth: width, videoHeight: height } = video;
-      setVideoDimensions({ width, height });
+      setVideo({ width, height });
     }
   }, []);
 
@@ -83,28 +86,6 @@ const Figure = ({
   useEffect(() => {
     updateDimensions();
   }, [updateDimensions]);
-
-  // update display dimensions
-  useEffect(() => {
-    if (manualWidth) {
-      setImageStyle({ width: manualWidth });
-      setVideoStyle({ width: manualWidth });
-    } else if (manualHeight) {
-      setImageStyle({ height: manualHeight });
-      setVideoStyle({ height: manualHeight });
-    } else {
-      setImageStyle(autoSize(imageDimensions));
-      setVideoStyle(autoSize(videoDimensions));
-    }
-  }, [manualWidth, manualHeight, imageDimensions, videoDimensions]);
-
-  useEffect(() => {
-    if (imageStyle.width) setControlWidth(imageStyle.width);
-    else if (imageStyle.height)
-      setControlWidth(
-        (imageStyle.height * imageDimensions.width) / imageDimensions.height
-      );
-  }, [imageDimensions, imageStyle]);
 
   // autoplay/pause video when it goes in/out of view
   useEffect(() => {
@@ -117,7 +98,7 @@ const Figure = ({
   return (
     <figure className={styles.figure} data-show={show}>
       {imageSrc && videoSrc && (
-        <div className={styles.controls} style={{ width: controlWidth }}>
+        <div className={styles.controls} style={controls}>
           <Clickable
             icon="far fa-image"
             text="Still"
@@ -132,33 +113,33 @@ const Figure = ({
           />
         </div>
       )}
-      {imageSrc && (
-        <img
-          ref={imageRef}
-          className={styles.image}
-          src={transformSrc(imageSrc, dir)}
-          alt={imageCaption}
-          loading="lazy"
-          style={imageStyle}
-          // update intrinsic dimensions after loaded
-          onLoad={updateDimensions}
-        />
-      )}
-      {videoSrc && (
-        <video
-          ref={videoRef}
-          className={styles.video}
-          muted
-          controls
-          loop={loop}
-          preload="metadata"
-          style={videoStyle}
-          // update intrinsic dimensions after loaded
-          onLoadedMetadata={updateDimensions}
-        >
-          <source src={transformSrc(videoSrc, dir)} />
-        </video>
-      )}
+      <div className={styles.frame} style={frame}>
+        {imageSrc && (
+          <img
+            ref={imageRef}
+            className={styles.image}
+            src={transformSrc(imageSrc, dir)}
+            alt={imageCaption}
+            loading="lazy"
+            // update intrinsic dimensions after loaded
+            onLoad={updateDimensions}
+          />
+        )}
+        {videoSrc && (
+          <video
+            ref={videoRef}
+            className={styles.video}
+            muted
+            controls
+            loop={loop}
+            preload="metadata"
+            // update intrinsic dimensions after loaded
+            onLoadedMetadata={updateDimensions}
+          >
+            <source src={transformSrc(videoSrc, dir)} />
+          </video>
+        )}
+      </div>
       {caption && (
         <figcaption className={styles.caption}>
           <Markdownify>{caption}</Markdownify>

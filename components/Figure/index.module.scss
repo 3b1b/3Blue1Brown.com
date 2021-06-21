@@ -19,14 +19,21 @@
   }
 }
 
+.frame {
+}
+
 .image {
   display: none;
-  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 .video {
   display: none;
-  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 .figure[data-show="image"] .image {
