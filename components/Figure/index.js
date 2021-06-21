@@ -98,6 +98,9 @@ const Figure = ({
     return () => observer.disconnect();
   }, []);
 
+  // if no image/video, don't render
+  if (!imageSrc && !videoSrc) return null;
+
   return (
     <figure id={id} className={styles.figure} data-show={show}>
       {imageSrc && videoSrc && (

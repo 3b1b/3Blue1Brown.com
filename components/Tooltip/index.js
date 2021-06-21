@@ -76,7 +76,6 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     onMouseLeave: close,
     onFocus: open,
     onBlur: close,
-    "aria-label": content,
     ref: (el) => {
       setTarget(el);
       return ref;
@@ -101,7 +100,7 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
   // if child no longer exists, close tooltip
   if (!children) close();
 
-  // if content is plain string, convert to markdown and wrap in wrapper
+  // if content is plain string, convert to markdown and wrap
   if (typeof content === "string")
     content = (
       <div className={classNames.content}>
@@ -113,6 +112,7 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     <>
       {children}
       {isOpen &&
+        content &&
         createPortal(
           <div
             ref={setPopper}

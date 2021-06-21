@@ -79,7 +79,7 @@ const Thanks = () => {
             </Link>
             .
           </p>
-          <Patrons pagePatrons={patrons} />
+          <Patrons />
         </Section>
       )}
     </>

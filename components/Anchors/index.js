@@ -9,7 +9,7 @@ const Anchors = () => {
     createAnchors();
   }, []);
 
-  return <></>;
+  return null;
 };
 
 export default Anchors;

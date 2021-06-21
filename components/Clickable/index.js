@@ -18,6 +18,11 @@ const Clickable = ({
   if (link) Component = Link;
   else Component = Button;
 
+  // if no contents, don't render
+  if (!text && !icon) return null;
+  // if no actions, don't render
+  if (!link && !onClick) return null;
+
   return (
     <Component
       {...rest}

@@ -24,6 +24,7 @@ const LessonDetails = () => (
 
 export default LessonDetails;
 
+// lesson title
 const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
@@ -34,6 +35,7 @@ const Title = () => {
   );
 };
 
+// date when lesson was first "published" (youtube video publish date)
 const Published = () => {
   const { date } = useContext(PageContext);
   return (
@@ -48,6 +50,7 @@ const Published = () => {
   );
 };
 
+// when lesson markdown file was last modified
 const LastMod = () => {
   const { lastMod, empty } = useContext(PageContext);
   return (
@@ -62,6 +65,7 @@ const LastMod = () => {
   );
 };
 
+// list of credits for lesson
 const Credits = () => {
   let { credits = [] } = useContext(PageContext);
 
@@ -99,6 +103,7 @@ const Credits = () => {
   );
 };
 
+// list of tags for lesson
 const Tags = () => {
   const { tags } = useContext(PageContext);
   return (
@@ -113,6 +118,7 @@ const Tags = () => {
   );
 };
 
+// link to lesson source code on github
 const Source = () => {
   const { sourceCode } = useContext(PageContext);
   return (

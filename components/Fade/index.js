@@ -13,7 +13,7 @@ const Fade = () => {
     new MutationObserver(onMutation).observe(document.body, options);
   }, []);
 
-  return <></>;
+  return null;
 };
 
 export default Fade;

@@ -3,7 +3,7 @@ import { PageContext } from "../../pages/_app";
 import { useForceUpdate } from "../../util/hooks";
 import styles from "./index.module.scss";
 
-// component to dynamically load and embed a react component in a frame
+// dynamically load (from same directory as page) and embed a react applet
 const Interactive = ({ filename, children = [] }) => {
   const { dir } = useContext(PageContext);
   const forceUpdate = useForceUpdate();
@@ -13,13 +13,18 @@ const Interactive = ({ filename, children = [] }) => {
 
   // dynamically load component from provided filename
   useEffect(() => {
+    if (!filename) return;
     import(`../../public${dir}${filename}.js`)
       .then((module) => (ref.current = module.default))
-      .then(forceUpdate);
+      .then(forceUpdate)
+      .catch(() => console.log(`Couldn't find interactive "./${filename}.js"`));
   }, [dir, filename, forceUpdate]);
 
   // get component to render
-  const Component = ref.current || (() => <></>);
+  const Component = ref.current;
+
+  // if no component, don't render
+  if (!Component) return null;
 
   // get props to pass to component by calling first child as function
   let props;

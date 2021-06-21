@@ -20,7 +20,7 @@ const Markdownify = ({ children, noParagraph = false }) => {
         {children}
       </ReactMarkdown>
     );
-  } else return <>{children}</>;
+  } else return children;
 };
 
 export default Markdownify;

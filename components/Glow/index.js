@@ -9,7 +9,7 @@ const Glow = () => {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  return <></>;
+  return null;
 };
 
 export default Glow;

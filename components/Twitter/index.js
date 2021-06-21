@@ -28,6 +28,9 @@ const Twitter = ({ tweet }) => {
     new MutationObserver(setWidth).observe(container, options);
   }, []);
 
+  // if no tweet provided, don't render
+  if (!tweet) return null;
+
   return (
     <Center ref={ref}>{tweet && <TwitterTweetEmbed tweetId={tweet} />}</Center>
   );

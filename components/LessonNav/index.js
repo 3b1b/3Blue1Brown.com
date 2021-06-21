@@ -13,7 +13,7 @@ const LessonNav = () => {
 
   // find topic in yaml data whose name matches topic of current lesson
   const topic = topics.find(({ name }) => name === topicName);
-  if (!topic) return <></>;
+  if (!topic) return null;
 
   // get previous and next lessons
   const index = topic.lessons.findIndex((lesson) => lesson === slug);

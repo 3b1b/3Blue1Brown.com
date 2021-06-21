@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Clickable from "../Clickable";
 import sitePatrons from "../../data/patrons.yaml";
 import nameOverrides from "../../data/patron-name-overrides.yaml";
 import { shuffle } from "../../util/math";
+import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
 // component to display expandable/collapsible list of patrons, either site-wide
 // or page-specific
-const Patrons = ({ active, pagePatrons = [] }) => {
+const Patrons = ({ active }) => {
   const [open, setOpen] = useState(false);
+  const { patrons: pagePatrons = [] } = useContext(PageContext);
   const [shuffledPagePatrons, setShuffledPagePatrons] = useState(pagePatrons);
 
   // shuffle to not favor alphabetical
@@ -31,7 +33,7 @@ const Patrons = ({ active, pagePatrons = [] }) => {
         .filter((patron) => patron)
         .slice(0, 1000);
 
-  if (!patrons.length) return <></>;
+  if (!patrons.length) return null;
 
   return (
     <>

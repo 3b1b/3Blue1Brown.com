@@ -6,13 +6,17 @@ import styles from "./index.module.scss";
 const Accordion = ({ title, children }) => {
   const [open, setOpen] = useState(false);
 
+  if (!title || !children) return null;
+
   return (
     <div className={styles.accordion}>
-      <button className={styles.title} onClick={() => setOpen(!open)}>
-        <i className={open ? "fas fa-angle-up" : "fas fa-angle-down"} />
-        {title}
-      </button>
-      {open && (
+      {title && (
+        <button className={styles.title} onClick={() => setOpen(!open)}>
+          <i className={open ? "fas fa-angle-up" : "fas fa-angle-down"} />
+          {title}
+        </button>
+      )}
+      {open && children && (
         <div className={styles.reveal}>
           <Markdownify>{children}</Markdownify>
         </div>
