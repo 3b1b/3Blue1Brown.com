@@ -57,12 +57,16 @@ Again, while reading it’s helpful to draw out an example, so we’ve got this 
 
 <Figure
     image="intro_img3.png"
+    video="intro_img3.mp4"
+    show="video"
 />
 
 > This point, Q, takes over as the new pivot, and the line now rotates clockwise about Q, until it next meets a point of S. This process continues indefinitely.
 
 <Figure
     image="intro_img4.png"
+    video="intro_img4.mp4"
+    show="video"
 />
 
 Alright, that’s kind of fun. We keep rotating and changing the pivot. You can see why they call it a windmill process, and you can also see why they specified that no three points lie on one line. You wouldn’t want to run into the ambiguity where you don’t know what pivot to switch to. Okay, so what’s the question?
@@ -71,6 +75,8 @@ Alright, that’s kind of fun. We keep rotating and changing the pivot. You can 
 
 <Figure
     image="intro_img5.png"
+    video="intro_img5.mp4"
+    show="video"
 />
 
 ## Why it’s “unusual”
@@ -97,24 +103,32 @@ The simplest case would be two points, where the line trades off between each po
 
 <Figure
     image="2_img.png"
+    video="2_img.mp4"
+    show="video"
 />
 
 Adding a third point, it’s pretty clear the line will just rotate around all of them. It might not be entirely clear how you’d phrase that as a rigorous proof yet, but right now you’re just getting a feel for things.
 
 <Figure
     image="3_img.png"
+    video="3_img.mp4"
+    show="video"
 />
 
 The fourth point is where things get interesting. In some places, your windmill will go around the four points as it did with the triangle.
 
 <Figure
     image="4_outer.png"
+    video="4_outer.mp4"
+    show="video"
 />
 
 However, if we put it inside that triangle, then it looks like our windmill never hits it.
 
 <Figure
     image="4_never.png"
+    video="4_never.mp4"
+    show="video"
 />
 
 Looking back at the problem, it’s asking you to show that for some starting position of the line, not any position, the process will hit all the points infinitely many times.
@@ -123,6 +137,8 @@ So for an example like this, if you start with the line going through that troub
 
 <Figure
     image="4_img.png"
+    video="4_img.mp4"
+    show="video"
 />
 
 Here you’d see that your windmill does indeed bounce off all the points as it goes through a cycle, and it ends up back where it started. The worry you might have is that in some large set of points, where some are kind of inside the others, you might be able to start off on the inside, but maybe the windmill process takes the line to the outside, where it will be blocked off from those inner points.
@@ -131,6 +147,7 @@ If you play around, and it might take some time to draw out many examples and th
 
 <Figure
     image="middle.png"
+    video="middle.mp4"
 />
 
 ## The solution
@@ -149,18 +166,23 @@ This gives you a new question to ask: What happens to the number of blue points 
 
 <Figure
     image="constant.png"
+    video="constant.mp4"
+    show="video"
 />
 
 Well, the key is to think through what happens as a line changes its pivot. Having given the line an orientation, we can talk about which half of the line is “above” the pivot, and which is “below”. If the line hits a blue point to its left, it must happen below the pivot, so as it changes pivots and continues rotating clockwise, the old pivot, now above the new one, ends up to the left of the line, in the blue region. And entirely symmetrically, when it hits a brown point, it happens above the pivot, meaning that old pivot ends up in the brown region. So no matter what, the number of points on a given side of the line can’t change. When you lose a blue point, you gain a new one; when you lose a brown point, you also gain a new one.
 
 <Figure
     image="change_pivot.png"
+    video="change_pivot.mp4"
 />
 
 Great, that’s insight #1. Now why would this imply that the line must hit every point infinitely many times, no matter what weird set of points you dream up? Well, think about letting this process go until the line has turned 180 degrees. That means it’s parallel to its starting position, and because it has to remain the case that half the points are on one side, half are on the other, it must be passing through the same point it started on. Otherwise, if it ended up on some other point, it would change the number on a given side. Additionally, since the line has rotated halfway around, everything that was blue has become brown, and everything which was brown has become blue, and the only way to change color is if you get hit by the line.
 
 <Figure
     image="odd_img2.png"
+    video="odd_img.mp4"
+    show="video"
 />
 
 So for our odd number case, that means that after a half rotation, the line is back to where it started, having hit all the other points. So as time moves forward, it repeats that exact same set of motions over and over, hitting all points infinitely many times.
@@ -175,6 +197,8 @@ The same argument applies that after a 180-degree turn, all the points will have
 
 <Figure
     image="even_img.png"
+    video="even_img.mp4"
+    show="video"
 />
 
 So again, you have a cycle which hits all points, and which ends in the same position where it started, so it must hit all points infinitely many times.
