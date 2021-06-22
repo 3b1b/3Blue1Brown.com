@@ -33,7 +33,7 @@ Moreover, just as you learn by seeing many examples, the “learning” part of 
 
 By the way, recognizing handwritten digits is a classic example for introducing this topic, and I’m happy to stick with the status quo here. Since it’s such a common starting point, there are plenty of other resources available that tackle the same subject matter in more depth for people who want to dig in deeper. If that sounds like you, take a look at [this excellent online textbook](http://neuralnetworksanddeeplearning.com/) by Michael Nielsen, which includes code that you can download and play with to really get your hands dirty.
 
-# The Structure of a Neural Network
+## The Structure of a Neural Network
 
 This lesson is all about motivating and understanding the structure and mathematical description of a neural network, while the next lesson will focus on how to train it with labeled examples.
 
@@ -44,7 +44,7 @@ There are many variants of neural networks, such as convolutional neural network
   caption="The simple network we’re using to identify digits is just a few layers of neurons linked together."
 />
 
-## Neurons
+### Neurons
 
 Right now, when I say neuron, all I want you to think is “a thing that holds a number.” Specifically, a number between 0.0 and 1.0. Nural networks are really just a bunch of neurons connected together.
 
@@ -92,7 +92,7 @@ Based on the output layer of the network shown above, what kind of digit does th
 
 **Answer:** <Spoiler>It’s having trouble deciding whether the input image is a 4 or a 9.</Spoiler>
 
-## The Hidden Layers
+### The Hidden Layers
 
 <Figure image="hidden-layers.png" />
 
@@ -100,7 +100,7 @@ There will also be some layers in between, called “hidden layers”, which for
 
 In this network I have 2 hidden layers, each with 16 neurons, which is admittedly kind of an arbitrary choice. To be honest, I chose 2 layers based on how I want to motivate the structure in just a moment, and 16 was simply a nice number to fit on the screen. In practice, there’s a lot of room to experiment with the specific structure.
 
-# Why Use Layers?
+## Why Use Layers?
 
 You’ll notice how in these drawings each neuron from one layer is connected to each neuron of the next with a little line. This is meant to indicate how the activation of each neuron in one layer, the little number inside it, has some influence on the activation of each neuron in the next layer.
 
@@ -149,7 +149,7 @@ So our hope might be that each neuron in the second layer of the network corresp
 
 Whether or not this is how our final network actually works is another question. (One that we’ll revisit after seeing how to train this network.) But this is a hope that we might have.
 
-## Layers Break Problems Into Bite-Sized Pieces
+### Layers Break Problems Into Bite-Sized Pieces
 
 You can imagine how being able to detect edges and patterns would be useful for other image-recognition tasks.
 
@@ -167,7 +167,7 @@ Parsing speech, for example, involves parsing raw audio into distinct sounds, wh
 
 The layered structure of the neural network is great because it allows you to break down difficult problems into bite-size steps, so that moving from one layer to the next is relatively straightforward.
 
-# How Information Passes Between Layers
+## How Information Passes Between Layers
 
 With this as a general idea, how do you actually implement it? The goal is to have some mechanism that could conceivably combine pixels into edges, or edges into patterns, or patterns into digits. It would be especially elegant if all of those different steps used the same mathematical procedure.
 
@@ -238,7 +238,7 @@ But this pattern of weights will also pick up on big blobs of activated pixels! 
   explanation="B gives the highest activation because it only activates the neurons with positive weights. C gives the lowest activation because it is the exact inverse of B. A has an weighted sum of zero because all the input neurons are off, but D has a positive activation because it activates 24 positive weights but only 16 negative weights."
 />
 
-### Sigmoid Squishification
+#### Sigmoid Squishification
 
 The result of the weighted sum like this can be any number, but for this network we want the activations to be values between 0 and 1. So it’s common to pump this weighted sum into some function that squishes the real number line into the range between 0 and 1.
 
@@ -274,7 +274,7 @@ We call this additional number a bias.
 
 So the weights tell you what pixel pattern this neuron in the second layer is picking up on, and the bias tells you how big that weighted sum needs to be before the neuron gets meaningfully active.
 
-### More Neurons
+#### More Neurons
 
 And that’s just one neuron! Every other neuron in the second layer is also going to have weighted connections to all 784 neurons from the first layer. Each neuron also has some bias, some other number to just add on to the weighted sum before squishing it with a sigmoid. That’s a lot to think about! With this hidden layer of 16 neurons, that’s 784x16 weights and 16 biases.
 
@@ -293,7 +293,7 @@ I personally find this satisfying, rather than just treating these networks as a
 
 Or, when the network _does_ work, but not for the reasons you might expect, digging into what the weights and biases are doing is a good way to challenge your assumptions and really expose the full space of possible solutions.
 
-# More Compact Notation
+## More Compact Notation
 
 The actual function to get one neuron’s activation in terms of the activations in the previous layer is a bit cumbersome to write down.
 
@@ -332,7 +332,7 @@ So, once you write this weight matrix and these vectors as their own symbols, yo
 
 This makes the relevant code much cleaner and much faster, since many libraries optimize the heck out of matrix multiplication.[^5]
 
-# The Network Is Just a Function
+## The Network Is Just a Function
 
 Earlier I said to think of these neurons simply as “things that hold numbers”. Of course, the specific number these neurons hold depends on the image you feed in. So it’s actually more accurate to think of each neuron as a function. It takes in the activations of all neurons in the previous layer, and spits out a number between 0 and 1.
 
@@ -343,7 +343,7 @@ And really, the entire network is just a function! It takes in 784 numbers as it
   caption="The entire neural network is a function that uses all its weights and biases to take in 784 input pixels and spit out 10 output numbers."
 />
 
-# Next up: Learning!
+## Next up: Learning!
 
 In a way, it’s kind of reassuring that this looks complicated. If it were any simpler, what hope would we have that it could take on the challenging task of recognizing digits?
 
