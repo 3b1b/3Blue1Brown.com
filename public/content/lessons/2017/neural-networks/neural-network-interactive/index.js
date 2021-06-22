@@ -1,49 +1,48 @@
+/*
+  This interactive works, but it isn't exactly a shining example of elegant code.
+
+  I don't expect this to be edited a whole lot going forward, so I don't think
+  it's worth taking the time to make the code beautiful. (Hopefully this doesn't come
+  back to bite me.)
+
+  So instead, here are a few noteworthy quirks to be aware of if you dive into this:
+  - The entire interface is just one big SVG with event handlers to make it interactive.
+    I chose to use an SVG because positioning everything with CSS sounds kind of nightmarish.
+
+  - The entire animation process happens with pure CSS transitions. The only javascript
+    involved is a single boolean called "animating" that turns on when the animation
+    begins. I use transition-delay to orchestrate all the changes over time, so that not
+    everything appears immediately when "animating" becomes true. I can't decide if this
+    solution is really elegant or really ugly.
+
+  - This was originally written as pretty much just one giant component that rendered
+    everything. I've since split it up into smaller components, but the concerns aren't
+    really separated as much as they should be. These components aren't really reusable;
+    they're designed to do one thing and one thing only. In an ideal world, you might
+    split these components up more nicely so they aren't quite as intertwined.
+*/
+
 import { useState, useEffect, useCallback } from "react";
 import { threeImage, weights, biases } from "./data";
 
-function dotProduct(vec1, vec2) {
-  let result = 0;
-  for (let i = 0; i < vec1.length; i++) {
-    result += vec1[i] * vec2[i];
-  }
-  return result;
-}
+// This array defines which neurons are visible on screen.
+// The null values indicate empty spaces (where the ... lives)
+// It is used by many components, along with...
+const visibleNeurons = [
+  [0, 1, 2, 3, 4, 5, null, null, 778, 779, 780, 781, 782, 783],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+];
 
-function matrixVectorMult(matrix, vector) {
-  let result = [];
-  for (let row = 0; row < matrix.length; row++) {
-    result.push(dotProduct(matrix[row], vector));
-  }
-  return result;
-}
-
-function vectorAdd(vec1, vec2) {
-  let result = [];
-  for (let i = 0; i < vec1.length; i++) {
-    result.push(vec1[i] + vec2[i]);
-  }
-  return result;
-}
-
-function sigmoid(x) {
-  return 1 / (1 + Math.exp(-x));
-}
-
-function getAllNeuronValues(firstLayer) {
-  let layers = [firstLayer];
-
-  while (layers.length <= weights.length) {
-    const previousLayer = layers[layers.length - 1];
-    const weightMatrix = weights[layers.length - 1];
-    const biasVector = biases[layers.length - 1];
-    layers.push(
-      vectorAdd(matrixVectorMult(weightMatrix, previousLayer), biasVector).map(
-        sigmoid
-      )
-    );
-  }
-
-  return layers;
+// ...this function, which spits out the on-screen x/y coordinates
+// of a given neuron in the array above.
+function getNeuronPosition(layerIndex, visibleNeuronIndex) {
+  const visibleNeuronsInLayer = visibleNeurons[layerIndex].length;
+  return {
+    x: 230 + 115 * layerIndex,
+    y: 240 + 28 * (visibleNeuronIndex - (visibleNeuronsInLayer - 1) / 2),
+  };
 }
 
 export default function NeuralNetworkInteractive() {
@@ -54,7 +53,12 @@ export default function NeuralNetworkInteractive() {
   function setInputNeurons(inputNeuronValues) {
     setNeurons((neurons) => [inputNeuronValues, ...neurons.slice(1)]);
 
-    updateNonInputNeurons();
+    // The rest of the neurons will be updated before they are
+    // shown, so there is no need to update them now.
+    // updateNonInputNeurons();
+
+    // (You would need to uncomment this if you wanted a live view
+    // of the neurons updating while you draw.)
   }
 
   function clearInputNeurons() {
@@ -63,21 +67,6 @@ export default function NeuralNetworkInteractive() {
 
   function updateNonInputNeurons() {
     setNeurons((neurons) => getAllNeuronValues(neurons[0]));
-  }
-
-  const visibleNeurons = [
-    [0, 1, 2, 3, 4, 5, null, null, 778, 779, 780, 781, 782, 783],
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-  ];
-
-  function getNeuronPosition(layerIndex, visibleNeuronIndex) {
-    const visibleNeuronsInLayer = visibleNeurons[layerIndex].length;
-    return {
-      x: 230 + 115 * layerIndex,
-      y: 240 + 28 * (visibleNeuronIndex - (visibleNeuronsInLayer - 1) / 2),
-    };
   }
 
   const [animating, setAnimating] = useState(false);
@@ -100,207 +89,25 @@ export default function NeuralNetworkInteractive() {
       style={{ width: "100%", maxWidth: 640, height: "auto" }}
       viewBox="0 0 640 480"
     >
-      <g>
-        {visibleNeurons.flatMap(
-          // Connections (weights) between neurons
-          (layer, layerIndex) => {
-            if (layerIndex === 0) return null;
-
-            return layer.flatMap((neuronId, neuronIndex) => {
-              if (neuronId === null) return null;
-
-              const prevLayerIndex = layerIndex - 1;
-              const prevLayer = visibleNeurons[prevLayerIndex];
-
-              return (
-                <>
-                  {prevLayer
-                    .map((prevNeuronId, prevNeuronIndex) => {
-                      if (neuronId === null) return null;
-                      if (prevNeuronId === null) return null;
-
-                      const weight =
-                        weights[prevLayerIndex][neuronId][prevNeuronId];
-
-                      // The highlighting feature is currently disabled,
-                      // but it allows highlighting all the connections
-                      // leading to a particular neuron
-                      const layerIsHighlighted =
-                        selectedNeuron &&
-                        selectedNeuron.layerIndex === layerIndex;
-                      const neuronIsHighlighted =
-                        layerIsHighlighted &&
-                        selectedNeuron.neuronId === neuronId;
-                      const maxAlpha = neuronIsHighlighted
-                        ? 1.0
-                        : layerIsHighlighted
-                        ? 0.1
-                        : 0.3;
-                      const alpha = maxAlpha * Math.abs(weight * 0.6);
-                      const color =
-                        weight < 0
-                          ? `rgba(252, 98, 85, ${alpha})`
-                          : `rgba(88, 196, 221, ${alpha})`;
-                      const lineWidth = neuronIsHighlighted ? 3 : 1;
-
-                      const prevNeuronPos = getNeuronPosition(
-                        prevLayerIndex,
-                        prevNeuronIndex
-                      );
-                      const nextNeuronPos = getNeuronPosition(
-                        layerIndex,
-                        neuronIndex
-                      );
-
-                      const lineLength = Math.hypot(
-                        prevNeuronPos.x - nextNeuronPos.x,
-                        prevNeuronPos.y - nextNeuronPos.y
-                      );
-
-                      const thisLineCanAnimate =
-                        (prevNeuronId * layer.length + neuronId) % 7 === 2;
-
-                      return (
-                        <>
-                          <line
-                            x1={prevNeuronPos.x}
-                            x2={nextNeuronPos.x}
-                            y1={prevNeuronPos.y}
-                            y2={nextNeuronPos.y}
-                            stroke={color}
-                            stroke-width={lineWidth}
-                          />
-
-                          {thisLineCanAnimate && (
-                            <line
-                              x1={prevNeuronPos.x}
-                              x2={nextNeuronPos.x}
-                              y1={prevNeuronPos.y}
-                              y2={nextNeuronPos.y}
-                              stroke="rgba(255, 255, 0, 0.5)"
-                              stroke-width={lineWidth}
-                              stroke-dasharray={`${lineLength} ${lineLength}`}
-                              stroke-dashoffset={
-                                (animating ? -1 : 1) * lineLength
-                              }
-                              style={{
-                                transition: animating
-                                  ? `stroke-dashoffset 1200ms ease-in-out ${
-                                      1200 * (layerIndex - 1) +
-                                      500 +
-                                      100 * Math.random()
-                                    }ms`
-                                  : "none",
-                              }}
-                            />
-                          )}
-                        </>
-                      );
-                    })
-                    .filter((x) => x !== null)}
-                </>
-              );
-            });
-          }
-        )}
-      </g>
+      <NeuronConnections
+        selectedNeuron={selectedNeuron}
+        animating={animating}
+      />
 
       <VerticalEllipsis cx={230} cy={240} />
 
-      <g>
-        {visibleNeurons.map(
-          // Neuron circles
-          (layer, layerIndex) =>
-            layer.map((neuronId, neuronIndex) => {
-              if (neuronId === null) return null;
+      <Neurons
+        neurons={neurons}
+        selectedNeuron={selectedNeuron}
+        setSelectedNeuron={setSelectedNeuron}
+        animating={animating}
+      />
 
-              const neuronValue = neurons[layerIndex][neuronId];
-              const grayValue = Math.floor(255 * neuronValue);
-              const fill = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+      <OutputDigitLabels />
 
-              const neuronPos = getNeuronPosition(layerIndex, neuronIndex);
+      <WinningOutputNeuronBox neurons={neurons} animating={animating} />
 
-              const isSelected =
-                selectedNeuron &&
-                selectedNeuron.layerIndex === layerIndex &&
-                selectedNeuron.neuronId === neuronId;
-
-              return (
-                <circle
-                  cx={neuronPos.x}
-                  cy={neuronPos.y}
-                  r="10"
-                  stroke={isSelected ? "yellow" : "white"}
-                  stroke-width={isSelected ? 2 : 1}
-                  style={{
-                    fill: animating ? fill : "black",
-                    transition: animating
-                      ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
-                      : "none",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    if (isSelected) {
-                      setSelectedNeuron(null);
-                    } else {
-                      setSelectedNeuron({ layerIndex, neuronId });
-                    }
-                  }}
-                />
-              );
-            })
-        )}
-      </g>
-
-      <g>
-        {visibleNeurons[visibleNeurons.length - 1].map(
-          (neuronId, neuronIndex) => {
-            const position = getNeuronPosition(
-              visibleNeurons.length - 1,
-              neuronIndex
-            );
-
-            return (
-              <text
-                x={position.x + 25}
-                y={position.y + 2}
-                style={{ fill: "white" }}
-                font-size="20"
-                dominant-baseline="middle"
-                text-anchor="middle"
-              >
-                {neuronId}
-              </text>
-            );
-          }
-        )}
-      </g>
-
-      {(() => {
-        const winningValue = Math.max(...neurons[3]);
-        const winningNeuron = neurons[3].indexOf(winningValue);
-        const position = getNeuronPosition(3, winningNeuron);
-        return (
-          <rect
-            x={position.x - 18}
-            y={position.y - 16}
-            width={56}
-            height={32}
-            stroke="yellow"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            fill="none"
-            stroke-dasharray="176 176"
-            stroke-dashoffset={(animating ? 0 : 1) * 176}
-            style={{
-              transition: animating
-                ? "stroke-dashoffset 800ms ease-in-out 4500ms"
-                : "none",
-            }}
-          />
-        );
-      })()}
+      {/* Weight grid for neurons in 2nd layer */}
       {selectedNeuron &&
         selectedNeuron.layerIndex === 1 &&
         (() => {
@@ -321,6 +128,242 @@ export default function NeuralNetworkInteractive() {
           );
         })()}
 
+      <PiCreature animating={animating} />
+
+      {/* Black background while drawing (covers everything else) */}
+      <rect
+        x="0"
+        y="0"
+        width="640"
+        height="480"
+        fill="black"
+        style={{
+          opacity: animating ? 0.0 : 1.0,
+          pointerEvents: animating ? "none" : undefined,
+          transition: "opacity 300ms ease-in-out",
+        }}
+      />
+
+      <ImageGrid
+        editing={!animating}
+        startEditing={() => {
+          setAnimating(false);
+          clearInputNeurons();
+        }}
+        x={animating ? 10 : 120}
+        y={animating ? 10 : 10}
+        width={animating ? 150 : 400}
+        height={animating ? 150 : 400}
+        values={neurons[0]}
+        setValues={(newValues) => {
+          setInputNeurons(newValues);
+        }}
+        style={{
+          transition: "transform 500ms ease-in-out",
+        }}
+        beginAnimation={animate}
+        highlightedTile={
+          selectedNeuron && selectedNeuron.layerIndex === 0
+            ? selectedNeuron.neuronId
+            : null
+        }
+      />
+    </svg>
+  );
+}
+
+function NeuronConnections({ selectedNeuron, animating }) {
+  let connections = [];
+
+  for (let layerIndex = 1; layerIndex < visibleNeurons.length; layerIndex++) {
+    const layer = visibleNeurons[layerIndex];
+
+    const prevLayerIndex = layerIndex - 1;
+    const prevLayer = visibleNeurons[prevLayerIndex];
+
+    layer.forEach((neuronId, neuronIndex) => {
+      if (neuronId === null) return;
+
+      prevLayer.forEach((prevNeuronId, prevNeuronIndex) => {
+        if (neuronId === null) return;
+        if (prevNeuronId === null) return;
+
+        const weight = weights[prevLayerIndex][neuronId][prevNeuronId];
+
+        const layerIsHighlighted = selectedNeuron?.layerIndex === layerIndex;
+
+        const neuronIsHighlighted =
+          layerIsHighlighted && selectedNeuron?.neuronId === neuronId;
+
+        const maxAlpha = neuronIsHighlighted
+          ? 1.0
+          : layerIsHighlighted
+          ? 0.1
+          : 0.3;
+        const alpha = maxAlpha * Math.abs(weight * 0.6);
+        const color =
+          weight < 0
+            ? `rgba(252, 98, 85, ${alpha})`
+            : `rgba(88, 196, 221, ${alpha})`;
+        const lineWidth = neuronIsHighlighted ? 3 : 1;
+
+        const prevNeuronPos = getNeuronPosition(
+          prevLayerIndex,
+          prevNeuronIndex
+        );
+        const nextNeuronPos = getNeuronPosition(layerIndex, neuronIndex);
+
+        const lineLength = Math.hypot(
+          prevNeuronPos.x - nextNeuronPos.x,
+          prevNeuronPos.y - nextNeuronPos.y
+        );
+
+        const thisLineCanAnimate =
+          (prevNeuronId * layer.length + neuronId) % 7 === 2;
+
+        connections.push(
+          <>
+            <line
+              x1={prevNeuronPos.x}
+              x2={nextNeuronPos.x}
+              y1={prevNeuronPos.y}
+              y2={nextNeuronPos.y}
+              stroke={color}
+              stroke-width={lineWidth}
+            />
+
+            {thisLineCanAnimate && (
+              <line
+                x1={prevNeuronPos.x}
+                x2={nextNeuronPos.x}
+                y1={prevNeuronPos.y}
+                y2={nextNeuronPos.y}
+                stroke="rgba(255, 255, 0, 0.5)"
+                stroke-width={lineWidth}
+                stroke-dasharray={`${lineLength} ${lineLength}`}
+                stroke-dashoffset={(animating ? -1 : 1) * lineLength}
+                style={{
+                  transition: animating
+                    ? `stroke-dashoffset 1200ms ease-in-out ${
+                        1200 * (layerIndex - 1) + 500 + 100 * Math.random()
+                      }ms`
+                    : "none",
+                }}
+              />
+            )}
+          </>
+        );
+      });
+    });
+  }
+
+  return <g>{connections}</g>;
+}
+
+function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
+  return (
+    <g>
+      {visibleNeurons.map((layer, layerIndex) =>
+        layer.map((neuronId, neuronIndex) => {
+          if (neuronId === null) return null;
+
+          const neuronValue = neurons[layerIndex][neuronId];
+          const grayValue = Math.floor(255 * neuronValue);
+          const fill = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+
+          const neuronPos = getNeuronPosition(layerIndex, neuronIndex);
+
+          const isSelected =
+            selectedNeuron &&
+            selectedNeuron.layerIndex === layerIndex &&
+            selectedNeuron.neuronId === neuronId;
+
+          return (
+            <circle
+              cx={neuronPos.x}
+              cy={neuronPos.y}
+              r="10"
+              stroke={isSelected ? "yellow" : "white"}
+              stroke-width={isSelected ? 2 : 1}
+              style={{
+                fill: animating ? fill : "black",
+                transition: animating
+                  ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
+                  : "none",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                if (isSelected) {
+                  setSelectedNeuron(null);
+                } else {
+                  setSelectedNeuron({ layerIndex, neuronId });
+                }
+              }}
+            />
+          );
+        })
+      )}
+    </g>
+  );
+}
+
+function WinningOutputNeuronBox({ neurons, animating }) {
+  const winningValue = Math.max(...neurons[3]);
+  const winningNeuron = neurons[3].indexOf(winningValue);
+  const position = getNeuronPosition(3, winningNeuron);
+  return (
+    <rect
+      x={position.x - 18}
+      y={position.y - 16}
+      width={56}
+      height={32}
+      stroke="yellow"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+      stroke-dasharray="176 176"
+      stroke-dashoffset={(animating ? 0 : 1) * 176}
+      style={{
+        transition: animating
+          ? "stroke-dashoffset 800ms ease-in-out 4500ms"
+          : "none",
+      }}
+    />
+  );
+}
+
+function OutputDigitLabels() {
+  return (
+    <g>
+      {visibleNeurons[visibleNeurons.length - 1].map(
+        (neuronId, neuronIndex) => {
+          const position = getNeuronPosition(
+            visibleNeurons.length - 1,
+            neuronIndex
+          );
+
+          return (
+            <text
+              x={position.x + 25}
+              y={position.y + 2}
+              style={{ fill: "white" }}
+              font-size="20"
+              dominant-baseline="middle"
+              text-anchor="middle"
+            >
+              {neuronId}
+            </text>
+          );
+        }
+      )}
+    </g>
+  );
+}
+
+function PiCreature({ animating }) {
+  return (
+    <>
       <g
         transform="translate(30 340) scale(0.4)"
         style={{
@@ -390,45 +433,7 @@ export default function NeuralNetworkInteractive() {
           fill="black"
         />
       </g>
-
-      <rect
-        x="0"
-        y="0"
-        width="640"
-        height="480"
-        fill="black"
-        style={{
-          opacity: animating ? 0.0 : 1.0,
-          pointerEvents: animating ? "none" : undefined,
-          transition: "opacity 300ms ease-in-out",
-        }}
-      />
-
-      <ImageGrid
-        editing={!animating}
-        startEditing={() => {
-          setAnimating(false);
-          clearInputNeurons();
-        }}
-        x={animating ? 10 : 120}
-        y={animating ? 10 : 10}
-        width={animating ? 150 : 400}
-        height={animating ? 150 : 400}
-        values={neurons[0]}
-        setValues={(newValues) => {
-          setInputNeurons(newValues);
-        }}
-        style={{
-          transition: "transform 500ms ease-in-out",
-        }}
-        beginAnimation={animate}
-        highlightedTile={
-          selectedNeuron && selectedNeuron.layerIndex === 0
-            ? selectedNeuron.neuronId
-            : null
-        }
-      />
-    </svg>
+    </>
   );
 }
 
@@ -739,4 +744,50 @@ function WeightGrid({ x, y, width, height, weights, inputNeurons }) {
       })}
     </g>
   );
+}
+
+function dotProduct(vec1, vec2) {
+  let result = 0;
+  for (let i = 0; i < vec1.length; i++) {
+    result += vec1[i] * vec2[i];
+  }
+  return result;
+}
+
+function matrixVectorMult(matrix, vector) {
+  let result = [];
+  for (let row = 0; row < matrix.length; row++) {
+    result.push(dotProduct(matrix[row], vector));
+  }
+  return result;
+}
+
+function vectorAdd(vec1, vec2) {
+  let result = [];
+  for (let i = 0; i < vec1.length; i++) {
+    result.push(vec1[i] + vec2[i]);
+  }
+  return result;
+}
+
+function sigmoid(x) {
+  return 1 / (1 + Math.exp(-x));
+}
+
+// a_1 = sigma(W * a_0 + b)
+function getAllNeuronValues(firstLayer) {
+  let layers = [firstLayer];
+
+  while (layers.length <= weights.length) {
+    const previousLayer = layers[layers.length - 1];
+    const weightMatrix = weights[layers.length - 1];
+    const biasVector = biases[layers.length - 1];
+    layers.push(
+      vectorAdd(matrixVectorMult(weightMatrix, previousLayer), biasVector).map(
+        sigmoid
+      )
+    );
+  }
+
+  return layers;
 }
