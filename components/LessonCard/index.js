@@ -52,8 +52,8 @@ const LessonCard = ({
       </div>
 
       <div className={styles.text}>
-        <span>{title && <span>{title}</span>}</span>
-        {description && !mini && <span>{description}</span>}
+        <span>{title && <span className={styles.title}>{title}</span>}</span>
+        {description && !mini && <span className={styles.description}>{description}</span>}
         {(chapter || !empty || date) && !mini && (
           <span>
             {chapter && (
