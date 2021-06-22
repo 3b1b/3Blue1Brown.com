@@ -7,20 +7,24 @@ import styles from "./index.module.scss";
 import creditsInfo from "../../data/credits.yaml";
 import { PageContext } from "../../pages/_app";
 
+// details to show at the top of a lesson, with icons and text
 const LessonDetails = () => (
   <Section>
     <Title />
     <div className={styles.lesson_details}>
       <Published />
       <LastMod />
+      <br />
       <Credits />
       <Tags />
+      <Source />
     </div>
   </Section>
 );
 
 export default LessonDetails;
 
+// lesson title
 const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
@@ -31,6 +35,7 @@ const Title = () => {
   );
 };
 
+// date when lesson was first "published" (youtube video publish date)
 const Published = () => {
   const { date } = useContext(PageContext);
   return (
@@ -45,6 +50,7 @@ const Published = () => {
   );
 };
 
+// when lesson markdown file was last modified
 const LastMod = () => {
   const { lastMod, empty } = useContext(PageContext);
   return (
@@ -59,6 +65,7 @@ const LastMod = () => {
   );
 };
 
+// list of credits for lesson
 const Credits = () => {
   let { credits = [] } = useContext(PageContext);
 
@@ -96,6 +103,7 @@ const Credits = () => {
   );
 };
 
+// list of tags for lesson
 const Tags = () => {
   const { tags } = useContext(PageContext);
   return (
@@ -106,6 +114,27 @@ const Tags = () => {
           <span>{tag}</span>
         </div>
       ))}
+    </>
+  );
+};
+
+// link to lesson source code on github
+const Source = () => {
+  const { sourceCode } = useContext(PageContext);
+  return (
+    <>
+      {sourceCode && (
+        <div>
+          <i className="fab fa-github" />
+          <span>
+            <a
+              href={`https://github.com/3b1b/videos/tree/master/${sourceCode}`}
+            >
+              Source Code
+            </a>
+          </span>
+        </div>
+      )}
     </>
   );
 };

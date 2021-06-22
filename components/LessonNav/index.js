@@ -6,13 +6,14 @@ import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
+// nav bar to go to prev/next lesson, and see list of lessons in topic
 const LessonNav = () => {
   const [open, setOpen] = useState(false);
   const { topic: topicName, slug } = useContext(PageContext);
 
   // find topic in yaml data whose name matches topic of current lesson
   const topic = topics.find(({ name }) => name === topicName);
-  if (!topic) return <></>;
+  if (!topic) return null;
 
   // get previous and next lessons
   const index = topic.lessons.findIndex((lesson) => lesson === slug);

@@ -5,7 +5,6 @@
   padding: 20px;
   border-radius: 0;
   font-family: $sans;
-  font-weight: $medium;
   text-decoration: none;
   z-index: 1;
 
@@ -26,8 +25,9 @@
   }
 
   img {
-    width: 240px;
-    height: 135px;
+    $width: 300px;
+    width: $width;
+    height: math.div($width * 9, 16);
   }
 
   i {
@@ -37,6 +37,14 @@
     color: $light-blue-500;
     opacity: 0;
     transition: opacity $fast;
+  }
+
+  span {
+    margin-top: 10px;
+  }
+
+  span:nth-of-type(1) {
+    font-weight: $medium;
   }
 }
 

@@ -5,6 +5,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { glob } from "glob";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeSlug from "rehype-slug";
 import topics from "../data/topics.yaml";
 
 // define some terms to avoid confusion:
@@ -21,6 +22,9 @@ const parseMdx = (file) => {
   // put dates in serializable format
   data.date = new Date(data.date || new Date()).toISOString();
   data.lastMod = new Date(statSync(file).mtime || new Date()).toISOString();
+
+  // rename github repo "source" prop to avoid conflict with mdx serialized "source"
+  data.sourceCode = data.source || "";
 
   // get patrons data
   let patrons = join(dirname(file), "patrons.txt");
@@ -50,7 +54,7 @@ const serializeMdx = async ({ content, ...rest }) => {
   const source = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
+      rehypePlugins: [rehypeKatex, rehypeSlug],
     },
   });
   return { ...rest, content, source };
@@ -76,7 +80,7 @@ export const pagePaths = pageFiles.map(
   (path) => "/" + basename(path, extname(path))
 );
 
-// search for local location of lesson file, return array of results
+// search for local location of lesson file(s), return array of results
 const searchLessonFile = (slug) => [
   ...glob.sync(`public/content/lessons/*/${slug || "*"}/index.mdx`),
   ...(process.env.mode !== "production"

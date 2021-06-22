@@ -4,7 +4,16 @@ import styles from "./index.module.scss";
 import SpeechBubble from "../../public/images/pi-creatures/bubble-speech.svg";
 import ThoughtBubble from "../../public/images/pi-creatures/bubble-thought.svg";
 
-const PiCreature = ({ emotion, text, thought, placement, design, flip }) => {
+// pi creature/character, with "smart" positioning, and speech/thought bubble
+const PiCreature = ({
+  emotion = "hooray",
+  text,
+  thought,
+  placement,
+  flip,
+  design,
+}) => {
+  // bubble component
   let Bubble = Fragment;
   if (text) {
     if (thought) Bubble = ThoughtBubble;

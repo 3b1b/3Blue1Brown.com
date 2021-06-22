@@ -2,6 +2,7 @@ import NextLink from "next/link";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
+// footer component to show at bottom of every page
 const Footer = () => (
   <footer className={styles.footer}>
     <Copyright />
@@ -11,12 +12,14 @@ const Footer = () => (
 
 export default Footer;
 
+// left copyright col
 const Copyright = () => (
   <div className={styles.copyright}>
     &copy; {new Date().getFullYear()} Grant Sanderson
   </div>
 );
 
+// right social icons col
 const Icons = () => (
   <div className={styles.icons}>
     <Link
@@ -54,9 +57,15 @@ const Icons = () => (
       icon="fas fa-store"
       tooltip="Store"
     />
+    <Link
+      link="https://3blue1brown.substack.com/"
+      icon="fas fa-envelope-open-text"
+      tooltip="Mailing list"
+    />
   </div>
 );
 
+// social link
 const Link = ({ link, icon, tooltip }) => (
   <NextLink href={link} passHref>
     <Tooltip content={tooltip}>
