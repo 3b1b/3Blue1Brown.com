@@ -7,9 +7,14 @@ import styles from "./index.module.scss";
 
 // change provided srcs (png & mp4) to external bucket location for production.
 const transformSrc = (src, dir) => {
+  console.log("CONTEXT provided by Netlify:", process.env.CONTEXT);
   if (src.startsWith("http")) {
     return src;
-  } else if (process.env.mode === "production" && !src.endsWith("svg")) {
+  } else if (
+    process.env.NODE_ENV === "production" &&
+    process.env.CONTEXT === "production" && // In production on Netlify (not a deploy preview)
+    !src.endsWith("svg")
+  ) {
     return bucket + dir + src;
   } else {
     return dir + src;
