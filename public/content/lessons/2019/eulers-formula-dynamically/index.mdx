@@ -16,7 +16,7 @@ One way to think about the function $e^t$ is to ask what properties it has. Prob
 
 <Figure image="1_equation.svg"/>
 
-You can illustrate what that means with a physical model: Think of $e^t$ as your position on a number line as a function of time. The condition $e^0 = 1$ means you start at $1$.  The equation above is saying that your velocity, the derivative of position, is always equal to your position. In other words, the farther away from 0 you are, the faster you move, with the very specific constraint that your velocity vector is perpetually identical to your position vector.
+You can illustrate what that means with a physical model: Think of $e^t$ as your position on a number line as a function of time. The condition $e^0 = 1$ means you start at $1$. The equation above is saying that your velocity, the derivative of position, is always equal to your position. In other words, the farther away from 0 you are, the faster you move, with the very specific constraint that your velocity vector is perpetually identical to your position vector.
 
 <Figure image="1_img.png" video="1_img.mp4" show="video"/>
 
@@ -42,24 +42,24 @@ Moving in such a way that your velocity always matches this flipped and squished
 
 ## The complex case
 
-What about if the constant was $i$, the imaginary unit?  If your position was always $e^{it}$, how would you move as that time, $t$, ticks forward?
+What about if the constant was $i$, the imaginary unit? If your position was always $e^{it}$, how would you move as that time, $t$, ticks forward?
 
 Well, assuming there’s any way to make sense out of $e^{it}$, and assuming that derivatives still work the way we’d expect when extending to complex numbers, the derivative of your position $e^{it}$ would now always be $i$ times itself. Multiplying by $i$ has the effect of rotating numbers 90-degrees, and as you might expect, things only make sense here if we start thinking beyond the number line and in the complex plane.
 
 <Figure image="complex_equation.png"/>
 <Question
-  question="Geometrically, which of the following describes the point $i \cdot (a + bi)$ on the complex plane?"
-  choice1="A 90-degree clockwise rotation of the point $a + bi$ about the origin."
-  choice2="A 90-degree counterclockwise rotation of the point $a + bi$ about the origin."
-  choice3="A reflection of the point $a + bi$ about the real axis."
-  choice4="A reflection of the point $a + bi$ about the imaginary axis."
-  answer={2}
-  explanation="Multiplying by $i$ has the effect of rotating a given number by 90 degrees. The point $i \cdot (a + bi)$ is equivalent to $i$ multiplied by $a+bi$, resulting in $a+bi$ being rotated 90 degrees counterclockwise about the origin."
+ question="Geometrically, which of the following describes the point $i \cdot (a + bi)$ on the complex plane?"
+ choice1="A 90-degree clockwise rotation of the point $a + bi$ about the origin."
+ choice2="A 90-degree counterclockwise rotation of the point $a + bi$ about the origin."
+ choice3="A reflection of the point $a + bi$ about the real axis."
+ choice4="A reflection of the point $a + bi$ about the imaginary axis."
+ answer={2}
+ explanation="Multiplying by $i$ has the effect of rotating a given number by 90 degrees. The point $i \cdot (a + bi)$ is equivalent to $i$ multiplied by $a+bi$, resulting in $a+bi$ being rotated 90 degrees counterclockwise about the origin."
 />
 
 ## So what does $e^{it}$ mean?
 
-So even before you know how to compute $e^{it}$, you know that for any position this might give for some value of t, the velocity at that time will be a 90-degree rotation of that position.  
+So even before you know how to compute $e^{it}$, you know that for any position this might give for some value of t, the velocity at that time will be a 90-degree rotation of that position. 
 
 <Figure image="RotatedVectors.png" imageCaption="Each blue arrow above pointing outward from the origin represents an example value of $e^{it}$, thought of as a position vector. The corresponding green arrow at its tip shows what the velocity, equal to the position rotated 90 degrees counterclockwise, would have to be for that particular position."/>
 
@@ -71,7 +71,7 @@ At time $t=0$, $e^{it}$ will be 1. There’s only one trajectory starting from t
 
 <Figure video="rotate_anim.mp4" image="complex_img2.png" show="video"/>
 
-So after $\pi$ seconds, you’ve traced a distance of $\pi$ around; $e^{i\pi} = -1$.  
+So after $\pi$ seconds, you’ve traced a distance of $\pi$ around; $e^{i\pi} = -1$. 
 
 <Figure image="e^ipi.png"/>
 
@@ -81,7 +81,7 @@ After $\tau = 2\pi$ seconds, you’ve gone full circle; $e^{i\tau} = 1$.
 
 And more generally, $e^{it}$ equals a number $t$ radians [[1]](lessons/differential-equations/#footnotes) around this circle.
 
-Nevertheless, something might still feel immoral about putting an imaginary number up in that exponent.  And you’d be right to question that!  For values of $x$ which are not real numbers, what we write as $e^x$ has very little to do with repeated multiplication, and its relation to the number $e$ feels frankly more incidental than definitional. To dig in a little bit deeper, the <LessonLink id="matrix-exponents">next lesson</LessonLink> covers more general exponents, with a focus on matrices.
+Nevertheless, something might still feel immoral about putting an imaginary number up in that exponent. And you’d be right to question that! For values of $x$ which are not real numbers, what we write as $e^x$ has very little to do with repeated multiplication, and its relation to the number $e$ feels frankly more incidental than definitional. To dig in a little bit deeper, the <LessonLink id="matrix-exponents">next lesson</LessonLink> covers more general exponents, with a focus on matrices.
 
 ## Footnotes
 
