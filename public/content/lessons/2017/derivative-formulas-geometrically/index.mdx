@@ -20,7 +20,7 @@ So in this chapter and the next, the aim is to show how you can think about a fe
 
 ## Monomial Terms
 
-### Example: $f(x) = x^2$
+### Derivative of $f(x) = x^2$
 
 Let’s start with a function like $f(x) = x^2$. What is its derivative? That is to say, if you look at some value of $x$, like $x = 2$, and compare it to a value slightly bigger, just $dx$ bigger, what’s that corresponding change in the value of the function, $df$? And in particular, what is $df$ divided by $dx$? The *rate* at which this function changes per unit change in $x$?
 
@@ -29,6 +29,13 @@ Let’s start with a function like $f(x) = x^2$. What is its derivative? That is
 />
 
 As a first step for intuition, we know you can think of the ratio $\frac{df}{dx}$ as the slope of a tangent line to the graph of $x^2$. From that we can see that the slope generally increases as $x$ increases. At $0$, the tangent line is flat, so the slope is $0$. At $x = 1$, it’s something steeper, at $x=2$, it’s steeper still.
+
+
+<Figure
+  image="figures/2.08-detail.svg" 
+  caption="The tangent line at $x=2$ for $f(x)=x^2$"
+/>
+
 
 But looking at graphs isn’t generally the best way to understand the *precise* formula for a derivative. For that, it’s best to take a more literal look at what $x^2$ actually means. In this case, let’s picture a square whose side length is $x$.
 
@@ -52,128 +59,160 @@ That little square has area $dx^2$, but you should think of this as being *reall
   video="figures/3.49-3.52.mp4"
 />
 
-A good rule of thumb is that you can ignore anything which includes a $dx$ raised to a power greater than one; that is, a tiny change squared is a negligible change. Take a look at [the example](TODO:link) from the last chapter if you want a reminder for why this is safe to ignore.
-
-What this leaves us with is that $df$ is some multiple of $dx$. That multiple, $2x$, which you could write as $\frac{df}{dx}$, is the derivative of $x^2$.
+A good rule of thumb is that you can ignore anything which includes a $dx$ raised to a power greater than one; that is, a tiny change squared is a negligible change.<!-- TODO: footnote linking to more explanation --> Take a look at [the example](/lessons/derivatives#example) from the last chapter if you want a reminder for why this is safe to ignore. What this leaves us with is that $df$ is some multiple of $dx$. That multiple, $2x$, which you could write as $\frac{df}{dx} = 2x$, is the derivative of $x^2$.
 
 $$
 d f=2 x d x
 $$
 
-For example, if you were starting at $x=3$, as you slightly increase $x$, the rate of change in the area per unit of length added, $\frac{d(x^2)}{dx}$, would be $2 \cdot 3$, or $6$. If you were starting at $x = 5$, that rate of change would be $10$ units of area per unit change in $x$.
-
-### Example: $f(x) = x^3$
-
-Let’s try a different simple function, $f(x) = x^3$. This will be the geometric view of what I went through algebraically in the last chapter for the function $x^3$. We can think of $x^3$ as the volume of a cube with side lengths $x$.
-
-<Figure
-  image="figures/4.55.png" 
+<Question
+  question="For example, if you were starting at $x=3$, as you slightly increase $x$, what is the rate in change of the area per unit of length added?"
+  choice1="The rate of change in area would be $6$."
+  choice2="The rate of change in area would be $3$."
+  choice3="The rate of change in area would be $4$."
+  choice4="The rate of change in area would be $2$."
+  answer={1}
+  explanation="The rate of change in the area per unit of length added, $\frac{d(x^2)}{dx}$, would be $2 \cdot 3$, or $6$. As another example, if you were starting at $x=5$, that rate of change would be $10$ units of area per change in $x$."
 />
 
-When you increase $x$ by a tiny nudge, $dx$, the increase in volume is what I have here in yellow. That represents all the volume in a cube with side length $x + dx$ that’s not already in the original cube with side length $x$.
+### Derivative of $f(x) = x^3$
+
+Let’s try a different simple function, $f(x) = x^3$. This will be the geometric view of what I went through algebraically in the last chapter for the function $x^3$. We can think of $x^3$ geometrically as the volume of a cube with side lengths $x$.
 
 <Figure
-  image="figures/5.05-5.22.png" 
+  image="figures/4.55.svg" 
 />
 
-This figure shows the increase in volume of a cube when its side length $x$ is increased by a small nudge $dx$. The right-hand side shows the components that make up the increase in volume.
-
-It’s nice to think of this new volume broken up into multiple components, as shown on the right-side of the figure above, but almost all of it comes from the three square faces; Or, said a little more precisely, as $dx$ approaches $0$, those three squares comprise a portion closer and closer to 100% of that new yellow volume.
-
-Each of those thin squares has a volume of $x^2 \cdot dx$; the area of the face times the thickness of $dx$, so in total this gives us $3x^2dx$ of volume change.
+When you increase $x$ by a tiny nudge, $dx$, the volume increases as shown in the figure below. That represents all the volume in a cube with side length $x + dx$ that’s not already in the original cube with side length $x$.
 
 <Figure
-  image="figures/6.06.png"
+  image="figures/5.05-5.10.svg" 
+  caption="The length of $dx$ is illustrated as rather large in this figure, remember that we are interested in what happens as $dx$ approaches $0$."
+/>
+
+This figure shows the increase in volume of a cube when its side length $x$ is increased by a small nudge $dx$. It’s nice to think of this new volume broken up into multiple components, but almost all of it comes from the three square faces; Or, said a little more precisely, as $dx$ approaches $0$, those three squares comprise a portion closer and closer to 100% of the new volume.
+
+<Figure
+  image="figures/5.20-expanded.svg" 
   video="figures/5.20-6.20-trimmed.mp4" 
 />
 
-There are some other slivers of volume along the edges, and in the corner, but their volume will be proportional to $dx^2$, or $dx^3$, so they can be ignored. Again, this is because ultimately they will be divided by $dx$, and if there’s still any $dx$ remaining, these terms won’t survive the process of letting $dx$ approach $0$.
+Each of those thin squares has a volume of $x^2 \cdot dx$; the area of the face times the thickness of $dx$, so in total this gives us $3x^2dx$ of volume change. There are some other slivers of volume along the edges, and in the corner, but their volume will be proportional to $dx^2$, or $dx^3$, so they can be ignored. Again, this is because ultimately they will be divided by $dx$, and if there’s still any $dx$ remaining, these terms won’t survive the process of letting $dx$ approach $0$.
+
+$$
+(x + dx)^3 = x^3 + \color{#fc6255} 3x^2 \color{black} dx \color{#AAAAAA} + 3xdx^2 + dx^3
+$$
+
 
 So the derivative of $x^3$, the rate at which $x^3$ changes per unit of change in $x$, is $3x^2$. Looking at the graph, this means the slope of the graph of $x^3$ at each point $x$ is exactly $3x^2$.
 
 <Figure
-  image="figures/6.46.png"
+  image="figures/6.46.svg"
   video="figures/6.22-6.46.mp4" 
 />
 
 Graphical intuition with slope can tell us why this derivative is high on the left, $0$ at the origin, and high on the right, but just thinking in terms of graphs would not land us on the precise quantity $3x^2$. For that, we had to take a much more direct look at the actual meaning of the function.
 
-### Example: $f(x) = x^n$ (proposal)
+### Derivative of $f(x) = x^n$
+
+<!-- TODO: incorporate text into expressions-->
 
 In practice, you wouldn’t necessarily think of the square every time you’re taking a derivative of $x^2$, nor would you necessarily think of the cube when taking a derivative of $x^3$. Instead, thinking like a mathematician, can we generalize this approach to see if a pattern emerges? And maybe, if we are lucky, we invent a tool that we can use to find the derivative of any old polynomial.
 
+Let's look at the pattern the first three monomial functions form, where I've included the monomial of degree one for completeness. So far, each of these monomial functions has had a nice geometric meaning. Nudging the input $x$ by a small amount $dx$ has allowed us to see how the geometry changes and find the deriative. <!-- TODO: link to footnote that is a portal into radius of convergence --> 
+
 <Figure
-  image="figures/8.11-9.35-base-cases.png" 
+  image="figures/8.11-9.35-base-cases.svg"
+  caption="Expressions that contain $dx^2$ we are able to ignore, because we are interested in the rate of change of the functions geometry as $dx$ approach 0."
 />
 
-Proposal: (incorporate much of the existing text into these talking points)
+However, from a geometric perspective, we have hit a roadblock. How do we visualize four dimensions? One path forward is to continue with algebra, using our geometric intuition to inform the base cases. For example, we can expand higher degree monomial expressions, using the rules of algebra, where the input $x$ have been nudged by a small amount $dx$. This gives us the following series of expressions.
 
-Discuss $f(x) = x^4$, then $f(x) = x^n$
-Link to binomial expansion (possibly illustrate + highlight first two columns of pascal’s triangle)
-
-Power Rule Definition
-
-### Example: $f(x) = x^n$
-
-In practice, you wouldn’t necessarily think of the square every time you’re taking a derivative of $x^2$, nor would you necessarily think of the cube when taking a derivative of $x^3$. Both fall under a pretty recognizable pattern for polynomial terms.
-
-The derivative of $x^4$ is $4x^3$, the derivative of $x^5$ is $5x^4$, and so on. Abstractly, you’d write that the derivative of $x^n$ is $nx^{n-1}$. This is what’s known in the business as the “power rule”.
-
-[figure-7.32.png]
-
-Examples of the power rule for the first five polynomials.
-
-In practice, we all quickly get jaded and just think symbolically about this exponent hopping down to the front, leaving behind one minus itself, rarely pausing to think about the geometric delights underlying these derivatives; they tend to fall in the middle of other much longer computations.
-
-Let’s take a moment to think about why this works for powers beyond just $2$ and $3$. When you nudge that input $x$, increasing slightly up to $x + dx$, working out the exact value of this nudged output involves multiplying together these $n$ separate $x+dx$ terms.
-
-[figure-8.11.png]
-
-The full expansion might be quite complicated, but part of the point of derivatives is that most of it can be ignored. If you chose the $x$ term from each parenthetical, the first term of your expansion is $x^n$. This is analogous to the area of the original square, or the volume of the original cube in the previous examples.
+<!-- TODO: possibly expand $f(x) = x^4$ by hand ? -->
 
 | Polynomial | Expansion |
 | --- | --- |
-| $f(x) = x^1$ | $(x + dx)^1 = x + \color{#FC6255}{1} \color{black} dx$ |
-| $f(x) = x^2$ | $(x + dx)^2 = x^2 + \color{#FC6255} 2x \color{black} dx \color{#AAAAAA} + dx^2$ |
-| $f(x) = x^3$ | $(x + dx)^3 = x^3 + \color{#FC6255} 3x^2 \color{black} dx \color{#AAAAAA} + 3xdx^2 + dx^3$ |
-| $f(x) = x^4$ | $(x + dx)^4 = x^4 + \color{#FC6255} 4x^3 \color{black} dx \color{#AAAAAA} + 6x^2dx^2 + 4xdx^3 + dx^4$ |
-| $f(x) = x^5$ | $(x + dx)^5 = x^5 + \color{#FC6255} 5x^4 \color{black} dx \color{#AAAAAA} + 10x^3dx^2 + 10x^2dx^3 + 5xdx^4 + dx^5$ |
+| $f(x) = x^1$ | $(x + dx)^1 = x + \color{#fc6255}{1} \color{black} dx$ |
+| $f(x) = x^2$ | $(x + dx)^2 = x^2 + \color{#fc6255} 2x \color{black} dx \color{#AAAAAA} + dx^2$ |
+| $f(x) = x^3$ | $(x + dx)^3 = x^3 + \color{#fc6255} 3x^2 \color{black} dx \color{#AAAAAA} + 3xdx^2 + dx^3$ |
+| $f(x) = x^4$ | $(x + dx)^4 = x^4 + \color{#fc6255} 4x^3 \color{black} dx \color{#AAAAAA} + 6x^2dx^2 + 4xdx^3 + dx^4$ |
+| $f(x) = x^5$ | $(x + dx)^5 = x^5 + \color{#fc6255} 5x^4 \color{black} dx \color{#AAAAAA} + 10x^3dx^2 + 10x^2dx^3 + 5xdx^4 + dx^5$ |
 
-For the next terms in the expansion, you can choose mostly $x$’s with a single $dx$. Since there are $n$ separate parentheticals from which you could have chosen this $dx$, this gives us $n$ separate terms, all with a value $x^{n-1} \cdot dx$. This is analogous to the majority of new area in the square case coming from two bars, each with area $x \cdot dx$; or the bulk of the new volume in the cube case coming from *three* thin squares, each with volume $x^2dx$.
 
-All other terms in the expansion will be some multiple of $dx^2$, so we safely ignore them.
-This means that all but a negligible portion of the increase to the output comes from $n$ copies of $x^{n-1} \cdot dx$; that’s what it means for the derivative of $x^n$ to be about $nx^{n-1}$.
+<!-- | $f(x) = x^6$ | $(x + dx)^6 = x^6 + \color{#fc6255} 6x^5 \color{black} dx \color{#AAAAAA} + 15x^4dx^2 + 20x^3dx^3 + 15x^2dx^4 + 6xdx^5 + dx^6$ | -->
 
-Even though in practice you will find yourself performing this derivative quickly and symbolically, imagining that exponent hopping down to the front, every now and then it’s nice to step back and remember why this rule works.
+<!-- TODO: link to binomial expansion -->
 
-Not just because it’s pretty, and not just because it helps to remind us that math actually makes sense and isn’t just a pile of formulas to memorize, but because it flexes that very important muscle of thinking about derivatives in terms of tiny nudges.
+Focusing on the rate in change introduced by the very small nudge and ignoring expressions containing $dx^2$, the pattern that emerges is what's known in the business as the "power rule". Given a monomial function raised to some power, $n$, applying the rule gives us the derivative of the function.
 
-### Example: $f(x) = \frac{1}{x}$
+<Figure
+  image="figures/7.32.svg" 
+  caption="Power Rule Definition"
+/>
 
-As another example, think of the function $f(x) = \frac{1}{x}$. Now, on the one hand, you could blindly try applying the power rule, since $\frac{1}{x} is the same as writing $x^{-1}$. 
+In practice, we all quickly get jaded and just think symbolically about this exponent hopping down to the front, leaving behind one minus itself, rarely pausing to think about the geometric delights underlying these derivatives; they tend to fall in the middle of other much longer computations.
 
-That would involve letting that $-1$ hop down, leaving behind one less than itself, $-2$. 
+<Question
+  question="What is the derivative of the function $f(x)= 3x^2$?"
+  choice1="$2x$"
+  choice2="$5x$"
+  choice3="$3x$"
+  choice4="$6x$"
+  answer={4}
+  explanation=""
+/>
+
+<Accordion title="Geometry interpretation for derivative of $f(x)= 3x^2$">
+
+This question can be modeled as a question of change in area. For example, nudging the input of the function by $dx$ gives the expression $3(x+d x)^{2}$
+
+<Figure
+  image="figures/power-rule-example.svg" 
+  caption="Power Rule Example"
+/>
+
+</Accordion>
+
+<Accordion title="Algebraic interpretation of $f(x)= 3x^2$">
+
+This question can be modeled as a question of change in area
+
+<Figure
+  image="figures/power-rule-example.svg" 
+  caption="Power Rule Example"
+/>
+
+</Accordion>
+
+### Derivative of $f(x) = \frac{1}{x}$
+
+As another example, think of the function $f(x) = \frac{1}{x}$. Now, on the one hand, you could blindly try applying the power rule, since $\frac{1}{x}$ is the same as writing $x^{-1}$. That would involve letting that $-1$ hop down, leaving behind one less than itself, $-2$. 
 But let’s have some fun and see if we can reasonable this geometrically, rather than just plugging it through a formula.
 
 The value $1/x$ is asking “what number multiplied by $x$ equals $1$”, so here’s how I’d visualize it: Imagine a little rectangular puddle of water in two dimensions with area $1$. Let’s say that it’s width is $x$, which means the other must be $1/x$, since the total area is $1$.
 
-[figure-10.51.svg]
+<Figure
+  image="figures/10.51.svg" 
+/>
 
+For example, if you increase $x$ to $3$, the other side must be squished down to $\frac{1}{3}$. And if $x=2$, the other side is forced to be $\frac{1}{2}$. 
 
-For example, So if $x=2$, the other side is forced to be $\frac{1}{2}$ as shown below. If you increase $x$ to $3$, the other side must be squished down to $\frac{1}{3}$.
-
-[figure-10.58.svg]
-
+<Figure
+  image="figures/10.58.svg" 
+/>
 
 This is a nice way to think about the graph of $1/x$, by the way. If you think of the width $x$ of this puddle in the $xy$-plane, the corresponding output $1/x$, the height of the graph above that point, is whatever height the puddle must have to maintain an area of $1$.
 
-[figure-11.00.svg]
-[figure-11.11-11.24-trimmed.mp4]
+<Figure
+  image="figures/11.00.svg"
+  video="figures/11.11-11.24-trimmed.mp4" 
+/>
 
 For the derivative, imagine nudging the input $x$ up by a value $dx$. How must the height of this rectangle change so that the area remains unchanged at $1$? That is, increasing the width by $dx$ adds some new area to the right here, so the puddle must decrease in height by some $d(1/x)$ so that the area lost off the top here cancels that out.
 
-[figure-11.41.svg]
-
+<Figure
+  image="figures/11.41.svg" 
+/>
 
 You should think of that $d(1/x)$ as being some tiny *negative* value, since it’s *decreasing* the height of this rectangle. And you know what? I’m gonna leave the last few steps here for you to pause and ponder. And once you work out $d(1/x)/dx$, compare it to what happens if you apply the power rule purely symbolically to $x^{-1}$.
 
@@ -181,75 +220,86 @@ $$
 \frac{d(1 / x)}{d x}= ? ? ?
 $$
 
+
+## Comprehensive Questions
+
+### Derivative of $f(x) = \sqrt{x}$
+
 Another fun challenge, for those of you who enjoy playing around like this, is to see if you can reason your way through the derivative of $\sqrt{x}$, which can also be written as $x^{\frac{1}{2}}$.
 
-[figure-12.34.svg]
+<Figure
+  image="figures/12.34.svg" 
+/>
 
+### Volume of Sphere
+
+In the first chapter, we found a formula for the area of a circle using a small nudge to the radius of the circle. 
+
+We know the circumference of a sphere with radius $$r$$ is $$2\pi r$$. 
+
+<Question
+  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?"
+  choice1="The area under the graph of $4\pi r^2 dr$ between $r=0$ and $r=R$"
+  choice2="The area under the graph of $4\pi r^2$ between $r = 0$ and $r=R$"
+  choice3="The area under the graph of $2\pi r dr$ between $r=0$ and $r=R$"
+  choice4="The area under the graph of $2\pi r$ between $r=0$ and $r=R$"
+  answer={2}
+  explanation=""
+/>
+
+<Accordion title="Volume of Sphere Visual Explanation">
+
+One way to imagine the volume of the sphere is to divide the sphere into a bunch of shells, where the shell is defined by the small radius $r$, the thickness of the shell is equal to $dr$ and the surface area of the shell is equal to $4\pi r^2$.
+
+<Figure
+  image="figures/volume-of-sphere.svg"
+  caption="The volume of the sphere can be visualized as a collection of shells whose volume is given by their surface area multiplied by their thickness $dr$."
+/>
+
+Another way to think about the volume is through the integral of the function $4 r^2$. This is the same comparison we made when finding the area of the circle in chapter 1.
+
+</Accordion>
 
 ## Trig Functions
 
 Let’s tackle one more type of function: Trigonometric functions. In particular, let’s focus on the sine function. Right here I’m going to assume you are familiar with how to think about trigonometric functions using the unit circle; the circle with radius $1$ centered at the origin.
 
-For a given value of theta, like $0.8$, you’d imagine walking around the circle, starting from the rightmost point, until you’ve traversed that distance $0.8$ in arc length. This is the same thing as saying that this angle here is exactly $0.8$ radians, since the circle has radius $1$.
+For a given value of theta, like $0.8$, you’d imagine walking around the circle, starting from the rightmost point, until you’ve traversed that distance $0.8$ in arc length. This is the same thing as saying that this angle here is exactly $0.8$ radians, since the circle has radius $1$. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
 
-Then $\sin(\theta)$ is your height above the $x$-axis at this point.
+<Figure
+  image="figures/13.16.png" 
+/>
 
-[figure-13.16.png]
+As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern. Now, just from looking at this graph, we can get a feel from the shape of the derivative function.
 
+<Figure
+  image="figures/13.44.svg" 
+/>
 
-As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern.
+The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
 
-Now, just from looking at this graph, we can get a feel from the shape of the derivative function.
+But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. Well, as with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than just at the graph of the function.
 
-[figure-13.44.svg]
+So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observered by zooming in on the point where you are onthe circle.
 
-The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out.
-
-And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
-
-But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it.
-
-Well, as with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than just at the graph of the function.
-
-So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point.
-
-Now zoom in on the point where you are on the circle, and consider a slight nudge of d-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis?
-
-[figure-15.57]
-
+<Figure
+  image="figures/15.57.svg" 
+/>
 
 Well, zoomed in close enough the circle basically looks like a straight line in this neighborhood, so let’s go ahead and think of this right here as a right triangle, where the hypotenuse represents that nudge of $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
 
-Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle right here is precisely equal to $\theta$ radians. 
+Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle is precisely equal to $\theta$ radians. 
 
-Now, think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the value of sine, divided by $d \theta$, the tiny change to the input of the function.
+<Figure
+  image="figures/16.00.svg" 
+/>
 
-From the picture, that’s the ratio between the length of the side adjacent to this little angle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
+Now, think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the value of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little angle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
 
-So that gives two ways to think about how the derivative of $\sin(\theta)$ is $\cos(\theta)$. One by looking at the graph of sine and getting a loose feel for the loose shape of its derivative should be based on thinking about the slope of the graph, and another more precise line of reasoning that comes from looking straight at the unit circle.
+<Figure
+  image="figures/16.01.svg" 
+/>
 
-For the pause and ponder-ers among you, see if you can try a similar line or reasoning to understand the derivative of $\cos(\theta)$.
+So that gives two ways to think about how the derivative of $\sin(\theta)$ is $\cos(\theta)$. One by looking at the graph of sine and getting a loose feel for the loose shape of its derivative should be based on thinking about the slope of the graph, and another more precise line of reasoning that comes from looking straight at the unit circle. For the pause and ponder-ers among you, see if you can try a similar line or reasoning to understand the derivative of $\cos(\theta)$.
 
-
-
-In the next video I’ll talk about how to take the derivatives of functions which combine simple functions like these, either as sums, products, functions compositions, things like that.
-
-Similar to this video, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.
-
-## Comprehensive Questions
-
-Volume of Sphere
-
-We know the circumference of a sphere with radius $$r$$ is $$2\pi r$$. Suppose you also know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?
-
-A) The area under the graph of $$4\pi r^2 dr$$ between $$r=0$$ and $$r=R$$
-B) The area under the graph of $$4\pi r^2$$ between $$r = 0$$ and $$r=R$$
-C) The area under the graph of $$2\pi r dr$$ between $$r=0$$ and $$r=R$$
-D) The area under the graph of $$2\pi r$$ between $$r=0$$ and $$r=R$$
-
-Visual Explanation [hide behind the fold]
-
-One way to imagine the volume of the sphere is to divide the sphere into a bunch of shells, where the shell is defined by the small radius $$r$$, the thickness of the shell is equal to $$dr$$ and the surface area of the shell is equal to $$4\pi r^2$$.
-
-
-Another way to think about the volume is through the integral of the function $$4 r^2$$. This is the same comparison we made when finding the area of the circle in chapter 1.
+In the next video I’ll talk about how to take the derivatives of functions which combine simple functions like these, either as sums, products, functions compositions, things like that. Similar to this video, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.
