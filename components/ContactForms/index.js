@@ -140,7 +140,7 @@ function Form({ name, children }) {
 
   return (
     <div className={styles.form}>
-      <form method="POST" data-netlify="true">
+      <form method="POST" data-netlify="true" name={name}>
         <input type="hidden" name="form-name" value={name} />
 
         {children}
