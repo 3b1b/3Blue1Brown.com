@@ -88,7 +88,7 @@ const TopicCard = ({ topic, opened, onClick }) => {
         className={styles.topic_card}
         onClick={onClick}
         data-open={opened}
-        data-fade
+        // data-fade
       >
         <img
           className={styles.image}
