@@ -9,7 +9,5 @@ export const getStaticPaths = async () => ({
 });
 
 export const getStaticProps = async ({ params }) => {
-  return await pageProps(params.slug, {
-    includeLessonMeta: params.slug === "lessons",
-  });
+  return await pageProps(params.slug);
 };
