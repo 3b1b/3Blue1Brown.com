@@ -8,5 +8,6 @@ export const getStaticPaths = async () => ({
   fallback: false,
 });
 
-export const getStaticProps = async ({ params }) =>
-  await pageProps(params.slug);
+export const getStaticProps = async ({ params }) => {
+  return await pageProps(params.slug);
+};

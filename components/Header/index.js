@@ -7,9 +7,12 @@ import Logo from "../Logo";
 import { title } from "../../data/site.yaml";
 import styles from "./index.module.scss";
 
+// header component to show at top of every page
 const Header = () => {
+  // make header big if on home page
   const { pathname } = useRouter();
   const big = pathname === "/";
+
   return (
     <header className={styles.header} data-big={big}>
       <Background />
@@ -21,6 +24,7 @@ const Header = () => {
 
 export default Header;
 
+// centered site title with logo and text
 const Title = ({ big }) => (
   <Link href="/">
     <a className={styles.title}>
@@ -30,6 +34,7 @@ const Title = ({ big }) => (
   </Link>
 );
 
+// site title text
 const Text = () => (
   <span className={styles.text}>
     {title.split("").map((char, index) => (
@@ -38,6 +43,7 @@ const Text = () => (
   </span>
 );
 
+// navigation bar with links
 const Nav = () => {
   const [open, setOpen] = useState(false);
 
@@ -51,14 +57,14 @@ const Nav = () => {
       <NavLink
         link="/lessons"
         text="Lessons"
-        tooltip="Various maths topics, in text and video form"
+        tooltip="Various maths topics, in video and text form"
       />
+      <NavLink link="/extras" text="Extras" tooltip="Blog, podcast, and more" />
       <NavLink
-        link="/extras"
-        text="Extras"
-        tooltip="Collaborations, cameos, talks, and more"
+        link="/about"
+        text="About"
+        tooltip="What and who is 3blue1brown"
       />
-      <NavLink link="/about" text="About" tooltip="What/who is 3blue1brown" />
       <NavLink
         link="/contact"
         text="Contact"
@@ -87,6 +93,7 @@ const Nav = () => {
   );
 };
 
+// nav bar link
 const NavLink = ({ link, text, icon, tooltip }) => (
   <Link href={link} passHref>
     <Tooltip content={tooltip}>

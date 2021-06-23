@@ -2,22 +2,35 @@ import NextLink from "next/link";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
+// link/button component
 const Clickable = ({
   link,
+  onClick,
   icon,
   text,
+  design,
   active,
   className = "",
-  design,
   ...rest
 }) => {
+  // decide whether to use button or link
   let Component;
   if (link) Component = Link;
   else Component = Button;
 
+  // if no contents, don't render
+  if (!text && !icon) return null;
+  // if no actions, don't render
+  if (!link && !onClick) return null;
+
   return (
     <Component
       {...rest}
+      link={link}
+      onClick={(event) => {
+        event.target.blur();
+        onClick(event);
+      }}
       data-icon={icon ? true : false}
       data-text={text ? true : false}
       data-active={active}
@@ -34,12 +47,14 @@ const Clickable = ({
   );
 };
 
+// button component, for actions
 const Button = ({ tooltip, ...rest }) => (
   <Tooltip content={tooltip}>
     <button {...rest} />
   </Tooltip>
 );
 
+// link component, for navigating somewhere
 const Link = ({ tooltip, link = "/", ...rest }) => (
   <NextLink href={link} passHref>
     <Tooltip content={tooltip}>

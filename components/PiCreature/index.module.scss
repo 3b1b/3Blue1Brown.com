@@ -37,11 +37,11 @@ $page: $page + 600px;
   vertical-align: middle;
 }
 
-.pi_creature[data-flip="false"] {
+.pi_creature[data-flip="true"] {
   left: calc(-1 * var(--size) - 20px);
 }
 
-.pi_creature[data-flip="true"] {
+.pi_creature[data-flip="false"] {
   right: calc(-1 * var(--size) - 20px);
 
   svg,
@@ -68,7 +68,7 @@ $page: $page + 600px;
   }
 }
 
-.pi_creature[data-flip="false"] .frame {
+.pi_creature[data-flip="true"] .frame {
   & > *:first-child {
     left: 0;
     bottom: 0;
@@ -80,7 +80,7 @@ $page: $page + 600px;
   }
 }
 
-.pi_creature[data-flip="true"] .frame {
+.pi_creature[data-flip="false"] .frame {
   svg,
   img {
     transform: scaleX(-1);

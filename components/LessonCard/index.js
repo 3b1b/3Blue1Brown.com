@@ -6,27 +6,31 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+// button that links to a lesson, showing details like thumbnail, title, etc.
 const LessonCard = ({
   id,
   icon,
-  active,
   mini,
   reverse,
-  className = "",
   tooltip,
+  active,
+  className = "",
 }) => {
   const { lessons = [] } = useContext(PageContext);
 
+  // find lesson with matching slug
   const lesson = lessons.find((lesson) => lesson.slug === id);
 
-  if (!lesson) return <></>;
+  // if couldn't find lesson, don't render
+  if (!lesson) return null;
 
+  // get tag type/name for component
   let Component;
   if (active) Component = Stub;
   else Component = Link;
 
+  // get lesson details
   let { slug, title, description, date, video, chapter, topic, empty } = lesson;
-
   if (date) date = formatDate(date);
 
   return (
@@ -41,12 +45,16 @@ const LessonCard = ({
     >
       {icon && <i className={icon}></i>}
 
-      <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+      <div className={styles.image}>
+        <div className={styles.frame}>
+          <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+        </div>
+      </div>
 
-      <span className={styles.text}>
-        <span>{title && <span>{title}</span>}</span>
-        {description && !mini && <span>{description}</span>}
-        {(chapter || !empty) && !mini && (
+      <div className={styles.text}>
+        <span>{title && <span className={styles.title}>{title}</span>}</span>
+        {description && !mini && <span className={styles.description}>{description}</span>}
+        {(chapter || !empty || date) && !mini && (
           <span>
             {chapter && (
               <Chip
@@ -65,7 +73,7 @@ const LessonCard = ({
             {date && <span>{date}</span>}{" "}
           </span>
         )}
-      </span>
+      </div>
     </Component>
   );
 };
