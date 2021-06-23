@@ -1,6 +1,6 @@
 $width: 600px;
 
-.contactForm {
+.form {
   text-align: left;
   max-width: $width;
   margin: 0 auto;
@@ -29,14 +29,37 @@ $width: 600px;
   padding: 6px 8px;
   font: inherit;
 }
+textarea.input {
+  resize: vertical;
+  min-height: 50px;
+}
 
-.checkboxWrapper {
+.checkboxSet,
+.radioSet {
+  display: block;
+  margin-bottom: 16px;
+  padding: 0;
+  border: none;
+}
+.checkboxSet > legend,
+.radioSet > legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.checkbox,
+.radio {
+  display: block;
+  line-height: 1.8;
+}
+
+.verificationCheckbox {
   display: block;
   margin-bottom: 16px;
 }
 
 @media screen and (min-width: $width) {
-  .twoInputRow {
+  .inputRow {
     // Browsers that don't support grid will still gracefully fall back to a single-column layout
     display: grid;
     grid-template-columns: 1fr 1fr;
