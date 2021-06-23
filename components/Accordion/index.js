@@ -3,7 +3,7 @@ import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
 // expandable/collapsible section, like <details>
-const Accordion = ({ title, children }) => {
+const Accordion = ({ title, children, preserveInnerState = false }) => {
   const [open, setOpen] = useState(false);
 
   if (!title && !children) return null;
@@ -16,8 +16,11 @@ const Accordion = ({ title, children }) => {
           {title}
         </button>
       )}
-      {open && children && (
-        <div className={styles.reveal}>
+      {children && (open || preserveInnerState) && (
+        <div
+          className={styles.reveal}
+          style={{ display: !open ? "none" : undefined }}
+        >
           <Markdownify>{children}</Markdownify>
         </div>
       )}
