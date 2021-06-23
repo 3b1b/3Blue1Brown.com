@@ -97,23 +97,28 @@ export const lessonPaths = lessonFiles
   .map((path) => "/lessons/" + path);
 
 // metadata for all lessons (just front matter)
-const lessonMeta = lessonFiles
-  .map(parseMdx)
-  .map(({ patrons, content, ...rest }) => rest)
-  .sort((b, a) => new Date(a.date) - new Date(b.date));
+const getLessonMeta = () =>
+  lessonFiles
+    .map(parseMdx)
+    .map(({ patrons, content, ...rest }) => rest)
+    .sort((b, a) => new Date(a.date) - new Date(b.date));
 
 // get desired props for pages
-export const pageProps = async (slug) => {
+export const pageProps = async (slug, { includeLessonMeta = false } = {}) => {
   const file = searchPageFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
-  props.lessons = lessonMeta;
+  if (includeLessonMeta) {
+    props.lessons = getLessonMeta();
+  }
   return { props };
 };
 
 // get desired props for lessons
-export const lessonProps = async (slug) => {
+export const lessonProps = async (slug, { includeLessonMeta = false } = {}) => {
   const file = searchLessonFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
-  props.lessons = lessonMeta;
+  if (includeLessonMeta) {
+    props.lessons = getLessonMeta();
+  }
   return { props };
 };

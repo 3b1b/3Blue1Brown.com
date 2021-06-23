@@ -3,4 +3,5 @@ import { pageProps } from "../util/pages";
 
 export default NormalLayout;
 
-export const getStaticProps = async () => await pageProps("index");
+export const getStaticProps = async () =>
+  await pageProps("index", { includeLessonMeta: true });
