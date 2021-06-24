@@ -19,7 +19,7 @@ const Question = ({
   choice5,
   choice6,
   answer,
-  explanation,
+  children: explanation,
 }) => {
   const [selected, setSelected] = useState(0);
   const [state, setState] = useState("unanswered");
@@ -98,9 +98,7 @@ const Question = ({
         )}
       </div>
       {state === "correct" && explanation && (
-        <div className={styles.explanation}>
-          <Markdownify>{explanation}</Markdownify>
-        </div>
+        <div className={styles.explanation}>{explanation}</div>
       )}
     </div>
   );

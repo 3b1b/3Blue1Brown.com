@@ -2,7 +2,8 @@
 
 Lesson authoring peer review checklist:
 
-- [ ] I have indicated my authorship as `Text adaptation by My Name`
+- [ ] Includes authorship line: `Text adaptation by [Name]`
+- [ ] The lesson has an informative/compelling description, fit for a preview on the home page.
 - [ ] The lesson has no grammar/spelling errors
 - [ ] The lesson has no mathematical errors
 - [ ] The table of contents effectively conveys the overall structure of the lesson
@@ -10,7 +11,7 @@ Lesson authoring peer review checklist:
 - [ ] The lesson includes well-chosen comprehension questions
 - [ ] The lesson incorporates the core visuals from the video
 - [ ] The visuals are clear and helpful for understanding
-- [ ] I have used components in the places and ways they are intended (see the readme)
+- [ ] The components are used in the places and ways they are intended (see the readme)
 
 <!-- Use this checklist if you're making any other changes to the website -->
 

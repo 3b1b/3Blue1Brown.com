@@ -29,18 +29,31 @@ A core theme of cryptography is to find tasks which are easy in one direction bu
   choice2="$6$"
   choice3="$9$"
   choice4="$12$"
-  answer={2}
-  explanation=""
-/>
+  answer={2}>
 
-<Accordion title="Explain">
+Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that you see that $1$ on the very first roll is $\frac{1}{6}$.
 
-Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that your first roll is a $1$ is $\frac{1}{6}$. The probability that your first roll is not a $1$, but the second one is, is $\frac{5}{6} \cdot \frac{1}{6}$. In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is $\left(\frac{5}{6}\right)^{k-1}\frac{1}{6}$.
+
+$$
+P(\#\text{Rolls} = 1) = \frac{1}{6}
+$$
+
+What about the probability that it takes two rolls to get a $1$? This requires the first roll to be anything other than a $1$, and for the second roll to be a $1$, so we get:
+
+$$
+P(\#\text{Rolls} = 2) = \frac{5}{6} \cdot \frac{1}{6}
+$$
+
+In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is 
+
+$$
+P(\#\text{Rolls} = k) = \left(\frac{5}{6}\right)^{k-1} \frac{1}{6}.
+$$
 
 So the expected number of rolls it will take to see a $1$ for the first time is 
 
 $$
-1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right)
+1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right).
 $$
 
 Forgive me for distracting from the main point of the article here, but the trick for evaluating something like this is too delightful not to show. It requires that you first know how to sum a geometric series:
@@ -56,9 +69,8 @@ $$
 $$
 
 Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. Pretty neat, isn't it?
-</Accordion>
 
-
+</Question>
 
 For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[ [2](/lessons/256-bit-security/#footnotes)]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
 
@@ -105,8 +117,11 @@ There are about 7.9 billion people on Earth, so imagine giving a little over hal
   choice3="$2^{96}$"
   choice4="$2^{128}$"
   answer={3}
-  explanation="There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $2^{32}$ GPU-packed servers which can each run $2^{32}$ hashes per second. $2^{32} \times 2^{32} \times 2^{32}=2^{96}$."
-/>
+>
+
+There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $2^{32}$ GPU-packed servers which can each run $2^{32}$ hashes per second. $2^{32} \times 2^{32} \times 2^{32}=2^{96}$.
+
+</Question>
 
 ### 4 Billion Earths
 
@@ -149,8 +164,11 @@ So even if you were to have your GPU-packed KiloGoogle-per-person multi-planetar
   choice3="$6 \times 10^{60}$"
   choice4="$7 \times 10^{70}$"
   answer={1}
-  explanation="A GigaGalactic Super Computer takes 507 billion ($5.07 \times 10^{11}$) years to get a success rate of 1 in 4 billion. Since a GGSC is $2^{96}$ times more powerful than a KiloGoogle, a KiloGoogle will reach a success rate of 1 in 4 billion in $5.07 \times 10^{11} \times 2^{96}\approx 4 \times 10^{40}$ years. Slightly longer than waiting for cookies to cool from the oven (both seem like forever though)!"
-/>
+>
+
+A GigaGalactic Super Computer takes 507 billion ($5.07 \times 10^{11}$) years to get a success rate of 1 in 4 billion. Since a GGSC is $2^{96}$ times more powerful than a KiloGoogle, a KiloGoogle will reach a success rate of 1 in 4 billion in $5.07 \times 10^{11} \times 2^{96}\approx 4 \times 10^{40}$ years. Slightly longer than waiting for cookies to cool from the oven (both seem like forever though)!
+
+</Question>
 
 </Section><Section>
 
