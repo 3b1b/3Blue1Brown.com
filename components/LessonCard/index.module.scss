@@ -91,23 +91,20 @@ $phone: 600px;
   flex-grow: 1;
   word-break: break-word;
 
-  & > * {
-    &:first-child {
-      font-family: $sans;
-      font-weight: $medium;
-    }
-
-    &:nth-child(1),
-    &:nth-child(2) {
-      @include line-clamp(2);
-    }
-  }
-
   @media (max-width: $phone) {
     & > *:not(:first-child) {
       display: none;
     }
   }
+}
+
+.title {
+  font-family: $sans;
+  font-weight: $medium;
+}
+
+.description {
+  @include line-clamp(2);
 }
 
 .lesson_card[data-mini="true"] .text {
