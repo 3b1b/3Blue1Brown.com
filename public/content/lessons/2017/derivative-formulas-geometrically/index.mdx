@@ -53,10 +53,14 @@ The two thin rectangles have side lengths $x$ and $dx$, so they account for $2 \
   choice3="4"
   choice4="3"
   answer={3}
-  explanation="If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2 \cdot 0.01$ plus the small area of $dx^2$ which is about $4$ times the size of $dx$."
-/>
+>
+
+If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2 \cdot 0.01$ plus the small area of $dx^2$ which is about $4$ times the size of $dx$.
 
 <!-- TODO: check answer against graph once Question children is implemented -->
+
+</Question>
+
 
 That little square has area $dx^2$, but you should think of this as being *really* tiny; negligibly tiny. For example, if $dx$ was $0.01$, it would be $0.0001$. I’m drawing $dx$ with a fair bit of width here, so we can see it, but always remember in principle $dx$ should be thought of as a truly tiny amount.
 
@@ -78,8 +82,12 @@ $$
   choice3="The rate of change in area would be $4$."
   choice4="The rate of change in area would be $2$."
   answer={1}
-  explanation="The rate of change in the area per unit of length added, $\frac{d(x^2)}{dx}$, would be $2 \cdot 3$, or $6$. As another example, if you were starting at $x=5$, that rate of change would be $10$ units of area per change in $x$."
-/>
+>
+
+The rate of change in the area per unit of length added, $\frac{d(x^2)}{dx}$, would be $2 \cdot 3$, or $6$. As another example, if you were starting at $x=5$, that rate of change would be $10$ units of area per change in $x$.
+
+</Question>
+
 
 ### Derivative of $f(x) = x^3$
 
@@ -166,10 +174,7 @@ In practice, we all quickly get jaded and just think symbolically about this exp
   choice3="$3x$"
   choice4="$6x$"
   answer={4}
-  explanation=""
-/>
-
-<Accordion title="Geometry interpretation for derivative of $f(x)= 3x^2$">
+>
 
 This question can be modeled and solved as a question of change in area. For example, nudging the input of the function by $dx$ gives the expression $3(x+d x)^{2}$ which expands to the expression $3(x + dx)( x + dx)$. I've drawn the area below where the $3$ scales one of the sides.
 
@@ -185,7 +190,7 @@ Alternatively, the question can be modeled as volume, where instead of scaling o
   caption="Derivative of $f(x) = 3x^{2}$ modeled as volume"
 />
 
-</Accordion>
+</Question>
 
 ### Derivative of $f(x) = \frac{1}{x}$
 
@@ -230,52 +235,95 @@ Here are a couple questions that made to test your knowledge of derivatives and 
 
 ### Derivative of $f(x) = \sqrt{x}$
 
-Modeling the derivatives geometrically can be applied to many different types of functions. For example, see if you can reason your way through the derivative of $f(x) = \sqrt{x}$ which also can be written as $x^{\frac{1}{2}}$. Now, one way to find the derivative of this function is to recognize that it fits the mold of the power rule.
+Modeling the derivatives geometrically can be applied to many different types of functions. For example, see if you can reason your way through the derivative of $f(x) = \sqrt{x}$ which also can be written as $x^{\frac{1}{2}}$. Now, one way to find the derivative of this function is to recognize that it fits the mold of the power rule. Blindly applying the rule will produce an answer, but what does it *mean*?
+
+To start, try modeling function using geometry.
 
 <Figure
-  image="figures/12.34.svg" 
+  image="figures/12.34.svg"
+  caption="Unlike in previous problems, $dx$ is not geometric length, but instead represents **area**."
 />
 
 <Question
   question="What is the derivative of the function $f(x) = \sqrt{x}$?"
-  choice1="1"
-  choice2="1"
-  choice3="1"
-  choice4="1"
-  answer={1}
-  explanation="TODO"
+  choice1="$\sqrt{2}x$"
+  choice2="$\frac{1}{2\sqrt{x}}$"
+  choice3="$\frac{x}{\sqrt{2}}$"
+  choice4="$\frac{1}{2}x$"
+  answer={2}
+>
+
+In order to find the derivative of the function $f(x) = \sqrt{x}$ we can model its geometry as the area of the square, where given the area $x$ the function returns the length of the square's side which is the square root of $x$.
+
+$$
+x = \sqrt{x} \sqrt{x} \\
+$$
+
+Then, we want to find $d\sqrt{x}$, the change of the function's output, when the input $x$ is nudged by a small value $dx$. Since $x$ represents area, it makes sense that a small nudge $dx$ should also be area! 
+
+<Figure
+  image="figures/12.34-explanation.svg"
+  caption="Unlike in previous problems, $dx$ is not geometric length, but instead represents **area**."
 />
 
-<!-- TODO -->
+The added area changes the output of the function by the new length $d\sqrt{x}$, which looks like this.
+
+$$
+x + dx = (\sqrt{x} + d\sqrt{x})(\sqrt{x} + d\sqrt{x})
+$$
+
+To find the derivative, $\frac{d\sqrt{x}}{dx}$, expand out the area expressions on the right-hand side.
+
+$$
+x + dx = x + 2\sqrt{x}(d\sqrt{x}) + (d\sqrt{x})^2
+$$
+
+Since we are only interested in the change in area, we can subtract $x$ from both sides. Additionally, we can safely ignore the expression $(d\sqrt{x})^2$ since the area it represents changes the output (length) of the function in a negligible way.
+
+$$
+dx = 2\sqrt{x}(d\sqrt{x})
+$$
+
+Finally, we can divide both sides by $dx$ and $2\sqrt{x}$ to get the expression below. The derivative of $f(x) = \sqrt{x}$!
+
+$$
+\frac{d\sqrt{x}}{dx}  = \frac{1}{2\sqrt{x}}
+$$
+
+It's always a good idea to check our work, and luckily we have derived such a tool to do that, the power rule. Starting with $\displaystyle f(x) = x^{\frac{1}{2}}$ we can drop the $\frac{1}{2}$ down in front and subract one from the exponent, giving us the same answer.
+
+$$
+\frac{d\sqrt{x}}{dx}  = \frac{1}{2} x^{-\frac{1}{2}}
+$$
+
+</Question>
 
 ### Volume of Sphere
 
-In the first chapter, we found a formula for the area of a circle using a small nudge to the radius of the circle. 
+In the first chapter, we found a formula for the area of a circle using a small nudge to the radius of the circle. Importantly, we derived the formula by finding the area under a function. In future chapters, we will explore this idea much further and derivatives have a big role to play. For now, let's revisit the same idea using the geometry of a sphere.
 
-We know the circumference of a sphere with radius $$r$$ is $$2\pi r$$. 
+<Figure
+  image="figures/sphere.svg" 
+/>
 
 <Question
-  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?"
+  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere? **Note**, in the answers below $R$ represents the radius of the sphere."
   choice1="The area under the graph of $4\pi r^2 dr$ between $r=0$ and $r=R$"
   choice2="The area under the graph of $4\pi r^2$ between $r = 0$ and $r=R$"
   choice3="The area under the graph of $2\pi r dr$ between $r=0$ and $r=R$"
   choice4="The area under the graph of $2\pi r$ between $r=0$ and $r=R$"
   answer={2}
-  explanation=""
-/>
-
-<Accordion title="Volume of Sphere Visual Explanation">
+>
 
 One way to imagine the volume of the sphere is to divide the sphere into a bunch of shells, where the shell is defined by the small radius $r$, the thickness of the shell is equal to $dr$ and the surface area of the shell is equal to $4\pi r^2$.
 
 <Figure
   image="figures/volume-of-sphere.svg"
-  caption="The volume of the sphere can be visualized as a collection of shells whose volume is given by their surface area multiplied by their thickness $dr$."
 />
 
-Another way to think about the volume is through the integral of the function $4 r^2$. This is the same comparison we made when finding the area of the circle in chapter 1.
+Following the same process from lesson 1, we can model the volume as the area under the function of $4\pir^2$ from $0$ to the radius $R$.
 
-</Accordion>
+</Question>
 
 ## Trig Functions
 
