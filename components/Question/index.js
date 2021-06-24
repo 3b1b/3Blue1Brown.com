@@ -21,7 +21,7 @@ const Question = ({
   answer,
   children: explanation,
 }) => {
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(null);
   const [state, setState] = useState("unanswered");
   const resultRef = useRef();
 
@@ -46,7 +46,10 @@ const Question = ({
   };
 
   // reset question
-  const reset = () => setState("unanswered");
+  const reset = () => {
+    setState("unanswered");
+    setSelected(null);
+  };
 
   return (
     <div className={styles.question}>
@@ -65,6 +68,7 @@ const Question = ({
               type="radio"
               name={question}
               value={choice}
+              checked={index === selected}
               onChange={() => setSelected(index)}
               disabled={state === "correct"}
             />
@@ -80,7 +84,11 @@ const Question = ({
       </div>
       <div ref={resultRef} className={styles.result}>
         {state === "unanswered" && (
-          <Clickable text="Check Answer" onClick={submit} />
+          <Clickable
+            text="Check Answer"
+            onClick={submit}
+            disabled={selected === null}
+          />
         )}
         {state === "incorrect" && (
           <>
