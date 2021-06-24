@@ -3,6 +3,7 @@ import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 import SpeechBubble from "../../public/images/pi-creatures/bubble-speech.svg";
 import ThoughtBubble from "../../public/images/pi-creatures/bubble-thought.svg";
+import { useSectionWidth } from "../Section";
 
 // pi creature/character, with "smart" positioning, and speech/thought bubble
 const PiCreature = ({
@@ -20,6 +21,8 @@ const PiCreature = ({
     else Bubble = SpeechBubble;
   }
 
+  const sectionWidth = useSectionWidth();
+
   return (
     <div
       className={styles.pi_creature}
@@ -27,6 +30,7 @@ const PiCreature = ({
       data-placement={placement || "auto"}
       data-design={design}
       data-text={text ? true : false}
+      data-sectionWidth={sectionWidth}
     >
       <div className={styles.frame}>
         <img src={`/images/pi-creatures/${emotion}.svg`} />

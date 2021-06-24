@@ -9,8 +9,6 @@ credits:
   - Text adaptation by River Way
 ---
 
-<Section>
-
 ## What is 256 bit security?
 
 If a protocol is described as having "$n$-bit security", it means an attacker would have to run some computation $2^n$ times to break the system.
@@ -33,7 +31,6 @@ A core theme of cryptography is to find tasks which are easy in one direction bu
 
 Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that you see that $1$ on the very first roll is $\frac{1}{6}$.
 
-
 $$
 P(\#\text{Rolls} = 1) = \frac{1}{6}
 $$
@@ -44,13 +41,13 @@ $$
 P(\#\text{Rolls} = 2) = \frac{5}{6} \cdot \frac{1}{6}
 $$
 
-In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is 
+In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is
 
 $$
 P(\#\text{Rolls} = k) = \left(\frac{5}{6}\right)^{k-1} \frac{1}{6}.
 $$
 
-So the expected number of rolls it will take to see a $1$ for the first time is 
+So the expected number of rolls it will take to see a $1$ for the first time is
 
 $$
 1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right).
@@ -73,8 +70,6 @@ Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. 
 </Question>
 
 For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[ [2](/lessons/256-bit-security/#footnotes)]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
-
-</Section><Section>
 
 ## Appreciating Large Powers of Two
 
@@ -170,8 +165,6 @@ A GigaGalactic Super Computer takes 507 billion ($5.07 \times 10^{11}$) years to
 
 </Question>
 
-</Section><Section>
-
 ## Modern Bitcoin Hashing
 
 In 2021, all the miners put together make guesses at a rate of about [100 billion billion](https://www.blockchain.com/charts/hash-rate) ($10^{20}\approx 2^{66}$ ) hashes per second. Which is four times more than what was described as a KiloGoogle.
@@ -187,5 +180,3 @@ These are pieces of hardware specifically designed for bitcoin mining and nothin
 [1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions)
 
 [2] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions)
-
-</Section>

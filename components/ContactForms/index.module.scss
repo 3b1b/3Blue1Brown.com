@@ -1,5 +1,3 @@
-$width: 600px;
-
 .receivedFormThanks {
   background: $green-200;
   padding: 16px 24px;
@@ -8,7 +6,6 @@ $width: 600px;
 
 .form {
   text-align: left;
-  max-width: $width;
   margin: 0 auto;
 
   button {
@@ -64,7 +61,7 @@ textarea.input {
   margin-bottom: 16px;
 }
 
-@media screen and (min-width: $width) {
+@media screen and (min-width: $page-narrow) {
   .inputRow {
     // Browsers that don't support grid will still gracefully fall back to a single-column layout
     display: grid;

@@ -1,5 +1,3 @@
-$page: $page + 600px;
-
 .pi_creature {
   &[data-text="false"] {
     --size: 150px;
@@ -116,28 +114,40 @@ $page: $page + 600px;
   line-height: $spacing - 0.4;
 }
 
-.pi_creature[data-placement="side"] {
-  position: absolute;
+@mixin pi-position($sectionWidth) {
+  $cutoffWidth: $sectionWidth + 600px;
 
-  @media (max-width: $page) {
-    display: none;
-  }
-
-  .frame {
-    transform: translateY(-100%);
-  }
-}
-
-.pi_creature[data-placement="auto"] {
-  @media (min-width: $page) {
+  &[data-placement="side"] {
     position: absolute;
+
+    @media (max-width: $cutoffWidth) {
+      display: none;
+    }
 
     .frame {
       transform: translateY(-100%);
     }
   }
 
-  @media (max-width: $page) {
-    position: static;
+  &[data-placement="auto"] {
+    @media (min-width: $cutoffWidth) {
+      position: absolute;
+
+      .frame {
+        transform: translateY(-100%);
+      }
+    }
+
+    @media (max-width: $cutoffWidth) {
+      position: static;
+    }
   }
+}
+
+.pi_creature[data-sectionWidth="normal"] {
+  @include pi-position($page);
+}
+
+.pi_creature[data-sectionWidth="narrow"] {
+  @include pi-position($page-narrow);
 }
