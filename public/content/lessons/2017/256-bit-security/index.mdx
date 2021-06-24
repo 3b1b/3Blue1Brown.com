@@ -29,16 +29,46 @@ A core theme of cryptography is to find tasks which are easy in one direction bu
   choice2="$6$"
   choice3="$9$"
   choice4="$12$"
-  answer={2}
->
+  answer={2}>
 
-Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that your first roll is a $1$ is $\frac{1}{6}$. The probability that your first roll is not a $1$, but the second one is, is $\frac{5}{6} \cdot \frac{1}{6}$. In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is $\left(\frac{5}{6}\right)^{k-1}\frac{1}{6}$. So the expected number of rolls it will take to see a $1$ for the first time is
+Hopefully this answer is somewhat intuitive, but it actually takes a little work to show why it's true. The probability that you see that $1$ on the very first roll is $\frac{1}{6}$.
+
 
 $$
-1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right)
+P(\#\text{Rolls} = 1) = \frac{1}{6}
 $$
 
-Forgive me for distracting from the main point of the article here, but the trick for evaluating something like this is too delightful not to show. Think about how to sum a geometric series: $$1 + x + x^2 + x^3 + \cdots = \frac{1}{1 - x}$$ Now take the derivative of both sides $$1 + 2x + 3x^2 + 4x^3 + \cdots = \frac{1}{(1 - x)^2}$$ Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. Pretty neat, isn't it?
+What about the probability that it takes two rolls to get a $1$? This requires the first roll to be anything other than a $1$, and for the second roll to be a $1$, so we get:
+
+$$
+P(\#\text{Rolls} = 2) = \frac{5}{6} \cdot \frac{1}{6}
+$$
+
+In general, the probability that the first time you see a $1$ is on the $k^{th}$ roll is 
+
+$$
+P(\#\text{Rolls} = k) = \left(\frac{5}{6}\right)^{k-1} \frac{1}{6}.
+$$
+
+So the expected number of rolls it will take to see a $1$ for the first time is 
+
+$$
+1 \cdot \frac{1}{6}  + 2 \cdot \left(\frac{5}{6}\right) \frac{1}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 \frac{1}{6}  + \cdots= \frac{1}{6}\left(1 + 2 \cdot \frac{5}{6} + 3 \cdot \left(\frac{5}{6}\right)^2 + \cdots \right).
+$$
+
+Forgive me for distracting from the main point of the article here, but the trick for evaluating something like this is too delightful not to show. It requires that you first know how to sum a geometric series:
+
+$$
+1 + x + x^2 + x^3 + \cdots = \frac{1}{1 - x}
+$$
+
+Now take the derivative of both sides.
+
+$$
+1 + 2x + 3x^2 + 4x^3 + \cdots = \frac{1}{(1 - x)^2}
+$$
+
+Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. Pretty neat, isn't it?
 
 </Question>
 
@@ -52,7 +82,7 @@ For SHA256, there are not six possible outputs, there are $2^{256}$. So on avera
 
 The human mind is best at breaking down concepts into smaller pieces to analyze. $2^{256}$ is $2^{32}$ multiplied by itself eight times. $2^{32}$ is about 4 billion, which is a number we can at least start to think about, so all we need to do is appreciate what multiplying 4 billion times itself eight successive times feels like.
 
-#### 4 Billion Hashes Per Second
+### 4 Billion Hashes Per Second
 
 <Figure image="progress1.png" />
 
@@ -62,7 +92,7 @@ The GPU on your computer can let you run parallel computations incredibly quickl
 
 Let’s say you cram a computer with extra GPUs so that it can guess and check 4 billion times per second. So our first 4 billion is the number of hashes per second per computer.
 
-#### 4 Billion Computers
+### 4 Billion Computers
 
 <Figure image="progress2.png" />
 
@@ -72,7 +102,7 @@ Now picture 4 billion of these GPU-packed computers. For comparison, even though
 
 In reality, most of those servers are much less powerful than our imagined GPU-packed machine, but if Google replaced all its millions of servers with machines like this, 4 billion machines would mean about 1,000 copies of this souped-up Google, which I’ll call one KiloGoogle++.
 
-#### 4 Billion KiloGoogles
+### 4 Billion KiloGoogles
 
 <Figure image="progress3.png" />
 
@@ -93,7 +123,7 @@ There are $2^{32}$ citizens, each with their personal KiloGoogle that contains $
 
 </Question>
 
-#### 4 Billion Earths
+### 4 Billion Earths
 
 <Figure image="progress4.png" />
 
@@ -101,7 +131,7 @@ Now imagine 4 billion copies of this Earth. The Milky Way has between 100 and 40
 
 <Figure image="milkyway.png" />
 
-#### 4 Billion Milky Ways
+### 4 Billion Milky Ways
 
 <Figure image="progress5.png" />
 
@@ -109,19 +139,19 @@ Now picture 4 billion copies of the Milky Way, and call this your GigaGalactic S
 
 <Figure image="ggsc.png" />
 
-#### 4 Billion Seconds
+### 4 Billion Seconds
 
 <Figure image="progress6.png" />
 
 4 billion seconds is about 126 years, which is still a reasonable amount of time to want to keep something hidden. Maybe you’re hiding a digital treasure for your great-great-great grandchildren!
 
-#### 4 Billion Seconds Squared
+### 4 Billion Seconds Squared
 
 <Figure image="progress7.png" />
 
 4 billion times 126 years is about 507 billion years. This is roughly 37 times the age of the universe. The Earth will have been swallowed up by the sun a long time before this, hopefully nobody cares about your password anymore.
 
-#### 1 in 4 Billion Success Rate
+### 1 in 4 Billion Success Rate
 
 <Figure image="progress8.png" />
 
