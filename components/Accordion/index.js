@@ -2,6 +2,13 @@ import { useState } from "react";
 import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
+/*
+  Surprisingly, the preserveInnerState prop is actually mission-critical. As of
+  the time of writing (git blame to see when), it is used on the contact page
+  to make sure that the contact forms are included in the static page HTML,
+  which is necessary for Netlify to find them at build time.
+*/
+
 // expandable/collapsible section, like <details>
 const Accordion = ({ title, children, preserveInnerState = false }) => {
   const [open, setOpen] = useState(false);
