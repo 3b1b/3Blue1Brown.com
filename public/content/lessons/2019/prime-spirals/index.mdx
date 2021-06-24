@@ -6,7 +6,7 @@ video: EK32jo7i5LQ
 source: _2019/spirals.py
 credits:
 - Lesson by Grant Sanderson
-- Blog Adaption by River Way
+- Text Adaption by River Way
 ---
 
 # Why Do Prime Numbers Make These Spirals?
@@ -29,9 +29,11 @@ The angle is typically given in *radians*; that means an angle of $$\pi$$ is hal
   choice2="$(-3, \frac{5\pi}{2})$"
   choice3="$(3, -\frac{\pi}{2})$"
   choice4="$(3, \frac{5\pi}{2})$"
-  answer={4}
-  explanation="Adding or subtracting $2\pi$ to an angle gives the same angle. So $(3, \frac{7\pi}{2})=(3, \frac{3\pi}{2})=(3, -\frac{\pi}{2})$. The point $(3,\frac{5\pi}{2})\neq(3,\frac{7\pi}{2})$ because they are offset by 180 degrees. The point $(-3,\frac{5\pi}{2})=(3,\frac{7\pi}{2})$ because the radius is negative, meaning you walk 3 units in opposite direction the angle would normally point you towards."
-/>
+  answer={4} >
+
+Adding or subtracting $2\pi$ to an angle gives the same angle. So $(3, \frac{7\pi}{2})=(3, \frac{3\pi}{2})=(3, -\frac{\pi}{2})$. The point $(3,\frac{5\pi}{2})\neq(3,\frac{7\pi}{2})$ because they are offset by 180 degrees. The point $(-3,\frac{5\pi}{2})=(3,\frac{7\pi}{2})$ because the radius is negative, meaning you walk 3 units in opposite direction the angle would normally point you towards.
+
+</Question>
 
 The pattern we'll look at centers around plotting points where both these coordinates are a given prime number. 
 $$
@@ -105,9 +107,11 @@ So in the lingo, each of these spiral arms corresponds to a residue class mod 6,
   choice4="$6k+3$"
   choice5="$6k+5$"
   choice6="$6k+5$"
-  answer={4}
-  explanation="The number 381 has a quotient of 63 and a remainder of 3, so it belongs to the $6k+3$ residue class."
-/>
+  answer={4} >
+
+The number 381 has a quotient of 63 and a remainder of 3, so it belongs to the $6k+3$ residue class.
+
+</Question>
 
 With that as a warmup, let's think about the larger scale patterns. In the same way that 6 steps were close to a full turn, taking 44 steps is *very* close to a whole number of turns. 
 
@@ -161,11 +165,13 @@ With all 710 of them, and only so many pixels on the screen, it can be a bit har
   choice2="2nd (top left)"
   choice3="3rd (bottom left)"
   choice4="4th (bottom right)"
-  answer={3}
-  explanation="$\sin(60\ rad) < 0$ and $\cos(60\ rad) < 0$, placing the start of the curve in the 3rd quadrant. If your calculator is in degrees mode, you will get the 1st quadrant by mistake!"
-/>
+  answer={3} >
 
-In reality, with a little further zooming, you can see that there is actually a gentle spiral to these, but the fact that it takes so long to become prominent is a wonderful illustration, maybe the best illustration I've seen, for just how good an approximation $\frac{710}{113}$ is for $2\pi$. [[1](#Footnotes)]
+$\sin(60\ rad) < 0$ and $\cos(60\ rad) < 0$, placing the start of the curve in the 3rd quadrant. If your calculator is in degrees mode, you will get the 1st quadrant by mistake!
+
+</Question>
+
+In reality, with a little further zooming, you can see that there is actually a gentle spiral to these, but the fact that it takes so long to become prominent is a wonderful illustration, maybe the best illustration I've seen, for just how good an approximation $\frac{710}{113}$ is for $2\pi$. [^(1)]
 
 <Figure image="710_galaxy.png" width="50%" />
 
@@ -254,9 +260,11 @@ $$
   choice3="$\frac14$"
   choice4="$\frac15$"
   choice5="$\frac16$"
-  answer={1}
-  explanation="$ \lim_{x\to\infty}\left(\frac{\color{blue}\pi\color{black}(x;6,1)} {\color{blue}\pi\color{black}(x)}\right) = \frac1{\phi(6)} $ and we know from counting the visible arms on the smallest spiral that $\phi(6)=2$"
-/>
+  answer={1} >
+
+$ \lim_{x\to\infty}\left(\frac{\color{blue}\pi\color{black}(x;6,1)} {\color{blue}\pi\color{black}(x)}\right) = \frac1{\phi(6)} $ and we know from counting the visible arms on the smallest spiral that $\phi(6)=2$
+
+</Question>
 
 It turns out to be rather difficult to prove that the primes are evenly distributed among residue classes like this. In 1837, Dirichlet published a result which is very close to this, but he used a slightly different definition of density. Instead of simply counting the primes up to a certain threshold, it involves looking at all primes and adding up the values $\frac{1}{p^s}$ for some real number $s > 0$. Specifically, in his notion, here's how the density of primes which are $r$ mod $N$ would look:
 $$
@@ -268,7 +276,7 @@ For example, imagine you were asked to prove that infinitely many primes end in 
 
 So how did Dirichlet prove it? Well… it’s *way* more involved than what would be reasonable to show here, but one interesting fact worth mentioning is that it relies heavily on complex analysis, which is the study of doing calculus with functions whose inputs and outputs are complex numbers. That may seem surprising, given that prime numbers seem unrelated to the continuous world of calculus, much less when complex numbers end up in the mix. But since the early 19th century, that’s absolutely par for the course when it comes to understanding how primes are distributed.
 
-This isn’t just antiquated technology. Understanding the distribution of primes in residue classes like this continues to be relevant in modern research, too. [[2](#Footnotes)] Some of the recent breakthroughs on small gaps between primes, edging towards that ever-elusive twin prime conjecture, have their basis in understanding how primes split up among these kinds of residue classes.
+This isn’t just antiquated technology. Understanding the distribution of primes in residue classes like this continues to be relevant in modern research, too.[^(2)] Some of the recent breakthroughs on small gaps between primes, edging towards that ever-elusive twin prime conjecture, have their basis in understanding how primes split up among these kinds of residue classes.
 
 <Figure image="quad_histogram.png" video="quad_histogram.mp4" />
 
@@ -295,12 +303,7 @@ There’s a great Numberphile video some of you may have seen entitled [prime sp
 What you find in the zoomed out pattern is a bias towards certain stripes. In our example, the spirals and rays corresponded to certain linear functions, things like 44x + 1, or 710x + 13, where you plug in some integer for x. The Ulam Spiral pattern highlighted in the Numberphile video is showing something one step more complicated, which is how certain quadratic functions seem to have more primes than others.
 There’s an analog to Dirichlet’s theorem, known as the Chebotarev density theorem, laying out exactly how dense you expect primes to be in certain polynomial patterns like these. Again, the details are a bit too technical for the scope here. The point, though, is that not only do primes have plenty of patterns within them, but mathematicians also understand many of those patterns quite well, despite the reputation primes have of being impenetrably complicated.
 
-# Footnotes
+## Footnotes
 
-[1] $\pi$ is a little unusual in this respect. If you take other famous irrational numbers, like $e$, $\phi$, or $\sqrt2$, and try to approximate them with a fraction whose denominator doesn’t get too large, say no bigger than 200, you wouldn’t be able to get anywhere near this accuracy. Of course, any irrational number can be approximated arbitrarily well with fractions, it’s just that usually you need a rather complicated fraction, in the sense of having a high denominator, to get good accuracy.
-
-As a quick sidenote, for those of you in the know, this is because of a large number that shows up in the continued fraction of $pi$. If you don’t know what that means, don’t worry about it! [↩](#Ingredients-for-a-Spiral-PI)
-
-[2] Goldston, Pintz, Yildirim. [Primes in Tuples 1](https://arxiv.org/pdf/math/0508185.pdf).
-
-​      Zhang. [Bounded gaps between primes](https://annals.math.princeton.edu/wp-content/uploads/Yitang_Zhang.pdf). [↩](#Dirichlet-s-Theorem)
+[^(1)]: $\pi$ is a little unusual in this respect. If you take other famous irrational numbers, like $e$, $\phi$, or $\sqrt2$, and try to approximate them with a fraction whose denominator doesn’t get too large, say no bigger than 200, you wouldn’t be able to get anywhere near this accuracy. Of course, any irrational number can be approximated arbitrarily well with fractions, it’s just that usually you need a rather complicated fraction, in the sense of having a high denominator, to get good accuracy. As a quick sidenote, for those of you in the know, this is because of a large number that shows up in the continued fraction of $pi$. If you don’t know what that means, don’t worry about it! 
+[^(2)]: Goldston, Pintz, Yildirim. [Primes in Tuples 1](https://arxiv.org/pdf/math/0508185.pdf). Zhang. [Bounded gaps between primes](https://annals.math.princeton.edu/wp-content/uploads/Yitang_Zhang.pdf).
