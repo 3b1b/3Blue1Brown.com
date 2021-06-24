@@ -5,3 +5,5 @@ Reviewer Notes:
 - Plan to split lesson into two parts: 1) Derivatives of Monomial Terms and 2) Derivatives of Trig. Functions
 - For the derivative of 1/x, the answer is left out of the video to encourage the viewer to engage with the content. For the article, should the solution be included in an accordion?
 - Does isometric projection for cube read OK?
+- Is providing two geometric explanations for the derivative of f(x) = 3x^2 too much? Maybe pick stronger of the two
+

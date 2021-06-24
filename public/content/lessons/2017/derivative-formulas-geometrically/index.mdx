@@ -1,6 +1,6 @@
 ---
 title: Derivative formulas through geometry
-description: Introduction to the derivatives of polynomial terms and trigonometric functions thought about geometrically and intuitively.  The goal is for these formulas to feel like something the student could have discovered, rather than something to be memorized.
+description: Introduction to the derivatives of polynomial terms and trigonometric functions thought about geometrically and intuitively. The goal is for these formulas to feel like something the student could have discovered, rather than something to be memorized.
 date: 2017-04-30
 video: S0_qX4VJhMQ
 source: _2017/eoc/chapter3.py
@@ -22,20 +22,13 @@ So in this chapter and the next, the aim is to show how you can think about a fe
 
 ### Derivative of $f(x) = x^2$
 
-Let’s start with a function like $f(x) = x^2$. What is its derivative? That is to say, if you look at some value of $x$, like $x = 2$, and compare it to a value slightly bigger, just $dx$ bigger, what’s that corresponding change in the value of the function, $df$? And in particular, what is $df$ divided by $dx$? The *rate* at which this function changes per unit change in $x$?
+Let’s start with a function like $f(x) = x^2$. What is its derivative? That is to say, if you look at some value of $x$, like $x = 2$, and compare it to a value slightly bigger, just $dx$ bigger, what’s that corresponding change in the value of the function, $df$? 
 
 <Figure
-  image="figures/2.08.svg" 
+  image="figures/2.08-alt.svg" 
 />
 
-As a first step for intuition, we know you can think of the ratio $\frac{df}{dx}$ as the slope of a tangent line to the graph of $x^2$. From that we can see that the slope generally increases as $x$ increases. At $0$, the tangent line is flat, so the slope is $0$. At $x = 1$, it’s something steeper, at $x=2$, it’s steeper still.
-
-
-<Figure
-  image="figures/2.08-detail.svg" 
-  caption="The tangent line at $x=2$ for $f(x)=x^2$"
-/>
-
+And in particular, what is $df$ divided by $dx$? The *rate* at which this function changes per unit change in $x$? As a first step for intuition, we know you can think of the ratio $\frac{df}{dx}$ as the slope of a tangent line to the graph of $x^2$. From that we can see that the slope generally increases as $x$ increases. At $0$, the tangent line is flat, so the slope is $0$. At $x = 1$, it’s something steeper, at $x=2$, it’s steeper still.
 
 But looking at graphs isn’t generally the best way to understand the *precise* formula for a derivative. For that, it’s best to take a more literal look at what $x^2$ actually means. In this case, let’s picture a square whose side length is $x$.
 
@@ -50,7 +43,19 @@ If you increase $x$ by a tiny nudge $dx$, what is the resulting change to the ar
 />
 
 There’s three new bits of area in this diagram, two thin rectangles, and a miniscule square.
-The two thin rectangles have side lengths $x$ and $dx$, so they account for $2 \cdot x \cdot dx$ units of new area. For example, if $x$ was $3$, and $dx$ was $0.01$, the new area from these thin rectangles would be $2 \cdot 3 \cdot 0.01$, which is $0.06$; About $6$ times the size of $dx$.
+The two thin rectangles have side lengths $x$ and $dx$, so they account for $2 \cdot x \cdot dx$ units of new area. For example, if $x$ was $3$ and $dx$ was $0.01$, the new area from these thin rectangles would be $2 \cdot 3 \cdot 0.01$, which is $0.06$; About $6$ times the size of $dx$.
+
+<Question
+  question="For example, if $x=2$ and $dx$ was $0.01$, approximately how much bigger would the new area be relative to the size of $dx$?"
+  choice1="6"
+  choice2="2"
+  choice3="4"
+  choice4="3"
+  answer={3}
+  explanation="If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2 \cdot 0.01$ plus the small area of $dx^2$ which is about $4$ times the size of $dx$."
+/>
+
+<!-- TODO: check answer against graph once Question children is implemented -->
 
 That little square has area $dx^2$, but you should think of this as being *really* tiny; negligibly tiny. For example, if $dx$ was $0.01$, it would be $0.0001$. I’m drawing $dx$ with a fair bit of width here, so we can see it, but always remember in principle $dx$ should be thought of as a truly tiny amount.
 
@@ -108,7 +113,8 @@ So the derivative of $x^3$, the rate at which $x^3$ changes per unit of change i
 
 <Figure
   image="figures/6.46.svg"
-  video="figures/6.22-6.46.mp4" 
+  video="figures/6.22-6.46.mp4"
+  show="video" 
 />
 
 Graphical intuition with slope can tell us why this derivative is high on the left, $0$ at the origin, and high on the right, but just thinking in terms of graphs would not land us on the precise quantity $3x^2$. For that, we had to take a much more direct look at the actual meaning of the function.
@@ -119,7 +125,7 @@ Graphical intuition with slope can tell us why this derivative is high on the le
 
 In practice, you wouldn’t necessarily think of the square every time you’re taking a derivative of $x^2$, nor would you necessarily think of the cube when taking a derivative of $x^3$. Instead, thinking like a mathematician, can we generalize this approach to see if a pattern emerges? And maybe, if we are lucky, we invent a tool that we can use to find the derivative of any old polynomial.
 
-Let's look at the pattern the first three monomial functions form, where I've included the monomial of degree one for completeness. So far, each of these monomial functions has had a nice geometric meaning. Nudging the input $x$ by a small amount $dx$ has allowed us to see how the geometry changes and find the deriative. <!-- TODO: link to footnote that is a portal into radius of convergence --> 
+Let's look at the pattern of the first three monomial functions, where I've included the monomial of degree one for completeness. So far, each of these monomial functions has had a nice geometric meaning. Nudging the input $x$ by a small amount $dx$ has allowed us to see how the geometry changes and find the deriative. <!-- TODO: link to footnote that is a portal into radius of convergence --> 
 
 <Figure
   image="figures/8.11-9.35-base-cases.svg"
@@ -143,7 +149,7 @@ However, from a geometric perspective, we have hit a roadblock. How do we visual
 
 <!-- TODO: link to binomial expansion -->
 
-Focusing on the rate in change introduced by the very small nudge and ignoring expressions containing $dx^2$, the pattern that emerges is what's known in the business as the "power rule". Given a monomial function raised to some power, $n$, applying the rule gives us the derivative of the function.
+Focusing on the rate in change introduced by the very small nudge, highlighted in red, and ignoring expressions containing $dx^2$, the pattern that emerges is what's known in the business as the "power rule". Given a monomial function raised to some power, $n$, applying the rule gives us the derivative of the function.
 
 <Figure
   image="figures/7.32.svg" 
@@ -164,22 +170,18 @@ In practice, we all quickly get jaded and just think symbolically about this exp
 
 <Accordion title="Geometry interpretation for derivative of $f(x)= 3x^2$">
 
-This question can be modeled as a question of change in area. For example, nudging the input of the function by $dx$ gives the expression $3(x+d x)^{2}$
+This question can be modeled and solved as a question of change in area. For example, nudging the input of the function by $dx$ gives the expression $3(x+d x)^{2}$ which expands to the expression $3(x + dx)( x + dx)$. I've drawn the area below where the $3$ scales one of the sides.
 
 <Figure
   image="figures/power-rule-example.svg" 
-  caption="Power Rule Example"
+  caption="Derivative of $f(x) = 3x^{2}$ modeled as area"
 />
 
-</Accordion>
-
-<Accordion title="Algebraic interpretation of $f(x)= 3x^2$">
-
-This question can be modeled as a question of change in area
+Alternatively, the question can be modeled as volume, where instead of scaling one of the sides, the $3$ extends the geometry into another dimension.
 
 <Figure
-  image="figures/power-rule-example.svg" 
-  caption="Power Rule Example"
+  image="figures/3x^2-volume-model.svg" 
+  caption="Derivative of $f(x) = 3x^{2}$ modeled as volume"
 />
 
 </Accordion>
@@ -223,13 +225,27 @@ $$
 
 ## Comprehensive Questions
 
+Here are a couple questions that made to test your knowledge of derivatives and the past chapters.
+
 ### Derivative of $f(x) = \sqrt{x}$
 
-Another fun challenge, for those of you who enjoy playing around like this, is to see if you can reason your way through the derivative of $\sqrt{x}$, which can also be written as $x^{\frac{1}{2}}$.
+Modeling the derivatives geometrically can be applied to many different types of functions. For example, see if you can reason your way through the derivative of $f(x) = \sqrt{x}$ which also can be written as $x^{\frac{1}{2}}$. Now, one way to find the derivative of this function is to recognize that it fits the mold of the power rule.
 
 <Figure
   image="figures/12.34.svg" 
 />
+
+<Question
+  question="What is the derivative of the function $f(x) = \sqrt{x}$?"
+  choice1="1"
+  choice2="1"
+  choice3="1"
+  choice4="1"
+  answer={1}
+  explanation="TODO"
+/>
+
+<!-- TODO -->
 
 ### Volume of Sphere
 
@@ -267,20 +283,28 @@ Let’s tackle one more type of function: Trigonometric functions. In particular
 For a given value of theta, like $0.8$, you’d imagine walking around the circle, starting from the rightmost point, until you’ve traversed that distance $0.8$ in arc length. This is the same thing as saying that this angle here is exactly $0.8$ radians, since the circle has radius $1$. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
 
 <Figure
-  image="figures/13.16.png" 
+  image="figures/13.16.svg"
+  video="figures/12.51-13.16.mp4"
 />
 
-As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern. Now, just from looking at this graph, we can get a feel from the shape of the derivative function.
+As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern.
 
 <Figure
   image="figures/13.44.svg" 
+  video="figures/13.22-13.38.mp4"
 />
 
-The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
+Now, just from looking at this graph, we can get a feel from the shape of the derivative function. The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
+
+<Figure
+  image="figures/13.44-cosine.svg"
+  video="figures/13.40-14.30.mp4"
+  show="video"
+/>
 
 But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. Well, as with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than just at the graph of the function.
 
-So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observered by zooming in on the point where you are onthe circle.
+So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observered by zooming in on the point where you are on the circle.
 
 <Figure
   image="figures/15.57.svg" 
@@ -288,13 +312,13 @@ So think back to the walk around the unit circle, having traversed an arc length
 
 Well, zoomed in close enough the circle basically looks like a straight line in this neighborhood, so let’s go ahead and think of this right here as a right triangle, where the hypotenuse represents that nudge of $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
 
-Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle is precisely equal to $\theta$ radians. 
-
 <Figure
   image="figures/16.00.svg" 
 />
 
-Now, think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the value of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little angle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
+Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle is precisely equal to $\theta$ radians. 
+
+Think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the output of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little right-triangle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
 
 <Figure
   image="figures/16.01.svg" 
