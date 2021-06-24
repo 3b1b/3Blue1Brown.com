@@ -1,5 +1,11 @@
 $width: 600px;
 
+.receivedFormThanks {
+  background: $green-200;
+  padding: 16px 24px;
+  text-align: left;
+}
+
 .form {
   text-align: left;
   max-width: $width;

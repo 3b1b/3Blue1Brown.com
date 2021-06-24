@@ -9,6 +9,7 @@ in order to function. (So it *cannot* be lazy-loaded everywhere it's used.)
 */
 
 import { createContext, useContext, useRef } from "react";
+import { useRouter } from "next/router";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
@@ -123,6 +124,34 @@ export function ContactForm() {
   );
 }
 
+export function ContactFormReceivedMessage() {
+  const router = useRouter();
+
+  switch (router.query.received) {
+    case "contact-licensing":
+    case "contact-speaking":
+      return (
+        <div className={styles.receivedFormThanks}>
+          <strong>Thank you for your submission!</strong>
+          <div>We will try to get back to you shortly.</div>
+        </div>
+      );
+    case "contact-thanks":
+    case "contact-general":
+      return (
+        <div className={styles.receivedFormThanks}>
+          <strong>Thank you for your submission!</strong>
+          <div>
+            We read every message, but can't respond personally to all of them.
+            We hope you understand.
+          </div>
+        </div>
+      );
+    default:
+      return null;
+  }
+}
+
 function Form({ name, children }) {
   const hiddenSubmitRef = useRef();
 
@@ -140,7 +169,12 @@ function Form({ name, children }) {
 
   return (
     <div className={styles.form}>
-      <form method="POST" data-netlify="true" name={name}>
+      <form
+        method="POST"
+        action={`/contact?received=${name}`}
+        data-netlify="true"
+        name={name}
+      >
         <input type="hidden" name="form-name" value={name} />
 
         {children}

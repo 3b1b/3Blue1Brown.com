@@ -6,6 +6,7 @@ import {
   SpeakingForm,
   ThanksForm,
   ContactForm,
+  ContactFormReceivedMessage,
 } from "./ContactForms";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
@@ -30,6 +31,7 @@ const components = {
   Center,
   Clickable,
   ContactForm,
+  ContactFormReceivedMessage,
   FeatureCard,
   Figure,
   GoogleSearch,
