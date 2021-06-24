@@ -1,3 +1,15 @@
+/*
+
+Note: As of June 23, 2021, this component is not being used, so elements
+with data-fade will not fade in as expected. To re-enable this behavior,
+import the component and use it in NormalLayout.js.
+
+If you are living far in the future and nobody is using this component,
+consider deleting it. (I'm preserving it for now in case we want it
+again in the near future.)
+
+*/
+
 import { useEffect } from "react";
 
 // options

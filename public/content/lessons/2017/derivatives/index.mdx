@@ -2,6 +2,7 @@
 title: The paradox of the derivative
 description: An introduction to what a derivative is, and how it formalizes an otherwise paradoxical idea.
 date: 2017-04-29
+chapter: 2
 video: 9vKqVkMQHKk
 source: _2017/eoc/chapter2.py
 credits:
@@ -224,8 +225,9 @@ Well, as $dt$ approaches $0$, and those two points approach each other, the slop
   choice3="The car is upside down."
   choice4="There is a hole in the road."
   answer={2}
-  explanation="A negative tangent line means that the slope is negative and the car is going backwards."
-/>
+>
+  A negative tangent line means that the slope is negative and the car is going backwards.
+</Question>
 
 Notice what I’m not saying: I’m *not* saying that the derivative is whatever happens when $dt$ is infinitely small, whatever that may mean, nor am I saying that you plug in $0$ for $dt$. Following what is a general theme in calculus, the idea is a two step process where you first consider a finitely small change, some actual number like $0.0001$, and then you ask what your answer approaches as this number approaches $0$.
 
@@ -303,8 +305,11 @@ That’s beautiful. This derivative is a quite complicated idea:  We’ve got ti
   choice3="$3 \frac{m}{s}$"
   choice4="$9 \frac{m}{s}$"
   answer={3}
-  explanation="The velocity of the car is calculated by substiting $t=1$ into the derivative function $\frac{d s}{d t}(1)=3(1)^{2} = 3$."
-/>
+>
+
+The velocity of the car is calculated by substiting $t=1$ into the derivative function $\frac{d s}{d t}(1)=3(1)^{2} = 3$.
+
+</Question>
 
 In practice, you would not go through all that algebra each time. Knowing that the derivative $t^3$ is $3t^2$ is one of those things all calculus students learn to do immediately without 
 rederiving each time, as quickly and automatically as you know a simple algebra rule, like $x(y + z) = xy + xz$. In the next chapter, we’ll see methods for thinking about this and many other derivative formulas in nice geometric ways.

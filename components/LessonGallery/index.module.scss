@@ -23,12 +23,19 @@
       opacity: 1;
     }
   }
+}
 
-  img {
-    $width: 300px;
-    width: $width;
-    height: math.div($width * 9, 16);
-  }
+.image {
+  $width: 300px;
+  width: $width;
+  height: math.div($width * 9, 16);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: $medium;
 
   i {
     position: relative;
@@ -38,20 +45,8 @@
     opacity: 0;
     transition: opacity $fast;
   }
-
-  span {
-    margin-top: 10px;
-  }
-
-  span:nth-of-type(1) {
-    font-weight: $medium;
-  }
 }
 
-.text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: -5px;
+.description {
+  margin-top: 15px;
 }

@@ -16,8 +16,12 @@
   background: $gray-200;
   color: $black;
 
-  &:hover {
+  &:enabled:hover {
     background: $light-blue-100;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 
   &[data-icon="true"][data-text="false"] {

@@ -88,14 +88,19 @@ const TopicCard = ({ topic, opened, onClick }) => {
         className={styles.topic_card}
         onClick={onClick}
         data-open={opened}
-        data-fade
+        // data-fade
       >
-        <img src={`images/topics/${toDashCase(topic.name)}.jpg`} />
-        <span className={styles.text}>
+        <img
+          className={styles.image}
+          src={`images/topics/${toDashCase(topic.name)}.jpg`}
+        />
+        <span className={styles.title}>
           {topic.name}
           <i className={`fas fa-caret-${opened ? "up" : "down"} fa-lg`} />
         </span>
-        {opened && topic.description && <span>{topic.description}</span>}
+        {opened && topic.description && (
+          <span className={styles.description}>{topic.description}</span>
+        )}
       </button>
       {opened &&
         topic.lessons.map((lesson, index) => (
