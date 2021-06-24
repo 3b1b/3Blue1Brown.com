@@ -56,18 +56,25 @@ const LessonCard = ({
         {description && !mini && (
           <span className={styles.description}>{description}</span>
         )}
-        {(chapter || !empty || date) && !mini && (
+        {(chapter !== undefined || !!video || !empty || date) && !mini && (
           <span>
-            {chapter && (
+            {chapter !== undefined && (
               <Chip
                 text={(mini ? "Ch" : "Chapter") + " " + chapter}
                 mini={mini}
                 tooltip={`In topic "${topic}"`}
               />
             )}
+            {!!video && (
+              <Chip
+                icon="fab fa-youtube"
+                mini={mini}
+                tooltip="This lesson has a video version"
+              />
+            )}
             {!empty && (
               <Chip
-                icon="fas fa-pencil-alt"
+                icon="far fa-newspaper"
                 mini={mini}
                 tooltip="This lesson has a text version"
               />
