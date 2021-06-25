@@ -8,7 +8,7 @@ $phone: 500px;
   &:nth-child(odd) {
     background: $gray-50;
   }
-  
+
   &:nth-child(even) {
     background: $white;
   }
@@ -30,4 +30,8 @@ $phone: 500px;
   @media (max-width: $phone) {
     padding: 20px;
   }
+}
+
+.section[data-width="narrow"] > .wrapper {
+  max-width: $page-narrow;
 }

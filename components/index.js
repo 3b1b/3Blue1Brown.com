@@ -1,6 +1,13 @@
 import Accordion from "./Accordion";
 import Center from "./Center";
 import Clickable from "./Clickable";
+import {
+  LicensingForm,
+  SpeakingForm,
+  ThanksForm,
+  ContactForm,
+  ContactFormReceivedMessage,
+} from "./ContactForms";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
@@ -23,6 +30,8 @@ const components = {
   Accordion,
   Center,
   Clickable,
+  ContactForm,
+  ContactFormReceivedMessage,
   FeatureCard,
   Figure,
   GoogleSearch,
@@ -30,12 +39,15 @@ const components = {
   LessonCard,
   LessonGallery,
   LessonLink,
+  LicensingForm,
   Patrons,
   PiCreature,
   Portrait,
   Question,
   Section,
+  SpeakingForm,
   Spoiler,
+  ThanksForm,
   Tooltip,
   Twitter,
   Video,

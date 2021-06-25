@@ -11,7 +11,9 @@ const PageContent = () => {
   // if markdown file doesn't start with section, wrap with section
   // allows authors to not include any sections and get their mdx auto-wrapped
   let Wrapper = Fragment;
-  if (!content.trim().startsWith("<Section")) Wrapper = Section;
+  if (!content.trim().startsWith("<Section")) {
+    Wrapper = ({ children }) => <Section width="narrow">{children}</Section>;
+  }
 
   if (!source) return null;
   return (

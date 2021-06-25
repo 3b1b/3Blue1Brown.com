@@ -12,16 +12,25 @@
 }
 
 @media (min-width: $page) {
-  .portrait[data-flip="false"] {
+  .portrait[data-sectionWidth="normal"][data-flip="false"] {
     margin-right: 40px;
     float: left;
   }
 
-  .portrait[data-flip="true"] {
+  .portrait[data-sectionWidth="normal"][data-flip="true"] {
     margin-left: 40px;
     float: right;
   }
 }
 
-@media (max-width: $page) {
+@media (min-width: $page-narrow) {
+  .portrait[data-sectionWidth="narrow"][data-flip="false"] {
+    margin-right: 40px;
+    float: left;
+  }
+
+  .portrait[data-sectionWidth="narrow"][data-flip="true"] {
+    margin-left: 40px;
+    float: right;
+  }
 }

@@ -4,6 +4,7 @@ import Clickable from "../Clickable";
 import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
+import { useSectionWidth } from "../Section";
 
 // change provided srcs (png & mp4) to external bucket location for production.
 const transformSrc = (src, dir) => {
@@ -22,8 +23,8 @@ const transformSrc = (src, dir) => {
 
 // return dimensions to display image/video at, based on intrinsic dimensions
 // https://www.desmos.com/calculator/baf0zz662q
-const autoSize = ({ width, height }) => {
-  const page = 960; // page column width. keep synced with $page in sass
+const autoSize = ({ width, height }, sectionWidth) => {
+  const page = sectionWidth === "narrow" ? 780 : 1100; // page column width. keep synced with $page in sass
   const ratio = 4; // width to height ratio at which image width matches page column width
 
   return {
@@ -59,12 +60,14 @@ const Figure = ({
   // page front matter
   const { dir } = useContext(PageContext);
 
+  const sectionWidth = useSectionWidth();
+
   // determine frame dimensions
   let frame = {};
   if (manualWidth) frame = { width: manualWidth };
   else if (manualHeight) frame = { maxHeight: manualHeight };
-  else if (show === "image") frame = autoSize(image);
-  else if (show === "video") frame = autoSize(video);
+  else if (show === "image") frame = autoSize(image, sectionWidth);
+  else if (show === "video") frame = autoSize(video, sectionWidth);
 
   // determine controls dimensions
   let controls = { width: frame.width };
