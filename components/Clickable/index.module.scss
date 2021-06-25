@@ -16,7 +16,7 @@
   background: $gray-200;
   color: $black;
 
-  &:enabled:hover {
+  &:not(:disabled):hover {
     background: $light-blue-100;
   }
 
