@@ -44,10 +44,10 @@ If you increase $x$ by a tiny nudge $dx$, what is the resulting change to the ar
 />
 
 There’s three new bits of area in this diagram, two thin rectangles, and a miniscule square.
-The two thin rectangles have side lengths $x$ and $dx$, so they account for $2 \cdot x \cdot dx$ units of new area. For example, if $x$ was $3$ and $dx$ was $0.01$, the new area from these thin rectangles would be $2 \cdot 3 \cdot 0.01$, which is $0.06$; About $6$ times the size of $dx$.
+The two thin rectangles have side lengths $x$ and $dx$, so together they account for $2 \cdot x \cdot dx$ units of new area. For example, if $x$ was $3$ and $dx$ was $0.01$, the new area from these thin rectangles would be $2 \cdot 3 \cdot 0.01$, which is $0.06$; About $6$ times the size of $dx$.
 
 <Question
-  question="For example, if $x=2$ and $dx$ was $0.01$, approximately how much bigger would the new area be relative to the size of $dx$?"
+  question="If $x=2$ and $dx$ was $0.01$, approximately how much bigger would the new area be relative to the size of $dx$?"
   choice1="6"
   choice2="2"
   choice3="4"
@@ -55,9 +55,11 @@ The two thin rectangles have side lengths $x$ and $dx$, so they account for $2 \
   answer={3}
 >
 
-If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2 \cdot 0.01$ plus the small area of $dx^2$ which is about $4$ times the size of $dx$.
+If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2 \cdot 0.01$; About $4$ times the size of $dx$. We can check this answer by looking at the slope of the tangent line at $x=2$ on the plot of $f(x)=x^2$. Eyeballing the graph a slope, or rise over run, of about $4$ looks right.
 
-<!-- TODO: check answer against graph once Question children is implemented -->
+<Figure
+  image="figures/2.08-alt.svg" 
+/>
 
 </Question>
 
@@ -101,7 +103,7 @@ When you increase $x$ by a tiny nudge, $dx$, the volume increases as shown in th
 
 <Figure
   image="figures/5.05-5.10.svg" 
-  caption="The length of $dx$ is illustrated as rather large in this figure, remember that we are interested in what happens as $dx$ approaches $0$."
+  caption="Remember that we are interested in what happens as $dx$ approaches $0$. The length of $dx$ is illustrated so big to demonstrate the change in volume it introduces."
 />
 
 This figure shows the increase in volume of a cube when its side length $x$ is increased by a small nudge $dx$. It’s nice to think of this new volume broken up into multiple components, but almost all of it comes from the three square faces; Or, said a little more precisely, as $dx$ approaches $0$, those three squares comprise a portion closer and closer to 100% of the new volume.
@@ -138,10 +140,9 @@ Let's look at the pattern of the first three monomial functions, where I've incl
 
 <Figure
   image="figures/8.11-9.35-base-cases.svg"
-  caption="Expressions that contain $dx^2$ we are able to ignore, because we are interested in the rate of change of the functions geometry as $dx$ approach 0."
 />
 
-However, from a geometric perspective, we have hit a roadblock. How do we visualize four dimensions? One path forward is to continue with algebra, using our geometric intuition to inform the base cases. For example, we can expand higher degree monomial expressions, using the rules of algebra, where the input $x$ have been nudged by a small amount $dx$. This gives us the following series of expressions.
+However, from a geometric perspective, we have hit a roadblock. How do we visualize four dimensions? One path forward is to continue with algebra, using our geometric intuition to inform the base cases. For example, we can expand higher degree monomial expressions, where the input $x$ have been nudged by a small amount $dx$. This gives us the following series of expressions.
 
 <!-- TODO: possibly expand $f(x) = x^4$ by hand ? -->
 
@@ -165,7 +166,7 @@ Focusing on the rate in change introduced by the very small nudge, highlighted i
   caption="Power Rule Definition"
 />
 
-In practice, we all quickly get jaded and just think symbolically about this exponent hopping down to the front, leaving behind one minus itself, rarely pausing to think about the geometric delights underlying these derivatives; they tend to fall in the middle of other much longer computations.
+Even though in practice you will find yourself performing this derivative quickly and symbolically, imagining that exponent hopping down to the front, every now and then it’s nice to step back and remember why this rule works. Not just because it’s pretty, and not just because it helps to remind us that math actually makes sense and isn’t just a pile of formulas to memorize, but because it flexes that very important muscle of thinking about derivatives in terms of tiny nudges.
 
 <Question
   question="What is the derivative of the function $f(x)= 3x^2$?"
@@ -183,12 +184,14 @@ This question can be modeled and solved as a question of change in area. For exa
   caption="Derivative of $f(x) = 3x^{2}$ modeled as area"
 />
 
-Alternatively, the question can be modeled as volume, where instead of scaling one of the sides, the $3$ extends the geometry into another dimension.
+Looking at the figure we can see the rate of the change of the function represented by the new area of $6$ thin rectangles with area $x \cdot dx$. Alternatively, the question can be modeled as volume, where instead of scaling one of the sides, the $3$ extends the geometry into another dimension.
 
 <Figure
   image="figures/3x^2-volume-model.svg" 
   caption="Derivative of $f(x) = 3x^{2}$ modeled as volume"
 />
+
+This gives us the equivalent derivative, as the new volume of the two rectangular prisms is equal to $3 \cdot x \cdot dx + 3 \cdot x \cdot dx = 6x$. As before, we are ignoring the smaller rectangular prism because its volume $3dx^2$ contains $dx^2$.
 
 </Question>
 
@@ -231,7 +234,7 @@ $$
 
 ## Comprehensive Questions
 
-Here are a couple questions that made to test your knowledge of derivatives and the past chapters.
+Here are a couple questions to test your knowledge of derivatives and the past chapters.
 
 ### Derivative of $f(x) = \sqrt{x}$
 
@@ -241,7 +244,7 @@ To start, try modeling function using geometry.
 
 <Figure
   image="figures/12.34.svg"
-  caption="Unlike in previous problems, $dx$ is not geometric length, but instead represents **area**."
+  caption="Unlike in previous problems, $dx$ does not represent geometric length, but instead represents **area**."
 />
 
 <Question
@@ -307,7 +310,7 @@ In the first chapter, we found a formula for the area of a circle using a small 
 />
 
 <Question
-  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere? **Note**, in the answers below $R$ represents the radius of the sphere."
+  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?"
   choice1="The area under the graph of $4\pi r^2 dr$ between $r=0$ and $r=R$"
   choice2="The area under the graph of $4\pi r^2$ between $r = 0$ and $r=R$"
   choice3="The area under the graph of $2\pi r dr$ between $r=0$ and $r=R$"
@@ -321,7 +324,7 @@ One way to imagine the volume of the sphere is to divide the sphere into a bunch
   image="figures/volume-of-sphere.svg"
 />
 
-Following the same process from lesson 1, we can model the volume as the area under the function of $4\pir^2$ from $0$ to the radius $R$.
+Following the same process from lesson 1, we can model the volume as the area under the function of $4 \pi r^2$ from $0$ to the radius $R$.
 
 </Question>
 
