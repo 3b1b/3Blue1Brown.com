@@ -9,7 +9,7 @@ credits:
 - Text Adaption by River Way
 ---
 
-# Why Do Prime Numbers Make These Spirals?
+## Why Do Prime Numbers Make These Spirals?
 
 I've had people ask me before why it is that mathematicians care so much about prime numbers. The role they play in math is similar to the role atoms play in chemistry. They're the fundamental building blocks of the integers, at least when multiplication is involved, and quite often solving some problem can be reduced to first solving it for primes. But honestly, a big part of why mathematicians care so much about primes is that they're hard to understand. Math is riddled with unsolved problems about primes, so for personality types who are drawn to difficult puzzles, prime numbers have a certain allure that's almost independent of the practical importance they have in math and related fields, like cryptography.
 
@@ -105,7 +105,7 @@ So in the lingo, each of these spiral arms corresponds to a residue class mod 6,
   choice2="$6k+1$"
   choice3="$6k+2$"
   choice4="$6k+3$"
-  choice5="$6k+5$"
+  choice5="$6k+4$"
   choice6="$6k+5$"
   answer={4} >
 
@@ -245,8 +245,7 @@ $$
 $$
 In case this is too clear for the reader, you might even see it buried in more notation, where this denominator and numerator are written with a special prime counting function, which, rather confusingly, has the name $\color{blue}\pi$; totally unrelated to the number $\pi$.
 
-<PiCreature emotion="angry" flip={true} text="We're running out of symbols!" />
-
+<PiCreature emotion="angry" text="We're running out of symbols!" />
 $$
 \lim_{x\to\infty}\left(\frac{\color{blue}\pi\color{black}(x;N,r)}{\color{blue}\pi\color{black}(x)}\right)=\frac1{\phi(N)}
 $$
@@ -294,6 +293,8 @@ Sure, you’ll get a much more concentrated dosage of important facts by going t
 
 <Figure image="3b1b_spiral.png" width="50%" />
 
+### A Challenging Exploration
+
 As a demonstration for what it is like to explore an arbitrary path of mathematics, let's extend this problem into 3 dimensions. Spherical coordinates is a method of plotting a point in 3D space using the distance to the origin, the angle from the $X$ axis, and the angle from the $Z$ axis. We can condense this formula into:
 $$
 \begin{bmatrix}x\\y\\z\end{bmatrix}
@@ -303,18 +304,18 @@ If we take the first few thousand prime numbers and plot them as $(p, p, p)$ in 
 
 <Interactive filename="spherical_plot_interactive/index" />
 
-The spiral galaxy we saw on the 2D plane is still visible, but now it looks like some type of infinity spiral where the arms of the galaxy are weaving in and out of each other. The $11\text{th}$ and $33\text{rd}$ classes are still missing on either side of t The above image is actually an interactive applet, go ahead and click and drag on it to move it around. Scroll with your mouse wheel to zoom in and out. The axes at the origin are 300 units long, which gives a good idea just how far we need to zoom out to see the $20$ residue classes.
+The spiral galaxy we saw on the 2D plane is still visible, but now it looks like some type of infinity spiral where the arms of the galaxy are weaving in and out of each other. The $11\text{th}$ and $33\text{rd}$ classes are still missing on either side of the center. The above image is actually an interactive applet, go ahead and click and drag on it to move it around.
 
-The 2D plot gave us question like "why are there spirals?" and "why are some arms missing for primes?" The 3D plot gives us another question "why do the spirals go into an infinity pattern?" And just like the first two questions, this one is also unrelated to either of the previous questions. As you continue your journey into mathematics, keep in mind that sometimes a puzzle should be broken down into simpler components which are easier to deal with individually.
+The 2D plot gave us question like "why are there spirals?" and "why are some arms missing for primes?" The 3D plot gives us another question "why do the spirals go into an infinity pattern?" And just like the first two questions, this one is also unrelated to either of the previous questions. Take a moment to try and explain why this shape appears in spherical coordinates. I recommend to explore this new prompt with the math community in the comments below, what important topics arise from looking at this arbitrary choice? As you continue your journey into mathematics, keep in mind that sometimes a puzzle should be broken down into simpler components which are easier to deal with individually.
 
 ## Relation to Ulam Spirals
 
 There’s a great Numberphile video some of you may have seen entitled [prime spirals](https://www.youtube.com/watch?v=iFuR97YcSLM), in which James Grimes describes a similar, but distinct, pattern with primes. If you haven’t seen it, I’d recommend taking a look. The idea is to write out all numbers in a grid, starting from the center, and spiraling out while circling all the primes. The pattern you get is called an “Ulam Spiral,” named after Stanislaw Ulam who first noticed this while doodling during a boring meeting.
 
-What you find in the zoomed out pattern is a bias towards certain stripes. In our example, the spirals and rays corresponded to certain linear functions, things like 44x + 1, or 710x + 13, where you plug in some integer for x. The Ulam Spiral pattern highlighted in the Numberphile video is showing something one step more complicated, which is how certain quadratic functions seem to have more primes than others.
+What you find in the zoomed out pattern is a bias towards certain stripes. In our example, the spirals and rays corresponded to certain linear functions, things like $44x + 1$, or $710x + 13$, where you plug in some integer for $x$. The Ulam Spiral pattern highlighted in the Numberphile video is showing something one step more complicated, which is how certain quadratic functions seem to have more primes than others.
 There’s an analog to Dirichlet’s theorem, known as the Chebotarev density theorem, laying out exactly how dense you expect primes to be in certain polynomial patterns like these. Again, the details are a bit too technical for the scope here. The point, though, is that not only do primes have plenty of patterns within them, but mathematicians also understand many of those patterns quite well, despite the reputation primes have of being impenetrably complicated.
 
 ## Footnotes
 
-[^(1)]: $\pi$ is a little unusual in this respect. If you take other famous irrational numbers, like $e$, $\phi$, or $\sqrt2$, and try to approximate them with a fraction whose denominator doesn’t get too large, say no bigger than 200, you wouldn’t be able to get anywhere near this accuracy. Of course, any irrational number can be approximated arbitrarily well with fractions, it’s just that usually you need a rather complicated fraction, in the sense of having a high denominator, to get good accuracy. As a quick sidenote, for those of you in the know, this is because of a large number that shows up in the continued fraction of $pi$. If you don’t know what that means, don’t worry about it! 
+[^(1)]: $\pi$ is a little unusual in this respect. If you take other famous irrational numbers, like $e$, $\phi$, or $\sqrt2$, and try to approximate them with a fraction whose denominator doesn’t get too large, say no bigger than 200, you wouldn’t be able to get anywhere near this accuracy. Of course, any irrational number can be approximated arbitrarily well with fractions, it’s just that usually you need a rather complicated fraction, in the sense of having a high denominator, to get good accuracy. As a quick sidenote, for those of you in the know, this is because of a large number that shows up in the continued fraction of $\pi$. If you don’t know what that means, don’t worry about it! 
 [^(2)]: Goldston, Pintz, Yildirim. [Primes in Tuples 1](https://arxiv.org/pdf/math/0508185.pdf). Zhang. [Bounded gaps between primes](https://annals.math.princeton.edu/wp-content/uploads/Yitang_Zhang.pdf).
