@@ -5,9 +5,16 @@
   padding: 20px;
   border-radius: 0;
   font-family: $sans;
-  font-weight: $medium;
   text-decoration: none;
   z-index: 1;
+
+  &[data-open="true"] {
+    width: 100%;
+
+    i {
+      opacity: 1;
+    }
+  }
 
   &:hover {
     background: $light-blue-100;
@@ -16,12 +23,19 @@
       opacity: 1;
     }
   }
+}
 
-  img {
-    $width: 300px;
-    width: $width;
-    height: $width * 9 / 16;
-  }
+.image {
+  $width: 300px;
+  width: $width;
+  height: math.div($width * 9, 16);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: $medium;
 
   i {
     position: relative;
@@ -31,20 +45,8 @@
     opacity: 0;
     transition: opacity $fast;
   }
-
-  &[data-open="true"] {
-    width: 100%;
-
-    i {
-      opacity: 1;
-    }
-  }
 }
 
-.text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: -5px;
+.description {
+  margin-top: 15px;
 }

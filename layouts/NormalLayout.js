@@ -3,21 +3,28 @@ import Header from "../components/Header";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import PageContent from "../components/PageContent";
+import Anchors from "../components/Anchors";
 import Glow from "../components/Glow";
-import Fade from "../components/Fade";
+// import Fade from "../components/Fade";
 
 // default, normal layout
 const Normal = ({ children }) => (
   <>
+    {/* hidden page meta data */}
     <Head />
+    {/* top of page */}
     <Header />
+    {/* singleton components */}
+    <Anchors />
+    <Glow />
+    {/* <Fade /> */}
+    {/* main content of page */}
     <Main>
       {!children && <PageContent />}
       {children}
     </Main>
+    {/* bottom of page */}
     <Footer />
-    <Glow />
-    <Fade />
   </>
 );
 

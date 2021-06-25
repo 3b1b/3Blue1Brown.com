@@ -9,10 +9,11 @@ const PageContent = () => {
   const { source, content } = useContext(PageContext);
 
   // if markdown file doesn't start with section, wrap with section
+  // allows authors to not include any sections and get their mdx auto-wrapped
   let Wrapper = Fragment;
   if (!content.trim().startsWith("<Section")) Wrapper = Section;
 
-  if (!source) return <></>;
+  if (!source) return null;
   return (
     <Wrapper>
       <MDXRemote {...source} components={components} />
