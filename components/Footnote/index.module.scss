@@ -56,11 +56,13 @@ $popupColor: $gray-300;
 }
 .popupContent::before {
   top: 0;
-  background: linear-gradient(to bottom, $popupColor, transparent);
+  // Weirdly, just using a gradient from color -> transparent doesn't work in Safari
+  // because of the way it interpolates between colors.
+  background: linear-gradient(to bottom, $popupColor, rgba($popupColor, 0));
 }
 .popupContent::after {
   bottom: 0;
-  background: linear-gradient(to bottom, transparent, $popupColor);
+  background: linear-gradient(to bottom, rgba($popupColor, 0), $popupColor);
 }
 
 $arrowSize: 10px;
