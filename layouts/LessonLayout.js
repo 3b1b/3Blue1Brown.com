@@ -19,11 +19,11 @@ const LessonLayout = () => {
   return (
     <NormalLayout>
       <Section dark={true}>
+        <LessonDetails />
         <Video id={video} />
       </Section>
 
-      <LessonDetails />
-      <LessonNav />
+      <LessonNav/>
 
       {!empty && (
         <>

@@ -9,7 +9,7 @@ import { PageContext } from "../../pages/_app";
 
 // details to show at the top of a lesson, with icons and text
 const LessonDetails = () => (
-  <Section>
+  <Section dark={true}>
     <Title />
     <div className={styles.lesson_details}>
       <Published />
@@ -29,7 +29,7 @@ const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
     <h1>
-      {chapter && <Chip text={`Chapter ${chapter}`} />}
+      {/*{chapter && <Chip text={`Chapter ${chapter}`} />}*/}
       {title}
     </h1>
   );
