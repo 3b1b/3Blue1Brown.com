@@ -56,11 +56,11 @@ $popupColor: $gray-300;
 }
 .popupContent::before {
   top: 0;
-  background: linear-gradient($popupColor, transparent);
+  background: linear-gradient(to bottom, $popupColor, transparent);
 }
 .popupContent::after {
   bottom: 0;
-  background: linear-gradient(transparent, $popupColor);
+  background: linear-gradient(to bottom, transparent, $popupColor);
 }
 
 $arrowSize: 10px;
