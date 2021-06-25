@@ -294,9 +294,18 @@ Sure, you’ll get a much more concentrated dosage of important facts by going t
 
 <Figure image="3b1b_spiral.png" width="50%" />
 
-Interactive:
+As a demonstration for what it is like to explore an arbitrary path of mathematics, let's extend this problem into 3 dimensions. Spherical coordinates is a method of plotting a point in 3D space using the distance to the origin, the angle from the $X$ axis, and the angle from the $Z$ axis. We can condense this formula into:
+$$
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+=\begin{bmatrix}p\cos(p)\sin(p)\\p\sin^2(p)\\p\cos(p)\end{bmatrix}
+$$
+If we take the first few thousand prime numbers and plot them as $(p, p, p)$ in spherical coordinates, what pattern emerges? 
 
-<Interactive filename="spherical_plot_interactive/index.js" />
+<Interactive filename="spherical_plot_interactive/index" />
+
+The spiral galaxy we saw on the 2D plane is still visible, but now it looks like some type of infinity spiral where the arms of the galaxy are weaving in and out of each other. The $11\text{th}$ and $33\text{rd}$ classes are still missing on either side of t The above image is actually an interactive applet, go ahead and click and drag on it to move it around. Scroll with your mouse wheel to zoom in and out. The axes at the origin are 300 units long, which gives a good idea just how far we need to zoom out to see the $20$ residue classes.
+
+The 2D plot gave us question like "why are there spirals?" and "why are some arms missing for primes?" The 3D plot gives us another question "why do the spirals go into an infinity pattern?" And just like the first two questions, this one is also unrelated to either of the previous questions. As you continue your journey into mathematics, keep in mind that sometimes a puzzle should be broken down into simpler components which are easier to deal with individually.
 
 ## Relation to Ulam Spirals
 
