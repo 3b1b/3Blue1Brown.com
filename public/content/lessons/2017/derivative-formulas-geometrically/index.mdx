@@ -1,5 +1,5 @@
 ---
-title: Derivative formulas through geometry
+title: Power Rule through geometry
 description: Introduction to the derivatives of polynomial terms and trigonometric functions thought about geometrically and intuitively. The goal is for these formulas to feel like something the student could have discovered, rather than something to be memorized.
 date: 2017-04-30
 chapter: 3
@@ -255,12 +255,46 @@ For the derivative, imagine nudging the input $x$ up by a value $dx$. How must t
   image="figures/11.41.svg" 
 />
 
-You should think of that $d(1/x)$ as being some tiny *negative* value, since it’s *decreasing* the height of this rectangle. And you know what? I’m gonna leave the last few steps here for you to pause and ponder. And once you work out $d(1/x)/dx$, compare it to what happens if you apply the power rule purely symbolically to $x^{-1}$.
+You should think of that $d(1/x)$ as being some tiny *negative* value, since it’s *decreasing* the height of this rectangle. And once you work out $d(1/x)/dx$, compare it to what happens if you apply the power rule purely symbolically to $x^{-1}$.
 
 $$
 \frac{d(1 / x)}{d x}= ? ? ?
 $$
 
+<Question
+  question="What is the derivative of the function $f(x) = \frac{1}{x}$?"
+  choice1="$\frac{1}{x^2}$"
+  choice2="$\frac{1}{2x}$"
+  choice3="$x^2$"
+  choice4="-$\frac{1}{x^2}$"
+  answer={4}
+>
+
+The small nudge $dx$ changes the width of the rectangle, but the the area must still be $1$, so the area gained must cancel out with the area lost. This gives us the expression below.
+
+$$
+dx \frac{1}{x} + x \cdot d \left( \frac{1}{x} \right) = 0
+$$
+
+Subtract $dx \frac{1}{x}$ from both sides.
+
+$$
+x \cdot d \left( \frac{1}{x} \right) = -dx \frac{1}{x} 
+$$
+
+Divide both sides by $x \cdot dx$ and simplify.
+
+$$
+\frac{ d \left( \frac{1}{x} \right)}{dx}  = - \frac{1}{x^2} 
+$$
+
+We can check our work using the power rule. The expression $\frac{1}{x}$ is the same as $x^{-1}$ and we can drop the $-1$ down in front and subracting one from the exponent, giving us the same answer.
+
+$$
+\frac{df}{dx} = -1 x^{-2}
+$$
+
+</Question>
 
 ## Exercises
 
@@ -337,33 +371,6 @@ It's always a good idea to check our work, and luckily we have derived such a to
 $$
 \frac{d\sqrt{x}}{dx}  = \frac{1}{2} x^{-\frac{1}{2}}
 $$
-
-</Question>
-
-### Volume of Sphere
-
-In the first chapter, we found a formula for the area of a circle using a small nudge to the radius of the circle. Importantly, we derived the formula by finding the area under a function. In future chapters, we will explore this idea much further and derivatives have a big role to play. For now, let's revisit the same idea using the geometry of a sphere.
-
-<Figure
-  image="figures/sphere.svg" 
-/>
-
-<Question
-  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?"
-  choice1="The area under the graph of $4\pi r^2 dr$ between $r=0$ and $r=R$"
-  choice2="The area under the graph of $4\pi r^2$ between $r = 0$ and $r=R$"
-  choice3="The area under the graph of $2\pi r dr$ between $r=0$ and $r=R$"
-  choice4="The area under the graph of $2\pi r$ between $r=0$ and $r=R$"
-  answer={2}
->
-
-One way to imagine the volume of the sphere is to divide the sphere into a bunch of shells, where the shell is defined by the small radius $r$, the thickness of the shell is equal to $dr$ and the surface area of the shell is equal to $4\pi r^2$.
-
-<Figure
-  image="figures/volume-of-sphere.svg"
-/>
-
-Following the same process from lesson 1, we can model the volume as the area under the function of $4 \pi r^2$ from $0$ to the radius $R$.
 
 </Question>
 
