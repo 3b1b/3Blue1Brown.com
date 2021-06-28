@@ -7,6 +7,7 @@
   display: inline-flex;
   flex-direction: column;
   padding: 20px;
+  padding-bottom: 0px;
   border-radius: 0;
   font-family: $sans;
   text-decoration: none;
@@ -28,6 +29,6 @@
 }
 
 .title {
-  margin-top: 10px;
+  margin: 14px 0px;
   font-weight: $medium;
 }
