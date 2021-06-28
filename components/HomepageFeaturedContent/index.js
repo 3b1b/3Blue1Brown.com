@@ -176,11 +176,11 @@ function Carousel({ children }) {
   return (
     <div className={styles.carousel} ref={carouselRef}>
       <button
-        className={styles.arrow}
+        className={styles.arrowLeft}
         aria-label="Previous"
         onClick={goToPrevious}
       >
-        <i className="fas fa-caret-left" />
+        <i className="fas fa-angle-left" />
       </button>
       <div
         className={styles.slides}
@@ -206,8 +206,12 @@ function Carousel({ children }) {
           );
         })}
       </div>
-      <button className={styles.arrow} aria-label="Next" onClick={goToNext}>
-        <i className="fas fa-caret-right" />
+      <button
+        className={styles.arrowRight}
+        aria-label="Next"
+        onClick={goToNext}
+      >
+        <i className="fas fa-angle-right" />
       </button>
     </div>
   );

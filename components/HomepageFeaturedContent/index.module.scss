@@ -93,9 +93,12 @@
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: auto;
+  grid-template-areas: "left slides right";
 }
 
 .slides {
+  grid-area: slides;
+
   display: flex;
   align-items: flex-start;
   overflow: hidden;
@@ -123,15 +126,39 @@
   visibility: visible;
 }
 
-.arrow {
+.arrowLeft {
+  grid-area: left;
+
+  color: white;
+  font-size: 48px;
+  width: 50px;
+}
+
+.arrowRight {
+  grid-area: right;
+
   color: white;
   font-size: 48px;
   width: 50px;
 }
 
 @media (max-width: 600px) {
-  .arrow {
-    width: 30px;
+  .carousel {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "slides slides"
+      "left right";
+    row-gap: 20px;
+  }
+
+  .arrowLeft {
+    place-self: center end;
+  }
+
+  .arrowRight {
+    place-self: center start;
   }
 }
 
