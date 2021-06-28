@@ -94,7 +94,7 @@ export function HomepageFeaturedVideo({
           controls={controls}
           width={width}
           height={height}
-          preload="none"
+          preload="metadata"
         >
           <source src={src} />
         </video>

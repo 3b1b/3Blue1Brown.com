@@ -59,7 +59,7 @@
     margin: 0 !important;
     padding: 8px 12px !important;
     min-width: unset !important;
-    min-height: unset !important;
+    min-height: 38px !important;
     background: transparent !important;
     color: white !important;
 
@@ -126,12 +126,12 @@
 .arrow {
   color: white;
   font-size: 48px;
-  padding: 20px;
+  width: 50px;
 }
 
 @media (max-width: 600px) {
   .arrow {
-    padding: 10px;
+    width: 30px;
   }
 }
 
