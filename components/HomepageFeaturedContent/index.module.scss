@@ -74,9 +74,14 @@
   margin: 0;
 }
 
+.itemFigure > *:not(.itemCaption) {
+  margin: 0 !important;
+}
+
 .itemCaption {
   text-align: left;
   color: $gray-300;
+  margin-top: 4px;
 
   a {
     text-decoration: none;
@@ -92,8 +97,11 @@
 
 .slides {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   overflow: hidden;
+
+  // Adjust gracefully when slides are different heights
+  transition: max-height 400ms ease-in-out;
 }
 
 .slide {
@@ -125,4 +133,9 @@
   .arrow {
     padding: 10px;
   }
+}
+
+.video {
+  width: 100%;
+  height: auto;
 }

@@ -13,6 +13,7 @@ import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
+  HomepageFeaturedVideo,
 } from "./HomepageFeaturedContent";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
@@ -40,6 +41,7 @@ const components = {
   GoogleSearch,
   HomepageFeaturedContent,
   HomepageFeaturedItem,
+  HomepageFeaturedVideo,
   Interactive,
   LessonCard,
   LessonGallery,
