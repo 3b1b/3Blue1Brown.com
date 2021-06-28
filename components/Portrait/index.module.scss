@@ -1,0 +1,36 @@
+.portrait {
+  margin: 0 auto 20px auto;
+  @include trim-v-margins;
+  border-radius: 999px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width: $page) {
+  .portrait[data-sectionWidth="normal"][data-flip="false"] {
+    margin-right: 40px;
+    float: left;
+  }
+
+  .portrait[data-sectionWidth="normal"][data-flip="true"] {
+    margin-left: 40px;
+    float: right;
+  }
+}
+
+@media (min-width: $page-narrow) {
+  .portrait[data-sectionWidth="narrow"][data-flip="false"] {
+    margin-right: 40px;
+    float: left;
+  }
+
+  .portrait[data-sectionWidth="narrow"][data-flip="true"] {
+    margin-left: 40px;
+    float: right;
+  }
+}

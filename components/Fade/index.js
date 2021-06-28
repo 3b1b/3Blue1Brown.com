@@ -1,3 +1,15 @@
+/*
+
+Note: As of June 23, 2021, this component is not being used, so elements
+with data-fade will not fade in as expected. To re-enable this behavior,
+import the component and use it in NormalLayout.js.
+
+If you are living far in the future and nobody is using this component,
+consider deleting it. (I'm preserving it for now in case we want it
+again in the near future.)
+
+*/
+
 import { useEffect } from "react";
 
 // options
@@ -5,14 +17,15 @@ const duration = 250; // transition duration
 const delay = 10; // delay before transition
 const offset = 100; // extra delay for items further to right of screen
 
-// singleton component to fade in any element with the data-fade attribute when it comes into view
+// singleton component to fade in any element with the data-fade attribute when
+// it comes into view
 const Fade = () => {
   useEffect(() => {
-    const observer = new MutationObserver(onMutation);
-    observer.observe(document.body, { childList: true, subtree: true });
+    const options = { childList: true, subtree: true };
+    new MutationObserver(onMutation).observe(document.body, options);
   }, []);
 
-  return <></>;
+  return null;
 };
 
 export default Fade;

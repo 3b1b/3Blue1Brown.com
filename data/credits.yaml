@@ -1,10 +1,12 @@
 - name: Grant Sanderson
   link: /about
-- name: Kurt Bruns
-  link: https://kurtbruns.github.io/
-- name: Josh Pullen
-  link: https://www.joshuapullen.com/
 - name: James Schloss
-  link: https://github.com/leios
+  link: /about#james-schloss
+- name: Josh Pullen
+  link: /about#josh-pullen
 - name: River Way
-  link: https://riverway.li/
+  link: /about#river-way
+- name: Kurt Bruns
+  link: /about#kurt-bruns
+- name: Vivek Verma
+  link: /about#vivek-verma

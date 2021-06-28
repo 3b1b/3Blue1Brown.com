@@ -6,6 +6,7 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+// button that links to a lesson, showing details like thumbnail, title, etc.
 const LessonCard = ({
   id,
   icon,
@@ -17,16 +18,19 @@ const LessonCard = ({
 }) => {
   const { lessons = [] } = useContext(PageContext);
 
+  // find lesson with matching slug
   const lesson = lessons.find((lesson) => lesson.slug === id);
 
-  if (!lesson) return <></>;
+  // if couldn't find lesson, don't render
+  if (!lesson) return null;
 
+  // get tag type/name for component
   let Component;
   if (active) Component = Stub;
   else Component = Link;
 
+  // get lesson details
   let { slug, title, description, date, video, chapter, topic, empty } = lesson;
-
   if (date) date = formatDate(date);
 
   return (
@@ -37,7 +41,7 @@ const LessonCard = ({
       data-active={active || false}
       data-mini={mini || false}
       data-reverse={reverse || false}
-      data-fade
+      // data-fade
     >
       {icon && <i className={icon}></i>}
 
@@ -48,20 +52,29 @@ const LessonCard = ({
       </div>
 
       <div className={styles.text}>
-        <span>{title && <span>{title}</span>}</span>
-        {description && !mini && <span>{description}</span>}
-        {(chapter || !empty || date) && !mini && (
+        <span>{title && <span className={styles.title}>{title}</span>}</span>
+        {description && !mini && (
+          <span className={styles.description}>{description}</span>
+        )}
+        {(chapter !== undefined || !!video || !empty || date) && !mini && (
           <span>
-            {chapter && (
+            {chapter !== undefined && (
               <Chip
                 text={(mini ? "Ch" : "Chapter") + " " + chapter}
                 mini={mini}
                 tooltip={`In topic "${topic}"`}
               />
             )}
+            {!!video && (
+              <Chip
+                icon="fab fa-youtube"
+                mini={mini}
+                tooltip="This lesson has a video version"
+              />
+            )}
             {!empty && (
               <Chip
-                icon="fas fa-pencil-alt"
+                icon="far fa-newspaper"
                 mini={mini}
                 tooltip="This lesson has a text version"
               />

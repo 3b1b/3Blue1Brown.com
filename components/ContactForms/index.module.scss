@@ -1,0 +1,71 @@
+.receivedFormThanks {
+  background: $green-200;
+  padding: 16px 24px;
+  text-align: left;
+}
+
+.form {
+  text-align: left;
+  margin: 0 auto;
+
+  button {
+    /*
+      The submit button is a Clickable component, which has a margin
+      by default that needs to be disabled.
+    */
+    margin: 0 !important;
+  }
+}
+
+.inputWrapper {
+  display: block;
+  margin-bottom: 16px;
+}
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.input {
+  width: 100%;
+  border: 1px solid black;
+  padding: 6px 8px;
+  font: inherit;
+}
+textarea.input {
+  resize: vertical;
+  min-height: 50px;
+}
+
+.checkboxSet,
+.radioSet {
+  display: block;
+  margin-bottom: 16px;
+  padding: 0;
+  border: none;
+}
+.checkboxSet > legend,
+.radioSet > legend {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.checkbox,
+.radio {
+  display: block;
+  line-height: 1.8;
+}
+
+.verificationCheckbox {
+  display: block;
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: $page-narrow) {
+  .inputRow {
+    // Browsers that don't support grid will still gracefully fall back to a single-column layout
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}

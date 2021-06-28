@@ -7,14 +7,20 @@ import rehypeKatex from "rehype-katex";
 // thus, have separate 12 and 13 remark versions of remark-math
 // use 13 for this component, 12 for everything else (mdx)
 
-const Markdownify = ({ children }) => {
+// component to turn plain string into markdown, useful for making components
+// accept markdown as props
+const Markdownify = ({ children, noParagraph = false }) => {
   if (typeof children === "string") {
     return (
-      <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+      <ReactMarkdown
+        components={noParagraph ? { p: "span" } : {}}
+        remarkPlugins={[remarkMath]}
+        rehypePlugins={[rehypeKatex]}
+      >
         {children}
       </ReactMarkdown>
     );
-  } else return <>{children}</>;
+  } else return children;
 };
 
 export default Markdownify;

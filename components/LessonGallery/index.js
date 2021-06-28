@@ -8,10 +8,12 @@ import { PageContext } from "../../pages/_app";
 import { toDashCase } from "../../util/string";
 import styles from "./index.module.scss";
 
+// gallery that shows all lessons in various ways with tabs. show by featured,
+// topic, or date
 const LessonGallery = ({ show = "topic" }) => {
   const { lessons } = useContext(PageContext);
-  const [tab, setTab] = useState(show);
-  const [openedTopic, setOpenedTopic] = useState("");
+  const [tab, setTab] = useState(show); // active tab
+  const [openedTopic, setOpenedTopic] = useState(""); // currently expanded topic
 
   // on topic card click
   const onTopicClick = (topic) => {
@@ -70,9 +72,11 @@ const LessonGallery = ({ show = "topic" }) => {
 
 export default LessonGallery;
 
+// expandable/collapsible topic button
 const TopicCard = ({ topic, opened, onClick }) => {
   const ref = useRef();
 
+  // jump to button when opened
   useEffect(() => {
     if (opened) ref?.current?.scrollIntoView(true);
   }, [opened]);
@@ -84,13 +88,19 @@ const TopicCard = ({ topic, opened, onClick }) => {
         className={styles.topic_card}
         onClick={onClick}
         data-open={opened}
-        data-fade
+        // data-fade
       >
-        <img src={`images/topics/${toDashCase(topic.name)}.jpg`} />
-        <span className={styles.text}>
+        <img
+          className={styles.image}
+          src={`images/topics/${toDashCase(topic.name)}.jpg`}
+        />
+        <span className={styles.title}>
           {topic.name}
           <i className={`fas fa-caret-${opened ? "up" : "down"} fa-lg`} />
         </span>
+        {opened && topic.description && (
+          <span className={styles.description}>{topic.description}</span>
+        )}
       </button>
       {opened &&
         topic.lessons.map((lesson, index) => (

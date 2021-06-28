@@ -6,7 +6,7 @@ chapter: 42
 video: spUNpyF58BY
 credits:
   - Lesson and figures by Grant Sanderson
-  - Translated to blog format by James Schloss
+  - Text adaptation by James Schloss
 ---
 
 Markdown content.
@@ -35,7 +35,13 @@ _italic text_
 
 [Link to external page](https://some-website.org/)
 
-[Link to page within site](/extras)
+[Link to page within site relative to root](/extras)
+
+[Link to page above current page](../lessons)
+
+[Link to page relative to current page](quick-eigen)
+
+[Link to a figure with an id](#our-planet)
 
 ---
 
@@ -99,6 +105,7 @@ $$
 <!-- figure with image and/or video, and caption -->
 
 <Figure
+  id="our-planet"
   video="https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1920_18MG.mp4"
   caption="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   loop={true}
@@ -112,11 +119,15 @@ $$
   videoCaption="Caption **just** for video. $f(x) = e^{i \pi} + sin(x)$"
 />
 
-<!-- spoiler component -->
+<Figure image="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Tampa_FL_Sulphur_Springs_Tower_tall_pano01.jpg/426px-Tampa_FL_Sulphur_Springs_Tower_tall_pano01.jpg" />
+
+<Figure image="https://wallpaperaccess.com/full/1760835.jpg" />
+
+<!-- spoiler -->
 
 Why did the chicken cross the Mobius strip? <Spoiler>To get to the same side.</Spoiler>
 
-<!-- question component -->
+<!-- question -->
 
 <Question
   question="Why did the chicken cross the road?"
@@ -125,18 +136,19 @@ Why did the chicken cross the Mobius strip? <Spoiler>To get to the same side.</S
   choice3="Cannot be determined"
   choice4="A superposition of all the answers above"
   answer={4}
-  explanation="Superposition is pretty neat :)"
-/>
+>
+  Superposition is pretty neat :)
+</Question>
 
-<!-- lesson link component -->
+<!-- lesson link -->
 
 A link to <LessonLink id="bitcoin">another lesson</LessonLink> in a sentence, with a tooltip.
 
-<!-- tooltip component -->
+<!-- tooltip -->
 
 Use this to make <Tooltip content="$f(x) = e^{i \pi} + sin(x)$">hoverable text</Tooltip> with some minor helper content.
 
-<!-- accordion component -->
+<!-- accordion -->
 
 <Accordion title="I'm an accordion. Click on me!">
 
@@ -153,14 +165,18 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<PiCreature emotion="happy" flip={true} />
+<PiCreature emotion="happy" />
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-<PiCreature emotion="hooray" text="Wow, $e^{i \pi}$ is really cool!" />
+<PiCreature
+  emotion="hooray"
+  text="Wow, $e^{i \pi}$ is really cool!"
+  flip={true}
+/>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -171,7 +187,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
   emotion="confused"
   text="Hey, that's pretty neat! 4 lines max, people!"
   thought={true}
-  flip={true}
 />
 
 <!-- clickable (link or button) with icon and/or text -->
@@ -213,3 +228,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     design="rounded"
   />
 </Center>
+
+<!-- twitter embed -->
+
+<Twitter tweet="1377650038055170050" />
+
+<!-- interactive embed -->
+
+<Interactive filename="test-interactive" />
+
+<Interactive filename="test-interactive">
+  {() => ({ startValue: 1000 })}
+</Interactive>
+
+This is some text with a footnote.[^1] Pretty cool, right!?
+
+[^1]: Hello, world!
+
+    What's up?

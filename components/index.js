@@ -1,46 +1,56 @@
 import Accordion from "./Accordion";
 import Center from "./Center";
 import Clickable from "./Clickable";
+import {
+  LicensingForm,
+  SpeakingForm,
+  ThanksForm,
+  ContactForm,
+  ContactFormReceivedMessage,
+} from "./ContactForms";
+import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
-import { H1, H2, H3, H4 } from "./Heading";
+import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
+import Portrait from "./Portrait";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
 import Tooltip from "./Tooltip";
+import Twitter from "./Twitter";
 import Video from "./Video";
 
-// https://mdxjs.com/table-of-components
-import RelLink from "./RelLink";
-
-// components you want to be able to use in .mdx files
+// components to automatically import into all .mdx files
 const components = {
   Accordion,
   Center,
   Clickable,
+  ContactForm,
+  ContactFormReceivedMessage,
+  FeatureCard,
   Figure,
   GoogleSearch,
+  Interactive,
   LessonCard,
   LessonGallery,
   LessonLink,
+  LicensingForm,
   Patrons,
   PiCreature,
+  Portrait,
   Question,
   Section,
+  SpeakingForm,
   Spoiler,
+  ThanksForm,
   Tooltip,
+  Twitter,
   Video,
-  // https://mdxjs.com/table-of-components
-  a: RelLink,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
 };
 
 export default components;

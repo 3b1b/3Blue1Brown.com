@@ -5,6 +5,11 @@ import Markdownify from "../Markdownify";
 import { shakeElement } from "../../util/animation";
 import styles from "./index.module.scss";
 
+// interactive multiple-choice question component with explanation
+
+// component takes choices as enumerated/separate props rather than single array
+// prop, because with array, jsx syntax will escape math latex like
+// "\times" -> "[TAB]imes"
 const Question = ({
   question,
   choice1,
@@ -14,14 +19,22 @@ const Question = ({
   choice5,
   choice6,
   answer,
-  explanation,
+  children: explanation,
 }) => {
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(null);
   const [state, setState] = useState("unanswered");
   const resultRef = useRef();
 
   // convert 1-index to 0-index
   answer = answer - 1;
+
+  // convert choices to array
+  const choices = [choice1, choice2, choice3, choice4, choice5, choice6].filter(
+    (choice) => choice
+  );
+
+  // if no question or choices, don't render
+  if (!question || !choices.length) return null;
 
   // check answer
   const submit = () => {
@@ -32,12 +45,11 @@ const Question = ({
     }
   };
 
-  const choices = [choice1, choice2, choice3, choice4, choice5, choice6].filter(
-    (choice) => choice
-  );
-
   // reset question
-  const reset = () => setState("unanswered");
+  const reset = () => {
+    setState("unanswered");
+    setSelected(null);
+  };
 
   return (
     <div className={styles.question}>
@@ -56,6 +68,7 @@ const Question = ({
               type="radio"
               name={question}
               value={choice}
+              checked={index === selected}
               onChange={() => setSelected(index)}
               disabled={state === "correct"}
             />
@@ -71,7 +84,11 @@ const Question = ({
       </div>
       <div ref={resultRef} className={styles.result}>
         {state === "unanswered" && (
-          <Clickable text="Check Answer" onClick={submit} />
+          <Clickable
+            text="Check Answer"
+            onClick={submit}
+            disabled={selected === null}
+          />
         )}
         {state === "incorrect" && (
           <>
@@ -89,9 +106,7 @@ const Question = ({
         )}
       </div>
       {state === "correct" && explanation && (
-        <div className={styles.explanation}>
-          <Markdownify>{explanation}</Markdownify>
-        </div>
+        <div className={styles.explanation}>{explanation}</div>
       )}
     </div>
   );
