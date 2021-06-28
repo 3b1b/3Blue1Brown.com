@@ -1,0 +1,128 @@
+.container {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "title featured"
+    "social featured";
+  gap: 30px;
+}
+
+.title {
+  grid-area: title;
+
+  font-family: $sans;
+  font-size: 32px;
+  text-align: left;
+}
+
+.featured {
+  grid-area: featured;
+}
+
+.social {
+  grid-area: social;
+
+  font-family: $sans;
+  font-size: 20px;
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "title"
+      "featured"
+      "social";
+    gap: 50px;
+  }
+
+  .title {
+    font-size: 24px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .social {
+    text-align: center;
+  }
+}
+
+.itemButtons {
+  display: flex;
+  justify-content: flex-start;
+
+  a {
+    margin: 0 !important;
+    padding: 8px 12px !important;
+    min-width: unset !important;
+    min-height: unset !important;
+    background: transparent !important;
+    color: white !important;
+
+    &:hover,
+    &:focus {
+      background: black !important;
+    }
+  }
+}
+
+.itemFigure {
+  margin: 0;
+}
+
+.itemCaption {
+  text-align: left;
+  color: $gray-300;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto;
+}
+
+.slides {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  transition: transform 400ms ease-in-out;
+}
+
+.slide[data-visible="false"] {
+  visibility: hidden;
+
+  // Delay visibility so it waits to dissapear
+  transition: transform 400ms ease-in-out, visibility 0ms linear 400ms;
+}
+
+.slide[data-visible="true"] {
+  visibility: visible;
+}
+
+.arrow {
+  color: white;
+  font-size: 48px;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .arrow {
+    padding: 10px;
+  }
+}

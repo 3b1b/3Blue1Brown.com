@@ -11,6 +11,9 @@ import {
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import GoogleSearch from "./GoogleSearch";
+import HomepageFeaturedContent, {
+  HomepageFeaturedItem,
+} from "./HomepageFeaturedContent";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
@@ -35,6 +38,8 @@ const components = {
   FeatureCard,
   Figure,
   GoogleSearch,
+  HomepageFeaturedContent,
+  HomepageFeaturedItem,
   Interactive,
   LessonCard,
   LessonGallery,

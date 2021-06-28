@@ -25,20 +25,6 @@ $wrap: 600px;
   }
 }
 
-.icons {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  font-size: 1.2rem;
-  @include hover;
-
-  a {
-    color: $white;
-    padding: 10px;
-  }
-}
-
 @media print {
   .footer {
     display: none;
