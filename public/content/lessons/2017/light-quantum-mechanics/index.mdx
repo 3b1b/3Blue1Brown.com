@@ -6,10 +6,10 @@ video: MzRCDLre1b4
 source: _2017/waves.py
 credits:
 - Lesson by Grant Sanderson
-- Blog Adaption by River Way
+- Text Adaption by River Way
 ---
 
-# Light Quantum Mechanics
+## Light Quantum Mechanics
 
 Quantum mechanics is a huge topic, far more than what can be presented in a single lesson. The goal here is to present foundational intuitions through a specific example. What topic would set the right intuitions for someone before they dove into, say, the Feynman lectures? Well, a natural enough place to start, where quantum mechanics itself started, is light. Specifically, if you want to learn quantum, you have to understand waves and how they’re described mathematically. This leads to the conclusion of relating the energy in a purely classical wave to the probabilities that govern quantum behavior.
 
@@ -72,9 +72,11 @@ If it oscillates horizontally like this, we say the light is horizontally polari
   choice3="Visible Light $4.3\times 10^{14}\text{ Hz}$"
   choice4="X-ray $3\times 10^{17}\text{ Hz}$" 
   choice5="Gamma $3\times 10^{23}\text{ Hz}$"  
-  answer={5}
-  explanation="Gamma waves have the highest frequency, which means they have the shortest amount of the time to complete a cycle."
-/>
+  answer={5}>
+
+Gamma waves have the highest frequency, which means they have the shortest amount of the time to complete a cycle.
+
+</Question>
 
 We’ll include another term in our wave equation, $\phi$, called the “phase shift.” It tells us where that vector is at time $t=0$. You’ll see why that’s important later on.
 
@@ -94,9 +96,11 @@ The amplitude, frequency, and phase define a wave. Try experimenting with differ
   choice2="$\pi$"
   choice3="$\frac{3\pi}{2}$"
   choice4="$2\pi$"  
-  answer={4}
-  explanation="The cosine and sine functions have a phase difference of $\frac{\pi}{2}$, by setting the phase offset to $\frac{3\pi}{2}$, the cosine function lines up exactly with the sine function."
-/>
+  answer={4}>
+
+The cosine and sine functions have a phase difference of $\frac{\pi}{2}$, by setting the phase offset to $\frac{3\pi}{2}$, the cosine function lines up exactly with the sine function.
+
+</Question>
 
 ## Classical Wave Mechanics
 
@@ -143,9 +147,11 @@ In the case where the phases are exactly 90 degrees out of sync with each other,
   choice3="A diagonal line"
   choice4="A circle" 
   choice5="An ellipse" 
-  answer={4}
-  explanation="It cannot be a horizontal nor a vertical line because neither amplitude is zero. It cannot be a diagonal line because the phases aren’t the same. The phases are exactly $\frac{\pi}{2}$ radians out of sync and the amplitudes are equal, so it must trace out a circle."
-/>
+  answer={4}>
+
+It cannot be a horizontal nor a vertical line because neither amplitude is zero. It cannot be a diagonal line because the phases aren’t the same. The phases are exactly $\frac{\pi}{2}$ radians out of sync and the amplitudes are equal, so it must trace out a circle.
+
+</Question>
 
 Alright, here’s another important idea: We’re describing waves by adding together horizontal and vertical components, but we could also choose to describe everything with respect to different directions.
 
@@ -192,9 +198,11 @@ That can make things a little confusing, because it’s hard to visualize a pair
   choice3="$|\nwarrow\rang$"
   choice4="$5e^{2\pi ift}|\nearrow\rang$" 
   choice5="$2e^{2\pi ift}|\nwarrow\rang$" 
-  answer={5}
-  explanation="The polarizer only lets through the part of the wave aligned with it: $|\nwarrow\rang$. So it sets the other basis state’s amplitude to zero: $0|\nearrow\rang+2e^{2\pi ft}|\nwarrow\rang=2e^{2\pi ft}|\nwarrow\rang$."
-/>
+  answer={5}>
+
+The polarizer only lets through the part of the wave aligned with it: $|\nwarrow\rang$. So it sets the other basis state’s amplitude to zero: $0|\nearrow\rang+2e^{2\pi ft}|\nwarrow\rang=2e^{2\pi ft}|\nwarrow\rang$.
+
+</Question>
 
 Okay, just one quick point before getting to the quantum. Look at one of these waves, and focus just on the electric field portion like we were before. Classically, the energy density of a wave like this is proportional to the square of its amplitude. Notice, by the way, how well this lines up with the Pythagorean theorem.
 
@@ -271,8 +279,6 @@ This is analogous to the classic Schrödinger’s cat setup: You have something 
 
 <Figure image="schrodingers_cat.png" width="50%" />
 
-<!-- cat -->
-
 ## Polarizer Experiments
 
 One neat way to see this in action is to take several polarized sunglasses, or some other form of polarizing filters, and start by holding two of them up between you and some light source. If you rotate them to be 90 degrees off from each other, the light source is blacked out completely.
@@ -309,9 +315,11 @@ This could not be explained unless filters forced photons to change their states
   choice2="25%"
   choice3="50%"
   choice4="100%" 
-  answer={1}
-  explanation="Since $P_1$ and $P_2$ are 90 degrees apart, 0% of the light will make it through, regardless of $P_3$. The same could also be said for $P_2$ and $P_3$, because they are also 90 degrees apart. If $P_2$ were removed, then 100% of the light would go through because $P_1$ and $P_3$ are 180 degrees apart."
-/>
+  answer={1}>
+
+Since $P_1$ and $P_2$ are 90 degrees apart, 0% of the light will make it through, regardless of $P_3$. The same could also be said for $P_2$ and $P_3$, because they are also 90 degrees apart. If $P_2$ were removed, then 100% of the light would go through because $P_1$ and $P_3$ are 180 degrees apart.
+
+</Question>
 
 For another example, what is the probability of a photon passing through a filter $22.5$ degrees off from the polarization of the light? Again, it’s helpful to think of this wave as having amplitude $1$. Its horizontal component has an amplitude of $\sin(22.5^\circ)\approx 0.38$, and its vertical component has amplitude $\cos(22.5^\circ)\approx 0.92$. 
 $$
