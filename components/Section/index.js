@@ -8,9 +8,14 @@ import styles from "./index.module.scss";
 // all. see PageContent component.
 const SectionContext = createContext({ width: "normal" });
 
-const Section = ({ children, dark, width = "normal" }) => (
+const Section = ({ children, dark, width = "normal", ...props }) => (
   <SectionContext.Provider value={{ width }}>
-    <section className={styles.section} data-dark={dark} data-width={width}>
+    <section
+      {...props}
+      className={styles.section}
+      data-dark={dark}
+      data-width={width}
+    >
       <div className={styles.wrapper}>{children}</div>
     </section>
   </SectionContext.Provider>
