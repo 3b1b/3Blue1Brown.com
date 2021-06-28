@@ -65,6 +65,8 @@ export function HomepageFeaturedVideo({
   loop = true,
   muted = true,
   controls = false,
+  width = 1920,
+  height = 1080,
 }) {
   const { visible } = useContext(CarouselContext);
   const { lesson } = useContext(FeaturedItemContext);
@@ -90,6 +92,8 @@ export function HomepageFeaturedVideo({
           loop={loop}
           muted={muted}
           controls={controls}
+          width={width}
+          height={height}
           preload="none"
         >
           <source src={src} />
