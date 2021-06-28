@@ -48,3 +48,14 @@
     margin-bottom: 12px;
   }
 }
+
+@media (max-width: 400px) {
+  .text {
+    padding: 0 20px;
+  }
+
+  .imageWrapper::before,
+  .imageWrapper::after {
+    display: none;
+  }
+}
