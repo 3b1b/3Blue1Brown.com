@@ -1,4 +1,5 @@
 - name: Calculus
+  slug: calculus
   description: Brief description text of topic
   lessons:
     - essence-of-calculus
@@ -14,6 +15,7 @@
     - taylor-series
     - derivatives-and-transforms
 - name: Linear Algebra
+  slug: linear-algebra
   description: Brief description text of topic
   lessons:
     - eola-preview
@@ -34,12 +36,16 @@
     - quick-eigen
     - abstract-vector-spaces
 - name: Neural Networks
+  slug: neural-networks
+  description: Brief description text of topic
   lessons:
     - neural-networks
     - gradient-descent
     - backpropagation
     - backpropagation-calculus
 - name: Differential Equations
+  slug: differential-equations
+  description: Brief description text of topic
   lessons:
     - differential-equations
     - pdes
@@ -48,6 +54,8 @@
     - eulers-formula-dynamically
     - matrix-exponents
 - name: Clever Proofs
+  slug: clever-proofs
+  description: Brief description text of topic
   lessons:
     - inscribed-rectangle-problem
     - sphere-area
@@ -58,6 +66,8 @@
     - hanoi-and-sierpinski
     - eulers-characteristic-formula
 - name: Puzzles
+  slug: puzzles
+  description: Brief description text of topic
   lessons:
     - hardest-problem
     - windmills
@@ -66,6 +76,8 @@
     - moser
     - three-utilities
 - name: Why Pi
+  slug: why-pi
+  description: Brief description text of topic
   lessons:
     - clacks
     - clacks-solution
@@ -75,6 +87,8 @@
     - wallis-product
     - pi-was-628
 - name: Analysis
+  slug: analysis
+  description: Brief description text of topic
   lessons:
     - fourier-transforms
     - uncertainty-principle
@@ -85,26 +99,36 @@
     - inventing-math
     - music-and-measure-theory
 - name: Computer Science
+  slug: computer-science
+  description: Brief description text of topic
   lessons:
     - hamming-codes
     - hamming-codes-2
     - bitcoin
     - 256-bit-security
 - name: Epidemics
+  slug: epidemics
+  description: Brief description text of topic
   lessons:
     - exponential-and-epidemics
     - epidemic-simulations
     - dp3t
 - name: Group Theory
+  slug: group-theory
+  description: Brief description text of topic
   lessons:
     - groups-and-monsters
     - eulers-formula-via-group-theory
 - name: Higher Dimensions
+  slug: higher-dimensions
+  description: Brief description text of topic
   lessons:
     - quaternions
     - quaternions-and-3d-rotation
     - higher-dimensions
 - name: Lockdown Math
+  slug: lockdown-math
+  description: Brief description text of topic
   lessons:
     - lockdown-math-announcement
     - ldm-quadratic
@@ -118,6 +142,8 @@
     - ldm-i-to-i
     - ldm-tips-to-problem-solving
 - name: Physics
+  slug: physics
+  description: Brief description text of topic
   lessons:
     - light-quantum-mechanics
     - feynmans-lost-lecture
@@ -125,12 +151,16 @@
     - snells-law
     - turbulence
 - name: Probability
+  slug: probability
+  description: Brief description text of topic
   lessons:
     - bayes-theorem
     - better-bayes
     - binomial-distributions
     - pdfs
 - name: Miscellaneous
+  slug: miscellaneous
+  description: Brief description text of topic
   lessons:
     - qa1
     - qa2
