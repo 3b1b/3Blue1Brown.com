@@ -95,6 +95,7 @@ export function HomepageFeaturedVideo({
           width={width}
           height={height}
           preload="metadata"
+          playsInline={true}
         >
           <source src={src} />
         </video>
