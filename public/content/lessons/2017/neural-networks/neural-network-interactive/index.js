@@ -86,8 +86,10 @@ export default function NeuralNetworkInteractive() {
 
   return (
     <svg
-      style={{ width: "100%", maxWidth: 640, height: "auto" }}
+      width={640}
+      height={480}
       viewBox="0 0 640 480"
+      style={{ display: "block", maxWidth: "none" }}
     >
       <NeuronConnections
         selectedNeuron={selectedNeuron}

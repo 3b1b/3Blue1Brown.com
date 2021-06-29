@@ -81,11 +81,15 @@
 .itemCaption {
   text-align: left;
   color: $gray-300;
-  margin-top: 4px;
+  margin-top: 8px;
 
   a {
     text-decoration: none;
     color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -126,20 +130,24 @@
   visibility: visible;
 }
 
-.arrowLeft {
-  grid-area: left;
-
+.arrowLeft,
+.arrowRight {
   color: white;
   font-size: 48px;
   width: 50px;
+
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+}
+
+.arrowLeft {
+  grid-area: left;
 }
 
 .arrowRight {
   grid-area: right;
-
-  color: white;
-  font-size: 48px;
-  width: 50px;
 }
 
 @media (max-width: 600px) {
@@ -163,7 +171,12 @@
 }
 
 .video {
+  display: block;
   width: 100%;
   height: auto;
   background: black;
+}
+
+.videoLink {
+  display: block;
 }

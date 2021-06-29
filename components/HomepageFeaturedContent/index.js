@@ -84,7 +84,7 @@ export function HomepageFeaturedVideo({
 
   return (
     <Link href={`/lessons/${lesson}`}>
-      <a>
+      <a className={styles.videoLink}>
         <video
           ref={videoRef}
           className={styles.video}
@@ -107,7 +107,6 @@ const CarouselContext = createContext({ visible: false });
 
 function Carousel({ children }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoRotate, setAutoRotate] = useState(true);
 
   const slideCount = Children.count(children);
 
@@ -122,35 +121,6 @@ function Carousel({ children }) {
       currentIndex === slideCount - 1 ? 0 : currentIndex + 1
     );
   }, [slideCount]);
-
-  // Auto-rotate when `autoRotate` is true
-  useEffect(() => {
-    if (autoRotate) {
-      const interval = setInterval(() => {
-        goToNext();
-      }, 10000);
-
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [autoRotate, goToNext]);
-
-  // Disable auto-rotate after interacting
-  const carouselRef = useRef();
-  useEffect(() => {
-    const onMouseDown = (event) => {
-      if (carouselRef.current.contains(event.target)) {
-        // That's an interaction!
-        setAutoRotate(false);
-      }
-    };
-
-    document.addEventListener("mousedown", onMouseDown);
-    return () => {
-      document.removeEventListener("mousedown", onMouseDown);
-    };
-  }, []);
 
   // Adjust height to match current slide
   const slidesRef = useRef();
@@ -174,11 +144,12 @@ function Carousel({ children }) {
   }, [currentIndex]);
 
   return (
-    <div className={styles.carousel} ref={carouselRef}>
+    <div className={styles.carousel}>
       <button
         className={styles.arrowLeft}
         aria-label="Previous"
         onClick={goToPrevious}
+        disabled={currentIndex === 0}
       >
         <i className="fas fa-angle-left" />
       </button>
@@ -210,6 +181,7 @@ function Carousel({ children }) {
         className={styles.arrowRight}
         aria-label="Next"
         onClick={goToNext}
+        disabled={currentIndex === slideCount - 1}
       >
         <i className="fas fa-angle-right" />
       </button>
