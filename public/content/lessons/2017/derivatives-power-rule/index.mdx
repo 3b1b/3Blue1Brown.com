@@ -1,6 +1,6 @@
 ---
 title: Power Rule through geometry
-description: Introduction to the derivatives of polynomial terms and trigonometric functions thought about geometrically and intuitively. The goal is for these formulas to feel like something the student could have discovered, rather than something to be memorized.
+description: Introduction to the derivatives of polynomial terms thought about geometrically and intuitively. The goal is for these formulas to feel like something the student could have discovered, rather than something to be memorized.
 date: 2017-04-30
 chapter: 3
 video: S0_qX4VJhMQ
@@ -292,7 +292,7 @@ $$
 \frac{ d \left( \frac{1}{x} \right)}{dx}  = - \frac{1}{x^2} 
 $$
 
-We can check our work using the power rule. The expression $\frac{1}{x}$ is the same as $x^{-1}$ and we can drop the $-1$ down in front and subracting one from the exponent, giving us the same answer.
+We can check our work using the power rule. The expression $\frac{1}{x}$ is the same as $x^{-1}$. We can drop the $-1$ down in front and subtract one from the exponent, giving us the same answer as the geometric approach.
 
 $$
 \frac{df}{dx} = -1 x^{-2}
@@ -346,7 +346,7 @@ Then, we want to find $d\sqrt{x}$, the change of the function's output, when the
   caption="Unlike in previous problems, $dx$ is not geometric length, but instead represents **area**."
 />
 
-The added area changes the output of the function by the new length $d\sqrt{x}$, which looks like this.
+The added area changes the output of the function by the new length $d\sqrt{x}$, which looks like this. So the question is, how much does the side length of that square increase if the total change to the area is meant to be $dx$?
 
 $$
 x + dx = (\sqrt{x} + d\sqrt{x})(\sqrt{x} + d\sqrt{x})
@@ -378,54 +378,3 @@ $$
 
 </Question>
 
-## Trig Functions
-
-Let’s tackle one more type of function: Trigonometric functions. In particular, let’s focus on the sine function. Right here I’m going to assume you are familiar with how to think about trigonometric functions using the unit circle; the circle with radius $1$ centered at the origin.
-
-For a given value of theta, like $0.8$, you’d imagine walking around the circle, starting from the rightmost point, until you’ve traversed that distance $0.8$ in arc length. This is the same thing as saying that this angle here is exactly $0.8$ radians, since the circle has radius $1$. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
-
-<Figure
-  image="figures/13.16.svg"
-  video="figures/12.51-13.16.mp4"
-/>
-
-As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern.
-
-<Figure
-  image="figures/13.44.svg" 
-  video="figures/13.22-13.38.mp4"
-/>
-
-Now, just from looking at this graph, we can get a feel from the shape of the derivative function. The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
-
-<Figure
-  image="figures/13.44-cosine.svg"
-  video="figures/13.40-14.30.mp4"
-  show="video"
-/>
-
-But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. Well, as with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than just at the graph of the function.
-
-So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observered by zooming in on the point where you are on the circle.
-
-<Figure
-  image="figures/15.57.svg" 
-/>
-
-Well, zoomed in close enough the circle basically looks like a straight line in this neighborhood, so let’s go ahead and think of this right here as a right triangle, where the hypotenuse represents that nudge of $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
-
-<Figure
-  image="figures/16.00.svg" 
-/>
-
-Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle is precisely equal to $\theta$ radians. 
-
-Think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the output of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little right-triangle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
-
-<Figure
-  image="figures/16.01.svg" 
-/>
-
-So that gives two ways to think about how the derivative of $\sin(\theta)$ is $\cos(\theta)$. One by looking at the graph of sine and getting a loose feel for the loose shape of its derivative should be based on thinking about the slope of the graph, and another more precise line of reasoning that comes from looking straight at the unit circle. For the pause and ponder-ers among you, see if you can try a similar line or reasoning to understand the derivative of $\cos(\theta)$.
-
-In the next video I’ll talk about how to take the derivatives of functions which combine simple functions like these, either as sums, products, functions compositions, things like that. Similar to this video, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.

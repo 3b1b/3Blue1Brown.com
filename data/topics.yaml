@@ -3,7 +3,8 @@
   lessons:
     - essence-of-calculus
     - derivatives
-    - derivative-formulas-geometrically
+    - derivative-power-rule
+    - derivative-trig-functions
     - chain-rule-and-product-rule
     - eulers-number
     - implicit-differentiation

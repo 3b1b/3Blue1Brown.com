@@ -15,11 +15,11 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const LessonLayout = () => {
-  const { video, empty } = useContext(PageContext);
+  const { video, empty, timestamp } = useContext(PageContext);
   return (
     <NormalLayout>
       <Section dark={true}>
-        <Video id={video} />
+        <Video id={video} timestamp={timestamp} />
       </Section>
 
       <LessonDetails />
