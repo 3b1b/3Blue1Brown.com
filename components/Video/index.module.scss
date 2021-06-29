@@ -1,3 +1,18 @@
+.coverButton {
+  width: 65%;
+  position: relative;
+}
+
+.coverPlayButton {
+  position: absolute;
+  width: 15%;
+  min-width: 40px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .video {
   max-width: 100%;
   margin: 20px auto;
