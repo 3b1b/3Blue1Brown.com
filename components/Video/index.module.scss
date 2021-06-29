@@ -1,3 +1,27 @@
+.coverButton {
+  width: 65%;
+  position: relative;
+  background: black;
+}
+
+.coverPlayButton {
+  position: absolute;
+  width: 8%;
+  min-width: 40px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: rgba(33, 33, 33, 0.8);
+  transition: color 100ms ease-in-out;
+}
+
+.coverButton:hover .coverPlayButton,
+.coverPlayButton:active .coverPlayButton {
+  color: red;
+}
+
 .video {
   max-width: 100%;
   margin: 20px auto;
