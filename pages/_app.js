@@ -10,7 +10,7 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <PageContext.Provider value={pageProps}>
-      <Component>{pageProps.children}</Component>
+      <Component {...pageProps} />
     </PageContext.Provider>
   );
 };

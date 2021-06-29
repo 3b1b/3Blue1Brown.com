@@ -216,5 +216,11 @@ export default function SphericalPlot() {
     drawPoints(sketch);
   }
 
-  return <Sketch setup={setup} draw={draw} />;
+  return (
+    <Sketch
+      setup={setup}
+      draw={draw}
+      style={{ width: WIDTH, height: HEIGHT }}
+    />
+  );
 }

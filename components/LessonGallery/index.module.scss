@@ -1,8 +1,13 @@
 .topic_card {
   position: relative;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+
   display: inline-flex;
   flex-direction: column;
   padding: 20px;
+  padding-bottom: 0px;
   border-radius: 0;
   font-family: $sans;
   text-decoration: none;
@@ -10,18 +15,10 @@
 
   &[data-open="true"] {
     width: 100%;
-
-    i {
-      opacity: 1;
-    }
   }
 
   &:hover {
     background: $light-blue-100;
-
-    i {
-      opacity: 1;
-    }
   }
 }
 
@@ -32,21 +29,6 @@
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+  margin: 14px 0px;
   font-weight: $medium;
-
-  i {
-    position: relative;
-    left: 10px;
-    width: 0;
-    color: $light-blue-500;
-    opacity: 0;
-    transition: opacity $fast;
-  }
-}
-
-.description {
-  margin-top: 15px;
 }

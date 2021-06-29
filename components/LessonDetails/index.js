@@ -28,7 +28,7 @@ export default LessonDetails;
 const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
-    <h1>
+    <h1 id="title">
       {chapter && <Chip text={`Chapter ${chapter}`} />}
       {title}
     </h1>

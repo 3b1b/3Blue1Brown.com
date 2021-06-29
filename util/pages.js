@@ -97,7 +97,7 @@ export const lessonPaths = lessonFiles
   .map((path) => "/lessons/" + path);
 
 // metadata for all lessons (just front matter)
-const lessonMeta = lessonFiles
+export const lessonMeta = lessonFiles
   .map(parseMdx)
   .map(({ patrons, content, ...rest }) => rest)
   .sort((b, a) => new Date(a.date) - new Date(b.date));
