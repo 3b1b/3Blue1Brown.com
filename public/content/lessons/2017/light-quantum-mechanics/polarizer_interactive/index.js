@@ -20,6 +20,8 @@ const TEXT_COLOR = "#FFFFFF";
 
 let RADIAL_SECTORS = 50;
 
+let SCALE = 1;
+
 let polarizerAngle = 270;
 let lightAngle = 225;
 let probability = 0;
@@ -56,48 +58,50 @@ export default function Polarizer() {
       .createCanvas(WIDTH, THEIGHT, sketch.WEBGL)
       .parent(canvasParentRef);
 
-    // p5Object.position(
-    //   sketch.windowWidth / 2 - WIDTH / 2,
-    //   sketch.windowHeight / 2 - 500 / 2
-    // );
     sketch.angleMode(sketch.DEGREES);
 
     // Change the original camera angle
     let moveX = (SENSITIVITY * -100) / THEIGHT;
     let moveY = (SENSITIVITY * 50) / THEIGHT;
     p5Object._curCamera._orbit(moveX, moveY, 0);
-
-    sketch.mousePressed = () => {
-      // Only allow dragging if mouse was pressed in this sketch
-      if (
-        sketch.mouseX > 0 &&
-        sketch.mouseY > 0 &&
-        sketch.mouseX < WIDTH &&
-        sketch.mouseY < THEIGHT
-      ) {
-        isDrag = true;
-      }
-    };
-
-    sketch.mouseReleased = () => {
-      isDrag = false;
-    };
   }
-
-  let isDrag = false;
 
   function topDraw(sketch) {
     sketch.background(sketch.color(BKGD_COLOR));
-    if (isDrag) {
-      sketch.orbitControl(SENSITIVITY, SENSITIVITY, 0.3);
-      sketch.cursor("grab");
-    } else {
-      sketch.cursor(sketch.HAND);
-    }
+    updateCamera(sketch);
 
     drawAxes(sketch);
     drawWave(sketch, lightAngle);
     drawPolarizer(sketch, polarizerAngle);
+  }
+
+  function updateCamera(sketch) {
+    const mouseInCanvas =
+      sketch.mouseX / SCALE < sketch.width &&
+      sketch.mouseX / SCALE > 0 &&
+      sketch.mouseY / SCALE < sketch.height &&
+      sketch.mouseY / SCALE > 0;
+
+    if (sketch.contextMenuDisabled !== true) {
+      sketch.canvas.oncontextmenu = () => false;
+      sketch._setProperty("contextMenuDisabled", true);
+    }
+
+    const scaleFactor =
+      sketch.height < sketch.width ? sketch.height : sketch.width;
+
+    if (sketch.mouseIsPressed && mouseInCanvas) {
+      const moveX = (sketch.mouseX - sketch.pmouseX) / SCALE;
+      const moveY = (sketch.mouseY - sketch.pmouseY) / SCALE;
+      const deltaTheta = (-SENSITIVITY * moveX) / scaleFactor;
+      const deltaPhi = (SENSITIVITY * moveY) / scaleFactor;
+      sketch._renderer._curCamera._orbit(deltaTheta, deltaPhi, 0);
+      sketch.cursor("grab");
+    } else if (mouseInCanvas) {
+      sketch.cursor(sketch.HAND);
+    } else {
+      sketch.cursor(sketch.ARROW);
+    }
   }
 
   function drawAxes(sketch) {
@@ -341,16 +345,25 @@ export default function Polarizer() {
     sketch.pop();
   }
 
-  function bottomDraw() {
+  function bottomDraw(sketch) {
     // Nothing happens on the render function because all of the interactives
     // update on mouseAPI updates
+
+    // Update scale when the window resizes
+    updateScale(sketch);
+  }
+
+  function updateScale(sketch) {
+    let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    let scaleString = transform.split("(")[1];
+    SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
   }
 
   // return <Sketch key="polarizerSketch1" setup={topSetup} draw={topDraw} />;
   // return <Sketch key="polarizerSketch2" setup={bottomSetup} draw={bottomDraw}/>;
   return [
     <Sketch key="polarizerSketch1" setup={topSetup} draw={topDraw} />,
-    <Sketch key="polarizerSketch2" setup={bottomSetup} />,
+    <Sketch key="polarizerSketch2" setup={bottomSetup} draw={bottomDraw} />,
   ];
 }
 
@@ -515,10 +528,9 @@ class Bobble extends Interactable {
   }
 
   doesHover() {
-    return (
-      this.radius >
-      Math.hypot(this.x - this.sketch.mouseX, this.y - this.sketch.mouseY) - 3
-    );
+    let mx = this.sketch.mouseX / SCALE;
+    let my = this.sketch.mouseY / SCALE;
+    return this.radius > Math.hypot(this.x - mx, this.y - my) - 3;
   }
 
   hover() {
@@ -627,13 +639,13 @@ class ArcSlider {
 
   move() {
     let distance = Math.hypot(
-      this.x - this.sketch.mouseX,
-      this.y - this.sketch.mouseY
+      this.x - this.sketch.mouseX / SCALE,
+      this.y - this.sketch.mouseY / SCALE
     );
     this.value = this.sketch.degrees(
-      Math.acos((this.x - this.sketch.mouseX) / distance)
+      Math.acos((this.x - this.sketch.mouseX / SCALE) / distance)
     );
-    if (this.y - this.sketch.mouseY < 0) this.value *= -1;
+    if (this.y - this.sketch.mouseY / SCALE < 0) this.value *= -1;
     this.value += 180;
 
     let range = Math.abs(this.beginAngle - this.endAngle);

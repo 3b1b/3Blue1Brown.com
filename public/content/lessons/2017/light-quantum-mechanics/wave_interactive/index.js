@@ -19,6 +19,8 @@ const FRQY_COLOR = "#d9572b";
 const PHSE_COLOR = "#ff8ad4";
 const BOBL_COLOR = "#46c797";
 
+let SCALE = 1;
+
 export default function SphericalPlot() {
   const pos1 = crd(100, 50);
   const pos2 = crd(600, 350);
@@ -162,6 +164,12 @@ export default function SphericalPlot() {
     };
   }
 
+  function updateScale(sketch) {
+    let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    let scaleString = transform.split("(")[1];
+    SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
+  }
+
   function wave(x) {
     return (
       -sliders[0].getValue() *
@@ -292,6 +300,9 @@ export default function SphericalPlot() {
 
   function draw(sketch) {
     // The render function is empty because it only gets drawn on mouse updates
+
+    // Update scale when window resizes
+    updateScale(sketch);
   }
 
   return <Sketch setup={setup} draw={draw} />;
@@ -345,16 +356,24 @@ class Slider {
     // x is a number defining the x coordinate to check
     // y is a number defining the y coordinate to check
 
+    x /= SCALE;
+    y /= SCALE;
+
     let xValue = (this.value - this.lowerBound) * this.xScale + this.pos1.x;
     let yValue = (this.value - this.lowerBound) * this.yScale + this.pos1.y;
 
-    return dist(x, y, xValue, yValue) < this.radius;
+    let d = dist(x, y, xValue, yValue);
+
+    return d < this.radius;
   }
 
   update(x, y) {
     // update(x, y):void updates the value of the slider based off the coordinate provided
     // x is a number defining the x coordinate of the new location
     // y is a number defining the y coordinate of the new location
+
+    x /= SCALE;
+    y /= SCALE;
 
     if (x < this.pos1.x) x = this.pos1.x;
     else if (x > this.pos2.x) x = this.pos2.x;
