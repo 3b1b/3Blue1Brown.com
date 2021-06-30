@@ -20,8 +20,8 @@ export default function HomepageFeaturedContent({ title, children }) {
         <Carousel>{children}</Carousel>
       </div>
       <div className={styles.social}>
-        <SocialIcons />
         <div>Want more math in your life?</div>
+        <SocialIcons />
       </div>
     </div>
   );

@@ -3,12 +3,13 @@ import Link from "next/link";
 import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
+import featured from "../../data/featured.yaml";
 import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
 // gallery that shows all lessons in various ways with tabs. show by featured,
-// topic, or all
+// topic, or date
 const LessonGallery = ({ show = "topic" }) => {
   const { lessons } = useContext(PageContext);
   const [tab, setTab] = useState(show); // active tab
@@ -17,16 +18,26 @@ const LessonGallery = ({ show = "topic" }) => {
     <>
       <Center>
         <Clickable
-          text="Topics"
+          text="Featured"
+          onClick={() => setTab("featured")}
+          active={tab === "featured"}
+        />
+        <Clickable
+          text="By Topic"
           onClick={() => setTab("topic")}
           active={tab === "topic"}
         />
         <Clickable
-          text="All"
-          onClick={() => setTab("all")}
-          active={tab === "all"}
+          text="By Date"
+          onClick={() => setTab("date")}
+          active={tab === "date"}
         />
       </Center>
+      {tab === "featured" &&
+        featured
+          .map((slug) => lessons.find((lesson) => lesson.slug === slug))
+          .filter((lesson) => lesson)
+          .map((lesson, index) => <LessonCard key={index} id={lesson.slug} />)}
       {tab === "topic" && (
         <Center>
           {topics.map((topic, index) => (
@@ -34,7 +45,7 @@ const LessonGallery = ({ show = "topic" }) => {
           ))}
         </Center>
       )}
-      {tab === "all" &&
+      {tab === "date" &&
         lessons.map((lesson, index) => (
           <LessonCard key={index} id={lesson.slug} />
         ))}

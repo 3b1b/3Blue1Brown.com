@@ -13,7 +13,7 @@ export default function Topic({ topic }) {
       <Section width="narrow">
         <div style={{ textAlign: "left" }}>
           <Clickable
-            link="/#lessons"
+            link="/lessons"
             text="Lessons"
             icon="fas fa-arrow-left"
             style={{ margin: 0 }}
