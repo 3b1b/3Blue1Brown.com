@@ -15,10 +15,11 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const LessonLayout = () => {
-  const { empty } = useContext(PageContext);
+  const { empty, video } = useContext(PageContext);
   return (
     <NormalLayout>
-      <LessonVideo />
+      {/* Key prevents state from being preserved when moving between pages: */}
+      <LessonVideo key={video} />
       <LessonDetails />
 
       {/* Don't alternate section color after <LessonDetails> */}
