@@ -3,7 +3,6 @@ import Link from "next/link";
 import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
-import featured from "../../data/featured.yaml";
 import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
