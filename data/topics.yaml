@@ -145,7 +145,7 @@
     - dp3t
 - name: Lockdown Math
   slug: lockdown-math
-  description: A series of livestreamed lectures starting with foundational ideas in high school math, and exploring what interesting places they can lead to
+  description: A series of live-streamed lectures starting with foundational ideas in high school math, and exploring what interesting places they can lead to
   lessons:
     - lockdown-math-announcement
     - ldm-quadratic
@@ -160,7 +160,7 @@
     - ldm-tips-to-problem-solving
 - name: Miscellaneous
   slug: miscellaneous
-  description: Odd videos that defay categorization elsewhere
+  description: Odd videos that defy categorization elsewhere
   lessons:
     - qa1
     - qa2
