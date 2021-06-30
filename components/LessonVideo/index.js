@@ -23,6 +23,9 @@ export default function LessonVideo() {
   const nextLesson = topic ? topic.lessons[lessonIndex + 1] : null;
 
   const [showCoverImage, setShowCoverImage] = useState(true);
+  const startVideo = () => {
+    setShowCoverImage(false);
+  };
 
   return (
     <Section dark={true} width={showCoverImage ? "narrow" : "full"}>
@@ -50,10 +53,7 @@ export default function LessonVideo() {
 
         <div className={styles.video}>
           {showCoverImage && (
-            <button
-              className={styles.coverButton}
-              onClick={() => setShowCoverImage(false)}
-            >
+            <button className={styles.coverButton} onClick={startVideo}>
               <img
                 className={styles.coverImage}
                 src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
@@ -82,6 +82,15 @@ export default function LessonVideo() {
                 src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
                 allow="autoplay"
                 allowFullScreen
+                onLoad={(event) => {
+                  // Scroll so video is centered on screen
+                  const rect = event.target.getBoundingClientRect();
+                  const relativeMiddle = rect.top + rect.height / 2;
+                  const absoluteMiddle = relativeMiddle + window.pageYOffset;
+                  const scrollPosition =
+                    absoluteMiddle - window.innerHeight / 2;
+                  window.scrollTo(0, scrollPosition);
+                }}
               />
             </div>
           )}
