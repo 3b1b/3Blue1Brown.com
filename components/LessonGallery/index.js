@@ -18,11 +18,6 @@ const LessonGallery = ({ show = "topic" }) => {
     <>
       <Center>
         <Clickable
-          text="Featured"
-          onClick={() => setTab("featured")}
-          active={tab === "featured"}
-        />
-        <Clickable
           text="By Topic"
           onClick={() => setTab("topic")}
           active={tab === "topic"}
@@ -33,11 +28,6 @@ const LessonGallery = ({ show = "topic" }) => {
           active={tab === "date"}
         />
       </Center>
-      {tab === "featured" &&
-        featured
-          .map((slug) => lessons.find((lesson) => lesson.slug === slug))
-          .filter((lesson) => lesson)
-          .map((lesson, index) => <LessonCard key={index} id={lesson.slug} />)}
       {tab === "topic" && (
         <Center>
           {topics.map((topic, index) => (

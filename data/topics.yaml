@@ -1,6 +1,6 @@
 - name: Calculus
   slug: calculus
-  description: Brief description text of topic
+  description: Visual introductions to the core ideas of derivatives, integrals, limits and more.
   lessons:
     - essence-of-calculus
     - derivatives
