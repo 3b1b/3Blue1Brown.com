@@ -5,31 +5,25 @@ date: 2019-08-04
 video: M64HUIJFTZM
 source: _2019/windmill.py
 credits:
-    - Lesson by Grant Sanderson
-    - Text Adaptation by Vivek Verma
+  - Lesson by Grant Sanderson
+  - Text Adaptation by Vivek Verma
 ---
 
 ## The International Math Olympiad (IMO)
 
 Every year, more than 100 countries send 6 of their brightest teenagers, or the occasional pre-pubescent prodigy, to represent them in the International Math Olympiad, commonly known as the IMO.
 
-<Figure
-    image="imo.png"
-/>
+<Figure image="imo.png" />
 
 Considering that each country has its own elaborate system of contests leading to their choice of 6 representatives, the IMO stands as the culminating symbol for the surprisingly expansive and wonderful world which is contest math.
 
-<Figure
-    image="usa_imo.png"
-/>
+<Figure image="usa_imo.png" />
 
 The contest is essentially a test, split over two days, with three questions given over four and a half hours each day. The questions are all proofs, meaning you don’t simply find some numerical answer, you have to discover and articulate a rigorous line of reasoning to answer each difficult question, and they are scored on a scale from 0 to 7.
 
-<Figure
-    image="imo_q.png"
-/>
+<Figure image="imo_q.png" />
 
-Of interest to us today is the one from 2011, with 563 total participants representing 101[^1] countries. Out of these participants, only one, Lisa Saurmann from Germany, got a perfect score. The only thing standing between the next two runners up and a perfect score that year was problem #2. This problem is beautiful, and despite evading many of the world’s best mathematicians of their age, the solution is something which anyone watching this video can understand.
+Of interest to us today is the one from 2011, with 563 total participants representing 101 countries[^1]. Out of these participants, only one, Lisa Saurmann from Germany, got a perfect score. The only thing standing between the next two runners up and a perfect score that year was problem #2. This problem is beautiful, and despite evading many of the world’s best mathematicians of their age, the solution is something which anyone watching this video can understand.
 
 ## The problem
 
@@ -41,45 +35,36 @@ So let’s begin by reading it carefully.
 
 As you read a question it’s often helpful to start drawing out an example for yourself.
 
-<Figure
-    image="intro_img1.png"
-/>
+<Figure image="intro_img1.png" />
 
 > Assume that no three points of $S$ are collinear
 
 In other words, you never have three points that line up. So you can probably predict that the problem involves drawing lines here in a way where three points on one line would mess things up.
 
-<Figure
-    image="intro_img2.png"
-/>
+<Figure image="intro_img2.png" />
 
 > A windmill is a process that starts with a line $l$ going through a single point $P$ in $S$. The line rotates clockwise about the pivot $P$ until the first time that the line meets some other point belonging to $S$.
 
 Again, while reading it’s helpful to draw out an example, so we’ve got this line pivoting around some point until it hits another.
 
-<Figure
-    image="intro_img3.png"
-    video="intro_img3.mp4"
-    show="video"
-/>
+<Figure image="intro_img3.png" video="intro_img3.mp4" show="video" />
 
 > This point, $Q$, takes over as the new pivot, and the line now rotates clockwise about $Q$, until it next meets a point of $S$. This process continues indefinitely.
 
-<Figure
-    image="intro_img4.png"
-    video="intro_img4.mp4"
-    show="video"
-/>
+<Figure image="intro_img4.png" video="intro_img4.mp4" show="video" />
 
-Alright, that’s kind of fun. We keep rotating and changing the pivot. You can see why they call it a windmill process, and you can also see why they specified that no three points lie on one line. You wouldn’t want to run into the ambiguity where you don’t know what pivot to switch to. Okay, so what’s the question?
+Alright, that’s kind of fun. We keep rotating and changing the pivot. You can see why they call it a windmill process. Okay, so what’s the question?
+
+**Why does the problem specify that no three points are colinear?**
+
+<Spoiler>
+Otherwise, the windmill process would be ambiguous. If the line hits three points at once, it's not well defined which point becomes the new pivot.
+</Spoiler>
+
 
 > Show that we can choose a point $P$ in $S$ and a line $l$ going through $P$ such that the resulting windmill uses each point of $S$ as a pivot infinitely many times.
 
-<Figure
-    image="intro_img5.png"
-    video="intro_img5.mp4"
-    show="video"
-/>
+<Figure image="intro_img5.png" video="intro_img5.mp4" show="video" />
 
 ## Why it’s “unusual”
 
@@ -103,54 +88,44 @@ The first step with any puzzle like this is simply to play around to get a feel 
 
 The simplest case would be two points, where the line trades off between each point, so that works well enough.
 
-<Figure
-    image="2_img.png"
-    video="2_img.mp4"
-    show="video"
-/>
+<Figure image="2_img.png" video="2_img.mp4" show="video" />
 
 Adding a third point, it’s pretty clear the line will just rotate around all of them. It might not be entirely clear how you’d phrase that as a rigorous proof yet, but right now you’re just getting a feel for things.
 
-<Figure
-    image="3_img.png"
-    video="3_img.mp4"
-    show="video"
-/>
+<Figure image="3_img.png" video="3_img.mp4" show="video" />
 
 The fourth point is where things get interesting. In some places, your windmill will go around the four points as it did with the triangle.
 
-<Figure
-    image="4_outer.png"
-    video="4_outer.mp4"
-    show="video"
-/>
+<Figure image="4_outer.png" video="4_outer.mp4" show="video" />
 
 However, if we put it inside that triangle, then it looks like our windmill never hits it.
 
-<Figure
-    image="4_never.png"
-    video="4_never.mp4"
-    show="video"
-/>
+<Figure image="4_never.png" video="4_never.mp4" show="video" />
 
 Looking back at the problem, it’s asking you to show that for some starting position of the line, not any position, the process will hit all the points infinitely many times.
 
 So for an example like this, if you start with the line going through that troublesome middle point, what happens? And again, at this point you're just playing around, perhaps moving your pencil among dots you’ve drawn on your scratch paper, questions of rigor and proof will come later.
 
 <Figure
-    image="4_img.png"
-    video="4_img.mp4"
-    show="video"
-/>
+>
+<Question
+    question="If we begin with the configuration pictured above, what will happen?"
+    choice1="The line will eventually end up rotating around the outer three points, only having hit the inside point a finite number of times."
+    choice2="The line will hit all points an equal number of times before returning to its original position."
+    choice3="The line will hit the inner point with every other switch."
+    choice4="The line will cycle among the top three points, never hitting the bottom."
+    answer={3}
+>
+    Correct! The inner point is hit once between every outer point, and so, it is hit $3-1=2$ times in one cycle. Refer to the animation below.
+</Question>
+
+<Figure image="4_img.png" video="4_img.mp4" show="video" />
 
 Here you’d see that your windmill does indeed bounce off all the points as it goes through a cycle, and it ends up back where it started. The worry you might have is that in some large set of points, where some are kind of inside the others, you might be able to start off on the inside, but maybe the windmill process takes the line to the outside, where it will be blocked off from those inner points.
 
 If you play around, and it might take some time to draw out many examples and think this through, you might notice that when the line starts off passing the middle of all your points, it tends to stay there; it never seems to venture off to the outside. But can you guarantee that this always happens? Or rather, can you first make this idea of starting off in the middle more rigorous, and from there, prove that all points will be hit infinitely many times?
 
-<Figure
-    image="middle.png"
-    video="middle.mp4"
-/>
+<Figure image="middle.png" video="middle.mp4" />
 
 ## The solution
 
@@ -160,50 +135,46 @@ In our example, one way to formalize the idea of a “middle” is to count how 
 
 For the moment, let’s say the total number of points is odd, and the point the line passes through is colored white. So for example, if there were 11 points, then you’d have five blue ones on the left of the line, and five brown ones on the right of the line, and the one white one at the pivot. The case with an even number of points will be similar, just slightly less symmetric.
 
-<Figure
-    image="introduce_colors.png"
-/>
+<Figure image="introduce_colors.png" />
 
 This gives you a new question to ask: What happens to the number of blue points and brown points as the process plays out? In the example shown, you might notice that it’s always 5 and 5, never changing. Playing with other examples, you’d find the same is true. Take a moment to pause and see if you can think about why that would be true.
 
-<Figure
-    image="constant.png"
-    video="constant.mp4"
-    show="video"
-/>
+<Figure image="constant.png" video="constant.mp4" show="video" />
 
 Well, the key is to think through what happens as a line changes its pivot. Having given the line an orientation, we can talk about which half of the line is “above” the pivot, and which is “below”. If the line hits a blue point to its left, it must happen below the pivot, so as it changes pivots and continues rotating clockwise, the old pivot, now above the new one, ends up to the left of the line, in the blue region. And entirely symmetrically, when it hits a brown point, it happens above the pivot, meaning that old pivot ends up in the brown region. So no matter what, the number of points on a given side of the line can’t change. When you lose a blue point, you gain a new one; when you lose a brown point, you also gain a new one.
 
-<Figure
-    image="change_pivot.png"
-    video="change_pivot.mp4"
-/>
+<Figure image="change_pivot.png" video="change_pivot.mp4" />
 
-Great, that’s insight #1. Now why would this imply that the line must hit every point infinitely many times, no matter what weird set of points you dream up? Well, think about letting this process go until the line has turned 180 degrees. That means it’s parallel to its starting position, and because it has to remain the case that half the points are on one side, half are on the other, it must be passing through the same point it started on. Otherwise, if it ended up on some other point, it would change the number on a given side. Additionally, since the line has rotated halfway around, everything that was blue has become brown, and everything which was brown has become blue, and the only way to change color is if you get hit by the line.
+Great, that’s insight #1. Now why would this imply that the line must hit every point infinitely many times, no matter what weird set of points you dream up? Well, think about letting this process go until the line has turned $180^\circ$. That means it’s parallel to its starting position, and because it has to remain the case that half the points are on one side, half are on the other, it must be passing through the same point it started on. Otherwise, if it ended up on some other point, it would change the number on a given side.
 
-<Figure
-    image="odd_img2.png"
-    video="odd_img.mp4"
-    show="video"
-/>
+<Question
+    question="If the line has rotated $180^\circ$, and ends up passing through the same point where it began, has it necessarily touched every point along the way?"
+    choice1="Yes"
+    choice2="No"
+    answer={1}
+>
+
+Since the line has rotated halfway around, every point which was initially to the line's left, and so was colored blue, is no to the line's right, and so is colored brown. Likewise, every point which began brown becomes blue. The only way to change color is if you get hit by the line.
+
+</Question>
+
+<Figure image="odd_img2.png" video="odd_img.mp4" show="video" />
 
 So for our odd number case, that means that after a half rotation, the line is back to where it started, having hit all the other points. So as time moves forward, it repeats that exact same set of motions over and over, hitting all points infinitely many times.
 
 If there are an even number of points, we need to alter the scheme slightly, but only slightly. Let’s say that in that case, the pivot counts as a brown point. So we can still select an initial point so that half the points are blue, all on the left, and half are brown, now either meaning their either on the right or the pivot.
 
-<Figure
-    image="even_intro.png"
-/>
+<Figure image="even_intro.png" />
 
-The same argument applies that after a 180-degree turn, all the points will have swapped color, although this time the line might be passing through a different point after that first half turn, specifically one that used to be blue. But after another 180 degrees the line must be passing through the same point it started on. Why? Again, it must be parallel to its starting position, and if it was passing through any other point, the number of points on a given side would be different.
+The same argument applies that after a $180^\circ$ turn, all the points will have swapped color, although this time the line might be passing through a different point after that first half turn, specifically one that used to be blue. But after another $180^\circ$ the line must be passing through the same point it started on. Why? Again, it must be parallel to its starting position, and if it was passing through any other point, the number of points on a given side would be different.
 
-<Figure
-    image="even_img.png"
-    video="even_img.mp4"
-    show="video"
-/>
+<Figure image="even_img.png" video="even_img.mp4" show="video" />
 
 So again, you have a cycle which hits all points, and which ends in the same position where it started, so it must hit all points infinitely many times.
+
+A few people ask "but what is the formal solution?". Take a look at [this writeup](https://artofproblemsolving.com/wiki/index.php?title=2011_IMO_Problems/Problem_2), which you'll find presents an argument with the same essential idea as was presented here. It would get you full marks on the test:
+
+The fact that an argument doesn't reference equations and sets doesn't necessarily make it incomplete. Sure, you could explicitly define what words like "left" and "right" refer to by defining such and such cross product with such and such parameterization of the line, but for most readers, it wouldn't actually remove any ambiguity. The purpose of formality is to make all the terms used unambiguous to all readers, not to dress up the language to involve sufficiently many symbols. If you understood this video, you understood the full solution.
 
 ## Concluding thoughts
 
@@ -219,9 +190,7 @@ In math, it’s extremely hard to empathize with what it feels like not to under
 
 On a windmill puzzle, even if counting the number of points on one side seems obvious in hindsight, you have to ask, given the vast space of possible things to consider, why would anyone’s mind ever turn to this particular idea?
 
-<Figure
-    image="different.png"
-/>
+<Figure image="different.png" />
 
 ### Invariants
 
