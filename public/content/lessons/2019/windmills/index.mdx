@@ -29,21 +29,23 @@ The contest is essentially a test, split over two days, with three questions giv
     image="imo_q.png"
 />
 
-Of interest to us today is the one from 2011, with 563 total participants representing 101 countries. I know what you’re thinking, and the answer is yes. Those do all happen to be prime numbers. But that’s not why this test was interesting, out of these prime problem solvers, only one, Lisa Saurmann from Germany, got a perfect score. The only thing standing between the next two runners up and a perfect score that year was problem #2. This problem is beautiful, and despite evading many of the world’s best mathematicians of their age, the solution is something which anyone watching this video can understand.
+Of interest to us today is the one from 2011, with 563 total participants representing 101[^1] countries. Out of these participants, only one, Lisa Saurmann from Germany, got a perfect score. The only thing standing between the next two runners up and a perfect score that year was problem #2. This problem is beautiful, and despite evading many of the world’s best mathematicians of their age, the solution is something which anyone watching this video can understand.
 
 ## The problem
 
+> Let $S$ be a finite set of at least two points in the plane. Assume that no three points of $S$ are collinear. A windmill is a process that starts with a line $l$ going through a single point $P$ in $S$. The line rotates clockwise about the pivot $P$ until the first time that the line meets some other point belonging to $S$. This point, $Q$, takes over as the new pivot, and the line now rotates clockwise about $Q$, until it next meets a point of $S$. This process continues indefinitely. This point, $Q$, takes over as the new pivot, and the line now rotates clockwise about $Q$, until it next meets a point of $S$. This process continues indefinitely.
+
 So let’s begin by reading it carefully.
 
-> Let S be a finite set of at least two points in the plane
+> Let $S$ be a finite set of at least two points in the plane
 
-Mmkay, as you read a question it’s often helpful to start drawing out an example for yourself.
+As you read a question it’s often helpful to start drawing out an example for yourself.
 
 <Figure
     image="intro_img1.png"
 />
 
-> Assume that no three points of S are collinear
+> Assume that no three points of $S$ are collinear
 
 In other words, you never have three points that line up. So you can probably predict that the problem involves drawing lines here in a way where three points on one line would mess things up.
 
@@ -51,7 +53,7 @@ In other words, you never have three points that line up. So you can probably pr
     image="intro_img2.png"
 />
 
-> A windmill is a process that starts with a line l going through a single point P in S. The line rotates clockwise about the pivot P until the first time that the line meets some other point belonging to S.
+> A windmill is a process that starts with a line $l$ going through a single point $P$ in $S$. The line rotates clockwise about the pivot $P$ until the first time that the line meets some other point belonging to $S$.
 
 Again, while reading it’s helpful to draw out an example, so we’ve got this line pivoting around some point until it hits another.
 
@@ -59,7 +61,7 @@ Again, while reading it’s helpful to draw out an example, so we’ve got this 
     image="intro_img3.png"
 />
 
-> This point, Q, takes over as the new pivot, and the line now rotates clockwise about Q, until it next meets a point of S. This process continues indefinitely.
+> This point, $Q$, takes over as the new pivot, and the line now rotates clockwise about $Q$, until it next meets a point of $S$. This process continues indefinitely.
 
 <Figure
     image="intro_img4.png"
@@ -67,7 +69,7 @@ Again, while reading it’s helpful to draw out an example, so we’ve got this 
 
 Alright, that’s kind of fun. We keep rotating and changing the pivot. You can see why they call it a windmill process, and you can also see why they specified that no three points lie on one line. You wouldn’t want to run into the ambiguity where you don’t know what pivot to switch to. Okay, so what’s the question?
 
-> Show that we can choose a point P in S and a line l going through P such that the resulting windmill uses each point of S as a pivot infinitely many times.
+> Show that we can choose a point $P$ in $S$ and a line $l$ going through $P$ such that the resulting windmill uses each point of $S$ as a pivot infinitely many times.
 
 <Figure
     image="intro_img5.png"
@@ -206,3 +208,5 @@ Topologists do this when they count the holes in a surface, physicists do this i
 Terence Tao, one of the greatest modern mathematicians and the world’s youngest IMO medalist, wrote that “Mathematical problems, or puzzles, are important to real mathematics (like solving real-life problems), just as fables, stories, and anecdotes are important to the young in understanding real life.” Sure, they’re contrived, but they carry lessons relevant to useful problems you may actually need to solve one day.
 
 Maybe it seems silly to liken this windmill puzzle to a fairytale; a mathematical Aesop summarizing that the moral of the story is to seek quantities which stay constant. But some of you watching this will one day face a problem where finding an invariant reveals a slick solution, and you might even look like a genius for doing so. If a made up windmill prepares you for a real problem, who cares that it’s a fiction?
+
+[^1]: I know what you’re thinking, and the answer is yes - Those do all happen to be prime numbers.
