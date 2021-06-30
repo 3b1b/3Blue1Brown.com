@@ -1,3 +1,46 @@
+.tabs {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  & > * {
+    margin: 0;
+    margin-left: 20px;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  & > i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    pointer-events: none;
+  }
+
+  & > input {
+    flex-grow: 1;
+    padding-left: 44px;
+    font: inherit;
+    background: $gray-200;
+    border: none;
+  }
+
+  &[data-active="true"] > input {
+    background: $gray-300;
+  }
+}
+
+.no_results {
+  margin: 20px;
+  font-style: italic;
+}
+
 .topic_card {
   position: relative;
   color: inherit;
