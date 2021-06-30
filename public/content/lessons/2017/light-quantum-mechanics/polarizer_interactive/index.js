@@ -25,6 +25,7 @@ let SCALE = 1;
 let polarizerAngle = 270;
 let lightAngle = 225;
 let probability = 0;
+let canDrag = true;
 
 export default function Polarizer() {
   const WIDTH = 700;
@@ -90,7 +91,7 @@ export default function Polarizer() {
     const scaleFactor =
       sketch.height < sketch.width ? sketch.height : sketch.width;
 
-    if (sketch.mouseIsPressed && mouseInCanvas) {
+    if (sketch.mouseIsPressed && mouseInCanvas && canDrag) {
       const moveX = (sketch.mouseX - sketch.pmouseX) / SCALE;
       const moveY = (sketch.mouseY - sketch.pmouseY) / SCALE;
       const deltaTheta = (-SENSITIVITY * moveX) / scaleFactor;
@@ -269,6 +270,18 @@ export default function Polarizer() {
     };
 
     drawInfo(sketch);
+    addCameraEvents(filterSlider);
+    addCameraEvents(lightSlider);
+  }
+
+  function addCameraEvents(slider) {
+    // The top canvas's camera shouldn't move when these sliders are being moved
+    slider.onGrab = () => {
+      canDrag = false;
+    };
+    slider.onRelease = () => {
+      canDrag = true;
+    };
   }
 
   function drawInfo(sketch) {
@@ -630,6 +643,9 @@ class ArcSlider {
     };
     this.bobble.onRelease = () => {
       if (this.onRelease != undefined) this.onRelease();
+    };
+    this.bobble.onGrab = () => {
+      if (this.onRelease != undefined) this.onGrab();
     };
 
     // Re-draw everything now that the plumbing is correct

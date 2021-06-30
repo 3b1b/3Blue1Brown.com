@@ -173,7 +173,7 @@ export default function SphericalPlot() {
   function wave(x) {
     return (
       -sliders[0].getValue() *
-      Math.sin(2 * Math.PI * sliders[1].getValue() * x + sliders[2].getValue())
+      Math.cos(2 * Math.PI * sliders[1].getValue() * x + sliders[2].getValue())
     );
   }
 
