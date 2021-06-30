@@ -67,7 +67,7 @@ const TableOfContents = () => {
 
     // smooth scroll to target
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    
+
     // manually update url with new hash, since we prevented default
     window.history.pushState(null, null, "#" + id);
   }, []);
@@ -152,7 +152,7 @@ const getDownEnough = () =>
   typeof document === "undefined"
     ? false
     : document
-        .querySelector("main > section:nth-child(2)")
+        .querySelector("main > section:nth-child(1)")
         .getBoundingClientRect().top < 0;
 
 // get whether page is scrolled up far enough
