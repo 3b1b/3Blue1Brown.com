@@ -152,7 +152,7 @@ const getDownEnough = () =>
   typeof document === "undefined"
     ? false
     : document
-        .querySelector("main > section:nth-child(1)")
+        .querySelector("main > section:nth-child(2)")
         .getBoundingClientRect().top < 0;
 
 // get whether page is scrolled up far enough
@@ -164,6 +164,6 @@ const getUpEnough = () =>
 
 // get whether page is wide enough
 const getWideEnough = () =>
-  typeof window === "undefined" ? false : window.innerWidth > 1700;
+  typeof window === "undefined" ? false : window.innerWidth > 1500;
 
 export default TableOfContents;
