@@ -57,7 +57,7 @@ const Nav = () => {
       </button>
 
       <NavLink
-        link="/lessons"
+        link="/#lessons"
         text="Lessons"
         tooltip="Various maths topics, in video and text form"
       />
