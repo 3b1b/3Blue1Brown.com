@@ -16,9 +16,11 @@ export default function LessonVideo() {
   const topic = topics.find(({ name }) => name === topicName);
   const topicIsSeries = chapter !== undefined;
 
-  const lessonIndex = topic.lessons.findIndex((lesson) => lesson === slug);
-  const prevLesson = topic.lessons[lessonIndex - 1];
-  const nextLesson = topic.lessons[lessonIndex + 1];
+  const lessonIndex = topic
+    ? topic.lessons.findIndex((lesson) => lesson === slug)
+    : null;
+  const prevLesson = topic ? topic.lessons[lessonIndex - 1] : null;
+  const nextLesson = topic ? topic.lessons[lessonIndex + 1] : null;
 
   const [showCoverImage, setShowCoverImage] = useState(true);
 
@@ -29,7 +31,7 @@ export default function LessonVideo() {
         data-showcoverimage={showCoverImage}
         data-topicisseries={topicIsSeries}
       >
-        {topicName && (
+        {topic && (
           <Link href={`/topics/${topic.slug}`}>
             <a className={styles.topicLink}>
               <i class="fas fa-arrow-left"></i>
