@@ -88,26 +88,26 @@ The first step with any puzzle like this is simply to play around to get a feel 
 
 The simplest case would be two points, where the line trades off between each point, so that works well enough.
 
-<Figure image="2_img.png" video="2_img.mp4" show="video" />
+<Figure image="2_img.png" video="2_img.mp4" show="video" loop={true}/>
 
 Adding a third point, it’s pretty clear the line will just rotate around all of them. It might not be entirely clear how you’d phrase that as a rigorous proof yet, but right now you’re just getting a feel for things.
 
-<Figure image="3_img.png" video="3_img.mp4" show="video" />
+<Figure image="3_img.png" video="3_img.mp4" show="video" loop={true}/>
 
 The fourth point is where things get interesting. In some places, your windmill will go around the four points as it did with the triangle.
 
-<Figure image="4_outer.png" video="4_outer.mp4" show="video" />
+<Figure image="4_outer.png" video="4_outer.mp4" show="video" loop={true}/>
 
 However, if we put it inside that triangle, then it looks like our windmill never hits it.
 
-<Figure image="4_never.png" video="4_never.mp4" show="video" />
+<Figure image="4_never.png" video="4_never.mp4" show="video" loop={true}/>
 
 Looking back at the problem, it’s asking you to show that for some starting position of the line, not any position, the process will hit all the points infinitely many times.
 
 So for an example like this, if you start with the line going through that troublesome middle point, what happens? And again, at this point you're just playing around, perhaps moving your pencil among dots you’ve drawn on your scratch paper, questions of rigor and proof will come later.
 
-<Figure
->
+<Figure image="4_question.png" />
+
 <Question
     question="If we begin with the configuration pictured above, what will happen?"
     choice1="The line will eventually end up rotating around the outer three points, only having hit the inside point a finite number of times."
@@ -166,7 +166,16 @@ If there are an even number of points, we need to alter the scheme slightly, but
 
 <Figure image="even_intro.png" />
 
-The same argument applies that after a $180^\circ$ turn, all the points will have swapped color, although this time the line might be passing through a different point after that first half turn, specifically one that used to be blue. But after another $180^\circ$ the line must be passing through the same point it started on. Why? Again, it must be parallel to its starting position, and if it was passing through any other point, the number of points on a given side would be different.
+The same argument applies that after a $180^\circ$ turn, all the points will have swapped color, although this time the line might be passing through a different point after that first half turn, specifically one that used to be blue. 
+
+<Question 
+    question="After a $180^\circ$ turn, will the line be passing through the same point it started on?"
+    choice1="Yes"
+    choice2="No"
+    answer={1}
+>
+After a $180^\circ$ turn, the line must be parallel to its starting position, and if it was passing through any other point, the number of points on a given side would be different. This would break insight #1. 
+</Question>
 
 <Figure image="even_img.png" video="even_img.mp4" show="video" />
 
