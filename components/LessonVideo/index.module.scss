@@ -24,14 +24,16 @@
 
 @media (max-width: 600px) {
   .videoArea {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-      "topic"
-      "video";
+      "topic topic"
+      "video video"
+      "prev next";
   }
   .arrowLeft,
   .arrowRight {
-    display: none;
+    padding: 0;
   }
 }
 
