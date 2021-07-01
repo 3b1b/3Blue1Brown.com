@@ -41,7 +41,6 @@ const LessonCard = ({
       data-active={active || false}
       data-mini={mini || false}
       data-reverse={reverse || false}
-      // data-fade
     >
       {icon && <i className={icon}></i>}
 

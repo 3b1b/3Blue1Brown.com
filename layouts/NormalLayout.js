@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import PageContent from "../components/PageContent";
 import Anchors from "../components/Anchors";
 import Glow from "../components/Glow";
-// import Fade from "../components/Fade";
 
 // default, normal layout
 const Normal = ({ children }) => (
@@ -17,7 +16,6 @@ const Normal = ({ children }) => (
     {/* singleton components */}
     <Anchors />
     <Glow />
-    {/* <Fade /> */}
     {/* main content of page */}
     <Main>
       {!children && <PageContent />}
