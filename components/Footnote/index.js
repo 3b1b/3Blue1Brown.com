@@ -42,15 +42,17 @@ export default function Footnote({ label, children }) {
 
   return (
     <>
-      <button
-        ref={setReferenceElement}
-        className={styles.footnoteLabel}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        {label}
-      </button>
+      <sup ref={setReferenceElement}>
+        <button
+          className={styles.footnoteLabel}
+          data-open={isOpen}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          {label}
+        </button>
+      </sup>
 
       {isOpen &&
         createPortal(
