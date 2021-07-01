@@ -47,7 +47,7 @@ const Head = () => {
         sizes="512x512"
         href="favicons/favicon.png"
       />
-      <link rel="manifest" href="favicons/site.webmanifest" />
+      <link rel="manifest" href="/favicons/site.webmanifest" />
       <meta property="og:image" content={thumbnail} />
       <meta property="twitter:image" content={thumbnail} />
     </NextHead>
