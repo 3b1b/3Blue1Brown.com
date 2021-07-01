@@ -30,7 +30,8 @@ const LessonCard = ({
   else Component = Link;
 
   // get lesson details
-  let { slug, title, description, date, video, chapter, topic, empty } = lesson;
+  let { slug, title, description, date, thumbnail, chapter, topic, empty } =
+    lesson;
   if (date) date = formatDate(date);
 
   return (
@@ -46,7 +47,7 @@ const LessonCard = ({
 
       <div className={styles.image}>
         <div className={styles.frame}>
-          <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+          <img src={thumbnail} alt="" />
         </div>
       </div>
 

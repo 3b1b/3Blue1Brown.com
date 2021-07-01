@@ -9,6 +9,7 @@ export default function LessonVideo() {
   const {
     video: videoId,
     topic: topicName,
+    thumbnail,
     chapter,
     slug,
   } = useContext(PageContext);
@@ -56,7 +57,7 @@ export default function LessonVideo() {
             <button className={styles.coverButton} onClick={startVideo}>
               <img
                 className={styles.coverImage}
-                src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                src={thumbnail}
                 alt="Youtube video"
               />
               <svg
