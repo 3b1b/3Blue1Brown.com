@@ -88,7 +88,6 @@ const Nav = () => {
         text="Support"
         tooltip="See membership benefits"
       />
-      <NavLink link="/search" icon="fas fa-search" tooltip="Search the site" />
     </nav>
   );
 };
