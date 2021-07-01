@@ -14,7 +14,7 @@ const Portrait = ({ image, size = "180px", flip = false }) => {
       className={styles.portrait}
       style={{ width: size, height: size }}
       data-flip={flip}
-      data-sectionWidth={sectionWidth}
+      data-sectionwidth={sectionWidth}
     >
       <img src={image} />
     </div>
