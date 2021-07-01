@@ -10,7 +10,6 @@ import {
 } from "./ContactForms";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
-import GoogleSearch from "./GoogleSearch";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
   HomepageFeaturedVideo,
@@ -37,7 +36,6 @@ const components = {
   ContactFormReceivedMessage,
   FeatureCard,
   Figure,
-  GoogleSearch,
   HomepageFeaturedContent,
   HomepageFeaturedItem,
   HomepageFeaturedVideo,

@@ -1,3 +1,49 @@
+.tabs {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.search {
+  margin-right: 0;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+
+  & > i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 16px;
+    pointer-events: none;
+  }
+
+  & > input {
+    flex-grow: 1;
+    padding: 10px 0;
+    padding-left: 44px;
+    font: inherit;
+    background: $gray-200;
+    border: none;
+  }
+
+  &[data-active="true"] > input {
+    background: $gray-300;
+  }
+}
+
+.no_results {
+  margin: 20px;
+  font-style: italic;
+}
+
 .topic_card {
   position: relative;
   color: inherit;
