@@ -56,7 +56,7 @@ const LessonGallery = ({ show = "topic" }) => {
         />
 
         <div className={styles.search} data-active={view === "search"}>
-          <i class="fas fa-search" />
+          <i className="fas fa-search" />
           <input
             type="text"
             value={searchText}
