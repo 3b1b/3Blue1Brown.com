@@ -97,14 +97,6 @@ const Figure = ({
     updateDimensions();
   }, [updateDimensions]);
 
-  // autoplay/pause video when it goes in/out of view
-  useEffect(() => {
-    if (!videoRef.current) return;
-    const observer = new IntersectionObserver(videoAutoplay);
-    observer.observe(videoRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   // if no image/video, don't render
   if (!imageSrc && !videoSrc) return null;
 
@@ -122,7 +114,14 @@ const Figure = ({
             icon="fas fa-film"
             text="Animation"
             active={show === "video"}
-            onClick={() => setShow("video")}
+            onClick={() => {
+              setShow("video");
+
+              if (videoRef.current) {
+                videoRef.current.currentTime = 0;
+                videoRef.current.play();
+              }
+            }}
           />
         </div>
       )}
@@ -163,9 +162,3 @@ const Figure = ({
 };
 
 export default Figure;
-
-// pause or play video based on in view status
-const videoAutoplay = ([{ target, isIntersecting }]) => {
-  if (isIntersecting) target.play();
-  else target.pause();
-};
