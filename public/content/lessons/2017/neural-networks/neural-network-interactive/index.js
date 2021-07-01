@@ -187,7 +187,6 @@ function NeuronConnections({ selectedNeuron, animating }) {
       if (neuronId === null) return;
 
       prevLayer.forEach((prevNeuronId, prevNeuronIndex) => {
-        if (neuronId === null) return;
         if (prevNeuronId === null) return;
 
         const weight = weights[prevLayerIndex][neuronId][prevNeuronId];
@@ -224,37 +223,39 @@ function NeuronConnections({ selectedNeuron, animating }) {
           (prevNeuronId * layer.length + neuronId) % 7 === 2;
 
         connections.push(
-          <>
+          <line
+            key={`${prevLayerIndex}-${prevNeuronId}-${layerIndex}-${neuronId}`}
+            x1={prevNeuronPos.x}
+            x2={nextNeuronPos.x}
+            y1={prevNeuronPos.y}
+            y2={nextNeuronPos.y}
+            stroke={color}
+            strokeWidth={lineWidth}
+          />
+        );
+
+        if (thisLineCanAnimate) {
+          connections.push(
             <line
+              key={`${prevLayerIndex}-${prevNeuronId}-${layerIndex}-${neuronId}-anim`}
               x1={prevNeuronPos.x}
               x2={nextNeuronPos.x}
               y1={prevNeuronPos.y}
               y2={nextNeuronPos.y}
-              stroke={color}
-              stroke-width={lineWidth}
+              stroke="rgba(255, 255, 0, 0.5)"
+              strokeWidth={lineWidth}
+              strokeDasharray={`${lineLength} ${lineLength}`}
+              strokeDashoffset={(animating ? -1 : 1) * lineLength}
+              style={{
+                transition: animating
+                  ? `stroke-dashoffset 1200ms ease-in-out ${
+                      1200 * (layerIndex - 1) + 500 + 100 * Math.random()
+                    }ms`
+                  : "none",
+              }}
             />
-
-            {thisLineCanAnimate && (
-              <line
-                x1={prevNeuronPos.x}
-                x2={nextNeuronPos.x}
-                y1={prevNeuronPos.y}
-                y2={nextNeuronPos.y}
-                stroke="rgba(255, 255, 0, 0.5)"
-                stroke-width={lineWidth}
-                stroke-dasharray={`${lineLength} ${lineLength}`}
-                stroke-dashoffset={(animating ? -1 : 1) * lineLength}
-                style={{
-                  transition: animating
-                    ? `stroke-dashoffset 1200ms ease-in-out ${
-                        1200 * (layerIndex - 1) + 500 + 100 * Math.random()
-                      }ms`
-                    : "none",
-                }}
-              />
-            )}
-          </>
-        );
+          );
+        }
       });
     });
   }
@@ -282,11 +283,12 @@ function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
 
           return (
             <circle
+              key={`${layerIndex}-${neuronId}`}
               cx={neuronPos.x}
               cy={neuronPos.y}
               r="10"
               stroke={isSelected ? "yellow" : "white"}
-              stroke-width={isSelected ? 2 : 1}
+              strokeWidth={isSelected ? 2 : 1}
               style={{
                 fill: animating ? fill : "black",
                 transition: animating
@@ -320,12 +322,12 @@ function WinningOutputNeuronBox({ neurons, animating }) {
       width={56}
       height={32}
       stroke="yellow"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       fill="none"
-      stroke-dasharray="176 176"
-      stroke-dashoffset={(animating ? 0 : 1) * 176}
+      strokeDasharray="176 176"
+      strokeDashoffset={(animating ? 0 : 1) * 176}
       style={{
         transition: animating
           ? "stroke-dashoffset 800ms ease-in-out 4500ms"
@@ -347,12 +349,13 @@ function OutputDigitLabels() {
 
           return (
             <text
+              key={neuronId}
               x={position.x + 25}
               y={position.y + 2}
               style={{ fill: "white" }}
-              font-size="20"
-              dominant-baseline="middle"
-              text-anchor="middle"
+              fontSize="20"
+              dominantBaseline="middle"
+              textAnchor="middle"
             >
               {neuronId}
             </text>
@@ -560,13 +563,14 @@ function ImageGrid({
 
           return (
             <rect
+              key={`${tileX}-${tileY}`}
               x={(tileX * 400) / 28}
               y={(tileY * 400) / 28}
               width={400 / 28}
               height={400 / 28}
               fill={`rgba(255, 255, 255, ${value})`}
               stroke={highlightedTile === n ? "yellow" : "none"}
-              stroke-width="2"
+              strokeWidth="2"
             />
           );
         })}
@@ -578,7 +582,7 @@ function ImageGrid({
         width={400}
         height={400}
         stroke="#61BAD6"
-        stroke-width="2"
+        strokeWidth="2"
         rx="2"
         fill="transparent"
         style={{
@@ -623,10 +627,10 @@ function ImageGrid({
           <text
             x="50"
             y="22"
-            dominant-baseline="middle"
-            text-anchor="middle"
+            dominantBaseline="middle"
+            textAnchor="middle"
             fill="black"
-            font-family="sans-serif"
+            fontFamily="sans-serif"
             style={{
               pointerEvents: "none",
               opacity: animateButtonDisabled ? 0.5 : 1.0,
@@ -660,10 +664,10 @@ function ImageGrid({
           <text
             x="325"
             y="22"
-            dominant-baseline="middle"
-            text-anchor="middle"
+            dominantBaseline="middle"
+            textAnchor="middle"
             fill="white"
-            font-family="sans-serif"
+            fontFamily="sans-serif"
             style={{
               pointerEvents: "none",
               opacity: animateButtonDisabled ? 0.5 : 1.0,
@@ -699,7 +703,7 @@ function WeightGrid({ x, y, width, height, weights, inputNeurons }) {
         height="30"
         fill="black"
         stroke="yellow"
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
       {weights.map((weight, n) => {
         const weightX = n % 28;
@@ -722,7 +726,7 @@ function WeightGrid({ x, y, width, height, weights, inputNeurons }) {
         height="30"
         fill="black"
         stroke="yellow"
-        stroke-width="0.5"
+        strokeWidth="0.5"
       />
       {weights.map((weight, n) => {
         const weightX = n % 28;

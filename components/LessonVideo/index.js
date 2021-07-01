@@ -38,7 +38,7 @@ export default function LessonVideo() {
         {topic && (
           <Link href={`/topics/${topic.slug}`}>
             <a className={styles.topicLink}>
-              <i class="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-left"></i>
               {topicName}
             </a>
           </Link>
