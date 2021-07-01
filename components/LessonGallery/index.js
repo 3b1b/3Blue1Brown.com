@@ -82,7 +82,7 @@ const LessonGallery = ({ show = "topic" }) => {
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-      {(tab === "date" || view === "search") &&
+      {(view === "date" || view === "search") &&
         filteredLessons.length === 0 && (
           <div className={styles.no_results}>No lessons match your search.</div>
         )}
