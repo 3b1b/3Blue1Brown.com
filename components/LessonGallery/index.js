@@ -3,13 +3,11 @@ import Link from "next/link";
 import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
-import featured from "../../data/featured.yaml";
 import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
-// gallery that shows all lessons in various ways with tabs. show by featured,
-// topic, or date
+// gallery that shows all lessons in various ways with tabs. show by topic or all
 const LessonGallery = ({ show = "topic" }) => {
   const { lessons } = useContext(PageContext);
   const [tab, setTab] = useState(show); // active tab
@@ -31,15 +29,7 @@ const LessonGallery = ({ show = "topic" }) => {
     <>
       <div className={styles.tabs}>
         <Clickable
-          text="Featured"
-          onClick={() => {
-            setTab("featured");
-            setSearchText("");
-          }}
-          active={view === "featured"}
-        />
-        <Clickable
-          text="By Topic"
+          text="Topics"
           onClick={() => {
             setTab("topic");
             setSearchText("");
@@ -47,12 +37,12 @@ const LessonGallery = ({ show = "topic" }) => {
           active={view === "topic"}
         />
         <Clickable
-          text="By Date"
+          text="All"
           onClick={() => {
-            setTab("date");
+            setTab("all");
             setSearchText("");
           }}
-          active={view === "date"}
+          active={view === "all"}
         />
 
         <div className={styles.search} data-active={view === "search"}>
@@ -66,11 +56,6 @@ const LessonGallery = ({ show = "topic" }) => {
           />
         </div>
       </div>
-      {view === "featured" &&
-        featured
-          .map((slug) => lessons.find((lesson) => lesson.slug === slug))
-          .filter((lesson) => lesson)
-          .map((lesson) => <LessonCard key={lesson.slug} id={lesson.slug} />)}
       {view === "topic" && (
         <Center>
           {topics.map((topic) => (
@@ -78,11 +63,11 @@ const LessonGallery = ({ show = "topic" }) => {
           ))}
         </Center>
       )}
-      {(view === "date" || view === "search") &&
+      {(view === "all" || view === "search") &&
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-      {(view === "date" || view === "search") &&
+      {(view === "all" || view === "search") &&
         filteredLessons.length === 0 && (
           <div className={styles.no_results}>No lessons match your search.</div>
         )}

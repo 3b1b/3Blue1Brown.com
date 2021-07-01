@@ -3,7 +3,7 @@ import Link from "next/link";
 import NormalLayout from "./NormalLayout";
 import PageContent from "../components/PageContent";
 import Section from "../components/Section";
-import Video from "../components/Video";
+import LessonVideo from "../components/LessonVideo";
 import LessonDetails from "../components/LessonDetails";
 import Patrons from "../components/Patrons";
 import Empty from "../components/Empty";
@@ -15,15 +15,15 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const LessonLayout = () => {
-  const { video, empty } = useContext(PageContext);
+  const { empty, video } = useContext(PageContext);
   return (
     <NormalLayout>
-      <Section dark={true}>
-        <Video id={video} />
-      </Section>
-
+      {/* Key prevents state from being preserved when moving between pages: */}
+      <LessonVideo key={video} />
       <LessonDetails />
-      <LessonNav />
+
+      {/* Don't alternate section color after <LessonDetails> */}
+      <div />
 
       {!empty && (
         <>

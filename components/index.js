@@ -26,7 +26,6 @@ import Section from "./Section";
 import Spoiler from "./Spoiler";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
-import Video from "./Video";
 
 // components to automatically import into all .mdx files
 const components = {
@@ -55,7 +54,6 @@ const components = {
   ThanksForm,
   Tooltip,
   Twitter,
-  Video,
 };
 
 export default components;

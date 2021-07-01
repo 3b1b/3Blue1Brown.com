@@ -9,9 +9,9 @@ import { PageContext } from "../../pages/_app";
 
 // details to show at the top of a lesson, with icons and text
 const LessonDetails = () => (
-  <Section>
+  <Section width="narrow">
     <Title />
-    <div className={styles.lesson_details}>
+    <div className={styles.metadata}>
       <Published />
       <LastMod />
       <br />
@@ -29,7 +29,7 @@ const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
     <h1 id="title">
-      {chapter && <Chip text={`Chapter ${chapter}`} />}
+      {chapter !== undefined && <Chip text={`Chapter ${chapter}`} />}
       {title}
     </h1>
   );

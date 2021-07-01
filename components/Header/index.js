@@ -9,9 +9,11 @@ import styles from "./index.module.scss";
 
 // header component to show at top of every page
 const Header = () => {
-  // make header big if on home page
-  const { pathname } = useRouter();
-  const big = pathname === "/";
+  // It used to be the case that the header was larger
+  // for the home page. If we decide to stick with a
+  // universally small one, this option should probably
+  // just be removed.
+  const big = false;
 
   return (
     <header className={styles.header} data-big={big}>
@@ -55,7 +57,7 @@ const Nav = () => {
       </button>
 
       <NavLink
-        link="/lessons"
+        link="/#lessons"
         text="Lessons"
         tooltip="Various maths topics, in video and text form"
       />
