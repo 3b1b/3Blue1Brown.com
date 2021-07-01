@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install"
+    "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
