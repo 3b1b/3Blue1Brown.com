@@ -1,0 +1,85 @@
+.answerHeader {
+  text-align: left;
+  font-weight: $semi-bold;
+  margin-bottom: 4px;
+}
+
+// button {
+//   margin: 0;
+//   margin-top: 8px;
+//   align-self: start;
+// }
+
+.yours {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  textarea {
+    resize: none;
+    font: inherit;
+    padding: 8px;
+    line-height: 1.6;
+    border: 2px solid $gray-700;
+    padding-bottom: 72px;
+
+    &:focus {
+      border-color: $blue-400;
+      outline: none;
+    }
+  }
+
+  button {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    margin: 0;
+  }
+
+  margin-bottom: 16px;
+}
+
+.ours {
+  padding: 8px;
+  border: 2px solid transparent;
+  background: white;
+  transition: all 200ms linear;
+
+  &[data-visible="false"] {
+    .explanation {
+      filter: blur(8px);
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  &[data-visible="true"] {
+    background: $gray-100;
+    border-color: $gray-700;
+  }
+}
+
+.explanation {
+  transition: filter 200ms linear;
+
+  p {
+    line-height: 1.6;
+    text-align: left;
+  }
+}
+
+.about {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: $sans;
+  color: $gray-500;
+  border: 2px dashed $gray-300;
+  border-radius: 9999px;
+  user-select: none;
+}

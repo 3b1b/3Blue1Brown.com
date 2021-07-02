@@ -87,12 +87,19 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     // if cchild is react element
     if (isValidElement(element)) return cloneElement(element, props);
     // if child is plain text
-    if (typeof element === "string")
+    if (typeof element === "string") {
       return (
-        <span {...props} tabIndex="0" className={classNames.span}>
+        <span
+          {...props}
+          tabIndex="0"
+          className={
+            classNames.span + (props.className ? ` ${props.className}` : "")
+          }
+        >
           {element}
         </span>
       );
+    }
     // otherwise, pass child through untouched
     return element;
   });
