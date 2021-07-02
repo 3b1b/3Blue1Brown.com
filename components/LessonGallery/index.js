@@ -6,6 +6,7 @@ import LessonCard from "../LessonCard";
 import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
+import PiCreature from "../PiCreature";
 
 // gallery that shows all lessons in various ways with tabs. show by topic or all
 const LessonGallery = ({ show = "topic" }) => {
@@ -24,6 +25,9 @@ const LessonGallery = ({ show = "topic" }) => {
 
     return lessons.filter((lesson) => matchesSearch(lesson, searchText));
   }, [lessons, view, searchText]);
+
+  const googleURL = new URL("https://google.com/search");
+  googleURL.searchParams.append("q", `site:3blue1brown.com ${searchText}`);
 
   return (
     <>
@@ -67,10 +71,22 @@ const LessonGallery = ({ show = "topic" }) => {
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-      {(view === "all" || view === "search") &&
-        filteredLessons.length === 0 && (
-          <div className={styles.no_results}>No lessons match your search.</div>
-        )}
+      {(view === "all" || view === "search") && filteredLessons.length === 0 && (
+        <div className={styles.no_results}>
+          <PiCreature
+            text="No lessons match your search."
+            emotion="maybe"
+            placement="inline"
+          />
+          <p>
+            Can't find what you're looking for? Try{" "}
+            <a href={googleURL} target="_blank" rel="noreferrer">
+              searching Google
+            </a>{" "}
+            instead.
+          </p>
+        </div>
+      )}
     </>
   );
 };
