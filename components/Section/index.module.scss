@@ -36,6 +36,6 @@ $phone: 500px;
   max-width: $page-narrow;
 }
 
-.section[data-width="full"] > .wrapper {
-  max-width: none;
+.section[data-width="wide"] > .wrapper {
+  max-width: 90%;
 }

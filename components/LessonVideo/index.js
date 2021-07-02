@@ -23,13 +23,28 @@ export default function LessonVideo() {
   const prevLesson = topic ? topic.lessons[lessonIndex - 1] : null;
   const nextLesson = topic ? topic.lessons[lessonIndex + 1] : null;
 
+  const wideEnoughToToggle = () => {
+    return typeof window === "undefined" ? false : window.innerWidth > 1000;
+  }
+
+  const [wideVideo, setWideVideo] = useState(false);
+  const toggleExpansion = () => {
+    setWideVideo(!wideVideo);
+    if(wideEnoughToToggle()){
+      var id = wideVideo ? "__next" : "video-section";
+      // smooth scroll to target
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
+    toggleExpansion();
     setShowCoverImage(false);
   };
 
   return (
-    <Section dark={true} width={showCoverImage ? "narrow" : "full"}>
+    <Section id="video-section" dark={true} width={wideVideo ? "wide" : "narrow"}>
       <div
         className={styles.videoArea}
         data-showcoverimage={showCoverImage}
@@ -42,6 +57,15 @@ export default function LessonVideo() {
               {topicName}
             </a>
           </Link>
+        )}
+
+        {!showCoverImage && wideEnoughToToggle() && (
+          <button onClick={toggleExpansion} className={styles.expandButton}>
+            {wideVideo ? 
+              <i class="fas fa-compress-alt"></i> :
+              <i class="fas fa-expand-alt"></i>
+            }
+          </button>
         )}
 
         {prevLesson && (
@@ -83,15 +107,6 @@ export default function LessonVideo() {
                 src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
                 allow="autoplay"
                 allowFullScreen
-                onLoad={(event) => {
-                  // Scroll so video is centered on screen
-                  const rect = event.target.getBoundingClientRect();
-                  const relativeMiddle = rect.top + rect.height / 2;
-                  const absoluteMiddle = relativeMiddle + window.pageYOffset;
-                  const scrollPosition =
-                    absoluteMiddle - window.innerHeight / 2;
-                  window.scrollTo(0, scrollPosition);
-                }}
               />
             </div>
           )}

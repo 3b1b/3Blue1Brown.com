@@ -59,6 +59,22 @@
   }
 }
 
+.expandButton {
+  grid-area: topic;
+  font-size: 20px; 
+  width: 25px;
+  color: white;
+  margin-left: auto; 
+  margin-right: 0;
+  // margin-top: 0;
+  // margin-bottom: auto;
+
+  &:hover {
+    font-size: 22px;
+    color: $blue-300;
+  }
+}
+
 .arrowLeft,
 .arrowRight {
   padding: 20px;
@@ -70,6 +86,7 @@
   &:hover,
   &:focus {
     color: $blue-300;
+    font-size: 40px;
   }
   &:active {
     color: $blue-500;
