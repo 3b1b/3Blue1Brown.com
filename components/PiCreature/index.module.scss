@@ -144,10 +144,10 @@
   }
 }
 
-.pi_creature[data-sectionWidth="normal"] {
+.pi_creature[data-sectionwidth="normal"] {
   @include pi-position($page);
 }
 
-.pi_creature[data-sectionWidth="narrow"] {
+.pi_creature[data-sectionwidth="narrow"] {
   @include pi-position($page-narrow);
 }

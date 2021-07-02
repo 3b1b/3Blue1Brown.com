@@ -6,15 +6,11 @@ import { location as siteLocation } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 
 const Head = () => {
-  let { title, description, location, video } = useContext(PageContext);
+  let { title, description, location, thumbnail } = useContext(PageContext);
 
   title = [siteTitle, title].filter((e) => e).join(" - ");
   description = description || siteDescription;
   location = location || siteLocation;
-
-  const thumbnail = video
-    ? `https://img.youtube.com/vi/${video}/hqdefault.jpg`
-    : "favicons/share-thumbnail.jpg";
 
   return (
     <NextHead>
@@ -51,7 +47,7 @@ const Head = () => {
         sizes="512x512"
         href="favicons/favicon.png"
       />
-      <link rel="manifest" href="favicons/site.webmanifest" />
+      <link rel="manifest" href="/favicons/site.webmanifest" />
       <meta property="og:image" content={thumbnail} />
       <meta property="twitter:image" content={thumbnail} />
     </NextHead>

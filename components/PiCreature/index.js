@@ -30,7 +30,7 @@ const PiCreature = ({
       data-placement={placement || "auto"}
       data-design={design}
       data-text={text ? true : false}
-      data-sectionWidth={sectionWidth}
+      data-sectionwidth={sectionWidth}
     >
       <div className={styles.frame}>
         <img src={`/images/pi-creatures/${emotion}.svg`} />

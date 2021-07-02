@@ -1,5 +1,5 @@
 import { readFileSync, statSync, existsSync } from "fs";
-import { basename, extname, dirname, join } from "path";
+import { basename, extname, dirname, join, relative } from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { glob } from "glob";
@@ -17,7 +17,13 @@ import topics from "../data/topics.yaml";
 // read mdx file, get derived props, and return info in desired structure
 const parseMdx = (file) => {
   // read mdx
-  const { data, content } = matter(readFileSync(file, "utf8"));
+  let { data, content } = matter(readFileSync(file, "utf8"));
+
+  // There seems to be some sort of caching where the data object
+  // is the exact same each time. But we want a fresh copy each time
+  // so that we can modify it without affecting the result if `matter`
+  // runs on the same file again.
+  data = { ...data };
 
   // put dates in serializable format
   data.date = new Date(data.date || new Date()).toISOString();
@@ -44,6 +50,20 @@ const parseMdx = (file) => {
   data.topic =
     topics.find(({ lessons }) => lessons.find((lesson) => lesson === data.slug))
       ?.name || "Uncategorized";
+
+  if (data.thumbnail) {
+    // Get absolute path to thumbnail
+    data.thumbnail =
+      "/" + relative("public", join(dirname(file), data.thumbnail));
+  } else {
+    if (data.video) {
+      // Use youtube thumbnail by default...
+      data.thumbnail = `https://img.youtube.com/vi/${data.video}/maxresdefault.jpg`;
+    } else {
+      // ...or a truly generic default thumbnail
+      data.thumbnail = "/favicons/share-thumbnail.jpg";
+    }
+  }
 
   // return desired info
   return { content, patrons, ...data };

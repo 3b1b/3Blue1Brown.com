@@ -9,6 +9,7 @@ export default function LessonVideo() {
   const {
     video: videoId,
     topic: topicName,
+    thumbnail,
     chapter,
     slug,
   } = useContext(PageContext);
@@ -37,7 +38,7 @@ export default function LessonVideo() {
         {topic && (
           <Link href={`/topics/${topic.slug}`}>
             <a className={styles.topicLink}>
-              <i class="fas fa-arrow-left"></i>
+              <i className="fas fa-arrow-left"></i>
               {topicName}
             </a>
           </Link>
@@ -56,7 +57,7 @@ export default function LessonVideo() {
             <button className={styles.coverButton} onClick={startVideo}>
               <img
                 className={styles.coverImage}
-                src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                src={thumbnail}
                 alt="Youtube video"
               />
               <svg

@@ -7,6 +7,7 @@ import LessonVideo from "../components/LessonVideo";
 import LessonDetails from "../components/LessonDetails";
 import Patrons from "../components/Patrons";
 import Empty from "../components/Empty";
+import ShareButtons from "../components/ShareButtons";
 import LessonNav from "../components/LessonNav";
 import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
@@ -28,6 +29,11 @@ const LessonLayout = () => {
       {!empty && (
         <>
           <PageContent />
+          {/* Don't alternate section color */}
+          <div />
+          <Section width="narrow">
+            <ShareButtons />
+          </Section>
           <LessonNav />
           <License />
           <Thanks />
