@@ -10,6 +10,7 @@ import {
 } from "./ContactForms";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
+import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
   HomepageFeaturedVideo,
@@ -36,6 +37,7 @@ const components = {
   ContactFormReceivedMessage,
   FeatureCard,
   Figure,
+  FreeResponse,
   HomepageFeaturedContent,
   HomepageFeaturedItem,
   HomepageFeaturedVideo,
