@@ -42,6 +42,10 @@
 .no_results {
   margin: 20px;
   font-style: italic;
+
+  p {
+    text-align: center;
+  }
 }
 
 .topic_card {
