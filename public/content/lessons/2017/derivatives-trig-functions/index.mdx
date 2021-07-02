@@ -11,23 +11,26 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-Let’s tackle one more type of function: Trigonometric functions. In particular, let’s focus on the sine function. Right here I’m going to assume you are familiar with how to think about trigonometric functions using the unit circle; the circle with radius $1$ centered at the origin.
+Let's try to reason through what the derivatives of the functions sine and cosine should be. For background, you should be comfortable with how to think about both of these functions using the unit circle; that is, the circle with radius $1$ centered at the origin.
 
-For a given value of theta, like $0.8$, you’d imagine walking around the circle, starting from the rightmost point, until you’ve traversed that distance $0.8$ in arc length. This is the same thing as saying that this angle here is exactly $0.8$ radians, since the circle has radius $1$. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
+For example, how would you interpret the value $\sin(0.8)$ if the value $\theta = 0.8$ is understood to be in radians?
+You might imagine walking around a circle with a radius of $1$, starting from the rightmost point, until you’ve traversed the distance $0.8$ in arc length.
+This is the same thing as saying you've traversed an _angle_ of $0.8$ radians. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
 
 <Figure
   image="figures/13.16.svg"
   video="figures/12.51-13.16.mp4"
 />
 
-As theta increases, and you walk around the circle, your height bobs up and down and up and down, so the graph of $\sin(\theta)$ vs. $\theta$ is this wave pattern. The *quintessential* wave pattern.
+As theta increases, and you walk around the circle, your height bobs up and down and up and down.
+So the graph of $\sin(\theta)$ vs. $\theta$, which plots this height as a function of arc length, is a wave pattern. This is the *quintessential* wave pattern.
 
 <Figure
   image="figures/13.44.svg" 
   video="figures/13.22-13.38.mp4"
 />
 
-Now, just from looking at this graph, we can get a feel from the shape of the derivative function. The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. And, if you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
+Just from looking at this graph, we can get a feel from the shape of the derivative function. The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. If you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
 
 <Figure
   image="figures/13.44-cosine.svg"
@@ -35,21 +38,23 @@ Now, just from looking at this graph, we can get a feel from the shape of the de
   show="video"
 />
 
-But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. Well, as with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than just at the graph of the function.
+But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. As with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than the graph of the function.
 
-So think back to the walk around the unit circle, having traversed an arc length of theta, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observered by zooming in on the point where you are on the circle.
+Think back to the walk around the unit circle, having traversed an arc length of $\theta$, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observed by zooming in on the point where you are on the circle.
 
 <Figure
   image="figures/15.57.svg" 
 />
 
-Well, zoomed in close enough the circle basically looks like a straight line in this neighborhood, so let’s go ahead and think of this right here as a right triangle, where the hypotenuse represents that nudge of $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
+Zoomed in close enough the circle basically looks like a straight line in this neighborhood.
+Consider the right triangle pictured below, where the hypotenuse represents a straight-line approximation of the nudge $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
 
 <Figure
   image="figures/16.00.svg" 
 />
 
-Now this tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$. Specifically, this little angle is precisely equal to $\theta$ radians. 
+This tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$.
+Specifically, the angle between its height $d(\sin(\theta))$ and its hypotenuse $d\theta$ is precisely equals to $\theta$.
 
 Think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the output of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little right-triangle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
 
@@ -57,6 +62,8 @@ Think about what the derivative of sine is supposed to mean. It’s the ratio be
   image="figures/16.01.svg" 
 />
 
-So that gives two ways to think about how the derivative of $\sin(\theta)$ is $\cos(\theta)$. One by looking at the graph of sine and getting a loose feel for the loose shape of its derivative should be based on thinking about the slope of the graph, and another more precise line of reasoning that comes from looking straight at the unit circle. For the pause and ponder-ers among you, see if you can try a similar line or reasoning to understand the derivative of $\cos(\theta)$.
+Notice, by considering the slope of the graph, we can get a quick intuitive feel for the rough shape that the derivative of $\sin(\theta)$ should have, which is enough to make an educated guess. But to more to understand why this derivative is *precisely* $\cos(\theta)$, we had to begin our line of reasoning with the defining features of $\sin(\theta)$.
 
-In the next video I’ll talk about how to take the derivatives of functions which combine simple functions like these, either as sums, products, functions compositions, things like that. Similar to this video, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.
+For those of you who enjoy pausing and pondering, take a moment to find a similar line of reasoning which explains what the derivative of $\cos(\theta)$ should be.
+
+In the <LessonLink id="chain-rule-and-product-rule">next lesson</LessonLink> we'll figure out the derivatives of functions that combine simple functions like these, either as sums, products, or functions compositions. Similar to this lesson, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.
