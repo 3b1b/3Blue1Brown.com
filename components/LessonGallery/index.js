@@ -1,4 +1,5 @@
 import { useContext, useMemo, useState } from "react";
+import PropTypes from "prop-types";
 import Link from "next/link";
 import Center from "../Center";
 import Clickable from "../Clickable";
@@ -8,8 +9,12 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
 
+LessonGallery.propTypes = {
+  show: PropTypes.oneOf(["topic", "all"]),
+};
+
 // gallery that shows all lessons in various ways with tabs. show by topic or all
-const LessonGallery = ({ show = "topic" }) => {
+export default function LessonGallery({ show = "topic" }) {
   const { lessons } = useContext(PageContext);
   const [tab, setTab] = useState(show); // active tab
 
@@ -89,9 +94,7 @@ const LessonGallery = ({ show = "topic" }) => {
       )}
     </>
   );
-};
-
-export default LessonGallery;
+}
 
 const TopicCard = ({ topic }) => {
   return (

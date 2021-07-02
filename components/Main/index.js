@@ -1,6 +1,11 @@
+import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
-// simple wrapper component for main section of page
-const Main = ({ children }) => <main className={styles.main}>{children}</main>;
+Main.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-export default Main;
+// simple wrapper component for main section of page
+export default function Main({ children }) {
+  return <main className={styles.main}>{children}</main>;
+}

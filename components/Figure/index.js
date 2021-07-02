@@ -1,10 +1,38 @@
 import { useState, useRef, useEffect, useContext, useCallback } from "react";
+import PropTypes from "prop-types";
 import Markdownify from "../Markdownify";
 import Clickable from "../Clickable";
 import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import { useSectionWidth } from "../Section";
+
+Figure.propTypes = {
+  id: PropTypes.string,
+  image: requireImageOrVideo,
+  video: requireImageOrVideo,
+  show: PropTypes.oneOf(["image", "video"]),
+  caption: PropTypes.string,
+  imageCaption: PropTypes.string,
+  videoCaption: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  loop: PropTypes.bool,
+};
+
+function requireImageOrVideo(props, propName, componentName) {
+  if (!props.image && !props.video) {
+    return new Error(`${componentName} requires one of "image" or "video"`);
+  }
+
+  if (propName === "image" && !props.video && typeof props.image !== "string") {
+    return new Error(`image must be a string in ${componentName}`);
+  }
+
+  if (propName === "video" && !props.image && typeof props.video !== "string") {
+    return new Error(`video must be a string in ${componentName}`);
+  }
+}
 
 // change provided srcs (png & mp4) to external bucket location for production.
 const transformSrc = (src, dir) => {
@@ -35,7 +63,7 @@ const autoSize = ({ width, height }, sectionWidth) => {
 
 // figure component to show image and/or video and caption, with controls to
 // switch between
-const Figure = ({
+export default function Figure({
   id = "",
   image: imageSrc = "",
   video: videoSrc = "",
@@ -46,7 +74,7 @@ const Figure = ({
   width: manualWidth = 0,
   height: manualHeight = 0,
   loop = false,
-}) => {
+}) {
   // whether to show image or video
   initialShow =
     initialShow || (imageSrc ? "image" : "") || (videoSrc ? "video" : "") || "";
@@ -159,6 +187,4 @@ const Figure = ({
       )}
     </figure>
   );
-};
-
-export default Figure;
+}
