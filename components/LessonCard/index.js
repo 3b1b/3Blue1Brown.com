@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import NextLink from "next/link";
 import Chip from "../Chip";
 import { formatDate } from "../../util/locale";
@@ -6,8 +7,18 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+LessonCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  mini: PropTypes.bool,
+  reverse: PropTypes.bool,
+  tooltip: PropTypes.node,
+  active: PropTypes.bool,
+  className: PropTypes.string,
+};
+
 // button that links to a lesson, showing details like thumbnail, title, etc.
-const LessonCard = ({
+export default function LessonCard({
   id,
   icon,
   mini,
@@ -15,7 +26,7 @@ const LessonCard = ({
   tooltip,
   active,
   className = "",
-}) => {
+}) {
   const { lessons = [] } = useContext(PageContext);
 
   // find lesson with matching slug
@@ -78,9 +89,7 @@ const LessonCard = ({
       </div>
     </Component>
   );
-};
-
-export default LessonCard;
+}
 
 const Link = ({ link, tooltip, ...rest }) => (
   <NextLink href={link} passHref>

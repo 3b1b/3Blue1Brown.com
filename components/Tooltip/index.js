@@ -8,6 +8,7 @@ import {
   Children,
 } from "react";
 import { createPortal } from "react-dom";
+import PropTypes from "prop-types";
 import { usePopper } from "react-popper";
 import Markdownify from "../Markdownify";
 import classNames from "./index.module.scss";
@@ -139,5 +140,10 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     </>
   );
 });
+
+Tooltip.propTypes = {
+  content: PropTypes.node,
+  children: PropTypes.node.isRequired,
+};
 
 export default Tooltip;

@@ -1,9 +1,14 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import Clickable from "../Clickable";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
-export default function FreeResponse({ children: explanation }) {
+FreeResponse.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default function FreeResponse({ children }) {
   const [userAnswer, setUserAnswer] = useState("");
 
   const [submitted, setSubmitted] = useState(false);
@@ -41,7 +46,7 @@ export default function FreeResponse({ children: explanation }) {
 
       <div className={styles.answerHeader}>Our answer:</div>
       <div className={styles.ours} data-visible={submitted}>
-        <div className={styles.explanation}>{explanation}</div>
+        <div className={styles.explanation}>{children}</div>
       </div>
     </div>
   );

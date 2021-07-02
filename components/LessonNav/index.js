@@ -24,13 +24,15 @@ const LessonNav = () => {
     <Section>
       <div className={styles.lesson_nav}>
         <div className={styles.controls}>
-          <LessonCard
-            id={prev}
-            mini={true}
-            icon="fas fa-arrow-left"
-            tooltip="Previous lesson"
-            className={styles.prev}
-          />
+          {prev && (
+            <LessonCard
+              id={prev}
+              mini={true}
+              icon="fas fa-arrow-left"
+              tooltip="Previous lesson"
+              className={styles.prev}
+            />
+          )}
           <Clickable
             icon={open ? "fas fa-times" : "fas fa-bars"}
             className={styles.toggle}
@@ -39,14 +41,16 @@ const LessonNav = () => {
               open ? "Close list" : "See more lessons for topic " + topicName
             }
           />
-          <LessonCard
-            id={next}
-            mini={true}
-            reverse={true}
-            icon="fas fa-arrow-right"
-            tooltip="Next lesson"
-            className={styles.next}
-          />
+          {next && (
+            <LessonCard
+              id={next}
+              mini={true}
+              reverse={true}
+              icon="fas fa-arrow-right"
+              tooltip="Next lesson"
+              className={styles.next}
+            />
+          )}
         </div>
         {open && (
           <div className={styles.list}>

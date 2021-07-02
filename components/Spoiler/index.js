@@ -1,10 +1,15 @@
+import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
-// blacked-out span of text that reveals itself on hover/focus
-const Spoiler = ({ children }) => (
-  <span className={styles.spoiler} tabIndex="0">
-    {children}
-  </span>
-);
+Spoiler.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-export default Spoiler;
+// blacked-out span of text that reveals itself on hover/focus
+export default function Spoiler({ children }) {
+  return (
+    <span className={styles.spoiler} tabIndex="0">
+      {children}
+    </span>
+  );
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Markdownify from "../Markdownify";
+import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
 /*
@@ -9,8 +10,18 @@ import styles from "./index.module.scss";
   which is necessary for Netlify to find them at build time.
 */
 
+Accordion.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  preserveInnerState: PropTypes.bool,
+};
+
 // expandable/collapsible section, like <details>
-const Accordion = ({ title, children, preserveInnerState = false }) => {
+export default function Accordion({
+  title,
+  children,
+  preserveInnerState = false,
+}) {
   const [open, setOpen] = useState(false);
 
   if (!title && !children) return null;
@@ -33,6 +44,4 @@ const Accordion = ({ title, children, preserveInnerState = false }) => {
       )}
     </div>
   );
-};
-
-export default Accordion;
+}
