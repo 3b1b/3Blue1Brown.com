@@ -125,6 +125,7 @@ export default function LessonVideo() {
           </Link>
         )}
       </div>
+      {wideVideo && <div className={styles.bottomSpacer} />}
     </Section>
   );
 }
