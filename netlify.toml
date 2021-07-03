@@ -7,3 +7,7 @@
 
 [context.deploy-preview]
   command = "yarn build"
+
+[[redirects]]
+  from = "/faq"
+  to = "/contact"
