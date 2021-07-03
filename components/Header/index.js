@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Background from "./background";
 import Tooltip from "../Tooltip";
 import Logo from "../Logo";

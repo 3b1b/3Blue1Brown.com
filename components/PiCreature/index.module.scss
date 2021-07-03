@@ -142,6 +142,10 @@
       position: static;
     }
   }
+
+  &[data-placement="inline"] {
+    position: static;
+  }
 }
 
 .pi_creature[data-sectionwidth="normal"] {

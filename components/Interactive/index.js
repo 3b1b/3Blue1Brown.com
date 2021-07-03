@@ -1,10 +1,21 @@
 import { useState, useEffect, useRef, useContext } from "react";
+import PropTypes from "prop-types";
 import { PageContext } from "../../pages/_app";
 import { useForceUpdate } from "../../util/hooks";
 import styles from "./index.module.scss";
 
+Interactive.propTypes = {
+  filename: PropTypes.string.isRequired,
+  children: PropTypes.func,
+  aspectRatio: PropTypes.number,
+};
+
 // dynamically load (from same directory as page) and embed a react applet
-const Interactive = ({ filename, children = [], aspectRatio = 16 / 9 }) => {
+export default function Interactive({
+  filename,
+  children = [],
+  aspectRatio = 16 / 9,
+}) {
   const { dir } = useContext(PageContext);
   const forceUpdate = useForceUpdate();
   // store dynamically loaded component in ref because react doesn't like a
@@ -87,6 +98,4 @@ const Interactive = ({ filename, children = [], aspectRatio = 16 / 9 }) => {
       </div>
     </div>
   );
-};
-
-export default Interactive;
+}

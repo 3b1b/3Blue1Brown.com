@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-13-math";
 import rehypeKatex from "rehype-katex";
@@ -7,9 +8,14 @@ import rehypeKatex from "rehype-katex";
 // thus, have separate 12 and 13 remark versions of remark-math
 // use 13 for this component, 12 for everything else (mdx)
 
+Markdownify.propTypes = {
+  children: PropTypes.node.isRequired,
+  noParagraph: PropTypes.bool,
+};
+
 // component to turn plain string into markdown, useful for making components
 // accept markdown as props
-const Markdownify = ({ children, noParagraph = false }) => {
+export default function Markdownify({ children, noParagraph = false }) {
   if (typeof children === "string") {
     return (
       <ReactMarkdown
@@ -21,6 +27,4 @@ const Markdownify = ({ children, noParagraph = false }) => {
       </ReactMarkdown>
     );
   } else return children;
-};
-
-export default Markdownify;
+}

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import PropTypes from "prop-types";
 import Clickable from "../Clickable";
 import sitePatrons from "../../data/patrons.yaml";
 import nameOverrides from "../../data/patron-name-overrides.yaml";
@@ -6,9 +7,13 @@ import { shuffle } from "../../util/math";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
+Patrons.propTypes = {
+  active: PropTypes.bool,
+};
+
 // component to display expandable/collapsible list of patrons, either site-wide
 // or page-specific
-const Patrons = ({ active }) => {
+export default function Patrons({ active }) {
   const [open, setOpen] = useState(false);
   const { patrons: pagePatrons = [] } = useContext(PageContext);
   const [shuffledPagePatrons, setShuffledPagePatrons] = useState(pagePatrons);
@@ -19,10 +24,11 @@ const Patrons = ({ active }) => {
   }, [pagePatrons]);
 
   let patrons;
-  // page specific patrons
-  if (shuffledPagePatrons.length) patrons = shuffledPagePatrons;
-  // site-wide patrons
-  else
+  if (shuffledPagePatrons.length) {
+    // page specific patrons
+    patrons = shuffledPagePatrons;
+  } else {
+    // site-wide patrons
     patrons =
       // filter by amount, active status, and top 1000 for css grid limits
       sitePatrons
@@ -32,6 +38,7 @@ const Patrons = ({ active }) => {
         .map((patron) => nameOverrides[patron] || patron)
         .filter((patron) => patron)
         .slice(0, 1000);
+  }
 
   if (!patrons.length) return null;
 
@@ -49,6 +56,4 @@ const Patrons = ({ active }) => {
       />
     </>
   );
-};
-
-export default Patrons;
+}

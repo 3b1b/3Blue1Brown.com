@@ -1,9 +1,15 @@
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { PageContext } from "../../pages/_app";
+import PropTypes from "prop-types";
 import Clickable from "../Clickable";
 import SocialIcons from "../SocialIcons";
 import styles from "./index.module.scss";
+
+ShareButtons.propTypes = {
+  url: PropTypes.string,
+  text: PropTypes.string,
+};
 
 export default function ShareButtons({ url, text = "" }) {
   const router = useRouter();
@@ -37,25 +43,22 @@ export default function ShareButtons({ url, text = "" }) {
         Enjoy this lesson? Consider sharing it.
       </div>
       <Clickable
-        link={twitterURL}
+        link={twitterURL.href}
         text="Twitter"
         icon="fab fa-twitter"
         target="_blank"
-        design="rounded"
       />
       <Clickable
-        link={redditURL}
+        link={redditURL.href}
         text="Reddit"
         icon="fab fa-reddit"
         target="_blank"
-        design="rounded"
       />
       <Clickable
         link={facebookURL}
         text="Facebook"
         icon="fab fa-facebook"
         target="_blank"
-        design="rounded"
       />
 
       <div className={styles.header}>Want more math in your life?</div>
