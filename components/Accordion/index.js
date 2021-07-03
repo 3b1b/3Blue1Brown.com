@@ -40,7 +40,9 @@ export default function Accordion({
   const toggleOpen = () => {
     if (open) {
       setOpen(false);
-      router.replace(router.asPath.split("#")[0]);
+      if (id && router.asPath.split("#")[1] !== undefined) {
+        router.replace(router.asPath.split("#")[0]);
+      }
     } else {
       setOpen(true);
       if (id) {
