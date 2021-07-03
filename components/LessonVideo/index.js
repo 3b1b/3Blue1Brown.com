@@ -69,7 +69,7 @@ export default function LessonVideo() {
             {wideVideo ? 
               <i class="fas fa-compress-alt"></i> :
               <i class="fas fa-expand-alt"></i>
-            )}
+            }
           </button>
         )}
 
