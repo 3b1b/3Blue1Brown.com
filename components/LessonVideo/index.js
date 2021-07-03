@@ -23,19 +23,20 @@ export default function LessonVideo() {
   const prevLesson = topic ? topic.lessons[lessonIndex - 1] : null;
   const nextLesson = topic ? topic.lessons[lessonIndex + 1] : null;
 
+  const minToggleWidth = 1000;
   const wideEnoughToToggle = () => {
-    return typeof window === "undefined" ? false : window.innerWidth > 1000;
-  }
+    if (typeof window === "undefined") return false;
+    return window.innerWidth > minToggleWidth;
+  };
 
   const [wideVideo, setWideVideo] = useState(false);
   const toggleExpansion = () => {
+    if (!wideEnoughToToggle()) return;
     setWideVideo(!wideVideo);
-    if(wideEnoughToToggle()){
-      var id = wideVideo ? "__next" : "video-section";
-      // smooth scroll to target
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    }
-  }
+    var id = wideVideo ? "__next" : "video-section";
+    // smooth scroll to target
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  };
 
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
@@ -44,7 +45,11 @@ export default function LessonVideo() {
   };
 
   return (
-    <Section id="video-section" dark={true} width={wideVideo ? "wide" : "narrow"}>
+    <Section
+      id="video-section"
+      dark={true}
+      width={wideVideo ? "wide" : "narrow"}
+    >
       <div
         className={styles.videoArea}
         data-showcoverimage={showCoverImage}
@@ -64,7 +69,7 @@ export default function LessonVideo() {
             {wideVideo ? 
               <i class="fas fa-compress-alt"></i> :
               <i class="fas fa-expand-alt"></i>
-            }
+            )}
           </button>
         )}
 

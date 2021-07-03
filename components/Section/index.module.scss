@@ -37,5 +37,5 @@ $phone: 500px;
 }
 
 .section[data-width="wide"] > .wrapper {
-  max-width: 90%;
+  max-width: $page-wide;
 }
