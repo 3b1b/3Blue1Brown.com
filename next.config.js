@@ -5,20 +5,6 @@ let config = {
   target: "serverless",
 };
 
-// URL Redirects
-config = {
-  ...config,
-  async redirects() {
-    return [
-      {
-        source: "/faq",
-        destination: "/contact",
-        permanent: false,
-      },
-    ];
-  },
-};
-
 config = {
   ...config,
   sassOptions: {
