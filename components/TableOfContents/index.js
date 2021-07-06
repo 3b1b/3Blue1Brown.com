@@ -67,7 +67,7 @@ const TableOfContents = () => {
 
     // smooth scroll to target
     document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-    
+
     // manually update url with new hash, since we prevented default
     window.history.pushState(null, null, "#" + id);
   }, []);
@@ -164,6 +164,6 @@ const getUpEnough = () =>
 
 // get whether page is wide enough
 const getWideEnough = () =>
-  typeof window === "undefined" ? false : window.innerWidth > 1700;
+  typeof window === "undefined" ? false : window.innerWidth > 1500;
 
 export default TableOfContents;

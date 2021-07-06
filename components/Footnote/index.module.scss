@@ -1,7 +1,7 @@
 .footnoteLabel {
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
+  min-width: 18px;
+  height: 18px;
+  font-size: 12px;
   vertical-align: middle;
 
   position: relative;
@@ -13,10 +13,11 @@
   color: $white;
 
   cursor: pointer;
-}
 
-.footnoteLabel:hover {
-  background: $blue-600;
+  &:hover,
+  &[data-open="true"] {
+    background: $blue-600;
+  }
 }
 
 $popupColor: $gray-300;

@@ -132,6 +132,7 @@ Dynamically imports another react component and displays it in a frame.
 
 - `filename` 🚨 - Name of a `.js` file (without the extension) in the same folder as the lesson.
 - `children` - A function that returns an object of props you want to pass to your dynamically imported component.
+- `aspectRatio` - A number representing the width / height of the box in which the interactive lives. (Default: 16 / 9)
 
 Example of `children`: `<Interactive>{() => ({ someProp: "some value" })}</Interactive>`.
 

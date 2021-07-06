@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 import styles from "./index.module.scss";
+
+Footnote.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default function Footnote({ label, children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,15 +48,17 @@ export default function Footnote({ label, children }) {
 
   return (
     <>
-      <button
-        ref={setReferenceElement}
-        className={styles.footnoteLabel}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        {label}
-      </button>
+      <sup ref={setReferenceElement}>
+        <button
+          className={styles.footnoteLabel}
+          data-open={isOpen}
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+        >
+          {label}
+        </button>
+      </sup>
 
       {isOpen &&
         createPortal(

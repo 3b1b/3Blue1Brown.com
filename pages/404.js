@@ -14,10 +14,10 @@ const NotFound = () => (
           <div>Page not found</div>
           <div>
             Try{" "}
-            <Link href="/search">
-              <a>searching the site</a>
+            <Link href="/#lessons">
+              <a>finding the lesson</a>
             </Link>{" "}
-            for the content you want
+            you're looking for
           </div>
         </div>
       </div>
