@@ -1,3 +1,7 @@
 public/content/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
 public/content/**/*.png filter=lfs diff=lfs merge=lfs -text
 public/content/**/*.mov filter=lfs diff=lfs merge=lfs -text
+public/content/**/*.ai filter=lfs diff=lfs merge=lfs -text
+public/content/**/*.psd filter=lfs diff=lfs merge=lfs -text
+public/content/**/*.fig filter=lfs diff=lfs merge=lfs -text
+public/content/**/*.afdesign filter=lfs diff=lfs merge=lfs -text
