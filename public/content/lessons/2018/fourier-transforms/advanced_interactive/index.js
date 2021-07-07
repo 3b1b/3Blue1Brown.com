@@ -14,21 +14,21 @@ import {
 } from "../fourier_lib/winding_machine";
 
 const WIDTH = 880;
-const HEIGHT = 500;
+const HEIGHT = 550;
 
 const BKGD_COLOR = "#000000";
 const TEXT_COLOR = "#FFFFFF";
 const MASS_COLOR = "#ff6363";
 
 export default function BasicWindingMachine() {
-  const GRAPH_ORIGIN = { x: 50, y: 150 };
+  const GRAPH_ORIGIN = { x: 50, y: 200 };
   const GRAPH_SIZE = { x: 800, y: 120 };
-  const WINDER_ORIGIN = { x: 165, y: 335 };
+  const WINDER_ORIGIN = { x: 165, y: 385 };
   const WINDER_SIZE = 120;
-  const FOURIER_ORIGIN = { x: 400, y: 335 };
+  const FOURIER_ORIGIN = { x: 400, y: 385 };
   const FOURIER_SIZE = { x: 400, y: 120 };
 
-  const FREQS = [1, 2, 3, 4];
+  let FREQS = [1, 2, 3, 4];
 
   function setup(sketch, canvasParentRef) {
     sketch.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
@@ -36,8 +36,12 @@ export default function BasicWindingMachine() {
     sketch.textAlign(sketch.CENTER);
 
     sketch.background(sketch.color(BKGD_COLOR));
+    drawTopGraph(sketch);
+  }
+
+  function drawTopGraph(sketch) {
     drawGraph(sketch, FREQS, GRAPH_ORIGIN, GRAPH_SIZE);
-    calculateFourier(FREQS);
+    calculateFourier(1, FREQS);
   }
 
   let frequencyMovement = 1;
@@ -49,28 +53,46 @@ export default function BasicWindingMachine() {
       return;
     }
 
-    console.log("draw");
+    if (frequencyMovement == 1) {
+      drawTopGraph(sketch);
+    }
 
     // Wipe clean
     sketch.fill(sketch.color(BKGD_COLOR));
     sketch.rect(0, WINDER_ORIGIN.y - WINDER_SIZE - 30, WINDER_SIZE * 2.5, 50);
 
-    let winding_freq = drawFourier(sketch, FOURIER_ORIGIN, FOURIER_SIZE);
+    let winding_freq = drawFourier(
+      sketch,
+      FOURIER_ORIGIN,
+      FOURIER_SIZE,
+      FREQS,
+      1
+    );
     frequencyMovement = Math.abs(winding_freq - previousFreq);
     previousFreq = winding_freq;
     drawWinder(sketch, FREQS, winding_freq, WINDER_ORIGIN, WINDER_SIZE);
 
+    // Clean text area
+    sketch.fill(sketch.color(BKGD_COLOR));
+    sketch.rect(0, 0, WIDTH, 50);
+    drawText(sketch, winding_freq);
+  }
+
+  function drawText(sketch, winding_freq) {
     sketch.noStroke();
     sketch.textStyle(sketch.NORMAL);
     sketch.textFont("cmunrm");
     sketch.fill(sketch.color(TEXT_COLOR));
     sketch.textSize(24);
     sketch.text(
-      winding_freq.toFixed(2) + " cycles/second",
+      formatNumber(winding_freq) + " cycles/second",
       WINDER_ORIGIN.x,
       WINDER_ORIGIN.y - WINDER_SIZE - 10
     );
 
+    drawHzs(sketch);
+
+    sketch.push();
     sketch.fill(sketch.color(MASS_COLOR));
     sketch.text(
       "-coordinate for center of mass",
@@ -79,12 +101,70 @@ export default function BasicWindingMachine() {
     );
 
     sketch.textStyle(sketch.ITALIC);
-    sketch.text("x", 450, 215);
+    sketch.text("x", 450, 265);
+
+    sketch.pop();
   }
 
-  function updateFrequencies() {
-    
+  function formatNumber(number) {
+    let strNumber = number.toFixed(2);
+    if (strNumber[strNumber.length - 1] == "0") {
+      strNumber = strNumber.substring(0, strNumber.length - 1);
+    }
+    if (strNumber[strNumber.length - 1] == "0") {
+      strNumber = strNumber.substring(0, strNumber.length - 2);
+    }
+
+    return strNumber;
   }
 
-  return <Sketch setup={setup} draw={draw} />;
+  function drawHzs(sketch) {
+    let str = "";
+    for (let i = 0; i < FREQS.length; i++) {
+      if (str != "") str += " + ";
+
+      str += formatNumber(FREQS[i]) + "Hz";
+    }
+
+    sketch.text(str, WIDTH / 2, GRAPH_ORIGIN.y - 160);
+  }
+
+  const MAX_FREQS = 5;
+  function updateFrequencies(event) {
+    let value = event.target.value;
+    let strings = value.split(",");
+    let frequencies = [];
+    for (let i = 0; i < strings.length; i++) {
+      let float = parseFloat(strings[i]);
+      if (isNaN(float)) continue;
+      if (float < 0) continue;
+      if (float > 4.4) continue;
+
+      frequencies.push(float);
+      if (frequencies.length == MAX_FREQS) break;
+    }
+
+    FREQS = frequencies;
+    // Update so the draw event happens
+    frequencyMovement = 1;
+  }
+
+  const textboxStyle = {
+    background: "#eee",
+    padding: "10px 0 10px 44px",
+    marginBottom: "20px",
+    font: "inherit",
+    fontSize: "26px"
+  };
+
+  return [
+    <Sketch key="fourier_interactive_1" setup={setup} draw={draw} />,
+    <input
+      key="fourier_interactive_2"
+      type="text"
+      onChange={updateFrequencies}
+      defaultValue="1,2,3,4"
+      style={textboxStyle}
+    />,
+  ];
 }

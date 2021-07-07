@@ -257,20 +257,25 @@ export const drawWinder = (sketch, frequencies, winding_freq, origin, size) => {
   sketch.pop();
 };
 
-let fourierTransform = [];
+// Since there are multiple applets storing their data here,
+// We need to have a key to access the proper transform
+let fourierTransforms = [];
 let fourierFrequencies = [];
-export const calculateFourier = (frequencies) => {
+export const calculateFourier = (key, frequencies) => {
   let index = 0;
-  fourierTransform = [];
+  let fourierTransform = [];
   for (let x = 0; x < GRAPH_LENGTH; x += WINDER_STEP) {
     let { centerX, centerY } = centerMass(frequencies, x);
     fourierTransform[index] = centerX;
     index++;
   }
+
+  fourierTransforms[key] = fourierTransform;
   fourierFrequencies = frequencies;
 };
 
-function drawFourierGraph(sketch, origin, size) {
+function drawFourierGraph(sketch, origin, size, key) {
+  let fourierTransform = fourierTransforms[key];
   let py = -fourierTransform[0] * size.y * 2 + origin.y;
 
   for (let i = 1; i < fourierTransform.length; i++) {
@@ -292,13 +297,13 @@ function drawFourierGraph(sketch, origin, size) {
   }
 }
 
-function drawFourierBobble(sketch, origin, size) {
+function drawFourierBobble(sketch, origin, size, frequencies) {
   sketch.fill(sketch.color("white"));
   sketch.noStroke();
 
   let winding_freq = ((previousMouse - origin.x) / size.x) * GRAPH_LENGTH;
   winding_freq = Math.min(Math.max(winding_freq, 0), GRAPH_LENGTH);
-  let { centerX, centerY } = centerMass(fourierFrequencies, winding_freq);
+  let { centerX, centerY } = centerMass(frequencies, winding_freq);
 
   let drawingX = (winding_freq / GRAPH_LENGTH) * size.x + origin.x;
   let drawingY = -centerX * size.y * 2 + origin.y;
@@ -311,7 +316,7 @@ function drawFourierBobble(sketch, origin, size) {
 
 let previousMouse = 563.6;
 const LAG_FACTOR = 0.05;
-export const drawFourier = (sketch, origin, size) => {
+export const drawFourier = (sketch, origin, size, frequencies, key) => {
   // Draws the fourier graph from the calculated fourier transform earlier
   // Origin is an (x,y) pair of the origin in the canvas
   // Size is an (x,y) pair of the dimensions of the graph
@@ -348,9 +353,9 @@ export const drawFourier = (sketch, origin, size) => {
   drawJustifiedAxes(sketch, origin, size, 1, size.y);
 
   sketch.stroke(sketch.color(MASS_COLOR));
-  drawFourierGraph(sketch, origin, size);
+  drawFourierGraph(sketch, origin, size, key);
 
-  let winding_freq = drawFourierBobble(sketch, origin, size);
+  let winding_freq = drawFourierBobble(sketch, origin, size, frequencies);
 
   sketch.pop();
 

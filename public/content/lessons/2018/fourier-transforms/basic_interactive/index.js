@@ -36,7 +36,7 @@
  
      sketch.background(sketch.color(BKGD_COLOR));
      drawGraph(sketch, FREQS, GRAPH_ORIGIN, GRAPH_SIZE);
-     calculateFourier(FREQS);
+     calculateFourier(0, FREQS);
    }
  
    let frequencyMovement = 1;
@@ -48,13 +48,11 @@
        return;
      }
  
-     console.log("draw");
- 
      // Wipe clean
      sketch.fill(sketch.color(BKGD_COLOR));
      sketch.rect(0, WINDER_ORIGIN.y - WINDER_SIZE - 30, WINDER_SIZE * 2.5, 50);
  
-     let winding_freq = drawFourier(sketch, FOURIER_ORIGIN, FOURIER_SIZE);
+     let winding_freq = drawFourier(sketch, FOURIER_ORIGIN, FOURIER_SIZE, FREQS, 0);
      frequencyMovement = Math.abs(winding_freq - previousFreq);
      previousFreq = winding_freq;
      drawWinder(sketch, FREQS, winding_freq, WINDER_ORIGIN, WINDER_SIZE);
