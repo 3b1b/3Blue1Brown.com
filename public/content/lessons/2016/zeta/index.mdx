@@ -22,7 +22,7 @@ Don’t worry, I’ll explain that animation you just saw in a few minutes. A lo
   flip={true}
 />
 
-Some of you may have heard of it in the context of the divergent sum $1+2+3+4+....$ There is a sense in which that sum equals $\frac{-1}{12}$, which seems nonsensical if not obviously wrong. But a common way to define what this equation is actually saying uses the Riemann zeta function.
+Some of you may have heard of it in the context of the divergent sum $1+2+3+4+....$ There is a sense in which that sum equals $-\frac{1}{12}$, which seems nonsensical if not obviously wrong. But a common way to define what this equation is actually saying uses the Riemann zeta function.
 
 But, as any casual math enthusiast who’s started to read into this knows, it’s definition references a certain idea known as “analytic continuation”, which applies to complex functions, and this idea can be frustratingly opaque and unintuitive. What I’d like to do here is to just show you all what this zeta function actually looks like, and to explain what this idea of analytic continuation is in a visual and intuitive way.
 
@@ -48,7 +48,22 @@ $$
 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + ... = \frac{\pi^2}{6} \approx 1.645
 $$
 
-There’s a nice reason for pi showing up here, called the basel problem, and I’ve covered it in <LessonLink id="basel-problem">another lesson</LessonLink>, but that’s just the tip of the iceberg for why this function is beautiful. You can plug in other values, like 3 or 4 and get some interesting values, and so far it feels pretty reasonable: You’re adding up smaller and smaller amounts, and these sums approach some number. Great, no craziness here.
+There’s a nice reason for pi showing up here, called the basel problem, and I’ve covered it in <LessonLink id="basel-problem">another lesson</LessonLink>, but that’s just the tip of the iceberg for why this function is beautiful. You can plug in other values, like 3 or 4 and get some interesting values [^1], and so far it feels pretty reasonable: You’re adding up smaller and smaller amounts, and these sums approach some number. Great, no craziness here.
+
+<Question 
+  question="What does $\zeta(3)$ equal to?"
+  choice1="$1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + ...$"
+  choice2="$1 + \frac{1}{8} + \frac{1}{27} + \frac{1}{64} + ...$"
+  choice3="$1 + \frac{1}{8} + \frac{1}{9} + \frac{1}{16} + ...$"
+  choice4="$1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ...$"
+  answer={2}
+>
+
+$$
+\zeta (3) = \sum_{n=1}^{\infty} \frac{1}{n^3} = 1 + \frac{1}{2^3} + \frac{1}{3^3} + \frac{1}{4^3} + ... = 1 + \frac{1}{8} + \frac{1}{27} + \frac{1}{64} + ...
+$$
+
+</Question>
 
 Yet, if you read about it, you might see people say $\zeta(-1) = -1/12$. But looking at this infinite sum, that makes no sense. 
 
@@ -60,11 +75,11 @@ By raising each term to $-1$, you get $1+2+3+4..$ which obviously doesn’t appr
 
 And as any mercenary looking into the Riemann hypothesis knows, this function is said to have “trivial” zeros at negative even numbers. Which, for example, would mean $\zeta(-2) = 0$. But plugging in $-2$ gives you $1+4+9+16+...$, which also doesn’t approach anything, much less 0. Right?
 
-We’ll get to negative values in a few minutes, but right now let’s just say the only thing that seems reasonable: This function only makes sense when s > 1, which is when this sum converges. So far, it’s simply not defined for other values.
+We’ll get to negative values in a few minutes, but right now let’s just say the only thing that seems reasonable: This function only makes sense when s > 1 [^2], which is when this sum converges. So far, it’s simply not defined for other values.
 
 ## Extend to complex inputs with Re(s) > 1
 
-Now, Bernhard Riemann was somewhat of a father to complex analysis, which is the study of functions that have complex numbers as inputs and outputs. So rather than just thinking about how this sum takes a number s on the real number line to another number on the real number line, his main focus was on understanding what happens when you plug in a complex number for s. For example, maybe instead of plugging in 2 to this function, you plug in 2+i.
+Now, Bernhard Riemann was somewhat of a father to complex analysis, which is the study of functions that have complex numbers as inputs and outputs. So rather than just thinking about how this sum takes a number s on the real number line to another number on the real number line, his main focus was on understanding what happens when you plug in a complex number for s. For example, maybe instead of plugging in $2$ to this function, you plug in $2+i$.
 
 $$
 \zeta (2 + i) = \sum_{n=1}^{\infty} \frac{1}{n^{2+i}} = 1 + \frac{1}{2^{2+i}} + \frac{1}{3^{2+i}} + \frac{1}{4^{2+i}} + ...
@@ -72,7 +87,7 @@ $$
 
 Now, if you’ve never seen the idea of raising a number to the power of a complex value, it can feel kind of strange at first, because it no longer has anything to do with repeated multiplication. But mathematicians found that there’s a very nice and natural way to extend the definition of exponents beyond their familiar territory of real numbers, into the realm of complex values.
 
-It’s not super crucial to understand complex exponents for where I’m going with this video, but it’ll still be nice to go over the gist of it here. The basic idea is that when you write something like (½) to the power of a complex number, you can split it up as (½) to the real part, times (½) to the pure imaginary part.
+It’s not super crucial to understand complex exponents for where I’m going with this video, but it’ll still be nice to go over the gist of it here. The basic idea is that when you write something like $\left( \frac{1}{2} \right)$ to the power of a complex number, you can split it up as $\left( \frac{1}{2} \right)$ to the real part, times $\left( \frac{1}{2} \right)$ to the pure imaginary part.
 
 $$
 \left( \frac{1}{2} \right)^{2+i} = \left( \frac{1}{2} \right)^{2} \left( \frac{1}{2} \right)^{i}
@@ -82,7 +97,7 @@ We’re good on one half squared, no issues there. But what about raising someth
 
 <Figure image="complex_exp.png" video="complex_exp.mp4" loop={true} />
 
-As you let that pure imaginary input walk up and the imaginary line, the resulting output walks around the unit circle. For a base like $\frac{1}{2}$, this output walks around the unit circle somewhat slowly. For a base farther away from $1$, like $\frac{1}{9}$, then as you let the input walk up and down the imaginary axis, the corresponding output would walk around the unit circle more quickly. If you’ve never seen this, and are wondering why this happens, I’ve covered this in <LessonLink id="euler-formula-dynamically">another lesson</LessonLink>.
+As you let that pure imaginary input walk up and the imaginary line, the resulting output walks around the unit circle. For a base like $\frac{1}{2}$, this output walks around the unit circle somewhat slowly. For a base farther away from $1$, like $\frac{1}{9}$, then as you let the input walk up and down the imaginary axis, the corresponding output would walk around the unit circle more quickly. If you’ve never seen this, and are wondering why this happens, I’ve covered this in <LessonLink id="eulers-formula-dynamically">another lesson</LessonLink>.
 
 <PiCreature
   emotion="confused"
@@ -109,7 +124,7 @@ $$
 
 But importantly, the lengths of those lines won’t change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane. Here, let me show what it looks like as I vary the input s, represented with this yellow dot, and the spiral sum converges to some output, $\zeta(s)$ ....
 
-<Figure image="czeta_img3.png" video="czeta_img3.mp4" />
+<Figure image="czeta_img3.png" video="czeta_img3.mp4" show="video"/>
 
 What this means is that $\zeta(s)$, defined as this infinite sum, is a perfectly reasonable complex function as long as the real part of the input is greater than 1, meaning the input sits somewhere on this right half of the complex plane.
 
@@ -132,17 +147,36 @@ For example, let’s take a moment to try visualizing something a little easier 
 
 <Figure image="s2_img1.png" />
 
+<Question 
+  question="What does $f(1+2i)$, where $f(s) = s^2$ equal to?"
+  choice1="$3+4i$"
+  choice2="$2i$"
+  choice3="$-3+4i$"
+  choice4="$4i$"
+  answer={3}
+>
+
+$$
+(1+2i)^2 = (1+2i)(1+2i) = (1+2i) + 2i(1+2i) = 1 + 2i + 2i + 4i^2 = 1 + 4i - 4 = -3 + 4i
+$$
+
+</Question>
+
 I’m going to add on a more colorful grid, just because things are about to start moving, and it’s nice to have something to distinguish grid lines during this movement.
 
 <Figure image="s2_img2.png" />
 
 I’ll tell the computer to move every single point on this grid over to its corresponding output under the function $f(s)=s^2$. Here’s what it looks like...
 
-<Figure image="s2_img3.png" video="s2_img3.mp4" />
+<Figure image="s2_img3.png" video="s2_img3.mp4" show="video"/>
 
 That can be a lot to take in, so let’s try it again. Focus on one of the yellow points, and notice how it moves to the blue point corresponding to its square.
 
-<Figure video="s2_img3.mp4" />
+<PiCreature
+  emotion="confused"
+/>
+
+<Figure image="s2_img3.png" video="s2_img3.mp4" show="video"/>
 
 It’s a bit complicated to see all points moving all at once, but the reward is that it gives a very rich picture for what a complex function is doing, and it all happens in two-dimensions.
 
@@ -154,11 +188,16 @@ To visualize this, I’m going to take a portion of the grid sitting on the righ
 
 <Figure image="zeta_img1.png" />
 
+<PiCreature
+  emotion="happy"
+  text="We've added more lines near 1, since it gets stretched out"
+/>
+
 Now, I’m going to tell the computer to move each point of this grid to the appropriate output; the place where this sum converges when you set s equal to the complex number at that point.
 
 <Figure image="zeta_img2.png" video="zeta_img2.mp4" show="video" />
 
-Alright, so first of all, let’s all just appreciate how beautiful this is....I mean, damn, if this doesn’t make you want to learn more about complex functions, you have no heart. But also, this transformed grid is just begging to be extended a little bit [^1].
+Alright, so first of all, let’s all just appreciate how beautiful this is....I mean, damn, if this doesn’t make you want to learn more about complex functions, you have no heart. But also, this transformed grid is just begging to be extended a little bit [^3].
 
 <PiCreature
   emotion="hooray"
@@ -232,6 +271,19 @@ Admittedly, I’m lying to you a little here, but only a little. A slight caveat
 
 It’s actually a very restrictive property when you think about it. The angle between any pair of intersecting lines has to remain unchanged. And yet, pretty much any function out there that has a name is analytic. The field of complex analysis, which Riemann helped to establish in its modern form, is almost entirely about leveraging the properties of analytic functions to understand results and patterns in other fields of math and science.
 
+<Question 
+  question="Which of the following functions is analytic?"
+  choice1="$e^x$"
+  choice2="$\sin(x)$"
+  choice3="$\log(x)$"
+  choice4="All of the above!"
+  answer={4}
+>
+
+The formal definition of an analytic function is that it can be expressed as a <LessonLink id="taylor-series">convergent power series</LessonLink>. Each of the functions above satisfy this!
+
+</Question>
+
 The zeta function, defined by this infinite sum on the right-half of the plane, is an analytic function. Notice how all these curves that the grid lines turned into still intersect at right angles.
 
 <Figure image="aconn_img5.png" />
@@ -262,7 +314,7 @@ The places where this function equals zero are quite important. That is, which p
 
 <Figure image="rhyp_img1.png" />
 
-One thing we know about this extension is that negative even numbers get mapped to zero, and these are called the “trivial zeros”.
+One thing we know about this extension is that negative even numbers get mapped to zero, and these are called the “trivial zeros”[^4].
 
 <Figure image="rhyp_img2.png" imageCaption="Here, we have -2, -4 and -6 on the number line prior to the transformation." />
 
@@ -274,7 +326,7 @@ We also know that the rest of the points that get mapped to zero sit somewhere i
 
 <Figure image="rhyp_img4.png" />
 
-Why this function carries so much information about primes is pretty interesting [^2], and I might make a follow on video about that later, but for now, I’ll have to leave it unexplained.
+Why this function carries so much information about primes is pretty interesting [^5], and I might make a follow on video about that later, but for now, I’ll have to leave it unexplained.
 
 Riemann hypothesized that all the remaining zeros lie right in the middle of this strip, on the line of numbers $s$ whose real part is $\frac{1}{2}$, known as the critical line.
 
@@ -294,12 +346,28 @@ However, here’s what the transformed version of more of that line looks like..
 
 If you can prove all non-trivial zeros lie on this line, the Clay Mathematics Institute gives you $1,000,000, and you’d also be proving hundreds if not thousands of modern math results that have been shown contingent on this hypothesis being true.
 
+Here's another way to visualize the zeros of the zeta function. I've graphed the real component and the imaginary component of the zeta function on the y axis, and the x axis is the imaginary component of the input, $s$. I've also highlighted the imaginary components of the first three zeros on the x axis in red.
+
+<Figure image="zetaviz_img1.png" />
+
+Currently, the real component is $\mathrm{Re} (s) = 0.01$. Watch what happens when I vary the real component from $0.01$ to $0.99$.
+
+<Figure video="zetaviz.mp4" />
+
+Let's go back and stop at $\mathrm{Re}(s) = 0.5$. Notice how the imaginary component and the real component equal $0$ at the red circles.
+
+<Figure image="zetaviz_img2.png" />
+
+But if $\mathrm{Re}(s) = 0.75$, the real and imaginary component do not equal $0$ at the same place.
+
+<Figure image="zetaviz_img3.png" />
+
 ## So does 1+2+3+4+...= -1/12?
 
-Another thing we know about this extended function is that it maps the point $-1$ to $\frac{ -1}{12}$. Plugging this into the original sum, this looks like we’re saying: 
+Another thing we know about this extended function is that it maps the point $-1$ to $-\frac{1}{12}$. Plugging this into the original sum, this looks like we’re saying: 
 
 $$
-1+2+3+4+...=\frac{-1}{12}
+1+2+3+4+...=-\frac{1}{12}
 $$
 
 It might seem disingenuous to still call this a sum, since the definition of the zeta function on the left half of the plane is not defined directly from this sum! Instead it comes from analytically continuing this sum beyond the domain where it converges. That is, solving the jigsaw puzzle that began on the right-half of the plane where it more readily makes sense.
@@ -310,6 +378,8 @@ For the final animation here, I think it’ll be fun to show you all what the de
 
 <Figure image="riemann_deriv.png" />
 
-
-[^1]: The vertical line where everything seems to stop corresponds to the numbers whose real part is the Euler-Mascheroni constant (0.57721)!
-[^2]: Refer to Euler Product Formula and Riemann's Explicit Formula
+[^1]: For example, $\zeta(2 n)=(-1)^{n+1} \frac{(2 \pi)^{2 n} B_{2 n}}{2(2 n) !}$, where $B_n$ is the nth [Bernoulli Number](https://en.wikipedia.org/wiki/Bernoulli_number)
+[^2]: The case where s=1 equates to $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ...$ is called the Harmonic series, and it diverges! You can find out why [here](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)). 
+[^3]: The vertical line where everything seems to stop corresponds to the numbers whose real part is the Euler-Mascheroni constant (0.57721)!
+[^4]: We can see this from the formula of the Riemann Zeta Function with analytic continuation: $\zeta(s)=2^{s} \pi^{s-1} \sin \left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$. The $\sin \left(\frac{\pi s}{2}\right)$ term equates 0 for negative even numbers, causing the zeta function to equal zero. For positive even numbers, the zeta function forms something called a pole, so those are ruled out. But that's for another lesson.
+[^5]: Refer to Euler Product Formula and Riemann's Explicit Formula
