@@ -116,7 +116,26 @@ As you do this for many possible pairs of points, you’ll effectively be drawin
   coordinate is 2. That means the final point in 3D space is (1, 3, 2).
 </Question>
 
-Notice how the 3D surface ends up perfectly touching the 2D loop, rather than hovering above it in 3D space or something like that. This will actually be important later, so let’s think about why it happens.
+Since this surface is defined for *any* closed curve, we can draw our own custom curves and calculate the corresponding 3D surface. This interactive demo allows you to do just that:
+
+<Interactive filename="3d-surface-interactive/index" />
+
+While drawing your own curves, it can be helpful to ask questions about why the corresponding surface looks the way it does. For example, you might notice that straight edges on your loop will produce triangular regions on the surface. Can you figure out why?
+
+<PiCreature
+  emotion="confused"
+  text="Why do straight segments on the loop produce triangles?"
+  thought
+  flip={true}
+/>
+
+<FreeResponse>
+
+The pair of points at opposite ends of the straight segment produce a point in 3D space at the very top of the triangle. Moving one of the two points inwards will produce points along an edge of the triangle in 3D space. And moving both points inward produces points which fill in the area under the triangle.
+
+</FreeResponse>
+
+Also, notice how the 3D surface always ends up perfectly touching the 2D loop. This will actually be important later, so let’s think about why it happens.
 
 <PiCreature
   emotion="confused"
