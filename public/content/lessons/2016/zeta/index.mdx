@@ -328,6 +328,26 @@ We also know that the rest of the points that get mapped to zero sit somewhere i
 
 Why this function carries so much information about primes is pretty interesting [^5], and I might make a follow on video about that later, but for now, I’ll have to leave it unexplained.
 
+<Accordion title="A quick sneek peak as to why the zeta function carries information about primes">
+
+Let's define the prime counting function $\pi(x)$ as the number of primes less than or equal to $x$
+
+<Figure image="prime_img1.png" />
+
+Riemann showed that:
+
+$$
+{\displaystyle \pi(x)=\operatorname {li} (x)-\sum _{\rho }\operatorname {li} (x^{\rho })-\log(2)+\int _{x}^{\infty }{\frac {dt}{t(t^{2}-1)\log(t)}}}
+$$
+
+Where $\rho$ referes to the non-trivial zeros of the zeta function. Let's visualize this:
+
+<Figure video="prime.mp4" />
+
+As you can see, adding more non-trivial zeros of the zeta function gives us a better approximation of the prime counting function.
+
+</Accordion>
+
 Riemann hypothesized that all the remaining zeros lie right in the middle of this strip, on the line of numbers $s$ whose real part is $\frac{1}{2}$, known as the critical line.
 
 <Figure image="rhyp_img5.png" />
