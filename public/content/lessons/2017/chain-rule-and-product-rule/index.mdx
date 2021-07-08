@@ -29,14 +29,10 @@ So, the question is, if you know the derivatives of two functions, what is the d
 
 <Figure
   image="figures/sum-rule.svg"
-  caption="Sum Rule for the function $f(x) = g(x) + h(x)$"
+  caption="Derivative Sum Rule for the function $f(x) = g(x) + h(x)$"
 />
 
 The sum rule is the easiest, if somewhat tongue-twisting to say out loud: The derivative of a sum of two functions is the sum of their derivatives. But it’s worth warming up with an example and *really* thinking through what it means to take a derivative of a sum of two functions, since the derivative patterns for products and function composition won’t be so straight forward, and will require this kind of deeper thinking.
-
-<Figure
-  image="figures/sum-rule-example-function.svg"
-/>
 
 For example, let's think about this function $f(x) = \sin(x) + x^2$. It's a function where for function where, for every input, you add together the values of $\sin(x)$ and $x^2$ at that point.
 
@@ -316,7 +312,30 @@ Then, think of it using the product rule, interpreting it as $\sin(x) \cdot \sin
 
 <Accordion title="Chain Rule Explanation">
 
+Setup three numberlines to represent the function composition and nudge the input $x$ by a small amount $dx$. Remember we are interested in finding $df$, the change to the function represented on the bottom number line.
 
+<Figure
+  image="figures/exercise-1-chain-rule-setup.svg"
+/>
+
+Substitute $h=\sin(x)$ into the function composition. This simplifies $(\sin (x))^{2} = (h)^{2}$ and we know the change of the function $h^2$ given some small nudge $dh$ is $2h \cdot dh$.
+
+<Figure
+  image="figures/exercise-1-chain-rule-substitution.svg"
+/>
+
+Unfold the composition and observe that $dh = \cos(x) \cdot dx$, because we know that the change in sine is $d(\sin(x)) = \cos(x) \cdot dx$.
+
+<Figure
+  image="figures/exercise-1-chain-rule-unfolding.svg"
+/>
+
+This gives us that the change to the function is $df = 2 \sin(x) \cdot \cos(x) dx$ which we can rearrange for the derivative of the function.
+
+$$
+\frac{df}{dx} = 2 \sin(x) \cos(x)
+$$
+ 
 </Accordion>
 
 <Accordion title="Product Rule Explanation">
