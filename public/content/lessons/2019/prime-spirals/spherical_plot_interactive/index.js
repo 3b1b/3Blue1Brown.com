@@ -114,8 +114,6 @@ export default function SphericalPlot() {
     camera = p5Object._curCamera;
     camera._orbit(moveX, moveY, 1000);
 
-    console.log(camera);
-
     n = Math.min(N, PRIMES.length);
     points = createPoints();
 
