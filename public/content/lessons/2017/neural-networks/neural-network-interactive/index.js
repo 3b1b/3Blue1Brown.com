@@ -45,7 +45,10 @@ function getNeuronPosition(layerIndex, visibleNeuronIndex) {
   };
 }
 
-export default function NeuralNetworkInteractive() {
+export default function NeuralNetworkInteractive({
+  instant = false,
+  eraser = false,
+}) {
   const [neurons, setNeurons] = useState(getAllNeuronValues(threeImage));
 
   const [selectedNeuron, setSelectedNeuron] = useState(null);
@@ -53,12 +56,12 @@ export default function NeuralNetworkInteractive() {
   function setInputNeurons(inputNeuronValues) {
     setNeurons((neurons) => [inputNeuronValues, ...neurons.slice(1)]);
 
-    // The rest of the neurons will be updated before they are
-    // shown, so there is no need to update them now.
-    // updateNonInputNeurons();
+    if (instant) {
+      updateNonInputNeurons();
 
-    // (You would need to uncomment this if you wanted a live view
-    // of the neurons updating while you draw.)
+      // If not instant, these neurons will only be updated
+      // when the animation begins (to save on computation).
+    }
   }
 
   function clearInputNeurons() {
@@ -94,6 +97,7 @@ export default function NeuralNetworkInteractive() {
       <NeuronConnections
         selectedNeuron={selectedNeuron}
         animating={animating}
+        instant={instant}
       />
 
       <VerticalEllipsis cx={230} cy={240} />
@@ -103,11 +107,16 @@ export default function NeuralNetworkInteractive() {
         selectedNeuron={selectedNeuron}
         setSelectedNeuron={setSelectedNeuron}
         animating={animating}
+        instant={instant}
       />
 
       <OutputDigitLabels />
 
-      <WinningOutputNeuronBox neurons={neurons} animating={animating} />
+      <WinningOutputNeuronBox
+        neurons={neurons}
+        animating={animating}
+        instant={instant}
+      />
 
       {/* Weight grid for neurons in 2nd layer */}
       {selectedNeuron &&
@@ -130,32 +139,35 @@ export default function NeuralNetworkInteractive() {
           );
         })()}
 
-      <PiCreature animating={animating} />
+      <PiCreature animating={animating} instant={instant} />
 
       {/* Black background while drawing (covers everything else) */}
-      <rect
-        x="0"
-        y="0"
-        width="640"
-        height="480"
-        fill="black"
-        style={{
-          opacity: animating ? 0.0 : 1.0,
-          pointerEvents: animating ? "none" : undefined,
-          transition: "opacity 300ms ease-in-out",
-        }}
-      />
+      {!instant && (
+        <rect
+          x="0"
+          y="0"
+          width="640"
+          height="480"
+          fill="black"
+          style={{
+            opacity: animating ? 0.0 : 1.0,
+            pointerEvents: animating ? "none" : undefined,
+            transition: "opacity 300ms ease-in-out",
+          }}
+        />
+      )}
 
       <ImageGrid
-        editing={!animating}
+        editing={!animating || instant}
+        instant={instant}
         startEditing={() => {
           setAnimating(false);
           clearInputNeurons();
         }}
-        x={animating ? 10 : 120}
-        y={animating ? 10 : 10}
-        width={animating ? 150 : 400}
-        height={animating ? 150 : 400}
+        x={animating || instant ? 10 : 120}
+        y={animating || instant ? 10 : 10}
+        width={animating || instant ? 190 : 400}
+        height={animating || instant ? 190 : 400}
         values={neurons[0]}
         setValues={(newValues) => {
           setInputNeurons(newValues);
@@ -174,7 +186,7 @@ export default function NeuralNetworkInteractive() {
   );
 }
 
-function NeuronConnections({ selectedNeuron, animating }) {
+function NeuronConnections({ selectedNeuron, animating, instant }) {
   let connections = [];
 
   for (let layerIndex = 1; layerIndex < visibleNeurons.length; layerIndex++) {
@@ -234,7 +246,7 @@ function NeuronConnections({ selectedNeuron, animating }) {
           />
         );
 
-        if (thisLineCanAnimate) {
+        if (thisLineCanAnimate && !instant) {
           connections.push(
             <line
               key={`${prevLayerIndex}-${prevNeuronId}-${layerIndex}-${neuronId}-anim`}
@@ -263,7 +275,13 @@ function NeuronConnections({ selectedNeuron, animating }) {
   return <g>{connections}</g>;
 }
 
-function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
+function Neurons({
+  neurons,
+  selectedNeuron,
+  setSelectedNeuron,
+  animating,
+  instant,
+}) {
   return (
     <g>
       {visibleNeurons.map((layer, layerIndex) =>
@@ -290,10 +308,11 @@ function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
               stroke={isSelected ? "yellow" : "white"}
               strokeWidth={isSelected ? 2 : 1}
               style={{
-                fill: animating ? fill : "black",
-                transition: animating
-                  ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
-                  : "none",
+                fill: animating || instant ? fill : "black",
+                transition:
+                  animating && !instant
+                    ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
+                    : "none",
                 cursor: "pointer",
               }}
               onClick={() => {
@@ -311,7 +330,7 @@ function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
   );
 }
 
-function WinningOutputNeuronBox({ neurons, animating }) {
+function WinningOutputNeuronBox({ neurons, animating, instant }) {
   const winningValue = Math.max(...neurons[3]);
   const winningNeuron = neurons[3].indexOf(winningValue);
   const position = getNeuronPosition(3, winningNeuron);
@@ -327,10 +346,10 @@ function WinningOutputNeuronBox({ neurons, animating }) {
       strokeLinejoin="round"
       fill="none"
       strokeDasharray="176 176"
-      strokeDashoffset={(animating ? 0 : 1) * 176}
+      strokeDashoffset={(animating || instant ? 0 : 1) * 176}
       style={{
         transition: animating
-          ? "stroke-dashoffset 800ms ease-in-out 4500ms"
+          ? `stroke-dashoffset 800ms ease-in-out ${instant ? "0ms" : "4500ms"}`
           : "none",
       }}
     />
@@ -366,14 +385,15 @@ function OutputDigitLabels() {
   );
 }
 
-function PiCreature({ animating }) {
+function PiCreature({ animating, instant }) {
   return (
     <>
       <g
         transform="translate(30 340) scale(0.4)"
         style={{
-          opacity: animating ? 0.0 : 1.0,
-          transition: animating ? "opacity 0ms linear 5000ms" : "none",
+          opacity: instant ? 0.0 : animating ? 0.0 : 1.0,
+          transition:
+            animating && !instant ? "opacity 0ms linear 5000ms" : "none",
         }}
       >
         <path
@@ -407,8 +427,9 @@ function PiCreature({ animating }) {
       <g
         transform="translate(45 340) scale(0.4)"
         style={{
-          opacity: animating ? 1.0 : 0.0,
-          transition: animating ? "opacity 0ms linear 5000ms" : "none",
+          opacity: instant ? 1.0 : animating ? 1.0 : 0.0,
+          transition:
+            animating && !instant ? "opacity 0ms linear 5000ms" : "none",
         }}
       >
         <path
@@ -451,6 +472,7 @@ function ImageGrid({
   setValues,
   editing,
   startEditing,
+  instant,
   beginAnimation,
   highlightedTile,
 }) {
@@ -640,42 +662,44 @@ function ImageGrid({
           </text>
         </g>
 
-        <g>
-          <rect
-            x="250"
-            y="0"
-            width="150"
-            height="40"
-            tabIndex="0"
-            rx="3"
-            onClick={() => {
-              if (!animateButtonDisabled) {
-                beginAnimation();
-              }
-            }}
-            disabled={animateButtonDisabled}
-            style={{
-              fill: "#1C758A",
-              cursor: animateButtonDisabled ? "default" : "pointer",
-              opacity: animateButtonDisabled ? 0.5 : 1.0,
-            }}
-          />
+        {!instant && (
+          <g>
+            <rect
+              x="250"
+              y="0"
+              width="150"
+              height="40"
+              tabIndex="0"
+              rx="3"
+              onClick={() => {
+                if (!animateButtonDisabled) {
+                  beginAnimation();
+                }
+              }}
+              disabled={animateButtonDisabled}
+              style={{
+                fill: "#1C758A",
+                cursor: animateButtonDisabled ? "default" : "pointer",
+                opacity: animateButtonDisabled ? 0.5 : 1.0,
+              }}
+            />
 
-          <text
-            x="325"
-            y="22"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            fill="white"
-            fontFamily="sans-serif"
-            style={{
-              pointerEvents: "none",
-              opacity: animateButtonDisabled ? 0.5 : 1.0,
-            }}
-          >
-            Check digit
-          </text>
-        </g>
+            <text
+              x="325"
+              y="22"
+              dominantBaseline="middle"
+              textAnchor="middle"
+              fill="white"
+              fontFamily="sans-serif"
+              style={{
+                pointerEvents: "none",
+                opacity: animateButtonDisabled ? 0.5 : 1.0,
+              }}
+            >
+              Check digit
+            </text>
+          </g>
+        )}
       </g>
     </g>
   );
