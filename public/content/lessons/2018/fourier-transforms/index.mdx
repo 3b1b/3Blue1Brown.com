@@ -51,6 +51,18 @@ Similarly, if we were to play more pure frequencies at the same time, the result
   caption="Similar to the previous figure, we have drawn a white line at a particular point in time to show that the final pressure vs time graph (top, blue) is a sum of 4 different frequencies: D (pink), A (yellow), F (teal), and C (red). If you were to record yourself with a microphone, you might find a waveform that is similar to this final pressure vs time graph which could similarly be composed from a set of different frequencies."
 />
 
+<Question
+  question="We have a wave which oscillates once every $3$ seconds and another which oscillates once every $5$ seconds. When we add them together, how often will the highest peak appear?"
+  choice1="Once every $6$ seconds"
+  choice2="Once every $15$ seconds"
+  choice3="Once every $24$ seconds"
+  choice4="Once every $33$ seconds"
+  answer={2} >
+
+The highest peak for the first wave appears once every $3$ seconds and the highest peak for the second wave appears once every $5$ seconds. The highest peak for their sum appears once every $15$ seconds because it only appears when both the first and second wave at their peaks at the same time. For any sum of waves, the period of the resulting wave is the least common multiple of all the constituting wave's periods.
+
+</Question>
+
 A microphone recording any sound just picks up on the air pressure at many different points in time. It only "sees" the final sum. So our central question is how can you take a signal like this, and decompose it into the pure frequencies that make it up? Pretty interesting, right? Adding up those signals really mixes them all together. So pulling them back apart feels akin to unmixing multiple paint colors that have all been stirred up together.  Or as Kalid Azad [nicely phrased it](https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/), "Given a smoothie, it finds the recipe."
 
 The general strategy will be to build for ourselves a mathematical machine that treats signals with a given frequency differently from how it treats other signals.  Moreover, it should be able to detect the presence of that frequency even if it's been mixed together with others, for example recognizing that the messy waveform above has a pure A440 hiding inside it. Writing down what this machine does as a formula will give us the Fourier transform.
@@ -79,7 +91,13 @@ You can think of the wound up graph on the bottom as being drawn by a little vec
 
 For those of you comfortable with polar coordinates, what we're doing here is very similar to representing the original signal as a polar graph. However, we have an important extra parameter that we can tweak: How quickly is the vector rotating with time? In the visual above, it was rotating so as to make a complete cycle after 2 seconds.  Since its length was changing between short and long 3 times per second, this resulted in a shape that looks somewhat like a flower with 6 petals.
 
-This is important, there are 2 different frequencies at play.
+Why are there $6$ petals on this winded up graph?
+
+<Spoiler>
+The product of $\frac13$ and $\frac12$ is $\frac16$. If we had a winding frequency of $0.75$ cycles per second, there would be $\frac13\cdot\frac34=\frac14$, so 4 petals!
+</Spoiler>
+
+It is important to see there are 2 different frequencies at play.
 
 1. The frequency of the original signal, 3 beats per second.
 2. The frequency that we are wrapping the sine wave along the circle, which at the moment is at 0.5 cycles per second.
@@ -118,6 +136,19 @@ Different patterns appear as we wind up this graph, but it is clear that the $x$
 
 <Interactive filename="basic_interactive/index" aspectRatio={880 / 500} />
 
+<Question
+  question="What is the winding frequency when the wound up graph has $2$ petals? (Looks like $\infty$)"
+  choice1="$\frac14$ cycles/second"
+  choice2="$\frac12$ cycles/second"
+  choice3="$1$ cycle/second"
+  choice4="$\frac32$ cycles/second"
+  choice5="$2$ cycles/second"
+  answer={4} >
+
+We learned previously that multiplying the base frequency by the winding frequency gave one over the number of petals. So $\frac13\cdot x=\frac12$ and $x=\frac32$. Talking about the number of petals is just a visual interpretation for the period of the wound up graph.
+
+</Question>
+
 There is one small caveat: the center of mass seems to be a maximum distance from the center of the plot at a winding frequency of 0 cycles per second. What gives? Well, this is because we have started with a sine wave that oscillates between 0 and 2, and when the winding frequency is 0, the wire is just a straight line pointing to the right, meaning that the center of mass is halfway between 0 and 2, or 1. Really, that spike at 0 is measuring the fact that the average value of the graph as a whole is positive. If we centered the initial sine wave around 0, letting it dip into negative values, there would be no spike above the winding frequency of 0.
 
 <Figure image="centered.png" width="100%" />
@@ -146,9 +177,15 @@ Here, we see 2 different frequencies at both 2 and 3 beats per second, which is 
 
 The way a mathematician might phrase this is that our "Almost Fourier transform" operation is *linear*. The curious among you may want to pause for a moment to reflect on why this is true. It ultimately stems from the fact that the x-coordinate of the sum of two vectors is the sum of their x-coordinates. This, by the way, is why we had it track the x-coordinate of the center of mass of the graph, rather than tracking its distance from the origin. For the full frequency information, you'd also want to keep track of the y-coordinate, but more on that below.
 
-So this little mathematical machine does exactly what we wanted: it pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. 
+So this little mathematical machine does exactly what we wanted: it pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. The applet below allows you to change the input wave form by separating the frequencies by commas.
 
 <Interactive filename="advanced_interactive/index" aspectRatio={880 / 500} />
+
+What happens when an input frequency of $0$Hz is wound up?
+
+<Spoiler>
+It simply forms a circle (or arc of a circle) because the input graph is a constant, so it is always a constant distance from the origin.
+</Spoiler>
 
 Before moving on to the mathematical formalism here, it is a good idea to discuss a key application of this machine in sound editing, which is similar to the application we showed above with the Fourier transform of sound waves.
 
@@ -179,7 +216,7 @@ Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ i
   width="100%"
 />
 
-If you are curious, I've made multiple videos explaining why this is true, a [quick one](../differential_equations/e_to_i/e_to_i.md) offering an explanation from the perspective of differential equations, a [longer one](../misc/euler/euler.md) offering a connection to group theory, and a [longer one still](https://youtu.be/ZxYOEwM6Wbk) targeted at someone just seeing it for the first time.
+If you are curious, I've made multiple videos explaining why this is true, a <LessonLink id="eulers-formula-dynamically">quick one</LessonLink> offering an explanation from the perspective of differential equations, a <LessonLink id="eulers-formula-via-group-theory">longer one</LessonLink> offering a connection to group theory, and a <LessonLink id="ldm-eulers-formula">longer one still</LessonLink> targeted at someone just seeing it for the first time.
 
 Armed with Euler's formula, how might we describe rotating at a rate of $f$ cycles per second? Well, it would simply be:
 
@@ -195,9 +232,11 @@ $$
 g(t)e^{-2\pi i f t}
 $$
 
-will provide the function of $g$ at time $t$ and also the point along the circle $e^{-2\pi i f t}$. This is almost precisely the same as the winding machine we created before! Now we just need some sort of formula to capture the motion of the center of mass.
+will provide the function of $g$ at time $t$ and also the point along the circle $e^{-2\pi i f t}$. This is almost precisely the same as the winding machine we created before! 
 
-To approximate this, one might sample a large set of different times along the provided waveform, see where they end up on the wound-up graph, and take an average:
+This happens to explain why the wound-up graph was periodic. It also shows why the product of the periods of $g(t)$ and $e^{-2\pi i f t}$ yielded information about the period of the wound-up graph.
+
+Now we just need some sort of formula to capture the motion of the center of mass. To approximate this, one might sample a large set of different times along the provided waveform, see where they end up on the wound-up graph, and take an average:
 
 $$
 \frac{1}{N}\sum_{k=1}^N g(t_k)e^{-2\pi i f t}
@@ -285,7 +324,7 @@ Out of context, you can imagine how seeing this formula would seem sort of daunt
 3. The integral can be interpreted in terms of the center of mass of the wound-up graph, scaled up by the size of the time interval.
 
 
-Even still, I'm lying to you a little.  But only a little.  Even though in practice, with things like sound editing, you'll be integrating over a finite time interval, the theory of Fourier transforms is often phrased where the bounds of this integral are $-\infty$ and $\infty$.
+Even still, I'm lying to you a little.  But only a little.  Even though in practice, with things like sound editing, you'll be integrating over a finite time interval[^2], the theory of Fourier transforms is often phrased where the bounds of this integral are $-\infty$ and $\infty$.
 
 $$
 \hat g(f) = \int_{-\infty}^{\infty} g(t)e^{-2 \pi i f t}dt
@@ -302,3 +341,4 @@ Concretely, what that means is that you consider this expression for all possibl
 There is a lot more to say about this, but we will wrap up the discussion here for now.
 
 [^1]: Here it's worth adding some more clarity on what we mean by "center of mass". In the picture above, notice that the points are being sampled in a way that's evenly spaced across time, but this is not necessarily evenly spaced along the *length* of the graph. In effect, if we're thinking of the graph as a wire, the density of that wire is constant with respect to time, as if the rotating vector drawing it is outputting a constant amount of mass per unit time.  But this implies the wire would be a little less dense in places where the graph's height changes rapidly. In principle, you could define a similar-but-distinct cousin of the Fourier transform by treating this "wire" with constant mass per unit of arc length, but the math would become less elegant.
+[^2]: Computers don't like continuous functions, so practical applications like sound editing use the discrete fourier transform, which can be expressed as matrix-vector multiplication. There is also the quantum fourier transform which is used on quantum computers.
