@@ -1,14 +1,18 @@
 import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import Center from "../Center";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 
-import Center from "../Center";
-
 // https://github.com/saurabhnemade/react-twitter-embed
+
+Twitter.propTypes = {
+  tweet: PropTypes.string.isRequired,
+};
 
 const width = "500px";
 
 // twitter tweet embed
-const Twitter = ({ tweet }) => {
+export default function Twitter({ tweet }) {
   const ref = useRef();
 
   useEffect(() => {
@@ -36,6 +40,4 @@ const Twitter = ({ tweet }) => {
       <TwitterTweetEmbed tweetId={tweet} />
     </Center>
   );
-};
-
-export default Twitter;
+}

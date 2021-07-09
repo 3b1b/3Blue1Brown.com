@@ -7,10 +7,16 @@ import {
   useRef,
   useState,
 } from "react";
+import PropTypes from "prop-types";
 import Clickable from "../Clickable";
 import SocialIcons from "../SocialIcons";
 import Link from "next/link";
 import styles from "./index.module.scss";
+
+HomepageFeaturedContent.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default function HomepageFeaturedContent({ title, children }) {
   return (
@@ -20,14 +26,20 @@ export default function HomepageFeaturedContent({ title, children }) {
         <Carousel>{children}</Carousel>
       </div>
       <div className={styles.social}>
-        <div>Want more math in your life?</div>
         <SocialIcons />
+        <div>Want more math in your life?</div>
       </div>
     </div>
   );
 }
 
 const FeaturedItemContext = createContext({ lesson: null });
+
+HomepageFeaturedItem.propTypes = {
+  lesson: PropTypes.string.isRequired,
+  caption: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export function HomepageFeaturedItem({ lesson, caption, children }) {
   return (
@@ -58,6 +70,16 @@ export function HomepageFeaturedItem({ lesson, caption, children }) {
     </FeaturedItemContext.Provider>
   );
 }
+
+HomepageFeaturedVideo.propTypes = {
+  src: PropTypes.string.isRequired,
+  autoPlay: PropTypes.bool,
+  loop: PropTypes.bool,
+  muted: PropTypes.bool,
+  controls: PropTypes.bool,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
 
 export function HomepageFeaturedVideo({
   src,

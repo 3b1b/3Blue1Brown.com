@@ -1,5 +1,14 @@
+import PropTypes from "prop-types";
 import Section from "../Section";
 import styles from "./index.module.scss";
+
+TopicHeader.propTypes = {
+  topic: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }),
+};
 
 export default function TopicHeader({ topic }) {
   return (

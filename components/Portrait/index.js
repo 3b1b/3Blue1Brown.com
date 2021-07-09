@@ -1,9 +1,16 @@
+import PropTypes from "prop-types";
 import { useSectionWidth } from "../Section";
 import styles from "./index.module.scss";
 
+Portrait.propTypes = {
+  image: PropTypes.string.isRequired,
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  flip: PropTypes.bool,
+};
+
 // circular image that floats to left/right of text content, useful for pictures
 // of people
-const Portrait = ({ image, size = "180px", flip = false }) => {
+export default function Portrait({ image, size = "180px", flip = false }) {
   const sectionWidth = useSectionWidth();
 
   // if no image, don't render
@@ -14,11 +21,9 @@ const Portrait = ({ image, size = "180px", flip = false }) => {
       className={styles.portrait}
       style={{ width: size, height: size }}
       data-flip={flip}
-      data-sectionWidth={sectionWidth}
+      data-sectionwidth={sectionWidth}
     >
       <img src={image} />
     </div>
   );
-};
-
-export default Portrait;
+}
