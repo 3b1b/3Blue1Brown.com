@@ -105,7 +105,9 @@ export default function Interactive({
     <div
       className={styles.interactive}
       ref={setInteractive}
-      style={{ paddingTop: `${(1 / aspectRatio) * 100}%` }}
+      style={{
+        paddingTop: fullscreen ? undefined : `${(1 / aspectRatio) * 100}%`,
+      }}
       data-fullscreen={fullscreen}
     >
       <div className={styles.sizer} ref={setSizer}>
