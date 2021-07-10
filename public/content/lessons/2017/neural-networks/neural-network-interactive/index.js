@@ -48,6 +48,7 @@ function getNeuronPosition(layerIndex, visibleNeuronIndex) {
 export default function NeuralNetworkInteractive({ instant = false }) {
   const [points, setPoints] = useState(threeImage);
   const [isNormalized, setIsNormalized] = useState(true);
+  const [normalizing, setNormalizing] = useState(false);
 
   const [animating, setAnimating] = useState(false);
 
@@ -59,13 +60,15 @@ export default function NeuralNetworkInteractive({ instant = false }) {
     }
   }, [points, instant, animating]);
 
-  const normalizePointsAnimated = (duration = 0.5) => {
+  const normalizePointsAnimated = (duration = 1.0) => {
+    setNormalizing(true);
+
+    const data = collectNormalizationData(points);
+
+    const startTime = Date.now();
+    const ease = (t) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+
     return new Promise((resolve) => {
-      const data = collectNormalizationData(points);
-
-      const startTime = Date.now();
-      const ease = (t) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
-
       const frame = () => {
         const t = (Date.now() - startTime) / 1000;
 
@@ -80,6 +83,7 @@ export default function NeuralNetworkInteractive({ instant = false }) {
         if (t < duration) {
           requestAnimationFrame(frame);
         } else {
+          setNormalizing(false);
           resolve();
         }
       };
@@ -193,6 +197,7 @@ export default function NeuralNetworkInteractive({ instant = false }) {
           setPoints(newPoints);
           setIsNormalized(false);
         }}
+        normalizing={normalizing}
         isNormalized={isNormalized}
         normalizePointsAnimated={normalizePointsAnimated}
         style={{
@@ -493,6 +498,7 @@ function ImageGrid({
   height,
   points,
   setPoints,
+  normalizing,
   isNormalized,
   normalizePointsAnimated,
   instant,
@@ -628,6 +634,27 @@ function ImageGrid({
         })}
       </g>
 
+      <g
+        style={{
+          opacity: normalizing ? 1.0 : 0.0,
+          pointerEvents: "none",
+          transition: "opacity 200ms ease-in-out",
+        }}
+      >
+        <rect x={50} y={0} width={300} height={80} fill="rgba(0, 0, 0, 0.6)" />
+        <text
+          x={200}
+          y={50}
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fill="yellow"
+          fontFamily="sans-serif"
+          fontSize="36"
+        >
+          Pre-processing...
+        </text>
+      </g>
+
       <rect
         x={0}
         y={0}
@@ -742,7 +769,7 @@ function ImageGrid({
               rx={3}
               onClick={() => {
                 if (!(isEmpty || isNormalized)) {
-                  normalizePointsAnimated(0.3);
+                  normalizePointsAnimated(1);
                 }
               }}
               style={{
@@ -765,7 +792,7 @@ function ImageGrid({
                 opacity: isEmpty || isNormalized ? 0.5 : 1.0,
               }}
             >
-              Normalize
+              Pre-process
             </text>
           </g>
         )}
