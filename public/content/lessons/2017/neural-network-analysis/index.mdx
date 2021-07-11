@@ -5,6 +5,7 @@ date: 2017-10-16
 credits:
   - Lesson by Grant Sanderson
   - Text adaptation by Josh Pullen
+thumbnail: thumbnail.png
 ---
 
 In the <LessonLink id="gradient-descent">last post</LessonLink>, we learned about how training a neural network involves minimizing a cost function with gradient descent. In the <LessonLink id="backpropagation">next post</LessonLink>, we’ll dig into how the relevant gradient is computed. But before that, as a brief interlude, I want to skip ahead and have you look at what the result of this whole process is.
@@ -89,14 +90,21 @@ Let’s return to the drawing demo. These 2nd layer weight grids, which aren’t
 
 What’s even cooler is that if you’re looking at the weight grid for a particular neuron while drawing a digit, you can watch the weights be “revealed”, which changes the value of the neuron.
 
-One fun challenge is to try drawing a 3, and then slowly extending it so it becomes an 8. At some point the network’s prediction will change, and as that’s happening, a fun challenge is to watch for which neuron(s) in the 2nd layer are changing, and then to figure out *why* they change as the 3 becomes an 8.
+One fun challenge is to try drawing a 3, and then slowly extending it so it becomes an 8. At some point the network’s prediction will change, and as that’s happening, watch for which neuron(s) in the 2nd layer are changing, and then to figure out *why* they change as the 3 becomes an 8.
 
 As you spend time playing with the network, you’ll start to find all kinds of edge cases where it gets confused or gives the wrong answer or just behaves in a way that isn’t as intelligent as we might hope. This technology is cool, but it isn’t perfect.
 
-Again, think about what a constrained training environment this network had. Every digit that it saw was of a particular size, centered in the frame. Moreover, our current learning algorithm does nothing to let the network transfer knowledge of patterns picked up on one region of the grid to another, or to make inferences about scaling. In fact, nothing about our training algorithm uses the fact that some pixels are adjacent to others.
+Again, think about what a constrained training environment this network had. Every digit that it saw was of a particular size, centered in the frame. So if you give it something that is too big or too small or not quite in the center, it is bound to get confused.
+
+<Figure
+  image="confused-network.png"
+  caption="The network was only trained on centered, properly-sized images. So when it sees anything different, it gets confused."
+/>
+
+Our current learning algorithm does nothing to let the network transfer knowledge of patterns picked up on one region of the grid to another, or to make inferences about scaling. In fact, nothing about our training algorithm even uses the fact that some pixels are adjacent to others.
 
 If you start thinking hard about how to change structure of this network to allow for more flexible learning, e.g. how learning a pattern in one part of the image could naturally transfer to any other part of the image, you’ll be well situated to learn about some of the more modern variations on this theme, most notably convolutional neural networks.
 
-But we’re getting ahead of ourselves. Before that, it’s time to learn about backpropagation, the workhorse behind neural network training.
+But we’re getting ahead of ourselves. Before that, it’s time to learn about <LessonLink id="backpropagation">backpropagation</LessonLink>, the workhorse behind neural network training.
 
 [^1]: Source: https://github.com/Coderx7/SimpleNet
