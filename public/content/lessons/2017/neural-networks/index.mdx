@@ -12,13 +12,14 @@ credits:
 <Interactive
   filename="neural-network-interactive/index"
   aspectRatio={640 / 480}
+  allowFullscreen={true}
 />
 
 The program above can identify hand-drawn digits 0-9 reasonably accurately. Give it a whirl if you haven’t already!
 
-Although it does generally work, it’s not too hard to find situations where it fails. (For example, this poor little network is completely flummoxed by anything which isn’t centered, or isn’t about the right size.)
+Although it does generally work, it requires a bit of coaxing to get there. In particular, the digit images it receives need to be centered and about the right size, which is why there's a pre-processing step before the digit image gets passed along to the neural network.[^1]
 
-While more modern neural networks can do a much better job at tasks like this, the network above is simple enough that you can understand exactly what it’s doing and how it was trained with almost no background. It’s also simple enough that you could train it on your own computer, while training more sophisticated networks can require a truly mind-boggling amount of computation.[^1]
+While more modern neural networks can do a much better job at tasks like this, the network above is simple enough that you can understand exactly what it’s doing and how it was trained with almost no background. It’s also simple enough that you could train it on your own computer, while training more sophisticated networks can require a truly mind-boggling amount of computation.[^2]
 
 On the surface, a machine recognizing handwritten digits may not seem particularly impressive. After all, you know how to identify digits, and I bet you don’t even find it very hard. For example, you can tell instantly that these are all images of the digit three:
 
@@ -30,7 +31,7 @@ But if I told you to sit down and write a program like the one shown above, that
 
 **Somehow identifying digits is incredibly easy for your brain to do, but almost impossible to describe _how_ to do.** The traditional methods of computer programming, with if statements and for loops and classes and objects and functions, just don’t seem suitable to tackle this problem.
 
-But what if we could write a program that mimics the structure of your brain? That’s the idea behind neural networks. The hope is that by writing brain-inspired software, we might be able to create programs that tackle the kinds of fuzzy and difficult-to-reason-about problems that your mind is so good at solving.[^2]
+But what if we could write a program that mimics the structure of your brain? That’s the idea behind neural networks. The hope is that by writing brain-inspired software, we might be able to create programs that tackle the kinds of fuzzy and difficult-to-reason-about problems that your mind is so good at solving.[^3]
 
 Moreover, just as you learn by seeing many examples, the “learning” part of machine learning comes from the fact that we never give the program any specific instructions for how to identify digits. Instead, we’ll show it many examples of hand-drawn digits together with labels for what they should be, and leave it up to the computer to adapt the network based on each new example.
 
@@ -77,7 +78,7 @@ All of our digit images have $28 \times 28 = 784$ pixels, each with a brightness
   pixel in the original image."
 />
 
-When we want to feed the network an image, we’ll set each input neuron’s activation to the brightness of its corresponding pixel.[^3]
+When we want to feed the network an image, we’ll set each input neuron’s activation to the brightness of its corresponding pixel.[^4]
 
 The last layer of our network will have 10 neurons, each representing one of the possible digits. The activation in these neurons, again some number between 0.0 and 1.0, will represent how much the system thinks an image corresponds to a given digit.
 
@@ -324,7 +325,7 @@ Next, organize all the weights as a matrix, where each row of this matrix corres
 
 <Figure video="matrix-math-videos/weight-matrix.mp4" />
 
-Then the product $\textcolor{green}{W} a^{(0)}$ is a column vector containing all the weighted sums for the neurons in the next layer.[^4]
+Then the product $\textcolor{green}{W} a^{(0)}$ is a column vector containing all the weighted sums for the neurons in the next layer.[^5]
 
 <Figure video="matrix-math-videos/weighted-sum.mp4" />
 
@@ -343,7 +344,7 @@ So, once you write this weight matrix and these vectors as their own symbols, yo
   caption="This tiny expression represents the computation of all the neurons in the next layer based on all the neurons in the previous layer, using the chosen weights and biases."
 />
 
-This makes the relevant code much cleaner and much faster, since many libraries optimize the heck out of matrix multiplication.[^5]
+This makes the relevant code much cleaner and much faster, since many libraries optimize the heck out of matrix multiplication.[^6]
 
 ## The Network Is Just a Function
 
@@ -390,15 +391,20 @@ But of course, we shouldn’t get ahead of ourselves. We still need to discuss h
 
 </Accordion>
 
-[^1]: For example, when OpenAI trained their famous GPT-3 algorithm, it was estimated to require about $12 Million worth of computation.
-[^2]: Although neural networks are inspired by the brain, they are by no means identical. It's a lot like the difference between a bird and an airplane. They achieve the same end goal using roughly the same strategies, but with some pretty major differences when it comes to the details.
-[^3]:
+[^1]: Our focus in this series will be on just the neural network itself, which is arguably the most interesting part, but preparing data in this way is also very important for successful machine learning in the real world.
+
+[^2]: For example, when OpenAI trained their famous GPT-3 algorithm, it was estimated to require about $12 Million worth of computation.
+
+[^3]: Although neural networks are inspired by the brain, they are by no means identical. It's a lot like the difference between a bird and an airplane. They achieve the same end goal using roughly the same strategies, but with some pretty major differences when it comes to the details.
+
+[^4]:
     We can't fit all 784 neurons in our diagram, so you're only seeing the first and last neurons, which correspond to the first pixels of the first row and the last pixels of the last row of the image.
 
     That's an admittedly boring selection, because for almost every digit image, those pixels will just be black. But as you're reading, keep in mind that there's a lot of exciting stuff going on behind the little "...". Many of the neurons you can't see are active!
 
-[^4]: By the way, so much of machine learning comes down to having a good grasp of linear algebra, so if any of you want a nice visual understanding for matrices, and what matrix-vector multiplication means, take a look at <LessonLink id="eola-preview">the series I did on linear algebra</LessonLink>. Especially <LessonLink id="linear-transformations">chapter 3</LessonLink>.
-[^5]:
+[^5]: By the way, so much of machine learning comes down to having a good grasp of linear algebra, so if any of you want a nice visual understanding for matrices, and what matrix-vector multiplication means, take a look at <LessonLink id="eola-preview">the series I did on linear algebra</LessonLink>. Especially <LessonLink id="linear-transformations">chapter 3</LessonLink>.
+
+[^6]:
     These days, due to the demand for more machine learning and more powerful networks, there have been huge leaps and bounds in specialized hardware which is aimed at making matrix multiplication much faster, for example, Google's "Tensor processing unit", or TPU.
 
     Half the time when you hear a company describe something like a "new neural architecture" meant for more powerful AI, what they really mean when you look under the hood is that they're multiplying matrices more quickly.
