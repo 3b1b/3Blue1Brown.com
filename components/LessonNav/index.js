@@ -38,7 +38,7 @@ const LessonNav = () => {
             className={styles.toggle}
             onClick={() => setOpen(!open)}
             tooltip={
-              open ? "Close list" : "See more lessons for topic " + topicName
+              open ? "Close list" : "See more lessons about " + topicName
             }
           />
           {next && (
