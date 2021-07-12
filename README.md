@@ -131,10 +131,11 @@ Omit `width` and `height` whenever possible to let the figure auto-size based on
 Dynamically imports another react component and displays it in a frame.
 
 - `filename` 🚨 - Name of a `.js` file (without the extension) in the same folder as the lesson.
-- `children` - A function that returns an object of props you want to pass to your dynamically imported component.
+- `children` - A function that takes the component loaded from `filename` and returns what to render (allows passing props to the loaded component).
 - `aspectRatio` - A number representing the width / height of the box in which the interactive lives. (Default: 16 / 9)
+- `allowFullscreen` - A boolean indicating whether to show a full screen button in the top right (defaults to `false`)
 
-Example of `children`: `<Interactive>{() => ({ someProp: "some value" })}</Interactive>`.
+Example of `children`: `<Interactive>{(MyComponent) => <MyComponent someProp="some value" />}</Interactive>`.
 
 ### Lesson Link
 

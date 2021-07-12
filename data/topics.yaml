@@ -41,6 +41,7 @@
   lessons:
     - neural-networks
     - gradient-descent
+    - neural-network-analysis
     - backpropagation
     - backpropagation-calculus
 - name: Differential Equations

@@ -44,6 +44,8 @@ export default function LessonVideo() {
     setShowCoverImage(false);
   };
 
+  if (!videoId && !topic) return null;
+
   return (
     <Section
       id="video-section"
@@ -66,14 +68,15 @@ export default function LessonVideo() {
 
         {!showCoverImage && wideEnoughToToggle() && (
           <button onClick={toggleExpansion} className={styles.expandButton}>
-            {wideVideo ? 
-              <i class="fas fa-compress-alt"></i> :
+            {wideVideo ? (
+              <i class="fas fa-compress-alt"></i>
+            ) : (
               <i class="fas fa-expand-alt"></i>
-            }
+            )}
           </button>
         )}
 
-        {prevLesson && (
+        {prevLesson && videoId && (
           <Link href={`/lessons/${prevLesson}`}>
             <a className={styles.arrowLeft} aria-label="Previous">
               <i className="fas fa-angle-left" />
@@ -81,43 +84,45 @@ export default function LessonVideo() {
           </Link>
         )}
 
-        <div className={styles.video}>
-          {showCoverImage && (
-            <button className={styles.coverButton} onClick={startVideo}>
-              <img
-                className={styles.coverImage}
-                src={thumbnail}
-                alt="Youtube video"
-              />
-              <svg
-                className={styles.coverPlayButton}
-                height="100%"
-                version="1.1"
-                viewBox="0 0 68 48"
-                width="100%"
-              >
-                <path
-                  d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-                  fill="currentColor"
+        {videoId && (
+          <div className={styles.video}>
+            {showCoverImage && (
+              <button className={styles.coverButton} onClick={startVideo}>
+                <img
+                  className={styles.coverImage}
+                  src={thumbnail}
+                  alt="Youtube video"
                 />
-                <path d="M 45,24 27,14 27,34" fill="#fff" />
-              </svg>
-            </button>
-          )}
-          {!showCoverImage && (
-            <div className={styles.frame}>
-              <iframe
-                title="YouTube Video"
-                className={styles.iframe}
-                src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
-                allow="autoplay"
-                allowFullScreen
-              />
-            </div>
-          )}
-        </div>
+                <svg
+                  className={styles.coverPlayButton}
+                  height="100%"
+                  version="1.1"
+                  viewBox="0 0 68 48"
+                  width="100%"
+                >
+                  <path
+                    d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                    fill="currentColor"
+                  />
+                  <path d="M 45,24 27,14 27,34" fill="#fff" />
+                </svg>
+              </button>
+            )}
+            {!showCoverImage && (
+              <div className={styles.frame}>
+                <iframe
+                  title="YouTube Video"
+                  className={styles.iframe}
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
+                  allow="autoplay"
+                  allowFullScreen
+                />
+              </div>
+            )}
+          </div>
+        )}
 
-        {nextLesson && (
+        {nextLesson && videoId && (
           <Link href={`/lessons/${nextLesson}`}>
             <a className={styles.arrowRight} aria-label="Next">
               <i className="fas fa-angle-right" />
