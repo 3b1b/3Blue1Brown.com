@@ -1,5 +1,6 @@
 - name: Calculus
-  description: Brief description text of topic
+  slug: calculus
+  description: Visual introductions to the core ideas of derivatives, integrals, limits and more
   lessons:
     - essence-of-calculus
     - derivatives
@@ -15,7 +16,8 @@
     - taylor-series
     - derivatives-and-transforms
 - name: Linear Algebra
-  description: Brief description text of topic
+  slug: linear-algebra
+  description: An introduction to visualizing what matrices are really doing
   lessons:
     - eola-preview
     - vectors
@@ -35,12 +37,16 @@
     - quick-eigen
     - abstract-vector-spaces
 - name: Neural Networks
+  slug: neural-networks
+  description: The basics of neural networks, and the math behind how they learn
   lessons:
     - neural-networks
     - gradient-descent
     - backpropagation
     - backpropagation-calculus
 - name: Differential Equations
+  slug: differential-equations
+  description: A tour through some of the most beautiful methods for studying dynamic systems
   lessons:
     - differential-equations
     - pdes
@@ -48,17 +54,9 @@
     - fourier-series
     - eulers-formula-dynamically
     - matrix-exponents
-- name: Clever Proofs
-  lessons:
-    - inscribed-rectangle-problem
-    - sphere-area
-    - dandelin-spheres
-    - borsuk-ulam
-    - pythagorean-triples
-    - winding-numbers
-    - hanoi-and-sierpinski
-    - eulers-characteristic-formula
 - name: Puzzles
+  slug: puzzles
+  description: Challenging questions whose solutions have interesting twists and broader lessons
   lessons:
     - hardest-problem
     - windmills
@@ -67,6 +65,8 @@
     - moser
     - three-utilities
 - name: Why Pi
+  slug: why-pi
+  description: Why does pi show up in so many unexpected places?
   lessons:
     - clacks
     - clacks-solution
@@ -75,7 +75,20 @@
     - leibniz-formula
     - wallis-product
     - pi-was-628
+- name: Geometry
+  slug: geometry
+  description: An assortment of topics related to geometry and higher dimensions
+  lessons:
+    - sphere-area
+    - dandelin-spheres
+    - higher-dimensions
+    - pythagorean-triples
+    - quaternions
+    - quaternions-and-3d-rotation
+    - eulers-characteristic-formula
 - name: Analysis
+  slug: analysis
+  description: An assortment of topics loosely related to the field of analysis
   lessons:
     - fourier-transforms
     - uncertainty-principle
@@ -83,29 +96,57 @@
     - divergence-and-curl
     - hilbert-curve
     - fractal-dimension
+    - winding-numbers
     - inventing-math
     - music-and-measure-theory
-- name: Computer Science
+- name: Topology
+  slug: topology
+  description: A few clever proofs that make use of topological facts
   lessons:
-    - hamming-codes
-    - hamming-codes-2
+    - inscribed-rectangle-problem
+    - borsuk-ulam
+- name: Group Theory
+  slug: group-theory
+  description: The study of symmetry
+  lessons:
+    - groups-and-monsters
+    - eulers-formula-via-group-theory
+- name: Computer Science
+  slug: computer-science
+  description: An assortment of topics related to algorithms
+  lessons:
     - bitcoin
     - 256-bit-security
+    - hamming-codes
+    - hamming-codes-2
+    - hanoi-and-sierpinski
+- name: Physics
+  slug: physics
+  description: An assortment of topics from physics
+  lessons:
+    - light-quantum-mechanics
+    - feynmans-lost-lecture
+    - brachistochrone
+    - snells-law
+    - turbulence
+- name: Probability
+  slug: probability
+  description: An assortment of introductory ideas in probability
+  lessons:
+    - bayes-theorem
+    - better-bayes
+    - binomial-distributions
+    - pdfs
 - name: Epidemics
+  slug: epidemics
+  description: Videos made about and during the COVID-19 pandemic
   lessons:
     - exponential-and-epidemics
     - epidemic-simulations
     - dp3t
-- name: Group Theory
-  lessons:
-    - groups-and-monsters
-    - eulers-formula-via-group-theory
-- name: Higher Dimensions
-  lessons:
-    - quaternions
-    - quaternions-and-3d-rotation
-    - higher-dimensions
 - name: Lockdown Math
+  slug: lockdown-math
+  description: A series of live-streamed lectures starting with foundational ideas in high school math, and exploring what interesting places they can lead to
   lessons:
     - lockdown-math-announcement
     - ldm-quadratic
@@ -118,20 +159,9 @@
     - ldm-power-towers
     - ldm-i-to-i
     - ldm-tips-to-problem-solving
-- name: Physics
-  lessons:
-    - light-quantum-mechanics
-    - feynmans-lost-lecture
-    - brachistochrone
-    - snells-law
-    - turbulence
-- name: Probability
-  lessons:
-    - bayes-theorem
-    - better-bayes
-    - binomial-distributions
-    - pdfs
 - name: Miscellaneous
+  slug: miscellaneous
+  description: Odd videos that defy categorization elsewhere
   lessons:
     - qa1
     - qa2

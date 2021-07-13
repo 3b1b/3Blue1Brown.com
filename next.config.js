@@ -1,10 +1,9 @@
 const withImages = require("next-images");
 const withYAML = require("next-yaml");
 
-
 let config = {
-  target: "serverless"
-}
+  target: "serverless",
+};
 
 config = {
   ...config,

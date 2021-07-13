@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import NextLink from "next/link";
 import Chip from "../Chip";
 import { formatDate } from "../../util/locale";
@@ -6,8 +7,18 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 
+LessonCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  mini: PropTypes.bool,
+  reverse: PropTypes.bool,
+  tooltip: PropTypes.node,
+  active: PropTypes.bool,
+  className: PropTypes.string,
+};
+
 // button that links to a lesson, showing details like thumbnail, title, etc.
-const LessonCard = ({
+export default function LessonCard({
   id,
   icon,
   mini,
@@ -15,7 +26,7 @@ const LessonCard = ({
   tooltip,
   active,
   className = "",
-}) => {
+}) {
   const { lessons = [] } = useContext(PageContext);
 
   // find lesson with matching slug
@@ -30,7 +41,8 @@ const LessonCard = ({
   else Component = Link;
 
   // get lesson details
-  let { slug, title, description, date, video, chapter, topic, empty } = lesson;
+  let { slug, title, description, date, thumbnail, chapter, topic, empty } =
+    lesson;
   if (date) date = formatDate(date);
 
   return (
@@ -41,13 +53,12 @@ const LessonCard = ({
       data-active={active || false}
       data-mini={mini || false}
       data-reverse={reverse || false}
-      // data-fade
     >
       {icon && <i className={icon}></i>}
 
       <div className={styles.image}>
         <div className={styles.frame}>
-          <img src={`https://img.youtube.com/vi/${video}/hqdefault.jpg`} />
+          <img src={thumbnail} alt="" />
         </div>
       </div>
 
@@ -56,20 +67,13 @@ const LessonCard = ({
         {description && !mini && (
           <span className={styles.description}>{description}</span>
         )}
-        {(chapter !== undefined || !!video || !empty || date) && !mini && (
+        {(chapter !== undefined || !empty || date) && !mini && (
           <span>
             {chapter !== undefined && (
               <Chip
                 text={(mini ? "Ch" : "Chapter") + " " + chapter}
                 mini={mini}
                 tooltip={`In topic "${topic}"`}
-              />
-            )}
-            {!!video && (
-              <Chip
-                icon="fab fa-youtube"
-                mini={mini}
-                tooltip="This lesson has a video version"
               />
             )}
             {!empty && (
@@ -85,9 +89,7 @@ const LessonCard = ({
       </div>
     </Component>
   );
-};
-
-export default LessonCard;
+}
 
 const Link = ({ link, tooltip, ...rest }) => (
   <NextLink href={link} passHref>

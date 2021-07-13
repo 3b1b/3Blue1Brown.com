@@ -10,7 +10,11 @@ import {
 } from "./ContactForms";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
-import GoogleSearch from "./GoogleSearch";
+import FreeResponse from "./FreeResponse";
+import HomepageFeaturedContent, {
+  HomepageFeaturedItem,
+  HomepageFeaturedVideo,
+} from "./HomepageFeaturedContent";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
@@ -23,7 +27,6 @@ import Section from "./Section";
 import Spoiler from "./Spoiler";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
-import Video from "./Video";
 
 // components to automatically import into all .mdx files
 const components = {
@@ -34,7 +37,10 @@ const components = {
   ContactFormReceivedMessage,
   FeatureCard,
   Figure,
-  GoogleSearch,
+  FreeResponse,
+  HomepageFeaturedContent,
+  HomepageFeaturedItem,
+  HomepageFeaturedVideo,
   Interactive,
   LessonCard,
   LessonGallery,
@@ -50,7 +56,6 @@ const components = {
   ThanksForm,
   Tooltip,
   Twitter,
-  Video,
 };
 
 export default components;

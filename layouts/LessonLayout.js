@@ -3,10 +3,11 @@ import Link from "next/link";
 import NormalLayout from "./NormalLayout";
 import PageContent from "../components/PageContent";
 import Section from "../components/Section";
-import Video from "../components/Video";
+import LessonVideo from "../components/LessonVideo";
 import LessonDetails from "../components/LessonDetails";
 import Patrons from "../components/Patrons";
 import Empty from "../components/Empty";
+import ShareButtons from "../components/ShareButtons";
 import LessonNav from "../components/LessonNav";
 import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
@@ -15,19 +16,24 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const LessonLayout = () => {
-  const { video, empty, timestamp } = useContext(PageContext);
+  const { empty, video, timestamp } = useContext(PageContext);
   return (
     <NormalLayout>
-      <Section dark={true}>
-        <Video id={video} timestamp={timestamp} />
-      </Section>
-
+      {/* Key prevents state from being preserved when moving between pages: */}
+      <LessonVideo key={video} timestamp={timestamp} />
       <LessonDetails />
-      <LessonNav />
+
+      {/* Don't alternate section color after <LessonDetails> */}
+      <div />
 
       {!empty && (
         <>
           <PageContent />
+          {/* Don't alternate section color */}
+          <div />
+          <Section width="narrow">
+            <ShareButtons />
+          </Section>
           <LessonNav />
           <License />
           <Thanks />

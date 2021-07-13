@@ -1,0 +1,101 @@
+.footnoteLabel {
+  min-width: 18px;
+  height: 18px;
+  font-size: 12px;
+  vertical-align: middle;
+
+  position: relative;
+  bottom: 2px;
+  margin: 0 2px;
+
+  border-radius: 9999px;
+  background: $blue-400;
+  color: $white;
+
+  cursor: pointer;
+
+  &:hover,
+  &[data-open="true"] {
+    background: $blue-600;
+  }
+}
+
+$popupColor: $gray-300;
+
+.popup {
+  position: absolute;
+  z-index: 11;
+  background: $popupColor;
+  width: 90vw;
+  max-width: 400px;
+}
+
+.popupContent {
+  font-size: 15px;
+  color: $gray-800;
+
+  max-height: 40vh;
+  padding: 16px;
+  overflow-y: auto;
+
+  // Make the content appear on top of the arrow element:
+  position: relative;
+  z-index: 1;
+}
+
+.popupContent p {
+  line-height: 1.6;
+}
+
+.popupContent::before,
+.popupContent::after {
+  content: " ";
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+.popupContent::before {
+  top: 0;
+  // Weirdly, just using a gradient from color -> transparent doesn't work in Safari
+  // because of the way it interpolates between colors.
+  background: linear-gradient(to bottom, $popupColor, rgba($popupColor, 0));
+}
+.popupContent::after {
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba($popupColor, 0), $popupColor);
+}
+
+$arrowSize: 10px;
+
+.arrow {
+  position: absolute;
+  width: $arrowSize;
+  height: $arrowSize;
+}
+
+.arrow::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: $popupColor;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.popup[data-popper-placement="top"] .arrow {
+  bottom: -0.5 * $arrowSize;
+}
+
+.popup[data-popper-placement="bottom"] .arrow {
+  top: -0.5 * $arrowSize;
+}
+
+.popup[data-popper-placement="left"] .arrow {
+  right: -0.5 * $arrowSize;
+}
+
+.popup[data-popper-placement="right"] .arrow {
+  left: -0.5 * $arrowSize;
+}

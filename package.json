@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install"
+    "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
@@ -18,9 +19,11 @@
     "next-images": "^1.7.0",
     "next-mdx-remote": "3.0.2",
     "next-yaml": "^1.0.1",
+    "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-markdown": "^6.0.2",
+    "react-p5": "^1.3.19",
     "react-popper": "^2.2.5",
     "react-transition-group": "^4.4.2",
     "react-twitter-embed": "^3.0.3",
@@ -41,6 +44,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.8"
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "prettier": "^2.3.2"
   }
 }

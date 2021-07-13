@@ -1,7 +1,16 @@
 .interactive {
-  max-width: 100%;
-  max-height: 90vh;
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
+  overflow: hidden;
+
   margin: 40px auto;
-  @include trim-v-margins;
   background: $black;
+}
+
+.sizer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
