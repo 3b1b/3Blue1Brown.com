@@ -119,9 +119,22 @@ So there are three avenues that can team up together to increase this activation
 3. Change the **activations** from the previous layer
 
 ### Changing the Bias
-Increasing the bias associated with the neuron is the simplest way to increase its activation.
+Changing the bias associated with a neuron is the simplest way to change its activation. Unlike changing the weights or the activations from the previous layer, the effect of a change to the bias on the weighted sum is constant and predictable.
 
-Unlike changing the weights or the activations from the previous layer, the effect of a change to the bias on the weighted sum is constant and predictable. As far as this specific training example of a 2 is concerned, the bias should be increased to increase the activation.
+<Question
+  question="Since we want to incrase the activation of the digit-2 output neuron we've been discussing, how should its associated bias be adjusted? What about the biases associated with all the other output neurons for this training example?"
+  choice1="**Increase** the bias associated with the digit-2 neruon and **increase** the biases associated with all the other neurons."
+  choice2="**Increase** the bias associated with the digit-2 neruon and **decrease** the biases associated with all the other neurons."
+  choice3="**Decrease** the bias associated with the digit-2 neruon and **increase** the biases associated with all the other neurons."
+  choice4="**Decrease** the bias associated with the digit-2 neruon and **decrease** the biases associated with all the other neurons."
+  answer={2}
+>
+
+The bias associated with the digit-2 neuron should be increased, because that will cause the activation of the digit-2 neuron to increase. All the other output activations should be decreased, which requires decreasing their associated biases.
+
+These changes will give a more accurate prediction with a lower cost for this particular training example.
+
+</Question>
 
 ### Changing the Weights
 How should the weights be adjusted? Notice, because they are being multiplied by the activations, the weights have differing levels of influence:
@@ -182,7 +195,7 @@ So the desire of this digit-2 neuron is added together with the desires of all t
   caption="It’s impossible to perfectly satisfy all these competing desires for activations in the second layer. The best we can do is add up all the desired nudges to find the overall desired change."
 />
 
-Here is where the idea of propagating backward comes in. By adding all these desired effects, you can get a list of the nudges you want to happen to this second to last layer. From there, you can recursively apply the same process to the relevant weights and biases determining those values, repeating this process as you move backward through the network.
+Here is where the idea of propagating backward comes in. By adding all these desired effects, you can get a list of the nudges you want to happen to this second-to-last layer. From there, you can recursively apply the same process to the relevant weights and biases determining those values, repeating this process as you move backward through the network.
 
 ## Repeating for All Training Examples
 Everything we just stepped through only records how a *single* training example wishes to nudge each of the many, many weights and biases.
