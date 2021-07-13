@@ -11,7 +11,9 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-Let's try to reason through what the derivatives of the functions sine and cosine should be. For background, you should be comfortable with how to think about both of these functions using the unit circle; that is, the circle with radius $1$ centered at the origin.
+Let's try to reason through what the derivatives of the functions sine and cosine should be. For background, you should be comfortable with how to think about both of these functions using the unit circle; that is, the circle with radius $1$ centered at the origin[^1].
+
+[^1]: To get up to speed on the unit circle or for a quick referesher see [this article](https://wumbo.net/concept/unit-circle/).
 
 For example, how would you interpret the value $\sin(0.8)$ if the value $\theta = 0.8$ is understood to be in radians?
 You might imagine walking around a circle with a radius of $1$, starting from the rightmost point, until you’ve traversed the distance $0.8$ in arc length.
@@ -56,6 +58,34 @@ Consider the right triangle pictured below, where the hypotenuse represents a st
 This tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$.
 Specifically, the angle between its height $d(\sin(\theta))$ and its hypotenuse $d\theta$ is precisely equals to $\theta$.
 
+<Figure
+  image="figures/similar-triangles.svg" 
+/>
+
+<Accordion title="Similar triangle explanation">
+
+We know these right triangles must be similar by doing some angle chasing geometry. Start by drawing a line parallel to the $x$-axis. From geometry, we know that the angle formed between the radius and this parallel line is equal to theta. 
+
+<Figure
+  image="figures/similar-triangles-line-parallel-to-x-axis.svg" 
+/>
+
+Then we can draw a line tangent to the point formed by theta as shown below. Because the line is tangent, we know that the angle formed between the radius and the tangent line is perpendicular, so we can calculate the right-most angle of this tiny triangle formed by $d\theta$ to be $\pi/2 - \theta$.
+
+<Figure
+  image="figures/similar-triangles-tangent-line.svg" 
+/>
+
+Finally, we know that the angles of a triangle sum to a half-rotation ($\pi$ radians or $180 \degree$), so the top angle must be equal to $\theta$.
+
+<Figure
+  image="figures/similar-triangles-180-sum.svg" 
+/>
+
+Since these two triangles share the same angles, they must be similar triangles, which allows us to continue forward and find the derivative of the trigonometric function.
+
+</Accordion>
+
 Think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the output of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little right-triangle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
 
 <Figure
@@ -65,5 +95,11 @@ Think about what the derivative of sine is supposed to mean. It’s the ratio be
 Notice, by considering the slope of the graph, we can get a quick intuitive feel for the rough shape that the derivative of $\sin(\theta)$ should have, which is enough to make an educated guess. But to more to understand why this derivative is *precisely* $\cos(\theta)$, we had to begin our line of reasoning with the defining features of $\sin(\theta)$.
 
 For those of you who enjoy pausing and pondering, take a moment to find a similar line of reasoning which explains what the derivative of $\cos(\theta)$ should be.
+
+<Accordion title="Derivative of Cosine">
+
+TODO: explanation
+
+</Accordion>
 
 In the <LessonLink id="chain-rule-and-product-rule">next lesson</LessonLink> we'll figure out the derivatives of functions that combine simple functions like these, either as sums, products, or functions compositions. Similar to this lesson, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.
