@@ -1,0 +1,200 @@
+.LiveTransactionsInteractive {
+  font-family: "CMU Serif";
+  background: black;
+  width: 800px;
+  height: 450px;
+  text-align: left;
+}
+
+.Transaction {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+
+  font-size: 22px;
+  color: white !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.Transaction__hash {
+  color: rgba(255, 255, 255, 0.4);
+}
+.Transaction__out {
+  color: red;
+}
+.Transaction__in {
+  color: green;
+}
+
+.Transaction--corner0 {
+  animation: transactionAnim0 6000ms ease-out forwards;
+}
+.Transaction--corner1 {
+  animation: transactionAnim1 6000ms ease-out forwards;
+}
+.Transaction--corner2 {
+  animation: transactionAnim2 6000ms ease-out forwards;
+}
+.Transaction--corner3 {
+  animation: transactionAnim3 6000ms ease-out forwards;
+}
+
+@keyframes transactionAnim0 {
+  0% {
+    opacity: 1;
+    top: -25%;
+    left: -25%;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    top: 40%;
+    left: 40%;
+    pointer-events: none;
+  }
+}
+@keyframes transactionAnim1 {
+  0% {
+    opacity: 1;
+    top: -25%;
+    left: 125%;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    top: 40%;
+    left: 60%;
+    pointer-events: none;
+  }
+}
+@keyframes transactionAnim2 {
+  0% {
+    opacity: 1;
+    top: 125%;
+    left: 125%;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    top: 60%;
+    left: 60%;
+    pointer-events: none;
+  }
+}
+@keyframes transactionAnim3 {
+  0% {
+    opacity: 1;
+    top: 125%;
+    left: -25%;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    top: 60%;
+    left: 40%;
+    pointer-events: none;
+  }
+}
+
+.TransactionRipple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.TransactionRipple--corner0 {
+  top: 0;
+  left: 0;
+}
+.TransactionRipple--corner1 {
+  top: 0;
+  left: 100%;
+}
+.TransactionRipple--corner2 {
+  top: 100%;
+  left: 100%;
+}
+.TransactionRipple--corner3 {
+  top: 100%;
+  left: 0;
+}
+
+.TransactionRipple__ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  opacity: 0;
+  border: 18px solid white;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+
+  animation: ripple 1200ms linear forwards;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.7;
+    border-width: 9px;
+  }
+  100% {
+    width: 450px;
+    height: 450px;
+    opacity: 0;
+    border-width: 0px;
+  }
+}
+
+.liveIndicator {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.liveIndicatorDot {
+  display: inline-block;
+  background: white;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  margin-right: 8px;
+}
