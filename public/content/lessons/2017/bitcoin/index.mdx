@@ -64,7 +64,7 @@ At the end of every month, you all look through the list of transactions and tal
 
 <Figure
   image="tally-up.png"
-  video="tally-up.mov"
+  video="tally-up.mp4"
   show="video"
 />
 
@@ -162,7 +162,7 @@ And with that, we have working digital signatures, which remove a huge aspect of
 ## Removing Cash
 But even still, this relies on an honors system of sorts. Namely, you’re trusting that everyone will actually follow through and settle up in cash at the end of each month. But what if, for example, Charlie racks up thousands of dollars in debt, and then just refuses to show up?
 
-<Figure image="charlie-leaves.png" video="charlie-leaves.mov" show="video" />
+<Figure image="charlie-leaves.png" video="charlie-leaves.mp4" show="video" />
 
 The only real reason to revert to cash to settle up is if some people (*I’m looking at you Charlie*) owe a lot of money. As long as nobody falls into debt, the ledger alone works fine.
 
@@ -207,7 +207,7 @@ You are, of course, free to exchange Ledger Dollars for real US dollars. For exa
 
 <Figure
   image="exchange-for-usd.png"
-  video="exchange-for-usd.mov"
+  video="exchange-for-usd.mp4"
   show="video"
 />
 
@@ -237,7 +237,7 @@ So far, I’ve said that this ledger is in some public place, like a website whe
 
 To remove that bit of trust, we’ll abandon the idea of having one ledger in a central location. Instead, we’ll have everyone keep their own copy of the ledger. Then to make a transaction, like “Alice pays Bob 100 LD”, you broadcast the message into the world for people to hear and record on their own private Ledgers.
 
-<Figure video="broadcast-transaction.mov" />
+<Figure video="broadcast-transaction.mp4" />
 
 Remember this live transaction view from before?
 
@@ -321,7 +321,7 @@ How hard do you think it was for them to find that number? The answer, of course
 
 For a random message, the probability that the hash happens to start with 30 successive zeros is $1$ in $2^{30}$, which is about 1 in a billion. So this person almost certainly had to go through about a *billion* different guesses before finding this special one.
 
-<Figure video="guess-and-check.mov" />
+<Figure video="guess-and-check.mp4" />
 
 But what’s cool is that once you know the number, you can quickly verify that this hash really does start with 30 zeros. In other words, you can verify that they went through a large amount of work without having to go through that same effort yourself. This is called a *proof of work*.
 
@@ -358,7 +358,7 @@ But now that our ledger is split into blocks, we have a bit of an issue. We can�
 
 What this means is that they’ll listen for the transactions being broadcast, collect them into a block, and then do a whole bunch of work to find the special number that makes the hash of this block start with 60 zeros, and broadcast out the block they found.[^4]
 
-<Figure video="miners.mov" />
+<Figure video="miners.mp4" />
 
 To reward a block creator for all this work, when she puts together a block, we’ll allow her to include a special transaction at the top in which she gets, say, 10 Ledger Dollars out of thin air.
 
