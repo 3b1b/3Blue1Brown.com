@@ -15,6 +15,10 @@ credits:
 
 I’ve introduce a few derivative formulas, but a really important one I left out was exponentials. So here I want to talk about the derivatives of exponential functions like $2^x$, $7^x$, and to show why $e^x$ is arguably the most important exponential.
 
+<Figure
+  image="figures/different-exponentials/base-1-through-10-with-e.svg" 
+/>
+
 ## Population Mass
 
 First of all, to get an intuition, let’s focus on the exponential function $2^x$.
@@ -29,20 +33,22 @@ And let’s think of that input as a time, $t$, in days, and the output $2^t$ as
   image="figures/population-mass/pi-creatures.svg"
 />
 
-Actually, instead of population size, which grows in discrete little jumps with each new baby $\pi$ creature, maybe let’s think of $2^t$ as the total mass of the population, which better reflects the continuity of this function $2^t$. At time $t=0$, the total mass $2^0=1$, for the mass of one creature. At $t = 1$ day, the population has grown to $2^1 = 2$ creatures masses. And day $t = 2$, it’s at $2^2 = 4$, and in general it keeps doubling every day.
+Actually, instead of population size, which grows in discrete little jumps with each new baby $\pi$ creature, maybe let’s think of $2^t$ as the total mass of the population, which better reflects the continuity of this function $2^t$. 
 
 <Figure
   image="figures/population-mass/base-2-plot-labeled.svg" 
 />
 
+For example, at time $t=0$, the total mass $2^0=1$, for the mass of one creature. At $t = 1$ day, the population has grown to $2^1 = 2$ creatures masses. And day $t = 2$, it’s at $2^2 = 4$, and in general it keeps doubling every day.
+
 For the derivative, we want to find $\frac{dM}{dt}$, the rate at which this population mass is growing, thought of as a tiny change to mass divided by a tiny change in time. Let’s start by thinking of the rate of change over a full day, say between day $2$ and day $3$. In that case, it grows from $4$ to $8$, so that’s eight creatures masses added over the course of that day.
 
 <Figure
   image="figures/population-mass/base-2-plot-slope-between-2-and-3.svg" 
-  caption="The rate of growth (slope) equals the population size at the start of the day between any two given days."
+  caption="Notice, the rate of growth equals the population mass at the start of the day."
 />
 
-Between day $3$ and day $4$, it grows from $8$ to $16$, so that’s a rate of $8$ individuals per day, which again, is equal to the population size at the start of the day. And in general, the rate of growth over a full day always equals the population size at the start of that day.
+Between day $3$ and day $4$, the mass grows from $8$ to $16$, so that’s a rate of $8$ creature masses per day, which again, is equal to the population size at the start of the day. And in general, the rate of growth over a full day equals the population size at the start of that day.
 
 <Figure
   image="figures/population-mass/base-2-plot-slopes.svg" 
@@ -51,7 +57,9 @@ Between day $3$ and day $4$, it grows from $8$ to $16$, so that’s a rate of $8
 
 So it might be tempting to say that this means the derivative of $2^t$ equals itself; that the rate of change of $2^t$ at a given time $t$ equals the value of $2^t$ itself. On the day when $2^t$ is $8$, the number of new creature-masses added per day is also $8$; on the day when $2^t$ is $16$, the number of new creature-masses added per day is also $16$.
 
-This is definitely in the right direction, but it’s not quite correct. What we’re doing here is making comparisons over the course of a full day, considering the difference between $2^{t+1}$ and $2^t$. But for the derivative, we need to ask about what happens for smaller and smaller changes. What’s the growth rate over an a tenth of a day... a hundredth of a day... one one billionth of a day, etc.
+This is definitely in the right direction, but it’s not quite correct. What we’re doing here is making comparisons over the course of a full day, considering the difference between $2^{t+1}$ and $2^t$. But for the derivative, we need to ask about what happens for smaller and smaller changes. What’s the growth rate over the course of a tenth of a day... a hundredth of a day... one one billionth of a day, etc.
+
+This is why I had us think of the function as representing population mass vs. time, since it makes sense to ask about a tiny change in mass over a tiny fraction of a day, but it doesn’t make as much sense to ask about the tiny change in the discrete population size per second.
 
 <Question
   question="We know that the derivative of the exponential function $M(t) = 2^t$ is close-to, but not quite equal-to itself, suggesting that the derivative of an exponential function is another exponential function. Looking at any point on the plot, will the actual derivative be smaller or larger than the output of the function?"
@@ -66,13 +74,11 @@ Taking a look at the input of $t=1$ on the graph we can draw the slope between t
   image="figures/population-mass/base-2-plot-slope-between-1-and-2-detail.svg" 
 />
 
-From past lessons, we know that the derivative is the same thing as the slope of the line **tangent** to the graph. Visually, imagining the change in time, $dt$, approaching zero, we know the slope of the tangent line must be smaller than the one drawn.
+From past lessons, we know that the derivative is the same thing as the slope of the **tangent** line. Visually, imagining the change in time, $dt$, approaching zero, we know the slope of the tangent line must be smaller than the one drawn.
 
 </Question>
 
-This is why I had us think of the function as representing population mass vs. time, since it makes sense to ask about a tiny change in mass over a tiny fraction of a day, but it doesn’t make as much sense to ask about the tiny change in the discrete population size per second.
-
-More abstractly, for some tiny change in time $dt$, we want to understand the difference between $2^{t+dt}$ and $2^t$, divided by $dt$. The change in the function per unit time, but now we’re looking very narrowly around a given point in time, rather than over the course of a full day.
+More abstractly, for some tiny change in time $dt$, we want to understand the difference between $2^{t+dt}$ and $2^t$, all divided by $dt$. The change in the function per unit time, but now we’re looking very narrowly around a given point in time, rather than over the course of a full day.
 
 <Figure
   image="figures/finding-the-derivative/base-2-rate-of-change.svg" 
@@ -80,35 +86,65 @@ More abstractly, for some tiny change in time $dt$, we want to understand the di
 
 Here’s the thing. I would love if there was some clear geometric picture that made what’s about to follow just pop out. Some diagram where you could point to one value and say "see that part, that is the derivative of $2^t$". If you know of one, please, let me know. And while the goal here, as with the rest of the series, is to maintain a spirit of playful discovery, the type of play that follows will have more to do with finding numerical patterns, rather than visual ones.
 
+<!-- TODO: reword if changes below are accepted in peer review -->
+
 ## Finding the Derivative
 
 <Figure
   image="figures/finding-the-derivative/base-2-derivative-setup.svg" 
 />
 
-Take a close look at the exponent term $2t+dt$. A core property of exponentials is that you can break this up as $2^{t} \cdot 2^{dt}$. That really is the most important property of exponentials; if you add two values in the exponent, you can break it apart as a product of some kind. It lets you relate additive ideas, like tiny steps in time, to multiplicative ideas, like rates and ratios. Applying the exponential property gives us the expression below.
+Take a close look at the exponent term $2t+dt$ in the numerator. A core property of exponentials is that you can break this up as $2^{t} \cdot 2^{dt}$. That really is the most important property of exponents; if you add two values in the exponent, you can break up the output as a product of some kind. This is what lets you relate additive ideas, like tiny steps in time, to multiplicative ideas, like rates and ratios.
+
+Applying this property gives us the expression below.
 
 <Figure
   image="figures/finding-the-derivative/base-2-apply-exponential-property.svg" 
 />
 
-After applying the exponential property, we can factor out the term $2^t$, which is now multiplied by $\frac{2^{dt} - 1}{dt}$. The derivative of $2^t$ is whatever this whole expression approaches as $dt$ approaches $0$.
+Notice how both expressions in the numerator contain the term $2^t$, so we can factor out $2^t$, leaving us with the expression below. And remember, the derivative of $2^t$ is whatever this whole expression on the right approaches as $dt$ approaches $0$.
 
 <Figure
-  image="figures/finding-the-derivative/base-2-derivative-limit.svg" 
+  image="figures/finding-the-derivative/base-2-derivative-limit-alt.svg" 
 />
 
-At first glance this might look like an unimportant manipulation, but a tremendously important fact is that this term on the right, where $dt$ lives, is completely separate from the $t$ term itself; it doesn’t depend on the actual time where we started.
+At first glance this might look like an unimportant manipulation, but a tremendously important fact is that this term on the right in parentheses, where $dt$ lives, is completely separate from the $t$ term itself; it doesn’t depend on the actual time where we started.
 
-If you go to your calculator and plug in small values for $dt$ here, for example typing in $(2^{0.001} - 1)/(0.001)$, you’ll find that it for smaller and smaller choices of $dt$, this value approaches a specific number, around $0.6931...$
+What happens if you plug in a very small value for $dt$ into a calculator to approximate this term in parentheses?
+
+<FreeResponse>
+
+Substutiting $0.001$ in for $dt$ we get the value.
+
+$$
+\frac{2^{0.001}-1}{0.001} = \color{#4bb77e} 0.693 \color{grey} 387462581
+$$
+
+Substutiting $0.0001$ in for $dt$ we get the value.
+
+$$
+\frac{2^{0.0001}-1}{0.0001} = \color{#4bb77e}  0.6931  \color{grey} 71203765
+$$
+
+And, substutiting $0.0001$ in for $dt$ we get the value.
+
+$$
+\frac{2^{0.00001}-1}{0.00001} = \color{#4bb77e} 0.69314 \color{grey} 958282
+$$
+
+You’ll find that it for smaller and smaller choices of $dt$, this value approaches a specific number, around $0.693147...$
 
 <Figure
-  image="figures/finding-the-derivative/base-2-derivative.svg" 
+  image="figures/finding-the-derivative/base-2-approximate-derivative.svg"
 />
 
 Don’t worry if that number seems mysterious, the central point is that this is some kind of constant; unlike derivatives of other functions, all the stuff that depends on $dt$ is separate from the value of $t$ itself.
 
-So the derivative of $2^t$ is just itself, but multiplied by some constant. This should kind of make sense, because earlier it felt like the rate of growth for our population with size $2^t$, at least for changes of a full day, was related to the value $2^t$ itself. Evidently the rate of change for this function over much smaller time scales is not quite equal to itself, but it is proportional to itself, with this peculiar proportionality constant that we are able to approximate.
+</FreeResponse>
+
+So the derivative of $2^t$ is just itself, but multiplied by some constant. This should kind of make sense, because earlier it felt like the rate of growth for our population with size $2^t$, at least when we were looking at changes pver the course a full day. Evidently, the rate of change for this function over much smaller time scales is not quite equal to itself, but it is proportional to itself, with this very peculiar proportionality constant of $0.6931...$
+
+<!-- TODO: insert animation + figure of slope of 2^t at t=3 -->
 
 ## Different Exponentials
 
@@ -116,11 +152,19 @@ So the derivative of $2^t$ is just itself, but multiplied by some constant. This
   image="figures/different-exponentials/base-1-through-10.svg" 
 />
 
-There’s not much special to the number $2$ here. Had we dealt with the function $3^t$, the exponential property would also have led us to the conclusion that the derivative of $3^t$ is proportional to itself, but this time with a proportionality constant of about $1.0986$. For any other base to your exponent you can have fun seeing what the various proportionality constants are, maybe trying to find a pattern.
+There’s not much special to the number $2$ here. Had we dealt with the function $3^t$, the exponential property would also have led us to the conclusion that the derivative of $3^t$ is proportional to itself, but this time with a proportionality constant of about $1.0986$.
+
+<Figure
+  image="figures/finding-the-derivative/base-3-approximate-derivative.svg" 
+/>
+
+<!-- TODO: add animation with exponential property for the above -->
+
+For any other base to your exponent you can have fun seeing what the various proportionality constants are, maybe trying to find a pattern.
 
 <Figure
   image="figures/finding-the-derivative/example-exponentials.svg"
-  caption="Notice how the proportionality constant for the derivative changes from less than one for a base of $2$ to greater than one for a base of $3$."
+  caption="Notice how the proportionality constant for the derivative changes from less than $1$ for a base of $2$ to greater than $1$ for a base of $3$."
 />
 
 For example, if you plug in $8$ as the base of the exponential function, you can see the relevant proportionality constant is around $2.079$. And maybe, just maybe, you would notice that this number happens to be exactly $3$ times the constant associated with the base of $2$. So these numbers aren’t random, there is some pattern. But what is the pattern? What does $2$ have to do with $0.6931$ and what does $8$ have to do with $2.079$[^1].
@@ -138,13 +182,19 @@ A second question, which ultimately explains these mystery constants, is whether
 
 ## Euler's Number
 
-As it turns out, there is! It’s the special constant $e$, around $2.71828$. In fact, it’s not just that $e$ happens to show up here, this is, in a sense, what defines the number $e$. This special exponential function with Euler's Number, $e$, as the base is called *the exponential function*. <!-- TODO: footnote untangling euler's number from the exponential function -->
+As it turns out, there is a number. It’s the special constant $e$, around $2.71828$, called Euler's number. In fact, it’s not just that $e$ happens to show up here, this is, in a sense, what defines the number $e$. This special exponential function with Euler's Number as the base is called *the exponential function*. <!-- TODO: footnote untangling euler's number from the exponential function -->
 
 <Figure
   image="figures/exponential-function/eulers-number-value-derivative.svg"
 />
 
-All exponential functions are proportional to their own derivative, but $e$ alone is the special number so that the proportionality constant is $1$, meaning $e^t$ actually equals its own derivative. So if you look at the graph of $e^t$, it has the peculiar property that the slope of a tangent line to any point on the graph equals the height of that point above the horizontal axis...
+All exponential functions are proportional to their own derivative, but the *exponential function* base $e$ alone is the special number so that the proportionality constant is $1$, meaning $e^t$ actually equals its own derivative.
+
+$$
+\frac{d}{dt} \left ( e^{t} \right ) = e^{t}
+$$
+
+If you look at the graph of $e^t$, it has the peculiar property that the slope of a tangent line to any point on the graph equals the height of that point above the horizontal axis.
 
 <Figure
   image="figures/exponential-function/slope-examples.svg" 
@@ -153,31 +203,86 @@ All exponential functions are proportional to their own derivative, but $e$ alon
 
 <!-- TODO: possibly mention the function's defining properties are exp(0) = 1 and that d\dx [exp(x)] = exp(x) -->
 
-## Natural log
+So how does the exponential function help us find the derivatives of other exponential functions? Well, maybe you noticed that different exponentials look like horizontally scaled versions of each other. This is true of all exponential functions, but best seen with exponential functions that are related to eachother.
+
+<Figure
+  image="figures/different-exponentials/base-2-4-8-16.svg"
+/>
+
+The implication of this is that you can re-write one exponential in terms of another's base. For example, if we have an exponential function of base $2$ and want to re-write the function in terms of base $4$, it can be written like this.
+
+$$
+2^{x} = 4^{\frac{1}{2} \cdot x}
+$$
+
+One way to see how to visually convert between two bases is to zoom in on the graph between $0$ and $1$ to see how fast the base $4$ function grows to $2$. In this case, it grows twice as fast and so if we multiply the input $t$ of the base $4$ function by the constant $\frac{1}{2}$ we get the function $2$. This is the same as scaling $4^x$ by a factor of $2$ in the horizontal direction.
+
+<Figure
+  image="figures/different-exponentials/base-2-4-8-16-detail.svg"
+/>
+
+So we've found a function, *the exponential function* of base $e$, with a really nice derivative property. Can we take any old exponential function and re-write it in terms of the exponential function?? Or in other words, what constant do we multiply the input variable by to make the exponential function have the same output as another exponential function.
+
+For example, can we re-write $2^t$ in terms of the exponential function?
+
+$$
+e^{c \cdot t} = 2^{t}
+$$
+
+As before, we can zoom in on a plot of the two functions, and compare their behavior. Specifically, how long does it take the exponential function to grow to $2$? 
+
+<Figure
+  image="figures/different-exponentials/base-2-and-e.svg"
+/>
+
+Well, looking at the graph it takes about $t=0.693...$ which is exactly equal to the same proportionality constant we found before! If we multiply the input variable $t$ by this constant, the exponential function has the same output as $2^t$.
+
+$$
+e^{(0.69314718056...) \cdot t} = 2^{t}
+$$
+
+The question we are asking here leads us directly towards another function, the inverse of the *exponential function*, the natural logarithm function.
+
+## Natural logarithm
 
 <Figure
   image="figures/exponential-function/natural-logarithm-and-exponential-functions.svg" 
 />
 
-The existence of a function like this can answer the question of the mystery constants, and it’s because it gives a different way to think about functions that are proportional to their own derivative. The key is to use the chain rule. For example, what is the derivative of $e^{3t}$?  Well, you take the derivative of the outermost function, which due to the special nature of $e$ is itself, then multiply by the derivative of the inner function $3^t$, which is the constant $3$.
+The existence of a function like this can answer the question of the mystery constants, and it’s because it gives a different way to think about functions that are proportional to their own derivative. There's nothing fancy here, this is simply the definition of the natural log, it asks the question "$e$ to the what equals $2$". 
 
-Or, rather than just applying a rule, you could take this moment to practice the intuition for the chain rule I talked through last video, thinking about how a slight nudge to $t$ changes value of $3^t$, and how that intermediate change nudges the final value of $e^{3t}$.
+And indeed, go plug in the natural log of $2$ to a calculator, and you’ll find that it’s $0.6931...$, the mystery constant we ran into earlier. And same goes for all the other bases, the mystery proportionality constant that pops up when taking derivatives and when re-writing exponential functions using $e$ is the natural log of the base; the answer the the question "$e$ to the what equals that base".
 
-Either way, the point is, the derivative of the function $e^{c \cdot t}$ is equal to that same constant, $c$, times itself. And from here, the question of those mystery constants really just comes down to a certain algebraic manipulation. The number $2$ can also be written as $e^{\ln(2)}$. There's nothing fancy here, this is simply the definition of the natural log, it asks the question "$e$ to the what equals $2$". So the function $2^t$ is the same as the function $e^{\ln(2)t}$. And from what we just saw, combining the facts that $e^t$ is its own derivative with the chain rule, the derivative of this function is proportional to itself, with a proportionality constant equal to the natural log of $2$.
+Importantly, the natural logarithm function gives us the missing tool we need to find the derivative of *any* exponential function. The key is to re-write the function and then use the chain rule. For example, what is the derivative of the function $3^t$? Well, first let's re-write this function in terms of  the *exponential function* using the natural logarithm to calculate the horizontally-scaling proportionality constant.
 
-And indeed, go plug in the natural log of $2$ to a calculator, and you’ll find that it’s $0.6931...$, the mystery constant we ran into earlier. And same goes for all the other bases, the mystery proportionality constant that pops up when taking derivatives is the natural log of the base; the answer the the question "$e$ to the what equals that base".
+$$
+3^{t} = e^{\ln(3)t}
+$$
 
-In fact, throughout applications of calculus, you rarely see exponentials written some base to a power $t$. Instead you almost always write exponentials as $e$ raised to some constant multiplied by $t$. It’s all equivalent; any function like $2^t$ or $3^t$ can be written as $e^{c \cdot t}$. The difference is that framing things in terms of $e$ plays much more smoothly with the process of derivatives.
+Then, we can calculate the derivative of $e^{\ln(3)t}$ using the chain rule by taking the derivative of the outermost function, which due to the special nature of the exponential funtion is itself, then multiply by the derivative of the inner function $\ln(3)^t$, which is the constant $\ln(3)$.
+
+$$
+\frac{d}{dt} \left( e^{\ln(3)t} \right) = e^{\ln(3)t} \cdot \ln(3) 
+$$
+
+This is the same derivative we found using algebra above since $\ln(3) = 1.09861228867...$
+
+$$
+\frac{d}{dt} \left( 3^t \right) = 3^t \cdot \ln(3)
+$$
+
+The same technique can be used to find the derivative of any exponential function.
+
+$$
+\frac{d\left(a^{t}\right)}{d t}=a^{t} \ln (a)
+$$
+
+In fact, throughout applications of calculus, you rarely see exponentials written as some base to a power $t$. Instead you almost always write exponentials as $e$ raised to some constant multiplied by $t$. It’s all equivalent; any function like $2^t$ or $3^t$ can be written as $e^{c \cdot t}$. The difference is that framing things in terms of $e$ plays much more smoothly with the process of derivatives.
 
 ## Why we care
 
 I know this is all pretty symbol heavy, but the reason we care is that all sorts of natural phenomena involve a certain rate of change being proportional to the thing changing.
 
-For example, the rate of growth of a population actually does tend to be proportional to the size of the population itself, assuming there isn’t some limited resource slowing that growth down.
-
-If you put a cup of hot water in a cool room, the rate at which the water cools is proportional to the difference in temperature between the room and the water. Or said differently, the rate at which that difference changes is proportional to itself.
-
-If you invest your money, the rate at which it grows is proportional to the amount of money there at any time. 
+For example, the rate of growth of a population actually does tend to be proportional to the size of the population itself, assuming there isn’t some limited resource slowing that growth down. If you put a cup of hot water in a cool room, the rate at which the water cools is proportional to the difference in temperature between the room and the water. Or said differently, the rate at which that difference changes is proportional to itself. If you invest your money, the rate at which it grows is proportional to the amount of money there at any time. 
 
 In all these cases, where some variable’s rate of change is proportional to itself, the function describing that variable over time will be some exponential. And even though there’s lot’s of ways to write any exponential function, it’s very natural to choose to express these functions as $e^{ct}$, since that constant $c$ in the exponent carries a very natural meaning: It’s the same as the proportionality constant between the size of the changing variable and the rate of change.
-
