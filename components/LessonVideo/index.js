@@ -5,7 +5,7 @@ import Section from "../Section";
 import topics from "../../data/topics.yaml";
 import styles from "./index.module.scss";
 
-export default function LessonVideo() {
+export default function LessonVideo({ timestamp }) {
   const {
     video: videoId,
     topic: topicName,
@@ -113,7 +113,7 @@ export default function LessonVideo() {
                 <iframe
                   title="YouTube Video"
                   className={styles.iframe}
-                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1`}
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${ timestamp ? '&start=' + timestamp : '' }`}
                   allow="autoplay"
                   allowFullScreen
                 />
