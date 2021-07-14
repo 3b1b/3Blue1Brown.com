@@ -1,9 +1,12 @@
+.interactiveWrapper {
+  margin: 40px auto;
+}
+
 .interactive {
   width: 100%;
   position: relative;
   overflow: hidden;
 
-  margin: 40px auto;
   background: $black;
 
   &[data-fullscreen="true"] {
@@ -30,4 +33,11 @@
   padding: 10px;
   color: white;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.caption {
+  margin: 20px 30px 0 30px;
+  text-align: center;
+  color: $gray-700;
+  font-size: 0.9em;
 }
