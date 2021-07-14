@@ -1,0 +1,13 @@
+
+0:00 Intro
+1:38 Monomial Functions
+12:36 Trig Functions
+
+
+0:00 Intro
+1:38 f(x) = x^2
+4:41 f(x) = x^3
+6:54 f(x) = x^n "Power Rule"
+10:07 f(x) = 1/x
+12:36 Sine
+16:56 Outro

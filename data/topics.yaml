@@ -4,7 +4,8 @@
   lessons:
     - essence-of-calculus
     - derivatives
-    - derivative-formulas-geometrically
+    - derivatives-power-rule
+    - derivatives-trig-functions
     - chain-rule-and-product-rule
     - eulers-number
     - implicit-differentiation
@@ -41,6 +42,7 @@
   lessons:
     - neural-networks
     - gradient-descent
+    - neural-network-analysis
     - backpropagation
     - backpropagation-calculus
 - name: Differential Equations
