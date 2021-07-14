@@ -98,7 +98,43 @@ For those of you who enjoy pausing and pondering, take a moment to find a simila
 
 <Accordion title="Derivative of Cosine">
 
-TODO: explanation
+To find the derivative of the cosine function, let's look at the unit circle definition of cosine. Imagine walking around the unit circle starting from the right-most point an arc-length distance of $\theta$ (theta) unit. The cosine function returns the distance from the $y$-axis and the end-point corresponding the the angle.
+
+<Figure
+  image="figures/cosine-unit-circle.svg" 
+/>
+
+For example, given the angle $\theta = 0.8$ the cosine function returns the distance from the $y$-axis and the point corresponding to the angle which is about equal to $0.697...$
+
+<Figure
+  image="figures/cosine-unit-circle-example.svg" 
+/>
+
+Just as with sine, imagine nudging the input $\theta$ some small amount $d\theta$. This gives us the change in cosine $d(\cos (\theta))$ labeled on the diagram below.
+
+<Figure
+  image="figures/cosine-d-theta.svg" 
+  caption="For angles in the first quadrant a small nudge $d\theta$ **decreases** the output of cosine, so this length is negative."
+/>
+
+Just as before, we can observe that this nudge forms a *similar* right triangle with a hypotenuse of length $d \theta$.
+
+<Figure
+  image="figures/cosine-d-theta-similar-triangle.svg" 
+/>
+
+Applying the definition of the sine function to this right triangle, we know that the length of the opposite side is equal to $d\theta \cdot \sin(\theta)$. However, we need to be careful to observe that this small nudge $d\theta$ that we introduced **decreases** the length of cosine on the unit circle, so this value is negative.
+
+<Figure
+  image="figures/cosine-d-theta-similar-triangle-side-length.svg" 
+/>
+
+This gives us the change of the function as $d(\cos (\theta)) = d \theta \cdot(-\sin (\theta))$ which we can rearrange to find the derivative.
+
+$$
+\frac{d(\cos (\theta))}{d\theta} = -\sin (\theta)
+$$
+
 
 </Accordion>
 
