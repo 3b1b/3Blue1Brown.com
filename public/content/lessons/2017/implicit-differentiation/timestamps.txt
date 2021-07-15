@@ -1,0 +1,6 @@
+0:00 Implicit Differentiation Intro (Circle)
+3:16 Related Rates (Ladder)
+8:00 Parametric Function (Circle)
+10:50 sin(x)y^2 = x  
+12:32 New Derivative Formulas y = ln(x)
+14:31 Outro
