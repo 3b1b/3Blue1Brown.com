@@ -2,19 +2,26 @@ import { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import { PageContext } from "../../pages/_app";
 import { useForceUpdate } from "../../util/hooks";
+import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 
 Interactive.propTypes = {
   filename: PropTypes.string.isRequired,
+  fromCurrentDirectory: PropTypes.bool,
   children: PropTypes.func,
   aspectRatio: PropTypes.number,
+  allowFullscreen: PropTypes.bool,
+  caption: PropTypes.string,
 };
 
 // dynamically load (from same directory as page) and embed a react applet
 export default function Interactive({
   filename,
-  children = [],
+  fromCurrentDirectory = true,
+  children = (Component) => <Component />,
   aspectRatio = 16 / 9,
+  allowFullscreen = false,
+  caption,
 }) {
   const { dir } = useContext(PageContext);
   const forceUpdate = useForceUpdate();
@@ -25,11 +32,19 @@ export default function Interactive({
   // dynamically load component from provided filename
   useEffect(() => {
     if (!filename) return;
-    import(`../../public${dir}${filename}.js`)
-      .then((module) => (ref.current = module.default))
+    let filepath = filename;
+    if (fromCurrentDirectory) {
+      filepath = dir.slice(1) + filepath;
+    }
+
+    import(`../../public/${filepath}.js`)
+      .then((module) => (ref.current = module))
       .then(forceUpdate)
-      .catch(() => console.log(`Couldn't find interactive "./${filename}.js"`));
-  }, [dir, filename, forceUpdate]);
+      .catch((err) => {
+        console.error(`Couldn't find interactive "public/${filepath}.js"`);
+        console.error(err);
+      });
+  }, [dir, fromCurrentDirectory, filename, forceUpdate]);
 
   /*
     When creating an interactive, we don't want authors to have to
@@ -73,29 +88,55 @@ export default function Interactive({
     };
   }, [interactive, sizer]);
 
-  // get component to render
-  const Component = ref.current;
+  const [fullscreen, setFullscreen] = useState(false);
+
+  useEffect(() => {
+    if (fullscreen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [fullscreen]);
 
   // if no component, don't render
-  if (!Component) return null;
+  if (!ref.current) return null;
 
-  // get props to pass to component by calling first child as function
-  let props;
-  if (typeof children === "function") props = children();
-  if (typeof props !== "object") props = {};
+  const { default: defaultExport, ...otherExports } = ref.current;
 
   return (
-    // wrapper
-    <div
-      className={styles.interactive}
-      ref={setInteractive}
-      style={{ paddingTop: `${(1 / aspectRatio) * 100}%` }}
-    >
-      <div className={styles.sizer} ref={setSizer}>
-        <div style={{ transform: `scale(${scale})` }}>
-          <Component {...props} />
+    <div className={styles.interactiveWrapper}>
+      <div
+        className={styles.interactive}
+        ref={setInteractive}
+        style={{
+          paddingTop: fullscreen ? undefined : `${(1 / aspectRatio) * 100}%`,
+        }}
+        data-fullscreen={fullscreen}
+      >
+        <div className={styles.sizer} ref={setSizer}>
+          <div style={{ transform: `scale(${scale})` }}>
+            {children(defaultExport, otherExports)}
+          </div>
         </div>
+
+        {allowFullscreen && (
+          <button
+            className={styles.fullscreenButton}
+            onClick={() => setFullscreen(!fullscreen)}
+          >
+            {fullscreen ? (
+              <i className="fas fa-compress-alt" />
+            ) : (
+              <i className="fas fa-expand-alt" />
+            )}
+          </button>
+        )}
       </div>
+      {caption && (
+        <figcaption className={styles.caption}>
+          <Markdownify>{caption}</Markdownify>
+        </figcaption>
+      )}
     </div>
   );
 }

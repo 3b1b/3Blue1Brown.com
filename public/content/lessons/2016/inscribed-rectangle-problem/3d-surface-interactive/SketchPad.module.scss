@@ -1,0 +1,35 @@
+.sketchpadContainer {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.sketchpad {
+  background: #a0a0a0;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  cursor: crosshair;
+
+  // On mobile, prevent scrolling if the touch
+  // starts on the sketchpad
+  touch-action: none;
+}
+
+.sketchpadLabel {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+
+  color: black;
+  text-align: center;
+  font-size: 24px;
+
+  transition: opacity 100ms ease-in-out;
+  pointer-events: none;
+
+  &[data-visible="false"] {
+    opacity: 0;
+  }
+}
