@@ -280,11 +280,11 @@ Again, there’s nothing special about $\sin(x)$ and $x^2$. If you have two func
   caption="The chain rule for the function $f(x) = g(h(x))$"
 />
 
-Notice, for the derivative of $g$, I’m writing it as $\frac{dg}{dh}$ instead of $\frac{dg}{dx}$. On the symbolic level, this serves as a reminder that you still plug in the inner function to this derivative. But it’s also an important reflection of what this derivative of the outer function actually represents.
+Notice, for the derivative of $g$, I’m writing it as $\frac{d}{dh}$ instead of $\frac{d}{dx}$. On the symbolic level, this serves as a reminder that you still plug in the inner function to this derivative. But it’s also an important reflection of what this derivative of the outer function actually represents.
 
 Remember, in our three-lines setup, when we took the derivative of sine on the bottom, we expanded the size of the nudge $d(\sin)$ as $\cos(h) \cdot dh$. This was because we didn’t immediately know how the size of that bottom nudge depended on $x$, that’s kind of the whole thing we’re trying to figure out, but we could take the derivative with respect to the intermediate variable $h$. That is, figure out how to express the size of that nudge as multiple of $dh$. Then it unfolded by figuring out what $dh$ was. <!-- I'm not sure about "unfolded here" -->
 
-So in this chain rule expression, we’re saying look at the ratio between a tiny change in $g$, the final output, and a tiny change in $h$ that caused it, $h$ being the value that we’re plugging into $g$. Then multiply that by the tiny change in $h$ divided by the tiny change in $x$ that caused it.
+So in this chain rule expression we’re saying to look at the ratio between the tiny change in $g$ and the tiny change in $h$ that caused it, where $h$ is the value that we’re plugging into $g$. Then multiply that by the tiny change in $h$ divided by the tiny change in $x$ that caused it.
 
 <Figure
   image="figures/chain-rule.svg"
