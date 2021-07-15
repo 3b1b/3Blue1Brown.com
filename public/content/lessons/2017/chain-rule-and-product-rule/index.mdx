@@ -34,7 +34,7 @@ So, the question is, if you know the derivatives of two functions, what is the d
 
 The sum rule is the easiest, if somewhat tongue-twisting to say out loud: The derivative of a sum of two functions is the sum of their derivatives. But it’s worth warming up with an example and *really* thinking through what it means to take a derivative of a sum of two functions, since the derivative patterns for products and function composition won’t be so straight forward, and will require this kind of deeper thinking.
 
-For example, let's think about this function $f(x) = \sin(x) + x^2$. It's a function where for function where, for every input, you add together the values of $\sin(x)$ and $x^2$ at that point.
+For example, let's think about this function $f(x) = \sin(x) + x^2$. It's a function where, for every input, you add together the values of $\sin(x)$ and $x^2$ at that point.
 
 <Figure
   image="figures/sum-rule-example-graph.svg"
@@ -213,7 +213,7 @@ Here I’ll choose yet another way to visualize things, just to emphasize that i
 That is, the function $x^2$ gets you from line $1$ to line $2$, and the function sine gets you from line $2$ to line $3$.
 
 <Question
-  question="What is the value of the composed function given the input $x=2$. To get a hang of this visualization technique, go from the first line to the second line to the third line."
+  question="What is the value of the composed function given the input $x=2$? To get a hang of this visualization technique, go from the first line to the second line to the third line."
   choice1="$\sin(2) \approx 0.909$"
   choice2="$\sin(4) \approx -0.757$"
   answer={2}
@@ -227,26 +227,26 @@ Using the number line visual, start on $x=2$ and move to the next line using the
 
 </Question>
 
-As I shift that value of $x$, maybe up to the value $3$, then the value on the second shifts to whatever $x^2$ is, in this case $9$. And that bottom value, being the $\sin(x^2)$, will go over to whatever the $\sin(9)$ is.
+As I shift that value of $x$, maybe up to the value $3$, then the value on the second shifts to whatever $x^2$ is, in this case $9$. And that bottom value, being the $\sin(x^2)$, will go over to whatever $\sin(9)$ is.
 
 <Figure
   image="figures/chain-rule-x-3.svg" 
 />
 
-So for the derivative, let’s again think of nudging that $x$-value by some little $dx$, and I always think it’s helpful to think of $x$ starting as some actual number, maybe $1.5$. And $dx$ as some small number that I imagine approaching zero, maybe $0.1$.
+So for the derivative, let’s again think of nudging that $x$-value by some little $dx$. I find it helpful to imagine $x$ starting out as some actual number, maybe $1.5$, and $dx$ as some small number approaching zero, like $0.1$.
 
 <Figure
   image="figures/chain-rule-dx.svg" 
 />
 
-The resulting nudge to this second value, the change to $x^2$ caused by such a $dx$, is what we might call $d(x^2)$. You can expand this as $2x \cdot dx$, which for our specific input that length would be $2(1.5)dx$, but it helps to keep it written as $d(x^2)$ for now. In fact let me go one step further and give a new name to $x^2$, maybe $h$, so this nudge $d(x^2)$ is just $dh$.
+The resulting nudge to this second value, the change to $x^2$ caused by such a $dx$, is what we might call $d(x^2)$. You can expand this as $2x \cdot dx$. For our specific input that length would be $2(1.5)dx$, but it helps to keep it written as $d(x^2)$ for now. In fact let me go one step further and give a new name to $x^2$, maybe $h$, so this nudge $d(x^2)$ is just $dh$.
 
 <Figure
   image="figures/chain-rule-dh.svg"
   caption="The fact that $\sin(h)$ is moving left while the $dh$ bump is to the right just means that this change $d\left(\sin(h)\right)$ is some negative number."
 />
 
-Now think of that third value, which is pegged at $\sin(h)$. It’s change $d\left(\sin(h)\right)$; the tiny change *caused* by the nudge $dh$. Well, we know the derivative of sine, so we can expand $d\left(\sin(h)\right)$ as $\cos(h) \cdot dh$; that’s what it means for the derivative of sine to be cosine.
+Now think of that third value, which is pegged at $\sin(h)$. Its change is $d\left(\sin(h)\right)$, the tiny change *caused* by the nudge $dh$. Well, we know the derivative of sine, so we can expand $d\left(\sin(h)\right)$ as $\cos(h) \cdot dh$; that’s what it means for the derivative of sine to be cosine.
 
 <Figure
   image="figures/chain-rule-example-dh-derivative.svg"
@@ -312,13 +312,13 @@ Then, think of it using the product rule, interpreting it as $\sin(x) \cdot \sin
 
 <Accordion title="Chain Rule Explanation">
 
-Setup three numberlines to represent the function composition and nudge the input $x$ by a small amount $dx$. Remember we are interested in finding $df$, the change to the function represented on the bottom number line.
+Setup three number lines to represent the function composition. Then nudge the input $x$ by a small amount $dx$. Remember, we are interested in finding $df$, the change to the function represented on the bottom number line.
 
 <Figure
   image="figures/exercise-1-chain-rule-setup.svg"
 />
 
-Substitute $h=\sin(x)$ into the function composition. This simplifies $(\sin (x))^{2} = (h)^{2}$ and we know the change of the function $h^2$ given some small nudge $dh$ is $2h \cdot dh$.
+Substitute $h=\sin(x)$ into the function composition. That way, $(\sin (x))^{2}$ becomes $(h)^{2}$. And we know that the change to $h^2$ caused by some small nudge $dh$ is $2h \cdot dh$.
 
 <Figure
   image="figures/exercise-1-chain-rule-substitution.svg"
@@ -340,7 +340,7 @@ $$
 
 <Accordion title="Product Rule Explanation">
 
-To model the derivative of this function start by visualizing the function as the area of the square with side lengths $\sin(x)$.
+To model the derivative of this function, start by visualizing the function as the area of the square with side lengths $\sin(x)$.
 
 <Figure
   image="figures/exercise-1-product-rule-area.svg"
@@ -352,7 +352,7 @@ Then, imagine nudging the input of the function $x$ by a small amount $dx$. This
   image="figures/exercise-1-product-rule-area-df.svg"
 />
 
-From past chapters we know that the expression $d(\sin(x))$ is $\cos(x) \cdot dx$. Using this information we can express the chang ein area of the function as shown below. As before, the small rectangle's area in the bottom right corner is negligible.
+From past chapters we know that the expression $d(\sin(x))$ is $\cos(x) \cdot dx$. Using this information we can express the changing area of the function as shown below. As before, the small rectangle's area in the bottom right corner is negligible.
 
 <Figure
   image="figures/exercise-1-product-rule-derivative.svg"
