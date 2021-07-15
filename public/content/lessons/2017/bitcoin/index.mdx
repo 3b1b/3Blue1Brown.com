@@ -1,9 +1,513 @@
 ---
 title: But how does bitcoin actually work?
-description: How does bitcoin work?  What is a "block chain"?  What problem is this system trying to solve, and how does it use the tools of cryptography to do so?
+description: How does bitcoin work? What is a "block chain"? What problem is this system trying to solve, and how does it use the tools of cryptography to do so?
 date: 2017-07-07
 video: bBC-nXj3Ng4
 source: _2017/crypto.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Josh Pullen
 ---
+
+You have probably heard rumblings about Bitcoin. It’s a fully digital currency, with no government to issue it, and no banks needed to manage accounts or verify transactions.
+
+Bitcoin has been in the news a lot, mainly because its price has skyrocketed over the last few years. There is a lot of hype surrounding Bitcoin and other cryptocurrencies, with many prominent figures making bold claims about the future of crypto.[^1]
+
+<Twitter tweet="1284291528328790016" />
+
+But there is surprisingly little conversation about what Bitcoin actually *is*, what it means to own a Bitcoin, and what distinguishes it from traditional currencies like US dollars.
+
+Our goal here is not to predict the price of Bitcoin, or whether it’s worth investing, or anything like that. Instead, we’re going to dig into the nuts and bolts of Bitcoin, and try to understand what the computers are actually doing when sending and receiving cryptocurrency.
+
+Before diving into the math, though, it’s worth taking a moment to appreciate that Bitcoin is more than just a news story. There are real transactions being made with Bitcoin all the time, and fortunately for us, it’s possible to view them all live, as they’re happening.
+
+<Interactive
+  filename="live-transactions-interactive/index"
+  caption="Each one of these is a real Bitcoin transaction that just occured. (You can click on any transaction to read more about it.)"
+/>
+
+These are big sums of money being thrown around.
+
+So big, in fact, that it can almost seem a bit silly. Who are these people, transferring money on this virtual network? What even is a virtual currency, really? If you own a Bitcoin, what do you really have?
+
+<PiCreature emotion="maybe" />
+
+To answer these questions, and to make sure those answers feel motivated, we’re going to walk step-by-step through how you might have invented your own version of Bitcoin. By the end, you should have an understanding of how Bitcoin works, why Bitcoin is designed the way it is, and where there’s room for different design choices.
+
+One point worth stressing, by the way, is that even though you and I will dig into the underlying details here, you don’t actually need to know those details to use a cryptocurrency, just like you don’t need to know the details of what happens under the hood when you swipe a credit card. Like any other digital payments, there are plenty of user-friendly applications that let you send and receive these currencies very easily.
+
+<Figure
+  image="user-interface.png"
+  caption="Just like with traditional banking, it’s possible to use cryptocurrencies like Bitcoin without needing to understand everything that’s going on underneath."
+/>
+
+## What Is Cryptocurrency Good For?
+Before we dive in and invent a new currency, we should probably talk about why such a currency is even necessary. What are the shortcomings of existing systems, such as US dollars, that we’re trying to address?
+
+The main problem with regular old cash is the need to trust other people. In particular, users of USD need to trust the banks to hold their money securely and the government to keep the money supply stable. Our goal is to build a currency that doesn’t require trusting *anyone*. And that’s exactly what Bitcoin is!
+
+As a user of Bitcoin, there is no need to trust anybody. Not your friends, not the banks, and not the government. Our goal is to create a system where fraud is mathematically impossible (or at least sufficiently implausible). To do this, we’ll start with a basic ledger, and then use some clever tools from the field of cryptography to remove the need for trust.
+
+## Inventing Cryptocurrency
+To begin, set aside the thought of cryptocurrencies for a few minutes. We’re going to start the story with something more down to earth: Ledgers and digital signatures.
+
+If you and your friends exchange money pretty frequently, paying your share of the dinner bill and such, it can be inconvenient to exchange cash all the time. So you might decide to keep a communal ledger where you can record payments you intend to make in the future. It would essentially be a list of IOUs.
+
+<Figure
+  image="ledger.png"
+  caption="A ledger is just a list of transactions, used to keep track of everyone’s balance."
+/>
+
+This ledger will be something public and accessible to everyone, like a website where anyone can go and add new lines.
+
+At the end of every month, you all look through the list of transactions and tally everything up. If you’ve spent more than you received, you put that money into the pot, and if you’ve received more than you spent, you take that money out.
+
+<Figure
+  image="tally-up.png"
+  video="tally-up.mp4"
+  show="video"
+/>
+
+So the protocol for being part of this system looks something like this:
+- Anyone can add lines to the ledger.
+- At the end of every month, everyone gets together to settle up with real money.
+
+One problem with a public ledger like this is that anyone can add a line. What’s to prevent Bob from going in and writing “Alice pays Bob $100” without Alice approving?
+
+<Figure
+  image="without-signatures.png"
+  caption="On this public ledger, anyone can write any transaction they want."
+/>
+
+How are we supposed to trust that all these transactions are what the sender meant for them to be? This is where the first bit of cryptography comes in: Digital signatures.
+
+## Digital Signatures
+Like a handwritten signature, the idea here is that Alice should be able to add something next to a transaction that proves that she has seen it, and approved of it. And it should be infeasible for anyone else to forge her signature.
+
+<Figure
+  image="signatures.png"
+  caption="Can we add signatures to each line to verify that the transaction is approved by the sender?"
+/>
+
+At first it might seem like digital signatures shouldn’t even be possible, since whatever data makes up the signature can just be read and copied by any computer. So how do you prevent forgeries?
+
+<Figure image="couldnt-you-copy.png" />
+
+Forgeries are a problem in the real world because your handwritten signature always looks the same, so forging a signature just means copying it from one document to another.
+
+Digital signatures work differently. When signing a digital document, your signature changes depending on the content of the document. So Alice’s signature might be `00111010...` on one document, but `11101001...` on another. Both signatures are proof that Alice saw and approved of the document, but they aren’t identical.
+
+<Figure
+  image="different-signatures.png"
+  caption="Alice signs each document differently depending on its content. But both signatures are hers!"
+/>
+
+Since each document requires a different signature, copying a digital signature from one document to another just doesn’t work.
+
+But if signatures change depending on the document, how can Alice determine what her signature should look like? And how can others verify that a signature is really hers?
+
+The way this works is that everyone generates what’s called a public key/private key pair, each of which looks like some string of 1s and 0s. The private key is sometimes also called the “secret” key, so that we can abbreviate it to <strong style={{ color: "#c00" }}>sk</strong> while abbreviating the public key as <strong style={{ color: "#38761d" }}>pk</strong>. As the names suggest, the secret key is something you should keep to yourself.
+
+<Figure
+  image="pk-and-sk.png"
+  caption="Each person gets their own public key and secret key."
+/>
+
+The secret key is like a set of instructions. It describes how to form a signature based on the content of a document. Each person has their own unique secret key, so everybody will sign their documents differently.
+
+Formally, producing a signature involves some function that depends both on the message itself, and on your secret key. The secret key ensures that only *you* can produce the signature, and the fact that it depends on the message means no one can just copy one of your signatures to forge it on another message.
+
+$$
+\text{Sign(Message, \textcolor{red}{sk}) = \textcolor{blue}{Signature}}
+$$
+
+But just signing documents isn’t enough. We also need some way for other people to verify that the signature is correct. We have to let them *check* the signature without letting them produce signatures of their own. So, hand-in-hand with this signing function is another function used to verify that a signature is valid.
+
+$$
+\text{Verify(Message, \textcolor{blue}{Signature}, \textcolor{green}{pk}) = T/F}
+$$
+
+This is where the public key comes into play. The verification function uses the public key to check that a signature is correct without needing to know the signer’s secret key. The function returns true if the signature is valid, and false if it is not.
+
+I won’t go into the details of how exactly these functions work, but the idea is that it should be completely infeasible to find a valid signature if you don’t know the secret key. Specifically, the very best strategy you have is just guessing random signatures and verifying them using the public key until you find a lucky one that works.
+
+Fortunately for us, there are $2^{256}$ possible signatures with 256 bits, which is a lot, so guessing correctly is virtually impossible. $2^{256}$ is a stupidly large number. To call it astronomically large would be giving way too much credit to astronomy. In fact, I made a <LessonLink id="256-bit-security">supplemental lesson</LessonLink> devoted just to illustrating what a huge number this is.
+
+<Figure image="many-possible-signatures.png" />
+
+Let’s just say that when you verify a signature against a given message and public key, you can feel *extremely* confident that the only way someone could have produced it is if they knew the secret key associated with the public key.
+
+So, returning to our ledger, we now have a way to sign transactions to verify that the sender approves.
+
+<Figure image="ledger-with-signatures.png" />
+
+This is all well and good. Any new transaction on the ledger needs to be signed, and the only way to sign it is by knowing the secret key. The signature changes based on the content of the transaction, so copying signatures from one transaction to another won’t work.
+
+But there’s one problem here. Suppose Alice signs a transaction like “Alice pays Bob $100.” Bob can’t forge Alice’s signature on new messages, but he *could* just copy that same line as many times as he wants, since the message/signature combination is still valid.
+
+<Figure
+  image="duplicate-transaction.png"
+  caption="Anyone can create copies of previous transactions."
+/>
+
+To solve this, we make it so that when you sign a transaction, the message has to include some unique ID associated with that transaction. That way, if Alice pays Bob $100 multiple times, each transaction requires a completely new signature.
+
+<Figure
+  image="unique-ids.png"
+  caption="With these unique IDs, every new transaction must get a new signature, even if it’s otherwise identical to a previous transaction."
+/>
+
+And with that, we have working digital signatures, which remove a huge aspect of trust in our initial protocol.
+
+## Removing Cash
+But even still, this relies on an honors system of sorts. Namely, you’re trusting that everyone will actually follow through and settle up in cash at the end of each month. But what if, for example, Charlie racks up thousands of dollars in debt, and then just refuses to show up?
+
+<Figure image="charlie-leaves.png" video="charlie-leaves.mp4" show="video" />
+
+The only real reason to revert to cash to settle up is if some people (*I’m looking at you Charlie*) owe a lot of money. As long as nobody falls into debt, the ledger alone works fine.
+
+So maybe you have the clever idea that you never actually have to settle up in cash as long as you have some way to prevent people from spending too much more than they take in.
+
+<PiCreature
+  text="You don't actually *need* to settle up..."
+  emotion="thinking"
+  thought={true}
+/>
+
+What you might do is start by having everyone pay $100 into the pot, and have the first few lines of the ledger read *Alice gets $100, Bob gets $100, etc.*
+
+<Figure
+  image="pay-in-100.png"
+  caption="Everyone puts $100 in the pot to start."
+/>
+
+Now, just don’t accept transactions when someone is spending more than they have on the ledger. For example, after starting everyone off with $100, if the first two transactions are (*Charlie pays Alice $50* and *Charlie pays Bob $50*, if he were to try to add *Charlie pays You $20*, that would be invalid.
+
+<Figure
+  image="invalid.png"
+  caption="In this new system, we don’t allow people to spend more than they have."
+/>
+
+Notice, this means that you now need to know the entire history of transactions just to verify that a new one is valid. (This is going to be mostly true for cryptocurrencies as well, though there is a little room for optimization.)
+
+<Figure
+  image="overdrawn.png"
+  caption="Now verifying a transaction requires checking the entire ledger history to make sure nobody overdraws."
+/>
+
+What’s interesting here is that this step somewhat removes the connection between the Ledger and physical cash. In theory, if everyone in the world used this Ledger, you could live your whole life just sending and receiving money on this ledger without ever converting to real USD.
+
+<PiCreature text="Who needs cash?" emotion="shruggie" />
+
+To emphasize this point, let’s stop using the $ sign and start referring to quantities on the ledger as “Ledger Dollars” instead, or LD for short.
+
+<Figure image="ledgerdollars.png" />
+
+You are, of course, free to exchange Ledger Dollars for real US dollars. For example, maybe Alice gives Bob a $10 bill in the real world in exchange for him adding and signing the transaction “Bob pays Alice 10 LD” to the communal ledger.
+
+<Figure
+  image="exchange-for-usd.png"
+  video="exchange-for-usd.mp4"
+  show="video"
+/>
+
+But exchanges like this are not guaranteed in the protocol. It’s now more analogous to how you might exchange Dollars for Euros or any other currency on the open market. It’s just its own independent thing.
+
+<Figure image="exchange-currency.png" />
+
+At first blush, relying on just the ledger without settling up using cash periodically might seem crazy. We’re treating the ledger as if it’s a real currency, without the guarantee of USD backing it up. Without a “real” currency to fall back on, how can the ledger be a sustainable form of payment all on its own?
+
+The answer is, perhaps a bit frighteningly, that cash doesn’t have any intrinsic value either. US dollars are just slips of paper. Money only has value because people *agree* that it has value. And in that sense, the ledger is just as real a form of money as any other.
+
+So our ledger is now a currency! And this brings up an important point to understand about Bitcoin, or any other cryptocurrency: Fundamentally, the cryptocurrency is just a ledger. The history of transactions *is* the currency.
+
+<Figure image="ledger-is-currency.png" />
+
+There’s nothing else to it. No physical coin or cash. No bank or institution. To “own” a Bitcoin just means having a positive balance on the Bitcoin ledger.
+
+Of course, with Bitcoin, money doesn’t enter the Ledger with people buying in using cash.[^2] I’ll get to how new money enters the ledger in just a few minutes. But before that, there’s an even more significant difference between our current system of Ledger Dollars and how real cryptocurrencies work.
+
+## Distributing the Ledger
+So far, I’ve said that this ledger is in some public place, like a website where anyone can add new lines. But this requires trusting a central location. Namely, who hosts that website? Who controls the rules of adding new lines?
+
+<Figure
+  image="who-controls-this.png"
+  caption="Under the current system, we need to trust the ledger owner."
+/>
+
+To remove that bit of trust, we’ll abandon the idea of having one ledger in a central location. Instead, we’ll have everyone keep their own copy of the ledger. Then to make a transaction, like “Alice pays Bob 100 LD”, you broadcast the message into the world for people to hear and record on their own private Ledgers.
+
+<Figure video="broadcast-transaction.mp4" />
+
+Remember this live transaction view from before?
+
+<Interactive filename="live-transactions-interactive/index" />
+
+What you’re really looking at here is all the transactions that Bitcoin users are choosing to broadcast out into the world to be tracked on everyones’ ledgers.
+
+Distributing the ledger like this removes the need to trust a central authority.
+
+But unless we do something more, this system is absurdly bad. How can you get everyone to agree on what the right ledger is? When Bob receives the transaction “Alice pays Bob 10 LD”, how can he be sure that everyone else received and believes that same transaction? If not everyone knows about the transaction, they might not allow Bob to spend those 10 Ledger Dollars later to make a trade with Charlie.
+
+<Figure
+  image="are-these-the-same.png"
+  caption="If everyone keeps a unique copy of the ledger, how can we ensure that everybody agrees on what it should say?"
+/>
+
+Really. Imagine yourself just listening to transactions being broadcast. How can you be sure that everyone else is recording the same transactions you are?
+
+<Figure image="transactions-from-the-void.png" />
+
+Now we’ve hit on an interesting puzzle: Can you come up with a protocol for how to accept or reject transactions and in what order so that you can feel confident that anyone else in the world following the same protocol has a personal ledger that looks the same as yours? This is the problem addressed in the original Bitcoin paper.
+
+At a high level, the solution Bitcoin offers is to trust whichever ledger has the most computational work put into it. In a moment I’ll explain exactly what that means. The general idea is that if you use computational work as a basis for what to trust, you can make it so that fraudulent transactions and conflicting ledgers would require an infeasible amount of computation.
+
+Again, this is getting well into the weeds beyond what anyone would need to know just to use a currency like this. But it’s a really cool idea! And if you understand it, you understand the heart of Bitcoin and other cryptocurrencies.
+
+### Hash Functions
+Let’s start our discussion of computational work by talking about hash functions. A hash function takes in any kind of message or file as input, and outputs a string of bits with a fixed length. This output is called the “hash” or “digest” of the message, and it’s meant to look random.
+
+<Figure image="hash-function.png" />
+
+It’s not random; it always gives the same output for the same document. But the idea is that when you slightly change the input, maybe editing just one character in the document, the resulting hash changes completely.
+
+Here’s a little playground where you can enter a message and see what its hash looks like:
+
+<Interactive filename="sha256-interactive/index" aspectRatio={800 / 550} />
+
+Notice how when you change the input text, the hash completely changes. In fact, for the hash function I’m showing here, called SHA256, the way that output changes as you slightly change the input is entirely unpredictable. You see, this is not just any hash function, but a *cryptographic* hash function.
+
+That means it’s infeasible to compute in the reverse direction. If I show you some specific hash, like `1001111100111100...1001001110000100`, and ask you to find an input message which gives that hash as output, you will have no better method than to just guess and check with random inputs.
+
+<Figure
+  image="inverse-is-infeasible.png"
+  caption="You can’t compute the inverse of the hash function (aside from just guessing and checking inputs)."
+/>
+
+Again, if you want a feel for just how much computation $2^{256}$ guesses really is, take a look at the <LessonLink id="256-bit-security">supplement lesson</LessonLink>. I actually had way too much fun writing that thing.
+
+You might think you could somehow reverse engineer the desired input by really digging through the details of how the function works, but no one has ever found a way to do that.[^3]
+
+<Figure
+  image="reverse-engineer.png"
+  caption="Nobody has been able to reverse-engineer SHA256."
+/>
+
+So how can we use this function to prove that a particular list of Bitcoin transactions is associated with a large amount of computational effort?
+
+### Proof of Work
+We’ll address that question very soon. But first I have a challenge for you.
+
+In the box below I have a list of transactions, and beneath those transactions is a number. By default the number is zero, but you can change it! Everything in the box is considered one big document, and that document is being hashed using SHA256. Your goal is to change the number in the box so that the resulting hash starts with at least six zeroes.
+
+<Interactive
+  filename="sha256-interactive/index"
+  aspectRatio={800 / 550}
+>
+  {(SHA256Interactive, { ZeroesGame }) => (
+    <ZeroesGame />
+  )}
+</Interactive>
+
+It’s definitely possible, but it takes a while to find a solution. And, because the output of the hash function is unpredictable, there really is no better method than just guessing and checking.
+
+This challenge gets exponentially harder as the number of zeroes required increases. (Finding 7 zeroes is manageable, and 8 is feasible, but I personally have never found an input that gives 9. If you find any really excellent solutions, which produce lots of zeroes, leave them in the comments!)
+
+Now suppose that someone shows you a list of transactions, and they say “I found a special number so that when you put this number at the end of the list of transactions, and apply SHA256 the entire thing, the first 30 bits of the output are all zeros”.
+
+<Figure image="30-zeroes.png" />
+
+How hard do you think it was for them to find that number? The answer, of course, is that it was probably *really hard*.
+
+For a random message, the probability that the hash happens to start with 30 successive zeros is $1$ in $2^{30}$, which is about 1 in a billion. So this person almost certainly had to go through about a *billion* different guesses before finding this special one.
+
+<Figure video="guess-and-check.mp4" />
+
+But what’s cool is that once you know the number, you can quickly verify that this hash really does start with 30 zeros. In other words, you can verify that they went through a large amount of work without having to go through that same effort yourself. This is called a *proof of work*.
+
+And importantly, all this work is intrinsically tied to that list of transactions. If you change one of the transactions, even slightly, it would completely change the hash, so you’d have to go through all that work again just to find a new number that makes the hash start with 30 zeros.
+
+### Creating a Blockchain
+Think back to our distributed ledger situation. Everyone is broadcasting transactions, and we want a way for everyone to agree on what the correct ledger really is.
+
+<Figure
+  image="ledgers.png"
+  caption="Everyone has their own copy of the ledger. Which one is correct?"
+/>
+
+As I said earlier, the core idea behind the original bitcoin paper is to have everybody trust whichever ledger has the most computational work put into it. So we’re going to use the many-zeroes game to prove that a ledger took a lot of work to create.
+
+We don’t want to play the many-zeroes game by hashing the *entire* ledger though, because the list of transactions on the ledger is going to get way too long for that to be practical. So we start by grouping the transactions on the ledger into blocks.
+
+<Figure image="blocks.png" />
+
+Each block consists of a list of transactions, along with a number at the bottom that is the proof of work. The proof of work must be chosen such that when you hash the entire block, the result you get starts with lots of zeroes (just like in the challenge above). For the moment let’s say it has to start with 60 zeros, but later I’ll return back to how you might choose that threshold.
+
+<Figure image="60-zeroes.png" />
+
+In the same way that a transaction is only considered valid if it is signed by the sender, a block is only considered valid if it has a proof of work.
+
+We also need to make sure the blocks don’t get rearranged, because that would mess with the transaction history. So we’ll say that each block must begin with the hash of the previous block. That way, the order of the blocks can’t change.
+
+<Figure image="block-ordering.png" />
+
+Because blocks are chained together like this, instead of calling it a ledger, this is commonly called a “blockchain”.
+
+### Block Creators (AKA “Miners”)
+But now that our ledger is split into blocks, we have a bit of an issue. We can’t just add new transactions to the ledger like we used to. Instead, we’ll need a process for grouping up new transactions into blocks and computing the proof of work. So, as part of our updated protocol, we will allow anyone in the world to be a “block creator”.
+
+What this means is that they’ll listen for the transactions being broadcast, collect them into a block, and then do a whole bunch of work to find the special number that makes the hash of this block start with 60 zeros, and broadcast out the block they found.[^4]
+
+<Figure video="miners.mp4" />
+
+To reward a block creator for all this work, when she puts together a block, we’ll allow her to include a special transaction at the top in which she gets, say, 10 Ledger Dollars out of thin air.
+
+<Figure image="block-reward.png" />
+
+This is called the block reward.[^5] It’s a special exception to our usual rules about whether or not to accept transactions. It doesn’t come from anyone, so it doesn’t have to be signed. It also means that the total number of Ledger Dollars in our economy increases with each new block.
+
+Creating blocks is often called “mining”, since it requires a lot of work, and it introduces new bits of currency into the economy. But when you hear or read about miners, keep in mind that what they’re really doing is listening to transactions, creating blocks, broadcasting those blocks, and getting rewarded with new money for doing so.
+
+From the miner’s perspective, each block is like a miniature lottery, where everyone is guessing numbers as fast as they can until one lucky individual finds one that makes the hash of the block start with many zeros, and gets rewarded as a result.
+
+And anyone who is just *using* Bitcoin (but not being a block creator) no longer needs to listen for all the individual transactions on the network to copy them down on a personal ledger. Instead, Bitcoin users just need to keep track of the *blocks* that are being produced, which is much easier.
+
+<Figure
+  image="only-track-blocks.png"
+  caption="Bitcoin users just need to keep track of the blocks they’re hearing, not all the individual transactions."
+/>
+
+The key addition is that if you hear of two miners broadcasting distinct blockchains with conflicting transaction histories, you defer to the longest one. That is, the one with the most work put into it.
+
+<Figure image="conflicting-chains.png" />
+
+If there’s a tie, wait until you hear of an additional block that makes one longer.
+
+So even though there is no central authority, and everyone is maintaining their own copy of the blockchain, if everyone agrees to give preference to whichever blockchain has the most work put into it, we have a way to arrive at decentralized consensus.
+
+But out of all the systems we could use for finding consensus, why choose this one? Why always defer to the longest chain? And why are we requiring a proof of work, which artificially increases the difficulty of creating new blocks?
+
+## Alice Attempts Fraud
+To see why this method is trustworthy, it’s helpful to walk through what it would take to fool someone in this system.
+
+If Alice wants to fool Bob with a fraudulent block, she might try to send him one that includes her paying him 100 LD, but without broadcasting that block to the rest of the network. That way Bob thinks he got paid, but everyone else thinks Alice still has those 100 LD.
+
+<Figure video="alice-never-paid-bob.mp4" />
+
+To pull this off, she’d have to find a valid proof of work before all other miners, each working on their own block. And that would be difficult, but it could happen! Maybe Alice wins this miniature lottery before the other miners. Then she could write a block containing the fraudulent transaction and show it to Bob (but not to anyone else).
+
+But Bob will still be hearing future broadcasts made by other miners, and Alice never told those other miners about the block she produced and gave to Bob, so they won’t include it in their own versions of the blockchain.
+
+<Figure image="alice-never-paid-bob.png" />
+
+So now Bob will be hearing about conflicting chains. One from Alice, and one from everyone else. Remember, the protocol says that Bob always trusts the longest chain he knows about.
+
+<Figure image="trust-longest-chain.png" />
+
+So from this point forward, Alice is in a race against all the other miners in the network to make sure her fraudulent chain always contains more blocks than the legitimate one, so that she can continue to fool Bob into thinking that her chain is the real one.
+
+If all the other miners are able to confirm new blocks faster than Alice can, Bob will stop believing in Alice’s version, and switch to believing the other miners’ chain instead.
+
+<Figure video="miners-outpace-alice.mp4" />
+
+Alice might be able to keep this up for a few blocks if just by chance she happens to find blocks more quickly than all of the rest of the miners on the network. But doing this computation is *hard*, so outpacing everyone else is virtually impossible.
+
+Unless Alice has as much computing power as all the other miners combined, the odds of her chain remaining the longest become inconceivably small.[^6] So after a while, when Alice inevitably fails to keep her chain longer, Bob will reject what he’s hearing from Alice in favor of the longer chain that everyone else is working on.
+
+That’s what we mean when we say that the proof of work makes fraud computationally infeasible. Creating blocks is hard work, so working against the consensus is just too difficult to manage.
+
+It’s worth noting that building a single fraudulent block is definitely possible. The difficulty is in maintaining the lie for a long time. So to avoid being tricked yourself, you shouldn’t necessarily trust a new block that you hear immediately. Instead, you should wait for several new blocks to be added on top of it. If you still haven’t heard of any longer blockchains, you can trust that this block is part of the same chain everyone else is using.
+
+<Figure
+  image="dont-trust-yet.png"
+  caption="Blocks are most trustworthy when they aren’t brand new."
+/>
+
+## Ledger Dollars vs. Bitcoin
+And with that, we’ve hit all the main ideas. This distributed ledger system based on a proof of work is more or less how the Bitcoin protocol works, and how many other cryptocurrencies work. There’s just a few details to clear up.
+
+Earlier I said that the proof of work challenge might be to find a special number so that the hash of the block starts with 60 zeros. The way the actual bitcoin protocol works is to periodically change that number of zeros. The goal is that it should always take, on average, 10 minutes for someone to find a block. So, as there are more and more miners on the network, the challenge gets harder and harder in such a way that this miniature lottery only has about one winner every 10 minutes.[^7]
+
+Also, all of the money in Bitcoin ultimately comes from some block reward. Nobody “buys in” to Bitcoin like we originally said while building up our own Ledger Dollars.[^8] When Bitcoin first got started, the reward was 50 Bitcoin per block. There’s a great site called [Block Explorer](https://www.blockchain.com/explorer) where you can look through the Bitcoin blockchain. If you look at the very first few blocks on the chain, they contain no transactions other than the 50 Bitcoin reward to the miner. Every 210,000 blocks, which is about every 4 years, that reward gets cut in half. So right now, as of 2021, the reward is at 6.25 Bitcoin per block, and because this reward decreases geometrically over time, there will never be more than 21 million bitcoin in existence.
+
+However, this doesn’t mean miners will stop earning money. In addition to the block reward, miners can also pick up transaction fees. The way this works is that whenever you make a payment, you can optionally include a small transaction fee with it that will go to the miner of whatever block includes that payment.
+
+<Figure image="transaction-fee.png" />
+
+The reason you might do this is to incentivize miners to actually include your transaction in the next block. It’s up to the miners to decide which transactions they want to include on the block they are computing hashes for, so it makes sense to incentivize them to include yours.
+
+You see, in Bitcoin, each block is limited to about 2,400 transactions, which many critics argue is unnecessarily restrictive.
+
+<Figure image="limited-to-2400.png" />
+
+Since Bitcoin aims to add about one block every 10 minutes, only about 4 Bitcoin transactions can be processed per second (give or take). For comparison, Visa processes an average of around 1,700 transactions per second, and they’re capable of handling more than 24,000 per second. Slower processing on Bitcoin means higher transaction fees, since that’s what determines which transactions miners choose to include in new blocks.[^9]
+
+<Accordion title="Extra Note: The Lightning Network">
+
+So Bitcoin transactions are slow and expensive. So slow and so expensive, in fact, that Bitcoin alone simply won’t work as a global payments system. But some clever engineers have devised a solution, dubbed the [“Lightning Network”](https://lightning.network/).
+
+The Lightning Network is *not* a modification to Bitcoin itself. The Bitcoin blockchain will remain slow and expensive. Instead, it offers a way to make fewer transactions on the blockchain, while still preserving all the benefits of a decentralized cryptocurrency.
+
+The basic idea is that instead of recording every transaction on the main Bitcoin ledger, two people can agree to keep their own personal ledger. For example, imagine that Alice and Bob often pay each other when going out to dinner and such. Instead of tracking each and every payment on the Bitcoin ledger, they can each put some money into a shared Alice & Bob ledger, and then just track what they owe each other without using the main blockchain.
+
+<Figure image="personal-ledger.png" />
+
+Then, at some point in the future, they can “lock in” their transactions by just taking the final balance on their personal ledger and creating one Bitcoin transaction accordingly.
+
+<Figure image="lock-in.png" />
+
+But there’s a problem with this system. Suppose that Bob owes Alice a bunch of money on their shared, personal ledger, but then a few weeks later, when Alice wants to lock the transactions into the main blockchain, Bob refuses to sign. Now Alice is stuck.
+
+We need a system that allows either party to “lock in” the personal ledger onto the main blockchain at any time, without requiring the consent of the other party. The way this works is that every time a transaction is made on the personal ledger, both parties sign a lock-in transaction but do *not* broadcast it to the Bitcoin network. Both parties now have this transaction in their back pocket, and either person can choose to broadcast it to the network at any time.
+
+<Figure image="lock-in-unused.png" />
+
+Most of the time this “lock-in” transaction is never broadcast, which cuts down on the total number of transactions on the Bitcoin network. But both parties always have the *option* to lock in, so every transaction on the personal ledger is guaranteed to be redeemable as Bitcoin.
+
+The only other problem is that someone might try to pull some shenanigans by broadcasting multiple lock-in transactions from different moments in the history of the personal ledger. But with some clever use of Bitcoin’s scripting features, which are beyond the scope of this article, it’s possible to design the lock-in transactions such that each new lock-in invalidates all the previous ones.
+
+The other cool feature of the Lightning Network is a trick that avoids the need to open a personal ledger with every single person you transact with. Suppose Alice wants to pay Charlie, but Alice and Charlie don’t share a personal ledger. They *could* create one, but creating a new personal ledger for every person you want to transact with quickly becomes overwhelming.
+
+So what happens on the Lightning Network instead is that transactions can be “forwarded” through existing personal ledgers. For example, suppose Alice shares a ledger with Bob, and Bob shares a ledger with Charlie. Then Alice can give the money to Bob and ask him to pay Charlie on her behalf.
+
+<Figure image="lightning-forwarding.png" />
+
+Again, the exact details of how this is encoded in signed transactions is beyond the scope of the article. But it’s a very clever solution that puts the “Network” in Lightning Network.
+
+</Accordion>
+
+## Conclusion
+
+This is far from a comprehensive coverage of cryptocurrencies. There are many nuances and alternate design choices I haven’t touched here, but hopefully this can provide a stable [Wait-but-Why](https://waitbutwhy.com/)-style tree trunk of understanding for anyone looking to add a few more branches with further reading.
+
+Like I said at the start, one of the motivations behind this lesson is that a lot of money has started flowing towards cryptocurrencies, and even though I don’t want to make any claims about whether that’s a good or bad investment, I do think it’d be healthy for people getting into this game to at least know the fundamentals of the technology.
+
+[^1]: Interestingly, despite all the hubbub, nobody actually knows who invented Bitcoin!
+
+    Its creator published the [original paper](https://bitcoin.org/bitcoin.pdf) under the pseudonym of Satoshi Nakamoto, but their real identity remains a mystery.
+
+[^2]: It is possible to buy someone else's Bitcoin in the way we just discussed, but no new Bitcoin is created in that process; it just changes hands.
+
+    Here we're talking about the original step where everyone put in $100 at the very beginning of the ledger. That isn't how it really works in Bitcoin.
+
+[^3]: Surprisingly, there isn’t actually any rigorous proof which guarantees that it’s difficult to compute in the reverse direction. But everyone seems to agree that it’s incredibly hard, and a huge amount of modern security depends on this property of cryptographic hash functions.
+
+[^4]: Different people will be working on slightly different blocks, containing different transactions. As a block creator, you get to choose the details of the block you're working on!
+
+    Then, whoever finishes computing the proof of work first gets their block selected as the one everyone blieves.
+
+[^5]: It is also sometimes called the "coinbase", which may sound familiar if you've ever used the [cryptocurrency exchange](https://www.coinbase.com/) that bears the same name.
+
+[^6]: This is sometimes called a 51% attack, because the attacker needs to have more than half of all the computing power in the network to pull it off.
+
+    At the time of writing, this type of attack has never occurred on the Bitcoin blockchain. However, it has happened to other, smaller cryptocurrencies.
+
+[^7]: 10 minutes is a long time. If you're using Bitcoin to grab a treat from an ice cream truck, you don't want to wait 10 minutes for your transaction to be verified (or longer if you want multiple blocks as verification).
+
+    So many newer cryptocurrencies have shorter block times than Bitcoin. Some attempts have also been made to modify Bitcoin itself, but it's a difficult problem that hasn't been totally resolved.
+
+[^8]: It's definitely possible to buy Bitcoin from someone else, but that's not the same as creating new Bitcoin out of thin air. All Bitcoin is originally created from block rewards.
+
+[^9]: In addition to being slow, Bitcoin is also criticized for using too much energy. The proof-of-work idea is a clever way to prevent fraud, but it also means that mining blocks requires a lot of resources.
+
+    According to the [Cambridge Bitcoin Electricity Consumption Index](https://cbeci.org/), Bitcoin mining currently (as of 2021) uses about 115 Terrawatt-Hours of electricity per year, which is substantially more than the entire country of Finland uses.

@@ -1,0 +1,142 @@
+---
+title: Trig Derivatives through geometry
+description: Introduction to the derivatives trigonometric functions thought about geometrically and intuitively.
+thumbnail: thumbnail.png
+date: 2017-04-30
+chapter: 4
+video: S0_qX4VJhMQ
+timestamp: 756
+source: _2017/eoc/chapter3.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+---
+
+Let's try to reason through what the derivatives of the functions sine and cosine should be. For background, you should be comfortable with how to think about both of these functions using the unit circle; that is, the circle with radius $1$ centered at the origin[^1].
+
+[^1]: To get up to speed on the unit circle or for a quick referesher see [this article](https://wumbo.net/concept/unit-circle/).
+
+For example, how would you interpret the value $\sin(0.8)$ if the value $\theta = 0.8$ is understood to be in radians?
+You might imagine walking around a circle with a radius of $1$, starting from the rightmost point, until you’ve traversed the distance $0.8$ in arc length.
+This is the same thing as saying you've traversed an _angle_ of $0.8$ radians. Then $\sin(\theta)$ is your height above the $x$-axis at this point.
+
+<Figure
+  image="figures/13.16.svg"
+  video="figures/12.51-13.16.mp4"
+/>
+
+As theta increases, and you walk around the circle, your height bobs up and down and up and down.
+So the graph of $\sin(\theta)$ vs. $\theta$, which plots this height as a function of arc length, is a wave pattern. This is the *quintessential* wave pattern.
+
+<Figure
+  image="figures/13.44.svg" 
+  video="figures/13.22-13.38.mp4"
+/>
+
+Just from looking at this graph, we can get a feel from the shape of the derivative function. The slope at $0$ is something positive, then as $\sin(\theta)$ approaches its peak, the slope goes down to $0$. Then the slope is negative for a little while before coming back up to $0$ as the $\sin(\theta)$ graph levels out. If you’re familiar with the graphs of trig functions, you might guess that this derivative graph should be exactly $\cos(\theta)$, whose graph is just a shifted-back copy of the sine graph.
+
+<Figure
+  image="figures/13.44-cosine.svg"
+  video="figures/13.40-14.30.mp4"
+  show="video"
+/>
+
+But all this tells us is that the peaks and valleys of the derivative graph seem to line up with the graph of cosine. How could we know that this derivative actually *is* the cosine of theta, and not just some new function that happens looks similar to it. As with the previous examples of this video, a more exact understanding of the derivative requires looking at what the function itself represents, rather than the graph of the function.
+
+Think back to the walk around the unit circle, having traversed an arc length of $\theta$, where $\sin(\theta)$ is the height of this point. Consider a slight nudge of $d$-theta along the circumference of the circle; a tiny step in your walk around the unit circle. How much does this change $\sin(\theta)$? How much does that step change your *height* above the x-axis? This is best observed by zooming in on the point where you are on the circle.
+
+<Figure
+  image="figures/15.57.svg" 
+/>
+
+Zoomed in close enough the circle basically looks like a straight line in this neighborhood.
+Consider the right triangle pictured below, where the hypotenuse represents a straight-line approximation of the nudge $d \theta$ along the circumference, and this left side represents the change in height; the resulting tiny nudge to $\sin(\theta)$.
+
+<Figure
+  image="figures/16.00.svg" 
+/>
+
+This tiny triangle is actually similar to this larger triangle with the defining angle theta, and whose hypotenuse is the radius of the circle with length $1$.
+Specifically, the angle between its height $d(\sin(\theta))$ and its hypotenuse $d\theta$ is precisely equals to $\theta$.
+
+<Figure
+  image="figures/similar-triangles.svg" 
+/>
+
+<Accordion title="Similar triangle explanation">
+
+We know these right triangles must be similar by doing some angle chasing geometry. Start by drawing a line parallel to the $x$-axis. From geometry, we know that the angle formed between the radius and this parallel line is equal to theta. 
+
+<Figure
+  image="figures/similar-triangles-line-parallel-to-x-axis.svg" 
+/>
+
+Then we can draw a line tangent to the point formed by theta as shown below. Because the line is tangent, we know that the angle formed between the radius and the tangent line is perpendicular, so we can calculate the right-most angle of this tiny triangle formed by $d\theta$ to be $\pi/2 - \theta$.
+
+<Figure
+  image="figures/similar-triangles-tangent-line.svg" 
+/>
+
+Finally, we know that the angles of a triangle sum to a half-rotation ($\pi$ radians or $180 \degree$), so the top angle must be equal to $\theta$.
+
+<Figure
+  image="figures/similar-triangles-180-sum.svg" 
+/>
+
+Since these two triangles share the same angles, they must be similar triangles, which allows us to continue forward and find the derivative of the trigonometric function.
+
+</Accordion>
+
+Think about what the derivative of sine is supposed to mean. It’s the ratio between that $d\left(\sin(\theta)\right)$, the tiny change to the output of sine, divided by $d \theta$, the tiny change to the input of the function. From the picture, that’s the ratio between the length of the side adjacent to this little right-triangle divided by the hypotenuse. Well, let’s see, adjacent divided by hypotenuse; that’s exactly what $\cos(\theta)$ means!
+
+<Figure
+  image="figures/16.01.svg" 
+/>
+
+Notice, by considering the slope of the graph, we can get a quick intuitive feel for the rough shape that the derivative of $\sin(\theta)$ should have, which is enough to make an educated guess. But to more to understand why this derivative is *precisely* $\cos(\theta)$, we had to begin our line of reasoning with the defining features of $\sin(\theta)$.
+
+For those of you who enjoy pausing and pondering, take a moment to find a similar line of reasoning which explains what the derivative of $\cos(\theta)$ should be.
+
+<Accordion title="Derivative of Cosine">
+
+To find the derivative of the cosine function, let's look at the unit circle definition of cosine. Imagine walking around the unit circle starting from the right-most point an arc-length distance of $\theta$ (theta) unit. The cosine function returns the distance from the $y$-axis and the end-point corresponding the the angle.
+
+<Figure
+  image="figures/cosine-unit-circle.svg" 
+/>
+
+For example, given the angle $\theta = 0.8$ the cosine function returns the distance from the $y$-axis and the point corresponding to the angle which is about equal to $0.697...$
+
+<Figure
+  image="figures/cosine-unit-circle-example.svg" 
+/>
+
+Just as with sine, imagine nudging the input $\theta$ some small amount $d\theta$. This gives us the change in cosine $d(\cos (\theta))$ labeled on the diagram below.
+
+<Figure
+  image="figures/cosine-d-theta.svg" 
+  caption="For angles in the first quadrant a small nudge $d\theta$ **decreases** the output of cosine, so this length is negative."
+/>
+
+Just as before, we can observe that this nudge forms a *similar* right triangle with a hypotenuse of length $d \theta$.
+
+<Figure
+  image="figures/cosine-d-theta-similar-triangle.svg" 
+/>
+
+Applying the definition of the sine function to this right triangle, we know that the length of the opposite side is equal to $d\theta \cdot \sin(\theta)$. However, we need to be careful to observe that this small nudge $d\theta$ that we introduced **decreases** the length of cosine on the unit circle, so this value is negative.
+
+<Figure
+  image="figures/cosine-d-theta-similar-triangle-side-length.svg" 
+/>
+
+This gives us the change of the function as $d(\cos (\theta)) = d \theta \cdot(-\sin (\theta))$ which we can rearrange to find the derivative.
+
+$$
+\frac{d(\cos (\theta))}{d\theta} = -\sin (\theta)
+$$
+
+
+</Accordion>
+
+In the <LessonLink id="chain-rule-and-product-rule">next lesson</LessonLink> we'll figure out the derivatives of functions that combine simple functions like these, either as sums, products, or functions compositions. Similar to this lesson, we’ll try to understand each rule geometrically, in a way that makes it intuitively reasonable and memorable.

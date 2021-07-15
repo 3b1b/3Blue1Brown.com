@@ -22,7 +22,7 @@
     split these components up more nicely so they aren't quite as intertwined.
 */
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { threeImage, weights, biases } from "./data";
 
 // This array defines which neurons are visible on screen.
@@ -45,55 +45,82 @@ function getNeuronPosition(layerIndex, visibleNeuronIndex) {
   };
 }
 
-export default function NeuralNetworkInteractive() {
-  const [neurons, setNeurons] = useState(getAllNeuronValues(threeImage));
-
-  const [selectedNeuron, setSelectedNeuron] = useState(null);
-
-  function setInputNeurons(inputNeuronValues) {
-    setNeurons((neurons) => [inputNeuronValues, ...neurons.slice(1)]);
-
-    // The rest of the neurons will be updated before they are
-    // shown, so there is no need to update them now.
-    // updateNonInputNeurons();
-
-    // (You would need to uncomment this if you wanted a live view
-    // of the neurons updating while you draw.)
-  }
-
-  function clearInputNeurons() {
-    setInputNeurons(neurons[0].map(() => 0));
-  }
-
-  function updateNonInputNeurons() {
-    setNeurons((neurons) => getAllNeuronValues(neurons[0]));
-  }
+export default function NeuralNetworkInteractive({ instant = false }) {
+  const [points, setPoints] = useState(threeImage);
+  const [isNormalized, setIsNormalized] = useState(true);
+  const [normalizing, setNormalizing] = useState(false);
 
   const [animating, setAnimating] = useState(false);
 
-  function animate() {
-    // While drawing, only the input layer is updated.
-    // Before performing the animation, calculate the
-    // actual values of all the other neurons based
-    // on the input provided.
-    updateNonInputNeurons();
+  // Update neuron values based on points the user draws
+  const [neurons, setNeurons] = useState(getNeuronValues(points));
+  useEffect(() => {
+    if (instant || animating) {
+      setNeurons(getNeuronValues(points));
+    }
+  }, [points, instant, animating]);
 
-    setAnimating(false);
-    requestAnimationFrame(() => {
-      setAnimating(true);
+  const normalizePointsAnimated = (duration = 1.0) => {
+    setNormalizing(true);
+
+    const data = collectNormalizationData(points);
+
+    const startTime = Date.now();
+    const ease = (t) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2);
+
+    return new Promise((resolve) => {
+      const frame = () => {
+        const t = (Date.now() - startTime) / 1000;
+
+        const newPoints = applyNormalizationTransformation(
+          points,
+          data,
+          ease(Math.min(1, t / duration))
+        );
+        setPoints(newPoints);
+        setIsNormalized(true);
+
+        if (t < duration) {
+          requestAnimationFrame(frame);
+        } else {
+          setNormalizing(false);
+          resolve();
+        }
+      };
+
+      frame();
     });
+  };
+
+  function animate() {
+    setAnimating(false);
+
+    if (isNormalized) {
+      setTimeout(() => setAnimating(true), 1);
+    } else {
+      normalizePointsAnimated().then(() => {
+        setTimeout(() => setAnimating(true), 200);
+      });
+    }
   }
+
+  const [selectedNeuron, setSelectedNeuron] = useState(null);
 
   return (
     <svg
       width={640}
       height={480}
       viewBox="0 0 640 480"
-      style={{ display: "block", maxWidth: "none" }}
+      style={{
+        display: "block",
+        maxWidth: "none",
+        touchAction: "none", // Prevent scrolling on mobile while drawing
+      }}
     >
       <NeuronConnections
         selectedNeuron={selectedNeuron}
         animating={animating}
+        instant={instant}
       />
 
       <VerticalEllipsis cx={230} cy={240} />
@@ -103,11 +130,16 @@ export default function NeuralNetworkInteractive() {
         selectedNeuron={selectedNeuron}
         setSelectedNeuron={setSelectedNeuron}
         animating={animating}
+        instant={instant}
       />
 
       <OutputDigitLabels />
 
-      <WinningOutputNeuronBox neurons={neurons} animating={animating} />
+      <WinningOutputNeuronBox
+        neurons={neurons}
+        animating={animating}
+        instant={instant}
+      />
 
       {/* Weight grid for neurons in 2nd layer */}
       {selectedNeuron &&
@@ -130,36 +162,44 @@ export default function NeuralNetworkInteractive() {
           );
         })()}
 
-      <PiCreature animating={animating} />
+      <PiCreature animating={animating} instant={instant} />
 
       {/* Black background while drawing (covers everything else) */}
-      <rect
-        x="0"
-        y="0"
-        width="640"
-        height="480"
-        fill="black"
-        style={{
-          opacity: animating ? 0.0 : 1.0,
-          pointerEvents: animating ? "none" : undefined,
-          transition: "opacity 300ms ease-in-out",
-        }}
-      />
+      {!instant && (
+        <rect
+          x="0"
+          y="0"
+          width="640"
+          height="480"
+          fill="black"
+          style={{
+            opacity: animating ? 0.0 : 1.0,
+            pointerEvents: animating ? "none" : undefined,
+            transition: "opacity 300ms ease-in-out",
+          }}
+        />
+      )}
 
       <ImageGrid
-        editing={!animating}
+        instant={instant}
+        editing={!animating || instant}
         startEditing={() => {
           setAnimating(false);
-          clearInputNeurons();
+          setPoints([]);
+          setIsNormalized(false);
         }}
-        x={animating ? 10 : 120}
-        y={animating ? 10 : 10}
-        width={animating ? 150 : 400}
-        height={animating ? 150 : 400}
-        values={neurons[0]}
-        setValues={(newValues) => {
-          setInputNeurons(newValues);
+        x={animating || instant ? 10 : 125}
+        y={animating || instant ? 10 : 10}
+        width={animating || instant ? 190 : 390}
+        height={animating || instant ? 190 : 390}
+        points={points}
+        setPoints={(newPoints) => {
+          setPoints(newPoints);
+          setIsNormalized(false);
         }}
+        normalizing={normalizing}
+        isNormalized={isNormalized}
+        normalizePointsAnimated={normalizePointsAnimated}
         style={{
           transition: "transform 500ms ease-in-out",
         }}
@@ -174,7 +214,7 @@ export default function NeuralNetworkInteractive() {
   );
 }
 
-function NeuronConnections({ selectedNeuron, animating }) {
+function NeuronConnections({ selectedNeuron, animating, instant }) {
   let connections = [];
 
   for (let layerIndex = 1; layerIndex < visibleNeurons.length; layerIndex++) {
@@ -234,7 +274,7 @@ function NeuronConnections({ selectedNeuron, animating }) {
           />
         );
 
-        if (thisLineCanAnimate) {
+        if (thisLineCanAnimate && !instant) {
           connections.push(
             <line
               key={`${prevLayerIndex}-${prevNeuronId}-${layerIndex}-${neuronId}-anim`}
@@ -263,7 +303,13 @@ function NeuronConnections({ selectedNeuron, animating }) {
   return <g>{connections}</g>;
 }
 
-function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
+function Neurons({
+  neurons,
+  selectedNeuron,
+  setSelectedNeuron,
+  animating,
+  instant,
+}) {
   return (
     <g>
       {visibleNeurons.map((layer, layerIndex) =>
@@ -290,10 +336,11 @@ function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
               stroke={isSelected ? "yellow" : "white"}
               strokeWidth={isSelected ? 2 : 1}
               style={{
-                fill: animating ? fill : "black",
-                transition: animating
-                  ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
-                  : "none",
+                fill: animating || instant ? fill : "black",
+                transition:
+                  animating && !instant
+                    ? `fill 600ms ease-in-out ${1200 * layerIndex + 100}ms`
+                    : "none",
                 cursor: "pointer",
               }}
               onClick={() => {
@@ -311,7 +358,7 @@ function Neurons({ neurons, selectedNeuron, setSelectedNeuron, animating }) {
   );
 }
 
-function WinningOutputNeuronBox({ neurons, animating }) {
+function WinningOutputNeuronBox({ neurons, animating, instant }) {
   const winningValue = Math.max(...neurons[3]);
   const winningNeuron = neurons[3].indexOf(winningValue);
   const position = getNeuronPosition(3, winningNeuron);
@@ -327,10 +374,10 @@ function WinningOutputNeuronBox({ neurons, animating }) {
       strokeLinejoin="round"
       fill="none"
       strokeDasharray="176 176"
-      strokeDashoffset={(animating ? 0 : 1) * 176}
+      strokeDashoffset={(animating || instant ? 0 : 1) * 176}
       style={{
         transition: animating
-          ? "stroke-dashoffset 800ms ease-in-out 4500ms"
+          ? `stroke-dashoffset 800ms ease-in-out ${instant ? "0ms" : "4500ms"}`
           : "none",
       }}
     />
@@ -366,14 +413,15 @@ function OutputDigitLabels() {
   );
 }
 
-function PiCreature({ animating }) {
+function PiCreature({ animating, instant }) {
   return (
     <>
       <g
         transform="translate(30 340) scale(0.4)"
         style={{
-          opacity: animating ? 0.0 : 1.0,
-          transition: animating ? "opacity 0ms linear 5000ms" : "none",
+          opacity: instant ? 0.0 : animating ? 0.0 : 1.0,
+          transition:
+            animating && !instant ? "opacity 0ms linear 5000ms" : "none",
         }}
       >
         <path
@@ -407,8 +455,9 @@ function PiCreature({ animating }) {
       <g
         transform="translate(45 340) scale(0.4)"
         style={{
-          opacity: animating ? 1.0 : 0.0,
-          transition: animating ? "opacity 0ms linear 5000ms" : "none",
+          opacity: instant ? 1.0 : animating ? 1.0 : 0.0,
+          transition:
+            animating && !instant ? "opacity 0ms linear 5000ms" : "none",
         }}
       >
         <path
@@ -447,8 +496,12 @@ function ImageGrid({
   y,
   width,
   height,
-  values,
-  setValues,
+  points,
+  setPoints,
+  normalizing,
+  isNormalized,
+  normalizePointsAnimated,
+  instant,
   editing,
   startEditing,
   beginAnimation,
@@ -457,46 +510,50 @@ function ImageGrid({
   const [dragging, setDragging] = useState(false);
 
   const fillAtPoint = useCallback(
-    (x, y) => {
-      setValues(
-        values.map((value, n) => {
-          const tileX = n % 28;
-          const tileY = Math.floor(n / 28);
+    (x, y, drag) => {
+      setPoints((points) => {
+        let newPoints = [];
+        if (drag && points.length > 0) {
+          const prevPoint = points[points.length - 1];
+          for (let d = 1; d <= 2; d++) {
+            newPoints.push({
+              x: prevPoint.x + (x - prevPoint.x) * (d / 3),
+              y: prevPoint.y + (y - prevPoint.y) * (d / 3),
+            });
+          }
+        }
 
-          const dist = Math.hypot(tileX - x, tileY - y);
-          let penValue = 0.8 - (dist / 2) ** 2;
+        newPoints.push({ x, y });
 
-          penValue = Math.min(Math.max(0, penValue), 1);
-          return value + (1 - value) * penValue;
-        })
-      );
+        return [...points, ...newPoints];
+      });
     },
-    [values, setValues]
+    [setPoints]
   );
 
   const fillAtClientPixel = useCallback(
-    (screenX, screenY, target) => {
+    (screenX, screenY, target, drag) => {
       const rect = target.getBoundingClientRect();
       const x = ((screenX - rect.left) / (rect.right - rect.left)) * 28;
       const y = ((screenY - rect.top) / (rect.bottom - rect.top)) * 28;
 
-      fillAtPoint(x, y);
+      fillAtPoint(x, y, drag);
     },
     [fillAtPoint]
   );
 
   const fillAtEventLocation = useCallback(
-    (event) => {
+    (event, drag) => {
       if (event.touches) {
         for (const touch of event.touches) {
           // This code is supposed to handle multi-touch (drawing with two
           // fingers at once) but on my phone it only seems to deal with
           // one touch at a time. Not sure why.
-          fillAtClientPixel(touch.clientX, touch.clientY, event.target);
+          fillAtClientPixel(touch.clientX, touch.clientY, event.target, drag);
         }
       } else {
         // This was a mouse event
-        fillAtClientPixel(event.clientX, event.clientY, event.target);
+        fillAtClientPixel(event.clientX, event.clientY, event.target, drag);
       }
     },
     [fillAtClientPixel]
@@ -520,7 +577,7 @@ function ImageGrid({
   const onMouseMove = useCallback(
     (event) => {
       if (dragging && editing) {
-        fillAtEventLocation(event);
+        fillAtEventLocation(event, true);
         event.preventDefault();
       }
     },
@@ -542,8 +599,9 @@ function ImageGrid({
     };
   }, [onMouseUp]);
 
-  const animateButtonDisabled = !values.some((value) => value !== 0);
-  const clearButtonDisabled = animateButtonDisabled;
+  const values = useMemo(() => getInputNeuronValues(points), [points]);
+
+  const isEmpty = !values.some((value) => value > 0.1);
 
   return (
     <g
@@ -576,6 +634,27 @@ function ImageGrid({
         })}
       </g>
 
+      <g
+        style={{
+          opacity: normalizing ? 1.0 : 0.0,
+          pointerEvents: "none",
+          transition: "opacity 200ms ease-in-out",
+        }}
+      >
+        <rect x={50} y={0} width={300} height={80} fill="rgba(0, 0, 0, 0.6)" />
+        <text
+          x={200}
+          y={50}
+          dominantBaseline="middle"
+          textAnchor="middle"
+          fill="yellow"
+          fontFamily="sans-serif"
+          fontSize="36"
+        >
+          Pre-processing...
+        </text>
+      </g>
+
       <rect
         x={0}
         y={0}
@@ -605,77 +684,118 @@ function ImageGrid({
       >
         <g>
           <rect
-            x="0"
-            y="0"
-            width="100"
-            height="40"
+            x={0}
+            y={0}
+            width={150}
+            height={60}
             tabIndex="0"
-            rx="3"
+            rx={3}
             onClick={() => {
-              if (!clearButtonDisabled) {
-                setValues(values.map((value) => 0));
+              if (!isEmpty) {
+                setPoints([]);
               }
             }}
-            disabled={clearButtonDisabled}
             style={{
               fill: "#C7E9F1",
-              cursor: clearButtonDisabled ? "default" : "pointer",
-              opacity: clearButtonDisabled ? 0.5 : 1.0,
+              cursor: isEmpty ? "default" : "pointer",
+              opacity: isEmpty ? 0.5 : 1.0,
             }}
           />
 
           <text
-            x="50"
-            y="22"
+            x="75"
+            y="32"
             dominantBaseline="middle"
             textAnchor="middle"
             fill="black"
             fontFamily="sans-serif"
+            fontSize="24"
             style={{
               pointerEvents: "none",
-              opacity: animateButtonDisabled ? 0.5 : 1.0,
+              opacity: isEmpty ? 0.5 : 1.0,
             }}
           >
             Clear
           </text>
         </g>
 
-        <g>
-          <rect
-            x="250"
-            y="0"
-            width="150"
-            height="40"
-            tabIndex="0"
-            rx="3"
-            onClick={() => {
-              if (!animateButtonDisabled) {
-                beginAnimation();
-              }
-            }}
-            disabled={animateButtonDisabled}
-            style={{
-              fill: "#1C758A",
-              cursor: animateButtonDisabled ? "default" : "pointer",
-              opacity: animateButtonDisabled ? 0.5 : 1.0,
-            }}
-          />
+        {!instant && (
+          <g>
+            <rect
+              x={200}
+              y={0}
+              width={200}
+              height={60}
+              tabIndex="0"
+              rx={3}
+              onClick={() => {
+                if (!isEmpty) {
+                  beginAnimation();
+                }
+              }}
+              style={{
+                fill: "#1C758A",
+                cursor: isEmpty ? "default" : "pointer",
+                opacity: isEmpty ? 0.5 : 1.0,
+              }}
+            />
 
-          <text
-            x="325"
-            y="22"
-            dominantBaseline="middle"
-            textAnchor="middle"
-            fill="white"
-            fontFamily="sans-serif"
-            style={{
-              pointerEvents: "none",
-              opacity: animateButtonDisabled ? 0.5 : 1.0,
-            }}
-          >
-            Check digit
-          </text>
-        </g>
+            <text
+              x="300"
+              y="32"
+              dominantBaseline="middle"
+              textAnchor="middle"
+              fill="white"
+              fontFamily="sans-serif"
+              fontSize="24"
+              style={{
+                pointerEvents: "none",
+                opacity: isEmpty ? 0.5 : 1.0,
+              }}
+            >
+              Check digit
+            </text>
+          </g>
+        )}
+
+        {instant && (
+          <g>
+            <rect
+              x={200}
+              y={0}
+              width={200}
+              height={60}
+              tabIndex="0"
+              rx={3}
+              onClick={() => {
+                if (!(isEmpty || isNormalized)) {
+                  normalizePointsAnimated(1);
+                }
+              }}
+              style={{
+                fill: "#1C758A",
+                cursor: isEmpty || isNormalized ? "default" : "pointer",
+                opacity: isEmpty || isNormalized ? 0.5 : 1.0,
+              }}
+            />
+
+            <text
+              x="300"
+              y="32"
+              dominantBaseline="middle"
+              textAnchor="middle"
+              fill="white"
+              fontFamily="sans-serif"
+              fontSize="24"
+              style={{
+                pointerEvents: "none",
+                opacity: isEmpty || isNormalized ? 0.5 : 1.0,
+              }}
+            >
+              Pre-process
+            </text>
+          </g>
+        )}
       </g>
     </g>
   );
@@ -796,4 +916,93 @@ function getAllNeuronValues(firstLayer) {
   }
 
   return layers;
+}
+
+function getInputNeuronValues(points) {
+  let values = new Array(28 ** 2).fill(0);
+
+  for (const point of points) {
+    const { x, y } = point;
+
+    values = values.map((value, n) => {
+      const tileX = n % 28;
+      const tileY = Math.floor(n / 28);
+
+      const dist = Math.hypot(tileX - x, tileY - y);
+
+      let penValue = 0.8 - (dist / 2) ** 2;
+      penValue = Math.min(Math.max(0, penValue), 1);
+      return value + (1 - value) * penValue;
+    });
+  }
+
+  return values;
+}
+
+function getNeuronValues(points) {
+  const inputNeurons = getInputNeuronValues(points);
+  return getAllNeuronValues(inputNeurons);
+}
+
+function collectNormalizationData(points) {
+  const values = getInputNeuronValues(points);
+
+  let left = Infinity;
+  let right = -Infinity;
+  let top = Infinity;
+  let bottom = -Infinity;
+
+  let centerX = 0;
+  let centerY = 0;
+  let totalValue = 0;
+
+  for (let n = 0; n < values.length; n++) {
+    const x = n % 28;
+    const y = Math.floor(n / 28);
+    const value = values[n];
+
+    centerX += x * value;
+    centerY += y * value;
+    totalValue += value;
+
+    if (value > 0.05) {
+      left = Math.min(left, x);
+      right = Math.max(right, x);
+      top = Math.min(top, y);
+      bottom = Math.max(bottom, y);
+    }
+  }
+
+  centerX /= totalValue;
+  centerY /= totalValue;
+
+  const width = right - left;
+  const height = bottom - top;
+
+  const scale = 20 / Math.max(width, height);
+
+  return { scale, centerX, centerY };
+}
+
+function applyNormalizationTransformation(points, data, time = 1) {
+  const { scale, centerX, centerY } = data;
+
+  return points.map((point) => {
+    let { x, y } = point;
+
+    x -= centerX;
+    y -= centerY;
+
+    x *= scale;
+    y *= scale;
+
+    x += 14;
+    y += 14;
+
+    return {
+      ...point,
+      x: point.x + (x - point.x) * time,
+      y: point.y + (y - point.y) * time,
+    };
+  });
 }
