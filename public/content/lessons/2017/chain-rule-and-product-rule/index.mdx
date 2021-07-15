@@ -139,7 +139,7 @@ So $f(x)$, defined as this product, is the area of this box. For the derivative,
   image="figures/product-rule-example-area-df-labeled.svg" 
 />
 
-This gives us three little snippets of new area: A thin rectangle on the bottom, whose area is its width, $\sin(x)$, times its thin height, $d(x^2)$; there’s a thin rectangle on the right, whose area is its height, $x^2$, times its thin width, $d\left( \sin(x)\right)$.  And there’s also a bit in the corner. But we can ignore it, since its area will ultimately be proportional to $dx^2$, which becomes negligible as $dx$ goes to $0$.
+This gives us three little snippets of new area: A thin rectangle on the bottom, whose area is its width, $\sin(x)$, times its thin height, $d(x^2)$; there’s a thin rectangle on the right, whose area is its height, $x^2$, times its thin width, $d\left( \sin(x)\right)$.  And there’s also a bit in the corner. But we can ignore it, since its area will ultimately be proportional to $dx^2$, which becomes negligible as $dx$ goes to $0$. <!-- TODO: footnote for ignoring dx^2 -->
 
 This is very similar to what I showed in the last chapter, with the $x^2$ diagram. Just like then, keep in mind that I’m using somewhat beefy changes to draw things, so we can see them, but in principle think of $dx$ as *very* small, meaning $d(x^2)$ and $d\left(\sin(x)\right)$ are also *very* small.
 
@@ -210,7 +210,7 @@ Here I’ll choose yet another way to visualize things, just to emphasize that i
   image="figures/chain-rule-x-1-2.svg" 
 />
 
-That is, the function $x^2$ gets you from line $1$ to line $2$, and the function sine gets you from line $2$ to line $3$.
+That is, the function $x^2$ gets you from line $1$ to line $2$, and the function sine gets you from line $2$ to line $3$. In the image, I'm showing an $x$ value of $0.5$ on the first number line. So the second number line, which just displays $x^2$, is showing the ouput of the inner function, $0.25$. The third number line shows $\sin(x^2)$, which is really just the sine of the previous value, so $\sin(0.25) \approx 0.247$.
 
 <Question
   question="What is the value of the composed function given the input $x=2$? To get a hang of this visualization technique, go from the first line to the second line to the third line."
@@ -357,5 +357,11 @@ From past chapters we know that the expression $d(\sin(x))$ is $\cos(x) \cdot dx
 <Figure
   image="figures/exercise-1-product-rule-derivative.svg"
 />
+
+Dividing both sides by $dx$ we get the same derivative that we found when applying the chain rule.
+
+$$
+\frac{df}{dx} = 2 \sin(x) \cos(x)
+$$
 
 </Accordion>
