@@ -16,11 +16,25 @@ Let me share with you something I found particularly weird when I was a student 
 
 Let's say you have a circle with radius $5$ centered at the origin of the $xy$-coordinate plane. This shape is defined using the equation $x^2 + y^2 = 5^2$. That is, all points on this circle are a distance $5$ from the origin, as encapsulated by the pythagorean theorem where the sum of the squares of the legs of this triangle equalling the square of the hypotenuse, $5^2$.
 
+<Figure
+  image="figures/circle-radius-5.svg" 
+/>
+
+<!-- TODO: add animation of point traveling around perimeter of circle -->
+
 And suppose you want to find the slope of a tangent line to this circle, maybe at the point $(x, y) = (3, 4)$.
+
+<Figure
+  image="figures/circle-tangent-line.svg" 
+/>
 
 Now, if you're savvy with geometry, you might already know that this tangent line is perpendicular to the radius line touching that point. But let's say you don't already know that, or that you want a technique that generalizes to curves other than circles.
 
 As with other problems about the slopes of tangent lines to curves, they key thought here is to zoom in close enough that the curve basically looks just like its own tangent line, then ask about a tiny step along that curve.
+
+<Figure
+  image="figures/circle-tangent-line-step-detail.svg" 
+/>
 
 The $y$-component of that little step is what you might call $dy$, and the $x$-component is a little $dx$, so the slope that we want is the rise over run $dy/dx$.
 
@@ -35,9 +49,7 @@ You can see why this feels strange, right? What does it mean to take a derivativ
 But if you just blindly move forward with what you get here, you can rearrange this equation to find an expression for $dy/dx$, which in this case comes out to $-x/y$.
 
 So at a point with coordinates $(x, y) = (3, 4)$, that slope would be $-3/4$, evidently.
-This strange process is called "implicit differentiation". Don't worry, I have an explanation for how you can interpret taking a derivative of an expression with two variables like this.
-
-But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem, something called a related rates problem.
+This strange process is called "implicit differentiation". Don't worry, I have an explanation for how you can interpret taking a derivative of an expression with two variables like this. But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem, something called a related rates problem.
 
 ## Related Rates
 
