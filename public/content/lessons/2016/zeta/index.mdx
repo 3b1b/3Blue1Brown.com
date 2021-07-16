@@ -15,14 +15,14 @@ The Riemann zeta function. This is one of those important objects in modern math
 
 <Figure image="riemann_anim.png" video="riemann_anim.mp4" show="video" />
 
-Don’t worry, I’ll explain that animation you just saw in a few minutes. A lot of people know about this function because there’s a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the “Riemann hypothesis”.
+Don’t worry, I’ll explain that animation you just saw further below. A lot of people know about this function because there’s a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the “Riemann hypothesis”.
 
 <PiCreature
   emotion="confused"
   flip={true}
 />
 
-Some of you may have heard of it in the context of the divergent sum $1+2+3+4+....$ There is a sense in which that sum equals $-\frac{1}{12}$, which seems nonsensical if not obviously wrong. But a common way to define what this equation is actually saying uses the Riemann zeta function.
+Some of you may have heard of it in the context of the divergent sum $1+2+3+4+...$ There is a sense in which that sum equals $-\frac{1}{12}$, which seems nonsensical if not obviously wrong. But a common way to define what this equation is actually saying uses the Riemann zeta function.
 
 But, as any casual math enthusiast who’s started to read into this knows, it’s definition references a certain idea known as “analytic continuation”, which applies to complex functions, and this idea can be frustratingly opaque and unintuitive. What I’d like to do here is to just show you all what this zeta function actually looks like, and to explain what this idea of analytic continuation is in a visual and intuitive way.
 
@@ -122,7 +122,32 @@ $$
 
 <Figure image="czeta_img2.png" />
 
-But importantly, the lengths of those lines won’t change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane. Here, let me show what it looks like as I vary the input s, represented with this yellow dot, and the spiral sum converges to some output, $\zeta(s)$ ....
+But importantly, the lengths of those lines won’t change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane. 
+
+<Question 
+  question="Given that $e^{i t} = \cos(t) + i \sin(t)$, what does $2^i$ equal to?"
+  choice1="$\cos(2) + i \sin(2)$"
+  choice2="$\cos(2i) + i \sin(2i)$"
+  choice3="$\cos(\ln(2)) + i \sin(\ln(2))$"
+  choice4="$e^{2i}$"
+  answer={3}
+>
+
+Notice that:
+
+$$
+2^i = {e^{\ln(2)}}^i = e^{\ln(2) \cdot i}
+$$
+
+Given that $e^{i t} = \cos(t) + i \sin(t)$, we can set $t = \ln(2)$ and get:
+
+$$
+2^i = e^{\ln(2) \cdot i} = \cos(\ln(2)) + i \sin(\ln(2))
+$$
+
+</Question>
+
+Here, let me show what it looks like as I vary the input s, represented with this yellow dot, and the spiral sum converges to some output, $\zeta(s)$ ...
 
 <Figure image="czeta_img3.png" video="czeta_img3.mp4" show="video"/>
 
@@ -157,7 +182,13 @@ For example, let’s take a moment to try visualizing something a little easier 
 >
 
 $$
-(1+2i)^2 = (1+2i)(1+2i) = (1+2i) + 2i(1+2i) = 1 + 2i + 2i + 4i^2 = 1 + 4i - 4 = -3 + 4i
+\begin{aligned}
+{(1+2i)^2} &=(1+2i)(1+2i) \\\\
+&=(1+2i) + 2i(1+2i) \\\\
+&=1 + 2i + 2i + 4i^2 \\\\
+&=1 + 4i - 4 \\\\
+&=-3 + 4i
+\end{aligned}
 $$
 
 </Question>
@@ -170,13 +201,11 @@ I’ll tell the computer to move every single point on this grid over to its cor
 
 <Figure image="s2_img3.png" video="s2_img3.mp4" show="video"/>
 
-That can be a lot to take in, so let’s try it again. Focus on one of the yellow points, and notice how it moves to the blue point corresponding to its square.
+That can be a lot to take in, so try watching it again. Focus on one of the yellow points, and notice how it moves to the blue point corresponding to its square.
 
 <PiCreature
   emotion="confused"
 />
-
-<Figure image="s2_img3.png" video="s2_img3.mp4" show="video"/>
 
 It’s a bit complicated to see all points moving all at once, but the reward is that it gives a very rich picture for what a complex function is doing, and it all happens in two-dimensions.
 
@@ -197,7 +226,7 @@ Now, I’m going to tell the computer to move each point of this grid to the app
 
 <Figure image="zeta_img2.png" video="zeta_img2.mp4" show="video" />
 
-Alright, so first of all, let’s all just appreciate how beautiful this is....I mean, damn, if this doesn’t make you want to learn more about complex functions, you have no heart. But also, this transformed grid is just begging to be extended a little bit [^3].
+Alright, so first of all, let’s all just appreciate how beautiful this is... I mean, damn, if this doesn’t make you want to learn more about complex functions, you have no heart. But also, this transformed grid is just begging to be extended a little bit [^3].
 
 <PiCreature
   emotion="hooray"
@@ -228,7 +257,7 @@ Now, as soon as we branch over into inputs where the real part is less than 1, t
 
 ### So, how do we extend the Riemann Zeta Function?
 
-Of course, the question is then how to define the function on the rest of the plane. You might think you could extend this function in any number of ways. Maybe you define an extension that makes it so that the input point at, say, $s=-1$ land on $\frac{-1}{12}$, but maybe you squiggle some extension that makes it land on any other value.
+Of course, the question is then how to define the function on the rest of the plane. You might think you could extend this function in any number of ways. Maybe you define an extension that makes it so that the input point at, say, $s=-1$ land on $-\frac{1}{12}$, but maybe you squiggle some extension that makes it land on any other value.
 
 <Figure image="aconn_img1.png" />
 
@@ -398,8 +427,8 @@ For the final animation here, I think it’ll be fun to show you all what the de
 
 <Figure image="riemann_deriv.png" />
 
-[^1]: For example, $\zeta(2 n)=(-1)^{n+1} \frac{(2 \pi)^{2 n} B_{2 n}}{2(2 n) !}$, where $B_n$ is the nth [Bernoulli Number](https://en.wikipedia.org/wiki/Bernoulli_number)
-[^2]: The case where s=1 equates to $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ...$ is called the Harmonic series, and it diverges! You can find out why [here](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)). 
+[^1]: For example, $\zeta(2 n)=(-1)^{n+1} \frac{(2 \pi)^{2 n} B_{2 n}}{2(2 n) !}$, where $B_n$ is the nth [Bernoulli Number](https://en.wikipedia.org/wiki/Bernoulli_number).
+[^2]: The case where s=1 equates to $1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ...$ is called the Harmonic series, and it diverges! You can find out why [here](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)).
 [^3]: The vertical line where everything seems to stop corresponds to the numbers whose real part is the Euler-Mascheroni constant (0.57721)!
 [^4]: We can see this from the formula of the Riemann Zeta Function with analytic continuation: $\zeta(s)=2^{s} \pi^{s-1} \sin \left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$. The $\sin \left(\frac{\pi s}{2}\right)$ term equates 0 for negative even numbers, causing the zeta function to equal zero. For positive even numbers, the zeta function forms something called a pole, so those are ruled out. But that's for another lesson.
-[^5]: Refer to Euler Product Formula and Riemann's Explicit Formula
+[^5]: Refer to Euler Product Formula and Riemann's Explicit Formula.
