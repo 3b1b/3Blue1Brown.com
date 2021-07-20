@@ -54,7 +54,6 @@
 .ours {
   padding: 8px;
   border: 2px solid transparent;
-  background: white;
   transition: all 200ms linear;
 
   &[data-visible="false"] {
@@ -62,6 +61,11 @@
       filter: blur(8px);
       user-select: none;
       pointer-events: none;
+
+      img,
+      video {
+        filter: blur(36px);
+      }
     }
   }
 
@@ -77,5 +81,10 @@
   p {
     line-height: 1.6;
     text-align: left;
+  }
+
+  img,
+  video {
+    transition: filter 200ms linear;
   }
 }
