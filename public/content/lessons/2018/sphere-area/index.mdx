@@ -19,7 +19,7 @@ But have you ever wondered *why* is this true? And I don’t just mean proving t
 
 How lovely would it be if there was some shift in perspective that showed how you could nicely and perfectly fit those four circles onto the sphere’s surface?
 
-Nothing can be quite that simple, since the curvature of a sphere’s surface is different from the curvature of a flat plane, which is why trying to fit paper around a sphere doesn’t really work.
+Nothing can be quite that simple, since the [curvature](https://math.stackexchange.com/questions/70210/is-there-any-easy-way-to-understand-the-definition-of-gaussian-curvature) of a sphere’s surface is different from the curvature of a flat plane, which is why trying to fit paper around a sphere doesn’t really work.
 
 <Figure image="paper-circle.png" caption="Good luck." />
 
@@ -96,14 +96,14 @@ It will turn out that these two effects, of stretching the width and squishing t
 As a rough sketch, wouldn’t you agree that this is a very pretty way of reasoning? Of course, the meat here comes from showing why these two competing effects on each rectangle cancel out perfectly. In some ways, the details fleshing this out are just as pretty as the zoomed out structure of the full argument.
 
 ### Stretching the width
-For any mathematical problem solving it never hurts to start by giving names to things. So let’s say the radius of the sphere is $R$. Also, focusing on one specific rectangle, let’s call the distance between our rectangle and the z-axis $d$.
+For any mathematical problem-solving it never hurts to start by giving names to things. Let’s say the radius of the sphere is $R$. Also, focusing on one specific rectangle, let’s call the distance between our rectangle and the z-axis $d$.
 
 <Figure
   image="R-and-d.png"
   caption="This cross-section of the sphere shows how we're choosing to label things."
 />
 
-You could rightfully complain that this distance $d$ is a little ambiguous depending on which point on the rectangle you’re starting from, but for tinier and tinier rectangles that ambiguity will be negligible. And *tinier and tinier* is precisely when this approximation with rectangles gets closer to the true surface area anyway. To choose an arbitrary standard, let’s say $d$ is the distance from the bottom of the rectangle.
+You could rightfully complain that this distance $d$ is a little ambiguous depending on which point on the rectangle you’re starting from, but for tinier and tinier rectangles that ambiguity will be negligible. And *tinier and tinier* is precisely when this approximation with rectangles gets closer to the true surface area anyway. To choose an arbitrary standard, let’s say $d$ is the distance from the bottom of the rectangle to the z-axis.
 
 To think about projecting out to the cylinder, picture two similar triangles.
 
@@ -174,11 +174,11 @@ This lends itself to a rather bizarre way to animate the relation, where instead
 
 Now, if you’re really thinking critically, you might still not be satisfied that this shows that the surface area of the sphere equals the area of this cylinder label. After all, these little rectangles only *approximate* the relevant areas.
 
-Well, the idea is that this approximation gets closer and closer to the true value for finer and finer coverings. Since for any specific covering, the sphere rectangles have the same area as the cylinder rectangles, whatever values each of these two series of approximations are approaching must actually be the same.
+The idea is that this approximation gets closer and closer to the true value for finer and finer coverings. Since for any specific covering, the sphere rectangles have the same area as the cylinder rectangles, whatever values each of these two series of approximations are approaching must actually be the same.
 
 <Figure image="equal-in-limit.png" />
 
-I mean, as you get really aggressively philosophical about what we even mean by surface area, these sorts of rectangular approximations and not just aids in our problem-solving toolbox, they end up serving as a way of rigorously defining the area of smooth curved surfaces.
+As you get more philosophical and ask what exactly we mean by surface area, these sorts of rectangular approximations and not just aids in our problem-solving toolbox, they end up serving as a way of rigorously defining the area of smooth curved surfaces, though often [some care is required](https://en.wikipedia.org/wiki/Schwarz_lantern).
 
 <Figure image="surface-area-definition.png" />
 
@@ -190,7 +190,7 @@ This kind of reasoning is essentially calculus, just stated without any of the j
 />
 
 ### Connection to circles
-So as I said before, if you’re itching to see a direct connection to four circles, one nice way is to unwrap these circles into triangles. If this is something you haven’t seen before, I go into much more detail about why this works in <LessonLink id="essence-of-calculus">the first lesson of the calculus series</LessonLink>.
+If you’re itching to see a direct connection to four circles, one nice way is to unwrap these circles into triangles. If this is something you haven’t seen before, I go into much more detail about why this works in <LessonLink id="essence-of-calculus">the first lesson of the calculus series</LessonLink>.
 
 The basic idea is to relate thin concentric rings of the circle with horizontal slices of this triangle.
 
@@ -206,13 +206,13 @@ And four of these unwrapped circles fit into our rectangle, which is in some sen
 <Figure image="triangles-fit-rectangle.png" />
 
 ## Second approach
-Nevertheless, you might wonder if there’s a way than this to relate the sphere directly to a circle with the same radius, rather than going through this intermediary of the cylinder.
+Nevertheless, you might wonder if there’s a way to relate the sphere directly to a circle with the same radius, rather than going through this intermediary of the cylinder.
 
 <Figure image="direct-proof.png" />
 
-I do have a proof for you to this effect, leveraging a little trigonometry, though I have to admit I still think the comparison to the cylinder wins out on elegance.
+If you're willing to roll up your sleeves and leverage a little trigonometry, it is actually possible to draw this more direct connection.
 
-I’m a big believer that the best way to really learn math is to do problems yourself, which is a bit hypocritical coming from a channel essentially consisting of lectures. So I’m going to try something a little different here and present the proof as a heavily guided sequence of exercises. Yes, I know that’s less fun and it means you have to pull out some paper to do some work, but I guarantee you’ll get more out of it this way.
+I’m a big believer that the best way to really learn math is to do problems yourself, which is a bit hypocritical coming from a channel essentially consisting of lectures. So let's try something a little different here and present the proof as a heavily guided sequence of exercises. Yes, I know that’s less fun and it means you have to pull out some paper to do some work, but I guarantee you’ll get more out of it this way.
 
 ### Solution overview
 At a high level, the approach will be to cut the sphere into many thin rings parallel to the xy-plane.
@@ -412,7 +412,7 @@ And because of our special correspondence, we know that the total area of all th
   caption="The total surface area of these rings is $2\pi R^2."
 />
 
-To get the full sphere surface area for *all* the rings (not just every-other ring), we double our result for an area of $4\pi R^2$.
+In the limit as these rings get ever thinner, the area of the alternating rings approaches half the total surface area. This is because each ring has approximately the same area as its immediate neighbors in that limiting case, so for example the sum of the areas of all the odd-numbered rings will equal the sum of the areas of the even-numbered rings. So to get the full surface area of the sphere, we double the total area of the alternating rings, which is $4\pi R^2$.
 
 </FreeResponse>
 
@@ -423,4 +423,4 @@ And finally, I’d be remiss not to make a brief mention of the fact that the su
 
 As to why this is true? I’ll leave those details for another day.
 
-[^1]: Maybe you've seen this as $\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$.
+[^1]: $\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$.
