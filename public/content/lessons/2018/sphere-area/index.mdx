@@ -17,13 +17,13 @@ But have you ever wondered *why* is this true? And I don’t just mean proving t
 
 <PiCreature text="But why?!?" emotion="angry" />
 
-How lovely would it be if there was some shift in perspective that showed how you could nicely and perfectly fit these four circles onto the sphere’s surface?
+How lovely would it be if there was some shift in perspective that showed how you could nicely and perfectly fit those four circles onto the sphere’s surface?
 
 Nothing can be quite that simple, since the curvature of a sphere’s surface is different from the curvature of a flat plane, which is why trying to fit paper around a sphere doesn’t really work.
 
 <Figure image="paper-circle.png" caption="Good luck." />
 
-Nevertheless, I’d like to show you two ways of thinking about this surface area connecting it in a satisfying way to these circles.
+Nevertheless, I’d like to show you two ways of thinking about the surface area of a sphere which connect it in a satisfying way to four circles of the same radius.
 
 <Figure image="two-proofs.png" />
 
@@ -34,11 +34,11 @@ The second line of reasoning is something of my own which draws a more direct li
 And lastly I’ll share why this four-fold relation is not unique to spheres, but is instead one specific instance of a much more general fact for all convex shapes in 3D.
 
 ## First approach
-Starting with a birds eye view here, the idea for the first approach is to show that the surface area of the sphere is the same as the area of a cylinder with the same radius and the same height as the sphere.
+Starting with a bird's eye view here, the idea for the first approach is to show that the surface area of the sphere is the same as the area of a cylinder with the same radius and the same height as the sphere.
 
 <Figure image="sphere-equals-cylinder.png" />
 
-Or, rather, a cylinder without its top and bottom, what you might call the “label” of that cylinder.
+Or, rather, a cylinder without its top and bottom, which you might call the “label” of that cylinder.
 
 <Figure image="label-of-cylinder.png" />
 
@@ -66,9 +66,7 @@ The idea is to approximate the area of the sphere with many tiny rectangles cove
   caption="Each little rectangle on the sphere has the same area as its projection on the cylinder."
 />
 
-But why should that be? Well, there are two competing effects at play here. For each little rectangle, let’s call the side along the latitude lines its width, and the side along the longitude lines its height.
-
-On the one hand, as this rectangle is projected outward, its width will get scaled up.
+But why should that be? Well, there are two competing effects at play here. On the one hand, as this rectangle is projected outward, its width will get scaled up.
 
 <Figure
   image="width-scaled-up.png"
@@ -201,7 +199,7 @@ The basic idea is to relate thin concentric rings of the circle with horizontal 
   caption="Each circle is unwrapped such that a thin ring of the circle corresponds to a thin line of the triangle."
 />
 
-Because the circumference of each such ring increases linearly in proportion to the radius, always equal to $2\pi$ times that radius, when you unwrap them all and line them up, their ends will form a straight line (as opposed to some kind of curvey shape), giving you a triangle with a base of $2\pi r$ and a height of $r$.
+Because the circumference of each such ring increases linearly in proportion to the radius, always equal to $2\pi r$, when you unwrap them all and line them up, their ends will form a straight line (as opposed to some kind of curvey shape), giving you a triangle with a base of $2\pi r$ and a height of $r$.
 
 And four of these unwrapped circles fit into our rectangle, which is in some sense an unwrapped version of the sphere’s surface.
 
