@@ -1,0 +1,75 @@
+# External redirects
+/videos                          https://www.youtube.com/3blue1brown
+/support                         https://www.patreon.com/3blue1brown
+/recommended                     https://www.youtube.com/playlist?list=PLZHQObOWTQDN52m7Y21ePrTbvXkPaWVSg
+/store                           https://store.dftba.com/collections/3blue1brown
+/some1                           https://docs.google.com/forms/d/e/1FAIpQLSfVnNvivBNhGvr9WmY2-qutQS4hXoVNb17EDdTosAL8AjZT3g/viewform
+/SoME1                           https://docs.google.com/forms/d/e/1FAIpQLSfVnNvivBNhGvr9WmY2-qutQS4hXoVNb17EDdTosAL8AjZT3g/viewform
+/live                            https://itempool.com/3b1b
+/ask                             https://twitter.com/intent/tweet?hashtags=LockdownMath&original_referer=https%3A%2F%2Ftwitter.com%2Fshare%3Furl%3Dhttps%253A%252F%252Fyoutu.be%252FelQVZLLiod4%26text%3DAsk%2520Grant%2520a%2520question%26hashtags%3DLockdownMath&text=Ask%20Grant%20a%20question&url=https%3A%2F%2Fyoutu.be%2FelQVZLLiod4
+/aops-3b1b                       https://artofproblemsolving.com/3b1b
+/plushie                         https://store.dftba.com/products/tall-3blue1brown-pi-plushie
+/janestreet                      https://www.janestreet.com/join-jane-street/?utm_source=3b1b&utm_medium=youtube&utm_campaign=3b1b&utm_content=puzzle
+/questions                       https://www.reddit.com/r/3Blue1Brown/comments/8u47q5/220_qa/
+/protocollabs                    https://protocol.ai/
+/remix                           https://www.remix.com/
+/subscribe                       https://www.youtube.com/c/3blue1brown?sub_confirmation=1
+/brilliant                       https://brilliant.org/?utm_medium=sponsor&utm_source=youtube&utm_campaign=3blue1brown_180518
+/aops                            https://artofproblemsolving.com/3blue1brown
+
+
+# Internal redirects
+/faq                             /contact
+
+
+# Topic redirects
+/essence-of-linear-algebra       /topics/linear-algebra
+/eola                            /topics/linear-algebra
+/neural-networks                 /topics/neural-networks
+/nn                              /topics/neural-networks
+/calculus                        /topics/calculus
+/eoc                             /topics/calculus
+
+
+# Thanks pages
+/quick-eigen-thanks              /lessons/quick-eigen#thanks
+/mat-exp-thanks                  /lessons/matrix-exponents#thanks
+/bayes-factor-thanks             /lessons/better-bayes#thanks
+/hamming-thanks                  /lessons/hamming-codes#thanks
+/monster-thanks                  /lessons/groups-and-monsters#thanks
+/chess-thanks                    /lessons/chessboard-puzzle#thanks
+/ctracing-thanks                 /lessons/dp3t#thanks
+/ldm-thanks                      /lessons/ldm-quadratic#thanks
+/pdf-thanks                      /lessons/pdfs#thanks
+/sir-thanks                      /lessons/epidemic-simulations#thanks
+/beta1-thanks                    /lessons/binomial-distributions#thanks
+/covid-thanks                    /lessons/exponential-and-epidemics#thanks
+/bayes-thanks                    /lessons/bayes-theorem-quick#thanks
+/spiral-thanks                   /lessons/prime-spirals#thanks
+/windmill-thanks                 /lessons/windmills#thanks
+/de4-thanks                      /lessons/fourier-series#thanks
+/de3-thanks                      /lessons/heat-equation#thanks
+/de2-thanks                      /lessons/pdes#thanks
+/de1-thanks                      /lessons/differential-equations#thanks
+/clacks-thanks                   /lessons/clacks#thanks
+/sphere-thanks                   /lessons/sphere-area#thanks
+/turbulence-thanks               /lessons/turbulence#thanks
+/quaternion-explorable-thanks    /lessons/quaternions-and-3d-rotation#thanks
+/quaternion-thanks               /lessons/quaternions#thanks
+/dandelin-thanks                 /lessons/dandelin-spheres#thanks
+/divcurl-thanks                  /lessons/divergence-and-curl#thanks
+/alt-calc-thanks                 /lessons/derivatives-and-transforms#thanks
+/cramer-thanks                   /lessons/cramers-rule#thanks
+/wallis-thanks                   /lessons/wallis-product#thanks
+/winding-thanks                  /lessons/winding-numbers#thanks
+/basel-thanks                    /lessons/basel-problem#thanks
+/uncertainty-thanks              /lessons/uncertainty-principle#thanks
+/fourier-thanks                  /lessons/fourier-transforms#thanks
+/mug-thanks                      /lessons/three-utilities#thanks
+/nn3-thanks                      /lessons/backpropagation#thanks
+/high-d-thanks                   /lessons/higher-dimensions#thanks
+/btc-thanks                      /lessons/bitcoin#thanks
+/triples-thanks                  /lessons/pythagorean-triples#thanks
+/leibniz-thanks                  /lessons/leibniz-formula#thanks
+/zeta-thanks                     /lessons/zeta#thanks
+/topology-thanks                 /lessons/inscribed-rectangle-problem#thanks
