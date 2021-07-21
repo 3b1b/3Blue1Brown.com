@@ -34,21 +34,20 @@ At any given moment, the total kinetic energy is $\frac12 \textcolor{blue}{m_1}(
 
 <Figure video="energy-remains-constant.mp4" muted={false} />
 
-The total momentum of the two blocks is $\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$. This also remains constant when the blocks hit each other, but it can change as the second block bounces off the wall.
+The total momentum of the two blocks is $\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$. This also remains constant when the blocks hit each other, but it *can* change as the second block bounces off the wall. In reality, that second block would transfer its momentum to the wall during this collision. Again, we’re being idealistic, thinking of the wall as having infinite mass, so such a momentum transfer won’t actually move the wall.
 
 <Figure video="momentum-remains-constant.mp4" muted={false} />
 
-In reality, that second block would transfer its momentum to the wall during this collision. Again, we’re being idealistic, thinking of the wall as having infinite mass, so such a momentum transfer won’t actually move the wall.
 
 So we’ve got two equations and two unknowns. To put these to use, let’s try drawing a picture to represent the equations.
 
 ## Velocity Phase Space
-You might start by focusing on this energy equation. Since $\textcolor{red}{v_1}$ and $\textcolor{red}{v_2}$ are changing, maybe you think to represent this equation on a coordinate plane where the x-coordinate represents $\textcolor{red}{v_1}$, and the y-coordinate represents $\textcolor{red}{v_2}$. So individual points on this plane encode the pair of velocities of our block.
+You might start by focusing on this energy equation. Since $\textcolor{red}{v_1}$ and $\textcolor{red}{v_2}$ are changing, maybe you think to represent this equation on a coordinate plane where the $x$-coordinate represents $\textcolor{red}{v_1}$, and the $y$-coordinate represents $\textcolor{red}{v_2}$. So individual points on this plane encode the pair of velocities of our block.
 
 <Figure video="velocities-in-phase-space.mp4" />
 
 ### Conservation of Energy
-On our phase diagram, the graph of the energy equation $$\frac12 \textcolor{blue}{m_1}(\textcolor{red}{v_1})^2 + \frac12 \textcolor{blue}{m_2}(\textcolor{red}{v_2})^2 = \text{const.}$$ is an ellipse, where each point on this ellipse gives you a pair of velocities, and all points of this ellipse correspond to the same total kinetic energy.
+On our phase diagram, the graph of the energy equation $$\frac12 \textcolor{blue}{m_1}(\textcolor{red}{v_1})^2 + \frac12 \textcolor{blue}{m_2}(\textcolor{red}{v_2})^2 = \text{const.}$$ forms the shape of an ellipse. Each point on this ellipse gives you a pair of velocities that satisfy the conservation of energy equation, meaning all points of this ellipse correspond to the same total kinetic energy.
 
 <Figure
   image="draw-energy-ellipse.png"
@@ -63,17 +62,16 @@ That way, when you look at this conservation of energy equation, it’s saying $
 <Figure
   image="energy-circle.png"
   video="energy-circle.mp4"
-  caption="By changing what our axes represent, we stretched the ellipse into a circle, bringing us one step closer to uncovering that hidden pi."
+  caption="By changing what our axes represent, we stretched the ellipse into a circle, bringing us one step closer to uncovering that hidden $\pi$."
 />
 
-At the beginning, when the first block is sliding to the left and the second one is stationary, we are at the leftmost point on the circle, where the x-coordinate is negative and the y-coordinate is 0.
-
+At the beginning, when the first block is sliding to the left and the second one is stationary, we are at the leftmost point on the circle, where the $x$-coordinate is negative and the $y$-coordinate is $0$.
 But what about after the first collision? How do we know what happens? Conservation of energy tells us we must jump to some other point on this circle. But which one?
 
 ### Conservation of Momentum
 Well, use the conservation of momentum! This tells us that before and after a collision, the value $$\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$$ must stay constant.
 
-In our rescaled coordinates, that looks like saying $\sqrt{\textcolor{blue}{m_1}}x + \sqrt{\textcolor{blue}{m_2}}y = \text{const.}$, which is the equation for a line with the slope $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$. The position of the line depends on what that constant momentum is. But we know it must pass through our first point, which locks us into place.
+In our rescaled coordinates, we can express the conservation of momentum as the expression $\sqrt{\textcolor{blue}{m_1}}x + \sqrt{\textcolor{blue}{m_2}}y = \text{const.}$, which is the equation for a line with the slope $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$. The position of the line depends on what that constant momentum is. But we know it must pass through our first point, which locks us into place.
 
 <Figure
   image="conservation-of-momentum.png"
@@ -82,18 +80,18 @@ In our rescaled coordinates, that looks like saying $\sqrt{\textcolor{blue}{m_1}
 
 Just to be clear what all this is saying: All other pairs of velocities which would give the same momentum live on the line, just as all other pairs of velocities which give the same energy live on our circle.
 
-So notice, this narrows our options down to just one other point that we could jump to:
+So notice, these two constraints narrow our options down to just one other point that we could jump to:
 
 <Figure
   image="one-possible-point.png"
   caption="There is only one other point which falls on both the conservation of energy circle and the conservation of momentum line, so that must be the point that represents our velocities after the collision."
 />
 
-And it should make sense that it’s something where the x-coordinate gets a little less negative and the y-coordinate becomes negative, because that corresponds to our big block slowing down a little while the little block zooms off towards the wall.
+And it should make sense that it’s something where the $x$-coordinate gets a little less negative and the $y$-coordinate becomes negative, because that corresponds to our big block slowing down a little while the little block zooms off towards the wall.
 
 <Figure video="1st-collision.mp4" muted={false} />
 
-When the second block bounces off the wall, its speed stays the same, but its velocity will go from negative to positive. In the diagram, this corresponds to reflecting about the x-axis, since the y-coordinate gets multiplied by -1.
+When the second block bounces off the wall, its speed stays the same, but its velocity will go from negative to positive. In the diagram, this corresponds to reflecting about the $x$-axis, since the $y$-coordinate gets multiplied by $-1$.
 
 <Figure video="2nd-collision.mp4" muted={false} />
 
@@ -203,7 +201,7 @@ If you go and plug these into a calculator, you’ll notice that the arctan of e
 
 For example, $\arctan(1/100)$, corresponding to a big mass of 10,000 kilograms, is extremely close to 1/100.
 
-In fact, it’s so close that for the sake of our central question, it might as well *be* 1/100. That is, analogous to what we saw a moment ago, adding this to itself 314 times won’t surpass pi, but the 315th time would.
+In fact, it’s so close that for the sake of our central question, it might as well *be* 1/100. That is, analogous to what we saw a moment ago, adding this to itself 314 times won’t surpass $\pi$, but the 315th time would.
 
 $$
 \textcolor{blue}{312}\cdot(0.0099996667) = 3.1198960104 \textcolor{green}{< \pi} \\[1.5pt]

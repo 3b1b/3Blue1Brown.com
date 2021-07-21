@@ -22,9 +22,9 @@ Here we see one more perspective explaining what’s going on, where&mdash;as if
 But we’re doing more than just answering the same question twice. This alternate solution gives a richer understanding that can let you answer other questions about the setup, and it’s also core to how I coded accurate simulations of these blocks without requiring absurdly small time steps and huge computation time.
 
 ## Position Phase Space
-Last time we used a coordinate plane where each point encodes a pair of *velocities*. Here, we use a coordinate plane where each point encodes the *positions* of both blocks. Again, the idea is that by representing the states of a changing system with individual points in some space, problems in dynamics turn into problems in geometry, which are hopefully more solvable.
+Last time we used a coordinate plane where each point encodes a pair of **velocities**. Here, we use a coordinate plane where each point encodes the **positions** of both blocks. Again, the idea is that by representing the states of a changing system with individual points in some space, problems in dynamics turn into problems in geometry, which are hopefully more solvable.
 
-Specifically, let the x-coordinate of a 2D plane represent the distance from the wall to the left edge of the first block, which I’ll call $\textcolor{green}{d_1}$. And let the y-coordinate represent the distance from the wall to the right edge of the second block, which I’ll call $\textcolor{red}{d_2}$.
+Specifically, let the $x$-coordinate of a 2D plane represent the distance from the wall to the left edge of the first block, which I’ll call $\textcolor{green}{d_1}$. And let the $y$-coordinate represent the distance from the wall to the right edge of the second block, which I’ll call $\textcolor{red}{d_2}$.
 
 <Figure image="d1-and-d2.png" />
 
@@ -53,7 +53,7 @@ This *does* actually happen in the simplest case, where the second block has the
 Even if it’s not immediately clear why this analogy with light would be helpful, run with me for a moment and see if we can fix it for the general case, because analogies like these are often very useful when working on a difficult math problem.
 
 ## Fixing the Light Analogy
-Just like in the previous lesson, it’s helpful to rescale the coordinates. In fact, motivated by what we did then, you might think to rescale the coordinates so that $x = \sqrt{\textcolor{blue}{m_1}} \textcolor{green}{d_1}$. This has the effect of stretching our space horizontally, so changes to our big block’s position now result in larger changes to the x-coordinate of our point. Likewise, let’s write the y-coordinate as $y = \sqrt{\textcolor{blue}{m_2}} \textcolor{green}{d_2}$, even though in this particular case that second mass is 1, so it doesn’t matter.
+Just like in the previous lesson, it’s helpful to rescale the coordinates. In fact, motivated by what we did then, you might think to rescale the coordinates so that $x = \sqrt{\textcolor{blue}{m_1}} \textcolor{green}{d_1}$. This has the effect of stretching our space horizontally, so changes to our big block’s position now result in larger changes to the $x$-coordinate of our point. Likewise, let’s write the $y$-coordinate as $y = \sqrt{\textcolor{blue}{m_2}} \textcolor{green}{d_2}$, even though in this particular case that second mass is $1$, so it doesn’t matter.
 
 <Figure
   image="rescale-coordinates.png"
@@ -79,7 +79,7 @@ Focus on the velocity vector for our point in the diagram, showing which directi
 
 Note, this is not a *physical* velocity, like the velocities of the moving blocks; instead it’s a more abstract rate of change in the context of our configuration space, whose two dimensions worth of possible directions encode the velocities of both of the blocks.
 
-The x-component of this little vector is the rate of change of x. Likewise, its y-component is the rate of change for y.
+The $x$-component of this little vector is the rate of change of $x$. Likewise, its $y$-component is the rate of change for $y$.
 
 <Figure image="velocity-components.png" />
 
@@ -89,7 +89,7 @@ Now we can calculate the magnitude of this little configuration-space-change-vec
 
 <Figure image="velocity-magnitude.png" />
 
-So the speed of our point in configuration space is based on the kinetic energy of the system. And since that energy is constant, the speed also stays constant throughout the process. (Remember, a core assumption here is that no energy is lost to friction or to the collisions.)
+So the speed of our point in configuration space is based on the kinetic energy of the system. And since that energy is constant, the speed also stays constant throughout the process. Remember, a core assumption here is that no energy is lost to friction or to the collisions.
 
 Alright, that’s cool. With these rescaled coordinates our little point always moves with a constant speed. I know it’s not obvious why you’d care, but among other things, it’s important for the next step, where the conservation of momentum implies that these two bounding lines act like mirrors.
 
@@ -187,7 +187,7 @@ Since we just saw that this rate-of-change vector has a constant magnitude, and 
 
 <Figure image="incidence-equals-reflection.png" />
 
-Similarly, when the small block bounces off the wall, our little vector gets reflected about the x-direction, since only its y-coordinate changes. So our configuration point is bouncing off that horizontal line as if it was a mirror.
+Similarly, when the small block bounces off the wall, our little vector gets reflected about the $x$-direction, since only its $y$-coordinate changes. So our configuration point is bouncing off that horizontal line as if it was a mirror.
 
 <Figure image="bottom-like-mirror.png" />
 
@@ -232,7 +232,7 @@ But notice! Crucially! For this illusion to work, the angle of incidence has to 
   caption="If the angles of incidence and reflection don’t match, then the illusion of passing straight through to a flipped world doesn’t work."
 />
 
-So all that work we did rescaling coordinates and futzing through the momentum equation was certainly necessary. But now we get to enjoy the fruits of our labor. Watch how this helps us elegantly solve the question of how many mirror bounces there will be (which is also the question of how many block collisions there will be).
+So all that work we did rescaling coordinates and futzing through the momentum equation was certainly necessary. Now we get to enjoy the fruits of our labor. This helps us elegantly solve the question of how many mirror bounces there will be, which is also the question of how many block collisions there will be.
 
 Every time the beam hits a mirror, don’t think of the beam as getting reflected. Let it continue straight while the world gets reflected.
 
