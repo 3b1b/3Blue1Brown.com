@@ -6,4 +6,296 @@ video: jsYwFizhncE
 source: _2019/clacks/solution1.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Josh Pullen
 ---
+
+Last lesson I left you with a puzzle. The setup involves two sliding blocks in a perfectly idealized world where there’s no friction, and all collisions are perfectly elastic, meaning no energy is lost.
+
+One block is sent towards another, smaller one, which starts off stationary, and there’s a wall behind it so that the small one bounces back and forth until it redirects the big block’s momentum enough to outpace it away from the wall.
+
+<Figure video="frictionless-elastic-collisions.mp4" muted={false} />
+
+If that first block has a mass which is some power of 100 times the mass of the second, for example 1,000,000 times as much, an insanely surprising fact pops out: The total number of collisions has the same starting digits as $\pi$! In this example, that’s 3,141 collisions.
+
+<Figure video="1000000kg.mp4" muted={false} />
+
+If the first block has one trillion times the mass of the second, there would be 3,141,592 collisions, almost all of which happen in one huge burst.
+
+So why does this happen?! Why should $\pi$ show up in such an unexpected place, and in such an unexpected manner?
+
+First and foremost, this is a lesson about using a phase space, also commonly called a configuration space, to solve problems. So rest assured that you’re not just learning about an esoteric algorithm for $\pi$. The tactic here is core to many other fields.
+
+## Conservation of Energy and Momentum
+To start, when the blocks collide, how do you figure out their velocities after the collision? The key is to use the conservation of energy and the conservation of momentum.
+
+Let’s call their masses $\textcolor{blue}{m_1}$ and $\textcolor{blue}{m_2}$, and their velocities $\textcolor{red}{v_1}$ and $\textcolor{red}{v_2}$. Those velocities will be the variables changing throughout the process.
+
+At any given moment, the total kinetic energy is $\frac12 \textcolor{blue}{m_1}(\textcolor{red}{v_1})^2 + \frac12 \textcolor{blue}{m_2}(\textcolor{red}{v_2})^2$. Even though $\textcolor{red}{v_1}$ and $\textcolor{red}{v_2}$ will change as the blocks get bumped around, the value of this expression must remain constant.
+
+<Figure video="energy-remains-constant.mp4" muted={false} />
+
+The total momentum of the two blocks is $\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$. This also remains constant when the blocks hit each other, but it *can* change as the second block bounces off the wall. In reality, that second block would transfer its momentum to the wall during this collision. Again, we’re being idealistic, thinking of the wall as having infinite mass, so such a momentum transfer won’t actually move the wall.
+
+<Figure video="momentum-remains-constant.mp4" muted={false} />
+
+
+So we’ve got two equations and two unknowns. To put these to use, let’s try drawing a picture to represent the equations.
+
+## Velocity Phase Space
+You might start by focusing on this energy equation. Since $\textcolor{red}{v_1}$ and $\textcolor{red}{v_2}$ are changing, maybe you think to represent this equation on a coordinate plane where the $x$-coordinate represents $\textcolor{red}{v_1}$, and the $y$-coordinate represents $\textcolor{red}{v_2}$. So individual points on this plane encode the pair of velocities of our block.
+
+<Figure video="velocities-in-phase-space.mp4" />
+
+## Phase Space Transitions
+On our phase diagram, the graph of the energy equation $$\frac12 \textcolor{blue}{m_1}(\textcolor{red}{v_1})^2 + \frac12 \textcolor{blue}{m_2}(\textcolor{red}{v_2})^2 = \text{const.}$$ forms the shape of an ellipse. Each point on this ellipse gives you a pair of velocities that satisfy the conservation of energy equation, meaning all points of this ellipse correspond to the same total kinetic energy.
+
+<Figure
+  image="draw-energy-ellipse.png"
+  video="draw-energy-ellipse.mp4"
+  caption="The graph of the equation for conservation of energy looks like an ellipse in our phase space."
+/>
+
+In fact, let’s actually change our coordinates a little to make this a perfect circle, since we know we’re on a hunt for $\pi$. Instead of having the x-coordinate represent $\textcolor{red}{v_1}$, let it be $\sqrt{\textcolor{blue}{m_1}}\textcolor{red}{v_1}$, which for the example shown stretches our figure in the x-direction by $\sqrt{\textcolor{blue}{10}}$. Likewise, have the y-coordinate represent $\sqrt{\textcolor{blue}{m_2}}\textcolor{red}{v_2}$.
+
+That way, when you look at this conservation of energy equation, it’s saying $\frac12(x^2 + y^2) = \text{const.}$, which is the equation for a circle. (The radius of the circle depends on the total kinetic energy.)
+
+<Figure
+  image="energy-circle.png"
+  video="energy-circle.mp4"
+  caption="By changing what our axes represent, we stretched the ellipse into a circle, bringing us one step closer to uncovering that hidden $\pi$."
+/>
+
+At the beginning, when the first block is sliding to the left and the second one is stationary, we are at the leftmost point on the circle, where the $x$-coordinate is negative and the $y$-coordinate is $0$.
+But what about after the first collision? How do we know what happens? Conservation of energy tells us we must jump to some other point on this circle. But which one?
+
+<Figure
+  image="where-next.png"
+  caption="Where in this phase space will the collision take us next?"
+/>
+
+Well, use the conservation of momentum! This tells us that before and after a collision, the value $$\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$$ must stay constant.
+
+In our rescaled coordinates, we can express the conservation of momentum as the expression $\sqrt{\textcolor{blue}{m_1}}x + \sqrt{\textcolor{blue}{m_2}}y = \text{const.}$, which is the equation for a line with the slope $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$. The position of the line depends on what that constant momentum is. But we know it must pass through our first point, which locks us into place.
+
+<Figure
+  image="conservation-of-momentum.png"
+  caption="This green line represents all the pairs of velocities with the same total momentum as our initial setup."
+/>
+
+Just to be clear what all this is saying: All other pairs of velocities which would give the same momentum live on the line, just as all other pairs of velocities which give the same energy live on our circle.
+
+So notice, these two constraints narrow our options down to just one other point that we could jump to:
+
+<Figure
+  image="one-possible-point.png"
+  caption="There is only one other point which falls on both the conservation of energy circle and the conservation of momentum line, so that must be the point that represents our velocities after the collision."
+/>
+
+And it should make sense that it’s something where the $x$-coordinate gets a little less negative and the $y$-coordinate becomes negative, because that corresponds to our big block slowing down a little while the little block zooms off towards the wall.
+
+<Figure video="1st-collision.mp4" muted={false} />
+
+When the second block bounces off the wall, its speed stays the same, but its velocity will go from negative to positive. In the diagram, this corresponds to reflecting about the $x$-axis, since the $y$-coordinate gets multiplied by $-1$.
+
+<Figure video="2nd-collision.mp4" muted={false} />
+
+Then again, the next collision corresponds to a jump along a line of slope $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$, since staying on such a line is what conservation of momentum looks like in this diagram.
+
+<Figure video="3rd-collision.mp4" muted={false} />
+
+And from here, you can fill in the rest for how block collisions correspond to hopping around the circle in our picture.
+
+<Figure video="rest-of-collisions.mp4" muted={false} />
+
+We keep going like this until we know that the blocks will never touch again. This happens when both velocities are positive (which means the blocks are both moving to the right), and the big block is moving faster than the small one. That corresponds to this triangular region of the diagram:
+
+<Figure
+  image="triangular-region.png"
+  caption="Each point within the triangular region represents a pair of block velocities where future collisions are impossible."
+/>
+
+So in our process, we keep bouncing until we land in that region.
+
+<Figure video="complete-process.mp4" muted={false} />
+
+## The Power of Phase Diagrams
+What we’ve drawn here is called a “phase diagram”, which is a simple but powerful idea in math where you encode the state of some system (in this case the velocities of our sliding blocks) as a single point in some abstract space.
+
+What’s powerful here is that it turns questions about dynamics into questions about geometry. In this case, the dynamical idea of all pairs of velocities that conserve energy corresponds to the geometric object of a circle, and counting the total number of collisions turns into counting the number of hops along these lines, alternating between vertical and diagonal.
+
+## Counting Collisions
+But our question remains. Why is it that when the mass ratio is a power of 100, the number of steps shows the digits of $\pi$?
+
+Well, if you stare at this picture, maybe, just maybe, you might notice that all the arc-lengths between the points of this circle seem to be about the same.
+
+<Figure
+  image="equal-arcs.png"
+  caption="These arc lengths seem to be equal. Are they?"
+/>
+
+It’s not immediately obvious that this should be true. But if it is, it means that computing the value of that one arc length should be enough to figure out how many collisions it takes to get around the circle to the end zone.
+
+The key here is to use the ever-helpful inscribed angle theorem, which says that whenever you form an angle using three points on a circle ($P_1$, $P_2$, and $P_3$), it will be exactly half the angle formed by $P_1$, the circle’s center, and $P_3$.
+
+<Figure image="inscribed-angle-theorem.png" />
+
+$P_2$ can be anywhere on this circle, except in that arc between $P_1$ and $P_3$, and this fact will be true.
+
+So now look at our phase space, and focus specifically on these three points:
+
+<Figure image="theta.png" />
+
+Remember, the vertical hop corresponds to the small block bouncing off the wall, and the second hop along a slope of $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$ corresponds to a momentum-conserving block collision.
+
+Let’s call the angle between these lines $\theta$. Then using the inscribed angle theorem, the arc length between these bottom two points will be $2\theta$ (measured in radians).
+
+<Figure image="2theta.png" />
+
+Notice, since all the diagonal momentum lines are parallel, the same reasoning means that all of these arcs must also be $2\theta$.
+
+<Figure image="placed-arcs.png" video="placing-arcs.mp4" />
+
+So each collision creates a new arc which covers another $2\theta$ radians of the circle.
+
+We stop once we’re in the endzone, which corresponds to both blocks moving to the right, with the smaller one going slower. But you can also think of this as stopping at the point when adding another arc of $2\theta$ would overlap with a previous one.
+
+In other words, the blocks will collide however many times you can add $2\theta$ to itself before it covers more than $2\pi$ radians.
+
+$$
+\textcolor{blue}{\underbrace{\textcolor{black}{2 \theta+2 \theta+2 \theta+\cdots+2 \theta}}_{\text {Max number of times? }}}<2 \pi
+$$
+
+Or, simplifying things a little, we want to know the largest integer multiple of $\theta$ that doesn’t surpass $\pi$.
+
+$$
+\textcolor{blue}{\underbrace{N}} \cdot \theta<\pi \\
+\footnotesize \text{\textcolor{blue}{Maximal integer?}}
+$$
+
+For example, if $\theta$ was 0.01 radians, then multiplying by 314 would put you a little less than $\pi$, but multiplying by 315 would bring you over $\pi$.
+
+$$
+\textcolor{blue}{312}\cdot(0.01) = 3.12 \textcolor{green}{< \pi} \\[1.5pt]
+
+\textcolor{blue}{313}\cdot(0.01) = 3.13 \textcolor{green}{< \pi} \\[1.5pt]
+
+\colorbox{#ededff}{$\textcolor{blue}{314}\cdot(0.01) = 3.14 \textcolor{green}{< \pi}$} \\[1.5pt]
+
+\textcolor{blue}{315}\cdot(0.01) = 3.15 \textcolor{red}{> \pi} \\[1.5pt]
+
+\textcolor{blue}{316}\cdot(0.01) = 3.16 \textcolor{red}{> \pi} \\[1.5pt]
+$$
+
+So the answer would be 314, meaning that if our mass ratio were one such that $\theta = 0.01$, the blocks would collide 314 times.
+
+## Computing Theta ($\theta$)
+You know what we need to do now. Let’s go ahead and actually compute the value $\theta$, say, when the mass ratio is 100 : 1. Remember that the rise-over-run slope of this constant momentum line is $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$, which in the example image below, where the large block has a mass of 100kg, is a slope of -10.
+
+<Figure image="slope.png" />
+
+That would mean the tangent of the angle $\theta$, opposite over adjacent, is the run over the negative rise, which is 1/10 in this example. So $\theta = \arctan(1/10)$.
+
+<Figure image="compute-theta.png" />
+
+In general, $$\theta = \arctan(\frac{\sqrt{\textcolor{blue}{m_2}}}{\sqrt{\textcolor{blue}{m_1}}})$$.
+
+If you go and plug these into a calculator, you’ll notice that the arctan of each small value is quite close to the value itself.
+
+<Figure image="theta-table.png" />
+
+For example, $\arctan(1/100)$, corresponding to a big mass of 10,000 kilograms, is extremely close to 1/100.
+
+In fact, it’s so close that for the sake of our central question, it might as well *be* 1/100. That is, analogous to what we saw a moment ago, adding this to itself 314 times won’t surpass $\pi$, but the 315th time would.
+
+$$
+\textcolor{blue}{312}\cdot(0.0099996667) = 3.1198960104 \textcolor{green}{< \pi} \\[1.5pt]
+
+\textcolor{blue}{313}\cdot(0.0099996667) = 3.1298956771 \textcolor{green}{< \pi} \\[1.5pt]
+
+\colorbox{#ededff}{$\textcolor{blue}{314}\cdot(0.0099996667) = 3.1398953438 \textcolor{green}{< \pi}$} \\[1.5pt]
+
+\textcolor{blue}{315}\cdot(0.0099996667) = 3.1498950105 \textcolor{red}{> \pi} \\[1.5pt]
+
+\textcolor{blue}{316}\cdot(0.0099996667) = 3.1598946772 \textcolor{red}{> \pi} \\[1.5pt]
+$$
+
+Remember, all of this is just a way of counting how many jumps on the phase diagram it takes to get to the end zone, which is really just a way of counting how many times the blocks collide. So this result, 314, explains why a mass ratio of 10,000 gives 314 collisions.
+
+Likewise, a mass ratio of 1,000,000 : 1 will give an angle of $\theta = \arctan(1/1,000)$ in our diagram. This is extremely close to 1/1,000. And again, if we ask about the largest integer multiple of this $\theta$ that doesn’t surpass $\pi$, it’s the same as it would be for the precise value of 1/1,000. Namely, 3,141.
+
+$$
+\textcolor{blue}{3139}\cdot(0.0009999997) = 3.1389990583 \textcolor{green}{< \pi} \\[1.5pt]
+
+\textcolor{blue}{3140}\cdot(0.0009999997) = 3.1399990580 \textcolor{green}{< \pi} \\[1.5pt]
+
+\colorbox{#ededff}{$\textcolor{blue}{3141}\cdot(0.0009999997) = 3.1409990577 \textcolor{green}{< \pi}$} \\[1.5pt]
+
+\textcolor{blue}{3142}\cdot(0.0009999997) = 3.1419990574 \textcolor{red}{> \pi} \\[1.5pt]
+
+\textcolor{blue}{3143}\cdot(0.0009999997) = 3.1429990571 \textcolor{red}{> \pi} \\[1.5pt]
+$$
+
+These are the first four digits of $\pi$, because that is by definition what the digits of $\pi$ mean. And this explains why with a mass ratio of 1,000,000, the number of collisions is 3,141.
+
+<Figure video="3141.mp4" muted={false} />
+
+All this relies on the hope that the inverse tangent of a small value is sufficiently close to the value itself, which is another way of saying that the tangent of a small value is approximately that value.
+
+<Figure image="tan-arctan.png" />
+
+Intuitively, there’s a nice reason why this is true. Looking at a unit circle, the tangent of any given angle is the height of this little triangle divided by its width.
+
+<Figure image="tan-triangle.png" />
+
+When that angle is really small, the width is basically 1, and the height is basically the same as the arc length along the circle, which by definition is $\theta$.
+
+To be more precise about it, the Taylor series expansion of $\tan(\theta)$ shows that this approximation will only have a cubic error term. So for example, $\tan(1/100)$ differs from $1/100$ by something on the order of 1/1,000,000.
+
+<Figure image="tan-taylor.png" />
+
+So even if we consider 314 steps with this angle, the error between the actual value of $\arctan(1/100)$ and the approximation of 0.01 won’t have a chance to accumulate enough to be significant.[^1]
+
+## Summary
+Let’s zoom out and sum up: When blocks collide, you can figure out how their velocities change by slicing a line through a circle in a velocity phase diagram, with each curve representing a conservation law.
+
+<Figure image="conservation-laws.png" />
+
+Most notably, the conservation of energy plants the circular seed that ultimately blossoms into the $\pi$ we find in the final count.
+
+Specifically, due to some inscribed angle geometry, the points we hit on this circle are spaced out evenly, separated by the angle we were calling $2\theta$.
+
+<Figure image="placed-arcs.png" />
+
+This lets us rephrase the question of counting collisions as instead asking how many times we must add $2\theta$ to itself before it surpasses $2\pi$.
+
+$$
+\textcolor{blue}{\underbrace{\textcolor{black}{2 \theta+2 \theta+2 \theta+\cdots+2 \theta}}_{\text {Max number of times? }}}<2 \pi
+$$
+
+If $\theta$ looks like 0.001, the answer to that question has the same first digits as pi.
+
+$$
+\textcolor{blue}{3141}\cdot(0.001) = 3.141 \textcolor{green}{< \pi}
+$$
+
+And $\arctan(x)$ is so well approximated by $x$ for small values that when the mass ratio is some power of 100, $\theta$ is sufficiently close to $\arctan(\theta)$ to give the same final count.
+
+<Figure image="x-approximates-arctan.png" />
+
+I’ll emphasize again what this phase space allowed us to do, because this is a lesson useful for all sorts of math, like differential equations, chaos theory, and other flavors of dynamics: By representing the relevant *state* of your system as a single *point* in an abstract space, it lets you translate problems of dynamics into problems of geometry.
+
+<Figure image="phase-space.png" />
+
+I repeat myself because I don’t want you to come away just remembering a neat puzzle where $\pi$ shows up unexpectedly; I want you to think of this surprise appearance as a distilled remnant of the deeper relationship at play.
+
+And if this solution leaves you feeling satisfied, it shouldn’t. Because there is another perspective, more clever and pretty than this one, due to Galperin in [the original paper](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf) on this phenomenon, which invites us to draw a striking parallel between the dynamics of these blocks, and that of a beam of light bouncing between two mirrors.
+
+<Figure image="mirrors-teaser.png" />
+
+Trust me, I’ve saved the best for last on this topic, so I hope to see you again in the <LessonLink id="clacks-via-light">next lesson</LessonLink>.
+
+[^1]: This difference between $\arctan(x)$ and $x$ could be problematic for our final count if, at some point when you're looking at the first $2n$ digits of $\pi$, the last $n$ of them are all 9's. It seems exceedingly unlikely that this should be true.
+
+    For example, among the first 100 million digits of $\pi$, the longest sequence of consecutive 9's is just 8 of them in a row, whereas you'd need a sequence of 50 million for things to break our count!
+
+    Nevertheless, this is quite difficult to prove, related to the question of whether or not $\pi$ is a "normal" number, roughly meaning that its digits behave like a random sequence. It was left as a conjecture in [Galperin's paper](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf) on the topic. See sections 9 and 10 of that paper for more details.

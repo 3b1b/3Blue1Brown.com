@@ -18,6 +18,7 @@ Figure.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   loop: PropTypes.bool,
+  muted: PropTypes.bool,
 };
 
 function requireImageOrVideo(props, propName, componentName) {
@@ -74,6 +75,7 @@ export default function Figure({
   width: manualWidth = 0,
   height: manualHeight = 0,
   loop = false,
+  muted = true,
 }) {
   // whether to show image or video
   initialShow =
@@ -169,7 +171,7 @@ export default function Figure({
           <video
             ref={videoRef}
             className={styles.video}
-            muted
+            muted={muted}
             controls
             loop={loop}
             preload="metadata"
