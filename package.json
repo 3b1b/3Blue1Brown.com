@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "compress": "sh ./scripts/compress.sh"
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
