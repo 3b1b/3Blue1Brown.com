@@ -21,6 +21,7 @@
 # Internal redirects
 /faq                             /contact
 /recommendations                 /blog/recommendations
+/poems                           /blog/poems
 
 
 # Topic redirects
