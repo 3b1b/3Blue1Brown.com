@@ -9,7 +9,7 @@
 command -v ffmpeg >/dev/null 2>&1 || { echo >&2 "ffmpeg is required to run this script."; exit 1; }
 
 # loop through and compress the video files
-for fullfile in $(find ./public -name '*.source.mp4' -or -name '*.source.mov'); do
+for fullfile in $(find ./public/content -name '*.source.mp4' -or -name '*.source.mov'); do
 
   # isolate parts of the file path
   dir=$(dirname -- "$fullfile")
