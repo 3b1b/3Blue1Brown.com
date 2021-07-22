@@ -15,7 +15,10 @@ export default function BlogPostList() {
             <a className={styles.postTitle}>{post.title}</a>
           </Link>
           {post.date && (
-            <span className={styles.postDate}>{formatDate(post.date)}</span>
+            <>
+              <span className={styles.bullet}>&bull;</span>
+              <span className={styles.postDate}>{formatDate(post.date)}</span>
+            </>
           )}
         </li>
       ))}
