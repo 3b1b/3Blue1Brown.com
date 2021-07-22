@@ -1,0 +1,63 @@
+---
+title: (ε, δ) "epsilon delta" definitions of limits
+description: What are limits? How are they defined? How are they used to define the derivative? What is L'Hospital's rule?
+date: 2017-05-04
+chapter: 9
+video: kfF40MiS7zA
+timestamp: 296
+thumbnail: thumbnail.png
+source: _2017/eoc/chapter7.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+---
+
+## (ε, δ) definition of limits
+
+And that brings us to goal #2: Understanding exactly it means for one value to approach another.
+
+For example, consider the function $\displaystyle  \frac{(2+h)^3 - 2^3)}{h}$. 
+
+<!-- TODO: plot -->
+
+This happens to be the expression that pops out if you unravel the definition for the derivative of $x^3$ at $x=2$, but let’s just think of it as any old function with an input $h$.
+
+Its graph is this nice continuous looking parabola. But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined.
+
+So really, this graph has a hole at that point. You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
+
+And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn’t matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
+
+But imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?"
+
+That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another.
+
+But let's start thinking about ways you might be able to answer that person completely unambigously.
+
+For a given range of inputs within some distance of $0$, excluding the forbidden point $0$, look at the corresponding outputs, all possible heights of the graph above that range.
+
+As that range of input values closes in more and more tightly around $0$, the range of output values closes in more and more closely around $12$. The size of that range of outputs can be made as small as you want.
+
+### Counter examples
+
+As a counter example, consider a function that looks like this, which is also not defined at $0$, but kind of jumps at that point.
+
+As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there’s not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
+
+One way to think of this is that when you look at any range of inputs around $0$, and the corresponding range of outputs, as you shrink that input range the corresponding outputs don’t narrow in on any specific value. Instead those outputs straddle a range that never even shrinks smaller than $1$, no matter how small your input range.
+
+This perspective of shrinking an input range around the limiting point, and seeing whether or not you’re restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
+
+You could argue this needlessly heavy-duty for an introduction to calculus. Like I said, if you know what the word "approach" means, you already know what a limit means, so there’s nothing new on the conceptual level here. But this is an interesting glimpse into the field of real analysis, and it gives you a taste for how mathematicians made the intuitive ideas of calculus fully airtight and rigorous. 
+
+You’ve already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn’t exist, that output range can’t get smaller than some value, no matter how much you shrink the input range around the limiting input.
+
+Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where for some reason it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
+
+What it means for the limit to exist is that you will always be able to find a range of inputs around our limiting input, some distance delta away from $0$, so that any input within a distance delta of $0$ corresponds to an output with a distance epsilon of $12$.
+
+They key point is that this is true for any epsilon, no matter how small, you will always be able to find the corresponding delta.
+
+In contrast, when a limit does *not* exist, as in the example before, you can find a sufficiently small epsilon, like $0.4$, so that no matter how small you make your range around $0$, no matter how tiny delta is, the corresponding range of outputs is just always too big.
+
+There is no limiting output where everything is within a distance epsilon from that output.

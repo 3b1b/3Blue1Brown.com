@@ -1,0 +1,5 @@
+0:00 Intro
+1:16 Formal Definiton of the derivative
+4:56 (ε, δ) definition of limits
+10:04 L’Hopital’s rule
+17:17 Outro
