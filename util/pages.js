@@ -140,6 +140,7 @@ export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
+  props.blogPosts = blogMeta;
   return { props };
 };
 
@@ -148,6 +149,7 @@ export const lessonProps = async (slug) => {
   const file = searchLessonFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
+  props.blogPosts = blogMeta;
   return { props };
 };
 
@@ -156,5 +158,6 @@ export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
+  props.blogPosts = blogMeta;
   return { props };
 };
