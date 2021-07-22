@@ -24,6 +24,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# local (uncompressed) video files
+public/content/**/*.source.mp4
+public/content/**/*.source.mov
+
 # local env files
 .env.local
 .env.development.local
