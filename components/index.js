@@ -23,6 +23,7 @@ import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
+import PodcastLinks from "./PodcastLinks";
 import Portrait from "./Portrait";
 import Question from "./Question";
 import Section from "./Section";
@@ -53,6 +54,7 @@ const components = {
   LicensingForm,
   Patrons,
   PiCreature,
+  PodcastLinks,
   Portrait,
   Question,
   Section,

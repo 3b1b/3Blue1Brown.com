@@ -1,0 +1,24 @@
+.podcastLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover {
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  margin-right: 24px;
+}
+
+.info {
+  text-align: left;
+}
+
+.apps {
+  display: flex;
+}
+
+.apps > *:not(:last-of-type) {
+  margin-right: 8px;
+}
