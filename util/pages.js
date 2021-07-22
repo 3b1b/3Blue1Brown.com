@@ -26,7 +26,7 @@ const parseMdx = (file) => {
   data = { ...data };
 
   // put dates in serializable format
-  data.date = new Date(data.date || new Date()).toISOString();
+  data.date = data.date ? new Date(data.date).toISOString() : null;
   data.lastMod = new Date(statSync(file).mtime || new Date()).toISOString();
 
   // rename github repo "source" prop to avoid conflict with mdx serialized "source"
@@ -122,6 +122,19 @@ export const lessonMeta = lessonFiles
   .map(({ patrons, content, ...rest }) => rest)
   .sort((b, a) => new Date(a.date) - new Date(b.date));
 
+const searchBlogFile = (slug) =>
+  glob.sync(`public/content/blog/${slug || "*"}/index.mdx`);
+
+const blogFiles = searchBlogFile();
+
+export const blogPaths = blogFiles
+  .map(getSlugFromFile)
+  .map((slug) => `/blog/${slug}`);
+
+export const blogMeta = blogFiles
+  .map(parseMdx)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
+
 // get desired props for pages
 export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
@@ -133,6 +146,14 @@ export const pageProps = async (slug) => {
 // get desired props for lessons
 export const lessonProps = async (slug) => {
   const file = searchLessonFile(slug)[0];
+  const props = await serializeMdx(parseMdx(file));
+  props.lessons = lessonMeta;
+  return { props };
+};
+
+// get desired props for
+export const blogProps = async (slug) => {
+  const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
   return { props };
