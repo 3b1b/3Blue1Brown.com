@@ -4,15 +4,28 @@ import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
 import Section from "../components/Section";
 import Link from "next/link";
+import { formatDate } from "../util/locale";
 
 // layout for lessons
-const BlogLayout = ({ title }) => {
+const BlogLayout = ({ title, date }) => {
   return (
     <NormalLayout>
-      <div />
       <Section width="narrow">
-        <h1 id="title">
-          <Link href="/blog">Blog / </Link>
+        <div>
+          <Link href="/blog">
+            <a>
+              <i className="fas fa-arrow-left" style={{ marginRight: 8 }} />
+              Blog
+            </a>
+          </Link>
+          {date && (
+            <>
+              <span style={{ margin: "0 16px", color: "#ccc" }}>&bull;</span>
+              <span style={{ fontStyle: "italic" }}>{formatDate(date)}</span>
+            </>
+          )}
+        </div>
+        <h1 id="title" style={{ marginTop: 0 }}>
           {title}
         </h1>
       </Section>

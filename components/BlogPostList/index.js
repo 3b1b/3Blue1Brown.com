@@ -2,18 +2,21 @@ import { useContext } from "react";
 import { PageContext } from "../../pages/_app";
 import Link from "next/link";
 import { formatDate } from "../../util/locale";
+import styles from "./index.module.scss";
 
 export default function BlogPostList() {
   const { blogPosts } = useContext(PageContext);
 
   return (
-    <ul>
+    <ul className={styles.postList}>
       {blogPosts.map((post) => (
-        <li>
+        <li className={styles.postLink}>
           <Link href={`/blog/${post.slug}`}>
-            <a>{post.title}</a>
+            <a className={styles.postTitle}>{post.title}</a>
           </Link>
-          {post.date && <span>{formatDate(post.date)}</span>}
+          {post.date && (
+            <span className={styles.postDate}>{formatDate(post.date)}</span>
+          )}
         </li>
       ))}
     </ul>
