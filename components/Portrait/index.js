@@ -17,13 +17,16 @@ export default function Portrait({ image, size = "180px", flip = false }) {
   if (!image) return null;
 
   return (
-    <div
-      className={styles.portrait}
-      style={{ width: size, height: size }}
-      data-flip={flip}
-      data-sectionwidth={sectionWidth}
-    >
-      <img src={image} />
-    </div>
+    <>
+      <div className={styles.clearfix} />
+      <div
+        className={styles.portrait}
+        style={{ width: size, height: size }}
+        data-flip={flip}
+        data-sectionwidth={sectionWidth}
+      >
+        <img src={image} />
+      </div>
+    </>
   );
 }

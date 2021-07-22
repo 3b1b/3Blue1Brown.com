@@ -1,5 +1,6 @@
 import Accordion from "./Accordion";
 import BlogPostList from "./BlogPostList";
+import BookShelf, { Book } from "./BookShelf";
 import Center from "./Center";
 import Clickable from "./Clickable";
 import {
@@ -33,6 +34,8 @@ import Twitter from "./Twitter";
 const components = {
   Accordion,
   BlogPostList,
+  BookShelf,
+  Book,
   Center,
   Clickable,
   ContactForm,

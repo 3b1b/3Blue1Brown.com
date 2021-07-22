@@ -34,3 +34,12 @@
     float: right;
   }
 }
+
+.clearfix {
+  clear: both;
+  display: table;
+
+  & + div + p {
+    margin-top: 0;
+  }
+}
