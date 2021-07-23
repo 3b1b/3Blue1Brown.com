@@ -16,10 +16,17 @@
 }
 
 .apps {
-  max-width: 700px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .apps > * {
   display: inline-block;
   margin: 2px 4px;
+}
+
+.icon {
+  height: 32px;
+  margin: 4px;
 }
