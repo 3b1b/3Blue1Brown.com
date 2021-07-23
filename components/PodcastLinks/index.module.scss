@@ -2,23 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+.coverLink {
+  flex-shrink: 0;
 }
 
 .cover {
   border-radius: 5px;
   width: 200px;
   height: 200px;
-  margin-right: 24px;
-}
-
-.info {
-  text-align: left;
+  margin-bottom: 24px;
 }
 
 .apps {
-  display: flex;
+  max-width: 700px;
 }
 
-.apps > *:not(:last-of-type) {
-  margin-right: 8px;
+.apps > * {
+  display: inline-block;
+  margin: 2px 4px;
 }
