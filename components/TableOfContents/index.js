@@ -124,7 +124,14 @@ const getHeadings = () =>
       for (const node of clone.childNodes) {
         const text = node.nodeType === Node.TEXT_NODE;
         const math = node.classList?.contains("math");
-        if (!(text || math)) node.remove();
+        if (!(text || math)) {
+          const innerText = node.innerText;
+          if (innerText) {
+            clone.replaceChild(document.createTextNode(innerText), node);
+          } else {
+            node.remove();
+          }
+        }
       }
 
       // return helpful relevant info
