@@ -126,7 +126,7 @@ const getHeadings = () =>
         const math = node.classList?.contains("math");
         if (!(text || math)) {
           const innerText = node.innerText;
-          if (innerText) {
+          if (innerText && node.className === "") {
             clone.replaceChild(document.createTextNode(innerText), node);
           } else {
             node.remove();
