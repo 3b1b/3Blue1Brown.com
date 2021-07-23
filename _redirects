@@ -19,7 +19,20 @@
 
 
 # Internal redirects
-/faq                             /contact
+/faq                                            /contact
+/recommendations                                /blog/recommendations
+/poems                                          /blog/poems
+/poems/2015/7/10/mosers-circle-problem          /blog/poems#mosers-circle-problem
+/poems/2015/7/10/primes                         /blog/poems#primes
+/poems/2015/4/27/all-numbers-are-interesting    /blog/poems#all-numbers-are-interesting
+/poems/2015/3/21/invention-vs-discovery         /blog/poems#invention-vs-discovery
+/poems/2015/3/13/2pi                            /blog/poems#2π
+/poems/2015/3/8/1-11-1                          /blog/poems#1-11-1
+/poems/2015/3/8/defining-math                   /blog/poems#defining-math
+/poems/epii                                     /blog/poems#eulers-formula
+/poems/ode-to-infinity                          /blog/poems#ode-to-infinity
+/poems/2015/3/3/groups                          /blog/poems#groups
+/poems/2015/3/3/abstraction                     /blog/poems#abstraction
 
 
 # Topic redirects
