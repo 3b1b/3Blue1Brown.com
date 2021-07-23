@@ -8,20 +8,21 @@ export default function BlogPostList() {
   const { blogPosts } = useContext(PageContext);
 
   return (
-    <ul className={styles.postList}>
+    <div className={styles.postList}>
       {blogPosts.map((post) => (
-        <li className={styles.postLink}>
-          <Link href={`/blog/${post.slug}`}>
-            <a className={styles.postTitle}>{post.title}</a>
-          </Link>
-          {post.date && (
-            <>
-              <span className={styles.bullet}>&bull;</span>
+        <>
+          <div className={styles.postDate}>
+            {post.date && (
               <span className={styles.postDate}>{formatDate(post.date)}</span>
-            </>
-          )}
-        </li>
+            )}
+          </div>
+          <div className={styles.postLink}>
+            <Link href={`/blog/${post.slug}`}>
+              <a className={styles.postTitle}>{post.title}</a>
+            </Link>
+          </div>
+        </>
       ))}
-    </ul>
+    </div>
   );
 }
