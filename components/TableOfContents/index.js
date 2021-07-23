@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
@@ -26,15 +27,23 @@ const TableOfContents = () => {
   }, [wideEnough]);
 
   // when page first loads
+  const router = useRouter();
   useEffect(() => {
-    // set intial "enough" states
-    setDownEnough(getDownEnough());
-    setUpEnough(getUpEnough());
-    setWideEnough(getWideEnough());
+    const initializeToC = () => {
+      // set intial "enough" states
+      setDownEnough(getDownEnough());
+      setUpEnough(getUpEnough());
+      setWideEnough(getWideEnough());
 
-    // get headings on page
-    setHeadings(getHeadings());
-  }, []);
+      // get headings on page
+      setHeadings(getHeadings());
+    };
+
+    initializeToC();
+
+    // update after a client-side page transition
+    router.events.on("routeChangeComplete", initializeToC);
+  }, [router]);
 
   // listen for scroll
   useEffect(() => {
