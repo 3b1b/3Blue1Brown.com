@@ -125,21 +125,19 @@
     }
 
     .frame {
-      transform: translateY(-100%);
+      transform: translateY(-50%);
     }
   }
 
   &[data-placement="auto"] {
+    position: static;
+
     @media (min-width: $cutoffWidth) {
       position: absolute;
 
       .frame {
-        transform: translateY(-100%);
+        transform: translateY(-50%);
       }
-    }
-
-    @media (max-width: $cutoffWidth) {
-      position: static;
     }
   }
 
