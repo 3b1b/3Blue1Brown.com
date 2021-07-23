@@ -164,12 +164,16 @@ const getActive = (headings) => {
 };
 
 // get whether page is scrolled down far enough
-const getDownEnough = () =>
-  typeof document === "undefined"
-    ? false
-    : document
-        .querySelector("main > section:nth-child(2)")
-        .getBoundingClientRect().top < 0;
+const getDownEnough = () => {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  const elem = document.querySelector("main > section:nth-child(2)");
+  if (!elem) return false;
+
+  return elem.getBoundingClientRect().top < 0;
+};
 
 // get whether page is scrolled up far enough
 const getUpEnough = () =>
