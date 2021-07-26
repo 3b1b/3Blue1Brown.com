@@ -12,25 +12,29 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-## L’Hopital’s rule
-
 So far this is all pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So let’s finish things off here with a trick for actually computing limits.
 
-For example, let’s say for some reason you were studying the function $\frac{\sin (\pi x)}{x^{2}-1}$. Maybe this models some kind of dampened oscillation.
+For example, let’s say for some reason you were studying the function $\frac{\sin (\pi x)}{x^{2}-1}$. Maybe this models some kind of dampened oscillation. When you plot a bunch of points to graph it, it looks pretty continuous, but there’s a problematic value, $x=1$.
 
-When you plot a bunch of points to graph it, it looks pretty continuous, but there’s a problematic value, $x=1$.
+<Figure
+  image="figures/example-function.svg" 
+/>
 
-When you plug that in, $\sin(\pi)$ is $0$, and the denominator is also $0$, so the function is actually not defined at that input, and the graph should really have a hole there.
+When you plug that in, $\sin(\pi)$ is $0$, and the denominator is also $0$, so the function is actually not defined at that input, and the graph should really have a hole there. This also happens at $-1$, but let’s just focus our attention on a single one of these holes for now. Imagine zooming in on the point $x=1$.
 
-This also happens at $-1$, but let’s just focus our attention on a single one of these holes for now.
+<Figure
+  image="figures/example-function-zoom-big.svg" 
+/>
 
-The graph certainly does seem to approach some distinct value at that point, wouldn’t you say? So you might ask, how do you figure out what output this approaches as $x$ approaches $1$, since you can’t just plug in $1$?
+The graph of this function certainly does seem to approach some distinct value at that point, wouldn’t you say? So you might ask, how do you figure out what output this approaches as $x$ approaches $1$, since you can’t just plug in $1$?
 
 Well, one way to approximate it would be to plug in a number thats just very very close to $1$, like $1.00001$. Doing that, you’d find that this should be a number around $-1.57$.
 
 But is there a way to know precisely what it is? Some systematic process to take an expression like this one, which looks like $0/0$ at some input, and ask what its limit is as $x$ approaches that input?
 
 After limits so helpfully let us write the definition for a derivative, derivatives can come back to return the favor and help us evaluate limits. Let me show you what I mean.
+
+## Plot numerator and denominator
 
 Here’s the graph of $\sin(\pi x)$, and here’s the graph of $x^2-1$. That’s kind of a lot to look at, but just focus on what’s happening at $x=1$. 
 
@@ -54,7 +58,7 @@ Importantly, these approximations get more and more accurate for smaller and sma
 
 Remember, what that means is that the limiting height on our original graph is evidently exactly $-\pi/2$.
 
-### Generalize
+## Generalize
 
 What happened there is a little subtle, so let me show it again, but this time a little more generally. Instead of these two specific functions, which both equal $0$ at $x=1$, think of any two functions $f(x)$ and $g(x)$, which are both $0$ at some common value $x = a$.
 
