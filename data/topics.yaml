@@ -87,6 +87,7 @@
     - quaternions
     - quaternions-and-3d-rotation
     - eulers-characteristic-formula
+    - hyperdarts
 - name: Analysis
   slug: analysis
   description: An assortment of topics loosely related to the field of analysis
