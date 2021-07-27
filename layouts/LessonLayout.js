@@ -29,8 +29,6 @@ const LessonLayout = () => {
       {!empty && (
         <>
           <PageContent />
-          {/* Don't alternate section color */}
-          <div />
           <Section width="narrow">
             <ShareButtons />
             <CorrectionLink />
