@@ -1,3 +1,18 @@
+# Domain redirects
+http://grantsanderson.com/* https://www.3blue1brown.com/:splat 301!
+https://grantsanderson.com/* https://www.3blue1brown.com/:splat 301!
+http://grantsanderson.net/* https://www.3blue1brown.com/:splat 301!
+https://grantsanderson.net/* https://www.3blue1brown.com/:splat 301!
+http://grantsanderson.org/* https://www.3blue1brown.com/:splat 301!
+https://grantsanderson.org/* https://www.3blue1brown.com/:splat 301!
+http://3b1b.co/* https://www.3blue1brown.com/:splat 301!
+https://3b1b.co/* https://www.3blue1brown.com/:splat 301!
+http://3b1b.org/* https://www.3blue1brown.com/:splat 301!
+https://3b1b.org/* https://www.3blue1brown.com/:splat 301!
+http://3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
+https://3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
+
+
 # External redirects
 /videos                          https://www.youtube.com/3blue1brown
 /support                         https://www.patreon.com/3blue1brown
