@@ -21,7 +21,7 @@ export function LicensingForm() {
         <Input name="email" type="email" label="Email:" />
       </InputRow>
 
-      <Input name="organization_name" label="Organization name:" />
+      <Input name="subject" label="Organization name:" />
       <Input name="website" label="Website:" />
 
       <RadioSet
@@ -71,7 +71,7 @@ export function SpeakingForm() {
         <Input name="email" type="email" label="Email:" />
       </InputRow>
 
-      <Input name="organization_name" label="Organization name:" />
+      <Input name="subject" label="Organization name:" />
 
       <Input
         name="estimated_date"
@@ -96,6 +96,7 @@ export function ThanksForm() {
         <Input name="email" type="email" label="Email:" />
       </InputRow>
 
+      <Input type="textarea" name="subject" label="Subject:" />
       <Input type="textarea" name="message" label="Message:" />
 
       <RadioSet
@@ -117,6 +118,7 @@ export function ContactForm() {
         <Input name="email" type="email" label="Email:" />
       </InputRow>
 
+      <Input type="textarea" name="subject" label="Subject:" />
       <Input type="textarea" name="message" label="Message:" />
 
       <VerificationCheckbox label="I am not asking a question that is answered in the FAQs above." />
