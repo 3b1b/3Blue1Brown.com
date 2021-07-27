@@ -29,14 +29,11 @@ const LessonLayout = () => {
       {!empty && (
         <>
           <PageContent />
-          {/* Don't alternate section color */}
-          <div />
           <Section width="narrow">
             <ShareButtons />
             <CorrectionLink />
           </Section>
           <LessonNav />
-          <License />
           <Thanks />
           <Disqus />
           <TableOfContents />
@@ -61,7 +58,7 @@ const CorrectionLink = () => {
 
   return (
     <div style={{ marginTop: 16 }}>
-      Found a mistake in this lesson?{" "}
+      Found a mistake in this post?{" "}
       <a href={url} target="_blank" rel="noreferrer">
         Submit a correction on Github
       </a>
