@@ -230,7 +230,23 @@ The control we have, the set of knobs and dials we get to turn, is the initial s
 
 <Figure image="constant_5.png" />
 
-For example, if we wanted that constant vector not to be at the number 1, but to have a length of 0.5, we’d scale it by 0.5. If we wanted the vector rotating at one cycle per second to start off at an angle of $45^{\circ}$, we’d multiply it by a complex number which has the effect of rotating it by that much, which you might write as $e^{\frac{\pi}{4} i}$. If it’s initial length needed to be 0.3, the coefficient would be 0.3 times that amount.
+For example, if we wanted that constant vector not to be at the number 1, but to have a length of 0.5, we’d scale it by 0.5. 
+
+<Question
+ question="If we wanted the vector rotating at one cycle per second to start off at an angle of $45^{\circ}$, what factor would we multiply $e^{2 \pi i}$ by?"
+ choice1="$e^{\frac{\pi}{4} i}$"
+ choice2="$e^{45i}$"
+ choice3="$e^{\frac{3 \pi}{4} i}$"
+ choice4="$\frac{pi}{4}"
+ correct={1}
+>
+
+Given that $e^{\pi t}$ describes a point t radians around the unit circle, to get the complex number associated with rotating a $1+0i$ $45^{\circ}$ radian around the unit circle, we convert $45^{\circ}$ to radians, to get $\frac{pi}{4}$, and then plug it into $e^{\pi t}$ to get $e^{\frac{\pi}{4} i}$.
+
+</Question>
+
+
+If it’s initial length needed to be 0.3, the coefficient would be 0.3 times that amount.
 
 Likewise, everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say this one drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given data of the function.
 
@@ -238,11 +254,11 @@ Likewise, everyone in our infinite family of rotating vectors has some complex c
 
 ### The integration trick
 
-The easiest one is the constant term. This term represents a sort of center of mass for the full drawing; if you were to sample a bunch of evenly spaced values for the input t as it ranges from 0 to 1, the average of all the outputs of the function for those samples will be the constant term c_0. 
+The easiest one is the constant term. This term represents a sort of center of mass for the full drawing; if you were to sample a bunch of evenly spaced values for the input t as it ranges from 0 to 1, the average of all the outputs of the function for those samples will be the constant term $c_0$ 
 
 <Figure image="integ_1.png" />
 
-Or more accurately, as you consider finer and finer samples, their average approaches c_0 in the limit. 
+Or more accurately, as you consider finer and finer samples, their average approaches $c_0$ in the limit. 
 
 <Figure image="integ_2.png" />
 
@@ -304,9 +320,9 @@ Each term $c_n e^{n \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t}$ equals to $c_
 
 </Question>
 
-So now, that $c_{-1}$ vector spins around -3 times, with an average of 0. The c_0 vector, previously constant, now rotates twice as t ranges from 0 to 1, so its average is 0. And likewise, all vectors other than the $c_2$ term make some whole number of rotations, meaning they average out to 0. So taking the average of this modified function, all terms other than the second one get killed, and we’re left with $c_2$.
+So now, that $c_{-1}$ vector spins around -3 times, with an average of 0. The $c_0$ vector, previously constant, now rotates twice as t ranges from 0 to 1, so its average is 0. And likewise, all vectors other than the $c_2$ term make some whole number of rotations, meaning they average out to 0. So taking the average of this modified function, all terms other than the second one get killed, and we’re left with $c_2$.
 
-Of course, there’s nothing special about 2 here. If we replace it with any other $n$, you have a formula for any other term c_n. 
+Of course, there’s nothing special about 2 here. If we replace it with any other $n$, you have a formula for any other term $c_n$. 
 
 $$
 c_n = \int_{0}^{1} f(t) e^{n \cdot 2 \pi i t} d t
@@ -320,7 +336,7 @@ So when I’m rendering these animations, that’s exactly what I’m having the
 
 <Figure image="practice_1.png" video="practice_1.mp4" show="video" />
 
-In what’s shown right now, I’m using 101 rotating vectors, computing values of n from -50 up to 50. In practice, the integral is computed numerically, basically meaning it chops up the unit interval into many small pieces of size $\delta t$ and adds up this value $f(t)e^{-n 2 \pi i t} \delta t$ for each one of them. There are fancier methods for more efficient numerical integration, but that gives the basic idea.
+In what’s shown right now, I’m using 101 rotating vectors, computing values of n from -50 up to 50. In practice, the integral is computed numerically, basically meaning it chops up the unit interval into many small pieces of size $\Delta t$ and adds up this value $f(t)e^{-n 2 \pi i t} \Delta t$ for each one of them. There are fancier methods for more efficient numerical integration, but that gives the basic idea.
 
 <Figure image="practice_2.png" />
 
