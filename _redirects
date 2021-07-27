@@ -69,6 +69,7 @@ https://www.3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
 
 # Topic redirects
 /essence-of-linear-algebra       /topics/linear-algebra
+/essence-of-linear-algebra-page  /topics/linear-algebra
 /eola                            /topics/linear-algebra
 /neural-networks                 /topics/neural-networks
 /nn                              /topics/neural-networks
