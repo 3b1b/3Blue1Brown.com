@@ -30,6 +30,14 @@ Then we'll draw the chord perpendicular to $h$, whose length will define the dia
   video="chord.mp4"
 />
 
+**Where does the dart have to land in order for the circle to remain unchanged?**
+
+<FreeResponse>
+
+Exactly in the center of the circle. Then the line $h$ will have a distance of $0$ and the chord's length will be the current diameter, so the circle does not shrink.
+
+</FreeResponse>
+
 This game rewards good shots because the length of the chord will be close to the old diameter when the dart lands close to the center. 
 When the dart lands near the edge, the new diameter will be dramatically smaller.
 
@@ -39,9 +47,12 @@ When the dart lands near the edge, the new diameter will be dramatically smaller
 />
 
 When a dart is thrown and it doesn't land in the bullseye, the game is over. 
-The score is the number of darts thrown, so even if the first dart misses, the minimum score is still $1$.
+The score is the number of darts thrown, so even if the first dart misses, the minimum score is still $1$. Try playing the game for yourself by clicking below.
 
-game_applet
+<Interactive
+  filename="game_interactive/index"
+  aspectRatio={700 / 700}
+/>
 
 ## The Puzzle
 
@@ -56,6 +67,7 @@ This is not exactly a realistic distribution, which would be rotationally symmet
 
 To make things simpler the dartboard is the unit circle, so each side of the square has a length of $2$.
 The $x$ and $y$ coordinates of the dart's landing are chosen uniformly:
+
 $$
 x\in [-1,1] \\
 y\in [-1,1]
@@ -152,6 +164,14 @@ $$
 P(S>2) = \frac{\pi^2}{2^4\cdot2}
 $$
 
+**Why did we skip to 4 dimensions and not 3?**
+
+<FreeResponse>
+
+For every dart throw, we are picking an additional 2 random numbers (the x and y coordinates). This means we never consider the odd numbered dimensions.
+
+</FreeResponse>
+
 The pattern of dividing the volume of higher dimensional balls by the volume of higher dimensional cubes continues when calculating the probability of larger scores.
 
 <Figure
@@ -182,6 +202,18 @@ $$
 \text{Vol}(2n\text{D Ball}) = \frac{\pi^n}{n!} R^{2n}
 $$
 
+<Question
+  question="What is the volume of a 14-dimensional unit ball?"
+  choice1="$\frac{\pi^{14}}{8\times 10^{10}}$"
+  choice2="$\frac{\pi^7}{8\times 10^{10}}$"
+  choice3="$\frac{\pi^7}{5040}$"
+  choice4="$\frac{\pi^{14}}{5040}$"
+  answer={3}>
+
+The volume of a 14-dimensional unit ball is equal to $\frac{\pi^7}{7!}=\frac{\pi^7}{5040}$
+
+</Question>
+
 Now this formula is reminiscent of another celebrity real number...
 
 ## Solution
@@ -198,6 +230,18 @@ That is completely fine because $P(S=2)$ is equivalent to $P(S>1)-P(S>2)$.
 <Figure
   image="greater_equal_collapse.png"
 />
+
+<Question
+  question="What is the value of $P(S=2)$?"
+  choice1="$\frac{\pi^2}{32}$"
+  choice2="$\frac{\pi}{4}$"
+  choice3="$\frac{\pi^2}{32}-\frac{\pi}{4}$"
+  choice4="$\frac{\pi}{4}-\frac{\pi^2}{32}$"
+  answer={4}>
+
+The value of $P(S=2)=P(S>1)-P(S>2)=\frac{\pi}4-\frac{\pi^2}{32}$.
+
+</Question>
 
 Now we can expand things out and let them collapse down.
 $$
@@ -257,8 +301,6 @@ Another nice puzzle which distills down the essence of $e$ without involving cir
 
 <Accordion title="Additional Game">
 
-
-
 This puzzle is a bit simpler than the dartboard question, but it highlights why random numbers have a connection to Euler's number.
 We're going to keep choosing random numbers $x\in [0,1]$ with uniform probability and add them together until their sum is greater than $1$.
 So we'll stop when $x_1+x_2+x_3+\cdots+x_n > 1$.
@@ -296,7 +338,7 @@ The area for a pyramid is $\frac13\cdot b\cdot h$. We know the area of the base 
 
 This pattern continues into higher dimensions where we are finding the area of the shape defined by the intersection of a hyperplane through a hypercube. To find the area of the target space in four dimensions we take our area from three dimensions and multiply it by one over the dimension count. So $P(n>4)=\frac16\cdot\frac14=\frac1{24}$. We're looking for the ratio of the target space to the unit hypercube, but the volume of a unit hypercube is $1^n=1$, so it can be excluded from the formula.
 
-In general, we can reduce our formula to:
+In general, we can reduce our formula for the expected value to:
 $$
 \begin{align*}
 E[n]&=\sum_{i=0}P(n>i)
@@ -307,6 +349,7 @@ The Taylor series for $e^x$ is:
 $$
 e^x=\sum_{i=0}\frac{x^i}{i!}
 $$
+
 <Question
   question="Comparing the above two sequences, what is the expected value of our little game?"
   choice1="$e$"

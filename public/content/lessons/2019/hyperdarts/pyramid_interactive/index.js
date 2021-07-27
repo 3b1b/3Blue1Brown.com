@@ -27,8 +27,8 @@ export default function PyramidPlot() {
     sketch.angleMode(sketch.DEGREES);
 
     // Change the original camera angle
-    let moveX = (SENSITIVITY * -550) / HEIGHT;
-    let moveY = (SENSITIVITY * 150) / HEIGHT;
+    let moveX = (SENSITIVITY * -880) / HEIGHT;
+    let moveY = (SENSITIVITY * 200) / HEIGHT;
     camera = p5Object._curCamera;
     camera._orbit(moveX, moveY, 0);
   }
@@ -87,9 +87,14 @@ export default function PyramidPlot() {
   }
 
   function updateScale(sketch) {
+    // Get CSS scale transform information from parent of parent element
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
     let scaleString = transform.split("(")[1];
-    mouseScale = parseFloat(scaleString.substring(1, scaleString.length - 1));
+    scaleString = scaleString.substring(0, scaleString.length - 1);
+    if (!scaleString.includes(".")) {
+      scaleString += ".0";
+    }
+    mouseScale = parseFloat(scaleString);
   }
 
   function draw(sketch) {
@@ -103,7 +108,7 @@ export default function PyramidPlot() {
       sketch.mouseY > 0;
 
     if (mouseInCanvas) {
-      sketch.cursor('grab');
+      sketch.cursor("grab");
     } else {
       sketch.cursor(sketch.ARROW);
     }
