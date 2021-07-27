@@ -36,7 +36,6 @@ const LessonLayout = () => {
             <CorrectionLink />
           </Section>
           <LessonNav />
-          <License />
           <Thanks />
           <Disqus />
           <TableOfContents />
