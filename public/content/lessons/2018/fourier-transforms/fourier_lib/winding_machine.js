@@ -315,8 +315,15 @@ function drawFourierBobble(sketch, origin, size, frequencies) {
 }
 
 let previousMouse = 563.6;
-const LAG_FACTOR = 0.05;
-export const drawFourier = (sketch, origin, size, frequencies, key) => {
+const LAG_FACTOR = 150;
+export const drawFourier = (
+  sketch,
+  origin,
+  size,
+  frequencies,
+  key,
+  deltaTime
+) => {
   // Draws the fourier graph from the calculated fourier transform earlier
   // Origin is an (x,y) pair of the origin in the canvas
   // Size is an (x,y) pair of the dimensions of the graph
@@ -326,6 +333,7 @@ export const drawFourier = (sketch, origin, size, frequencies, key) => {
 
   let mouseX = sketch.mouseX / SCALE;
   let mouseY = sketch.mouseY / SCALE;
+  if (deltaTime > 1000) deltaTime = 1000;
 
   // Wipe clean
   sketch.fill(sketch.color(BKGD_COLOR));
@@ -346,7 +354,7 @@ export const drawFourier = (sketch, origin, size, frequencies, key) => {
     mouseY < upperCorner.y + boxSize.y
   ) {
     // Smooth the movement of the bobble
-    previousMouse += (mouseX - previousMouse) * LAG_FACTOR;
+    previousMouse += ((mouseX - previousMouse) * deltaTime) / LAG_FACTOR;
   }
 
   sketch.strokeWeight(2);

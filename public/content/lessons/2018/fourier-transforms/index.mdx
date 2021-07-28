@@ -179,15 +179,15 @@ Here, we see 2 different frequencies at both 2 and 3 beats per second, which is 
 
 The way a mathematician might phrase this is that our "Almost Fourier transform" operation is *linear*. The curious among you may want to pause for a moment to reflect on why this is true. It ultimately stems from the fact that the x-coordinate of the sum of two vectors is the sum of their x-coordinates. This, by the way, is why we had it track the x-coordinate of the center of mass of the graph, rather than tracking its distance from the origin. For the full frequency information, you'd also want to keep track of the y-coordinate, but more on that below.
 
-So this little mathematical machine does exactly what we wanted: it pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. The applet below allows you to change the input wave form by separating the frequencies by commas.
+So this little mathematical machine does exactly what we wanted: it pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. The applet below allows you to change the input wave form by separating the frequencies <Tooltip content="Only 5 frequencies between 0Hz and 4.4Hz will be shown.">by commas</Tooltip>.
 
-<Interactive filename="advanced_interactive/index" aspectRatio={880 / 500} />
+<Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
 What happens when an input frequency of $0$Hz is wound up?
 
 <FreeResponse>
 
-It simply forms a circle (or arc of a circle) because the input graph is a constant, so it is always a constant distance from the origin.
+It simply forms a circle (or arc of a circle) because the input graph is a constant, so it is always a constant distance from the origin. The reason the $0$Hz Fourier transform oscillates is because we are taking a fixed time interval. 
 
 </FreeResponse>
 

@@ -45,8 +45,13 @@ export default function BasicWindingMachine() {
   }
 
   let frequencyMovement = 1;
+  let previousTime = performance.now();
   let previousFreq = -1;
   function draw(sketch) {
+    let currentTime = performance.now();
+    let deltaTime = currentTime - previousTime;
+    previousTime = currentTime;
+
     if (sketch.movedX == 0 && sketch.movedY == 0 && frequencyMovement < 1e-4) {
       // If the mouse didn't move and the winding frequency is pretty much the same,
       // Then don't bother to draw everything again. Its a waste
@@ -66,7 +71,8 @@ export default function BasicWindingMachine() {
       FOURIER_ORIGIN,
       FOURIER_SIZE,
       FREQS,
-      1
+      1,
+      deltaTime
     );
     frequencyMovement = Math.abs(winding_freq - previousFreq);
     previousFreq = winding_freq;
@@ -154,7 +160,7 @@ export default function BasicWindingMachine() {
     padding: "10px 0 10px 44px",
     marginBottom: "20px",
     font: "inherit",
-    fontSize: "26px"
+    fontSize: "26px",
   };
 
   return [
