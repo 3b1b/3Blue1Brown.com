@@ -29,13 +29,11 @@ const LessonLayout = () => {
       {!empty && (
         <>
           <PageContent />
-          {/* Don't alternate section color */}
-          <div />
           <Section width="narrow">
             <ShareButtons />
+            <CorrectionLink />
           </Section>
           <LessonNav />
-          <License />
           <Thanks />
           <Disqus />
           <TableOfContents />
@@ -50,6 +48,21 @@ const LessonLayout = () => {
         </>
       )}
     </NormalLayout>
+  );
+};
+
+const CorrectionLink = () => {
+  const { file } = useContext(PageContext);
+
+  const url = `https://github.com/3b1b/3Blue1Brown.com/edit/main/public${file}`;
+
+  return (
+    <div style={{ marginTop: 16 }}>
+      Found a mistake in this post?{" "}
+      <a href={url} target="_blank" rel="noreferrer">
+        Submit a correction on Github
+      </a>
+    </div>
   );
 };
 

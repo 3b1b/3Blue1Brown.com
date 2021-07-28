@@ -1,0 +1,32 @@
+.podcastLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.coverLink {
+  flex-shrink: 0;
+}
+
+.cover {
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 24px;
+}
+
+.apps {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.apps > * {
+  display: inline-block;
+  margin: 2px 4px;
+}
+
+.icon {
+  height: 32px;
+  margin: 4px;
+}

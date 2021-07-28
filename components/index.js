@@ -1,4 +1,6 @@
 import Accordion from "./Accordion";
+import BlogPostList from "./BlogPostList";
+import BookShelf, { Book } from "./BookShelf";
 import Center from "./Center";
 import Clickable from "./Clickable";
 import {
@@ -21,6 +23,8 @@ import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
+import PodcastEpisodes from "./PodcastEpisodes";
+import PodcastLinks from "./PodcastLinks";
 import Portrait from "./Portrait";
 import Question from "./Question";
 import Section from "./Section";
@@ -31,6 +35,9 @@ import Twitter from "./Twitter";
 // components to automatically import into all .mdx files
 const components = {
   Accordion,
+  BlogPostList,
+  BookShelf,
+  Book,
   Center,
   Clickable,
   ContactForm,
@@ -48,6 +55,8 @@ const components = {
   LicensingForm,
   Patrons,
   PiCreature,
+  PodcastEpisodes,
+  PodcastLinks,
   Portrait,
   Question,
   Section,
