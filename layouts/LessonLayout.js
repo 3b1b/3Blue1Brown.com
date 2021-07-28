@@ -29,6 +29,8 @@ const LessonLayout = () => {
       {!empty && (
         <>
           <PageContent />
+          {/* Don't alternate section color */}
+          <div />
           <Section width="narrow">
             <ShareButtons />
             <CorrectionLink />
@@ -57,8 +59,8 @@ const CorrectionLink = () => {
   const url = `https://github.com/3b1b/3Blue1Brown.com/edit/main/public${file}`;
 
   return (
-    <div style={{ marginTop: 16 }}>
-      Found a mistake in this post?{" "}
+    <div style={{ marginTop: 24 }}>
+      Notice a mistake?{" "}
       <a href={url} target="_blank" rel="noreferrer">
         Submit a correction on Github
       </a>
