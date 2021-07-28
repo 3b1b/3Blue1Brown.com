@@ -4,7 +4,7 @@ description: How does (ε, δ) "epsilon delta" help us formalize what exactly it
 date: 2017-05-04
 chapter: 9
 video: kfF40MiS7zA
-timestamp: 296
+timestamp: 293
 thumbnail: thumbnail.png
 source: _2017/eoc/chapter7.py
 credits:
@@ -19,11 +19,17 @@ credits:
 
 In the previous lesson, I introduced limites and how they are used to formalize the definition of the derivative. In this lesson our goal is to understand exactly what it means for one value to approach another. For example, consider the function:
 
-$$
-f(h) = \frac{(2+h)^3 - 2^3}{h}
-$$
+<Figure
+  image="figures/example-function-algebra.svg" 
+/>
 
-This happens to be the expression that pops out if you unravel the definition for the derivative of $x^3$ at $x=2$, but let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola.
+This happens to be the expression that pops out if you unravel the formal definition of the derivative of $x^3$ at $x=2$.
+
+<Figure
+  image="figures/derivative-of-x-cubed-at-2-limit.svg" 
+/>
+
+However, let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola.
 
 <Figure
   image="figures/example-limit.svg" 
@@ -46,24 +52,51 @@ For a given range of inputs within some distance of $0$, excluding the forbidden
   caption="This figure shows the possible output ranges for $0$ plus or minus $0.1$, $0.01$ and $0.001$" 
 />
 
+<!-- TODO: definitely include the animation for the figure above. Also maybe consider redrawing because the similarity between all of them sometimes isn't doing it for me -->
+
 As that range of input values closes in more and more tightly around $0$, the range of output values closes in more and more closely around $12$. Importantly, the size of that range of outputs can be made as small as you want.
 
+<Figure
+  image="figures/example-function-exact-limit.svg"
+/>
+
+Can you verify this result using algebra?
+
+<FreeResponse>
+
+Most definitely and it's worthwhile to check that two different ways to think about the same problem come to the same conclusion.
+
+Start by setting up the limit expression.
+
 $$
-\lim _{h \rightarrow 0} \frac{(2+h)^{3}-2^{3}}{h} = 12
+\lim _{h \rightarrow 0} \frac{(2+h)^{3}-2^{3}}{h}
 $$
 
-<Question
-  question="What happens if we use algebra to check our result and does it confirm our answer of $12$?"
-  choice1="1"
-  choice2="1"
-  choice3="1"
-  choice4="1"
-  answer={1}
->
+Expand the first term in the numerator.
 
-<!-- TODO: answer -->
+$$
+\lim _{h \rightarrow 0} \frac{2^3 + 3 \cdot 2^2 \cdot h + 3 \cdot 2 \cdot h^2 + h^3 - 2^{3}}{h}
+$$
 
-</Question>
+Notice the first and last terms in the numerator cancel each other out.
+
+$$
+\lim _{h \rightarrow 0} \frac{12 h + 6 h^2 + h^3}{h}
+$$
+
+Since all of the terms in the numerator share the factor $h$, the fraction simplifies.
+
+$$
+\lim _{h \rightarrow 0} 12 + 6 h + h^2 
+$$
+
+Now as $h$ approaches $0$ the terms containing $h$ will become negible, giving us the same resullt.
+
+$$
+\lim _{h \rightarrow 0} 12 + 6 h + h^2 = 12
+$$
+
+</FreeResponse>
 
 ### Counter examples
 
