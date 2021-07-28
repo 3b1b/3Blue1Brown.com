@@ -73,7 +73,7 @@ const Nav = () => {
       <NavLink
         link="https://www.patreon.com/3blue1brown"
         text="Memberships"
-        tooltip="Early access and more"
+        tooltip="Help fund future lessons"
       />
       <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
