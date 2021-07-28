@@ -4,6 +4,7 @@ import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
 import LessonVideo from "../components/LessonVideo";
 import Section from "../components/Section";
+import TableOfContents from "../components/TableOfContents";
 import { formatDate } from "../util/locale";
 
 // layout for lessons
@@ -20,6 +21,7 @@ const BlogLayout = ({ title, date, video }) => {
       <div />
       <PageContent />
       <Disqus />
+      <TableOfContents />
       <Jump />
     </NormalLayout>
   );
