@@ -12,29 +12,58 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-And that brings us to goal #2: Understanding exactly it means for one value to approach another.
+> "Calculus is all about making curvy things look straight"
+> Anonymous Professor
 
-For example, consider the function $\displaystyle  \frac{(2+h)^3 - 2^3}{h}$. 
+<!-- TODO: contact professor and ask aoubt attribution -->
 
-<!-- TODO: plot -->
+In the previous lesson, I introduced limites and how they are used to formalize the definition of the derivative. In this lesson our goal is to understand exactly what it means for one value to approach another. For example, consider the function:
 
-This happens to be the expression that pops out if you unravel the definition for the derivative of $x^3$ at $x=2$, but let’s just think of it as any old function with an input $h$.
+$$
+f(h) = \frac{(2+h)^3 - 2^3}{h}
+$$
 
-Its graph is this nice continuous looking parabola. But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined.
+This happens to be the expression that pops out if you unravel the definition for the derivative of $x^3$ at $x=2$, but let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola.
 
-So really, this graph has a hole at that point. You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
+<Figure
+  image="figures/example-limit.svg" 
+/>
+
+But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined. So really, this graph has a hole at that point. You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
+
+<Figure
+  image="figures/example-limit-detail.svg" 
+/>
 
 And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn’t matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
 
-But imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?"
-
-That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another.
-
-But let's start thinking about ways you might be able to answer that person completely unambigously.
+Imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
 
 For a given range of inputs within some distance of $0$, excluding the forbidden point $0$, look at the corresponding outputs, all possible heights of the graph above that range.
 
-As that range of input values closes in more and more tightly around $0$, the range of output values closes in more and more closely around $12$. The size of that range of outputs can be made as small as you want.
+<Figure
+  image="figures/example-limit-input-ranges.svg"
+  caption="This figure shows the possible output ranges for $0$ plus or minus $0.1$, $0.01$ and $0.001$" 
+/>
+
+As that range of input values closes in more and more tightly around $0$, the range of output values closes in more and more closely around $12$. Importantly, the size of that range of outputs can be made as small as you want.
+
+$$
+\lim _{h \rightarrow 0} \frac{(2+h)^{3}-2^{3}}{h} = 12
+$$
+
+<Question
+  question="What happens if we use algebra to check our result and does it confirm our answer of $12$?"
+  choice1="1"
+  choice2="1"
+  choice3="1"
+  choice4="1"
+  answer={1}
+>
+
+<!-- TODO: answer -->
+
+</Question>
 
 ### Counter examples
 

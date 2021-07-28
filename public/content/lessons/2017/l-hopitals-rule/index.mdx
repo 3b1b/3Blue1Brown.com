@@ -14,13 +14,19 @@ credits:
 
 So far this is all pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So let’s finish things off here with a trick for actually computing limits.
 
-For example, let’s say for some reason you were studying the function $\frac{\sin (\pi x)}{x^{2}-1}$. Maybe this models some kind of dampened oscillation. When you plot a bunch of points to graph it, it looks pretty continuous, but there’s a problematic value, $x=1$.
+For example, let’s say for some reason you were studying the function:
+
+$$
+f(x) = \frac{\sin (\pi x)}{x^{2}-1}
+$$
+
+Maybe this models some kind of dampened oscillation. When you plot a bunch of points to graph it, it looks pretty continuous, but there’s a problematic value, $x=1$.
 
 <Figure
   image="figures/example-function.svg" 
 />
 
-When you plug that in, $\sin(\pi)$ is $0$, and the denominator is also $0$, so the function is actually not defined at that input, and the graph should really have a hole there. This also happens at $-1$, but let’s just focus our attention on a single one of these holes for now. Imagine zooming in on the point $x=1$.
+When you plug $x=1$ into the numerator $\sin(\pi x)$ becomes $0$, and similarly the denominator $x^{2}-1$ also becomes $0$, so the function is actually not defined at that input, and the graph should really have a hole there. This also happens at $-1$, but let’s just focus our attention on a single one of these holes for now. Imagine zooming in on the point $x=1$.
 
 <Figure
   image="figures/example-function-zoom-big.svg" 
@@ -28,33 +34,56 @@ When you plug that in, $\sin(\pi)$ is $0$, and the denominator is also $0$, so t
 
 The graph of this function certainly does seem to approach some distinct value at that point, wouldn’t you say? So you might ask, how do you figure out what output this approaches as $x$ approaches $1$, since you can’t just plug in $1$?
 
-Well, one way to approximate it would be to plug in a number thats just very very close to $1$, like $1.00001$. Doing that, you’d find that this should be a number around $-1.57$.
+Well, one way to approximate it would be to plug in a number thats just very very close to $1$, like $1.00001$. Doing that, you’d find that this should be a number around $-1.57$. Translating this to the limit notation looks like this:
 
-But is there a way to know precisely what it is? Some systematic process to take an expression like this one, which looks like $0/0$ at some input, and ask what its limit is as $x$ approaches that input?
+<Figure
+  image="figures/example-function-approximate-limit.svg" 
+  caption="Plug a number really close to $1$ in for $x$ or zoom in on the graph of this function and we can see this limit is approximately equal to $-1.57$."
+/>
 
-After limits so helpfully let us write the definition for a derivative, derivatives can come back to return the favor and help us evaluate limits. Let me show you what I mean.
+But is there a way to know precisely what it is? Some systematic process to take an expression like this one, which looks like $0$ divided by $0$ at some input, and ask what its limit is as $x$ approaches that input? After limits so helpfully let us write the definition for a derivative, derivatives can come back to return the favor and help us evaluate limits. Let me show you what I mean.
 
 ## Plot numerator and denominator
 
-Here’s the graph of $\sin(\pi x)$, and here’s the graph of $x^2-1$. That’s kind of a lot to look at, but just focus on what’s happening at $x=1$. 
+Let's graph the numerator, $\sin(\pi x)$, and the denominator, $x^2-1$, of our original function. That’s kind of a lot to look at, but just focus on what’s happening at $x=1$.
 
-<!-- TODO: image highlighting the vertical region where x=1 -->
+<Figure
+  image="figures/example-function-numerator-and-denominator.svg" 
+/>
 
-The point here is that $\sin(\pi x)$ and $x^2-1$ are both $0$ at that point, so they cross the $x$-axis.
+The point here is that $\sin(\pi x)$ and $x^2-1$ are both $0$ at that point, so they cross the $x$-axis. In the same spirit as plugging in a specific value near $1$, like $1.00001$, let’s zoom in on that point and consider what happens a tiny nudge $dx$ away.
 
-In the same spirit as plugging in a specific value near $1$, like $1.00001$, let’s zoom in on that point and consider what happens a tiny nudge $dx$ away.
+<Figure
+  image="figures/example-function-numerator-and-denominator-zoom.svg" 
+/>
 
-The value of $\sin(\pi x)$ is bumped down, and the value of that nudge, which was caused by the nudge $dx$ to the input, is what we might call $d(\sin(\pi x))$.
+The value of $\sin(\pi x)$ is bumped down by some $d(\sin(\pi x))$ and the value of $x^2-1$ is bumped up by some $d(x^2-1)$.
 
-From our knowledge of derivatives, using the chain rule, that should be around $\cos(\pi x) \cdot \pi \cdot dx$. Since the starting value was $x=1$, we plug in $x=1$ to that expression.
+Take a moment to think about how the fraction $d(\sin (\pi x)) / d\left(x^{2}-1\right)$ reframes the initial problem which had previously looked a lot like $0$ divided by $0$. Why might this lead us towards an exact answer rather than just an approximation?
 
-In other words, the amountthis $\sin(\pi x)$ changes graph is roughly proportional to $dx$, with proportionality constant $\cos(\pi) \pi$. Since $\cos(\pi)$ is exactly $-1$, we can write this whole thing as $-\pi \cdot dx$.
+<FreeResponse>
 
-Similarly, the value this $x^2-1$ graph has changed by some $d(x^2-1)$. And taking the derivative, the size of that nudge should be $2 \cdot x \cdot dx$. Again, since we started at $x=1$, that means the size of this change is about $2 \cdot 1 \cdot dx$.
+TODO: possible explanation
 
-What this means is that for values of $x$ which are some tiny value $dx$ away from $1$, the ratio $\sin(\pi x)/(x^2-1)$ is approximately $(-\pi \cdot dx) / (2 \cdot dx)$. The $dx$’s cancel, so that value is $-\pi/2$.
+</FreeResponse>
 
-Importantly, these approximations get more and more accurate for smaller and smaller choices of $dx$, this ratio $-\pi/2$ actually tells us the precise limiting value as $x$ approaches $1$.
+Since both of these changes are proportional to the small nudge $dx$, we can go ahead and apply our knowledge of derivatives. Using the chain rule, we know that the change to the function $d(\sin(\pi x))$ should be around $\cos(\pi x) \cdot \pi \cdot dx$. Similarly, using the power rule, we know that the change to the function $x^2-1$ should be around $2 x \cdot dx$.
+
+<Figure
+  image="figures/example-function-numerator-and-denominator-zoom-expanded.svg" 
+/>
+
+Since we are interested in the fraction of these two functions at the point at $x = 1$ we can substitute $x=1$ into both of these expressions and evaluate the fraction.
+
+<Figure
+  image="figures/numerator-and-denominator-evaluated.svg" 
+/>
+
+What this means is that for values of $x$ which are some tiny value $dx$ away from $1$, the ratio $\sin(\pi x)/(x^2-1)$ is approximately $(-\pi \cdot dx) / (2 \cdot dx)$. The $dx$’s cancel, so that value is $-\pi/2$. Importantly, these approximations get more and more accurate for smaller and smaller choices of $dx$, this ratio $-\pi/2$ actually tells us the precise limiting value as $x$ approaches $1$.
+
+<Figure
+  image="figures/example-function-exact-limit.svg" 
+/>
 
 Remember, what that means is that the limiting height on our original graph is evidently exactly $-\pi/2$.
 
@@ -76,13 +105,9 @@ Because both approximations get more accurate for smaller nudges, this ratio of 
 
 This is a *really* handy trick for computing a lot of limits. If you come across an expression that seems to equal $0/0$ when you plug in some input, just try taking the derivative of the top and bottom expressions, and plugging in that trouble input.
 
-This clever trick is called "L'Hôpital's rule". Interestingly, it was actually discovered by Johann Bernoulli, but L’Hopital was this wealthy dude who essentially paid Bernoulli for the rights to some of his mathematical discoveries.
+This clever trick is called "**L'Hôpital's rule**". Interestingly, it was actually discovered by Johann Bernoulli, but L’Hopital was this wealthy dude who essentially paid Bernoulli for the rights to some of his mathematical discoveries. Academia was weird back then, but in a very literal way, it pays to understand these tiny nudges.
 
-Academia was weird back then, but in a very literal way, it pays to understand these tiny nudges.
-
-Now, you might remember that the definition of a derivative for any given function comes down to computing the limit of a fraction that looks like $0/0$, so you might think L’Hopital’s rule gives a handy way to discover new derivative formulas.
-
-But that would be cheating, since presumably you don’t yet know what the derivative on the numerator here is.
+Now, you might remember that the definition of a derivative for any given function comes down to computing the limit of a fraction that looks like $0/0$, so you might think L’Hopital’s rule gives a handy way to discover new derivative formulas. But that would be cheating, since presumably you don’t yet know what the derivative on the numerator here is.
 
 When it comes to discovering derivative formulas, something we’ve been doing a fair amount this series, there is no systematic plug-and-chug method. But that’s a good thing. When creativity is needed to solve problems like these, it’s a good sign you’re doing something real; something that might give you a powerful tool to solve future problems.
 
