@@ -27,7 +27,9 @@ export default function HomepageFeaturedContent({ title, children }) {
       </div>
       <div className={styles.social}>
         <SocialIcons />
-        <div>Want more math in your life?</div>
+        <div className={styles.social_label}>
+          Want more math in your life?
+        </div>
       </div>
     </div>
   );
