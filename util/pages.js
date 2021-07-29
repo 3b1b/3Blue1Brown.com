@@ -7,7 +7,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import sizeOfImage from "image-size";
-import sizeOfVideo from "get-video-dimensions";
+// import sizeOfVideo from "get-video-dimensions";
 import topics from "../data/topics.yaml";
 
 // define some terms to avoid confusion:
@@ -112,10 +112,12 @@ const getMediaDimensionsFromDir = async (directory) => {
         sizeOfImage(fileName, (err, dims) => {
           resolve(dims || undefined);
         });
+        /*
       } else if (type === "video") {
         sizeOfVideo(fileName).then((dims) => {
           resolve(dims || undefined);
         });
+      */
       } else {
         console.log("Skipped:", fileName);
         resolve();
