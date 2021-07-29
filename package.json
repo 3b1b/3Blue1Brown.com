@@ -15,7 +15,6 @@
     "@react-three/fiber": "^7.0.2",
     "@sentry/nextjs": "^6.10.0",
     "disqus-react": "^1.0.11",
-    "get-video-dimensions": "^1.0.0",
     "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
     "image-size": "^1.0.0",

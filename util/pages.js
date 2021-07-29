@@ -7,7 +7,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import sizeOfImage from "image-size";
-// import sizeOfVideo from "get-video-dimensions";
 import topics from "../data/topics.yaml";
 
 // define some terms to avoid confusion:
@@ -108,18 +107,15 @@ const getMediaDimensionsFromDir = async (directory) => {
     }[fileExtension];
 
     return new Promise((resolve) => {
+      // In the future, it would also be valuable to get the dimensions of
+      // videos, but that seems a bit tricky to get working, so for now
+      // it's images only. (Video dimensions will be determined on the
+      // client side whenever the video actually loads.)
       if (type === "image") {
         sizeOfImage(fileName, (err, dims) => {
           resolve(dims || null);
         });
-        /*
-      } else if (type === "video") {
-        sizeOfVideo(fileName).then((dims) => {
-          resolve(dims || undefined);
-        });
-      */
       } else {
-        console.log("Skipped:", fileName);
         resolve(null);
       }
     });
@@ -200,7 +196,6 @@ export const pageProps = async (slug) => {
 export const lessonProps = async (slug) => {
   const file = searchLessonFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
-  console.log(`=== Getting media dimensions for ${slug} ===`);
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
@@ -211,7 +206,6 @@ export const lessonProps = async (slug) => {
 export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
-  console.log(`=== Getting media dimensions for ${slug} ===`);
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
