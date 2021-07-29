@@ -39,7 +39,9 @@ config = withYAML(config);
 config = {
   ...config,
   webpack(config) {
-    config.externals["sharp"] = "commonjs sharp";
+    console.log(config.externals);
+    config.externals.push({ sharp: "commonjs sharp" });
+    console.log(config.externals);
     return config;
   },
 };
