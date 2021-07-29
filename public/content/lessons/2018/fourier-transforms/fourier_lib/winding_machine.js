@@ -249,7 +249,9 @@ export const drawWinder = (sketch, frequencies, winding_freq, origin, size) => {
   drawUnitCircle(sketch, origin, size);
 
   sketch.strokeWeight(2);
-  sketch.stroke(sketch.color(WAVE_COLOR));
+  let wireColor = sketch.color(WAVE_COLOR);
+  wireColor.setAlpha(255 * 0.3);
+  sketch.stroke(wireColor);
   drawWire(sketch, frequencies, winding_freq, origin, size);
 
   drawCenterMass(sketch, frequencies, winding_freq, origin, size);
