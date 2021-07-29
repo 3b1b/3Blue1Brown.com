@@ -10,14 +10,14 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-> "Do not ask whether a statement is true until you know what it means."
-> Errett Bishop
+> "Do not ask whether a statement is true until you know what it means."  
+> \- Errett Bishop
 
 Let me share with you something I found particularly weird when I was a student first learning calculus.
 
 ## Implicit Curves
 
-Let's say you have a circle with radius $5$ centered at the origin of the $xy$-coordinate plane. This shape is defined using the equation $x^2 + y^2 = 5^2$. That is, all points on this circle are a distance $5$ from the origin, as encapsulated by the pythagorean theorem where the sum of the squares of the legs of this triangle equalling the square of the hypotenuse, $5^2$.
+Let's say you have a circle with radius $5$ centered at the origin of the $xy$-coordinate plane. This shape is defined using the equation $x^2 + y^2 = 5^2$. That is, all points on this circle are a distance $5$ from the origin, as encapsulated by the pythagorean theorem where the sum of the squares of the legs of this triangle equals the square of the hypotenuse, $5^2$.
 
 <Figure
   image="figures/circle-radius-5.svg" 
@@ -44,7 +44,10 @@ But unlike other tangent-slope problems in calculus, this curve is not the graph
 
 This is called an "implicit curve"; it's just the set of all points $(x, y)$ that satisfy some property written in terms of the two variables $x$ and $y$.
 
-The procedure for how you actually find $dy/dx$ for curves like this is the thing I found very weird as a calculus student, you take the derivative of both sides of this equation like this: For the derivative of $x^2$ you write $2x \cdot dx$, similarly $y^2$ becomes $2y \cdot dy$, and the derivative of the constant $5^2$ on the right is just $0$.
+The procedure for how you actually find $dy/dx$ for curves like this is the thing I found very weird as a calculus student. You take the derivative of both sides of this equation like this:
+- For the derivative of $x^2$ you write $2x \cdot dx$.
+- Similarly, $y^2$ becomes $2y \cdot dy$.
+- The derivative of the constant $5^2$ on the right is just $0$.
 
 <Figure
   image="figures/implicit-differentiation.svg" 
@@ -61,13 +64,13 @@ This strange process is called "implicit differentiation". Don't worry, I have a
 
 ## Related Rates
 
-Imagine a $5$ meter long ladder held up against a wall, where the top of the ladder starts of $4$ meters above the ground, which, by the pythagorean theorem, means the bottom is $3$ meters away from the wall.
+Imagine a $5$ meter long ladder held up against a wall, where the top of the ladder starts off $4$ meters above the ground, which&mdash;by the pythagorean theorem&mdash;means the bottom is $3$ meters away from the wall.
 
 <Figure
   image="figures/ladder-setup.png" 
 />
 
-And say it's slipping down the wall in such a way that the top of the ladder is dropping at $1$ meter per second. The question is, in that initial moment, what is the rate at which the bottom of the ladder is moving away from the wall.
+And say it's slipping down the wall in such a way that the top of the ladder is dropping at $1$ meter per second. In that initial moment, what is the rate at which the bottom of the ladder is moving away from the wall?
 
 <Figure
   image="figures/ladder-rate-of-change.png"
@@ -89,7 +92,7 @@ One way to solve this would be to isolate $x(t)$, figure out what what $y(t)$ mu
   image="figures/ladder-traditional-derivative.png" 
 />
 
-And that's fine; it involves a couple layers of using the chain rule, and it will definitely work for you. But I want to show a different way to think about the same problem.
+And that's fine; if you're willing to apply the chain rule a few times, this method will definitely work for you. But I want to show a different way to think about the same problem.
 
 This left-hand side of the equation is a function of time, right? Which just so happens to equal a constant, meaning this value evidently doesn't change while time passes. 
 
@@ -97,9 +100,9 @@ This left-hand side of the equation is a function of time, right? Which just so 
   image="figures/ladder-function-of-time.png" 
 />
 
-However, this expression is dependent on time which we can manipulate like any other function with $t$ as an input. In particular, we can take a derivative of the left hand side, which is a way of saying "If I let a little bit of time pass, $dt$, which causes $y$ to slightly decrease, and $x$ to slightly increase, how much does this expression change".
+However, this expression is dependent on time which we can manipulate like any other function with $t$ as an input. In particular, we can take a derivative of the left hand side, which is a way of saying "If I let a little bit of time, $dt$, pass, which causes $y$ to slightly decrease, and $x$ to slightly increase, how much does this expression change?"
 
-On the one hand, we know that derivative should be $0$, since this expression is a constant, and constants don't care about your tiny nudge to time, they remain unchanged. But on the other hand, what do you get when you computer the derivative of this function of time?
+On the one hand, we know that derivative should be $0$, since this expression is a constant, and constants don't care about your tiny nudge to time; they remain unchanged. But on the other hand, what do you get when you compute the derivative of this as a function of time?
 
 <Figure
   image="figures/implicit-differentiation-function-of-time.svg" 
@@ -123,11 +126,11 @@ Now this gives us enough information to isolate the derivative $dx/dt$, which, w
 
 ## Implicit Differentiation
 
-Now compare this to the problem of finding the slope of tangent line to the circle. In both cases, we had the equation $x^2 + y^2 = 5^2$, and in both cases we ended up taking the derivative of each side of this expression. But for the ladder problem, these expressions were functions of time, so taking the derivative has a clear meaning: it's the rate at which this expression changes as time change.
+Now compare this to the problem of finding the slope of the tangent line to the circle. In both cases, we had the equation $x^2 + y^2 = 5^2$, and in both cases we ended up taking the derivative of each side of this expression. But for the ladder problem, these expressions were functions of time, so taking the derivative has a clear meaning: it's the rate at which this expression changes as time change.
 
 What makes the circle situation strange is that rather than saying a small amount of time $dt$ has passed, which causes $x$ and $y$ to change, the derivative has the tiny nudges $dx$ and $dy$ both just floating free, not tied to some other common variable like time.
 
-Let me show you how you can think about this: Give this expression $x^2 + y^2$ a name, maybe $S$. $S$ is essentially a function of two variables, it takes every point $(x, y)$ on the plane and associates it with a number.
+Let me show you how you can think about this: Give this expression $x^2 + y^2$ a name, maybe $S$. $S$ is essentially a function of two variables; it takes every point $(x, y)$ on the plane and associates it with a number.
 
 <Figure
   image="figures/function-of-two-variables.svg" 
@@ -153,7 +156,9 @@ From there you ask how much the value of $S$ changes. That difference in the val
   caption="As we saw in previous lessons, these small values raised to the second power are neglible as they values approach zero."
 />
 
-For example, say we're starting at a point $(3,4)$, and let's just say that step $dx$ is... $-0.02$, and that $dy$ is $-0.01$. Then the decrease to $S$, the amount the $x^2+y^2$ changes over that step, will be around $2(3)(-0.02) + 2(4)(-0.01)$. That's what this derivative expression $2x \cdot dx + 2y \cdot dy$ means, it tells you how much the value $x^2+y^2$ changes, as determined by the point $(x, y)$ where you started, and the tiny step $(dx, dy)$ that you take.
+For example, say we're starting at a point $(3,4)$, and let's just say that step $dx$ is $-0.02$, and that $dy$ is $-0.01$. Then the decrease to $S$, the amount that $x^2+y^2$ changes over that step, will be around $2(3)(-0.02) + 2(4)(-0.01)$.
+
+That's what this derivative expression $2x \cdot dx + 2y \cdot dy$ means. It tells you how much the value $x^2+y^2$ changes, as determined by the point $(x, y)$ where you started, and the tiny step $(dx, dy)$ that you take.
 
 As with all things derivative, this is only an approximation, but it's one that gets more and more true for smaller and smaller choices of $dx$ and $dy$.
 
@@ -223,7 +228,7 @@ Since we know the derivative of $e^y$, we can take the derivative of both sides 
   image="figures/implicit-natural-log.svg" 
 />
 
-To ensure the step stays on the curve, the change to the left side of the equation, which is $e^y \cdot dy$, must equals the change to the right side, which is $dx$.
+To ensure the step stays on the curve, the change to the left side of the equation, which is $e^y \cdot dy$, must equal the change to the right side, which is $dx$.
 
 Rearranging, this means $dy/dx$, the slope of our graph, equals $1/e^y$.
 
@@ -237,7 +242,7 @@ And when we're on this curve, $e^y$ is by definition the same as $x$, so evident
   image="figures/implicit-natural-log-derivative.svg" 
 />
 
-An expression for the slope of the graph of function in terms of $x$ like this is the derivative of that function, so the derivative of $\ln(x)$ is $1/x$.
+An expression for the slope of the graph of a function in terms of $x$ like this is the derivative of that function, so the derivative of $\ln(x)$ is $1/x$.
 
 ## Exercises
 
