@@ -1,6 +1,6 @@
-0:00 Slope of Circle Intro
+0:00 Implicit Curves
 3:16 Related Rates
-8:00 Parametric Circle Function
-10:50 sin(x)y^2 = x  
-12:32 New Derivative Formulas y = ln(x)
+8:00 Implicit Differentiation
+10:50 Another Example
+12:32 Finding the derivative of ln(x)
 14:31 Outro
