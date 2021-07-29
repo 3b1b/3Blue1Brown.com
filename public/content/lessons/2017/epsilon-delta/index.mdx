@@ -110,7 +110,7 @@ $$
 
 </FreeResponse>
 
-### Counter examples
+## Counter example
 
 As a counter example, consider a function that looks like the one shown below, which is also not defined at $0$, but kind of jumps at that point.
 
@@ -120,7 +120,16 @@ As a counter example, consider a function that looks like the one shown below, w
 
 As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there’s not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
 
+<Figure
+  image="figures/counter-example-not-defined.svg"
+/>
+
 One way to think of this is that when you look at any range of inputs around $0$, and the corresponding range of outputs, as you shrink that input range the corresponding outputs don’t narrow in on any specific value. Instead those outputs straddle a range that never even shrinks smaller than $1$, no matter how small your input range.
+
+<Figure
+  image="figures/counter-example-straddle.svg"
+  video="figures/7.27-7.40.source.mp4"
+/>
 
 This perspective of shrinking an input range around the limiting point, and seeing whether or not you’re restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
 
@@ -128,12 +137,56 @@ You could argue this needlessly heavy-duty for an introduction to calculus. Like
 
 You’ve already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn’t exist, that output range can’t get smaller than some value, no matter how much you shrink the input range around the limiting input.
 
+<Figure
+  image="figures/epsilon-delta.svg"
+  caption="The limit $\displaystyle \lim _{h \rightarrow a} f(h)$ exists when the output range defined by $\epsilon$ (epsilon) can be made as small as you want and you can still find some $\delta$ (delta) which corresponds to the output range."
+/>
+
 Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where for some reason it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
+
+<Figure
+  image="figures/epsilon-delta-example-epsilon.svg"
+/>
 
 What it means for the limit to exist is that you will always be able to find a range of inputs around our limiting input, some distance delta away from $0$, so that any input within a distance delta of $0$ corresponds to an output with a distance epsilon of $12$.
 
+<Figure
+  image="figures/epsilon-delta-example-delta.svg"
+/>
+
 They key point is that this is true for any epsilon, no matter how small, you will always be able to find the corresponding delta.
+
+<Question
+  question="What is the $\delta$ (delta) value corresponding to the ouput range [$11.994, 12.006]$ where $\epsilon$ (epsilon) is equal to $0.006$?"
+  choice1="1"
+  choice2="0.1"
+  choice3="0.01"
+  choice4="0.001"
+  answer={4}
+>
+
+<Figure
+  image="figures/epsilon-delta-example-epsilon-smaller.svg"
+/>
+
+<Figure
+  image="figures/epsilon-delta-example-delta-smaller.svg"
+/>
+
+</Question>
 
 In contrast, when a limit does *not* exist, as in the example before, you can find a sufficiently small epsilon, like $0.4$, so that no matter how small you make your range around $0$, no matter how tiny delta is, the corresponding range of outputs is just always too big.
 
+<Figure
+  image="figures/epsilon-delta-limit-not-defined.svg"
+/>
+
 There is no limiting output where everything is within a distance epsilon from that output.
+
+```
+TODO: example f(x) = 1/x + x
+```
+
+```
+TODO: summary + transition
+```
