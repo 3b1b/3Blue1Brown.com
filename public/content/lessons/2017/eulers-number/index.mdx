@@ -10,8 +10,9 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-> “Who has not be amazed to learn that the function $y = e^x$, like a phoenix rising again from its own ashes, is its own derivative?”
-> Francois le Lionnais
+> "Who has not be amazed to learn that the function $y = e^x$, like a phoenix rising again from its own ashes, is its own derivative?"
+>
+> \- Francois le Lionnais
 
 I’ve introduce a few derivative formulas, but a really important one I left out was exponentials. So here I want to talk about the derivatives of exponential functions like $2^x$, $7^x$, and to show why $e^x$ is arguably the most important exponential.
 
@@ -84,9 +85,9 @@ More abstractly, for some tiny change in time $dt$, we want to understand the di
   image="figures/finding-the-derivative/base-2-rate-of-change.svg" 
 />
 
-Here’s the thing. I would love if there was some clear geometric picture that made what’s about to follow just pop out. Some diagram where you could point to one value and say "see that part, that is the derivative of $2^t$". If you know of one, please, let me know. And while the goal here, as with the rest of the series, is to maintain a spirit of playful discovery, the type of play that follows will have more to do with finding numerical patterns, rather than visual ones.
+Here’s the thing. I would love if there was some clear geometric picture that made what’s about to follow just pop out. Some diagram where you could point to one value and say "see that part, that is the derivative of $2^t$". If you know of one, please, let me know[^3]. And while the goal here, as with the rest of the series, is to maintain a spirit of playful discovery, the type of play that follows will have more to do with finding numerical patterns, rather than visual ones.
 
-<!-- TODO: reword if changes below are accepted in peer review -->
+[^3]: [Contact Page](/contact#contact)
 
 ## Finding the Derivative
 
@@ -172,7 +173,7 @@ For example, if you plug in $8$ as the base of the exponential function, you can
 
 [^1]: The important observation to make here is that these proportionality constants behave like a logarithm function. In fact, these constants are exactly the output of the natural logarithm function.
 
-    If are able to find a function that when given a base has the behavior of $f(1) = 0$, $f(2) = 0.6931$, $f(3) = 1.099$, etc. you would be inventing the natural logarithm function which is one of the paths of discovery for the exponential function and Euler's Number.
+    If you are able to find a function that when given a base has the behavior of $f(1) = 0$, $f(2) = 0.6931$, $f(3) = 1.099$, etc. you would be inventing the natural logarithm function which is one of the paths of discovery for the exponential function and Euler's Number.
 
 <Figure
   image="figures/different-exponentials/base-2-4-8-16.svg"
@@ -253,6 +254,10 @@ This type of question we are asking leads us directly towards another function, 
 />
 
 The existence of a function like this can answer the question of the mystery constants, and it’s because it gives a different way to think about functions that are proportional to their own derivative. There's nothing fancy here, this is simply the definition of the natural log, which asks the question "$e$ to the what equals $2$". 
+
+$$
+e^{??} = 2
+$$
 
 And indeed, go plug in the natural log of $2$ to a calculator, and you’ll find that it’s $0.6931...$, the mystery constant we ran into earlier. And same goes for all the other bases, the mystery proportionality constant that pops up when taking derivatives and when re-writing exponential functions using $e$ is the natural log of the base; the answer the the question "$e$ to the what equals that base".
 
