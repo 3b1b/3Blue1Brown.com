@@ -6,7 +6,8 @@ import { glob } from "glob";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
-import getMediaDimensions from "get-media-dimensions";
+import sizeOfImage from "image-size";
+import sizeOfVideo from "get-video-dimensions";
 import topics from "../data/topics.yaml";
 
 // define some terms to avoid confusion:
@@ -95,32 +96,40 @@ const getMediaDimensionsFromDir = async (directory) => {
     `${directory}/**/*.@(jpg|jpeg|png|svg|mp4|mov|)`
   );
 
-  let dimensionsMap = {};
-  await Promise.all(
-    mediaFiles.map(
-      (fileName) =>
-        new Promise((resolve) => {
-          const fileExtension = fileName.split(".").reverse()[0];
-          const type = {
-            jpg: "image",
-            jpeg: "image",
-            png: "image",
-            svg: "image",
-            mp4: "video",
-            mov: "video",
-          }[fileExtension];
+  function getDimensions(fileName) {
+    const fileExtension = fileName.split(".").reverse()[0];
+    const type = {
+      jpg: "image",
+      jpeg: "image",
+      png: "image",
+      svg: "image",
+      mp4: "video",
+      mov: "video",
+    }[fileExtension];
 
-          if (type) {
-            getMediaDimensions(fileName, type).then((result) => {
-              console.log("Succeeded:", fileName);
-              dimensionsMap[fileName.slice(6)] = result;
-              resolve();
-            });
-          } else {
-            console.log("Skipped:", fileName);
-            resolve();
-          }
-        })
+    return new Promise((resolve) => {
+      if (type === "image") {
+        sizeOfImage(fileName, (err, dims) => {
+          resolve(dims || undefined);
+        });
+      } else if (type === "video") {
+        sizeOfVideo(fileName).then((dims) => {
+          resolve(dims || undefined);
+        });
+      } else {
+        console.log("Skipped:", fileName);
+        resolve();
+      }
+    });
+  }
+
+  let dimensionsMap = {};
+
+  await Promise.all(
+    mediaFiles.map((fileName) =>
+      getDimensions(fileName).then((dims) => {
+        dimensionsMap[fileName.slice(6)] = dims;
+      })
     )
   );
 
