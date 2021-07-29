@@ -40,7 +40,7 @@ config = {
   ...config,
   webpack(config) {
     console.log(config.externals);
-    config.externals.push({ sharp: "commonjs sharp" });
+    config.externals.push("commonjs sharp");
     console.log(config.externals);
     return config;
   },
