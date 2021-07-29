@@ -6,12 +6,13 @@ export default function SocialIcons() {
   return (
     <div className={styles.socialIcons}>
       <Link
-        link="https://3blue1brown.substack.com/"
-        icon="fas fa-envelope-open-text"
-        tooltip="I know, I know, we all try to 
-        keep our inbox clean. But what is that 
-        cleanliness for if not to make room for 
-        edifying math lessons?"
+        link="https://www.youtube.com/3blue1brown"
+        icon="fab fa-youtube"
+        tooltip="Maybe you're not the kind of person who 
+        subscribes to YouTube channels, I get that. But 
+        consider subscribing to give a gentle nod to the 
+        YouTube algorithm saying you want more math in 
+        your recommendations."
       />
       <Link
         link="https://www.patreon.com/3blue1brown"
@@ -21,13 +22,12 @@ export default function SocialIcons() {
         me singing at a nerd comedy event."
       />
       <Link
-        link="https://www.youtube.com/3blue1brown"
-        icon="fab fa-youtube"
-        tooltip="Maybe you're not the kind of person who 
-        subscribes to YouTube channels, I get that. But 
-        consider subscribing to give a gentle nod to the 
-        YouTube algorithm saying you want more math in 
-        your recommendations."
+        link="https://3blue1brown.substack.com/"
+        icon="fas fa-envelope-open-text"
+        tooltip="I know, I know, we all try to 
+        keep our inbox clean. But what is that 
+        cleanliness for if not to make room for 
+        edifying math lessons?"
       />
       <Link
         link="https://store.dftba.com/collections/3blue1brown"
@@ -47,16 +47,9 @@ export default function SocialIcons() {
         feed?"
       />
       <Link
-        link="https://www.reddit.com/r/3Blue1Brown/"
-        icon="fab fa-reddit"
-        tooltip="Discussion, community, and all that jazz. 
-        Also, this subreddit is quite literally the only 
-        place I look when considering topic requests."
-      />
-      <Link
-        link="https://www.instagram.com/3blue1brown_animations/"
-        icon="fab fa-instagram"
-        tooltip="Oh, the 3b1b Instagram. So unloved."
+        link="https://www.youtube.com/GrantSanderson"
+        icon="fab fa-youtube"
+        tooltip="Wait, there's a second channel?"
       />
       <Link
         link="http://www.facebook.com/3blue1brown"
@@ -65,12 +58,24 @@ export default function SocialIcons() {
         scantily managed Facebook page. It's pretty much 
         just a place to throw up new videos."
       />
+      <Link
+        link="https://www.reddit.com/r/3Blue1Brown/"
+        icon="fab fa-reddit"
+        tooltip="Discussion, community, and all that jazz. 
+        Also, this subreddit is quite literally the only 
+        place I look when considering topic requests."
+      />
+      <Link
+        link="https://www.instagram.com/randy_the_pi/"
+        icon="fab fa-instagram"
+        tooltip="The adventures of Randy the pi"
+      />
     </div>
   );
 }
 
 // social link
-function Link({ link, icon, tooltip }) {
+function Link({ link, icon, tooltip, label = "" }) {
   return (
     <NextLink href={link} passHref>
       <Tooltip content={tooltip}>

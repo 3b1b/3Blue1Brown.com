@@ -28,7 +28,21 @@ export default function LessonGallery({ show = "topic" }) {
       return lessons;
     }
 
-    return lessons.filter((lesson) => matchesSearch(lesson, searchText));
+    return lessons
+      .filter((lesson) => matchesSearch(lesson, searchText))
+      .sort((a, b) => {
+        if (a.topic === b.topic) {
+          if (typeof a.chapter === "number") {
+            const topic = topics.find((t) => t.name === a.topic);
+            if (!topic) return 0;
+            return (
+              topic.lessons.indexOf(a.slug) - topic.lessons.indexOf(b.slug)
+            );
+          }
+        }
+
+        return new Date(b.date) - new Date(a.date);
+      });
   }, [lessons, view, searchText]);
 
   const googleURL = new URL("https://google.com/search");

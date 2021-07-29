@@ -7,4 +7,361 @@ video: YG15m2VwSjA
 source: _2017/eoc/chapter4.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+> “Using the chain rule is like peeling an onion: you have to deal with each layer at a time, and if it is too big you will start crying.”
+> (Anonymous professor)
+
+## Introduction
+
+In the last videos I talked about the derivatives of simple functions, things like powers of $x$, $\sin(x)$, and exponentials, the goal being to have a clear picture or intuition to hold in your mind that explains where these formulas come from.
+
+Most functions you use to model the world involve mixing, combining and tweaking these simple functions in some way; so our goal now is to understand how to take derivatives of more complicated combinations; where again, I want you to have a clear picture in mind for each rule.
+
+This really boils down into three basic ways to combine functions together: **Adding** them, **multiplying** them, and putting one inside the other; also known as **composing** them. Sure, you could say subtracting them, but that’s really just multiplying the second by $-1$, then adding. Likewise, dividing functions is really just the same as plugging one into the function $1/x$, then multiplying.
+
+Most functions you come across just involve layering on these three types of combinations, with no bound on how monstrous things can become. But as long as you know how derivatives play with those three types of combinations, you can always just take it step by step and peel through the layers.
+
+So, the question is, if you know the derivatives of two functions, what is the derivative of their sum, of their product, and of the function compositions between them?
+
+## Sum rule
+
+<Figure
+  image="figures/sum-rule.svg"
+  caption="Derivative Sum Rule for the function $f(x) = g(x) + h(x)$"
+/>
+
+The sum rule is the easiest, if somewhat tongue-twisting to say out loud: The derivative of a sum of two functions is the sum of their derivatives. But it’s worth warming up with an example and *really* thinking through what it means to take a derivative of a sum of two functions, since the derivative patterns for products and function composition won’t be so straight forward, and will require this kind of deeper thinking.
+
+For example, let's think about this function $f(x) = \sin(x) + x^2$. It's a function where, for every input, you add together the values of $\sin(x)$ and $x^2$ at that point.
+
+<Figure
+  image="figures/sum-rule-example-graph.svg"
+  video="figures/sum-rule-2.16-2.25-trimmed.mp4"
+/>
+
+Given the input $x = 0.5$, the output of the function is the height of the sine graph represented by the blue bar **plus** the height of the $x^2$ parabola represented by the green bar.
+
+<Figure
+  image="figures/sum-rule-detail-stacked.svg"
+/>
+
+For the derivative, you ask what happens as you nudge the input slightly, maybe increasing it to $0.5 + dx$. The difference in the value of $f$ between these two values is what we call $df$.
+
+<Figure
+  image="figures/sum-rule-detail-stacked-df.svg"
+  video="figures/sum-rule-2.30-3.00-faster.mp4"
+/>
+
+Well, pictured like this, I think you’ll agree that the total change in height is whatever the change to the sine graph is, what we might call $d\left(\sin(x)\right)$, plus whatever the change to $x^2$ is, $d(x^2)$.
+
+<Figure
+  image="figures/sum-rule-detail-stacked-dx.svg"
+  video="figures/sum-rule-3.06-3.24.mp4"
+/>
+
+This gives us $df$ as the sum of change of the two functions.
+
+<Figure
+  image="figures/sum-rule-example-equation.svg"
+/>
+
+We know the derivative of sine is cosine, and what that means is that this little change $d\left(\sin(x)\right)$ would be about $\cos(x) \cdot dx$. It’s proportional to the size of $dx$, with a proportionality constant equal to cosine of whatever input we started at. <!-- TODO: possibly explain  -->Similarly, because the derivative of $x^2$ is $2x$, the change in the height of the $x^2$ graph is about $2x \cdot dx$.
+
+<Figure
+  image="figures/sum-rule-example-nudge.svg"
+/>
+
+So, $\frac{df}{dx}$, the ratio of the tiny change to the sum function to the tiny change in $x$ that caused it, is indeed $\cos(x)+2x$, the sum of the derivatives of its parts.
+
+<Figure
+  image="figures/sum-rule-example-derivative.svg"
+/>
+
+<Question
+  question="What is the derivative of the function $f(x) = x^4 + \cos(x)$?"
+  choice1="$4x^3 - \sin(x)$"
+  choice2="$4x^3 + \sin(x)$"
+  answer={1}
+>
+
+Start by setting up the derivative of the function.
+
+$$
+\frac{d}{dx }\left( f(x) \right) = \frac{d}{dx }\left(  x^4 + \cos(x) \right)
+$$
+
+Apply the sum rule.
+
+$$
+\frac{df}{dx} = \frac{d}{dx }\left(  x^4 \right) + \frac{d}{dx }\left(  \cos(x) \right)
+$$
+
+Take the derivative of the two functions.
+
+$$
+\frac{df}{dx} = 4x^3 + (- \sin(x))
+$$
+
+Simplify.
+
+$$
+\frac{df}{dx} = 4x^3 - \sin(x)
+$$
+
+</Question>
+
+## Product rule
+
+Things are a bit different for the product of two functions. Let’s think through why, in terms of tiny nudges. In this case, I don’t think graphs are our best bet for visualizing things. Pretty commonly in math, all levels of math really, if you’re dealing with a product of two things, it helps to try to understand it as some form of area.
+
+For example, for the function $\sin(x) \cdot x^2$, you might try to configure some mental setup of a box whose side-lengths are $\sin(x)$ and $x^2$.
+
+<Figure
+  image="figures/product-rule-example-area.svg" 
+/>
+
+What would that mean? Well, since these are functions, you might think of these sides as adjustable; dependent on the value of $x$, which you might think of as a number that you can freely adjust.
+
+<Figure
+  image="figures/product-rule-example-areas.svg"
+  video="figures/product-rule-sine-length.mp4"
+  show="video"
+/>
+
+So, just getting the feel for this, focus on that top side, whose changes as the function $\sin(x)$. As you change the value of $x$ up from $0$, it increases up to a length of $1$ as $\sin(x)$ moves towards its peak. After that, it starts decreasing as $\sin(x)$ comes down from $1$.
+And likewise, that height changes as $x^2$.
+
+So $f(x)$, defined as this product, is the area of this box. For the derivative, think about how a tiny change to $x$ by $dx$ influences this area; that resulting change in area is $df$. That nudge to $x$ causes the width to change by some small $d\left( \sin(x)\right)$, and the height to change by some $d(x^2)$.
+
+<Figure
+  image="figures/product-rule-example-area-df-labeled.svg" 
+/>
+
+This gives us three little snippets of new area: A thin rectangle on the bottom, whose area is its width, $\sin(x)$, times its thin height, $d(x^2)$; there’s a thin rectangle on the right, whose area is its height, $x^2$, times its thin width, $d\left( \sin(x)\right)$.  And there’s also a bit in the corner. But we can ignore it, since its area will ultimately be proportional to $dx^2$, which becomes negligible as $dx$ goes to $0$. <!-- TODO: footnote for ignoring dx^2 -->
+
+This is very similar to what I showed in the last chapter, with the $x^2$ diagram. Just like then, keep in mind that I’m using somewhat beefy changes to draw things, so we can see them, but in principle think of $dx$ as *very* small, meaning $d(x^2)$ and $d\left(\sin(x)\right)$ are also *very* small.
+
+<Figure
+  image="figures/product-rule-example-area-small-df.svg" 
+/>
+
+So we are interested in finding the change to the **area** of this rectangle represented by the two smaller rectangles highlighted in yellow.
+
+<Figure
+  image="figures/product-rule-example-step-0.svg" 
+/>
+
+Applying what we know about the derivative of sine and $x^2$, that tiny change $d(x^2)$ is $2x \cdot dx$, and that tiny change $d\left(\sin(x)\right)$ is $\cos(x)dx$. 
+
+<Figure
+  image="figures/product-rule-example-step-1.svg" 
+/>
+
+Dividing out by that $dx$, the derivative $\frac{df}{dx}$ is $\sin(x)$ by the derivative of $x^2$, plus $x^2$ by the derivative of sine.
+
+<Figure
+  image="figures/product-rule-example-step-2.svg" 
+/>
+
+This line of reasoning works for any two functions.
+
+<Figure
+  image="figures/product-rule-general.svg" 
+  caption="Generic Product Rule where $f(x) = g(x)h(x)$."
+/>
+
+A common mnemonic for the product rule is to say in your head "left d right, right d left". In this example, $\sin(x) \cdot x^2$, "left d right" means you take the left function, in this case $g(x) = \sin(x)$, times the derivative of the right, $h(x) = x^2$, which gives $2x$. Then you add "right d left": the right function, $x^2$, times the derivative of the left, $\cos(x)$.
+
+Out of context, this feels like kind of a strange rule, but when you think of this adjustable box you can actually see how those terms represent slivers of area. "Left d right" is the area of this bottom rectangle, and “right d left” is the area of this rectangle on the right.
+
+## Constant multiplication
+
+By the way, I should mention that if you multiply by a *constant*, say $2 \cdot \sin(x)$, things end up much simpler. The derivative is just that same constant times the derivative of the function, in this case $2 \cdot \cos(x)$. I’ll leave it to you to pause and ponder to verify that this makes sense. <!--TODO: link to question from last lesson -->
+
+<Accordion title="Explanation">
+
+One way to verify that this is the case is to visualize a constant multiplied by a function as the area of the rectangle with width equal to the function and height equal to the constant. 
+
+<Figure
+  image="figures/constant-multiplication-area.svg" 
+/>
+
+Then, introducing a small nudge $dx$ to the input of the function, you can measure the change in the area highlighted in yellow below.
+
+<Figure
+  image="figures/constant-multiplication-area-df.svg" 
+/>
+
+In the case of $g(x) = \sin(x)$ and $c = 2$ we know that $d(g(x)) = \cos(x) \cdot dx$. This gives us a change in area of $df = 2 \cdot \cos(x) \cdot dx$. Solving for $\frac{df}{dx}$ we get that the derivative is $2\cos(x)$.
+
+</Accordion>
+
+## Chain rule
+
+Aside from addition and multiplication, the other common way to combine functions that comes up all the time is function composition. For example, let’s say we take the function $x^2$, and shove it inside $\sin(x)$ to get a new function, $\sin(x^2)$. Or, in other words, the output of the function $x^2$ gets fed as input to sine function.
+
+What’s the derivative of this new function?
+
+Here I’ll choose yet another way to visualize things, just to emphasize that in creative math, we have lots of options. I’ll put up three number lines. The top one will hold the value of $x$, the second one will represent the value of $x^2$, and the third line will hold the value of $\sin(x^2)$. 
+
+<Figure
+  image="figures/chain-rule-x-1-2.svg" 
+/>
+
+That is, the function $x^2$ gets you from line $1$ to line $2$, and the function sine gets you from line $2$ to line $3$. In the image, I'm showing an $x$ value of $0.5$ on the first number line. So the second number line, which just displays $x^2$, is showing the ouput of the inner function, $0.25$. The third number line shows $\sin(x^2)$, which is really just the sine of the previous value, so $\sin(0.25) \approx 0.247$.
+
+<Question
+  question="What is the value of the composed function given the input $x=2$? To get a hang of this visualization technique, go from the first line to the second line to the third line."
+  choice1="$\sin(2) \approx 0.909$"
+  choice2="$\sin(4) \approx -0.757$"
+  answer={2}
+>
+
+<Figure
+  image="figures/chain-rule-x-2.svg" 
+/>
+
+Using the number line visual, start on $x=2$ and move to the next line using the function $g(x) = x^2$. Plugging in $x=2$ into the function we get $(2)^2 = 4$ on the next numberline which we then feed into the outer function $h(x) = \sin(x)$. 
+
+</Question>
+
+As I shift that value of $x$, maybe up to the value $3$, then the value on the second shifts to whatever $x^2$ is, in this case $9$. And that bottom value, being the $\sin(x^2)$, will go over to whatever $\sin(9)$ is.
+
+<Figure
+  image="figures/chain-rule-x-3.svg" 
+/>
+
+So for the derivative, let’s again think of nudging that $x$-value by some little $dx$. I find it helpful to imagine $x$ starting out as some actual number, maybe $1.5$, and $dx$ as some small number approaching zero, like $0.1$.
+
+<Figure
+  image="figures/chain-rule-dx.svg" 
+/>
+
+The resulting nudge to this second value, the change to $x^2$ caused by such a $dx$, is what we might call $d(x^2)$. You can expand this as $2x \cdot dx$. For our specific input that length would be $2(1.5)dx$, but it helps to keep it written as $d(x^2)$ for now. In fact let me go one step further and give a new name to $x^2$, maybe $h$, so this nudge $d(x^2)$ is just $dh$.
+
+<Figure
+  image="figures/chain-rule-dh.svg"
+  caption="The fact that $\sin(h)$ is moving left while the $dh$ bump is to the right just means that this change $d\left(\sin(h)\right)$ is some negative number."
+/>
+
+Now think of that third value, which is pegged at $\sin(h)$. Its change is $d\left(\sin(h)\right)$, the tiny change *caused* by the nudge $dh$. Well, we know the derivative of sine, so we can expand $d\left(\sin(h)\right)$ as $\cos(h) \cdot dh$; that’s what it means for the derivative of sine to be cosine.
+
+<Figure
+  image="figures/chain-rule-example-dh-derivative.svg"
+  caption="The derivative of $f(x) = \sin(x^2)$ is reframed by using the transformation $h=x^2$."
+/>
+
+Now we can unfold the transformation, replacing $h$ with $x^2$ and $dh$ with $d(x^2)$. So the bottom nudge becomes $\cos(x^2)d(x^2)$ and the middle nudge becomes $d(x^2)$. Of course, we also know that $d(x^2) = 2x \cdot dx$ and so we can substitute that into the diagram as well.
+
+<Figure
+  image="figures/chain-rule-example-dh-expanded.svg"
+/>
+
+It’s always good to remind yourself of what this all actually means. In this case where we started at $x = 1.5$ up top, this means that the size of that nudge on the third line is about $\cos(1.5^2) \cdot 2(1.5)$ multiplied by the size of $dx$; proportional to the size of $dx$, where the derivative here gives us that proportionality constant.
+
+Since the nudge on the third line represents the change to our initial function $df$ when we introduced the small nudge $dx$, we can rearrange the expression and this gives us the derivative of the function.
+
+<Figure
+  image="figures/chain-rule-example-derivative.svg" 
+/>
+
+Notice what we have here, we have the derivative of the outside function, still taking in the unaltered inside function, and we multiply it by the derivative of the inside function.
+
+<Figure
+  image="figures/chain-rule-annotated.svg"
+/>
+
+Again, there’s nothing special about $\sin(x)$ and $x^2$. If you have two functions $g(x)$ and $h(x)$, the derivative of their composition function $g\left(h(x)\right)$ is the derivative of $g$, evaluated at $h(x)$, times the derivative of $h$. This is what we call the “chain rule”.
+
+<Figure
+  image="figures/chain-rule-general-annotated-alt.svg"
+  caption="The chain rule for the function $f(x) = g(h(x))$"
+/>
+
+Notice, for the derivative of $g$, I’m writing it as $\frac{d}{dh}$ instead of $\frac{d}{dx}$. On the symbolic level, this serves as a reminder that you still plug in the inner function to this derivative. But it’s also an important reflection of what this derivative of the outer function actually represents.
+
+Remember, in our three-lines setup, when we took the derivative of sine on the bottom, we expanded the size of the nudge $d(\sin)$ as $\cos(h) \cdot dh$. This was because we didn’t immediately know how the size of that bottom nudge depended on $x$, that’s kind of the whole thing we’re trying to figure out, but we could take the derivative with respect to the intermediate variable $h$. That is, figure out how to express the size of that nudge as multiple of $dh$. Then it unfolded by figuring out what $dh$ was. <!-- I'm not sure about "unfolded here" -->
+
+So in this chain rule expression we’re saying to look at the ratio between the tiny change in $g$ and the tiny change in $h$ that caused it, where $h$ is the value that we’re plugging into $g$. Then multiply that by the tiny change in $h$ divided by the tiny change in $x$ that caused it.
+
+<Figure
+  image="figures/chain-rule.svg"
+/>
+
+The $dh$’s cancel to give the ratio between a tiny change in the final output, and the tiny change to the input that, through a certain chain of events, brought it about. That cancellation of $dh$ is more than just a notational trick, it’s a genuine reflection of the tiny nudges that underpin calculus.
+
+## Summary
+
+So those are the three basic tools in your belt to handle derivatives of functions that combine many smaller things: The sum rule, the product rule and the chain rule. I should say, there’s a big difference between knowing what the chain rule and product rules are, and being fluent with applying them in even the most hairy of situations.
+
+I said this at the start of the series, but it’s worth repeating: Watching and reading about the mechanics of calculus will never substitute for practicing them yourself, and building the muscles to do these computations yourself. I wish I could offer to do that for you, but I’m afraid the ball is in your court, my friend, to seek out practice.
+
+What I can offer, and what I hope I have offered, is to show you where these rules come from, to show that they’re not just something to be memorized and hammered away; but instead are natural patterns that you too could have discovered by just patiently thinking through what a derivative means.
+
+In the next lesson, I’ll be talking about related rates.
+
+## Exercises
+
+### $\sin(x)^2$
+
+As a fun exercise, think about the derivative of $\sin(x)^2$. First, use the chain rule, thinking of this as shoving the function $\sin(x)$ into the function $x^2$, then taking the derivative of the outside multiplied by the derivative of the inside.
+
+Then, think of it using the product rule, interpreting it as $\sin(x) \cdot \sin(x)$, and think about how this relates to the visual for the derivative of $x^2$ shown in the last video. That should give a deeper feel for the chain rule.
+
+<Accordion title="Chain Rule Explanation">
+
+Setup three number lines to represent the function composition. Then nudge the input $x$ by a small amount $dx$. Remember, we are interested in finding $df$, the change to the function represented on the bottom number line.
+
+<Figure
+  image="figures/exercise-1-chain-rule-setup.svg"
+/>
+
+Substitute $h=\sin(x)$ into the function composition. That way, $(\sin (x))^{2}$ becomes $(h)^{2}$. And we know that the change to $h^2$ caused by some small nudge $dh$ is $2h \cdot dh$.
+
+<Figure
+  image="figures/exercise-1-chain-rule-substitution.svg"
+/>
+
+Unfold the composition and observe that $dh = \cos(x) \cdot dx$, because we know that the change in sine is $d(\sin(x)) = \cos(x) \cdot dx$.
+
+<Figure
+  image="figures/exercise-1-chain-rule-unfolding.svg"
+/>
+
+This gives us that the change to the function is $df = 2 \sin(x) \cdot \cos(x) dx$ which we can rearrange for the derivative of the function.
+
+$$
+\frac{df}{dx} = 2 \sin(x) \cos(x)
+$$
+ 
+</Accordion>
+
+<Accordion title="Product Rule Explanation">
+
+To model the derivative of this function, start by visualizing the function as the area of the square with side lengths $\sin(x)$.
+
+<Figure
+  image="figures/exercise-1-product-rule-area.svg"
+/>
+
+Then, imagine nudging the input of the function $x$ by a small amount $dx$. This introduces three new rectangles of area.
+
+<Figure
+  image="figures/exercise-1-product-rule-area-df.svg"
+/>
+
+From past chapters we know that the expression $d(\sin(x))$ is $\cos(x) \cdot dx$. Using this information we can express the changing area of the function as shown below. As before, the small rectangle's area in the bottom right corner is negligible.
+
+<Figure
+  image="figures/exercise-1-product-rule-derivative.svg"
+/>
+
+Dividing both sides by $dx$ we get the same derivative that we found when applying the chain rule.
+
+$$
+\frac{df}{dx} = 2 \sin(x) \cos(x)
+$$
+
+</Accordion>

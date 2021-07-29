@@ -60,24 +60,20 @@ const Nav = () => {
         text="Lessons"
         tooltip="Various maths topics, in video and text form"
       />
-      <NavLink link="/extras" text="Extras" tooltip="Blog, podcast, and more" />
       <NavLink
-        link="/about"
-        text="About"
-        tooltip="What and who is 3blue1brown"
+        link="/podcast"
+        text="Podcast"
+        tooltip="Interviews about math and education"
       />
-      <NavLink
-        link="/contact"
-        text="Contact"
-        tooltip="Frequently asked questions and contact info"
-      />
+      <NavLink link="/blog" text="Blog" tooltip="Writing about math and more" />
+      <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
 
       <div className={styles.break} />
 
       <NavLink
-        link="https://www.youtube.com/c/3blue1brown?sub_confirmation=1"
-        text="Subscribe"
-        tooltip="Subscribe on YouTube"
+        link="https://www.patreon.com/3blue1brown"
+        text="Memberships"
+        tooltip="Help fund future lessons"
       />
       <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
@@ -85,9 +81,14 @@ const Nav = () => {
         tooltip="Shirts, plushies, and more"
       />
       <NavLink
-        link="https://www.patreon.com/3blue1brown"
-        text="Support"
-        tooltip="See membership benefits"
+        link="/contact"
+        text="Contact"
+        tooltip="FAQs and contact info"
+      />
+      <NavLink
+        link="/about"
+        text="About"
+        tooltip="What and who is 3blue1brown"
       />
     </nav>
   );
