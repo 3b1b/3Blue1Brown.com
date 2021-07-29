@@ -110,7 +110,7 @@ const getMediaDimensionsFromDir = async (directory) => {
     return new Promise((resolve) => {
       if (type === "image") {
         sizeOfImage(fileName, (err, dims) => {
-          resolve(dims || undefined);
+          resolve(dims || null);
         });
         /*
       } else if (type === "video") {
@@ -120,7 +120,7 @@ const getMediaDimensionsFromDir = async (directory) => {
       */
       } else {
         console.log("Skipped:", fileName);
-        resolve();
+        resolve(null);
       }
     });
   }
@@ -130,7 +130,9 @@ const getMediaDimensionsFromDir = async (directory) => {
   await Promise.all(
     mediaFiles.map((fileName) =>
       getDimensions(fileName).then((dims) => {
-        dimensionsMap[fileName.slice(6)] = dims;
+        if (dims) {
+          dimensionsMap[fileName.slice(6)] = dims;
+        }
       })
     )
   );
