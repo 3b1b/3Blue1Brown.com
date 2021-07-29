@@ -232,6 +232,20 @@ function updateScale(sketch) {
   SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
 }
 
+function getOpacity(sketch, frequencies) {
+  function sum(frequencies) {
+    let sum = 0;
+    for (let i = 0; i < frequencies.length; i++) {
+      sum += frequencies[i];
+    }
+    return sum;
+  }
+
+  let mergedFreq = sum(frequencies);
+  mergedFreq = (mergedFreq > 0.1) ? 0.1 : mergedFreq;
+  return sketch.lerp(0.3, 1, mergedFreq / 0.1);
+}
+
 export const drawWinder = (sketch, frequencies, winding_freq, origin, size) => {
   // Takes in an array of frequencies and draws the winded up graph
   // Origin is an (x,y) pair of the origin in the canvas
@@ -250,7 +264,10 @@ export const drawWinder = (sketch, frequencies, winding_freq, origin, size) => {
 
   sketch.strokeWeight(2);
   let wireColor = sketch.color(WAVE_COLOR);
-  wireColor.setAlpha(255 * 0.3);
+  // We would like the opacity to be 0.3 when winding frequency is near 0
+  // But the opacity should be 1 when winding frequency is >= 0.1
+  let opacity = getOpacity(sketch, frequencies);
+  wireColor.setAlpha(255 * opacity);
   sketch.stroke(wireColor);
   drawWire(sketch, frequencies, winding_freq, origin, size);
 
