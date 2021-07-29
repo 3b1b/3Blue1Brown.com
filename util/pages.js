@@ -112,10 +112,12 @@ const getMediaDimensionsFromDir = async (directory) => {
 
           if (type) {
             getMediaDimensions(fileName, type).then((result) => {
+              console.log("Succeeded:", fileName);
               dimensionsMap[fileName.slice(6)] = result;
               resolve();
             });
           } else {
+            console.log("Skipped:", fileName);
             resolve();
           }
         })
@@ -185,6 +187,7 @@ export const pageProps = async (slug) => {
 export const lessonProps = async (slug) => {
   const file = searchLessonFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
+  console.log(`=== Getting media dimensions for ${slug} ===`);
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
@@ -195,6 +198,7 @@ export const lessonProps = async (slug) => {
 export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
+  console.log(`=== Getting media dimensions for ${slug} ===`);
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
