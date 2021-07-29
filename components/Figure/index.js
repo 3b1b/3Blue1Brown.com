@@ -58,7 +58,7 @@ const autoSize = ({ width, height }, sectionWidth) => {
 
   return {
     width: page * Math.sqrt(width / height / ratio) || "100%",
-    maxHeight: page * Math.sqrt(height / width / ratio) || "100%",
+    height: page * Math.sqrt(height / width / ratio) || undefined,
   };
 };
 
@@ -91,6 +91,24 @@ export default function Figure({
   const { dir } = useContext(PageContext);
 
   const sectionWidth = useSectionWidth();
+
+  // Check if this file's dimensions were saved at build time,
+  // and if so, use those. (Otherwise that data will be populated
+  // as soon as the media file actually loads.)
+  const { mediaDimensions } = useContext(PageContext);
+  useEffect(() => {
+    const imagePath = dir + imageSrc;
+    const imageDims = mediaDimensions[imagePath];
+    if (imageDims) {
+      setImage(imageDims);
+    }
+
+    const videoPath = dir + videoSrc;
+    const videoDims = mediaDimensions[videoPath];
+    if (videoDims) {
+      setVideo(videoDims);
+    }
+  }, [dir, imageSrc, videoSrc, mediaDimensions]);
 
   // determine frame dimensions
   let frame = {};
