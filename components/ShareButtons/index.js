@@ -40,7 +40,7 @@ export default function ShareButtons({ url, text = "" }) {
   return (
     <div>
       <div className={styles.header}>
-        Enjoy this post? Consider sharing it.
+        Enjoy this lesson? Consider sharing it.
       </div>
       <Clickable
         link={twitterURL.href}

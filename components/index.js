@@ -1,4 +1,5 @@
 import Accordion from "./Accordion";
+import Announcement from "./Announcement";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
 import Center from "./Center";
@@ -35,6 +36,7 @@ import Twitter from "./Twitter";
 // components to automatically import into all .mdx files
 const components = {
   Accordion,
+  Announcement,
   BlogPostList,
   BookShelf,
   Book,
