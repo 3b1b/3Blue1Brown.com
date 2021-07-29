@@ -34,6 +34,16 @@ config = withImages(config);
 
 config = withYAML(config);
 
+// Configure Webpack to allow using `sharp`, which is required
+// for the build-time collection of image & video file dimensions
+config = {
+  ...config,
+  webpack(config) {
+    config.externals["sharp"] = "commonjs sharp";
+    return config;
+  },
+};
+
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
 config = withSentryConfig(config, {
