@@ -2,9 +2,283 @@
 title: Implicit differentiation, what's going on here?
 description: How to think about implicit differentiation in terms of functions with multiple inputs, and tiny nudges to those inputs.
 date: 2017-05-03
-chapter: 6
+chapter: 7
 video: qb40J4N1fa4
 source: _2017/eoc/chapter6.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+> "Do not ask whether a statement is true until you know what it means."  
+> \- Errett Bishop
+
+Let me share with you something I found particularly weird when I was a student first learning calculus.
+
+## Implicit Curves
+
+Let's say you have a circle with radius $5$ centered at the origin of the $xy$-coordinate plane. This shape is defined using the equation $x^2 + y^2 = 5^2$. That is, all points on this circle are a distance $5$ from the origin, as encapsulated by the pythagorean theorem where the sum of the squares of the legs of this triangle equals the square of the hypotenuse, $5^2$.
+
+<Figure
+  image="figures/circle-radius-5.svg" 
+/>
+
+<!-- TODO: add animation of point traveling around perimeter of circle -->
+
+And suppose you want to find the slope of a tangent line to this circle, maybe at the point $(x, y) = (3, 4)$.
+
+<Figure
+  image="figures/circle-tangent-line.svg" 
+/>
+
+Now, if you're savvy with geometry, you might already know that this tangent line is perpendicular to the radius line touching that point. But let's say you don't already know that, or that you want a technique that generalizes to curves other than circles.
+
+As with other problems about the slopes of tangent lines to curves, they key thought here is to zoom in close enough that the curve basically looks just like its own tangent line, then ask about a tiny step along that curve.
+
+<Figure
+  image="figures/circle-tangent-line-step-detail.svg"
+  caption="The $y$-component of that little step *along the curve* is what you might call $dy$, and the $x$-component is a little $dx$, so the slope that we want is the rise over run $dy/dx$."
+/>
+
+But unlike other tangent-slope problems in calculus, this curve is not the graph of a function. We cannot take a simple derivative, like we have in the past, by asking about the size of a tiny nudge to the output of a function caused by some tiny nudge to the input. In the equation $x$ is not an input and $y$ is not an output, they're both just interdependent values related by some equation.
+
+This is called an "implicit curve"; it's just the set of all points $(x, y)$ that satisfy some property written in terms of the two variables $x$ and $y$.
+
+The procedure for how you actually find $dy/dx$ for curves like this is the thing I found very weird as a calculus student. You take the derivative of both sides of this equation like this:
+- For the derivative of $x^2$ you write $2x \cdot dx$.
+- Similarly, $y^2$ becomes $2y \cdot dy$.
+- The derivative of the constant $5^2$ on the right is just $0$.
+
+<Figure
+  image="figures/implicit-differentiation.svg" 
+/>
+
+You can see why this feels strange, right? What does it mean to take a derivative of an expression with multiple variables? And why are we tacking on the little $dy$ and $dx$ in this way? Unlike with functions, there isn't clear flow from input to output. But if you just blindly move forward with what you get here, you can rearrange this equation to find an expression for $dy/dx$, which in this case comes out to $-x/y$.
+
+<Figure
+  image="figures/implicit-differentiation-derivative.svg" 
+/>
+
+So at a point with coordinates $(x, y) = (3, 4)$, that slope would be $-3/4$, evidently.
+This strange process is called "implicit differentiation". Don't worry, I have an explanation for how you can interpret taking a derivative of an expression with two variables like this. But first, I want to set aside this particular problem, and show how this is related to a different type of calculus problem, something called a related rates problem.
+
+## Related Rates
+
+Imagine a $5$ meter long ladder held up against a wall, where the top of the ladder starts off $4$ meters above the ground, which&mdash;by the pythagorean theorem&mdash;means the bottom is $3$ meters away from the wall.
+
+<Figure
+  image="figures/ladder-setup.png" 
+/>
+
+And say it's slipping down the wall in such a way that the top of the ladder is dropping at $1$ meter per second. In that initial moment, what is the rate at which the bottom of the ladder is moving away from the wall?
+
+<Figure
+  image="figures/ladder-rate-of-change.png"
+  video="figures/ladder-rate-of-change.mp4"
+  show="video"
+/>
+
+It's interesting, right? That distance from the bottom of the ladder to the wall is $100\%$ determined by the distance between the top of the ladder and the floor, so we should have enough information to figure out how the rates of change for each value depend on each other, but it might not be entirely clear how exactly you relate those two.
+
+First thing's first, it's always nice to give names to the quantities we care about. So label the distance from the top of the ladder to the ground $y(t)$, written as a function of time because it's changing. Likewise, label the distance between the bottom of the ladder and the wall $x(t)$. They key equation that relates these terms is the pythagorean theorem: $x(t)^2 + y(t)^2 = 5^2$. What makes this equation powerful is that it's true at all points in time.
+
+<Figure
+  image="figures/ladder-time-variable.png" 
+/>
+
+One way to solve this would be to isolate $x(t)$, figure out what what $y(t)$ must be based this $1$ meter/second drop rate, then take a derivative of the resulting function; $dx/dt$, the rate at which $x$ is changing with respect to time.
+
+<Figure
+  image="figures/ladder-traditional-derivative.png" 
+/>
+
+And that's fine; if you're willing to apply the chain rule a few times, this method will definitely work for you. But I want to show a different way to think about the same problem.
+
+This left-hand side of the equation is a function of time, right? Which just so happens to equal a constant, meaning this value evidently doesn't change while time passes. 
+
+<Figure
+  image="figures/ladder-function-of-time.png" 
+/>
+
+However, this expression is dependent on time which we can manipulate like any other function with $t$ as an input. In particular, we can take a derivative of the left hand side, which is a way of saying "If I let a little bit of time, $dt$, pass, which causes $y$ to slightly decrease, and $x$ to slightly increase, how much does this expression change?"
+
+On the one hand, we know that derivative should be $0$, since this expression is a constant, and constants don't care about your tiny nudge to time; they remain unchanged. But on the other hand, what do you get when you compute the derivative of this as a function of time?
+
+<Figure
+  image="figures/implicit-differentiation-function-of-time.svg" 
+/>
+
+The derivative of $x(t)^2$ is $2 \cdot x(t)$ times the derivative of $x$. That's the chain rule in action. $2x \cdot dx$ represents the size of a change to $x^2$ caused by a change to $x$, and then we're dividing out by $dt$. Likewise, the rate at which $y(t)^2$ is changing is $2 \cdot y(t)$ times the derivative of $y$.
+
+<Figure
+  image="figures/implicit-differentiation-function-of-time-derivative.svg" 
+/>
+
+Now, evidently, this whole expression must be zero, and that's an equivalent of saying $x^2+y^2$ must not change while the ladder moves. And at the very start, $t=0$, the height $y(t)$ is $4$ meters, the distance $x(t)$ is $3$ meters, and since the top of the ladder is dropping at a rate of $1$ meter per second, that derivative $dy/dt$ is $-1$ meters/second.
+
+<Figure
+  image="figures/related-rates-example.svg" 
+/>
+
+Now this gives us enough information to isolate the derivative $dx/dt$, which, when you work it out, it comes out to be $4/3$ meters per second.
+
+<!-- TODO: insert illustration of ladder? -->
+
+## Implicit Differentiation
+
+Now compare this to the problem of finding the slope of the tangent line to the circle. In both cases, we had the equation $x^2 + y^2 = 5^2$, and in both cases we ended up taking the derivative of each side of this expression. But for the ladder problem, these expressions were functions of time, so taking the derivative has a clear meaning: it's the rate at which this expression changes as time change.
+
+What makes the circle situation strange is that rather than saying a small amount of time $dt$ has passed, which causes $x$ and $y$ to change, the derivative has the tiny nudges $dx$ and $dy$ both just floating free, not tied to some other common variable like time.
+
+Let me show you how you can think about this: Give this expression $x^2 + y^2$ a name, maybe $S$. $S$ is essentially a function of two variables; it takes every point $(x, y)$ on the plane and associates it with a number.
+
+<Figure
+  image="figures/function-of-two-variables.svg" 
+/>
+
+For points on this circle, that number happens to be $25$.
+
+<Figure
+  image="figures/function-of-two-variables-implicit-curve.svg" 
+  caption="If you step off that circle away from the center, that value would be bigger. For other points $(x, y)$ closer to the origin, that value is smaller."
+/>
+
+What it means to take a derivative of this expression, a derivative of $S$, is to consider a tiny change to both these variables, some tiny change $dx$ to $x$, and some tiny change $dy$ to $y$ – and not necessarily one that keeps you on this circle, by the way, it's just some tiny step in any direction on the $xy$-plane.
+
+<Figure
+  image="figures/circle-dx-dy.svg" 
+/>
+
+From there you ask how much the value of $S$ changes. That difference in the value of $S$, from the original point to the nudged point, is what we would call "$dS$" or "the change to the function $S$".
+
+<Figure
+  image="figures/function-of-two-variables-dx-dy-algebra.svg"
+  caption="As we saw in previous lessons, these $dx$ and $dy$ expressions raised to the second power are neglible as the nudges approaches zero."
+/>
+
+For example, say we're starting at a point $(3,4)$, and let's just say that step $dx$ is $-0.02$, and that $dy$ is $-0.01$. Then the decrease to $S$, the amount that $x^2+y^2$ changes over that step, will be around $2(3)(-0.02) + 2(4)(-0.01)$.
+
+That's what this derivative expression $2x \cdot dx + 2y \cdot dy$ means. It tells you how much the value $x^2+y^2$ changes, as determined by the point $(x, y)$ where you started, and the tiny step $(dx, dy)$ that you take.
+
+As with all things derivative, this is only an approximation, but it's one that gets more and more true for smaller and smaller choices of $dx$ and $dy$.
+
+<!-- the phrase "you're essentially saying you want to ensure that this value $S$ doesn't change" seems like a consequence of this example and the shape of the function S(x,y). I really like it because it has very nice geometric meaning, but maybe reword the following paragraph to be more general and then mention what it means for dS to be equal to 0 -->
+
+The key point is that when you restrict yourself to steps along this circle, you're essentially saying you want to ensure that this value $S$ doesn't change; it starts at a value of $25$, and you want to keep it at a value of $25$; that is, $dS$ should be $0$. So setting this expression $2x \cdot dx + 2y \cdot dy$ equal to $0$ is the condition under which a tiny step stays on the circle.
+
+<Figure
+  image="figures/circle-implicit-derivative.svg" 
+/>
+
+Again, this is only an approximation. Speaking more precisely, that condition keeps you on a tangent line of the circle, not the circle itself, but for tiny enough steps those are essentially the same thing.
+
+## Another example
+
+<!-- Alt title: Finding the derivative of $\sin(x) \cdot y^2 = x$ -->
+
+Of course, there's nothing special about the expression $x^2+y^2 = 5^2$ here. You could have some other expression involving $x$'s and $y$'s, representing some other curve, and taking the derivative of both sides like this would give you a way to relate $dx$ to $dy$ for tiny steps along that curve.
+
+It's always nice to think through more examples, so consider the expression $\sin(x) \cdot y^2 = x$, which corresponds to many U-shaped curves on the plane. Those curves represent all the points $(x, y)$ of the plane where the value of $\sin(x) \cdot y^2$ equals the value of $x$.
+
+<Figure
+  image="figures/implicit-curve-example.svg" 
+/>
+
+Now imagine taking some tiny step with components $(dx, dy)$, and not necessarily one that keeps you on the curve.
+
+<Figure
+  image="figures/implicit-curve-example-detail.svg" 
+/>
+
+Taking the derivative of each side of the equation $\sin(x) \cdot y^2 = x$ will tell us how much the value of that side changes during this step.
+On the left side, the product rule tells us that this should be "left d-right plus right d-left": $\sin(x)$ times the change to $y^2$, which is $2y \cdot dy$, plus $y^2$ times the change to $\sin(x)$, which is $\cos(x) \cdot dx$.
+The right side is simply $x$, so the size of a change to the value is exactly $dx$, right? [^1]
+
+[^1]: You might be thinking that the derivative of $x$ is just $1$, and yes the derivative of the function $f(x) = x$ is $df/dx = 1$. However, in this case. we are interested in how much the value of that side changes because of the small step which is analogous for calculating just $df$ in the case of the function $f(x) = x$.
+
+<Figure
+  image="figures/implicit-curve-example-derivative.svg" 
+/>
+
+Setting these two sides equal to each other is a way of saying "whatever your tiny step with coordinates $(dx, dy)$ is, if it's going to keep us on this curve, the values of both the left-hand side and the right-hand side must change by the same amount." That's the only way this top equation can remain true.
+
+From there, depending on what problem you're solving, you could manipulate further with algebra, where perhaps the most common goal is to find $dy$ divided by $dx$.
+
+
+## Finding derivative of ln(x)
+
+As one more example, let me show how you can use this technique to help find new derivative formulas. I've mentioned in a footnote video that the derivative of $e^x$ is itself, but what about the derivative of its inverse function the natural log of $x$?
+
+<Figure
+  image="figures/natural-logarithm-plot.svg" 
+/>
+
+The graph of $\ln(x)$ can be thought of as an implicit curve; all the points on the $xy$-plane where $y = \ln(x)$, it just happens to be the case that the $x$'s and $y$'s of this equation aren't as intermingled as they were in other examples. The slope of this graph, $dy/dx$, should be the derivative of $\ln(x)$, right?
+
+Well, to find that, first rearrange this equation $y = \ln(x)$ to be $e^y = x$. This is exactly what the natural log of $x$ means; it's saying "$e$ to the what equals $x$?"
+
+<Figure
+  image="figures/natural-logarithm-and-exponential-functions-diagonal-line.svg"
+  caption="Graphically this should make sense too, since you can draw a diagonal line and reflect the functions to see that they are inverses of eachother."
+/>
+
+Since we know the derivative of $e^y$, we can take the derivative of both sides of this equation $y = \ln(x)$, effectively asking how a tiny step with components $(dx, dy)$ changes the value of each side.
+
+<Figure
+  image="figures/implicit-natural-log.svg" 
+/>
+
+To ensure the step stays on the curve, the change to the left side of the equation, which is $e^y \cdot dy$, must equal the change to the right side, which is $dx$.
+
+Rearranging, this means $dy/dx$, the slope of our graph, equals $1/e^y$.
+
+<Figure
+  image="figures/implicit-natural-log-dy-over-dx.svg" 
+/>
+
+And when we're on this curve, $e^y$ is by definition the same as $x$, so evidently the slope is $1/x$.
+
+<Figure
+  image="figures/implicit-natural-log-derivative.svg" 
+/>
+
+An expression for the slope of the graph of a function in terms of $x$ like this is the derivative of that function, so the derivative of $\ln(x)$ is $1/x$.
+
+## Exercises
+
+<Question
+  question="What is the slope of the tangent line at the point $(1, \sqrt{2})$ for the implicit curve defined by the equation $y^2 - x^2 = 1$? Compare this with the derivative at the point $x=1$ for the function $f(x) = \sqrt{1 + x^2}$."
+  choice1="$1$"
+  choice2="$\sqrt{2}$"
+  choice3="$\frac{1}{\sqrt{2}}$"
+  choice4="$\frac{1}{2}$"
+  answer={3}
+>
+
+Start by taking the implicit derivative of both sides of the equation $y^2 - x^2 = 1$.
+
+$$2y \cdot dy - 2x \cdot dx = 0$$
+
+Rearrange the equation to solve for $dy/dx$.
+
+$$\frac{dy}{dx} = \frac{x}{y}$$
+
+Substitute the point $(1,\sqrt{2})$ into the expression.
+
+$$\frac{dy}{dx} = \frac{1}{\sqrt{2}}$$
+
+Let's check our work with the function $f(x) = \sqrt{1 + x^2}$ which forms the same curve as the implicit equation $y^2 - x^2 = 1$ in the first and second quadrants of the $xy$-plane. Start by taking the derivative of the function.
+
+$$\frac{df}{dx} = \frac{1}{2} \frac{1}{\sqrt{1 + x^2}} \cdot 2x$$
+
+$$\frac{dy}{dx} = \frac{x}{\sqrt{1 + x^2}}$$
+
+Substituting $x=1$ into the derivative we get the same answer so our confidence in our work should go up.
+
+</Question>
+
+## Next Lesson
+
+By the way, all of this is a little peek into multivariable calculus, where you consider functions with multiple inputs, and how they change as you tweak those inputs. The key, as always, is to have a clear image in your head of what tiny nudges are at play, and how exactly they depend on each other.
+
+Next up, I'll talk about about what exactly a limit is, and how it's used to formalize the idea of a derivative.
