@@ -1,0 +1,11 @@
+.bookShelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -8px;
+}
+
+.book {
+  display: block;
+  margin: 8px;
+}

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
@@ -26,15 +27,23 @@ const TableOfContents = () => {
   }, [wideEnough]);
 
   // when page first loads
+  const router = useRouter();
   useEffect(() => {
-    // set intial "enough" states
-    setDownEnough(getDownEnough());
-    setUpEnough(getUpEnough());
-    setWideEnough(getWideEnough());
+    const initializeToC = () => {
+      // set intial "enough" states
+      setDownEnough(getDownEnough());
+      setUpEnough(getUpEnough());
+      setWideEnough(getWideEnough());
 
-    // get headings on page
-    setHeadings(getHeadings());
-  }, []);
+      // get headings on page
+      setHeadings(getHeadings());
+    };
+
+    initializeToC();
+
+    // update after a client-side page transition
+    router.events.on("routeChangeComplete", initializeToC);
+  }, [router]);
 
   // listen for scroll
   useEffect(() => {
@@ -124,7 +133,14 @@ const getHeadings = () =>
       for (const node of clone.childNodes) {
         const text = node.nodeType === Node.TEXT_NODE;
         const math = node.classList?.contains("math");
-        if (!(text || math)) node.remove();
+        if (!(text || math)) {
+          const innerText = node.innerText;
+          if (innerText && node.className === "") {
+            clone.replaceChild(document.createTextNode(innerText), node);
+          } else {
+            node.remove();
+          }
+        }
       }
 
       // return helpful relevant info
@@ -148,12 +164,16 @@ const getActive = (headings) => {
 };
 
 // get whether page is scrolled down far enough
-const getDownEnough = () =>
-  typeof document === "undefined"
-    ? false
-    : document
-        .querySelector("main > section:nth-child(2)")
-        .getBoundingClientRect().top < 0;
+const getDownEnough = () => {
+  if (typeof document === "undefined") {
+    return false;
+  }
+
+  const elem = document.querySelector("main > section:nth-child(2)");
+  if (!elem) return false;
+
+  return elem.getBoundingClientRect().top < 0;
+};
 
 // get whether page is scrolled up far enough
 const getUpEnough = () =>
