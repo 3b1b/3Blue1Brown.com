@@ -12,8 +12,8 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-> "Calculus is all about making curvy things look straight"
-> Anonymous Professor
+> "Calculus required continuity, and continuity was supposed to require the infinitely little; but nobody could discover what the infinitely little might be."
+> Bertrand Russell
 
 <!-- TODO: contact professor and ask aoubt attribution -->
 
@@ -29,13 +29,19 @@ This happens to be the expression that pops out if you unravel the formal defini
   image="figures/derivative-of-x-cubed-at-2-limit.svg" 
 />
 
-However, let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola.
+However, let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola. Which makes sense because the function has a cubic term divided by a linear term.
 
 <Figure
   image="figures/example-limit.svg" 
 />
 
-But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined. So really, this graph has a hole at that point. You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
+But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined. So really, this graph has a hole at that point.
+
+<Figure
+  image="figures/example-limit-hole.svg" 
+/>
+
+You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
 
 <Figure
   image="figures/example-limit-detail.svg" 
@@ -43,12 +49,18 @@ But actually, if you think about what’s going at $h=0$, plugging that in you�
 
 And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn’t matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
 
+<Figure
+  image="figures/example-limit-detail-appraoches.svg"
+  video="figures/5.52-6.08.source.mp4"
+/>
+
 Imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
 
 For a given range of inputs within some distance of $0$, excluding the forbidden point $0$, look at the corresponding outputs, all possible heights of the graph above that range.
 
 <Figure
   image="figures/example-limit-input-ranges.svg"
+  video="figures/6.22-6.26.source.mp4"
   caption="This figure shows the possible output ranges for $0$ plus or minus $0.1$, $0.01$ and $0.001$" 
 />
 
@@ -100,7 +112,11 @@ $$
 
 ### Counter examples
 
-As a counter example, consider a function that looks like this, which is also not defined at $0$, but kind of jumps at that point.
+As a counter example, consider a function that looks like the one shown below, which is also not defined at $0$, but kind of jumps at that point.
+
+<Figure
+  image="figures/counter-example.svg"
+/>
 
 As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there’s not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
 

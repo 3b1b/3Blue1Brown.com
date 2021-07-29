@@ -10,14 +10,14 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-> "Calculus required continuity, and continuity was supposed to require the infinitely little; but nobody could discover what the infinitely little might be."
-> Bertrand Russell
+> "Calculus is all about making curvy things look straight"
+> Anonymous Professor
 
 The last several lessons have been about the idea of a derivative, and before moving on to integrals, I want to take some time to talk about limits.
 
 To be honest, the idea of a limit is not really anything new. If you know what the word "approach" means you pretty much already know what a limit is, you could say the rest is a matter of assigning fancy notation to the intuitive idea of one value that just gets closer to another. But there are a number of reasons to dive deeper into this topic.
 
-For one thing it’s worth showing is how the way I’ve been describing derivatives so far lines up with the the formal definition of a derivative as it’s typically presented in most courses and textbooks. I want to give you some confidence that thinking of terms like $dx$ and $df$ as concrete non-zero nudges is not just some trick for building intuition; it’s actually backed up by the formal definition of a derivative in all of its rigor.
+For one thing it’s worth showing is how the way I’ve been describing derivatives so far lines up with the the formal definition of a derivative as it’s typically presented in most courses and textbooks. I want to give you a little confidence that thinking of terms like $dx$ and $df$ as concrete non-zero nudges is not just some trick for building intuition; it’s actually backed up by the formal definition of a derivative in all of its rigor.
 
 <!-- TODO: reword or move these bits 
 
@@ -37,33 +37,30 @@ Let’s take a look at the formal definition of the derivative. As a reminder, w
 
 <!-- Illustrate nudge df and dx for a generic function f(x) at 2 -->
 
-The ratio $df/dx$, which can nicely be thought of as the rise-over-run slope between the starting point on the graph and the nudged point, is almost the derivative. The actual derivative is whatever this ratio approaches as $dx$ approaches $0$.
+The ratio $df/dx$, which can nicely be thought of as the rise-over-run slope between the starting point on the graph and the nudged point, is almost what the derivative is. The actual derivative is whatever this ratio approaches as $dx$ approaches $0$.
 
 <Figure
   image="figures/derivative-dx-smaller-nudge.svg" 
 />
 
-<!-- Illustrate df/dx for a generic function f(x) at 2 -->
-
 Just to spell out what is meant here, that nudge to the output "$df$" is is the difference between $f$ at the starting-input plus $dx$ and $f$ at the starting-input; the change to the output caused by the nudge $dx$.
-
-<!-- Illustrate f(2 + dx) - f(2) divided by dx with a brace and as dx approaches 0 -->
-
 
 <Figure
   image="figures/derivative-definition-underbrace.svg" 
 />
 
-To express that you want to find what this ratio approaches as $dx$ approaches $0$, you write "l-i-m", for limit, with "$dx$ arrow $0$" below it.
+To express that you want to find what this ratio approaches as $dx$ approaches $0$, you write "lim", for limit, with "$dx$ arrow $0$" below it.
 
 <Figure
   image="figures/derivative-definition-limit-dx.svg" 
 />
 
-Now, you’ll almost never see terms with a lowercase $d$, like $dx$, inside a limit like this. Instead the standard is to use a different variable, like $\Delta x$ (delta $x$), or commonly "$h$" for some reason. Let's also replace $x=2$ with $x$ to represent any input to the function. <!-- TODO is there a way to think about generalizing this idea to all input?-->
+Now, you’ll almost never see terms with a lowercase $d$, like $dx$, inside a limit like this. Instead the standard is to use a different variable, like $\Delta x$ (delta $x$), or commonly "$h$" for some reason.
+
+<!-- Maybe insert Let's also replace $x=2$ with $x$ to represent any input to the function. TODO: is there a way to think about generalizing this idea to all input?-->
 
 <Figure
-  image="figures/derivative-definition-limit-h.svg" 
+  image="figures/derivative-definition-limit-h-at-x-equals-2.svg" 
 />
 
 The way I like to think of it is that terms with this lowercase $d$ in the typical derivative expression have built into them the idea of a limit, the idea that $dx$ is supposed to eventually approach $0$.
@@ -72,7 +69,12 @@ The way I like to think of it is that terms with this lowercase $d$ in the typic
   image="figures/derivative-definition-limit-d-meaning.svg" 
 />
 
-So in a sense this lefthand side "$df/dx$", the ratio we’ve been thinking about in the past lessons, is just shorthand for what the righthand side spells out in more detail, writing out exactly what we mean by $df$, and writing out the limiting process explicitly. And that righthand side is the formal definition of a derivative, as you’d commonly see it in any calculus textbook.
+So in a sense this lefthand side "$df/dx$", the ratio we’ve been thinking about in the past lessons, is just shorthand for what the righthand side spells out in more detail, writing out exactly what we mean by $df$, and writing out this limit process explicitly. And that righthand side is the formal definition of a derivative, as you’d commonly see it in any calculus textbook.
+
+<Figure
+  image="figures/formal-derivative-definition.svg"
+  caption="The formal derivative definition. Notice that nothing about this definition references the idea of an &quot;infinitely small&quot; change."
+/>
 
 ## No infinitely small rant
 
@@ -92,7 +94,7 @@ Long story short, the big fuss about limits is that they let us *avoid* talking 
 
 So why do we teach the limit notation and how does it help us formalize what it means for one value to approach another?
 
-Maybe you are convinced that, on an intuitive level, the language and tools we have invented so far give us what we need to solve these types of problems. When thinking about small nudges to a function's input, as long as we imagine that nudge approaching zero, things usually work out. In the same way we can zoom in on a point on a curve and convince ourselves that if we zoom in far enough the curve really starts to look straight.
+Maybe you are convinced that, on an intuitive level, the language and tools we have invented so far give us what we need to solve these types of problems. When thinking about small nudges to a function's input, as long as we imagine that nudge approaching zero, things usually work out. In the same way, we can zoom in on a point on a curve and convince ourselves that if we zoom in far enough the curve really starts to look straight.
 
 <Figure
   image="figures/exponential-function-zoom.svg"
