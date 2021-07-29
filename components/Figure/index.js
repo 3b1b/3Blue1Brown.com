@@ -131,11 +131,15 @@ export default function Figure({
     const video = videoRef.current;
     if (image) {
       const { naturalWidth: width, naturalHeight: height } = image;
-      setImage({ width, height });
+      if (width > 0 && height > 0) {
+        setImage({ width, height });
+      }
     }
     if (video) {
       const { videoWidth: width, videoHeight: height } = video;
-      setVideo({ width, height });
+      if (width > 0 && height > 0) {
+        setVideo({ width, height });
+      }
     }
   }, []);
 
