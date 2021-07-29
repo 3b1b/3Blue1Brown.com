@@ -1,0 +1,43 @@
+.announcement {
+  display: block;
+  background: $light-blue-200;
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    background: $light-blue-300;
+    color: black;
+  }
+}
+
+.center {
+  max-width: $page;
+  margin: 0 auto;
+  padding: 16px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headline {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.description {
+  font-size: 15px;
+}
+
+.closeButton {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: $light-blue-500;
+  color: white;
+
+  &:hover {
+    background: $light-blue-600;
+  }
+}
