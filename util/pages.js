@@ -6,6 +6,7 @@ import { glob } from "glob";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
+import sizeOfImage from "image-size";
 import topics from "../data/topics.yaml";
 
 // define some terms to avoid confusion:
@@ -88,6 +89,53 @@ const getSlugFromFile = (file) => {
   else return filename;
 };
 
+const getMediaDimensionsFromDir = async (directory) => {
+  // get dimensions of image & video files
+  const mediaFiles = glob.sync(
+    `${directory}/**/*.@(jpg|jpeg|png|svg|mp4|mov|)`
+  );
+
+  function getDimensions(fileName) {
+    const fileExtension = fileName.split(".").reverse()[0];
+    const type = {
+      jpg: "image",
+      jpeg: "image",
+      png: "image",
+      svg: "image",
+      mp4: "video",
+      mov: "video",
+    }[fileExtension];
+
+    return new Promise((resolve) => {
+      // In the future, it would also be valuable to get the dimensions of
+      // videos, but that seems a bit tricky to get working, so for now
+      // it's images only. (Video dimensions will be determined on the
+      // client side whenever the video actually loads.)
+      if (type === "image") {
+        sizeOfImage(fileName, (err, dims) => {
+          resolve(dims || null);
+        });
+      } else {
+        resolve(null);
+      }
+    });
+  }
+
+  let dimensionsMap = {};
+
+  await Promise.all(
+    mediaFiles.map((fileName) =>
+      getDimensions(fileName).then((dims) => {
+        if (dims) {
+          dimensionsMap[fileName.slice(6)] = dims;
+        }
+      })
+    )
+  );
+
+  return dimensionsMap;
+};
+
 // search for local location of page file, return array of results
 const searchPageFile = (slug) =>
   glob.sync(`public/content/${slug || "!(index)*"}.mdx`);
@@ -148,6 +196,7 @@ export const pageProps = async (slug) => {
 export const lessonProps = async (slug) => {
   const file = searchLessonFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
+  props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
   return { props };
@@ -157,6 +206,7 @@ export const lessonProps = async (slug) => {
 export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
+  props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
   return { props };
