@@ -12,7 +12,7 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-So far this is all pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So, in this lesson,let’s finish off our dive into limits trick for actually computing limits.
+So far this is all pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So, in this lesson,let’s finish off our dive into limits with a trick for actually computing limits.
 
 For example, let’s say for some reason you were studying the function:
 
@@ -20,7 +20,7 @@ $$
 f(x) = \frac{\sin (\pi x)}{x^{2}-1}
 $$
 
-Maybe this models some kind of dampened oscillation. When you plot a bunch of points to graph it, it looks pretty continuous, but there’s a problematic value, $x=1$.
+Maybe this models some kind of damped oscillation. When you plot a bunch of points to graph it, it looks continuous, but there’s a problematic value, $x=1$.
 
 <Figure
   image="figures/example-function.svg" 
@@ -45,7 +45,7 @@ But is there a way to know precisely what it is? Some systematic process to take
 
 ## Plot numerator and denominator
 
-Let's graph the numerator, $\sin(\pi x)$, and the denominator, $x^2-1$, of our original function. That’s kind of a lot to look at, but just focus on what’s happening at $x=1$.
+Let's graph the numerator, $\sin(\pi x)$, and the denominator, $x^2-1$, of our original function and focus on what’s happening at $x=1$.
 
 <Figure
   image="figures/example-function-numerator-and-denominator.svg" 
@@ -59,15 +59,11 @@ The point here is that $\sin(\pi x)$ and $x^2-1$ are both $0$ at that point, so 
 
 The value of $\sin(\pi x)$ is bumped down by some $d(\sin(\pi x))$ and the value of $x^2-1$ is bumped up by some $d(x^2-1)$.
 
-Take a moment to think about how the fraction $d(\sin (\pi x)) / d\left(x^{2}-1\right)$ reframes the initial problem which had previously looked a lot like $0$ divided by $0$. Why might this lead us towards an exact answer rather than just an approximation?
+Take a moment to think about how the fraction $d(\sin (\pi x)) / d\left(x^{2}-1\right)$ reframes the initial problem which had previously looked like $0$ divided by $0$. Why might this lead us towards an exact answer rather than just an approximation?
 
 <FreeResponse>
 
-TODO: possible explanation
-
-One explanation is that no matter how small the value $dx$ is the fraction formed by the two nudges 
-
-, since these nudges behave like the tangent lines at $x=0$, 
+This fraction is the same as evaluating the original function at $f(1 + dx)$. By looking at the ratio of these two tangent lines, whose approximations of the numerator and denominator get better and better as $dx$ approaches $0$, we are able to reason about the *exact* value this limit approaches.
 
 </FreeResponse>
 
@@ -86,7 +82,7 @@ Since we are interested in the fraction of these two functions at the point at $
 What this means is that for values of $x$ which are some tiny value $dx$ away from $1$, the ratio $\sin(\pi x)/(x^2-1)$ is approximately $(-\pi \cdot dx) / (2 \cdot dx)$. The $dx$’s cancel, so that value is $-\pi/2$. Importantly, these approximations get more and more accurate for smaller and smaller choices of $dx$, this ratio $-\pi/2$ actually tells us the precise limiting value as $x$ approaches $1$.
 
 <Figure
-  image="figures/example-function-exact-limit.svg" 
+  image="figures/example-function-limit-process.svg" 
 />
 
 Remember, what that means is that the limiting height on our original graph is evidently exactly $-\pi/2$.
@@ -95,17 +91,30 @@ Remember, what that means is that the limiting height on our original graph is e
 
 What happened there is a little subtle, so let me show it again, but this time a little more generally. Instead of these two specific functions, which both equal $0$ at $x=1$, think of any two functions $f(x)$ and $g(x)$, which are both $0$ at some common value $x = a$.
 
+<Figure
+  image="figures/general-case.svg" 
+/>
+
 The only constraint is that these have to be functions where you’re able to take a derivative of them at $x = a$, meaning they each basically look like a line when you zoom in close enough to that value.
+
+<Figure
+  image="figures/general-case-criteria.svg" 
+/>
 
 Even though you can’t compute $f$ divided by $g$ at this trouble point, since both equal zero, you can ask about this ratio for values of $x$ really really close to $a$, the limit as $x$ approach $a$. And it’s helpful to think of those nearby inputs as a tiny nudge $dx$ away from $a$.
 
+<Figure
+  image="figures/general-case-ratio.svg" 
+/>
+
 The value of $f$ at that nudged point is approximately its derivative, $df/dx$ evaluated at $a$, times $dx$. Likewise, the the value of $g$ at that nudged point is approximately the derivative of $g$, evaluated at $a$, times $dx$.
 
-So near this trouble point, the ratio between the outputs of $f$ and $g$ is actually about the same as the derivative of $f$ at $a$, times $dx$, divided by the derivative of $g$ at $a$, times $dx$.
+So near this trouble point, the ratio between the outputs of $f$ and $g$ is actually about the same as the derivative of $f$ at $a$, times $dx$, divided by the derivative of $g$ at $a$, times $dx$. These $dx$’s cancel, so the ratio of $f$ and $g$ near $a$ is about the same as the ratio between their derivatives.
 
-These $dx$’s cancel, so the ratio of $f$ and $g$ near $a$ is about the same as the ratio between their derivatives.
-
-Because both approximations get more accurate for smaller nudges, this ratio of derivatives gives the precise value for the limit.
+<Figure
+  image="figures/l-hopitals-rule.svg"
+  caption="Because both approximations get more accurate for smaller nudges, this ratio of derivatives gives the precise value for the limit."
+/>
 
 This is a *really* handy trick for computing a lot of limits. If you come across an expression that seems to equal $0/0$ when you plug in some input, just try taking the derivative of the top and bottom expressions, and plugging in that trouble input.
 

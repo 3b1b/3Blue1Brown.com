@@ -13,11 +13,10 @@ credits:
 ---
 
 > "Calculus required continuity, and continuity was supposed to require the infinitely little; but nobody could discover what the infinitely little might be."
-> Bertrand Russell
+>
+> \- Bertrand Russell
 
-<!-- TODO: contact professor and ask aoubt attribution -->
-
-In the previous lesson, I introduced limites and how they are used to formalize the definition of the derivative. In this lesson our goal is to understand exactly what it means for one value to approach another. For example, consider the function:
+In the previous lesson, I introduced limits and how they are used to formalize the definition of the derivative. In this lesson our goal is to understand exactly what it means for one value to approach another. For example, consider the function:
 
 <Figure
   image="figures/example-function-algebra.svg" 
@@ -51,7 +50,7 @@ And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, t
 
 <Figure
   image="figures/example-limit-detail-appraoches.svg"
-  video="figures/5.52-6.08.source.mp4"
+  video="figures/5.52-6.08.mp4"
 />
 
 Imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
@@ -60,7 +59,7 @@ For a given range of inputs within some distance of $0$, excluding the forbidden
 
 <Figure
   image="figures/example-limit-input-ranges.svg"
-  video="figures/6.22-6.26.source.mp4"
+  video="figures/6.22-6.26.mp4"
   caption="This figure shows the possible output ranges for $0$ plus or minus $0.1$, $0.01$ and $0.001$" 
 />
 
@@ -128,12 +127,10 @@ One way to think of this is that when you look at any range of inputs around $0$
 
 <Figure
   image="figures/counter-example-straddle.svg"
-  video="figures/7.27-7.40.source.mp4"
+  video="figures/7.27-7.40.mp4"
 />
 
 This perspective of shrinking an input range around the limiting point, and seeing whether or not you’re restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
-
-You could argue this needlessly heavy-duty for an introduction to calculus. Like I said, if you know what the word "approach" means, you already know what a limit means, so there’s nothing new on the conceptual level here. But this is an interesting glimpse into the field of real analysis, and it gives you a taste for how mathematicians made the intuitive ideas of calculus fully airtight and rigorous. 
 
 You’ve already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn’t exist, that output range can’t get smaller than some value, no matter how much you shrink the input range around the limiting input.
 
@@ -142,7 +139,7 @@ You’ve already seen the main idea: when a limit exists, you can make this outp
   caption="The limit $\displaystyle \lim _{h \rightarrow a} f(h)$ exists when the output range defined by $\epsilon$ (epsilon) can be made as small as you want and you can still find some $\delta$ (delta) which corresponds to the output range."
 />
 
-Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where for some reason it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
+Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
 
 <Figure
   image="figures/epsilon-delta-example-epsilon.svg"
@@ -157,7 +154,7 @@ What it means for the limit to exist is that you will always be able to find a r
 They key point is that this is true for any epsilon, no matter how small, you will always be able to find the corresponding delta.
 
 <Question
-  question="What is the $\delta$ (delta) value corresponding to the ouput range [$11.994, 12.006]$ where $\epsilon$ (epsilon) is equal to $0.006$?"
+  question="What is the $\delta$ (delta) value corresponding to the ouput range $[11.994, 12.006]$ where $\epsilon$ (epsilon) is equal to $0.006$?"
   choice1="1"
   choice2="0.1"
   choice3="0.01"
@@ -165,9 +162,27 @@ They key point is that this is true for any epsilon, no matter how small, you wi
   answer={4}
 >
 
+The output range of $[11.994, 12.006]$ is visually shown in the graph below.
+
 <Figure
   image="figures/epsilon-delta-example-epsilon-smaller.svg"
 />
+
+Then we can see that an input range of $[-0.001, 0.001]$ corresponds to our output range of $[11.994, 12.006]$. Substituting $0$ plus or minus $\delta = 0.001$ into the function gives us the output.
+
+$$
+f(-0.001) < f(0) < f(0.001)
+$$
+
+$$
+\frac{(2+(-0.001))^{3}-2^{3}}{-0.001} < 12 < \frac{(2+(-0.001))^{3}-2^{3}}{-0.001} 
+$$
+
+$$
+11.994 < 12 < 12.006
+$$
+
+Which graphically corresponds to the green input range highlighted below.
 
 <Figure
   image="figures/epsilon-delta-example-delta-smaller.svg"
@@ -183,9 +198,19 @@ In contrast, when a limit does *not* exist, as in the example before, you can fi
 
 There is no limiting output where everything is within a distance epsilon from that output.
 
-```
-TODO: example f(x) = 1/x + x
-```
+<Question
+  question="Using the epsilon delta definition, is the limit expression $\displaystyle \lim _{x \rightarrow 0} 1/x + x$ defined?"
+  choice1="Yes"
+  choice2="No"
+  answer={2}
+>
+
+<Figure
+  image="figures/limit-question.svg"
+/>
+
+</Question>
+
 
 ```
 TODO: summary + transition

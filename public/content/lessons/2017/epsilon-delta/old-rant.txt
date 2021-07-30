@@ -1,0 +1,13 @@
+## No infinitely small rant
+
+Now, if you’ll pardon me for a small rant here, I want to emphasize that nothing about this righthand side references the paradoxical idea of an "infinitely small" change. The point of limits is to avoid that.
+
+This value $h$ is the exact same thing as the "$dx$" I’ve been referencing throughout the series. It’s a nudge to the input of $f$ with some non-zero, finitely small size, like $0.001$, it’s just that we’re analyzing what happens for arbitrarily small choices of $h$. In fact, the only reason people introduce a new variable name into this formal definition, rather than just using $dx$, is to be super-extra clear that these changes to the input are ordinary numbers that have nothing to do with infinitesimals.[^1]
+
+[^1]: Infinitesimals are quantities formally defined in the hyperreal number system to solve calculus type problems. Defining the operations and properties of these infinitely small, but non-zero quantities, essentially treating them like entities, can be used to define the dual number system and evaluate the derivatives of functions programmatically.
+
+You see, there are others who like to interpret $dx$ as an "infinitely small change", whatever that would mean, or to just say that $dx$ and $df$ are nothing more than symbols that shouldn’t be taken too seriously. But by now in the series, you know that I’m not really a fan of either of those views, I think you can and should interpret $dx$ as a concrete, finitely small nudge, just so long as you remember to ask what happens as it approaches $0$.
+
+For one thing, and I hope the past few lessons have helped convince you of this, that helps to build a stronger intuition for where the rules of calculus actually come from. But it’s not just some trick for building intuitions. Everything I’ve been saying about derivatives with this concrete-finitely-small-nudge philosophy is just a translation of the formal definition of derivatives.
+
+Long story short, the big fuss about limits is that they let us *avoid* talking about infinitely small changes by instead asking what happens as the size of some change to our variable approaches $0$.

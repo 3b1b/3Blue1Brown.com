@@ -1,0 +1,27 @@
+
+### Volume of Sphere
+
+In the first chapter, we found a formula for the area of a circle using a small nudge to the radius of the circle. Importantly, we derived the formula by finding the area under a function. In future chapters, we will explore this idea much further and derivatives have a big role to play. For now, let's revisit the same idea using the geometry of a sphere.
+
+<Figure
+  image="figures/sphere.svg" 
+/>
+
+<Question
+  question="Suppose you know that the surface area of that sphere is $$4\pi r^2$$. Which of the following would represent the volume of a sphere?"
+  choice1="The area under the graph of $4\pi r^2 dr$ between $r=0$ and $r=R$"
+  choice2="The area under the graph of $4\pi r^2$ between $r = 0$ and $r=R$"
+  choice3="The area under the graph of $2\pi r dr$ between $r=0$ and $r=R$"
+  choice4="The area under the graph of $2\pi r$ between $r=0$ and $r=R$"
+  answer={2}
+>
+
+One way to imagine the volume of the sphere is to divide the sphere into a bunch of shells, where the shell is defined by the small radius $r$, the thickness of the shell is equal to $dr$ and the surface area of the shell is equal to $4\pi r^2$.
+
+<Figure
+  image="figures/volume-of-sphere.svg"
+/>
+
+Following the same process from lesson 1, we can model the volume as the area under the function of $4 \pi r^2$ from $0$ to the radius $R$.
+
+</Question>

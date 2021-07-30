@@ -18,8 +18,8 @@ for fullfile in $(find ./public/content -name '*.source.mp4' -or -name '*.source
   name="${file%.*}"
   compressed="${name%.*}"
 
-  # compress video file
-  ffmpeg -i $fullfile ${dir}/${compressed}.mp4 -hide_banner -loglevel error -y
+  # compress video file, remove audio, set quality to 1080p, overwrite existing files
+  ffmpeg -i $fullfile -an -s hd1080 -hide_banner -loglevel error -y ${dir}/${compressed}.mp4
 
   # display source and destination sizes
   src=$(du -m -h $fullfile)
