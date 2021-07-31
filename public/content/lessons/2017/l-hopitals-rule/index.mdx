@@ -12,7 +12,7 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-So far, the past two lessons have been pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So, in this lesson,let's finish off our dive into limits with a trick for actually computing limits.
+So far, the past two lessons have been pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So, in this lesson, let's finish off our dive into limits with a trick for actually computing limits.
 
 For example, let's say for some reason you were studying the function:
 
@@ -177,5 +177,46 @@ $$
 $$
 
 This rigorously verifies that the limit of this function is indeed $1$ as $x$ approaches $0$ .
+
+</Question>
+
+<Question
+  question="What is the limit of the function $\displaystyle f(x) = \frac{x^3 - 1}{x-1}$ as $x$ approaches $1$?"
+  choice1="1"
+  choice2="-1"
+  choice3="2"
+  choice4="3"
+  answer={4}
+>
+
+Substituting $1$ in for $x$ in the expression we can see that the limit looks like $0$ divided by $0$.
+
+$$
+\lim _{x \rightarrow 1} \frac{x^3 - 1}{x-1} = \frac{0}{0}
+$$
+
+Of course, in practice you can go ahead and apply L'Hopital's rule, but here let's follow the same logic we laid out in this lesson. If we graph the expression we can see that the point at $x-1$ is undefined and appears to approach the value $3$.
+
+<Figure
+  image="figures/exercise-2-plot.svg"
+/>
+
+Since these are polynomial functions, we know their derivatives exist at zero and so our constraint is satisfied. We can also plot the graph of the tangent lines.
+
+<Figure
+  image="figures/exercise-2-tangent-lines.svg"
+/>
+
+We can express this limit as the ratio of these tangent lines.
+
+$$
+\lim _{x \rightarrow 1} \frac{x^3 - 1}{x-1} = \frac{\frac{dg}{dx}(1)}{\frac{dh}{dx}(1)}
+$$
+
+$$
+\lim _{x \rightarrow 1} \frac{3x^2 dx}{1 \cdot dx} = \frac{3(1)^2}{1} = 3
+$$
+
+So the limit of this function $\displaystyle f(x) = \frac{x^3 - 1}{x-1}$ as $x$ approaches $1$ is $3$.
 
 </Question>
