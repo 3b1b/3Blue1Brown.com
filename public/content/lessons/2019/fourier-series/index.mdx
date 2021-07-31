@@ -18,11 +18,19 @@ Here, we look at the math behind an animation like this, what’s known as a “
 
 Each little vector is rotating at some constant integer frequency, and when you add them all together, tip to tail, they draw out some shape over time. By tweaking the initial size and angle of each vector, we can make it draw anything we want, and here you’ll see how.
 
-Before diving in, take a moment to linger on just how striking this is. 
+Before diving in, take a moment to linger on just how striking this is. Go full screen for this if you can, the intricacy is worth it. 
 
-<Figure video="intricacy_1.mp4" image="intricacy_1.jpeg" show="video" />
+<Figure video="intricacy_1.mp4" image="intricacy_1.jpeg" show="video" caption="A single-line portrait of Joseph Fourier, as drawn by a Fourier series." />
 
-This particular animation has 300 rotating arrows in total. Go full screen for this if you can, the intricacy is worth it. Think about this, the action of each individual arrow is perhaps the simplest thing you could imagine: Rotation at a steady rate. Yet the collection of all added together is anything but simple. The mind-boggling complexity is put into even sharper focus the farther we zoom in, revealing the contributions of the littlest, quickest arrows.
+How many rotating arrows would you guess are used in the animation above to draw a picture of Joseph Fourier?
+
+<FreeResponse>
+
+300
+
+</FreeResponse>
+
+Think about this, the action of each individual arrow is perhaps the simplest thing you could imagine: Rotation at a steady rate. Yet the collection of all added together is anything but simple. The mind-boggling complexity is put into even sharper focus the farther we zoom in, revealing the contributions of the littlest, quickest arrows.
 
 <Figure video="intricacy_2.mp4" image="intricacy_2.jpeg" show="video" />
 
@@ -32,9 +40,13 @@ $$
 c_n = \int_0^1 e^{-2 \pi i n \cdot t} f(t) dt
 $$
 
+We'll explain what this expression means and how to read it in just a bit.
+
 Often, Fourier series are described in terms of functions of real numbers being broken down as a sum of sine waves. That turns out to be a special case of this more general rotating vector phenomenon that we’ll build up to, but it’s where Fourier himself started, and there’s good reason for us to start the story there as well.
 
-<Figure video="fourier_intro_2.mp4" image="fourier_intro_2.jpeg" show="video" />
+<Figure video="fourier_intro_2.mp4" image="fourier_intro_2.jpeg" />
+
+Already, a coupld questions might come to mind. What does adding sine waves have to do with the circle animations? And perhaps more pertinantly, why would anyone care? What problems does this solve?
 
 <PiCreature
   emotion="angry"
@@ -43,24 +55,37 @@ Often, Fourier series are described in terms of functions of real numbers being 
 
 Technically, this is the third lesson in a <LessonLink id="pdes">series about the heat equation</LessonLink>, which Fourier was working on when he developed his big idea. I’d like to teach you about Fourier series in a way that doesn’t depend on you coming from those chapters, but if you have at least a high-level idea of the problem from physics which originally motivated this piece of math, it gives some indication for how unexpectedly far-reaching Fourier series are.
 
-All you need to know is that we had this equation, describing how the temperature on a rod will evolve over time. [^1]
+If you don't care about the historical and physics-based origins of this math, or if you're coming from the previous chapters, feel free to skip the next few sections. If you _do_ care, or you want a quick recap, let's dive on in.
+
+## The heat equation (recap)
+
+Suppose you have some object, which for simplicity we'll think of as being one-dimensional, like a rod, and you know the temperature at every point on this rod at a given snapshot in time, which we'll call $t = 0$.
+We'll call this the initial temperature distribution on the rod.
+
+<Figure image="heat_0.jpeg" />
+
+As time ticks forward, the hot points will tend to cool down, and the cold points will tend to warm up, with an all around tendency for a more even temperature distribution. How quickly this happens is determined by a constant $\alpha$, known as the thermal diffusivity, which depends on the material. But how specifically the shape of this distribution changes over time is determined by what's known as the heat equation[^1].
 
 <Figure video="heat_1.mp4" image="heat_1.jpeg" />
 
-While it’s hard to directly use it to figure out what will happen to an arbitrary heat distribution, there’s a simple solution if that initial function looks like a cosine wave with a frequency tuned to make it flat at each endpoint. Specifically, as you graph what happens over time, these waves simply get scaled down exponentially, with higher frequency waves decaying faster.
+The heat equation is a partial differential equation, which the <LessonLink id="pdes">last</LessonLink> <LessonLink id="heat-equation">two</LessonLink> lessons describe in much more detail. For now all you need to know is that it does not directly tell you what future distributions will look like. Instead, together with an initial distribution and some condition on the boundary of the rod, it gives a constraint that this evolution of future distribution must satisfy. It is up to the mathematician to actually _solve_ this equation if they want a specific formula for how the temperature is distributed at any time $t > 0$.
+
+Enter Fourier.
+
+While it’s exceedingly challenging to directly to directly solve this equation for a given initial distribution, there’s a simple solution if that initial function happens to look like a cosine wave with a frequency tuned to make it flat at each endpoint[^2]. Specifically, as you graph what happens over time, these waves simply get scaled down exponentially, with higher frequency waves decaying faster.
 
 <Figure video="heat_2.mp4" image="heat_2.jpeg" />
 
 <Question
-    question="Let's say $T(x, t)$ describes the heat distribution of a rod at time $T$. Given that $T(x, 0) = \cos(x)$ and $T(0, 0) = 1$, what does $T(0, t)$ equal to?"
-    choice1="$\cos(t)$"
-    choice2="$\sin(t)$"
-    choice3="$\cos(t)e^{-t}$"
-    choice4="$e^{-t}$"
-    answer={4}
+    question="Which of the following functions could describe the temperature distribution changing over time pictured above."
+    choice1="$T(x, t) = \cos(4\pi t / L) e^{-\alpha (4\pi / L)^2 x}$"
+    choice2="$T(x, t) = \cos(4\pi t / L) + e^{-\alpha (4\pi / L)^2 x}$"
+    choice3="$T(x, t) = \cos(4\pi x / L) e^{-\alpha (4\pi / L)^2 t}$"
+    choice4="$T(x, t) = \cos(4\pi x / L) + e^{-\alpha (4\pi / L)^2 t}$"
+    answer={3}
 >
 
-Given that when the initial distribution is a cosine wave, the distribution scales down exponentially, at $x=0$, as $t$ increases, $T$ will follow a exponential decay, hence option 4.
+As you move in the x-direction, the temperature varies like a cosine wave, so the $x$ term should show up in side the $\cos(...)$ expression. As you move forward in time, the height of this wave decays toward zero, so $t$ should appear in the $e^{-(...)}$ expression, and this term should be multiplied by the height of the wave.
 
 </Question>
 
@@ -68,7 +93,9 @@ The heat equation happens to be what’s known in the business as a “linear”
 
 <Figure image="heat_3.jpeg" />
 
-This is a fairly straightforward property that you can verify for yourself, but it’s incredibly important. It means we can take our infinite family of solutions, these exponentially decaying cosine waves, scale a few of them by some custom constants of our choosing, and combine them to get a solution for a new tailor-made initial condition which is some combination of cosine waves.
+So even though it would be absurd to find a rod whose initial temperature distribution is a perfect cosine wave, this means we know how to solve the equation for a much bigger class of functions, anything which can be written as a scaled sum of waves. You solve the equation for each of those waves separately, then add them together.
+
+It's hard to overstate how powerful this kind of linearity is. It means we can take our infinite family of solutions, these exponentially decaying cosine waves, scale a few of them by some custom constants of our choosing, and combine them to get a solution for a new tailor-made initial condition which is some combination of cosine waves. Linearity is the difference between having a scattered set of haphazard solutions in isolated cases, and having a massive space of solutions with knobs and dials to adjust that tune this initial condition to our liking.
 
 <Figure image="heat_4.jpeg" />
 
@@ -91,7 +118,7 @@ Our initial temperature distribution is a step function, which is so obviously d
 
 And yet, Fourier thought to ask a question which seems absurd: How do you express this as a sum of sine waves? Even more boldly, how do you express any initial temperature distribution as a sum of sine waves?
 
-And it’s more constrained than just that! You have to restrict yourself to adding waves which satisfy a certain boundary condition, which as we saw last video means working only with these cosine functions whose frequencies are all some whole number multiple of a given base frequency. [^2]
+And it’s more constrained than just that! You have to restrict yourself to adding waves which satisfy a certain boundary condition, which as we saw last video means working only with these cosine functions whose frequencies are all some whole number multiple of a given base frequency. [^4]
 
 ## Non-mathematical interlude
 
@@ -143,7 +170,7 @@ Somewhat awkwardly, then, for this infinite sum to be strictly true, we do have 
 
 Analogous to an infinite sum of rational numbers being irrational, the infinite sum of wavy continuous functions can equal a discontinuous flat function. Limits allow for qualitative changes which finite sums alone never could.
 
-There are multiple technical nuances I’m sweeping under the rug here. Does the fact that we’re forced into a certain value for the step function at its point of discontinuity make any difference for the heat flow problem? For that matter, what does it really mean to solve a PDE with a discontinuous initial condition? Can we be sure the limit of solutions to the heat equation is also a solution? Do all functions have a Fourier series like this? These are exactly the kind of questions real analysis is built to answer, but it falls a bit deeper in the weeds than I think we should go here. [^4]
+There are multiple technical nuances I’m sweeping under the rug here. Does the fact that we’re forced into a certain value for the step function at its point of discontinuity make any difference for the heat flow problem? For that matter, what does it really mean to solve a PDE with a discontinuous initial condition? Can we be sure the limit of solutions to the heat equation is also a solution? Do all functions have a Fourier series like this? These are exactly the kind of questions real analysis is built to answer, but it falls a bit deeper in the weeds than I think we should go here[^5].
 
 The upshot is that when you take the heat equation solutions associated with these cosine waves and add them all up, all infinitely many of them, you do get an exact solution describing how the step function will evolve over time.
 
@@ -286,7 +313,7 @@ $$
 \int_{0}^{1} f(t) dt =\int_{0}^{1}\left(\cdots+c_{-1} e^{-1 \cdot 2 \pi i t}+c_{0} e^{0 \cdot 2 \pi i t}+c_{1} e^{1 \cdot 2 \pi i t}+c_{2} e^{2 \cdot 2 \pi i t}+\cdots\right) d t
 $$
 
-This average of a sum is the same as a sum over the averages of each part. [^5]
+This average of a sum is the same as a sum over the averages of each part. [^6]
 
 $$
 =\cdots+\int_{0}^{1} c_{-1} e^{-1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{0} e^{0 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{1} e^{1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{2} e^{2 \cdot 2 \pi i t} d t+\cdots
@@ -376,7 +403,8 @@ So on the one hand, this concludes our discussion of the heat equation, which wa
 But on the other hand, this foray into Fourier series is a first glimpse at a deeper idea. Exponential functions, including their generalization into complex numbers and even matrices, play a very important role for differential equations, especially when it comes to linear equations. What you just saw, breaking down a function as a combination of these exponentials, comes up again in different shapes and forms.
 
 [^1]: Incidentally, the heat equation also describes many other phenomena unrelated to heat, like Brownian motion or the Black-Scholes equation
-[^2]: If you were working with a different boundary condition, say that the endpoints must stay fixed, you’d have a different set of waves at your disposal to piece together, in this case simply replacing the cosine functions with sines
-[^3]: The heaviside step function, $H(x)$ is defined as $H(x) = 1$ if $x \geq 0$ and $H(x) = 0$ otherwise. To scale this to -1 to 1, we multiply by 2 and subtract 1, then to shift it over to 0.5, we subtract the input by 0.5. Thus, we can get the above step function by the formula $2H(x-0.5) - 1$
-[^4]: If you're looking to delve deep into the math, I reccomend Stein Shakarchi's book "Fourier Analysis: An Introduction"
-[^5]: Typically in math, you have to be more careful making a swap like this when infinities are involved. Again, such questions are what real analysis is built for. In this case, you can indeed swap the integral and the sum.
+[^2]: This would be an absurd distribution to show up in practice, but sometimes mathematical problem solving begins by solving what's easy-but-unrealistic as a stepping stone to solving what's hard-but-realistic.
+[^3]: If you were working with a different boundary condition, say that the endpoints must stay fixed, you’d have a different set of waves at your disposal to piece together, in this case simply replacing the cosine functions with sines
+[^4]: The heaviside step function, $H(x)$ is defined as $H(x) = 1$ if $x \geq 0$ and $H(x) = 0$ otherwise. To scale this to -1 to 1, we multiply by 2 and subtract 1, then to shift it over to 0.5, we subtract the input by 0.5. Thus, we can get the above step function by the formula $2H(x-0.5) - 1$
+[^5]: If you're looking to delve deep into the math, I reccomend Stein Shakarchi's book "Fourier Analysis: An Introduction"
+[^6]: Typically in math, you have to be more careful making a swap like this when infinities are involved. Again, such questions are what real analysis is built for. In this case, you can indeed swap the integral and the sum.
