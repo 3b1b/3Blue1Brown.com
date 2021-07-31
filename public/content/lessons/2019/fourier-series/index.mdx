@@ -114,13 +114,13 @@ For example, let’s say you brought together two rods, each at some uniform tem
 
 <Figure image="heat_5.jpeg" />
 
-Our initial temperature distribution is a step function, which is so obviously different from sine waves and sums of sine waves, don’t you think? I mean, it’s almost entirely flat, not wavy, and for god’s sake, it’s even discontinuous!
+Our initial temperature distribution is a step function, which is so obviously different from sine waves and sums of sine waves, don’t you think? It’s almost entirely flat, not wavy, and for god’s sake, it’s even discontinuous!
 
 And yet, Fourier thought to ask a question which seems absurd: How do you express this as a sum of sine waves? Even more boldly, how do you express any initial temperature distribution as a sum of sine waves?
 
-And it’s more constrained than just that! You have to restrict yourself to adding waves which satisfy a certain boundary condition, which as we saw last video means working only with these cosine functions whose frequencies are all some whole number multiple of a given base frequency. [^4]
+And it’s more constrained than just that! You have to restrict yourself to adding waves which satisfy a certain boundary condition, which as we saw in the last lesson means working only with these cosine functions whose frequencies are all some whole number multiple of a given base frequency[^3].
 
-## Non-mathematical interlude
+### Non-mathematical interlude
 
 It’s strange how often progress in math looks like asking a new question, rather than simply answering an old one.
 
@@ -128,13 +128,13 @@ Fourier really does have a kind of immortality, with his name essentially synony
 
 <Figure image="imm_1.jpeg" />
 
-It’s really hard to overstate just how important and far-reaching that idea turned out to be, well beyond anything Fourier could have imagined. And yet, the origin of all this is in a piece of physics which upon first glance has nothing to do with frequencies and oscillations. If nothing else this should give a hint and how generally applicable Fourier series are.
+Fourier could never have imagined how significant and far-reaching this idea would turn out to be, ranging from the study of prime numbers, to quantum computing, to signal processing and much more. And yet, the origin of all this is in a piece of physics which upon first glance has nothing to do with frequencies and oscillations.
 
 ## Infinite sinusoids?
 
 <Figure image="infinite_1.jpeg" />
 
-“Now hang on,” I hear some of you saying, “none of these sums of sine waves being shown are actually the step function.” It’s true, any finite sum of sine waves will never be perfectly flat (except for a constant function), nor discontinuous. But Fourier thought more broadly, considering infinite sums. In the case of our step function, it turns out to be equal to this infinite sum: [^3] 
+“Now hang on,” I hear some of you saying, “none of these sums of sine waves being shown are actually the step function.” It’s true, any finite sum of sine waves will never be perfectly flat (except for a constant function), nor discontinuous. But Fourier thought more broadly, considering infinite sums. In the case of our step function, it turns out to be equal to this infinite sum: [^4] 
 
 $$
 2 \cdot H(x - 0.5) - 1 = \frac{4}{\pi} \left( \frac{\cos(1 \pi x)}{1} - \frac{\cos(3 \pi x)}{3} + \frac{\cos(5 \pi x)}{5} - \frac{\cos(7 \pi x)}{7} + \cdots \right)
@@ -142,15 +142,17 @@ $$
 
 I’ll explain where these numbers come from in a moment.
 
-Before that, I want to be clear about what we mean with a phrase like “infinite sum”, which runs the risk of being a little vague. Consider the simpler context of numbers, where you could say, for example:
+Before that, it's worth being clear about what we mean with a phrase like “infinite sum”, which runs the risk of being vague. Consider the simpler context of adding numbers, say this alternating sum of fractions with odd denominators:
 
 $$
 \frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \frac{1}{11} \cdots = \frac{\pi}{4}
 $$
 
-As you keep adding terms one-by-one, at all times what you have is rational; it never actually equals the irrational $\frac{\pi}{4}$. But this sequence of partial sums approaches $\frac{\pi}{4}$. That is to say, the numbers you see, while never equal to $\frac{\pi}{4}$, get arbitrarily close to that value, and stay arbitrarily close to that value. That’s a mouthful, so instead we abbreviate and say the infinite sum “equals” $\frac{\pi}{4}$.
+If you add these terms successively, one-by-one, at all times what you have will be rational. At no point will your partial sum of $N$ terms equal  the irrational $\frac{\pi}{4}$. But this sequence of partial sums approaches $\frac{\pi}{4}$. The numbers you see get arbitrarily close to that value, and stay arbitrarily close to that value.
 
-With functions, you’re doing the same thing but with many different values in parallel. Consider a specific input, and the value of all these scaled cosine functions for that input. 
+Referencing partial sums, and what that sequence of values approaches, is all a bit of mouthful, so instead we abbreviate and say the infinite sum “equals” $\frac{\pi}{4}$.
+
+With functions, you’re doing the same thing but with many different values in parallel. Consider a specific input, like $x=0.2$, and the value of all these scaled cosine functions for that input.
 
 <Figure image="infinite_2.jpeg" />
 
@@ -166,18 +168,25 @@ At the input 0.5 itself, all the cosines are 0, so the limit of the partial sums
 
 <Figure image="infinite_5.jpeg" video="infinite_5.mp4" show="video"/>
 
-Somewhat awkwardly, then, for this infinite sum to be strictly true, we do have to prescribe the value of the step function at the point of discontinuity to be 0.
+Somewhat awkwardly, then, for this infinite sum of functions to be strictly true, we do have to prescribe the value of the step function at the point of discontinuity to be 0.
 
 Analogous to an infinite sum of rational numbers being irrational, the infinite sum of wavy continuous functions can equal a discontinuous flat function. Limits allow for qualitative changes which finite sums alone never could.
 
-There are multiple technical nuances I’m sweeping under the rug here. Does the fact that we’re forced into a certain value for the step function at its point of discontinuity make any difference for the heat flow problem? For that matter, what does it really mean to solve a PDE with a discontinuous initial condition? Can we be sure the limit of solutions to the heat equation is also a solution? Do all functions have a Fourier series like this? These are exactly the kind of questions real analysis is built to answer, but it falls a bit deeper in the weeds than I think we should go here[^5].
+There are multiple technical nuances I’m sweeping under the rug here.
+* Does the fact that we’re forced into a certain value for the step function at its point of discontinuity make any difference for the heat flow problem?
+* For that matter, what does it really mean to solve a PDE with a discontinuous initial condition?
+* Can we be sure the limit of solutions to the heat equation is also a solution?
+* Can all functions be expressed as an infinite sum of waves like this?
+
+These are exactly the kind of questions real analysis is built to answer, but it falls a bit deeper in the weeds than I think we should go here[^5].
 
 The upshot is that when you take the heat equation solutions associated with these cosine waves and add them all up, all infinitely many of them, you do get an exact solution describing how the step function will evolve over time.
 
 ## How do we compute the coefficients?
-### We’ll generalize
+### Generalize
 
-The key challenge, of course, is to find these coefficients? So far, we’ve been thinking about functions with real number outputs, but for the computations I’d like to show you something more general than what Fourier originally did, applying to functions whose output can be any complex number, which is where those rotating vectors from the opening come back into play.
+The key challenge, of course, is to find these coefficients, the terms which we scale each wave by before adding them up.
+So far, we’ve been thinking about functions with real number outputs, but for the computations I’d like to show you something more general than what Fourier originally did, applying to functions whose output can be any complex number, which is where those rotating vectors from the opening come back into play.
 
 <PiCreature
     emotion="confused"
@@ -185,7 +194,7 @@ The key challenge, of course, is to find these coefficients? So far, we’ve bee
 
 Why the added complexity? Aside from being more general, in my view the computations become cleaner and it’s easier to see why they work. More importantly, it sets a good foundation for ideas that will come up again later in the series, like the Laplace transform and the importance of exponential functions.
 
-### The relation between cosine decomposition and rotating vector decomposition
+### Waves and rotation
 
 We’ll still think of functions whose input is some real number on a finite interval, say the one from 0 to 1 for simplicity. But whereas something like a temperature function will have an output confined to the real number line, we’ll broaden our view to outputs anywhere in the two-dimensional complex plane.
 
@@ -193,11 +202,11 @@ You might think of such a function as a drawing, with a pencil tip tracing along
 
 <Figure image="complex_1.jpeg" video="complex_1.mp4" show="video" />
 
-Instead of sine waves being the fundamental building block, as you saw at the start, we’ll focus on breaking these functions down as a sum of little vectors, all rotating at some constant integer frequency.
+Instead of sine waves being the fundamental building block, we’ll focus on breaking these functions down as a sum of little vectors, all rotating at some constant integer frequency.
 
 <Figure image="complex_2.jpeg"/>
 
-Functions with real number outputs are essentially really boring drawings; a 1-dimensional pencil sketch. You might not be used to thinking of them like this, since usually we visualize such a function with a graph, but right now the path being drawn is only in the output space.
+Functions with real number outputs are essentially really boring drawings; a 1-dimensional pencil sketch confined to the real number line. You might not be used to thinking of them like this, since usually we visualize such a function with a graph, but right now the path being drawn is only in the output space.
 
 <Figure image="complex_3.jpeg" />
 
@@ -220,13 +229,17 @@ At this point, maybe you don’t trust me that widening our view to complex func
 
 ### Complex numbers
  
-You may also wonder why, if we’re going to bump things up to 2-dimensions, we don’t we just talk about 2d vectors; What’s $\sqrt{-1}$ got to do with anything? Well, the heart and soul of Fourier series is the complex exponential, $e^{it}$.  As the value of $t$ ticks forward with time, this value walks around the unit circle at a rate of 1 unit per second.
+You may also wonder why, if we’re going to bump things up to 2-dimensions, we don’t we just talk about 2d vectors; What does $\sqrt{-1}$ have to do with anything? Well, the heart and soul of Fourier series is the complex exponential, $e^{it}$.  As the value of $t$ ticks forward with time, this value walks around the unit circle at a rate of 1 unit per second.
 
 <Figure image="complex_6.jpeg" video="complex_6.mp4" show="video" />
 
 In the <LessonLink id="eulers-formula-dynamically">next lesson</LessonLink>, you’ll see a quick intuition for why exponentiating imaginary numbers walks in circles like this from the perspective of differential equations, and beyond that, as the series progresses I hope to give you some sense for why complex exponentials are important.
 
-You see, in theory, you could describe all of this Fourier series stuff purely in terms of vectors and never breathe a word of i. The formulas would become more convoluted, but beyond that, leaving out the function $e^x$ would somehow no longer authentically reflect why this idea turns out to be so useful for solving differential equations. For right now you can think of this $e^{i t}$ as a notational shorthand to describe a rotating vector, but just keep in the back of your mind that it’s more significant than a mere shorthand.
+You see, in theory, you could describe all of this Fourier series stuff purely in terms of vectors and never breathe a word of i. The formulas would become more convoluted, but beyond that, leaving out the function $e^x$ would somehow no longer authentically reflect why this idea turns out to be so useful for solving differential equations.
+The key feature of $e^x$ is that it's a function whose derivative equals itself, which makes it a useful building block for describing functions whose derivatives don't necessarily equal themselves, but which depend on themselves in more complicated ways.
+
+For right now you can think of this $e^{i t}$ as a notational shorthand to describe a rotating vector, but just keep in the back of your mind that it’s more significant than a mere shorthand.
+In fact, if the back of your mind has a little extra space, you can think about how the second derivative of this function is equal to $-1$ times itself, and how this might correspond to the negative sign showing up in the heat equation.
 
 I’ll be loose with language and use the words “vector” and “complex number” somewhat interchangeably, in large part because thinking of complex numbers as little arrows makes the idea of adding many together clearer.
 
@@ -265,18 +278,18 @@ For example, if we wanted that constant vector not to be at the number 1, but to
  choice1="$e^{\frac{\pi}{4} i}$"
  choice2="$e^{45i}$"
  choice3="$e^{\frac{3 \pi}{4} i}$"
- choice4="$\frac{pi}{4}"
- correct={1}
+ choice4="$\frac{\pi}{4}$"
+ answer={1}
 >
 
-Given that $e^{\pi t}$ describes a point t radians around the unit circle, to get the complex number associated with rotating a $1+0i$ $45^{\circ}$ radian around the unit circle, we convert $45^{\circ}$ to radians, to get $\frac{pi}{4}$, and then plug it into $e^{\pi t}$ to get $e^{\frac{\pi}{4} i}$.
+Given that $e^{\pi t}$ describes a point t radians around the unit circle, to get the complex number associated with rotating a $1+0i$ $45^{\circ}$ radian around the unit circle, we convert $45^{\circ}$ to radians, to get $\frac{\pi}{4}$, and then plug it into $e^{\pi t}$ to get $e^{\frac{\pi}{4} i}$.
 
 </Question>
 
 
-If it’s initial length needed to be 0.3, the coefficient would be 0.3 times that amount.
+If it’s initial length needed to be 0.3, the coefficient would be 0.3 times that amount. You get the idea.
 
-Likewise, everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say this one drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given data of the function.
+Everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say the one below drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given the data of the function.
 
 <Figure image="constant_6.jpeg" />
 
@@ -313,7 +326,7 @@ $$
 \int_{0}^{1} f(t) dt =\int_{0}^{1}\left(\cdots+c_{-1} e^{-1 \cdot 2 \pi i t}+c_{0} e^{0 \cdot 2 \pi i t}+c_{1} e^{1 \cdot 2 \pi i t}+c_{2} e^{2 \cdot 2 \pi i t}+\cdots\right) d t
 $$
 
-This average of a sum is the same as a sum over the averages of each part. [^6]
+This average of a sum is the same as a sum over the averages of each part[^6].
 
 $$
 =\cdots+\int_{0}^{1} c_{-1} e^{-1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{0} e^{0 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{1} e^{1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{2} e^{2 \cdot 2 \pi i t} d t+\cdots
@@ -330,7 +343,7 @@ But each of these vectors makes a whole number of rotations around 0, so its ave
 But now let’s say you wanted to compute a different term, like $c_2$ in front of the vector rotating 2 cycles per second. The trick is to first multiply $f(t)$ by something which makes that vector hold still (sort of the mathematical equivalent of giving a smartphone to an overactive child).  Specifically, if you multiply the whole function by $e^{-2 \cdot 2 \pi i t}$, think about what happens to each term.
 
 <Question 
-  question="What happens to the terms of $\int_{0}^{1} f(t) e^{-2 \cdot 2 \pi i t} dt$?"
+  question="Assuming we can write $f(t)$ as $\sum_{n = -\infty}^\infty c_n e^{n \cdot 2\pi i t}$, which of the following describes $f(t) e^{-2 \cdot 2 \pi i t} dt$?"
   choice1="The integral outputs the average value of $f(t)$ shifted left by 2 units"
   choice2="Upon expanding $f(t)$, each of the frequency terms shift down by 2"
   choice3="The integral outputs the average value of $f(t)$ shifted right by 2 units"
@@ -406,5 +419,5 @@ But on the other hand, this foray into Fourier series is a first glimpse at a de
 [^2]: This would be an absurd distribution to show up in practice, but sometimes mathematical problem solving begins by solving what's easy-but-unrealistic as a stepping stone to solving what's hard-but-realistic.
 [^3]: If you were working with a different boundary condition, say that the endpoints must stay fixed, you’d have a different set of waves at your disposal to piece together, in this case simply replacing the cosine functions with sines
 [^4]: The heaviside step function, $H(x)$ is defined as $H(x) = 1$ if $x \geq 0$ and $H(x) = 0$ otherwise. To scale this to -1 to 1, we multiply by 2 and subtract 1, then to shift it over to 0.5, we subtract the input by 0.5. Thus, we can get the above step function by the formula $2H(x-0.5) - 1$
-[^5]: If you're looking to delve deep into the math, I reccomend Stein Shakarchi's book "Fourier Analysis: An Introduction"
+[^5]: If you're looking to delve deep into the math, I recommend Stein Shakarchi's book ["Fourier Analysis: An Introduction"](https://amzn.to/3rKzhde)
 [^6]: Typically in math, you have to be more careful making a swap like this when infinities are involved. Again, such questions are what real analysis is built for. In this case, you can indeed swap the integral and the sum.
