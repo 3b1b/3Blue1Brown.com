@@ -87,6 +87,7 @@ export default function PyramidPlot() {
     sketch.push();
 
     sketch.stroke(color);
+    sketch.strokeWeight(2);
     sketch.fill(color);
     sketch.line(0, 0, 0, pos.x, pos.y, pos.z);
     sketch.translate(pos.x, pos.y, pos.z);

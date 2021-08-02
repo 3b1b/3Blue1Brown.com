@@ -124,12 +124,12 @@ Remember how I said linear algebra revolves around vector addition and scalar mu
 
 <Question
   question="What is the span of $\begin{bmatrix}3\\ -2\end{bmatrix}$ and $\begin{bmatrix}-6\\ 4\end{bmatrix}$?"
-  choice1="$\overrightarrow{0}$"
+  choice1="$\mathbf{0}$"
   choice2="$\mathbb{R}$"
   choice3="$\mathbb{R}^2$"
   answer={2}>
 
-These two vectors line up because $\begin{bmatrix}-6\\ 4\end{bmatrix}=-2\begin{bmatrix}3\\ -2\end{bmatrix}$. That means their span is just the line going through the origin and the tips of the vectors, since it is just a single dimension we use the symbol $\mathbb{R}$ to represent the span. If the two vectors did not lie on the same line, their span would be the entire 2D plane, denoted $\mathbb{R}^2$. The span is the zero vector $\overrightarrow{0}$ only if both vectors were the zero vector.
+These two vectors line up because $\begin{bmatrix}-6\\ 4\end{bmatrix}=-2\begin{bmatrix}3\\ -2\end{bmatrix}$. That means their span is just the line going through the origin and the tips of the vectors, since it is just a single dimension we use the symbol $\mathbb{R}$ to represent the span. If the two vectors did not lie on the same line, their span would be the entire 2D plane, denoted $\mathbb{R}^2$. The span is the zero vector $\mathbf{0}$ only if both vectors were the zero vector.
 
 </Question>
 
@@ -178,7 +178,13 @@ $$
 $$
 <Interactive filename="span_interactive2/index" aspectRatio={800/650} />
 
-This flat sheet is the span of the two vectors. Or more precisely, the set of all possible vectors whose tips sit on this flat sheet is the span of your two vectors. Isn’t that a beautiful mental image?
+**Which vectors in 3D space are not in this span?**
+
+<FreeResponse>
+
+The set of all possible vectors whose tips sit on this flat sheet is the span of your two vectors. Any vector which does not lie on the plane is not in the span.
+
+</FreeResponse>
 
 So, what happens if you add on a third vector, and consider the span of all three of those guys? A linear combination of three vectors is defined pretty much the same way as for two: Choose three scalars, use them to scale each of your vectors, then add them all together. And again, the span of these vectors is the set of all possible linear combinations.
 $$
@@ -196,7 +202,7 @@ $$
 \color{black}=
 \color{red}a\overrightarrow{\mathbf{v}}
 \color{black}+
-\color{purple}b\overrightarrow{\mathbf{w}}
+\color{purple}b\overrightarrow{\mathbf{w}}
 $$
 There is another possibility though, if you just randomly choose a third vector, it’s almost certainly *not* sitting on the span of the first. Since it’s then pointing in a separate direction, it unlocks access to every possible three-dimensional vector! The way I like to think about this is that as you scale the new third vector, it moves around the span of the first two to sweep it through all of space.
 
@@ -206,3 +212,80 @@ It’s kind of like you’re making full use of the three freely-changing scalar
 
 In the case where the third vector was sitting on the span of the first two, or the case where two vectors happen to line up, we want some terminology to describe the fact that at least one of these vectors is redundant, not adding anything to our span. Whenever this happens, where you have multiple vectors, and you could remove one without reducing their span, the relevant terminology is to say they are “linearly dependent”.
 
+<Figure
+  image="linearly_dependent.svg"
+  video="linearly_dependent.mp4"
+  width="100%"
+/>
+
+Another way of phrasing this would be to say that one of the vectors can be expressed as a linear combination of the others. That is, it’s already in the span of the other two. On the other hand, if each vector really does add another dimension to the span, they are said to be “linearly independent”.
+$$
+\begin{align*}
+\text{Linearly Dependent: }\quad
+\color{blue}\overrightarrow{\mathbf{u}}
+\color{black}&=
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+\quad\color{black}\text{ for some }\color{red}a\color{black}\text{ and }\color{purple}b
+\\
+\text{Linearly Independent: }\quad
+\color{blue}\overrightarrow{\mathbf{u}}
+\color{black}&\neq
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+\quad\color{black}\text{ for all }\color{red}a\color{black}\text{ and }\color{purple}b
+\end{align*}
+$$
+<Accordion title="Notes on Notation">
+
+We'd like to express the idea of linear dependence with symbols. A set of vectors is linearly dependent if one of them can be expressed as a linear combination of the others, meaning you can find two scalars such that the sum of the scaled version of the first two vectors gives you the third.
+$$
+\text{The set}
+\left\{ 
+\color{blue}\overrightarrow{\mathbf{u}}\color{black},
+\color{red}\overrightarrow{\mathbf{v}}\color{black},
+\color{purple}\overrightarrow{\mathbf{w}}
+\color{black}\right \}
+\text{ is linearly dependent when}
+\\
+\color{blue}\overrightarrow{\mathbf{u}}
+\color{black}=
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+\quad\color{black}\text{ for some }\color{red}a\color{black}\text{ and }\color{purple}b
+$$
+However the vector $\color{blue}\overrightarrow{\mathbf{u}}$ isn't more special than the other two, we could rewrite the equation solving for either $\color{red}\overrightarrow{\mathbf{v}}$ or $\color{purple}\overrightarrow{\mathbf{w}}$ by choosing different constants.
+
+To demonstrate all three vectors are of equal importance textbooks will often confuse students by defining linear dependence as:
+$$
+\text{The set}
+\left\{ 
+\color{blue}\overrightarrow{\mathbf{u}}\color{black},
+\color{red}\overrightarrow{\mathbf{v}}\color{black},
+\color{purple}\overrightarrow{\mathbf{w}}
+\color{black}\right \}
+\text{ is linearly dependent when}
+\\
+\color{blue}a_0\overrightarrow{\mathbf{u}}
+\color{black}+
+\color{red}a_1\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}a_2\overrightarrow{\mathbf{w}}
+\color{black}=
+\mathbf{0}
+\quad\color{black}\text{ for nontrivial scalars}
+$$
+All of the vectors are sitting on one side of the equal sign with the zero vector $\mathbf{0}$ on the other side. In this arrangement, we could technically set all of the constants to $0$ to satisfy the equation. So we attach a note saying that the scalars must be "nontrivial" meaning they can't all be $0$. On the other hand, the definition of vectors being linearly *in*dependent is if the only possible linear combination that can bring them to $\mathbf 0$ is the trivial case when all of the scalars are zero.
+
+</Accordion>
+
+**The technical definition for the “basis” of a space is a set of linearly independent vectors that span that space, given how I described a basis earlier, and given your understanding of the words “span” and “linearly independent”, why does this definition make sense?**
+
+<FreeResponse>
+
+Earlier we learned that any pair of vectors could form a new basis as long as they didn't line up. If pair of vectors are linearly independent, their linear combination can span the entire 2D plane, meaning they can form the basis for the plane.
+
+</FreeResponse>
