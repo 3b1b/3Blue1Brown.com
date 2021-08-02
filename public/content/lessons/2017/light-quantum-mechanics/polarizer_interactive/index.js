@@ -372,8 +372,6 @@ export default function Polarizer() {
     SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
   }
 
-  // return <Sketch key="polarizerSketch1" setup={topSetup} draw={topDraw} />;
-  // return <Sketch key="polarizerSketch2" setup={bottomSetup} draw={bottomDraw}/>;
   return [
     <Sketch key="polarizerSketch1" setup={topSetup} draw={topDraw} />,
     <Sketch key="polarizerSketch2" setup={bottomSetup} draw={bottomDraw} />,

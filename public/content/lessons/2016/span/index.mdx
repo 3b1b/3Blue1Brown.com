@@ -166,3 +166,43 @@ In general, if you’re thinking of a vector on its own, think of it as an arrow
 
 The idea of span gets more interesting if we start thinking about vectors in three-dimensional space. For example, if you take two vectors in three-dimensional space that are not pointing in the same direction, what does it mean to take their span?
 
+<Interactive filename="span_interactive/index" aspectRatio={800/500} />
+
+Well, their span is the collection of all possible linear combinations of those two vectors, meaning all possible vectors you get by scaling each of the two you start with in some way, then adding them together. You can imagine turning two knobs to change the two scalars defining the linear combination, adding the scaled vectors and following the tip of the resulting vector. That tip traces out some kind of flat sheet cutting through the origin of three-dimensional space. 
+$$
+\color{green}\overrightarrow{\mathbf{x}}
+\color{black}=
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+$$
+<Interactive filename="span_interactive2/index" aspectRatio={800/650} />
+
+This flat sheet is the span of the two vectors. Or more precisely, the set of all possible vectors whose tips sit on this flat sheet is the span of your two vectors. Isn’t that a beautiful mental image?
+
+So, what happens if you add on a third vector, and consider the span of all three of those guys? A linear combination of three vectors is defined pretty much the same way as for two: Choose three scalars, use them to scale each of your vectors, then add them all together. And again, the span of these vectors is the set of all possible linear combinations.
+$$
+\color{green}\overrightarrow{\mathbf{x}}
+\color{black}=
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+\color{black}+
+\color{blue}c\overrightarrow{\mathbf{u}}
+$$
+Two things could happen. The first possibility is if your third vector happens to be sitting on the span of the first two. Then the span doesn’t change, you’re sort of trapped on that same flat sheet. In other words, adding a scaled version of the third vector to linear combinations of the first two doesn’t give you access to any new vectors. This means the third vector can also be expressed as a linear combination of the other two:
+$$
+\color{blue}\overrightarrow{\mathbf{u}}
+\color{black}=
+\color{red}a\overrightarrow{\mathbf{v}}
+\color{black}+
+\color{purple}b\overrightarrow{\mathbf{w}}
+$$
+There is another possibility though, if you just randomly choose a third vector, it’s almost certainly *not* sitting on the span of the first. Since it’s then pointing in a separate direction, it unlocks access to every possible three-dimensional vector! The way I like to think about this is that as you scale the new third vector, it moves around the span of the first two to sweep it through all of space.
+
+<Interactive filename="span_interactive3/index" aspectRatio={800/650} />
+
+It’s kind of like you’re making full use of the three freely-changing scalars that you have at your disposal to access the full three dimensions of space. 
+
+In the case where the third vector was sitting on the span of the first two, or the case where two vectors happen to line up, we want some terminology to describe the fact that at least one of these vectors is redundant, not adding anything to our span. Whenever this happens, where you have multiple vectors, and you could remove one without reducing their span, the relevant terminology is to say they are “linearly dependent”.
+
