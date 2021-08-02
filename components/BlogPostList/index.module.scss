@@ -1,0 +1,17 @@
+.postList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  text-align: left;
+  row-gap: 8px;
+  column-gap: 16px;
+}
+
+.postDate {
+  font-style: italic;
+  text-align: right;
+}
+
+.bullet {
+  margin: 0 16px;
+  color: #ccc;
+}

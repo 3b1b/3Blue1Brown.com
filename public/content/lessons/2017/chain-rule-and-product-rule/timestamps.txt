@@ -1,0 +1,5 @@
+0:00 Intro
+1:50 Sum Rule
+4:11 Product Rule
+8:41 Function Composition or "Chain Rule"
+14:36 Outro

@@ -2,6 +2,7 @@
 title: But what is a Neural Network?
 description: An overview of what a neural network is, introduced in the context of recognizing hand-written digits.
 date: 2017-10-05
+chapter: 1
 video: aircAruvnKk
 source: _2017/nn/part1.py
 credits:
@@ -12,13 +13,14 @@ credits:
 <Interactive
   filename="neural-network-interactive/index"
   aspectRatio={640 / 480}
+  allowFullscreen={true}
 />
 
-The program above can identify hand-drawn digits 0-9 reasonably accurately. Give a whirl if you haven’t already!
+The program above can identify hand-drawn digits 0-9 reasonably accurately. Give it a whirl if you haven’t already!
 
-Although it does generally work, it’s not too hard to find situations where it fails. (For example, this poor little network is completely flummoxed by anything which isn’t centered, or isn’t about the right size.)
+Although it does generally work, it requires a bit of coaxing to get there. In particular, the digit images it receives need to be centered and about the right size, which is why there's a pre-processing step before the digit image gets passed along to the neural network.[^1]
 
-While more modern neural networks can do a much better job at tasks like this, the network above is simple enough that you can understand exactly what it’s doing and how it was trained with almost no background. It’s also simple enough that you could train it on your own computer, while training more sophisticated networks can require a truly mind-boggling amount of computation.[^1]
+While more modern neural networks can do a much better job at tasks like this, the network above is simple enough that you can understand exactly what it’s doing and how it was trained with almost no background. It’s also simple enough that you could train it on your own computer, while training more sophisticated networks can require a truly mind-boggling amount of computation.[^2]
 
 On the surface, a machine recognizing handwritten digits may not seem particularly impressive. After all, you know how to identify digits, and I bet you don’t even find it very hard. For example, you can tell instantly that these are all images of the digit three:
 
@@ -30,7 +32,7 @@ But if I told you to sit down and write a program like the one shown above, that
 
 **Somehow identifying digits is incredibly easy for your brain to do, but almost impossible to describe _how_ to do.** The traditional methods of computer programming, with if statements and for loops and classes and objects and functions, just don’t seem suitable to tackle this problem.
 
-But what if we could write a program that mimics the structure of your brain? That’s the idea behind neural networks. The hope is that by writing brain-inspired software, we might be able to create programs that tackle the kinds of fuzzy and difficult-to-reason-about problems that your mind is so good at solving.[^2]
+But what if we could write a program that mimics the structure of your brain? That’s the idea behind neural networks. The hope is that by writing brain-inspired software, we might be able to create programs that tackle the kinds of fuzzy and difficult-to-reason-about problems that your mind is so good at solving.[^3]
 
 Moreover, just as you learn by seeing many examples, the “learning” part of machine learning comes from the fact that we never give the program any specific instructions for how to identify digits. Instead, we’ll show it many examples of hand-drawn digits together with labels for what they should be, and leave it up to the computer to adapt the network based on each new example.
 
@@ -77,7 +79,7 @@ All of our digit images have $28 \times 28 = 784$ pixels, each with a brightness
   pixel in the original image."
 />
 
-When we want to feed the network an image, we’ll set each input neuron’s activation to the brightness of its corresponding pixel.[^3]
+When we want to feed the network an image, we’ll set each input neuron’s activation to the brightness of its corresponding pixel.[^4]
 
 The last layer of our network will have 10 neurons, each representing one of the possible digits. The activation in these neurons, again some number between 0.0 and 1.0, will represent how much the system thinks an image corresponds to a given digit.
 
@@ -93,7 +95,11 @@ Take a look at the following image:
 
 Based on the output layer of the network shown above, what kind of digit does this network think it’s looking at? How certain does it feel?
 
-**Answer:** <Spoiler>It’s having trouble deciding whether the input image is a 4 or a 9.</Spoiler>
+<FreeResponse>
+
+It’s having trouble deciding whether the input image is a 4 or a 9.
+
+</FreeResponse>
 
 ### The Hidden Layers
 
@@ -154,7 +160,7 @@ Whether or not this is how our final network actually works is another question.
 
 ### Layers Break Problems Into Bite-Sized Pieces
 
-You can imagine how being able to detect edges and patterns would be useful for other image-recognition tasks.
+You can imagine how being able to detect edges and patterns would also be useful for other image-recognition tasks.
 
 <Figure
   image="edge-detection.png"
@@ -241,7 +247,7 @@ But this pattern of weights will also pick up on big blobs of activated pixels! 
 >
   B gives the highest activation because it only activates the neurons with
   positive weights. C gives the lowest activation because it is the exact
-  inverse of B. A has an weighted sum of zero because all the input neurons are
+  inverse of B. A has a weighted sum of zero because all the input neurons are
   off, but D has a positive activation because it activates 24 positive weights
   but only 16 negative weights.
 </Question>
@@ -254,9 +260,10 @@ The result of the weighted sum like this can be any number, but for this network
   image="number-line-squish.png"
   video="number-line-squish.mp4"
   caption="There’s no limit to how big or small the weighted sum might be. But our new neuron value should be between 0 and 1, so we need to somehow squish the range of possible outputs down to size."
+  show="video"
 />
 
-One common function that does this is called the “sigmoid” function, also known as a logistic curve. Very negative inputs end up close to 0, very positive inputs end up close to 1, and it steadily increases around 0. So the activation of the neuron here will basically be a measure of how positive the weighted sum is.
+One common function that does this is called the “sigmoid” function, also known as a logistic curve, which we represent using the symbol $\sigma$. Very negative inputs end up close to 0, very positive inputs end up close to 1, and it steadily increases around 0. So the activation of the neuron here will basically be a measure of how positive the weighted sum is.
 
 <Figure
   image="sigmoid.png"
@@ -319,7 +326,7 @@ Next, organize all the weights as a matrix, where each row of this matrix corres
 
 <Figure video="matrix-math-videos/weight-matrix.mp4" />
 
-Then the product $\textcolor{green}{W} a^{(0)}$ is a column vector containing all the weighted sums for the neurons in the next layer.[^4]
+Then the product $\textcolor{green}{W} a^{(0)}$ is a column vector containing all the weighted sums for the neurons in the next layer.[^5]
 
 <Figure video="matrix-math-videos/weighted-sum.mp4" />
 
@@ -338,7 +345,7 @@ So, once you write this weight matrix and these vectors as their own symbols, yo
   caption="This tiny expression represents the computation of all the neurons in the next layer based on all the neurons in the previous layer, using the chosen weights and biases."
 />
 
-This makes the relevant code much cleaner and much faster, since many libraries optimize the heck out of matrix multiplication.[^5]
+This makes the relevant code much cleaner and much faster, since many libraries optimize the heck out of matrix multiplication.[^6]
 
 ## The Network Is Just a Function
 
@@ -355,17 +362,50 @@ And really, the entire network is just a function! It takes in 784 numbers as it
 
 In a way, it’s kind of reassuring that this looks complicated. If it were any simpler, what hope would we have that it could take on the challenging task of recognizing digits?
 
-And how does it take on that challenge? How does this network learn the appropriate weights and biases from data? That’s what I’ll show in the next lesson.
+And how does it take on that challenge? How does this network learn the appropriate weights and biases from data? That’s what I’ll show in the <LessonLink id="gradient-descent">next lesson</LessonLink>.
 
-[^1]: For example, when OpenAI trained their famous GPT-3 algorithm, it was estimated to require about $12 Million worth of computation.
-[^2]: Although neural networks are inspired by the brain, they are by no means identical. It's a lot like the difference between a bird and an airplane. They achieve the same end goal using roughly the same strategies, but with some pretty major differences when it comes to the details.
-[^3]:
+Oh, but before you go, I do have one little asterisk to mention about the sigmoid function if that sounds interesting to you:
+
+<Accordion title="Bonus Note: The Problem With Sigmoids">
+
+In the original video that this article is based on, I talked to Lisha Li, who did her PhD work on the theoretical side of deep learning. She was a representative from Amplify Partners, who sponsored the original video, and she stopped by to discuss the sigmoid function. Specifically, to mention that it has a major drawback.
+
+<Figure image="sigmoid-old-school.png" />
+
+The problem is that the sigmoid function becomes *super* flat at the extremes, when the weighted sum being passed in has a large magnitude.
+
+That might not seem like an issue. But as we’ll learn in the next lesson, the process of training the neural network essentially boils down to wiggling the values of all the weights and biases and watching what happens, like a 13,000-dimensional game of hot and cold. When a little wiggle to a weight is effective, you do more of that, and when it isn’t helpful, you do the opposite.
+
+But since the sigmoid function gets so flat, wiggling the weights doesn’t really do much of anything! Which means that the process of learning takes a long time, and training networks is painful.
+
+So nowadays, people tend to use a function called ReLU (Rectified Linear Unit) instead. It’s an absurdly pompous name for a very simple function. ReLU spits out 0 for any negative input, and doesn’t change the positive inputs at all.
+
+<Figure image="relu.png" />
+
+Unlike sigmoid, the output of ReLU never flattens out, no matter how large the weighted sum becomes. So wiggling the weights always gives useful feedback about how the network should change. This makes the training process much faster and more efficient, especially as there are more layers involved, which is where the “deep” in “deep learning” comes from.
+
+Earlier, I motivated the inclusion of the sigmoid by saying we want each neuron to hold a value between 0 and 1. While this is nice for the biological analogy of a neuron being either active or inactive, it’s not a necessary restriction; the relevant result at the output layer comes down to whether some neurons are more active than others, regardless of the scale.
+
+You might wonder, then, why we need *any* function wrapped around the matrix product. Forget sigmoid and ReLU, what about nothing at all? If the only thing we were doing was rescaling by weights and adding biases at each layer, then the result of propagating the information from the input layer to the output layer would be nothing more than a sequence of matrix multiplications (with some offsets along the way), which means the full function is *linear*. We won’t go into the details here, but this would make the network dramatically less expressive. If you want to see a lovely visual explanation of what it means for data to be “linearly separable”, and why having some non-linear step in a neural network is important, you may enjoy [this post](https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/) by Chris Olah.
+
+But of course, we shouldn’t get ahead of ourselves. We still need to discuss how the network learns from new data, which you can learn about in the following chapters.
+
+</Accordion>
+
+[^1]: Our focus in this series will be on just the neural network itself, which is arguably the most interesting part, but preparing data in this way is also very important for successful machine learning in the real world.
+
+[^2]: For example, when OpenAI trained their famous GPT-3 algorithm, it was estimated to require about $12 Million worth of computation.
+
+[^3]: Although neural networks are inspired by the brain, they are by no means identical. It's a lot like the difference between a bird and an airplane. They achieve the same end goal using roughly the same strategies, but with some pretty major differences when it comes to the details.
+
+[^4]:
     We can't fit all 784 neurons in our diagram, so you're only seeing the first and last neurons, which correspond to the first pixels of the first row and the last pixels of the last row of the image.
 
     That's an admittedly boring selection, because for almost every digit image, those pixels will just be black. But as you're reading, keep in mind that there's a lot of exciting stuff going on behind the little "...". Many of the neurons you can't see are active!
 
-[^4]: By the way, so much of machine learning comes down to having a good grasp of linear algebra, so if any of you want a nice visual understanding for matrices, and what matrix-vector multiplication means, take a look at <LessonLink id="eola-preview">the series I did on linear algebra</LessonLink>. Especially <LessonLink id="linear-transformations">chapter 3</LessonLink>.
-[^5]:
+[^5]: By the way, so much of machine learning comes down to having a good grasp of linear algebra, so if any of you want a nice visual understanding for matrices, and what matrix-vector multiplication means, take a look at <LessonLink id="eola-preview">the series I did on linear algebra</LessonLink>. Especially <LessonLink id="linear-transformations">chapter 3</LessonLink>.
+
+[^6]:
     These days, due to the demand for more machine learning and more powerful networks, there have been huge leaps and bounds in specialized hardware which is aimed at making matrix multiplication much faster, for example, Google's "Tensor processing unit", or TPU.
 
     Half the time when you hear a company describe something like a "new neural architecture" meant for more powerful AI, what they really mean when you look under the hood is that they're multiplying matrices more quickly.

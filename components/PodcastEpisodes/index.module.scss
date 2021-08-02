@@ -1,0 +1,33 @@
+.podcastEpisode {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 16px;
+  margin: -16px;
+  margin-bottom: 16px;
+}
+
+.podcastEpisode:hover {
+  background: $gray-200;
+}
+
+.thumbnail {
+  width: 200px;
+  margin-right: 24px;
+}
+
+.info {
+  text-align: left;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.description {
+  color: $gray-700;
+  font-size: 15px;
+}

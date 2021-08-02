@@ -1,0 +1,29 @@
+$(x^3 + 2x)^2$
+
+$$
+f(x) = (x^3 + 2x)^2
+$$
+
+$$
+f(x) = g(h(x))
+$$
+
+Start by setting up the derivative of the function.
+
+$$
+\frac{d}{dx} \left( f(x) \right) = \frac{d}{dx}\left((x^3 + 2x)^2\right)
+$$
+
+Recognize that this function fits the chain rule pattern. The inner function's output, let's call it $h = x^3 + 2x$, gets fed into the outer functions input.
+
+$$
+h = x^3 + 2x
+$$
+
+$$
+g = h^2
+$$
+
+$$
+f(x) = \frac{d}{dh}\left(h^2\right) \cdot \frac {dh}{dx}
+$$

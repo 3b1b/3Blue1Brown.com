@@ -18,6 +18,7 @@ Figure.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   loop: PropTypes.bool,
+  muted: PropTypes.bool,
 };
 
 function requireImageOrVideo(props, propName, componentName) {
@@ -57,7 +58,7 @@ const autoSize = ({ width, height }, sectionWidth) => {
 
   return {
     width: page * Math.sqrt(width / height / ratio) || "100%",
-    maxHeight: page * Math.sqrt(height / width / ratio) || "100%",
+    height: page * Math.sqrt(height / width / ratio) || undefined,
   };
 };
 
@@ -74,6 +75,7 @@ export default function Figure({
   width: manualWidth = 0,
   height: manualHeight = 0,
   loop = false,
+  muted = true,
 }) {
   // whether to show image or video
   initialShow =
@@ -89,6 +91,24 @@ export default function Figure({
   const { dir } = useContext(PageContext);
 
   const sectionWidth = useSectionWidth();
+
+  // Check if this file's dimensions were saved at build time,
+  // and if so, use those. (Otherwise that data will be populated
+  // as soon as the media file actually loads.)
+  const { mediaDimensions } = useContext(PageContext);
+  useEffect(() => {
+    const imagePath = dir + imageSrc;
+    const imageDims = mediaDimensions[imagePath];
+    if (imageDims) {
+      setImage(imageDims);
+    }
+
+    const videoPath = dir + videoSrc;
+    const videoDims = mediaDimensions[videoPath];
+    if (videoDims) {
+      setVideo(videoDims);
+    }
+  }, [dir, imageSrc, videoSrc, mediaDimensions]);
 
   // determine frame dimensions
   let frame = {};
@@ -111,11 +131,15 @@ export default function Figure({
     const video = videoRef.current;
     if (image) {
       const { naturalWidth: width, naturalHeight: height } = image;
-      setImage({ width, height });
+      if (width > 0 && height > 0) {
+        setImage({ width, height });
+      }
     }
     if (video) {
       const { videoWidth: width, videoHeight: height } = video;
-      setVideo({ width, height });
+      if (width > 0 && height > 0) {
+        setVideo({ width, height });
+      }
     }
   }, []);
 
@@ -169,7 +193,7 @@ export default function Figure({
           <video
             ref={videoRef}
             className={styles.video}
-            muted
+            muted={muted}
             controls
             loop={loop}
             preload="metadata"

@@ -12,7 +12,7 @@
   grid-area: title;
 
   font-family: $sans;
-  font-size: 32px;
+  font-size: 24px;
   text-align: left;
 }
 
@@ -26,6 +26,11 @@
   font-family: $sans;
   font-size: 20px;
   text-align: left;
+}
+
+.social_label {
+  font-size: 16px;
+  padding: 4px 8px
 }
 
 @media (max-width: 900px) {
