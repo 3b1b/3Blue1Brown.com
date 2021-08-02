@@ -92,5 +92,9 @@ export default function BasicWindingMachine() {
     sketch.text("x", 450, 215);
   }
 
-  return <Sketch setup={setup} draw={draw} />;
+  const mobileStyling = {
+    touchAction: "none"
+  };
+
+  return <Sketch setup={setup} draw={draw} style={mobileStyling}/>;
 }

@@ -163,8 +163,17 @@ export default function BasicWindingMachine() {
     fontSize: "26px",
   };
 
+  const mobileStyling = {
+    touchAction: "none",
+  };
+
   return [
-    <Sketch key="fourier_interactive_1" setup={setup} draw={draw} />,
+    <Sketch
+      key="fourier_interactive_1"
+      setup={setup}
+      draw={draw}
+      style={mobileStyling}
+    />,
     <input
       key="fourier_interactive_2"
       type="text"
