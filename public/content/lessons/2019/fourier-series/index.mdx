@@ -204,10 +204,12 @@ You might think of such a function as a drawing, with a pencil tip tracing along
 
 Instead of sine waves being the fundamental building block, we’ll focus on breaking these functions down as a sum of little vectors, all rotating at some constant integer frequency.
 
+<!-- TODO: Make this an animation -->
 <Figure image="complex_2.jpeg"/>
 
 Functions with real number outputs are essentially really boring drawings; a 1-dimensional pencil sketch confined to the real number line. You might not be used to thinking of them like this, since usually we visualize such a function with a graph, but right now the path being drawn is only in the output space.
 
+<!-- TODO: Make this an animation -->
 <Figure image="complex_3.jpeg" />
 
 When we do the decomposition into rotating vectors for these boring 1d drawings, what will happen is that all the vectors with frequency 1 and -1 will have the same length, and they’ll be horizontal reflections of each other. When you just look at the sum of these two as they rotate, that sum stays fixed on the real number line, and oscillates like a sine wave. 
@@ -236,33 +238,37 @@ You may also wonder why, if we’re going to bump things up to 2-dimensions, we 
 In the <LessonLink id="eulers-formula-dynamically">next lesson</LessonLink>, you’ll see a quick intuition for why exponentiating imaginary numbers walks in circles like this from the perspective of differential equations, and beyond that, as the series progresses I hope to give you some sense for why complex exponentials are important.
 
 You see, in theory, you could describe all of this Fourier series stuff purely in terms of vectors and never breathe a word of i. The formulas would become more convoluted, but beyond that, leaving out the function $e^x$ would somehow no longer authentically reflect why this idea turns out to be so useful for solving differential equations.
-The key feature of $e^x$ is that it's a function whose derivative equals itself, which makes it a useful building block for describing functions whose derivatives don't necessarily equal themselves, but which depend on themselves in more complicated ways.
+The key feature of $e^x$ is that it's a function whose derivative equals itself, which makes it a useful building block for describing functions whose derivatives depend on the function itself in more complicated ways.
 
 For right now you can think of this $e^{i t}$ as a notational shorthand to describe a rotating vector, but just keep in the back of your mind that it’s more significant than a mere shorthand.
 In fact, if the back of your mind has a little extra space, you can think about how the second derivative of this function is equal to $-1$ times itself, and how this might correspond to the negative sign showing up in the heat equation.
 
-I’ll be loose with language and use the words “vector” and “complex number” somewhat interchangeably, in large part because thinking of complex numbers as little arrows makes the idea of adding many together clearer.
+I’ll be loose with language and use the words “vector” and “complex number” somewhat interchangeably, since thinking of complex numbers as little arrows makes the idea of adding many together clearer.
 
 ### So, what are the constants?
 
-Alright, armed with the function $e^{it}$, let’s write down a formula for each of these rotating vectors we’re working with. For now, think of each of them as starting pointed one unit to right, at the number 1.
+Armed with the function $e^{it}$, let’s write down a formula for each of these rotating vectors we’re working with. For now, think of each of them as starting pointed one unit to right, at the number 1.
 
 The easiest vector to describe is the constant one, which just stays at the number 1, never moving. Or, if you prefer, it’s “rotating” at a frequency of 0. 
 
+<!-- TODO: Communicate rotation in this image -->
 <Figure image="constant_1.jpeg" />
 
 Then there will be a vector rotating 1 cycle every second which we write as $e^{2 \pi i t}$.
 
+<!-- TODO: Communicate rotation in this image, and get of the little box showing the input range with t -->
 <Figure image="constant_2.jpeg" />
 
 The $2 \pi$ is there because as $t$ goes from $0$ to $1$, it needs to cover a distance of $2 \pi$ along the circle.
 
 We also have a vector rotating at 1 cycle per second in the other direction, $e^{-2 \pi i t}$. 
 
+<!-- TODO: Communicate rotation in this image -->
 <Figure image="constant_3.jpeg" />
 
 Similarly, the one going 2 rotations per second is $e^{2 \cdot 2 \pi i t}$, where that $2 \cdot 2 \pi$ in the exponent describes how much distance is covered in 1 second. And we go on like this over all integers, both positive and negative, with a general formula of $e^{n \cdot 2 \pi i t}$ for each rotating vector.
 
+<!-- TODO: Communicate rotation in this image, and perhaps offer an animated version -->
 <Figure image="constant_4.jpeg" />
 
 Notice, this makes it more consistent to write the constant vector is written as $e^{0 \cdot 2 \pi  i  t}$, which feels like an awfully complicated to write the number 1, but at least then it fits the pattern.
@@ -291,6 +297,7 @@ If it’s initial length needed to be 0.3, the coefficient would be 0.3 times th
 
 Everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say the one below drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given the data of the function.
 
+<!-- TODO: Make this an animation -->
 <Figure image="constant_6.jpeg" />
 
 ### The integration trick
@@ -309,7 +316,7 @@ $$
 c_0 = \int_{0}^{1} f(t) dt
 $$
 
-Normally, since I’m framing this in terms of averages, you’d divide this integral by the length of the interval. But that length is 1, so it amounts to the same thing.
+Normally, since the aim is to compute an average, you’d divide this integral by the length of the interval. But that length is 1, so it amounts to the same thing.
 
 $$
 c_0 = \frac{1}{1-0} \int_{0}^{1} f(t) dt
@@ -332,53 +339,68 @@ $$
 =\cdots+\int_{0}^{1} c_{-1} e^{-1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{0} e^{0 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{1} e^{1 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{2} e^{2 \cdot 2 \pi i t} d t+\cdots
 $$
 
-you can read this move as a subtle shift in perspective. Rather than looking at the sum of all the vectors at each point in time, and taking the average value of the points they trace out, look at the average value for each individual vector as t goes from 0 to 1, and add up all these averages.
+You can read this move as a shift in perspective. Rather than looking at the sum of all the vectors at each point in time, and taking the average value of the points they trace out, look at the average value for each individual vector as t goes from 0 to 1, and add up all these averages.
 
-But each of these vectors makes a whole number of rotations around 0, so its average value as t goes from 0 to 1 will be 0. The only exception is that constant term; since it stays static and doesn’t rotate, it’s average value is just whatever number it started on, which is $c_0$. So doing this average over the whole function is sort of a way to kill all terms that aren’t $c_0$.
+It's a subtle shift, but think about what each of those inner integrals being added now means. Each of these rotating vectors makes a whole number of rotations around 0 as $t$ ranges from $0$ to $1$, so its average value will be 0. The only exception is that constant term; since it stays static and doesn't rotate, its average value is simply whatever number it started on, which is $c_0$. So doing this average over the whole function kills all the terms _except_ $c_0$.
 
 <Figure image="integ_3.jpeg" />
 
 ### Pull out any other term
 
-But now let’s say you wanted to compute a different term, like $c_2$ in front of the vector rotating 2 cycles per second. The trick is to first multiply $f(t)$ by something which makes that vector hold still (sort of the mathematical equivalent of giving a smartphone to an overactive child).  Specifically, if you multiply the whole function by $e^{-2 \cdot 2 \pi i t}$, think about what happens to each term.
+But now let’s say you wanted to compute a different term, like $c_2$ in front of the vector rotating 2 cycles per second. The trick is to first multiply $f(t)$ by something which makes that vector hold still, the mathematical equivalent of giving a smartphone to an overactive child.  Specifically, if you multiply the whole function by $e^{-2 \cdot 2 \pi i t}$, think about what happens to each term.
+
+Remember, we're assuming you can write $f(t)$ as a sum which looks like this:
+$$
+f(t) = \left(\cdots
+c_{-2}e^{-2 \cdot 2\pi i t} +
+c_{-1}e^{-1 \cdot 2\pi i t} +
+c_{0}e^{0 \cdot 2\pi i t} +
+c_{1}e^{1 \cdot 2\pi i t} +
+c_{2}e^{2 \cdot 2\pi i t} +
+\cdots\right)
+$$
 
 <Question 
-  question="Assuming we can write $f(t)$ as $\sum_{n = -\infty}^\infty c_n e^{n \cdot 2\pi i t}$, which of the following describes $f(t) e^{-2 \cdot 2 \pi i t} dt$?"
-  choice1="The integral outputs the average value of $f(t)$ shifted left by 2 units"
-  choice2="Upon expanding $f(t)$, each of the frequency terms shift down by 2"
-  choice3="The integral outputs the average value of $f(t)$ shifted right by 2 units"
-  choice4="Upon expanding $f(t)$, each of the frequency terms shift up by 2"
-  answer={2}
+  question="For a function $f(t)$ with the form above, what is the average value of $f(t)e^{-2 \cdot 2\pi i t}$ as $t$ ranges from $0$ to $1$?"
+  choice1="$c_{-2}$"
+  choice2="$\frac{1}{2}c_{-2}$"
+  choice3="$c_0$"
+  choice4="$\frac{1}{2}c_{2}$"
+  choice5="$c_2$"
+  answer={5}
 >
 
-Upon expanding $\int_{0}^{1} f(t) e^{-2 \cdot 2 \pi i t} dt$, we get
+This average is computed with the integral $\displaystyle \int_{0}^{1} f(t) e^{-2 \cdot 2 \pi i t} dt$. Expanding this, we get
 
 $$
 \cdots+\int_{0}^{1} c_{-1} e^{-1 \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{0} e^{0 \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{1} e^{1 \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t} d t+\int_{0}^{1} c_{2} e^{2 \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t} d t+\cdots
 $$
 
-Each term $c_n e^{n \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t}$ equals to $c_n e^{(n-2) \cdot 2 \pi i t}$, hence option B.
+Each term $c_n e^{n \cdot 2 \pi i t} \cdot e^{-2 \cdot 2 \pi i t}$ equals to $c_n e^{(n-2) \cdot 2 \pi i t}$. All of these rotate a whole number of times around $0$ averaging out to $0$, with the exception of the term $c_2 e^{(2 - 2) \cdot 2\pi i t}$, which stays constant. This means the full expression evaluates simply to $c_2$.
 
 </Question>
 
-So now, that $c_{-1}$ vector spins around -3 times, with an average of 0. The $c_0$ vector, previously constant, now rotates twice as t ranges from 0 to 1, so its average is 0. And likewise, all vectors other than the $c_2$ term make some whole number of rotations, meaning they average out to 0. So taking the average of this modified function, all terms other than the second one get killed, and we’re left with $c_2$.
+In short, multiplying by $e^{-2 \cdot 2\pi i t}$ is a way to make the rotating vectors associated with $c_2 e^{2 \cdot 2\pi i t}$ hold still while all the others move around.
 
 Of course, there’s nothing special about 2 here. If we replace it with any other $n$, you have a formula for any other term $c_n$. 
 
 $$
-c_n = \int_{0}^{1} f(t) e^{n \cdot 2 \pi i t} d t
+c_n = \int_{0}^{1} f(t) e^{-n \cdot 2 \pi i t} d t
 $$
 
 Again, you can read this expression as modifying our function, our 2d drawing, so as to make the $n^{\text{th}}$ little vector hold still, and then performing an average so that all other vectors get canceled out. Isn’t that crazy? All the complexity of this decomposition as a sum of many rotations is entirely captured in this expression.
 
 ## Doing this in practice
 
-So when I’m rendering these animations, that’s exactly what I’m having the computer do. It treats this path like a complex function, and for a certain range of values for n, it computes this integral to find each coefficient $c_n$. For those of you curious about where the data for the path itself comes from, I’m going the easy route having the program read in an svg, which is a file format that defines the image in terms of mathematical curves rather than with pixel values, so the mapping $f(t)$ from a time parameter to points in space basically comes predefined.
+To create the animations for this post, that formula is exactly what I’m having the computer evaluate. It treats a path like a complex function, and for a certain range of values for n, it computes this integral to find each coefficient $c_n$.
+For those of you curious about where the data for the path itself comes from, I’m going the easy route having the program read in an svg, which is a file format that defines the image in terms of mathematical curves rather than with pixel values.
+Skipping over some details of appropriately massaging the data of those curves, this essentially means the mapping $f(t)$ from a time parameter to points in space comes predefined.
 
 <Figure image="practice_1.jpeg" video="practice_1.mp4" show="video" />
 
-In what’s shown right now, I’m using 101 rotating vectors, computing values of n from -50 up to 50. In practice, the integral is computed numerically, basically meaning it chops up the unit interval into many small pieces of size $\Delta t$ and adds up this value $f(t)e^{-n 2 \pi i t} \Delta t$ for each one of them. There are fancier methods for more efficient numerical integration, but that gives the basic idea.
+The animation above uses 101 rotating vectors, computing values of n from -50 up to 50. In practice, the integral is computed numerically, essentially meaning it chops up the unit interval into many small pieces of size $\Delta t$ and adds up this value $f(t)e^{-n \cdot 2 \pi i t} \Delta t$ for each one of them. There are fancier methods for more efficient numerical integration, but that gives the basic idea.
 
+<!-- TODO: Maybe replace the 0.99 inside "sum" here with the variable t -->
 <Figure image="practice_2.jpeg" />
 
 After computing these 101 values, each one determines an initial position for the little vectors, and then you set them all rotating, adding them all tip to tail, and the path drawn out by the final tip is some approximation of the original path. As the number of vectors used approaches infinity, it gets more and more accurate.
@@ -391,11 +413,11 @@ To bring this all back down to earth, consider the example we were looking at ea
 
 <Figure image="step_1.jpeg" />
 
-Like any real-valued function, a step function is like a boring drawing confined to one-dimension. But this one is an especially dull drawing, since for inputs between 0 and 0.5, the output just stays static at the number 1, and then it discontinuously jumps to -1 for inputs between 0.5 and 1. 
+Since it's a real-valued function, a step function is like a boring drawing confined to one-dimension. But this one is an especially dull drawing, since for inputs between 0 and 0.5, the output just stays static at the number 1, and then it discontinuously jumps to -1 for inputs between 0.5 and 1. 
 
 <Figure image="step_2.jpeg" video="step_2.mp4" show="video" />
 
-So in the Fourier series approximation, the vector sum stays really close to 1 for the first half of the cycle, then really quickly jumps to -1 for the second half. Remember, each pair of vectors rotating in opposite directions correspond to one of the cosine waves we were looking at earlier.
+What does this mean for the Fourier series approximation? The vector sum stays really close to 1 for the first half of the cycle, then really quickly jumps to -1 for the second half. Remember, each pair of vectors rotating in opposite directions correspond to one of the cosine waves we were looking at earlier.
 
 <Figure image="step_3.jpeg" video="step_3.mp4" show="video" />
 
@@ -411,13 +433,13 @@ For the even more ambitious, I’ll also leave another exercises up on how to re
 
 If you’re looking for more Fourier series content, I highly recommend the videos by [Mathologer](https://youtu.be/qS4H6PEcCCA) and [The Coding Train](https://youtu.be/Mm2eYfj0SgA) on the topic, and the [blog post by Jezzamoon](http://www.jezzamon.com/fourier/index...). [Here's](https://isaacvr.github.io/coding/fourier_transform/) an interactive to draw your own path with the corresponding Fourier series.
 
-So on the one hand, this concludes our discussion of the heat equation, which was a little window into the study of partial differential equations.
+On the one hand, this concludes our discussion of the heat equation, which was a little window into the study of partial differential equations.
 
-But on the other hand, this foray into Fourier series is a first glimpse at a deeper idea. Exponential functions, including their generalization into complex numbers and even matrices, play a very important role for differential equations, especially when it comes to linear equations. What you just saw, breaking down a function as a combination of these exponentials, comes up again in different shapes and forms.
+On the other hand, this foray into Fourier series is a first glimpse at a deeper idea. Exponential functions, including their generalization into complex numbers and even matrices, play a very important role for differential equations, especially when it comes to linear equations. What you just saw, breaking down a function as a combination of these exponential functions, comes up again in different shapes and forms.
 
 [^1]: Incidentally, the heat equation also describes many other phenomena unrelated to heat, like Brownian motion or the Black-Scholes equation
 [^2]: This would be an absurd distribution to show up in practice, but sometimes mathematical problem solving begins by solving what's easy-but-unrealistic as a stepping stone to solving what's hard-but-realistic.
 [^3]: If you were working with a different boundary condition, say that the endpoints must stay fixed, you’d have a different set of waves at your disposal to piece together, in this case simply replacing the cosine functions with sines
 [^4]: The heaviside step function, $H(x)$ is defined as $H(x) = 1$ if $x \geq 0$ and $H(x) = 0$ otherwise. To scale this to -1 to 1, we multiply by 2 and subtract 1, then to shift it over to 0.5, we subtract the input by 0.5. Thus, we can get the above step function by the formula $2H(x-0.5) - 1$
 [^5]: If you're looking to delve deep into the math, I recommend Stein Shakarchi's book ["Fourier Analysis: An Introduction"](https://amzn.to/3rKzhde)
-[^6]: Typically in math, you have to be more careful making a swap like this when infinities are involved. Again, such questions are what real analysis is built for. In this case, you can indeed swap the integral and the sum.
+[^6]: Typically in math, you have to be more careful making a swap like this when infinities are involved. Again, such questions are what real analysis is built for. In this case, it's helpful to move forward assuming that swap is a valid move.
