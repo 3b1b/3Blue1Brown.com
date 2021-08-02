@@ -15,9 +15,9 @@ If a protocol is described as having "$n$-bit security", it means an attacker wo
 
 For example, the <LessonLink id="bitcoin" >last post</LessonLink> touched on the function SHA256, which takes in an input of arbitrary length, and produces an output which is always 256 bits long. It's believed that this is a _crytographic_ hash function, which means that it's computationally infeasible to reverse it. More specifically, if you want to find an input producing a particular output, there is no better method than to repeatedly guess and check.
 
-<Figure image="guesses.png" />
+<Figure image="guesses.png" width="80%" />
 
-These cryptographic hash functions are used, for example, to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [ [1](/lessons/256-bit-security/#footnotes)]
+These cryptographic hash functions are used, for example, to store passwords without revealing what those passwords are. If your database stores usernames and the associated hash of the corresponding password, then when a user enters their password, you can check if it’s correct by computing its hash and comparing it with what is stored. But anyone looking at the database should have no way to reverse engineer what the passwords are. [^1]
 
 A core theme of cryptography is to find tasks which are easy in one direction but hard in another, so it should make sense that these one-way hash functions are a very common building block in all sorts of security protocols, including not just password storage, but digital signatures, proofs of work, and many more. So how hard is this guess-and-check process, exactly? The outputs of this hash function behave like a random sequence of numbers, so it’s helpful to think of rolling a die.
 
@@ -69,7 +69,7 @@ Plugging in $x = \frac{5}{6}$, this lets you evaluate the sum above to get $6$. 
 
 </Question>
 
-For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[ [2](/lessons/256-bit-security/#footnotes)]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
+For SHA256, there are not six possible outputs, there are $2^{256}$. So on average it will take $2^{256}$ guesses to find an input with a particular hash[^2]. But how difficult is this, exactly? A number like $2^{256}$ is so far removed from anything we ever deal with that it can be hard to appreciate its size. Nevertheless, let’s give it a try.
 
 ## Appreciating Large Powers of Two
 
@@ -175,8 +175,5 @@ This is not because there are actually billions of GPU packed machines out there
 
 These are pieces of hardware specifically designed for bitcoin mining and nothing else. It turns out that there are a lot of efficiency gains to be had when you throw out the need for general computation, and design your integrated circuits for a single, specific task.
 
-## Footnotes
-
-[1] Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. If the index server is the only one breached, no passwords are leaked. If the honey server is the only one breached, the attackers don't know which hash is the real password, preventing a majority of the passwords being leaked. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking. [↩](#cryptographic-hash-functions)
-
-[2] Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer. [↩](#cryptographic-hash-functions)
+[^1]: Once an attacker breaches a database, they only have the hash of the user's password. Passwords are often not unique, so an attacker can use a rainbow table of precomputed hashes of common passwords. To prevent this, a good server will give each user a randomly generated number, known as a salt and append it to the end of the password before hashing. An even better approach is to generate honeywords, which are fake passwords whose salted hashes are stored in a list mixed with the real salted hashed password. The index of the real password in the list is stored on a separate server. The attackers must breach both the honey and index servers to even be allowed to perform offline password cracking.
+[^2]: Other attacks, such as finding a [hash collision](https://en.wikipedia.org/wiki/Birthday_attack) with a birthday attack only requires $2^{128}$ guesses on average. Quantum computers can run [Grover's algorithm](https://en.wikipedia.org/wiki/Grover%27s_algorithm) to invert a hash, but it also requires $2^{128}$ iterations. If you are concerned about quantum computers making your hashing algorithm insecure, simply double the output size to 512 bits which provides the same security as 256 bits does on a classical computer.
