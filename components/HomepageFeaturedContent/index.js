@@ -131,9 +131,9 @@ export function HomepageFeaturedVideo({
 const CarouselContext = createContext({ visible: false });
 
 function Carousel({ children }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const slideCount = Children.count(children);
+  const randomIndex = Math.floor(Math.random() * slideCount);
+  const [currentIndex, setCurrentIndex] = useState(randomIndex);
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((currentIndex) =>
