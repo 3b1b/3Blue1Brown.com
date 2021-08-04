@@ -28,7 +28,7 @@ export default function BasicWindingMachine() {
   const FOURIER_ORIGIN = { x: 400, y: 385 };
   const FOURIER_SIZE = { x: 400, y: 120 };
 
-  let FREQS = [1, 2, 3, 4];
+  let FREQS = [2, 3];
 
   function setup(sketch, canvasParentRef) {
     sketch.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
@@ -178,7 +178,7 @@ export default function BasicWindingMachine() {
       key="fourier_interactive_2"
       type="text"
       onChange={updateFrequencies}
-      defaultValue="1,2,3,4"
+      defaultValue="2,3"
       style={textboxStyle}
     />,
   ];
