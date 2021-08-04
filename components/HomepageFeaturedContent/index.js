@@ -24,13 +24,11 @@ export default function HomepageFeaturedContent({ title, subtitle="", children }
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
       <div className={styles.subtitle}>{subtitle}</div>
-      <div className={styles.spacer}/>
       <div className={styles.featured}>
         <Carousel>{children}</Carousel>
       </div>
       <div className={styles.social}>
         <SocialIcons />
-        {/*<div className={styles.social_label} />*/}
       </div>
     </div>
   );
