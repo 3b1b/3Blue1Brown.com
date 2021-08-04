@@ -163,11 +163,11 @@ At this stage, we can call this plot tracking the center of mass of our wound up
   image="2ps.jpeg" width="100%"
 />
 
-The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into it's constituent waveforms. To show this, let's combine the 2 and 3 frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot. This is shown below:
+The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into its constituent waveforms. To show this, let's combine the 2 and 3 frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot. This is shown below:
 
 <Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
-Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average avlue of $0$.
+Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average value of $0$.
 
 <Figure
   image="almost.jpeg" width="100%"
@@ -202,7 +202,7 @@ To go back to the original signal, we need to use another concept known as the i
 
 Going back to the previous example of the "Almost Fourier Transform," the first thing one might criticize is the fact that the movement of the center of mass for our winding wire has both an $x$ and a $y$ component, but we are only plotting the $x$-component! Let's attack that issue first.
 
-In principle, we could treat the center of mass as a 2D vector. However often in mathematics when rotation is involved, the formulas become notably more elegant when we represent 2D values as complex numbers. For this example, the center of mass would become complex number with both a real and imaginary part. Why bring in imaginary numbers? Well, Euler's formula is why.
+In principle, we could treat the center of mass as a 2D vector. However, often in mathematics when rotation is involved, the formulas become notably more elegant when we represent 2D values as complex numbers. For this example, the center of mass would become a complex number with both a real and imaginary part. Why bring in imaginary numbers? Well, Euler's formula is why.
 
 Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ is some arbitrary number (like 2.0), and $i$ is the typical complex variable of $\sqrt{-1}$, we will find ourselves on the point we would get by walking counter-clockwise $n$ units along a circle of radius 1 in the complex plane.
 
