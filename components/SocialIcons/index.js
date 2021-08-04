@@ -15,6 +15,11 @@ export default function SocialIcons() {
         your recommendations."
       />
       <Link
+        link="https://www.youtube.com/GrantSanderson"
+        icon="fab fa-youtube"
+        tooltip="Wait, there's a second channel?"
+      />
+      <Link
         link="https://www.patreon.com/3blue1brown"
         icon="fab fa-patreon"
         tooltip="Psst, on the 3b1b Patreon about page you 
@@ -47,9 +52,11 @@ export default function SocialIcons() {
         feed?"
       />
       <Link
-        link="https://www.youtube.com/GrantSanderson"
-        icon="fab fa-youtube"
-        tooltip="Wait, there's a second channel?"
+        link="https://www.reddit.com/r/3Blue1Brown/"
+        icon="fab fa-reddit"
+        tooltip="Discussion, community, and all that jazz. 
+        Also, this subreddit is quite literally the only 
+        place I look when considering topic requests."
       />
       <Link
         link="http://www.facebook.com/3blue1brown"
@@ -57,13 +64,6 @@ export default function SocialIcons() {
         tooltip="I'll level with you, this is a very 
         scantily managed Facebook page. It's pretty much 
         just a place to throw up new videos."
-      />
-      <Link
-        link="https://www.reddit.com/r/3Blue1Brown/"
-        icon="fab fa-reddit"
-        tooltip="Discussion, community, and all that jazz. 
-        Also, this subreddit is quite literally the only 
-        place I look when considering topic requests."
       />
       <Link
         link="https://www.instagram.com/randy_the_pi/"
