@@ -10,15 +10,13 @@ credits:
 - Interactives by River Way
 ---
 
-This right here is the visual you and I will build up to in this post:
+Take a moment to play with the illustration below by dragging the point on the lower right red graph.
 
-<Figure
-  image="com_1.png"
-  video="com_1.mp4"
-  width="100%"
-/>
+<Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
-This represents the inner workings of an incredibly important tool for math, engineering, and most of science: The Fourier transform. While this post is aimed at being a friendly introduction, building up to a visual understanding that motivates the potentially-complicated-looking formula, my hope is that even those of you who are already somewhat familiar with Fourier transforms will find it enriching to unpack what it is really doing.
+What we'll build to in this post is an understanding of how this represents the inner workings of the Fourier transform, an incredibly important tool for math, engineering, and most of science.
+
+While this post is aimed at being a friendly introduction, building up to a visual understanding that motivates the potentially-complicated-looking formula, my hope is that even those of you who are already somewhat familiar with Fourier transforms will find it enriching to unpack what it is really doing.
 
 ## Fourier Transform of Sounds Waves
 
@@ -95,14 +93,14 @@ Why are there $6$ petals on this winded up graph?
 
 <FreeResponse>
 
-The product of $\frac13$ and $\frac12$ is $\frac16$. If we had a winding frequency of $0.75$ cycles per second, there would be $\frac13\cdot\frac34=\frac14$, so 4 petals!
+The rotating vector takes $2$ units of time to make a full revolution, and the graph makes $3$ oscillations per unit time, making for $6$ oscillations for every revolution of this vector.
 
 </FreeResponse>
 
 It is important to see there are 2 different frequencies at play.
 
 1. The frequency of the original signal, 3 beats per second.
-2. The frequency that we are wrapping the sine wave along the circle, which at the moment is at 0.5 cycles per second.
+2. The frequency with which the little rotating vector winds around the circle, which at the moment is 0.5 cycles per second.
 
 If we set the vector rotating faster or slower, changing the "winding frequency", the resulting shape it traces out would be something different.
 
@@ -118,13 +116,14 @@ The key intuition here is that we are wrapping the signal around a circle, and d
   image="winding_match.png"
   video="winding_match.mp4"
   width="100%"
+  show="video"
 />
 
 Notice, the resulting curve it draws out is off-balance to the right. The rotating vector is always longer when it's pointing to the right, and shorter when it's pointed to the left, because the frequency with which its length changes is identical to the frequency with which it rotates around the circle.
 
-Would we be able to use this information for our frequency unwinding machine? Well, we actually can!
+Can we leverage this to build a frequency unwinding machine? To systematically identify a frequency in the original signal, especially in the case when it's jumbled together with many other frequencies? We actually can!
 
-First, let's imagine that the pattern was made of something with some weight, like a metal wire. Now put a dot at the center of mass location, and as we change the winding frequency, the center of mass will kind of wobble about. We'll revisit what we mean by "center of mass" here a bit further down, but for the moment we're looking for an intuitive way to measure how much this wound up graph is off-balance.
+First, imagine that the graph was made of something with some weight, like a metal wire. Now put a dot at the center of mass location, and as we change the winding frequency, the center of mass will kind of wobble about. We'll revisit what we mean by "center of mass" here a bit further down, but for the moment we're looking for an intuitive way to measure how much this wound up graph is off-balance.
 
 In most cases, the center of mass stays relatively close to the origin, but when the winding frequency is the same as the frequency for our signal, the center of mass is unusually far to the right. To keep track of this effect, let's draw the x-coordinate for the center of mass as the winding frequency changes.
 
@@ -134,7 +133,8 @@ In most cases, the center of mass stays relatively close to the origin, but when
   width="100%"
 />
 
-Different patterns appear as we wind up this graph, but it is clear that the $x$-coordinate for the center of mass is important when the winding frequency is $3$. Check out how the red dot marking the center of mass moves as the winding frequency changes. The interactive applet below will respond to hovering your mouse over the plot of the $x$-coordinate.
+Different patterns appear as we wind up this graph, but it is clear that the $x$-coordinate for the center of mass is important when the winding frequency is $3$.
+Take a moment to play with the graph below by moving the dot in the lower right graph. Remember, the $x$ axis of the top graph is time, but the $x$-axis of that lower right graph represents the winding frequency, how tightly the upper graph is wound up around a circle. Take a moment to really think about why this graph has a peak around the frequency of $3$.
 
 <Interactive filename="basic_interactive/index" aspectRatio={880 / 500} />
 
@@ -151,11 +151,11 @@ We learned previously that multiplying the base frequency by the winding frequen
 
 </Question>
 
-There is one small caveat: the center of mass seems to be a maximum distance from the center of the plot at a winding frequency of 0 cycles per second. What gives? Well, this is because we have started with a sine wave that oscillates between 0 and 2, and when the winding frequency is 0, the wire is just a straight line pointing to the right, meaning that the center of mass is halfway between 0 and 2, or 1. Really, that spike at 0 is measuring the fact that the average value of the graph as a whole is positive. If we centered the initial sine wave around 0, letting it dip into negative values, there would be no spike above the winding frequency of 0.
+There is one small caveat: the center of mass seems to be a maximum distance from the center of the plot at a winding frequency of 0 cycles per second. What gives? This is because we have started with a sine wave that oscillates between 0 and 2, and when the winding frequency is 0, the wire is just a straight line pointing to the right, meaning that the center of mass is halfway between 0 and 2, or 1. Really, that spike at 0 is measuring the fact that the average value of the graph as a whole is positive. If we centered the initial sine wave around 0, letting it dip into negative values, there would be no spike above the winding frequency of 0.
 
 <Figure image="centered.png" width="100%" />
 
-The motive for using purely positive sine waves as our starting examples in this post is that negative values are a little weirder to think about as you wind up the graph. But the core logic stays the same in either case.
+Now our lower right graph much more cleanly pulls out the underlying frequency of 3 beats per second. The motive for using purely positive sine waves as our starting examples in this post is that negative values are a little weirder to think about as you wind up the graph. But the core logic stays the same in either case.
 
 At this stage, we can call this plot tracking the center of mass of our wound up graph the "Almost Fourier transform" of the original signal. It allows for us to pick out the frequency of the signal by seeing where the spike is. Next, suppose we take a different signal, like one with a lower frequency of 2 beats per second. We could do the same thing and find a peak at 2 cycles per second, as shown here:
 
@@ -163,15 +163,11 @@ At this stage, we can call this plot tracking the center of mass of our wound up
   image="2ps.png" width="100%"
 />
 
-The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into it's constituent waveforms. To show this, let's combine the 2 and 3 frequency waves and do the same operation: tracking the center of mass coordinate and look for peaks in the winding frequency plot. This is shown below:
+The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into it's constituent waveforms. To show this, let's combine the 2 and 3 frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot. This is shown below:
 
-<Figure
-  image="full_machine.png"
-  video="full_machine.mp4"
-  width="100%"
-/>
+<Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
-Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together, as shown here:
+Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average avlue of $0$.
 
 <Figure
   image="almost.png" width="100%"
@@ -179,7 +175,7 @@ Here, we see 2 different frequencies at both 2 and 3 beats per second, which is 
 
 The way a mathematician might phrase this is that our "Almost Fourier transform" operation is *linear*. The curious among you may want to pause for a moment to reflect on why this is true. It ultimately stems from the fact that the x-coordinate of the sum of two vectors is the sum of their x-coordinates. This, by the way, is why we had it track the x-coordinate of the center of mass of the graph, rather than tracking its distance from the origin. For the full frequency information, you'd also want to keep track of the y-coordinate, but more on that below.
 
-So this little mathematical machine does exactly what we wanted: it pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. The applet below allows you to change the input wave form by separating the frequencies <Tooltip content="Only 5 frequencies between 0Hz and 4.4Hz will be shown.">by commas</Tooltip>.
+This little mathematical machine does exactly what we wanted. It pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. Try changing the input frequencies in the interactive below, separated <Tooltip content="Only 5 frequencies between 0Hz and 4.4Hz will be shown.">by commas</Tooltip>.
 
 <Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
@@ -190,8 +186,6 @@ What happens when an input frequency of $0$Hz is wound up?
 It simply forms a circle (or arc of a circle) because the input graph is a constant, so it is always a constant distance from the origin. The reason the $0$Hz Fourier transform oscillates is because we are taking a fixed time interval. 
 
 </FreeResponse>
-
-Before moving on to the mathematical formalism here, it is a good idea to discuss a key application of this machine in sound editing, which is similar to the application we showed above with the Fourier transform of sound waves.
 
 ## An Example in Sound Editing
 
@@ -204,20 +198,19 @@ Let's imagine that you have a voice recording, but there is an annoying ringing 
 If we remove the spike by smooshing it out on the frequency plot, we will have a sound that is almost identical to the recording, but without the ringing.
 To go back to the original signal, we need to use another concept known as the inverse Fourier transform, and after applying this operation, we have effectively removed the high-pitched ringing noise from the signal.
 
-So at this stage, we should get back to the heart of this post: what exactly is the mathematical formalism for the Fourier transform?
-
 ## Mathematical Formalism
 
 Going back to the previous example of the "Almost Fourier Transform," the first thing one might criticize is the fact that the movement of the center of mass for our winding wire has both an $x$ and a $y$ component, but we are only plotting the $x$-component! Let's attack that issue first.
 
-In principle, we could treat the center of mass as a 2D vector, however often in mathematics when rotation is involved, the formulas become notably more elegant when we represent 2D values as complex numbers. For this example, the center of mass would become complex number with both a real and imaginary part. Why bring in imaginary numbers? Well, Euler's formula is why.
+In principle, we could treat the center of mass as a 2D vector. However often in mathematics when rotation is involved, the formulas become notably more elegant when we represent 2D values as complex numbers. For this example, the center of mass would become complex number with both a real and imaginary part. Why bring in imaginary numbers? Well, Euler's formula is why.
 
-Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ is some arbitrary number (like 2.0), and $i$ is the typical complex variable of $\sqrt{-1}$, we will find ourselves on the point we would get by walking counter-clockwise $n$ units along a circle of radius 1 in the complex plane, as shown below:
+Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ is some arbitrary number (like 2.0), and $i$ is the typical complex variable of $\sqrt{-1}$, we will find ourselves on the point we would get by walking counter-clockwise $n$ units along a circle of radius 1 in the complex plane.
 
 <Figure
   image="e2i.png"
   video="e2i.mp4"
   width="100%"
+  show="video"
 />
 
 If you are curious, I've made multiple videos explaining why this is true, a <LessonLink id="eulers-formula-dynamically">quick one</LessonLink> offering an explanation from the perspective of differential equations, a <LessonLink id="eulers-formula-via-group-theory">longer one</LessonLink> offering a connection to group theory, and a <LessonLink id="ldm-eulers-formula">longer one still</LessonLink> targeted at someone just seeing it for the first time.
@@ -228,7 +221,7 @@ $$
 e^{2\pi i f t}
 $$
 
-Where $2\pi$ is the full length of the circumference of the circle, $f$ is the desired frequency, and $t$ is a variable for time. This means that at any given time $t$, we have progressed some amount along the circle. Ultimately, this gives us nice notation for describing how we might wind ourselves around a circle, but the convention for Fourier transforms is that we move in the clockwise (not counter-clockwise) direction, so it is more accurate to use $e^{-2\pi i f t}$ with a negative sign.
+That $2\pi$ term represents the full length of the circumference of the circle, $f$ is the desired frequency, and $t$ is a variable for time. This means that at any given time $t$, we have progressed some amount along the circle. Ultimately, this gives us nice notation for describing how we might wind ourselves around a circle, but the convention for Fourier transforms is that we move in the clockwise (not counter-clockwise) direction, so it we'll use $e^{-2\pi i f t}$ with a negative sign.
 
 If we were to take any signal and describe it as a function, like $g(t)$, then
 
@@ -238,12 +231,10 @@ $$
 
 will provide the function of $g$ at time $t$ and also the point along the circle $e^{-2\pi i f t}$. This is almost precisely the same as the winding machine we created before! 
 
-This happens to explain why the wound-up graph was periodic. It also shows why the product of the periods of $g(t)$ and $e^{-2\pi i f t}$ yielded information about the period of the wound-up graph.
-
 Now we just need some sort of formula to capture the motion of the center of mass. To approximate this, one might sample a large set of different times along the provided waveform, see where they end up on the wound-up graph, and take an average:
 
 $$
-\frac{1}{N}\sum_{k=1}^N g(t_k)e^{-2\pi i f t}
+\frac{1}{N}\sum_{k=1}^N g(t_k)e^{-2\pi i f t_k}
 $$
 
 Pictorially, it would look like this:
@@ -262,16 +253,16 @@ $$
 
 Here, we still need to divide the equation based on the size of the time interval $(t_2-t_1)$. Though this might seem intimidating, the whole expression is really just finding the center of mass of the wound-up graph [^1].
 
-Great!  Step-by-step, we have built up this kind of complicated, but, let's face it, surprisingly small expression for the whole winding machine idea that I talked about.
+Great!  Step-by-step, we have built up this kind of complicated, but, let's face it, surprisingly small expression for the winding machine.
 
-And now, there is only one final distinction to point out between this and the actual, honest-to-goodness Fourier transform. Namely, just don't divide out by the time interval.
+There is only one final distinction to point out between this and the actual, honest-to-goodness Fourier transform. Namely, the true Fourier transform doesn't divide out by the time interval, it's just the integral part.
 $$
 \underbrace{\frac{1}{t_2-t_1}\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Center of mass}}
 \qquad\rightarrow\qquad
 \underbrace{\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Scaled center of mass}}
 $$
 
-The Fourier transform is just the integral part. What that means is that instead of looking at the center of mass, you would scale it up by some amount. If the portion of the original graph you were using spanned three seconds, you would multiply the center of mass by three. If it was spanning six seconds, you would multiply the center of mass by six.
+What that means is that instead of looking at the center of mass, you would scale it up by some amount. If the portion of the original graph you were using spanned three seconds, you would multiply the center of mass by three. If it was spanning six seconds, you would multiply the center of mass by six.
 
 <Figure
   image="6seconds.png"
@@ -281,7 +272,7 @@ The Fourier transform is just the integral part. What that means is that instead
 
 Physically, this has the effect that when a certain frequency persists for a long time, then the magnitude of the Fourier transform at that frequency is scaled up more and more.
 
-For example, in the image below, we have a pure frequency of two beats per second, and it's being wound up at two cycles per second. In that case, no matter how long the duration of our signal, the center of mass stays roughly in the same spot, right?  It's just tracing out the same shape.
+For example, in the image below, we have a pure frequency of two beats per second, and it's being wound up at two cycles per second. In that case, no matter how long the duration of our signal, the center of mass stays roughly in the same spot.  It's just tracing out the same shape.
 
 <Figure
   image="to_infinity1.png"
@@ -295,19 +286,16 @@ For other winding frequencies, though, even ones just barely different from 2, t
   image="to_infinity2.png"
   video="to_infinity.mp4"
   width="100%"
+  show="video"
 />
 
 ## Summary
 
-That is... a lot of different moving parts, so let's step back and summarize what we have so far.
+That's a lot of different moving parts, so let's step back and summarize what we have so far.
 
 The Fourier transform of an intensity vs. time function, like $g(t)$, is a new function, which doesn't have time as an input, but instead takes in a frequency, what I've been calling "the winding frequency." In terms of notation, by the way, the common convention is to call this new function $\hat g(f)$ with a little circumflex on top of it.
 
-<Figure
-  image="imag_too.png"
-/>
-
-The output of this new function is a complex number, some point in the 2D plane, that corresponds to the strength of a given frequency in the original signal.  The plot that I've been graphing for the Fourier transform is just the real component of that output, the x-coordinate.
+The output of this new function is a complex number, some point in the 2D plane, that corresponds to the strength of a given frequency in the original signal. The plot that I've been graphing for the Fourier transform is just the real component of that output, the x-coordinate.
 
 But you could also graph the imaginary component separately, if you wanted a fuller description.
 
@@ -315,7 +303,7 @@ But you could also graph the imaginary component separately, if you wanted a ful
   image="conclusion.png" width="100%"
 />
 
-And all of this is being encapsulated inside that formula that we built up.
+All of this is being encapsulated inside the rather dense formula that we built up.
 
 $$
 \hat g(f) = \int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt
@@ -342,7 +330,7 @@ Concretely, what that means is that you consider this expression for all possibl
   width="100%"
 />
 
-There is a lot more to say about this, but we will wrap up the discussion here for now.
+There is a lot more to say about this, but we will wrap up the discussion here for now. If you're curious to see how this Fourier transform relates to the uncertainty principle from quantum mechanics, take a look at the <LessonLink id="uncertainty-principle">next post</LessonLink>.
 
 [^1]: Here it's worth adding some more clarity on what we mean by "center of mass". In the picture above, notice that the points are being sampled in a way that's evenly spaced across time, but this is not necessarily evenly spaced along the *length* of the graph. In effect, if we're thinking of the graph as a wire, the density of that wire is constant with respect to time, as if the rotating vector drawing it is outputting a constant amount of mass per unit time.  But this implies the wire would be a little less dense in places where the graph's height changes rapidly. In principle, you could define a similar-but-distinct cousin of the Fourier transform by treating this "wire" with constant mass per unit of arc length, but the math would become less elegant.
 [^2]: Computers don't like continuous functions, so practical applications like sound editing use the discrete fourier transform, which can be expressed as matrix-vector multiplication. There is also the quantum fourier transform which is used on quantum computers.
