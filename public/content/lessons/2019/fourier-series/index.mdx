@@ -288,8 +288,7 @@ Given that $e^{\pi t}$ describes a point t radians around the unit circle, to ge
 
 Everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say the one below drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given the data of the function.
 
-<!-- TODO: Make this an animation -->
-<Figure image="constant_6.jpeg" />
+<Figure image="constant_6.jpeg" video="constant_6.mp4" show="video"/>
 
 ### The integration trick
 
@@ -391,7 +390,6 @@ Skipping over some details of appropriately massaging the data of those curves, 
 
 The animation above uses 101 rotating vectors, computing values of n from -50 up to 50. In practice, the integral is computed numerically, essentially meaning it chops up the unit interval into many small pieces of size $\Delta t$ and adds up this value $f(t)e^{-n \cdot 2 \pi i t} \Delta t$ for each one of them. There are fancier methods for more efficient numerical integration, but that gives the basic idea.
 
-<!-- TODO: Maybe replace the 0.99 inside "sum" here with the variable t -->
 <Figure image="practice_2.jpeg" />
 
 After computing these 101 values, each one determines an initial position for the little vectors, and then you set them all rotating, adding them all tip to tail, and the path drawn out by the final tip is some approximation of the original path. As the number of vectors used approaches infinity, it gets more and more accurate.
