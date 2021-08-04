@@ -7,7 +7,7 @@ export default function PodcastEpisodes() {
       {episodes.map((episode, index) => (
         <PodcastEpisode
           key={episode.youtubeId}
-          number={index + 1}
+          number={episodes.length - index}
           title={episode.title}
           description={episode.description}
           youtubeId={episode.youtubeId}
