@@ -66,6 +66,7 @@ https://www.3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
 /poems/ode-to-infinity                          /blog/poems#ode-to-infinity
 /poems/2015/3/3/groups                          /blog/poems#groups
 /poems/2015/3/3/abstraction                     /blog/poems#abstraction
+/lessons                                        /#lessons
 
 
 # Topic redirects
