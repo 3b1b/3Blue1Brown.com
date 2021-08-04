@@ -204,13 +204,11 @@ You might think of such a function as a drawing, with a pencil tip tracing along
 
 Instead of sine waves being the fundamental building block, we’ll focus on breaking these functions down as a sum of little vectors, all rotating at some constant integer frequency.
 
-<!-- TODO: Make this an animation -->
-<Figure image="complex_2.jpeg"/>
+<Figure image="complex_2.jpeg" video="complex_2.mp4" show="video"/>
 
 Functions with real number outputs are essentially really boring drawings; a 1-dimensional pencil sketch confined to the real number line. You might not be used to thinking of them like this, since usually we visualize such a function with a graph, but right now the path being drawn is only in the output space.
 
-<!-- TODO: Make this an animation -->
-<Figure image="complex_3.jpeg" />
+<Figure image="complex_3.jpeg" video="complex_3.mp4" show="video"/>
 
 When we do the decomposition into rotating vectors for these boring 1d drawings, what will happen is that all the vectors with frequency 1 and -1 will have the same length, and they’ll be horizontal reflections of each other. When you just look at the sum of these two as they rotate, that sum stays fixed on the real number line, and oscillates like a sine wave. 
 
@@ -251,25 +249,21 @@ Armed with the function $e^{it}$, let’s write down a formula for each of these
 
 The easiest vector to describe is the constant one, which just stays at the number 1, never moving. Or, if you prefer, it’s “rotating” at a frequency of 0. 
 
-<!-- TODO: Communicate rotation in this image -->
-<Figure image="constant_1.jpeg" />
+<Figure image="constant_1_edit.png" />
 
 Then there will be a vector rotating 1 cycle every second which we write as $e^{2 \pi i t}$.
 
-<!-- TODO: Communicate rotation in this image, and get of the little box showing the input range with t -->
-<Figure image="constant_2.jpeg" />
+<Figure image="constant_2_edit.png" />
 
 The $2 \pi$ is there because as $t$ goes from $0$ to $1$, it needs to cover a distance of $2 \pi$ along the circle.
 
 We also have a vector rotating at 1 cycle per second in the other direction, $e^{-2 \pi i t}$. 
 
-<!-- TODO: Communicate rotation in this image -->
-<Figure image="constant_3.jpeg" />
+<Figure image="constant_3_edit.png" />
 
 Similarly, the one going 2 rotations per second is $e^{2 \cdot 2 \pi i t}$, where that $2 \cdot 2 \pi$ in the exponent describes how much distance is covered in 1 second. And we go on like this over all integers, both positive and negative, with a general formula of $e^{n \cdot 2 \pi i t}$ for each rotating vector.
 
-<!-- TODO: Communicate rotation in this image, and perhaps offer an animated version -->
-<Figure image="constant_4.jpeg" />
+<Figure image="constant_4_edit.png" video="constant_4.mp4"/>
 
 Notice, this makes it more consistent to write the constant vector is written as $e^{0 \cdot 2 \pi  i  t}$, which feels like an awfully complicated to write the number 1, but at least then it fits the pattern.
 
@@ -288,12 +282,9 @@ For example, if we wanted that constant vector not to be at the number 1, but to
  answer={1}
 >
 
-Given that $e^{\pi t}$ describes a point t radians around the unit circle, to get the complex number associated with rotating a $1+0i$ $45^{\circ}$ radian around the unit circle, we convert $45^{\circ}$ to radians, to get $\frac{\pi}{4}$, and then plug it into $e^{\pi t}$ to get $e^{\frac{\pi}{4} i}$.
+Given that $e^{\pi t}$ describes a point t radians around the unit circle, to get the complex number associated with rotating $1+0i$ $45^{\circ}$ around the unit circle, we convert $45^{\circ}$ to radians, to get $\frac{\pi}{4}$, and then plug it into $e^{\pi t}$ to get $e^{\frac{\pi}{4} i}$.
 
 </Question>
-
-
-If it’s initial length needed to be 0.3, the coefficient would be 0.3 times that amount. You get the idea.
 
 Everyone in our infinite family of rotating vectors has some complex constant being multiplied into it which determines its initial angle and magnitude. Our goal is to express any arbitrary function $f(t)$, say the one below drawing an eighth note, as a sum of terms like this, so we need some way to pick out these constants one-by-one given the data of the function.
 
