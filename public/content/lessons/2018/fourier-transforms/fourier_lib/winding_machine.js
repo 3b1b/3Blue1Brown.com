@@ -13,9 +13,9 @@ function evaluateEquation(frequencies, x) {
   // The result will be normalized between 0 and 1
   let sum = 0;
   for (let i = 0; i < frequencies.length; i++) {
-    sum += (Math.cos(2 * Math.PI * frequencies[i] * x) + 1) / 2;
+    sum += (Math.cos(2 * Math.PI * frequencies[i] * x));
   }
-
+  // Normalize outputs
   return sum / frequencies.length;
 }
 
@@ -76,18 +76,24 @@ export const drawGraph = (sketch, frequencies, origin, size) => {
   sketch.fill(sketch.color(BKGD_COLOR));
   sketch.rect(
     origin.x - GRAPH_EDGE - 1,
-    origin.y + GRAPH_EDGE - 1,
+    origin.y + size.y + GRAPH_EDGE - 1,
     size.x + GRAPH_EDGE * 3 + 1,
-    -(size.y + GRAPH_EDGE * 3 + 1)
+    -(2 * size.y + GRAPH_EDGE * 3 + 1)
   );
 
   sketch.strokeWeight(2);
 
-  drawJustifiedAxes(sketch, origin, size, 0.25);
+  drawJustifiedAxes(
+    sketch,
+    origin,
+    {x: size.x, y: 0.6 * size.y},
+    0.25,
+    size.y / 2
+  );
 
   sketch.stroke(sketch.color(WAVE_COLOR));
 
-  let py = evaluateEquation(frequencies, 0) * -size.y + origin.y;
+  let py = origin.y + evaluateEquation(frequencies, 0) * (-size.y / 2 - GRAPH_EDGE);
 
   // Draw equation
   for (let x = origin.x + STEP; x < origin.x + size.x; x += STEP) {
@@ -96,7 +102,7 @@ export const drawGraph = (sketch, frequencies, origin, size) => {
       ((x - origin.x) / size.x) * GRAPH_LENGTH
     );
 
-    let y = fx * -size.y + origin.y;
+    let y = origin.y + fx * (-size.y / 2 - GRAPH_EDGE);
     sketch.line(x, y, x - STEP, py);
     py = y;
   }
