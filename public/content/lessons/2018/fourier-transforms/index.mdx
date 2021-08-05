@@ -10,15 +10,20 @@ credits:
 - Interactives by River Way
 ---
 
-Take a moment to play with the illustration below by dragging the point on the lower right red graph.
+What we'll build up to in this post is an understanding of the following (interactive[^1]) diagram. More specifically, the goal is for you to understand how it represents the inner workings of the Fourier transform, an incredibly important tool for math, engineering, and most of science.
 
 <Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
 
-What we'll build to in this post is an understanding of how this represents the inner workings of the Fourier transform, an incredibly important tool for math, engineering, and most of science.
+Once our mind is wrapped around what this diagram represents, we can use it to unpack the formula defining a Fourier transform, which may seem intimidating to the uninitiated, but it's both perfectly digestible and incredibly rich with meaning.
 
-While this post is aimed at being a friendly introduction, building up to a visual understanding that motivates the potentially-complicated-looking formula, my hope is that even those of you who are already somewhat familiar with Fourier transforms will find it enriching to unpack what it is really doing.
+$$
+\hat g(f) = \int_{\infty}^{\infty} g(t)e^{-2 \pi i f t}dt
+$$
 
-## Fourier Transform of Sounds Waves
+
+While this post is aimed at being a friendly introduction, building up to a visual understanding that motivates the potentially-complicated-looking formula, my hope is that even those of you who are already somewhat familiar with Fourier transforms will find it enriching to unpack and visualize what it's really doing.
+
+## Adding Sounds Waves
 
 Let's begin with a classic example, decomposing frequencies in sound waves.
 
@@ -163,9 +168,14 @@ At this stage, we can call this plot tracking the center of mass of our wound up
   image="2ps.jpeg" width="100%"
 />
 
-The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into its constituent waveforms. To show this, let's combine the 2 and 3 frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot. This is shown below:
+The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into its constituent frequencies. To show this, let's combine the 2Hz and 3Hz frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot.
 
-<Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
+This time, though, we will not offset the graphs upward, so the function oscillates between negative and positive values. In other words, there is no frequency component of 0Hz.
+
+<Interactive 
+  filename="advanced_interactive/index"
+  aspectRatio={554 / 397}
+/>
 
 Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average value of $0$.
 
@@ -175,9 +185,12 @@ Here, we see 2 different frequencies at both 2 and 3 beats per second, which is 
 
 The way a mathematician might phrase this is that our "Almost Fourier transform" operation is *linear*. The curious among you may want to pause for a moment to reflect on why this is true. It ultimately stems from the fact that the x-coordinate of the sum of two vectors is the sum of their x-coordinates. This, by the way, is why we had it track the x-coordinate of the center of mass of the graph, rather than tracking its distance from the origin. For the full frequency information, you'd also want to keep track of the y-coordinate, but more on that below.
 
-This little mathematical machine does exactly what we wanted. It pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. Try changing the input frequencies in the interactive below, separated <Tooltip content="Only 5 frequencies between 0Hz and 4.4Hz will be shown.">by commas</Tooltip>.
+This little mathematical machine does exactly what we wanted. It pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. Try changing the input frequencies in the interactive below, separated <Tooltip content="Only 5 frequencies between 0Hz and 4.4Hz will be shown.">by commas</Tooltip>, for example to "0, 3".
 
-<Interactive filename="advanced_interactive/index" aspectRatio={554 / 397} />
+<Interactive 
+  filename="advanced_interactive/index"
+  aspectRatio={554 / 397}
+/>
 
 What happens when an input frequency of $0$Hz is wound up?
 
@@ -251,7 +264,7 @@ $$
 \frac{1}{t_2-t_1}\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt
 $$
 
-Here, we still need to divide the equation based on the size of the time interval $(t_2-t_1)$. Though this might seem intimidating, the whole expression is really just finding the center of mass of the wound-up graph [^1].
+Here, we still need to divide the equation based on the size of the time interval $(t_2-t_1)$. Though this might seem intimidating, the whole expression is really just finding the center of mass of the wound-up graph [^2].
 
 Great!  Step-by-step, we have built up this kind of complicated, but, let's face it, surprisingly small expression for the winding machine.
 
@@ -316,7 +329,7 @@ Out of context, you can imagine how seeing this formula would seem sort of daunt
 3. The integral can be interpreted in terms of the center of mass of the wound-up graph, scaled up by the size of the time interval.
 
 
-Even still, I'm lying to you a little.  But only a little.  Even though in practice, with things like sound editing, you'll be integrating over a finite time interval[^2], the theory of Fourier transforms is often phrased where the bounds of this integral are $-\infty$ and $\infty$.
+Even still, I'm lying to you a little.  But only a little.  Even though in practice, with things like sound editing, you'll be integrating over a finite time interval[^3], the theory of Fourier transforms is often phrased where the bounds of this integral are $-\infty$ and $\infty$.
 
 $$
 \hat g(f) = \int_{-\infty}^{\infty} g(t)e^{-2 \pi i f t}dt
@@ -332,5 +345,6 @@ Concretely, what that means is that you consider this expression for all possibl
 
 There is a lot more to say about this, but we will wrap up the discussion here for now. If you're curious to see how this Fourier transform relates to the uncertainty principle from quantum mechanics, take a look at the <LessonLink id="uncertainty-principle">next post</LessonLink>.
 
-[^1]: Here it's worth adding some more clarity on what we mean by "center of mass". In the picture above, notice that the points are being sampled in a way that's evenly spaced across time, but this is not necessarily evenly spaced along the *length* of the graph. In effect, if we're thinking of the graph as a wire, the density of that wire is constant with respect to time, as if the rotating vector drawing it is outputting a constant amount of mass per unit time.  But this implies the wire would be a little less dense in places where the graph's height changes rapidly. In principle, you could define a similar-but-distinct cousin of the Fourier transform by treating this "wire" with constant mass per unit of arc length, but the math would become less elegant.
-[^2]: Computers don't like continuous functions, so practical applications like sound editing use the discrete fourier transform, which can be expressed as matrix-vector multiplication. There is also the quantum fourier transform which is used on quantum computers.
+[^1]: If you decide to tweak the comma-separated numbers, note that only those between 0Hz and 4.4Hz will be shown, and at most 5 will show at once.
+[^2]: Here it's worth adding some more clarity on what we mean by "center of mass". In the picture above, notice that the points are being sampled in a way that's evenly spaced across time, but this is not necessarily evenly spaced along the *length* of the graph. In effect, if we're thinking of the graph as a wire, the density of that wire is constant with respect to time, as if the rotating vector drawing it is outputting a constant amount of mass per unit time.  But this implies the wire would be a little less dense in places where the graph's height changes rapidly. In principle, you could define a similar-but-distinct cousin of the Fourier transform by treating this "wire" with constant mass per unit of arc length, but the math would become less elegant.
+[^3]: Computers don't like continuous functions, so practical applications like sound editing use the discrete fourier transform, which can be expressed as matrix-vector multiplication. There is also the quantum fourier transform which is used on quantum computers.

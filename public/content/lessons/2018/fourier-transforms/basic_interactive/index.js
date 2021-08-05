@@ -20,14 +20,14 @@ const TEXT_COLOR = "#FFFFFF";
 const MASS_COLOR = "#ff6363";
 
 export default function BasicWindingMachine() {
-  const GRAPH_ORIGIN = { x: 50, y: 150 };
+  const GRAPH_ORIGIN = { x: 50, y: 100 };
   const GRAPH_SIZE = { x: 800, y: 120 };
   const WINDER_ORIGIN = { x: 165, y: 335 };
   const WINDER_SIZE = 120;
   const FOURIER_ORIGIN = { x: 400, y: 335 };
   const FOURIER_SIZE = { x: 400, y: 120 };
 
-  const FREQS = [3];
+  const FREQS = [0, 3];
 
   function setup(sketch, canvasParentRef) {
     sketch.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);

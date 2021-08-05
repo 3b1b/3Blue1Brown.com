@@ -21,7 +21,7 @@ const TEXT_COLOR = "#FFFFFF";
 const MASS_COLOR = "#ff6363";
 
 export default function BasicWindingMachine() {
-  const GRAPH_ORIGIN = { x: 50, y: 200 };
+  const GRAPH_ORIGIN = { x: 50, y: 130 };
   const GRAPH_SIZE = { x: 800, y: 120 };
   const WINDER_ORIGIN = { x: 165, y: 385 };
   const WINDER_SIZE = 120;
@@ -80,7 +80,7 @@ export default function BasicWindingMachine() {
 
     // Clean text area
     sketch.fill(sketch.color(BKGD_COLOR));
-    sketch.rect(0, 0, WIDTH, 50);
+    sketch.rect(0, 0, WIDTH, 0);
     drawText(sketch, winding_freq);
   }
 
@@ -132,7 +132,7 @@ export default function BasicWindingMachine() {
       str += formatNumber(FREQS[i]) + "Hz";
     }
 
-    sketch.text(str, WIDTH / 2, GRAPH_ORIGIN.y - 160);
+    sketch.text(str, WIDTH / 2, GRAPH_ORIGIN.y - 90);
   }
 
   const MAX_FREQS = 5;
