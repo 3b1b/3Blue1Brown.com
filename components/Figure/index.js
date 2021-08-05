@@ -200,7 +200,8 @@ export default function Figure({
             // update intrinsic dimensions after loaded
             onLoadedMetadata={updateDimensions}
           >
-            <source src={transformSrc(videoSrc, dir)} />
+            // "t=0.001" is a hack to make preview images show on Safari
+            <source src={transformSrc(videoSrc, dir) + "#t=0.001"} />
           </video>
         )}
       </div>
