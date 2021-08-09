@@ -89,7 +89,7 @@ As the robot plays more and more games, what is the average score?
   video="histogram.mp4"
 />
 
-We can calculate the expected score by adding together all of the scores multiplied by the probability that the game ends on that score.
+We can calculate the expected score [^1] by adding together all of the scores multiplied by the probability that the game ends on that score.
 
 $$
 \begin{align*}
@@ -114,10 +114,14 @@ The probability $P(S>1)$ can be found by dividing the area of the circle $A=\pi 
   image="at_least_one.png"
   video="at_least_one.mp4"
 />
-
 The probability of making the first shot is $\frac{\pi}4$, so what is the probability of making the second shot?
 This is where things get more interesting because the probability of the second shot depends on where the first shot landed.
 The next radius $r_1$ forms a right triangle with the current radius and $h_0$, so we can use the Pythagorean theorem to calculate it.
+
+<Figure
+  image="dart_triangle.svg"
+/>
+
 We can build a table of the radiuses and hit distances to keep track of the information.
 $$
 \begin{array}{c|c}
@@ -148,7 +152,6 @@ We're asking what is the probability that the sum of squares of four random numb
   image="prob_four.png"
   video="prob_four.mp4"
 />
-
 This question is a bit tricky because we could guarantee if all the numbers are less than $0.5$ then the sum of their squares would be less than $1$, but if one was $0.9$ that doesn't necessarily throw it out because the others could be very small.
 We used geometric intuition for the first shot, thinking of it as a point inside or outside of a circle.
 Rather than thinking of the probabilistic event $P(S>2)$ as two separate throws, we can also think about them as a single point in 4D space: $(x_0,y_0,x_1,y_1)\in\mathbb{R}^4$.
@@ -186,7 +189,7 @@ x_0^2+y_0^2+x_1^2+y_1^2+x_2^2+y_2^2 < 1
 $$
 
 The next problem we face is how to calculate the volume of a higher dimensional ball. 
-Luckily mathematicians have calculated them and you could look at Wikipedia's list and pick them out.
+Luckily mathematicians have calculated them and you could look at [Wikipedia's list](https://en.wikipedia.org/wiki/Volume_of_an_n-ball) and pick them out.
 $$
 \begin{matrix}
 1D & 2R & \quad & 2D & \pi R^2 \\
@@ -215,8 +218,6 @@ $$
 The volume of a 14-dimensional unit ball is equal to $\frac{\pi^7}{7!}=\frac{\pi^7}{5040}$
 
 </Question>
-
-Now this formula is reminiscent of another celebrity real number...
 
 ## Solution
 
@@ -261,7 +262,7 @@ Notice that we're subtracting off 2 of $P(S>2)$ but in the next term we're addin
 Each of these terms collapse down to just the sum of each probability:
 
 $$
-E[S] = P(S>0)+P(S>1)+P(S>2)+P(S<3)+\cdots
+E[S] = P(S>0)+P(S>1)+P(S>2)+P(S>3)+\cdots
 $$
 
 We can begin substituting the values we have calculated so far.
@@ -273,7 +274,7 @@ $$
 E[S] = 1+\frac{\pi}4+\left( \frac{\pi}4 \right) ^2 \cdot\frac1{2!}+\left( \frac{\pi}4 \right) ^3 \cdot\frac1{3!}+\cdots
 $$
 
-This sequence of numbers is rather similar to another famous sequence: the Taylor series for powers of Euler's number is $e^x=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots$
+This sequence of numbers is rather similar to another famous sequence: the <LessonLink id="taylor-series">Taylor series</LessonLink> for powers of Euler's number is $e^x=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots$
 
 A Taylor series is evaluated as an infinite polynomial where each term gets added together and it approaches the correct value in the limit. 
 This particular series is the definition of $e^x$ and I would argue it is the healthy way to view $e^x$.
@@ -365,3 +366,5 @@ Substituting $1$ for $x$ reduces the Taylor series to $e^1=\sum \frac{1^i}{i!}$ 
 </Question>
 
 </Accordion>
+
+[^1]: The expected value is a weighted average summing together every possible outcome's score multiplied by the outcome's probability. Another way to think about it is if you played this game an infinite number of times, what is the average score? 
