@@ -15,7 +15,6 @@ export default function LessonVideo({ timestamp }) {
   } = useContext(PageContext);
 
   const topic = topics.find(({ name }) => name === topicName);
-  const topicIsSeries = chapter !== undefined;
 
   const lessonIndex = topic
     ? topic.lessons.findIndex((lesson) => lesson === slug)
@@ -55,7 +54,6 @@ export default function LessonVideo({ timestamp }) {
       <div
         className={styles.videoArea}
         data-showcoverimage={showCoverImage}
-        data-topicisseries={topicIsSeries}
       >
         {topic && (
           <Link href={`/topics/${topic.slug}`}>
