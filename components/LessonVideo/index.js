@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageContext } from "../../pages/_app";
 import Section from "../Section";
 import topics from "../../data/topics.yaml";
+import lessonRedirects from "../../data/lesson-redirects.yaml";
 import styles from "./index.module.scss";
 
 export default function LessonVideo({ timestamp }) {
@@ -75,7 +76,7 @@ export default function LessonVideo({ timestamp }) {
         )}
 
         {prevLesson && videoId && (
-          <Link href={`/lessons/${prevLesson}`}>
+          <Link href={lessonRedirects[prevLesson] || `/lessons/${prevLesson}`}>
             <a className={styles.arrowLeft} aria-label="Previous">
               <i className="fas fa-angle-left" />
             </a>
@@ -121,7 +122,7 @@ export default function LessonVideo({ timestamp }) {
         )}
 
         {nextLesson && videoId && (
-          <Link href={`/lessons/${nextLesson}`}>
+          <Link href={lessonRedirects[nextLesson] || `/lessons/${nextLesson}`}>
             <a className={styles.arrowRight} aria-label="Next">
               <i className="fas fa-angle-right" />
             </a>
