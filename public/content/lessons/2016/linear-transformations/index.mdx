@@ -127,6 +127,24 @@ Others are more complex because there are multiple things happening all at once.
   video="complex_transform.mp4"
 />
 
+**Which of the transformations in the image below are linear?**
+
+<Figure
+  image="question1.png"
+/>
+
+<Question
+  question=" "
+  choice1="A"
+  choice2="B"
+  choice3="C"
+  choice4="D"
+  answer={3} >
+  
+C is the only transformation where the lines are parallel and evenly spaced.
+
+</Question>
+
 ## Matrices
 
 How do you think you could do these transformations numerically? If you were, say, programming some animations to make a video teaching the topic, what formula do you give the computer so that if you give it the coordinates of a vector, it can tell you the coordinates of where that vector lands.
@@ -188,6 +206,18 @@ $$
 \end{align*}
 $$
 This is a good point to pause and ponder, because it’s pretty important.
+
+<Question
+  question="Where does the vector $\begin{bmatrix}5\\-2\end{bmatrix}$ land after the transformation $\hat i\to\begin{bmatrix}3\\-2\end{bmatrix}$ and $\hat j\to\begin{bmatrix}-1\\0\end{bmatrix}$?"
+  choice1="$\begin{bmatrix}17\\-10\end{bmatrix}$"
+  choice2="$\begin{bmatrix}13\\-12\end{bmatrix}$"
+  choice3="$\begin{bmatrix}15\\-10\end{bmatrix}$"
+  choice4="$\begin{bmatrix}15\\-2\end{bmatrix}$"
+  answer={1} >
+
+The vector $\begin{bmatrix}5\\-2\end{bmatrix}$ gets transformed into $5\begin{bmatrix}3\\-2\end{bmatrix}-2\begin{bmatrix}-1\\0\end{bmatrix}=\begin{bmatrix}5(3)-2(-1)\\5(-2)-2(0)\end{bmatrix}=\begin{bmatrix}17\\-10\end{bmatrix}$
+
+</Question>
 
 Now, given that I’m actually showing you the full transformation, you could have just looked to see that $\overrightarrow{\mathbf{v}}$ has coordinates $\begin{bmatrix}5\\2\end{bmatrix}$, but the cool part here is that this gives us a technique to deduce where *any* vectors lands, so long as we have a record of where $\hat i$ and $\hat j$ land, without needing to watch the transformation.
 
@@ -297,12 +327,31 @@ $$
 
 ### Transformation from a Matrix
 
-If we are given a matrix, say with columns $\begin{bmatrix}1\\ 2\end{bmatrix}$ and $\begin{bmatrix}3\\ 1\end{bmatrix}$, can you deduce what it’s transformation looks like? Pause and take a moment to see if you can imagine it.
+If we are given a matrix, say $\begin{bmatrix}1 & 3\\ 2 & 1\end{bmatrix}$, can you deduce what it’s transformation looks like?
+
+**Which of the transformations in the following image match the given matrix?**
+
+<Figure
+  image="question2.png"
+  width="100%"
+/>
+
+<Question
+  question=" "
+  choice1="A"
+  choice2="B"
+  choice3="C"
+  choice4="D"
+  answer={2} >
+
+Look for where the unit vectors $\hat i$ and $\hat j$ might land. Note the basis vectors aren't shown on the image, but the intersection of the axes with the first gridline shows the points where they are. $B$ is the only transformation where the points land on $\begin{bmatrix}1\\2\end{bmatrix}$ and $\begin{bmatrix}3\\1\end{bmatrix}$
 
 <Figure
   image="reverse.svg"
   video="reverse.mp4"
 />
+
+</Question>
 
 ## Linearly Dependent Columns
 
