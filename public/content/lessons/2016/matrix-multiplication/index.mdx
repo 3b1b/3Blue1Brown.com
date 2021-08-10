@@ -7,4 +7,545 @@ video: XkY2DOUCWMU
 source: _2016/eola/chapter4.py
 credits:
 - Lesson by Grant Sanderson
+- Text Adaption by River Way
 ---
+
+## Recap
+
+In the <LessonLink id="linear-transformations">previous lesson</LessonLink> we showed how linear transformations are just functions with vectors as inputs and vectors as outputs. However it is often more convenient to think of linear transformations as moving space in a way that keeps gridlines parallel and evenly spaced. 
+
+<Figure
+  image="recap1.png"
+/>
+
+We can determine the entirety of the transformation by where the basis vectors land after the transformation, which form the columns of a matrix. To find where any arbitrary vector lands after the transformation, there is an operation called matrix-vector multiplication. Here is the computation for a 2D matrix and vector:
+$$
+\begin{bmatrix}
+\color{green}a & \color{red}b \\
+\color{green}c & \color{red}d
+\end{bmatrix}
+\begin{bmatrix}x\\y\end{bmatrix}
+=
+x\begin{bmatrix}\color{green}a\\ \color{green}c\end{bmatrix}
++y\begin{bmatrix}\color{red}b\\ \color{red}d\end{bmatrix}
+=
+\begin{bmatrix}
+\color{green}a\color{black}x+\color{red}b\color{black}y \\
+\color{green}c\color{black}x+\color{red}d\color{black}y
+\end{bmatrix}
+$$
+
+ ## Composition of Transformations
+
+Oftentimes, you find yourself wanting to describe the effects of applying one linear transformation, then applying another. For example, maybe you want to describe what happens when you rotate the plane $90^\circ$ counterclockwise, then to apply a shear. The overall effect here, from start to finish, is another linear transformation, distinct from the rotation and the shear. This new linear transformation is commonly called the “composition” of the two separate transformations we applied.
+
+<Figure
+  image="rotate_shear_composition.svg"
+  video="rotate_shear_composition.mp4"
+/>
+
+Like any linear transformation, it can be described with a matrix all of its own by following $\hat i$ and $\hat j$.
+
+<Figure
+  image="rotate_shear_record.svg"
+/>
+
+In this example, the ultimate landing spot for $\hat i$ after both transformations is $\begin{bmatrix}1\\1\end{bmatrix}$, so make this the first column of a matrix. Likewise, $\hat j$ ultimately ends up at $\begin{bmatrix}-1\\0\end{bmatrix}$, so make this the second column of a matrix. This new matrix captures the overall effect of applying a rotation then a shear, but as one single action rather than two successive ones.
+
+## Composition is Multiplication
+
+Here’s one way to think about that new matrix. If you were to take some vector and pump it through the rotation then the shear, the long way to compute where it lands by first multiplying on the left by the rotation matrix, then multiplying the result on the left by the shear matrix. This is, numerically speaking, what it *means* to apply a rotation then a shear to a given vector. But whatever you get should be the same as just multiplying this new composition matrix that we found by the vector, no matter what vector you chose, since this new matrix is supposed to capture the same overall effect as the rotation-then-shear action.
+
+<Figure
+  image="rotate_shear_sequence.svg"
+  width="70%"
+/>
+
+
+Based on how things are written down here, I think it’s reasonable to call that new matrix the product of the two original matrices, don’t you?
+$$
+\color{purple}
+\underbrace{
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
+}_{\large \text{Shear}}
+\ 
+\color{orange}
+\underbrace{
+\begin{bmatrix}0&-1\\1&0\end{bmatrix}
+}_{\large \text{Rotation}}
+\color{black}
+=
+\color{red}
+\underbrace{
+\begin{bmatrix}1&-1\\1&0\end{bmatrix}
+}_{\large \text{Composition}}
+$$
+We can think about how to compute that product more generally in just a moment, but it’s easy to get lost in the forest of numbers. Always remember that multiplying two matrices like this has the geometric meaning of applying one transformation after another.
+
+One thing that’s kind of weird is that this has us reading right to left. You first apply the transformation represented by the matrix on the right, then you apply the transformation represented by the matrix on the left. This stems from function notation, since we write functions on the left of the variable, so composition always has to be read right-to-left. Good news for Hebrew readers, bad news for the rest of us.
+$$
+\begin{align*}
+&\qquad f(g(x)) \\
+&\underleftarrow{\text{Read right to left}} \\
+&\color{purple}
+\underbrace{
+\begin{bmatrix}1&1\\0&1\end{bmatrix}
+}_{\large\text{Shear}}
+\ 
+\color{orange}
+\underbrace{
+\begin{bmatrix}0&-1\\1&0\end{bmatrix}
+}_{\large\text{Rotation}}
+\color{black}
+=
+\color{red}
+\underbrace{
+\begin{bmatrix}1&-1\\1&0\end{bmatrix}
+}_{\large\text{Composition}}
+\end{align*}
+$$
+
+### Computing the New Matrix
+
+Let’s look at another example. There are two matrices $M_1$ and $M_2$ which perform different transformations:
+
+<Figure
+  image="multiplication_matrices.svg"
+/>
+
+The total effect of applying $M1$, then $M2$ gives a new transformation, so let’s find its matrix. 
+
+<Figure
+  image="compound_multiply.svg"
+/>
+
+
+But let’s see if we can do it without any images, and instead just using the numerical entries in each matrix.
+
+First we need to figure out where $\hat i$ goes. After applying $M_1$, the new coordinates of $\hat i$ are given be the first column of $M_1$. To see what happens after applying $M_2$, multiply the matrix for $M_2$ by the first column of $M_1$. Working it out the way I described in the last chapter, you’ll get the vector $\begin{bmatrix}2\\1\end{bmatrix}$. 
+$$
+\begin{align*}
+M_2(M_1(\hat i))&=
+\color{purple}
+\color{purple}
+\begin{bmatrix}0&2\\1&0\end{bmatrix}
+\color{orange}
+\begin{bmatrix}1&-2\\1&0\end{bmatrix}
+\color{black}
+\begin{bmatrix}1\\0\end{bmatrix}
+\\ &= \color{orange} 1
+\color{purple}
+\begin{bmatrix}0\\1\end{bmatrix}
+\color{black} +
+\color{orange} 1
+\color{purple}
+\begin{bmatrix}2\\0\end{bmatrix}
+\\ &= \color{black}
+\begin{bmatrix}2\\1\end{bmatrix}
+\end{align*}
+$$
+Likewise, we can apply the same operation to find where $\hat j$ goes after both transformations.
+$$
+\begin{align*}
+M_2(M_1(\hat j))&=
+\color{purple}
+\begin{bmatrix}0&2\\1&0\end{bmatrix}
+\color{orange}
+\begin{bmatrix}1&-2\\1&0\end{bmatrix}
+\color{black}
+\begin{bmatrix}0\\1\end{bmatrix}
+\\ &= \color{orange} -2
+\color{purple}
+\begin{bmatrix}0\\1\end{bmatrix}
+\color{black} +
+\color{orange} 0
+\color{purple}
+\begin{bmatrix}2\\0\end{bmatrix}
+\\ &= \color{black}
+\begin{bmatrix}0\\-2\end{bmatrix}
+\end{align*}
+$$
+
+<Question
+  question="Multiplying these two matrices yields $\begin{bmatrix}0&2\\1&0\end{bmatrix}\begin{bmatrix}1&-2\\1&0\end{bmatrix}=?$"
+  choice1="$\begin{bmatrix}0&2\\-2&1\end{bmatrix}$"
+  choice2="$\begin{bmatrix}2&0\\1&-2\end{bmatrix}$"
+  choice3="$\begin{bmatrix}-2&1\\0&2\end{bmatrix}$"
+  choice4="$\begin{bmatrix}1&-2\\2&0\end{bmatrix}$"
+  answer={2} >
+
+To find the matrix that comes from multiplying $\begin{bmatrix}0&2\\1&0\end{bmatrix}\begin{bmatrix}1&-2\\1&0\end{bmatrix}$ we can place the transformed basis vectors in the columns to get $\begin{bmatrix}2&0\\1&-2\end{bmatrix}$
+
+</Question>
+
+### General Form
+
+Let's go through that same process again, but this time the entries will be variables in each matrix, just to show that the same line of reasoning works for any matrices. This is more symbol heavy, and will require some more room, but it should be satisfying for anyone who has previously been taught matrix multiplication the traditional way.
+$$
+\color{purple}
+\underbrace{
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+}_{\large M_2}
+\ 
+\color{orange}
+\underbrace{
+\begin{bmatrix}e&f\\g&h\end{bmatrix}
+}_{\large M_1}
+\color{black}
+=
+\color{red}
+\underbrace{
+\begin{bmatrix}?&?\\?&?\end{bmatrix}
+}_{\large M_2M_1}
+$$
+To follow where $\hat i$ goes, start by looking at the first column of the matrix on the right, since this is where $\hat i$ initially lands. Multiplying that column by the matrix on the left is how you can tell where that intermediate version of $\hat i$ ends up after applying the second transformation. So the first column of the product matrix will always equal the left matrix times the first column of the right matrix.
+$$
+\color{purple}
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\color{orange}
+\begin{bmatrix}e\\g\end{bmatrix}
+\color{black}
+= 
+\color{orange} e
+\color{purple}
+\begin{bmatrix}a\\c\end{bmatrix}
+\color{black} +
+\color{orange} g
+\color{purple}
+\begin{bmatrix}b\\d\end{bmatrix}
+\color{black}
+=
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} b
+\color{orange} g
+\\
+\color{purple} c
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} g
+\end{bmatrix}
+$$
+Similarly, $\hat j$ will always initially land on the second column of the right matrix, so multiplying the left matrix by this second column will give the final location of $\hat j$, and hence the second column of the product matrix.
+$$
+\color{purple}
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+\color{orange}
+\begin{bmatrix}f\\h\end{bmatrix}
+\color{black}
+= 
+\color{orange} f
+\color{purple}
+\begin{bmatrix}a\\c\end{bmatrix}
+\color{black} +
+\color{orange} h
+\color{purple}
+\begin{bmatrix}b\\d\end{bmatrix}
+\color{black}
+=
+\begin{bmatrix}
+\color{purple} a
+\color{orange} f
+\color{black} +
+\color{purple} b
+\color{orange} h
+\\
+\color{purple} c
+\color{orange} f
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+$$
+It’s common to be taught this formula as something to memorize, along with a certain algorithmic process to remember it.
+$$
+\color{purple}
+\underbrace{
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+}_{\large M_2}
+\ 
+\color{orange}
+\underbrace{
+\begin{bmatrix}e&f\\g&h\end{bmatrix}
+}_{\large M_1}
+\color{black}
+=
+\color{red}
+\underbrace{
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} b
+\color{orange} g
+&
+\color{purple} a
+\color{orange} f
+\color{black} +
+\color{purple} b
+\color{orange} h
+\\
+\color{purple} c
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} g
+&
+\color{purple} c
+\color{orange} f
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+}_{\large M_2M_1}
+$$
+<Question
+  question="Multiplying these two matrices yields $\begin{bmatrix}-3&1\\2&5\end{bmatrix}\begin{bmatrix}5&3\\7&-3\end{bmatrix}=?$"
+  choice1="$\begin{bmatrix}45&-9\\-8&-12\end{bmatrix}$"
+  choice2="$\begin{bmatrix}-12&-8\\-9&45\end{bmatrix}$"
+  choice3="$\begin{bmatrix}-9&45\\-12&-8\end{bmatrix}$"
+  choice4="$\begin{bmatrix}-8&-12\\45&-9\end{bmatrix}$"
+  answer={4} >
+
+$\begin{bmatrix}-3&1\\2&5\end{bmatrix}\begin{bmatrix}5&3\\7&-3\end{bmatrix}=\begin{bmatrix}(-3)(5)+(1)(7)&(-3)(3)+(1)(-3)\\(2)(5)+(5)(7)&(2)(3)+(5)(-3)\end{bmatrix}=\begin{bmatrix}-8&-12\\45&-9\end{bmatrix}$
+
+</Question>
+
+I really do believe that before memorizing that process, you should get in the habit of thinking about what matrix multiplication really represents: applying one transformation after another. Trust me, this will give you the conceptual framework that makes the properties of matrix multiplication easier to understand.
+
+## Noncommutativity
+
+Here is an important question: Does it matter what order we put the two matrices in?
+$$
+\color{orange}M_1
+\color{purple}M_2
+\color{black}\stackrel{???}{=}
+\color{purple}M_2
+\color{orange}M_1
+$$
+Well, let’s think of a simple example like the one from earlier. Take a shear, which fixes $\hat i$ and smooshes $\hat j$ over to the right, and a $90^\circ$ rotation.
+
+<Figure
+  image="rotate_shear_swap.svg"
+  width="70%"
+/>
+
+The overall effect is very different, so it would appear that order totally does matter! By thinking in terms of transformations, that’s the kind of thing you can do in your head by visualizing, no matrix multiplication necessary! 
+
+<Accordion title="Numerical Proof">
+
+We could show that matrix multiplication isn't communitive through numerical computation:
+$$
+\begin{align*}
+\color{purple}
+\underbrace{
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+}_{\large M_2}
+\ 
+\color{orange}
+\underbrace{
+\begin{bmatrix}e&f\\g&h\end{bmatrix}
+}_{\large M_1}
+\color{black}
+&=
+\color{red}
+\underbrace{
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} b
+\color{orange} g
+&
+\color{purple} a
+\color{orange} f
+\color{black} +
+\color{purple} b
+\color{orange} h
+\\
+\color{purple} c
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} g
+&
+\color{purple} c
+\color{orange} f
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+}_{\large M_2M_1}
+\\
+\color{orange}
+\underbrace{
+\begin{bmatrix}e&f\\g&h\end{bmatrix}
+}_{\large M_1}
+\ 
+\color{purple}
+\underbrace{
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+}_{\large M_2}
+\color{black}
+&=
+\color{red}
+\underbrace{
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} c
+\color{orange} f
+&
+\color{purple} b
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} f
+\\
+\color{purple} a
+\color{orange} g
+\color{black} +
+\color{purple} c
+\color{orange} h
+&
+\color{purple} b
+\color{orange} g
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+}_{\large M_1M_2}
+\\
+\color{red}
+\underbrace{
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} b
+\color{orange} g
+&
+\color{purple} a
+\color{orange} f
+\color{black} +
+\color{purple} b
+\color{orange} h
+\\
+\color{purple} c
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} g
+&
+\color{purple} c
+\color{orange} f
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+}_{\large M_2M_1}
+\color{black}
+&\neq
+\color{red}
+\underbrace{
+\begin{bmatrix}
+\color{purple} a
+\color{orange} e
+\color{black} +
+\color{purple} c
+\color{orange} f
+&
+\color{purple} b
+\color{orange} e
+\color{black} +
+\color{purple} d
+\color{orange} f
+\\
+\color{purple} a
+\color{orange} g
+\color{black} +
+\color{purple} c
+\color{orange} h
+&
+\color{purple} b
+\color{orange} g
+\color{black} +
+\color{purple} d
+\color{orange} h
+\end{bmatrix}
+}_{\large M_1M_2}
+\end{align*}
+$$
+And through counter-example:
+$$
+\begin{align*}
+\begin{bmatrix}1&0\\0&0\end{bmatrix}
+\begin{bmatrix}0&1\\0&0\end{bmatrix}
+&=
+\begin{bmatrix}0&1\\0&0\end{bmatrix}
+\\
+\begin{bmatrix}0&1\\0&0\end{bmatrix}
+\begin{bmatrix}1&0\\0&0\end{bmatrix}
+&=
+\begin{bmatrix}0&0\\0&0\end{bmatrix}
+\\\ \\
+\begin{bmatrix}0&1\\0&0\end{bmatrix}
+&\neq
+\begin{bmatrix}0&0\\0&0\end{bmatrix}
+\end{align*}
+$$
+But I believe demonstrating noncommutativity through visual transformations is far more intuitive.
+
+</Accordion>
+
+<Question
+  question="When multiplying these two matrices $\begin{bmatrix}0&-1\\1&0\end{bmatrix}\begin{bmatrix}-2&0\\0&-2\end{bmatrix}\stackrel{?}{=}\begin{bmatrix}-2&0\\0&-2\end{bmatrix}\begin{bmatrix}0&-1\\1&0\end{bmatrix}$"
+  choice1="Yes, the matrices commute"
+  choice2="No, the matrices don't commute"
+  answer={1} >
+
+I know we just said that matrices don't commute! That is true, _generally_. However there are some examples of matrices commuting, even if not every pair of matrices being multiplied is communitive. This example isn't intuitive in numeric form so let's think about it visually.
+
+One matrix is rotating by $90^\circ$ counterclockwise. The other matrix is scaling by $-2$ (reflecting through the $y=-x$ line and multiplying by $2$). Does it matter if we first rotate and then scale, or can we also scale and then rotate?
+
+</Question>
+
+<Accordion title="Scaling Commutativity ">
+
+An interesting fact here is that a matrix which scales both axes by the same amount actually commutes with _every_ other matrix! This is because scalar-matrix multiplication is commutative. If we have some matrix $M$ and some scalar (number) $a$, then:
+$$
+aM=Ma
+$$
+When we "take out" the scalar from the scaling matrix we get this:
+$$
+\begin{bmatrix}a&0\\0&a\end{bmatrix}
+= a
+\begin{bmatrix}1&0\\0&1\end{bmatrix}
+$$
+The resulting matrix has a special name, we call it the "identity matrix", shown symbolically as $I$. It represents doing nothing; the basis vectors are already the columns of the matrix. It shouldn't be surprising that doing nothing is commutative with every matrix, after all we are doing nothing both before and after every transformation already!
+
+Since the identity matrix is always commutative and scalar-matrix multiplicative is always commutative, we know a scaling matrix is always commutative:
+$$
+(aI)M=aMI=M(aI)
+$$
+</Accordion>
+
+## Associativity
+
+I remember when I first took linear algebra, there was a homework problem that asked to prove that matrix multiplication is associative. That means if you have three matrices, A, B and C, and multiply them all, it shouldn’t matter if you first compute A times B, then multiply the result by C, or if you first multiply B times C, then multiply the result by the matrix A on the left. In other words, does it matter where you put the parentheses.
+$$
+(AB)C\stackrel{?}{=}A(BC)
+$$
+Now, if you try to work through this numerically, like I did back then, it’s horrible! And unenlightening for that matter. But when you think of matrix multiplication as applying one transformation after another, this property is trivial, can you see why?
+
+What it’s saying is that if you first apply (C then B), then A, it’s the same as applying C, (then B then A). I mean, there’s nothing to prove! You’re just applying three things one after the other, all in the same order!
+
+<Figure
+  video="associativity.mp4"
+/>
+
+This might feel like cheating, but it’s not. It’s an honest-to-goodness proof that matrix multiplication is associative. And even better than that, it’s a *good explanation* for why that property should be true.
