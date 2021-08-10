@@ -9,18 +9,6 @@
   margin: 0 auto;
 }
 
-.videoArea[data-topicisseries="false"] {
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "topic"
-    "video";
-
-  .arrowLeft,
-  .arrowRight {
-    display: none;
-  }
-}
-
 @media (max-width: 600px) {
   .videoArea {
     grid-template-columns: 1fr 1fr;
