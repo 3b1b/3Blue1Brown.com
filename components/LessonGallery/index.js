@@ -10,12 +10,27 @@ import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
 
 LessonGallery.propTypes = {
-  show: PropTypes.oneOf(["topic", "all"]),
+  show: PropTypes.oneOf(["topic", "all", "written"]),
 };
 
 // gallery that shows all lessons in various ways with tabs. show by topic or all
 export default function LessonGallery({ show = "topic" }) {
   const { lessons } = useContext(PageContext);
+  const topic_names = topics.map((topic) => topic.name);
+  const sorted_lessons = [...lessons].sort((a, b) => {
+    const ati = topic_names.indexOf(a.topic);
+    const bti = topic_names.indexOf(b.topic);
+    if (ati === -1) return 1;
+    if (bti === -1) return -1;
+    if (ati == bti) {
+      return (
+        topics[ati].lessons.indexOf(a.slug) -
+        topics[bti].lessons.indexOf(b.slug)
+      );
+    }
+    return ati - bti;
+  });
+
   const [tab, setTab] = useState(show); // active tab
 
   const [searchText, setSearchText] = useState("");
@@ -23,30 +38,17 @@ export default function LessonGallery({ show = "topic" }) {
   const view = searchText ? "search" : tab;
 
   const filteredLessons = useMemo(() => {
-    if (view !== "search") {
-      // No need to filter
-      return lessons;
+    if (view === "written") {
+      return sorted_lessons.filter((lesson) => !lesson.empty);
     }
-
-    return lessons
-      .filter((lesson) => matchesSearch(lesson, searchText))
-      .sort((a, b) => {
-        if (a.topic === b.topic) {
-          if (typeof a.chapter === "number") {
-            const topic = topics.find((t) => t.name === a.topic);
-            if (!topic) return 0;
-            return (
-              topic.lessons.indexOf(a.slug) - topic.lessons.indexOf(b.slug)
-            );
-          }
-        }
-
-        return new Date(b.date) - new Date(a.date);
-      });
+    if (view === "search") {
+      return sorted_lessons.filter((lesson) =>
+        matchesSearch(lesson, searchText)
+      );
+    }
+    // Otherwise, return all by date
+    return lessons;
   }, [lessons, view, searchText]);
-
-  const googleURL = new URL("https://google.com/search");
-  googleURL.searchParams.append("q", `site:3blue1brown.com ${searchText}`);
 
   return (
     <>
@@ -60,12 +62,20 @@ export default function LessonGallery({ show = "topic" }) {
           active={view === "topic"}
         />
         <Clickable
-          text="All"
+          text="By date"
           onClick={() => {
             setTab("all");
             setSearchText("");
           }}
           active={view === "all"}
+        />
+        <Clickable
+          text="Written"
+          onClick={() => {
+            setTab("written");
+            setSearchText("");
+          }}
+          active={view === "written"}
         />
 
         <div className={styles.search} data-active={view === "search"}>
@@ -97,15 +107,12 @@ export default function LessonGallery({ show = "topic" }) {
             emotion="maybe"
             placement="inline"
           />
-          <p>
-            Can't find what you're looking for? Try{" "}
-            <a href={googleURL} target="_blank" rel="noreferrer">
-              searching Google
-            </a>{" "}
-            instead.
-          </p>
         </div>
       )}
+      {view === "written" &&
+        filteredLessons.map((lesson) => (
+          <LessonCard key={lesson.slug} id={lesson.slug} />
+        ))}
     </>
   );
 }

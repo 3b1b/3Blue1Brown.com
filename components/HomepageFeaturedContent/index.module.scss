@@ -1,9 +1,10 @@
 .container {
   display: grid;
   grid-template-columns: 3fr 4fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 3fr 1fr;
   grid-template-areas:
     "title featured"
+    "subtitle featured"
     "social featured";
   gap: 30px;
 }
@@ -12,8 +13,17 @@
   grid-area: title;
 
   font-family: $sans;
-  font-size: 24px;
+  font-size: 30px;
   text-align: left;
+}
+
+.subtitle {
+  grid-area: subtitle;
+
+  font-family: $sans;
+  font-size: 16px;
+  text-align: left;
+  color: $gray-300;
 }
 
 .featured {
@@ -39,6 +49,7 @@
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "title"
+      "subtitle"
       "featured"
       "social";
     gap: 50px;

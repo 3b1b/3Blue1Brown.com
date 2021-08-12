@@ -30,9 +30,8 @@ export default function Patrons({ active }) {
   } else {
     // site-wide patrons
     patrons =
-      // filter by amount, active status, and top 1000 for css grid limits
+      // filter by active status, and top 1000 for css grid limits
       sitePatrons
-        .filter((patron) => patron.amount >= 16)
         .filter((patron) => patron.active === active)
         .map((patron) => patron.name)
         .map((patron) => nameOverrides[patron] || patron)

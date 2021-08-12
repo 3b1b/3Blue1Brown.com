@@ -9,6 +9,7 @@ import {
 } from "react";
 import PropTypes from "prop-types";
 import Clickable from "../Clickable";
+import PiCreature from "../PiCreature";
 import SocialIcons from "../SocialIcons";
 import Link from "next/link";
 import styles from "./index.module.scss";
@@ -18,18 +19,16 @@ HomepageFeaturedContent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default function HomepageFeaturedContent({ title, children }) {
+export default function HomepageFeaturedContent({ title, subtitle="", children }) {
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
+      <div className={styles.subtitle}>{subtitle}</div>
       <div className={styles.featured}>
         <Carousel>{children}</Carousel>
       </div>
       <div className={styles.social}>
         <SocialIcons />
-        <div className={styles.social_label}>
-          Want more math in your life?
-        </div>
       </div>
     </div>
   );
@@ -47,7 +46,7 @@ export function HomepageFeaturedItem({ lesson, caption, children }) {
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
-        <div className={styles.itemButtons}>
+        {lesson && <div className={styles.itemButtons}>
           <Clickable
             link={`/lessons/${lesson}`}
             text="Watch"
@@ -58,7 +57,7 @@ export function HomepageFeaturedItem({ lesson, caption, children }) {
             text="Read"
             icon="far fa-newspaper"
           />
-        </div>
+        </div>}
 
         <figure className={styles.itemFigure}>
           {children}
