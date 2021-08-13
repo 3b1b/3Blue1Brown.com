@@ -20,7 +20,7 @@ If I had to choose just one topic that makes all of the others in linear algebra
 
 ## Transformations Are Functions
 
-To start, let’s just parse this term: “Linear transformation”. _Transformation_ is essentially a fancy word for function; it’s something that takes in inputs, and spit out some output for each one.
+To start, let’s parse this term: “Linear transformation”. _Transformation_ is essentially a fancy word for function; it’s something that takes in inputs, and spit out some output for each one.
 
 <Figure
   image="as_function.svg"
@@ -54,21 +54,22 @@ To understand the transformation as a whole, we imagine every possible vector mo
 
 ## Vectors As Points
 
-It gets very crowded to think about all vectors all at once, each as an arrow, so as I mentioned in the last chapter, a nice trick is to conceptualize each vector not as an arrow, but as a single point: the point where its tip sits. That way, to think about a transformation taking every possible input vector to some output vector, we watch every point in space move to some other point.
+It gets very crowded to think about all vectors all at once, each as an arrow. So let's think of each vector not as an arrow, but as a single point: the point where its tip sits. That way, to think about a transformation taking every possible input vector to its corresponding output vector, we watch every point in space move to some other point.
 
 <Figure
   image="vectors_as_points.png"
   video="vectors_as_points.mp4"
+  show="video"
 />
 
-In the case of transformations in two dimensions, to get a better feel for the shape of a transformation, I like to do this with all the points on an infinite grid. I also sometimes like to keep a copy of the grid in the background, just to help keep track of where everything ends up relative to where it starts.
+In the case of transformations in two dimensions, to get a better feel for the shape of a transformation, I like to do this with all the points on an infinite grid. It can also be helpful to keep a static copy of the grid in the background, just to help keep track of where everything ends up relative to where it starts.
 
 <Figure
   image="ex_linear.png"
   video="ex_linear.mp4"
 />
 
-The effect for various transformations moving around points in space is, you have to admit, beautiful. It gives the feeling of squishing and morphing space itself.
+Visualizing functions with 2d inputs and 2d outputs like this can be exceedingly beautiful, and it's often difficult to communicate the idea on a static medium like a blackboard. Here are couple more particularly pretty examples of such functions[^1].
 
 <Figure
   image="ex_parabola.png"
@@ -80,52 +81,87 @@ The effect for various transformations moving around points in space is, you hav
   video="ex_circle.mp4"
 />
 
-## Why Linear?
+## What makes a transformation "linear"?
 
-As you can imagine, though, arbitrary transformations can look pretty complicated, but luckily linear algebra limits itself to a special type of transformation that’s easier to understand: *Linear* transformations. Visually speaking, a transformation is “linear” if it has two properties: all lines must remain lines, without getting curved, and the origin must remain fixed in place.
+As you can imagine, there's an unimaginably huge number of possible transformations, most of which would be exceedingly complicated to think about. Luckily, linear algebra limits itself to a special type of transformation that’s easier to understand: *Linear* transformations.
+
+Let's start with the algebraic definition of linearity, then see what it looks like visually. A transformation $L$ is linear if it satisfies the following two properties.
+
+$$
+\begin{align*}
+\text{$L$ preserves sums:} \qquad 
+L(
+  {\color{green}\overrightarrow{\mathbf{v}}} +
+  {\color{blue}\overrightarrow{\mathbf{w}}}
+) &=
+L({\color{green}\overrightarrow{\mathbf{v}}}) +
+L({\color{blue}\overrightarrow{\mathbf{w}}}) \\\\
+
+\text{$L$ preserves scaling:} \qquad
+L(
+  s{\color{green}\overrightarrow{\mathbf{v}}}
+) &=
+sL({\color{green}\overrightarrow{\mathbf{v}}})
+
+\end{align*}
+$$
+
+To help appreciate just how constraining these two properties are, and to reason about what this implies a linear transformation must _look_ like, consider the important fact from the <LessonLink id="span">last chapter</LessonLink> that when you write down a vector with coordinates, say $\overrightarrow{\mathbf{v}} = \begin{bmatrix}-1\\2\end{bmatrix}$, you are effectively writing it as a linear combination of two basis vectors. In this case,
+
+$$
+\overrightarrow{\mathbf{v}} = -1{\color{green} \hat i} + 2{\color{red} \hat j}.
+$$
 
 <Figure
-  image="linear_def.png"
-  video="linear_def.mp4"
+  image="basis_example.svg"
 />
 
-For example, this right here would *not* be a linear transform, since the lines get all curvy.
+What it looks like for a transformation to be linear is that after the transformation, the transformed version of $\overrightarrow{\mathbf{v}}$ will be _this same_ linear combination of the transformed versions of ${\color{green} \hat i}$ and ${\color{red} \hat j}$.
 
 <Figure
-  image="nonlinear_curvy.png"
+  image="basis_example2.svg"
+  video="basis_example2.mp4"
 />
 
-And this one would not be a linear transformation because the origin moves.
+Why? This pops out of of what we mean when a linear transformation preserves both sums and scalar products.
+
+$$
+\begin{align*}
+L\left(-1{\color{green} \hat i} + 2{\color{red} \hat j} \right)
+&= L(-1{\color{green} \hat i}) + L(2{\color{red} \hat j}) \\
+&= -1 \cdot L({\color{green} \hat i}) + 2 \cdot L({\color{red} \hat j})
+\end{align*}
+$$
+
+This means linearity is _incredibly_ restrictive. If you know where the two basis vectors $\color{green} \hat i$ and $\color{red} \hat j$ go, everything else will follow![^2]
+
+Visually, this means the entire grid of 2d points "follows along" with $\color{green} \hat i$ and $\color{red} \hat j$, so to speak. You can know that a transformation is linear if all those grid lines remain parallel and evenly spaced, and if the origin remains fixed in place (why?).
 
 <Figure
-  image="nonlinear_translated.png"
+  image="transform_basis.png"
+  video="transform_basis.mp4"
 />
 
-This one here fixes the origin, and it might look like it keeps lines straight, but that’s just because I’m only showing horizontal and vertical grid lines. When you see what it does to a diagonal line, it becomes clear that it’s not a linear transformation at all, since it turns that line all curvy.
-
-<Figure
-  image="nonlinear_diagonal.png"
-/>
-
-In general you should think of linear transformations as keeping grid lines parallel and evenly spaced, although they might change the angles between perpendicular grid lines.
-
-<Figure
-  image="parallel_evenly_spaced.png"
-/>
-
-Some linear transformations are simple to think about, like rotations about the origin.
+To give just one important example of a linear traformation, consider rotation about the origin. Notice how all the grid lines remain parallel and evenly spaced.
 
 <Figure
   image="rotate_about_origin.png"
   video="rotate_about_origin.mp4"
 />
 
-Others are more complex because there are multiple things happening all at once.
+However, for most other linear transformations, grid lines which started off perpendicular to each other may not stay perpendicular. It is perfectly allowable, and in fact much more common, for there to be some shearing effect.
 
 <Figure
-  image="complex_transform.png"
-  video="complex_transform.mp4"
+  image="ex_linear.png"
+  video="ex_linear.mp4"
 />
+
+<PiCreature
+  emotion="maybe"
+  text="Who cares"
+/>
+
+The reason linear algebra is so important is that linear functions come up _all the time_ throughout science and engineering. Sometimes this conception of them as transformations is very literal, as in the case of a computer graphics programmer trying to describe rotation in space. More often, the linear function arises in a less directly visual context, say as one step in a <LessonLink id="neural-networks">neural network</LessonLink>, but being able to visualize it helps to glean some insight into how to think about it.
 
 **Which of the transformations in the image below are linear?**
 
@@ -147,64 +183,44 @@ C is the only transformation where the lines are parallel and evenly spaced.
 
 ## Matrices
 
-How do you think you could do these transformations numerically? If you were, say, programming some animations to make a video teaching the topic, what formula do you give the computer so that if you give it the coordinates of a vector, it can tell you the coordinates of where that vector lands.
+Take a moment to contemplate how you could describe one of these transformations numerically. If you were, say, programming some animations to make a video teaching the topic, what formula do you give the computer so that if you give it the coordinates of a vector, it can tell you the coordinates of where that vector lands.
 
 <Figure
   image="describe_numerically.svg"
 />
 
-It turns out you only need to record where the two basis vectors $\hat i$ and $\hat j$ go, and everything else will follow.
+Well, because the behavior of the transformation on all vectors is completely determined by where it takes $\hat i$ and $\hat j$, the only data you need to record are the coordinates of where $\hat i$ lands, and the coordinates of where $\hat j$ lands.
 
-<Figure
-  image="transform_basis.png"
-  video="transform_basis.mp4"
-/>
-
-For example, consider the vector $\overrightarrow{\mathbf{v}}$ with coordinates $\begin{bmatrix}-1\\2\end{bmatrix}$, meaning it is equal to $-1\hat i+2\hat j$. 
-
-<Figure
-  image="basis_example.svg"
-/>
-
-If we do the transformation, and follow where all three of these vectors go, the property that grid lines remain parallel and evenly spaced has a really important consequence. The place where $\overrightarrow{\mathbf{v}}$ lands will be $(-1)$ times the vector where $\hat i$ landed, plus $2$ times the vector where $\hat j$ landed.
+For example, let's bring back our vector $\overrightarrow{\mathbf{v}} = \begin{bmatrix}-1\\2\end{bmatrix}$ from earlier, and consider the same linear transformation we were looking at previously.
 
 <Figure
   image="basis_example2.svg"
   video="basis_example2.mp4"
 />
 
-In other words, it started off as a certain linear combination of $\hat i$ and $\hat j$, and it ended up at *that same* linear combination of where those two vectors landed. 
+By comparing the outputs of the transformation with the faint static grid in the background, we can see that the transformation has taken $\overrightarrow{\mathbf{v}}$ to the output $\begin{bmatrix}5\\2\end{bmatrix}$.
+
+But suppose you were just given the data describing what the transformation does to $\color{green} \hat i$ and $\color{red} \hat j$, and you wanted to compute where $\overrightarrow{\mathbf{v}}$ goes without looking at pre-created picture. How would you do it?
+
+For the transformation shown above, here's the relevant data.
+
+$$
+L({\color{green} \hat i}) = \begin{bmatrix}1\\-2\end{bmatrix} \qquad
+L({\color{red} \hat j}) = \begin{bmatrix}3\\0\end{bmatrix}
+$$
+
+Using those four numbers, here's how you could compute where $\overrightarrow{\mathbf{v}} = \begin{bmatrix}-1\\2\end{bmatrix}$ will go.
+
 $$
 \begin{align*}
-\color{orange}\overrightarrow{\mathbf{v}}
-\color{black}&=-1
-\color{green}\hat i
-\color{black}+2
-\color{red}\hat j
-\\
-\color{orange}\text{Transformed }\overrightarrow{\mathbf{v}}
-\color{black}&=-1
-\color{green}(\text{Transformed }\hat i)
-\color{black}+2
-\color{red}(\text{Transformed }\hat j)
+L(\overrightarrow{\mathbf{v}})
+&= L(-1 {\color{green}\hat i} + 2 {\color{red}\hat j}) \\\\
+&= -1 \cdot L({\color{green}\hat i}) + 2 \cdot L({\color{red}\hat j}) \\\\
+&= -1 \cdot \begin{bmatrix}1\\-2\end{bmatrix} + 2 \cdot \begin{bmatrix}3\\0\end{bmatrix} \\\\
+&= \begin{bmatrix}5\\-2\end{bmatrix}
 \end{align*}
 $$
-This means we can deduce where $\overrightarrow{\mathbf{v}}$ lands based on where $\hat i$ and $\hat j$ land; this is why I like keeping a copy of the original grid in the background. For the transformation shown here, $\hat i$ lands on the coordinates $\begin{bmatrix}-1\\2\end{bmatrix}$, and $\hat j$ lands on the coordinates $\begin{bmatrix}3\\0\end{bmatrix}$. This means the vector represented by $-1\hat i+2\hat j$ ends up at $-1$ times the vector $\begin{bmatrix}-1\\2\end{bmatrix}$, plus $2$ times the vector $\begin{bmatrix}3\\0\end{bmatrix}$. Adding that all together, we can deduce that it lands on the vector $\begin{bmatrix}5\\2\end{bmatrix}$.
-$$
-\begin{align*}
-\color{orange}\text{Transformed }\overrightarrow{\mathbf{v}}
-\color{black}&= -1
-\color{green}\begin{bmatrix}-1\\2\end{bmatrix}
-\color{black}+2
-\color{red}\begin{bmatrix}3\\0\end{bmatrix}
-\\ \color{black}&=
-\begin{bmatrix}
--1(1)+2(3) \\ -1(-2)+2(0)
-\end{bmatrix}
-\\ &=
-\begin{bmatrix}5\\2\end{bmatrix}
-\end{align*}
-$$
+
 This is a good point to pause and ponder, because it’s pretty important.
 
 <Question
@@ -219,19 +235,18 @@ The vector $\begin{bmatrix}5\\-2\end{bmatrix}$ gets transformed into $5\begin{bm
 
 </Question>
 
-Now, given that I’m actually showing you the full transformation, you could have just looked to see that $\overrightarrow{\mathbf{v}}$ has coordinates $\begin{bmatrix}5\\2\end{bmatrix}$, but the cool part here is that this gives us a technique to deduce where *any* vectors lands, so long as we have a record of where $\hat i$ and $\hat j$ land, without needing to watch the transformation.
+Let's make this more general. Consider the same transformation we had above, the one whose behavior is entirely characterized by this data:
 
-<Figure
-  image="all_vectors_transform.png"
-  video="all_vectors_transform.mp4"
-/>
-
-Write the vector with more general coordinates, $x$ and $y$: It will land on $x$ times the vector where $\hat i$ lands $\begin{bmatrix}-1\\2\end{bmatrix}$, plus $y$ time the vector where $\hat j$ lands $\begin{bmatrix}3\\0\end{bmatrix}$. I give you any vector, and you can tell where it lands using this formula:
 $$
-\color{green}\hat i\to\begin{bmatrix}-1\\2\end{bmatrix}
-\color{black}\quad\text{and}\quad
-\color{red}\hat j\to\begin{bmatrix}3\\0\end{bmatrix}
-\\
+L({\color{green} \hat i}) = \begin{bmatrix}1\\-2\end{bmatrix} \qquad
+L({\color{red} \hat j}) = \begin{bmatrix}3\\0\end{bmatrix}
+$$
+
+Can you write a formula for what this does to a general vector $\begin{bmatrix}x\\ y\end{bmatrix}$? Really, take a moment to try it for yourself.[^3]
+
+<FreeResponse>
+
+$$
 \color{black}\begin{bmatrix}x\\ y\end{bmatrix}\to x
 \color{green}\begin{bmatrix}-1\\2\end{bmatrix}
 \color{black}+y
@@ -242,17 +257,23 @@ $$
 \color{green}-2\color{black}x+\color{red}0\color{black}y
 \end{bmatrix}
 $$
-What all of this is saying is that the two-dimensional linear transformation is completely described by just four numbers: The two coordinates for where $\hat i$ lands, and the two coordinates for where $\hat j$ lands. Isn’t that cool?
 
-It’s common to package these four numbers into a $2\times 2$ grid of numbers, called a “2 by 2 matrix”, where you can interpret the columns as the two special vectors where $\hat i$ and $\hat j$ land.
+</FreeResponse>
+
+If you were able to get that, then congratulations, you just reinvented matrix vector multiplication.
+
+You see, it’s common to package these four numbers which characterize a given transformation into a $2\times 2$ grid of numbers, called a “2-by-2 matrix”, where you can interpret the columns as the two special vectors where $\hat i$ and $\hat j$ land.
+
 $$
-``2\times 2\text{ Matrix''} \\
+``2\times 2\text{ Matrix''} \\\\
 \begin{bmatrix}
 \color{green}-1 & \color{red}3 \\
 \color{green}2 & \color{red}0
 \end{bmatrix}
 $$
+
 If you’re given a 2x2 matrix describing a linear transformation, and a specific vector, and you want to know where the linear transformation takes that vector, you take the coordinates of that vector, multiply them by the corresponding column of the matrix, then add together what you get. This corresponds with the idea of adding scaled versions of our new basis vectors.
+
 $$
 \begin{bmatrix}
 \color{green}3 & \color{red}2 \\
@@ -290,8 +311,6 @@ Remember that this all came from thinking about the columns as the transformed v
 />
 
 ## Examples
-
-Let’s practice describing a few linear transformations with matrices.
 
 ### Rotation
 
@@ -364,32 +383,12 @@ If the vectors that $\hat i$ and $\hat j$ land on are linearly dependent, which 
 
 ## Conclusion
 
-To sum up, linear transformations are a way to move around space such that grid lines remain parallel and evenly spaced, and such that the origin remains fixed in place. Delightfully, these transformations can be described using only a handful of numbers, the coordinates of where each basis vector lands. Matrices give a language to describe these transformations, where the columns represent those coordinates, and matrix-vector multiplication is a way to compute what that transformation does to a given vector.
+Understanding how matrices can be thought of as transformation can be a powerful mental tool for understanding the various constructs and definitions concerning matrices, which we'll explore as the series continues. This includes the ideas of matrix multiplication, determinants, how to solve systems of equations, what eigenvalues are, and much more. In all these cases, holding the picture of a linear transformation in your head can make the computations much more understandable.
 
-The important takeaway here is that every time you see a matrix, you can interpret it as a certain transformation of space. Once you digest this idea, you’re in a great position to understand linear algebra deeply. Almost all of the topics coming up; matrix multiplication, determinants, change of basis, eigenvalues, will be easier to understand once you start thinking about matrices as transformations of space.
+On the flip side, there are cases where you may want to actually describe manipulations of space; again graphics programmings offers a wealth of examples. In those cases, knowing that matrices give a way to describe these transformations symbolically, in a manner conducive to concrete computations, can be exceedingly helpful.
 
-<Accordion title="Formal Definitions">
+[^1]: Bonus points for any of you who can guess what these particular functions are.
 
-Alright, we have a pictorial understanding of linear transformations, along with a way to represent them numerically using matrix-vector multiplication. How can we define things a bit closer to what might be seen in a textbook?
+[^2]: It's also true that if you have any other pair of vectors spanning 2d space, knowing where they land will determine where everything else goes.
 
-Technically speaking, a linear transformation is a special kind of function $L(\overrightarrow{\mathbf{v}})$ that takes in a vector as its input, and spits out a new vector as its output. The way we've been visualizing things with movement is just one way to wrap our mind around these types of functions. Watching the inputs move to the outputs is intuitive since other ways of visualizing functions, like graphs, don’t work well for functions of vectors.
-
-There are two properties that these functions must have in order to be called “linear”, the “additivity property”, and the “scaling property”.
-
-**Additivity**
-
-Let’s start with additivity. Take two vectors, any two vectors, and call them $\overrightarrow{\mathbf{v}}$ and $\overrightarrow{\mathbf{w}}$. Consider their tip-to-tail sum, $\overrightarrow{\mathbf{v}}+\overrightarrow{\mathbf{w}}$. Now think about where those three vectors go after a linear transformation. The vector where $\overrightarrow{\mathbf{v}}$ lands, plus the vector where $\overrightarrow{\mathbf{w}}$ lands, just so happens to be the vector where $\overrightarrow{\mathbf{v}}+\overrightarrow{\mathbf{w}}$ lands.
-$$
-\text{Additivity: } L(\overrightarrow{\mathbf{v}})+L(\overrightarrow{\mathbf{w}})=L(\overrightarrow{\mathbf{v}}+\overrightarrow{\mathbf{w}})
-$$
-If a function satisfies this property no matter what pair of vectors you start with, it is said to be “additive”. People often say this means the function *preserves* vector addition.
-
-**Scaling**
-
-The second defining property of linear functions is the “scaling property”, which basically means scalar multiplication is preserved as well. If you take some vector $\overrightarrow{\mathbf{v}}$, then scale it by some factor, like $2.3$, then when you apply the transformation to both these vectors, if you look at where the original vector lands, then scale it by that same factor $2.3$, you will end up where the original scaled vector lands.
-
-In symbols, what this means is $L(c\overrightarrow{\mathbf{v}}) = cL(\overrightarrow{\mathbf{v}})$, where $c$ represents any possible number, or scalar. 
-
-Notice how linear algebra continues to revolve around the ideas of vector addition and scalar multiplication. If you think back to how we could deduce where every vectors goes by following $\hat i$ and $\hat j$, the reason this worked as that when you scale and add $\hat i$ and $\hat j$ before the transformation, the resulting vector lands on the same vector that you get by scaling and adding $\hat i$ and $\hat j$ *after* the transformation.
-
-</Accordion>
+[^3]: I realize it may be a bit awkward to actually type out. It's okay if you don't actually type it, but take a moment to think it through for yourself.
