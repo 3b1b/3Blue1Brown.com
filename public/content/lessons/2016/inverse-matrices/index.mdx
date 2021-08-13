@@ -7,4 +7,384 @@ video: uQhTuRlWMxw
 source: _2016/eola/chapter6.py
 credits:
 - Lesson by Grant Sanderson
+- Text Adaption by River Way
 ---
+
+> "To ask the right question is harder than to answer it."
+>
+> $\qquad$ — Georg Cantor
+
+As you can probably tell by now, the bulk of this series is on understanding matrix and vector operations through the more visual lens of linear transformations. This chapter will be no exception, describing the concepts of inverse matrices, column space, rank and null space through that lens.
+
+A forewarning though, I’m not going to talk at all about the methods for computing these things, which some would argue is rather important. There are a lot of good resources for learning those methods outside this series, keywords “Gaussian elimination” and “row echelon form”. I think most of the actual value I have to offer here is on the intuition half. Plus, in practice, we usually get software to compute these operations for us anyway.
+
+## Linear Systems of Equations
+
+You have a hint by now of how linear algebra is useful for describing the manipulation of space, which is useful for things like computer graphics and robotics. But one of the main reasons linear algebra is more broadly applicable, and required for just about any technical discipline, is that it lets us solve certain systems of equations. When I say “system of equations”, I mean you have a list of variables you don’t know, and a list of equations relating them.
+$$
+\begin{matrix}
+\underbrace{
+\color{green}x\quad
+\color{red}y\quad
+\color{blue}z
+}_{\large \text{Unknown variables}}
+&
+\begin{matrix}
+\color{black}6\color{green}x\color{black}-3\color{red}y\color{black}+2\color{blue}z\color{black}=7 \\
+\color{green}x\color{black}+2\color{red}y\color{black}+5\color{blue}z\color{black}=0 \\
+\underbrace{\color{black}2\color{green}x\color{black}-8\color{red}y\color{black}-\color{blue}z\color{black}=-2}
+_{\large\text{Equations}}
+\end{matrix}
+\end{matrix}
+$$
+These variables could be voltages across various elements in a circuit, prices of certain stocks, parameters in a machine learning network, really any situation where you might be dealing with multiple unknown numbers that somehow depend on one and other.
+
+How exactly they depend on each other is determined by the substance of your science, whether that means modeling the physics of circuits, the dynamics of the economy, or interactions in a neural network, but often you end up with a list of equations which relate these variables to one and other. In many situations, these equations can get *very* complicated.
+$$
+\begin{align*}
+\frac1{1-e^{2x-3y+4z}}&=1 \\
+\sin(xy)+z^2&=\sqrt y \\
+x^2+y^2&=e^{-z}
+\end{align*}
+$$
+But if you’re lucky, they might take a certain special form. Within each equation, the only thing happening to each variable is that it will be scaled by some constant, and the only thing happening to each of those scaled variables is that they are added to each other. So no exponents, fancy functions, or multiplying two variables together.
+$$
+\begin{align*}
+\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
+\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
+\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\end{align*}
+$$
+The typical way to organize this sort of special system of equations is to throw all the variables on the left, and to put any lingering constants on the right. It’s also nice to vertically line up all common variables, throwing in zero coefficients whenever one of the variables doesn’t show up in one of the equations. This is called a “linear system of equations”.
+
+You might notice that this looks a lot like matrix-vector multiplication. In fact, you can package all the equations together into one *vector* equation where you have the matrix containing all the constant coefficients, and a vector containing all the variables, and their matrix-vector product equals some different, constant vector.
+$$
+\begin{align*}
+\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
+\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
+\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\end{align*}
+\to
+
+\overbrace{
+\underbrace{
+\begin{bmatrix}
+2&5&3\\
+4&0&8\\
+1&3&0
+\end{bmatrix}
+}_{\large\color{white}\hat{\color{black} A}}
+}^{\large\text{Coefficients}}
+
+\overbrace{
+\underbrace{
+\begin{bmatrix}
+\color{green}x \\
+\color{red}y \\
+\color{blue}z
+\end{bmatrix}
+}_{\large \color{purple}\overrightarrow{\mathbf{x}}}
+}^{\large\text{Variables}}
+=
+\overbrace{
+\underbrace{
+\begin{bmatrix}
+-3 \\
+0 \\
+2
+\end{bmatrix}
+}_{\large \color{orange}\overrightarrow{\mathbf{v}}}
+}^{\large\text{Constants}}
+$$
+<Question
+  question="Which matrix-vector equation corresponds to this system: $\\3x+0y=5\\ 2x-5y=2$"
+  choice1="$\begin{bmatrix}2&-5\\ 3&0\end{bmatrix}\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}5\\2\end{bmatrix}$"
+  choice2="$\begin{bmatrix}3&0\\ 2&-5\end{bmatrix}\begin{bmatrix}2\\ 5\end{bmatrix}=\begin{bmatrix}x\\y\end{bmatrix}$"
+  choice3="$\begin{bmatrix}2&x\\ 5&y\end{bmatrix}\begin{bmatrix}3\\ 2\end{bmatrix}=\begin{bmatrix}0\\-5\end{bmatrix}$"
+  choice4="$\begin{bmatrix}3&0\\ 2&-5\end{bmatrix}\begin{bmatrix}x\\ y\end{bmatrix}=\begin{bmatrix}5\\2\end{bmatrix}$"
+  answer={4} >
+
+We package all of the coefficients into the matrix $A=\begin{bmatrix}3&0\\ 2&-5\end{bmatrix}$, all of the variables into the vector $\overrightarrow{\mathbf{x}}=\begin{bmatrix}x\\ y\end{bmatrix}$, and all of the constants into the vector $\overrightarrow{\mathbf{v}}=\begin{bmatrix}5\\2\end{bmatrix}$. Then we place them in the equation $A\overrightarrow{\mathbf{x}}=\overrightarrow{\mathbf{v}}$.
+
+</Question>
+
+Let’s name this coefficient matrix $A$, denote the vector holding all our variables with a boldfaced $\overrightarrow{\mathbf{x}}$, and call the constant vector on the right-hand side $\overrightarrow{\mathbf{v}}$. This is more than just a notational trick to get our system of equations written on one line, it sheds light on a wonderful geometric interpretation of the problem. The matrix $A$ corresponds to some linear transformation, so solving $A\overrightarrow{\mathbf{x}}=\overrightarrow{\mathbf{v}}$ means we’re looking for a vector $\overrightarrow{\mathbf{x}}$ which, after applying that transformation, lands on $\overrightarrow{\mathbf{v}}$.
+
+<Figure
+  image="transformation_ax=v.svg"
+  video="transformation_ax=v.mp4"
+/>
+
+Just think about what’s happening here for a moment. You can hold in your head this complex idea of multiple variables all intermingling with each other just by thinking about squishing and morphing space, and trying to find which vector lands on another. Cool, right?
+
+To start simple, let’s say you have a system with two equations and two unknowns. This means the matrix $A$ is a $2\times 2$ matrix, and $\overrightarrow{\mathbf{x}}$ and $\overrightarrow{\mathbf{v}}$ are both two dimensional vectors.
+$$
+\begin{align*}
+\color{black}2\color{green}x\color{black}+2\color{red}y\color{black}&=-4 \\
+\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}&=-1
+\end{align*}
+\to
+
+\underbrace{
+\begin{bmatrix}
+2&2\\
+1&3
+\end{bmatrix}
+}_{\large\color{white}\hat{\color{black} A}}
+
+\underbrace{
+\begin{bmatrix}
+\color{green}x \\
+\color{red}y
+\end{bmatrix}
+}_{\large \color{purple}\overrightarrow{\mathbf{x}}}
+=
+\underbrace{
+\begin{bmatrix}
+-4 \\ -1
+\end{bmatrix}
+}_{\large \color{orange}\overrightarrow{\mathbf{v}}}
+$$
+The way we think about solutions to this equation depends on whether the transformation associated with $A$ squishes all of space into a lower dimension, like a line or a point, or if it leaves everything spanning the full two dimensions where it started. 
+
+<Figure
+  image="lower_dim.svg"
+  video="lower_dim.mp4"
+/>
+
+In the language of the last chapter, we subdivide into the case where A has zero determinant, and the case where A has nonzero determinant.
+
+## Inverses
+
+Let’s start with the most likely case, where the determinant is nonzero and space does not get squished onto a zero-area line. In this case, there will always be one and only one vector $\overrightarrow{\mathbf{x}}$ that lands on $\overrightarrow{\mathbf{v}}$, which you can find by playing the transformation in reverse.
+
+<Figure
+  image="inverse_ax=v.svg"
+  video="inverse_ax=v.mp4"
+/>
+
+Following where $\overrightarrow{\mathbf{v}}$ goes as we rewind the tape like this, you will find the vector $\overrightarrow{\mathbf{x}}$ such that $A\overrightarrow{\mathbf{x}}=\overrightarrow{\mathbf{v}}$.
+
+### Inverse Matrix
+
+When you play the transformation in reverse, it actually corresponds with a separate linear transformation, commonly called the inverse of $A$, denoted as $A^{-1}$. For example, if $A$ was a counterclockwise rotation by $90^\circ$, the inverse of $A$ would be a clockwise rotation by $90^\circ$. 
+
+<Figure
+  image="rotation_inverse.svg"
+  video="rotation_inverse.mp4"
+/>
+
+If $A$ was a rightward shear that pushed $\hat j$ one unit to the right, the inverse of $A$ would be leftward a shear that pushed $\hat j$ one unit to the left.
+
+<Figure
+  image="shear_inverse.svg"
+  video="shear_inverse.mp4"
+/>
+
+In general, $A^{-1}$ is the unique transformation with the property that if you apply the transformation $A$, and follow it with the transformation $A$ inverse, you end up back where you started.
+
+<Question
+  question="What is the inverse matrix for a $180^\circ$ rotation? $\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$"
+  choice1="$\begin{bmatrix}0&-1\\-1&0\end{bmatrix}$"
+  choice2="$\begin{bmatrix}1&0\\0&-1\end{bmatrix}$"
+  choice3="$\begin{bmatrix}0&-1\\1&0\end{bmatrix}$"
+  choice4="$\begin{bmatrix}1&-1\\-1&1\end{bmatrix}$"
+  answer={1} >
+
+The $180^\circ$ rotation matrix is its own inverse! That should make sense because applying the transformation twice will get you back to where you started.
+
+</Question>
+
+Since applying one transformation after another is captured algebraically with matrix multiplication, the core property of this reverse transform $A^{-1}$ is that $A^{-1}$ times $A$ equals the matrix that corresponds to doing nothing. The transformation which does nothing is called the “identity” transformation. It leaves $\hat i$ and $\hat j$ where they are, unmoved, so its columns are $\begin{bmatrix}1\\0\end{bmatrix}$ and $\begin{bmatrix}0\\1\end{bmatrix}$.
+$$
+A^{-1}A=\begin{bmatrix}
+\color{green}1&\color{red}0 \\
+\color{green}0&\color{red}1
+\end{bmatrix}
+$$
+There are computational methods to compute this inverse matrix. In the case of two dimensions there’s a commonly taught formula, which I have to admit, I can never remember. Once you find this inverse, which in practice you’d do with a computer, you can solve your equation by multiplying this inverse matrix by $\overrightarrow{\mathbf{v}}$. And again, what that means geometrically is that you’re playing the transformation in reverse and following $\overrightarrow{\mathbf{v}}$ to end up at $\overrightarrow{\mathbf{x}}$.
+$$
+\begin{align*}
+\color{green}A^{-1}
+\color{black}A
+\color{purple}\overrightarrow{\mathbf{x}}
+\color{black}&=
+\color{green}A^{-1}
+\color{orange}\overrightarrow{\mathbf{v}}
+\\
+\color{purple}\overrightarrow{\mathbf{x}}
+\color{black}&=
+\color{green}A^{-1}
+\color{orange}\overrightarrow{\mathbf{v}}
+\end{align*}
+$$
+This nonzero determinant case corresponds with the idea that if you have two unknowns and two linear equations, it’s almost certainly the case that there is a single unique solution.
+$$
+\overbrace{
+\begin{matrix}
+\color{black}a\color{green}x\color{black}+c\color{red}y\color{black}=e \\
+\color{black}b\color{green}x\color{black}+d\color{red}y\color{black}=f
+\end{matrix}
+}^{\large\text{One unique solution... probably}}
+$$
+
+### Higher Dimensions
+
+This idea also makes sense in higher dimensions when the number of equations equals the number of unknowns. Again, the system of equations can be translated to the geometric interpretation where you have some transformation $A$ and some vector $\overrightarrow{\mathbf{v}}$, and you’re looking for the vector $\overrightarrow{\mathbf{x}}$ that lands on $\overrightarrow{\mathbf{v}}$.
+$$
+A\color{purple}\overrightarrow{\mathbf{x}}
+\color{black}=\color{orange}\overrightarrow{\mathbf{v}}
+\\
+\color{black}
+\begin{align*}
+\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
+\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
+\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\end{align*}
+\to
+
+\underbrace{
+\begin{bmatrix}
+2&5&3\\
+4&0&8\\
+1&3&0
+\end{bmatrix}
+}_{\large\color{white}\hat{\color{black} A}}
+
+\underbrace{
+\begin{bmatrix}
+\color{green}x \\
+\color{red}y \\
+\color{blue}z
+\end{bmatrix}
+}_{\large \color{purple}\overrightarrow{\mathbf{x}}}
+=
+\underbrace{
+\begin{bmatrix}
+-3 \\
+0 \\
+2
+\end{bmatrix}
+}_{\large \color{orange}\overrightarrow{\mathbf{v}}}
+$$
+Just like in 2D, we are can play a 3D transform in reverse to find where the vector $\overrightarrow{\mathbf{x}}$ came from when it landed on $\overrightarrow{\mathbf{v}}$.
+
+<Figure
+  image="inverse_3D.svg"
+/>
+
+As long as the transformation for $A$ doesn’t squish all of space into a lower dimension, meaning its determinant is not zero, there will be an inverse transformation $A^{-1}$. The inverse transformation has the property that if you first do $A$, then you do $A^{-1}$, it’s the same as doing nothing. Multiplying that reverse transformation matrix by $\overrightarrow{\mathbf{v}}$, you get the answer $\overrightarrow{\mathbf{x}}$.
+$$
+\det(A)\neq0\quad\to\quad A^{-1}\text{ exists}
+$$
+
+## Irreversibility
+
+Up to this point, we've only mentioned the case when the determinant isn't zero. But when the determinant *is* zero, and the transformation associated with the system of equations squishes space into a smaller dimension, there is no inverse. You cannot unsquish a line to turn it into a plane. At least, that’s not something a *function* can do.
+
+<Figure
+  image="reverse_line.svg"
+  video="reverse_line.mp4"
+/>
+
+That would require transforming each vector into a whole line of vectors, but functions can only take a single input to a single output.
+
+<Figure
+  image="multiple_vectors.svg"
+  video="multiple_vectors.mp4"
+/>
+
+Similarly, for 3 equations and 3 unknowns, there will be no inverse if the corresponding transformation squishes 3D space onto a plane, onto a line, or onto a point. Those all correspond to a determinant of zero, since any region is squished onto a zero-volume region.
+
+<Question
+  question="Does $A^{-1}$ exist when $A=\begin{bmatrix}3&-1\\-9&3$?"
+  choice1="Yes, $A^{-1}$ exists"
+  choice2="No, $A^{-1}$ doesn't exist"
+  answer={2} >
+
+The columns of this matrix are linearly dependent $-3\begin{bmatrix}-1\\3\end{bmatrix}=\begin{bmatrix}3\\-9\end{bmatrix}$, so the determinate of $A$ is zero and $A^{-1}$ does not exist.
+
+</Question>
+
+### Column Space
+
+It’s still possible that a solution exists even when there is no inverse, it’s just that when your transformation squishes space onto, say, a line, you have to be lucky enough to have the vector $\overrightarrow{\mathbf{v}}$ live somewhere on that line.
+
+<Figure
+  image="no_solution_exists.svg"
+/>
+
+You might notice that some of these zero determinant cases feel much more restrictive than others. Given a $3\times 3$ matrix, it seems much harder for a solution to exist when it squishes space onto a line compared to when it squishes things onto a plane.
+
+We have some language that’s a bit more specific than just saying zero-determinant. When the output of a transformation is a line, meaning it is one-dimensional, we say the transformation has a rank of $1$.
+
+<Figure
+  image="rank_1.svg"
+/>
+
+If all the vectors land on some two dimensional plane, we say the transformation has a rank of $2$. So the word “rank” means the number of dimensions in the output of a transformation.
+
+<Figure
+  image="rank_2.svg"
+/>
+
+So for instance, in the case of $2\times 2$ matrices, rank $2$ is the best it can be, it means the basis vectors continue to span the full 2D space and the determinant is nonzero. But for $3\times 3$ matrices, rank $2$ means things have collapsed, but not as much as they would have for a rank $1$ transformation.
+
+If a 3D transform has non-zero determinant and its output fills all of 3D space, it has a rank of $3$. This set of all possible outputs for your matrix, whether it’s a line, a plane, 3D space; is called the “column space” of your matrix. You can probably guess where the name comes from; the columns of your matrix tell you where the basis vectors land, and the span of those transformed basis vectors gives you all possible outputs. In other words, the column space is the span of the columns of your matrix.
+
+So a more precise definition of rank is that it’s the number of dimensions in the column space. When this rank is as high as it can be, equaling the number of columns in the matrix, the matrix is called “full-rank”.
+
+<Question
+  question="What is the rank of this matrix? $\begin{bmatrix}1&-2&4\\-2&4&-8\\5&-10&20\end{bmatrix}$"
+  choice1="Rank 0"
+  choice2="Rank 1"
+  choice3="Rank 2"
+  choice4="Rank 3 (full rank)"
+  answer={2} >
+
+The columns of these matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$.
+
+</Question>
+
+### Null Space
+
+Notice the zero vector will always be included in the column space, since linear transformations must keep the origin fixed in place.
+
+For a full-rank transformation, the only vector that lands at the origin is the zero vector itself. But for matrices that aren’t full rank, which squish to a smaller dimension, you can have a whole bunch of vectors land on zero. If a 2D transformation squishes space onto a line, there is a separate line in a different direction full of vectors that get squished on the origin.
+
+<Figure
+  image="null_line.svg"
+  video="null_line.mp4"
+/>
+
+If a 3D transformation squishes space onto a plane, there is a line full of vectors that land on the origin.
+
+<Figure
+  image="null_line_3D.svg"
+/>
+
+If a 3D transformation squishes all of space onto a line, there is a whole *plane* full of vectors that land on the origin.
+
+<Figure
+  image="null_plane.svg"
+/>
+
+This set of vectors that land on the origin is called the “null space” or the “kernel” of your matrix. It’s the space of vectors that become null, in the sense that they land on the zero vector. In terms of the linear system of equations, if $\overrightarrow{\mathbf{v}}$ happens to be the zero vector, the null space gives you all possible solutions to the equation.
+
+<Question
+  question="What does the null space of this matrix look like? $\begin{bmatrix}1&-2&4\\-2&4&-8\\5&-10&20\end{bmatrix}$"
+  choice1="Just the vector $\mathbf{0}$"
+  choice2="A Line"
+  choice3="A Plane"
+  choice4="All of 3D space"
+  answer={3} >
+
+The columns of these matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$. This means an entire plane gets squished to the origin. The dimensionality of the null space is inversely proportional to the rank of the matrix. $3\text{ (size of matrix)}-1\text{ (rank)}=2\text{ (size of null space)}$.
+
+</Question>
+
+## Conclusion
+
+So that’s a very high level overview of how to think about linear systems of equations geometrically. Each system has linear transformation associated with it. When that transformation has an inverse, you can use that inverse to solve your system. Otherwise, the ideas of column space and null space let us know when there is a solution, and what the set of all possible solutions can look like.
+
+Again, there’s a lot I haven’t covered, most notably how to compute these things. Also, I limited my scope of examples here to equations where the number of unknowns equals the number of equations. But my goal here is that you come away with a strong intuition for inverse matrices, column space and null space that can make any future learning you do more fruitful.
