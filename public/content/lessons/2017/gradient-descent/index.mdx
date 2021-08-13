@@ -55,7 +55,7 @@ In this way, values propagate from one layer to the next, entirely determined by
   caption="The input layer of neurons has activations based on the pixel values of an image. The rest of the layers have activations depending on each previous layer."
 />
 
-In total, given the somewhat arbitrary choice of 2 hidden layers with 16 neurons each, this network has about 13,002 weights and biases that we can adjust, and it’s these values that determine what exactly the network does.
+In total, given the somewhat arbitrary choice of 2 hidden layers with 16 neurons each, this network has 13,002 weights and biases that we can adjust, and it’s these values that determine what exactly the network does.
 
 Remember, the motivation we had in mind for this layered structure was that maybe the second layer could pick up on edges, the third on patterns like loops and lines, and the last one pieces together those patterns to recognize digits:
 
@@ -193,18 +193,20 @@ Checking the new slope at each point and doing this repeatedly, you approach som
 The image to have in mind is a ball rolling down a hill:
 
 <Figure
-  video="balls-rolling-down .mp4"
+  video="balls-rolling-down.mp4"
   caption="Moving the input position according to the slope is a lot like a ball rolling down a hill."
 />
+
 
 Notice, even for this simplified single-input cost function, there are many possible valleys you might land in. It depends on which random input you start at, and there’s no guarantee that the local minimum you land in will be the smallest possible value for the cost function.
 
 Also, notice how if you make your step sizes proportional to the slope itself when the slope flattens out towards a minimum, your steps will get smaller and smaller, and that keeps you from overshooting.
 
 <Figure
-  video="proportional-to-slope .mp4"
+  video="proportional-to-slope.mp4"
   caption="As the slope gets shallower, take smaller steps to avoid overshooting the minimum."
 />
+
 
 Bumping up the complexity a bit, imagine a function with two inputs and one output. You might think of the input space as the xy-plane, with the cost function graphed as a surface above it.
 
