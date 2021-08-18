@@ -28,6 +28,8 @@
 
 .featured {
   grid-area: featured;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .social {
