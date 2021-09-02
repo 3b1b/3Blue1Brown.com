@@ -13,6 +13,7 @@ import PiCreature from "../PiCreature";
 import SocialIcons from "../SocialIcons";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import { transformSrc } from "../../util/transformSrc";
 
 HomepageFeaturedContent.propTypes = {
   title: PropTypes.string.isRequired,
@@ -84,6 +85,7 @@ HomepageFeaturedVideo.propTypes = {
 
 export function HomepageFeaturedVideo({
   src,
+  dir = "/featured-content/",
   autoPlay = true,
   loop = true,
   muted = true,
@@ -120,7 +122,7 @@ export function HomepageFeaturedVideo({
           preload="metadata"
           playsInline={true}
         >
-          <source src={src} />
+          <source src={transformSrc(src, dir)} />
         </video>
       </a>
     </Link>

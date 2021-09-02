@@ -6,6 +6,7 @@ import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import { useSectionWidth } from "../Section";
+import { transformSrc } from "../../util/transformSrc";
 
 Figure.propTypes = {
   id: PropTypes.string,
@@ -35,20 +36,20 @@ function requireImageOrVideo(props, propName, componentName) {
   }
 }
 
-// change provided srcs (png & mp4) to external bucket location for production.
-const transformSrc = (src, dir) => {
-  if (src.startsWith("http")) {
-    return src;
-  } else if (
-    process.env.NODE_ENV === "production" &&
-    process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
-    !src.endsWith("svg")
-  ) {
-    return bucket + dir + src;
-  } else {
-    return dir + src;
-  }
-};
+// // change provided srcs (png & mp4) to external bucket location for production.
+// const transformSrc = (src, dir) => {
+//   if (src.startsWith("http")) {
+//     return src;
+//   } else if (
+//     process.env.NODE_ENV === "production" &&
+//     process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
+//     !src.endsWith("svg")
+//   ) {
+//     return bucket + dir + src;
+//   } else {
+//     return dir + src;
+//   }
+// };
 
 // return dimensions to display image/video at, based on intrinsic dimensions
 // https://www.desmos.com/calculator/baf0zz662q
@@ -200,8 +201,7 @@ export default function Figure({
             // update intrinsic dimensions after loaded
             onLoadedMetadata={updateDimensions}
           >
-            // "t=0.001" is a hack to make preview images show on Safari
-            <source src={transformSrc(videoSrc, dir) + "#t=0.001"} />
+            <source src={transformSrc(videoSrc, dir)} />
           </video>
         )}
       </div>
