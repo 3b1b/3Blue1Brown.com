@@ -97,23 +97,25 @@ export function HomepageFeaturedVideo({
   const { lesson } = useContext(FeaturedItemContext);
   const videoRef = useRef();
 
-  useEffect(() => {
-    if (autoPlay && visible) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
-    if (!visible) {
-      videoRef.current.pause();
-    }
-  }, [visible, autoPlay]);
+  // Temporarily commenting this out, and using autoPlay below,
+  // since this doesn't seem to work on mobile.
+
+  // useEffect(() => {
+  //   if (autoPlay && visible) {
+  //     videoRef.current.currentTime = 0;
+  //     videoRef.current.play();
+  //   }
+  //   if (!visible) {
+  //     videoRef.current.pause();
+  //   }
+  // }, [visible, autoPlay]);
 
   return (
-    <Link href={`/lessons/${lesson}`}>
       <a className={styles.videoLink}>
         <video
           ref={videoRef}
           className={styles.video}
-          // autoPlay={autoPlay}
+          autoPlay={autoPlay}
           loop={loop}
           muted={muted}
           controls={controls}
@@ -125,7 +127,6 @@ export function HomepageFeaturedVideo({
           <source src={transformSrc(src, dir)} />
         </video>
       </a>
-    </Link>
   );
 }
 
