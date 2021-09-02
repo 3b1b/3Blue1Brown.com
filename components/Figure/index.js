@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useContext, useCallback } from "react";
 import PropTypes from "prop-types";
 import Markdownify from "../Markdownify";
 import Clickable from "../Clickable";
-import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import { useSectionWidth } from "../Section";

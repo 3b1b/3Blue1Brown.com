@@ -1,3 +1,5 @@
+import { bucket } from "../data/site.yaml";
+
 // change provided srcs (png & mp4) to external bucket location for production.
 export const transformSrc = (src, dir) => {
   if (src.endsWith(".mp4")) {
