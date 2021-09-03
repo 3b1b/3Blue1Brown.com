@@ -50,6 +50,7 @@ https://www.3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
 
 
 # Internal redirects
+/home                                           /
 /some1                                          /blog/some1
 /SoME1                                          /blog/some1
 /faq                                            /contact
