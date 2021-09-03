@@ -97,19 +97,6 @@ export function HomepageFeaturedVideo({
   const { lesson } = useContext(FeaturedItemContext);
   const videoRef = useRef();
 
-  // Temporarily commenting this out, and using autoPlay below,
-  // since this doesn't seem to work on mobile.
-
-  // useEffect(() => {
-  //   if (autoPlay && visible) {
-  //     videoRef.current.currentTime = 0;
-  //     videoRef.current.play();
-  //   }
-  //   if (!visible) {
-  //     videoRef.current.pause();
-  //   }
-  // }, [visible, autoPlay]);
-
   return (
       <a className={styles.videoLink}>
         <video
