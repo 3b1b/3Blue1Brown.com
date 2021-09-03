@@ -8,6 +8,7 @@ import topics from "../../data/topics.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
+import { transformSrc } from "../../util/transformSrc";
 
 LessonGallery.propTypes = {
   show: PropTypes.oneOf(["topic", "all", "written"]),
@@ -123,7 +124,7 @@ const TopicCard = ({ topic }) => {
       <a className={styles.topic_card}>
         <img
           className={styles.image}
-          src={`/images/topics/${topic.slug}.jpg`}
+          src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
           alt={topic.name}
         />
         <span className={styles.title}>{topic.name}</span>

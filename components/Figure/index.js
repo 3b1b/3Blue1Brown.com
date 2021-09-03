@@ -35,21 +35,6 @@ function requireImageOrVideo(props, propName, componentName) {
   }
 }
 
-// // change provided srcs (png & mp4) to external bucket location for production.
-// const transformSrc = (src, dir) => {
-//   if (src.startsWith("http")) {
-//     return src;
-//   } else if (
-//     process.env.NODE_ENV === "production" &&
-//     process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
-//     !src.endsWith("svg")
-//   ) {
-//     return bucket + dir + src;
-//   } else {
-//     return dir + src;
-//   }
-// };
-
 // return dimensions to display image/video at, based on intrinsic dimensions
 // https://www.desmos.com/calculator/baf0zz662q
 const autoSize = ({ width, height }, sectionWidth) => {
