@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useSectionWidth } from "../Section";
+import { transformSrc } from "../../util/transformSrc";
 import styles from "./index.module.scss";
 
 Portrait.propTypes = {
@@ -25,7 +26,7 @@ export default function Portrait({ image, size = "180px", flip = false }) {
         data-flip={flip}
         data-sectionwidth={sectionWidth}
       >
-        <img src={image} />
+        <img src={transformSrc(image)} />
       </div>
     </>
   );
