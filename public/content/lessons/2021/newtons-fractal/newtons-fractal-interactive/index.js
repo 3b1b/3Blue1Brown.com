@@ -4,7 +4,9 @@ import GraphWindow, {
   GraphLines,
   GraphShader,
   InteractiveWindow,
-} from "../../components/Graph";
+} from "../../../../../../components/Graph";
+
+import styles from "./index.module.scss";
 
 const colors = [
   [86 / 255, 6 / 255, 102 / 255, 1],
@@ -18,22 +20,8 @@ const toRGBStr = ([r, g, b, a]) => {
   return `rgba(${r * 255}, ${g * 255}, ${b * 255}, ${a})`;
 };
 
-export default function NewtonsFractal() {
-  // Only render on the client side, because it depends on window size
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (isClient) {
-    return <App />;
-  } else {
-    return null;
-  }
-}
-
-function App() {
-  const [steps, setSteps] = useState(10);
+export default function NewtonsFractalInteractive() {
+  const [steps, setSteps] = useState(30);
   const [rootCount, setRootCount] = useState(5);
 
   const [root0, setRoot0] = useState([-1.3247, 0.0]);
@@ -53,77 +41,11 @@ function App() {
   const { width, height } = useWindowSize();
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
-      <div
-        style={{
-          position: "absolute",
-          top: 10,
-          left: 10,
-          zIndex: 50,
-          background: "rgba(0, 0, 0, 0.8)",
-          color: "white",
-          padding: 8,
-          textAlign: "right",
-        }}
-      >
-        <div>
-          Steps: n = {steps}
-          <input
-            type="range"
-            min={0}
-            max={30}
-            step={1}
-            value={steps}
-            onChange={(event) => {
-              setSteps(Number(event.target.value));
-            }}
-          />
-        </div>
-        <div>
-          Root count: {rootCount}
-          <input
-            type="range"
-            min={2}
-            max={5}
-            step={1}
-            value={rootCount}
-            onChange={(event) => {
-              setRootCount(Number(event.target.value));
-            }}
-          />
-        </div>
-      </div>
-
+    <div className={styles.container}>
       <div>
         <GraphWindow width={width} height={height}>
           {({ range, resetRange, windowSize }) => (
             <>
-              <button
-                style={{
-                  position: "fixed",
-                  top: 10,
-                  right: 10,
-                  zIndex: 50,
-                  border: "none",
-                  background: "rgba(0, 0, 0, 0.8)",
-                  color: "white",
-                  padding: "4px 6px",
-                  marginRight: 4,
-                  cursor: "pointer",
-                }}
-                onClick={() => resetRange()}
-              >
-                Home
-              </button>
-
               <InteractiveWindow minR={0.00001} maxR={100} />
 
               <GraphShader
@@ -188,6 +110,43 @@ function App() {
                   color={toRGBStr(colors[i])}
                 />
               ))}
+
+              <div className={styles.controls}>
+                <div className={styles.buttons}>
+                  <button
+                    className={styles.homeButton}
+                    onClick={() => resetRange()}
+                  >
+                    <i className="fas fa-home" />
+                  </button>
+                  <button
+                    className={styles.rootsButton}
+                    onClick={() => {
+                      setRootCount((rootCount) => {
+                        if (rootCount >= 5) return 2;
+                        return rootCount + 1;
+                      });
+                    }}
+                  >
+                    {rootCount} roots
+                  </button>
+                </div>
+                <div className={styles.stepCountBox}>
+                  <div>
+                    {steps} {steps === 1 ? "iteration" : "iterations"}
+                  </div>
+                  <input
+                    type="range"
+                    min={0}
+                    max={30}
+                    step={1}
+                    value={steps}
+                    onChange={(event) => {
+                      setSteps(Number(event.target.value));
+                    }}
+                  />
+                </div>
+              </div>
             </>
           )}
         </GraphWindow>

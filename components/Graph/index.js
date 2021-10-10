@@ -202,12 +202,12 @@ export function GraphPoint({ x = 0, y = 0, color = "white", onDrag = null }) {
       onMouseDown={onMouseDown}
       onTouchStart={onMouseDown}
       style={{
-        width: 16,
-        height: 16,
+        width: 24,
+        height: 24,
         background: color,
         borderRadius: 9999,
-        border: "2px solid white",
-        boxShadow: "0 0 0 2px black",
+        border: "3px solid white",
+        boxShadow: "0 0 0 3px black",
 
         position: "absolute",
         left: `${toRelativePos(x, range[0]) * 100}%`,
@@ -265,10 +265,6 @@ export function GraphLines({
       viewBox={`0 0 ${windowSize.width} ${windowSize.height}`}
       preserveAspectRatio="none"
     >
-      <text x={20} y={20}>
-        {step}
-      </text>
-
       {vertPositions.map((x) => {
         const relX = toRelativePos(x, range[0]);
         return (
@@ -514,21 +510,18 @@ export function InteractiveWindow({ minR, maxR }) {
   const touchData = useRef([]);
   const [isDragging, setIsDragging] = useState(false);
 
-  const { setRange, windowSize, windowRef } = useGraph();
+  const { setRange, windowRef } = useGraph();
 
   const ref = useRef(null);
 
-  const toGraphPos = useCallback(
-    (clientX, clientY, range) => {
-      const rect = ref.current.getBoundingClientRect();
-      let x = (clientX - rect.left) / windowSize.width;
-      let y = (clientY - rect.top) / windowSize.height;
-      x = fromRelativePos(x, range[0]);
-      y = fromRelativePos(1 - y, range[1]);
-      return { x, y };
-    },
-    [windowSize]
-  );
+  const toGraphPos = useCallback((clientX, clientY, range) => {
+    const rect = ref.current.getBoundingClientRect();
+    let x = (clientX - rect.left) / rect.width;
+    let y = (clientY - rect.top) / rect.height;
+    x = fromRelativePos(x, range[0]);
+    y = fromRelativePos(1 - y, range[1]);
+    return { x, y };
+  }, []);
 
   const handleStart = useCallback((id, clientX, clientY) => {
     // Do not handle more than two touches at once
