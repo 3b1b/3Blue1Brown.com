@@ -95,6 +95,7 @@
   lessons:
     - fourier-transforms
     - uncertainty-principle
+    - newtons-fractal
     - zeta
     - divergence-and-curl
     - hilbert-curve
