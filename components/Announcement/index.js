@@ -22,7 +22,7 @@ Announcement.propTypes = {
   hidden, enter showAnnouncements() into the devtools console.
 */
 
-export default function Announcement({ id, headline, description }) {
+export default function Announcement({ id, headline, description, link }) {
   const [closedAnnouncements, setClosedAnnouncements] = useLocalStorage(
     "closed-announcements",
     []
@@ -45,7 +45,7 @@ export default function Announcement({ id, headline, description }) {
   }
 
   return (
-    <Link href="/blog/some1">
+    <Link href={link}>
       <a className={styles.announcement}>
         <div className={styles.center}>
           <div className={styles.content}>
