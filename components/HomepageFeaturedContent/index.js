@@ -46,18 +46,21 @@ HomepageFeaturedItem.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export function HomepageFeaturedItem({ lesson, caption, children }) {
+export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
+  if(link == ""){
+    link = `/lessons/${lesson}`
+  }
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
         {lesson && <div className={styles.itemButtons}>
           <Clickable
-            link={`/lessons/${lesson}`}
+            link={link}
             text="Watch"
             icon="fab fa-youtube"
           />
           <Clickable
-            link={`/lessons/${lesson}#title`}
+            link={`${link}#title`}
             text="Read"
             icon="far fa-newspaper"
           />
@@ -66,7 +69,7 @@ export function HomepageFeaturedItem({ lesson, caption, children }) {
         <figure className={styles.itemFigure}>
           {children}
           <figcaption className={styles.itemCaption}>
-            <Link href={`/lessons/${lesson}`}>
+            <Link href={link}>
               <a>{caption}</a>
             </Link>
           </figcaption>
