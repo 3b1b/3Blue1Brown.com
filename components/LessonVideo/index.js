@@ -29,7 +29,7 @@ export default function LessonVideo({ timestamp }) {
     return window.innerWidth > minToggleWidth;
   };
 
-  const [wideVideo, setWideVideo] = useState(false);
+  const [wideVideo, setWideVideo] = useState(true);
   const toggleExpansion = () => {
     if (!wideEnoughToToggle()) return;
     setWideVideo(!wideVideo);
@@ -40,7 +40,6 @@ export default function LessonVideo({ timestamp }) {
 
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
-    toggleExpansion();
     setShowCoverImage(false);
   };
 
