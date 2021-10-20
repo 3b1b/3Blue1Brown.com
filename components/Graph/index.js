@@ -109,7 +109,13 @@ function fromRelativePos(value, range) {
   return value * (range[1] - range[0]) + range[0];
 }
 
-export function GraphPoint({ x = 0, y = 0, color = "white", onDrag = null }) {
+export function GraphPoint({
+  x = 0,
+  y = 0,
+  color = "white",
+  size = 24,
+  onDrag = null,
+}) {
   const { range, windowRef } = useGraph();
 
   const [dragStart, setDragStart] = useState(null);
@@ -202,12 +208,12 @@ export function GraphPoint({ x = 0, y = 0, color = "white", onDrag = null }) {
       onMouseDown={onMouseDown}
       onTouchStart={onMouseDown}
       style={{
-        width: 24,
-        height: 24,
+        width: size,
+        height: size,
         background: color,
         borderRadius: 9999,
-        border: "3px solid white",
-        boxShadow: "0 0 0 3px black",
+        border: `${size / 8}px solid white`,
+        boxShadow: `0 0 0 ${size / 8}px black`,
 
         position: "absolute",
         left: `${toRelativePos(x, range[0]) * 100}%`,
