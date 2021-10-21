@@ -6,7 +6,7 @@ import topics from "../../data/topics.yaml";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
 import styles from "./index.module.scss";
 
-export default function LessonVideo({ timestamp }) {
+export default function LessonVideo({ timestamp, defaultToWide }) {
   const {
     video: videoId,
     topic: topicName,
@@ -29,7 +29,7 @@ export default function LessonVideo({ timestamp }) {
     return window.innerWidth > minToggleWidth;
   };
 
-  const [wideVideo, setWideVideo] = useState(true);
+  const [wideVideo, setWideVideo] = useState(defaultToWide);
   const toggleExpansion = () => {
     if (!wideEnoughToToggle()) return;
     setWideVideo(!wideVideo);
@@ -40,6 +40,7 @@ export default function LessonVideo({ timestamp }) {
 
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
+    if(!wideVideo) toggleExpansion();
     setShowCoverImage(false);
   };
 
