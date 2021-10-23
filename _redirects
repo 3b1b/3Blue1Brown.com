@@ -53,6 +53,8 @@ https://www.3blue1brown.org/* https://www.3blue1brown.com/:splat 301!
 /home                                           /
 /some1                                          /blog/some1
 /SoME1                                          /blog/some1
+/some1-results                                  /blog/some1-results
+/SoME1-results                                  /blog/some1-results
 /faq                                            /contact
 /recommendations                                /blog/recommendations
 /poems                                          /blog/poems
