@@ -38,10 +38,11 @@ echo "website_endpoint = http://%(bucket)s.website-$REGION.linodeobjects.com" >>
 echo "Generated .s3cfg for key $ACCESS_KEY"
 
 # TODO: move to variable 
-echo 'lessons/**/*.jpg' > "$HOME/sync-patterns"
-echo 'lessons/**/*.png' >> "$HOME/sync-patterns"
-echo 'lessons/**/*.mp4' >> "$HOME/sync-patterns"
-echo 'lessons/**/*.mov' >> "$HOME/sync-patterns"
+echo '**/*.jpg' > "$HOME/sync-patterns"
+echo '**/*.jpeg' >> "$HOME/sync-patterns"
+echo '**/*.png' >> "$HOME/sync-patterns"
+echo '**/*.mp4' >> "$HOME/sync-patterns"
+echo '**/*.mov' >> "$HOME/sync-patterns"
 
 echo "Generated sync include patterns"
 

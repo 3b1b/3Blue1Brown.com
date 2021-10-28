@@ -10,6 +10,8 @@
     - eulers-number
     - implicit-differentiation
     - limits
+    - epsilon-delta
+    - l-hopitals-rule
     - integration
     - area-and-slope
     - higher-order-derivatives
@@ -94,6 +96,8 @@
   lessons:
     - fourier-transforms
     - uncertainty-principle
+    - newtons-fractal
+    - holomorphic-dynamics
     - zeta
     - divergence-and-curl
     - hilbert-curve

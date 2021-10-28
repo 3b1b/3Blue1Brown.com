@@ -6,4 +6,242 @@ video: mvmuCPvRoWQ
 source: _2017/efvgt.py
 credits:
 - Lesson by Grant Sanderson
+- Text Adaption by River Way
 ---
+
+## Euler's Formula via Group Theory
+
+In this article we’ll be looking at Euler’s formula. This famous equation $e^{\pi i}=-1$ is a common topic in high school math, but the idea here is to take certain concepts from a field of math, called “group theory,” and show how they give Euler’s formula a much richer interpretation than a mere association between numbers.
+
+The idea we’ll be exploring isn’t even a proof, it is really just an intuition. The reason I want to put out the group theory view is not because I think it’s better than other explanations, it's because it has the chance to change how you think about numbers, and how you think about algebra.
+
+<Figure image="topic_intro.png" width="60%" />
+
+### Square Group
+
+Group theory is all about studying the nature of symmetry. For example, a square is a very symmetric shape, but what do we actually mean by that? One way to answer that is to ask about what actions you can take on the square that leave it looking indistinguishable from how it started.
+
+One action we can take is to rotate it 90 degrees counterclockwise, and it looks identical to how it started. You could also flip it around a vertical line, and it still looks identical. In fact, the thing about such perfect symmetry is that it’s hard to keep track of what action has actually been taken, so to help I’ll stick a little $\color{blue}\pi$ on here.
+
+<Figure image="square_symmetries.png" video="square_symmetries.mp4" />
+
+We call each of these actions a “symmetry” of the square, and all the symmetries together make up a “group of symmetries”, or “group” for short. This particular group consists of 8 symmetries: There’s the action of doing nothing, which we count, plus 3 rotations, and then 4 ways to flip it over. This group of 8 symmetries actually has a special name: the “Dihedral group of degree 4.”
+
+### Circle Group
+
+The square group is an example of a finite group, consisting of only 8 actions, but many other groups consist of infinitely many actions. Think of all possible rotations, of any angle; maybe you think of this group as acting on a circle, capturing all of the symmetries of that circle that don’t involve flipping it. Here, every action in the group of rotations lies somewhere on the infinite continuum between $0$ and $2\pi$ radians.
+
+<Figure image="rotation_group.png" video="rotation_group.mp4" />
+
+One nice aspect of these actions is that we can associate each one with a single point on the circle itself, the thing being acted on. Start by choosing some arbitrary point, maybe this red spot. Then every circle symmetry, every possible rotation, takes this marked point to some unique spot, and the action itself is completely determined by where it takes that spot.
+
+<Figure image="arbitrary_point.png" width="30%" />
+
+This doesn’t always happen with groups. Sometimes you can’t relate the group of actions with points on the thing they’re acting on. But it’s nice when it does happen, because it helps us actually label the actions themselves, which can otherwise be a bit hard to think about.
+
+## Composing Symmetries
+
+The study of groups is not just about what a particular set of symmetries is; whether that’s the 8 symmetries of the square, the infinite continuum of symmetries of the circle, or anything else. The real heart of this study is in knowing how these symmetries play with each other.
+
+On the square, if I rotate 90 degrees, then flip around the vertical axis, the overall effect is the same as if I had just flipped over this diagonal line. In some sense, that rotation plus the vertical reflection equals the diagonal reflection.
+
+<Figure image="rot_plus_flip.png" width="60%" />
+
+On the circle, if I rotate $270^\circ$, then follow it with a rotation of $120^\circ$, the overall effect is the same as if I had just rotated $30^\circ$. So in this circle group, $270^\circ$ rotation plus a $120^\circ$ rotation equals a $30^\circ$ rotation.
+
+<Figure image="circle_double_rotation.png" width="60%" />
+
+In general, with any group, any collection of these sorts of symmetry actions, there’s a kind of arithmetic where you can always take two actions, and add them together to get a third by applying one after the other. Or maybe you think of it as multiplying actions, it doesn’t really matter, the point is that there’s some way to combine two actions to get another one.
+
+<Figure image="cube_addition.png" video="cube_addition.mp4" />
+
+What makes a group a group is all of the associations between pairs of actions, and the single action that’s equivalent to applying one after the other. It’s actually crazy how much of modern math is rooted in understanding how a collection of actions is organized by this relation between any pairs of actions, and the other action within the group you get by composing them.
+
+<Figure image="action_association.png" width="60%" />
+
+<Question
+  question="If you rotate the square $180^\circ$ and then flip it around a vertical line, which action is that equivalent to?"
+  choice1="Rotating $90^\circ$ clockwise"
+  choice2="Rotating $90^\circ$ counterclockwise"
+  choice3="Flipped around a horizontal line"
+  choice4="Having done nothing"
+  answer={2} >
+
+Rotating the square $180^\circ$ and flipping it around a horizontal line put the head of the $\color{blue}\pi$ creature in the same orientation, but these two actions are mirrored from each other. When we rotate by $180^\circ$ and then flip it around the vertical line, it is the same action as flipping around the horizontal line. Visually, you can see this demonstrated on the above graphic in the left column, 2nd from the top. 
+
+</Question>
+
+## Additive Group for Numbers
+
+Groups are extremely general, a lot of ideas can be framed in terms of symmetries and composing symmetries. And maybe the most familiar example is numbers: just ordinary numbers.
+
+<Figure image="tree_of_groups.png" width="60%" />
+
+There are actually two separate ways to think of numbers as a group, one where composing actions looks like addition, and one where it looks like multiplication. It’s a little weird, because we don’t usually think of numbers as actions, we usually think of them as counting things, but let me show you what I mean.
+
+Think of all ways that you can slide a number line left or right along itself. This collection of all sliding actions is a group, what you might think of as a group of symmetries on an infinite line.
+
+<Figure image="line_symmetries.png" video="line_symmetries.mp4" />
+
+In the same way that actions from the circle group could be associated with individual points on the circle, this is another one of those special groups where we can associate each action with a unique point on the thing it’s acting on, you just follow where the point that starts at 0 ends up. 
+
+For example, the number 3 is associated with the action of sliding right by $3$ units. The number -2​ is associated with the action of sliding $2$ units to the left, since that’s the unique action that drags the point at 0 over to the point at -2. The number 0 itself is associated with the action of simply doing nothing.
+
+<Figure image="slide_32.png" video="slide_32.mp4" />
+
+This group of sliding actions, each one of which is associated with a unique real number, has a special name: the “additive group of real numbers”. It’s called additive because of what the group operation of applying one action after the other looks like.
+
+<Figure image="additive_group_reals.png" width="60%" />
+
+Simple enough, we’re adding the distances of each slide. The point here is that this gives an alternate view for what numbers even are. They are one example in a much larger category of groups; groups of symmetries on some object, and the arithmetic of adding numbers is just one example of the arithmetic that any group has within it.
+
+We can extend this idea, instead asking about sliding actions on the complex plane. The newly introduced numbers $i$, $2i$, $3i$ and the like on the vertical axis would be associated with vertical sliding motions, since those are the actions that drag the point at 0 up to the relevant point on that vertical line.
+
+The point at $3+2i$ would be associated with the action of sliding the plane in such a way that drags 0 up and to the right to that point. And it should make sense why we call this 3 plus $2i$: That diagonal sliding action is the same as first sliding by 3 to the right, then following it with a slide corresponding to $2i$, which is 2 units vertically.
+
+<Figure image="3+2i.png" video="3+2i.mp4" />
+
+Similarly, look at how composing any two of these actions generally breaks down: Consider the slide by $3+2i$ action, as well as the slide by $1-3i$ action, and imagine applying one after the other. The overall effect, the composition of these two sliding actions, is the same as sliding $3+1$ to the right, and $2-3$ vertically. Notice how this involves adding together each component; so composing sliding actions is another way to think about what adding complex numbers means.
+
+<Figure image="adding_complex.png" video="adding_complex.mp4" />
+
+This collection of all sliding actions on the 2D plane goes by the name “the additive group of complex numbers.” Again, the upshot here is that numbers, even complex numbers, are just one example of a group, and the idea of addition can be thought of as successively applying actions.
+
+<Question
+  question="$(-6+2i)+(4-3i)=?$"
+  choice1="$-2-1i$"
+  choice2="$-18+26i$"
+  choice3="$2+1i$"
+  choice4="$i$"
+  answer={1} >
+
+We can think of complex addition as the sliding action of first moving $6$ units left, $2$ units up, $4$ units right, and $3$ units down. This moves the origin to the point $-2-1i$. 
+
+</Question>
+
+## Multiplicative Group for Numbers
+
+Numbers, schizophrenic as they are, also lead a completely different life as a completely different kind of group. Consider a new group of actions on the number line: All ways of stretching or squishing it, keeping everything evenly spaced, and keeping 0 fixed in place.
+
+Yet again, this group of actions has that nice property where we can associate each action in the group with a specific point of the thing it’s acting on. In this case, follow where the point that starts at 1 goes. There is one and only one stretching action that brings that point at 1 to the point at 3, for instance. Namely, stretching by a factor of 3. 
+
+<Figure image="stretch_3.png" width="60%" />
+
+Likewise there is one and only one action that brings that point at 1 to the point at $\frac12$: Squishing by a factor of one half.
+
+<Figure image="squish_half.png" width="60%" />
+
+I like to imagine using one hand to fix 0 in place, as using the other to drag 1 wherever I like, while the rest of the number line does what it takes to stay evenly spaced. In this way, every positive number is associated with a unique stretching or squishing action.
+
+Now notice what composing actions looks like in this group. If I apply the stretch by 3 action, and follow it by the stretch by 2 action, the overall effect is the same as applying a stretch by 6 action, the product of the two initial numbers.
+
+<Figure image="stretch_6.png" width="60%" caption="Composing two stretches/squishes is the act of multiplying. Note that squishing the entire line to zero (i.e. multiplying by zero) is not part of the group because there is no inverse." />
+
+In general, applying one action followed by another here corresponds with multiplication. In fact, the name for this group is “the multiplicative group of positive real numbers.” So ordinary, familiar multiplication is one more example in this very general and far reaching idea of groups and the arithmetic within groups. We can also extend this idea to the complex plane. Again, I like to think of fixing 0 in place with one hand, while dragging around the point at 1, and keeping everything else evenly spaced while doing so.
+
+But this time, as we drag the number 1 to places off the real number line, we see that our group includes not only stretching and squishing actions, but actions with some rotational component as well.
+
+<Figure image="complex_multiplicative.png" video="complex_multiplicative.mp4" />
+
+**What group action could we take to move the point at $2+1i$ to $-4-2i$?**
+
+<FreeResponse>
+
+Multiplying $2+1i$ by the real number $-2$ will squish the entire complex plane in a way which brings the point to $-4-2i$.
+
+</FreeResponse>
+
+For example, think of the action associated with the point at $i$, one unit above 0. What it takes to drag that point at 1 to the point at $i$ is a $90^\circ$ rotation. So the multiplicative action associated with $i$ is a $90^\circ$ rotation.
+
+Notice, if you apply that action twice in a row, the overall effect is to flip the plane $180^\circ$; the unique action that brings the point at 1 over to -1.
+
+<Figure image="i_rotation.png" video="i_rotation.mp4" />
+
+In this sense, $i\cdot i = -1$, meaning the action associated with $i$, followed by that same action associated with $i$, has the same effect as the action associated with $-1$.
+
+As another example, here’s the action associated with $2+i$, dragging 1 up to that point. If you want, you could think of this broken down as a rotation by $\tan^{-1}(\frac12)\approx 26.6^\circ$, followed by a stretch by a factor of $\sqrt5$.
+
+<Figure image="2+i.png" video="2+i.mp4" />
+
+In general, every one of these actions is some combination of a stretch or squish followed by a pure rotation. The stretch/squish action is associated with some point on the positive real number line. Whereas pure rotations are associated with points on the unit circle with radius $1$.
+
+<Figure image="stretch_rotate_action.png" video="stretch_rotate_action.mp4" />
+
+This is similar to how any sliding action in the additive group of complex numbers could be broken down as some purely horizontal slide, represented with points on the real number line, plus some purely vertical slide, represented with points on the vertical line.
+$$
+\begin{align*}
+5+\ 5i&=5+5i \\
+\uparrow+\to&=\ \nearrow
+\end{align*}
+$$
+That comparison of how actions in each group break down is important, so remember it. In each, you can break down any action as some real number action, followed by something specific to complex numbers, whether that’s vertical slides for the additive group, or pure rotations for the multiplicative group.
+
+## What are Exponents?
+
+So that’s the primer on groups. Groups are symmetric actions on some mathematical object, whether that’s a square, a circle, the real number line, or anything else you dream up. Every group has a certain arithmetic, where you can combine two actions by applying one after the other, and asking what other action from the group gives the same overall effect.
+
+Numbers, both real and complex, can be thought of in two different ways as a group. They can act by sliding, in which case the group arithmetic looks just like ordinary addition. Or they can act by these stretching/squishing/rotating actions, in which case the group arithmetic looks just like multiplication.
+
+Now let’s talk about exponentiation. Our first introduction to exponents is to think of them in terms of repeated multiplication, right? The meaning of something like $2^3$ is to take $2\cdot 2\cdot 2$, and the meaning of $2^5$ is $2\cdot 2\cdot 2\cdot 2\cdot 2$.
+
+A consequence of this, something you might call the exponential property, is that if I add two numbers in the exponent, say $2^{3+5},$ this can be broken up into a product $2^3\cdot 2^5$. 
+
+But expressions like $2^{1/2}$ or $2^{-1}$, and much less $2^i$, don’t really make sense if you think of exponents as repeated multiplication. What does it mean to multiply 2 by itself half of a time, or $-1$ of a time?
+
+So we do something that’s very common throughout math, and extend the definition to apply to exponents beyond counting numbers. But we don’t just do this randomly, if you think back to how fractional and negative exponents are defined, it’s always motivated by trying to make sure this property $2^{x+y}$ = $2^x 2^y$ still holds.
+
+To see what this might mean for complex exponents, think of what this property is saying from a group theory perspective. It’s saying that adding the inputs corresponds with multiplying the outputs, and that makes it very tempting to think of the inputs not merely as numbers, but as members of the additive group of sliding actions, and to think of the outputs not merely as numbers, but as members of the multiplicative group of stretching and squishing actions.
+
+<Figure image="add_multiply_homo.png" width="60%" />
+
+It’s weird and strange to think about a function that takes in one kind of action and spits out another kind of action, but that’s actually something which comes up all the time in group theory. This exponential property is very important for this association between groups, it forms a map between the additive and multiplicative group for real numbers.
+
+This exponentiation function guarantees that if I compose two sliding actions, maybe a slide by $-1$, then a slide by $2$, it corresponds to composing the output actions, in this case squishing by $2^{-1}$, then stretching by $2^2$.
+$$
+\begin{align*}
+2^{-1+2}&=2^{-1}\cdot2^2 \\
+\exp(-1+2)&=\exp(-1)\cdot\exp(2)
+\end{align*}
+$$
+Mathematicians would describe a property like this by saying the function “preserves the group structure.” In this sense, the arithmetic within a group is what gives it its structure, and function like this exponential plays nicely with that arithmetic. Functions between groups that preserve the arithmetic like this are really important throughout group theory, enough so that they’ve earned themselves a fancy name: “homomorphisms.”
+
+<Figure image="homomorphism.png" width="60%" />
+
+## Complex Exponentiation
+
+Now think about what this means for associating the additive group in the complex plane with the multiplicative group in the complex plane. We already know that when you plug in a real number to $2^x$, you get out a real number, a positive real number in fact, so this exponential function takes any pure horizontal slide and turns it into some pure stretching or squishing action.
+
+<Figure image="real_exponent.png" video="real_exponent.mp4" />
+
+As we discussed above, there are two actions we identified with complex multiplication, a stretching action and a rotating action. Since the real component of a complex number already maps to the stretching action, it would be reasonable for this new dimension, the complex component that slides up and down, to map to the multiplicative action of rotation [^1].
+
+<Figure image="imag_exponent.png" video="imag_exponent.mp4" />
+
+Each vertical sliding action corresponds to some point on the vertical axis of imaginary numbers. Using the exponentiation function, each point gets mapped to a point on the unit circle corresponding to a multiplicative rotating action.
+
+<Figure image="imaginary_axis.png" video="imaginary_axis.mp4" />
+
+In fact, for the function $2^x$, the input $i$, a vertical slide of 1 unit, happens to map to a rotation of $0.693$ radians. A walk around the unit circle covering $0.693$ units of distance. With a different exponential function, like $5^x$, that input $i$, a vertical slide of 1 unit, maps to a rotation of $1.609$ radians; a walk around the unit circle covering exactly $1.609$ units of distance.
+
+<Figure image="2x5x.png" video="2x5x.mp4" width="60%" />
+
+
+What makes the number $e$ special is that when the exponential $e^x$ maps vertical slides to rotations, a vertical slide of one unit maps to a rotation of exactly 1 radian. Which is a walk around the unit circle covering a distance of 1.
+
+<Figure image="ex.png" width="60%" />
+
+And so, a vertical slide of $2$ units maps to to a rotation of $2$ radians, $3$ units up gives $3$ radians, and a vertical slide of $\pi$ units up, corresponding to the input $\pi i$, maps to a rotation of exactly $\pi$ radians, halfway around the circle, which is the multiplicative action associated to $e^{\pi i} = -1.$
+
+<Figure image="ex_pi.png" width="60%" />
+
+Why $e$? Why not some other base? Well, the full answer resides in calculus; that’s the birthplace of $e$, and where it’s defined. If you’re hungry for a fuller description, and comfortable with the calculus, this lesson dives into the specifics. At a high level, I’ll say it has to do with the fact that all exponential functions are proportional to their own derivative, but $e^x$ alone is actually equal to its own derivative.
+
+We’ve seen that the imaginary axis turns into the unit circle under the $x\to e^x$ transformation, but where does the rest of the complex plane end up? I like to imagine the $xy$ plane first rolling up into a cylinder, wrapping all those vertical lines into circles. Then taking that cylinder, and smooshing it onto the plane around 0, where each of those concentric circles corresponds to what started as a vertical line.
+
+<Figure image="ex_transformation.png" video="ex_transformation.mp4" />
+
+The important point I want to make is that if you view things through the lens of group theory, thinking of the inputs to an exponential function as sliding actions, and thinking of the outputs as stretching and rotating actions, it gives a vivid way to read what a formula like this is even saying.
+
+Exponentials in general map purely vertical slides, the additive actions that are perpendicular to real number slides, into pure rotations, which are in some sense perpendicular to real number actions. And moreover, $e^x$ does so in such a way that a vertical slide of $\pi$ units corresponds to a rotation of exactly $\pi$ radians; the 180 degree  rotation associated with the number -1.
+
+[^1]: More details on complex numbers and their connections to rotations can be found in this <LessonLink id="ldm-complex-numbers">Lockdown Math Lesson</LessonLink>.

@@ -1,0 +1,222 @@
+---
+title: L'Hôpital's rule
+description: What is L'Hopital's rule and how does it help us evaluate limits?
+date: 2017-05-04
+chapter: 10
+video: kfF40MiS7zA
+timestamp: 604
+thumbnail: thumbnail.png
+source: _2017/eoc/chapter7.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+---
+
+So far, the past two lessons have been pretty theory heavy; limits being used to formally define the derivative, then epsilons and deltas being used to rigorously define limits themselves. So, in this lesson, let's finish off our dive into limits with a trick for actually computing limits.
+
+For example, let's say for some reason you were studying the function:
+
+$$
+f(x) = \frac{\sin (\pi x)}{x^{2}-1}
+$$
+
+Maybe this models some kind of damped oscillation. When you plot a bunch of points to graph it, it looks continuous, but there's a problematic value, $x=1$.
+
+<Figure
+  image="figures/example-function.svg" 
+/>
+
+When you plug $x=1$ into the numerator $\sin(\pi x)$ becomes $0$, and similarly the denominator $x^{2}-1$ also becomes $0$, so the function is actually not defined at that input, and the graph should really have a hole there. This also happens at $-1$, but let's just focus our attention on a single one of these holes for now. Imagine zooming in on the point $x=1$.
+
+<Figure
+  image="figures/example-function-zoom-big.svg" 
+/>
+
+The graph of this function certainly does seem to approach some distinct value at that point, wouldn't you say? So you might ask, how do you figure out what output this approaches as $x$ approaches $1$, since you can't just plug in $1$?
+
+Well, one way to approximate it would be to plug in a number thats just very very close to $1$, like $1.00001$. Doing that, you'd find that this should be a number around $-1.57$. Translating this to the limit notation looks like this:
+
+<Figure
+  image="figures/example-function-approximate-limit.svg" 
+  caption="Plug a number really close to $1$ in for $x$ or zoom in on the graph of this function and we can see this limit is approximately equal to $-1.57$."
+/>
+
+But is there a way to know precisely what it is? Some systematic process to take an expression like this one, which looks like $0$ divided by $0$ at some input, and ask what its limit is as $x$ approaches that input? After limits so helpfully let us write the definition for a derivative, derivatives can come back to return the favor and help us evaluate limits. Let me show you what I mean.
+
+## Plot numerator and denominator
+
+Let's graph the numerator, $\sin(\pi x)$, and the denominator, $x^2-1$, of our original function and focus on what's happening at $x=1$.
+
+<Figure
+  image="figures/example-function-numerator-and-denominator.svg" 
+/>
+
+The point here is that $\sin(\pi x)$ and $x^2-1$ are both $0$ at that point, so they cross the $x$-axis. In the same spirit as plugging in a specific value near $1$, like $1.00001$, let's zoom in on that point and consider what happens a tiny nudge $dx$ away.
+
+<Figure
+  image="figures/example-function-numerator-and-denominator-zoom.svg" 
+/>
+
+The value of $\sin(\pi x)$ is bumped down by some $d(\sin(\pi x))$ and the value of $x^2-1$ is bumped up by some $d(x^2-1)$.
+
+Take a moment to think about how the fraction $d(\sin (\pi x)) / d\left(x^{2}-1\right)$ reframes the initial problem which had previously looked like $0$ divided by $0$. Why might this lead us towards an exact answer rather than just an approximation?
+
+<FreeResponse>
+
+First, this fraction is the same as evaluating the original function at $f(1 + dx)$.
+
+And second, by looking at the ratio of these two tangent lines, whose approximations of the numerator and denominator get better and better as $dx$ approaches $0$, we are able to reason about the *exact* value this limit approaches.
+
+</FreeResponse>
+
+Since both of these changes are proportional to the small nudge $dx$, we can go ahead and apply our knowledge of derivatives. Using the chain rule, we know that the change to the function $d(\sin(\pi x))$ should be around $\cos(\pi x) \cdot \pi \cdot dx$. Similarly, using the power rule, we know that the change to the function $x^2-1$ should be around $2 x \cdot dx$.
+
+<Figure
+  image="figures/example-function-numerator-and-denominator-zoom-expanded.svg" 
+/>
+
+Since we are interested in the fraction of these two functions at the point at $x = 1$ we can substitute $x=1$ into both of these expressions and evaluate the fraction.
+
+<Figure
+  image="figures/numerator-and-denominator-evaluated.svg" 
+/>
+
+What this means is that for values of $x$ which are some tiny value $dx$ away from $1$, the ratio $\sin(\pi x)/(x^2-1)$ is approximately $(-\pi \cdot dx) / (2 \cdot dx)$. The $dx$'s cancel, so that value is $-\pi/2$. Importantly, these approximations get more and more accurate for smaller and smaller choices of $dx$, this ratio $-\pi/2$ actually tells us the precise limiting value as $x$ approaches $1$.
+
+<Figure
+  image="figures/example-function-limit-process.svg" 
+/>
+
+Remember, what that means is that the limiting height on our original graph is evidently exactly $-\pi/2$.
+
+## Generalize
+
+What happened there is a little subtle, so let me show it again, but this time a little more generally. Instead of these two specific functions, which both equal $0$ at $x=1$, think of any two functions $f(x)$ and $g(x)$, which are both $0$ at some common value $x = a$.
+
+<Figure
+  image="figures/general-case.svg" 
+/>
+
+The only constraint is that these have to be functions where you're able to take a derivative of them at $x = a$, meaning they each basically look like a line when you zoom in close enough to that value.
+
+<Figure
+  image="figures/general-case-criteria.svg" 
+/>
+
+Even though you can't compute $f$ divided by $g$ at this trouble point, since both equal zero, you can ask about this ratio for values of $x$ really really close to $a$, the limit as $x$ approach $a$. And it's helpful to think of those nearby inputs as a tiny nudge $dx$ away from $a$.
+
+<Figure
+  image="figures/general-case-ratio.svg" 
+/>
+
+The value of $f$ at that nudged point is approximately its derivative, $df/dx$ evaluated at $a$, times $dx$. Likewise, the the value of $g$ at that nudged point is approximately the derivative of $g$, evaluated at $a$, times $dx$.
+
+So near this trouble point, the ratio between the outputs of $f$ and $g$ is actually about the same as the derivative of $f$ at $a$, times $dx$, divided by the derivative of $g$ at $a$, times $dx$. These $dx$'s cancel, so the ratio of $f$ and $g$ near $a$ is about the same as the ratio between their derivatives.
+
+<Figure
+  image="figures/l-hopitals-rule.svg"
+  caption="Because both approximations get more accurate for smaller nudges, this ratio of derivatives gives the precise value for the limit."
+/>
+
+This is a *really* handy trick for computing a lot of limits. If you come across an expression that seems to equal $0/0$ when you plug in some input, just try taking the derivative of the top and bottom expressions, and plugging in that trouble input.
+
+This clever trick is called "**L'Hôpital's rule**". Interestingly, it was actually discovered by Johann Bernoulli, but L'Hopital was this wealthy dude who essentially paid Bernoulli for the rights to some of his mathematical discoveries. Academia was weird back then, but in a very literal way, it pays to understand these tiny nudges.
+
+Now, you might remember that the definition of a derivative for any given function comes down to computing the limit of a fraction that looks like $0/0$, so you might think L'Hopital's rule gives a handy way to discover new derivative formulas. But that would be cheating, since presumably you don't yet know what the derivative on the numerator here is.
+
+When it comes to discovering derivative formulas, something we've been doing a fair amount this series, there is no systematic plug-and-chug method. But that's a good thing. When creativity is needed to solve problems like these, it's a good sign you're doing something real; something that might give you a powerful tool to solve future problems.
+
+In the next lesson, I'll talk about what an integral is, as well as the fundamental theorem of calculus, which is another example of where limits are used to help give a clear meaning to a fairly delicate idea that flirts with infinity.
+
+## Exercises
+
+<Question
+  question="What is the limit as $x$ approaches $0$ of the function $f(x) = \frac{\sin(x)}{x}$?"
+  choice1="$-1$"
+  choice2="$0$"
+  choice3="$1$"
+  choice4="Not defined"
+  answer={3}
+>
+
+Observe that when substituting $x=$ into the limit expression it looks like $0$ divided by $0$.
+
+$$
+\lim _{x \rightarrow 0} \frac{\sin(x)}{x} = \frac{0}{0}
+$$
+
+Maybe your first thought is to graph the function and, right off the bat, the graph of the function looks like the value approaches $1$. But let's use what we've learned in this lesson to rigorously show that it really is $1$.
+
+<Figure
+  image="figures/question-1.svg" 
+/>
+
+This looks like a good candidate for L'Hopital's rule - where we reframe the limit as the ratio of two function's, $g$ and $h$, tangent lines.
+
+$$
+\lim _{x \rightarrow 0} \frac{\sin(x)}{x} = \lim _{x \rightarrow 0} \frac{g(x)}{h(x)}
+$$
+
+Here, it's a good idea to check our constraint that we should be able to take the derivative of both of these function at the point the limit approaches.
+
+<Figure
+  image="figures/question-1-constraint.svg" 
+/>
+
+The further we zoom in the more these functions look like lines so our constraint checks out and  we can go ahead and evaluate the ratio of the derivatives evaluatated at the point $x=0$.
+
+$$
+\lim _{x \rightarrow 0} \frac{\sin(x)}{x} = \frac{\frac{dg}{dx}(0)}{\frac{dh}{dx}(0)}
+$$
+
+- The derivative of $\sin(x)$ is equal to $\cos(x)$ which evaluated at $0$ is $\cos(0)=1$.
+- The derivative of $x$ is equal to $1$ which evaluated at $0$ will still be $1$.
+
+$$
+\lim _{x \rightarrow 0} \frac{\sin(x)}{x} = \frac{\cos(0)}{1} = 1
+$$
+
+This rigorously verifies that the limit of this function is indeed $1$ as $x$ approaches $0$ .
+
+</Question>
+
+<Question
+  question="What is the limit of the function $\displaystyle f(x) = \frac{x^3 - 1}{x-1}$ as $x$ approaches $1$?"
+  choice1="1"
+  choice2="-1"
+  choice3="2"
+  choice4="3"
+  answer={4}
+>
+
+Substituting $1$ in for $x$ in the expression we can see that the limit looks like $0$ divided by $0$.
+
+$$
+\lim _{x \rightarrow 1} \frac{x^3 - 1}{x-1} = \frac{0}{0}
+$$
+
+Of course, in practice you can go ahead and apply L'Hopital's rule, but here let's follow the same logic we laid out in this lesson. If we graph the expression we can see that the point at $x-1$ is undefined and appears to approach the value $3$.
+
+<Figure
+  image="figures/exercise-2-plot.svg"
+/>
+
+Since these are polynomial functions, we know their derivatives exist at zero and so our constraint is satisfied. We can also plot the graph of the tangent lines.
+
+<Figure
+  image="figures/exercise-2-tangent-lines.svg"
+/>
+
+We can express this limit as the ratio of these tangent lines.
+
+$$
+\lim _{x \rightarrow 1} \frac{x^3 - 1}{x-1} = \frac{\frac{dg}{dx}(1)}{\frac{dh}{dx}(1)}
+$$
+
+$$
+\lim _{x \rightarrow 1} \frac{3x^2 dx}{1 \cdot dx} = \frac{3(1)^2}{1} = 3
+$$
+
+So the limit of this function $\displaystyle f(x) = \frac{x^3 - 1}{x-1}$ as $x$ approaches $1$ is $3$.
+
+</Question>

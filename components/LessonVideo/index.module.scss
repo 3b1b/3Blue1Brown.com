@@ -9,18 +9,6 @@
   margin: 0 auto;
 }
 
-.videoArea[data-topicisseries="false"] {
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "topic"
-    "video";
-
-  .arrowLeft,
-  .arrowRight {
-    display: none;
-  }
-}
-
 @media (max-width: 600px) {
   .videoArea {
     grid-template-columns: 1fr 1fr;
@@ -114,7 +102,7 @@
 
 .coverPlayButton {
   position: absolute;
-  width: 10%;
+  width: 5%;
   min-width: 40px;
   height: auto;
   top: 50%;

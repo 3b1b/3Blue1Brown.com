@@ -16,26 +16,25 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const LessonLayout = () => {
-  const { empty, video, timestamp } = useContext(PageContext);
+  const { empty, video, timestamp, content } = useContext(PageContext);
+  const has_sufficient_text = (content.length > 1000);
   return (
     <NormalLayout>
       {/* Key prevents state from being preserved when moving between pages: */}
-      <LessonVideo key={video} timestamp={timestamp} />
+      <LessonVideo key={video} timestamp={timestamp} defaultToWide={!has_sufficient_text}/>
       <LessonDetails />
-
       {/* Don't alternate section color after <LessonDetails> */}
       <div />
+      <PageContent />
 
-      {!empty && (
+      {has_sufficient_text && (
         <>
-          <PageContent />
-          {/* Don't alternate section color */}
           <div />
           <Section width="narrow">
             <ShareButtons />
+            <CorrectionLink />
           </Section>
           <LessonNav />
-          <License />
           <Thanks />
           <Disqus />
           <TableOfContents />
@@ -43,13 +42,24 @@ const LessonLayout = () => {
         </>
       )}
 
-      {empty && (
-        <>
-          <Empty />
-          <Thanks />
-        </>
-      )}
+      <Thanks />
+
     </NormalLayout>
+  );
+};
+
+const CorrectionLink = () => {
+  const { file } = useContext(PageContext);
+
+  const url = `https://github.com/3b1b/3Blue1Brown.com/edit/main/public${file}`;
+
+  return (
+    <div style={{ marginTop: 24 }}>
+      Notice a mistake?{" "}
+      <a href={url} target="_blank" rel="noreferrer">
+        Submit a correction on Github
+      </a>
+    </div>
   );
 };
 

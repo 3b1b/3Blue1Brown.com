@@ -28,7 +28,9 @@ In this chapter, I want to show how you might stumble into the core ideas of cal
 
 Contemplating this problem and leaving yourself open to generalizing the tools you use along the way can actually lead you to a glimpse of three big ideas in calculus: Integrals, derivatives, and the fact that they are opposites.
 
-But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ [[1]](/lessons/essence-of-calculus/#footnotes). If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
+But the story of finding the area starts more simply: Just you, and a circle. To be concrete, let’s say the radius is $1$ unit[^1]. If you weren’t worried about the exact area, and just wanted to estimate it, one way you might go about it is to chop the circle into smaller pieces whose areas are easier to approximate, then add up the results.
+
+[^1]: This article uses an example circle of radius $1$ where the original video uses a circle of radius $3$.
 
 There are many ways you might go about this, each of which may lead to its own interesting line of reasoning.
 
@@ -37,7 +39,9 @@ There are many ways you might go about this, each of which may lead to its own i
   caption="This figure illustrates different ways to divide the area of the circle with a radius $1$."
 />
 
-Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [[2]](/lessons/essence-of-calculus/#footnotes).
+Math has a tendency to reward you when you respect symmetry, so among the divisions shown above, either the bottom left one dividing into pizza slices or the bottom right which divides into concentric rings will be likely to lead us down a fruitful path. For now, let’s think about the division into concentric rings [^2].
+
+[^2]: You may notice that the other division of the circle that respects symmetry is dividing the circle into slices, like a pizza. Challenge question: Can you use this to provide an alternative argument for the area of circle formula?
 
 ## Unraveling rings
 
@@ -50,7 +54,7 @@ Focus on just one of those concentric rings, and let’s call its radius $r$, wh
 
 In the spirit of using what will come to be standard calculus notations, let’s call the thickness of one of these rings “$dr$”, which you can read as meaning “the tiny difference in radius from one ring to the next”. In the drawing above, for example, $dr = 0.1$.
 
-You should know that some people, perhaps even most people, would object to us using the notation $dr$ to represent a specific not-infinitely-small size like this, suggesting instead we use some other notation, like $\Delta r$. Well, it’s my house and my rules, and I have my reasons, which we’ll get into later.  For now, I want you to think about $dr$ as simply being some number without worrying about what phrases like “infinitely small” would mean.
+You should know that some people, perhaps even most people, would object to our using the notation $dr$ to represent a specific not-infinitely-small size like this, suggesting instead we use some other notation, like $\Delta r$. Well, it’s my house and my rules, and I have my reasons, which we’ll get into later.  For now, I want you to think about $dr$ as simply being some number without worrying about what phrases like “infinitely small” would mean.
 
 <Question
   question="Which of the following is closest to the area of one of these rings with inner radius $r$ and thickness $dr$?"
@@ -72,7 +76,11 @@ You might imagine straightening out this ring, into a shape whose width is the i
   caption="This figure illustrates a concentric ring with radius $r$ straightened out."
 />
 
-If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [[3]](/lessons/essence-of-calculus/#footnotes). However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
+If this unwrapped shape is meant to perfectly match the area of the ring, it will be approximately, but not exactly, a rectangle. Because the outer circumference of the ring will be slightly larger than the inner circumference, the bottom of our unwrapped shape will be slightly wider than the top [^3]. However, if we’re comfortable beginning the exploration by only approximating the area of each small piece, we could consider this to be approximately a rectangle with a width of $2 \pi r$ and a height of $dr$.
+
+[^3]: You might hypothesize that the appropriate shape would be a trapezoid, but how would you be sure that those small diagonal edges are straight lines?  It's not hard to intuitively justify but to make it rigorous you end up running into awkward questions about what we even mean by "area" in the first place.
+
+    The kind of rectangular approximations this article is leading to, and the general tools like integration that emerge from it, end up being one path to rigorously defining what we mean by area.
 
 The difference between the true area of the ring and the area of the rectangular approximation introduces some small error.
 
@@ -81,7 +89,11 @@ The difference between the true area of the ring and the area of the rectangular
   caption="This figure illustrates how approximating a ring’s area as a rectangle gets better and better for smaller choices of $dr$."
 />
 
-However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [[4]](/lessons/essence-of-calculus/#footnotes).
+However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [^4].
+
+[^4]: The astute among you may worry about whether the errors in our approximations accumulate too much. You might say “Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn’t remain significant as $dr$ approaches $0$?”
+
+    If you wanted to be more precise and rigorous, you would show that the size of this error for each ring is bounded by some constant times $(dr)^2$, while the total number of rings is about $\frac{R}{dr}$, so the total size of the aggregate error is bounded by some constant times $\frac{R}{dr} (dr)^2 = R \cdot dr$. So as $dr$ goes to zero, the full aggregate error will indeed go to zero with it.
 
 <Figure
   image="figure-3.17-3.41-circles.svg"
@@ -102,7 +114,7 @@ The size of that inner radius for the rings ranges from $0$ for the smallest rin
 
 To help draw what adding those areas looks like, think about adding together your rectangular approximations. A nice way to visualize this is to fit all those rectangles upright, side-by-side standing on a horizontal axis. We can think of this horizontal axis as representing all the values of $r$ ranging from $0$ up to $1$.
 
-Each rectangle has a thickness of $dr$, which is also the spacing between different values of $r$, which is why they fit so snuggly right together. The height of any rectangle above a value of $r$, is exactly $2 \pi \cdot r$. This is the circumference of the corresponding ring.
+Each rectangle has a thickness of $dr$, which is also the spacing between different values of $r$, which is why they fit so snugly right together. The height of any rectangle above a value of $r$, is exactly $2 \pi \cdot r$. This is the circumference of the corresponding ring.
 
 <Figure
   image="figure-4.14-4.57.svg"
@@ -208,7 +220,7 @@ This happens whenever the quantities that you’re adding up, the ones whose sum
   choice2="No"
   answer={1}
 >
-  In physics, position, velocity and acceleration are all related together. Position can be modeled as the area under the graph of veloctiy and velocity can be modeled as the area under the graph of acceleration.
+  In physics, position, velocity and acceleration are all related together. Position can be modeled as the area under the graph of velocity and velocity can be modeled as the area under the graph of acceleration.
 </Question>
 
 Again, notice that the purpose of the small approximations is not that we intend to use them directly, per se, but that the two separate ways to think about what these approximations approach lets us reframe the question of how far the car has traveled into the question of finding the area under a certain curve.
@@ -298,7 +310,7 @@ You and I will dive more deeply into the idea of a derivative <LessonLink id="de
 
 ## Fundamental Theorem
 
-We care about derivatives because they help us solve problems, and in our little exploration here we have a slight glimpse of one way they’re used: They are the key to solving integral problems; problems that require finding an area under a curve. When you gain enough familiarity with computing derivatives, you’ll be able to look at a situation like the one below, where you don’t know what a function is, but you do know that it’s derivative should be $x^2$, and from that reverse engineer what the function must be.
+We care about derivatives because they help us solve problems, and in our little exploration here we have a slight glimpse of one way they’re used: They are the key to solving integral problems; problems that require finding an area under a curve. When you gain enough familiarity with computing derivatives, you’ll be able to look at a situation like the one below, where you don’t know what a function is, but you do know that its derivative should be $x^2$, and from that reverse engineer what the function must be.
 
 This back and forth between integrals and derivatives, where the derivative of the function for an area under a graph gives you back the function defining the graph itself, is called the *fundamental theorem of calculus*. It ties together the two big ideas of integrals and derivatives, and shows how in some sense, each one is the inverse of the other.
 
@@ -337,17 +349,3 @@ There are more details and rules of thumb for _how_ you replace terms like $df$ 
 I mention all this now so that you know this is not the universal convention; again finite changes are more typically written with the greek letter $\Delta$, as in an expression like $\Delta x = 0.001$. I also want to assure you that the spirit of this notational philosophy is not to compromise rigor for intuition, but to do the exact opposite.
 
 And now, without further philosophical delay, let’s dive into what exactly a derivative is.
-
-## Footnotes
-
-[1] This article uses an example circle of radius $1$ where the original videa uses a circle of radius $3$.
-
-[2] You may notice that the other division of the circle that respects symmetry is dividing the circle into slices, like a pizza. Challenge question: Can you use this to provide an alternative argument for the are of circle formula?
-
-[3] You might hypothesize that the appropriate shape would be a trapezoid, but how would you be sure that those small diagonal edges are straight lines?  It's not hard to intuitively justify but to make it rigorous you end up running into awkward questions about what we even mean by "area" in the first place.
-
-The kind of rectangular approximations this article is leading to, and the general tools like integration that emerge from it, end up being one path to rigorously defining what we mean by area.
-
-[4] The astute among you may worry about whether the errors in our approximations accumulate too much. You might say “Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn’t remain significant as $dr$ approaches $0$?”
-
-If you wanted to be more precise and rigorous, you would show that the size of this error for each ring is bounded by some constant times $(dr)^2$, while the total number of rings is about $\frac{R}{dr}$, so the total size of the aggregate error is bounded by some constant times $\frac{R}{dr} (dr)^2 = R \cdot dr$. So as $dr$ goes to zero, the full aggregate error will indeed go to zero with it.

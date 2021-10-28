@@ -80,12 +80,12 @@ p {
 //////////////////////////////
 
 a {
-  color: $light-blue-500;
+  color: currentColor;
   transition: background $fast, color $fast, opacity $fast;
 }
 
 a:hover {
-  color: currentColor;
+  color: $light-blue-500;
 }
 
 //////////////////////////////

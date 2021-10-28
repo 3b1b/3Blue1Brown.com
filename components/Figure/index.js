@@ -2,10 +2,10 @@ import { useState, useRef, useEffect, useContext, useCallback } from "react";
 import PropTypes from "prop-types";
 import Markdownify from "../Markdownify";
 import Clickable from "../Clickable";
-import { bucket } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import { useSectionWidth } from "../Section";
+import { transformSrc } from "../../util/transformSrc";
 
 Figure.propTypes = {
   id: PropTypes.string,
@@ -35,21 +35,6 @@ function requireImageOrVideo(props, propName, componentName) {
   }
 }
 
-// change provided srcs (png & mp4) to external bucket location for production.
-const transformSrc = (src, dir) => {
-  if (src.startsWith("http")) {
-    return src;
-  } else if (
-    process.env.NODE_ENV === "production" &&
-    process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
-    !src.endsWith("svg")
-  ) {
-    return bucket + dir + src;
-  } else {
-    return dir + src;
-  }
-};
-
 // return dimensions to display image/video at, based on intrinsic dimensions
 // https://www.desmos.com/calculator/baf0zz662q
 const autoSize = ({ width, height }, sectionWidth) => {
@@ -58,7 +43,7 @@ const autoSize = ({ width, height }, sectionWidth) => {
 
   return {
     width: page * Math.sqrt(width / height / ratio) || "100%",
-    maxHeight: page * Math.sqrt(height / width / ratio) || "100%",
+    height: page * Math.sqrt(height / width / ratio) || undefined,
   };
 };
 
@@ -92,6 +77,24 @@ export default function Figure({
 
   const sectionWidth = useSectionWidth();
 
+  // Check if this file's dimensions were saved at build time,
+  // and if so, use those. (Otherwise that data will be populated
+  // as soon as the media file actually loads.)
+  const { mediaDimensions } = useContext(PageContext);
+  useEffect(() => {
+    const imagePath = dir + imageSrc;
+    const imageDims = mediaDimensions[imagePath];
+    if (imageDims) {
+      setImage(imageDims);
+    }
+
+    const videoPath = dir + videoSrc;
+    const videoDims = mediaDimensions[videoPath];
+    if (videoDims) {
+      setVideo(videoDims);
+    }
+  }, [dir, imageSrc, videoSrc, mediaDimensions]);
+
   // determine frame dimensions
   let frame = {};
   if (manualWidth) frame = { width: manualWidth };
@@ -113,11 +116,15 @@ export default function Figure({
     const video = videoRef.current;
     if (image) {
       const { naturalWidth: width, naturalHeight: height } = image;
-      setImage({ width, height });
+      if (width > 0 && height > 0) {
+        setImage({ width, height });
+      }
     }
     if (video) {
       const { videoWidth: width, videoHeight: height } = video;
-      setVideo({ width, height });
+      if (width > 0 && height > 0) {
+        setVideo({ width, height });
+      }
     }
   }, []);
 

@@ -19,7 +19,7 @@ const PageContent = () => {
   // allows authors to not include any sections and get their mdx auto-wrapped
   let Wrapper = Fragment;
   if (!content.trim().startsWith("<Section")) {
-    Wrapper = ({ children }) => <Section width="narrow">{children}</Section>;
+    Wrapper = WrapWithSection;
   }
 
   if (!source) return null;
@@ -32,6 +32,10 @@ const PageContent = () => {
     </Wrapper>
   );
 };
+
+function WrapWithSection({ children }) {
+  return <Section width="narrow">{children}</Section>;
+}
 
 export default PageContent;
 

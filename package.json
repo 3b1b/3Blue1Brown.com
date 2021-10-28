@@ -13,9 +13,11 @@
   "dependencies": {
     "@popperjs/core": "^2.9.2",
     "@react-three/fiber": "^7.0.2",
+    "@sentry/nextjs": "^6.10.0",
     "disqus-react": "^1.0.11",
     "glob": "^7.1.7",
     "gray-matter": "^4.0.3",
+    "image-size": "^1.0.0",
     "katex": "^0.13.11",
     "next": "10.2.3",
     "next-images": "^1.7.0",

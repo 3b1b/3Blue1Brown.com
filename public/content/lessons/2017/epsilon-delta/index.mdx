@@ -1,0 +1,235 @@
+---
+title: (ε, δ) "epsilon delta" definitions of limits
+description: How does (ε, δ) "epsilon delta" help us formalize what exactly it means for one value to approach another?
+date: 2017-05-04
+chapter: 9
+video: kfF40MiS7zA
+timestamp: 293
+thumbnail: thumbnail.png
+source: _2017/eoc/chapter7.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+---
+
+> "Calculus required continuity, and continuity was supposed to require the infinitely little; but nobody could discover what the infinitely little might be."
+>
+> \- Bertrand Russell
+
+In the previous lesson, I introduced limits and how they are used to formalize the definition of the derivative. In this lesson our goal is to understand exactly what it means for one value to approach another. For example, consider the function:
+
+<Figure
+  image="figures/example-function-algebra.svg" 
+/>
+
+This happens to be the expression that pops out if you unravel the formal definition of the derivative of $x^3$ at $x=2$.
+
+<Figure
+  image="figures/derivative-of-x-cubed-at-2-limit.svg" 
+/>
+
+However, let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola. Which makes sense because the function has a cubic term divided by a linear term.
+
+<Figure
+  image="figures/example-limit.svg" 
+/>
+
+But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined. So really, this graph has a hole at that point.
+
+<Figure
+  image="figures/example-limit-hole.svg" 
+/>
+
+You have to exaggerate to draw that hole, often with a little empty circle like this, but keep in mind the function is perfectly well-defined for inputs as close to $0$ as you want.
+
+<Figure
+  image="figures/example-limit-detail.svg" 
+/>
+
+And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn’t matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
+
+<Figure
+  image="figures/example-limit-detail-appraoches.svg"
+  video="figures/5.52-6.08.mp4"
+/>
+
+Imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
+
+For a given range of inputs within some distance of $0$, excluding the forbidden point $0$, look at the corresponding outputs, all possible heights of the graph above that range.
+
+<Figure
+  image="figures/example-limit-input-ranges.svg"
+  video="figures/6.22-6.26.mp4"
+  caption="This figure shows the possible output ranges for $0$ plus or minus $0.1$, $0.01$ and $0.001$" 
+/>
+
+<!-- TODO: definitely include the animation for the figure above. Also maybe consider redrawing because the similarity between all of them sometimes isn't doing it for me -->
+
+As that range of input values closes in more and more tightly around $0$, the range of output values closes in more and more closely around $12$. Importantly, the size of that range of outputs can be made as small as you want.
+
+<Figure
+  image="figures/example-function-exact-limit.svg"
+/>
+
+Can you verify this result using algebra?
+
+<FreeResponse>
+
+Most definitely and it's worthwhile to check that two different ways to think about the same problem come to the same conclusion.
+
+Start by setting up the limit expression.
+
+$$
+\lim _{h \rightarrow 0} \frac{(2+h)^{3}-2^{3}}{h}
+$$
+
+Expand the first term in the numerator.
+
+$$
+\lim _{h \rightarrow 0} \frac{2^3 + 3 \cdot 2^2 \cdot h + 3 \cdot 2 \cdot h^2 + h^3 - 2^{3}}{h}
+$$
+
+Notice the first and last terms in the numerator cancel each other out.
+
+$$
+\lim _{h \rightarrow 0} \frac{12 h + 6 h^2 + h^3}{h}
+$$
+
+Since all of the terms in the numerator share the factor $h$, the fraction simplifies.
+
+$$
+\lim _{h \rightarrow 0} 12 + 6 h + h^2 
+$$
+
+Now as $h$ approaches $0$ the terms containing $h$ will become negible, giving us the same resullt.
+
+$$
+\lim _{h \rightarrow 0} 12 + 6 h + h^2 = 12
+$$
+
+</FreeResponse>
+
+## Counter example
+
+As a counter example, consider a function that looks like the one shown below, which is also not defined at $0$, but kind of jumps at that point.
+
+<Figure
+  image="figures/counter-example.svg"
+/>
+
+As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there’s not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
+
+<Figure
+  image="figures/counter-example-not-defined.svg"
+/>
+
+One way to think of this is that when you look at any range of inputs around $0$, and the corresponding range of outputs, as you shrink that input range the corresponding outputs don’t narrow in on any specific value. Instead those outputs straddle a range that never even shrinks smaller than $1$, no matter how small your input range.
+
+<Figure
+  image="figures/counter-example-straddle.svg"
+  video="figures/7.27-7.40.mp4"
+/>
+
+This perspective of shrinking an input range around the limiting point, and seeing whether or not you’re restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
+
+You’ve already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn’t exist, that output range can’t get smaller than some value, no matter how much you shrink the input range around the limiting input.
+
+<Figure
+  image="figures/epsilon-delta.svg"
+  caption="The limit $\displaystyle \lim _{h \rightarrow a} f(h)$ exists when the output range defined by $\epsilon$ (epsilon) can be made as small as you want and you can still find some $\delta$ (delta) which corresponds to the output range."
+/>
+
+Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
+
+<Figure
+  image="figures/epsilon-delta-example-epsilon.svg"
+/>
+
+What it means for the limit to exist is that you will always be able to find a range of inputs around our limiting input, some distance delta away from $0$, so that any input within a distance delta of $0$ corresponds to an output with a distance epsilon of $12$.
+
+<Figure
+  image="figures/epsilon-delta-example-delta.svg"
+/>
+
+They key point is that this is true for any epsilon, no matter how small, you will always be able to find the corresponding delta.
+
+<Question
+  question="What is the $\delta$ (delta) value corresponding to the ouput range $[11.994, 12.006]$ where $\epsilon$ (epsilon) is equal to $0.006$?"
+  choice1="1"
+  choice2="0.1"
+  choice3="0.01"
+  choice4="0.001"
+  answer={4}
+>
+
+The output range of $[11.994, 12.006]$ is visually shown in the graph below.
+
+<Figure
+  image="figures/epsilon-delta-example-epsilon-smaller.svg"
+/>
+
+Then we can see that an input range of $[-0.001, 0.001]$ corresponds to our output range of $[11.994, 12.006]$. Substituting $0$ plus or minus $\delta = 0.001$ into the function gives us the output.
+
+$$
+f(-0.001) < f(0) < f(0.001)
+$$
+
+$$
+\frac{(2+(-0.001))^{3}-2^{3}}{-0.001} < 12 < \frac{(2+(0.001))^{3}-2^{3}}{0.001} 
+$$
+
+$$
+11.994 < 12 < 12.006
+$$
+
+Which graphically corresponds to the green input range highlighted below.
+
+<Figure
+  image="figures/epsilon-delta-example-delta-smaller.svg"
+/>
+
+</Question>
+
+In contrast, when a limit does *not* exist, as in the example before, you can find a sufficiently small epsilon, like $0.4$, so that no matter how small you make your range around $0$, no matter how tiny delta is, the corresponding range of outputs is just always too big.
+
+<Figure
+  image="figures/epsilon-delta-limit-not-defined.svg"
+/>
+
+There is no limiting output where everything is within a distance epsilon from that output.
+
+## Summary
+
+In this lesson we established the epsilon delta definition of limits to formalize what we mean when we say one value approaches another. This gives us a strong foundation to build upon and makes our argument air-tight when we talk about such tools as the derivative. In the next lesson I talk about a neat trick for computing limits.
+
+## Exercises
+
+<Question
+  question="Using the epsilon delta definition, is the limit expression $\displaystyle \lim _{x \rightarrow 0} \frac{1}{x} + x$ defined?"
+  choice1="Yes"
+  choice2="No"
+  answer={2}
+>
+
+<Figure
+  image="figures/limit-question.svg"
+/>
+
+</Question>
+
+
+<Question
+  question="Using the epsilon delta definition, is the limit expression $\displaystyle \lim _{x \rightarrow 1} \frac{x-1}{x^3 - 1}$ defined?"
+  choice1="Yes"
+  choice2="No"
+  answer={1}
+>
+
+Here we can graph the function and see that it does appear to approach a value.
+
+<Figure
+  image="figures/exercise-2.svg"
+/>
+
+</Question>
+

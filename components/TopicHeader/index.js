@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Section from "../Section";
 import styles from "./index.module.scss";
+import { transformSrc } from "../../util/transformSrc";
 
 TopicHeader.propTypes = {
   topic: PropTypes.shape({
@@ -16,7 +17,7 @@ export default function TopicHeader({ topic }) {
       <div className={styles.imageWrapper}>
         <img
           className={styles.image}
-          src={`/images/topics/${topic.slug}.jpg`}
+          src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
           alt=""
         />
       </div>

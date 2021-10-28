@@ -9,25 +9,30 @@ import {
 } from "react";
 import PropTypes from "prop-types";
 import Clickable from "../Clickable";
+import PiCreature from "../PiCreature";
 import SocialIcons from "../SocialIcons";
+import Markdownify from "../Markdownify";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import { transformSrc } from "../../util/transformSrc";
 
 HomepageFeaturedContent.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default function HomepageFeaturedContent({ title, children }) {
+export default function HomepageFeaturedContent({ title, subtitle="", children }) {
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
+      <div className={styles.subtitle}>
+        <Markdownify>{subtitle}</Markdownify>
+      </div>
       <div className={styles.featured}>
         <Carousel>{children}</Carousel>
       </div>
       <div className={styles.social}>
         <SocialIcons />
-        <div>Want more math in your life?</div>
       </div>
     </div>
   );
@@ -41,27 +46,30 @@ HomepageFeaturedItem.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export function HomepageFeaturedItem({ lesson, caption, children }) {
+export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
+  if(link == ""){
+    link = `/lessons/${lesson}`
+  }
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
-        <div className={styles.itemButtons}>
+        {lesson && <div className={styles.itemButtons}>
           <Clickable
-            link={`/lessons/${lesson}`}
+            link={link}
             text="Watch"
             icon="fab fa-youtube"
           />
           <Clickable
-            link={`/lessons/${lesson}#title`}
+            link={`${link}#title`}
             text="Read"
             icon="far fa-newspaper"
           />
-        </div>
+        </div>}
 
         <figure className={styles.itemFigure}>
           {children}
           <figcaption className={styles.itemCaption}>
-            <Link href={`/lessons/${lesson}`}>
+            <Link href={link}>
               <a>{caption}</a>
             </Link>
           </figcaption>
@@ -83,6 +91,7 @@ HomepageFeaturedVideo.propTypes = {
 
 export function HomepageFeaturedVideo({
   src,
+  dir = "/featured-content/",
   autoPlay = true,
   loop = true,
   muted = true,
@@ -94,23 +103,12 @@ export function HomepageFeaturedVideo({
   const { lesson } = useContext(FeaturedItemContext);
   const videoRef = useRef();
 
-  useEffect(() => {
-    if (autoPlay && visible) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
-    if (!visible) {
-      videoRef.current.pause();
-    }
-  }, [visible, autoPlay]);
-
   return (
-    <Link href={`/lessons/${lesson}`}>
       <a className={styles.videoLink}>
         <video
           ref={videoRef}
           className={styles.video}
-          // autoPlay={autoPlay}
+          autoPlay={autoPlay}
           loop={loop}
           muted={muted}
           controls={controls}
@@ -119,10 +117,9 @@ export function HomepageFeaturedVideo({
           preload="metadata"
           playsInline={true}
         >
-          <source src={src} />
+          <source src={transformSrc(src, dir)} />
         </video>
       </a>
-    </Link>
   );
 }
 

@@ -6,6 +6,7 @@ import { formatDate } from "../../util/locale";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
+import lessonRedirects from "../../data/lesson-redirects.yaml";
 
 LessonCard.propTypes = {
   id: PropTypes.string.isRequired,
@@ -47,7 +48,7 @@ export default function LessonCard({
 
   return (
     <Component
-      link={`/lessons/${slug}`}
+      link={lessonRedirects[slug] || `/lessons/${slug}`}
       className={styles.lesson_card + " " + className}
       tooltip={tooltip}
       data-active={active || false}

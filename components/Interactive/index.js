@@ -98,6 +98,13 @@ export default function Interactive({
     }
   }, [fullscreen]);
 
+  if (aspectRatio === null) {
+    if (sizer) {
+      const box = sizer.getBoundingClientRect();
+      aspectRatio = box.width / box.height;
+    }
+  }
+
   // if no component, don't render
   if (!ref.current) return null;
 

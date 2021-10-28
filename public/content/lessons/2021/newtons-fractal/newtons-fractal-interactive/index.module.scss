@@ -1,0 +1,46 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  text-align: left;
+  padding: 20px;
+}
+
+.buttons {
+  display: flex;
+  align-items: stretch;
+}
+
+.rootsButton,
+.homeButton {
+  background: black;
+  color: white;
+  font-size: 32px;
+  padding: 8px 16px;
+  font-family: inherit;
+}
+
+.homeButton {
+  margin-right: 12px;
+}
+
+.stepCountBox {
+  background: black;
+  margin-top: 12px;
+  padding: 8px 16px;
+
+  color: white;
+  text-align: center;
+  font-size: 28px;
+
+  input[type="range"] {
+    width: 100%;
+    margin: 0;
+  }
+}
