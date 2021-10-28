@@ -71,7 +71,7 @@ const TableOfContents = () => {
     event.preventDefault();
 
     // get target element
-    const id = event.target.dataset?.id?.slice(1) || "";
+    const id = event.currentTarget.dataset?.id?.slice(1) || "";
     if (!id) return;
 
     // smooth scroll to target
