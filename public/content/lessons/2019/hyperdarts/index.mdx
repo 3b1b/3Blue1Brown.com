@@ -1,0 +1,373 @@
+---
+title: Darts in Higher Dimensions
+description: A game of darts yields an interesting connection to higher dimensional geometry.
+date: 2019-11-19
+video: 6_yU9eJ0NxA
+source: _2019/hyperdarts.py
+credits:
+- Lesson by Grant Sanderson
+- Text Adaption by River Way
+---
+
+## The Game
+
+There is a lovely puzzle hidden in the midst of darts, higher dimensional geometry, statistics, and some of the most famous numbers in math.
+We're going to play a game of darts where we lose the game when the dart misses the bullseye.
+But this bullseye is too small, so to begin let's make it the entire size of the dartboard.
+
+<Figure
+  image="bullseye.png"
+  video="bullseye.mp4"
+/>
+
+Each time we hit the bullseye, it will shrink depending on where the dart lands. 
+This makes the rounds get harder and harder as we continue.
+A line will be drawn from the center of the dartboard to the landing point, we'll call this line $h$.
+Then we'll draw the chord perpendicular to $h$, whose length will define the diameter of the new bullseye.
+
+<Figure
+  image="chord.png"
+  video="chord.mp4"
+  show="video"
+/>
+
+
+**Where does the dart have to land in order for the circle to remain unchanged?**
+
+<FreeResponse>
+
+Exactly in the center of the circle. Then the line $h$ will have a distance of $0$ and the chord's length will be the current diameter, so the circle does not shrink.
+
+</FreeResponse>
+
+This game rewards good shots because the length of the chord will be close to the old diameter when the dart lands close to the center. 
+When the dart lands near the edge, the new diameter will be dramatically smaller.
+
+<Figure
+  image="new_diameter.png"
+  video="new_diameter.mp4"
+/>
+
+When a dart is thrown and it doesn't land in the bullseye, the game is over. 
+The score is the number of darts thrown, so even if the first dart misses, the minimum score is still $1$. Try playing the game for yourself by clicking below.
+
+<Interactive
+  filename="game_interactive/index"
+  aspectRatio={700 / 700}
+/>
+
+## The Puzzle
+
+Instead of having a human playing this game, we'll create a robot who throws the darts randomly.
+Imagine a square that surrounds the dartboard, this robot's throws will be uniformly distributed on the square. 
+This is not exactly a realistic distribution, which would be rotationally symmetric.
+
+<Figure
+  image="distributions.png"
+  video="distributions.mp4"
+/>
+
+To make things simpler the dartboard is the unit circle, so each side of the square has a length of $2$.
+The $x$ and $y$ coordinates of the dart's landing are chosen uniformly:
+
+$$
+x\in [-1,1] \\
+y\in [-1,1]
+$$
+
+<Figure
+  image="xy_coord.png"
+  video="xy_coord.mp4"
+/>
+
+The square does not shrink with the bullseye, it always stays with the dartboard.
+The question to be answered is what is the expected score for this robot?
+As the robot plays more and more games, what is the average score?
+
+<Figure
+  image="histogram.png"
+  video="histogram.mp4"
+/>
+
+We can calculate the expected score [^1] by adding together all of the scores multiplied by the probability that the game ends on that score.
+
+$$
+\begin{align*}
+E[S] &= P(S=1)\cdot 1 + P(S=2)\cdot 2 + P(S=3)\cdot 3 + \cdots 
+\\ &= \sum_{i=1} P(S=i)\cdot i
+\end{align*}
+$$
+
+We'll need to find what the probabilities are for each score.
+In theory, it is possible to have a perfect game. 
+An expert player could hit the origin with every dart, never shrinking the bullseye.
+But the probability of such a game occurring is zero.
+A paradoxical fact about statistics is that there exist events that are possible, but their <LessonLink id="pdfs">probability is zero</LessonLink>.
+
+## Breaking It Down
+
+When faced with a difficult problem, we can try to get a foothold by breaking it down into smaller sub-problems.
+The first question we might ask is what is the probability of making the first shot? 
+The probability $P(S>1)$ can be found by dividing the area of the circle $A=\pi r^2=\pi$ by the area of the square $2\cdot 2=4$.
+
+<Figure
+  image="at_least_one.png"
+  video="at_least_one.mp4"
+/>
+
+The probability of making the first shot is $\frac{\pi}{4}$, so what is the probability of making the second shot?
+This is where things get more interesting because the probability of the second shot depends on where the first shot landed.
+The next radius $r_1$ forms a right triangle with the current radius and $h_0$, so we can use the Pythagorean theorem to calculate it.
+
+<Figure
+  image="dart_triangle.svg"
+/>
+
+We can build a table of the radiuses and hit distances to keep track of the information.
+$$
+\begin{array}{c|c}
+r & h \\
+\hline \\
+r_0 = 1 & h_0=\sqrt{x_0^2+y_0^2} \\\ \\
+r_1 = \sqrt{r_0^2-h_0^2} & h_1=\sqrt{x_1^2+y_1^2}
+\end{array}
+$$
+
+
+
+The probability the second shot goes in $P(S>2)$ now depends on four numbers.
+It may be helpful to write out what the actual requirement is: $h_1<r_1$.
+We can also rewrite it by taking the squares, because it doesn't change the truth value of the statement.
+$$
+\begin{align*}
+h_1^2 &< r_1^2 \\
+x_1^2+y_1^2 &< r_0^2-h_0^2 \\
+x_1^2+y_1^2 &< 1 - x_0^2 - y_0^2 \\
+x_0^2 + y_0^2 + x_1^2+y_1^2 &< 1
+\end{align*}
+$$
+
+We're asking what is the probability that the sum of squares of four random numbers chosen in the range $[-1,1]$ is less than $1$.
+
+<Figure
+  image="prob_four.png"
+  video="prob_four.mp4"
+/>
+
+This question is a bit tricky because we could guarantee if all the numbers are less than $0.5$ then the sum of their squares would be less than $1$, but if one was $0.9$ that doesn't necessarily throw it out because the others could be very small.
+We used geometric intuition for the first shot, thinking of it as a point inside or outside of a circle.
+Rather than thinking of the probabilistic event $P(S>2)$ as two separate throws, we can also think about them as a single point in 4D space: $(x_0,y_0,x_1,y_1)\in\mathbb{R}^4$.
+
+<Figure
+  image="4D_point.png"
+  video="4D_point.mp4"
+/>
+
+Just like how choosing two random numbers and seeing if the sum of their squares is less than $1$ brought us to the area of a circle, doing the same with 4 numbers brings us to the volume of a 4D ball.
+
+$$
+\text{Volume of a 4D ball: } \frac{\pi^2}2 R^4 \\ \quad \\
+\text{Volume of a 4D cube: } 2\cdot2\cdot2\cdot2 = 2^4 = 16 \\ \quad \\
+P(S>2) = \frac{\pi^2}{2^4\cdot2}
+$$
+
+**Why did we skip to 4 dimensions and not 3?**
+
+<FreeResponse>
+
+For every dart throw, we are picking an additional 2 random numbers (the x and y coordinates). This means we never consider the odd numbered dimensions.
+
+</FreeResponse>
+
+The pattern of dividing the volume of higher dimensional balls by the volume of higher dimensional cubes continues when calculating the probability of larger scores.
+
+<Figure
+  image="histogram_volume.png"
+/>
+
+For $P(S>3)$ we can calculate $\frac{\text{Vol}(\text{6D Ball})}{\text{Vol}(\text{6D Cube})}$ because the question is analogous to randomly choosing six numbers and having the sum of their squares be less than $1$.
+$$
+x_0^2+y_0^2+x_1^2+y_1^2+x_2^2+y_2^2 < 1
+$$
+
+The next problem we face is how to calculate the volume of a higher dimensional ball. 
+Luckily mathematicians have calculated them and you could look at [Wikipedia's list](https://en.wikipedia.org/wiki/Volume_of_an_n-ball) and pick them out.
+
+$$
+\begin{matrix}
+1D & 2R & \quad & 2D & \pi R^2 \\ \quad \\
+3D & \frac43\pi R^3 & \quad & 4D & \frac12\pi^2 R^4 \\ \quad \\
+5D & \frac8{15}\pi^2 R^5 & \quad & 6D & \frac16\pi^3 R^6 \\ \quad \\
+7D & \frac{16}{105}\pi^3 R^7 & \quad & 8D & \frac1{24}\pi^4 R^8 \\ \quad \\
+9D & \frac{32}{945}\pi^4 R^9 & \quad & 10D & \frac1{120}\pi^5 R^{10} \\ \quad \\
+11D & \frac{64}{10,395}\pi^5 R^{11} & \quad & 12D & \frac1{720}\pi^6 R^{12}
+\end{matrix}
+$$
+
+What we'd like is a general formula for the volume of an even dimensional ball:
+
+$$
+\text{Vol}(2n\text{D Ball}) = \frac{\pi^n}{n!} R^{2n}
+$$
+
+<Question
+  question="What is the volume of a 14-dimensional unit ball?"
+  choice1="$\frac{\pi^{14}}{8\times 10^{10}}$"
+  choice2="$\frac{\pi^7}{8\times 10^{10}}$"
+  choice3="$\frac{\pi^7}{5040}$"
+  choice4="$\frac{\pi^{14}}{5040}$"
+  answer={3}>
+
+The volume of a 14-dimensional unit ball is equal to $\frac{\pi^7}{7!}=\frac{\pi^7}{5040}$
+
+</Question>
+
+## Solution
+
+The expected value of our dart throwing robot was defined as:
+
+$$
+E[S] = \sum_{i=1} P(S=i)\cdot i
+$$
+
+However we've been calculating probabilities in the form of greater than $P(S>i)$ instead of equal to $P(S=i)$.
+That is completely fine because $P(S=2)$ is equivalent to $P(S>1)-P(S>2)$.
+
+<Figure
+  image="greater_equal_collapse.png"
+/>
+
+<Question
+  question="What is the value of $P(S=2)$?"
+  choice1="$\frac{\pi^2}{32}$"
+  choice2="$\frac{\pi}{4}$"
+  choice3="$\frac{\pi^2}{32}-\frac{\pi}{4}$"
+  choice4="$\frac{\pi}{4}-\frac{\pi^2}{32}$"
+  answer={4}>
+
+The value of $P(S=2)=P(S>1)-P(S>2)=\frac{\pi}4-\frac{\pi^2}{32}$.
+
+</Question>
+
+Now we can expand things out and let them collapse down.
+$$
+\begin{align*}
+E[S] =\ &P(S=1)\cdot 1 + P(S=2)\cdot 2 + P(S=3)\cdot 3 + \cdots \\
+E[S] =\ & 
+\ 1 \cdot \left(P(S>0)-P(S>1)\right) \\
++&\ 2 \cdot \left(P(S>1)-P(S>2)\right) \\
++&\ 3 \cdot \left(P(S>2)-P(S>3)\right) \\
++&\ \cdots
+\end{align*}
+$$
+
+Notice that we're subtracting off 2 of $P(S>2)$ but in the next term we're adding back 3 of them. 
+Each of these terms collapse down to just the sum of each probability:
+
+$$
+E[S] = P(S>0)+P(S>1)+P(S>2)+P(S>3)+\cdots
+$$
+
+We can begin substituting the values we have calculated so far.
+Since the minimum score is 1, we will always have a score above 0, so $P(S>0)=1$.
+From dividing the area of a circle by the area of a square, we know $P(S>1)=\frac{\pi}4$. 
+We had previous calculated $P(S>2) = \frac{\pi^2}{2^4\cdot2}$, which can also be written as $P(S>2) = \left( \frac{\pi}4 \right) ^2 \cdot \frac12$.
+By reformatting our solutions and adding them up, we can get the formula:
+$$
+E[S] = 1+\frac{\pi}4+\left( \frac{\pi}4 \right) ^2 \cdot\frac1{2!}+\left( \frac{\pi}4 \right) ^3 \cdot\frac1{3!}+\cdots
+$$
+
+This sequence of numbers is rather similar to another famous sequence: the <LessonLink id="taylor-series">Taylor series</LessonLink> for powers of Euler's number is $e^x=1+\frac{x^1}{1!}+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots$
+
+A Taylor series is evaluated as an infinite polynomial where each term gets added together and it approaches the correct value in the limit. 
+This particular series is the definition of $e^x$ and I would argue it is the healthy way to view $e^x$.
+
+Notice how our expected value is very similar to this Taylor polynomial, and the value of $x$ is $\frac{\pi}4$. So $E[S]=e^{0.25\pi}\approx 2.1932...$
+
+If our dart throwing robot played a large number of games, the average of all of its scores should be around this 2.1932 figure.
+
+## Conclusion
+
+One of the reasons I enjoy this puzzle so much is that we are playing around with higher dimensional geometry naturally. 
+In the middle of the puzzle we were asking what is the volume of a six dimensional ball without suggesting the universe has more dimensions or something similar.
+That isn't necessarily why mathematicians care about higher dimensions. 
+
+What happened is that we had six numbers and we were encoding a property of those numbers in something we like to describe geometrically.
+Someone else was tackling this puzzle and described how they were working through intensely difficult integrals.
+What they were really doing was rediscovering the volume of a 4D ball. 
+Thinking about these higher dimensional shapes came about from a 2D plane, nothing about the dartboard was four dimensional.
+
+Mathematicians will often describe manifolds in four dimensions or how the Poincaré conjecture has been solved for everything but four dimensions. 
+But a common misconception people will have is that mathematicians don't actually care about moving in four dimensions, it is about encoding quadruplets of points.
+
+Another reason why this puzzle is beautiful is it helps builds a healthier relationship with $e$. 
+The Taylor series is more important than the number itself, it helps explain why $e^x$ is its own derivative, why $e^{\pi i}=-1$, and many other abstract concepts that go beyond simple repeated multiplication.
+
+Another nice puzzle which distills down the essence of $e$ without involving circles and complicating the answer with $\pi$ is described below.
+
+<Accordion title="Additional Game">
+
+This puzzle is a bit simpler than the dartboard question, but it highlights why random numbers have a connection to Euler's number.
+We're going to keep choosing random numbers $x\in [0,1]$ with uniform probability and add them together until their sum is greater than $1$.
+So we'll stop when $x_1+x_2+x_3+\cdots+x_n > 1$.
+Our question is what is the expected number of random samples $n$ being added together?
+
+To start, we'll take the same approach as we did with the dartboard puzzle:
+$$
+\begin{align*}
+E[n] &= P(n=1)\cdot 1 + P(n=2)\cdot 2 + P(n=3)\cdot 3 + \cdots
+\\ &= P(n>0) + P(n>1) + P(n>2) + \cdots
+\end{align*}
+$$
+
+What is the probability that our score will be at least $1$? 
+Well if we choose a single random number then it will always be less than or equal to $1$, so we will always need to choose at least one other sample.
+This means $P(n>0)=1$ and $P(n>1)=1$ because we can never have a score of $0$ or $1$.
+
+Simple enough, but what about when we choose two numbers, what is the probability that we'll continue the game $P(n>2)$?
+There is also a geometric object that describes when the sum of two numbers is less than a constant.
+We can rearrange the equation $x_0+x_1<1$ to $x_1<1-x_0$ which highlights the area under the line $y=1-x$.
+After bounding the areas inside the square from $(0,0)$ to $(1,1)$, we can see our target area is the lower triangle.
+
+<Figure
+  image="triangle_area.png"
+  caption="A point in the green triangle means we continue, we stop playing in the red triangle."
+/>
+
+The area of the triangle divided by the square is $P(n>2)=\frac12$. 
+
+The idea is similar in 3 dimensions $P(n>3)$, we are looking for the area inside the cube from $(0,0,0)$ to $(1,1,1)$ which is bound by the intersecting plane $x_2=1-x_1-x_0$. 
+
+<Interactive filename="pyramid_interactive/index" />
+
+The area for a pyramid is $\frac13\cdot b\cdot h$. We know the area of the base $b$ is $\frac12$ from the previous $P(n>2)$ and the height of the pyramid $h$ is $1$. So the area for the pyramid is $\frac16$. The area of the cube is $1^3=1$, so dividing the area of the pyramid by the area of the cube is still $P(n>3)=\frac16$.
+
+This pattern continues into higher dimensions where we are finding the area of the shape defined by the intersection of a hyperplane through a hypercube. To find the area of the target space in four dimensions we take our area from three dimensions and multiply it by one over the dimension count. So $P(n>4)=\frac16\cdot\frac14=\frac1{24}$. We're looking for the ratio of the target space to the unit hypercube, but the volume of a unit hypercube is $1^n=1$, so it can be excluded from the formula.
+
+In general, we can reduce our formula for the expected value to:
+$$
+\begin{align*}
+E[n]&=\sum_{i=0}P(n>i)
+\\ &=\sum_{i=0}\frac1{i!}
+\end{align*}
+$$
+The Taylor series for $e^x$ is:
+$$
+e^x=\sum_{i=0}\frac{x^i}{i!}
+$$
+
+<Question
+  question="Comparing the above two sequences, what is the expected value of our little game?"
+  choice1="$e$"
+  choice2="$2e$"
+  choice3="$e^2$"
+  choice4="$\sqrt e$"
+  answer={1}>
+
+Substituting $1$ for $x$ reduces the Taylor series to $e^1=\sum \frac{1^i}{i!}$ which is our expected value equation.
+
+</Question>
+
+</Accordion>
+
+[^1]: The expected value is a weighted average summing together every possible outcome's score multiplied by the outcome's probability. Another way to think about it is if you played this game an infinite number of times, what is the average score? 
