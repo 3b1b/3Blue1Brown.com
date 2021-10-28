@@ -114,7 +114,8 @@ The probability $P(S>1)$ can be found by dividing the area of the circle $A=\pi 
   image="at_least_one.png"
   video="at_least_one.mp4"
 />
-The probability of making the first shot is $\frac{\pi}4$, so what is the probability of making the second shot?
+
+The probability of making the first shot is $\frac{\pi}{4}$, so what is the probability of making the second shot?
 This is where things get more interesting because the probability of the second shot depends on where the first shot landed.
 The next radius $r_1$ forms a right triangle with the current radius and $h_0$, so we can use the Pythagorean theorem to calculate it.
 
@@ -152,6 +153,7 @@ We're asking what is the probability that the sum of squares of four random numb
   image="prob_four.png"
   video="prob_four.mp4"
 />
+
 This question is a bit tricky because we could guarantee if all the numbers are less than $0.5$ then the sum of their squares would be less than $1$, but if one was $0.9$ that doesn't necessarily throw it out because the others could be very small.
 We used geometric intuition for the first shot, thinking of it as a point inside or outside of a circle.
 Rather than thinking of the probabilistic event $P(S>2)$ as two separate throws, we can also think about them as a single point in 4D space: $(x_0,y_0,x_1,y_1)\in\mathbb{R}^4$.
@@ -164,8 +166,8 @@ Rather than thinking of the probabilistic event $P(S>2)$ as two separate throws,
 Just like how choosing two random numbers and seeing if the sum of their squares is less than $1$ brought us to the area of a circle, doing the same with 4 numbers brings us to the volume of a 4D ball.
 
 $$
-\text{Volume of a 4D ball: } \frac{\pi^2}2 R^4 \\
-\text{Volume of a 4D cube: } 2\cdot2\cdot2\cdot2 = 2^4 = 16 \\
+\text{Volume of a 4D ball: } \frac{\pi^2}2 R^4 \\ \quad \\
+\text{Volume of a 4D cube: } 2\cdot2\cdot2\cdot2 = 2^4 = 16 \\ \quad \\
 P(S>2) = \frac{\pi^2}{2^4\cdot2}
 $$
 
@@ -190,13 +192,14 @@ $$
 
 The next problem we face is how to calculate the volume of a higher dimensional ball. 
 Luckily mathematicians have calculated them and you could look at [Wikipedia's list](https://en.wikipedia.org/wiki/Volume_of_an_n-ball) and pick them out.
+
 $$
 \begin{matrix}
-1D & 2R & \quad & 2D & \pi R^2 \\
-3D & \frac43\pi R^3 & \quad & 4D & \frac12\pi^2 R^4 \\
-5D & \frac8{15}\pi^2 R^5 & \quad & 6D & \frac16\pi^3 R^6 \\
-7D & \frac{16}{105}\pi^3 R^7 & \quad & 8D & \frac1{24}\pi^4 R^8 \\
-9D & \frac{32}{945}\pi^4 R^9 & \quad & 10D & \frac1{120}\pi^5 R^{10} \\
+1D & 2R & \quad & 2D & \pi R^2 \\ \quad \\
+3D & \frac43\pi R^3 & \quad & 4D & \frac12\pi^2 R^4 \\ \quad \\
+5D & \frac8{15}\pi^2 R^5 & \quad & 6D & \frac16\pi^3 R^6 \\ \quad \\
+7D & \frac{16}{105}\pi^3 R^7 & \quad & 8D & \frac1{24}\pi^4 R^8 \\ \quad \\
+9D & \frac{32}{945}\pi^4 R^9 & \quad & 10D & \frac1{120}\pi^5 R^{10} \\ \quad \\
 11D & \frac{64}{10,395}\pi^5 R^{11} & \quad & 12D & \frac1{720}\pi^6 R^{12}
 \end{matrix}
 $$

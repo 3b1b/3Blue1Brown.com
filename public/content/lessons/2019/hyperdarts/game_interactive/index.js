@@ -9,6 +9,8 @@ import Sketch from "react-p5";
 const WIDTH = 700;
 const HEIGHT = 700;
 const EDGE = 0.9;
+const ANIM_TIME = 15;  // 60ths of a second
+const WAIT_TIME = 5;
 
 export default function PyramidPlot() {
   const LINE_COLOR = "#FFFFFF";
@@ -104,8 +106,8 @@ export default function PyramidPlot() {
       dartY,
       lineFormatting
     );
-    dartThrowAnimation.registerAnimation(60, hlineAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, hlineAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Chord
     let hDistance = Math.hypot(dartX, dartY);
@@ -156,8 +158,8 @@ export default function PyramidPlot() {
       chordAnimation,
       rightAngleAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(60, chordAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, chordAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Fade chord + right angle
     let fadeChordAnimation = Animations.freeze(chordAnimation, 1);
@@ -183,8 +185,8 @@ export default function PyramidPlot() {
       fadeChordAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(60, chordToCenterAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, chordToCenterAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Shrink circle
     translateChordAnimation = Animations.freeze(translateChordAnimation, 1);
@@ -203,8 +205,8 @@ export default function PyramidPlot() {
       shrinkCircleAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(60, newCircleAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, newCircleAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Fade old circle
     translateChordAnimation = Animations.fadeAnimation(translateChordAnimation);
@@ -221,8 +223,8 @@ export default function PyramidPlot() {
       translateChordAnimation,
       updateAlpha,
     ]);
-    dartThrowAnimation.registerAnimation(60, completeCircleAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, completeCircleAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
   }
 
   function createLostGameAnimation() {
@@ -266,8 +268,8 @@ export default function PyramidPlot() {
       firstLineAnimation,
       secondLineAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(60, crossAnimation, "cubic");
-    dartThrowAnimation.registerFreezeFrame(15);
+    dartThrowAnimation.registerAnimation(ANIM_TIME, crossAnimation, "cubic");
+    dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Highlight Score
     let makeScoreYellow = (sketch, progress) => {
