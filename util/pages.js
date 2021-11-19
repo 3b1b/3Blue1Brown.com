@@ -183,6 +183,15 @@ export const blogMeta = blogFiles
   .map(parseMdx)
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
+const searchRecruitmentFile = (slug) =>
+  glob.sync(`public/content/recruitment/${slug || "*"}/index.mdx`);
+
+const recruitmentFiles = searchRecruitmentFile();
+
+export const recruitmentPaths = recruitmentFiles
+  .map(getSlugFromFile)
+  .map((slug) => `/recruitment/${slug}`);
+
 // get desired props for pages
 export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
@@ -202,12 +211,20 @@ export const lessonProps = async (slug) => {
   return { props };
 };
 
-// get desired props for
+// get desired props for blog
 export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
+  return { props };
+};
+
+// get desired props for recruitment
+export const recruitmentProps = async (slug) => {
+  const file = searchRecruitmentFile(slug)[0];
+  const props = await serializeMdx(parseMdx(file));
+  props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   return { props };
 };
