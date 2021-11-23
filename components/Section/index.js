@@ -8,6 +8,7 @@ Section.propTypes = {
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool,
   width: PropTypes.oneOf(["narrow", "normal", "full"]),
+  image: PropTypes.string,
 };
 
 // make sure markdown starts and ends with this component, or doesn't use it at
@@ -18,6 +19,7 @@ export default function Section({
   children,
   dark = false,
   width = "normal",
+  image,
   ...props
 }) {
   return (
@@ -28,6 +30,11 @@ export default function Section({
         data-dark={dark}
         data-width={width}
       >
+        {image && (
+          <div className={styles.background}>
+            <img src={image} alt="" />
+          </div>
+        )}
         <div className={styles.wrapper}>{children}</div>
       </section>
     </SectionContext.Provider>

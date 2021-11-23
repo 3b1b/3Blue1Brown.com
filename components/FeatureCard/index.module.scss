@@ -17,10 +17,29 @@
 
 .image {
   display: block;
+  position: relative;
   width: 100%;
   margin-bottom: 10px;
+  z-index: 0;
 
-  img {
+  &[data-dark="true"] {
+    background: $gray-900;
+  }
+
+  // background image
+  img:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+    z-index: -1;
+  }
+
+  // regular/foreground image
+  img:last-child {
     object-fit: contain;
     max-width: 100%;
     max-height: 100%;

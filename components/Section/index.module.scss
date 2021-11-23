@@ -1,6 +1,10 @@
 $phone: 500px;
 
 .section {
+  position: relative;
+  clear: both;
+  overflow: hidden;
+
   &:last-child {
     flex-grow: 1;
   }
@@ -16,6 +20,22 @@ $phone: 500px;
   &[data-dark="true"] {
     background: $gray-900;
     color: $white;
+  }
+}
+
+.background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.15;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
   }
 }
 

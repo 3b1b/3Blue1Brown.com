@@ -4,5 +4,5 @@ import { pageProps } from "../../util/pages";
 export default NormalLayout;
 
 export const getStaticProps = async () => {
-  return await pageProps("recruitment/index");
+  return await pageProps("recruiting/index");
 };
