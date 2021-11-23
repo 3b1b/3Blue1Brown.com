@@ -47,6 +47,10 @@ const parseMdx = (file) => {
   data.file = "/" + file.split(/[\\/]/).slice(1).join("/");
   data.dir = "/" + file.split(/[\\/]/).slice(1, -1).join("/") + "/";
 
+  // get title of page from slug, if not defined in front matter
+  if (!data.title)
+    data.title = data.slug.charAt(0).toUpperCase() + data.slug.slice(1);
+
   // get topic of lesson
   data.topic =
     topics.find(({ lessons }) => lessons.find((lesson) => lesson === data.slug))
