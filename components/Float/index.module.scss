@@ -1,4 +1,4 @@
 .image {
-  width: $page / 3;
+  width: math.div($page, 3);
   margin: 40px;
 }

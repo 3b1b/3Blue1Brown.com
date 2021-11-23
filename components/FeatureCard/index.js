@@ -30,7 +30,7 @@ export default function FeatureCard({
         style={{ maxHeight: height }}
         data-dark={background ? true : false}
       >
-        <img src={transformSrc(background)} alt="" />
+        {background && <img src={transformSrc(background)} alt="" />}
         <img src={transformSrc(image)} alt="" />
       </div>
       <div className={styles.title}>{title}</div>
