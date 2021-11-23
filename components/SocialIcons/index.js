@@ -9,15 +9,25 @@ export default function SocialIcons() {
         link="https://www.youtube.com/3blue1brown"
         icon="fab fa-youtube"
         tooltip="Maybe you're not the kind of person who 
-        subscribes to YouTube channels, I get that. But 
-        consider subscribing to give a gentle nod to the 
-        YouTube algorithm saying you want more math in 
-        your recommendations."
+        subscribes to YouTube channels, I get that. If you
+        enjoy the videos, though, consider subscribing as
+        a way of signaling you want more like this in your
+        recommendations."
       />
       <Link
-        link="https://www.youtube.com/GrantSanderson"
-        icon="fab fa-youtube"
-        tooltip="Wait, there's a second channel?"
+        link="https://twitter.com/3blue1brown"
+        icon="fab fa-twitter"
+        tooltip="Honestly, we should all probably spend 
+        less time on Twitter. But when you are there, 
+        wouldn't you like a little more math in your 
+        feed?"
+      />
+      <Link
+        link="https://www.reddit.com/r/3Blue1Brown/"
+        icon="fab fa-reddit"
+        tooltip="Discussion, community, and all that jazz. 
+        Also, this subreddit is quite literally the only 
+        place I look when considering topic requests."
       />
       <Link
         link="https://www.patreon.com/3blue1brown"
@@ -29,10 +39,15 @@ export default function SocialIcons() {
       <Link
         link="https://3blue1brown.substack.com/"
         icon="fas fa-envelope-open-text"
-        tooltip="I know, I know, we all try to 
-        keep our inbox clean. But what is that 
-        cleanliness for if not to make room for 
-        edifying math lessons?"
+        tooltip="Join the mailing list! I know, I know, we
+        all try to keep our inbox clean. But what is that
+        cleanliness for if not to make room for edifying
+        math lessons?"
+      />
+      <Link
+        link="https://www.youtube.com/GrantSanderson"
+        icon="fab fa-youtube"
+        tooltip="Wait, there's a second channel?"
       />
       <Link
         link="https://store.dftba.com/collections/3blue1brown"
@@ -42,21 +57,6 @@ export default function SocialIcons() {
         creature or a pair of differential equations themed 
         socks. But sometimes the best things in life are 
         unexpected."
-      />
-      <Link
-        link="https://twitter.com/3blue1brown"
-        icon="fab fa-twitter"
-        tooltip="Honestly, we should all probably spend 
-        less time on Twitter. But when you are there, 
-        would you rather have more or less math in your 
-        feed?"
-      />
-      <Link
-        link="https://www.reddit.com/r/3Blue1Brown/"
-        icon="fab fa-reddit"
-        tooltip="Discussion, community, and all that jazz. 
-        Also, this subreddit is quite literally the only 
-        place I look when considering topic requests."
       />
       <Link
         link="http://www.facebook.com/3blue1brown"
