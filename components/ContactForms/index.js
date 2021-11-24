@@ -126,6 +126,21 @@ export function ContactForm() {
   );
 }
 
+export function RecruitingForm() {
+  return (
+    <Form name="contact-recruiting">
+      <InputRow>
+        <Input name="name" label="Name:" />
+        <Input name="email" type="email" label="Email:" />
+      </InputRow>
+
+      <Input name="company" label="Company:" />
+      <Input name="subject" label="Subject:" />
+      <Input type="textarea" name="message" label="Message:" />
+    </Form>
+  );
+}
+
 export function ContactFormReceivedMessage() {
   const router = useRouter();
 

@@ -9,6 +9,7 @@ import {
   SpeakingForm,
   ThanksForm,
   ContactForm,
+  RecruitingForm,
   ContactFormReceivedMessage,
 } from "./ContactForms";
 import FeatureCard from "./FeatureCard";
@@ -63,6 +64,7 @@ const components = {
   PodcastLinks,
   Portrait,
   Question,
+  RecruitingForm,
   Section,
   SpeakingForm,
   Spoiler,
