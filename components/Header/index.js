@@ -72,7 +72,7 @@ const Nav = () => {
 
       <NavLink
         link="https://www.patreon.com/3blue1brown"
-        text="Memberships"
+        text="Patreon"
         tooltip="Help fund future lessons"
       />
       <NavLink
