@@ -18,11 +18,6 @@ const RecruitingLayout = () => {
         <h1 style={{ margin: 0 }}>{title}</h1>
         <h2 style={{ margin: 0 }}>{description}</h2>
         <Clickable
-          link="/recruiting"
-          text="Back to list"
-          icon="fas fa-arrow-left"
-        />
-        <Clickable
           link={website}
           text="Website"
           icon="fas fa-external-link-alt"
