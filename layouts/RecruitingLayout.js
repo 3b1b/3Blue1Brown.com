@@ -9,22 +9,35 @@ import { PageContext } from "../pages/_app";
 
 // layout for lessons
 const RecruitingLayout = () => {
-  const { title, description, banner, logo, website } = useContext(PageContext);
+  const { title, description, banner, logo, about, careers, slug } = useContext(PageContext);
 
   return (
-    <NormalLayout>
+    <NormalLayout anchors={false}>
       <Section width="narrow" dark={true} image={banner}>
-        <img src={logo} alt="" style={{ width: 400 }} />
-        <h1 style={{ margin: 0 }}>{title}</h1>
-        <h2 style={{ margin: 0 }}>{description}</h2>
-        <Clickable
-          link={website}
-          text="Website"
-          icon="fas fa-external-link-alt"
-          design="rounded"
-        />
+        <a href={"/recruiting#" + slug}>
+          <h4 style={{ align: "left"}}> 
+            <i className="fas fa-arrow-left"></i> Recruiting
+          </h4>
+        </a>
+        <a href={about} target="_blank" rel="noopener noreferrer"> 
+          <img src={logo} alt="" style={{ width: 400 }}/>
+        </a>
+        <h3 style={{ margin: 0 }}>{description}</h3>
+        <a href={about} target="_blank" rel="noopener noreferrer">
+          <h3>Learn more</h3>
+        </a>
       </Section>
       <PageContent />
+      <Section>
+        <Clickable
+          link={careers}
+          text="Explore open positions"
+          icon="fas fa-external-link-alt"
+          design="rounded"
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+      </Section>
       <Jump />
     </NormalLayout>
   );
