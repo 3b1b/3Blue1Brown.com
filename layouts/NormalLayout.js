@@ -7,14 +7,14 @@ import Anchors from "../components/Anchors";
 import Glow from "../components/Glow";
 
 // default, normal layout
-const Normal = ({ children }) => (
+const Normal = ({ children, anchors = true }) => (
   <>
     {/* hidden page meta data */}
     <Head />
     {/* top of page */}
     <Header />
     {/* singleton components */}
-    <Anchors />
+    {anchors && <Anchors />}
     <Glow />
     {/* main content of page */}
     <Main>
