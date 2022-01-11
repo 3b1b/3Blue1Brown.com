@@ -11,6 +11,7 @@ FeatureCard.propTypes = {
   text: PropTypes.string.isRequired,
   width: PropTypes.number,
   height: PropTypes.number,
+  id: PropTypes.string.isRequired,
 };
 
 // vertical card with image, text, and link
@@ -22,6 +23,7 @@ export default function FeatureCard({
   text,
   width = 300,
   height = 200,
+  id,
 }) {
   return (
     <a className={styles.feature_card} href={link} style={{ width }}>
@@ -29,11 +31,11 @@ export default function FeatureCard({
         className={styles.image}
         style={{ maxHeight: height }}
         data-dark={background ? true : false}
+        id={id}
       >
         {background && <img src={transformSrc(background)} alt="" />}
         <img src={transformSrc(image)} alt="" />
       </div>
-      <div className={styles.title}>{title}</div>
       <div className={styles.text}>
         <Markdownify noParagraph={true}>{text}</Markdownify>
       </div>
