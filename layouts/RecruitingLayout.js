@@ -25,7 +25,7 @@ const RecruitingLayout = () => {
         <h3 style={{ margin: 0 }}> {description} </h3>
         <div style={{ margin: 20 }}/>
         <a href={about} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-          <i class="fas fa-external-link-alt"></i> Learn more  
+          <i class="fas fa-external-link-alt"></i> About {title}
         </a>
         <span style={{ margin: 20}} />
         <a href={careers} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
@@ -34,6 +34,14 @@ const RecruitingLayout = () => {
       </Section>
       <div />
       <PageContent />
+      <Section>
+        <Clickable
+          link={careers}
+          icon="fas fa-external-link-alt"
+          text="Explore open positions"
+          design="rounded"
+        />
+      </Section>
       <Jump />
     </NormalLayout>
   );
