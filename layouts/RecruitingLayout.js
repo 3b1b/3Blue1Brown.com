@@ -14,30 +14,26 @@ const RecruitingLayout = () => {
   return (
     <NormalLayout anchors={false}>
       <Section width="narrow" dark={true} image={banner}>
-        <a href={"/recruiting#" + slug}>
+        <a href={"/recruiting#" + slug} style={{ textDecoration: 'none' }}>
           <h4 style={{ align: "left"}}> 
-            <i className="fas fa-arrow-left"></i> Recruiting
+            <i className="fas fa-arrow-left"></i> More companies
           </h4>
         </a>
         <a href={about} target="_blank" rel="noopener noreferrer"> 
           <img src={logo} alt="" style={{ width: 400 }}/>
         </a>
-        <h3 style={{ margin: 0 }}>{description}</h3>
-        <a href={about} target="_blank" rel="noopener noreferrer">
-          <h3>Learn more</h3>
+        <h3 style={{ margin: 0 }}> {description} </h3>
+        <div style={{ margin: 20 }}/>
+        <a href={about} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+          <i class="fas fa-external-link-alt"></i> Learn more  
+        </a>
+        <span style={{ margin: 20}} />
+        <a href={careers} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
+          <i class="fas fa-external-link-alt"></i> Explore open positions
         </a>
       </Section>
+      <div />
       <PageContent />
-      <Section>
-        <Clickable
-          link={careers}
-          text="Explore open positions"
-          icon="fas fa-external-link-alt"
-          design="rounded"
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      </Section>
       <Jump />
     </NormalLayout>
   );
