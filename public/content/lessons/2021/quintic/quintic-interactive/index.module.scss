@@ -1,0 +1,28 @@
+.container {
+  width: 640px;
+  height: 480px;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+    "c c c r r r"
+    "x x y y z z";
+
+  align-items: center;
+  justify-items: center;
+}
+
+.graph {
+  border: 1px solid white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.coeffs {
+  grid-area: c;
+}
+
+.roots {
+  grid-area: r;
+}
