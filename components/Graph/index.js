@@ -227,6 +227,82 @@ export function GraphPoint({
   );
 }
 
+export function GraphTrail({
+  x = 0,
+  y = 0,
+  color = "white",
+  size = 12,
+  duration = 500,
+}) {
+  const { range, windowSize } = useGraph();
+
+  const [trailPoints, setTrailPoints] = useState([{ x, y, time: Date.now() }]);
+
+  useEffect(() => {
+    const lastPoint = trailPoints[trailPoints.length - 1];
+    if (lastPoint.x === x && lastPoint.y === y) return;
+
+    setTrailPoints((points) =>
+      [...points, { x, y, time: Date.now() }].filter(
+        (point) => Date.now() - point.time < 1000
+      )
+    );
+  }, [x, y, trailPoints]);
+
+  return (
+    <svg
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        zIndex: 10,
+      }}
+      viewBox={`0 0 ${windowSize.width} ${windowSize.height}`}
+      preserveAspectRatio="none"
+    >
+      {trailPoints.map((point, index) => {
+        if (index === 0) return null;
+
+        const prevPoint = trailPoints[index - 1];
+
+        return (
+          <line
+            key={point.time}
+            x1={toRelativePos(prevPoint.x, range[0]) * windowSize.width}
+            x2={toRelativePos(point.x, range[0]) * windowSize.width}
+            y1={(1 - toRelativePos(prevPoint.y, range[1])) * windowSize.height}
+            y2={(1 - toRelativePos(point.y, range[1])) * windowSize.height}
+            stroke={color}
+            strokeLinecap="round"
+            className="trailSegment"
+          />
+        );
+      })}
+
+      <style jsx>
+        {`
+          .trailSegment {
+            animation: shrinkOut ${duration}ms linear forwards;
+          }
+
+          @keyframes shrinkOut {
+            0% {
+              stroke-width: ${size}px;
+            }
+            100% {
+              stroke-width: 0px;
+            }
+          }
+        `}
+      </style>
+    </svg>
+  );
+}
+
 export function GraphLines({
   step = 1,
   color = "white",

@@ -1,10 +1,11 @@
 import GraphWindow, {
   GraphPoint,
+  GraphTrail,
   GraphLines,
 } from "../../../../../../components/Graph";
 
 import styles from "./index.module.scss";
-import { useMemo, useState } from "react";
+import { useMemo, useState, Fragment } from "react";
 
 export default function QuinticInteractive() {
   const [roots, setRoots] = useState([
@@ -26,7 +27,9 @@ export default function QuinticInteractive() {
   const coefficients = useMemo(() => rootsToCoefficients(roots), [roots]);
 
   const setCoefficients = (newCoeffs) => {
-    setRoots(findPolynomialRoots(newCoeffs));
+    let newRoots = findPolynomialRoots(newCoeffs);
+    newRoots = sortToMinimizeDistances(newRoots, roots);
+    setRoots(newRoots);
   };
 
   const setCoefficient = (index, value) => {
@@ -37,87 +40,95 @@ export default function QuinticInteractive() {
     ]);
   };
 
+  const restrictPointValue = (
+    value,
+    minX = -4.5,
+    maxX = 4.5,
+    minY = minX,
+    maxY = maxX
+  ) => {
+    value[0] = Math.min(Math.max(value[0], minX), maxX);
+    value[1] = Math.min(Math.max(value[1], minY), maxY);
+    return value;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.coeffs}>
         <div className={styles.graph}>
-          <GraphWindow width={300} height={300}>
-            {({ range, resetRange, windowSize }) => (
-              <>
-                {/* <InteractiveWindow minR={0.00001} maxR={100} /> */}
+          <GraphWindow width={300} height={300} center={[0, 0]} radius={3.5}>
+            <GraphLines
+              step={0.2}
+              color="rgba(255, 255, 255, 0.2)"
+              labels={false}
+            />
+            <GraphLines
+              step={1}
+              color="rgba(255, 255, 255, 0.5)"
+              labels={true}
+              labelY={(n) => `${n}i`}
+              labelStr={(n, axis) => {
+                let str = new Intl.NumberFormat().format(n);
+                if (axis === "y") str += "i";
+                return str;
+              }}
+              fontSize={24}
+            />
 
-                <GraphLines
-                  step={0.2}
-                  color="rgba(255, 255, 255, 0.2)"
-                  labels={false}
-                />
-                <GraphLines
-                  step={1}
-                  color="rgba(255, 255, 255, 0.5)"
-                  labels={true}
-                  labelY={(n) => `${n}i`}
-                  labelStr={(n, axis) => {
-                    let str = new Intl.NumberFormat().format(n);
-                    if (axis === "y") str += "i";
-                    return str;
+            {coefficients.slice(0, -1).map((coeff, i) => (
+              <Fragment key={i}>
+                <GraphPoint
+                  x={coeff[0]}
+                  y={coeff[1]}
+                  onDrag={(newValue) => {
+                    newValue = restrictPointValue(newValue, -3.5, 3.5);
+                    setCoefficient(i, newValue);
                   }}
-                  fontSize={24}
+                  size={16}
+                  color="red"
                 />
-
-                {coefficients.map((coeff, i) => (
-                  <GraphPoint
-                    key={i}
-                    x={coeff[0]}
-                    y={coeff[1]}
-                    onDrag={
-                      i === coefficients.length - 1
-                        ? undefined
-                        : (newValue) => setCoefficient(i, newValue)
-                    }
-                    // color={toRGBStr(colors[i])}
-                  />
-                ))}
-              </>
-            )}
+                <GraphTrail x={coeff[0]} y={coeff[1]} size={8} color="red" />
+              </Fragment>
+            ))}
           </GraphWindow>
         </div>
       </div>
       <div className={styles.roots}>
         <div className={styles.graph}>
-          <GraphWindow width={300} height={300}>
-            {({ range, resetRange, windowSize }) => (
-              <>
-                {/* <InteractiveWindow minR={0.00001} maxR={100} /> */}
+          <GraphWindow width={300} height={300} center={[0, 0]} radius={2.5}>
+            <GraphLines
+              step={0.2}
+              color="rgba(255, 255, 255, 0.2)"
+              labels={false}
+            />
+            <GraphLines
+              step={1}
+              color="rgba(255, 255, 255, 0.5)"
+              labels={true}
+              labelY={(n) => `${n}i`}
+              labelStr={(n, axis) => {
+                let str = new Intl.NumberFormat().format(n);
+                if (axis === "y") str += "i";
+                return str;
+              }}
+              fontSize={24}
+            />
 
-                <GraphLines
-                  step={0.2}
-                  color="rgba(255, 255, 255, 0.2)"
-                  labels={false}
-                />
-                <GraphLines
-                  step={1}
-                  color="rgba(255, 255, 255, 0.5)"
-                  labels={true}
-                  labelY={(n) => `${n}i`}
-                  labelStr={(n, axis) => {
-                    let str = new Intl.NumberFormat().format(n);
-                    if (axis === "y") str += "i";
-                    return str;
+            {roots.map((root, i) => (
+              <Fragment key={i}>
+                <GraphPoint
+                  x={root[0]}
+                  y={root[1]}
+                  onDrag={(newValue) => {
+                    newValue = restrictPointValue(newValue, -2.5, 2.5);
+                    setRoot(i, newValue);
                   }}
-                  fontSize={24}
+                  size={16}
+                  color="yellow"
                 />
-
-                {roots.map((root, i) => (
-                  <GraphPoint
-                    key={i}
-                    x={root[0]}
-                    y={root[1]}
-                    onDrag={(newValue) => setRoot(i, newValue)}
-                    // color={toRGBStr(colors[i])}
-                  />
-                ))}
-              </>
-            )}
+                <GraphTrail x={root[0]} y={root[1]} size={8} color="yellow" />
+              </Fragment>
+            ))}
           </GraphWindow>
         </div>
       </div>
@@ -132,6 +143,8 @@ const add = (...nums) => {
 const sub = (a, b) => add(a, neg(b));
 
 const scale = (scalar, num) => [scalar * num[0], scalar * num[1]];
+
+const abs = (a) => [Math.hypot(a[0], a[1]), 0];
 
 const inverse = (a) => [
   a[0] / (a[0] ** 2 + a[1] ** 2),
@@ -264,4 +277,23 @@ function findPolynomialRoots(coeffs) {
   }
 
   return roots;
+}
+
+/*
+  As the coefficients change, sometimes the calculdated roots jump around.
+  To preserve a nice continuous animation, we reorder the roots so that they
+  match their previous positions closely.
+*/
+function sortToMinimizeDistances(points, prevPoints) {
+  let orderedPoints = [];
+  let unusedPoints = [...points];
+
+  for (const point of prevPoints) {
+    const distances = unusedPoints.map((p) => abs(sub(point, p))[0]);
+    const minIndex = distances.indexOf(Math.min(...distances));
+    orderedPoints.push(unusedPoints[minIndex]);
+    unusedPoints.splice(minIndex, 1);
+  }
+
+  return orderedPoints;
 }
