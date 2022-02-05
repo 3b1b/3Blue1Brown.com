@@ -6,6 +6,7 @@ import GraphWindow, {
 
 import styles from "./index.module.scss";
 import { useMemo, useState, Fragment } from "react";
+import Markdownify from "../../../../../../components/Markdownify";
 
 export default function QuinticInteractive() {
   const [roots, setRoots] = useState([
@@ -54,6 +55,24 @@ export default function QuinticInteractive() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.equation}>
+        <Markdownify noParagraph={true}>
+          {String.raw`$
+            x^5 +
+            \textcolor{red}{c_4} x^4 +
+            \textcolor{red}{c_3} x^3 +
+            \textcolor{red}{c_2} x^2 +
+            \textcolor{red}{c_1} x +
+            \textcolor{red}{c_0}
+            =
+            (x - \textcolor{gold}{r_0})
+            (x - \textcolor{gold}{r_1})
+            (x - \textcolor{gold}{r_2})
+            (x - \textcolor{gold}{r_3})
+            (x - \textcolor{gold}{r_4})
+          $`}
+        </Markdownify>
+      </div>
       <div className={styles.coeffs}>
         <div className={styles.graph}>
           <GraphWindow width={300} height={300} center={[0, 0]} radius={3.5}>
@@ -86,12 +105,20 @@ export default function QuinticInteractive() {
                   }}
                   size={16}
                   color="red"
+                  label={
+                    <Markdownify noParagraph={true}>
+                      {String.raw`$c_{${i}}$`}
+                    </Markdownify>
+                  }
                 />
                 <GraphTrail x={coeff[0]} y={coeff[1]} size={8} color="red" />
               </Fragment>
             ))}
           </GraphWindow>
         </div>
+        <Markdownify noParagraph={true}>
+          {String.raw`$\text{Coefficients}$`}
+        </Markdownify>
       </div>
       <div className={styles.roots}>
         <div className={styles.graph}>
@@ -125,12 +152,20 @@ export default function QuinticInteractive() {
                   }}
                   size={16}
                   color="yellow"
+                  label={
+                    <Markdownify noParagraph={true}>
+                      {String.raw`$r_{${i}}$`}
+                    </Markdownify>
+                  }
                 />
                 <GraphTrail x={root[0]} y={root[1]} size={8} color="yellow" />
               </Fragment>
             ))}
           </GraphWindow>
         </div>
+        <Markdownify noParagraph={true}>
+          {String.raw`$\text{Roots}$`}
+        </Markdownify>
       </div>
     </div>
   );

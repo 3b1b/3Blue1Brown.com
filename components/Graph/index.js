@@ -115,6 +115,7 @@ export function GraphPoint({
   color = "white",
   size = 24,
   onDrag = null,
+  label = null,
 }) {
   const { range, windowRef } = useGraph();
 
@@ -223,7 +224,24 @@ export function GraphPoint({
         zIndex: 20,
         cursor: onDrag ? "move" : undefined,
       }}
-    />
+    >
+      {label && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            // background: "rgba(255, 0, 0, 0.7)",
+            transform: "translate(100%, -100%)",
+            pointerEvents: "none",
+            color: color,
+            textShadow: "0 0 12px black, 0 0 8px black, 0 0 4px black",
+          }}
+        >
+          {label}
+        </div>
+      )}
+    </div>
   );
 }
 

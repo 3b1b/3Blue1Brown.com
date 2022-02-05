@@ -4,25 +4,40 @@
 
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
+    "e e e e e e"
     "c c c r r r"
     "x x y y z z";
 
-  align-items: center;
+  align-items: stretch;
   justify-items: center;
+  align-content: center;
+}
+
+.equation {
+  grid-area: e;
+  color: white;
+  font-size: 15px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.coeffs {
+  grid-area: c;
+  color: white;
+  font-size: 18px;
+}
+
+.roots {
+  grid-area: r;
+  color: white;
+  font-size: 18px;
 }
 
 .graph {
   border: 1px solid white;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.coeffs {
-  grid-area: c;
-}
-
-.roots {
-  grid-area: r;
+  margin-bottom: 12px;
 }
