@@ -2,13 +2,16 @@
   width: 640px;
   height: 480px;
 
+  padding: 20px;
+
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "e e e e e e"
     "c c c r r r"
-    "x x y y z z";
+    // "x x y y z z"
+    "p p p p p p";
 
   align-items: stretch;
   justify-items: center;
@@ -18,7 +21,7 @@
 .equation {
   grid-area: e;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   padding: 8px 0;
   text-align: center;
 }
@@ -40,4 +43,40 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 12px;
+}
+
+.controls {
+  grid-area: p;
+  justify-self: stretch;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controlButton {
+  color: white;
+  padding: 4px 8px;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:disabled {
+    color: black;
+    background: $blue;
+  }
+}
+
+.actionButton {
+  color: black;
+  background: white;
+  padding: 4px 8px;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+    background: #ccc;
+  }
 }

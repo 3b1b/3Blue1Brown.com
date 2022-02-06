@@ -3,9 +3,9 @@ import GraphWindow, {
   GraphTrail,
   GraphLines,
 } from "../../../../../../components/Graph";
-
-import styles from "./index.module.scss";
 import { useMemo, useState, Fragment } from "react";
+import styles from "./index.module.scss";
+
 import Markdownify from "../../../../../../components/Markdownify";
 
 export default function QuinticInteractive() {
@@ -28,9 +28,14 @@ export default function QuinticInteractive() {
   const coefficients = useMemo(() => rootsToCoefficients(roots), [roots]);
 
   const setCoefficients = (newCoeffs) => {
-    let newRoots = findPolynomialRoots(newCoeffs);
-    newRoots = sortToMinimizeDistances(newRoots, roots);
-    setRoots(newRoots);
+    // The coefficients are determined from the roots, so we can't
+    // set them directly. Instead, we set the roots so that the coefficients
+    // become what we want them to be.
+    setRoots((oldRoots) => {
+      let newRoots = findPolynomialRoots(newCoeffs);
+      newRoots = sortToMinimizeDistances(newRoots, oldRoots);
+      return newRoots;
+    });
   };
 
   const setCoefficient = (index, value) => {
@@ -51,6 +56,69 @@ export default function QuinticInteractive() {
     value[0] = Math.min(Math.max(value[0], minX), maxX);
     value[1] = Math.min(Math.max(value[1], minY), maxY);
     return value;
+  };
+
+  const [isSelecting, setIsSelecting] = useState(false);
+  const [selection, setSelection] = useState({ type: null, indices: [] });
+
+  const togglePointSelected = (type, index) => {
+    setSelection((selection) => {
+      let newSelection;
+      if (selection === null) {
+        newSelection = { type: null, indices: [] };
+      } else {
+        newSelection = { ...selection };
+      }
+
+      if (selection.type === null || selection.type === type) {
+        if (newSelection.indices.includes(index)) {
+          newSelection.indices = newSelection.indices.filter(
+            (i) => i !== index
+          );
+          if (newSelection.indices.length === 0) {
+            newSelection.type = null;
+          }
+        } else {
+          newSelection.indices.push(index);
+          newSelection.type = type;
+        }
+      }
+
+      return newSelection;
+    });
+  };
+
+  const [isCycling, setIsCycling] = useState(false);
+  const cycleSelection = () => {
+    if (isCycling) return;
+
+    setIsCycling(true);
+
+    let currentValues =
+      selection.type === "coeffs" ? [...coefficients] : [...roots];
+
+    const cycler = getPointCycler(currentValues, selection.indices);
+
+    const duration = selection.indices.length === 1 ? 1200 : 800;
+
+    const startTime = Date.now();
+    const update = () => {
+      let t = (Date.now() - startTime) / duration;
+      t = Math.min(Math.max(t, 0), 1);
+
+      if (t < 1) {
+        requestAnimationFrame(update);
+      } else {
+        setIsCycling(false);
+      }
+
+      if (selection.type === "coeffs") {
+        setCoefficients(cycler(t));
+      } else {
+        setRoots(cycler(t));
+      }
+    };
+    requestAnimationFrame(update);
   };
 
   return (
@@ -75,7 +143,7 @@ export default function QuinticInteractive() {
       </div>
       <div className={styles.coeffs}>
         <div className={styles.graph}>
-          <GraphWindow width={300} height={300} center={[0, 0]} radius={3.5}>
+          <GraphWindow width={250} height={250} center={[0, 0]} radius={3.5}>
             <GraphLines
               step={0.2}
               color="rgba(255, 255, 255, 0.2)"
@@ -99,10 +167,24 @@ export default function QuinticInteractive() {
                 <GraphPoint
                   x={coeff[0]}
                   y={coeff[1]}
-                  onDrag={(newValue) => {
-                    newValue = restrictPointValue(newValue, -3.5, 3.5);
-                    setCoefficient(i, newValue);
-                  }}
+                  onDrag={
+                    !isSelecting
+                      ? (newValue) => {
+                          newValue = restrictPointValue(newValue, -3.5, 3.5);
+                          setCoefficient(i, newValue);
+                        }
+                      : undefined
+                  }
+                  onClick={
+                    isSelecting && selection.type !== "roots"
+                      ? () => togglePointSelected("coeffs", i)
+                      : undefined
+                  }
+                  selected={
+                    isSelecting &&
+                    selection.type === "coeffs" &&
+                    selection.indices.includes(i)
+                  }
                   size={16}
                   color="red"
                   label={
@@ -122,7 +204,7 @@ export default function QuinticInteractive() {
       </div>
       <div className={styles.roots}>
         <div className={styles.graph}>
-          <GraphWindow width={300} height={300} center={[0, 0]} radius={2.5}>
+          <GraphWindow width={250} height={250} center={[0, 0]} radius={2.5}>
             <GraphLines
               step={0.2}
               color="rgba(255, 255, 255, 0.2)"
@@ -146,10 +228,24 @@ export default function QuinticInteractive() {
                 <GraphPoint
                   x={root[0]}
                   y={root[1]}
-                  onDrag={(newValue) => {
-                    newValue = restrictPointValue(newValue, -2.5, 2.5);
-                    setRoot(i, newValue);
-                  }}
+                  onDrag={
+                    !isSelecting
+                      ? (newValue) => {
+                          newValue = restrictPointValue(newValue, -2.5, 2.5);
+                          setRoot(i, newValue);
+                        }
+                      : undefined
+                  }
+                  onClick={
+                    isSelecting && selection.type !== "coeffs"
+                      ? () => togglePointSelected("roots", i)
+                      : undefined
+                  }
+                  selected={
+                    isSelecting &&
+                    selection.type === "roots" &&
+                    selection.indices.includes(i)
+                  }
                   size={16}
                   color="yellow"
                   label={
@@ -166,6 +262,46 @@ export default function QuinticInteractive() {
         <Markdownify noParagraph={true}>
           {String.raw`$\text{Roots}$`}
         </Markdownify>
+      </div>
+      <div className={styles.controls}>
+        <div>
+          <button
+            className={styles.controlButton}
+            disabled={!isSelecting}
+            onClick={() => {
+              setIsSelecting(false);
+              setSelection({ type: null, indices: [] });
+            }}
+          >
+            <i className="fas fa-arrows-alt"></i> Move
+          </button>
+          <button
+            className={styles.controlButton}
+            disabled={isSelecting}
+            onClick={() => setIsSelecting(true)}
+          >
+            <i className="fas fa-hand-pointer"></i> Select
+          </button>
+        </div>
+
+        <div>
+          {isSelecting && selection.indices.length > 0 && (
+            <button
+              className={styles.actionButton}
+              disabled={isCycling || selection.indices.length === 0}
+              onClick={() => cycleSelection()}
+            >
+              <i className="fas fa-sync-alt"></i> Cycle{" "}
+              {selection.indices.length}{" "}
+              {selection.type === null
+                ? "point"
+                : selection.type === "coeffs"
+                ? "coefficient"
+                : "root"}
+              {selection.indices.length !== 1 && "s"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -331,4 +467,75 @@ function sortToMinimizeDistances(points, prevPoints) {
   }
 
   return orderedPoints;
+}
+
+function getPointCycler(points, indicesToCycle) {
+  const centroid = scale(
+    1 / points.length,
+    points
+      .filter((_, i) => indicesToCycle.includes(i))
+      .reduce((a, b) => add(a, b), [0, 0])
+  );
+
+  indicesToCycle = indicesToCycle.sort((indexA, indexB) => {
+    const pointA = points[indexA];
+    const pointB = points[indexB];
+
+    return (
+      Math.atan2(pointA[1] - centroid[1], pointA[0] - centroid[0]) -
+      Math.atan2(pointB[1] - centroid[1], pointB[0] - centroid[0])
+    );
+  });
+
+  const getPointPosition = (index, t = 0) => {
+    if (!indicesToCycle.includes(index)) {
+      return points[index];
+    }
+
+    const fromPoint = points[index];
+
+    if (indicesToCycle.length === 1) {
+      // If this is the only moving point, rotate it around the origin
+      const dist = Math.hypot(fromPoint[0], fromPoint[1]);
+      let angle = Math.atan2(fromPoint[1], fromPoint[0]);
+      angle += t * 2 * Math.PI;
+      return [dist * Math.cos(angle), dist * Math.sin(angle)];
+    }
+
+    const towardsIndex =
+      indicesToCycle[
+        (indicesToCycle.indexOf(index) + 1) % indicesToCycle.length
+      ];
+
+    const towardsPoint = points[towardsIndex];
+
+    const linearPathPoint = [
+      fromPoint[0] + (towardsPoint[0] - fromPoint[0]) * t,
+      fromPoint[1] + (towardsPoint[1] - fromPoint[1]) * t,
+    ];
+
+    const dist = Math.hypot(
+      towardsPoint[0] - fromPoint[0],
+      towardsPoint[1] - fromPoint[1]
+    );
+    const direction = Math.atan2(
+      towardsPoint[1] - fromPoint[1],
+      towardsPoint[0] - fromPoint[0]
+    );
+
+    const horizontalAmount = 0.3 * dist * (1 - (2 * t - 1) ** 2);
+
+    let horizontalOffset = [
+      Math.cos(direction - Math.PI / 2),
+      Math.sin(direction - Math.PI / 2),
+    ];
+
+    horizontalOffset = scale(horizontalAmount, horizontalOffset);
+
+    return add(linearPathPoint, horizontalOffset);
+  };
+
+  return (t = 0) => {
+    return points.map((_, index) => getPointPosition(index, t));
+  };
 }

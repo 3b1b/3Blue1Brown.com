@@ -115,7 +115,9 @@ export function GraphPoint({
   color = "white",
   size = 24,
   onDrag = null,
+  onClick = null,
   label = null,
+  selected = false,
 }) {
   const { range, windowRef } = useGraph();
 
@@ -208,13 +210,16 @@ export function GraphPoint({
     <div
       onMouseDown={onMouseDown}
       onTouchStart={onMouseDown}
+      onClick={onClick}
       style={{
         width: size,
         height: size,
         background: color,
         borderRadius: 9999,
         border: `${size / 8}px solid white`,
-        boxShadow: `0 0 0 ${size / 8}px black`,
+        boxShadow: selected
+          ? `0 0 0 ${size / 8}px black, 0 0 ${size / 4}px ${size / 4}px white`
+          : `0 0 0 ${size / 8}px black`,
 
         position: "absolute",
         left: `${toRelativePos(x, range[0]) * 100}%`,
@@ -222,7 +227,7 @@ export function GraphPoint({
         transform: "translate(-50%, 50%)",
 
         zIndex: 20,
-        cursor: onDrag ? "move" : undefined,
+        cursor: onDrag ? "move" : onClick ? "pointer" : undefined,
       }}
     >
       {label && (
