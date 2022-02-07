@@ -124,6 +124,7 @@
   lessons:
     - bitcoin
     - 256-bit-security
+    - wordle
     - hamming-codes
     - hamming-codes-2
     - hanoi-and-sierpinski
