@@ -99,7 +99,7 @@ export default function QuinticInteractive() {
 
     const cycler = getPointCycler(currentValues, selection.indices);
 
-    const duration = selection.indices.length === 1 ? 1200 : 800;
+    const duration = selection.indices.length === 1 ? 2000 : 1600;
 
     const startTime = Date.now();
     const update = () => {
@@ -123,27 +123,18 @@ export default function QuinticInteractive() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.equation}>
-        <Markdownify noParagraph={true}>
-          {String.raw`$
-            x^5 +
-            \textcolor{red}{c_4} x^4 +
-            \textcolor{red}{c_3} x^3 +
-            \textcolor{red}{c_2} x^2 +
-            \textcolor{red}{c_1} x +
-            \textcolor{red}{c_0}
-            =
-            (x - \textcolor{gold}{r_0})
-            (x - \textcolor{gold}{r_1})
-            (x - \textcolor{gold}{r_2})
-            (x - \textcolor{gold}{r_3})
-            (x - \textcolor{gold}{r_4})
-          $`}
-        </Markdownify>
-      </div>
       <div className={styles.coeffs}>
+        <Markdownify noParagraph={true}>
+          {String.raw`$\text{Coefficients} \\
+{\scriptsize x^5 +
+\textcolor{red}{c_4} x^4 +
+\textcolor{red}{c_3} x^3 +
+\textcolor{red}{c_2} x^2 +
+\textcolor{red}{c_1} x +
+\textcolor{red}{c_0}}$`}
+        </Markdownify>
         <div className={styles.graph}>
-          <GraphWindow width={250} height={250} center={[0, 0]} radius={3.5}>
+          <GraphWindow width={300} height={300} center={[0, 0]} radius={3.5}>
             <GraphLines
               step={0.2}
               color="rgba(255, 255, 255, 0.2)"
@@ -159,7 +150,7 @@ export default function QuinticInteractive() {
                 if (axis === "y") str += "i";
                 return str;
               }}
-              fontSize={24}
+              fontSize={18}
             />
 
             {coefficients.slice(0, -1).map((coeff, i) => (
@@ -185,7 +176,7 @@ export default function QuinticInteractive() {
                     selection.type === "coeffs" &&
                     selection.indices.includes(i)
                   }
-                  size={16}
+                  size={12}
                   color="red"
                   label={
                     <Markdownify noParagraph={true}>
@@ -193,18 +184,48 @@ export default function QuinticInteractive() {
                     </Markdownify>
                   }
                 />
-                <GraphTrail x={coeff[0]} y={coeff[1]} size={8} color="red" />
+                <GraphTrail
+                  x={coeff[0]}
+                  y={coeff[1]}
+                  size={6}
+                  color="red"
+                  duration={800}
+                />
               </Fragment>
             ))}
+
+            {isSelecting &&
+              selection.type === "coeffs" &&
+              selection.indices.length > 0 && (
+                <button
+                  className={styles.actionButton}
+                  disabled={isCycling || selection.indices.length === 0}
+                  onClick={() => cycleSelection()}
+                >
+                  <i className="fas fa-sync-alt"></i> Cycle{" "}
+                  {selection.indices.length}{" "}
+                  {selection.type === null
+                    ? "point"
+                    : selection.type === "coeffs"
+                    ? "coefficient"
+                    : "root"}
+                  {selection.indices.length !== 1 && "s"}
+                </button>
+              )}
           </GraphWindow>
         </div>
-        <Markdownify noParagraph={true}>
-          {String.raw`$\text{Coefficients}$`}
-        </Markdownify>
       </div>
       <div className={styles.roots}>
+        <Markdownify noParagraph={true}>
+          {String.raw`$\text{Roots} \\
+{\scriptsize (x - \textcolor{gold}{r_0})
+(x - \textcolor{gold}{r_1})
+(x - \textcolor{gold}{r_2})
+(x - \textcolor{gold}{r_3})
+(x - \textcolor{gold}{r_4})}$`}
+        </Markdownify>
         <div className={styles.graph}>
-          <GraphWindow width={250} height={250} center={[0, 0]} radius={2.5}>
+          <GraphWindow width={300} height={300} center={[0, 0]} radius={2.5}>
             <GraphLines
               step={0.2}
               color="rgba(255, 255, 255, 0.2)"
@@ -220,7 +241,7 @@ export default function QuinticInteractive() {
                 if (axis === "y") str += "i";
                 return str;
               }}
-              fontSize={24}
+              fontSize={18}
             />
 
             {roots.map((root, i) => (
@@ -246,7 +267,7 @@ export default function QuinticInteractive() {
                     selection.type === "roots" &&
                     selection.indices.includes(i)
                   }
-                  size={16}
+                  size={12}
                   color="yellow"
                   label={
                     <Markdownify noParagraph={true}>
@@ -254,14 +275,36 @@ export default function QuinticInteractive() {
                     </Markdownify>
                   }
                 />
-                <GraphTrail x={root[0]} y={root[1]} size={8} color="yellow" />
+                <GraphTrail
+                  x={root[0]}
+                  y={root[1]}
+                  size={6}
+                  color="yellow"
+                  duration={800}
+                />
               </Fragment>
             ))}
+
+            {isSelecting &&
+              selection.type === "roots" &&
+              selection.indices.length > 0 && (
+                <button
+                  className={styles.actionButton}
+                  disabled={isCycling || selection.indices.length === 0}
+                  onClick={() => cycleSelection()}
+                >
+                  <i className="fas fa-sync-alt"></i> Cycle{" "}
+                  {selection.indices.length}{" "}
+                  {selection.type === null
+                    ? "point"
+                    : selection.type === "coeffs"
+                    ? "coefficient"
+                    : "root"}
+                  {selection.indices.length !== 1 && "s"}
+                </button>
+              )}
           </GraphWindow>
         </div>
-        <Markdownify noParagraph={true}>
-          {String.raw`$\text{Roots}$`}
-        </Markdownify>
       </div>
       <div className={styles.controls}>
         <div>
@@ -284,7 +327,7 @@ export default function QuinticInteractive() {
           </button>
         </div>
 
-        <div>
+        {/* <div>
           {isSelecting && selection.indices.length > 0 && (
             <button
               className={styles.actionButton}
@@ -301,7 +344,7 @@ export default function QuinticInteractive() {
               {selection.indices.length !== 1 && "s"}
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
