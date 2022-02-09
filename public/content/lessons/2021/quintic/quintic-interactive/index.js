@@ -59,47 +59,32 @@ export default function QuinticInteractive() {
   };
 
   const [isSelecting, setIsSelecting] = useState(false);
-  const [selection, setSelection] = useState({ type: null, indices: [] });
+  const [selection, setSelection] = useState({ coeffs: [], roots: [] });
 
-  const togglePointSelected = (type, index) => {
+  const togglePointSelected = (type, point) => {
+    const otherType = type === "coeffs" ? "roots" : "coeffs";
     setSelection((selection) => {
-      let newSelection;
-      if (selection === null) {
-        newSelection = { type: null, indices: [] };
-      } else {
-        newSelection = { ...selection };
-      }
-
-      if (selection.type === null || selection.type === type) {
-        if (newSelection.indices.includes(index)) {
-          newSelection.indices = newSelection.indices.filter(
-            (i) => i !== index
-          );
-          if (newSelection.indices.length === 0) {
-            newSelection.type = null;
-          }
-        } else {
-          newSelection.indices.push(index);
-          newSelection.type = type;
-        }
-      }
-
-      return newSelection;
+      const isSelected = selection[type].includes(point);
+      return {
+        [otherType]: [],
+        [type]: isSelected
+          ? selection[type].filter((p) => p !== point)
+          : [...selection[type], point],
+      };
     });
   };
 
   const [isCycling, setIsCycling] = useState(false);
-  const cycleSelection = () => {
+  const cyclePoints = (type, indices) => {
     if (isCycling) return;
 
     setIsCycling(true);
 
-    let currentValues =
-      selection.type === "coeffs" ? [...coefficients] : [...roots];
+    let currentValues = type === "coeffs" ? coefficients : roots;
 
-    const cycler = getPointCycler(currentValues, selection.indices);
+    const cycler = getPointCycler(currentValues, indices);
 
-    const duration = selection.indices.length === 1 ? 2000 : 1600;
+    const duration = indices.length === 1 ? 2000 : 1600;
 
     const startTime = Date.now();
     const update = () => {
@@ -112,7 +97,7 @@ export default function QuinticInteractive() {
         setIsCycling(false);
       }
 
-      if (selection.type === "coeffs") {
+      if (type === "coeffs") {
         setCoefficients(cycler(t));
       } else {
         setRoots(cycler(t));
@@ -167,15 +152,11 @@ export default function QuinticInteractive() {
                       : undefined
                   }
                   onClick={
-                    isSelecting && selection.type !== "roots"
+                    isSelecting
                       ? () => togglePointSelected("coeffs", i)
                       : undefined
                   }
-                  selected={
-                    isSelecting &&
-                    selection.type === "coeffs" &&
-                    selection.indices.includes(i)
-                  }
+                  selected={isSelecting && selection.coeffs.includes(i)}
                   size={12}
                   color="red"
                   label={
@@ -194,24 +175,17 @@ export default function QuinticInteractive() {
               </Fragment>
             ))}
 
-            {isSelecting &&
-              selection.type === "coeffs" &&
-              selection.indices.length > 0 && (
-                <button
-                  className={styles.actionButton}
-                  disabled={isCycling || selection.indices.length === 0}
-                  onClick={() => cycleSelection()}
-                >
-                  <i className="fas fa-sync-alt"></i> Cycle{" "}
-                  {selection.indices.length}{" "}
-                  {selection.type === null
-                    ? "point"
-                    : selection.type === "coeffs"
-                    ? "coefficient"
-                    : "root"}
-                  {selection.indices.length !== 1 && "s"}
-                </button>
-              )}
+            {isSelecting && selection.coeffs.length > 0 && (
+              <button
+                className={styles.actionButton}
+                disabled={isCycling}
+                onClick={() => cyclePoints("coeffs", selection.coeffs)}
+              >
+                <i className="fas fa-sync-alt"></i> Cycle{" "}
+                {selection.coeffs.length}{" "}
+                {selection.coeffs.length === 1 ? "coefficient" : "coefficients"}
+              </button>
+            )}
           </GraphWindow>
         </div>
       </div>
@@ -258,15 +232,11 @@ export default function QuinticInteractive() {
                       : undefined
                   }
                   onClick={
-                    isSelecting && selection.type !== "coeffs"
+                    isSelecting
                       ? () => togglePointSelected("roots", i)
                       : undefined
                   }
-                  selected={
-                    isSelecting &&
-                    selection.type === "roots" &&
-                    selection.indices.includes(i)
-                  }
+                  selected={isSelecting && selection.roots.includes(i)}
                   size={12}
                   color="yellow"
                   label={
@@ -285,24 +255,17 @@ export default function QuinticInteractive() {
               </Fragment>
             ))}
 
-            {isSelecting &&
-              selection.type === "roots" &&
-              selection.indices.length > 0 && (
-                <button
-                  className={styles.actionButton}
-                  disabled={isCycling || selection.indices.length === 0}
-                  onClick={() => cycleSelection()}
-                >
-                  <i className="fas fa-sync-alt"></i> Cycle{" "}
-                  {selection.indices.length}{" "}
-                  {selection.type === null
-                    ? "point"
-                    : selection.type === "coeffs"
-                    ? "coefficient"
-                    : "root"}
-                  {selection.indices.length !== 1 && "s"}
-                </button>
-              )}
+            {isSelecting && selection.roots.length > 0 && (
+              <button
+                className={styles.actionButton}
+                disabled={isCycling}
+                onClick={() => cyclePoints("roots", selection.roots)}
+              >
+                <i className="fas fa-sync-alt"></i> Cycle{" "}
+                {selection.roots.length}{" "}
+                {selection.roots.length === 1 ? "root" : "roots"}
+              </button>
+            )}
           </GraphWindow>
         </div>
       </div>
@@ -313,7 +276,7 @@ export default function QuinticInteractive() {
             disabled={!isSelecting}
             onClick={() => {
               setIsSelecting(false);
-              setSelection({ type: null, indices: [] });
+              setSelection({ coeffs: [], roots: [] });
             }}
           >
             <i className="fas fa-arrows-alt"></i> Move
@@ -326,25 +289,6 @@ export default function QuinticInteractive() {
             <i className="fas fa-hand-pointer"></i> Select
           </button>
         </div>
-
-        {/* <div>
-          {isSelecting && selection.indices.length > 0 && (
-            <button
-              className={styles.actionButton}
-              disabled={isCycling || selection.indices.length === 0}
-              onClick={() => cycleSelection()}
-            >
-              <i className="fas fa-sync-alt"></i> Cycle{" "}
-              {selection.indices.length}{" "}
-              {selection.type === null
-                ? "point"
-                : selection.type === "coeffs"
-                ? "coefficient"
-                : "root"}
-              {selection.indices.length !== 1 && "s"}
-            </button>
-          )}
-        </div> */}
       </div>
     </div>
   );
