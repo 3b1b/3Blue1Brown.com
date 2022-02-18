@@ -85,12 +85,6 @@ export default function NewtonsFractalInteractive() {
                 }}
               />
               <GraphLines
-                step={0.2}
-                color="rgba(255, 255, 255, 0.2)"
-                labels={false}
-              />
-              <GraphLines
-                step={1}
                 color="rgba(255, 255, 255, 0.5)"
                 labels={true}
                 labelY={(n) => `${n}i`}

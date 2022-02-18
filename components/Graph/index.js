@@ -118,6 +118,7 @@ export function GraphPoint({
   onClick = null,
   label = null,
   selected = false,
+  glow = false,
 }) {
   const { range, windowRef } = useGraph();
 
@@ -217,9 +218,11 @@ export function GraphPoint({
         background: color,
         borderRadius: 9999,
         border: `${size / 8}px solid white`,
-        boxShadow: selected
-          ? `0 0 0 ${size / 8}px black, 0 0 ${size / 4}px ${size / 4}px white`
-          : `0 0 0 ${size / 8}px black`,
+        boxShadow:
+          (selected
+            ? `0 0 0 ${size / 8}px black, 0 0 ${size / 4}px ${size / 4}px white`
+            : `0 0 0 ${size / 8}px black`) +
+          (glow ? `, 0 0 10px ${size / 8}px ${color}` : ""),
 
         position: "absolute",
         left: `${toRelativePos(x, range[0]) * 100}%`,
@@ -327,7 +330,7 @@ export function GraphTrail({
 }
 
 export function GraphLines({
-  step = 1,
+  step = undefined,
   color = "white",
   thickness = 1,
   labels = true,
@@ -336,7 +339,9 @@ export function GraphLines({
 }) {
   const { range, windowSize } = useGraph();
 
-  step = 2 ** Math.floor(Math.log2((0.4 * (range[0][1] - range[0][0])) / 2));
+  if (step === undefined) {
+    step = 2 ** Math.floor(Math.log2((0.4 * (range[0][1] - range[0][0])) / 2));
+  }
 
   let vertPositions = [];
   for (

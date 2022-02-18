@@ -3,39 +3,84 @@
   height: 420px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "controls controls"
-    "coeffs roots";
+    "controls controls controls controls controls controls"
+    "coeffs coeffs coeffs roots roots roots";
   gap: 13px;
+  padding: 0 13px;
 
   align-items: stretch;
   justify-items: center;
   align-content: center;
-}
 
-.coeffs {
-  grid-area: coeffs;
-  padding-left: 13px;
-}
-
-.roots {
-  grid-area: roots;
-  padding-right: 13px;
+  &.cubic {
+    height: 540px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "controls controls controls controls controls controls"
+      "coeffs coeffs coeffs roots roots roots"
+      "part1 part1 part2 part2 part3 part3";
+  }
 }
 
 .coeffs,
 .roots {
   color: white;
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .graph {
+    margin-top: 8px;
+  }
+}
+
+.coeffs {
+  grid-area: coeffs;
+}
+
+.roots {
+  grid-area: roots;
+}
+
+.cubicHeader {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.part1,
+.part2,
+.part3 {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .graph {
+    margin-bottom: 8px;
+  }
+}
+
+.part1 {
+  grid-area: part1;
+}
+
+.part2 {
+  grid-area: part2;
+}
+
+.part3 {
+  grid-area: part3;
 }
 
 .graph {
   border: 1px solid white;
   border-radius: 4px;
   overflow: hidden;
-  margin-top: 8px;
   font-size: 12px;
 }
 
@@ -44,6 +89,7 @@
   justify-self: start;
   display: flex;
   background: #333;
+  margin: 0 -13px;
 }
 
 .controlButton {
