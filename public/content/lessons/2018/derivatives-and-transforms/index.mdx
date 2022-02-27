@@ -64,13 +64,44 @@ What we mean by that is that the derivative of the function is a new function wh
 
 </Question>
 
-I’d encourage you not think of this derivative-as-slope idea as being the definition of the derivative; instead think of the derivative as asking how sensitive is the function to tiny nudges around a given input. The slope of the graph is just one way to think about that sensitivity, relevant only to this particular way of viewing functions. I have not just another video, but a full series on this topic if you wish to learn more about it.
+I’d encourage you not think of this derivative-as-slope idea as being the definition of the derivative; instead think of the derivative as asking how sensitive is the function to tiny nudges around a given input. The slope of the graph is just one way to think about that sensitivity, relevant only to this particular way of viewing functions. I have not just another video, but a <LessonLink id="essence-of-calculus">full series</LessonLink> on this topic if you wish to learn more about it.
 
-The basic idea behind the alternate visual for the derivative is to think of the function as mapping all possible inputs on a number line to their corresponding outputs on a different number line, in which case the derivative gives a measure of how much this input space gets stretched or squished in various regions. That is, if you zoom in around some specific input, and look at some evenly spaced points around it, the derivative of the function at that input will tell you how spread out or contracted those points become.
+The basic idea behind the alternate visual for the derivative is to think of the function as mapping all possible inputs on a number line to their corresponding outputs on a different number line.
 
-Here, a specific example helps. The function x2 maps the point at 1 to 1, the point at 2 to 4, the point at 3 to 9, and so on. You could also see how it acts on all of the points in between. If you were to zoom in on a little cluster of points around 1, and see where they land around the relevant output, which for this function happens to also be 1, you’d notice they get stretched out. In fact, it roughly looks like stretching out by a factor of 2. And the closer you zoom in, the more this local behavior just looks like multiplying by a factor of 2. This is what it means for the derivative of x2 at x=1 to be 2; it’s what that fact looks like in the context of transformations.
+<Figure image="transform_2.png" video="transform_2.mp4" show="video"/>
 
-If you looked at a neighborhood of points around the input 3, they would roughly get stretched out by a factor of 6, which is what it means for the derivative of this function at the input 3 to be 6. Around the input ¼, a small region tends to get contracted by a factor of ½, which is what it looks like for a derivative to be smaller than 1.
+In this case the derivative gives a measure of how much this input space gets stretched or squished in various regions. That is, if you zoom in around some specific input, and look at some evenly spaced points around it, the derivative of the function at that input will tell you how spread out or contracted those points become.
+
+<Figure image="transform_3.png" video="transform_3.mp4" show="video"/>
+
+Here, a specific example helps. The function $f(x) = x^2$ maps the point at $1$ to $1$, the point at $2$ to $4$, the point at $3$ to $9$, and so on. 
+
+<Figure image="transform_4.png"/>
+
+If you were to zoom in on a little cluster of points around $1$, and see where they land around the relevant output, which for this function happens to also be $1$, you’d notice they get stretched out. 
+
+<Figure image="transform_5.png" video="transform_5.mp4" show="video"/>
+
+In fact, it roughly looks like stretching out by a factor of $2$. And the closer you zoom in, the more this local behavior just looks like multiplying by a factor of $2$. This is what it means for the derivative of $x^2$ at $x=1$ to be $2$; it’s what that fact looks like in the context of transformations.
+
+If you looked at a neighborhood of points around the input $3$, they would roughly get stretched out by a factor of 6, which is what it means for the derivative of this function at the input $3$ to be $6$.
+
+<Figure image="transform_6.png" video="transform_6.mp4" show="video"/>
+
+<Question
+    question="Around the point $x=\frac{1}{4}$, what factor would the surrounding points stretch out by?"
+    choice1="$\frac{1}{2}$"
+    choice2="$\frac{1}{4}$"
+    choice3="$\frac{1}{8}$"
+    choice4="$\frac{1}{16}$"
+    answer={1}
+>
+
+The derivative of $x^2$ at $x=\frac{1}{4}$ is $\frac{1}{2}$, so the surrounding points would stretch out by a factor of $\frac{1}{2}$.
+
+<Figure image="transform_7.png" />
+
+</Question>
 
 The input zero is interesting: Zooming in by a factor of 10, it doesn’t exactly look like a constant stretching or squishing. For one thing, all the outputs end up on the right positive side of things. As we zoom in closer, by 100x, or 1,000x, it looks more and more like the small neighborhood around zero gets collapsed to a point. This is what it looks like for a derivative to be 0, the local behavior looks more and more like multiplying a number line by 0. It doesn’t have to completely collapse things to a point at any particular zoom level; instead it’s a matter of what the limiting behavior is here.
 
