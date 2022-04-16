@@ -103,15 +103,15 @@ The derivative of $x^2$ at $x=\frac{1}{4}$ is $\frac{1}{2}$, so the surrounding 
 
 </Question>
 
-The input zero is interesting: Zooming in by a factor of 10, it doesn't exactly look like a constant stretching or squishing. 
+The input zero is interesting: Zooming in by a factor of $10$, it doesn't exactly look like a constant stretching or squishing. 
 
 <Figure image="transform_8.png" video="transform_8.mp4" show ="video"/>
 
-For one thing, all the outputs end up on the right positive side of things. As we zoom in closer, by 100x, or 1,000x, it looks more and more like the small neighborhood around zero gets collapsed to a point. 
+For one thing, all the outputs end up on the right positive side of things. As we zoom in closer, by $100$x, or $1,000$x, it looks more and more like the small neighborhood around zero gets collapsed to a point. 
 
 <Figure image="transform_9.png" video="transform_9.mp4" show ="video"/>
 
-This is what it looks like for a derivative to be 0, the local behavior looks more and more like multiplying a number line by 0. It doesn't have to completely collapse things to a point at any particular zoom level; instead it's a matter of what the limiting behavior is here.
+This is what it looks like for a derivative to be $0$, the local behavior looks more and more like multiplying a number line by $0$. It doesn't have to completely collapse things to a point at any particular zoom level; instead it's a matter of what the limiting behavior is here.
 
 If you also considered negative inputs, things start to feel a little cramped, since these collide with all those positive input values. This is one downside of thinking of functions transformations. But for derivatives, we only care about local behavior anyway; that is, what happens in a small range around a given input. 
 
@@ -187,41 +187,81 @@ After all, if you start with $\frac{-1}{\varphi}$, then apply the function $1 + 
 
 <Figure image="inf_4.png" />
 
-Well, even then, there is one reason you view $\varphi$ as the favorite brother in this pair. Try this, pull up a calculator of some kind, start with any random number, then plug it into this function 1 + 1/x; Then do it again. And again. And again and again and again. No matter what constant you start with, you will eventually end up at 1.618. Even if you start with a negative number, even one really really close phi's little brother, eventually it will shy away from that value and jump back to phi.  So what's going on here? Why is one of these fixed points favored over the other?
+Well, even then, there is one reason you view $\varphi$ as the favorite brother in this pair. Try this, pull up a calculator of some kind, start with any random number, then plug it into this function $1 + \frac{1}{x}$. Then do it again. And again. And again and again and again. 
+
+<Figure image="inf_5.png" />
+
+No matter what constant you start with, you will eventually end up at $1.618$. Even if you start with a negative number, even one really really close $\varphi$'s little brother, eventually it will shy away from that value and jump back to phi.
+
+<Figure image="inf_6.png" />
+
+So what's going on here? Why is one of these fixed points favored over the other?
 
 Maybe you can already see how the transformational understanding of derivatives will help us to understand this setup, but for the sake of having a point of contrast, let me show how a problem like this is often taught using graphs.
 
-If you plug in some random input to this function, the y-value tells you the corresponding output. To think about plugging that output back into the function, you might first move horizontally until you hit the line y=x, which will get you to a position where the x-value corresponds to your previous output, and then move vertically to see what the output at this new x-value is. Then repeat: Move horizontally to the line y=x to find a point whose x-value is the same as the output you just got, then move vertically to apply the function.
+If you plug in some random input to this function, the $y$-value tells you the corresponding output. 
 
-Personally, I think this is kind of an awkward way to think about repeatedly applying a function, don't you? I mean, it makes sense, but you kind of have to pause to think about it to remember which way to draw the lines. You can, if you want, think through what conditions make this spider-web process narrow in on a fixed point, vs. propagating away from it. In fact, go ahead, pause right now and try thinking it through as an exercise, it has to do with slopes.
+<Figure image="inf_7.png" />
 
-But let's turn to how this function acts as a transformation. What does it look like to repeatedly apply the 1 + 1/x in this context? Well, after letting it map all input points to outputs, you consider those as the new inputs and apply that same process again and again. Notice how in animating this with these dots representing some sample points, it doesn't take many iterations at all for most dots to clump in around 1.618.
+To think about plugging that output back into the function, you might first move horizontally until you hit the line $y=x$, which will get you to a position where the $x$-value corresponds to your previous output. 
 
-Now, we know that 1.618 and its little brother -0.618 stay fixed in place during each iteration of this process, but zoom in on the neighborhood around 1.618. During the map, points in that region get contracted around phi, meaning the function 1 + 1/x has a derivative with magnitude less than 1 at the input phi. In fact, this derivative works out to be around -0.38 at the input phi. So each repeated application scrunches that neighborhood smaller, like a gravitational pull towards phi.
+<Figure image="inf_8.png" />
 
-So now tell me what you think happens in a neighborhood of phi's little brother. There, the derivative has a magnitude larger than 1, so points near this fixed point are repelled away from it, by more than a factor of 2 each iteration. Mathematicians would call this right value a “stable” fixed point, while the left one is an “unstable fixed point”. Something is considered stable if when you perturb it a little, it tends to come back towards where it started, rather than going away.
+Then, you can move vertically to see what the output at this new $x$-value is.  
 
-So the stability of a fixed point is determined by whether the magnitude of its derivative is bigger or smaller than 1, and this explains why phi always shows up in the numerical play, and phi's little brother does not. As to whether or not you want to consider phi's little brother a valid value of our infinite fraction? Well, that's really up to you. Everything we just showed suggests that if you think of this expression as representing a limiting process, only phi makes sense. But maybe you think of it not as a limit, but as a static, purely algebraic object.
+<Figure image="inf_9.png" />
+
+Then repeat: Move horizontally to the line $y=x$ to find a point whose $x$-value is the same as the output you just got, then move vertically to apply the function.
+
+<Figure image="inf_10.png" />
+
+Personally, I think this is kind of an awkward way to think about repeatedly applying a function, don't you? I mean, it makes sense, but you kind of have to pause to think about it to remember which way to draw the lines. You can, if you want, think through what conditions make this spider-web process narrow in on a fixed point, vs. propagating away from it. 
+
+<Figure image="inf_11.png" />
+
+<b>Try thinking about it. In what cases would the result propagate away from the initial starting value, and in what cases would it narrow down?</b>
+
+<FreeResponse>
+
+Take a look at the diagram above...Fill in answer here
+
+</FreeResponse>
+
+But let's turn to how this function acts as a transformation. 
+
+<Figure image="inf_12.png" />
+
+What does it look like to repeatedly apply the $1 + \frac{1}{x}$ in this context? Well, after letting it map all input points to outputs, you consider those as the new inputs and apply that same process again and again. 
+
+<Figure image="inf_13.png" video="inf_13.mp4" show="video" />
+
+Notice how in animating this with these dots representing some sample points, it doesn't take many iterations at all for most dots to clump in around $1.618$.
+
+Now, we know that $1.618$ and its little brother $-0.618$ stay fixed in place during each iteration of this process, but zoom in on the neighborhood around $1.618$. 
+
+<Figure image="inf_14.png" video="inf_14.mp4" show="video" />
+
+During the map, points in that region get contracted around $\varphi$, meaning the function $1 + \frac{1}{x}$ has a derivative with magnitude less than 1 at the input phi. In fact, this derivative works out to be around $-0.38$ at the input $\varphi$. So each repeated application scrunches that neighborhood smaller, like a gravitational pull towards $\varphi$.
+
+So now tell me what you think happens in a neighborhood of $\varphi$'s little brother. 
+
+<Figure image="inf_15.png" video="inf_15.mp4" show="video" />
+
+There, the derivative has a magnitude larger than $1$, so points near this fixed point are repelled away from it, by more than a factor of $2$ each iteration. Mathematicians would call this right value a “stable” fixed point, while the left one is an “unstable fixed point”. Something is considered stable if when you perturb it a little, it tends to come back towards where it started, rather than going away.
+
+<Figure image="inf_16.png" />
+
+So the stability of a fixed point is determined by whether the magnitude of its derivative is bigger or smaller than $1$, and this explains why $\varphi$ always shows up in the numerical play, and $\varphi$'s little brother does not. As to whether or not you want to consider $\varphi$'s little brother a valid value of our infinite fraction? Well, that's really up to you. Everything we just showed suggests that if you think of this expression as representing a limiting process, only phi makes sense. But maybe you think of it not as a limit, but as a static, purely algebraic object.
+
+<PiCreature
+  emotion="happy"
+  text="Either way, math is cool!"
+/>
 
 My point here not that understanding derivatives as measuring changes in density like this is somehow better than the graphical view on the whole. In fact, picturing an entire function this way, as opposed to a small window, can be clunky and impractical as compared to graphs. My point is that it deserves more of a mention in most introductory calculus courses, and can help make a student's understanding of the derivative a little more flexible.
 
-But as I mentioned, the real reason I'd recommend you carry this perspective with you as you learn new topics is not so much for how it will strengthen your understanding of single-variable calculus, but for what comes after. There are many topics typically taught in a college math department, which...how shall I put this...don't exactly have a reputation of being incredibly accessible.
+But as I mentioned, the real reason I'd recommend you carry this perspective with you as you learn new topics is not so much for how it will strengthen your understanding of single-variable calculus, but for what comes after. There are many topics typically taught in a college math department, which don't exactly have a reputation of being incredibly accessible. 
 
-So in the next video, I'm going to show you how a few ideas from these subjects with fancy sounding names, like “holomorphic functions” and “the jacobian determinant”, are really just extensions of the idea shown here. They really are some beautiful ideas which I think can be appreciated from a wide range of backgrounds, and they're relevant to a surprising number of seemingly unrelated topics, so stay tuned for that.
-End message
-For the final animation here, I want to just show more of that time-dependent vector field, but first let's look at some of the principles of learning of this video's sponsor, Brilliant.org.
+<Figure image="inf_17.png" />
 
-There's a lot of good stuff on this list, but take a look at #2. Effective math and science learning cultivates curiosity. I love the word choice here; it's not just that you should be curious in one moment, it means creating a context where that curiosity is constantly growing.
-
-Just look at infinite fraction example here. It's one thing to be curious about why the numbers bounce around the way they do, but hopefully the conclusion is not simply to understand this one example, I'd want you to start looking at all sorts of other infinite expressions and wonder if there's some fixed-point phenomenon in them; or to wonder where else this view of derivatives is conceptually helpful.
-
-Brilliant.org is a site where you can learn math and science topics through active problem solving, and if you go take a look I think you'll agree that they really do adhere to these learning principles. Coming from this video you would probably enjoy their “calculus done right” lessons, and they also have many other courses in various math and science topics. Much of it you can check out for free, but they also have a subscription service that gives you access to all sorts of nice guided problems.
-
-Going to brilliant.org/3b1b let's them know you came from this channel, and can get you 20% off their annual subscription.
-To start, he noticed that if you take the function 1 + 1/x and evaluate it at some arbitrary input, then plug that back into the function, then plug that back into the function, and just continue, then symbolically what you get starts to look more and more like the relevant infinite fraction. And numerically, if you initially set x to be some arbitrary value, then re-assign it to be this function applied to itself, then do that again...and again, and again and again, no matter what input you start with this seems to approach the special constant 1.618…, the golden ratio “phi”.
-
-Why phi? Well, one clue is that it has the special property that 1/phi is one less than itself, so when you plug it into 1 + 1/x, you just get the same number back. In other words, it is a fixed point of this function. Also, looking at the infinite fraction, you could say that if this equals any number at all, x, then because there is another copy of the infinite fraction inside itself, that number x should satisfy the equation x = 1 + 1/x.
-
-But here's the conundrum: There are actually two values of x satisfying this equation. Looking at where the graph of y = 1 + 1/x crosses the graph of y = x, not only do we see our familiar friend 1.618…, there's another solution at -0.618…I like to call this number phi's little brother, since just about any special property phi has, this constant also has.
-
-For our infinite fraction, following the method of setting it equal to x and finding x within itself, this sort of makes it feel like we should also be able to say that it has a second possible value. But the question my friend asked was why the numerical play of repeatedly plugging answers back into the function 1 + 1/x always seems to converge towards 1.618…, and never to its little brother, even though that's also a fixed point. Even if you start with a negative number, even one really close to -0.618, it always runs away back towards phi. Why is one fixed point apparently favored above the other? Well, a little calculus gives a very nice answer.
+Understanding the transformation view of derivatives provides a great pathway into topics such as multivariable calculus, complex analysis and differential geometry.
