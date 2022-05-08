@@ -253,6 +253,104 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 This is some text with a footnote.[^1] Pretty cool, right!?
 
+Here is a desmos graph using every default prop setting.
+
+<Desmos options={{
+  keypad: true,
+  graphpaper: true,
+  expressions: true,
+  settingsMenu: true,
+  zoomButtons: true,
+  showResetButtonOnGraphpaper: false,
+  expressionsTopbar: true,
+  pointsOfInterest: true,
+  trace: true,
+  border: true,
+  lockViewport: false,
+  expressionsCollapsed: false,
+  capExpressionSize: false,
+  administerSecretFolders: false,
+  images: true,
+  imageUploadCallback: (img) => { console.log('sending image', img)},
+  folders: true,
+  notes: true,
+  sliders: true,
+  actions: 'auto',
+  links: true,
+  qwertyKeyboard: true,
+  distributions: true,
+  restrictedFunctions: false,
+  forceEnableGeometryFunctions: false,
+  pasteGraphLink: false,
+  pasteTableData: true,
+  clearIntoDegreeMode: false,
+  autosize: true,
+  plotInequalities: true,
+  plotImplicits: true,
+  plotSingleVariableImplicitEquation: true,
+  projectorMode: false,
+  decimalToFraction: true,
+  fontSize: 16,
+  invertedColors: false,
+  language: 'en',
+  brailleMode: 'none',
+  sixKeyInput: false,
+  brailleControls: true,
+  audio: true,
+  zoomFit: true,
+  forceLogModeRegressions: false,
+}} settings={{
+  degreeMode: false,
+  showGrid: true,
+  polarMode: false,
+  showXAxis: true,
+  showYAxis: true,
+  xAxisNumbers: true,
+  yAxisNumbers: true,
+  polarNumbers: true,
+  xAxisStep: 0,
+  yAxisStep: 0,
+  xAxisMinorSubdivisions: 0,
+  yAxisMinorSubdivisions: 0,
+  xAxisArrowMode: 'NONE',
+  yAxisArrowMode: 'NONE',
+  xAxisLabel: '',
+  yAxisLabel: '',
+  randomSeed: '',
+}}
+expressions={[
+  {
+    id: "MyExpression",
+    type: "expression",
+    latex: "y=mx+b",
+    color: "#ff7700",
+    lineWidth: "2.5",
+    lineOpacity: .9,
+    pointSize: "9",
+    pointOpacity: ".9",
+    fillOpacity: ".4",
+    hidden: false,
+    secret: false,
+    dragMode: "AUTO",
+    label: "A text label",
+    showLabel: false,
+  },
+  {
+    id: "m",
+    latex: "m=2",
+    sliderBounds: {min: "0", max: "2", step: ""},
+  },
+  {
+    id: "b",
+    latex: "b=2",
+    sliderBounds: {mind: "0", max: "10", step: 1}
+  }
+]} 
+/>
+
+Here is a desmos graph using almost no props.
+<Desmos options={{expressions: false}} expressions={[ { latex: "y=x^2 - 1" }]} />
+
 [^1]: Hello, world!
 
     What's up?

@@ -5,6 +5,7 @@ import Section from "../Section";
 import topics from "../../data/topics.yaml";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
 import styles from "./index.module.scss";
+import Image from "next/image";
 
 export default function LessonVideo({ timestamp, defaultToWide }) {
   const {
@@ -40,7 +41,7 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
 
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
-    if(!wideVideo) toggleExpansion();
+    if (!wideVideo) toggleExpansion();
     setShowCoverImage(false);
   };
 
@@ -50,12 +51,9 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
     <Section
       id="video-section"
       dark={true}
-      width={wideVideo ? "wide" : "narrow"}
+      width={wideVideo ? "full" : "narrow"}
     >
-      <div
-        className={styles.videoArea}
-        data-showcoverimage={showCoverImage}
-      >
+      <div className={styles.videoArea} data-showcoverimage={showCoverImage}>
         {topic && (
           <Link href={`/topics/${topic.slug}`}>
             <a className={styles.topicLink}>
@@ -87,11 +85,15 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
           <div className={styles.video}>
             {showCoverImage && (
               <button className={styles.coverButton} onClick={startVideo}>
-                <img
-                  className={styles.coverImage}
-                  src={thumbnail}
-                  alt="Youtube video"
-                />
+                <div
+                  style={{
+                    aspectRatio: "1.77 / 1",
+                    width: "100%",
+                    position: "relative",
+                  }}
+                >
+                  <Image src={thumbnail} alt="Youtube video" layout="fill" />
+                </div>
                 <svg
                   className={styles.coverPlayButton}
                   height="100%"
@@ -112,7 +114,9 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
                 <iframe
                   title="YouTube Video"
                   className={styles.iframe}
-                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${ timestamp ? '&start=' + timestamp : '' }`}
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${
+                    timestamp ? "&start=" + timestamp : ""
+                  }`}
                   allow="autoplay"
                   allowFullScreen
                 />

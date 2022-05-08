@@ -13,7 +13,11 @@
 }
 
 .thumbnail {
-  width: 200px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.77 / 1;
+  max-height: 200px;
+  max-width: 200px;
   margin-right: 24px;
 }
 

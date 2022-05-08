@@ -9,6 +9,8 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
 import { transformSrc } from "../../util/transformSrc";
+import Image from "next/image";
+import { TextField } from "@mui/material";
 
 LessonGallery.propTypes = {
   show: PropTypes.oneOf(["topic", "all", "written"]),
@@ -44,7 +46,7 @@ export default function LessonGallery({ show = "topic" }) {
     }
     if (view === "search") {
       return sorted_lessons.filter((lesson) =>
-        matchesSearch(lesson, searchText)
+        matchesSearch(lesson, searchText),
       );
     }
     // Otherwise, return all by date
@@ -79,16 +81,12 @@ export default function LessonGallery({ show = "topic" }) {
           active={view === "written"}
         />
 
-        <div className={styles.search} data-active={view === "search"}>
-          <i className="fas fa-search" />
-          <input
-            type="text"
-            value={searchText}
-            onChange={(event) => {
-              setSearchText(event.target.value);
-            }}
-          />
-        </div>
+        <TextField
+          label="Search"
+          onChange={(ev) => {
+            setSearchText(ev.target.value);
+          }}
+        />
       </div>
       {view === "topic" && (
         <Center>
@@ -122,11 +120,19 @@ const TopicCard = ({ topic }) => {
   return (
     <Link href={`/topics/${topic.slug}`}>
       <a className={styles.topic_card}>
-        <img
-          className={styles.image}
-          src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
-          alt={topic.name}
-        />
+        <div
+          style={{
+            width: "300px",
+            height: "168.75px",
+            position: "relative",
+          }}
+        >
+          <Image
+            layout="fill"
+            src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
+            alt={topic.name}
+          />
+        </div>
         <span className={styles.title}>{topic.name}</span>
       </a>
     </Link>

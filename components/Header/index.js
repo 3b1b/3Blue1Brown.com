@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Background from "./background";
 import Tooltip from "../Tooltip";
@@ -66,7 +66,11 @@ const Nav = () => {
         tooltip="Interviews about math and education"
       />
       <NavLink link="/blog" text="Blog" tooltip="Writing about math and more" />
-      <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
+      <NavLink
+        link="/extras"
+        text="Extras"
+        tooltip="Work elsewhere on the web"
+      />
 
       <div className={styles.break} />
 
@@ -80,11 +84,7 @@ const Nav = () => {
         text="Store"
         tooltip="Shirts, plushies, and more"
       />
-      <NavLink
-        link="/contact"
-        text="Contact"
-        tooltip="FAQs and contact info"
-      />
+      <NavLink link="/contact" text="Contact" tooltip="FAQs and contact info" />
       <NavLink
         link="/about"
         text="About"
@@ -94,14 +94,20 @@ const Nav = () => {
   );
 };
 
+const NextNavLink = React.forwardRef((props, ref) => {
+  return (
+    <Link href={props.link} passHref>
+      <a className={styles.link} ref={NextNavLink}>
+        {props.text}
+        {props.icon && <i className={props.icon} />}
+      </a>
+    </Link>
+  );
+});
+
 // nav bar link
 const NavLink = ({ link, text, icon, tooltip }) => (
-  <Link href={link} passHref>
-    <Tooltip content={tooltip}>
-      <a className={styles.link}>
-        {text}
-        {icon && <i className={icon} />}
-      </a>
-    </Tooltip>
-  </Link>
+  <Tooltip content={tooltip}>
+    <NextNavLink link={link} text={text} icon={icon} />
+  </Tooltip>
 );

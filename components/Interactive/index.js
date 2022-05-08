@@ -4,6 +4,7 @@ import { PageContext } from "../../pages/_app";
 import { useForceUpdate } from "../../util/hooks";
 import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
+import dynamic from "next/dynamic";
 
 Interactive.propTypes = {
   filename: PropTypes.string.isRequired,
@@ -36,7 +37,6 @@ export default function Interactive({
     if (fromCurrentDirectory) {
       filepath = dir.slice(1) + filepath;
     }
-
     import(`../../public/${filepath}.js`)
       .then((module) => (ref.current = module))
       .then(forceUpdate)
@@ -44,7 +44,7 @@ export default function Interactive({
         console.error(`Couldn't find interactive "public/${filepath}.js"`);
         console.error(err);
       });
-  }, [dir, fromCurrentDirectory, filename, forceUpdate]);
+  }, [dir, fromCurrentDirectory, filename, ref.current]);
 
   /*
     When creating an interactive, we don't want authors to have to
@@ -70,7 +70,7 @@ export default function Interactive({
 
       const newScale = Math.min(
         outerBox.height / innerBox.height,
-        outerBox.width / innerBox.width
+        outerBox.width / innerBox.width,
       );
       setScale(newScale);
     };
@@ -109,7 +109,6 @@ export default function Interactive({
   if (!ref.current) return null;
 
   const { default: defaultExport, ...otherExports } = ref.current;
-
   return (
     <div className={styles.interactiveWrapper}>
       <div

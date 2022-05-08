@@ -28,11 +28,8 @@ export default function FreeResponse({ children }) {
           rows={3}
         />
         <div className={styles.buttons}>
-          <Tooltip
-            className={styles.tooltip}
-            content="Use this box as a chance to slow down for a moment and test your own understanding. Your answer will not be saved; it's just for you."
-          >
-            ?
+          <Tooltip content="Use this box as a chance to slow down for a moment and test your own understanding. Your answer will not be saved; it's just for you.">
+            <div className={styles.tooltip}>?</div>
           </Tooltip>
           <Clickable
             className={styles.submit}

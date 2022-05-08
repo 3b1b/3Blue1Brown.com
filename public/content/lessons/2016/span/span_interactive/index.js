@@ -3,7 +3,7 @@
  * It uses p5.js to interface with WEBGL and draw a pair of vectors to a 3D environment.
  */
 
-import React from "react";
+import React, { useState } from "react";
 import Sketch from "react-p5";
 
 const WIDTH = 800;
@@ -21,9 +21,7 @@ export default function PyramidPlot() {
   let p5Object;
   let camera;
 
-  let VEC1;
-  let VEC2;
-  let VEC3;
+  const [vecs, setVecs] = useState(null);
 
   let VEC1_mag = 0.3;
   let VEC2_mag = 0.3;
@@ -40,16 +38,16 @@ export default function PyramidPlot() {
     camera = p5Object._curCamera;
     camera._orbit(moveX, moveY, 0);
 
-    VEC1 = sketch.createVector(2, 1, -0.5);
-    VEC2 = sketch.createVector(1.4, 2, -1);
-    VEC3 = VEC1.cross(VEC2);
-    console.log(VEC1, VEC2, VEC3);
+    const VEC1 = sketch.createVector(2, 1, -0.5);
+    const VEC2 = sketch.createVector(1.4, 2, -1);
+    const VEC3 = VEC1.cross(VEC2);
+    setVecs([VEC1, VEC2, VEC3]);
   }
 
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     scaleString = scaleString.substring(0, scaleString.length - 1);
     if (!scaleString.includes(".")) {
       scaleString += ".0";
@@ -141,24 +139,27 @@ export default function PyramidPlot() {
 
     sketch.push();
     drawAxes(sketch);
-    sketch.applyMatrix(
-      VEC1.x,
-      VEC2.x,
-      VEC3.x,
-      0,
-      VEC1.y,
-      VEC2.y,
-      VEC3.y,
-      0,
-      VEC1.z,
-      VEC2.z,
-      VEC3.z,
-      0,
-      0,
-      0,
-      0,
-      1
-    );
+    if (vecs) {
+      sketch.applyMatrix(
+        vecs[0].x,
+        vecs[1].x,
+        vecs[2].x,
+        0,
+        vecs[0].y,
+        vecs[1].y,
+        vecs[2].y,
+        0,
+        vecs[0].z,
+        vecs[1].z,
+        vecs[2].z,
+        0,
+        0,
+        0,
+        0,
+        1,
+      );
+    }
+
     drawVectors(sketch);
     sketch.pop();
   }

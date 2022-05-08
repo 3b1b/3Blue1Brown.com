@@ -9,7 +9,7 @@ import Sketch from "react-p5";
 const WIDTH = 700;
 const HEIGHT = 700;
 const EDGE = 0.9;
-const ANIM_TIME = 15;  // 60ths of a second
+const ANIM_TIME = 15; // 60ths of a second
 const WAIT_TIME = 5;
 
 export default function PyramidPlot() {
@@ -104,7 +104,7 @@ export default function PyramidPlot() {
       0,
       dartX,
       dartY,
-      lineFormatting
+      lineFormatting,
     );
     dartThrowAnimation.registerAnimation(ANIM_TIME, hlineAnimation, "cubic");
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
@@ -112,7 +112,7 @@ export default function PyramidPlot() {
     // Chord
     let hDistance = Math.hypot(dartX, dartY);
     let halfChordDistance = Math.sqrt(
-      gameRadius * gameRadius - hDistance * hDistance
+      gameRadius * gameRadius - hDistance * hDistance,
     );
     let chordX = (dartX / hDistance) * halfChordDistance;
     let chordY = (dartY / hDistance) * halfChordDistance;
@@ -121,33 +121,33 @@ export default function PyramidPlot() {
       dartY,
       -chordY + dartX,
       chordX + dartY,
-      lineFormatting
+      lineFormatting,
     );
     let chordAnimation = Animations.lineAnimation(
       dartX,
       dartY,
       chordY + dartX,
       -chordX + dartY,
-      lineFormatting
+      lineFormatting,
     );
 
     // Right angle
     let angleDistance = Math.min(halfChordDistance / 2, 0.05);
     let startPoint = crd(
       dartX - (dartX / hDistance) * angleDistance,
-      dartY - (dartY / hDistance) * angleDistance
+      dartY - (dartY / hDistance) * angleDistance,
     );
     let midPoint = crd(
       startPoint.x + (chordY / halfChordDistance) * angleDistance,
-      startPoint.y - (chordX / halfChordDistance) * angleDistance
+      startPoint.y - (chordX / halfChordDistance) * angleDistance,
     );
     let endPoint = crd(
       dartX + (chordY / halfChordDistance) * angleDistance,
-      dartY - (chordX / halfChordDistance) * angleDistance
+      dartY - (chordX / halfChordDistance) * angleDistance,
     );
     let rightAngleAnimation = Animations.zigzagAnimation(
       [startPoint, midPoint, endPoint],
-      lineFormatting
+      lineFormatting,
     );
 
     // Merge chord + right angle
@@ -171,13 +171,13 @@ export default function PyramidPlot() {
       chordX + dartY,
       chordY + dartX,
       -chordX + dartY,
-      lineFormatting
+      lineFormatting,
     );
     translateChordAnimation = Animations.freeze(translateChordAnimation, 1);
     translateChordAnimation = Animations.translateAnimation(
       translateChordAnimation,
       -dartX,
-      -dartY
+      -dartY,
     );
 
     // Merge fade + translate
@@ -185,7 +185,11 @@ export default function PyramidPlot() {
       fadeChordAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, chordToCenterAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      chordToCenterAnimation,
+      "cubic",
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Shrink circle
@@ -199,13 +203,17 @@ export default function PyramidPlot() {
     let shrinkCircleAnimation = Animations.circleRadiusAnimation(
       gameRadius,
       halfChordDistance,
-      circleFormatting
+      circleFormatting,
     );
     let newCircleAnimation = Animations.overlap([
       shrinkCircleAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, newCircleAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      newCircleAnimation,
+      "cubic",
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Fade old circle
@@ -223,7 +231,11 @@ export default function PyramidPlot() {
       translateChordAnimation,
       updateAlpha,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, completeCircleAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      completeCircleAnimation,
+      "cubic",
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
   }
 
@@ -247,21 +259,21 @@ export default function PyramidPlot() {
       360 + 90,
       0,
       crossRadius * Math.sqrt(2),
-      arcFormatting
+      arcFormatting,
     );
     let firstLineAnimation = Animations.lineAnimation(
       crossRadius,
       crossRadius,
       -crossRadius,
       -crossRadius,
-      arcFormatting
+      arcFormatting,
     );
     let secondLineAnimation = Animations.lineAnimation(
       -crossRadius,
       crossRadius,
       crossRadius,
       -crossRadius,
-      arcFormatting
+      arcFormatting,
     );
     let crossAnimation = Animations.overlap([
       arcAnimation,
@@ -291,7 +303,7 @@ export default function PyramidPlot() {
     let resetRadius = Animations.circleRadiusAnimation(
       gameRadius,
       1,
-      circleFormatting
+      circleFormatting,
     );
     makeScoreWhite = Animations.overlap([resetRadius, makeScoreWhite]);
 
@@ -385,7 +397,7 @@ export default function PyramidPlot() {
         console.log(
           "Animation with length " +
             this.frameLength +
-            " doesn't have an attached draw function!"
+            " doesn't have an attached draw function!",
         );
         return true;
       }
@@ -491,7 +503,7 @@ export default function PyramidPlot() {
 
       let done = this.animations[this.currentClip].animate(
         sketch,
-        this.currentFrame
+        this.currentFrame,
       );
 
       if (this.state == "pause") return;
@@ -648,7 +660,7 @@ export default function PyramidPlot() {
           points[i - 1].x,
           points[i - 1].y,
           points[i].x,
-          points[i].y
+          points[i].y,
         );
       }
 

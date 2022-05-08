@@ -81,6 +81,11 @@ const TableOfContents = () => {
     window.history.pushState(null, null, "#" + id);
   }, []);
 
+  const buttonStyles = {
+    position: "fixed",
+    left: "286px",
+    top: "-20px",
+  };
   return (
     <>
       <div
@@ -100,6 +105,7 @@ const TableOfContents = () => {
             }}
             tooltip={open ? "Close panel" : "Lesson table of contents"}
             style={{
+              ...(!open ? buttonStyles : {}),
               opacity: !open && !downEnough ? 0 : 1,
               pointerEvents: !open && !downEnough ? "none" : "",
             }}
@@ -110,6 +116,7 @@ const TableOfContents = () => {
             <a
               key={index}
               href={"#" + id}
+              aria-label={id + " link"}
               data-id={"#" + id}
               onClick={onNav}
               className={styles.link}
@@ -149,7 +156,7 @@ const getHeadings = () =>
         content: clone.innerHTML,
         level: Number(heading.tagName.match(/\d/)[0]),
       };
-    }
+    },
   );
 
 // get first heading in view

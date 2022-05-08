@@ -1,0 +1,82 @@
+.root {
+  width: 300px;
+  height: 300px;
+  margin-bottom: 16px;
+  padding: 40px 0px;
+  position: relative;
+}
+.circleSignal {
+  visibility: hidden;
+  height: 200px;
+  width: 250px;
+  position: absolute;
+  top: -45px;
+  left: 25px;
+  overflow: hidden;
+  &::before {
+    content: "";
+    filter: drop-shadow(0px 0px 4px grey);
+    position: absolute;
+    animation: grow 3s ease-out infinite;
+    border-radius: 50% 50%;
+    border-style: solid;
+    border-color: $blue;
+    border-left-color: #451800;
+    transform: rotate(45deg);
+  }
+  &::after {
+    content: "";
+    filter: drop-shadow(0px 0px 4px grey);
+    position: absolute;
+    animation: grow 3s 0.5s ease-out infinite;
+    border-radius: 50% 50%;
+    border-style: solid;
+    border-color: $blue;
+    border-left-color: #451800;
+    transform: rotate(45deg);
+  }
+}
+.stagger1 {
+  &::before {
+    animation-delay: 1s;
+  }
+  &::after {
+    animation-delay: 1.5s;
+  }
+}
+.stagger2 {
+  &::before {
+    animation-delay: 2s;
+  }
+  &::after {
+    animation-delay: 2.5s;
+  }
+}
+
+@keyframes grow {
+  0% {
+    visibility: visible;
+    height: 0px;
+    width: 0px;
+    top: calc(50% - 10px);
+    left: calc(50% - 4px);
+    border-width: 1px;
+    opacity: 0.4;
+  }
+  90% {
+    height: 300px;
+    width: 300px;
+    top: calc(50% - 155px);
+    left: calc(50% - 155px);
+    border-width: 10px;
+    opacity: 0;
+  }
+  100% {
+    height: 300px;
+    width: 300px;
+    top: calc(50% - 155px);
+    left: calc(50% - 155px);
+    border-width: 10px;
+    opacity: 0;
+  }
+}

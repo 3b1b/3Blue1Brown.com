@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { createContext, useContext } from "react";
 import Link from "next/link";
 import NormalLayout from "./NormalLayout";
 import PageContent from "../components/PageContent";
@@ -6,27 +6,33 @@ import Section from "../components/Section";
 import LessonVideo from "../components/LessonVideo";
 import LessonDetails from "../components/LessonDetails";
 import Patrons from "../components/Patrons";
-import Empty from "../components/Empty";
 import ShareButtons from "../components/ShareButtons";
 import LessonNav from "../components/LessonNav";
 import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
 import TableOfContents from "../components/TableOfContents";
 import { PageContext } from "../pages/_app";
+import { DesmosProvider } from "../components/Desmos/useDesmos";
+import "katex/dist/katex.min.css";
 
 // layout for lessons
 const LessonLayout = () => {
   const { empty, video, timestamp, content } = useContext(PageContext);
-  const has_sufficient_text = (content.length > 1000);
+  const has_sufficient_text = content.length > 1000;
   return (
     <NormalLayout>
       {/* Key prevents state from being preserved when moving between pages: */}
-      <LessonVideo key={video} timestamp={timestamp} defaultToWide={!has_sufficient_text}/>
+      <LessonVideo
+        key={video}
+        timestamp={timestamp}
+        defaultToWide={!has_sufficient_text}
+      />
       <LessonDetails />
       {/* Don't alternate section color after <LessonDetails> */}
       <div />
-      <PageContent />
-
+      <DesmosProvider>
+        <PageContent />
+      </DesmosProvider>
       {has_sufficient_text && (
         <>
           <div />
@@ -43,7 +49,6 @@ const LessonLayout = () => {
       )}
 
       <Thanks />
-
     </NormalLayout>
   );
 };
@@ -68,8 +73,8 @@ const License = () => (
     <h1 id="license">License</h1>
     <p className="center">
       All rights reserved. To use or reference in other media, reach out via the{" "}
-      <Link href="/contact">
-        <a>contact page</a>
+      <Link href="/contact" passHref>
+        <a href="/contact">contact page</a>
       </Link>
       .
     </p>

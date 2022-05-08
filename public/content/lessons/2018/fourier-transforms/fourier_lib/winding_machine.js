@@ -13,7 +13,7 @@ function evaluateEquation(frequencies, x) {
   // The result will be normalized between 0 and 1
   let sum = 0;
   for (let i = 0; i < frequencies.length; i++) {
-    sum += (Math.cos(2 * Math.PI * frequencies[i] * x));
+    sum += Math.cos(2 * Math.PI * frequencies[i] * x);
   }
   // Normalize outputs
   return sum / frequencies.length;
@@ -43,11 +43,11 @@ function drawJustifiedAxes(sketch, origin, size, tick, vertical_offset) {
 
   let beginY = sketch.createVector(
     origin.x,
-    origin.y + GRAPH_EDGE + vertical_offset
+    origin.y + GRAPH_EDGE + vertical_offset,
   );
   let endY = sketch.createVector(
     0,
-    -(size.y + GRAPH_EDGE * 3 + vertical_offset)
+    -(size.y + GRAPH_EDGE * 3 + vertical_offset),
   );
   drawArrow(sketch, beginY, endY, AXIS_COLOR, GRAPH_EDGE);
 
@@ -78,7 +78,7 @@ export const drawGraph = (sketch, frequencies, origin, size) => {
     origin.x - GRAPH_EDGE - 1,
     origin.y + size.y + GRAPH_EDGE - 1,
     size.x + GRAPH_EDGE * 3 + 1,
-    -(2 * size.y + GRAPH_EDGE * 3 + 1)
+    -(2 * size.y + GRAPH_EDGE * 3 + 1),
   );
 
   sketch.strokeWeight(2);
@@ -86,20 +86,21 @@ export const drawGraph = (sketch, frequencies, origin, size) => {
   drawJustifiedAxes(
     sketch,
     origin,
-    {x: size.x, y: 0.6 * size.y},
+    { x: size.x, y: 0.6 * size.y },
     0.25,
-    size.y / 2
+    size.y / 2,
   );
 
   sketch.stroke(sketch.color(WAVE_COLOR));
 
-  let py = origin.y + evaluateEquation(frequencies, 0) * (-size.y / 2 - GRAPH_EDGE);
+  let py =
+    origin.y + evaluateEquation(frequencies, 0) * (-size.y / 2 - GRAPH_EDGE);
 
   // Draw equation
   for (let x = origin.x + STEP; x < origin.x + size.x; x += STEP) {
     let fx = evaluateEquation(
       frequencies,
-      ((x - origin.x) / size.x) * GRAPH_LENGTH
+      ((x - origin.x) / size.x) * GRAPH_LENGTH,
     );
 
     let y = origin.y + fx * (-size.y / 2 - GRAPH_EDGE);
@@ -195,7 +196,7 @@ function drawWire(sketch, frequencies, winding_freq, origin, size) {
       px * size + origin.x,
       py * size + origin.y,
       gx * size + origin.x,
-      gy * size + origin.y
+      gy * size + origin.y,
     );
 
     px = gx;
@@ -227,14 +228,14 @@ function drawCenterMass(sketch, frequencies, winding_freq, origin, size) {
   sketch.circle(
     origin.x + centerX * size * 0.95,
     origin.y + centerY * size * 0.95,
-    10
+    10,
   );
 }
 
 let SCALE = 1;
 function updateScale(sketch) {
   let transform = sketch.canvas.parentElement.parentElement.style.transform;
-  let scaleString = transform.split("(")[1];
+  let scaleString = transform.split("(")[1] || "";
   SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
 }
 
@@ -248,7 +249,7 @@ function getOpacity(sketch, frequencies) {
   }
 
   let mergedFreq = sum(frequencies);
-  mergedFreq = (mergedFreq > 0.1) ? 0.1 : mergedFreq;
+  mergedFreq = mergedFreq > 0.1 ? 0.1 : mergedFreq;
   return sketch.lerp(0.3, 1, mergedFreq / 0.1);
 }
 
@@ -347,7 +348,7 @@ export const drawFourier = (
   size,
   frequencies,
   key,
-  deltaTime
+  deltaTime,
 ) => {
   // Draws the fourier graph from the calculated fourier transform earlier
   // Origin is an (x,y) pair of the origin in the canvas

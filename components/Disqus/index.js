@@ -10,14 +10,16 @@ const Disqus = () => {
   return (
     <Section>
       <h1 id="discussion">Discussion</h1>
-      <DiscussionEmbed
-        shortname={disqus}
-        config={{
-          url: "",
-          identifier: "",
-          title: title,
-        }}
-      />
+      {process.env.NODE_ENV === "production" ? (
+        <DiscussionEmbed
+          shortname={disqus}
+          config={{
+            url: "",
+            identifier: "",
+            title: title,
+          }}
+        />
+      ) : null}
     </Section>
   );
 };

@@ -21,7 +21,11 @@ HomepageFeaturedContent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default function HomepageFeaturedContent({ title, subtitle="", children }) {
+export default function HomepageFeaturedContent({
+  title,
+  subtitle = "",
+  children,
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -46,31 +50,37 @@ HomepageFeaturedItem.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
-  if(link == ""){
-    link = `/lessons/${lesson}`
+export function HomepageFeaturedItem({ lesson, caption, children, link = "" }) {
+  if (link == "") {
+    link = `/lessons/${lesson}`;
   }
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
-        {lesson && <div className={styles.itemButtons}>
-          <Clickable
-            link={link}
-            text="Watch"
-            icon="fab fa-youtube"
-          />
-          <Clickable
-            link={`${link}#title`}
-            text="Read"
-            icon="far fa-newspaper"
-          />
-        </div>}
+        {lesson && (
+          <div className={styles.itemButtons}>
+            <Clickable
+              link={link}
+              text="Watch"
+              icon="fab fa-youtube"
+              label={"Watch on Youtube Link"}
+            />
+            <Clickable
+              link={`${link}#title`}
+              text="Read"
+              icon="far fa-newspaper"
+              label={"Read Lesson Link"}
+            />
+          </div>
+        )}
 
         <figure className={styles.itemFigure}>
           {children}
           <figcaption className={styles.itemCaption}>
-            <Link href={link}>
-              <a>{caption}</a>
+            <Link href={link} passHref>
+              <a href={link} aria-label={caption}>
+                {caption}
+              </a>
             </Link>
           </figcaption>
         </figure>
@@ -104,22 +114,22 @@ export function HomepageFeaturedVideo({
   const videoRef = useRef();
 
   return (
-      <a className={styles.videoLink}>
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay={autoPlay}
-          loop={loop}
-          muted={muted}
-          controls={controls}
-          width={width}
-          height={height}
-          preload="metadata"
-          playsInline={true}
-        >
-          <source src={transformSrc(src, dir)} />
-        </video>
-      </a>
+    <div>
+      <video
+        ref={videoRef}
+        className={styles.video}
+        autoPlay={autoPlay}
+        loop={loop}
+        muted={muted}
+        controls={controls}
+        width={width}
+        height={height}
+        preload="metadata"
+        playsInline={true}
+      >
+        <source src={transformSrc(src, dir)} />
+      </video>
+    </div>
   );
 }
 
@@ -132,13 +142,13 @@ function Carousel({ children }) {
 
   const goToPrevious = useCallback(() => {
     setCurrentIndex((currentIndex) =>
-      currentIndex === 0 ? slideCount - 1 : currentIndex - 1
+      currentIndex === 0 ? slideCount - 1 : currentIndex - 1,
     );
   }, [slideCount]);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((currentIndex) =>
-      currentIndex === slideCount - 1 ? 0 : currentIndex + 1
+      currentIndex === slideCount - 1 ? 0 : currentIndex + 1,
     );
   }, [slideCount]);
 

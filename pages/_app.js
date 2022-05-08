@@ -1,20 +1,24 @@
 import { useEffect, createContext } from "react";
 import { useRouter } from "next/router";
+import NextProgress from "next-progress";
 import * as gtag from "../util/gtag";
 import "../styles/global.scss";
-import "katex/dist/katex.min.css";
 
 export const PageContext = createContext({});
 
 const App = ({ Component, pageProps }) => {
-  // log page props, but only in browser, not in node
-  if (typeof window !== "undefined") console.log({ pageProps });
-
   // Log client-side route changes to Google Analytics
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = (url) => {
-      gtag.pageview(url);
+      if (
+        process.env.NODE_ENV === "production" &&
+        typeof window !== "undefined" &&
+        window.location.hostname !== "location" &&
+        gtag
+      ) {
+        gtag.pageview(url);
+      }
     };
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
@@ -24,6 +28,8 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <PageContext.Provider value={pageProps}>
+      <NextProgress color="#74c0e3" height="3px" />
+
       <Component {...pageProps} />
     </PageContext.Provider>
   );

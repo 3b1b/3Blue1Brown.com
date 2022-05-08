@@ -1,6 +1,7 @@
 .logo {
   height: 60px;
   max-width: 100%;
+  margin: 8px 0px;
   @include fade-in;
 
   &[data-big="true"] {

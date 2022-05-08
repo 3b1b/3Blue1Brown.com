@@ -1,82 +1,49 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { createPortal } from "react-dom";
-import { usePopper } from "react-popper";
+import { useState } from "react";
 import styles from "./index.module.scss";
+import { Tooltip } from "@mui/material";
 
-Footnote.propTypes = {
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-export default function Footnote({ label, children }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const [referenceElement, setReferenceElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
-  const [arrowElement, setArrowElement] = useState(null);
-
-  const { styles: popperStyles, attributes } = usePopper(
-    referenceElement,
-    popperElement,
-    {
-      placement: "top",
-      modifiers: [
-        // https://github.com/popperjs/popper-core/issues/1138
-        { name: "computeStyles", options: { adaptive: false } },
-        { name: "offset", options: { offset: [0, 10] } },
-        { name: "arrow", options: { element: arrowElement, padding: 10 } },
-      ],
-    }
-  );
-
-  // Close footnote when you click outside (anywhere else on the page)
-  useEffect(() => {
-    const onClick = (event) => {
-      if (popperElement && !popperElement.contains(event.target)) {
-        if (referenceElement && !referenceElement.contains(event.target)) {
-          setIsOpen(false);
-        }
-      }
-    };
-
-    document.addEventListener("click", onClick);
-    return () => {
-      document.removeEventListener("click", onClick);
-    };
-  }, [popperElement, referenceElement]);
+const Footnote = ({ label, children }) => {
+  const [show, setShow] = useState(false);
 
   return (
-    <>
-      <sup ref={setReferenceElement}>
-        <button
-          className={styles.footnoteLabel}
-          data-open={isOpen}
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-        >
-          {label}
-        </button>
+    <Tooltip
+      open={show}
+      onClose={() => {
+        setShow(false);
+      }}
+      arrow
+      componentsProps={{
+        tooltip: {
+          sx: {
+            backgroundColor: "#e0e0e0",
+            color: "#424242",
+            textAlign: "left",
+            fontSize: "15px",
+            width: "90vw",
+            maxWidth: "400px",
+            px: 1,
+          },
+        },
+        arrow: {
+          sx: {
+            "&:before": {
+              backgroundColor: "#e0e0e0",
+            },
+          },
+        },
+      }}
+      title={children}
+    >
+      <sup
+        onClick={() => {
+          setShow((st) => !st);
+        }}
+        className={styles.footnoteLabel}
+      >
+        {label}
       </sup>
-
-      {isOpen &&
-        createPortal(
-          <div
-            ref={setPopperElement}
-            className={styles.popup}
-            style={popperStyles.popper}
-            {...attributes.popper}
-          >
-            <div className={styles.popupContent}>{children}</div>
-            <div
-              ref={setArrowElement}
-              className={styles.arrow}
-              style={popperStyles.arrow}
-            />
-          </div>,
-          document.body
-        )}
-    </>
+    </Tooltip>
   );
-}
+};
+
+export default Footnote;

@@ -19,7 +19,7 @@ export default function ShareButtons({ url, text = "" }) {
     text = description + "\n\n";
   }
 
-  const via = "3Blue1Brown"
+  const via = "3Blue1Brown";
 
   if (!url) {
     url = "https://www.3blue1brown.com" + router.asPath;
@@ -43,24 +43,23 @@ export default function ShareButtons({ url, text = "" }) {
         Enjoy this lesson? Consider sharing it.
       </div>
       <Clickable
-        link={twitterURL.href}
+        link={twitterURL.href || ""}
         text="Twitter"
         icon="fab fa-twitter"
         target="_blank"
       />
       <Clickable
-        link={redditURL.href}
+        link={redditURL.href || ""}
         text="Reddit"
         icon="fab fa-reddit"
         target="_blank"
       />
       <Clickable
-        link={facebookURL}
+        link={facebookURL.toString()}
         text="Facebook"
         icon="fab fa-facebook"
         target="_blank"
       />
-
       <div className={styles.header}>Want more math in your life?</div>
       <SocialIcons />
     </div>

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Markdownify from "../Markdownify";
 import styles from "./index.module.scss";
 import { transformSrc } from "../../util/transformSrc";
+import Image from "next/image";
 
 FeatureCard.propTypes = {
   link: PropTypes.string.isRequired,
@@ -23,8 +24,11 @@ export default function FeatureCard({
 }) {
   return (
     <a className={styles.feature_card} href={link} style={{ width }}>
-      <div className={styles.image} style={{ maxHeight: height }}>
-        <img src={transformSrc(image)} />
+      <div
+        className={styles.image}
+        style={{ height: 150, position: "relative" }}
+      >
+        <Image src={"/" + transformSrc(image)} layout="fill" />
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.text}>

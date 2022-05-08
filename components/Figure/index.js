@@ -6,6 +6,7 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import { useSectionWidth } from "../Section";
 import { transformSrc } from "../../util/transformSrc";
+import Image from "next/image";
 
 Figure.propTypes = {
   id: PropTypes.string,
@@ -163,16 +164,23 @@ export default function Figure({
         </div>
       )}
       <div className={styles.frame} style={frame}>
-        {imageSrc && (
-          <img
-            ref={imageRef}
-            className={styles.image}
-            src={transformSrc(imageSrc, dir)}
-            alt={imageCaption}
-            loading="lazy"
-            // update intrinsic dimensions after loaded
-            onLoad={updateDimensions}
-          />
+        {imageSrc && show === "image" && (
+          <div
+            style={{
+              width: "100%",
+              maxHeight: image.height,
+              maxWidth: image.width,
+              height: "100%",
+              position: "relative",
+            }}
+          >
+            <Image
+              quality={100}
+              src={transformSrc(imageSrc, dir)}
+              layout="fill"
+              alt={imageCaption}
+            />
+          </div>
         )}
         {videoSrc && (
           <video

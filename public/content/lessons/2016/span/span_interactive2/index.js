@@ -3,7 +3,7 @@
  * It uses p5.js to interface with WEBGL and draw a linear span to a 3D environment.
  */
 
-import React from "react";
+import React, { useState } from "react";
 import Sketch from "react-p5";
 
 const WIDTH = 800;
@@ -27,9 +27,7 @@ export default function PyramidPlot() {
   let p5Object;
   let camera;
 
-  let VEC1;
-  let VEC2;
-  let VEC3;
+  const [vecs, setVecs] = useState([]);
 
   let VEC1_mag = 0.3;
   let VEC2_mag = 0.3;
@@ -50,16 +48,16 @@ export default function PyramidPlot() {
     camera = p5Object._curCamera;
     camera._orbit(moveX, moveY, 0);
 
-    VEC1 = sketch.createVector(2, 1, -0.5);
-    VEC2 = sketch.createVector(1.4, 2, -1);
-    VEC3 = VEC1.cross(VEC2);
-    console.log(VEC1, VEC2, VEC3);
+    const VEC1 = sketch.createVector(2, 1, -0.5);
+    const VEC2 = sketch.createVector(1.4, 2, -1);
+    const VEC3 = VEC1.cross(VEC2);
+    setVecs([VEC1, VEC2, VEC3]);
   }
 
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     scaleString = scaleString.substring(0, scaleString.length - 1);
     if (!scaleString.includes(".")) {
       scaleString += ".0";
@@ -85,11 +83,11 @@ export default function PyramidPlot() {
     sketch.strokeWeight(0.5);
 
     let first = sketch.createVector(VEC1_mag, 0, 0);
-    let angle = (VEC1_mag > 0) ? 0 : 180;
+    let angle = VEC1_mag > 0 ? 0 : 180;
     drawArrow(sketch, first, 0.05, angle, sketch.color(VEC1_COLOR));
 
     let second = sketch.createVector(0, VEC2_mag, 0);
-    angle = (VEC2_mag > 0) ? 90 : 270;
+    angle = VEC2_mag > 0 ? 90 : 270;
     drawArrow(sketch, second, 0.05, angle, sketch.color(VEC2_COLOR));
 
     let third = sketch.createVector(VEC1_mag, VEC2_mag, 0);
@@ -182,23 +180,24 @@ export default function PyramidPlot() {
     sketch.push();
     drawAxes(sketch);
     sketch.applyMatrix(
-      VEC1.x,
-      VEC2.x,
-      VEC3.x,
+      vecs[0].x,
+      vecs[1].x,
+      vecs[2].x,
       0,
-      VEC1.y,
-      VEC2.y,
-      VEC3.y,
+      vecs[0].y,
+      vecs[1].y,
+      vecs[2].y,
       0,
-      VEC1.z,
-      VEC2.z,
-      VEC3.z,
-      0,
-      0,
+      vecs[0].z,
+      vecs[1].z,
+      vecs[2].z,
       0,
       0,
-      1
+      0,
+      0,
+      1,
     );
+
     drawPlane(sketch);
     drawVectors(sketch);
     sketch.pop();
@@ -233,7 +232,7 @@ export default function PyramidPlot() {
       -1,
       1,
       -0.5,
-      20
+      20,
     );
     sliders[1] = new Slider(
       sketch,
@@ -242,7 +241,7 @@ export default function PyramidPlot() {
       -1,
       1,
       0.5,
-      20
+      20,
     );
 
     sliders[0].setColor(VEC1_COLOR);
@@ -303,7 +302,7 @@ export default function PyramidPlot() {
           current.pos1.x - current.radius,
           current.pos1.y - current.radius,
           current.pos2.x - current.pos1.x + current.radius * 5,
-          current.radius * 2
+          current.radius * 2,
         );
         current.update(sketch.mouseX, sketch.mouseY);
         current.drawSlider();
@@ -359,7 +358,7 @@ class Slider {
     lowerBound,
     higherBound,
     initialValue,
-    radius
+    radius,
   ) {
     // Slider class creates a line between pos1 & pos2 and allows for an adjustable circle to slide between those points
     // The pos1 & pos2 are coordinate pairs define the points for the edges of the line segment
@@ -375,7 +374,7 @@ class Slider {
     this.higherBound = higherBound;
     this.value = initialValue;
     this.radius = radius;
-    this.color = NMBR_COLOR
+    this.color = NMBR_COLOR;
 
     this.xScale = (pos2.x - pos1.x) / (higherBound - lowerBound);
     this.yScale = (pos2.y - pos1.y) / (higherBound - lowerBound);

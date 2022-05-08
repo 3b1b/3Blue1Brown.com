@@ -27,6 +27,7 @@ const createAnchors = () => {
     // make anchor
     const link = document.createElement("a");
     link.classList.add("anchor");
+    link.setAttribute("aria-label", heading.textContent + " link");
     link.setAttribute("href", "#" + heading.getAttribute("id"));
     link.innerHTML = "<i class='fas fa-link' />";
     heading.append(link);

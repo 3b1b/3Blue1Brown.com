@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 
 export default function SHA256Interactive() {
   const [message, setMessage] = useState(
-    "A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution."
+    "A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.",
   );
 
   const hash = useHash(message);
@@ -103,7 +103,7 @@ function SHAArrow() {
     <svg
       className={styles.arrow}
       width="100"
-      height="auto"
+      height="100"
       viewBox="0 0 144 181"
       version="1.1"
     >
