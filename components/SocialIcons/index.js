@@ -53,7 +53,7 @@ export default function SocialIcons() {
         tooltip="Adventures of Randy the pi"
       />
       <Link
-        link="https://www.tiktok.com/3blue1brown/"
+        link="https://www.tiktok.com/@3blue1brown"
         icon="fab fa-tiktok"
         tooltip="Excerpts from the main videos"
       />
