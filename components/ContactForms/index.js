@@ -57,7 +57,7 @@ export function LicensingForm() {
       <Input
         type="textarea"
         name="message"
-        label="Tell us more about what you're looking for:"
+        label="Tell us more about what you\'re looking for:"
       />
     </Form>
   );
@@ -144,8 +144,8 @@ export function ContactFormReceivedMessage() {
         <div className={styles.receivedFormThanks}>
           <strong>Thank you for your submission!</strong>
           <div>
-            We read every message, but can't respond personally to all of them.
-            We hope you understand.
+            We read every message, but can{`'`}t respond personally to all of
+            them. We hope you understand.
           </div>
         </div>
       );
@@ -191,8 +191,8 @@ function Form({ name, children }) {
 
         {process.env.NODE_ENV === "development" && (
           <div style={{ color: "red", marginTop: 16 }}>
-            This form won't actually work because you are in development mode.
-            It depends on Netlify Forms, which is only available on deploy
+            This form won{`'`}t actually work because you are in development
+            mode. It depends on Netlify Forms, which is only available on deploy
             previews and in production.
           </div>
         )}

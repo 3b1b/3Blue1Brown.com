@@ -143,4 +143,6 @@ Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+Tooltip.displayName = "Tooltip";
+
 export default Tooltip;

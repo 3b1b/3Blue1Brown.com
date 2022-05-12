@@ -3,6 +3,9 @@ const withPWA = require("next-pwa");
 const { withSentryConfig } = require("@sentry/nextjs");
 
 let config = {
+  compiler: {
+    styledComponents: true,
+  },
   images: {
     domains: [
       "3b1b-posts.us-east-1.linodeobjects.com",

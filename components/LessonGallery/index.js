@@ -51,7 +51,7 @@ export default function LessonGallery({ show = "topic" }) {
     }
     // Otherwise, return all by date
     return lessons;
-  }, [lessons, view, searchText]);
+  }, [lessons, view, searchText, sorted_lessons]);
 
   return (
     <>

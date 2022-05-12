@@ -71,6 +71,7 @@ const NLink = React.forwardRef((props, ref) => {
     </NextLink>
   );
 });
+NLink.displayName = "NLink";
 
 // social link
 function Link({ link, icon, tooltip, label = "" }) {

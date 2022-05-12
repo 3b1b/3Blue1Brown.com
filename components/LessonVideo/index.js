@@ -66,9 +66,9 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         {!showCoverImage && wideEnoughToToggle() && (
           <button onClick={toggleExpansion} className={styles.expandButton}>
             {wideVideo ? (
-              <i class="fas fa-compress-alt"></i>
+              <i className="fas fa-compress-alt"></i>
             ) : (
-              <i class="fas fa-expand-alt"></i>
+              <i className="fas fa-expand-alt"></i>
             )}
           </button>
         )}

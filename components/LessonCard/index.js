@@ -65,7 +65,7 @@ export default function LessonCard({
             position: "relative",
           }}
         >
-          <Image src={thumbnail} layout="fill" />
+          <Image src={thumbnail} layout="fill" alt="Lesson Thumbnail Image" />
         </div>
       </div>
 
@@ -105,6 +105,8 @@ const NLink = React.forwardRef((props, ref) => {
     </NextLink>
   );
 });
+
+NLink.displayName = "NLink";
 
 const Link = ({ link, tooltip, ...rest }) => (
   <Tooltip content={tooltip}>

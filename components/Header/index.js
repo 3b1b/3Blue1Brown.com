@@ -104,6 +104,7 @@ const NextNavLink = React.forwardRef((props, ref) => {
     </Link>
   );
 });
+NextNavLink.displayName = "NextNavLink";
 
 // nav bar link
 const NavLink = ({ link, text, icon, tooltip }) => (

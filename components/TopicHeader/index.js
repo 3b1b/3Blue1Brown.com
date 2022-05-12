@@ -20,6 +20,7 @@ export default function TopicHeader({ topic }) {
           className={styles.image}
           src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
           layout="fill"
+          alt="Topic Header Image"
         />
       </div>
 

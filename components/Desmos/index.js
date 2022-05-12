@@ -20,7 +20,7 @@ const Desmos = ({ options, settings, expressions }) => {
       );
     }
     return () => {};
-  }, [desmos]);
+  }, [desmos, graph, options, settings]);
 
   /* Set the graph's expressions if graph exists and trigger
    * rerender when the prop is changed.

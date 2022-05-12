@@ -111,6 +111,7 @@ const NLink = React.forwardRef((props, ref) => {
     </NextLink>
   );
 });
+NLink.displayName = "Nlink";
 
 // link component, for navigating somewhere
 const Link = ({ tooltip, label = "", link = "/", ...rest }) => (

@@ -28,7 +28,11 @@ export default function FeatureCard({
         className={styles.image}
         style={{ height: 150, position: "relative" }}
       >
-        <Image src={"/" + transformSrc(image)} layout="fill" />
+        <Image
+          src={"/" + transformSrc(image)}
+          layout="fill"
+          alt="Featured Card Image"
+        />
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.text}>
