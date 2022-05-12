@@ -3,8 +3,8 @@
   command = "yarn build"
 
 [context.production]
-  environment = { GIT_LFS_ENABLED = "true", NODE_VERSION = "14.15.3" }
+  environment = { GIT_LFS_ENABLED = "true", NODE_VERSION = "14.17.0" }
 
 [context.deploy-preview]
   command = "yarn build"
-  environment = { NODE_VERSION = "14.15.3" }
+  environment = { NODE_VERSION = "14.17.0" }
