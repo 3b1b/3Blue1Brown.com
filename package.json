@@ -11,6 +11,9 @@
     "format": "prettier --write .",
     "compress": "sh ./scripts/compress.sh"
   },
+  "engines": {
+    "node": ">=12.22.0"
+  },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
