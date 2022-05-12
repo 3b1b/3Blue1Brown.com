@@ -33,7 +33,7 @@ This means that if you were to measure the air pressure next to your ear over ti
 <Figure
   image="a440.jpeg"
   video="a440.mp4"
-  width="100%"
+  
 />
 
 If you were to take a lower tone, like a D, it might oscillate slower at (for example) 294 beats per second. Playing both sounds at the same time without any external stimuli, the resulting pressure vs time graph would also oscillate around the ambient air pressure with time, but it would look more complicated than a simple sine wave. Its deviation from the ambient air pressure at any point in time would be the sum of what it would be with a pure A and what it would be with a pure D, like so:
@@ -41,7 +41,7 @@ If you were to take a lower tone, like a D, it might oscillate slower at (for ex
 <Figure
   image="AD.jpeg"
   video="AD.mp4"
-  width="100%"
+  
   caption="Here, we have drawn small white lines on the notes for A (bottom, yellow) and D (middle, pink) and shown that they create the final pressure vs time graph (top, green) when added together. When the two waves are increasing at the same time, the resulting waveform is high. Similarly, when the two waveforms are decreasing at the same time, we see that the resulting waveform is low. Still at other points, the two waves cancel each other out. All-in-all, the resulting waveform is not a pure sine wave, but instead something more complicated."
 />
 
@@ -50,7 +50,7 @@ Similarly, if we were to play more pure frequencies at the same time, the result
 <Figure
   image="DAFC.jpeg"
   video="DAFC.mp4"
-  width="100%"
+  
   caption="Similar to the previous figure, we have drawn a white line at a particular point in time to show that the final pressure vs time graph (top, blue) is a sum of 4 different frequencies: D (pink), A (yellow), F (teal), and C (red). If you were to record yourself with a microphone, you might find a waveform that is similar to this final pressure vs time graph which could similarly be composed from a set of different frequencies."
 />
 
@@ -87,7 +87,7 @@ To do this, we'll start by "wrapping it up" around a circle, like this.
 <Figure
   image="windy_arrows.jpeg"
   video="windy_arrows.mp4"
-  width="100%"
+  
 />
 
 You can think of the wound up graph on the bottom as being drawn by a little vector rotating at a steady rate with time.  As it rotates, it's length is changing to match the height of the sine graph up top at the corresponding time.
@@ -112,7 +112,7 @@ If we set the vector rotating faster or slower, changing the "winding frequency"
 <Figure
   image="3freq2.jpeg"
   video="3freq2.mp4"
-  width="100%"
+  
 />
 
 The key intuition here is that we are wrapping the signal around a circle, and depending on how tightly we wind the sine wave, we can find different patterns. So what happens when the winding frequency is *the same* as the original signal's frequency? When our little vector rotates around the circle at 3 cycles per second? Well, we get the following plot:
@@ -120,7 +120,7 @@ The key intuition here is that we are wrapping the signal around a circle, and d
 <Figure
   image="winding_match.jpeg"
   video="winding_match.mp4"
-  width="100%"
+  
   show="video"
 />
 
@@ -135,7 +135,7 @@ In most cases, the center of mass stays relatively close to the origin, but when
 <Figure
   image="com_1.jpeg"
   video="com_1.mp4"
-  width="100%"
+  
 />
 
 Different patterns appear as we wind up this graph, but it is clear that the $x$-coordinate for the center of mass is important when the winding frequency is $3$.
@@ -158,14 +158,14 @@ We learned previously that multiplying the base frequency by the winding frequen
 
 There is one small caveat: the center of mass seems to be a maximum distance from the center of the plot at a winding frequency of 0 cycles per second. What gives? This is because we have started with a sine wave that oscillates between 0 and 2, and when the winding frequency is 0, the wire is just a straight line pointing to the right, meaning that the center of mass is halfway between 0 and 2, or 1. Really, that spike at 0 is measuring the fact that the average value of the graph as a whole is positive. If we centered the initial sine wave around 0, letting it dip into negative values, there would be no spike above the winding frequency of 0.
 
-<Figure image="centered.jpeg" width="100%" />
+<Figure image="centered.jpeg"  />
 
 Now our lower right graph much more cleanly pulls out the underlying frequency of 3 beats per second. The motive for using purely positive sine waves as our starting examples in this post is that negative values are a little weirder to think about as you wind up the graph. But the core logic stays the same in either case.
 
 At this stage, we can call this plot tracking the center of mass of our wound up graph the "Almost Fourier transform" of the original signal. It allows for us to pick out the frequency of the signal by seeing where the spike is. Next, suppose we take a different signal, like one with a lower frequency of 2 beats per second. We could do the same thing and find a peak at 2 cycles per second, as shown here:
 
 <Figure
-  image="2ps.jpeg" width="100%"
+  image="2ps.jpeg" 
 />
 
 The most interesting aspect of this machine is that it will allow us to decompose any arbitrary signals into its constituent frequencies. To show this, let's combine the 2Hz and 3Hz frequency waves and do the same operation: Wind the graph around a circle at some winding frequency, track the center of mass coordinate, and look for peaks in the winding frequency plot.
@@ -180,7 +180,7 @@ This time, though, we will not offset the graphs upward, so the function oscilla
 Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average value of $0$.
 
 <Figure
-  image="almost.jpeg" width="100%"
+  image="almost.jpeg" 
 />
 
 The way a mathematician might phrase this is that our "Almost Fourier transform" operation is *linear*. The curious among you may want to pause for a moment to reflect on why this is true. It ultimately stems from the fact that the x-coordinate of the sum of two vectors is the sum of their x-coordinates. This, by the way, is why we had it track the x-coordinate of the center of mass of the graph, rather than tracking its distance from the origin. For the full frequency information, you'd also want to keep track of the y-coordinate, but more on that below.
@@ -205,7 +205,7 @@ It simply forms a circle (or arc of a circle) because the input graph is a const
 Let's imagine that you have a voice recording, but there is an annoying ringing sound in it that you want to get rid of. Remember that this signal will be received as a plot of intensity over time. Ideally, we would like to think of this signal in terms of frequencies, so we need to take the Fourier transform of the signal to find the most prominent frequencies. From there, we will see the annoying high-pitched ringing sound as a spike on the far right of the plot, as shown below:
 
 <Figure
-  image="sound_example.jpeg" width="100%"
+  image="sound_example.jpeg" 
 />
 
 If we remove the spike by smooshing it out on the frequency plot, we will have a sound that is almost identical to the recording, but without the ringing.
@@ -222,7 +222,7 @@ Euler's formula famously tells us that if we were to take $e^{i n}$, where $n$ i
 <Figure
   image="e2i.jpeg"
   video="e2i.mp4"
-  width="100%"
+  
   show="video"
 />
 
@@ -255,7 +255,7 @@ Pictorially, it would look like this:
 <Figure
   image="sum.jpeg"
   video="sum.mp4"
-  width="100%"
+  
 />
 
 As we add more points, it becomes more accurate, and in the continuous limit, the sum becomes an integral:
@@ -280,7 +280,7 @@ What that means is that instead of looking at the center of mass, you would scal
 <Figure
   image="6seconds.jpeg"
   video="6seconds.mp4"
-  width="100%"
+  
 />
 
 Physically, this has the effect that when a certain frequency persists for a long time, then the magnitude of the Fourier transform at that frequency is scaled up more and more.
@@ -298,7 +298,7 @@ For other winding frequencies, though, even ones just barely different from 2, t
 <Figure
   image="to_infinity2.jpeg"
   video="to_infinity.mp4"
-  width="100%"
+  
   show="video"
 />
 
@@ -313,7 +313,7 @@ The output of this new function is a complex number, some point in the 2D plane,
 But you could also graph the imaginary component separately, if you wanted a fuller description.
 
 <Figure
-  image="conclusion.jpeg" width="100%"
+  image="conclusion.jpeg" 
 />
 
 All of this is being encapsulated inside the rather dense formula that we built up.
@@ -340,7 +340,7 @@ Concretely, what that means is that you consider this expression for all possibl
 <Figure
   image="scaling.jpeg"
   video="scaling.mp4"
-  width="100%"
+  
 />
 
 There is a lot more to say about this, but we will wrap up the discussion here for now. If you're curious to see how this Fourier transform relates to the uncertainty principle from quantum mechanics, take a look at the <LessonLink id="uncertainty-principle">next post</LessonLink>.

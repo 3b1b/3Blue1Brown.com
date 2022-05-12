@@ -1,14 +1,13 @@
 .footnoteLabel {
-  min-width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   font-size: 12px;
   vertical-align: middle;
-
+  padding: 0px 4px;
   position: relative;
   bottom: 2px;
-  margin: 0 2px;
-
-  border-radius: 9999px;
+  margin: 0 3px;
+  border-radius: 50% 50%;
   background: $blue-400;
   color: $white;
 

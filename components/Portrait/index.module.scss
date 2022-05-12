@@ -3,7 +3,7 @@
   @include trim-v-margins;
   border-radius: 999px;
   overflow: hidden;
-
+  position: relative;
   img {
     object-fit: cover;
     width: 100%;

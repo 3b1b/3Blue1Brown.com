@@ -51,7 +51,7 @@ export default function SphericalPlot() {
       -4,
       4,
       2,
-      20
+      20,
     );
     sliders[1] = new Slider(
       sketch,
@@ -60,7 +60,7 @@ export default function SphericalPlot() {
       0,
       1,
       0.2,
-      20
+      20,
     );
     sliders[2] = new Slider(
       sketch,
@@ -69,7 +69,7 @@ export default function SphericalPlot() {
       -10,
       10,
       0,
-      20
+      20,
     );
 
     drawSinWave(sketch);
@@ -145,7 +145,7 @@ export default function SphericalPlot() {
           pos1.x - 1,
           pos1.y - 1,
           pos2.x - pos1.x + 2,
-          pos2.y - pos1.y + 2
+          pos2.y - pos1.y + 2,
         );
 
         // Redraw the updated items
@@ -154,7 +154,7 @@ export default function SphericalPlot() {
           current.pos1.x - current.radius,
           current.pos1.y - current.radius,
           current.pos2.x - current.pos1.x + current.radius * 5,
-          current.radius * 2
+          current.radius * 2,
         );
         current.update(sketch.mouseX, sketch.mouseY);
         current.drawSlider();
@@ -166,7 +166,7 @@ export default function SphericalPlot() {
 
   function updateScale(sketch) {
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
   }
 
@@ -183,7 +183,7 @@ export default function SphericalPlot() {
       pos1,
       pos2,
       crd(WIDTH / 2, (pos2.y - pos1.y) / 2 + pos1.y),
-      crd(50, 50)
+      crd(50, 50),
     );
 
     sketch.strokeWeight(2);
@@ -195,7 +195,7 @@ export default function SphericalPlot() {
       crd(-10, 10),
       50,
       crd(WIDTH / 2 - pos1.x, 150),
-      Math.min(0.1, 0.02 / sliders[1].getValue())
+      Math.min(0.1, 0.02 / sliders[1].getValue()),
     );
   }
 
@@ -233,7 +233,7 @@ export default function SphericalPlot() {
     xBounds,
     yScale,
     offset,
-    step
+    step,
   ) {
     // This function will draw a smooth, continous equation on the screen bounded by the rectangle
     // The pos1 and pos2 are coordinate pairs which define the bounding box for this equation to be drawn on screen
@@ -330,7 +330,7 @@ class Slider {
     lowerBound,
     higherBound,
     initialValue,
-    radius
+    radius,
   ) {
     // Slider class creates a line between pos1 & pos2 and allows for an adjustable circle to slide between those points
     // The pos1 & pos2 are coordinate pairs define the points for the edges of the line segment

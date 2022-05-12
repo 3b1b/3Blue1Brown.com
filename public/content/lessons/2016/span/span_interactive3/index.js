@@ -55,13 +55,12 @@ export default function PyramidPlot() {
     VEC1 = sketch.createVector(2, 1, -0.5);
     VEC2 = sketch.createVector(1.4, 2, -1);
     VEC3 = VEC1.cross(VEC2);
-    console.log(VEC1, VEC2, VEC3);
   }
 
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     scaleString = scaleString.substring(0, scaleString.length - 1);
     if (!scaleString.includes(".")) {
       scaleString += ".0";
@@ -87,18 +86,22 @@ export default function PyramidPlot() {
     sketch.strokeWeight(0.5);
 
     let first = sketch.createVector(VEC1_mag, 0, 0);
-    let angle = (VEC1_mag > 0) ? 0 : 180;
+    let angle = VEC1_mag > 0 ? 0 : 180;
     drawArrow(sketch, first, 0.05, angle, sketch.color(VEC1_COLOR));
 
     let second = sketch.createVector(0, VEC2_mag, 0);
-    angle = (VEC2_mag > 0) ? 90 : 270;
+    angle = VEC2_mag > 0 ? 90 : 270;
     drawArrow(sketch, second, 0.05, angle, sketch.color(VEC2_COLOR));
 
-    let fourth = sketch.createVector(-VEC3_mag + 0.05 * Math.sign(VEC3_mag), 0, 0);
+    let fourth = sketch.createVector(
+      -VEC3_mag + 0.05 * Math.sign(VEC3_mag),
+      0,
+      0,
+    );
     if (Math.abs(VEC3_mag) > 0.01) {
       sketch.push();
       sketch.rotateY(90);
-      angle = (VEC3_mag < 0) ? 0 : 180;
+      angle = VEC3_mag < 0 ? 0 : 180;
       drawArrow(sketch, fourth, 0.05, angle, sketch.color(VEC3_COLOR));
       sketch.pop();
     }
@@ -106,7 +109,7 @@ export default function PyramidPlot() {
     let third = sketch.createVector(VEC1_mag, VEC2_mag, VEC3_mag);
     angle = sketch.degrees(Math.atan2(VEC2_mag, VEC1_mag));
     drawArrow(sketch, third, 0.05, angle, sketch.color(VSUM_COLOR));
-    
+
     sketch.pop();
   }
 
@@ -142,7 +145,7 @@ export default function PyramidPlot() {
       }
 
       let s = step * planeScale;
-      let S = STEPS * planeScale
+      let S = STEPS * planeScale;
       sketch.line(s, -S, VEC3_mag, s, S, VEC3_mag);
       sketch.line(-s, -S, VEC3_mag, -s, S, VEC3_mag);
       sketch.line(-S, s, VEC3_mag, S, s, VEC3_mag);
@@ -196,24 +199,27 @@ export default function PyramidPlot() {
 
     sketch.push();
     drawAxes(sketch);
-    sketch.applyMatrix(
-      VEC1.x,
-      VEC2.x,
-      VEC3.x,
-      0,
-      VEC1.y,
-      VEC2.y,
-      VEC3.y,
-      0,
-      VEC1.z,
-      VEC2.z,
-      VEC3.z,
-      0,
-      0,
-      0,
-      0,
-      1
-    );
+    if (VEC1 && VEC2 && VEC3) {
+      sketch.applyMatrix(
+        VEC1.x,
+        VEC2.x,
+        VEC3.x,
+        0,
+        VEC1.y,
+        VEC2.y,
+        VEC3.y,
+        0,
+        VEC1.z,
+        VEC2.z,
+        VEC3.z,
+        0,
+        0,
+        0,
+        0,
+        1,
+      );
+    }
+
     drawPlane(sketch);
     drawVectors(sketch);
     sketch.pop();
@@ -248,7 +254,7 @@ export default function PyramidPlot() {
       -1,
       1,
       -0.5,
-      20
+      20,
     );
     sliders[1] = new Slider(
       sketch,
@@ -257,7 +263,7 @@ export default function PyramidPlot() {
       -1,
       1,
       0.5,
-      20
+      20,
     );
     sliders[2] = new Slider(
       sketch,
@@ -266,7 +272,7 @@ export default function PyramidPlot() {
       -1,
       1,
       -0.15,
-      20
+      20,
     );
 
     sliders[0].setColor(VEC1_COLOR);
@@ -330,7 +336,7 @@ export default function PyramidPlot() {
           current.pos1.x - current.radius,
           current.pos1.y - current.radius,
           current.pos2.x - current.pos1.x + current.radius * 5,
-          current.radius * 2
+          current.radius * 2,
         );
         current.update(sketch.mouseX, sketch.mouseY);
         current.drawSlider();
@@ -388,7 +394,7 @@ class Slider {
     lowerBound,
     higherBound,
     initialValue,
-    radius
+    radius,
   ) {
     // Slider class creates a line between pos1 & pos2 and allows for an adjustable circle to slide between those points
     // The pos1 & pos2 are coordinate pairs define the points for the edges of the line segment
@@ -404,7 +410,7 @@ class Slider {
     this.higherBound = higherBound;
     this.value = initialValue;
     this.radius = radius;
-    this.color = NMBR_COLOR
+    this.color = NMBR_COLOR;
 
     this.xScale = (pos2.x - pos1.x) / (higherBound - lowerBound);
     this.yScale = (pos2.y - pos1.y) / (higherBound - lowerBound);

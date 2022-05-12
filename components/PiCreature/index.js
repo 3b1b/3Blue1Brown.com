@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import SpeechBubble from "../../public/images/pi-creatures/bubble-speech.svg";
 import ThoughtBubble from "../../public/images/pi-creatures/bubble-thought.svg";
 import { useSectionWidth } from "../Section";
+import Image from "next/image";
 
 PiCreature.propTypes = {
   emotion: PropTypes.string,
@@ -42,10 +43,14 @@ export default function PiCreature({
       data-sectionwidth={sectionWidth}
     >
       <div className={styles.frame}>
-        <img
-          src={`/images/pi-creatures/${emotion}.svg`}
-          alt={`${emotion} pi creature`}
-        />
+        <div>
+          <Image
+            src={`/images/pi-creatures/${emotion}.svg`}
+            alt={`${emotion} pi creature`}
+            layout="fill"
+          />
+        </div>
+
         <Bubble />
         {text && (
           <div className={styles.text}>

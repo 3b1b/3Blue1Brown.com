@@ -64,7 +64,7 @@ function MDXWrapper({ children }) {
 
   if (!footnotesOl) {
     console.error(
-      "Unexpected dom layout: Footnotes div didn't contain an <ol>."
+      "Unexpected dom layout: Footnotes div didn't contain an <ol>.",
     );
     return <div>{children}</div>;
   }

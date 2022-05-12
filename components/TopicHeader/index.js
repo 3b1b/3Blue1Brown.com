@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import Section from "../Section";
 import styles from "./index.module.scss";
 import { transformSrc } from "../../util/transformSrc";
+import Image from "next/image";
 
 TopicHeader.propTypes = {
   topic: PropTypes.shape({
@@ -15,10 +16,11 @@ export default function TopicHeader({ topic }) {
   return (
     <Section width="narrow" dark={true} style={{ background: "black" }}>
       <div className={styles.imageWrapper}>
-        <img
+        <Image
           className={styles.image}
           src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
-          alt=""
+          layout="fill"
+          alt="Topic Header Image"
         />
       </div>
 

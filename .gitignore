@@ -36,3 +36,7 @@ public/content/**/*.source.mov
 
 # vercel
 .vercel
+
+# Service Worker & Workbox
+sw.js
+workbox-*.js

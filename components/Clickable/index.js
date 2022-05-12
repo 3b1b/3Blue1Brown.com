@@ -2,7 +2,7 @@ import NextLink from "next/link";
 import PropTypes from "prop-types";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
-
+import React from "react";
 Clickable.propTypes = {
   link: requireLinkOrOnClick,
   onClick: requireLinkOrOnClick,
@@ -49,6 +49,7 @@ function requireTextOrIcon(props, propName, componentName) {
 export default function Clickable({
   link,
   onClick,
+  label = "",
   icon,
   text,
   design,
@@ -72,7 +73,9 @@ export default function Clickable({
       link={link}
       onClick={(event) => {
         event.target.blur();
-        onClick(event);
+        if (onClick) {
+          onClick(event);
+        }
       }}
       data-icon={icon ? true : false}
       data-text={text ? true : false}
@@ -97,11 +100,22 @@ const Button = ({ tooltip, ...rest }) => (
   </Tooltip>
 );
 
+/**
+ * Next link that forwards the ref to the inner <a>.
+ * Required for React 18+.
+ */
+const NLink = React.forwardRef((props, ref) => {
+  return (
+    <NextLink href={props.link} passHref>
+      <a href={props.link} {...props} ref={ref} aria-label={props.label} />
+    </NextLink>
+  );
+});
+NLink.displayName = "Nlink";
+
 // link component, for navigating somewhere
-const Link = ({ tooltip, link = "/", ...rest }) => (
-  <NextLink href={link} passHref>
-    <Tooltip content={tooltip}>
-      <a {...rest} />
-    </Tooltip>
-  </NextLink>
+const Link = ({ tooltip, label = "", link = "/", ...rest }) => (
+  <Tooltip content={tooltip}>
+    <NLink link={link} {...rest} label={label} />
+  </Tooltip>
 );

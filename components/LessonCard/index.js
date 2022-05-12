@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import NextLink from "next/link";
 import Chip from "../Chip";
@@ -7,6 +7,7 @@ import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
+import Image from "next/image";
 
 LessonCard.propTypes = {
   id: PropTypes.string.isRequired,
@@ -58,8 +59,13 @@ export default function LessonCard({
       {icon && <i className={icon}></i>}
 
       <div className={styles.image}>
-        <div className={styles.frame}>
-          <img src={thumbnail} alt="" />
+        <div
+          style={{
+            aspectRatio: "1 / .5625",
+            position: "relative",
+          }}
+        >
+          <Image src={thumbnail} layout="fill" alt="Lesson Thumbnail Image" />
         </div>
       </div>
 
@@ -92,12 +98,20 @@ export default function LessonCard({
   );
 }
 
+const NLink = React.forwardRef((props, ref) => {
+  return (
+    <NextLink href={props.link} passHref>
+      <a {...props} ref={ref} />
+    </NextLink>
+  );
+});
+
+NLink.displayName = "NLink";
+
 const Link = ({ link, tooltip, ...rest }) => (
-  <NextLink href={link} passHref>
-    <Tooltip content={tooltip}>
-      <a {...rest} />
-    </Tooltip>
-  </NextLink>
+  <Tooltip content={tooltip}>
+    <NLink link={link} {...rest} />
+  </Tooltip>
 );
 
 const Stub = ({ ...props }) => <a {...props} />;

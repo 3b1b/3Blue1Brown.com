@@ -92,7 +92,7 @@ const getSlugFromFile = (file) => {
 const getMediaDimensionsFromDir = async (directory) => {
   // get dimensions of image & video files
   const mediaFiles = glob.sync(
-    `${directory}/**/*.@(jpg|jpeg|png|svg|mp4|mov|)`
+    `${directory}/**/*.@(jpg|jpeg|png|svg|mp4|mov|)`,
   );
 
   function getDimensions(fileName) {
@@ -129,8 +129,8 @@ const getMediaDimensionsFromDir = async (directory) => {
         if (dims) {
           dimensionsMap[fileName.slice(6)] = dims;
         }
-      })
-    )
+      }),
+    ),
   );
 
   return dimensionsMap;
@@ -145,7 +145,7 @@ const pageFiles = searchPageFile();
 
 // url paths of page files
 export const pagePaths = pageFiles.map(
-  (path) => "/" + basename(path, extname(path))
+  (path) => "/" + basename(path, extname(path)),
 );
 
 // search for local location of lesson file(s), return array of results

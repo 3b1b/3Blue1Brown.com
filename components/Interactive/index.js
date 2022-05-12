@@ -36,7 +36,6 @@ export default function Interactive({
     if (fromCurrentDirectory) {
       filepath = dir.slice(1) + filepath;
     }
-
     import(`../../public/${filepath}.js`)
       .then((module) => (ref.current = module))
       .then(forceUpdate)
@@ -70,7 +69,7 @@ export default function Interactive({
 
       const newScale = Math.min(
         outerBox.height / innerBox.height,
-        outerBox.width / innerBox.width
+        outerBox.width / innerBox.width,
       );
       setScale(newScale);
     };
@@ -109,7 +108,6 @@ export default function Interactive({
   if (!ref.current) return null;
 
   const { default: defaultExport, ...otherExports } = ref.current;
-
   return (
     <div className={styles.interactiveWrapper}>
       <div

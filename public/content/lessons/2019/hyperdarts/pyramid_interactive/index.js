@@ -89,7 +89,7 @@ export default function PyramidPlot() {
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     scaleString = scaleString.substring(0, scaleString.length - 1);
     if (!scaleString.includes(".")) {
       scaleString += ".0";

@@ -2,8 +2,9 @@
   publish = "out"
   command = "yarn build"
 
-[context.production.environment]
-  GIT_LFS_ENABLED = "true"
+[context.production]
+  environment = { GIT_LFS_ENABLED = "true", NODE_VERSION = "14.17.0" }
 
 [context.deploy-preview]
   command = "yarn build"
+  environment = { NODE_VERSION = "14.17.0" }

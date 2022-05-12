@@ -16,5 +16,6 @@ const Center = forwardRef(({ children }, ref) => {
 Center.propTypes = {
   children: PropTypes.node.isRequired,
 };
+Center.displayName = "Center";
 
 export default Center;

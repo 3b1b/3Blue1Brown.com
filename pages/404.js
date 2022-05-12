@@ -17,7 +17,7 @@ const NotFound = () => (
             <Link href="/#lessons">
               <a>finding the lesson</a>
             </Link>{" "}
-            you're looking for
+            you{"'"}re looking for
           </div>
         </div>
       </div>

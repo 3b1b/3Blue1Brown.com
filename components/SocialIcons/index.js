@@ -1,3 +1,4 @@
+import React from "react";
 import NextLink from "next/link";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
@@ -61,15 +62,22 @@ export default function SocialIcons() {
   );
 }
 
+const NLink = React.forwardRef((props, ref) => {
+  return (
+    <NextLink href={props.link} passHref>
+      <a {...props} ref={ref} aria-label={props.label}>
+        <i className={props.icon} />
+      </a>
+    </NextLink>
+  );
+});
+NLink.displayName = "NLink";
+
 // social link
 function Link({ link, icon, tooltip, label = "" }) {
   return (
-    <NextLink href={link} passHref>
-      <Tooltip content={tooltip}>
-        <a>
-          <i className={icon} />
-        </a>
-      </Tooltip>
-    </NextLink>
+    <Tooltip content={tooltip}>
+      <NLink icon={icon} link={link} label={label} />
+    </Tooltip>
   );
 }

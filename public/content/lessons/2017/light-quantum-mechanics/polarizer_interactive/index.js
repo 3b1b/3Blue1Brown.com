@@ -151,7 +151,7 @@ export default function Polarizer() {
       -height / 2,
       beginTriangle,
       height / 2,
-      beginTriangle
+      beginTriangle,
     );
 
     sketch.pop();
@@ -175,7 +175,7 @@ export default function Polarizer() {
       wave_editable = false;
       wave_post_angle = polarizerAngle;
       let random_threshold = Math.cos(
-        ((polarizerAngle - wave_angle) * Math.PI) / 180
+        ((polarizerAngle - wave_angle) * Math.PI) / 180,
       );
       random_threshold = random_threshold * random_threshold;
       wave_pass = Math.random() < random_threshold;
@@ -203,7 +203,7 @@ export default function Polarizer() {
             orientation * wave_post_angle,
             WAVE_MAG * mag,
             arrow_size,
-            sketch.color(LGHT_COLOR)
+            sketch.color(LGHT_COLOR),
           );
         }
       } else {
@@ -214,7 +214,7 @@ export default function Polarizer() {
           wave_angle,
           WAVE_MAG * mag,
           arrow_size,
-          sketch.color(LGHT_COLOR)
+          sketch.color(LGHT_COLOR),
         );
       }
     }
@@ -350,7 +350,7 @@ export default function Polarizer() {
     let dirY = Math.sin(sketch.radians(angle));
     let base = sketch.createVector(
       centerX + VEC_SIZE * -dirX,
-      centerY + VEC_SIZE * -dirY
+      centerY + VEC_SIZE * -dirY,
     );
     let head = sketch.createVector(VEC_SIZE * 2 * dirX, VEC_SIZE * 2 * dirY);
     Drawing.arrow(sketch, base, head, sketch.color(color), 5);
@@ -368,7 +368,7 @@ export default function Polarizer() {
 
   function updateScale(sketch) {
     let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
+    let scaleString = transform.split("(")[1] || "";
     SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
   }
 
@@ -654,10 +654,10 @@ class ArcSlider {
   move() {
     let distance = Math.hypot(
       this.x - this.sketch.mouseX / SCALE,
-      this.y - this.sketch.mouseY / SCALE
+      this.y - this.sketch.mouseY / SCALE,
     );
     this.value = this.sketch.degrees(
-      Math.acos((this.x - this.sketch.mouseX / SCALE) / distance)
+      Math.acos((this.x - this.sketch.mouseX / SCALE) / distance),
     );
     if (this.y - this.sketch.mouseY / SCALE < 0) this.value *= -1;
     this.value += 180;
@@ -699,7 +699,7 @@ class ArcSlider {
     this.sketch.circle(
       this.x,
       this.y,
-      2 * (this.radius + this.bobbleRadius + 2)
+      2 * (this.radius + this.bobbleRadius + 2),
     );
   }
 
@@ -721,7 +721,7 @@ class ArcSlider {
       2 * this.radius,
       2 * this.radius,
       this.beginAngle,
-      this.endAngle
+      this.endAngle,
     );
 
     this.sketch.pop();

@@ -1,36 +1,51 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createRoot } from "react-dom/client";
 import { defaultSketchpadPoints } from "./data";
 import SketchPad from "./SketchPad";
-import { render, useFrame, events, extend, useThree } from "@react-three/fiber";
+import {
+  render,
+  useFrame,
+  events,
+  extend,
+  useThree,
+  Canvas,
+} from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import styles from "./index.module.scss";
 
 extend({ OrbitControls });
 
+// This function creates the interactive sketchpad on the canvas.
 export default function SurfaceInteractive() {
   const [sketchpadPoints, setSketchpadPoints] = useState(
-    defaultSketchpadPoints
+    defaultSketchpadPoints,
   );
 
   const [canvas, setCanvas] = useState();
+  const [root, setRoot] = useState();
+
   useEffect(() => {
     if (!canvas) return;
 
     // Use render() instead of <Canvas> to prevent scaling
     // issues inside of <Interactive>
-    render(<SurfaceVisualization points={sketchpadPoints} />, canvas, {
-      events,
-      size: { width: 880, height: 500 },
-    });
+    if (!root) {
+      setRoot(
+        createRoot(canvas).render(
+          <SurfaceVisualization points={sketchpadPoints} />,
+        ),
+      );
+    } else {
+      root.render(<SurfaceVisualization points={sketchpadPoints} />);
+    }
 
     // return () => { unmountComponentAtNode(canvas); };
-  }, [canvas, sketchpadPoints]);
+  }, [canvas, sketchpadPoints, root]);
 
   return (
     <div className={styles.interactive}>
       <canvas ref={setCanvas} style={{ width: 880, height: 500 }} />
-
       <SketchPad
         points={sketchpadPoints}
         setPoints={setSketchpadPoints}
@@ -50,8 +65,8 @@ function SurfaceVisualization({ points }) {
     lineSegments.push(
       new THREE.LineCurve3(
         new THREE.Vector3(a[0], a[1], 0),
-        new THREE.Vector3(b[0], b[1], 0)
-      )
+        new THREE.Vector3(b[0], b[1], 0),
+      ),
     );
   }
 
@@ -60,7 +75,7 @@ function SurfaceVisualization({ points }) {
   curvePath.curves = lineSegments;
 
   return (
-    <>
+    <Canvas>
       <CameraControls
         prepCamera={(camera) => {
           camera.fov = 40;
@@ -134,7 +149,7 @@ function SurfaceVisualization({ points }) {
           ]}
         />
       </mesh>
-    </>
+    </Canvas>
   );
 }
 

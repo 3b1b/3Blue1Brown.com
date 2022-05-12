@@ -35,7 +35,7 @@ export default function Accordion({
     if (id && router.asPath.split("#")[1] === id) {
       setOpen(true);
     }
-  }, []);
+  }, [id, router.asPath]);
 
   const toggleOpen = () => {
     if (open) {
