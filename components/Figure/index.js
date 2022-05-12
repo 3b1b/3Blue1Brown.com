@@ -176,6 +176,7 @@ export default function Figure({
           >
             <Image
               quality={100}
+              priority
               src={transformSrc(imageSrc, dir)}
               layout="fill"
               alt={imageCaption}
