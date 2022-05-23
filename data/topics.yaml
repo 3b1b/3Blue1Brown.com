@@ -61,6 +61,7 @@
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader lessons
   lessons:
+    - olympiad-level-counting
     - hardest-problem
     - windmills
     - prime-spirals
