@@ -53,6 +53,11 @@ export default function SocialIcons() {
         tooltip="Adventures of Randy the pi"
       />
       <Link
+        link="https://space.bilibili.com/88461692/#/"
+        icon="fab fa-bilibili"
+        tooltip="Chinese translations on Bilibili"
+      />
+      <Link
         link="https://www.tiktok.com/@3blue1brown"
         icon="fab fa-tiktok"
         tooltip="Excerpts from the main videos"
