@@ -15,6 +15,7 @@ import Markdownify from "../Markdownify";
 import Link from "next/link";
 import styles from "./index.module.scss";
 import { transformSrc } from "../../util/transformSrc";
+import { PageContext } from "../../pages/_app";
 
 HomepageFeaturedContent.propTypes = {
   title: PropTypes.string.isRequired,
@@ -47,9 +48,18 @@ HomepageFeaturedItem.propTypes = {
 };
 
 export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
+  
   if(link == ""){
     link = `/lessons/${lesson}`
   }
+
+  // Get the youtubeId of the featured lesson. Needs to check if the lesson is
+  // undefined because of the pi-comment that has an empty lesson string provided.
+  let youtubeId;
+  const { lessons = [] } = useContext(PageContext);
+  const ctx = lessons.find((ctx) => ctx.slug === lesson);
+  if (ctx) { youtubeId = ctx.video }
+
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
@@ -67,7 +77,7 @@ export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
         </div>}
 
         <figure className={styles.itemFigure}>
-          {children}
+          {children || <img src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`} />}
           <figcaption className={styles.itemCaption}>
             <Link href={link}>
               <a>{caption}</a>
