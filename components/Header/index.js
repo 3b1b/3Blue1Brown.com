@@ -78,7 +78,7 @@ const Nav = () => {
       <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
         text="Store"
-        tooltip="Shirts, plushies, and more"
+        tooltip="Notebooks, shirts, plushies, and more"
       />
       <NavLink
         link="/contact"
