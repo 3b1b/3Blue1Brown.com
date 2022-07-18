@@ -53,19 +53,6 @@ export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
-        {lesson && <div className={styles.itemButtons}>
-          <Clickable
-            link={link}
-            text="Watch"
-            icon="fab fa-youtube"
-          />
-          <Clickable
-            link={`${link}#title`}
-            text="Read"
-            icon="far fa-newspaper"
-          />
-        </div>}
-
         <figure className={styles.itemFigure}>
           {children}
           <figcaption className={styles.itemCaption}>
