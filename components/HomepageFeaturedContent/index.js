@@ -15,21 +15,31 @@ import Markdownify from "../Markdownify";
 import Link from "next/link";
 import styles from "./index.module.scss";
 import { transformSrc } from "../../util/transformSrc";
+import { PageContext } from "../../pages/_app";
 
 HomepageFeaturedContent.propTypes = {
   title: PropTypes.string.isRequired,
+  show_latest_video: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default function HomepageFeaturedContent({ title, subtitle="", children }) {
+export default function HomepageFeaturedContent({ title, show_latest_video=true, children}) {
+  const { lessons } = useContext(PageContext);
+  const lesson = [...lessons].sort((a, b) => {a.date - b.date})[0];
+
+  var latest_video = (
+    <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title}>
+      <HomepageFeaturedYouTube slug={lesson.video} />
+    </HomepageFeaturedItem>
+  );
+
+  var items = show_latest_video ? [latest_video, ...children] : children;
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.subtitle}>
-        <Markdownify>{subtitle}</Markdownify>
-      </div>
       <div className={styles.featured}>
-        <Carousel>{children}</Carousel>
+        <Carousel>{items}</Carousel>
       </div>
       <div className={styles.social}>
         <SocialIcons />
@@ -63,6 +73,61 @@ export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
         </figure>
       </div>
     </FeaturedItemContext.Provider>
+  );
+}
+
+HomepageFeaturedYouTube.propTypes = {
+  slug: PropTypes.string.isRequired,
+};
+
+// Note, too much of this is copied over from LessonVideo
+
+export function HomepageFeaturedYouTube({
+  slug,
+}) {
+  const thumbnail = `https://img.youtube.com/vi/${slug}/maxresdefault.jpg`;
+
+  const [showCoverImage, setShowCoverImage] = useState(true);  
+  const startVideo = () => {
+    setShowCoverImage(false);
+  };
+
+  return (
+    <div>
+    {showCoverImage && (
+      <button className={styles.coverButton} onClick={startVideo}>
+        <img
+          className={styles.coverImage}
+          src={thumbnail}
+          alt="Youtube video"
+        />
+        <svg
+          className={styles.coverPlayButton}
+          height="100%"
+          version="1.1"
+          viewBox="0 0 68 48"
+          width="100%"
+        >
+          <path
+            d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+            fill="currentColor"
+          />
+          <path d="M 45,24 27,14 27,34" fill="#fff" />
+        </svg>
+      </button>
+    )}
+    {!showCoverImage && (
+      <div className={styles.frame}>
+        <iframe
+          title="YouTube Video"
+          className={styles.iframe}
+        src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
+          allow="autoplay"
+          allowFullScreen
+        />
+      </div>
+    )}
+    </div>
   );
 }
 
