@@ -9,7 +9,6 @@ import Patrons from "../components/Patrons";
 import Empty from "../components/Empty";
 import ShareButtons from "../components/ShareButtons";
 import LessonNav from "../components/LessonNav";
-import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
 import TableOfContents from "../components/TableOfContents";
 import { PageContext } from "../pages/_app";
@@ -36,13 +35,10 @@ const LessonLayout = () => {
           </Section>
           <LessonNav />
           <Thanks />
-          <Disqus />
           <TableOfContents />
           <Jump />
         </>
       )}
-
-      <Thanks />
 
     </NormalLayout>
   );

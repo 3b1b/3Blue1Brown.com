@@ -48,9 +48,9 @@ export default function SocialIcons() {
         tooltip="An unloved facebook presence"
       />
       <Link
-        link="https://www.instagram.com/randy_the_pi/"
+        link="https://www.instagram.com/3blue1brown/"
         icon="fab fa-instagram"
-        tooltip="Adventures of Randy the pi"
+        tooltip="Animations"
       />
       <Link
         link="https://space.bilibili.com/88461692/#/"
