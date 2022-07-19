@@ -15,7 +15,7 @@ export default function SocialIcons() {
       <Link
         link="https://twitter.com/3blue1brown"
         icon="fab fa-twitter"
-        tooltip="Quick animations, mathy threads"
+        tooltip="Mathy threads and animations"
         hoverColor="#1DA1F2"
       />
       <Link
@@ -43,16 +43,16 @@ export default function SocialIcons() {
         hoverColor="#09f2fb"
       />
       <Link
+        link="https://www.instagram.com/3blue1brown/"
+        icon="fab fa-instagram"
+        tooltip="Instagram"
+        hoverColor="#FFDC80"
+      />
+      <Link
         link="http://www.facebook.com/3blue1brown"
         icon="fab fa-facebook"
         tooltip="An unloved facebook presence"
         hoverColor="#4267B2"
-      />
-      <Link
-        link="https://www.instagram.com/3blue1brown/"
-        icon="fab fa-instagram"
-        tooltip="Instagram"
-        hoverColor="#8a3ab9"
       />
       <Link
         link="https://space.bilibili.com/88461692/#/"
