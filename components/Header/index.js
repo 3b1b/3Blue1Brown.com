@@ -81,9 +81,9 @@ const Nav = () => {
         tooltip="Notebooks, shirts, plushies, and more"
       />
       <NavLink
-        link="/contact"
-        text="Contact"
-        tooltip="FAQs and contact info"
+        link="/faq"
+        text="FAQ/contact"
+        tooltip="Have a question?"
       />
       <NavLink
         link="/about"

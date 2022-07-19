@@ -52,7 +52,7 @@ export default function LessonGallery({ show = "topic" }) {
   }, [lessons, view, searchText]);
 
   return (
-    <>
+    <div>
       <div className={styles.tabs}>
         <Clickable
           text="Topics"
@@ -91,11 +91,11 @@ export default function LessonGallery({ show = "topic" }) {
         </div>
       </div>
       {view === "topic" && (
-        <Center>
+        <div className={styles.topicGrid}>
           {topics.map((topic) => (
             <TopicCard key={topic.slug} topic={topic} />
           ))}
-        </Center>
+        </div>
       )}
       {(view === "all" || view === "search") &&
         filteredLessons.map((lesson) => (
@@ -114,7 +114,7 @@ export default function LessonGallery({ show = "topic" }) {
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-    </>
+    </div>
   );
 }
 

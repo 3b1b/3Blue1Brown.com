@@ -48,6 +48,13 @@
   }
 }
 
+.topicGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px 0px;
+}
+
 .topic_card {
   position: relative;
   color: inherit;
@@ -56,7 +63,7 @@
 
   display: inline-flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px;
   padding-bottom: 0px;
   border-radius: 0;
   font-family: $sans;
@@ -73,12 +80,14 @@
 }
 
 .image {
-  $width: 300px;
+  $width: 225px;
   width: $width;
   height: math.div($width * 9, 16);
 }
 
 .title {
-  margin: 14px 0px;
+  margin-top: 4px;
+  margin-bottom: 10px;
   font-weight: $medium;
+  font-size: 14px;
 }
