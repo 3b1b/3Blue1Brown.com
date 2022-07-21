@@ -12,6 +12,7 @@ import Clickable from "../Clickable";
 import PiCreature from "../PiCreature";
 import SocialIcons from "../SocialIcons";
 import Markdownify from "../Markdownify";
+import Interactive from "../Interactive";
 import Link from "next/link";
 import styles from "./index.module.scss";
 import { transformSrc } from "../../util/transformSrc";
@@ -28,9 +29,7 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
   const lesson = [...lessons].sort((a, b) => {a.date - b.date})[0];
 
   var latest_video = (
-    <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title}>
-      <HomepageFeaturedYouTube slug={lesson.video} />
-    </HomepageFeaturedItem>
+    <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title} youtube_id={lesson.video} />
   );
 
   var items = show_latest_video ? [latest_video, ...children] : children;
@@ -38,11 +37,11 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.featured}>
-        <Carousel>{items}</Carousel>
-      </div>
       <div className={styles.social}>
         <SocialIcons />
+      </div>
+      <div className={styles.featured}>
+        <Carousel>{items}</Carousel>
       </div>
     </div>
   );
@@ -53,18 +52,36 @@ const FeaturedItemContext = createContext({ lesson: null });
 HomepageFeaturedItem.propTypes = {
   lesson: PropTypes.string.isRequired,
   caption: PropTypes.node.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
-export function HomepageFeaturedItem({ lesson, caption, children, link="" }) {
+export function HomepageFeaturedItem({
+  lesson, caption,
+  video_src="",
+  interactive_src="",
+  image_src="",
+  youtube_id="",
+  link="",
+}) {
   if(link == ""){
     link = `/lessons/${lesson}`
   }
+
+  var item;
+  if (video_src != ""){
+    item = <HomepageFeaturedVideo src={video_src} />;
+  } else if (interactive_src != ""){
+    item = <Interactive filename={interactive_src} aspectRatio={16 / 9} />
+  } else if (image_src != "") {
+    item = <img src={image_src} />
+  } else if (youtube_id != ""){
+    item = <HomepageFeaturedYouTube slug={youtube_id} />
+  }
+
   return (
     <FeaturedItemContext.Provider value={{ lesson }}>
       <div>
         <figure className={styles.itemFigure}>
-          {children}
+          {item}
           <figcaption className={styles.itemCaption}>
             <Link href={link}>
               <a>{caption}</a>
