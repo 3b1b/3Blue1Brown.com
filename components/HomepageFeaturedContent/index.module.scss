@@ -1,12 +1,11 @@
 .container {
-  display: grid;
-  grid-template-columns: 3fr 4fr;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
-    "title featured"
-    "subtitle featured"
-    "social featured";
-  gap: 30px;
+    "title"
+    "social"
+    "featured";
+  gap: 20px;
   max-width: 100%;
   overflow: hidden;
 }
@@ -14,30 +13,20 @@
 .title {
   grid-area: title;
 
-  font-family: $sans;
   font-size: 30px;
-  text-align: left;
-}
-
-.subtitle {
-  grid-area: subtitle;
-
-  font-family: $sans;
-  font-size: 16px;
-  text-align: left;
-  color: $gray-300;
-}
-
-.featured {
-  grid-area: featured;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .social {
   grid-area: social;
 
   font-family: $sans;
-  font-size: 20px;
-  text-align: left;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
 .social_label {
@@ -45,37 +34,12 @@
   padding: 4px 8px
 }
 
-// This is set to some large number
-// just to quickly experiment with
-// how it looks to style things this
-// way generally.
-@media (max-width: 3000px) {
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    grid-template-areas:
-      "title"
-      "social"
-      "featured";
-    gap: 20px;
-  }
+.featured {
+  grid-area: featured;
 
-  .title {
-    font-size: 24px;
-    text-align: center;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .featured {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .social {
-    text-align: center;
-  }
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .itemButtons {
@@ -109,7 +73,7 @@
   text-align: center;
   color: $gray-200;
   margin-top: 12px;
-  font-size: 20px;
+  font-size: 24px;
 
   a {
     text-decoration: none;

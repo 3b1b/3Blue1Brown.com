@@ -37,11 +37,11 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.featured}>
-        <Carousel>{items}</Carousel>
-      </div>
       <div className={styles.social}>
         <SocialIcons />
+      </div>
+      <div className={styles.featured}>
+        <Carousel>{items}</Carousel>
       </div>
     </div>
   );
