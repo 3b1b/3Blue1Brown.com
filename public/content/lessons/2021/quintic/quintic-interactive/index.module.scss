@@ -1,0 +1,127 @@
+.container {
+  width: 640px;
+  height: 420px;
+
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "controls controls controls controls controls controls"
+    "coeffs coeffs coeffs roots roots roots";
+  gap: 13px;
+  padding: 0 13px;
+
+  align-items: stretch;
+  justify-items: center;
+  align-content: center;
+
+  &.cubic {
+    height: 540px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "controls controls controls controls controls controls"
+      "coeffs coeffs coeffs roots roots roots"
+      "part1 part1 part2 part2 part3 part3";
+  }
+}
+
+.coeffs,
+.roots {
+  color: white;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .graph {
+    margin-top: 8px;
+  }
+}
+
+.coeffs {
+  grid-area: coeffs;
+}
+
+.roots {
+  grid-area: roots;
+}
+
+.cubicHeader {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.part1,
+.part2,
+.part3 {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .graph {
+    margin-bottom: 8px;
+  }
+}
+
+.part1 {
+  grid-area: part1;
+}
+
+.part2 {
+  grid-area: part2;
+}
+
+.part3 {
+  grid-area: part3;
+}
+
+.graph {
+  border: 1px solid white;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.controls {
+  grid-area: controls;
+  justify-self: start;
+  display: flex;
+  background: #333;
+  margin: 0 -13px;
+}
+
+.controlButton {
+  color: white;
+  padding: 4px 8px;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:disabled {
+    color: black;
+    background: $blue;
+  }
+}
+
+.actionButton {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  z-index: 100;
+
+  color: black;
+  background: white;
+  padding: 4px 8px;
+
+  i {
+    margin-right: 8px;
+  }
+
+  &:disabled {
+    cursor: not-allowed !important;
+    background: #ccc;
+  }
+}

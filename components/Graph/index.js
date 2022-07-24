@@ -115,6 +115,10 @@ export function GraphPoint({
   color = "white",
   size = 24,
   onDrag = null,
+  onClick = null,
+  label = null,
+  selected = false,
+  glow = false,
 }) {
   const { range, windowRef } = useGraph();
 
@@ -207,13 +211,18 @@ export function GraphPoint({
     <div
       onMouseDown={onMouseDown}
       onTouchStart={onMouseDown}
+      onClick={onClick}
       style={{
         width: size,
         height: size,
         background: color,
         borderRadius: 9999,
         border: `${size / 8}px solid white`,
-        boxShadow: `0 0 0 ${size / 8}px black`,
+        boxShadow:
+          (selected
+            ? `0 0 0 ${size / 8}px black, 0 0 ${size / 4}px ${size / 4}px white`
+            : `0 0 0 ${size / 8}px black`) +
+          (glow ? `, 0 0 10px ${size / 8}px ${color}` : ""),
 
         position: "absolute",
         left: `${toRelativePos(x, range[0]) * 100}%`,
@@ -221,14 +230,107 @@ export function GraphPoint({
         transform: "translate(-50%, 50%)",
 
         zIndex: 20,
-        cursor: onDrag ? "move" : undefined,
+        cursor: onDrag ? "move" : onClick ? "pointer" : undefined,
       }}
-    />
+    >
+      {label && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            // background: "rgba(255, 0, 0, 0.7)",
+            transform: "translate(100%, -100%)",
+            pointerEvents: "none",
+            color: color,
+            textShadow: "0 0 12px black, 0 0 8px black, 0 0 4px black",
+          }}
+        >
+          {label}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function GraphTrail({
+  x = 0,
+  y = 0,
+  color = "white",
+  size = 12,
+  duration = 500,
+}) {
+  const { range, windowSize } = useGraph();
+
+  const [trailPoints, setTrailPoints] = useState([{ x, y, time: Date.now() }]);
+
+  useEffect(() => {
+    const lastPoint = trailPoints[trailPoints.length - 1];
+    if (lastPoint.x === x && lastPoint.y === y) return;
+
+    setTrailPoints((points) =>
+      [...points, { x, y, time: Date.now() }].filter(
+        (point) => Date.now() - point.time < 1000
+      )
+    );
+  }, [x, y, trailPoints]);
+
+  return (
+    <svg
+      style={{
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        zIndex: 10,
+      }}
+      viewBox={`0 0 ${windowSize.width} ${windowSize.height}`}
+      preserveAspectRatio="none"
+    >
+      {trailPoints.map((point, index) => {
+        if (index === 0) return null;
+
+        const prevPoint = trailPoints[index - 1];
+
+        return (
+          <line
+            key={point.time}
+            x1={toRelativePos(prevPoint.x, range[0]) * windowSize.width}
+            x2={toRelativePos(point.x, range[0]) * windowSize.width}
+            y1={(1 - toRelativePos(prevPoint.y, range[1])) * windowSize.height}
+            y2={(1 - toRelativePos(point.y, range[1])) * windowSize.height}
+            stroke={color}
+            strokeLinecap="round"
+            className="trailSegment"
+          />
+        );
+      })}
+
+      <style jsx>
+        {`
+          .trailSegment {
+            animation: shrinkOut ${duration}ms linear forwards;
+          }
+
+          @keyframes shrinkOut {
+            0% {
+              stroke-width: ${size}px;
+            }
+            100% {
+              stroke-width: 0px;
+            }
+          }
+        `}
+      </style>
+    </svg>
   );
 }
 
 export function GraphLines({
-  step = 1,
+  step = undefined,
   color = "white",
   thickness = 1,
   labels = true,
@@ -237,7 +339,9 @@ export function GraphLines({
 }) {
   const { range, windowSize } = useGraph();
 
-  step = 2 ** Math.floor(Math.log2((0.4 * (range[0][1] - range[0][0])) / 2));
+  if (step === undefined) {
+    step = 2 ** Math.floor(Math.log2((0.4 * (range[0][1] - range[0][0])) / 2));
+  }
 
   let vertPositions = [];
   for (

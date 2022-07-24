@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
+import useWindowSize from "../../../../../../util/useWindowSize";
 import GraphWindow, {
   GraphPoint,
   GraphLines,
@@ -84,12 +85,6 @@ export default function NewtonsFractalInteractive() {
                 }}
               />
               <GraphLines
-                step={0.2}
-                color="rgba(255, 255, 255, 0.2)"
-                labels={false}
-              />
-              <GraphLines
-                step={1}
                 color="rgba(255, 255, 255, 0.5)"
                 labels={true}
                 labelY={(n) => `${n}i`}
@@ -210,29 +205,6 @@ function multiply(...nums) {
       ...nums.slice(2),
     ]
   );
-}
-
-function useWindowSize() {
-  const [size, setSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const updateSize = useCallback(() => {
-    setSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateSize);
-    return () => {
-      window.removeEventListener("resize", updateSize);
-    };
-  }, [updateSize]);
-
-  return size;
 }
 
 export const vertex = `#version 300 es
