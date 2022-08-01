@@ -121,7 +121,7 @@ export function ContactForm() {
       <Input name="subject" label="Subject:" />
       <Input type="textarea" name="message" label="Message:" />
 
-      <VerificationCheckbox label="I am not asking a question that is answered in the FAQs above." />
+      <VerificationCheckbox label="I am not asking a question that is answered in the FAQs." />
     </Form>
   );
 }
