@@ -82,8 +82,13 @@ const Nav = () => {
       />
       <NavLink
         link="/faq"
-        text="FAQ/contact"
+        text="FAQ"
         tooltip="Have a question?"
+      />
+      <NavLink
+        link="/contact"
+        text="Contact"
+        tooltip="Email"
       />
       <NavLink
         link="/about"

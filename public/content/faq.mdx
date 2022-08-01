@@ -24,13 +24,12 @@
 
 [I’ve solved a famous unsolved math problem/developed a novel idea. Will you check it for me?](#unsolved)
 
-[Can I license these videos/Is it okay to use the material in my own work?](/contact#licensing)
+[Can I license these videos/Is it okay to use the material in my own work?](/contact#licensing-inquiry)
 
-[Will you speak at our event?](/contact#speaking)
+
+[Will you speak at our event?](/contact#speaking-request)
 
 [My organization would like to sponsor one of your videos.](#sponsor)
-
-[Contact forms](#contact)
 
 ---
 
@@ -39,14 +38,16 @@
 ### What do you use to animate your videos?
 
 <Center>
-  <img src="images/contact/manim_wide.png" width="400px"/>
+  <a href="https://github.com/3b1b/manim">
+    <img src="images/contact/manim_wide.png" width="400px"/>
+  </a>
 </Center>
 
-Almost all animations are made using a custom open-source python library named [Manim](https://github.com/3b1b/manim). I started the project concurrently with starting the channel, intending for it to be more of a scrappy playground of code for my own use cases than an explicitly outward-facing or professionally maintained tool.
+Almost all animations are made using a custom open-source python library named [Manim](https://github.com/3b1b/manim). Code for specific videos can be found in [this repository](https://github.com/3b1b/videos).
 
-Since its inception, a [community](https://www.manim.community/) got together and created an [alternate fork](https://github.com/ManimCommunity/manim/) which is aimed at being more stable, better documented, and better tested. Anyone looking to get started with manim should probably begin with the community version.
+I started the project concurrently with starting the channel, intending for it to be more of a scrappy playground of code for my own use cases than an explicitly outward-facing or professionally maintained tool. Since its inception, a [community](https://www.manim.community/) got together and created an [alternate fork](https://github.com/ManimCommunity/manim/) which is aimed at being more stable, better documented, and better tested. Anyone looking to get started with manim should probably begin with the community version.
 
-The original version, used for 3b1b videos, is perhaps best viewed as a testing ground where I try to quickly put new things together while developing new videos. For a behind-the-scenes look at past videos, you can find all the code associated with those projects in [this repository](https://github.com/3b1b/videos).
+The original version, used for 3b1b videos, is perhaps best viewed as a testing ground where I try to quickly put new things together while developing new videos.
 
 There many [other](https://www.youtube.com/vcubingx) [excellent](https://www.youtube.com/channel/UCGYouJhklRHc_EfKwpIrTyw) [channels](https://www.youtube.com/reducible) that have made use of it for their own expository videos.
 
@@ -54,7 +55,7 @@ If you want to make your own animated math videos, I would encourage you to also
 
 Keep in mind, plenty of professional animation tools like Blender and After Effects can be made programmatic too. Also, be sure to ask yourself if what you’re doing actually benefits from being programmatic. If all you’re looking to do is simple moving/fading animations, using something simple like Keynote or PowerPoint might take you farther than you’d expect.
 
-It’s wonderful to see others using manim, especially if it helps them explain math in ways that otherwise would have been hard, but often I see folks using it mainly to animate simple movements or to write and manipulate Latex expressions. In those cases, and I fully acknowledge the hypocrisy here, I can’t help but speculate that another tool might have made the job easier. I also get worried when I hear people ask things like “how do I sync up narration into manim”. This is just a tool for spitting out the individual clips to be edited together later, you should certainly use traditional video-editing software for as much as you can!
+It’s wonderful to see others using manim, especially if it helps them explain math in ways that otherwise would have been hard. But every so often I see folks using it mainly to animate simple movements or to write and manipulate Latex expressions. In those cases, and I fully acknowledge the hypocrisy here, I can’t help but speculate that another tool might have made the job easier. I also get worried when I hear people ask things like “how do I sync up narration into manim”. This is just a tool for spitting out the individual clips to be edited together later, you should certainly use traditional video-editing software for as much as you can!
 
 Where programatic animations works best is when you have a situation where the code directly reflects the math you’re trying to explain, or where iteration, abstraction, and conditionals make a set of illustrations possible which otherwise would have taken much too long to do manually.
 
@@ -174,38 +175,5 @@ The channel [no longer does sponsored videos](https://www.patreon.com/posts/goin
 
 ---
 
-# Contact
-
-<Accordion title="General inquiry" preserveInnerState={true}>
-
-Please note the FAQs above before writing in. They address, for example, questions about animation code, questions about math, and topic suggestions. If you're asking about a particular video, check to see if your question has already been answered in that video's description.
-
-<ContactForm />
-
-</Accordion>
-
-<Accordion title="Licensing inquiry" preserveInnerState={true} id="licensing">
-
-Under the standard YouTube license, you are free to embed the videos in your own site or blog, as long as it is not behind a paywall.
-
-If you want to use some of the visuals offline for classroom usage or a
-presentation, feel free to do so. In both cases, attribution is of course appreciated.
-
-Otherwise, to reupload the content in any way, e.g. incorporating them into a video, or uploading them to a new video platform, you will need to purchase a license. If you'd like to do so, kindly fill out the form below.
-
-<LicensingForm />
-
-</Accordion>
-
-<Accordion title="Speaking request" preserveInnerState={true} id="speaking">
-
-While I do occasionally speak at schools and corporate events, it's worth mentioning that the main focus will always be the videos, so talks are typically kept to a minimum.
-
-  <SpeakingForm />
-</Accordion>
-
-<Accordion title="Just want to say thanks" preserveInnerState={true}>
-  <ThanksForm />
-</Accordion>
 
 </Section>
