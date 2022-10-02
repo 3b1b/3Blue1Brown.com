@@ -20,7 +20,6 @@ const BlogLayout = ({ title, date, video }) => {
       </Section>
       <div />
       <PageContent />
-      <Disqus />
       <TableOfContents />
       <Jump />
     </NormalLayout>
