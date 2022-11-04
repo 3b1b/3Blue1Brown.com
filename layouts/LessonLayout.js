@@ -34,11 +34,12 @@ const LessonLayout = () => {
             <CorrectionLink />
           </Section>
           <LessonNav />
-          <Thanks />
           <TableOfContents />
           <Jump />
         </>
       )}
+
+      <Thanks />
 
     </NormalLayout>
   );
