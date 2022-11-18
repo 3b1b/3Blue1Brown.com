@@ -124,10 +124,11 @@
   slug: computer-science
   description: An assortment of topics related to algorithms
   lessons:
-    - bitcoin
-    - 256-bit-security
+    - convolutions
     - wordle
     - wordle2
+    - bitcoin
+    - 256-bit-security
     - hamming-codes
     - hamming-codes-2
     - hanoi-and-sierpinski
