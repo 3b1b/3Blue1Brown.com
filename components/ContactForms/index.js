@@ -143,10 +143,6 @@ export function ContactFormReceivedMessage() {
       return (
         <div className={styles.receivedFormThanks}>
           <strong>Thank you for your submission!</strong>
-          <div>
-            We read every message, but can't respond personally to all of them.
-            We hope you understand.
-          </div>
         </div>
       );
     default:
