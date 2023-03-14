@@ -145,6 +145,7 @@
   slug: probability
   description: An assortment of introductory ideas in probability
   lessons:
+    - clt
     - bayes-theorem
     - better-bayes
     - binomial-distributions
