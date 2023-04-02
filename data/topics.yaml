@@ -146,6 +146,7 @@
   description: An assortment of introductory ideas in probability
   lessons:
     - clt
+    - gaussian-integral
     - bayes-theorem
     - better-bayes
     - binomial-distributions
