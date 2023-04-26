@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   try {
     const response = await fetch(apiUrl, {
       headers: {
-        'Authorization': `Bearer ${bearerToken}`,
+        "Authorization": `Bearer ${bearerToken}`,
       },
     });
 
