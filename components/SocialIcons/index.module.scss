@@ -1,13 +1,59 @@
 .socialIcons {
   display: inline-flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   font-size: 1.0rem;
-  @include hover;
 
   a {
     color: inherit;
-    padding: 8px;
+    padding: 6px;
   }
+}
+
+.iconContainer {
+  margin: 0 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  &:hover {
+    .iconLabelContainer {
+      color: var(--hover-color);
+    }
+  }
+}
+
+.iconLabelContainer {
+  display: flex;
+  align-items: center;
+}
+
+.iconLabelContainer > i {
+  margin-right: 5px;
+}
+
+.topRow {
+  display: inline-flex;
+  font-size: 1.3em;
+  margin-bottom: 0em;
+}
+
+.restRow {
+  display: inline-flex;
+  font-size: 1em;
+}
+
+
+.followers {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  justify-content: center;
+  font-size: 0.75em;
+  text-decoration: none;
+  align-items: center;
 }
