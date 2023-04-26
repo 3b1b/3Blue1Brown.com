@@ -11,9 +11,12 @@
     "compress": "sh ./scripts/compress.sh"
   },
   "dependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
     "@popperjs/core": "^2.9.2",
     "@react-three/fiber": "^7.0.2",
     "@sentry/nextjs": "^6.10.0",
+    "@types/react": "^18.2.0",
     "disqus-react": "^1.0.11",
     "eslint-config-next": "^13.3.1",
     "glob": "^7.1.7",
@@ -25,8 +28,8 @@
     "next-mdx-remote": "3.0.2",
     "next-yaml": "^1.0.1",
     "prop-types": "^15.7.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-markdown": "^6.0.2",
     "react-p5": "^1.3.19",
     "react-popper": "^2.2.5",
@@ -37,12 +40,13 @@
     "remark-13-math": "npm:remark-math@^4.0.0",
     "remark-math": "^3.0.1",
     "sass": "^1.34.1",
-    "three": "^0.130.0"
+    "three": "^0.151.3",
+    "typescript": "^5.0.4",
+    "webpack": "^5.81.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
-    "babel-eslint": "^10.0.0",
     "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "^7.5.0",
     "eslint-config-react-app": "^6.0.0",
