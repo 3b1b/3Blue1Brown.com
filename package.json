@@ -45,6 +45,7 @@
     "webpack": "^5.81.0"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.36.0",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
     "babel-plugin-inline-react-svg": "^2.0.1",
