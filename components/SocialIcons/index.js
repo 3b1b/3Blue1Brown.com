@@ -132,12 +132,12 @@ function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverCo
   const [color, setColor] = useState(restingColor);
 
   return (
-    <NextLink href={link} passHref>
+    <NextLink
+      href={link} passHref
+      className={styles.iconContainer}
+      style={{'--hover-color': hoverColor}}
+    >
       <Tooltip content={tooltip}>
-        <a
-          className={styles.iconContainer}
-          style={{'--hover-color': hoverColor}}
-        >
           <div className={styles.iconLabelContainer}>
             <i className={icon} style={{ color: color }}/>
             {label && (
@@ -146,7 +146,6 @@ function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverCo
               </span>
             )}
           </div>
-        </a>
       </Tooltip>
     </NextLink>
   );

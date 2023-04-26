@@ -54,7 +54,7 @@ const CorrectionLink = () => {
     <div style={{ marginTop: 24 }}>
       Notice a mistake?{" "}
       <a href={url} target="_blank" rel="noreferrer">
-        Submit a correction on Github
+        Submit a correction on GitHub
       </a>
     </div>
   );
@@ -66,7 +66,7 @@ const License = () => (
     <p className="center">
       All rights reserved. To use or reference in other media, reach out via the{" "}
       <Link href="/contact">
-        <a>contact page</a>
+        contact page
       </Link>
       .
     </p>
@@ -75,28 +75,26 @@ const License = () => (
 
 const Thanks = () => {
   const { patrons = [] } = useContext(PageContext);
-  return (
-    <>
-      {patrons.length > 0 && (
-        <Section>
-          <h1 id="thanks">Thanks</h1>
-          <p>
-            Special thanks to those below for supporting the original video
-            behind this post, and to{" "}
-            <Link href="/thanks">
-              <a>current patrons</a>
-            </Link>{" "}
-            for funding ongoing projects. If you find these lessons valuable,{" "}
-            <Link href="https://www.patreon.com/3blue1brown">
-              <a>consider joining</a>
-            </Link>
-            .
-          </p>
-          <Patrons />
-        </Section>
-      )}
-    </>
-  );
+  return <>
+    {patrons.length > 0 && (
+      <Section>
+        <h1 id="thanks">Thanks</h1>
+        <p>
+          Special thanks to those below for supporting the original video
+          behind this post, and to{" "}
+          <Link href="/thanks">
+            current patrons
+          </Link>{" "}
+          for funding ongoing projects. If you find these lessons valuable,{" "}
+          <Link href="https://www.patreon.com/3blue1brown">
+            consider joining
+          </Link>
+          .
+        </p>
+        <Patrons />
+      </Section>
+    )}
+  </>;
 };
 
 export default LessonLayout;

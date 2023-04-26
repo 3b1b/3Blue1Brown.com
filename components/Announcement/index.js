@@ -45,27 +45,27 @@ export default function Announcement({ id, headline, description, link }) {
   }
 
   return (
-    <Link href={link}>
-      <a className={styles.announcement}>
-        <div className={styles.center}>
-          <div className={styles.content}>
-            <div className={styles.headline}>{headline}</div>
-            {description && (
-              <div className={styles.description}>{description}</div>
-            )}
-          </div>
-          <button
-            className={styles.closeButton}
-            onClick={(event) => {
-              event.preventDefault();
-              close();
-            }}
-          >
-            <i className="fas fa-times" />
-          </button>
+    (<Link href={link} className={styles.announcement}>
+
+      <div className={styles.center}>
+        <div className={styles.content}>
+          <div className={styles.headline}>{headline}</div>
+          {description && (
+            <div className={styles.description}>{description}</div>
+          )}
         </div>
-      </a>
-    </Link>
+        <button
+          className={styles.closeButton}
+          onClick={(event) => {
+            event.preventDefault();
+            close();
+          }}
+        >
+          <i className="fas fa-times" />
+        </button>
+      </div>
+
+    </Link>)
   );
 }
 
