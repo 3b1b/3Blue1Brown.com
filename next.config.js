@@ -2,9 +2,7 @@ const withImages = require("next-images");
 const withYAML = require("next-yaml");
 const { withSentryConfig } = require("@sentry/nextjs");
 
-let config = {
-  target: "serverless",
-};
+let config = {};
 
 config = {
   ...config,
@@ -15,6 +13,9 @@ config = {
 @import "styles/theme.scss";
 @import "styles/mixins.scss";
     `,
+  },
+  experimental: {
+    newNextLinkBehavior: false,
   },
 };
 
