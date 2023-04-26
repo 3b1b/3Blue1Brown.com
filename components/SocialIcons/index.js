@@ -16,36 +16,6 @@ export default function SocialIcons() {
     fetchPatreonMemberCount(setPatreonPatrons);
   }, []);
 
-  async function fetchYoutubeSubscriberCount(setYoutubeSubscribers) {
-    try {
-      const response = await fetch('/api/youtube-subscriber-count');
-      const data = await response.json();
-      setYoutubeSubscribers(data.subscriberCount);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function fetchTwitterFollowerCount(setTwitterFollowers) {
-    try {
-      const response = await fetch('/api/twitter-follower-count');
-      const data = await response.json();
-      setTwitterFollowers(data.followerCount);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function fetchPatreonMemberCount(setPatreonPatrons) {
-    try {
-      const response = await fetch("/api/patreon-member-count");
-      const data = await response.json();
-      setPatreonPatrons(data.memberCount);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <div className={styles.socialIcons}>
       <div className={styles.topRow}>
@@ -134,6 +104,36 @@ export default function SocialIcons() {
   );
 }
 
+
+async function fetchYoutubeSubscriberCount(setYoutubeSubscribers) {
+  try {
+    const response = await fetch('/api/youtube_subscriber_count');
+    const data = await response.json();
+    setYoutubeSubscribers(data.subscriberCount);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function fetchTwitterFollowerCount(setTwitterFollowers) {
+  try {
+    const response = await fetch('/api/twitter_follower_count');
+    const data = await response.json();
+    setTwitterFollowers(data.followerCount);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function fetchPatreonMemberCount(setPatreonPatrons) {
+  try {
+    const response = await fetch("/api/patreon_member_count");
+    const data = await response.json();
+    setPatreonPatrons(data.memberCount);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 function formatNumber(number) {
   if (number >= 1000000) {
