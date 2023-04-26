@@ -10,8 +10,8 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (data && data.data) {
-      const memberCount = data.data.attributes.patron_count;
-      res.status(200).json({ memberCount });
+      const followerCount = data.data.attributes.patron_count;
+      res.status(200).json({ followerCount });
     } else {
       res.status(500).json({ error: "Failed to fetch Patreon member count" });
     }

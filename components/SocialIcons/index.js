@@ -8,12 +8,12 @@ export default function SocialIcons() {
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
-  const defaultTwitterCount = 319570;
+  // const defaultTwitterCount = 319570;
 
   useEffect(() => {
-    fetchYoutubeSubscriberCount(setYoutubeSubscribers);
-    fetchTwitterFollowerCount(setTwitterFollowers);
-    fetchPatreonMemberCount(setPatreonPatrons);
+    fetchFollowerCount(setYoutubeSubscribers, '/api/youtube_subscriber_count');
+    fetchFollowerCount(setTwitterFollowers, '/api/twitter_follower_count');
+    fetchFollowerCount(setPatreonPatrons, '/api/patreon_member_count');
   }, []);
 
   return (
@@ -33,7 +33,7 @@ export default function SocialIcons() {
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
-          label={`${formatNumber(twitterFollowers || defaultTwitterCount)}`}
+          label={`${formatNumber(twitterFollowers) || ''}`}
         />
         <Link
           link="https://www.patreon.com/3blue1brown"
@@ -104,36 +104,16 @@ export default function SocialIcons() {
   );
 }
 
-
-async function fetchYoutubeSubscriberCount(setYoutubeSubscribers) {
+async function fetchFollowerCount(setter, route){
   try {
-    const response = await fetch('/api/youtube_subscriber_count');
+    const response = await fetch(route);
     const data = await response.json();
-    setYoutubeSubscribers(data.subscriberCount);
+    setter(data.followerCount);
   } catch (error) {
     console.error(error);
   }
 }
 
-async function fetchTwitterFollowerCount(setTwitterFollowers) {
-  try {
-    const response = await fetch('/api/twitter_follower_count');
-    const data = await response.json();
-    setTwitterFollowers(data.followerCount);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function fetchPatreonMemberCount(setPatreonPatrons) {
-  try {
-    const response = await fetch("/api/patreon_member_count");
-    const data = await response.json();
-    setPatreonPatrons(data.memberCount);
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 function formatNumber(number) {
   if (number >= 1000000) {
@@ -154,9 +134,7 @@ function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverCo
       <Tooltip content={tooltip}>
         <a
           className={styles.iconContainer}
-          style={{
-            '--hover-color': hoverColor // Add this line
-          }}
+          style={{'--hover-color': hoverColor}}
         >
           <div className={styles.iconLabelContainer}>
             <i className={icon} style={{ color: color }}/>
