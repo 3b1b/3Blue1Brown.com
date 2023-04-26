@@ -9,6 +9,8 @@ export default function SocialIcons() {
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
+  const defaultTwitterCount = 319560;
+
   useEffect(() => {
     fetchYoutubeSubscriberCount(setYoutubeSubscribers);
     fetchTwitterFollowerCount(setTwitterFollowers);
@@ -60,7 +62,7 @@ export default function SocialIcons() {
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
-          label={`${formatNumber(twitterFollowers) || '319.5K'}`}
+          label={`${formatNumber(twitterFollowers) || formatNumber(defaultTwitterCount)}`}
         />
         <Link
           link="https://www.patreon.com/3blue1brown"
