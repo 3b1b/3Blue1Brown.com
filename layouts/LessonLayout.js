@@ -54,7 +54,7 @@ const CorrectionLink = () => {
     <div style={{ marginTop: 24 }}>
       Notice a mistake?{" "}
       <a href={url} target="_blank" rel="noreferrer">
-        Submit a correction on Github
+        Submit a correction on GitHub
       </a>
     </div>
   );
