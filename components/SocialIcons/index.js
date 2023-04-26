@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import Tooltip from '../Tooltip';
 import styles from './index.module.scss';
-import axios from 'axios';
 
 export default function SocialIcons() {
   const [youtubeSubscribers, setYoutubeSubscribers] = useState(null);
@@ -19,8 +18,9 @@ export default function SocialIcons() {
 
   async function fetchYoutubeSubscriberCount(setYoutubeSubscribers) {
     try {
-      const response = await axios.get('/api/youtube-subscriber-count');
-      setYoutubeSubscribers(response.data.subscriberCount);
+      const response = await fetch('/api/youtube-subscriber-count');
+      const data = await response.json();
+      setYoutubeSubscribers(data.subscriberCount);
     } catch (error) {
       console.error(error);
     }
@@ -28,8 +28,9 @@ export default function SocialIcons() {
 
   async function fetchTwitterFollowerCount(setTwitterFollowers) {
     try {
-      const response = await axios.get('/api/twitter-follower-count');
-      setTwitterFollowers(response.data.followerCount);
+      const response = await fetch('/api/twitter-follower-count');
+      const data = await response.json();
+      setTwitterFollowers(data.followerCount);
     } catch (error) {
       console.error(error);
     }
@@ -37,8 +38,9 @@ export default function SocialIcons() {
 
   async function fetchPatreonMemberCount(setPatreonPatrons) {
     try {
-      const response = await axios.get("/api/patreon-member-count");
-      setPatreonPatrons(response.data.memberCount);
+      const response = await fetch("/api/patreon-member-count");
+      const data = await response.json();
+      setPatreonPatrons(data.memberCount);
     } catch (error) {
       console.error(error);
       return 0;
