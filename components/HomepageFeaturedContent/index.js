@@ -26,7 +26,7 @@ HomepageFeaturedContent.propTypes = {
 
 export default function HomepageFeaturedContent({ title, show_latest_video=true, children}) {
   const { lessons } = useContext(PageContext);
-  const lesson = [...lessons].sort((a, b) => {a.date - b.date})[0];
+  const lesson = lessons[0];
 
   var latest_video = (
     <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title} youtube_id={lesson.video} />
@@ -84,7 +84,7 @@ export function HomepageFeaturedItem({
           {item}
           <figcaption className={styles.itemCaption}>
             <Link href={link}>
-              <a>{caption}</a>
+              {caption}
             </Link>
           </figcaption>
         </figure>

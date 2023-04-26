@@ -99,7 +99,7 @@ const Button = ({ tooltip, ...rest }) => (
 
 // link component, for navigating somewhere
 const Link = ({ tooltip, link = "/", ...rest }) => (
-  <NextLink href={link} passHref>
+  <NextLink href={link} passHref legacyBehavior>
     <Tooltip content={tooltip}>
       <a {...rest} />
     </Tooltip>

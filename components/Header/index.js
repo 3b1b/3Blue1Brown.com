@@ -27,12 +27,12 @@ export default Header;
 
 // centered site title with logo and text
 const Title = ({ big }) => (
-  <Link href="/">
-    <a className={styles.title}>
-      <Logo big={big} />
-      <Text />
-    </a>
-  </Link>
+  (<Link href="/" className={styles.title}>
+
+    <Logo big={big} />
+    <Text />
+
+  </Link>)
 );
 
 // site title text
@@ -101,7 +101,7 @@ const Nav = () => {
 
 // nav bar link
 const NavLink = ({ link, text, icon, tooltip }) => (
-  <Link href={link} passHref>
+  <Link href={link} passHref legacyBehavior>
     <Tooltip content={tooltip}>
       <a className={styles.link}>
         {text}
