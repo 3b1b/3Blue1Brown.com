@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import NextLink from 'next/link';
-import Tooltip from '../Tooltip';
-import styles from './index.module.scss';
+import NextLink from "next/link";
+import Tooltip from "../Tooltip";
+import styles from "./index.module.scss";
+import {useState, useEffect} from "react";
 
 export default function SocialIcons() {
   const [youtubeSubscribers, setYoutubeSubscribers] = useState(null);
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
-  const defaultTwitterCount = 319560;
+  const defaultTwitterCount = 319570;
 
   useEffect(() => {
     fetchYoutubeSubscriberCount(setYoutubeSubscribers);
@@ -43,7 +43,6 @@ export default function SocialIcons() {
       setPatreonPatrons(data.memberCount);
     } catch (error) {
       console.error(error);
-      return 0;
     }
   };
 
@@ -64,7 +63,7 @@ export default function SocialIcons() {
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
-          label={`${formatNumber(twitterFollowers) || formatNumber(defaultTwitterCount)}`}
+          label={`${formatNumber(twitterFollowers || defaultTwitterCount)}`}
         />
         <Link
           link="https://www.patreon.com/3blue1brown"
