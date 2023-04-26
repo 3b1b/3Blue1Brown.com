@@ -8,7 +8,9 @@ export default function SocialIcons() {
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
-  // const defaultTwitterCount = 319570;
+  const fallbackYouTubeCount = 5142090;
+  const fallbackTwitterCount = 319570;
+  const fallbackPatronCount = 6290;
 
   useEffect(() => {
     fetchFollowerCount(setYoutubeSubscribers, '/api/youtube_subscriber_count');
@@ -25,7 +27,7 @@ export default function SocialIcons() {
           tooltip="The main event"
           hoverColor="#ff0000"
           restingColor="#ff0000"
-          label={`${formatNumber(youtubeSubscribers) || ''}`}
+          label={`${formatNumber(youtubeSubscribers || fallbackYouTubeCount)}`}
         />
         <Link
           link="https://twitter.com/3blue1brown"
@@ -33,7 +35,7 @@ export default function SocialIcons() {
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
-          label={`${formatNumber(twitterFollowers) || ''}`}
+          label={`${formatNumber(twitterFollowers || fallbackTwitterCount)}`}
         />
         <Link
           link="https://www.patreon.com/3blue1brown"
@@ -41,7 +43,7 @@ export default function SocialIcons() {
           tooltip="Support future lessons"
           hoverColor="#f96854"
           restingColor="#f96854"
-          label={`${formatNumber(patreonPatrons) || ''}`}
+          label={`${formatNumber(patreonPatrons || fallbackPatronCount)}`}
         />
       </div>
       <div className={styles.restRow}>
