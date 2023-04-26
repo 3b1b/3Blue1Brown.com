@@ -2,7 +2,9 @@ const withImages = require("next-images");
 const withYAML = require("next-yaml");
 const { withSentryConfig } = require("@sentry/nextjs");
 
-let config = {};
+let config = {
+  output: 'standalone'
+};
 
 config = {
   ...config,
