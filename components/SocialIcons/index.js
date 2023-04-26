@@ -8,6 +8,7 @@ export default function SocialIcons() {
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
+  // As of 4/26/23. In a perfect world, these would not be used
   const fallbackYouTubeCount = 5142090;
   const fallbackTwitterCount = 319570;
   const fallbackPatronCount = 6290;
