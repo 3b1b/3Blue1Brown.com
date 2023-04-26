@@ -13,7 +13,7 @@ export default function LessonLink({ id = "", children }) {
   const tooltip = <LessonCard id={id} mini={true} />;
 
   return (
-    <Link href={id ? `/lessons/${id}` : ""} passHref>
+    <Link href={id ? `/lessons/${id}` : ""} passHref legacyBehavior>
       <Tooltip content={tooltip}>
         <a>{children}</a>
       </Tooltip>

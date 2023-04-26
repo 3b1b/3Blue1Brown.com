@@ -14,9 +14,6 @@ config = {
 @import "styles/mixins.scss";
     `,
   },
-  experimental: {
-    newNextLinkBehavior: false,
-  },
 };
 
 config = {

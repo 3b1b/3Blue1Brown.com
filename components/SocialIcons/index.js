@@ -78,9 +78,7 @@ function Link({ link, icon, tooltip, label = "", hoverColor="inherit"}) {
   return (
     <NextLink href={link} passHref>
       <Tooltip content={tooltip}>
-        <a>
-          <i className={icon} style={{color: color}} onMouseEnter={() => setColor(hoverColor)} onMouseLeave={() => setColor('inherit')}/>
-        </a>
+        <i className={icon} style={{color: color}} onMouseEnter={() => setColor(hoverColor)} onMouseLeave={() => setColor('inherit')}/>
       </Tooltip>
     </NextLink>
   );

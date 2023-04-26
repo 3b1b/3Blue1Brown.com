@@ -84,7 +84,7 @@ export function HomepageFeaturedItem({
           {item}
           <figcaption className={styles.itemCaption}>
             <Link href={link}>
-              <a>{caption}</a>
+              {caption}
             </Link>
           </figcaption>
         </figure>

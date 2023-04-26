@@ -120,16 +120,16 @@ export default function LessonGallery({ show = "topic" }) {
 
 const TopicCard = ({ topic }) => {
   return (
-    <Link href={`/topics/${topic.slug}`}>
-      <a className={styles.topic_card}>
-        <img
-          className={styles.image}
-          src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
-          alt={topic.name}
-        />
-        <span className={styles.title}>{topic.name}</span>
-      </a>
-    </Link>
+    (<Link href={`/topics/${topic.slug}`} className={styles.topic_card}>
+
+      <img
+        className={styles.image}
+        src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
+        alt={topic.name}
+      />
+      <span className={styles.title}>{topic.name}</span>
+
+    </Link>)
   );
 };
 

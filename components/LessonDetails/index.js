@@ -81,26 +81,24 @@ const Credits = () => {
     return { before, name, link, after };
   });
 
-  return (
-    <>
-      {credits.map(({ before, name, link, after }, index) => {
-        return (
-          <div key={index}>
-            <i className="fas fa-feather-alt"></i>
-            <span>
-              {before}
-              {name && (
-                <Link href={link}>
-                  <a>{name}</a>
-                </Link>
-              )}
-              {after && after}
-            </span>
-          </div>
-        );
-      })}
-    </>
-  );
+  return <>
+    {credits.map(({ before, name, link, after }, index) => {
+      return (
+        <div key={index}>
+          <i className="fas fa-feather-alt"></i>
+          <span>
+            {before}
+            {name && (
+              <Link href={link}>
+                {name}
+              </Link>
+            )}
+            {after && after}
+          </span>
+        </div>
+      );
+    })}
+  </>;
 };
 
 // list of tags for lesson
