@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const channelId = 'UCYO_jab_esuFRV4b17AJtAw';
-  const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+  const apiKey = process.env.YOUTUBE_API_KEY;
   const apiUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
 
   try {
