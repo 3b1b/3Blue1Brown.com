@@ -9,9 +9,9 @@ export default function SocialIcons() {
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
   // As of 4/26/23. In a perfect world, these would not be used
-  const fallbackYouTubeCount = 5142090;
-  const fallbackTwitterCount = 319570;
-  const fallbackPatronCount = 6290;
+  const fallbackYouTubeCount = 515000;
+  const fallbackTwitterCount = 320000;
+  const fallbackPatronCount = 6300;
 
   useEffect(() => {
     fetchFollowerCount(setYoutubeSubscribers, '/api/youtube_subscriber_count');

@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
-  const bearerToken = process.env.TWITTER_BEARER_TOKEN;
+  const bearerToken = process.env.NEXT_PUBLIC_TWITTER_BEARER_TOKEN;
   const screenName = '3blue1brown';
-  const apiUrl = `https://api.twitter.com/2/users/${screenName}?user.fields=public_metrics`;
+  const apiUrl = `https://api.twitter.com/1.1/users/show.json?screen_name=${screenName}`;
 
   try {
     const response = await fetch(apiUrl, {
