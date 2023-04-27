@@ -11,6 +11,7 @@ import {
   ContactForm,
   ContactFormReceivedMessage,
 } from "./ContactForms";
+import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import FreeResponse from "./FreeResponse";
@@ -45,6 +46,7 @@ const components = {
   Clickable,
   ContactForm,
   ContactFormReceivedMessage,
+  FaqLinks,
   FeatureCard,
   Figure,
   FreeResponse,

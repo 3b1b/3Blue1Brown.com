@@ -77,12 +77,12 @@ export function SpeakingForm() {
         name="estimated_date"
         label="Approximate date for the desired talk:"
       />
-      <Input name="estimated_honorarium" label="Estimated honorarium:" />
+      <Input name="estimated_honorarium" label="Estimated speaking fee:" />
 
       <Input
         type="textarea"
         name="message"
-        label="Tell us more about what you're looking for:"
+        label="Details about what you're looking for:"
       />
     </Form>
   );
