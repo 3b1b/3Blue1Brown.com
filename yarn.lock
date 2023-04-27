@@ -1926,9 +1926,9 @@ domutils@^2.8.0:
     domhandler "^4.2.0"
 
 electron-to-chromium@^1.4.284:
-  version "1.4.373"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.373.tgz#58eb1c180e56550fdbf8cd6e4f04a84abd414bb9"
-  integrity sha512-whGyixOVSRlyOBQDsRH9xltFaMij2/+DQRdaYahCq0P/fiVnAVGaW7OVsFnEjze/qUo298ez9C46gnALpo6ukg==
+  version "1.4.374"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.374.tgz#091b2de9d80b970f9b5e689675ea62622cd1d74b"
+  integrity sha512-dNP9tQNTrjgVlSXMqGaj0BdrCS+9pcUvy5/emB6x8kh0YwCoDZ0Z4ce1+7aod+KhybHUd5o5LgKrc5al4kVmzQ==
 
 emoji-regex@^8.0.0:
   version "8.0.0"

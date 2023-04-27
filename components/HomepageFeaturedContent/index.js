@@ -78,7 +78,7 @@ export function HomepageFeaturedItem({
   }
 
   return (
-    <FeaturedItemContext.Provider value={{ lesson }}>
+    <FeaturedItemContext.Provider value={{ lesson }} key={{ lesson }}>
       <div>
         <figure className={styles.itemFigure}>
           {item}
