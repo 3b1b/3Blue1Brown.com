@@ -9,7 +9,7 @@ export default function SocialIcons() {
   const [patreonPatrons, setPatreonPatrons] = useState(null);
 
   // As of 4/26/23. In a perfect world, these would not be used
-  const fallbackYouTubeCount = 515000;
+  const fallbackYouTubeCount = 5150000;
   const fallbackTwitterCount = 320000;
   const fallbackPatronCount = 6300;
 
