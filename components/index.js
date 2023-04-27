@@ -11,6 +11,7 @@ import {
   ContactForm,
   ContactFormReceivedMessage,
 } from "./ContactForms";
+import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import FreeResponse from "./FreeResponse";
@@ -27,6 +28,7 @@ import PiCreature from "./PiCreature";
 import PodcastEpisodes from "./PodcastEpisodes";
 import PodcastLinks from "./PodcastLinks";
 import Portrait from "./Portrait";
+import PreviewText from "./PreviewText";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
@@ -44,6 +46,7 @@ const components = {
   Clickable,
   ContactForm,
   ContactFormReceivedMessage,
+  FaqLinks,
   FeatureCard,
   Figure,
   FreeResponse,
@@ -60,6 +63,7 @@ const components = {
   PodcastEpisodes,
   PodcastLinks,
   Portrait,
+  PreviewText,
   Question,
   Section,
   SpeakingForm,

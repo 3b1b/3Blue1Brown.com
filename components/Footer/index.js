@@ -5,7 +5,6 @@ import styles from "./index.module.scss";
 const Footer = () => (
   <footer className={styles.footer}>
     <Copyright />
-    <SocialIcons />
   </footer>
 );
 
