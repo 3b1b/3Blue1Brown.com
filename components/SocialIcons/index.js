@@ -14,9 +14,9 @@ export default function SocialIcons() {
   const fallbackPatronCount = 6300;
 
   useEffect(() => {
-    fetchFollowerCount(setYoutubeSubscribers, '/api/youtube_subscriber_count');
-    fetchFollowerCount(setTwitterFollowers, '/api/twitter_follower_count');
-    fetchFollowerCount(setPatreonPatrons, '/api/patreon_member_count');
+    fetchFollowerCount(setYoutubeSubscribers, "youtubeSubscribers", "/api/youtube_subscriber_count");
+    fetchFollowerCount(setTwitterFollowers, "twitterFollowers", "/api/twitter_follower_count");
+    fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
   }, []);
 
   return (
@@ -107,16 +107,28 @@ export default function SocialIcons() {
   );
 }
 
-async function fetchFollowerCount(setter, route){
+async function fetchFollowerCount(setter, storageKey, route) {
+  const cache = localStorage.getItem(storageKey);
+  const currentTime = new Date().getTime();
+
+  if (cache) {
+    const parsedCache = JSON.parse(cache);
+    if (parsedCache.expiry > currentTime) {
+      setter(parsedCache.followerCount);
+      return;
+    }
+  }
+
   try {
     const response = await fetch(route);
     const data = await response.json();
+    const expiry = currentTime + 24 * 60 * 60 * 1000; // 24 hour cache
+    localStorage.setItem(storageKey, JSON.stringify({ followerCount: data.followerCount, expiry }));
     setter(data.followerCount);
   } catch (error) {
     console.error(error);
   }
 }
-
 
 function formatNumber(number) {
   if (number >= 1000000) {
