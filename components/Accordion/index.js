@@ -23,9 +23,10 @@ export default function Accordion({
   title,
   children,
   preserveInnerState = false,
+  beginOpen = false,
   id,
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(beginOpen);
 
   const router = useRouter();
   const ref = useRef();
