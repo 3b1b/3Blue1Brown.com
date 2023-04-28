@@ -3,8 +3,6 @@ export default function FaqLinks(){
     <>
         <a href="/faq#manim">Animations</a> 
         <span> &bull; </span>
-        <a href="/faq#recommendations">Recommendations</a> 
-        <span> &bull; </span>
         <a href="/faq#requests">Requests</a> 
         <span> &bull; </span>
         <a href="/faq#translations">Translations</a> 
@@ -18,6 +16,8 @@ export default function FaqLinks(){
         <a href="/faq#name">Name</a> 
         <span> &bull; </span>
         <a href="/faq#music">Music</a> 
+        <span> &bull; </span>
+        <a href="/faq#recommendations">Recommendations</a> 
         <span> &bull; </span>
         <a href="/faq#math-question">Math question</a> 
         <span> &bull; </span>
