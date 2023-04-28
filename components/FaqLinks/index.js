@@ -7,9 +7,9 @@ export default function FaqLinks(){
         <span> &bull; </span>
         <a href="/faq#translations">Translations</a> 
         <span> &bull; </span>
-        <a href="/faq#licensing">Licensing</a> 
+        <a href="/contact#licensing-inquiry">Licensing</a> 
         <span> &bull; </span>
-        <a href="/faq#speaking">Speaking</a> 
+        <a href="/contact#speaking-inquiry">Speaking</a> 
         <span> &bull; </span>
         <a href="/faq#sponsor">Sponsorships</a> 
         <span> &bull; </span>
