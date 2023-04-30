@@ -145,7 +145,6 @@ export function TranslationForm() {
           type="file"
           name="srt_file"
           accept=".srt"
-          required
         />
       </label>
 
@@ -156,7 +155,6 @@ export function TranslationForm() {
           type="file"
           name="mp3_file"
           accept=".mp3"
-          required
         />
       </label>
 
