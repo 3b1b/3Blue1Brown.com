@@ -10,6 +10,7 @@ import {
   ThanksForm,
   ContactForm,
   ContactFormReceivedMessage,
+  TranslationForm,
 } from "./ContactForms";
 import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
@@ -70,6 +71,7 @@ const components = {
   Spoiler,
   ThanksForm,
   Tooltip,
+  TranslationForm,
   Twitter,
 };
 
