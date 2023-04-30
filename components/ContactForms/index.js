@@ -179,6 +179,7 @@ export function ContactFormReceivedMessage() {
       );
     case "contact-thanks":
     case "contact-general":
+    case "contact-translation":
       return (
         <div className={styles.receivedFormThanks}>
           <strong>Thank you for your submission!</strong>
