@@ -146,6 +146,7 @@ export function HomepageFeaturedYouTube({
         src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
           allow="autoplay"
           allowFullScreen
+          referrerPolicy="origin"
         />
       </div>
     )}

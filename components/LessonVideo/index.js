@@ -118,6 +118,7 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
                   src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${ timestamp ? '&start=' + timestamp : '' }`}
                   allow="autoplay"
                   allowFullScreen
+                  referrerPolicy="origin"
                 />
               </div>
             )}
