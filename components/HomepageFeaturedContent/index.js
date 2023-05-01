@@ -29,7 +29,12 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
   const lesson = lessons[0];
 
   var latest_video = (
-    <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title} youtube_id={lesson.video} />
+    <HomepageFeaturedItem
+      lesson={lesson.slug}
+      caption={"Latest video: " + lesson.title}
+      youtube_id={lesson.video}
+      link={"http://youtu.be/" + lesson.video}
+    />
   );
 
   var items = show_latest_video ? [latest_video, ...children] : children;
@@ -63,7 +68,7 @@ export function HomepageFeaturedItem({
   link="",
 }) {
   if(link == ""){
-    link = `/lessons/${lesson}`
+    link = `/lessons/${lesson}` + "#title"
   }
 
   var item;
