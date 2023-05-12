@@ -1,3 +1,4 @@
 {
+  "parser": "@babel/eslint-parser",
   "extends": "react-app"
 }

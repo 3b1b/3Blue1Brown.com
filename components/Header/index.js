@@ -27,12 +27,12 @@ export default Header;
 
 // centered site title with logo and text
 const Title = ({ big }) => (
-  <Link href="/">
-    <a className={styles.title}>
-      <Logo big={big} />
-      <Text />
-    </a>
-  </Link>
+  (<Link href="/" className={styles.title}>
+
+    <Logo big={big} />
+    <Text />
+
+  </Link>)
 );
 
 // site title text
@@ -71,11 +71,6 @@ const Nav = () => {
       <div className={styles.break} />
 
       <NavLink
-        link="https://www.patreon.com/3blue1brown"
-        text="Patreon"
-        tooltip="Help fund future lessons"
-      />
-      <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
         text="Store"
         tooltip="Notebooks, shirts, plushies, and more"
@@ -101,7 +96,7 @@ const Nav = () => {
 
 // nav bar link
 const NavLink = ({ link, text, icon, tooltip }) => (
-  <Link href={link} passHref>
+  <Link href={link} passHref legacyBehavior>
     <Tooltip content={tooltip}>
       <a className={styles.link}>
         {text}

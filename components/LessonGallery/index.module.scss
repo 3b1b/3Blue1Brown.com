@@ -82,12 +82,22 @@
 .image {
   $width: 225px;
   width: $width;
-  height: math.div($width * 9, 16);
+  height: math.div($width, 2);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .image {
+    display: none;
+  }
+  .topicGrid {
+    flex-direction: column;
+  }
 }
 
 .title {
   margin-top: 4px;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   font-weight: $medium;
-  font-size: 14px;
+  font-size: 16px;
 }

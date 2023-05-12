@@ -17,8 +17,8 @@ export default function BlogPostList() {
             )}
           </div>
           <div className={styles.postLink}>
-            <Link href={`/blog/${post.slug}`}>
-              <a className={styles.postTitle}>{post.title}</a>
+            <Link href={`/blog/${post.slug}`} className={styles.postTitle}>
+              {post.title}
             </Link>
           </div>
         </>

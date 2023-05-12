@@ -77,12 +77,12 @@ export function SpeakingForm() {
         name="estimated_date"
         label="Approximate date for the desired talk:"
       />
-      <Input name="estimated_honorarium" label="Estimated honorarium:" />
+      <Input name="estimated_honorarium" label="Estimated speaking fee:" />
 
       <Input
         type="textarea"
         name="message"
-        label="Tell us more about what you're looking for:"
+        label="Details about what you're looking for:"
       />
     </Form>
   );
@@ -126,6 +126,45 @@ export function ContactForm() {
   );
 }
 
+export function TranslationForm() {
+  return (
+    <Form name="contact-translation">
+      <InputRow>
+        <Input name="name" label="Name:" />
+        <Input name="email" type="email" label="Email:" />
+      </InputRow>
+      <InputRow>
+        <Input name="video_url" label="Video URL:" />
+        <Input name="language" label="Language:" />
+      </InputRow>
+      
+      <label className={styles.inputWrapper}>
+        <span className={styles.label}>Upload .srt file for subtitles:</span>
+        <input
+          className={styles.input}
+          type="file"
+          name="srt_file"
+          accept=".srt"
+        />
+      </label>
+
+      <label className={styles.inputWrapper}>
+        <span className={styles.label}>Upload .mp3 file for time-synced narration (optional):</span>
+        <input
+          className={styles.input}
+          type="file"
+          name="mp3_file"
+          accept=".mp3"
+        />
+      </label>
+
+      <Input name="links" label="Any social media links we should include when crediting you?" />
+
+      <Input name="message" label="Additional information:" />
+    </Form>
+  );
+}
+
 export function ContactFormReceivedMessage() {
   const router = useRouter();
 
@@ -140,6 +179,7 @@ export function ContactFormReceivedMessage() {
       );
     case "contact-thanks":
     case "contact-general":
+    case "contact-translation":
       return (
         <div className={styles.receivedFormThanks}>
           <strong>Thank you for your submission!</strong>

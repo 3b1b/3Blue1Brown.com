@@ -5,14 +5,14 @@ import styles from "./index.module.scss";
 export default function PodcastLinks() {
   return (
     <div className={styles.podcastLinks}>
-      <Link href="/podcast">
-        <a className={styles.coverLink}>
-          <img
-            src="/images/podcast/3b1b-podcast.svg"
-            alt="The 3b1b Podcast"
-            className={styles.cover}
-          />
-        </a>
+      <Link href="/podcast" className={styles.coverLink}>
+
+        <img
+          src="/images/podcast/3b1b-podcast.svg"
+          alt="The 3b1b Podcast"
+          className={styles.cover}
+        />
+
       </Link>
 
       <div className={styles.info}>

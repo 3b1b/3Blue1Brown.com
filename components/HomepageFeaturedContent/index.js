@@ -26,10 +26,15 @@ HomepageFeaturedContent.propTypes = {
 
 export default function HomepageFeaturedContent({ title, show_latest_video=true, children}) {
   const { lessons } = useContext(PageContext);
-  const lesson = [...lessons].sort((a, b) => {a.date - b.date})[0];
+  const lesson = lessons[0];
 
   var latest_video = (
-    <HomepageFeaturedItem lesson={lesson.slug} caption={"Latest video: " + lesson.title} youtube_id={lesson.video} />
+    <HomepageFeaturedItem
+      lesson={lesson.slug}
+      caption={"Latest video: " + lesson.title}
+      youtube_id={lesson.video}
+      link={"http://youtu.be/" + lesson.video}
+    />
   );
 
   var items = show_latest_video ? [latest_video, ...children] : children;
@@ -63,7 +68,7 @@ export function HomepageFeaturedItem({
   link="",
 }) {
   if(link == ""){
-    link = `/lessons/${lesson}`
+    link = `/lessons/${lesson}` + "#title"
   }
 
   var item;
@@ -78,13 +83,13 @@ export function HomepageFeaturedItem({
   }
 
   return (
-    <FeaturedItemContext.Provider value={{ lesson }}>
+    <FeaturedItemContext.Provider value={{ lesson }} key={{ lesson }}>
       <div>
         <figure className={styles.itemFigure}>
           {item}
           <figcaption className={styles.itemCaption}>
             <Link href={link}>
-              <a>{caption}</a>
+              {caption}
             </Link>
           </figcaption>
         </figure>
@@ -141,6 +146,7 @@ export function HomepageFeaturedYouTube({
         src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
           allow="autoplay"
           allowFullScreen
+          referrerPolicy="origin"
         />
       </div>
     )}

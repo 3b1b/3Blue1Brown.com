@@ -1,13 +1,10 @@
-<!-- This message only appears after submitting a contact form -->
-
-<ContactFormReceivedMessage />
-
 <Section width="narrow">
 
 # Contact
 
+<FaqLinks />
 
-For general questions, including [topic requests](/faq#request), please see the [FAQs](/faq) before writing in. 
+Please note the FAQs above before writing in.
 For questions and comments about a specific video, check to see if it's already been answered in the video's description.
 
 I do read all messages that come in, but am not always able to respond to them personally, and hope you understand.
@@ -16,13 +13,27 @@ I do read all messages that come in, but am not always able to respond to them p
     emotion="hesitant"
 />
 
+<!-- This message only appears after submitting a contact form -->
+
+<ContactFormReceivedMessage />
+
 <Accordion title="General inquiry">
 
 <ContactForm />
 
 </Accordion>
 
-<Accordion title="Licensing inquiry">
+<Accordion title="Contribute translations" id="translations">
+
+We're really grateful for all contributions here. If you've made an srt file for video subtitles, feel free to upload them to the form below and we'll get them uploaded on the main channel.
+
+Similarly, if you have a good microphone and can record a dubbing into a new language such that the timing syncs up _exactly_ with the existing video, a relatively new feature of YouTube lets us upload that as an alternate audio track on the main video. See the [faq](/faq#translations) for more information, e.g. details on official translation channels.
+
+<TranslationForm />
+
+</Accordion>
+
+<Accordion title="Licensing inquiry" id="licensing-inquiry">
 
 Under the standard YouTube license, you are free to embed the videos in your own site or blog, as long as it is not behind a paywall.
 
@@ -35,7 +46,7 @@ Otherwise, to reupload the content in any way, e.g. incorporating them into a vi
 
 </Accordion>
 
-<Accordion title="Speaking request">
+<Accordion title="Speaking request" id="speaking-inquiry">
 
 While I do occasionally speak at schools and corporate events, it's worth mentioning that the main focus will always be the videos, so talks are typically kept to a minimum.
 

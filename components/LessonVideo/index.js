@@ -57,12 +57,12 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         data-showcoverimage={showCoverImage}
       >
         {topic && (
-          <Link href={`/topics/${topic.slug}`}>
-            <a className={styles.topicLink}>
-              <i className="fas fa-arrow-left"></i>
-              {topicName}
-            </a>
-          </Link>
+          (<Link href={`/topics/${topic.slug}`} className={styles.topicLink}>
+
+            <i className="fas fa-arrow-left"></i>
+            {topicName}
+
+          </Link>)
         )}
 
         {!showCoverImage && wideEnoughToToggle() && (
@@ -76,11 +76,14 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         )}
 
         {prevLesson && videoId && (
-          <Link href={lessonRedirects[prevLesson] || `/lessons/${prevLesson}`}>
-            <a className={styles.arrowLeft} aria-label="Previous">
-              <i className="fas fa-angle-left" />
-            </a>
-          </Link>
+          (<Link
+            href={lessonRedirects[prevLesson] || `/lessons/${prevLesson}`}
+            className={styles.arrowLeft}
+            aria-label="Previous">
+
+            <i className="fas fa-angle-left" />
+
+          </Link>)
         )}
 
         {videoId && (
@@ -115,6 +118,7 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
                   src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${ timestamp ? '&start=' + timestamp : '' }`}
                   allow="autoplay"
                   allowFullScreen
+                  referrerPolicy="origin"
                 />
               </div>
             )}
@@ -122,11 +126,14 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         )}
 
         {nextLesson && videoId && (
-          <Link href={lessonRedirects[nextLesson] || `/lessons/${nextLesson}`}>
-            <a className={styles.arrowRight} aria-label="Next">
-              <i className="fas fa-angle-right" />
-            </a>
-          </Link>
+          (<Link
+            href={lessonRedirects[nextLesson] || `/lessons/${nextLesson}`}
+            className={styles.arrowRight}
+            aria-label="Next">
+
+            <i className="fas fa-angle-right" />
+
+          </Link>)
         )}
       </div>
       {wideVideo && <div className={styles.bottomSpacer} />}

@@ -93,7 +93,7 @@ export default function LessonCard({
 }
 
 const Link = ({ link, tooltip, ...rest }) => (
-  <NextLink href={link} passHref>
+  <NextLink href={link} passHref legacyBehavior>
     <Tooltip content={tooltip}>
       <a {...rest} />
     </Tooltip>
