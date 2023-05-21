@@ -22,13 +22,13 @@ Announcement.propTypes = {
   hidden, enter showAnnouncements() into the devtools console.
 */
 
-export default function Announcement({ id, headline, description, link }) {
+export default function Announcement({ id, headline, description, link, showCloseButton = true}) {
   const [closedAnnouncements, setClosedAnnouncements] = useLocalStorage(
     "closed-announcements",
     []
   );
 
-  const isClosed = closedAnnouncements.includes(id);
+  const isClosed = closedAnnouncements.includes(id) && showCloseButton;
 
   const close = () => {
     setClosedAnnouncements((closed) => [...closed, id]);
@@ -54,15 +54,17 @@ export default function Announcement({ id, headline, description, link }) {
             <div className={styles.description}>{description}</div>
           )}
         </div>
-        <button
-          className={styles.closeButton}
-          onClick={(event) => {
-            event.preventDefault();
-            close();
-          }}
-        >
-          <i className="fas fa-times" />
-        </button>
+        {showCloseButton && (
+          <button
+            className={styles.closeButton}
+            onClick={(event) => {
+              event.preventDefault();
+              close();
+            }}
+          >
+            <i className="fas fa-times" />
+          </button>
+        )}
       </div>
 
     </Link>)
