@@ -9,17 +9,13 @@ export default function SocialIcons() {
   const [patreonPatrons, setPatreonPatrons] = useState(null);
   const [instagramFollowers, setInstagramFollowers] = useState(null);
 
-  // As of 4/26/23. In a perfect world, these would not be used
+  // As of 5/21/23. In a perfect world, these would not be used
   const fallbackYouTubeCount = 5200000;
   const fallbackTwitterCount = 324000;
-  const fallbackInstagramCount = 138000;
-  const fallbackPatronCount = 6300;
 
   useEffect(() => {
     fetchFollowerCount(setYoutubeSubscribers, "youtubeSubscribers", "/api/youtube_subscriber_count");
     fetchFollowerCount(setTwitterFollowers, "twitterFollowers", "/api/twitter_follower_count");
-    fetchFollowerCount(setInstagramFollowers, "instagramFollowers", "/api/instagram_follower_count");
-    // fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
   }, []);
 
   return (
@@ -41,14 +37,6 @@ export default function SocialIcons() {
           restingColor="#1DA1F2"
           label={`${formatNumber(twitterFollowers || fallbackTwitterCount)}`}
         />
-        <Link
-          link="https://www.instagram.com/3blue1brown/"
-          icon="fab fa-instagram"
-          tooltip="Instagram"
-          hoverColor="#FFDC80"
-          restingColor="#FFDC80"
-          label={`${formatNumber(instagramFollowers || fallbackInstagramCount)}`}
-        />
       </div>
       <div className={styles.restRow}>
         <Link
@@ -64,6 +52,18 @@ export default function SocialIcons() {
           hoverColor="#fe5901"
         />
         <Link
+          link="https://www.instagram.com/3blue1brown/"
+          icon="fab fa-instagram"
+          tooltip="Animations and video excerpts"
+          hoverColor="#FFDC80"
+        />
+        <Link
+          link="https://www.youtube.com/@GrantSanderson"
+          icon="fab fa-youtube"
+          tooltip="Second channel"
+          hoverColor="#ff0000"
+        />
+        <Link
           link="https://www.reddit.com/r/3Blue1Brown/"
           icon="fab fa-reddit"
           tooltip="Discussion and community"
@@ -76,12 +76,6 @@ export default function SocialIcons() {
           hoverColor="#09f2fb"
         />
         <Link
-          link="https://www.youtube.com/@GrantSanderson"
-          icon="fab fa-youtube"
-          tooltip="Second channel"
-          hoverColor="#ff0000"
-        />
-        <Link
           link="http://www.facebook.com/3blue1brown"
           icon="fab fa-facebook"
           tooltip="An unloved facebook presence"
@@ -90,7 +84,7 @@ export default function SocialIcons() {
         <Link
           link="https://space.bilibili.com/88461692/#/"
           icon="fab fa-bilibili"
-          tooltip="Chinese translations on Bilibili"
+          tooltip="Chinese translations"
           hoverColor="#049ed1"
         />
         <Link
