@@ -7,16 +7,19 @@ export default function SocialIcons() {
   const [youtubeSubscribers, setYoutubeSubscribers] = useState(null);
   const [twitterFollowers, setTwitterFollowers] = useState(null);
   const [patreonPatrons, setPatreonPatrons] = useState(null);
+  const [instagramFollowers, setInstagramFollowers] = useState(null);
 
   // As of 4/26/23. In a perfect world, these would not be used
-  const fallbackYouTubeCount = 5150000;
-  const fallbackTwitterCount = 320000;
+  const fallbackYouTubeCount = 5200000;
+  const fallbackTwitterCount = 324000;
+  const fallbackInstagramCount = 138000;
   const fallbackPatronCount = 6300;
 
   useEffect(() => {
     fetchFollowerCount(setYoutubeSubscribers, "youtubeSubscribers", "/api/youtube_subscriber_count");
     fetchFollowerCount(setTwitterFollowers, "twitterFollowers", "/api/twitter_follower_count");
-    fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
+    fetchFollowerCount(setInstagramFollowers, "instagramFollowers", "/api/instagram_follower_count");
+    // fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
   }, []);
 
   return (
@@ -39,15 +42,21 @@ export default function SocialIcons() {
           label={`${formatNumber(twitterFollowers || fallbackTwitterCount)}`}
         />
         <Link
+          link="https://www.instagram.com/3blue1brown/"
+          icon="fab fa-instagram"
+          tooltip="Instagram"
+          hoverColor="#FFDC80"
+          restingColor="#FFDC80"
+          label={`${formatNumber(instagramFollowers || fallbackInstagramCount)}`}
+        />
+      </div>
+      <div className={styles.restRow}>
+        <Link
           link="https://www.patreon.com/3blue1brown"
           icon="fab fa-patreon"
           tooltip="Support future lessons"
           hoverColor="#f96854"
-          restingColor="#f96854"
-          label={`${formatNumber(patreonPatrons || fallbackPatronCount)}`}
         />
-      </div>
-      <div className={styles.restRow}>
         <Link
           link="https://3blue1brown.substack.com/"
           icon="fas fa-envelope-open-text"
@@ -71,12 +80,6 @@ export default function SocialIcons() {
           icon="fab fa-youtube"
           tooltip="Second channel"
           hoverColor="#ff0000"
-        />
-        <Link
-          link="https://www.instagram.com/3blue1brown/"
-          icon="fab fa-instagram"
-          tooltip="Instagram"
-          hoverColor="#FFDC80"
         />
         <Link
           link="http://www.facebook.com/3blue1brown"
