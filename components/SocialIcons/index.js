@@ -12,10 +12,12 @@ export default function SocialIcons() {
   // As of 5/21/23. In a perfect world, these would not be used
   const fallbackYouTubeCount = 5200000;
   const fallbackTwitterCount = 324000;
+  const fallbackPatronCount = 6300;
 
   useEffect(() => {
     fetchFollowerCount(setYoutubeSubscribers, "youtubeSubscribers", "/api/youtube_subscriber_count");
     fetchFollowerCount(setTwitterFollowers, "twitterFollowers", "/api/twitter_follower_count");
+    fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
   }, []);
 
   return (
@@ -37,14 +39,16 @@ export default function SocialIcons() {
           restingColor="#1DA1F2"
           label={`${formatNumber(twitterFollowers || fallbackTwitterCount)}`}
         />
-      </div>
-      <div className={styles.restRow}>
         <Link
           link="https://www.patreon.com/3blue1brown"
           icon="fab fa-patreon"
           tooltip="Support future lessons"
           hoverColor="#f96854"
+          restingColor="#f96854"
+          label={`${formatNumber(patreonPatrons || fallbackPatronCount)}`}
         />
+      </div>
+      <div className={styles.restRow}>
         <Link
           link="https://3blue1brown.substack.com/"
           icon="fas fa-envelope-open-text"
