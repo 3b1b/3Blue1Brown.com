@@ -31,16 +31,16 @@ TODO: clip speedometer animation
 Is there a nice way to figure out how far you've traveled during that time, based only on your view of the speedometer? Or better yet, find a distance function $s(t)$ that tells you how far you've traveled after any given amount of time, $t$, between 0 and 8 seconds. <!-- TODO: possibly split and insert s(t) that we are going for-->Let's say you take note of the velocity at each second, and make a plot over time like this.
 
 <Figure
-  image="figures/velocity-speedometer-readings.light.svg" 
+  image="figures/velocity-speedometer-readings.dark.svg" 
 />
 
 And maybe you find that a nice function to model your velocity over time, in meters per second, is $v(t) = t(8-t)$.
 
 <Figure
-  image="figures/velocity.light.svg" 
+  image="figures/velocity.dark.svg" 
 />
 
-## Why we should expect an antiderivative
+## Relationship between velocity and distance
 
 You might remember, in chapter 2 of this series, we were looking at the opposite situation, where you know a distance function, $s(t)$, and you want to figure out a velocity function from that. I showed how the derivative of your distance vs. time function gives you a velocity vs. time function.
 
@@ -50,21 +50,24 @@ You might remember, in chapter 2 of this series, we were looking at the opposite
   image="figures/velocity-function-from-distance-function.png" 
 />
 
-So in our current situation, where all we know is the velocity function, it should make sense that finding a distance vs. time function $s(t)$ comes down to asking what function has a derivative $t(8-t)$. This is often described as finding the antiderivative of a function.
+So in our current situation, where all we know is the velocity function, it should make sense that finding a distance vs. time function $s(t)$ comes down to asking what function has a derivative $-t^2 + 8t$. This is often described as finding the antiderivative of a function.
 
 <Figure
-  image="figures/derivative-antiderivative.light.svg" 
+  image="figures/derivative-antiderivative-example.dark.svg" 
 />
 
-<!-- question: show an example of a antiderivative of 2t on the left and show another cycle on the right with an the unknown s(t) function-->
-
-And indeed, that's what we'll end up doing, and you could even pause and try that right now for the function $v(t)=t(8-t)$. But first, I want to spend the bulk of this article showing how this question is related to finding an area bounded by the velocity graph, because that helps to build an intuition for a whole class of what are called "integral problems" in math and science.
+And indeed, that's what we'll end up doing, and you could even pause and try that right now for the function $v(t)=-t^2 + 8t$.
 
 <Figure
-  image="figures/velocity-area-under-curve.png" 
+  image="figures/derivative-antiderivative.dark.svg" 
 />
 
-TODO: highlight area under the graph. Note, in the video it shows a riemann sum approximation getting better and better, but maybe ok to just highlight area here?
+But first, I want to spend the bulk of this article showing how this question is related to finding an area bounded by the velocity graph, because that helps to build an intuition for a whole class of what are called "integral problems" in math and science.
+
+<Figure
+  image="figures/velocity-area-under-the-curve.dark.svg" 
+  caption="This figure highlights the area bounded under the curve formed by the function $v(t)=-t^2+8 t$. The vertical axis represents velocity measured in meters per second and the horizontal axis reprents time."
+/>
 
 To start off, notice this question would be much easier if the car was moving with a constant velocity, right? In that case, you could just multiply the velocity, in meters per second, by the amount of time passed, in seconds, and that gives you the number of meters traveled.
 
@@ -72,11 +75,7 @@ To start off, notice this question would be much easier if the car was moving wi
   image="figures/velocity-constant.dark.svg" 
 />
 
-<!-- TODO: label plot axis-->
-
-Notice that you can visualize that distance as an area, and if visualizing distance as an area seems weird, I'm right there with you. It's just that on this plot, where the horizontal direction has units of seconds and the vertical direction has units of meters/second, units of area very naturally correspond to meters.But what makes our situation hard is that the velocity is not constant, it's incessantly changing at every instant.
-
-TODO: velocity is constantly changing
+Notice that you can visualize that distance as an area, and if visualizing distance as an area seems weird, I'm right there with you. It's just that on this plot, where the horizontal direction has units of seconds and the vertical direction has units of meters/second, units of area very naturally correspond to meters. But what makes our situation hard is that the velocity is not constant, it's incessantly changing at every instant.
 
 It would even be a lot easier if it only ever changed at a handful of points, maybe staying static for the first second, then suddenly discontinuously jumping to a constant 7 meters per second for the next second, and so on, with discontinuous jumps to portions of constant velocity.
 
@@ -90,49 +89,44 @@ That might make it very uncomfortable for the driver, in fact, it's physically i
   image="figures/velocity-approximate-area.dark.svg" 
 />
 
-TODO: Show approximate calculate of distance traveled, compare with actual distance traveled.
-
 So what we'll do is just approximate our velocity function as if it was constant on a bunch of different intervals. Then, as is common in calculus, we'll see how refining that approximation leads us to something precise.
 
-TODO: Show different approximations with finer and finer intervals
+<Figure
+  image="figures/velocity-refining-approximations.dark.svg" 
+  caption="Notice as the we choose more and more sub-divisions that these approximations start to approach the true shape of the area bounded by the curve."
+/>
 
-TODO: Practice problem, breaking at a constant rate
-
-TODO: Future practice problem (inflection points). Have you ever been in someone's car where their driving is jerky...
-
-## Show Riemann Sum
-
-Here, let's make this more concrete with some numbers. Chop up the time axis between 0 and 8 into many small intervals, each with some little width $dt$, like 0.25 seconds.
+Here, let's make this more concrete with some numbers. Chop up the time axis between 0 and 8 into many small intervals, each with some little width $dt$, like 0.25 seconds. Consider one of these intervals, like the one between $t=1$, and 1.25. In reality, the car speeds up from 7 m/s to about 8.4 m/s during that time, which you can find by plugging in $t = 1$ and 1.25 to the equation for velocity.
 
 <Figure
   image="figures/velocity-riemann-sum-36.dark.svg" 
 />
 
-Consider one of these intervals, like the one between $t=1$, and 1.25. In reality, the car speeds up from 7 m/s to about 8.4 m/s during that time, which you can find by plugging in $t = 1$ and 1.25 to the equation for velocity.
+We want to approximate the car's motion as if its velocity was constant on this interval. Again, the reason for doing that is that we don't really know how to handle anything other than constant velocity situations[^1]. You could choose this constant to be anything between $7$ and $8.4$, it doesn't really matter.
 
-<Figure
-  image="figures/velocity-riemann-sum-36-higlight-1.dark.svg" 
-/>
-
-We want to approximate the car's motion as if its velocity was constant on this interval. Again, the reason for doing that is that we don't really know how to handle anything other than constant velocity situations. <!-- TODO: Now, you may notice a couple improvements of this approximation right away like averaging the two points, using the right point, or even a trapezoid. (if the constant breaking problem is used above, then some note about how the different approximation method doesn't matter in the end)--> You could choose this constant to be anything between 7 and 8.4, it doesn't really matter.
+[^1]: Now, you may notice a couple improvements of this approximation right away like averaging the two points, using the right point, or even a trapezoid. (if the constant breaking problem is used above, then some note about how the different approximation method doesn't matter in the end
 
 All that matters is that our sequence of approximations, whatever they are, gets better and better as $dt$ gets smaller and smaller. Treating this car's journey as a bunch of discontinuous jumps in speed between small portions of constant velocity becomes a less wrong reflection of reality as we decrease the time between those jumps.
-
-TODO: illustrate n=8, n=36, n=80, n=200?
 
 So, for convenience, let's just approximate the speed on each interval with whatever the true car's velocity is at the start of the interval; the height of the graph above the left side, which in this case is 7.
 
 <Figure
-  image="figures/approximation-t-1.png" 
+  image="figures/velocity-riemann-sum-36-approximate-distance-t-1.dark.svg" 
 />
-
-TODO: Visualize Riemann sum approximation.
 
 So on this example interval, according to our approximation, the car moves $(7,\text{m/s})\cdot(0.25,\text{s})$. That's $1.75$ meters, nicely visualized as the area of this thin rectangle. This is a little under the real distance traveled, but not by much. And the same goes for every other interval: The approximated distance is $v(t) \cdot dt$, it's just that you plug in a different value of $t$ for each one, giving a different height for each rectangle.
 
 TODO: maybe visualize the calculated area for more small time intervals
 
-<!-- Integral notation-->
+<Accordion title="How accurate are these approximations?">
+
+Table showing the accuracy of each approximation and mention that in practice, these approximations are good enough to do some really cool applied math. However, calculus does tease out a deeper.
+
+</Accordion>
+
+TODO: Practice problem, breaking at a constant rate
+
+## Integral Notation
 
 I'm going to write out an expression for the sum of the areas of all these rectangles in kind of a funny way. Take this symbol $\int$, which looks like a stretched "S" for sum, then put a $0$ at its bottom and an $8$ at its top to indicate that we're ranging over time steps between $0$ and $8$ seconds. And as I said, the amount we're adding up at each time step is $v(t) \cdot dt$.
 
@@ -188,7 +182,7 @@ TODO: highlight $s(T)$ in the context
 Now ask yourself: What is the derivative of that function? On the one hand, a tiny change in distance over a tiny change in time is velocity; that's what velocity means. But there's another way to see it purely in terms of this graph and this area, which generalizes better to other integral problems.
 
 <Figure
-  image="figures/velocity-integral.light.svg" 
+  image="figures/velocity-integral.dark.svg" 
 />
 
 TODO: this image jumps the gun with rearranging ds to represent the derivative
