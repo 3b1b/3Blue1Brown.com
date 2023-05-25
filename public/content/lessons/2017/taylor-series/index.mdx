@@ -140,87 +140,143 @@ You could give yourself more control by allowing more terms in your polynomial, 
     image="figures/cosine-approximation-c-3.png" 
 />
 
-If you take the third derivative of a cubic polynomial, anything quadratic or smaller goes to $0$.
-    
+If you take the third derivative of a cubic polynomial, anything quadratic or smaller goes to $0$. As for that last term, after three iterations of the power rule it looks like $1 \cdot 2 \cdot 3 \cdot c_3$.
+
 <Figure
     image="figures/cosine-approximation-c-3-derivative.png" 
 />
 
-As for that last term, after three iterations of the power rule it looks like $1 \cdot 2 \cdot 3 \cdot c_3$.
+On the other hand, the third derivative of $\cos(x)$ is $\sin(x)$, which equals $0$ at $x=0$, so to make the third derivatives match, the constant $c_3$ should be $0$.
 
+<Figure
+    image="figures/cosine-approximation-c-3-derivative-goes-to-zero.png" 
+/>
 
+In other words, not only is $1 - \frac{1}{2}x^2$ the best possible quadratic approximation of $\cos(x)$ around $x=0$, it's also the best possible cubic approximation.
 
- 
-On the other hand, the third derivative of $\cos(x)$ is $\sin(x)$, which equals$0$ at $x=0$, so to make the third derivatives match, the constant $c_3$ should be $0$.
+You can actually make an improvement by adding a fourth order term, $c_4x^4$. The fourth derivative of $\cos(x)$ is itself, which equals $1$ at $x=0$. And what's the fourth derivative of our polynomial with this new term?
 
-In other words, not only is $1 - ½ x2$ the best possible quadratic approximation of $\cos(x)$ around $x=0$, it's also the best possible cubic approximation.
+<Figure
+    image="figures/cosine-approximation-c-4.png" 
+/>
 
-You can actually make an improvement by adding a fourth order term, c4x4. The fourth derivative of $\cos(x)$ is itself, which equals $1$ at $x=0$.
+Well, when you keep applying the power rule over and over, with those exponents all hopping down front, you end up with $1 \cdot 2 \cdot 3 \cdot 4 \cdot c_4$, which is $24c_4$. So if we want this to match the fourth derivative of $\cos(x)$, which is $1$, $c_4$ must be $\frac{1}{24}$.
 
-And what's the fourth derivative of our polynomial with this new term?  Well, when you keep applying the power rule over and over, with those exponents all hopping down front, you end up with $1 \cdot 2 \cdot 3 \cdot 4 \cdot c_4$, which is $24c_4$.
+<Figure
+    image="figures/cosine-approximation-c-4-derivative.png" 
+/>
 
-So if we want this to match the fourth derivative of $\cos(x)$, which is $1$, $c_4$ must be $1/24$.
+This polynomial $1 - \frac{1}{2}x^2 + \frac{1}{24}x^4$ is a very close approximation for $\cos(x)$ around $x = 0$ and for any physics problem involving the cosine of some small angle, for example, predictions would be almost unnoticeably different if you substituted this polynomial for $\cos(x)$.
 
-And indeed, the polynomial $1 - ½ x2 + 1/24 x4$, which looks like this, is a very close approximation for $\cos(x)$ around $x = 0$.
+TODO: vector illustration of fourth order polynomial
 
-In any physics problem involving the cosine of some small angle, for example, predictions would be almost unnoticeably different if you substituted this polynomial for $\cos(x)$.
+## Generalizing
 
-TODO: these paragraphs are a bit wordy
+Now, let's step back and notice a few things about this process. First, factorial terms naturally come up in this process. When you take $n$ derivatives of $x_n$, letting the power rule just keep cascading, what you're left with is $1 \cdot 2 \cdot 3$ and on up to $n$.
 
-Now, step back and notice a few things about this process. First, factorial terms naturally come up in this process. When you take $n$ derivatives of $x_n$, letting the power rule just keep cascading, what you're left with is $1 \cdot 2 \cdot 3$ and on up to $n$.
+<Figure
+    image="figures/power-rule-degree-8.png" 
+/>
 
-So you don't simply set the coefficients of the polynomial equal to whatever derivative value you want, you have to divide by the appropriate factorial to cancel out this effect.
-For example, that $x_4$ coefficient is the fourth derivative of cosine, $1$, divided by $4$ factorial, $24$.
+So you don't simply set the coefficients of the polynomial equal to whatever derivative value you want, you have to divide by the appropriate factorial to cancel out this effect. For example, that $x_4$ coefficient is the fourth derivative of cosine, $1$, divided by $4$ factorial, $24$.
 
 The second thing to notice is that adding new terms, like this $c_4x^4$, doesn't mess up what old terms should be, and that's important. 
 
+<Figure
+    image="figures/taylor-series-adding-more-terms.png" 
+/>
+
 For example, the second derivative of this polynomial at $x = 0$ is still equal to $2$ times the second coefficient, even after introducing higher order terms to the polynomial.
 
-And it's because we're plugging in $x=0$, so the second derivative of any higher order terms, which all include an $x$, will wash away.
+<Figure
+    image="figures/taylor-series-second-derivative.png" 
+/>
 
-The same goes for any other derivative, which is why each derivative of a polynomial at $x=0$ is controlled by one and only one coefficient.
+And it's because we're plugging in $x=0$, so the second derivative of any higher order terms, which all include an $x$, will wash away. The same goes for any other derivative, which is why each derivative of a polynomial at $x=0$ is controlled by one and only one coefficient.
+
+<Figure
+    image="figures/taylor-series-coefficient-controls.png" 
+/>
+
+TODO: a comprehensive question to tease out the subtlety of this beautiful thing
 
 ## Approximating around other points
 
-If instead you were approximating near an input other than $0$, like $x=\pi$, in order to get the same effect you would have to write your polynomial in terms of powers of $(x - pi)$, or whatever input you're looking at.
+If instead you were approximating near an input other than $0$, like $x=\pi$, in order to get the same effect you would have to write your polynomial in terms of powers of $(x - \pi)$, or whatever input you're looking at.
 
-This makes it look notably more complicated, but all it's doing is making the point $\pi$ look like $0$, so that plugging in $x = pi$ will result in a lot of nice cancelation that leaves only one constant.
+TODO: illustrate approximation at pi
+
+This makes it look notably more complicated, but all it's doing is making the point $\pi$ look like $0$, so that plugging in $x = \pi$ will result in a lot of nice cancelation that leaves only one constant.
 
 And finally, on a more philosophical level, notice how what we're doing here is essentially taking information about the higher order derivatives of a function at a single point, and translating it into information about the value of that function near that point.
 
+<Figure
+    image="figures/taylor-series-using-derivatives-to-inform-output.png" 
+/>
+
 We can take as many derivatives of $\cos(x)$ as we want, it follows this nice cyclic pattern $\cos(x)$, $-\sin(x)$, $-\cos(x)$, $\sin(x)$, and repeat.
+
+<Figure
+    image="figures/taylor-series-cyclic-derivatives-of-cosine.png" 
+/>
 
 So the value of these derivative of $x=0$ have the cyclic pattern $1$, $0$, $-1$, $0$, and repeat. And knowing the values of all those higher-order derivatives is a lot of information about $\cos(x)$, even though it only involved plugging in a single input, $x=0$.
 
 That information is leveraged to get an approximation around this input by creating a polynomial whose higher order derivatives, match up with those of $\cos(x)$, following this same $1$, $0$, $-1$, $0$ cyclic pattern. 
 
-To do that, make each coefficient of this polynomial follow this same pattern, but divide each one by the appropriate factorial, like I mentioned before, so as to cancel out the cascading effects of many power rule applications.
+<Figure
+    image="figures/taylor-series-cyclic-derivatives-of-cosine-with-polynomial.png" 
+/>
 
-The polynomials you get by stopping this process at any point are called “Taylor polynomials” for $\cos(x)$ around the input $x=0$.
+To do that, make each coefficient of this polynomial follow this same pattern, but divide each one by the appropriate factorial which cancels out the cascading effects of many power rule applications. The polynomials you get by stopping this process at any point are called "Taylor polynomials" for $\cos(x)$.
 
-## Generalize
+## Other Functions
 
 More generally, if we were dealing with some function other than cosine, you would compute its derivative, second derivative, and so on, getting as many terms as you'd like, and you'd evaluate each one at $x=0$.
 
-Then for your polynomial approximation, the coefficient of each xn term should be the value of the n-th derivative of the function at $0$, divided by $(n!)$.
+<Figure
+    image="figures/generic-function-derivatives.png" 
+/>
+
+Then for your polynomial approximation, the coefficient of each $x^n$ term should be the value of the $n$-th derivative of the function at $0$, divided by $(n!)$.
+
+<Figure
+    image="figures/generic-function-derivatives-with-polynomial.png" 
+/>
 
 This rather abstract formula is something you'll likely see in any text or course touching on Taylor polynomials.
 
+$$
+P(x)=f(0)+\frac{d f}{d x}(0) \frac{x^1}{1 !}+\frac{d^2 f}{d x^2}(0) \frac{x^2}{2 !}+\frac{d^3 f}{d x^3}(0) \frac{x^3}{3 !}+\cdots
+$$
+
 And when you see it, think to yourself that the constant term ensures that the value of the polynomial matches that of $f(x)$ at $x=0$, the next term ensures that the slope of the polynomial matches that of the function, the next term ensure the rate at which that slope changes is the same, and so on, depending on how many terms you want.
 
-The more terms you choose, the closer the approximation, but the tradeoff is that your polynomial is more complicated.
+TODO: illustrate the isolated terms of the taylor polynomial
 
-And if you want to approximate near some input $a$ other than $0$, you write the polynomial in terms of (x-a) instead, and evaluate all the derivatives of $f$ at that input $a$.
+The more terms you choose, the closer the approximation, but the tradeoff is that your polynomial is more complicated. And if you want to approximate near some input $a$ other than $0$, you write the polynomial in terms of $(x-a)$ instead, and evaluate all the derivatives of $f$ at that input $a$.
+
+$$
+P(x)=f(a)+\frac{d f}{d x}(a) \frac{(x-a)^1}{1 !}+\frac{d^2 f}{d x^2}(a) \frac{(x-a)^2}{2 !}+\cdots
+$$
 
 This is what Taylor series look like in their fullest generality. Changing the value of $a$ changes where the approximation is hugging the original function; where its higher order derivatives will be equal to those of the original function.
 
-## Approximation the exponential function
+TODO: comprehension question of taylor polynomail of cosine at pi or sine at pi
 
-One of the simplest meaningful examples is $e^x$, around the input $x=0$. Computing its derivatives is nice, since the derivative of ex is itself, so its second derivative is also ex, as is its third, and so on.
+## A meaningful example
 
-So at the point x=0, these are all 1. This means our polynomial approximation looks like 1 + x + ½ x2 + 1/(3!) x3 + 1/(4!) x4, and so on, depending on how many terms you want.
+One of the simplest meaningful examples is $e^x$, around the input $x=0$. Computing its derivatives is nice, since the derivative of $e^x$ is itself, so its second derivative is also $e^x$, as is its third, and so on.
 
-These are the Taylor polynomials for $e^x$.
+<Figure
+    image="figures/exponential-function-derivatives.png" 
+/>
+
+So at the point $x=0$, all of the derivatives are equal to $1$. This means our polynomial approximation looks like $(1) + (1)x + (1)\frac{x^2}{2!} + (1)\frac{x^3}{3!} + (1)\frac{x^4}{4!}$, and so on, depending on how many terms you want. These are the Taylor polynomials for $e^x$.
+
+TODO: illustrate taylor polynomials for exponential function
+
+### Geometric View
 
 In the spirit of showing you just how connected the topics of calculus are, let me turn to a completely different way to understand this second order term geometrically. It's related to the fundamental theorem of calculus, which I talked about in chapters 1 and 8.
 
@@ -244,41 +300,83 @@ I like this, because even though it looks a bit messy all written out, each term
 
 ## Infinity and convergence
 
-Series
+We could call it an end here, and you'd have you'd have a phenomenally useful tool for approximations with these Taylor polynomials. But if you're thinking like a mathematician, one question you might ask is if it makes sense to never stop, and add up infinitely many terms.
 
-We could call it an end here, and you'd have you'd have a phenomenally useful tool for approximations with these Taylor polynomials.
-But if you're thinking like a mathematician, one question you might ask is if it makes sense to never stop, and add up infinitely many terms.
-In math, an infinite sum is called a “series”, so even though one of the approximations with finitely many terms is called a “Taylor polynomial” for your function, adding all infinitely many terms gives what's called a “Taylor series”.
-Now you have to be careful with the idea of an infinite series, because it doesn't actually make sense to add infinitely many things; you can only hit the plus button on the calculator so many times.
-But if you have a series where adding more and more terms gets you increasingly close to some specific value, you say the series converges to that value. Or, if you're comfortable extending the definition of equality to include this kind of series convergence, you'd say the series as a whole, this infinite sum, equals the value it converges to.
+<Figure
+    image="figures/cosine-infinitely-many-terms.png" 
+/>
 
-Series for e^x
+In math, an infinite sum is called a "series", so even though one of the approximations with finitely many terms is called a "Taylor polynomial" for your function, adding all infinitely many terms gives what's called a "Taylor series".
 
-For example, look at the Taylor polynomials for ex, and plug in some input like x = 1. As you add more and more polynomial terms, the total sum gets closer and closer to the value e, so we say that the infinite series converges to the number e. Or, what's saying the same thing, that it equals the number e.
-In fact, it turns out that if you plug in any other value of x, like x=2, and look at the value of higher and higher order Taylor polynomials at this value, they will converge towards ex, in this case e2.
-This is true for any input, no matter how far away from 0 it is, even though these Taylor polynomials are constructed only from derivative information gathered at the input 0.
-In a case like this, we say ex equals its Taylor series at all inputs x, which is kind of a magical thing to have happen.
+<Figure
+    image="figures/infinity-series-and-infinite-sum.png" 
+/>
+
+Now you have to be careful with the idea of an infinite series, because it doesn't actually make sense to add infinitely many things; you can only hit the plus button on the calculator so many times. But if you have a series where adding more and more terms gets you increasingly close to some specific value, you say the series converges to that value.
+
+<Figure
+    image="figures/series-convergence-example.png" 
+/>
+
+Or, if you're comfortable extending the definition of equality to include this kind of series convergence, you'd say the series as a whole, this infinite sum, equals the value it converges to.
+
+For example, look at the Taylor polynomials for $e^x$, and plug in some input like $x = 1$. As you add more and more polynomial terms, the total sum gets closer and closer to the value $e$, so we say that the infinite series converges to the number $e$.
+
+<Figure
+    image="figures/series-exponential-function-at-1.png" 
+/>
+
+Or, what's saying the same thing, that it equals the number $e$.
+
+$$
+e^1=\underbrace{1+\frac{1^1}{1 !}+\frac{1^2}{2 !}+\frac{1^3}{3 !}+\frac{1^4}{4 !}+\frac{1^5}{5 !}+\cdots}_{2.7182818}
+$$
+
+In fact, it turns out that if you plug in any other value of $x$, like $x=2$, and look at the value of higher and higher order Taylor polynomials at this value, they will converge towards $e^x$, in this case $e^2$.
+
+<Figure
+    image="figures/series-exponential-function-convergence-at-3.png" 
+/>
+
+This is true for any input, no matter how far away from $0$ it is, even though these Taylor polynomials are constructed only from derivative information gathered at the input $0$.
+In a case like this, we say $e^x$ equals its Taylor series at all inputs $x$, which is kind of a magical thing to have happen.
 
 ## Limitations for $\ln(x)$
 
 Although this is also true for some other important functions, like sine and cosine, sometimes these series only converge within a certain range around the input whose derivative information you're using.
 
-If you work out the Taylor series for the natural log of x around the input x = 1, which is built from evaluating the higher order derivatives of ln(x) at x=1, this is what it looks like.
+If you work out the Taylor series for the natural log of $x$ around the input $x = 1$, which is built from evaluating the higher order derivatives of ln(x) at x=1, this is what it looks like.
 
-When you plug in an input between 0 and 2, adding more and more terms of this series will indeed get you closer and closer to the natural log of that input.
+<Figure
+    image="figures/natural-logarithm-derivatives-and-taylor-polynomial.png" 
+/>
+
+When you plug in an input between $0$ and $2$, adding more and more terms of this series will indeed get you closer and closer to the natural log of that input.
+
+<Figure
+    image="figures/natural-logarithm-taylor-series-input-between-0-and-2.png" 
+/>
 
 But outside that range, even by just a bit, the series fails to approach anything.
 
-As you add more and more terms the sum bounces back and forth wildly, it does not approaching the natural log of that value, even though the natural log of x is perfectly well defined for inputs above 2.
+As you add more and more terms the sum bounces back and forth wildly, it does not approaching the natural log of that value, even though the natural log of $x$ is perfectly well defined for inputs above $2$.
 
-In some sense, the derivative information of ln(x) at x=1 doesn't propagate out that far.
+<Figure
+    image="figures/natural-logarithm-taylor-series-input-above-2.png" 
+/>
 
-In a case like this, where adding more terms of the series doesn't approach anything, you say the series diverges.
+In some sense, the derivative information of $\ln(x)$ at $x=1$ doesn't propagate out that far. In a case like this, where adding more terms of the series doesn't approach anything, you say the series **diverges**.
 
-And that maximum distance between the input you're approximating near, and points where the outputs of these polynomials actually do converge, is called the “radius of convergence” for the Taylor series.
+And that maximum distance between the input you're approximating near, and points where the outputs of these polynomials actually do converge, is called the "radius of convergence" for the Taylor series.
+
+<Figure
+    image="figures/natural-logarithm-radius-of-convergence.png" 
+/>
 
 ## Summary
 
 There remains more to learn about Taylor series, their many use cases, tactics for placing bounds on the error of these approximations, tests for understanding when these series do and don't converge. For that matter there remains more to learn about calculus as a whole, and the countless topics not touched by this series.
 
 The goal with these videos is to give you the fundamental intuitions that make you feel confident and efficient learning more on your own, and potentially even rediscovering more of the topic for yourself. In the case of Taylor series, the fundamental intuition to keep in mind as you explore more is that they translate derivative information at a single point to approximation information around that point.
+
+TODO: maybe add "and in the case of the exponential function where the series converges for all values, this can be used as a definition of the exponential function throughout other areas of math."
