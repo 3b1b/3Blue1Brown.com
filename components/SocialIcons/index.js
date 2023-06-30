@@ -4,22 +4,6 @@ import styles from "./index.module.scss";
 import {useState, useEffect} from "react";
 
 export default function SocialIcons() {
-  const [youtubeSubscribers, setYoutubeSubscribers] = useState(null);
-  const [twitterFollowers, setTwitterFollowers] = useState(null);
-  const [patreonPatrons, setPatreonPatrons] = useState(null);
-  const [instagramFollowers, setInstagramFollowers] = useState(null);
-
-  // As of 5/21/23. In a perfect world, these would not be used
-  const fallbackYouTubeCount = 5200000;
-  const fallbackTwitterCount = 324000;
-  const fallbackPatronCount = 6300;
-
-  useEffect(() => {
-    fetchFollowerCount(setYoutubeSubscribers, "youtubeSubscribers", "/api/youtube_subscriber_count");
-    fetchFollowerCount(setTwitterFollowers, "twitterFollowers", "/api/twitter_follower_count");
-    fetchFollowerCount(setPatreonPatrons, "patreonPatrons", "/api/patreon_member_count");
-  }, []);
-
   return (
     <div className={styles.socialIcons}>
       <div className={styles.topRow}>
@@ -29,7 +13,7 @@ export default function SocialIcons() {
           tooltip="The main event"
           hoverColor="#ff0000"
           restingColor="#ff0000"
-          label={`${formatNumber(youtubeSubscribers || fallbackYouTubeCount)}`}
+          label={""}
         />
         <Link
           link="https://twitter.com/3blue1brown"
@@ -37,7 +21,7 @@ export default function SocialIcons() {
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
-          label={`${formatNumber(twitterFollowers || fallbackTwitterCount)}`}
+          label={""}
         />
         <Link
           link="https://www.patreon.com/3blue1brown"
@@ -45,7 +29,7 @@ export default function SocialIcons() {
           tooltip="Support future lessons"
           hoverColor="#f96854"
           restingColor="#f96854"
-          label={`${formatNumber(patreonPatrons || fallbackPatronCount)}`}
+          label={""}
         />
       </div>
       <div className={styles.restRow}>
@@ -66,6 +50,12 @@ export default function SocialIcons() {
           icon="fab fa-youtube"
           tooltip="Second channel"
           hoverColor="#ff0000"
+        />
+        <Link
+          link="https://www.tiktok.com/@3blue1brown"
+          icon="fab fa-tiktok"
+          tooltip="Excerpts from the main videos"
+          hoverColor="#ff0050"
         />
         <Link
           link="https://www.reddit.com/r/3Blue1Brown/"
@@ -90,12 +80,6 @@ export default function SocialIcons() {
           icon="fab fa-bilibili"
           tooltip="Chinese translations"
           hoverColor="#049ed1"
-        />
-        <Link
-          link="https://www.tiktok.com/@3blue1brown"
-          icon="fab fa-tiktok"
-          tooltip="Excerpts from the main videos"
-          hoverColor="#ff0050"
         />
         <Link
           link="https://3blue1brown.substack.com/feed"
