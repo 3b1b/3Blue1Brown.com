@@ -10,7 +10,7 @@ export default function SocialIcons() {
         <Link
           link="https://www.youtube.com/3blue1brown"
           icon="fab fa-youtube"
-          tooltip="The main event"
+          tooltip="Join over 5 million subscribers"
           hoverColor="#ff0000"
           restingColor="#ff0000"
           label={""}
@@ -31,6 +31,13 @@ export default function SocialIcons() {
           restingColor="#f96854"
           label={""}
         />
+        <Link
+          link="https://www.instagram.com/3blue1brown/"
+          icon="fab fa-instagram"
+          tooltip="Animations and video excerpts"
+          hoverColor="#FFDC80"
+          restingColor="#FFDC80"
+        />
       </div>
       <div className={styles.restRow}>
         <Link
@@ -38,12 +45,6 @@ export default function SocialIcons() {
           icon="fas fa-envelope-open-text"
           tooltip="Mailing list for new videos"
           hoverColor="#fe5901"
-        />
-        <Link
-          link="https://www.instagram.com/3blue1brown/"
-          icon="fab fa-instagram"
-          tooltip="Animations and video excerpts"
-          hoverColor="#FFDC80"
         />
         <Link
           link="https://www.youtube.com/@GrantSanderson"
