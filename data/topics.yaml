@@ -65,9 +65,9 @@
     - hardest-problem
     - windmills
     - prime-spirals
+    - moser-reboot
     - chessboard-puzzle
     - shadows
-    - moser
     - three-utilities
 - name: Why Pi
   slug: why-pi
