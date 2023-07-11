@@ -115,6 +115,7 @@
     - clt
     - gaussian-integral
     - convolutions2
+    - gaussian-convolution
     - bayes-theorem
     - better-bayes
     - binomial-distributions
