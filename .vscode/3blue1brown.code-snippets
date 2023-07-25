@@ -16,7 +16,7 @@
   // 	"description": "Log output to console"
   // }
   "Figure": {
-    "scope": "markdown",
+    "scope": "markdown, mdx",
     "prefix": "figure",
     "body": [
       "<Figure\n\timage=\"$1\" $2\n/>"

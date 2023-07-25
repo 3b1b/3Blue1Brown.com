@@ -1,0 +1,33 @@
+---
+title: Taylor series (geometric view)
+description: Taylor series are extremely useful in engineering and math, but what are they?  This video shows why they're useful, and how to make sense of the formula.
+date: 2017-05-07
+chapter: 15
+video: 3d6DsjIBzJ4
+source: _2017/eoc/chapter10.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+---
+
+### Geometric View
+
+In the spirit of showing you just how connected the topics of calculus are, let me turn to a completely different way to understand this second order term geometrically. It's related to the fundamental theorem of calculus, which I talked about in chapters 1 and 8.
+
+Like we did in those videos, consider a function that gives the area under some graph between a fixed left point and a variable right point. What we're going to do is think about how to approximate this area function, not the function for the graph like we were doing before. Focusing on that area is what will make the second order term pop out.
+
+Remember, the fundamental theorem of calculus is that this graph itself represents the derivative of the area function, and as a reminder it's because a slight nudge dx to the right bound on the area gives a new bit of area approximately equal to the height of the graph times dx, in a way that's increasingly accurate for smaller choice of dx. 
+
+So df over dx, the change in area divided by that nudge dx, approaches the height of the graph as dx approaches 0.
+
+But if you wanted to be more accurate about the change to the area given some change to x that isn't mean to approach 0, you would take into account this portion right here, which is approximately a triangle.
+
+Let's call the starting input a, and the nudged input above it x, so that this change is (x-a).
+
+The base of that little triangle is that change (x-a), and its height is the slope of the graph times (x-a). Since this graph is the derivative of the area function, that slope is the second derivative of the area function, evaluated at the input a.
+
+So the area of that triangle, ½ base times height, is one half times the second derivative of the area function, evaluated at a, multiplied by (x-a)2.
+
+And this is exactly what you see with Taylor polynomials. If you knew the various derivative information about the area function at the point a, you would approximate this area at x to be the area up to a, f(a), plus the area of this rectangle, which is the first derivative times (x-a), plus the area of this triangle, which is ½ (the second derivative) * (x - a)2.
+
+I like this, because even though it looks a bit messy all written out, each term has a clear meaning you can point to on the diagram.
