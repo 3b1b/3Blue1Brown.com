@@ -270,7 +270,7 @@ This is not a very good approximation of $\sin(x)$, so let's solve for the next 
     image="figures/sine-approximation-math-1.svg" 
 />
 
-There are two things to notice about this process: 1) as we take higher order derivates, the coefficients associated with lower order terms go to zero like in the case of $c_0$ and 2) when we substitue $x=0$ the higher order terms go to zero, leaving only the coefficient we are interested in!
+There are two things to notice about this process: 1) as we take higher order derivates, the coefficients associated with lower order terms go to zero like in the case of $c_0$ and 2) when we substitute $x=0$ the higher order terms go to zero, leaving only the coefficient we are interested in!
 
 Using this new information about $c_1$, this makes our approximation of $\sin(x)$ is equal to $0 + (1)x$, as shown below.
 
@@ -392,7 +392,7 @@ More generally, if we were dealing with some function other than cosine, you wou
     image="figures/generic-function-derivatives.png" 
 />
 
-TODO: potentiall replace the example function with the one below or look up the function used in the video python script
+TODO: potentially replace the example function with the one below or look up the function used in the video python script
 
 <Figure
     image="figures/alternative-example.svg" 
@@ -414,7 +414,7 @@ $$
 
 This is what Taylor series look like in their fullest generality. Changing the value of $a$ changes where the approximation is hugging the original function; where its higher order derivatives will be equal to those of the original function.
 
-TODO: add another comprehension question of taylor polynomial of cosine at pi or sine at pi? (using the general form)
+TODO: add another comprehension question of taylor polynomial of cosine at pi/2 or sine at pi applying the general form?
 
 ## A meaningful example
 
@@ -435,20 +435,21 @@ So at the point $x=0$, all of the derivatives are equal to $1$. This means our p
 We could call it an end here, and you'd have you'd have a phenomenally useful tool for approximations with these Taylor polynomials. But if you're thinking like a mathematician, one question you might ask is if it makes sense to never stop, and add up infinitely many terms.
 
 <Figure
-    image="figures/cosine-infinitely-many-terms.png" 
+    image="figures/infinity-and-convergence-many-terms.svg" 
 />
 
 In math, an infinite sum is called a "series", so even though one of the approximations with finitely many terms is called a "Taylor polynomial" for your function, adding all infinitely many terms gives what's called a "Taylor series".
 
 <Figure
-    image="figures/infinity-series-and-infinite-sum.png" 
+    image="figures/infinity-and-convergence-taylor-series-vs-polynomial.svg" 
 />
 
 You have to be careful with the idea of an infinite sum because one can never truly add infinitely many things; you can only hit the plus button on the calculator so many times. The more precise way to think about a series is to ask what happens as you add more and more terms. If the partial sums you get by adding more terms one at a time approach some specific value, you say the series converges to that value.
 
 <Figure
-    image="figures/series-convergence-example.png" 
+    image="figures/infinity-and-convergence-example.svg" 
 />
+
 
 It's a mouthful to always say "The partial sums of the series converge to such and such value", so instead mathematicians often think about it more compactly by extending the definition of equality to include this kind of series convergence. That is, you'd say this infinite sum _equals_ the value its partial sums converge to.
 
@@ -466,7 +467,7 @@ As you add more and more polynomial terms, the total sum gets closer and closer 
 In fact, it turns out that if you plug in any other value of $x$, like $x=2$, and look at the value of higher and higher order Taylor polynomials at this value, they will converge towards $e^x$, in this case $e^2$.
 
 <Figure
-    image="figures/series-exponential-function-convergence-at-3.png" 
+    image="figures/infinity-and-convergence-exp-of-2.svg" 
 />
 
 This is true for any input, no matter how far away from $0$ it is, even though these Taylor polynomials are constructed only from derivative information gathered at the input $0$.
@@ -477,21 +478,20 @@ In a case like this, we say $e^x$ equals its Taylor series at all inputs $x$. Th
 Although this is also true for some other important functions, like sine and cosine, sometimes these series only converge within a certain range around the input whose derivative information you're using. If you work out the Taylor series for $\ln(x)$ around the input $x = 1$, which is built from evaluating the higher order derivatives of $\ln(x)$ at $x=1$, this is what it looks like.
 
 <Figure
-    image="figures/natural-logarithm-derivatives-and-taylor-polynomial.png" 
+    image="figures/natural-logarithm-taylor-series.svg" 
 />
+
 
 When you plug in an input between $0$ and $2$, adding more and more terms of this series will indeed get you closer and closer to the natural log of that input.
 
 <Figure
-    image="figures/natural-logarithm-taylor-series-input-between-0-and-2.png" 
+    image="figures/natural-logarithm-taylor-series-input-between-0-and-2.svg" 
 />
 
-But outside that range, even by just a bit, the series fails to approach anything.
-
-As you add more and more terms the sum bounces back and forth wildly.  The partial sums do not approach the natural log of that value, even though the $\ln(x)$ is perfectly well defined for $x > 2$.
+But outside that range, even by just a bit, the series fails to approach anything. As you add more and more terms the sum bounces back and forth wildly.  The partial sums do not approach the natural log of that value, even though the $\ln(x)$ is perfectly well defined for $x > 2$.
 
 <Figure
-    image="figures/natural-logarithm-taylor-series-input-above-2.png" 
+    image="figures/natural-logarithm-erratic-behavior.svg" 
 />
 
 In some sense, the derivative information of $\ln(x)$ at $x=1$ doesn't propagate out that far. In a case like this, where adding more terms of the series doesn't approach anything, you say the series **diverges**.
@@ -499,22 +499,57 @@ In some sense, the derivative information of $\ln(x)$ at $x=1$ doesn't propagate
 That maximum distance between the input you're approximating near, and points where the outputs of these polynomials actually do converge, is called the "radius of convergence" for the Taylor series.
 
 <Figure
-    image="figures/natural-logarithm-radius-of-convergence.png" 
+    image="figures/natural-logarithm-radius-of-convergence.svg" 
 />
 
 <Question
   question="What is the Taylor Series expansion of the function $-\ln (1-x)$ around the point $x=0$?"
   choice1="$1 - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots$"
   choice2="$1 + \frac{x^2}{2} + \frac{x^3}{3} + \frac{x^4}{4} + \dots$"
+  choice3="$1 + x^2 + x^3 + x^4 + x^5 + \dots$"
   answer={2}
 >
   
-Explanation here.
+Here is the function plotted on the range from $-2$ to $2$.
 
+<Figure
+    image="figures/infinity-and-divergence-comprehensive-question-plot.svg" 
+/>
+
+Find the higher order derivatives of the function.
+
+<Figure
+    image="figures/infinity-and-divergence-comprehensive-question-derivatives.svg" 
+/>
+
+Evaluate the derivatives at the point $x=0$.
+
+<Figure
+    image="figures/infinity-and-divergence-comprehensive-question-derivatives-evaluated.svg" 
+/>
+
+Substitute the values into the generic formula.
 
 $$
-\frac{d}{d x}(-\ln (1-x))=\frac{1}{1-x}
+f(0)+\frac{d f}{d x}(0) \frac{x^1}{1 !}+\frac{d^2 f}{d x^2}(0) \frac{x^2}{2 !}+\frac{d^3 f}{d x^3}(0) \frac{x^3}{3 !}+\cdots
 $$
+
+This gives us the following taylor series shown below.
+
+<Figure
+    image="figures/infinity-and-divergence-comprehensive-question-taylor-series.svg" 
+/>
+
+For extra credit, what is the radius of convergence for this series?
+
+<Accordion title="Hint">
+
+<Figure
+    image="figures/infinity-and-divergence-comprehensive-question-radius-of-convergence.svg" 
+    title="High order taylor polynomials plotted to show erratic behavior."
+/>
+
+</Accordion>
 
 </Question>
 
