@@ -65,9 +65,9 @@
     - hardest-problem
     - windmills
     - prime-spirals
+    - moser-reboot
     - chessboard-puzzle
     - shadows
-    - moser
     - three-utilities
 - name: Why Pi
   slug: why-pi
@@ -108,6 +108,18 @@
     - winding-numbers
     - inventing-math
     - music-and-measure-theory
+- name: Probability
+  slug: probability
+  description: An assortment of introductory ideas in probability
+  lessons:
+    - clt
+    - gaussian-integral
+    - convolutions2
+    - gaussian-convolution
+    - bayes-theorem
+    - better-bayes
+    - binomial-distributions
+    - pdfs
 - name: Topology
   slug: topology
   description: A few clever proofs that make use of topological facts
@@ -141,16 +153,6 @@
     - brachistochrone
     - snells-law
     - turbulence
-- name: Probability
-  slug: probability
-  description: An assortment of introductory ideas in probability
-  lessons:
-    - clt
-    - gaussian-integral
-    - bayes-theorem
-    - better-bayes
-    - binomial-distributions
-    - pdfs
 - name: Epidemics
   slug: epidemics
   description: Videos made about and during the COVID-19 pandemic
