@@ -7,4 +7,148 @@ video: BLkz5LGWihw
 source: _2017/eoc/footnote.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+## Introduction
+
+In the next chapter, about Taylor series, I make frequent reference to higher order derivatives. If you're already comfortable with second derivatives, third derivatives and such, great! Feel free to skip right ahead to that lesson now.
+
+Somehow I've managed not to bring up higher order derivatives at all so far this series, so for the sake of completeness, I thought I'd give this little footnote to briefly go over them. I'll focus mainly on the second derivative, showing what it looks like in the context of graphs and motion, and leave you to think about the analogies for higher orders.
+
+## Graphical meaning
+
+<Figure
+    image="figures/graphical-meaning.svg" 
+/>
+
+Given some function $f(x)$, the derivative can be interpreted as the slope of its graph above some input, right? A steep slope means a high value for the derivative, a downward slope means a negative derivative.
+
+<Figure
+    image="figures/graphical-meaning-positive-negative-slope.svg" 
+/>
+
+TODO: comprehensive /review question: what is the slope at $x=4$ and $x=2$?
+
+The second derivative, whose notation I'll explain in a moment, is the derivative of the derivative, meaning it tells you how that slope is changing. The way to see this at a glance is to think of how the graph of $f(x)$ curves. At points where it curves upward, the slope is increasing, so the second derivative is positive. At points where it curves downward, the slope is decreasing, so the second derivative is negative.
+
+<Figure
+    image="figures/graphical-meaning-positive-negative-curvature.svg" 
+/>
+
+For example, let's look at another graph like the one below.
+
+<Figure
+    image="figures/graphical-meaning-very-positive-example.png" 
+/>
+
+A graph like this has a very positive second derivative at the input $4$, since the slope is rapidly increasing around that point. Whereas another graph like the one belows still has a positive second derivative at that same point, but it's smaller, since the slope is increasing only slowly.
+
+<Figure
+    image="figures/graphical-meaning-less-positive-example.png" 
+/>
+
+At points where there's not really any curvature, the second derivative is zero.
+
+<Figure
+    image="figures/graphical-meaning-no-curvature.png" 
+/>
+
+TODO: footnote about min / max problems and finding the zeros of derivatives leading to optimization problems or connection with the physical intuition.
+
+## Notation
+
+As far as notation goes, you could try writing it like this:
+
+$$
+\frac{d\left(\frac{d f}{d x}\right)}{d x}
+$$
+
+... indicating some small change to the derivative function divided by some small change to $x$, where as always the use of that letter $d$ suggests that you really want to consider what this ratio approach as $dx$, both $dx$'s in this case, approach $0$. That's pretty awkward and clunky, so the standard is to abbreviate it as $\frac{d^{2}f}{dx^2}$.
+
+$$
+\frac{d^2 f}{d x^2}
+$$
+
+It's not terribly important for getting an intuition of the second derivative, but perhaps it's worth showing how you can read this notation. Think of starting at some input to your function, and taking two small steps to the right, each with a size $dx$. I'm choosing rather big steps here so that we'll better see what's going on, but in principle think of them as rather tiny.
+
+
+<Figure
+    image="figures/second-derivative-intuition.svg" 
+/>
+
+The first step causes some change to the function, which I'll call $df_1$, and the second step causes some similar, but possibly slightly different change, which I'll call $df_2$. 
+
+<Figure
+    image="figures/second-derivative-intuition-df2-df1.svg" 
+/>
+
+The difference between these; the change in how the function changes, is what we'll call $d(df)$.
+
+<Figure
+    image="figures/second-derivative-intuition-df2-df1-difference.svg" 
+/>
+
+You should think of this as really small, typically proportional to the size of $(dx)^2$. So if your choice for $dx$ was $0.01$, you'd expect this $d(df)$ to be proportional to $0.001$.
+
+$$
+d x=0.01 \Rightarrow(d x)^2=0.0001
+$$
+
+And the second derivative is the size of this change to the change, divide by the size of $(dx)^2$. Or, more precisely, it's whatever that ratio approaches as $dx$ approaches $0$. Even though it's not like the letter $d$ is a variable being multiplied by $f$, for the sake of more compact notation you write this as $\frac{d^2f}{dx^2}$, and you don't bother with any parentheses on the bottom.
+
+<!-- Interestingly, there is a notion in math called the "exterior derivative" which treats this "d" as having a more independent meaning, though it's less related to the intuitions I've introduced in this series-->
+
+For higher order derivatives, like the third derivative, fourth derivative and so are are written using the same compact notation.
+
+<Figure
+    image="figures/notation-general-case.svg" 
+/>
+
+## Physical meaning
+
+Maybe the most visceral understanding of the second derivative is that it represents acceleration.
+
+$$
+\frac{d^2 s}{d t^2}(t) \Leftrightarrow \text { Acceleration }
+$$
+
+Given some movement along a line, suppose you have some function that records distance traveled vs. time, and maybe its graph looks something like this, steadily increasing over time.
+
+<Figure
+    image="figures/physical-meaning-displacement.svg" 
+/>
+
+Then its derivative tells you velocity at each point in time, right?  For the example, the graph might look like this bump, increasing to some maximum, then decreasing back to $0$.
+
+<Figure
+    image="figures/physical-meaning-displacement-and-velocity.svg" 
+/>
+
+Then its second derivative tells you the rate of change for velocity, the acceleration at each point in time.
+
+<Figure
+    image="figures/physical-meaning-displacement-velocity-and-acceleration.svg" 
+/>
+
+In the example, the second derivative is positive for the first half of the journey, which indicates indicates speeding up. That's sensation of being pushed back into your car seat with a constant force. Or rather, having the car seat push you with a constant force.
+
+<Figure
+    image="figures/physical-meaning-displacement-velocity-and-acceleration-positive-meaning.svg" 
+/>
+
+<!-- TODO: Comprehensive question: A negative second derivative indicates slowing down, negative acceleration. -->
+
+The third derivative, and this is not a joke, is called jerk. So if the jerk is not zero, it means the strength of the acceleration itself is changing.
+
+<Figure
+    image="figures/displacement-velocity-acceleration-jerk.svg" 
+/>
+
+## Comprehensive Questions
+
+TODO: pi creature astronaut in an space example.
+
+## Next Lesson
+
+One of the most useful things about higher order derivatives is how they help in approximating functions, which is the topic of the next chapter on Taylor series, so I'll see you there .
