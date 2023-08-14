@@ -12,7 +12,7 @@ credits:
 
 > "One should never try to prove anything that is not almost obvious"
 >
-> Alexander Grothendieck
+> \- Alexander Grothendieck
 
 This guy, Grothendieck, is somewhat of a mathematical idol to me. And I just love this quote, don't you? Too often in math we just dive into showing that a certain fact is true with long series of formulas before stepping back and making sure that it feels reasonable, and preferably obvious, at least on an intuitive level.
 
@@ -47,7 +47,7 @@ You might remember, in chapter 2 of this series, we were looking at the opposite
 <!-- question: make s(t) and v(t) the same function as the antiderivative image below-->
 
 <Figure
-  image="figures/velocity-function-from-distance-function.png" 
+  image="figures/velocity-and-distance-derivative-callback.svg" 
 />
 
 So in our current situation, where all we know is the velocity function, it should make sense that finding a distance vs. time function $s(t)$ comes down to asking what function has a derivative $-t^2 + 8t$. This is often described as finding the antiderivative of a function.
@@ -198,7 +198,7 @@ TODO: general function visual
 So if our velocity function here is $t(8-t)$, what should $s$ be? What function of $t$ has a derivative $t(8-t)$? This is where we actually have to roll up our sleeves and do some math.
 
 <Figure
-  image="figures/find-the-antiderivative-setup.png" 
+  image="figures/find-the-antiderivative-setup.svg" 
 />
 
 It's easier to see if we expand this out as $8t - t^2$. Take each part here one at a time: What function has a derivative $8t$? Well, we know that the derivative of $t^2$ is $2t$, so if we just scale that up by $4$, we see that the derivative of $4t^2$ is $8t$.

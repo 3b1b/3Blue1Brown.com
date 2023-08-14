@@ -17,7 +17,8 @@ credits:
 Here, I want to discuss one common type of problem where integration comes up: Finding the average of a continuous variable.
 
 <Figure
-    image="figures/average-value-of-f.png" 
+    image="figures/introduction-average-value-of-function.svg" 
+    caption="$f(x) = 0.1x^{3} - 0.9x^{2} + 1.8x + 4$"
 />
 
 This is a useful thing to know in its own right, but what's really neat is that it gives a completely different perspective for why integrals and derivatives are inverses each other.
@@ -27,66 +28,50 @@ This is a useful thing to know in its own right, but what's really neat is that 
 Take a look at the graph of $\sin(x)$ between $0$ and $\pi$, which is half its period. 
 
 <Figure
-    image="figures/average-height-of-sine-from-0-to-pi.png" 
+    image="figures/average-height-of-sine-from-0-to-pi.svg" 
 />
 
-What is the average height of this graph on that interval?
-
-It's not a useless question. All sorts of cyclic phenomena in the world are modeled with sine waves: For example, the number of hours the sun is up per day as a function of which-day-of-the-year-it-is follows a sine wave pattern. 
+What is the average height of this graph on that interval? It's not a useless question. All sorts of cyclic phenomena in the world are modeled with sine waves: For example, the number of hours the sun is up per day as a function of which-day-of-the-year-it-is follows a sine wave pattern. 
 
 <Figure
-    image="figures/hours-of-daylight.png" 
+    image="figures/average-height-of-sine-daylight-example.svg" 
+    caption="Hours of Daylight"
 />
 
 So if you wanted to predict, say, the average effectiveness of solar panels in summer months vs. winter months, you'd want to be able to answer a question like this: What's the average value of that sine function over half its period.
 
 <Figure
-    image="figures/hours-of-daylight-summer-winter.png" 
+    image="figures/average-height-of-sine-daylight-example-summer-winter.svg" 
+    caption="Hours of Daylight Summer and Winter"
 />
 
-Whereas a case like that will have all sorts of constants mucking up the function, we'll just focus on a pure unencumbered $\sin(x)$ function, but the substance of the approach would be the same in any application.
+Whereas a case like that will have all sorts of constants mucking up the function, we'll just focus on an unencumbered $\sin(x)$ function, but the substance of the approach would be the same in any application.
 
 <Figure
-    image="figures/average-height-of-sine-from-0-to-pi.png" 
+    image="figures/average-height-of-sine-from-0-to-pi.svg" 
 />
 
-It's kind of a weird thing to think about, isn't it, the average of a continuous variable. Usually, with averages, we think of a finite number of values, where you add all them up and divide that sum by how many values there are.
+It's kind of a weird thing to think about, isn't it, the average of a continuous variable. Usually, with averages, we think of a finite number of values, where you add all them up and divide that sum by how many values there are. But there are infinitely many values of $\sin(x)$ between $0$ and $\pi$, and its not like we can add all those numbers and divide by infinity.
 
 <Figure
-    image="figures/average-of-a-finite-number-of-values.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-infinitely-many-values.svg" 
 />
-
-But there are infinitely many values of $\sin(x)$ between $0$ and $\pi$, and its not like we can add all those numbers and divide by infinity.
-
-<Figure
-    image="figures/average-height-of-sine-infinitely-many-values.png" 
-/>
-
-TODO: vary the stroke width between two values to indicate more and more on a smaller scale
 
 This sensation actually comes up a lot in math, and is worth remembering, where you have this vague sense that you want to add together infinitely many values associated with a continuum, even though that doesn't really make sense. Almost always, when you get this sense, the key will be to use an integral somehow. And to think through exactly how, a good first step is usually to approximate your situation with some kind of finite sum.
 
 In this case, imagine sampling a finite number of points, evenly spaced in this range.
 
 <Figure
-    image="figures/average-height-of-sine-from-0-to-pi-finite-sample.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-finite-number-of-points.svg" 
 />
 
 Since it's a finite sample, you can find the average by adding up all the heights, $\sin(x)$, at each one, and divide that sum by the number of points you sampled, right?
 
 <Figure
-    image="figures/average-height-of-sine-from-0-to-pi-finite-sample-calculation.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-finite-number-of-points-approximation.svg" 
 />
 
-And presumably, if the idea of an average height among all infinitely many points is going to make any sense at all, the more points we sample, which would involve adding up more heights, the closer the average of that sample should be to the actual average of the continuous variable, don't you think?
-
-<Figure
-    image="figures/average-height-of-sine-from-0-to-pi-finite-sample-more.png" 
-/>
-
-TODO: Show samplings with a increasing number of points sampled
-
-This should feel at least somewhat related to taking an integral of $\sin(x)$ between $0$ and $\pi$, even if it might not be clear at first exactly how the two ideas will match up.
+And presumably, if the idea of an average height among all infinitely many points is going to make any sense at all, the more points we sample, which would involve adding up more heights, the closer the average of that sample should be to the actual average of the continuous variable. This should feel at least somewhat related to taking an integral of $\sin(x)$ between $0$ and $\pi$, even if it might not be clear at first exactly how the two ideas will match up.
 
 $$
 \int_0^\pi \sin (x) d x
@@ -95,27 +80,25 @@ $$
 For that integral, you also think of a sample of inputs on this continuum, but instead of adding the height $\sin(x)$ at each one, and dividing by how many there are, you add up $\sin(x) \cdot dx$ where $dx$ is the spacing between the samples; that is, you're adding little areas, not heights.
 
 <Figure
-    image="figures/average-height-of-sine-from-0-to-pi-finite-areas.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-finite-areas.svg" 
 />
 
-Technically, the integral is not quite this sum, it's whatever that sum approaches as $dx$ approaches $0$. But it's helpful to reason with respect to one of these finite iterations, where you're adding the areas of some specific number of rectangles.
-
-So what you want to do is reframe this expression for the average, this sum of the heights divided by the number of sampled points, in terms of $dx$, the spacing between samples. If I tell you that the spacing between these points is $0.1$, for example, and you know that they range from $0$ to $\pi$, can you tell me how many there are?
-
-TODO: pause and ponder
-
-Well, you can take that length of the interval, $\pi$, and divide it by the length of the space between each sample. If it doesn't go in evenly, you'd round down to the nearest integer, but as an approximation this is fine.
+Technically, the integral is not quite this sum, it's whatever that sum approaches as $dx$ approaches $0$. But it's helpful to reason with respect to one of these finite iterations, where you're adding the areas of some specific number of rectangles. So what you want to do is reframe this expression for the average, this sum of the heights divided by the number of sampled points, in terms of $dx$, the spacing between samples.
 
 $$
-\text { (Num. samples }) \approx \pi / 0.1 \approx 31
+\text { (Number of samples }) \approx \frac{x_2 - x_1 }{dx}
 $$
 
-So if we write the spacing between samples as $dx$, the number of samples is $\frac{\pi}{dx}$.
+For example, if the spacing between these points is $0.1$, and you know that they range from $0$ to $\pi$, then you can take the length of the interval, $\pi$, and divide it by the length of the space between each sample. If it doesn't go in evenly, you'd round down to the nearest integer, but as an approximation this is fine.
 
-So replacing the denominator with $\frac{\pi}{dx}$ here, you can rearrange, putting the dx up top and distributing. 
+$$
+\text { (Number of samples }) \approx \frac{\pi}{0.1} \approx 31
+$$
+
+So if we write the spacing between samples as $dx$, the number of samples is $\frac{\pi}{dx}$. So replacing the denominator with $\frac{\pi}{dx}$ here, you can rearrange, putting the $dx$ up top and distributing. 
 
 <Figure
-    image="figures/average-height-from-0-to-pi-rearrange.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-rearrange-dx.svg" 
 />
 
 But, think about what it means to distribute that $dx$ up top; it means the terms you're adding all look like $\sin(x) \cdot dx$ for the various inputs $x$ that you're sampling, so that numerator looks exactly like an integral expression. And for larger and larger samples of points, this average approaches the actual integral of $\sin(x)$ between $0$ and $\pi$, all divided by the length of that interval, $\pi$.
@@ -123,7 +106,7 @@ But, think about what it means to distribute that $dx$ up top; it means the term
 In other words, the average height of this graph is this area divided by its width. On an intuitive level, and just thinking in terms of units, that feels pretty reasonable, doesn't it?  Area divided by with gives you average height.
 
 <Figure
-    image="figures/average-height.png" 
+    image="figures/average-height-of-sine-from-0-to-pi-average-height-area-divided-by-width.svg" 
 />
 
 ## Computing a result
@@ -131,22 +114,16 @@ In other words, the average height of this graph is this area divided by its wid
 So let's actually compute this integral expression. As we saw, last lesson, to compute an integral you need to find an antiderivative of the function inside the integral; some function whose derivative is $\sin(x)$. And, if you're comfortable with trig derivatives, you know the derivative of $\cos(x)$ is $-\sin(x)$.
 
 <Figure
-    image="figures/derivative-of-cosine.png" 
+    image="figures/computing-a-result-derivative-of-cosine.svg" 
 />
-
-TODO: image of $\cos(x)$ is $-\sin(x)$
 
 So if you negate that, $-\cos(x)$ is the antiderivative of $\sin(x)$.
 
 <Figure
-    image="figures/derivative-of-cosine-negated.png" 
+    image="figures/computing-a-result-derivative-of-negative-cosine.svg" 
 />
 
-TODO: negate that expression (flipping the graph over the y-axis)
-
 To gut check yourself on that, look at this graph of $-\cos(x)$. At $0$, the slope is $0$, then it increases to some maximum slope at $\pi/2$, then it goes back down to $0$ at $\pi$, and in general its slope does indeed seem to match the height of the sine graph.
-
-TODO: figure illustrating the antiderivative cycle
 
 To evaluate the integral of $\sin(x)$ between $0$ and $\pi$, take that antiderivative at the upper bound, and subtract its value at the lower bound.
 
@@ -156,14 +133,15 @@ $$
 
 More visually, that's the difference in the height of this $-\cos(x)$ graph above $\pi$, and its height at $0$, and as you can see, that change in height is exactly $2$.
 
+
 <Figure
-    image="figures/average-height-of-sine.png" 
+    image="figures/computing-a-result-visualize-change-of-height.svg" 
 />
 
-That's kind of interesting, isn't it?  That the area under this sine graph turns out to be exactly $2$.
+That's kind of interesting, isn't it? That the area under this sine graph turns out to be exactly $2$.
 
 <Figure
-    image="figures/area-under-sine-from-0-to-pi.png" 
+    image="figures/computing-a-result-visualize-change-of-height-and-area.svg" 
 />
 
 So the answer to our average height problem, this integral divided by the width of the region, evidently turns out to be $\frac{2}{\pi}$, which is around $0.64$.
@@ -171,6 +149,19 @@ So the answer to our average height problem, this integral divided by the width 
 $$
 \frac{\int_0^\pi \sin (x) d x}{\pi-0}=\frac{(-\cos (\pi))-(-\cos (0))}{\pi-0}=\frac{2}{\pi} \approx 0.64
 $$
+
+TODO: comprehensive question for the equation shown in the introduction.
+
+<Question
+  question="What is the average height of the function $f(x) = 0.1x^{3} - 0.9x^{2} + 1.8x + 4$ from $1$ to $6$?"
+  choice1="1"
+  choice2="2"
+  choice3="3"
+  choice4="4"
+  answer={1}
+>
+
+</Question>
 
 ## Another perspective
 
