@@ -3,6 +3,7 @@ title: What does area have to do with slope?
 description: Derivatives are about slope, and integration is about area. These ideas seem completely different, so why are they inverses?
 date: 2017-05-06
 chapter: 12
+thumbnail: thumbnail-2880-1620.png
 video: FnJqaIESC2s
 source: _2017/eoc/chapter9.py
 credits:
@@ -150,16 +151,75 @@ $$
 \frac{\int_0^\pi \sin (x) d x}{\pi-0}=\frac{(-\cos (\pi))-(-\cos (0))}{\pi-0}=\frac{2}{\pi} \approx 0.64
 $$
 
-TODO: comprehensive question for the equation shown in the introduction.
+## Comprehensive Question
+
+Now is a good time to try your hand at calculating the average value of a function over a range. For example, given the function $f(x)=-x^2+4 x-3$, what is the average value of the function between $1$ and $3$?
+
+<Figure
+    image="figures/comprehensive-question-1.svg" 
+/>
 
 <Question
-  question="What is the average height of the function $f(x) = 0.1x^{3} - 0.9x^{2} + 1.8x + 4$ from $1$ to $6$?"
-  choice1="1"
-  choice2="2"
-  choice3="3"
-  choice4="4"
+  question="What is the average height of the function $f(x)=-x^2+4 x-3$ from $1$ to $3$?"
+  choice1="$0.66\bar{6}$"
+  choice2="$0.5$"
+  choice3="$0.75$"
+  choice4="$1$"
   answer={1}
 >
+
+We can start with the idea that we've been building up throughout the lesson that the average height is equal to the area under a range divided by the width of the range.
+
+$$
+\text { Average height }=\frac{\text { Area }}{\text { Width }}
+$$
+
+We know that the area is equal to the integral over that range.
+
+$$
+\text { Average height } = \frac{\displaystyle \int_{x_1}^{x_2} f(x)dx}{x_2 - x_1}
+$$
+
+And substituting the function and the range into the expression we get the following.
+
+$$
+\text { Average height }= \frac{\displaystyle \int_{1}^{3} (x^2+4 x-3) dx}{3 -1}
+$$
+
+To evaluate the integral of $x^2+4 x-3$ from $1$ and $3$, take the antiderivative at the upper bound and subtract its value at the lower bound.
+
+$$
+\int_{1}^{3} (x^2+4 x-3) dx = F(3) - F(1)
+$$
+
+Where we know the antiderivative is $F(x)=-\frac{x^3}{3}+2 x^2-3 x$ plus some arbitrary constant that will get cancelled in the subtraction.
+
+$$
+\begin{align}
+\int_{1}^{3} (x^2+4 x-3) dx &= \left(-\frac{(3)^3}{3}+2(3)^2-3(3)\right)-\left(-\frac{(1)^3}{3}+2(1)^2-3(1)\right) \\
+&= (-9+18-9)-\left(-\frac{1}{3}+2-3\right) \\
+&=0-\left(-\frac{4}{3}\right) \\ 
+&=\frac{4}{3}
+\end{align}
+$$
+
+This means that the area under the function $x^2+4 x-3$ from $1$ and $3$ is equal to $\frac{4}{3}$.
+
+<Figure
+    image="figures/comprehensive-question-1-area-under-graph.svg" 
+/>
+
+And to calculate the average height of this function, we need to divide by the width of the range, and $\frac{4}{3}$ divided by $2$ is equal to $\frac{2}{3}$.
+
+<Figure
+    image="figures/comprehensive-question-1-slope-of-antiderivative.svg" 
+/>
+
+This is the answer to our question! The average height of the function $x^2+4 x-3$ from $1$ to $3$ is equal to $\frac{2}{3}$. 
+
+<Figure
+    image="figures/comprehensive-question-1-average.svg" 
+/>
 
 </Question>
 
@@ -167,38 +227,34 @@ TODO: comprehensive question for the equation shown in the introduction.
 
 I promised at the start that this question of finding the average value of a function offers an alternate perspective on on why integrals and derivatives are inverses of one and other; why the area under one graph is related to the slope of another.
 
-Notice how finding this average value $\frac{2}{\pi}$ came down to looking at the change in the antiderivative $-\cos(x)$ over the input range, divided by the length of that input range.
-
-Another way to think about that fraction is as the rise-over-run slope between the point of the antiderivative graph below zero, and the point of that graph above $\pi$.
+Notice how finding this average value $\frac{2}{\pi}$ came down to looking at the change in the antiderivative $-\cos(x)$ over the input range, divided by the length of that input range. Another way to think about that fraction is as the rise-over-run slope between the point of the antiderivative graph below zero, and the point of that graph above $\pi$.
 
 <Figure
-    image="figures/area-and-slope-rise-over-run.png" 
+    image="figures/another-perspective.svg" 
 />
 
-Now think about why it might make sense that this slope represents the average value of $\sin(x)$ on that region. By definition, $\sin(x)$ is the derivative of this antiderivative graph; it gives the slope of $-\cos(x)$ at every input. So another way to think about the average value $\sin(x)$ is as the average slope over all tangent lines here between $0$ and $\pi$.
+Now think about why it might make sense that this slope represents the average value of $\sin(x)$ on that region. By definition, $\sin(x)$ is the derivative of this antiderivative graph; it gives the slope of $-\cos(x)$ at every input. So another way to think about the average value $\sin(x)$ is as the average slope over all tangent lines here between $0$ and $\pi$. And from that view, doesn't it make a lot of sense that the average slope of a graph over all its point in a certain range should equal the total slope between the start and end point?
 
-TODO: animation / illustration of many different tangent lines on the interval
-
-And from that view, doesn't it make a lot of sense that the average slope of a graph over all its point in a certain range should equal the total slope between the start and end point?
+<!-- TODO: animation / illustration of many different tangent lines on the interval -->
 
 ## Generalize this view
 
 To digest this idea, it helps to see what it looks like for a general function. For any function $f(x)$, if you want to find its average value on some interval, say between $a$ and $b$, what you do is take the integral of $f$ on that interval, divided by the width of the interval.
 
 <Figure
-    image="figures/general-function-average-height.png" 
+    image="figures/generalize.svg" 
 />
 
 You can think of this as taking the area under the graph divided by the width. Or more accurately, it's the signed area of that graph, since area below the x-axis is counted as negative.
 
 <Figure
-    image="figures/general-function-average-height-signed-area.png" 
+    image="figures/generalize-signed-area.svg" 
 />
 
 And take a moment to remember the connection between this idea of a continuous average and the usual finite notion of an average, where you add up many numbers and divide by how many there are. When you take some sample of points spaced out by $dx$, the number of samples is about the length of the interval divided by $dx$.
 
 <Figure
-    image="figures/general-function-discrete-samples.png" 
+    image="figures/generalize-number-of-samples.svg" 
 />
 
 So if you add up the value of $f(x)$ at each sample and divide by the total number of samples, it's the same as adding up the products $f(x) \cdot dx$ and dividing by the width of the entire interval.
@@ -206,39 +262,32 @@ So if you add up the value of $f(x)$ at each sample and divide by the total numb
 The only difference between that and the integral expression is that the integral asks what happens as $dx$ approaches $0$, but that just corresponds with samples of more and more points that approximate the true average increasingly well. Like any integral, evaluating this comes down to finding an antiderivative of $f(x)$, commonly denoted capital $F(x)$.
 
 <Figure
-    image="figures/general-function-antiderivative.png" 
+    image="figures/generalize-antiderivative.svg" 
 />
 
 In particular, what we want is the change to this antiderivative between $a$ and $b$, $F(b) - F(a)$, which you can think of as the change in the height of this new graph between the two bounds.
 
 <Figure
-    image="figures/general-function-antiderivative-change-of-height.png" 
+    image="figures/generalize-change-in-height.svg" 
 />
 
-
-I've conveniently chosen an antiderivative which passes through $0$ at the lower bound here, but keep in mind that you could freely shift this up and down, adding whatever constant you want to it, and it would still be a valid antiderivative.
-
-TODO: show multiple different constants to the antiderivative
-
-So the solution to the average problem is the change in the height of this new graph divided by the change to its $x$ value between $a$ and $b$.
+I've conveniently chosen an antiderivative which passes through $0$ at the lower bound here, but keep in mind that you could freely shift this up and down, adding whatever constant you want to it, and it would still be a valid antiderivative. So the solution to the average problem is the change in the height of this new graph divided by the change to its $x$ value between $a$ and $b$.
 
 $$
-\frac{\int_a^b f(x) d x}{b-a}=\frac{F(b)-F(a)}{b-a}
+\frac{\displaystyle \int_a^b f(x) d x}{b-a}=\frac{F(b)-F(a)}{b-a}
 $$
 
 In other words, it's the slope of the antiderivative graph between these endpoints.
 
 <Figure
-    image="figures/general-function-antiderivative-slope.png" 
+    image="figures/generalize-rise-over-run.svg" 
 />
 
 And again, that should make a lot of sense, because  little $f(x)$ gives the slope of a tangent line to this graph at each point, after all it is by definition the derivative of capital $F$.
 
 So, why are antiderivative the key to solving integrals?  Well, my favorite intuition is still the one I showed last lesson, but a second perspective is that when you reframe the question of finding the average of a continuous value as finding the average slope of bunch of tangent lines, it lets you see the answer just by the comparing endpoints, rather than having to actually tally up all points in between.
 
-TODO: practice problem 1 (finding the average height of a function)
-
-TODO: practice problem 2 (finding the average height of a function, probability flavored?)
+<!--TODO: another practice problem-->
 
 ## Summary
 
