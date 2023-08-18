@@ -39,7 +39,7 @@ What is the average height of this graph on that interval? It's not a useless qu
     caption="Hours of Daylight"
 />
 
-So if you wanted to predict, say, the average effectiveness of solar panels in summer months vs. winter months, you'd want to be able to answer a question like this: What's the average value of that sine function over half its period.
+If you wanted to predict, say, the average effectiveness of solar panels in summer months vs. winter months, you'd want to be able to answer a question like this: What's the average value of that sine function over half its period.
 
 <Figure
     image="figures/average-height-of-sine-daylight-example-summer-winter.svg" 
@@ -70,9 +70,17 @@ Since it's a finite sample, you can find the average by adding up all the height
 
 <Figure
     image="figures/average-height-of-sine-from-0-to-pi-finite-number-of-points-approximation.svg" 
+    caption="The summation notation here makes explicit what we are doing here."
 />
 
-And presumably, if the idea of an average height among all infinitely many points is going to make any sense at all, the more points we sample, which would involve adding up more heights, the closer the average of that sample should be to the actual average of the continuous variable. This should feel at least somewhat related to taking an integral of $\sin(x)$ between $0$ and $\pi$, even if it might not be clear at first exactly how the two ideas will match up.
+And presumably, if the idea of an average height among all infinitely many points is going to make any sense at all, the more points we sample, which would involve adding up more heights, the closer the average of that sample should be to the actual average of the continuous variable.
+
+<Figure
+    image="figures/average-height-of-sine-from-0-to-pi-multiple-values-for-n.svg" 
+/>
+
+
+This should feel at least somewhat related to taking an integral of $\sin(x)$ between $0$ and $\pi$, even if it might not be clear at first exactly how the two ideas will match up.
 
 $$
 \int_0^\pi \sin (x) d x
@@ -96,13 +104,17 @@ $$
 \text { (Number of samples }) \approx \frac{\pi}{0.1} \approx 31
 $$
 
-So if we write the spacing between samples as $dx$, the number of samples is $\frac{\pi}{dx}$. So replacing the denominator with $\frac{\pi}{dx}$ here, you can rearrange, putting the $dx$ up top and distributing. 
+If we write the spacing between samples as $dx$, the number of samples is $\frac{\pi}{dx}$. So replacing the denominator with $\frac{\pi}{dx}$ here, you can rearrange, putting the $dx$ up top and distributing. 
+
+<Figure
+    image="figures/average-height-of-sine-from-0-to-pi-rearrange-dx-visually.svg" 
+/>
+
+But, think about what it means to distribute that $dx$ up top; it means the terms you're adding all look like $\sin(x) \cdot dx$ for the various inputs $x$ that you're sampling, so that numerator looks exactly like an integral expression. And for larger and larger samples of points, this average approaches the actual integral of $\sin(x)$ between $0$ and $\pi$, all divided by the length of that interval, $\pi$.
 
 <Figure
     image="figures/average-height-of-sine-from-0-to-pi-rearrange-dx.svg" 
 />
-
-But, think about what it means to distribute that $dx$ up top; it means the terms you're adding all look like $\sin(x) \cdot dx$ for the various inputs $x$ that you're sampling, so that numerator looks exactly like an integral expression. And for larger and larger samples of points, this average approaches the actual integral of $\sin(x)$ between $0$ and $\pi$, all divided by the length of that interval, $\pi$.
 
 In other words, the average height of this graph is this area divided by its width. On an intuitive level, and just thinking in terms of units, that feels pretty reasonable, doesn't it?  Area divided by with gives you average height.
 
@@ -112,13 +124,13 @@ In other words, the average height of this graph is this area divided by its wid
 
 ## Computing a result
 
-So let's actually compute this integral expression. As we saw, last lesson, to compute an integral you need to find an antiderivative of the function inside the integral; some function whose derivative is $\sin(x)$. And, if you're comfortable with trig derivatives, you know the derivative of $\cos(x)$ is $-\sin(x)$.
+Let's actually compute this integral expression. As we saw, last lesson, to compute an integral you need to find an antiderivative of the function inside the integral; some function whose derivative is $\sin(x)$. And, if you're comfortable with trig derivatives, you know the derivative of $\cos(x)$ is $-\sin(x)$.
 
 <Figure
     image="figures/computing-a-result-derivative-of-cosine.svg" 
 />
 
-So if you negate that, $-\cos(x)$ is the antiderivative of $\sin(x)$.
+If you negate that, $-\cos(x)$ is the antiderivative of $\sin(x)$.
 
 <Figure
     image="figures/computing-a-result-derivative-of-negative-cosine.svg" 
@@ -145,7 +157,7 @@ That's kind of interesting, isn't it? That the area under this sine graph turns 
     image="figures/computing-a-result-visualize-change-of-height-and-area.svg" 
 />
 
-So the answer to our average height problem, this integral divided by the width of the region, evidently turns out to be $\frac{2}{\pi}$, which is around $0.64$.
+The answer to our average height problem, this integral divided by the width of the region, evidently turns out to be $\frac{2}{\pi}$, which is around $0.64$.
 
 $$
 \frac{\int_0^\pi \sin (x) d x}{\pi-0}=\frac{(-\cos (\pi))-(-\cos (0))}{\pi-0}=\frac{2}{\pi} \approx 0.64
@@ -257,7 +269,7 @@ And take a moment to remember the connection between this idea of a continuous a
     image="figures/generalize-number-of-samples.svg" 
 />
 
-So if you add up the value of $f(x)$ at each sample and divide by the total number of samples, it's the same as adding up the products $f(x) \cdot dx$ and dividing by the width of the entire interval.
+If you add up the value of $f(x)$ at each sample and divide by the total number of samples, it's the same as adding up the products $f(x) \cdot dx$ and dividing by the width of the entire interval.
 
 The only difference between that and the integral expression is that the integral asks what happens as $dx$ approaches $0$, but that just corresponds with samples of more and more points that approximate the true average increasingly well. Like any integral, evaluating this comes down to finding an antiderivative of $f(x)$, commonly denoted capital $F(x)$.
 
@@ -285,7 +297,7 @@ In other words, it's the slope of the antiderivative graph between these endpoin
 
 And again, that should make a lot of sense, because  little $f(x)$ gives the slope of a tangent line to this graph at each point, after all it is by definition the derivative of capital $F$.
 
-So, why are antiderivative the key to solving integrals?  Well, my favorite intuition is still the one I showed last lesson, but a second perspective is that when you reframe the question of finding the average of a continuous value as finding the average slope of bunch of tangent lines, it lets you see the answer just by the comparing endpoints, rather than having to actually tally up all points in between.
+Why are antiderivative the key to solving integrals?  Well, my favorite intuition is still the one I showed last lesson, but a second perspective is that when you reframe the question of finding the average of a continuous value as finding the average slope of bunch of tangent lines, it lets you see the answer just by the comparing endpoints, rather than having to actually tally up all points in between.
 
 <!--TODO: another practice problem-->
 
