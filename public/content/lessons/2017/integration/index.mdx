@@ -128,20 +128,31 @@ TODO: Practice problem, breaking at a constant rate
 
 ## Integral Notation
 
-I'm going to write out an expression for the sum of the areas of all these rectangles in kind of a funny way. Take this symbol $\int$, which looks like a stretched "S" for sum, then put a $0$ at its bottom and an $8$ at its top to indicate that we're ranging over time steps between $0$ and $8$ seconds. And as I said, the amount we're adding up at each time step is $v(t) \cdot dt$.
+
+I'm going to write out an expression for the sum of the areas of all these rectangles in kind of a funny way. Take this symbol $\int$, which looks like a stretched "S" for sum, then put a $0$ at its bottom and an $8$ at its top to indicate that we're ranging over time steps between $0$ and $8$ seconds.
 
 <Figure
-  image="figures/integral-notation.png" 
+  image="figures/integral-notation-annotated.svg" 
+/>
+
+The amount we're adding up at each time step is $v(t) \cdot dt$ which, for each step, can be visualized as the rectangle of area on the graph.
+
+<Figure
+  image="figures/integral-notation-sum-of-areas.svg" 
 />
 
 Two things are implicit in this notation: First, the value $dt$ plays two roles: not only is it a factor in each quantity we're adding up, it also indicates the spacing between each sampled time step. So when you make $dt$ smaller, even though it decreases the area of each rectangle, it increases the total number of rectangles whose areas we're adding up, because if they are thinner it takes more of them to fill up that space. And second, the reason we don't use the usual sigma notation $\sum$ to indicate a sum is that this expression is technically not any particular sum for any particular choice of $dt$; it's meant to express whatever that sum approaches as $dt$ approaches 0.
 
-TODO: Visual of area under the curve. "As you can see, what that approaches is the area bounded by this curve and the horizontal axis."
+<Figure
+  image="figures/integral-notation-sum-approaches-bounded-area.svg" 
+  caption="As $dt$ approaches $0$ the area of the rectangle approaches the area bounded by the durve and the horizontal axis."
+/>
 
 Remember, smaller choices of $dt$ indicate closer approximations for our original question, *how far does the car go*? So this limiting value for the sum, the area under this curve, gives the precise answer to the question, in full unapproximated precision.
 
 <Figure
-  image="figures/integral-area-is-distance-traveled.png" 
+  image="figures/integral-notation-area-under-a-curve.svg" 
+  caption="Area under the curve is equal to the distance traveled."
 />
 
 Now tell me that's not surprising. We have this pretty complicated idea of approximations that can involve adding up a huge number of very tiny things, and yet the value those approximations approach can be described so simply, as the area under a curve.
@@ -168,30 +179,35 @@ In fact, the first video of this series already covered the basics of how this w
 For our velocity example, think of this right endpoint as a variable, capital $T$.
 
 <Figure
-  image="figures/area-function-derivative.png" 
+  image="figures/derivative-of-area-function-integral.svg" 
 />
 
 So we're thinking of this integral of the velocity function between $0$ and $T$, the area under this curve between those two inputs, as a function, where that upper bound is the variable. That area represents the distance the car has traveled after $T$ seconds, right? So this is really a distance vs. time function $s(T)$.
 
 <Figure
-  image="figures/area-function-derivative-labeled.png" 
+  image="figures/derivative-of-area-function-integral-is-distance-function.svg" 
 />
-
-TODO: highlight $s(T)$ in the context
 
 Now ask yourself: What is the derivative of that function? On the one hand, a tiny change in distance over a tiny change in time is velocity; that's what velocity means. But there's another way to see it purely in terms of this graph and this area, which generalizes better to other integral problems.
 
-<Figure
-  image="figures/velocity-integral.dark.svg" 
-/>
 
-TODO: this image jumps the gun with rearranging ds to represent the derivative
+<Figure
+  image="figures/derivative-of-area-function-ds.svg" 
+/>
 
 A slight nudge of $dT$ to the input causes that area to increase, some little $ds$ represented by the area of this sliver. The height of that sliver is the height of the graph at that point, $v(T)$, and its width is $dT$. And for small enough $dT$, we can basically consider that sliver to be a rectangle. So the area of that sliver, $ds$, is approximately equal to $v(T) \cdot dT$.
 
-Because this approximation gets better and better for smaller $dT$, the derivative of the area function $ds/dT$ at this point equals $v(T)$, the value of the velocity function at whatever time we started on. And that's super general, the derivative of any function giving the area under a graph like this is equal to the function for the graph itself.
+Because this approximation gets better and better for smaller $dT$, the derivative of the area function $ds/dT$ at this point equals $v(T)$, the value of the velocity function at whatever time we started on.
 
-TODO: general function visual
+<Figure
+  image="figures/derivative-of-area-function-is-the-function.svg" 
+/>
+
+And that's super general, the derivative of any function giving the area under a graph like this is equal to the function for the graph itself.
+
+<Figure
+  image="figures/derivative-of-area-function-generic-case.svg" 
+/>
 
 ### Find the antiderivative
 
@@ -216,15 +232,13 @@ TODO: antiderivative practice 2
 But there's a slight issue here: we could add any constant to this function, and its derivative would still be $8t - t^2$. The derivative of a constant is always 0. And if we graph $s(t)$, you can think of this in the sense that moving a graph of a distance function up and down does nothing to affect its slope above each input. So there are actually infinitely many different possible antiderivative functions, all of which look like $4t^2 - (\frac{1}{3})t^3 + C$ for some constant $C$.
 
 <Figure
-  image="figures/antiderivative-constant-issue.png" 
+  image="figures/plus-constant-issue.svg" 
 />
-
-TODO: illustrate a couple more examples of +10, -30, etc on the graph
 
 But there is one piece of information we haven't used yet that lets us zero in on which antiderivative to use: The lower bound on the integral. This integral must be zero when we drag that right endpoint all the way to the left endpoint, right?
 
 <Figure
-  image="figures/integral-lower-bound.png" 
+  image="figures/plus-constant-issue-lower-bound.svg" 
 />
 
 The distance traveled by the car between 0 seconds and 0 seconds is zero. So as we found, this area as a function of capital $T$ is an antiderivative for the stuff inside, and to choose what constant to add, subtract off the value of that antiderivative function at the lower bound. If you think about it for a moment, that ensures that the integral from the lower bound to itself will indeed be 0.
@@ -236,7 +250,7 @@ $$
 As it so happens, when you evaluate the function we have here at $t=0$, you get zero, so in this specific case you don't actually need to subtract off anything. For example, the total distance traveled during the 8 seconds is this expression evaluated at $T=8$, which is $85.33$, minus 0. But a more typical example would be something like this integral between $1$ and $7$. That's the area pictured here, and it represents the distance traveled between 1 second and 7 seconds.
 
 <Figure
-  image="figures/integral-between-t-1-and-t-7.png" 
+  image="figures/plus-constant-issue-area-between-1-and-7.svg" 
 />
 
 What you'd do is evaluate the antiderivative we found at the top bound, $7$, and subtract off its value at the bottom bound, $1$. Notice, it doesn't matter what antiderivative we choose here; if for some reason it had a constant added to it, like $5$, that constant would cancel out.
@@ -244,13 +258,13 @@ What you'd do is evaluate the antiderivative we found at the top bound, $7$, and
 ## Fundamental theorem
 
 <Figure
-  image="figures/fundamental-theorem-setup.png" 
+  image="figures/fundamental-theorem-subdivisions.svg" 
 />
 
-More generally, anytime you want to integrate some function – and remember you think of as adding up the values $f(x) \cdot dx$ for inputs in a certain range then asking what that sum approaches as $dx$ approaches $0$ - the first step to evaluating that integral is to find an antiderivative, some other function, "capital $F(x)$", whose derivative is the thing inside the integral. Then the integral equals this antiderivative evaluated at the top bound, minus its value at the bottom bound. This fact is called the "fundamental theorem of calculus".
+More generally, anytime you want to integrate some function - and remember you think of as adding up the values $f(x) \cdot dx$ for inputs in a certain range then asking what that sum approaches as $dx$ approaches $0$ - the first step to evaluating that integral is to find an antiderivative, some other function, "capital $F(x)$", whose derivative is the thing inside the integral. Then the integral equals this antiderivative evaluated at the top bound, minus its value at the bottom bound. This fact is called the "fundamental theorem of calculus".
 
 <Figure
-  image="figures/fundamental-theorem.png" 
+  image="figures/fundamental-theorem.svg" 
 />
 
 Here's what's crazy about this fact: The integral, the limiting value for the sum of all these thin rectangles, takes into account every single input on the continuum from the lower bound to the upper bound, that's why we use the word "integrate"; it brings them together. And yet, to actually compute it using the antiderivative, you look at only two inputs: the top bound and the bottom bound. It almost feels like cheating! Finding the antiderivative implicitly accounts for all the information needed to add up all the values between the lower bound and upper bound.
