@@ -65,14 +65,14 @@ And indeed, that's what we'll end up doing, and you could even pause and try tha
 But first, I want to spend the bulk of this article showing how this question is related to finding an area bounded by the velocity graph, because that helps to build an intuition for a whole class of what are called "integral problems" in math and science.
 
 <Figure
-  image="figures/velocity-area-under-the-curve.dark.svg" 
+  image="figures/velocity.svg" 
   caption="This figure highlights the area bounded under the curve formed by the function $v(t)=-t^2+8 t$. The vertical axis represents velocity measured in meters per second and the horizontal axis reprents time."
 />
 
 To start off, notice this question would be much easier if the car was moving with a constant velocity, right? In that case, you could just multiply the velocity, in meters per second, by the amount of time passed, in seconds, and that gives you the number of meters traveled.
 
 <Figure
-  image="figures/velocity-constant.dark.svg" 
+  image="figures/velocity-constant.svg" 
 />
 
 Notice that you can visualize that distance as an area, and if visualizing distance as an area seems weird, I'm right there with you. It's just that on this plot, where the horizontal direction has units of seconds and the vertical direction has units of meters/second, units of area very naturally correspond to meters. But what makes our situation hard is that the velocity is not constant, it's incessantly changing at every instant.
@@ -80,26 +80,26 @@ Notice that you can visualize that distance as an area, and if visualizing dista
 It would even be a lot easier if it only ever changed at a handful of points, maybe staying static for the first second, then suddenly discontinuously jumping to a constant 7 meters per second for the next second, and so on, with discontinuous jumps to portions of constant velocity.
 
 <Figure
-  image="figures/velocity-approximation-every-second.dark.svg" 
+  image="figures/velocity-approximation-every-second.svg" 
 />
 
 That might make it very uncomfortable for the driver, in fact, it's physically impossible, but it would make your calculations a lot more straightforward. You could compute the distance traveled on each interval by multiplying the constant velocity on that interval by the change in time. Then just add them all up.
 
 <Figure
-  image="figures/velocity-approximate-area.dark.svg" 
+  image="figures/velocity-approximate-area-as-rectangles.svg" 
 />
 
 So what we'll do is just approximate our velocity function as if it was constant on a bunch of different intervals. Then, as is common in calculus, we'll see how refining that approximation leads us to something precise.
 
 <Figure
-  image="figures/velocity-refining-approximations.dark.svg" 
+  image="figures/velocity-refining-approximations.svg" 
   caption="Notice as the we choose more and more sub-divisions that these approximations start to approach the true shape of the area bounded by the curve."
 />
 
-Here, let's make this more concrete with some numbers. Chop up the time axis between 0 and 8 into many small intervals, each with some little width $dt$, like 0.25 seconds. Consider one of these intervals, like the one between $t=1$, and 1.25. In reality, the car speeds up from 7 m/s to about 8.4 m/s during that time, which you can find by plugging in $t = 1$ and 1.25 to the equation for velocity.
+Here, let's make this more concrete with some numbers. Chop up the time axis between 0 and 8 into many small intervals, each with some little width $dt$, like 0.25 seconds. Consider one of these intervals, like the one between $t=1$, and $1.25$. In reality, the car speeds up from 7 m/s to about 8.4 m/s during that time, which you can find by plugging in $t = 1$ and 1.25 to the equation for velocity.
 
 <Figure
-  image="figures/velocity-riemann-sum-36.dark.svg" 
+  image="figures/velocity-approximate-interval-example.svg" 
 />
 
 We want to approximate the car's motion as if its velocity was constant on this interval. Again, the reason for doing that is that we don't really know how to handle anything other than constant velocity situations[^1]. You could choose this constant to be anything between $7$ and $8.4$, it doesn't really matter.
@@ -111,12 +111,10 @@ All that matters is that our sequence of approximations, whatever they are, gets
 So, for convenience, let's just approximate the speed on each interval with whatever the true car's velocity is at the start of the interval; the height of the graph above the left side, which in this case is 7.
 
 <Figure
-  image="figures/velocity-riemann-sum-36-approximate-distance-t-1.dark.svg" 
+  image="figures/velocity-approximate-interval-example-result.svg" 
 />
 
 So on this example interval, according to our approximation, the car moves $(7,\text{m/s})\cdot(0.25,\text{s})$. That's $1.75$ meters, nicely visualized as the area of this thin rectangle. This is a little under the real distance traveled, but not by much. And the same goes for every other interval: The approximated distance is $v(t) \cdot dt$, it's just that you plug in a different value of $t$ for each one, giving a different height for each rectangle.
-
-TODO: maybe visualize the calculated area for more small time intervals
 
 <Accordion title="How accurate are these approximations?">
 
@@ -271,18 +269,29 @@ Here's what's crazy about this fact: The integral, the limiting value for the su
 
 ## Quick recap
 
-There's kind of a lot packed into this whole concept, so let's recap everything that just happened. We wanted to figure out how far a car goes just by looking at the speedometer, and what makes that hard is that the velocity was always changing. If you approximate it to be constant on multiple different intervals, you can figure out how far the car goes on each interval just with multiplication, then add them all up. Adding up those products can be visualized as the sum of the areas of many thin rectangles like this.
+There's kind of a lot packed into this whole concept, so let's recap everything that just happened. We wanted to figure out how far a car goes just by looking at the speedometer, and what makes that hard is that the velocity was always changing.
 
-TODO: image of better approximations
+<Figure
+  image="figures/quick-recap-velocity.svg" 
+/>
+
+If you approximate it to be constant on multiple different intervals, you can figure out how far the car goes on each interval just with multiplication, then add them all up. Adding up those products can be visualized as the sum of the areas of many thin rectangles like this.
+
+<Figure
+  image="figures/quick-recap-sum-of-areas.svg" 
+/>
 
 Better and better approximations of the original problem correspond to collections of rectangles whose aggregate area is closer and closer to being the area under this curve between the start time and end time, so that area under the curve is the precise distance traveled for the true, nowhere-constant velocity function.
 
-TODO: area is distance traveled -> area under the curve
+<Figure
+  image="figures/quick-recap-better-approximations.svg"
+  caption="As dt approaches 0 the aggregate area is closer and closer to being the area under this curve which is the precise distance traveled between the start and end time" 
+/>
 
 If you think of this area as function, with a variable right end point, you can deduce that the derivative of that area function must equal the height of the graph at each point.
 
 <Figure
-  image="figures/key-moment.png" 
+  image="figures/quick-recap-derivative-of-area-function-is-the-function.svg" 
 />
 
 That's the key! So to find a function giving this area, you ask what function has $v(t)$ as its derivative.
@@ -292,6 +301,10 @@ There are actually infinitely many antiderivatives of a given function, since yo
 ### Negative area
 
 By the way, one important thing to bring up before leaving is the idea of negative area. What if our velocity function was negative at some point? Meaning the car is going backwards. It's still true that the tiny distance traveled ds on a little time interval is about equal to the velocity times the tiny change in time, it's just that the number you'd plug in for velocity would be negative, so that tiny change in distance is negative.
+
+<Figure
+  image="figures/negative-area.png" 
+/>
 
 In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards, so if what you want is to find the distance between the car's start point and end point, you'd want to subtract it. And this is generally true of integrals: Whenever a graph dips below the horizontal axis, that area underneath is counted as negative. What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis.
 
