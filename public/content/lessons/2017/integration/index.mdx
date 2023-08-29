@@ -23,28 +23,26 @@ In this article, I want to talk about integrals, and the thing that I want to be
 Imagine you're sitting in a car, and you can't see out the window; all you see is the speedometer. At some point, the car starts moving, speeds up, then slows back down to a stop, all over 8 seconds.
 
 <Figure
-  image="figures/velocity-speedometer.svg" 
+  video="figures/velocity-car-moving.mp4"
+  image="figures/velocity-car-moving.svg"
+  show="video" 
 />
-
-TODO: clip speedometer animation
 
 Is there a nice way to figure out how far you've traveled during that time, based only on your view of the speedometer? Or better yet, find a distance function $s(t)$ that tells you how far you've traveled after any given amount of time, $t$, between 0 and 8 seconds. <!-- TODO: possibly split and insert s(t) that we are going for-->Let's say you take note of the velocity at each second, and make a plot over time like this.
 
 <Figure
-  image="figures/velocity-speedometer-readings.dark.svg" 
+  image="figures/velocity-speedometer-readings.svg" 
 />
 
 And maybe you find that a nice function to model your velocity over time, in meters per second, is $v(t) = t(8-t)$.
 
 <Figure
-  image="figures/velocity.dark.svg" 
+  image="figures/velocity-nice-function.svg" 
 />
 
 ## Relationship between velocity and distance
 
 You might remember, in chapter 2 of this series, we were looking at the opposite situation, where you know a distance function, $s(t)$, and you want to figure out a velocity function from that. I showed how the derivative of your distance vs. time function gives you a velocity vs. time function.
-
-<!-- question: make s(t) and v(t) the same function as the antiderivative image below-->
 
 <Figure
   image="figures/velocity-and-distance-derivative-callback.svg" 
@@ -116,13 +114,7 @@ So, for convenience, let's just approximate the speed on each interval with what
 
 So on this example interval, according to our approximation, the car moves $(7,\text{m/s})\cdot(0.25,\text{s})$. That's $1.75$ meters, nicely visualized as the area of this thin rectangle. This is a little under the real distance traveled, but not by much. And the same goes for every other interval: The approximated distance is $v(t) \cdot dt$, it's just that you plug in a different value of $t$ for each one, giving a different height for each rectangle.
 
-<Accordion title="How accurate are these approximations?">
 
-Table showing the accuracy of each approximation and mention that in practice, these approximations are good enough to do some really cool applied math. However, calculus does tease out a deeper.
-
-</Accordion>
-
-TODO: Practice problem, breaking at a constant rate
 
 ## Integral Notation
 
@@ -221,9 +213,27 @@ And for that second part, what kind of function might have $-t^2$ as its derivat
 
 Therefore, the antiderivative of our function $8t - t^2$ is $4t^2 - \frac{1}{3}t^3$.
 
-TODO: antiderivative practice 1
+<Question
+  question="What is the antiderivative of the function $3x^2 + 5$?"
+  choice1="$3x^3 + 5x$"
+  choice2="$x^3 + 5x$"
+  choice3="$x^2 + 5x$"
+  choice4="$6x^3 + 5x$"
+  answer={2}
+>
 
-TODO: antiderivative practice 2
+</Question>
+
+<Question
+  question="What is the antiderivative of the function $x + 2$?"
+  choice1="$\frac{1}{2}x^2 + 2x$"
+  choice2="$2x^2 + 2$"
+  choice3="$x^2 + 2x$"
+  choice4="$\frac{1}{2}x^2 + x$"
+  answer={1}
+>
+
+</Question>
 
 ### The +C issue
 
@@ -245,13 +255,35 @@ $$
 \int_0^T t(8-t) d t=\underbrace{\left(4 T^2-\frac{1}{3} T^3\right)-\left(4(0)^2-\frac{1}{3}(0)^3\right)}_{\text {Cancels when } T=0}
 $$
 
-As it so happens, when you evaluate the function we have here at $t=0$, you get zero, so in this specific case you don't actually need to subtract off anything. For example, the total distance traveled during the 8 seconds is this expression evaluated at $T=8$, which is $85.33$, minus 0. But a more typical example would be something like this integral between $1$ and $7$. That's the area pictured here, and it represents the distance traveled between 1 second and 7 seconds.
+As it so happens, when you evaluate the function we have here at $t=0$, you get zero, so in this specific case you don't actually need to subtract off anything. For example, the total distance traveled during the 8 seconds is this expression evaluated at $T=8$, which is $85.33$, minus 0 which is the answer to our original question! But a more typical example would be something like this integral between $1$ and $7$. That's the area pictured here, and it represents the distance traveled between 1 second and 7 seconds.
 
 <Figure
   image="figures/plus-constant-issue-area-between-1-and-7.svg" 
 />
 
 What you'd do is evaluate the antiderivative we found at the top bound, $7$, and subtract off its value at the bottom bound, $1$. Notice, it doesn't matter what antiderivative we choose here; if for some reason it had a constant added to it, like $5$, that constant would cancel out.
+
+<Question
+  question="What is the distance traveled by a car between $0$ and $8$ seconds whose velocity is modeled by the function $v(t) = -\frac{5}{2}t + 20$? This car starts at a speed of 20 meters per second and slows down at a constant rate."
+  choice1="$160$ meters"
+  choice2="$90$ meters"
+  choice3="$60$ meters"
+  choice4="$80$ meters"
+  answer={4}
+>
+
+</Question>
+
+<Question
+  question="What is the distance traveled by a car between $2$ and $6$ seconds whose velocity is modeled by the function $v(t) = -t(t-10)$?"
+  choice1="$166.66\bar{6}$ meters"
+  choice2="$108$ meters"
+  choice3="$90.66\bar{6}$ meters"
+  choice4="$90$ meters"
+  answer={3}
+>
+
+</Question>
 
 ## Fundamental theorem
 
@@ -300,13 +332,56 @@ There are actually infinitely many antiderivatives of a given function, since yo
 
 ### Negative area
 
-By the way, one important thing to bring up before leaving is the idea of negative area. What if our velocity function was negative at some point? Meaning the car is going backwards. It's still true that the tiny distance traveled ds on a little time interval is about equal to the velocity times the tiny change in time, it's just that the number you'd plug in for velocity would be negative, so that tiny change in distance is negative.
+By the way, one important thing to bring up before leaving is the idea of negative area. What if our velocity function was negative at some point? Meaning the car is going backwards. It's still true that the tiny distance traveled $ds$ on a little time interval is about equal to the velocity times the tiny change in time, it's just that the number you'd plug in for velocity would be negative, so that tiny change in distance is negative.
 
 <Figure
   image="figures/negative-area.png" 
 />
 
 In terms of our thin rectangles, if the rectangle goes below the horizontal axis like this, its area represents a bit of distance traveled backwards, so if what you want is to find the distance between the car's start point and end point, you'd want to subtract it. And this is generally true of integrals: Whenever a graph dips below the horizontal axis, that area underneath is counted as negative. What you'll commonly hear is that integrals measure the "signed" area between a graph and the horizontal axis.
+
+<Question
+  question="A car starts driving backwards, slows down then starts driving forward with a velocity modeled by the function $v(t) = 2 t^3-2 t^2$. At what point in time has the car reached the position it started from?"
+  choice1="$t = 1$"
+  choice2="$t = \frac{4}{3}$"
+  choice3="$t = \frac{3}{2}$"
+  choice4="$t = \frac{5}{3}$"
+  answer={2}
+>
+
+If we graph the function $v(t) = 2 t^3-2 t^2$ we can see that the car travels backwards some unknown distance from $0$ to $1$ where is starts going forward.
+
+<Figure
+  image="figures/negative-area-practice-problem-2-framing.svg" 
+/>
+
+This is essentially asking the question: at what point in time $T$ in the future does the integral equal $0$?
+
+$$
+0 = \int_0^T \left(  2 t^3-2 t^2 \right)dt 
+$$
+
+And this is a problem that we can solve!
+
+$$
+\begin{aligned}
+0 &= \int_0^T \left(  2 t^3-2 t^2 \right)dt \\ \rule{0pt}{2.25em} 
+0 &= \left[  \frac{2}{4} t^4 - \frac{2}{3} t^3 \right]_0^T \\ \rule{0pt}{2.25em} 
+0 &= \left( \frac{2}{4} (T)^4 - \frac{2}{3} (T)^3 \right) -  \left( \frac{2}{4} (0)^4 - \frac{2}{3} (0)^3 \right) \\ \rule{0pt}{2.25em} 
+0 &= \frac{2}{4} (T)^4 - \frac{2}{3} (T)^3 \\ \rule{0pt}{2.25em} 
+\frac{2}{3} (T)^3 &= \frac{2}{4} (T)^4  \\ \rule{0pt}{2.25em} 
+\frac{1}{3} &= \frac{1}{4} T \\ \rule{0pt}{2.25em} 
+T &= \frac{4}{3} \\
+\end{aligned}
+$$
+
+If we plot the antiderivative $s(t)=\frac{1}{2} t^4-\frac{2}{3} t^3$ alongside the original function we can see that it is indeed equal to zero at the time $T = \frac{4}{3}$ seconds.
+
+<Figure
+  image="figures/negative-area-practice-problem-2.svg" 
+/>
+
+</Question>
 
 ## Next video
 
