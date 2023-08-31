@@ -24,6 +24,17 @@ Here, I want to discuss one common type of problem where integration comes up: F
 
 This is a useful thing to know in its own right, but what's really neat is that it gives a completely different perspective for why integrals and derivatives are inverses each other.
 
+## Quick Intuition
+
+Before jumping into the main line of reasoning, the way this works is to take the area under the curve, and divide it by the width of that region. You might imagine that area as a pile of sand, and if you shake it all down to be flat, i.e. forming a rectangle whose area matches the area under the curve, the height of that rectangle should be the the average height of the function. To calculate that height, you would take the area of the rectangle and divide by its width.
+
+<Figure
+    image="figures/quick-intuition.svg" 
+    caption="Imagine the area as a pile of that when you shake it all down to be flat, forms a rectangle between the two points."
+/>
+
+This is intuitive, but you might find it worthwhile to also think about how this relates to the more familiar method of averaging finitely many numbers, which is to add them all up and divide by how many there are. A very common feeling is that when you use a sum in a discrete context, you use an integral in a continuous context. But to avoid subtle errors in making this translation, its useful to be able to think exactly how and why the analogy from sums to integrals works in various contexts where it comes up. This question of finding the average value of a function offers a great chance exercise that muscle.
+
 ## Average of sine function
 
 Take a look at the graph of $\sin(x)$ between $0$ and $\pi$, which is half its period. 
@@ -208,9 +219,9 @@ Where we know the antiderivative is $F(x)=-\frac{x^3}{3}+2 x^2-3 x$ plus some ar
 
 $$
 \begin{align}
-\int_{1}^{3} (x^2+4 x-3) dx &= \left(-\frac{(3)^3}{3}+2(3)^2-3(3)\right)-\left(-\frac{(1)^3}{3}+2(1)^2-3(1)\right) \\
-&= (-9+18-9)-\left(-\frac{1}{3}+2-3\right) \\
-&=0-\left(-\frac{4}{3}\right) \\ 
+\int_{1}^{3} (x^2+4 x-3) dx &= \left(-\frac{(3)^3}{3}+2(3)^2-3(3)\right)-\left(-\frac{(1)^3}{3}+2(1)^2-3(1)\right) \\[1em]
+&= (-9+18-9)-\left(-\frac{1}{3}+2-3\right) \\[1em]
+&=0-\left(-\frac{4}{3}\right) \\[1em]
 &=\frac{4}{3}
 \end{align}
 $$
