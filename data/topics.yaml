@@ -148,6 +148,8 @@
   slug: physics
   description: An assortment of topics from physics
   lessons:
+    - barber-pole-1
+    - barber-pole-2
     - light-quantum-mechanics
     - feynmans-lost-lecture
     - brachistochrone
