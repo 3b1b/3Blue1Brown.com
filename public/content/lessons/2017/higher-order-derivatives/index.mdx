@@ -7,4 +7,224 @@ video: BLkz5LGWihw
 source: _2017/eoc/footnote.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+## Introduction
+
+In the next chapter, about Taylor series, I make frequent reference to higher order derivatives. If you're already comfortable with second derivatives, third derivatives and such, great! Feel free to skip right ahead to that lesson now.
+
+Somehow I've managed not to bring up higher order derivatives at all so far this series, so for the sake of completeness, I thought I'd give this little footnote to briefly go over them. I'll focus mainly on the second derivative, showing what it looks like in the context of graphs and motion, and leave you to think about the analogies for higher orders.
+
+## Graphical meaning
+
+<Figure
+    image="figures/graphical-meaning.svg" 
+/>
+
+Given some function $f(x)$, the derivative can be interpreted as the slope of its graph above some input, right? A steep slope means a high value for the derivative, a downward slope means a negative derivative.
+
+<Figure
+    image="figures/graphical-meaning-positive-negative-slope.svg" 
+/>
+
+<Question
+  question="Review question: what is the slope at $x=2$ and $x=4$?"
+  choice1="$-2$ and $3$"
+  choice2="$-1$ and $3$"
+  choice3="$-1$ and $2$"
+  choice4="$1$ and $-3$"
+  answer={2}
+>
+
+Find the derivative of $f(x)$.
+
+$$
+\begin{aligned}
+\frac{df}{dx} &= \frac{d}{dx} \left( \frac{x^3}{3}-2 x^2+3 x+1 \right) \\ \rule{0pt}{2.25em} 
+\frac{df}{dx} &= x^2 - 4x +3
+\end{aligned}
+$$
+
+Substitute $x=2$ into the derivative to calculate the slope at $x=2$.
+
+$$
+\begin{aligned}
+\frac{df}{dx}(2) &= (2)^2 - 4(2) + 3 \\ \rule{0pt}{2.25em} 
+\frac{df}{dx}(2) &= 4 - 8 + 3 \\ \rule{0pt}{2.25em} 
+\frac{df}{dx}(2) &= -1 
+\end{aligned}
+$$
+
+Substitute $x=4$ into the derivative to calculate the slope at $x=4$.
+$$
+\begin{aligned}
+\frac{df}{dx}(4) &= (4)^2 - 4(4) + 3 \\ \rule{0pt}{2.25em} 
+\frac{df}{dx}(4) &= 16 - 16 + 3 \\ \rule{0pt}{2.25em} 
+\frac{df}{dx}(4) &= 3
+\end{aligned}
+$$
+
+The slope at $x=2$ is $-1$ and the slope at $x=4$ is $3$.
+
+</Question>
+
+The second derivative, whose notation I'll explain in a moment, is the derivative of the derivative, meaning it tells you how that slope is changing. The way to see this at a glance is to think of how the graph of $f(x)$ curves. At points where it curves upward, the slope is increasing, so the second derivative is positive. At points where it curves downward, the slope is decreasing, so the second derivative is negative.
+
+<Figure
+    image="figures/graphical-meaning-positive-negative-curvature.svg" 
+/>
+
+For example, let's plot the derivative and second derivative alongside the original function. The plot tells us a lot about how the slope is changing: At $x=1$ the slope is decreasing at a rate of $-1$, at $x=2$ the slope isn't changing at all, and at $x=3$ the slope is increasing at a rate of $1$.
+
+<Figure
+    image="figures/graphical-meaning-plotted.svg" 
+/>
+
+## Notation
+
+As far as notation goes, you could try writing it like this:
+
+$$
+\frac{d\left(\frac{d f}{d x}\right)}{d x}
+$$
+
+... indicating some small change to the derivative function divided by some small change to $x$, where as always the use of that letter $d$ suggests that you really want to consider what this ratio approach as $dx$, both $dx$'s in this case, approach $0$. That's pretty awkward and clunky, so the standard is to abbreviate it as $\frac{d^{2}f}{dx^2}$.
+
+$$
+\frac{d^2 f}{d x^2}
+$$
+
+It's not terribly important for getting an intuition of the second derivative, but perhaps it's worth showing how you can read this notation. Think of starting at some input to your function, and taking two small steps to the right, each with a size $dx$. I'm choosing rather big steps here so that we'll better see what's going on, but in principle think of them as rather tiny.
+
+
+<Figure
+    image="figures/second-derivative-intuition.svg" 
+/>
+
+The first step causes some change to the function, which I'll call $df_1$, and the second step causes some similar, but possibly slightly different change, which I'll call $df_2$. 
+
+<Figure
+    image="figures/second-derivative-intuition-df2-df1.svg" 
+/>
+
+The difference between these; the change in how the function changes, is what we'll call $d(df)$.
+
+<Figure
+    image="figures/second-derivative-intuition-df2-df1-difference.svg" 
+/>
+
+You should think of this as really small, typically proportional to the size of $(dx)^2$. So if your choice for $dx$ was $0.01$, you'd expect this $d(df)$ to be proportional to $0.001$.
+
+$$
+d x=0.01 \Rightarrow(d x)^2=0.0001
+$$
+
+And the second derivative is the size of this change to the change, divide by the size of $(dx)^2$. Or, more precisely, it's whatever that ratio approaches as $dx$ approaches $0$. Even though it's not like the letter $d$ is a variable being multiplied by $f$, for the sake of more compact notation you write this as $\frac{d^2f}{dx^2}$, and you don't bother with any parentheses on the bottom.
+
+<!-- Interestingly, there is a notion in math called the "exterior derivative" which treats this "d" as having a more independent meaning, though it's less related to the intuitions I've introduced in this series-->
+
+For higher order derivatives, like the third derivative, fourth derivative and so are are written using the same compact notation.
+
+<Figure
+    image="figures/notation-general-case.svg" 
+/>
+
+## Physical meaning
+
+Maybe the most visceral understanding of the second derivative is that it represents acceleration.
+
+$$
+\frac{d^2 s}{d t^2}(t) \Leftrightarrow \text { Acceleration }
+$$
+
+Given some movement along a line, suppose you have some function that records distance traveled vs. time, and maybe its graph looks something like this, steadily increasing over time.
+
+<Figure
+    image="figures/physical-meaning-displacement.svg" 
+/>
+
+Then its derivative tells you velocity at each point in time, right?  For the example, the graph might look like this bump, increasing to some maximum, then decreasing back to $0$.
+
+<Figure
+    image="figures/physical-meaning-displacement-and-velocity.svg" 
+/>
+
+Then its second derivative tells you the rate of change for velocity, the acceleration at each point in time.
+
+<Figure
+    image="figures/physical-meaning-displacement-velocity-and-acceleration.svg" 
+/>
+
+In the example, the second derivative is positive for the first half of the journey, which indicates indicates speeding up. That's sensation of being pushed back into your car seat with a constant force. Or rather, having the car seat push you with a constant force.
+
+<Figure
+    image="figures/physical-meaning-displacement-velocity-and-acceleration-positive-meaning.svg" 
+/>
+
+<!-- TODO: Comprehensive question: A negative second derivative indicates slowing down, negative acceleration. -->
+
+The third derivative, and this is not a joke, is called jerk. So if the jerk is not zero, it means the strength of the acceleration itself is changing.
+
+<Figure
+    image="figures/displacement-velocity-acceleration-jerk.svg" 
+/>
+
+## Comprehensive Question
+
+A Pi Creature is aboard a spaceship and is set to journey into space. The height $s(t)$ of the spaceship from the ground, in meters, as a function of time $t$, in seconds, is given by:
+
+$$
+s(t)=t^4-4 t^3+6 t^2
+$$
+
+<Question
+  question="Based on the displacement function $s(t)$, determine the velocity function $v(t)$ of the spaceship."
+  choice1="$v(t) = 4t^3 - 12t^2 + 12t$"
+  choice2="$v(t) = 4t^3 - 12t^2 + 6t$"
+  choice3="$v(t) = 4t^2 - 8t + 6$"
+  choice4="$v(t) = t^3 - 3t^2 + 2t$"
+  answer={1}
+>
+
+</Question>
+
+<Question
+  question="Given the velocity function from the previous question, what is the acceleration function $a(t)$ of the spaceship?"
+  choice1="$a(t) = 12t - 24$"
+  choice2="$a(t) = 12t^2 - 24t$"
+  choice3="$a(t) = 6t - 12$"
+  choice4="$a(t) = 12t^2 - 24t + 12$"
+  answer={4}
+>
+
+</Question>
+
+<Question
+  question="Determine the jerk function $j(t)$ of the spaceship, which is the rate of change of acceleration."
+  choice1="$j(t) = 24t - 24$"
+  choice2="$j(t) = 24t$"
+  choice3="$j(t) = 12$"
+  choice4="$j(t) = 24t + 24$"
+  answer={1}
+>
+
+</Question>
+
+If you plot the acceleration of the function $a(t)$, how would you interpret the motion of the spaceship at $t=1$ second?
+
+<FreeResponse>
+
+If you plot the acceleration function $a(t)$, you'll notice that at $t=1$ second, the acceleration dips to be $0$ before increasing again.
+
+<Figure
+    image="figures/spaceship-question.svg" 
+/>
+
+One explanation is that this as a two-stage rocket where the first stage completes its burn and then there's a momentary pause before the second stage ignites. The momentary standstill in the change of acceleration, or the point where the jerk becomes zero, is when the spaceship is making that transition. 
+
+</FreeResponse>
+
+## Next Lesson
+
+One of the most useful things about higher order derivatives is how they help in approximating functions, which is the topic of the next chapter on Taylor series, so I'll see you there .

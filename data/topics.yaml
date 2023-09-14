@@ -16,6 +16,7 @@
     - area-and-slope
     - higher-order-derivatives
     - taylor-series
+    - taylor-series-geometric-view
     - derivatives-and-transforms
 - name: Linear Algebra
   slug: linear-algebra
@@ -148,6 +149,8 @@
   slug: physics
   description: An assortment of topics from physics
   lessons:
+    - barber-pole-1
+    - barber-pole-2
     - light-quantum-mechanics
     - feynmans-lost-lecture
     - brachistochrone
