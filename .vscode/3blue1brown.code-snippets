@@ -24,7 +24,7 @@
     "description": "Insert a figure shortcode into markdown."
   },
   "Question": {
-    "scope": "markdown",
+    "scope": "markdow, mdx",
     "prefix": "question",
     "body": [
       "<Question\n  question=\"$1\"\n  choice1=\"$2\"\n  choice2=\"$3\"\n  choice3=\"$4\"\n  choice4=\"$5\"\n  answer={$6}\n>\n$7\n</Question>"
@@ -32,7 +32,7 @@
     "description": "Insert a question into markdown."
   },
   "Accordion": {
-    "scope": "markdown",
+    "scope": "markdown, mdx",
     "prefix": "accordion",
     "body": [
       "<Accordion title=\"$1\">\n$7\n</Accordion>"

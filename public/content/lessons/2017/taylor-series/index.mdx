@@ -3,6 +3,7 @@ title: Taylor series
 description: Taylor series are extremely useful in engineering and math, but what are they?  This video shows why they're useful, and how to make sense of the formula.
 date: 2017-05-07
 chapter: 14
+thumbnail: thumbnail.png
 video: 3d6DsjIBzJ4
 source: _2017/eoc/chapter10.py
 credits:
@@ -46,8 +47,8 @@ First of all, at the input $0$ the value of $\cos(x)$ is $1$, so if our approxim
 
 $$
 \begin{aligned}
-\cos(x) & = c_0 +c_1 x+c_2 x^2 \\
-\cos(0) & = c_0 +c_1 (0)+c_2 (0)^2 \\
+\cos(x) & = c_0 +c_1 x+c_2 x^2 \\ \rule{0pt}{2em}
+\cos(0) & = c_0 +c_1 (0)+c_2 (0)^2 \\ \rule{0pt}{2em}
 c_0 & = 1 \\
 \end{aligned}
 $$
@@ -75,9 +76,9 @@ This is the same as making the derivative of our approximation as close as we ca
 
 $$
 \begin{aligned}
-\frac{d}{d x}(\cos (x)) & =\frac{d}{d x}\left(c_0+c_1 x+c_2 x^2+\right) \\
--\sin (x) & =c_1+2 c_2 x \\
--\sin (0) & =c_1+2 c_2(0) \\
+\frac{d}{d x}(\cos (x)) & =\frac{d}{d x}\left(c_0+c_1 x+c_2 x^2+\right) \\ \rule{0pt}{2em}
+-\sin (x) & =c_1+2 c_2 x \\ \rule{0pt}{2em}
+-\sin (0) & =c_1+2 c_2(0) \\ \rule{0pt}{2em}
 c_1 & =0
 \end{aligned}
 $$
@@ -112,15 +113,15 @@ Just as we wanted the derivative of our approximation to match that of cosine, w
 
 $$
 \begin{aligned}
-\frac{d^2}{d x^2}(\cos (x)) & =\frac{d^2}{d x^2}\left(c_0+c_1 x+c_2 x^2+\right) \\
-\frac{d}{d x}(-\sin (x)) & =\frac{d}{d x}\left(c_1+2 c_2 x\right) \\
--\cos (x) & =2 c_2\\
--\cos (0) & =2 c_2\\
+\frac{d^2}{d x^2}(\cos (x)) & =\frac{d^2}{d x^2}\left(c_0+c_1 x+c_2 x^2+\right) \\ \rule{0pt}{2em}
+\frac{d}{d x}(-\sin (x)) & =\frac{d}{d x}\left(c_1+2 c_2 x\right) \\ \rule{0pt}{2em}
+-\cos (x) & =2 c_2\\ \rule{0pt}{2em}
+-\cos (0) & =2 c_2\\ \rule{0pt}{2em}
 c_2 & =-\frac{1}{2}
 \end{aligned}
 $$
 
-We can compute that at $x=0$, the second derivative of our polynomial is $2c_2$. In fact, that's its second derivative everywhere, it is a constant. To make sure this second derivative matches that of $\cos(x)$, we want it to equal $-1$, which means $c_2 = -½$.
+We can compute that at $x=0$, the second derivative of our polynomial is $2c_2$. In fact, that's its second derivative everywhere, it is a constant. To make sure this second derivative matches that of $\cos(x)$, we want it to equal $-1$, which means $c_2 = -\frac{1}{2}$.
 This locks in a final value for our approximation:
 
 $$
@@ -135,7 +136,7 @@ To get a feel for how good this is, let's try it out for $x = 0.1$
 
 $$
 \begin{align*}
-\cos (0.1) &= \underbrace{0.9950042\ldots}_{\text{true value}} \\
+\cos (0.1) &= \underbrace{0.9950042\ldots}_{\text{true value}} \\  \rule{0pt}{2em} 
 P(0.1) = 1-\frac{1}{2}(0.1)^2 &= \underbrace{0.995}_{\text{approximation}} \\
 \end{align*}
 $$
@@ -163,8 +164,8 @@ If you take the third derivative of a cubic polynomial, anything quadratic or sm
 
 $$
 \begin{aligned}
-\frac{d^3}{d x^3}\left(c_0+c_1 x+c_2 x^2+c_3 x^3\right) & = \frac{d^2}{d x^2}\left(c_1+2 c_2 x+3 c_3 x^2\right) \\
-& = \frac{d}{d x}\left(2 c_2+6 c_3 x\right) \\
+\frac{d^3}{d x^3}\left(c_0+c_1 x+c_2 x^2+c_3 x^3\right) & = \frac{d^2}{d x^2}\left(c_1+2 c_2 x+3 c_3 x^2\right) \\ \rule{0pt}{2em} 
+& = \frac{d}{d x}\left(2 c_2+6 c_3 x\right) \\ \rule{0pt}{2em} 
 & =  6 c_3
 \end{aligned}
 $$
@@ -183,9 +184,9 @@ When you keep applying the power rule over and over, with those exponents all ho
 
 $$
 \begin{aligned}
-\frac{d^4}{d x^4}\left(c_0+c_1 x+c_2 x^2+c_3 x^3+c_4 x^4 \right) & =\frac{d^3}{d x^3}\left(c_1+2 c_2 x+3 c_3 x^2+4 c_4 x^3\right) \\
-& =\frac{d^2}{d x^2}\left(2 c_2+6 c_3 x+12 c_4 x^2\right) \\
-& =\frac{d}{d x}\left(6 c_3+24 c_4 x\right) \\
+\frac{d^4}{d x^4}\left(c_0+c_1 x+c_2 x^2+c_3 x^3+c_4 x^4 \right) & =\frac{d^3}{d x^3}\left(c_1+2 c_2 x+3 c_3 x^2+4 c_4 x^3\right) \\ \rule{0pt}{2em} 
+& =\frac{d^2}{d x^2}\left(2 c_2+6 c_3 x+12 c_4 x^2\right) \\ \rule{0pt}{2em} 
+& =\frac{d}{d x}\left(6 c_3+24 c_4 x\right) \\ \rule{0pt}{2em} 
 & =24 c_4
 \end{aligned}
 $$
@@ -506,9 +507,9 @@ That maximum distance between the input you're approximating near, and points wh
 
 <Question
   question="What is the Taylor Series expansion of the function $-\ln (1-x)$ around the point $x=0$?"
-  choice1="$1 - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots$"
-  choice2="$1 + \frac{x^2}{2} + \frac{x^3}{3} + \frac{x^4}{4} + \dots$"
-  choice3="$1 + x^2 + x^3 + x^4 + x^5 + \dots$"
+  choice1="$x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots$"
+  choice2="$x + \frac{x^2}{2} + \frac{x^3}{3} + \frac{x^4}{4} + \dots$"
+  choice3="$x + x^2 + x^3 + x^4 + x^5 + \dots$"
   answer={2}
 >
   
