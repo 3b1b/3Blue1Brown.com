@@ -1,6 +1,6 @@
 ---
 title: Cross products in the light of linear transformations
-description: The formula for the cross product can feel like a mystery, or some kind of crazy coincidence.  But it isn't.  There is a fundamental connection between the cross product and determinants.
+description: The formula for the cross product can feel like a mystery, or some kind of crazy coincidence. But it isn't. There is a fundamental connection between the cross product and determinants.
 date: 2016-09-01
 chapter: 11
 video: BaM7OCEm3G0
@@ -8,3 +8,182 @@ source: _2016/eola/chapter8.py
 credits:
 - Lesson by Grant Sanderson
 ---
+
+> "From [Grothendieck], I have also learned not to take glory in the difficulty of a proof: difficulty means we have not understood. The idea is to be able to paint a landscape in which the proof is obvious."
+>
+> \- Pierre Deligne
+
+Where we left off, I was talking about how to compute a three-dimensional cross product of two vectors, v cross w. It's this funny thing where you write a matrix whose second column has the coordinates of v, whose third columns has the coordinates of w, but the entries of the first column, weirdly, are the basis vectors i hat, j hat and k hat, where you just pretend like those guys are numbers for the sake of computations. If you just chug along with the computation, ignoring this weirdness, you get some constant times i hat, plus some constant times j hat, plus some constant times k hat, which defines a new 3d vector.
+
+<Figure
+    image="figures/introduction-determinant-with-basis-vectors.png" 
+/>
+
+From here, students are typically told to just believe that the resulting vector has the following geometric properties: 
+
+- Its length equals the area of the parallelogram defined by v and w. 
+- It points in a direction perpendicular to v and w,
+- And this direction obeys the right-hand rule, in the sense that if you point your forefinger along v, and your middle finger along w, then stick out your thumb, it will point in the direction of the new vectors.
+
+<Figure
+    image="figures/introduction-resulting-vector.png" 
+/>
+
+<Figure
+    image="figures/introduction-right-hand-rule.png" 
+/>
+
+There are some brute-force computational ways to confirm these facts, but I want to share with you a really elegant line of reasoning. This leverages a bit of background, though, so I'm assuming everyone has read chapter 5 on the determinant, and chapter 7 where I introduce the idea of duality. So, you know, go back and take a look if needed.
+
+<!-- Note from James: check references for chapter 5 and 7 to make sure they are correct when linking-->
+
+## Under the light of transformations
+
+As a reminder, the idea of duality is that anytime you have a linear transformation from some space to the number line, it is associated with a unique vector in that space, in the sense that performing the linear transformation is the same as taking a dot product with that vector.
+ 
+<Figure
+    image="figures/under-the-light-of-transformations-2d-to-1d.png" 
+/>
+
+Numerically, it's because one of those transformations is described by a matrix with just one row, where each column tells you which number the basis vectors land on. And multiplying this matrix by some vector v is computationally identical to taking the dot product between v and the vector you get by turning that matrix on its side.
+
+<Figure
+    image="figures/under-the-light-of-transformations-duel-vector.png" 
+/>
+
+The takeaway is that when you're out in the mathematical wild and you find a linear transformation to the number line, you will be able to match it to some vector, which is called the "dual vector" of the transformation, so that performing that linear transformation is the same as taking the dot product with that vector.
+
+## The idea
+
+The cross product gives us a really slick example of this process in action. It takes some effort, but it's definitely worth it. What I'm going to do is define a certain linear transformation from three dimensions to the number line, and it will be defined in terms of two vectors v and w. Then, when we associate that transformation with its dual vector in 3d space, that dual vector will be the cross product of v and w. Understanding that transformation will make clear the connection between the geometry and the computation of the cross product.
+
+<Figure
+    image="figures/the-idea-3d-to-1d.png" 
+/>
+
+So, to back up a bit, remember that in two dimensions, computing the 2d version of the cross product of vectors v and w involves taking the determinant of a matrix whose columns contain the coordinates of those vectors. There's no nonsense with basis vectors stuck in the matrix, just an ordinary determinant returning a number. Geometrically, this gives us the area of the parallelogram spanned out by those two vectors, with the possibility of being negative depending on the orientation of the vectors.
+
+<Figure
+    image="figures/the-idea-recall-2d-cross-product.png" 
+/>
+
+If you didn't already know the 3d cross product, you might imagine that it involves taking 3 separate 3d vectors, u, v, and w, making their coordinates the columns of a 3x3 matrix, and computing the determinant of that matrix. As you know from chapter 5, geometrically this would give the volume of a parallelepiped spanned out by those 3 vectors, with the plus or minus sign of your result depending on their right-hand rule orientation of the three vectors.
+
+<Figure
+    image="figures/the-idea-what-a-student-might-think.png" 
+    caption="This is not the real cross-product, but a good guess of what it might look like."
+/>
+
+Of course, you all know this is not the 3d cross product, since the actual 3d cross product takes two vectors and spits out a vector, it doesn't take in 3 vectors and spit out a number. But this idea actually gets us really close to what the real cross product is. Consider the first vector u to be a variable, while v and w are fixed. What we have, then, is a function from 3 dimensions to the number line. 
+
+<Figure
+    image="figures/the-idea-consider-the-first-vector-to-be-a-variable.png" 
+/>
+
+You input some vector u, and you get a number by taking the determinant of a matrix whose first column is u, and whose other two columns are the constant vectors v and w.
+
+Geometrically, the meaning of this function is that for any input vector [x, y, z], you consider the parallelepiped defined by this vector, v and w, then return its volume, with a plus or minus sign depending on orientation. What's more, this function is linear. 
+
+<!-- TODO:Potentially split the figure or annotate the above figure for another visual here-->
+
+So here we are, out in the mathematical wild with a linear transformation that outputs numbers. The idea of duality should be perking up in your mind. What we're going to do is find the matrix that describes this transformation, which will be a 1x3 matrix since the transformation goes from three dimensions to one. In other words, we're looking for a 1x3 matrix such that multiplying this matrix by some vector x, y, z gives the same result as plugging in x, y, z to the first column of a 3x3 matrix whose other two columns have the coordinates of v and w, and computing the determinant.
+
+<Figure
+    image="figures/the-idea-1-by-3-matrix-encoding-the-3d-to-1d-transformation.png" 
+/>
+
+If you think in terms of duality and turn this matrix on its side, we're looking for a special 3d vector, that I'll call p, such that taking the dot product between p and any other vector x, y, z gives the same result as plugging in x, y, z to the first column of a matrix and computing the determinant.
+
+<Figure
+    image="figures/the-idea-3d-to-1d-transformatio-as-vector.png" 
+/>
+
+I'll get to the geometry of this in just a moment, but right now let's dig in and think about what this means computationally. Taking the dot product between p and [x, y, z] will give something times x, plus something times y, plus something times z, where those somethings are the coordinates of p. Now, when you compute the determinant on the right, you can organize it to look like some constant times x, plus some constant times y, plus some constant times z, where those "somethings" involve certain combinations of the components of v and w.
+
+<Figure
+    image="figures/the-idea-3d-to-1d-transformation-as-a-vector-computation.png" 
+/>
+
+So the answers to what those "somethings" are will give the coordinates of the vector p that we're looking for.
+
+<Figure
+    image="figures/the-idea-3d-to-1d-computation-components-of-vector.png" 
+/>
+
+But this should feel very familiar to anyone who's actually worked through a cross product computation before: Collecting the constant terms that are multiplied by x, y and z like this is no different from plugging in the symbols i hat, j hat and k hat, and seeing which coefficients aggregate on each of these terms. It's just that plugging in i hat, j hat and k hat is a way of signaling that we should interpret these three coefficients as coordinates of a vector.
+
+<Figure
+    image="figures/the-idea-3d-to-1d-transformation-basis-vectors.png" 
+/>
+
+In other words, this funky computation can be thought of as the answer to a certain question: "What vector p has the special property that when you take a dot product between p and [x, y, z], it gives the same result as plugging in x, y, z to the first column of a matrix whose other two columns have the coordinates of v and w, then computing the determinant?"
+
+<Figure
+    image="figures/the-idea-question.png" 
+/>
+
+Now for the cool part, which ties this all together with the geometric understanding of the cross product I showed earlier. Let me ask that same question again, but this time we're going to try to answer it geometrically, instead of computationally: "What 3d vector p has the special property that when you take a dot product between p and some other vector [x, y, z], it gives the same value as if you took the signed volume of the parallelepiped defined by this vector [x, y, z] along with v and w?"
+
+<Figure
+    image="figures/the-idea-parallelepiped-and-dot-product.png" 
+/>
+
+Remember, the geometric interpretation of the dot product between a vector p and some other vector is to project that other vector onto p, and multiply the length of the projection by the length of p. 
+
+<Figure
+    image="figures/the-idea-geometric-interpretation-of-dot-product.png" 
+/>
+
+<!--TODO: illustrate better version of the above image-->
+
+Here's one way to think of that volume: take the area of the parallelogram defined by v and w, and multiply it not by the length of u, but by the component of [x, y, z] which is perpendicular to that parallelogram.
+
+<Figure
+    image="figures/the-idea-parallelepiped-volume.png" 
+/>
+
+In other words, consider, the way our linear function works on a given vector is to project that vector onto the line perpendicular to both v and w, then multiply the length of the projection by the area of the parallelogram spanned by v and w. But this is the same thing as taking a dot product between [x, y, z] and a vector perpendicular to v and w with a length equal to the area of the parallelogram!
+
+<Figure
+    image="figures/the-idea-properties-of-p.png" 
+    caption="The vector $\vec{\mathbf{p}}$ is perpendicular to $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ and has a length equal to the parallelogram formed by $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$."
+/>
+
+If you choose the appropriate direction for that vector, the cases where the dot product is negative will be the same as those when the right-hand-rule orientation of u, v and w is negative.
+
+<Figure
+    image="figures/the-idea-peroprties-of-p-direction.png" 
+/>
+
+This means we just found a vector p so that taking a dot product between p and some vector [x, y, z] is the same thing as computing the determinant of a 3x3 matrix whose columns contain the coordinates of that vector, v and w! 
+
+So the answer we found computationally earlier using the notational trick must correspond to this vector. This is the fundamental reason why the computation and the geometric interpretation are related!
+
+## Conclusion
+
+So to sum up what just happened, I defined a linear transformation from 3d space to the number line defined in terms of the vectors v and w.
+
+<Figure
+    image="figures/conclusion-3d-to-1d-with-variable-vector.png" 
+/>
+
+Then I went through two different ways to think about the dual vector of this transformation, the vector such that applying the transformation is the same as taking a dot product with this vector.
+
+<Figure
+    image="figures/conclusion-duel-vector-of-this-transformation.png" 
+/>
+
+On the one hand, a computational approach will lead you to the trick of plugging in the symbols i hat, j hat and k hat to the first column of a matrix and computing the determinant.
+
+<Figure
+    image="figures/conclusion-computational-approach.png" 
+/>
+
+But thinking geometrically, we can deduce that this dual vector must be perpendicular to v and w, with a length equal to the area of the parallelogram spanned out by those two vectors. Also, it's direction will be determined by the right-hand rule.
+
+<Figure
+    image="figures/conclusion-geometric-approach.png" 
+/>
+
+Next up is a really important concept in linear algebra: Change of basis.
+
