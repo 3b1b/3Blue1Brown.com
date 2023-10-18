@@ -8,3 +8,235 @@ source: _2016/eola/chapter9.py
 credits:
 - Lesson by Grant Sanderson
 ---
+
+
+> "Mathematics is the art of giving the same name to different things."
+>
+> \- Henri Poincaré.
+
+If I have a vector sitting here in 2d space, we have a standard way to describe it with coordinates. In this case, the vector has coordinates [3,2], which means going from its tail to its tip involves moving 3 units to the right, and 2 units up.
+
+<Figure
+    image="./figures/introduction/vector-3-2.png" 
+/>
+
+Now, the more linear-algebra oriented way to describe coordinates is to think of each of those numbers as a scalar, a thing that stretches or squishes vectors. You think of the first coordinate as scaling i hat, the vector with length one pointing to the right, while the second coordinate scales j hat, the vector with length one pointing straight up. The tip-to-tail sum of these two scaled vectors is what the coordinates are meant to describe.
+
+You can think of these two special vectors as encapsulating all the implicit assumptions of our coordinate system: the fact that the first number indicates rightward motion, that the second indicates upward motion, exactly how far a unit of distance is; all of that is tied up in the choice of i hat and j hat as the vectors which our scalar coordinates are meant scale. The specific way that we translate a vector into a pair of numbers is called a “coordinate system”, and these two special vectors i hat and j hat are called the “basis” vectors of standard coordinate system.
+
+## Alternate system
+
+What I'd like to talk about here is the idea of using a different set of basis vectors. For example, let's say you have a friend, Jennifer, who uses a different set of basis vectors, which I'll call $\mathbf{b}_1$ and $\mathbf{b}_2$. Her first basis vector, b1, points to the right and up a bit, and her second basis vector, b2, points left and up.
+
+<Figure
+    image="./figures/alternate-system/b1-b2.png" 
+/>
+
+Now take another look at the vector I showed earlier, the one you and I would describe with coordinates [3, 2] using our basis vectors i hat and j hat.
+
+<Figure
+    image="./figures/alternate-system/vector.png" 
+    caption=""
+/>
+
+Jennifer would actually describe this vector with coordinates [5/3, 1/3]. What this means is that the particular way to get that vector using her two basis vectors is to scale b1 by 5/3, scale b2 by 1/3, then to add them together. 
+
+<Figure
+    image="./figures/alternate-system/vector-new-perspective.png" 
+    caption="Jennifer's perspective for the same vector"
+/>
+
+In a little bit I'll show you how you can figure out those two numbers. In general, whenever Jennifer uses coordinates to describe a vector, she thinks of the first coordinate as scaling b1, and the second coordinate as scaling b2, and she adds the results.
+
+<Figure
+    image="./figures/alternate-system/n1-2.png" 
+/>
+
+What she gets will typically be completely different from the vector you and I think of as having those coordinates.
+
+<Figure
+    image="./figures/alternate-system/n1-2-in-cartesian.png" 
+/>
+
+To be a little more precise, her first basis vector, b1, is something we would describe with coordinates [2, 1], and her second basis vector, b2, is something we would describe as [-1, 1].
+
+<Figure
+    image="./figures/alternate-system/basis-vectors-from-cartesian-perspective.png" 
+/>
+
+But it's important to realize that from her perspective, in her system, those vectors have coordinates [1, 0] and [0, 1]. They are what define the meaning of the coordinates [1, 0] and [0, 1] in her world.
+
+<Figure
+    image="./figures/alternate-system/basis-vectors.png" 
+/>
+
+So in effect, we are speaking different languages. We're all looking at the same vectors in space, but Jennifer uses different words and numbers to describe them.
+
+## The grid
+
+One quick word on how I'm representing things here: When I animate 2d space, I typically use a square grid square grid. But this grid is just a construct, a way to visualize our coordinate system, and so it depends on our choice of basis vectors. Space itself has no intrinsic grid.
+
+<Figure
+    image="./figures/the-grid/construct.png" 
+/>
+
+Jennifer might draw her own grid, which would be an equally made up construct, meant as nothing more than a visual tool to help follow what her coordinates mean.
+
+<Figure
+    image="./figures/the-grid/alternate-system.png" 
+/>
+
+Her origin would line up with ours, since everyone agrees what the coordinates [0, 0] should mean: It's the thing you get when you scale any vector by 0. 
+
+<Figure
+    image="./figures/the-grid/origin.png" 
+/>
+
+But the direction of her axes and the spacing of her grid lines will be different, depending on her choice of basis vectors.
+
+## Change of basis matrix
+
+A fairly natural question to ask at this point is how we translate between coordinate systems. For example, if Jennifer describes a vector as [-1, 2], what would its coordinates be in our system. How do you translate from her language to ours?
+
+<Figure
+    image="./figures/change-of-basis-matrix/natural-question.png" 
+/>
+
+Well, what her coordinates are saying is that this vector is -1 times b1 plus 2 times b2. From our perspective, b1 has coordinates [2, 1], and b2 has coordinates [-1, 1]. When we scale and add these representations of her basis vectors in our coordinates, we get [-4, 1]. So that's how we would describe the vector she thinks of as [-1, 2].
+
+<Figure
+    image="./figures/change-of-basis-matrix/natural-question-setup.png" 
+/>
+
+This process, of scaling each of her basis vectors by the corresponding coordinates of [-1, 2] and adding them together might feel familiar: It's matrix-vector multiplication, with a matrix whose columns represent Jennifer's basis vectors.
+
+<Figure
+    image="./figures/change-of-basis-matrix/natural-question-matrix.png" 
+/>
+
+### How this is a transformation
+
+In fact, once you understand matrix-vector multiplication as applying a certain linear transformation, say by watching what I view to be the most important video in this series, <LessonLink id="linear-transformations">chapter 3</LessonLink>, there's a pretty intuitive way to think about what's going on here.
+
+A matrix whose columns represent Jennifer's basis vectors can be thought of as a transformation that moves our basis vectors, i hat and j hat, the things we think of when we say [1, 0] and [0, 1], to Jennifer's basis vectors, the things she thinks of when she says [1, 0] and [0, 1]. 
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-that-moves-basis-vectors.png" 
+/>
+
+For example, let's walk through what it means to take the vector that we think of as having coordinates [-1, 2], and applying this transformation. Before the linear transformation we're thinking of this vector as a certain linear combination of basis vectors, -1\*(i hat) + 2(j hat), and the key feature of linear transformations is that the resulting vector will be that same linear combination of the new basis vectors, -1 \* (the place where i hat lands) + 2\* (the place where j hat lands).
+
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-n1-2.png" 
+/>
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-n1-2-alternate-system-perspective.png" 
+/>
+
+So what this matrix does is transform our misconception of what Jennifer means into the actual vector that she's referring to.
+
+I remember that when I was first learning this, it felt kind of backwards. Geometrically this matrix transforms our grid into Jennifer's grid, yet numerically it's translating a vector described in her language to our language.
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-between-languages.png" 
+/>
+
+What made it click for me was thinking about how it takes our misconception of what Jennifer means, the vector we get using the same coordinates in our own system, then transforms it into the vector that she really meant, but now expressed using our coordinate system.
+
+### Going from ours to hers
+
+What about if you want to go the other way around?  In the example I used earlier in this chapter, where I had a vector with coordinates [3, 2] in our system, how did I compute that it would have coordinates [5/3, 1/3] in Jennifer's system?
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-to-alternate-vector.png" 
+/>
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-to-alternate-vector-coordinates.png" 
+/>
+
+Well, you start with that change of basis matrix that translates Jennifer's language into ours, then you take its inverse. Remember, the inverse of a transformation is a new transformation that corresponds to playing that first one backwards. In practice, especially when you're working in more than two dimensions, you'd use a computer to compute the matrix which represents this inverse.
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-between-languages-inverse.png" 
+/>
+
+In this case, the inverse of the change of basis matrix that has Jennifer's basis as its columns ends up working out to have columns [1/3, -1/3], and [1/3, 2/3].
+
+$$
+\left[\begin{array}{cc}
+2 & -1 \\
+1 & 1
+\end{array}\right]^{-1}=\left[\begin{array}{cc}
+1 / 3 & 1 / 3 \\
+-1 / 3 & 2 / 3
+\end{array}\right]
+$$
+
+One way to interpret this is that from Jennifer's perspective, our first basis vector i hat has the coordinates ⅓, -⅓, and our second basis vector j hat has coordinates ⅓, ⅔.
+
+So for example, to see what the vector [3, 2] looks like in Jennifer's system, we multiply this inverse change of basis matrix by [3, 2], which works out to be [5/3, 1/3].
+
+<Figure
+    image="./figures/change-of-basis-matrix/transformation-inverse-example.png" 
+/>
+
+## Translating transformations
+
+So that, in a nutshell, is how to translate the description of individual vectors back and forth between coordinate systems:  the matrix whose columns represent Jennifer's basis vectors written in our coordinate system translates vectors written in her language to vectors written in our language, and its inverse matrix does the opposite.
+
+<Figure
+    image="./figures/translating-transformations/from-theirs-to-ours.png" 
+/>
+
+<Figure
+    image="./figures/translating-transformations/from-ours-to-theirs.png" 
+/>
+
+But vectors aren't the only thing we describe using coordinates. For this next part, it's important that you're comfortable representing transformations with matrices, and that you know how matrix multiplication corresponds to composing successive transformations. Definitely pause and take a look at <LessonLink id="linear-transformations">chapter 3</LessonLink> and <LessonLink id="matrix-multiplication">chapter 4</LessonLink> if any of this feels uneasy.
+
+### Follow Rotation
+
+Consider some linear transformation, like a 90 degree counterclockwise rotation. When you and I represent this with a matrix, we follow where the basis vectors i hat and j hat each go. i hat ends up at the spot with coordinates [0, 1], and j hat ends up at the spot with coordinates [-1, 0], so those coordinates become the columns of our matrix.
+
+<Figure
+    image="./figures/translating-transformations/90-degree-rotation.png" 
+/>
+
+But this representation is heavily tied up in our choice of basis vectors from the fact that we're following i hat and j hat in the first place, to the fact that we record their landing spots in our own coordinate system. How would Jennifer describe a 90 degree rotation of space?
+
+You might be tempted to just translate the columns of our rotation matrix into Jennifer's language, but this is not quite right. Those columns represent where our basis vectors i hat and j hat go, but the matrix Jennifer wants should represent where her basis vectors land, and it needs to describe those landing spots in her language.
+
+### The process
+
+Here's a common way to think about how this is done: Start with any vector, written in Jennifer's language. Rather than trying to follow what happens to it in terms of her language, first translate it into our language using the change of basis matrix, the one whose columns represent her basis vectors in our language. This gives the same vector written in our language.
+
+<Figure
+    image="./figures/translating-transformations/how-to-translate-a-matrix-translate-to-our-language.png" 
+/>
+
+Then apply the transformation matrix to it by multiplying on the left. This tells us where that vector lands, but in our language.
+
+<Figure
+    image="./figures/translating-transformations/how-to-translate-a-matrix-translate-to-our-language-apply-transformation.png" 
+/>
+
+So as a last step, apply the inverse change of basis matrix, multiplied on the left as usual, to get this transformed vector in Jennifer's language.
+
+<Figure
+    image="./figures/translating-transformations/how-to-translate-a-matrix-translate-to-our-language-apply-transformation-then-translate-back.png" 
+/>
+
+Since we could do this to any vector written in her language, first applying the change of basis matrix, then the transformation then the inverse change of basis, that composition of three matrices gives us the transformation matrix in Jennifer's language. It takes in a vector in her language, and spits out the transformed version of that vector in her language.
+
+For this example, where Jennifer's basis vectors look like [2, 1] and [-1, 1] to us, and we're translating a 90 degree rotation, the product of these three matrices, if you work through it, has columns [⅓, 5/3] and [-⅔, -⅓]. So if Jennifer multiplies that matrix by the coordinates of a vector in her system, it will return the 90 degree rotated version of her vector, expressed in her coordinate system.
+
+<Figure
+    image="./figures/translating-transformations/how-to-translate-a-matrix-initial-example.png" 
+/>
+
+In general, whenever you see an expression like $A^{-1}MA$, it suggests a mathematical sort of empathy. The middle matrix represents a transformation as you see it, the outer two matrices represent the empathy, this shift in perspective, and the full matrix product represents that same transformation as someone else sees it.
+
+For those of you wondering why we care about using alternate coordinate systems, the next chapter on eigenvectors and eigenvalues will give a really important example of this. See you then!
