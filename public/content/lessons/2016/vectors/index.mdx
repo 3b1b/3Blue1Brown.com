@@ -14,104 +14,122 @@ credits:
 
 > "The introduction of numbers as coordinates is an act of violence."
 >
-> $\qquad$— Hermann Weyl
+> \- Hermann Weyl
 
-The fundamental building block for linear algebra is the vector, so it’s worth making sure we’re all on the same page about _what_ exactly a vector *is*. You see, broadly speaking there are three distinct-but-related interpretations of vectors, which I’ll call the physics student perspective, the computer science perspective, and the mathematician’s perspective.
+The fundamental building block for linear algebra is the vector, so it's worth making sure we're all on the same page about _what_ exactly a vector *is*.
 
 <Figure
-  image="perspectives.svg"
+  image="./figures/introduction/VectorExample.svg" 
+/>
+
+You see, broadly speaking there are three distinct-but-related interpretations of vectors, which I'll call the physics student perspective, the computer science perspective, and the mathematician's perspective.
+
+<Figure
+  image="./figures/introduction/perspectives.svg"
 />
 
 ### Physics Perspective
 
-The physics student perspective is that vectors are arrows pointing in space. What defines a given vector is its length and the direction it’s pointing, but as long as those two facts are the same you can move it around and it’s still the same vector.
+The physics student perspective is that vectors are arrows pointing in space. What defines a given vector is its length and the direction it's pointing, but as long as those two facts are the same you can move it around and it's still the same vector.
 
 <Figure
-  image="length_direction.svg"
+  image="./figures/introduction/MagnitudeAndDirection.svg"
 />
 
 Vectors that live in a flat plane are two-dimensional, and those sitting in the broader space that you and I live in are three-dimensional.
 
 <Figure
-  image="three_dimensional_physics.png"
-  video="three_dimensional_physics.mp4"
+  image="./figures/introduction/2dAnd3DVectors.png"
 />
 
 ### CS Perspective
 
 The computer science perspective is that vectors are ordered lists of numbers. For example, if you were doing some analytics about house prices, and the only features you cared about were square footage and price, you might model each house as a pair of numbers, the first indicating square footage, and the second indicating price.
 
+$$
+\left[\begin{array}{l}
+2,600 \mathrm{ft}^2 \\
+\$ 300,000
+\end{array}\right]
+$$
+
+Notice that order matters here. In the lingo, you'd be modeling houses as two-dimensional vectors, where "vector" is pretty much a fancy word for list, and what makes it two-dimensional is the fact that its length is two.
+
+### Mathematician's Perspective
+
+The mathematician generalizes both of these views, basically saying that a vector can be anything where there's a sensible notion of adding two vectors and multiplying a vector by a number, operations that I'll talk about later in this chapter.
+
 <Figure
-  image="house_vector.svg"
+  image="./figures/introduction/MathematiciansPerspective.svg"
 />
 
-Notice that order matters here. In the lingo, you’d be modeling houses as two-dimensional vectors, where “vector” is pretty much a fancy word for list, and what makes it two-dimensional is the fact that its length is two.
+The details of this view are rather abstract, and I actually think it's healthy to ignore it until later in this series, favoring a more concrete setting in the interim. The reason I bring it up here is that it hints at the fact that the ideas of vector addition and multiplication by numbers will play an important role throughout these topics.
 
-### Mathematician's Abstraction
-
-The mathematician generalizes both of these views, basically saying that a vector can be anything where there’s a sensible notion of adding two vectors and multiplying a vector by a number, operations that I’ll talk about later in this chapter. The details of this view are rather abstract, and I actually think it’s healthy to ignore it until the last video in this series, favoring a more concrete setting in the interim. The reason I bring it up here is that it hints at the fact that the ideas of vector addition and multiplication by numbers will play an important role throughout these topics.
-
-<Figure
-  image="mathematican_abstraction.svg"
-/>
+<!--TODO: part of the video script is omitted here-->
 
 ## Thinking About Coordinate Systems
 
-Now, while I’m sure many of you are already familiar with coordinate systems, it’s worth walking through them explicitly since this is where all the important back and forth between the two main perspectives of linear algebra happens. Focusing our attention on two dimensions for the moment, you have a horizontal line, called the *x-axis*, and a vertical line, called the *y-axis*. The place where they intersect is the *origin*, which you should think of as the center of space and the root of all vectors.
+Now, while I'm sure many of you are already familiar with coordinate systems, it's worth walking through them explicitly since this is where all the important back and forth between the two main perspectives of linear algebra happens. Focusing our attention on two dimensions for the moment, you have a horizontal line, called the *x-axis*, and a vertical line, called the *y-axis*.
 
 <Figure
-  image="origin_definition.svg"
+  image="./figures/coordinate-systems/CoordinateSystemAxes.svg" 
 />
 
+The place where they intersect is the *origin*, which you should think of as the center of space and the root of all vectors.
+
+<Figure
+  image="./figures/coordinate-systems/CoordinateSystemOrigin.svg"
+/>
 
 After choosing an arbitrary distance to represent a length of $1$, you make tick marks on each axis spaced out by this distance.
 
 <Figure
-  image="tick_marks.svg"
+  image="./figures/coordinate-systems/CoordinateSystemTickMarks.svg"
 />
 
-
-When I want to convey the idea of 2d space as a whole, which comes up a lot in this text, I’ll extend these tick marks to make grid lines, like so:
+When I want to convey the idea of 2d space as a whole, which comes up a lot in this text, I'll extend these tick marks to make grid lines, like so:
 
 <Figure
-  image="grid.svg"
+  image="./figures/coordinate-systems/CoordinateSystemGrid.svg"
 />
 
-Let’s settle on a specific thought to have in mind when I say the word _vector_. Given the geometric focus I’m shooting for here, whenever I introduce a new topic involving vectors, I want you to first think about an arrow, and specifically think about an arrow inside a coordinate system, like the $xy$-plane, with its tail sitting at the origin.
+Let's settle on a specific thought to have in mind when I say the word _vector_. Given the geometric focus I'm shooting for here, whenever I introduce a new topic involving vectors, I want you to first think about an arrow, and specifically think about an arrow inside a coordinate system, like the $xy$-plane, with its tail sitting at the origin.
 
 <Figure
-  image="tail_at_origin.svg"
+  image="./figures/coordinate-systems/VectorAsArrow.svg"
 />
 
-The coordinates of a vector are a pair of numbers that basically give instructions for how to get from the tail of that vector at the origin, to its tip. The first number tells you how far to walk along the x-axis, with positive numbers indicating rightward motion and negative numbers indicating leftward motion, and the second number tells you how far to then walk parallel to the y-axis, with positive numbers indicating upward motion, and negative numbers indicating downward motion.
+The coordinates of a vector are a pair of numbers that basically give instructions for how to get from the tail of that vector at the origin, to its tip. The first number tells you how far to walk along the $x$-axis, with positive numbers indicating rightward motion and negative numbers indicating leftward motion, and the second number tells you how far to then walk parallel to the $y$-axis, with positive numbers indicating upward motion, and negative numbers indicating downward motion.
 
 <Figure
-  image="vector_instructions.svg"
+  image="./figures/coordinate-systems/VectorCoordinates.svg"
 />
 
-To distinguish vectors from points, the convention is to write this pair of numbers vertically with square brackets around them.
-$$
-\nwarrow\ =\begin{bmatrix}-2 \\ 3\end{bmatrix}\neq(2,3)
-$$
-As an important note: every pair of numbers gives you one *and only one* vector, and every vector is associated with one *and only one* pair of numbers.
+To distinguish vectors from points, the convention is to write this pair of numbers vertically with square brackets around them. Every pair of numbers gives you one *and only one* vector, and every vector is associated with one *and only one* pair of numbers.
 
 <Question
-  question="Which vector corresponds with walking $6$ units up and then $4$ units left?"
-  choice1="$\begin{bmatrix}6 \\ 4\end{bmatrix}$"
-  choice2="$\begin{bmatrix}4 \\ 6\end{bmatrix}$"
-  choice3="$\begin{bmatrix}-4 \\ 6\end{bmatrix}$"
-  choice4="$\begin{bmatrix}-6 \\ -4\end{bmatrix}$"
+  question="Which vector corresponds with walking $4$ units down and then $7$ units to the right?"
+  choice1="$\begin{bmatrix}-4 \\ 7\end{bmatrix}$"
+  choice2="$\begin{bmatrix}-7 \\ 4\end{bmatrix}$"
+  choice3="$\begin{bmatrix}7 \\ -4\end{bmatrix}$"
+  choice4="$\begin{bmatrix}4 \\ 7\end{bmatrix}$"
   answer={3}>
 
-$4$ units left is $-4$ on the $x$-axis. $6$ units up is $6$ on the $y$-axis.
+<Figure
+  image="./figures/coordinate-systems/VectorCoordinates2.svg" 
+/>
+
+The vector that corresponds with walking $4$ units down and then $7$ units to the right is $\left[\begin{array}{c}7 \\ -4\end{array}\right]$, because $4$ units down is negative four on the $y$-axis and $7$ units to the right is positive seven on the $x$-axis.
 
 </Question>
 
-In three-dimensions, you add a third axis, called the z-axis, which is perpendicular to both the x and the y axes. In this case, each vector is associated with an ordered triplet of numbers: the first number tells you how far to move along the x-axis, the second number tells you how far to move parallel to the y-axis, and the third number tells you how far to move parallel to the new z-axis. Every triplet of numbers gives you one unique point in space, and every point in space is associated with exactly one triplet of numbers.
+In three-dimensions, you add a third axis, called the $z$-axis, which is perpendicular to both the $x$ and the $y$ axes. In this case, each vector is associated with an ordered triplet of numbers: the first number tells you how far to move along the $x$-axis, the second number tells you how far to move parallel to the $y$-axis, and the third number tells you how far to move parallel to the new $z$-axis.
 
 <Figure
-  image="3D_vector.png"
+  image="./figures/coordinate-systems/3dVector.png"
 />
+
+Every triplet of numbers gives you one unique vector in space, and every vector in space gives you exactly one triplet of numbers.
 
 ## Vector Operations
 
@@ -119,53 +137,53 @@ So what about vector addition, and multiplying numbers by vectors? After all, ev
 
 ### Addition
 
-Let’s say we have two vectors, one pointing up and a little to the right, and another pointing to the right and a little bit down. 
+Let's say we have two vectors, one pointing up and a little to the right, and another pointing to the right and a little bit down. 
 
 <Figure
-  image="vector_addition_prep.svg"
+  image="./figures/vector-operations/VectorAdditionPrep.svg"
 />
 
-To add these two vectors, move the second vector so that it’s tail sits on the tip of the first one. Then if you draw a new vector from the tail of the first one to where the tip of the second now sits, that new vector is their sum.
+To add these two vectors, move the second vector so that it's tail sits on the tip of the first one. Then if you draw a new vector from the tail of the first one to where the tip of the second now sits, that new vector is their sum.
 
 <Figure
-  image="vector_addition.svg"
-  video="vector_addition.mp4"
+  image="./figures/vector-operations/VectorAddition.svg"
 />
 
+<!--TODO: add animation for moving the vector tip to tail-->
 
 Why is this a reasonable thing to do? Why this definition of addition and not some other? Well, the way I like to think about it is that each vector represents a certain movement; a step with a certain distance and direction. If you take a step along the first vector, then take a step in the direction and distance described by the second vector, the overall effect is the same as if it just moved along the sum of those two vectors.
 
-You could think of this as an extension of how we think about adding numbers on a number line. One of the ways we teach kids to think about addition, say $2+5$, is to think of moving $2$ steps to the right, followed by another $5$ steps to the right. The overall effect is the same as if you just took $7$ steps to the right to begin with.
+You could think of this as an extension of how we think about adding numbers on a number line. One of the ways we teach kids to think about addition, say $2+5$, is to think of moving $2$ steps to the right, followed by another $5$ steps to the right. The overall effect is the same as if you just took $7$ steps to the right.
 
 <Figure
-  image="number_addition.svg"
+  image="./figures/vector-operations/NumberLine.svg"
 />
 
-In fact, let’s see how vector addition looks numerically. The first vector here has coordinates $\begin{bmatrix}1\\2\end{bmatrix}$, and the second has coordinates $\begin{bmatrix}3\\-1\end{bmatrix}$. When you take their vector sum using this tip to tail method, you can think of a four step path from the tail of the first to the tip of the second: Walk $1$ to the right, then $2$ up, then $3$ to the right, then $1$ down.
+In fact, let's see how vector addition looks numerically. The first vector here has coordinates $\left[\begin{array}{l}1 \\ 2\end{array}\right]$, and the second has coordinates $\left[\begin{array}{c}3 \\ -1\end{array}\right]$. When you take their vector sum using this tip to tail method, you can think of a four step path from the tail of the first to the tip of the second: Walk $1$ to the right, then $2$ up, then $3$ to the right, then $1$ down.
 
 <Figure
-  image="walk_path.svg"
+  image="./figures/vector-operations/VectorAdditionComponents.svg"
 />
 
-Reorganizing these steps so that you first do all the rightward motion, then all the vertical motion, you can read it as saying first move $1+3$ to the right, then move $2-1$ up. So the new vector has coordinates $1+3$ and $2+(-1)$.
+Reorganizing these steps so that you first do all the rightward motion, then all the vertical motion, you can read it as saying first move $1+3$ to the right, then move $2-1$ up. So the new vector has coordinates $4$ and $1$.
 
 <Figure
-  image="vector_addition_numerical.svg"
+  image="./figures/vector-operations/VectorAdditionComponentsReorganizeSteps.svg"
 />
 
 In general, to add two vectors in the list-of-numbers conception of vectors, match up their terms and add them each together.
+
 $$
-\begin{bmatrix}
-\color{green}{x_1} \\ \color{red}{y_1}
-\end{bmatrix}
-+
-\begin{bmatrix}
-\color{green}{x_2} \\ \color{red}{y_2}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\color{green}{x_1+x_2} \\ \color{red}{y_1+y_2}
-\end{bmatrix}
+\left[\begin{array}{l}
+x_1 \\
+y_1
+\end{array}\right]+\left[\begin{array}{l}
+x_2 \\
+y_2
+\end{array}\right]=\left[\begin{array}{l}
+x_1+x_2 \\
+y_1+y_2
+\end{array}\right]
 $$
 
 <Question
@@ -182,56 +200,44 @@ $\begin{bmatrix}4\\-2\end{bmatrix}+\begin{bmatrix}6\\2\end{bmatrix}=\begin{bmatr
 
 ### Scaling
 
-The other fundamental vector operation is multiplication by a number. This is best understood by just looking at a few examples.
-
-If you take the number $2$, and multiply it by a given vector, you stretch out that vector so that it’s two times as long as when you started.
+The other fundamental vector operation is multiplication by a number. This is best understood by just looking at a few examples. If you take the number $2$, and multiply it by a given vector, you stretch out that vector so that it's two times as long as when you started.
 
 <Figure
-  image="multiply_2.svg"
-  video="multiply_2.mp4"
+  image="./figures/vector-operations/VectorScalingBy2.svg"
 />
 
 
 If you multiply a vector by $\frac13$, you squish it down so that it is one-third its original length.
 
 <Figure
-  image="multiply_third.svg"
+  image="./figures/vector-operations/VectorScalingByOneOverThree.svg"
 />
 
-If you multiply it by a negative number, like $-1.8$, then the vector gets flipped around, then stretched out by a factor of $1.8$.
+If you multiply it by a negative number, like $-1.5$, then the vector gets flipped around, then stretched out by a factor of $1.5$.
 
 <Figure
-  image="multiply_negative.svg"
+  image="./figures/vector-operations/VectorScalingByNegativeOnePointFive.svg"
 />
 
-This process of stretching, squishing, and sometimes reversing direction, is called “scaling.” Whenever you catch a number like $2$, $\frac13$, or $-1.8$ acting like this, scaling some vector, you call it a “scalar”. In fact, throughout linear algebra, one of the main things numbers do is scale vectors, so it’s common to use the word _scalar_ interchangeably with the word _number_. Numerically, stretching out a vector by a factor of $2$ corresponds with multiplying each of its coordinates by $2$, so in the conception of vectors as lists of numbers, multiplying a given vector by a scalar means multiplying each one of its components by that scalar.
+This process of stretching, squishing, and sometimes reversing direction, is called "scaling." Whenever you catch a number like $2$, $\frac13$, or $-1.5$ acting like this, scaling some vector, you call it a "scalar". In fact, throughout linear algebra, one of the main things numbers do is scale vectors, so it's common to use the word _scalar_ interchangeably with the word _number_. Numerically, stretching out a vector by a factor of $2$ corresponds with multiplying each of its coordinates by $2$. So in the conception of vectors as lists of numbers, multiplying a given vector by a scalar means multiplying each one of its components by that scalar.
+
 $$
-2\overrightarrow{\mathbf{v}}=
-2\cdot
-\begin{bmatrix}
-\color{green}{x} \\ \color{red}{y}
-\end{bmatrix}
-=
-\begin{bmatrix}
-2\color{green}{x} \\ 2\color{red}{y}
-\end{bmatrix}
+2 \vec{\mathbf{v}}=2 \cdot\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]=\left[\begin{array}{l}
+2 x \\
+2 y
+\end{array}\right]
 $$
+
+<!--TODO: scaling question-->
 
 ## Conclusion
 
-You’ll see in the following chapters what I mean when I say pretty much every linear algebra topic revolves around these two fundamental operations of vector addition and scalar multiplication. I’ll also talk more in the last linear algebra chapter about how and why the mathematician thinks *only* about these operations, independent and abstracted away from however you choose to represent vectors.
+You'll see in the following chapters what I mean when I say pretty much every linear algebra topic revolves around these two fundamental operation: vector addition and scalar multiplication. I'll also talk more in the last linear algebra chapter about how and why the mathematician thinks *only* about these operations, independent and abstracted away from however you choose to represent vectors.
 
-In truth, it doesn’t matter whether you think of vectors as fundamentally being arrows in space that happen to have a nice numerical representation, or fundamentally as lists of numbers that happen to have a nice geometric interpretation. The usefulness of linear algebra has less to do with either one of these views than it does with the ability to translate back and forth between them. It gives the data-analyst a nice way to conceptualize many lists of numbers in a visual way, which can seriously clarify patterns in the data and give a global view of what certain operations do.
+In truth, it doesn't matter whether you think of vectors as fundamentally being arrows in space that happen to have a nice numerical representation, or fundamentally as lists of numbers that happen to have a nice geometric interpretation. The usefulness of linear algebra has less to do with either one of these views than it does with the ability to translate back and forth between them. It gives the data-analyst a nice way to conceptualize many lists of numbers in a visual way, which can seriously clarify patterns in the data and give a global view of what certain operations do.
 
-<Figure
-  image="visualize_patterns.png"
-/>
-
-On the flip side, it gives people like physicists and computer graphics programmers a language to describe space, and the manipulation of space, using numbers that can be crunched and run through a computer.
-
-<Figure
-  image="matrix_space.png"
-/>
-
-When I do mathy animations, for example, I start by thinking about what’s going on in space, then get the computer to represent things numerically, and figure out where to place which pixels on the screen, and doing that often relies on an understanding of linear algebra. In the <LessonLink id="span">next lesson</LessonLink>, we'll start getting into some neat concepts surrounding vectors, like span, bases and linear dependence.
+On the flip side, it gives people like physicists and computer graphics programmers a language to describe space, and the manipulation of space, using numbers that can be crunched and run through a computer. When I do mathy animations, for example, I start by thinking about what's going on in space, then get the computer to represent things numerically, and figure out where to place which pixels on the screen, and doing that often relies on an understanding of linear algebra. In the <LessonLink id="span">next lesson</LessonLink>, we'll start getting into some neat concepts surrounding vectors, like span, bases and linear dependence.
 
