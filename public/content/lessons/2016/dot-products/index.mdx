@@ -16,8 +16,6 @@ credits:
 >
 > **Calvin**: Yeah. All these equations are like miracles. You take two numbers and when you add them, they magically become one NEW number! No one can say how it happens. You either believe it or you don't.
 
-# Dot products and duality
-
 Traditionally, dot products are introduced very early on in a linear algebra course, typically right at the start, so it might seem strange that I've pushed them back to this point in the series.
 
 I did this because while there is a standard way to introduce the topic, which requires nothing more than an understanding of what vectors are, a fuller understanding of the role dot products play in math can only be found under the light of linear transformations. First, let me briefly cover the standard way dot products are introduced, which I'm assuming is at least partially a review for a number of readers.
@@ -27,268 +25,361 @@ I did this because while there is a standard way to introduce the topic, which r
 Numerically, if you have two vectors of the same dimension, two lists of numbers with the same lengths, taking their dot product means pairing up all the coordinates, multiplying those pairs together, and adding the result.
 
 <Figure
-    image="figures/numerical-method-dot-product.png" 
+    image="./figures/numerical-method/dot-product.svg" 
 />
 
 So the vector $\left[\begin{array}{l}1 \\ 2\end{array}\right]$ dotted with $\left[\begin{array}{l}3 \\ 4\end{array}\right]$ would be $1 \cdot 3+2 \cdot 4$. The vector $\left[\begin{array}{l}6 \\ 2 \\ 8 \\ 3\end{array}\right]$ dotted with $\left[\begin{array}{l}1 \\ 8 \\ 5 \\ 3\end{array}\right]$ would be $6 \cdot 1+2 \cdot 8+8 \cdot 5+3 \cdot 3$.
 
+<Question
+  question="What's the dot product of $\left[\begin{array}{l}4 \\ 6\end{array}\right]$ and $\left[\begin{array}{l}-3 \\ 2\end{array}\right]$ "
+  choice1="$-9$"
+  choice2="$11$"
+  choice3="$9$"
+  choice4="$0$"
+  answer={4}
+>
+
+The dot product of $\left[\begin{array}{l}4 \\ 6\end{array}\right]$ and $\left[\begin{array}{l}-3 \\ 2\end{array}\right]$ is $0$, because $\left[\begin{array}{l}4 \\ 6\end{array}\right] \cdot \left[\begin{array}{l}-3 \\ 2\end{array}\right] = 4(-3) + 6(2)$ and $-12$ plus $12$ is zero.
+
+</Question>
+
 ## Geometric Interpretation
 
-Luckily, this computation has a nice geometric interpretation. To think about the dot product of two vectors $v$ and $w$, imagine projecting $w$ onto the line that passes through the origin and the tip of $v$.
+Luckily, this computation has a nice geometric interpretation. To think about the dot product of two vectors $\mathbf{v}$ and $\mathbf{w}$, imagine projecting $\mathbf{w}$ onto the line that passes through the origin and the tip of $\mathbf{v}$.
 
 <Figure
-    image="figures/geometric-interpretation-projecting-line.png" 
+    image="./figures/geometric-interpretation/GeometricInterpretationSetup.svg" 
 />
 
-Multiply the length of this projection by the length of $v$, and you have the dot product $v$ dot $w$. 
+Multiply the length of this projection by the length of $\mathbf{v}$, and you have the dot product $\mathbf{v}$ dot $\mathbf{w}$. 
 
 <Figure
-    image="figures/geometric-interpretation-projecting-line-multiply-lengths.png" 
-    caption="TODO: highlight length of projected w"
+    image="./figures/geometric-interpretation/GeometricInterpretation.svg" 
 />
 
-When the projection of $w$ is pointing in the opposite direction from $v$, the dot product will actually be negative.
+When the projection of $\mathbf{w}$ is pointing in the opposite direction from $\mathbf{v}$, the dot product will actually be negative.
 
 <Figure
-    image="figures/geometric-interpretation-projecting-line-multiply-lengths-negative-case.png" 
+    image="./figures/geometric-interpretation/GeometricInterpretationNegative.svg" 
 />
 
 So if two vectors are generally pointing in the same direction, their dot product is positive; when they are perpendicular, meaning the projection of one onto the other is the zero vector, their dot product is zero; and when they point in generally opposite directions, their dot product is negative.
 
 <Figure
-    image="figures/geometric-interpretation-similar-directions.png" 
+    image="./figures/geometric-interpretation/PositiveAndNegativeOutput.svg" 
+    caption="If the tip of $\mathbf{w}$ lies in the green region the dot product is positive, if it lies in the red region the dot product is negative, and if it lies on the blue line perpendicular $\mathbf{v}$ the dot product is zero."
 />
 
+**Which of the following statements about the image below is accurate?**
+
 <Figure
-    image="figures/geometric-interpretation-perpendicular-directions.png" 
+    image="./figures/geometric-interpretation/PositiveAndNegativeOutputQuestion.svg" 
 />
 
+<Question
+  question="Choose from these statements:"
+  choice1="$\vec{\mathbf{v}} \cdot \vec{\mathbf{c}}$ is equal to zero, $\vec{\mathbf{v}} \cdot \vec{\mathbf{d}}$ is less than zero, and $\vec{\mathbf{v}} \cdot \vec{\mathbf{b}}$ is greater than zero."
+  choice2="$\vec{\mathbf{v}} \cdot \vec{\mathbf{a}}$ is equal to zero, $\vec{\mathbf{v}} \cdot \vec{\mathbf{d}}$ is greater than zero, and $\vec{\mathbf{v}} \cdot \vec{\mathbf{b}}$ is less than zero."
+  choice3="$\vec{\mathbf{v}} \cdot \vec{\mathbf{c}}$ is equal to zero, $\vec{\mathbf{v}} \cdot \vec{\mathbf{d}}$ is greater than zero, and $\vec{\mathbf{v}} \cdot \vec{\mathbf{b}}$ is less than zero."
+  choice4="$\vec{\mathbf{v}} \cdot \vec{\mathbf{a}}$ is equal to zero, $\vec{\mathbf{v}} \cdot \vec{\mathbf{d}}$ is less than zero, and $\vec{\mathbf{v}} \cdot \vec{\mathbf{b}}$ is greater than zero."
+  answer={3}
+>
+
+<!--TODO: provide answer-->
+
+<!--TODO: maybe replace with a question that has different coordinates and move this to a review section at the bottom-->
+
+</Question>
+
+<Question
+  question="What's the dot product of $\left[\begin{array}{l}4 \\ 1\end{array}\right]$ and $\left[\begin{array}{l}-2 \\ -3\end{array}\right]$?"
+  choice1="10"
+  choice2="-11"
+  choice3="14"
+  choice4="11"
+  answer={2}
+>
+
+<!--TODO: provide answer-->
+
+
+</Question>
+
+### Order Doesn't Matter
+
 <Figure
-    image="figures/geometric-interpretation-different-directions.png" 
+    image="./figures/geometric-interpretation/GeometricInterpretationRecap.svg" 
+    caption="Geometric interpretation recap."
 />
 
-Now, this interpretation is very asymmetric, in that it treats the two vectors very differently, so when I first learned this I was surprised that order doesn't matter; that you could instead project $v$ onto $w$ and multiply the length of the projected $v$ times the length of $w$ will to get the same result.
+Now, this geometric interpretation is very asymmetric, in that it treats the two vectors very differently, so when I first learned this I was surprised that order doesn't matter; that you could instead project $\mathbf{v}$ onto $\mathbf{w}$ and multiply the length of the projected $\mathbf{v}$ times the length of $\mathbf{w}$ will to get the same result.
 
 <Figure
-    image="figures/geometric-interpretation-order-does-not-matter.png"
+    image="./figures/geometric-interpretation/OrderDoesNotMatter.svg"
     caption="Even though this feels like a very different process, it produces the same result."
 />
 
-
-Here's the intuition for why order doesn't matter:  If v and w are the same length, we can leverage symmetry, since projecting w onto v and multiplying the length of the projection by the length of v is a complete mirror image of projection v onto w and multiplying the length of the projection by the length of w. 
+Here's the intuition for why order doesn't matter:  If $\mathbf{v}$ and $\mathbf{w}$ are the same length, we can leverage symmetry, since projecting $\mathbf{w}$ onto $\mathbf{v}$ and multiplying the length of the projection by the length of $\mathbf{v}$ is a complete mirror image of projection $\mathbf{v}$ onto $\mathbf{w}$ and multiplying the length of the projection by the length of $\mathbf{w}$. 
 
 <Figure
-    image="figures/geometric-interpretation-leveraging-symmetry.png" 
+    image="./figures/geometric-interpretation/OrderDoesNotMatterSameLength.svg" 
 />
 
-Now, if you scale one of them, say v, by some constant like 2 so that they don't have equal length, the symmetry is broken, but let's think through how to interpret the dot product between this new vector (2 times v) and w.
+Now, if you scale one of them, say $\mathbf{v}$, by some constant like $2$ so that they don't have equal length, the symmetry is broken, but let's think through how to interpret the dot product between this new vector ($2$ times $\mathbf{v}$) and  $\mathbf{w}$.
+
+If you think of $\mathbf{w}$ as projected onto $\mathbf{v}$, the dot product $(2\mathbf{v})$ dot $\mathbf{w}$ will be exactly twice the dot product $\mathbf{v}$ dot $\mathbf{w}$. This is because when you scale $\mathbf{v}$ by $2$, it doesn't change the length of the projection of $\mathbf{w}$, but it doubles the length of the vector that you're projected onto.
 
 <Figure
-    image="figures/geometric-interpretation-symmetry-is-broken.png" 
+    image="./figures/geometric-interpretation/OrderDoesNotMatterSymmetryIsBrokenProjectedW.svg"
+    caption="The length of projecting $\mathbf{w}$ onto $2\mathbf{v}$ stays the same, while the length of $2\mathbf{v}$ doubles."
 />
 
-If you think of w as projected onto v, the dot product (2v) dot w will be exactly twice the dot product v dot w. This is because when you scale v by 2, it doesn't change the length of the projection of w, but it doubles the length of the vector that you're projected onto. On the other hand, let's say you were thinking about v as getting projected onto w. In that case, the length of the projection is the thing that gets scaled as we multiply v by 2, while the length of the vector you're projecting onto stays constant, so the overall effect is still to just double the dot product.
+On the other hand, let's say you were thinking about $\mathbf{v}$ as getting projected onto $\mathbf{w}$. In that case, the length of the projection is the thing that gets scaled as we multiply $\mathbf{v}$ by $2$, while the length of the vector you're projecting onto stays constant, so the overall effect is still to just double the dot product.
 
 <Figure
-    image="figures/geometric-interpretation-symmetry-is-broken-other-projection.png" 
+    image="./figures/geometric-interpretation/OrderDoesNotMatterSymmetryIsBrokenProjected2V.svg"
+    caption="The length of projecting $2\mathbf{v}$ onto $\mathbf{w}$ doubles, while the length of $\mathbf{w}$ stays the same."
 />
 
-So even though symmetry is broken, the effect this scaling has on the value of the dot product is the same under both interpretations. That being said, why on earth does this numerical process of matching coordinates, multiplying pairs and adding them together have anything to do with projection?
+So even though symmetry is broken, the effect this scaling has on the value of the dot product is the same under both interpretations.
 
-To give a satisfactory answer, and to do full justice to the significance of the dot product, we need to unearth something deeper going on here, which often goes by the name "duality", but before getting to that, I need to spend some time talking about linear transformations from multiple dimensions to one dimension, which is, the number line. 
-
-TODO: illustrate multiple dimensions to single dimension
-
-These are functions that take in 2d vectors and spit out numbers. But linear transformations are of course much more restricted than your run-of-the-mill function with a 2d input and a 1d output.
+There's also another big question other than the order, why on earth does this numerical process of matching coordinates, multiplying pairs and adding them together have anything to do with projection? To give a satisfactory answer, and to do full justice to the significance of the dot product, we need to unearth something deeper going on here, which often goes by the name "duality", but before getting to that, I need to spend some time talking about linear transformations from multiple dimensions to one dimension, which is, the number line. 
 
 <Figure
-    image="figures/geometric-interpretation-linear-transformations-multiple-dimensions-to-single-dimension.png" 
+    image="./figures/geometric-interpretation/LinearTransformationVectorToNumber.svg" 
+    video="figures/geometric-interpretation/LinearTransformationVectorToNumber.mp4" 
+/>
+
+These are functions that take in 2d vectors and spit out numbers, but because the transformation is linear these functions are much more restricted than your run-of-the-mill function with a 2d input and a 1d output.
+
+<Figure
+    image="./figures/geometric-interpretation/LinearTransformation2dTo1d.svg" 
 />
 
 ## Linear transformations
 
-As with transformations in higher dimensions there are some formal properties that makes one of these functions linear.
+As with transformations in higher dimensions there are some formal properties that makes one of these functions linear. This was discussed in <LessonLink id="linear-transformations">chapter 3</LessonLink>, so definitely go check that out if you haven't already.
 
 <Figure
-    image="figures/linear-transformations-chapter-3-callback.png"
-    caption="This was discussed in chapter 3, so definitely go check that out if you haven't already."
+    image="./figures/linear-transformations/LinearTransformationFormalProperties.svg"
+    caption="Example linear transformation and properties from chapter 3."
 />
 
-I'm going to purposefully ignore those here so as to not distract from our end goal, and instead focus on certain visual property that's equivalent to all the formal stuff.
+<!--TODO: Go back to chapter 3 and double check that this mash-up makes sense-->
+
+I'm going to purposefully ignore these properties here so as to not distract from our end goal, and instead focus on certain visual property that's equivalent to all the formal stuff. If you take any line of evenly spaced dots, and apply the transformation, a linear transformation will keep those dots evenly spaced once that land in the output space, which is the number line.
 
 <Figure
-    image="figures/linear-transformations-ignore-formal-properties.png" 
-/>
-
-If you take any line of evenly spaced dots, and apply the transformation, a linear transformation will keep those dots evenly spaced once that land in the output space, which is the number line.
-
-<Figure
-    image="figures/linear-transformations-line-of-dots.png" 
-/>
-
-<Figure
-    image="figures/linear-transformations-line-of-dots-remains-evenly-spaced.png" 
+    video="./figures/linear-transformations/LinearTransformationLinearSpacedDots.mp4"
+    image="./figures/linear-transformations/LinearTransformationLinearSpacedDots.svg"
+    show="video"
+    caption="If you imagine applying the linear transformation $L\left(\vec{\mathrm{v}}\right)$ to the collection of vectors represented by the yellow dots, the line of dots remains evenly spaced in the output space."
 />
 
 Of course, this means that if there is some line of dots that is unevenly spaced, then the transformation is not linear.
 
 <Figure
-    image="figures/linear-transformations-non-linear-example.png" 
+    image="./figures/linear-transformations/NonLinearTransformation.png" 
+    video="figures/linear-transformations/NonLinearTransformation.mp4"
+    show="video"
 />
 
-As with the cases we've seen before, one of these linear transformations is completely determined by where i hat and j hat land, but this time each one simply lands on a number. So when we record where they land as the columns of a matrix, each of those columns just has a single number. This is a 1x2 matrix.
+As with the cases we've seen before, one of these linear transformations is completely determined by where i hat and j hat land, but this time each one simply lands on a number. So when we record where they land as the columns of a matrix, each of those columns just has a single number.
 
 <Figure
-    image="figures/linear-transformations-i-hat-j-hat-matrix.png" 
+    image="./figures/linear-transformations/TransformationMatrix.svg" 
+    caption="This linear transformation function is a 1x2 matrix."
 />
 
-Let's walk through an example of what it means to apply one of these transformations to a vector. Let's say you have a linear transformation that takes i hat to 1, and j hat to -2.
+Let's walk through an example of what it means to apply one of these transformations to a vector. Let's say you have a linear transformation that takes i hat to $2$, and j hat to $-1$. To follow where a vector with coordinates, say, $\left[\begin{array}{l}3 \\ 2\end{array}\right]$ ends up, think of breaking up this vector as $3$ times i hat plus $2$ times j hat.
 
 <Figure
-    image="figures/linear-transformations-example-vector.png" 
+    image="./figures/linear-transformations/LinearTransformationVectorAsScaledBasis.svg" 
 />
 
+A consequence of linearity is that after the transform, the vector will be $3$ times the place where i hat lands, $2$, plus $2$ times the place where j hat lands, $-1$, which implies that it lands on $4$.
+
 <Figure
-    image="figures/linear-transformations-example-output.png" 
+    image="./figures/linear-transformations/LinearTransformationFollowWhereScaledBasisVectorsLand.svg" 
 />
 
-To follow where a vector with coordinates, say, [4, 3] ends up, think of breaking up this vector as 4 times i hat plus 3 times j hat.
+When you do this calculation purely numerically, it's matrix vector multiplication. This numerical operation of multiplying a 1-by-2 matrix by a vector feels just like taking the dot product of two vectors. 
 
 <Figure
-    image="figures/linear-transformations-example-vector-i-hat-j-hat.png" 
+    image="./figures/linear-transformations/TransformationFeelsJustLikeDotProduct.svg" 
 />
 
-A consequence of linearity is that after the transform, the vector will be 4 times the place where i hat lands, 1, plus 3 times the place where j hat lands, -2, which implies that it lands on -2.
+In fact, we could say right now that there is a nice association between 1-by-2 matrices and 2d vectors, defined by tilting the numerical representation of a vector on its side to get the associated matrix, or to tip the matrix back up to get its associated vector.
 
 <Figure
-    image="figures/linear-transformations-example-output-i-hat-j-hat.png" 
-/>
-
-When you do this calculation purely numerically, it's matrix vector multiplication. This numerical operation of multiplying a 1x2 matrix by a vector feels just like taking the dot product of two vectors. 
-
-<Figure
-    image="figures/linear-transformations-matrix-multiplication.png" 
-/>
-
-In fact, we could say right now that there is a nice association between 1x2 matrices and 2d vectors, defined by tilting the numerical representation of a vector on its side to get the associated matrix, or to tip the matrix back up to get its associated vector.
-
-<Figure
-    image="figures/linear-transformations-vectors-as-transformations.png" 
+    image="./figures/linear-transformations/AssociationBetweenVectorsAndMatrices.svg" 
 />
 
 Since we're looking at the numerical expressions, going back and forth between vectors and 1x2 matrices might feel like a silly thing to do. But this suggests something truly awesome for the geometric view: There's some kind of connection between linear transformations that take vectors to numbers, and vectors themselves.
 
 <Figure
-    image="figures/linear-transformations-vectors-as-transformations-side-by-side.png" 
+    image="./figures/linear-transformations/LinearTransformationVectorRelatedTo1x2Matrix.svg" 
 />
 
-I'll show an example to clarify the significance here, an example which just so happens to answer the dot product puzzle from earlier.
+In the next section, I'll show an example should clarify the significance of this association and just so happens to answer the dot product puzzle from earlier but, for now, here are some comprehension questions about this type of transformation that takes a vector to a number.
+
+**What is the transformation matrix associated with the following?**
+
+<Figure
+    image="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion1.svg" 
+    video="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion1.mp4" 
+/>
+
+<Question
+  question="Select from one of these choices:"
+  choice1="$\left[\begin{array}{ll}2 & 3\end{array}\right]$"
+  choice2="$\left[\begin{array}{ll}2 & -1\end{array}\right]$"
+  choice3="$\left[\begin{array}{ll}1 & 2\end{array}\right]$"
+  choice4="$\left[\begin{array}{ll}-2 & 3\end{array}\right]$"
+  answer={4}
+>
+
+The linear transformation that takes $\hat{\mathbf{\imath}}$ to $-2$ and $\hat{\mathbf{\jmath}}$ to $3$ is $\left[\begin{array}{ll}-2 & 3\end{array}\right]$.
+
+<Figure
+    image="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion1Answer.svg" 
+/>
+
+</Question>
+
+**What is the transformation matrix associated with the following?**
+
+<Figure
+    image="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion2.svg" 
+    video="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion2.mp4" 
+/>
+
+<Question
+  question="Select from one of these choices:"
+  choice1="$\left[\begin{array}{ll}3 & 2\end{array}\right]$"
+  choice2="$\left[\begin{array}{ll}2 & 3\end{array}\right]$"
+  choice3="$\left[\begin{array}{ll}1 & 2\end{array}\right]$"
+  choice4="$\left[\begin{array}{ll}2 & 1\end{array}\right]$"
+  answer={1}
+>
+
+The linear transformation that takes $\hat{\mathbf{\imath}}$ to $3$ and $\hat{\mathbf{\jmath}}$ to $2$ is $\left[\begin{array}{ll}3 & 2\end{array}\right]$.
+
+<Figure
+    image="./figures/linear-transformations/LinearTransformationVectorToNumberQuestion2Answer.svg" 
+    caption="Note: the tail of $\hat{\imath}$ is still at the origin after applying the transformation."
+/>
+
+</Question>
 
 ### Unit Vector
 
 Imagine that you don't already know that dot products relate to projection. Now, what I'm going to do here is take a copy of the number line and place it diagonally in space somehow, with the number $0$ sitting on the origin. There's some two-dimensional unit vector whose tip sits where the number $1$ on the number line is, and I want to give that guy a name: u hat. 
 
 <Figure
-    image="figures/unit-vector-u-hat.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVector.svg"
 />
 
 This little guy plays an important role in what's about to happen, so just keep him in the back of your mind. If we project 2d vectors onto this diagonal number line, in effect we've just defined a function that takes 2d vectors to numbers. 
 
 <Figure
-    image="figures/unit-vector-many-vectors.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorManyVectors.svg" 
+    caption="Some example vectors."
 />
 
 <Figure
-    image="figures/unit-vector-many-vectors-projected.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorManyVectorsProjected.svg" 
+    caption="The example vectors projected onto the line defined by $\hat{\mathbf{u}}$."
 />
-
 
 What's more, this function is actually linear, since it passes our visual test that any line of evenly spaced dots remains evenly spaced once it lands on the number line.
 
 <Figure
-    image="figures/unit-vector-many-vectors-projected-linear.png"
-    caption="TODO: highlight input points and output points" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorVisualTest.svg"
 />
 
 Just to be clear, even though I've embedded the number line in 2d space like this, the outputs of this function are numbers, not 2d vectors. You should think of a function that takes in two coordinates, and outputs a single coordinate.
 
+
 <Figure
-    image="figures/unit-vector-linear-function.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorStillVectorToNumber.svg"
 />
 
 But the vector u hat is a two-dimensional vector, living in the input space, it's just situated in a way that overlaps with the embedding of the number line. We just defined a linear transformation from 2d vectors to numbers, so you can find some 1x2 matrix that describes this transformation.
 
 <Figure
-    image="figures/unit-vector-projection-matrix.png" 
+    image="./figures/unit-vector/UnitVectorProjectionMatrix.svg" 
 />
 
 To find that 1x2 matrix, let's zoom in on our diagonal number line setup and think about where i hat and j hat go, since their landing spots will be the columns of this matrix.
 
 <Figure
-    image="figures/unit-vector-i-hat-j-hat-projection.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorIHatJHat.svg" 
 />
 
 We can reason through this with a very elegant piece of symmetry:  Since i hat and u-hat are both unit vectors, projecting i hat onto the line passing through u-hat looks completely symmetric to projecting u hat onto the x axis. So when we ask what number i hat lands on in the projection, the answer will be the same as whatever number u hat lands on when you project it onto the x-axis.
 
 <Figure
-    image="figures/unit-vector-u-hat-i-hat-line-of-symmetry.png
+    image="./figures/unit-vector/unit-vector-u-hat-i-hat-line-of-symmetry.png
     " 
 />
 
 But projecting u hat on the x-axis just means taking the x-coordinate of u-hat, so by symmetry, the number where i hat lands when projected onto this diagonal number line will be the x-coordinate of u-hat.
 
 <Figure
-    image="figures/unit-vector-u-hat-i-hat-line-of-symmetry-answer.png" 
+    image="./figures/unit-vector/unit-vector-u-hat-i-hat-line-of-symmetry-answer.png" 
 />
 
 Isn't that neat? For identical reasoning, the y coordinate of u-hat gives us the number where j hat lands when projected onto the number-line-copy. 
 
 <Figure
-    image="figures/unit-vector-u-hat-j-hat-line-of-symmetry-answer.png" 
+    image="./figures/unit-vector/unit-vector-u-hat-j-hat-line-of-symmetry-answer.png" 
 />
 
 So the entries of the 1x2 matrix describing our projection transformation will be the x-coordinate of u hat and the y-coordinate of u hat.
 
 <Figure
-    image="figures/unit-vector-arbitrary-vector.png" 
+    image="./figures/unit-vector/unit-vector-arbitrary-vector.png" 
 />
 
-Computing this projection transformation for arbitrary vectors in space requires multiplying those vectors by this matrix. But of course, that matrix-vector multiplication process is computationally identical to a dot product with u hat.
+Computing this projection transformation for arbitrary vectors in space requires multiplying those vectors by this matrix.
 
 <Figure
-    image="figures/unit-vector-transform-matrix.png" 
+    image="./figures/unit-vector/unit-vector-transform-matrix.png" 
 />
 
+But of course, that matrix-vector multiplication process is computationally identical to a dot product with u hat.
+
 <Figure
-    image="figures/unit-vector-matrix-vector-product-same-as-dot-product.png" 
+    image="./figures/unit-vector/unit-vector-matrix-vector-product-same-as-dot-product.png" 
 />
 
 This is why taking the dot product with a unit vector can be interpreted as projecting a vector onto the span of that unit vector, and taking its length. It's as if the vector u-hat is really a linear transformation disguised as a vector.
 
 <Figure
-    image="figures/unit-vector-interpretation.png" 
+    image="./figures/unit-vector/unit-vector-interpretation.png" 
 />
 
 <Figure
-    image="figures/unit-vector-interpretation-length.png" 
+    image="./figures/unit-vector/unit-vector-interpretation-length.png" 
 />
 
 For example, let's say we took that unit vector u and scaled it up by a factor of 3.
 
 <Figure
-    image="figures/unit-vector-scaled.png" 
+    image="./figures/unit-vector/unit-vector-scaled.png" 
 />
 
 Numerically, each of its components gets multiplied by 3, so looking at the matrix associated with this vector, it takes i hat and j hat to 3 times the values where they landed before. 
 
 <Figure
-    image="figures/unit-vector-scaled-associated-transformation.png" 
+    image="./figures/unit-vector/unit-vector-scaled-associated-transformation.png" 
 />
 
 Since this is linear, it implies more generally that the new matrix can be interpreted as projecting any vector onto the number-line-copy, then multiplying where it lands by 3.
 
 <Figure
-    image="figures/unit-vector-project-then-scale.png" 
+    image="./figures/unit-vector/unit-vector-project-then-scale.png" 
 />
 
 This is why the dot product with non-unit vectors can be interpreted as first projecting onto that vector, then scaling by the length of that vector.

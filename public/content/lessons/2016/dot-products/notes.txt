@@ -1,1 +1,2 @@
-- the term projection could be given more preface
+- Maybe add a description to what we mean by "projection"
+- This is nit-picky, but do we prefer "u-hat" in a paragraph or $\hat{\mathbf{u}}$? And similarly, is the convention for unit vectors to appear like a variable or like a vector with the TeX $\mathbf{v}$ bolding used for other vectors?
