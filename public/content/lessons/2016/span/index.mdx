@@ -10,117 +10,139 @@ credits:
 - Text Adaption by River Way
 ---
 
-> “Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity.”
+> "Mathematics requires a small dose, not of genius, but of an imaginative freedom which, in a larger dose, would be insanity."
 >
-> $\qquad$— Angus K. Rodgers
+> \- Angus K. Rodgers
 
-In the <LessonLink id="vectors">last chapter</LessonLink>, along with the ideas of vector addition and scalar multiplication, I described vector coordinates, where there’s this back-and-forth between pairs of numbers and two-dimensional vectors.
-
-<Figure
-  image="lesson_recap.svg"
-/>
-
-Now I imagine that vector coordinates were already familiar to many of you, but there’s another interesting way to think about these coordinates, which is central to linear algebra. When you have a pair of numbers meant to describe a vector, like $(3, -2)$, I want you to think of each coordinate as a scalar, meaning think about how each one stretches or squishes vectors.
+In the <LessonLink id="vectors">last chapter</LessonLink>, along with the ideas of vector addition and scalar multiplication, I described vector coordinates, where there's this back-and-forth between pairs of numbers and two-dimensional vectors.
 
 <Figure
-  image="coord_scalar.svg"
-  video="coord_scalar.mp4"
+  image="./figures/introduction/VectorRecap.svg"
 />
 
-In the $xy$-coordinate system, there are two special vectors. The one pointing to the right with length $1$, commonly called “i hat” $\hat i$ or “the unit vector in the x-direction”. The other one is pointing straight up with length $1$, commonly called “j hat” $\hat j$ or “the unit vector in the y-direction”. Now, think of the x-coordinate as a scalar that scales $\hat i$, stretching it by a factor of $3$, and the y-coordinate as a scalar that scales $\hat j$, flipping it and stretching it by a factor of $2$.
+Now I imagine that vector coordinates were already familiar to many of you, but there's another interesting way to think about these coordinates, which is central to linear algebra. When you have a pair of numbers meant to describe a vector, like $(3, -2)$, I want you to think of each coordinate as a scalar, meaning think about how each one stretches or squishes vectors.
 
 <Figure
-  image="unit_bases.svg"
-  video="unit_bases.mp4"
+  image="./figures/introduction/VectorCoordinatesAsScalars.svg"
 />
 
-In this sense, the vector that these coordinates describe is the sum of two scaled vectors. This idea of adding together two scaled vectors is a surprisingly important concept. Those two vectors $\hat i$ and $\hat j$ have a special name: Together they are called the “basis” of the coordinate system. What this means is that when you think about coordinates as scalars, the basis vectors are what those scalars actually scale. 
+In the $xy$-coordinate system, there are two special vectors. The one pointing to the right with length $1$, commonly called "i hat" $\hat{\imath}$ or "the unit vector in the $x$-direction". The other one is pointing straight up with length $1$, commonly called "j hat" $\hat{\jmath}$ or "the unit vector in the $y$-direction". Now, think of the $x$-coordinate as a scalar that scales $\hat{\imath}$, stretching it by a factor of $3$, and the $y$-coordinate as a scalar that scales $\hat{\jmath}$, flipping it and stretching it by a factor of $2$.
 
 <Figure
-  image="basis_vectors.svg"
+  image="./figures/introduction/UnitVectors.svg"
 />
 
-There’s also a more technical definition of basis, but we’ll get to that later. Framing our familiar coordinate system in terms of these two special basis vectors raises an interesting and subtle point: We could choose a different pair of basis vectors and get a perfectly reasonable *new* coordinate system.
+In this sense, the vector that these coordinates describe is the sum of two scaled vectors. This idea of adding together two scaled vectors is a surprisingly important concept. Those two vectors $\hat{\imath}$ and $\hat{\jmath}$ have a special name: Together they are called the "basis" of the coordinate system. What this means is that when you think about coordinates as scalars, the basis vectors are what those scalars actually scale. 
+
+<Figure
+  image="./figures/introduction/CoordinatesAsScalarsOfBasisVectors.svg"
+  caption="$\hat{\imath}$ and $\hat{\jmath}$ are the basis vectors of the $xy$ coordinate system."
+/>
+
+There's also a more technical definition of basis, but we'll get to that later. Framing our familiar coordinate system in terms of these two special basis vectors raises an interesting and subtle point: We could choose a different pair of basis vectors and get a perfectly reasonable *new* coordinate system.
 
 ## Choosing Different Basis Vectors
 
 For example, take some vector pointing up and to the right, along with a vector pointing down and to the right. 
 
 <Figure
-  image="alternate_basis.svg"
+  image="figures/different-basis-vectors/DifferentBasisVectors.svg"
 />
 
-In the above figure, $\overrightarrow{\mathbf{v}}=\begin{bmatrix}1\\ 2\end{bmatrix}$ and $\overrightarrow{\mathbf{w}}=\begin{bmatrix}3\\ -1\end{bmatrix}$.
+Take a moment to think about all the different vectors you can get by choosing two scalars, using each to scale one of the vectors, then adding them. Which two-dimensional vectors can you reach by altering your choice of scalars?
+
+<Figure
+  image="./figures/different-basis-vectors/DifferentBasisSpanExample1.svg" 
+/>
+
+<Figure
+  image="./figures/different-basis-vectors/DifferentBasisSpanExample2.svg" 
+/>
+
+The answer is, for these two vectors, you can describe *every* possible two-dimensional vector this way, and I think it's a good puzzle to contemplate why. A new pair of basis vectors like this still gives you a way to go back and forth between pairs of numbers and two-dimensional vectors, but the association is definitely different from the version you get using the standard basis of $\hat{\imath}$ and $\hat{\jmath}$.
+
+<Figure
+  image="./figures/different-basis-vectors/DifferentBasisSpanExample3.svg" 
+  caption="$\left[\begin{array}{c}-0.8 \\ 1.3\end{array}\right] \neq\left[\begin{array}{c}3.1 \\ -2.9\end{array}\right]$"
+/>
+
+I'll go into much more detail on this point in a <LessonLink id="change-of-basis">later chapter</LessonLink>, describing the relationship between different coordinate systems, but for now I just want you to appreciate that any way to describe vectors numerically depends on your choice of basis vectors.
 
 <Question
-  question="What values of the scalars $\alpha$ and $\beta$ satisfy the following equation? $\alpha\vec{\mathbf{v}}+\beta\vec{\mathbf{w}}=5\hat i -\frac12\hat j$"
+  question="What values of the scalars $\alpha$ and $\beta$ satisfy the following equation? $\alpha\vec{\mathbf{v}}+\beta\vec{\mathbf{w}}=5\hat{\imath} -\frac12\hat{\jmath}$"
   choice1="$\alpha=1\ \beta=0.5$"
   choice2="$\alpha=0.5\ \beta=1.5$"
   choice3="$\alpha=-1\ \beta=-1.5$"
   choice4="$\alpha=0.5\ \beta=-1.5$"
   answer={2}>
 
+<!--TODO: I think the values for v and w should be explicitly laid out, also a linear system of equations is a great question, but maybe belongs at a differnet place in the series-->
+
 The standard basis vectors are $\hat i = \begin{bmatrix}1\\ 0\end{bmatrix}$ and $\hat j = \begin{bmatrix}0\\ 1\end{bmatrix}$. The vector equation can be separated into a system of equations for the $x$ and $y$ components:
+
 $$
 \begin{align*}
 \alpha\cdot1+\beta\cdot3&=5\cdot1-0.5\cdot 0=5 \\
 \alpha\cdot2+\beta\cdot(-1)&=5\cdot0-0.5\cdot1=-0.5
 \end{align*}
 $$
+
 This system of equations can be solved by substitution to get the answer of $\alpha=0.5$ and $\beta=1.5$.
 
 </Question>
 
-We have a new pair of basis vectors $\overrightarrow{\mathbf{v}}$ and $\overrightarrow{\mathbf{w}}$. Take a moment to think about all the different vectors you can get by choosing two scalars, using each to scale one of the vectors, then adding them. Which two-dimensional vectors can you reach by altering your choice of scalars?
-
-<Figure
-  image="linear_combination.svg"
-  video="linear_combination.mp4"
-/>
-
-The answer is that you can describe *every* possible two-dimensional vector this way, and I think it’s a good puzzle to contemplate why. A new pair of basis vectors like this still gives you a way to go back and forth between pairs of numbers and two-dimensional vectors, but the association is definitely different from the version you get using the standard basis of $\hat i$ and $\hat j$.
-
-<Figure
-  image="basis_change.svg"
-/>
-
-I’ll go into much more detail on this point in a <LessonLink id="change-of-basis">later chapter</LessonLink>, describing the relationship between different coordinate systems, but for now I just want you to appreciate that any way to describe vectors numerically depends on your choice of basis vectors.
-
 ## Linear Combinations
 
-Any time you’re scaling two vectors and adding them like this, it’s called a “linear combination” of those two vectors. Where does the word “linear” come from here? What does this have to do with lines? Well, when you multiply a scalar by a vector, it changes the magnitude of that vector. Multiplying every real number by the vector produces an infinite line that passes through the origin and the point defined by the vector.
+Any time you're scaling two vectors and adding them like this, it's called a "linear combination" of those two vectors.
 
 <Figure
-  image="linear_line.svg"
+  image="./figures/linear-combination/LinearCombination.svg" 
+/>
+
+Where does the word "linear" come from here? What does this have to do with lines? Well, when you multiply a scalar by a vector, it changes the magnitude of that vector. Multiplying every real number by the vector produces an infinite line that passes through the origin and the point defined by the vector.
+
+<Figure
+  image="./figures/linear-combination/LinearCombinationVectorsAndLines.svg"
 />
 
 So a linear combination of two vectors is a method of combining these two lines. For most pairs of vectors, if you let both scalars range freely and consider every possible vector you could get, you will be able to reach every possible point on the plane. Every two-dimensional vector is within your grasp.
 
 <Figure
-  image="linear_combination_def.svg"
-  video="linear_combination_def.mp4"
-  width="100%"
+  image="./figures/linear-combination/LinearCombinationScalarsRangeFree.svg"
+  video="./figures/linear-combination/LinearCombinationScalarsRangeFree.mp4"
 />
 
-However, if your two original vectors happen to line up, the lines produced by the scalar multiplication will be the same line, so adding them together can't yield a vector outside of that line. There’s a third possibility too: Both your vectors could be the 0 vector, in which case you’ll just be stuck at the origin.
+However, if your two original vectors happen to line up, the lines produced by the scalar multiplication will be the same line, so adding them together can't yield a vector outside of that line. 
 
 <Figure
-  image="parallel_combination.svg"
-  video="parallel_combination.mp4"
-  width="100%"
+  image="./figures/linear-combination/LinearCombinationLinearlyDependent.svg"
+  video="./figures/linear-combination/LinearCombinationLinearlyDependent.mp4"
 />
+
+There's a third possibility too: Both your vectors could be the $0$ vector, in which case you'll just be stuck at the origin.
 
 ## Span
 
-The set of all possible vectors you can reach with linear combinations of a given pair of vectors is called the “span” of those two vectors. Restating what we just saw in this lingo, the span of most pairs of 2D vectors is all vectors in 2D space, but when they line up, their span is all vectors whose tip sit on a certain line.
+The set of all possible vectors you can reach with linear combinations of a given pair of vectors is called the "span" of those two vectors. Restating what we just saw in this lingo, the span of most pairs of 2D vectors is all vectors in 2D space, but when they line up, their span is all vectors whose tip sit on a certain line.
 
 <Figure
-  image="span_def.svg"
-  video="span_def.mp4"
-  width="100%"
+  image="./figures/span/SpanOfLinearCombination.svg"
 />
 
 Remember how I said linear algebra revolves around vector addition and scalar multiplication? The span of two vectors is basically a way of asking what are all the possible vectors you can reach using these two by only using those fundamental operations of vector addition and scalar multiplication.
+
+<Question
+  question="What two vectors that make up the linear combination $a\vec{\mathbf{v}} + b\vec{\mathbf{w}}$ will only produce vectors that lie on a single line?"
+  choice1="$\vec{\mathbf{v}} = \left[\begin{array}{c}2 \\ 3\end{array}\right]$ and $\vec{\mathbf{w}} = \left[\begin{array}{c}-1 \\ -1.5\end{array}\right]$"
+  choice2="$\vec{\mathbf{v}} = \left[\begin{array}{c}2 \\ 3\end{array}\right]$and $\vec{\mathbf{w}} = \left[\begin{array}{c}3 \\ 2\end{array}\right]$"
+  choice3="$\vec{\mathbf{v}} = \left[\begin{array}{c}2 \\ 3\end{array}\right]$and $\vec{\mathbf{w}} = \left[\begin{array}{c}-3 \\ 2\end{array}\right]$"
+  choice4="$\vec{\mathbf{v}} = \left[\begin{array}{c}2 \\ 3\end{array}\right]$and $\vec{\mathbf{w}} = \left[\begin{array}{c}1 \\ 2\end{array}\right]$"
+  answer={1}
+>
+
+<!--TODO: illustrate answer-->
+
+</Question>
 
 <Question
   question="What is the span of $\begin{bmatrix}3\\ -2\end{bmatrix}$ and $\begin{bmatrix}-6\\ 4\end{bmatrix}$?"
@@ -138,35 +160,31 @@ These two vectors line up because $\begin{bmatrix}-6\\ 4\end{bmatrix}=-2\begin{b
 This is a good time to talk about how people commonly think about vectors as points. It gets very crowded to think about a whole collection of vectors sitting on a line, and more crowded still to think about all two-dimensional vectors all at once, filling up the plane.
 
 <Figure
-  image="arrow.png"
-  video="arrow.mp4"
+  image="figures/arrow.png"
+  video="figures/arrow.mp4"
 />
 
-So when dealing with collections of vectors like this, it’s common to represent each one just with a point in space, the point at the tip of this vector. That way, if you want to think about every possible vector whose tip sits on a certain line, just think about that line itself.
+So when dealing with collections of vectors like this, it's common to represent each one just with a point in space, the point at the tip of this vector. That way, if you want to think about every possible vector whose tip sits on a certain line, just think about that line itself.
 
 <Figure
-  image="point_line.png"
-  video="point_line.mp4"
+  image="figures/point_line.png"
+  video="figures/point_line.mp4"
 />
 
 Likewise, to think about all possible two-dimensional vectors, conceptualize each one as the point where its tip sits. Then to think about all of them all at once, you can just think about the infinite flat sheet that is two-dimensional space, leaving the arrows out of it.
 
 <Figure
-  image="point_space.png"
-  video="point_space.mp4"
+  image="figures/point_space.png"
+  video="figures/point_space.mp4"
 />
 
-In general, if you’re thinking of a vector on its own, think of it as an arrow, and if you’re thinking of a collection, it’s convenient to think of them as points.
-
-<Figure
-  image="think_about_vectors.svg"
-/>
+In general, if you're thinking of a vector on its own, think of it as an arrow, and if you're thinking of a collection, it's convenient to think of them as points.
 
 ## Span in 3D
 
 The idea of span gets more interesting if we start thinking about vectors in three-dimensional space. For example, if you take two vectors in three-dimensional space that are not pointing in the same direction, what does it mean to take their span?
 
-<Interactive filename="span_interactive/index" aspectRatio={800/500} />
+Interactive filename="span_interactive/index" aspectRatio={800/500}
 
 Well, their span is the collection of all possible linear combinations of those two vectors, meaning all possible vectors you get by scaling each of the two you start with in some way, then adding them together. You can imagine turning two knobs to change the two scalars defining the linear combination, adding the scaled vectors and following the tip of the resulting vector. That tip traces out some kind of flat sheet cutting through the origin of three-dimensional space. 
 $$
@@ -176,7 +194,8 @@ $$
 \color{black}+
 \color{purple}b\overrightarrow{\mathbf{w}}
 $$
-<Interactive filename="span_interactive2/index" aspectRatio={800/650} />
+
+Interactive filename="span_interactive2/index" aspectRatio={800/650}
 
 **Which vectors in 3D space are not in this span?**
 
@@ -187,6 +206,7 @@ The set of all possible vectors whose tips sit on this flat sheet is the span of
 </FreeResponse>
 
 So, what happens if you add on a third vector, and consider the span of all three of those guys? A linear combination of three vectors is defined pretty much the same way as for two: Choose three scalars, use them to scale each of your vectors, then add them all together. And again, the span of these vectors is the set of all possible linear combinations.
+
 $$
 \color{green}\overrightarrow{\mathbf{x}}
 \color{black}=
@@ -196,7 +216,9 @@ $$
 \color{black}+
 \color{blue}c\overrightarrow{\mathbf{u}}
 $$
-Two things could happen. The first possibility is if your third vector happens to be sitting on the span of the first two. Then the span doesn’t change, you’re sort of trapped on that same flat sheet. In other words, adding a scaled version of the third vector to linear combinations of the first two doesn’t give you access to any new vectors. This means the third vector can also be expressed as a linear combination of the other two:
+
+Two things could happen. The first possibility is if your third vector happens to be sitting on the span of the first two. Then the span doesn't change, you're sort of trapped on that same flat sheet. In other words, adding a scaled version of the third vector to linear combinations of the first two doesn't give you access to any new vectors. This means the third vector can also be expressed as a linear combination of the other two:
+
 $$
 \color{blue}\overrightarrow{\mathbf{u}}
 \color{black}=
@@ -204,21 +226,23 @@ $$
 \color{black}+
 \color{purple}b\overrightarrow{\mathbf{w}}
 $$
-There is another possibility though, if you just randomly choose a third vector, it’s almost certainly *not* sitting on the span of the first. Since it’s then pointing in a separate direction, it unlocks access to every possible three-dimensional vector! The way I like to think about this is that as you scale the new third vector, it moves around the span of the first two to sweep it through all of space.
 
-<Interactive filename="span_interactive3/index" aspectRatio={800/650} />
+There is another possibility though, if you just randomly choose a third vector, it's almost certainly *not* sitting on the span of the first. Since it's then pointing in a separate direction, it unlocks access to every possible three-dimensional vector! The way I like to think about this is that as you scale the new third vector, it moves around the span of the first two to sweep it through all of space.
 
-It’s kind of like you’re making full use of the three freely-changing scalars that you have at your disposal to access the full three dimensions of space. 
+Interactive filename="span_interactive3/index" aspectRatio={800/650}
 
-In the case where the third vector was sitting on the span of the first two, or the case where two vectors happen to line up, we want some terminology to describe the fact that at least one of these vectors is redundant, not adding anything to our span. Whenever this happens, where you have multiple vectors, and you could remove one without reducing their span, the relevant terminology is to say they are “linearly dependent”.
+It's kind of like you're making full use of the three freely-changing scalars that you have at your disposal to access the full three dimensions of space. 
+
+In the case where the third vector was sitting on the span of the first two, or the case where two vectors happen to line up, we want some terminology to describe the fact that at least one of these vectors is redundant, not adding anything to our span. Whenever this happens, where you have multiple vectors, and you could remove one without reducing their span, the relevant terminology is to say they are "linearly dependent".
 
 <Figure
-  image="linearly_dependent.svg"
-  video="linearly_dependent.mp4"
+  image="figures/linearly_dependent.svg"
+  video="figures/linearly_dependent.mp4"
   width="100%"
 />
 
-Another way of phrasing this would be to say that one of the vectors can be expressed as a linear combination of the others. That is, it’s already in the span of the other two. On the other hand, if each vector really does add another dimension to the span, they are said to be “linearly independent”.
+Another way of phrasing this would be to say that one of the vectors can be expressed as a linear combination of the others. That is, it's already in the span of the other two. On the other hand, if each vector really does add another dimension to the span, they are said to be "linearly independent".
+
 $$
 \begin{align*}
 \text{Linearly Dependent: }\quad
@@ -238,9 +262,11 @@ $$
 \quad\color{black}\text{ for all }\color{red}a\color{black}\text{ and }\color{purple}b
 \end{align*}
 $$
+
 <Accordion title="Notes on Notation">
 
 We'd like to express the idea of linear dependence with symbols. A set of vectors is linearly dependent if one of them can be expressed as a linear combination of the others, meaning you can find two scalars such that the sum of the scaled version of the first two vectors gives you the third.
+
 $$
 \text{The set}
 \left\{ 
@@ -257,9 +283,11 @@ $$
 \color{purple}b\overrightarrow{\mathbf{w}}
 \quad\color{black}\text{ for some }\color{red}a\color{black}\text{ and }\color{purple}b
 $$
+
 However the vector $\color{blue}\overrightarrow{\mathbf{u}}$ isn't more special than the other two, we could rewrite the equation solving for either $\color{red}\overrightarrow{\mathbf{v}}$ or $\color{purple}\overrightarrow{\mathbf{w}}$ by choosing different constants.
 
 To demonstrate all three vectors are of equal importance textbooks will often confuse students by defining linear dependence as:
+
 $$
 \text{The set}
 \left\{ 
@@ -278,11 +306,12 @@ $$
 \mathbf{0}
 \quad\color{black}\text{ for nontrivial scalars}
 $$
+
 All of the vectors are sitting on one side of the equal sign with the zero vector $\mathbf{0}$ on the other side. In this arrangement, we could technically set all of the constants to $0$ to satisfy the equation. So we attach a note saying that the scalars must be "nontrivial" meaning they can't all be $0$. On the other hand, the definition of vectors being linearly *in*dependent is if the only possible linear combination that can bring them to $\mathbf 0$ is the trivial case when all of the scalars are zero.
 
 </Accordion>
 
-**The technical definition for the “basis” of a space is a set of linearly independent vectors that span that space, given how I described a basis earlier, and given your understanding of the words “span” and “linearly independent”, why does this definition make sense?**
+**Quiz:** The technical definition for the "basis" of a space is a set of linearly independent vectors that span that space. Given how I described a basis earlier, and given your understanding of the words "span" and "linearly independent", why does this definition make sense?
 
 <FreeResponse>
 
