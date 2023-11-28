@@ -300,7 +300,6 @@ What's more, this function is actually linear, since it passes our visual test t
 
 Just to be clear, even though I've embedded the number line in 2d space like this, the outputs of this function are numbers, not 2d vectors. You should think of a function that takes in two coordinates, and outputs a single coordinate.
 
-
 <Figure
     image="./figures/unit-vector/NumberLineFormedByUnitVectorStillVectorToNumber.svg"
 />
@@ -311,86 +310,96 @@ But the vector u hat is a two-dimensional vector, living in the input space, it'
     image="./figures/unit-vector/UnitVectorProjectionMatrix.svg" 
 />
 
-To find that 1x2 matrix, let's zoom in on our diagonal number line setup and think about where i hat and j hat go, since their landing spots will be the columns of this matrix.
+To find that 1x2 matrix, let's zoom in on our diagonal number line setup and think about where ijhat and j-hat go, since their landing spots will be the columns of this matrix.
 
 <Figure
     image="./figures/unit-vector/NumberLineFormedByUnitVectorIHatJHat.svg" 
 />
 
-We can reason through this with a very elegant piece of symmetry:  Since i hat and u-hat are both unit vectors, projecting i hat onto the line passing through u-hat looks completely symmetric to projecting u hat onto the x axis. So when we ask what number i hat lands on in the projection, the answer will be the same as whatever number u hat lands on when you project it onto the x-axis.
+We can reason through this with a very elegant piece of symmetry:  Since i-hat and u-hat are both unit vectors, projecting i-hat onto the line passing through u-hat looks completely symmetric to projecting u-hat onto the x-axis. So when we ask what number i-hat lands on in the projection, the answer will be the same as whatever number u-hat lands on when you project it onto the x-axis.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-u-hat-i-hat-line-of-symmetry.png
-    " 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorIHatSymmetry.svg" 
 />
 
-But projecting u hat on the x-axis just means taking the x-coordinate of u-hat, so by symmetry, the number where i hat lands when projected onto this diagonal number line will be the x-coordinate of u-hat.
+But projecting u-hat on the x-axis just means taking the x-coordinate of u-hat, so by symmetry, the number where i-hat lands when projected onto this diagonal number line will be the x-coordinate of u-hat.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-u-hat-i-hat-line-of-symmetry-answer.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorIHatSymmetryUHat.svg" 
 />
 
-Isn't that neat? For identical reasoning, the y coordinate of u-hat gives us the number where j hat lands when projected onto the number-line-copy. 
+Isn't that neat? For identical reasoning, the y-coordinate of u-hat gives us the number where j-hat lands when projected onto the number-line-copy. 
 
 <Figure
-    image="./figures/unit-vector/unit-vector-u-hat-j-hat-line-of-symmetry-answer.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorJHatSymmetryUhat.svg" 
 />
 
-So the entries of the 1x2 matrix describing our projection transformation will be the x-coordinate of u hat and the y-coordinate of u hat.
+So the entries of the 1x2 matrix describing the projection transformation are going to be the coordinates u-hat. Computing this projection transformation for arbitrary vectors in space requires multiplying those vectors by this matrix.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-arbitrary-vector.png" 
+    image="./figures/unit-vector/NumberLineFormedByUnitVectorProjectionTransformation.svg" 
 />
 
-Computing this projection transformation for arbitrary vectors in space requires multiplying those vectors by this matrix.
+But of course, that matrix-vector multiplication process is computationally identical to a dot product with u-hat.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-transform-matrix.png" 
-/>
-
-But of course, that matrix-vector multiplication process is computationally identical to a dot product with u hat.
-
-<Figure
-    image="./figures/unit-vector/unit-vector-matrix-vector-product-same-as-dot-product.png" 
+    image="./figures/unit-vector/MatrixVectorAndDotProduct.svg"
 />
 
 This is why taking the dot product with a unit vector can be interpreted as projecting a vector onto the span of that unit vector, and taking its length. It's as if the vector u-hat is really a linear transformation disguised as a vector.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-interpretation.png" 
-/>
-
-<Figure
-    image="./figures/unit-vector/unit-vector-interpretation-length.png" 
+    image="./figures/unit-vector/UnitVectorProjectArbitraryVector.svg" 
 />
 
 For example, let's say we took that unit vector u and scaled it up by a factor of 3.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-scaled.png" 
+    image="./figures/unit-vector/UnitVectorScaleScaleByThree.svg" 
 />
 
 Numerically, each of its components gets multiplied by 3, so looking at the matrix associated with this vector, it takes i hat and j hat to 3 times the values where they landed before. 
 
 <Figure
-    image="./figures/unit-vector/unit-vector-scaled-associated-transformation.png" 
+    image="./figures/unit-vector/UnitVectorScaleScaleByThreeAssociatedTransformation.svg" 
 />
 
 Since this is linear, it implies more generally that the new matrix can be interpreted as projecting any vector onto the number-line-copy, then multiplying where it lands by 3.
 
 <Figure
-    image="./figures/unit-vector/unit-vector-project-then-scale.png" 
+    image="./figures/unit-vector/UnitVectorScaleScaleByThreeProjectThenScale.svg" 
 />
 
 This is why the dot product with non-unit vectors can be interpreted as first projecting onto that vector, then scaling by the length of that vector.
 
+<Question
+  question="Using the last figure what is the dot product of the vector $\left[\begin{array}{c}-2 \\ 1\end{array}\right]$ and the unit vector scaled by three from above?"
+  choice1="1"
+  choice2="-3"
+  choice3="-1"
+  choice4="3"
+  answer={2}
+>
+
+TODO: answer that also gets into the nitty-gritty with the trigonometry of the 3-4-triangle
+
+</Question>
+
 ## Duality
 
-Notice what happened here: We had a linear transformation from 2d space to the number line which was not defined in terms of numerical vectors or numerical dot products, it was defined by projecting space onto a diagonal copy of the number line. Because the transformation was linear, it was necessarily described by some 1x2 matrix, and since multiplying a 1x2 matrix by a 2d vectors is the same as turning that matrix on its side and taking a dot product, this transformation was, inescapably, related to some 2d vector.
+Notice what happened here: We had a linear transformation from 2d space to the number line which was not defined in terms of numerical vectors or numerical dot products, it was defined by projecting space onto a diagonal copy of the number line.
 
-The lesson here is that any time you have one of these linear transformations whose output space is the number line, no matter how it was defined, there is some unique vector v corresponding to that transformation, in the sense that applying that transformation to some other vector w is the same as taking the dot product between v and w.
+<Figure
+    image="./figures/duality/DualityProjectingSpaceOntoDiagonalNumberLine.svg" 
+/>
 
-This, to me, is utterly beautiful. It's an example of something in math called "duality". 
+Because the transformation was linear, it was necessarily described by some 1x2 matrix, and since multiplying a 1x2 matrix by a 2d vectors is the same as turning that matrix on its side and taking a dot product, this transformation was, inescapably, related to some 2d vector.
+
+<Figure
+    image="./figures/duality/DualityTransformationDuality.svg" 
+/>
+
+The lesson here is that any time you have one of these linear transformations whose output space is the number line, no matter how it was defined, there is some unique vector $\vec{\mathbf{v}}$ corresponding to that transformation, in the sense that applying that transformation to some other vector $\vec{\mathbf{w}}$ is the same as taking the dot product between $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$. This, to me, is utterly beautiful. It's an example of something in math called "duality". 
 
 Duality shows up in many different ways and forms throughout math, and it's super tricky to actually define. Loosely speaking, it refers to situations where you have a natural-but-surprising correspondence between two types of mathematical things. For the linear algebra case you just learned about, you'd say the dual of a vector is the linear transformation it encodes, and the dual of a linear transformation from some space to one dimension is a certain vector in that space.
 

@@ -1,2 +1,3 @@
 - Maybe add a description to what we mean by "projection"
 - This is nit-picky, but do we prefer "u-hat" in a paragraph or $\hat{\mathbf{u}}$? And similarly, is the convention for unit vectors to appear like a variable or like a vector with the TeX $\mathbf{v}$ bolding used for other vectors?
+- I think the end of the "unit vector" section and the "duality" section are going to be the hardest for the student, I tried to create a good question, but maybe there are some other considerations here.
