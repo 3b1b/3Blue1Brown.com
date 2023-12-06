@@ -20,23 +20,31 @@ Here, I'll try to hit the main points that students are usually shown about the 
 
 ## Two dimensions
 
-We'll start in two dimensions. If you have two vectors, v and w, think about the parallelogram that they span out. What I mean by this is that if you take a copy of v, and move its tail to the tip of w, and you take a copy of w, and move its tail to the tip of v, the four vectors enclose a certain parallelogram.
+We'll start in two dimensions. If you have two vectors, $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, think about the parallelogram that they span out. What I mean by this is that if you take a copy of $\vec{\mathbf{v}}$, and move its tail to the tip of w, and you take a copy of $\vec{\mathbf{w}}$, and move its tail to the tip of $\vec{\mathbf{v}}$, the four vectors enclose a certain parallelogram.
 
 <Figure
-    image="figures/two-dimensions-area-of-parallelogram.png" 
+    image="./figures/two-dimensions/AreaOfParallelogram.svg" 
 />
 
-The cross product of v and w, written with the x-shaped multiplication symbol, is the area of this parallelogram. Well, almost, we also need to consider orientation. Basically, if v is on the right of w, then v cross w is positive and equal to the area of that parallelogram. But if v is on the left of w, the cross product is negative 1 times the area of that parallelogram.
+The cross product of $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, written with the x-shaped multiplication symbol ($\times$), is the area of this parallelogram.
 
 <Figure
-    image="figures/two-dimensions-cross-product-positive.png" 
+    image="./figures/two-dimensions/AreaOfParallelogramFormula.svg" 
 />
+
+Well, almost, we also need to consider orientation. Basically, if $\vec{\mathbf{v}}$ is on the right of $\vec{\mathbf{w}}$, then $\vec{\mathbf{v}}$ cross $\vec{\mathbf{w}}$ is positive and equal to the area of that parallelogram.
 
 <Figure
-    image="figures/two-dimensions-cross-product-negative.png" 
+    image="./figures/two-dimensions/AreaOfParallelogramPositive.svg" 
 />
 
-Notice, this means order matters. If you swap v and w, and instead consider w cross v, the cross product becomes the negative of whatever it was before.
+But if $\vec{\mathbf{v}}$ is on the left of $\vec{\mathbf{w}}$, the cross product is negative 1 times the area of that parallelogram.
+
+<Figure
+    image="./figures/two-dimensions/AreaOfParallelogramNegative.svg" 
+/>
+
+Notice, this means order matters. If you swap $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, and instead consider $\vec{\mathbf{w}}$ cross $\vec{\mathbf{v}}$, the cross product becomes the negative of whatever it was before.
 
 $$
 \vec{\mathbf{v}} \times \vec{\mathbf{w}} = -\vec{\mathbf{w}} \times \vec{\mathbf{v}}
@@ -44,91 +52,169 @@ $$
 
 The way I always remember this is that when you take the cross product of the two basis vectors in order, i hat cross j hat, the result should be positive. In fact, the order of your basis vectors is what defines orientation. So since i hat is on the right of j hat, I remember that v cross w is positive whenever w is on the right of v.
 
-TODO: insert visual here
+<Figure
+    image="./figures/two-dimensions/BasisVectorsSign.svg" 
+/>
 
 So for example, with the vectors shown here, I'll just tell you that the area of that parallelogram is 7. And since v is on the left of w, the cross product should be negative, so v cross w is -7.
 
 <Figure
-    image="figures/two-dimensions-area-of-parallelogram-is-negative-seven.png" 
+    image="./figures/two-dimensions/AreaOfParallelogramCalculation.svg" 
 />
 
-<!--TODO: add negative sign to the image-->
+**Given the diagram below:**
+
+<Figure
+    image="./figures/two-dimensions/AreaOfParallelogramQuestion1.svg" 
+/>
+
+<Question
+  question="Is the cross product $\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ positive?"
+  choice1="true"
+  choice2="false"
+  answer={1}
+>
+
+The cross product $\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ is positive since $\vec{\mathbf{v}}$ is on the right of $\vec{\mathbf{w}}$.
+
+<Figure
+    image="./figures/two-dimensions/AreaOfParallelogramQuestion1Answer.svg" 
+/>
+
+</Question>
+
+**Given the diagram below:**
+
+<Figure
+    image="./figures/two-dimensions/AreaOfParallelogramQuestion2.svg" 
+/>
+
+<Question
+  question="Is the cross product $\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ positive?"
+  choice1="true"
+  choice2="false"
+  answer={2}
+>
+
+The cross product $\vec{\mathbf{w}} \times \vec{\mathbf{v}}$ is negative since $\vec{\mathbf{v}}$ is on the left of $\vec{\mathbf{w}}$.
+
+<Figure
+    image="./figures/two-dimensions/AreaOfParallelogramQuestion2Answer.svg" 
+/>
+
+</Question>
 
 ## Compute with determinant
 
-Of course, you want to be able to compute this without someone telling you the area and this is where the determinant comes in from <LessonLink id="determinant">chapter 5</LessonLink>. For the 2d cross product v cross w, you write the coordinates of v as the first column of a matrix, write the coordinates of w as the second column, then you compute the determinant.
+Of course, you want to be able to compute this without someone telling you the area and this is where the determinant comes in from <LessonLink id="determinant">chapter 5</LessonLink>. For the 2d cross product $\vec{\mathbf{v}}$ cross $\vec{\mathbf{w}}$, you write the coordinates of $\vec{\mathbf{v}}$ as the first column of a matrix, write the coordinates of w as the second column, then you compute the determinant.
 
 <Figure
-    image="figures/determinant-computation-as-a-matrix.png" 
+    image="./figures/compute-with-determinant/ComputeCrossProduct.svg" 
 />
 
-This is because a matrix whose columns represent v and w corresponds with a linear transformation that moves the basis vectors i hat and j hat to v and w. 
+This is because a matrix whose columns represent $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ corresponds with a linear transformation that moves the basis vectors i hat and j hat to $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$. 
 
 <Figure
-    image="figures/determinant-basis-vectors.png" 
+    image="./figures/compute-with-determinant/ChangeOfArea.svg"
+    video="./figures/compute-with-determinant/ChangeOfArea.mp4"
+    show="video" 
 />
 
-<Figure
-    image="figures/determinant-basis-vectors-transformed.png" 
-/>
-
-The determinant is all about measuring how areas change due to a transformation, and the prototypical area to look at is the unit square resting on i hat and j hat. After the transformation, that square turns into the parallelogram we care about. So the determinant, which generally measures the factor by which areas are changed, gives the area of this parallelogram, since it evolved from a square that started with area 1.
+The determinant is all about measuring how areas change due to a transformation, and the prototypical area to look at is the unit square resting on i hat and j hat. After the transformation, that square turns into the parallelogram we care about. So the determinant, which generally measures the factor by which areas are changed, gives the area of this parallelogram, since it evolved from a square that started with area 1. 
 
 <Figure
     image="figures/determinant-basis-vectors-transformed-orientation.png" 
+    caption="TODO: replace with image callback from chapter 5"
 />
 
- What's more, if v is to the left of w, it means orientation is flipped during the transformation, which is what it means for a determinant to be negative.
+What's more, if $\vec{\mathbf{v}}$ is to the left of $\vec{\mathbf{w}}$, it means orientation is flipped during the transformation, which is what it means for a determinant to be negative.
+
+<Figure
+    image="./figures/compute-with-determinant/DeterminantNegative.svg"
+    video="./figures/compute-with-determinant/DeterminantNegative.mp4"
+    caption="Since the orientation is flipped, the determinant is negative."
+/>
+
+<Figure
+    image="./figures/compute-with-determinant/DeterminantPositive.svg"
+    video="./figures/compute-with-determinant/DeterminantPositive.mp4"
+    caption="Since the orientation isn't flipped, the determinant is positive."
+/>
 
 ### Determinant example
 
 <Figure
-    image="figures/determinant-example.png" 
+    image="./figures/determinant-example/DeterminantExample.svg" 
 />
 
-As an example, if v has coordinates [-3, 1], and w has coordinates [2, 1], the determinant of the matrix with those coordinates has columns is $(-3)\cdot1 - 2\cdot1$, which is $-5$. So evidently the area of the parallelogram they define is $5$, and since $\vec{\mathbf{w}}$ is to the right of $\vec{\mathbf{v}}$ it should make sense that this value is negative.
+As an example, if $\vec{\mathbf{v}}$ has coordinates $\begin{bmatrix}-3\\1\end{bmatrix}$, and $\vec{\mathbf{w}}$ has coordinates  $\begin{bmatrix}2\\1\end{bmatrix}$, the determinant of the matrix with those coordinates has columns is $(-3)\cdot1 - 2\cdot1$, which is $-5$. So evidently the area of the parallelogram they define is $5$, and since $\vec{\mathbf{w}}$ is to the right of $\vec{\mathbf{v}}$ it should make sense that this value is negative.
 
 <Figure
-    image="figures/determinant-example-calculation.png" 
+    image="./figures/determinant-example/DeterminantTransformation.svg" 
+    video="./figures/determinant-example/DeterminantTransformation.mp4"
 />
 
 I'd recommend playing around with this notion a bit in your head to get an intuitive feel for the cross product.
 
-TODO: example question
+<Question
+  question="What is result of of $\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ where $\vec{\mathbf{v}} = \begin{bmatrix}1\\-2\end{bmatrix}$ and $\vec{\mathbf{w}} = \begin{bmatrix}4\\3\end{bmatrix}$?"
+  choice1="5"
+  choice2="-11"
+  choice3="11"
+  choice4="10"
+  answer={3}
+>
+
+We can start by visualizing the two vectors in space:
+
+<Figure
+    image="./figures/determinant-example/DeterminantExampleQuestion1.svg" 
+/>
+
+We know the cross product is equal to area of the parallelogram formed by the two vectors and since $\vec{\mathbf{v}}$ is on the right of $\vec{\mathbf{w}}$ we also know the result will be positive.
+
+<Figure
+    image="./figures/determinant-example/DeterminantExampleQuestion1Parallelogram.svg" 
+/>
+
+To compute the cross product calculate the determinant of the transformation matrix $\left[\begin{array}{cc} 1 & 4 \\ -2 & 3\end{array}\right]$.
+
+<Figure
+    image="./figures/determinant-example/DeterminantExampleQuestion1Calculation.svg" 
+/>
+
+</Question>
 
 ## Properties
 
 For example, you might notice that when two vectors are perpendicular, or close to being perpendicular, their cross product is larger than it would be if they were pointing in a very similar direction, because the area of that parallelogram is larger when its sides are perpendicular. 
 
 <Figure
-    image="figures/properties-more-perpendicular.png" 
+    image="./figures/properties/BiggerSmaller.svg"
+    caption="$\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ is bigger when the vectors are more perpendicular to eachother and smaller when the vectors are pointing in a similar direction."
 />
 
-<Figure
-    image="figures/properties-similar-direction.png" 
-/>
-
-Something else you might notice is that if you scale up one of the vectors, perhaps multiplying v by 3, then the area of that parallelogram is scaled up by a factor of three, so (3v) cross w will be exactly three times the value of v cross w.
+Something else you might notice is that if you scale up one of the vectors, perhaps multiplying $\vec{\mathbf{v}}$ by $3$, then the area of that parallelogram is scaled up by a factor of three, so $(3\vec{\mathbf{w}})$ cross $\vec{\mathbf{w}}$ will be exactly three times the value of $\vec{\mathbf{v}}$ cross $\vec{\mathbf{w}}$.
 
 <Figure
-    image="figures/properties-scaling.png" 
+    image="./figures/properties/Scaling.svg" 
 />
 
 ## 3d cross product, standard view
 
-Now, even though everything we just did is a perfectly fine mathematical operation, what I just described is technically not the cross product. The true cross product is something that combines two three-dimensional vectors to get a new 3d vector.
+Now, even though everything we just did is a perfectly fine mathematical operation, what I just described is technically not the cross product. The true cross product is something that combines two three-dimensional vectors to get a new 3d vector. You still consider the parallelogram defined by the two vectors, and the area of that parallelogram still plays a big role. To be concrete let's say that area is 2.5 for the vectors shown here.
 
 <Figure
     image="figures/3d-area-of-parallelogram.png" 
 />
+
+But as I said, the cross product is not a number, it's a vector. This new vector's length will be the area of that parallelogram, which in this example is 2.5, and the direction of that new vector is perpendicular to that parallelogram.
 
 <Figure
     image="figures/3d-resulting-vector.png" 
 />
 
 <!--TODO: lock orientation of the axis so that the two views are identical-->
-
-You still consider the parallelogram defined by the two vectors, and the area of that parallelogram still plays a big role. To be concrete let's say that area is 2.5 for the vectors shown here. But as I said, the cross product is not a number, it's a vector. This new vector's length will be the area of that parallelogram, which in this example is 2.5, and the direction of that new vector is perpendicular to that parallelogram.
 
 But which way, right?  There are two possible vectors with length 2.5 pointing perpendicular to a given plane. This is where the right hand rule comes in. Point the forefinger of your right hand in the direction of v, stick out your middle finger in the direction of w; then when you point up your thumb, that's the direction of the cross product.
 
@@ -165,4 +251,3 @@ The silliness is probably clear here. What on earth does it mean to put a vector
 And sure, in some sense this is a notational trick, but there is a reason for doing it. It's not just a coincidence that the determinant is once again important, and putting the basis vectors in these slots is not just random. To understand where this all comes from, it helps to use the idea of duality that I introduced in the last chapter. This concept is a bit heavy, though, so I'm putting it into a separate follow-on chapter for those of you curious to learn more.
 
 Arguably, it falls outside the essence of linear algebra, so you can feel comfortable if you want to skip that next chapter. But for those of you willing to go a bit deeper, it's just really cool.
-
