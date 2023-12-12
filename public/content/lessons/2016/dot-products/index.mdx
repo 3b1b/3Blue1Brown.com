@@ -28,10 +28,20 @@ Numerically, if you have two vectors of the same dimension, two lists of numbers
     image="./figures/numerical-method/dot-product.svg" 
 />
 
-So the vector $\left[\begin{array}{l}1 \\ 2\end{array}\right]$ dotted with $\left[\begin{array}{l}3 \\ 4\end{array}\right]$ would be $1 \cdot 3+2 \cdot 4$. The vector $\left[\begin{array}{l}6 \\ 2 \\ 8 \\ 3\end{array}\right]$ dotted with $\left[\begin{array}{l}1 \\ 8 \\ 5 \\ 3\end{array}\right]$ would be $6 \cdot 1+2 \cdot 8+8 \cdot 5+3 \cdot 3$.
+For instance, two vectors of length two dotted together looks like:
+
+$$
+\left[\begin{array}{l}1 \\ 2\end{array}\right] \cdot \left[\begin{array}{l}3 \\ 4\end{array}\right] = 1 \cdot 3+2 \cdot 4 = 9
+$$
+
+And two vectors of length four dotted together looks like:
+
+$$
+\left[\begin{array}{l}6 \\ 2 \\ 8 \\ 3\end{array}\right] \cdot \left[\begin{array}{l}1 \\ 8 \\ 5 \\ 3\end{array}\right] = 6 \cdot 1+2 \cdot 8+8 \cdot 5+3 \cdot 3 = 71
+$$
 
 <Question
-  question="What's the dot product of $\left[\begin{array}{l}4 \\ 6\end{array}\right]$ and $\left[\begin{array}{l}-3 \\ 2\end{array}\right]$ "
+  question="What's the dot product of $\left[\begin{array}{l}4 \\ 6\end{array}\right]$ and $\left[\begin{array}{l}-3 \\ 2\end{array}\right]$"
   choice1="$-9$"
   choice2="$11$"
   choice3="$9$"
@@ -39,7 +49,13 @@ So the vector $\left[\begin{array}{l}1 \\ 2\end{array}\right]$ dotted with $\lef
   answer={4}
 >
 
-The dot product of $\left[\begin{array}{l}4 \\ 6\end{array}\right]$ and $\left[\begin{array}{l}-3 \\ 2\end{array}\right]$ is $0$, because $\left[\begin{array}{l}4 \\ 6\end{array}\right] \cdot \left[\begin{array}{l}-3 \\ 2\end{array}\right] = 4(-3) + 6(2)$ and $-12$ plus $12$ is zero.
+$$
+\begin{align}
+\left[\begin{array}{l}4 \\ 6\end{array}\right] \cdot \begin{bmatrix} \: -3 \: \\ \:2 \: \end{bmatrix} &= 4(-3) + 6(2) \\ \rule{0pt}{2.25em}
+&= -12 + 12 \\ \rule{0pt}{2.5em}
+&= 0
+\end{align}
+$$
 
 </Question>
 
@@ -63,7 +79,11 @@ When the projection of $\mathbf{w}$ is pointing in the opposite direction from $
     image="./figures/geometric-interpretation/GeometricInterpretationNegative.svg" 
 />
 
-So if two vectors are generally pointing in the same direction, their dot product is positive; when they are perpendicular, meaning the projection of one onto the other is the zero vector, their dot product is zero; and when they point in generally opposite directions, their dot product is negative.
+Notice how this means the sign of a dot product tells you how much two vectors $\mathbf{v}$ and $\mathbf{w}$ align.
+
+- $\mathbf{v} \cdot \mathbf{w} > 0$ when they point in similar directions.
+- $\mathbf{v} \cdot \mathbf{w} = 0$ when they are perpendicular, meaning the projection of one onto the other is the zero vector.
+-  $\mathbf{v} \cdot \mathbf{w} < 0$ when they point in opposing directions.
 
 <Figure
     image="./figures/geometric-interpretation/PositiveAndNegativeOutput.svg" 
@@ -112,7 +132,7 @@ So if two vectors are generally pointing in the same direction, their dot produc
     caption="Geometric interpretation recap."
 />
 
-Now, this geometric interpretation is very asymmetric, in that it treats the two vectors very differently, so when I first learned this I was surprised that order doesn't matter; that you could instead project $\mathbf{v}$ onto $\mathbf{w}$ and multiply the length of the projected $\mathbf{v}$ times the length of $\mathbf{w}$ will to get the same result.
+This geometric interpretation is very asymmetric, in that it treats the two vectors very differently. When I first learned this I was surprised that order doesn't matter, that you could instead project $\mathbf{v}$ onto $\mathbf{w}$ and multiply the length of the projected $\mathbf{v}$ times the length of $\mathbf{w}$ and get the same result.
 
 <Figure
     image="./figures/geometric-interpretation/OrderDoesNotMatter.svg"
@@ -143,7 +163,7 @@ On the other hand, let's say you were thinking about $\mathbf{v}$ as getting pro
 
 So even though symmetry is broken, the effect this scaling has on the value of the dot product is the same under both interpretations.
 
-There's also another big question other than the order, why on earth does this numerical process of matching coordinates, multiplying pairs and adding them together have anything to do with projection? To give a satisfactory answer, and to do full justice to the significance of the dot product, we need to unearth something deeper going on here, which often goes by the name "duality", but before getting to that, I need to spend some time talking about linear transformations from multiple dimensions to one dimension, which is, the number line. 
+There's also another big question other than the order: Why on earth does this numerical process of matching coordinates, multiplying pairs, and adding them together have anything to do with projection? To give a satisfactory answer, and to do full justice to the significance of the dot product, we need to unearth something deeper going on here, which often goes by the name "duality." Before getting to that, I need to spend some time talking about linear transformations from multiple dimensions to one dimension, which is the number line.  
 
 <Figure
     image="./figures/geometric-interpretation/LinearTransformationVectorToNumber.svg" 
@@ -184,7 +204,7 @@ Of course, this means that if there is some line of dots that is unevenly spaced
     show="video"
 />
 
-As with the cases we've seen before, one of these linear transformations is completely determined by where i hat and j hat land, but this time each one simply lands on a number. So when we record where they land as the columns of a matrix, each of those columns just has a single number.
+As with the cases we've seen before, one of these linear transformations is completely determined by where $\hat{\imath}$ and $\hat{\jmath}$ land, but this time each one simply lands on a number. So when we record where they land as the columns of a matrix, each of those columns just has a single number.
 
 <Figure
     image="./figures/linear-transformations/TransformationMatrix.svg" 
@@ -197,7 +217,11 @@ Let's walk through an example of what it means to apply one of these transformat
     image="./figures/linear-transformations/LinearTransformationVectorAsScaledBasis.svg" 
 />
 
-A consequence of linearity is that after the transform, the vector will be $3$ times the place where i hat lands, $2$, plus $2$ times the place where j hat lands, $-1$, which implies that it lands on $4$.
+If we call our linear transformation $L$, we can use the linearity to figure out where our vector goes.
+
+$$
+T(3 \hat{\imath} + 2 \hat{\jmath}) = 3 T(\hat{\imath}) + 2 T(\hat{\jmath}) = 3(2) + 2(-1) = 4
+$$
 
 <Figure
     image="./figures/linear-transformations/LinearTransformationFollowWhereScaledBasisVectorsLand.svg" 
@@ -381,7 +405,7 @@ This is why the dot product with non-unit vectors can be interpreted as first pr
   answer={2}
 >
 
-TODO: answer that also gets into the nitty-gritty with the trigonometry of the 3-4-triangle
+From the diagram, the projection of $\left[\begin{array}{c}-2 \\ 1\end{array}\right]$ onto the number line aligned to our unit vector is $-1$. This means $\vec{\mathbf{v}} \cdot \hat{\mathbf{u}}=-1$. Therefore, using linearity, $\vec{\mathbf{v}} \cdot(3 \hat{\mathbf{u}})=-3$
 
 </Question>
 
@@ -405,9 +429,8 @@ Duality shows up in many different ways and forms throughout math, and it's supe
 
 ## Conclusion
 
-So to sum up, on the surface, the dot product is a very useful geometric tool for understanding projections, and for testing whether or not vectors tend to point in the same direction. And that's probably the most important thing for you to remember about the dot product, but on a deeper level, dotting two vectors is a way to translate one of those vectors to the world of transformations.
+To sum up, on the surface, the dot product is a very useful geometric tool for understanding projections, and for testing whether or not vectors tend to point in the same direction. That's probably the most important thing for you to remember about the dot product, but on a deeper level, dotting two vectors is a way to translate one of those vectors to the world of transformations.
 
-Again, numerically, this might feel like a silly point to emphasize; it's just two computations that happen to look similar, but the reason I find this important is that in math, when you are dealing with a vector, once you get to know its personality, sometimes you realize that it's easier to understand it not as an arrow in space, but as the physical embodiment of a linear transformation. It's as the vector is really just a conceptual shorthand for a certain transformation, since it's easier to think about an arrow in space than it is to think about a transformation where all that space is moved onto a number line.
+Again, numerically, this might feel like a silly point to emphasize. It's just two computations that happen to look similar. The reason I find this important is that in math, when you are dealing with a vector, once you get to know its personality, sometimes you realize that it's easier to understand it not as an arrow in space, but as the physical embodiment of a linear transformation (the gradient vector from multivariable calculus comes to mind). It's as if the vector is just a conceptual shorthand for a certain transformation since it's easier to think about an arrow in space than it is to think about a transformation where all that space is moved onto a number line.
 
-In the next chapter, you'll see another really good example of this duality in action as I talk about the cross product.
-
+In the next chapter, you'll see another really good example of this duality in action as you and I get into the cross product.
