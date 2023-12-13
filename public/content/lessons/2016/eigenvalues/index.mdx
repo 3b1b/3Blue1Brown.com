@@ -7,4 +7,416 @@ video: PFDu9oVAE-g
 source: _2016/eola/chapter10.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+> "Last time, I asked: 'What does mathematics mean to you?', and some people answered: 'The manipulation of numbers, the manipulation of structures.' And if I had asked what music means to you, would you have answered: 'The manipulation of notes?'"
+>
+> \- Serge Lang
+
+Eigenvectors and eigenvalues are some of those topics that a lot of students find particularly unintuitive. Questions like “why are we doing this?” and “what does this actually mean?” are too often left floating away unanswered in a sea of computations. And as I've put out chapters in this series, many of you have commented about looking forward to visualizing this topic in particular.
+
+I suspect that the reason for this is not so much that eigen-things are particularly complicated or poorly explained. In fact, it's comparatively straightforward, and I think most books do a fine job explaining it. The issue is that it only really makes sense if you have a solid visual understanding of many of the topics that precede it. Most important here is that you know how to think about matrices as linear transformations. But you also need to be comfortable with determinants, linear systems of equations, and change of basis. Confusion about eigen-stuffs usually has more to do with a shaky foundation in one of these topics than it does with the eigenvectors and eigenvalues themselves.
+
+## An example
+
+To start, consider some linear transformation in two dimensions, like the one shown here. 
+
+<Figure
+    video="./figures/an-example/LinearTransformation.mp4" 
+/>
+
+It moves the basis vector $\hat{\imath}$ to the coordinates $\left[\begin{array}{c}3 \\ 0\end{array}\right]$, and $\hat{\jmath}$ to $\left[\begin{array}{c}1 \\ 2\end{array}\right]$, so it's represented with a matrix whose columns are $\left[\begin{array}{c}3 \\ 0\end{array}\right]$ and $\left[\begin{array}{c}1 \\ 2\end{array}\right]$. Now, focus on what it does to any individual vector, and think about the span of that vector, the line passing through the origin and its tip.
+
+<Figure
+    video="./figures/an-example/LinearTransformationSpan.mp4" 
+/>
+
+Most vectors will get knocked off that line during the transformation. I mean, it would seem pretty coincidental if the place where a vector lands happens to be somewhere on that line.
+
+<Figure
+    video="./figures/an-example/LinearTransformationSpan.mp4" 
+    image="./figures/an-example/LinearTransformationVectorGetsKnockedOffSpan.svg" 
+/>
+
+But some special vectors do remain on their own span, meaning the effect the matrix has on such a vector is to just stretch or squish it, like a scalar.
+
+<Figure
+    video="./figures/an-example/LinearTransformationVectorRemainsOnSpan.mp4" 
+/>
+
+For this specific example, the basis vector $\hat{\imath}$ is one such vector with this special property. The span of $\hat{\imath}$ is the $x$-axis, and from the first column of the matrix we can see that $\hat{\imath}$ moves over to $3$ times itself, still on that $x$-axis. What's more, because of the way linear transformations work, any other vector on the $x$-axis is also just stretched by a factor of $3$, and hence remains on its own span. 
+
+<Figure
+    image="./figures/an-example/LinearTransformationVectorOnXAxis.svg"
+    video="./figures/an-example/LinearTransformationVectorOnXAxis.mp4"
+    show="video" 
+/>
+
+A slightly sneakier vector that remains on its own span during this transformation is $\left[\begin{array}{c}-1 \\ 1\end{array}\right]$. It ends up getting stretched out by a factor of $2$. And again, linearity will imply that any other vector on the diagonal line spanned by this one will just get stretched out by a factor of $2$.
+
+<Figure
+    image="./figures/an-example/LinearTransformationVectorSneaky.svg" 
+    video="./figures/an-example/LinearTransformationVectorSneaky.mp4"
+    show="video"
+/>
+
+And for this transformation, those are all the vectors with this special property of staying on their span: Those on the $x$-axis that get stretched by a factor of $3$, and those on this diagonal line that are stretched by a factor of $2$. Any other vector will get rotated somewhat during the transformation, knocked off of the line it spans.
+
+<Figure
+    image="./figures/an-example/vectors-that-remain-on-span-before.png" 
+/>
+
+<Figure
+    image="./figures/an-example/vectors-that-remain-on-span-after.png" 
+/>
+
+These special vectors are called the "eigenvectors" of the transformation, and each eigenvector has associated with it what's called an "eigenvalue", which is the factor by which it's stretched or squished during the transformation. In this example, vectors on the $x$-axis are eigenvectors with eigenvalue $3$, while those on the diagonal line are eigenvectors with eigenvalue $2$.
+
+<Figure
+    image="./figures/an-example/eigen-vectors.png" 
+/>
+
+Of course, there's nothing special about stretching vs. squishing, or the fact that these eigenvalues happen to be positive. In another example you could have an eigenvector with eigenvalue $-\frac{1}{2}$, meaning that vector gets flipped and squished by a factor of $\frac{1}{2}$, but the important part is that it stays on the line that it spans out, without being rotated off of it.
+
+<Figure
+    image="./figures/an-example/another-eigen-vector-before.png" 
+/>
+
+<Figure
+    image="./figures/an-example/another-eigen-vector-after.png" 
+/>
+
+## 3d rotational axis
+
+For a glimpse of why this might be a useful thing to think about, consider some three-dimensional rotation. If you can find an eigenvector for this rotation, a vector which remains on its own span, what you have found is the axis of rotation.
+
+<Figure
+    image="./figures/3d-rotational-axis/cube-transformation-eigen-vector.png" 
+/>
+
+<Figure
+    image="./figures/3d-rotational-axis/cube-transformation-eigen-vector-axis-of-rotation.png" 
+/>
+
+It's much easier to think about a 3d rotation in terms of an axis of rotation, and an angle by which it is rotating, rather than thinking about the full 3x3 matrix associated with such a transformation.
+
+<Figure
+    image="./figures/3d-rotational-axis/rotation-matrix.png" 
+/>
+
+<Figure
+    image="./figures/3d-rotational-axis/rotate-around-axis-of-rotation.png" 
+/>
+
+In this case, by the way, the corresponding eigenvalue would have to be 1, since 3d rotations don't stretch or squish anything. This is a pattern that shows up a lot in linear algebra: With any linear transformation described by a matrix, you could understand what it's doing by reading off the columns of this matrix as the landing spots for the basis vectors. But often a better way to get at the heart of what that transformation actually does, less dependent on your particular coordinate system, is to find the eigenvectors and eigenvalues.
+
+## Notes on computation
+
+I won't cover the full details on methods for computing eigenvectors and eigenvalues here, but I'll try to give an overview of the computational ideas that are most important for conceptual understanding. 
+
+Symbolically, here's what the idea of eigenvectors and eigenvalues looks like. A is the matrix representing some transformation, with $\vec{\mathbf{v}}$ as an eigenvector, and lambda is a number, namely the corresponding eigenvalue. What this expression is saying is that the matrix-vector product $A$ times $\vec{\mathbf{v}}$ gives the same result as scaling the eigenvector $\vec{\mathbf{v}}$ by the eigenvalue lambda.
+
+<Figure
+    image="./figures/notes-on-computation/transformation.png" 
+/>
+
+<Figure
+    image="./figures/notes-on-computation/eigenvector-matrix-vs-scalar.png" 
+/>
+
+So finding the eigenvectors and eigenvalues of a matrix $A$ comes down to finding values of $\mathbf{v}$ and lambda that make this expression true. It's a little awkward to work with at first, because the left-hand-side represents matrix vector multiplication, while the right-hand-side is scalar-vector multiplication. So let's start by rewriting that right-hand-side as some kind of matrix vector multiplication, using a matrix which has the effect of scaling vectors by a factor of lambda. 
+
+<Figure
+    image="./figures/notes-on-computation/equating-matrix-multiplication-with-scaling.png" 
+/>
+
+<!--TODO: better image than the one above-->
+
+The columns of such matrix will represent what happens to each basis vector, and each basis vector is simply multiplied by lambda, so this matrix will have the number lambda down the diagonal with zeros everywhere else. The common way to write this matrix is as lambda times $I$, where $I$ is the identity matrix with $1$s down the diagonal.
+
+<Figure
+    image="./figures/notes-on-computation/lambda-times-identity-matrix.png" 
+/>
+
+With both sides looking like matrix-vector multiplication, we can subtract off the right-hand side and factor out the $\vec{\mathbf{v}}$. So we have a new matrix, $\left(A - \lambda I\right)$, and we're looking for a vector $\vec{\mathbf{v}}$ such that this new matrix times $\vec{\mathbf{v}}$ gives the zero vector.
+
+<Figure
+    image="./figures/notes-on-computation/we-want-a-non-zero-solution.png" 
+/>
+
+Now, this will always be true when $\vec{\mathbf{v}}$ is the zero vector, but that's boring, we want a non-zero eigenvector.
+
+### Zero Determinant
+
+As viewers of <LessonLink id="3d-transformations">chapter 5</LessonLink> and <LessonLink id="determinant">chapter 6</LessonLink> will know, the only way it's possible for the product of a matrix with a nonzero vector to become zero is if the transformation associated with that matrix squishes space into a lower dimension. And that squishification corresponds to a zero determinant of the matrix.
+
+<Figure
+    image="./figures/zero-determinant/squishification-before.png" 
+/>
+
+<Figure
+    image="./figures/zero-determinant/squishification-after.png" 
+/>
+
+To be concrete, let's say your matrix has columns $\left[\begin{array}{c} 2 \\ 1 \end{array}\right]$, $\left[\begin{array}{c} 2 \\ 3 \end{array}\right]$, and imagine subtracting off the variable amount lambda from each diagonal entry. Imagine tweaking lambda, turning a knob to change its value. As that value of lambda changes, the matrix changes, and so the determinant of that matrix changes.
+
+<Figure
+    image="./figures/zero-determinant/squishification-example-lambda-value-1.png" 
+/>
+
+<Figure
+    image="./figures/zero-determinant/squishification-example-lambda-value-2.png" 
+/>
+
+The goal is to find a value of lambda that will make the determinant zero, meaning the tweaked transformation squishes space. In this case, the sweet spot comes when lambda equals 1.
+
+<Figure
+    image="./figures/zero-determinant/squishification-lambda-value.png" 
+/>
+
+Remember that the lambda is tied to the matrix, so if we use another matrix, the lambda might not be $1$. To unravel what that means, when $\lambda=1$, the matrix $A - \lambda \cdot I$ squishes space onto a line. That means there's a nonzero vector $\mathbf{v}$ such that $(A-\lambda\cdot I)\cdot \mathbf{v}=0$. 
+
+And remember, the reason we care about that is because it means $A \cdot \mathbf{v} = \lambda \cdot \mathbf{v}$, which you can read as saying the vector $\mathbf{v}$ is an eigenvector of $A$, staying on its own span during the transformation $A$. In this example, the corresponding eigenvalue is $1$, so it actually just stays fixed in place.
+
+$$
+\begin{aligned}
+A \vec{\mathbf{v}} & =\lambda \vec{\mathbf{v}} \\ \rule{0pt}{2em}
+A \vec{\mathbf{v}}-\lambda I \vec{\mathbf{v}} & =0 \\ \rule{0pt}{2em}
+(A-\lambda I) \vec{\mathbf{v}} & =0 \\ \rule{0pt}{2em}
+\operatorname{det}(A-\lambda I) & =0 
+\end{aligned}
+$$
+
+Pause and ponder to make sure that line of reasoning feels good.
+
+### Characteristic polynomial
+
+This expression, where we take a given matrix minus lambda times the identity and set its determinant equal to zero, thinking of lambda as a variable, is fundamental to eigenvalues.
+This is the kind of thing I mentioned in the introduction. If you didn't have a solid grasp of the determinant, and why it relates to linear systems having non-zero solutions, an expression like this would feel completely out of the blue.
+
+Let's revisit the example from the start, with the matrix whose columns are $\left[\begin{array}{c} 3 \\ 0 \end{array}\right]$ and $\left[\begin{array}{c} 1 \\ 2 \end{array}\right]$. To find if a value lambda is an eigenvalue, subtract it from the diagonals of this matrix, and compute the determinant.
+
+$$
+\operatorname{det}\left(\left[\begin{array}{cc}3-\lambda & \mathbb{1} \\ 0 & 2-\lambda\end{array}\right]\right)
+$$
+
+Doing this, we get a certain quadratic polynomial in terms of lambda.
+
+$$
+\operatorname{det}\left(\left[\begin{array}{cc}3-\lambda & \mathbb{1} \\ 0 & 2-\lambda\end{array}\right]\right) = (3 - \lambda)(2- \lambda)
+$$
+
+Since lambda can only be an eigenvalue if this determinant is zero, you can conclude that the only eigenvalues are $\lambda = 2$ and $\lambda = 3$. 
+
+To see what eigenvectors have one of these eigenvalues, say $\lambda=2$, plug in that value of lambda to the matrix, and solve for which vectors this diagonally-altered matrix sends to zero.
+
+$$
+\left[\begin{array}{cc}
+3-2 & 1 \\
+0 & 2-2
+\end{array}\right]\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]=\left[\begin{array}{l}
+0 \\
+0
+\end{array}\right]
+$$
+
+If you computed this, you'd see that the solutions are all of the vectors on the diagonal line spanned by $\left[\begin{array}{c} -1 \\ 1 \end{array}\right]$. This corresponds to the fact that the unaltered matrix $\left[\begin{array}{c} 3 \\ 0 \end{array}\right]$, $\left[\begin{array}{c} 1 \\ 2 \end{array}\right]$ stretches all those vectors by a factor of $2$.
+
+TODO: figure
+
+### Rotation
+
+Now, a 2d transformation doesn't have to have eigenvectors. For example, consider a rotation by $90$ degrees. This doesn't have any eigenvectors, since each vector is rotated off of its own span.
+
+<Figure
+    image="./figures/notes-on-computation/RotationDoesNotHaveEigenvectorsBefore.png" 
+/>
+
+<Figure
+    image="./figures/notes-on-computation/RotationDoesNotHaveEigenvectorsAfter.png" 
+/>
+
+If you actually try computing the eigenvalues for a $90$ degree rotation, notice what happens. Its matrix has columns $\left[\begin{array}{c} 0 \\ 1 \end{array}\right]$, $\left[\begin{array}{c} -1 \\ 0 \end{array}\right]$. Subtract $\lambda$ from the diagonal elements, and look for when the determinant is $0$.
+
+$$
+\begin{aligned}
+\operatorname{det}\left(\left[\begin{array}{cc}-\lambda & -1 \\ 1 & -\lambda\end{array}\right]\right) & =(-\lambda)(-\lambda)-(-1)(1) \\ \rule{0pt}{2em}
+& =\lambda^2+1=0
+\end{aligned}
+$$
+
+In this case, you get the polynomial $\lambda^2 + 1$. The only roots of this polynomial are the imaginary numbers $i$ and $-i$. The fact that there are no real number solutions indicates that there are no eigenvectors.
+
+### Shear
+
+Another interesting example is a shear. This fixes $\hat{\imath}$ in place, and moves $\hat{\jmath}$ one over, so its matrix has columns $\left[\begin{array}{c} 1 \\ 0 \end{array}\right]$ and $\left[\begin{array}{c} 1 \\ 1 \end{array}\right]$.
+
+TODO: shear transformation matrix
+
+All the vectors on the $x$-axis are eigenvectors with eigenvalue $1$, since they remain fixed in place. In fact these are the only eigenvectors. When you subtract $\lambda$ from the diagonals and compute the determinant, you get $(1-\lambda)^2$, and the only root of that expression is $\lambda = 1$. This lines up with what we see geometrically that all the eigenvectors have eigenvalue $1$.
+
+<Figure
+    image="./figures/notes-on-computation/Shear.png" 
+/>
+
+### Scaling
+
+It's also possible to have just one eigenvalue with more than just a line full of eigenvectors. A simple example is the matrix which scales everything by $2$. The only eigenvalue is $2$, but every vector in the plane gets to be an eigenvector with that eigenvalue.
+
+<Figure
+    image="./figures/notes-on-computation/ScaleBy2Before.png" 
+/>
+
+<Figure
+    image="./figures/notes-on-computation/ScaleBy2After.png" 
+/>
+
+Now is another good time to pause and ponder some of this.
+
+TODO: comprehension questions
+
+## Working in an eigenbasis
+
+I want to finish off here with the idea of an eigenbasis, which relies heavily on ideas from the last chapter.
+
+Take a look at what happens if our basis vectors happen to be eigenvectors. For example, maybe $\hat{\imath}$ is scaled by -1, and $\hat{\jmath}$ is scaled by 2. Writing their new coordinates as columns of a matrix, notice that those scalar multiples -1 and 2, which are the eigenvalues of $\hat{\imath}$ and $\hat{\jmath}$, are on the diagonal, and all other entries are $0$.
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/BothBasisVectorsAreEigenvectorsBefore.png" 
+/>
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/BothBasisVectorsAreEigenvectorsAfter.png" 
+/>
+
+<!--TODO: animate, also note Grant animates i hat moving and then j hat moving separately-->
+
+Any time a matrix has zeros everywhere other than the diagonal, it's called a "diagonal matrix", and the way to interpret it is that all the basis vectors are eigenvectors, and the diagonal entries of the matrix give you their corresponding eigenvalues.
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/DiagonalMatrix.png" 
+/>
+
+There are a number of things that make diagonal matrices nicer to work with. One big one is that it's easier to compute what will happen if you multiply this matrix by itself a whole bunch of times.
+
+$$
+\begin{aligned}
+\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]
+\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]
+& =
+\left[\begin{array}{c}
+3 x \\
+2 y
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]
+\left[\begin{array}{c}
+3 x \\
+2 y
+\end{array}\right]
+& =
+\left[\begin{array}{c}
+3^2 x \\
+2^2 y
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]
+\left[\begin{array}{c}
+3^2 x \\
+2^2 y
+\end{array}\right]
+& =
+\left[\begin{array}{c}
+3^3 x \\
+2^3 y
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+& \ldots 
+\end{aligned}
+$$
+
+Since all one of these matrices does is scale each basis vector by some eigenvalue, applying that matrix, say, 100 times will just correspond to scaling each basis vector by the 100th power of the corresponding eigenvalue.
+
+$$
+
+\underbrace{\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right] \cdots \left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]\left[\begin{array}{ll}
+3 & 0 \\
+0 & 2
+\end{array}\right]}_{100 \text { times }}\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]
+= 
+\left[\begin{array}{cc}
+3^{100} & 0 \\
+0 & 2^{100}
+\end{array}\right]\left[\begin{array}{l}
+x \\
+y
+\end{array}\right]
+
+$$
+
+
+In contrast, try to compute the 100th power of a non-diagonal matrix would be. Really, think about it for a moment, it'd be a nightmare.
+
+### Change of basis
+
+Of course, you will rarely be so lucky as to have your basis vectors also be eigenvectors. But if your transformation has lots of eigenvectors, like the one from the start of the video, enough that you can choose a set that spans the full space. Then you can change your coordinate system so that these eigenvectors are your basis vectors.
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/ChangeOfBasisUseEigenvectors.png" 
+/>
+
+I talked all about change of basis in the last chapter, but I'll go through a super quick reminder here of how to express a transformation in a different coordinate system.
+
+Take the coordinates of the vectors you want to use as a basis, which in our cases means two eigenvectors, then make those coordinates the columns of a matrix, known as the change of basis matrix. When you sandwich the original transformation, putting the change of basis matrix on its right and the inverse change of basis matrix on its left, the result will be a matrix representing this same transformation, but from the perspective of the new basis vector's coordinate system. 
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/EigenBasis1.png" 
+/>
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/EigenBasis2.png" 
+/>
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/EigenBasis3.png" 
+/>
+
+The whole point of doing this with eigenvectors is that this new matrix is guaranteed to be diagonal, with the corresponding eigenvalues down the diagonal, since this represents working in a coordinate system where basis vectors just get scaled during the transformation.
+
+A set of basis vectors which are all also eigenvectors is called an “eigenbasis”. So if, for example, you needed to compute the 100th power of this matrix, it would be much easier to change to an eigenbasis, compute the 100th power in that system, then convert back to the standard system. You can't do this with all transformations. A shear, for example, doesn't have enough eigenvectors to span all of space. But if you can find an eigenbasis, it can make matrix operations really lovely.
+
+For anyone willing to work through a neat puzzle to see what this looks like in action, and how it can be used to produce surprising results, I'll leave up a prompt here on the screen. It's a bit of work, but I think you'll enjoy it.
+
+<Figure
+    image="./figures/working-in-an-eigenbasis/Puzzle.png" 
+/> 
+
+The next, and final, chapter of this series will be on abstract vector spaces.
