@@ -1,0 +1,2 @@
+- From Kurt: I think the end of the "unit vector" section and the "duality" section are going to be the hardest for the student, I tried to create a good question, but maybe there are some other considerations here.
+- From Grant: "The section on linear transformations and duality could also be broken out as a separate article. In that case, we'd simply end this one with the question, prompting one to read the next article if they want to see the connection."
