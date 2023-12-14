@@ -1,0 +1,5 @@
+- In the video the example starts as [3 2] cross [2 -1], but then changes to [3 1] cross [1 -2] between sections. Note, both have the same cross product of -7.
+- TODO: change colors of "two dimensions" section to be yellow and purple
+- Possibly reword sentence containing the word "prototypical"
+- Should the parallelogram always be the same color as the first operand vector in the cross product?
+- Should there be some comprehension questions applying the notational trick formula? Or should the student be encouraged into the next more in-depth lesson?
