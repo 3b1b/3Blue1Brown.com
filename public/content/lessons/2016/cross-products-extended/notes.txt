@@ -1,0 +1,3 @@
+- The last line "Next up is a really important concept in linear algebra: Change of basis." contradicts that the next lesson is about Cramer's Rule.
+- Should lesson links try and avoid mentioning the chapter number and instead use the chapter title or something like it?
+- The typesetting of $\left[ \begin{array}{c} x \\ y \\ z \end{array} \right]$ disrupts the paragraph grouping, so I updated the text to use $\vec{\mathbf{u}}$ instead. I've also had it where teachers write vectors horizontally, but I think I prefer the variable approach instead?
