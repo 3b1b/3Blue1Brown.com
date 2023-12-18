@@ -1,4 +1,3 @@
-import SocialIcons from "../SocialIcons";
 import styles from "./index.module.scss";
 
 // footer component to show at bottom of every page

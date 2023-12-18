@@ -114,7 +114,7 @@ export default function SphericalPlot() {
   function setupMouseEvents(sketch) {
     sketch.mousePressed = () => {
       activeSlider = hoveredSlider;
-      if (activeSlider != -1) sketch.cursor("grab");
+      if (activeSlider !== -1) sketch.cursor("grab");
     };
 
     sketch.mouseReleased = () => {
@@ -123,7 +123,7 @@ export default function SphericalPlot() {
     };
 
     sketch.mouseMoved = () => {
-      if (activeSlider == -1) {
+      if (activeSlider === -1) {
         for (let i = 0; i < sliders.length; i++) {
           if (sliders[i].isOver(sketch.mouseX, sketch.mouseY)) {
             sketch.cursor(sketch.HAND);
@@ -137,7 +137,7 @@ export default function SphericalPlot() {
     };
 
     sketch.mouseDragged = () => {
-      if (activeSlider != -1) {
+      if (activeSlider !== -1) {
         // Overwrite the items to be updated with the background color
         sketch.fill(sketch.color(BKGD_COLOR));
         sketch.noStroke();
@@ -274,7 +274,7 @@ export default function SphericalPlot() {
           // Bound -> general case: draws the line from the y bound
           let boundedY = prevY < pos1.y ? pos1.y : pos2.y;
           let slope = (prevY - y) / (prevX - x);
-          if (slope != 0 && i != min) {
+          if (slope !== 0 && i !== min) {
             let boundedX = (boundedY - prevY) / slope + prevX;
             sketch.line(x, y, boundedX, boundedY);
           }
@@ -285,7 +285,7 @@ export default function SphericalPlot() {
           // General -> bound case: draws the line up to the y bound
           let boundedY = y < pos1.y ? pos1.y : pos2.y;
           let slope = (prevY - y) / (prevX - x);
-          if (slope != 0) {
+          if (slope !== 0) {
             let boundedX = (boundedY - prevY) / slope + prevX;
             sketch.line(prevX, prevY, boundedX, boundedY);
           }

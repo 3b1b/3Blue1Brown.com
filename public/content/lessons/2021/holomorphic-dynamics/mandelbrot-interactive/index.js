@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import GraphWindow, {
   GraphPoint,
   GraphLines,
   GraphShader,
-  InteractiveWindow,
 } from "../../../../../../components/Graph";
 
 const MANDELBROT_COLORS = [

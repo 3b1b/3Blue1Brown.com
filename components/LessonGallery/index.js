@@ -1,7 +1,6 @@
 import { useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
 import topics from "../../data/topics.yaml";
@@ -23,7 +22,7 @@ export default function LessonGallery({ show = "topic" }) {
     const bti = topic_names.indexOf(b.topic);
     if (ati === -1) return 1;
     if (bti === -1) return -1;
-    if (ati == bti) {
+    if (ati === bti) {
       return (
         topics[ati].lessons.indexOf(a.slug) -
         topics[bti].lessons.indexOf(b.slug)
@@ -49,7 +48,7 @@ export default function LessonGallery({ show = "topic" }) {
     }
     // Otherwise, return all by date
     return lessons;
-  }, [lessons, view, searchText]);
+  }, [lessons, view, searchText, sorted_lessons]);
 
   return (
     <div>
@@ -101,15 +100,16 @@ export default function LessonGallery({ show = "topic" }) {
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-      {(view === "all" || view === "search") && filteredLessons.length === 0 && (
-        <div className={styles.no_results}>
-          <PiCreature
-            text="No lessons match your search."
-            emotion="maybe"
-            placement="inline"
-          />
-        </div>
-      )}
+      {(view === "all" || view === "search") &&
+        filteredLessons.length === 0 && (
+          <div className={styles.no_results}>
+            <PiCreature
+              text="No lessons match your search."
+              emotion="maybe"
+              placement="inline"
+            />
+          </div>
+        )}
       {view === "written" &&
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
@@ -120,16 +120,14 @@ export default function LessonGallery({ show = "topic" }) {
 
 const TopicCard = ({ topic }) => {
   return (
-    (<Link href={`/topics/${topic.slug}`} className={styles.topic_card}>
-
+    <Link href={`/topics/${topic.slug}`} className={styles.topic_card}>
       <img
         className={styles.image}
         src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
         alt={topic.name}
       />
       <span className={styles.title}>{topic.name}</span>
-
-    </Link>)
+    </Link>
   );
 };
 

@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from "react";
 import Markdownify from "../Markdownify";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
-export default function PreviewText({ children }){
+export default function PreviewText({ children }) {
   const [open, setOpen] = useState(false);
-
-  const toggleOpen = () => {
-      setOpen(!open);
-  };
 
   if (!children) return null;
 
   return (
     <>
       <div className={styles.preview} data-open={open}>
-          <Markdownify>{children}</Markdownify>
+        <Markdownify>{children}</Markdownify>
       </div>
       <Clickable
         text={open ? "Show Less" : "Show More"}
@@ -24,4 +20,4 @@ export default function PreviewText({ children }){
       />
     </>
   );
-};
+}

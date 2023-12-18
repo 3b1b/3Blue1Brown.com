@@ -1,4 +1,3 @@
-
 - I experimented with some figures of straight math equations instead of display style math.
 - The "sum rule" is structured as here
 

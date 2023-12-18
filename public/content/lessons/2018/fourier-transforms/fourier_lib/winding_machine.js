@@ -13,7 +13,7 @@ function evaluateEquation(frequencies, x) {
   // The result will be normalized between 0 and 1
   let sum = 0;
   for (let i = 0; i < frequencies.length; i++) {
-    sum += (Math.cos(2 * Math.PI * frequencies[i] * x));
+    sum += Math.cos(2 * Math.PI * frequencies[i] * x);
   }
   // Normalize outputs
   return sum / frequencies.length;
@@ -34,7 +34,7 @@ function drawArrow(sketch, base, vector, color, size) {
 
 function drawJustifiedAxes(sketch, origin, size, tick, vertical_offset) {
   // Draws the axes left justified (for drawGraph)
-  vertical_offset = vertical_offset == undefined ? 0 : vertical_offset;
+  vertical_offset = vertical_offset === undefined ? 0 : vertical_offset;
   sketch.push();
 
   let beginX = sketch.createVector(origin.x - GRAPH_EDGE, origin.y);
@@ -86,14 +86,15 @@ export const drawGraph = (sketch, frequencies, origin, size) => {
   drawJustifiedAxes(
     sketch,
     origin,
-    {x: size.x, y: 0.6 * size.y},
+    { x: size.x, y: 0.6 * size.y },
     0.25,
     size.y / 2
   );
 
   sketch.stroke(sketch.color(WAVE_COLOR));
 
-  let py = origin.y + evaluateEquation(frequencies, 0) * (-size.y / 2 - GRAPH_EDGE);
+  let py =
+    origin.y + evaluateEquation(frequencies, 0) * (-size.y / 2 - GRAPH_EDGE);
 
   // Draw equation
   for (let x = origin.x + STEP; x < origin.x + size.x; x += STEP) {
@@ -248,7 +249,7 @@ function getOpacity(sketch, frequencies) {
   }
 
   let mergedFreq = sum(frequencies);
-  mergedFreq = (mergedFreq > 0.1) ? 0.1 : mergedFreq;
+  mergedFreq = mergedFreq > 0.1 ? 0.1 : mergedFreq;
   return sketch.lerp(0.3, 1, mergedFreq / 0.1);
 }
 
@@ -285,18 +286,16 @@ export const drawWinder = (sketch, frequencies, winding_freq, origin, size) => {
 // Since there are multiple applets storing their data here,
 // We need to have a key to access the proper transform
 let fourierTransforms = [];
-let fourierFrequencies = [];
 export const calculateFourier = (key, frequencies) => {
   let index = 0;
   let fourierTransform = [];
   for (let x = 0; x < GRAPH_LENGTH; x += WINDER_STEP) {
-    let { centerX, centerY } = centerMass(frequencies, x);
+    let { centerX } = centerMass(frequencies, x);
     fourierTransform[index] = centerX;
     index++;
   }
 
   fourierTransforms[key] = fourierTransform;
-  fourierFrequencies = frequencies;
 };
 
 function drawFourierGraph(sketch, origin, size, key) {
@@ -328,7 +327,7 @@ function drawFourierBobble(sketch, origin, size, frequencies) {
 
   let winding_freq = ((previousMouse - origin.x) / size.x) * GRAPH_LENGTH;
   winding_freq = Math.min(Math.max(winding_freq, 0), GRAPH_LENGTH);
-  let { centerX, centerY } = centerMass(frequencies, winding_freq);
+  let { centerX } = centerMass(frequencies, winding_freq);
 
   let drawingX = (winding_freq / GRAPH_LENGTH) * size.x + origin.x;
   let drawingY = -centerX * size.y * 2 + origin.y;

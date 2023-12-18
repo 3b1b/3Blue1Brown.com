@@ -4,7 +4,7 @@ export default function BookShelf({ children }) {
   return <div className={styles.bookShelf}>{children}</div>;
 }
 
-export function Book({ url, image, title, author=""}) {
+export function Book({ url, image, title, author = "" }) {
   return (
     <div>
       <a
@@ -16,9 +16,7 @@ export function Book({ url, image, title, author=""}) {
       >
         <img src={image} alt={title || ""} />
       </a>
-      <a
-        href={url}
-      >
+      <a href={url}>
         <div className={styles.title}> {title} </div>
       </a>
       <div className={styles.author}> {author ? "by " + author : ""} </div>
