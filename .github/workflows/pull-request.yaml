@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "19.6.0"
-      - run: yarn ci
+      - run: yarn install
       - run: yarn run check
 
   lint:
@@ -29,5 +29,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "19.6.0"
-      - run: yarn ci
+      - run: yarn install
       - run: yarn run lint
