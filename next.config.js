@@ -18,6 +18,9 @@ config = {
 
 config = {
   ...config,
+  images: {
+    path: "",
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
