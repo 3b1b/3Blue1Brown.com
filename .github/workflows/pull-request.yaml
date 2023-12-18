@@ -16,8 +16,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "19.6.0"
-      - run: npm ci
-      - run: npm run check
+      - run: yarn ci
+      - run: yarn run check
 
   lint:
     name: linting
@@ -29,5 +29,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "19.6.0"
-      - run: npm ci
-      - run: npm run lint
+      - run: yarn ci
+      - run: yarn run lint
