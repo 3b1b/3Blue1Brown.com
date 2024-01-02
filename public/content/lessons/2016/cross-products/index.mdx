@@ -8,6 +8,7 @@ source: _2016/eola/chapter8p2.py
 credits:
 - Lesson by Grant Sanderson
 - Text adaptation by Kurt Bruns
+- Text adaptation by James Schloss
 ---
 
 > "Every dimension is special."
@@ -123,7 +124,7 @@ This is because a matrix whose columns represent $\vec{\mathbf{v}}$ and $\vec{\m
 The determinant is all about measuring how areas change due to a transformation, and the prototypical area to look at is the unit square resting on $\hat{\imath}$ and $\hat{\jmath}$. After the transformation, that square turns into the parallelogram we care about. So the determinant, which generally measures the factor by which areas are changed, gives the area of this parallelogram, since it evolved from a square that started with area 1. 
 
 <Figure
-    image="figures/determinant-basis-vectors-transformed-orientation.png" 
+    image="./figures/determinant-basis-vectors-transformed-orientation.png" 
 />
 
 <!--TODO: replace with image callback from chapter five-->
@@ -222,13 +223,13 @@ Something else you might notice is that if you scale up one of the vectors, perh
 Now, even though everything we just did is a perfectly fine mathematical operation, what I just described is technically not the cross product. The true cross product is something that combines two 3d vectors to get a new 3d vector. You still consider the parallelogram defined by the two vectors, and the area of that parallelogram still plays a big role. To be concrete let's say that area is $2.5$ for the vectors shown here.
 
 <Figure
-    image="figures/3d-area-of-parallelogram.png" 
+    image="./figures/3d-area-of-parallelogram.png" 
 />
 
 The 3d cross product does not return a number, it returns a vector. This new vector's length will be the area of that parallelogram, which in this example is 2.5, and the direction of that new vector is perpendicular
 
 <Figure
-    image="figures/3d-resulting-vector.png" 
+    image="./figures/3d-resulting-vector.png" 
 />
 
 <!--TODO: lock orientation of the axis so that the two views are identical-->
@@ -236,13 +237,13 @@ The 3d cross product does not return a number, it returns a vector. This new vec
 But which way? There are two possible vectors with length $2.5$ pointing perpendicular to a given plane. This is where the right-hand rule comes in. Point the forefinger of your right hand in the direction of $\vec{\mathbf{v}}$, and stick out your middle finger in the direction of $\vec{\mathbf{w}}$. Now when you point up your thumb, that's the direction of the cross product.
 
 <Figure
-    image="figures/3d-righthand-rule.png" 
+    image="./figures/3d-righthand-rule.png" 
 />
 
 For example, let $\vec{\mathbf{v}}$ be the vector with length $2$ in the $z$ direction, and let  $\vec{\mathbf{w}}$ be the vector with length $2$ in the $y$ direction. The parallelogram they define in this simple example is actually a square, since they're perpendicular, and the area of that square is $4$. Using the right hand rule, their cross product should point in the negative $x$ direction, so this cross product is $-4 \hat{\imath}$.
 
 <Figure
-    image="figures/3d-simple-example.png" 
+    image="./figures/3d-simple-example.png" 
 />
 
 ## Computing
@@ -250,7 +251,7 @@ For example, let $\vec{\mathbf{v}}$ be the vector with length $2$ in the $z$ dir
 There is a formula you could memorize for this cross product:
 
 <Figure
-    image="figures/computing-formula.png" 
+    image="./figures/computing-formula.png" 
 />
 
 However, it's common and easier to remember a certain process involving the 3d determinant.
@@ -258,13 +259,13 @@ However, it's common and easier to remember a certain process involving the 3d d
 This process looks truly strange at first. Write a 3d matrix where the second column is the coordinates of $\vec{\mathbf{v}}$, and the third column is the coordinates $\vec{\mathbf{w}}$. Then for the first column, write in the basis vector $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$. Then, you compute the determinant of this matrix.
 
 <Figure
-    image="figures/computing-determinant.png" 
+    image="./figures/computing-determinant.png" 
 />
 
 The silliness is probably clear here. What on earth does it mean to put a vector in as the entry to a matrix? Students are often told that this is just a notational trick; when you carry out all the computations as if $\hat{\imath}$, $\hat{\jmath}$ and $\hat{k}$ were numbers. Then you get some linear combination of those basis vectors, and the vector defined by that linear combination, students are told to just believe, is the unique vector perpendicular to $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ whose magnitude is the area of the appropriate parallelogram, and whose direction obeys the right-hand-rule.
 
 <Figure
-    image="figures/computing-notational-trick.png" 
+    image="./figures/computing-notational-trick.png" 
 />
 
 And sure, in some sense this is a notational trick, but there is a reason for doing it. It's not just a coincidence that the determinant is once again important, and putting the basis vectors in these slots is not just random. To understand where this all comes from, it helps to use the idea of duality that I introduced in the last chapter. This concept is a bit heavy, though, so I'm putting it into a separate follow-on chapter for those of you curious to learn more.
