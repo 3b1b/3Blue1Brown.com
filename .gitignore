@@ -36,3 +36,8 @@ public/content/**/*.source.mov
 
 # vercel
 .vercel
+
+# Custom ignore files
+*.ignore
+*.zip
+*.patch
