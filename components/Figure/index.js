@@ -82,13 +82,13 @@ export default function Figure({
   // as soon as the media file actually loads.)
   const { mediaDimensions } = useContext(PageContext);
   useEffect(() => {
-    const imagePath = dir + imageSrc.replace(/^.\//, '');;
+    const imagePath = (dir + imageSrc).replace('/./', '/');
     const imageDims = mediaDimensions[imagePath];
     if (imageDims) {
       setImage(imageDims);
     }
 
-    const videoPath = dir + videoSrc;
+    const videoPath = (dir + videoSrc).replace('/./', '/');
     const videoDims = mediaDimensions[videoPath];
     if (videoDims) {
       setVideo(videoDims);
