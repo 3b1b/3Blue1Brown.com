@@ -1,0 +1,2 @@
+- The dot product lesson references the "formal properties" of a linear transformation which aren't discussed in the video. I'm guessing that River added these properties into the lesson but, as a result, departed from the visuals of the video significantly. I moved the formal properties into their own section to preserve the flow of the article to better match the Youtube video, but also so that someone coming from the dot product lesson can referenc the formal properties if they want to.
+

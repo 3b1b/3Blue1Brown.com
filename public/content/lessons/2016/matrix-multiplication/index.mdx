@@ -7,7 +7,7 @@ video: XkY2DOUCWMU
 source: _2016/eola/chapter4.py
 credits:
 - Lesson by Grant Sanderson
-- Text Adaption by River Way
+- Text adaptation by River Way
 ---
 
 > "It is my experience that proofs involving matrices can be shortened by 50% if one throws the matrices out."
@@ -19,7 +19,7 @@ credits:
 In the <LessonLink id="linear-transformations">previous lesson</LessonLink> we showed how linear transformations are just functions with vectors as inputs and vectors as outputs. However it is often more convenient to think of linear transformations as moving space in a way that keeps gridlines parallel and evenly spaced. 
 
 <Figure
-  image="recap1.png"
+  image="./figures/recap1.png"
 />
 
 We can determine the entirety of the transformation by where the basis vectors land after the transformation, which form the columns of a matrix. To find where any arbitrary vector lands after the transformation, there is an operation called matrix-vector multiplication. Here is the computation for a 2D matrix and vector:
@@ -44,14 +44,14 @@ $$
 Oftentimes, you find yourself wanting to describe the effects of applying one linear transformation, then applying another. For example, maybe you want to describe what happens when you rotate the plane $90^\circ$ counterclockwise, then to apply a shear. The overall effect here, from start to finish, is another linear transformation, distinct from the rotation and the shear. This new linear transformation is commonly called the “composition” of the two separate transformations we applied.
 
 <Figure
-  image="rotate_shear_composition.svg"
+  image="./figures/rotate_shear_composition.svg"
   video="rotate_shear_composition.mp4"
 />
 
 Like any linear transformation, it can be described with a matrix all of its own by following $\hat i$ and $\hat j$.
 
 <Figure
-  image="rotate_shear_record.svg"
+  image="./figures/rotate_shear_record.svg"
 />
 
 In this example, the ultimate landing spot for $\hat i$ after both transformations is $\begin{bmatrix}1\\1\end{bmatrix}$, so make this the first column of a matrix. Likewise, $\hat j$ ultimately ends up at $\begin{bmatrix}-1\\0\end{bmatrix}$, so make this the second column of a matrix. This new matrix captures the overall effect of applying a rotation then a shear, but as one single action rather than two successive ones.
@@ -61,7 +61,7 @@ In this example, the ultimate landing spot for $\hat i$ after both transformatio
 Here’s one way to think about that new matrix. If you were to take some vector and pump it through the rotation then the shear, the long way to compute where it lands by first multiplying on the left by the rotation matrix, then multiplying the result on the left by the shear matrix. This is, numerically speaking, what it *means* to apply a rotation then a shear to a given vector. But whatever you get should be the same as just multiplying this new composition matrix that we found by the vector, no matter what vector you chose, since this new matrix is supposed to capture the same overall effect as the rotation-then-shear action.
 
 <Figure
-  image="rotate_shear_sequence.svg"
+  image="./figures/rotate_shear_sequence.svg"
   width="70%"
 />
 
@@ -114,13 +114,13 @@ $$
 Let’s look at another example. There are two matrices $M_1$ and $M_2$ which perform different transformations:
 
 <Figure
-  image="multiplication_matrices.svg"
+  image="./figures/multiplication_matrices.svg"
 />
 
 The total effect of applying $M1$, then $M2$ gives a new transformation, so let’s find its matrix. 
 
 <Figure
-  image="compound_multiply.svg"
+  image="./figures/compound_multiply.svg"
 />
 
 
@@ -333,7 +333,7 @@ $$
 Well, let’s think of a simple example like the one from earlier. Take a shear, which fixes $\hat i$ and smooshes $\hat j$ over to the right, and a $90^\circ$ rotation.
 
 <Figure
-  image="rotate_shear_swap.svg"
+  image="./figures/rotate_shear_swap.svg"
   width="70%"
 />
 

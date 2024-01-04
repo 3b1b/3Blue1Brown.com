@@ -7,7 +7,8 @@ video: v8VSDg_WQlA
 source: _2016/eola/footnote2.py
 credits:
 - Lesson by Grant Sanderson
-- Text Adaption by Kurt Bruns
+- Text adaptation by Kurt Bruns
+- Text adaptation by James Schloss
 ---
 
 > "On this quiz, I asked you to find the determinant of a 2x3 matrix. Some of you, to my great amusement, actually tried to do this.”
@@ -21,13 +22,13 @@ By now in the series you actually have most of the background you need to start 
 ## 2d to 3d
 
 <Figure
-    image="figures/2d-to-3d-mapping.png" 
+    image="./figures/2d-to-3d-mapping.png" 
 />
 
 It's perfectly reasonable to talk about transformations between dimensions, such as a transformation from 2d space to 3d space. Again, what makes one of these linear is that grid lines remain parallel and evenly spaced, and the origin maps to the origin. 
 
 <Figure
-    image="figures/2d-to-3d-input-output.png" 
+    image="./figures/2d-to-3d-input-output.png" 
 />
 
 What I have pictured here is the input space on the left, which is 2d space, and the output of the transformation shown on the right. The reason I'm not showing the inputs move to their outputs like I usually do is not just visualization laziness, it's worth emphasizing that 2d vector inputs are a very different animal from the 3d vector outputs, living in a completely separate and unconnected space.
@@ -35,13 +36,13 @@ What I have pictured here is the input space on the left, which is 2d space, and
 Encoding such a transformation with a matrix is really just the same thing as what we've done before: Look at where each basis vector lands, and write the coordinates of its landing spot as the columns of a matrix. For example, what you're looking at below is the output of a transformation that takes i hat to the coordinates [2, -1, -2], and j hat to the coordinates [0, 1, 1].
 
 <Figure
-    image="figures/2d-to-3d-encoding.png" 
+    image="./figures/2d-to-3d-encoding.png" 
 />
 
 Notice, this means the matrix encoding our transformation has 3 rows and 2 columns, which, to use standard terminology, makes it a 3x2 matrix.
 
 <Figure
-    image="figures/2d-to-3d-matrix-dimensions.png" 
+    image="./figures/2d-to-3d-matrix-dimensions.png" 
 />
 
 To use the language of the last chapter, the column space of this matrix, the place where all vectors land, is a 2d plane slicing through the origin of 3d space. But the matrix is still full-rank, since the number of dimensions in this column space is the same as the number of dimensions in your input space.
@@ -49,7 +50,7 @@ To use the language of the last chapter, the column space of this matrix, the pl
 So if you see a 3x2 matrix out in the wild, you can know that it has the geometric interpretation of mapping 2 dimensions to 3, since the two columns indicate that the input space has 2 basis vectors, and the 3 rows indicate that the landing spot for each basis vector is described with 3 coordinates.
 
 <Figure
-    image="figures/2d-to-3d-mental-image.png" 
+    image="./figures/2d-to-3d-mental-image.png" 
 />
 
 
@@ -60,13 +61,13 @@ Likewise, if you see a 2x3 matrix, with 2 rows and 3 columns, what do you think 
 Well, the 3 columns indicate that the starting space has 3 basis vectors, so we're starting in 3 dimensions. And the 2 rows indicate that the landing spot for each of those 3 basis vectors is described with only 2 coordinates, so they must be landing in 2 dimensions.
 
 <Figure
-    image="figures/2d-to-3d-question-3d-to-2d.png" 
+    image="./figures/2d-to-3d-question-3d-to-2d.png" 
 />
 
 This means it's a transformation from three-dimensions down to two; a transformation that would feel deeply uncomfortable to experience.
 
 <Figure
-    image="figures/2d-to-3d-question-3d-to-2d-basis-vectors.png" 
+    image="./figures/2d-to-3d-question-3d-to-2d-basis-vectors.png" 
 />
 
 <!-- TODO: while its hard to visualize the transformation of all space, shouldn't we be able to at least visual the transformation for one vector or a set of vectors-->
@@ -76,33 +77,33 @@ This means it's a transformation from three-dimensions down to two; a transforma
 ## 2d to 1d
 
 <Figure
-    image="figures/2d-to-1d-mapping.png" 
+    image="./figures/2d-to-1d-mapping.png" 
 />
 
 You could also have a transformation from two dimensions to one dimension. One-dimensional space is really just the number line, so a transformation like this takes in 2d vectors, and spits out numbers.
 
 <Figure
-    image="figures/2d-to-1d-input.png" 
+    image="./figures/2d-to-1d-input.png" 
 />
 
 <Figure
-    image="figures/2d-to-1d-output.png" 
+    image="./figures/2d-to-1d-output.png" 
 />
 
 Thinking about grid lines remaining parallel and evenly spaced is a bit messy due to all of the squishification, so in this case, the visual understanding for what makes a linear transformation distinct from non-linear transformations is that a line of evenly spaced dots would remain evenly spaced once they're mapped onto the number line.
 
 <Figure
-    image="figures/2d-to-1d-evenly-spaced-dots-input.png" 
+    image="./figures/2d-to-1d-evenly-spaced-dots-input.png" 
 />
 
 <Figure
-    image="figures/2d-to-1d-evenly-spaced-dots-output.png" 
+    image="./figures/2d-to-1d-evenly-spaced-dots-output.png" 
 />
 
 One of these transformations is encoded with a 1x2 matrix, each of whose 2 columns just has a single entry, indicating the number the i hat lands on and the number that j hat lands on.
 
 <Figure
-    image="figures/2d-to-1d-transformation-matrix.png" 
+    image="./figures/2d-to-1d-transformation-matrix.png" 
 />
 
 This is actually a surprisingly meaningful type of transformation, with close ties to the dot product that I'll talk about next chapter. Until then, I encourage you to play around with this idea on your own, contemplating the meaning of things like matrix multiplication and linear systems of equations in the context of transformations between dimensions.

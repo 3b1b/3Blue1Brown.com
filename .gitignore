@@ -41,3 +41,4 @@ public/content/**/*.source.mov
 *.ignore
 *.zip
 *.patch
+_archive
