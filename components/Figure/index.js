@@ -82,7 +82,7 @@ export default function Figure({
   // as soon as the media file actually loads.)
   const { mediaDimensions } = useContext(PageContext);
   useEffect(() => {
-    const imagePath = dir + imageSrc.replace(/^.\//, '');;
+    const imagePath = dir + imageSrc;
     const imageDims = mediaDimensions[imagePath];
     if (imageDims) {
       setImage(imageDims);
