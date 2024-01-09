@@ -16,11 +16,11 @@ export default function SocialIcons() {
           label={""}
         />
         <Link
-          link="https://twitter.com/3blue1brown"
-          icon="fab fa-twitter"
-          tooltip="Occasional animations and mathy threads"
-          hoverColor="#1DA1F2"
-          restingColor="#1DA1F2"
+          link="https://3blue1brown.substack.com/"
+          icon="fas fa-envelope-open-text"
+          tooltip="Mailing list for new videos and meaningful projects"
+          hoverColor="#d2b48c"
+          restingColor="#d2b48c"
           label={""}
         />
         <Link
@@ -32,6 +32,14 @@ export default function SocialIcons() {
           label={""}
         />
         <Link
+          link="https://twitter.com/3blue1brown"
+          icon="fab fa-twitter"
+          tooltip="Occasional animations and mathy threads"
+          hoverColor="#1DA1F2"
+          restingColor="#1DA1F2"
+          label={""}
+        />
+        <Link
           link="https://www.instagram.com/3blue1brown/"
           icon="fab fa-instagram"
           tooltip="Animations and video excerpts"
@@ -40,12 +48,6 @@ export default function SocialIcons() {
         />
       </div>
       <div className={styles.restRow}>
-        <Link
-          link="https://3blue1brown.substack.com/"
-          icon="fas fa-envelope-open-text"
-          tooltip="Mailing list for new videos"
-          hoverColor="#fe5901"
-        />
         <Link
           link="https://www.youtube.com/@GrantSanderson"
           icon="fab fa-youtube"
