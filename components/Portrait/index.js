@@ -26,7 +26,7 @@ export default function Portrait({ image, size = "180px", flip = false }) {
         data-flip={flip}
         data-sectionwidth={sectionWidth}
       >
-        <img src={transformSrc(image)} />
+        <img src={transformSrc(image)} alt="Portrait" />
       </div>
     </>
   );

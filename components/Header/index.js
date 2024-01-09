@@ -27,12 +27,10 @@ export default Header;
 
 // centered site title with logo and text
 const Title = ({ big }) => (
-  (<Link href="/" className={styles.title}>
-
+  <Link href="/" className={styles.title}>
     <Logo big={big} />
     <Text />
-
-  </Link>)
+  </Link>
 );
 
 // site title text
@@ -66,7 +64,11 @@ const Nav = () => {
         tooltip="Interviews about math and education"
       />
       <NavLink link="/blog" text="Blog" tooltip="Writing about math and more" />
-      <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
+      <NavLink
+        link="/extras"
+        text="Extras"
+        tooltip="Work elsewhere on the web"
+      />
 
       <div className={styles.break} />
 
@@ -75,16 +77,8 @@ const Nav = () => {
         text="Store"
         tooltip="Notebooks, shirts, plushies, and more"
       />
-      <NavLink
-        link="/faq"
-        text="FAQ"
-        tooltip="Have a question?"
-      />
-      <NavLink
-        link="/contact"
-        text="Contact"
-        tooltip="Email"
-      />
+      <NavLink link="/faq" text="FAQ" tooltip="Have a question?" />
+      <NavLink link="/contact" text="Contact" tooltip="Email" />
       <NavLink
         link="/about"
         text="About"

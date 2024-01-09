@@ -1,7 +1,6 @@
 import NextLink from "next/link";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
-import {useState, useEffect} from "react";
 
 export default function SocialIcons() {
   return (
@@ -93,58 +92,26 @@ export default function SocialIcons() {
   );
 }
 
-async function fetchFollowerCount(setter, storageKey, route) {
-  const cache = localStorage.getItem(storageKey);
-  const currentTime = new Date().getTime();
-
-  if (cache) {
-    const parsedCache = JSON.parse(cache);
-    if (parsedCache.expiry > currentTime) {
-      setter(parsedCache.followerCount);
-      return;
-    }
-  }
-
-  try {
-    const response = await fetch(route);
-    const data = await response.json();
-    const expiry = currentTime + 24 * 60 * 60 * 1000; // 24 hour cache
-    localStorage.setItem(storageKey, JSON.stringify({ followerCount: data.followerCount, expiry }));
-    setter(data.followerCount);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-function formatNumber(number) {
-  if (number >= 1000000) {
-    return (number / 1000000).toFixed(2) + 'M';
-  } else if (number >= 1000) {
-    return (number / 1000).toFixed(1) + 'K';
-  } else {
-    return number;
-  }
-}
-
-function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverColor="inherit"}) {
-
-  const [color, setColor] = useState(restingColor);
-
+function Link({
+  link,
+  icon,
+  tooltip,
+  label = "",
+  restingColor = "inherit",
+  hoverColor = "inherit",
+}) {
   return (
     <NextLink
-      href={link} passHref
+      href={link}
+      passHref
       className={styles.iconContainer}
-      style={{'--hover-color': hoverColor}}
+      style={{ "--hover-color": hoverColor }}
     >
       <Tooltip content={tooltip}>
-          <div className={styles.iconLabelContainer}>
-            <i className={icon} style={{ color: color }}/>
-            {label && (
-              <span className={styles.followers} >
-                {label}
-              </span>
-            )}
-          </div>
+        <div className={styles.iconLabelContainer}>
+          <i className={icon} style={{ color: restingColor }} />
+          {label && <span className={styles.followers}>{label}</span>}
+        </div>
       </Tooltip>
     </NextLink>
   );

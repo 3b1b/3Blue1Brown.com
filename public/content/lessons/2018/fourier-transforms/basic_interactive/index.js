@@ -47,7 +47,11 @@ export default function BasicWindingMachine() {
     let deltaTime = currentTime - previousTime;
     previousTime = currentTime;
 
-    if (sketch.movedX == 0 && sketch.movedY == 0 && frequencyMovement < 1e-4) {
+    if (
+      sketch.movedX === 0 &&
+      sketch.movedY === 0 &&
+      frequencyMovement < 1e-4
+    ) {
       // If the mouse didn't move and the winding frequency is pretty much the same,
       // Then don't bother to draw everything again. Its a waste
       previousTime = performance.now();
@@ -93,8 +97,8 @@ export default function BasicWindingMachine() {
   }
 
   const mobileStyling = {
-    touchAction: "none"
+    touchAction: "none",
   };
 
-  return <Sketch setup={setup} draw={draw} style={mobileStyling}/>;
+  return <Sketch setup={setup} draw={draw} style={mobileStyling} />;
 }

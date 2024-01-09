@@ -8,10 +8,7 @@ import {
   useState,
 } from "react";
 import PropTypes from "prop-types";
-import Clickable from "../Clickable";
-import PiCreature from "../PiCreature";
 import SocialIcons from "../SocialIcons";
-import Markdownify from "../Markdownify";
 import Interactive from "../Interactive";
 import Link from "next/link";
 import styles from "./index.module.scss";
@@ -24,7 +21,11 @@ HomepageFeaturedContent.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default function HomepageFeaturedContent({ title, show_latest_video=true, children}) {
+export default function HomepageFeaturedContent({
+  title,
+  show_latest_video = true,
+  children,
+}) {
   const { lessons } = useContext(PageContext);
   const lesson = lessons[0];
 
@@ -60,26 +61,27 @@ HomepageFeaturedItem.propTypes = {
 };
 
 export function HomepageFeaturedItem({
-  lesson, caption,
-  video_src="",
-  interactive_src="",
-  image_src="",
-  youtube_id="",
-  link="",
+  lesson,
+  caption,
+  video_src = "",
+  interactive_src = "",
+  image_src = "",
+  youtube_id = "",
+  link = "",
 }) {
-  if(link == ""){
-    link = `/lessons/${lesson}` + "#title"
+  if (link === "") {
+    link = `/lessons/${lesson}#title`;
   }
 
   var item;
-  if (video_src != ""){
+  if (video_src !== "") {
     item = <HomepageFeaturedVideo src={video_src} />;
-  } else if (interactive_src != ""){
-    item = <Interactive filename={interactive_src} aspectRatio={16 / 9} />
-  } else if (image_src != "") {
-    item = <img src={image_src} />
-  } else if (youtube_id != ""){
-    item = <HomepageFeaturedYouTube slug={youtube_id} />
+  } else if (interactive_src !== "") {
+    item = <Interactive filename={interactive_src} aspectRatio={16 / 9} />;
+  } else if (image_src !== "") {
+    item = <img src={image_src} alt={lesson} />;
+  } else if (youtube_id !== "") {
+    item = <HomepageFeaturedYouTube slug={youtube_id} />;
   }
 
   return (
@@ -88,9 +90,7 @@ export function HomepageFeaturedItem({
         <figure className={styles.itemFigure}>
           {item}
           <figcaption className={styles.itemCaption}>
-            <Link href={link}>
-              {caption}
-            </Link>
+            <Link href={link}>{caption}</Link>
           </figcaption>
         </figure>
       </div>
@@ -104,52 +104,50 @@ HomepageFeaturedYouTube.propTypes = {
 
 // Note, too much of this is copied over from LessonVideo
 
-export function HomepageFeaturedYouTube({
-  slug,
-}) {
+export function HomepageFeaturedYouTube({ slug }) {
   const thumbnail = `https://img.youtube.com/vi/${slug}/maxresdefault.jpg`;
 
-  const [showCoverImage, setShowCoverImage] = useState(true);  
+  const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
     setShowCoverImage(false);
   };
 
   return (
     <div>
-    {showCoverImage && (
-      <button className={styles.coverButton} onClick={startVideo}>
-        <img
-          className={styles.coverImage}
-          src={thumbnail}
-          alt="Youtube video"
-        />
-        <svg
-          className={styles.coverPlayButton}
-          height="100%"
-          version="1.1"
-          viewBox="0 0 68 48"
-          width="100%"
-        >
-          <path
-            d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
-            fill="currentColor"
+      {showCoverImage && (
+        <button className={styles.coverButton} onClick={startVideo}>
+          <img
+            className={styles.coverImage}
+            src={thumbnail}
+            alt="Youtube video"
           />
-          <path d="M 45,24 27,14 27,34" fill="#fff" />
-        </svg>
-      </button>
-    )}
-    {!showCoverImage && (
-      <div className={styles.frame}>
-        <iframe
-          title="YouTube Video"
-          className={styles.iframe}
-        src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
-          allow="autoplay"
-          allowFullScreen
-          referrerPolicy="origin"
-        />
-      </div>
-    )}
+          <svg
+            className={styles.coverPlayButton}
+            height="100%"
+            version="1.1"
+            viewBox="0 0 68 48"
+            width="100%"
+          >
+            <path
+              d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+              fill="currentColor"
+            />
+            <path d="M 45,24 27,14 27,34" fill="#fff" />
+          </svg>
+        </button>
+      )}
+      {!showCoverImage && (
+        <div className={styles.frame}>
+          <iframe
+            title="YouTube Video"
+            className={styles.iframe}
+            src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
+            allow="autoplay"
+            allowFullScreen
+            referrerPolicy="origin"
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -174,27 +172,25 @@ export function HomepageFeaturedVideo({
   width = 1920,
   height = 1080,
 }) {
-  const { visible } = useContext(CarouselContext);
-  const { lesson } = useContext(FeaturedItemContext);
   const videoRef = useRef();
 
   return (
-      <a className={styles.videoLink}>
-        <video
-          ref={videoRef}
-          className={styles.video}
-          autoPlay={autoPlay}
-          loop={loop}
-          muted={muted}
-          controls={controls}
-          width={width}
-          height={height}
-          preload="metadata"
-          playsInline={true}
-        >
-          <source src={transformSrc(src, dir)} />
-        </video>
-      </a>
+    <a className={styles.videoLink}>
+      <video
+        ref={videoRef}
+        className={styles.video}
+        autoPlay={autoPlay}
+        loop={loop}
+        muted={muted}
+        controls={controls}
+        width={width}
+        height={height}
+        preload="metadata"
+        playsInline={true}
+      >
+        <source src={transformSrc(src, dir)} />
+      </video>
+    </a>
   );
 }
 

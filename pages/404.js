@@ -13,11 +13,8 @@ const NotFound = () => (
         <div className={styles.text}>
           <div>Page not found</div>
           <div>
-            Try{" "}
-            <Link href="/#lessons">
-              finding the lesson
-            </Link>{" "}
-            you're looking for
+            Try <Link href="/#lessons">finding the lesson</Link> you're looking
+            for
           </div>
         </div>
       </div>

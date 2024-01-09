@@ -18,8 +18,6 @@ const LGHT_HLGHT = "#decc0b";
 const ARRW_COLOR = "#FFFFFF";
 const TEXT_COLOR = "#FFFFFF";
 
-let RADIAL_SECTORS = 50;
-
 let SCALE = 1;
 
 let polarizerAngle = 270;
@@ -390,7 +388,7 @@ function extendMouseAPI(sketch) {
   function eventCall(thunkArray) {
     for (let i = 0; i < thunkArray.length; i++) {
       let [instance, thunk] = thunkArray[i];
-      if (instance == undefined) thunk();
+      if (instance === undefined) thunk();
       else thunk.call(instance);
     }
   }
@@ -415,7 +413,7 @@ const ThunkType = {
 };
 
 function registerThunk(thunkType, thunk, instance) {
-  if (instance == undefined) eventArray[thunkType].push([undefined, thunk]);
+  if (instance === undefined) eventArray[thunkType].push([undefined, thunk]);
   else eventArray[thunkType].push([instance, thunk]);
 }
 
@@ -454,14 +452,14 @@ class Interactable {
       let previousAngleMode = this.sketch._angleMode;
       this.sketch.push();
 
-      if (this.child.onPreDraw != undefined) this.child.onPreDraw();
-      if (this.child.clean != undefined) this.child.clean();
+      if (this.child.onPreDraw !== undefined) this.child.onPreDraw();
+      if (this.child.clean !== undefined) this.child.clean();
 
-      if (this.child.move != undefined) this.child.move();
-      if (this.child.onMove != undefined) this.child.onMove();
+      if (this.child.move !== undefined) this.child.move();
+      if (this.child.onMove !== undefined) this.child.onMove();
 
-      if (this.child._doDraw != undefined) this.child._doDraw();
-      if (this.child.onPostDraw != undefined) this.child.onPostDraw();
+      if (this.child._doDraw !== undefined) this.child._doDraw();
+      if (this.child.onPostDraw !== undefined) this.child.onPostDraw();
 
       this.sketch.pop();
       this.sketch.angleMode(previousAngleMode);
@@ -471,9 +469,9 @@ class Interactable {
   checkGrab() {
     if (this.isHover) {
       this.isGrab = true;
-      if (this.child.grab != undefined) this.child.grab();
-      if (this.child.onGrab != undefined) this.child.onGrab();
-      if (this.child.onPress != undefined) this.child.onPress();
+      if (this.child.grab !== undefined) this.child.grab();
+      if (this.child.onGrab !== undefined) this.child.onGrab();
+      if (this.child.onPress !== undefined) this.child.onPress();
     }
   }
 
@@ -481,8 +479,8 @@ class Interactable {
     if (this.isGrab) {
       this.isGrab = false;
       this.checkHover();
-      if (this.child.release != undefined) this.child.release();
-      if (this.child.onRelease != undefined) this.child.onRelease();
+      if (this.child.release !== undefined) this.child.release();
+      if (this.child.onRelease !== undefined) this.child.onRelease();
     }
   }
 
@@ -490,16 +488,16 @@ class Interactable {
     if (this.sketch.mouseIsPressed) return;
 
     let pHover = this.isHover;
-    if (this.child.doesHover != undefined)
+    if (this.child.doesHover !== undefined)
       this.isHover = this.child.doesHover();
-    if (debug != undefined) console.log(pHover, this.isHover);
-    if (pHover != this.isHover) {
+    if (debug !== undefined) console.log(pHover, this.isHover);
+    if (pHover !== this.isHover) {
       if (this.isHover) {
-        if (this.child.hover != undefined) this.child.hover();
-        if (this.child.onHover != undefined) this.child.onHover();
+        if (this.child.hover !== undefined) this.child.hover();
+        if (this.child.onHover !== undefined) this.child.onHover();
       } else {
-        if (this.child.unHover != undefined) this.child.unHover();
-        if (this.child.onUnHover != undefined) this.child.onUnHover();
+        if (this.child.unHover !== undefined) this.child.unHover();
+        if (this.child.onUnHover !== undefined) this.child.onUnHover();
       }
     }
   }
@@ -508,10 +506,10 @@ class Interactable {
     let previousAngleMode = this.sketch._angleMode;
     this.sketch.push();
 
-    if (this.child.onPreDraw != undefined) this.child.onPreDraw();
-    if (this.child.clean != undefined) this.child.clean();
-    if (this.child._doDraw != undefined) this.child._doDraw();
-    if (this.child.onPostDraw != undefined) this.child.onPostDraw();
+    if (this.child.onPreDraw !== undefined) this.child.onPreDraw();
+    if (this.child.clean !== undefined) this.child.clean();
+    if (this.child._doDraw !== undefined) this.child._doDraw();
+    if (this.child.onPostDraw !== undefined) this.child.onPostDraw();
 
     this.sketch.pop();
     this.sketch.angleMode(previousAngleMode);
@@ -590,9 +588,9 @@ class Bobble extends Interactable {
   }
 
   setColors(normalColor, hoverColor, outlineColor) {
-    if (normalColor != undefined) this.normalColor = normalColor;
-    if (hoverColor != undefined) this.hoverColor = hoverColor;
-    if (outlineColor != undefined) this.strokeColor = outlineColor;
+    if (normalColor !== undefined) this.normalColor = normalColor;
+    if (hoverColor !== undefined) this.hoverColor = hoverColor;
+    if (outlineColor !== undefined) this.strokeColor = outlineColor;
   }
 
   setPosition(x, y) {
@@ -614,9 +612,9 @@ class ArcSlider {
   /* Interface function onRelease()   may be implemented by calling function */
 
   constructor(sketch, x, y, radius, beginAngle, endAngle, startAngle) {
-    this.beginAngle = beginAngle == undefined ? 0 : beginAngle;
-    this.endAngle = endAngle == undefined ? 360 : endAngle;
-    this.value = startAngle == undefined ? beginAngle : startAngle;
+    this.beginAngle = beginAngle === undefined ? 0 : beginAngle;
+    this.endAngle = endAngle === undefined ? 360 : endAngle;
+    this.value = startAngle === undefined ? beginAngle : startAngle;
     this.sketch = sketch;
     this.x = x;
     this.y = y;
@@ -634,16 +632,16 @@ class ArcSlider {
 
     // Pass triggers to calling function
     this.bobble.onHover = () => {
-      if (this.onHover != undefined) this.onHover();
+      if (this.onHover !== undefined) this.onHover();
     };
     this.bobble.onUnHover = () => {
-      if (this.onUnHover != undefined) this.onUnHover();
+      if (this.onUnHover !== undefined) this.onUnHover();
     };
     this.bobble.onRelease = () => {
-      if (this.onRelease != undefined) this.onRelease();
+      if (this.onRelease !== undefined) this.onRelease();
     };
     this.bobble.onGrab = () => {
-      if (this.onRelease != undefined) this.onGrab();
+      if (this.onRelease !== undefined) this.onGrab();
     };
 
     // Re-draw everything now that the plumbing is correct
@@ -689,7 +687,7 @@ class ArcSlider {
 
     this.updateBobblePosition();
 
-    if (this.onMove != undefined) this.onMove();
+    if (this.onMove !== undefined) this.onMove();
   }
 
   clean() {
@@ -704,12 +702,12 @@ class ArcSlider {
   }
 
   draw() {
-    if (this.onPreDraw != undefined) this.onPreDraw();
+    if (this.onPreDraw !== undefined) this.onPreDraw();
 
     this.sketch.angleMode(this.sketch.DEGREES);
     this.sketch.push();
 
-    if (this.clean != undefined) this.clean();
+    if (this.clean !== undefined) this.clean();
 
     // Draw arc
     this.sketch.stroke(this.sketch.color(this.lineColor));
@@ -726,7 +724,7 @@ class ArcSlider {
 
     this.sketch.pop();
 
-    if (this.onPostDraw != undefined) this.onPostDraw();
+    if (this.onPostDraw !== undefined) this.onPostDraw();
   }
 
   updateBobblePosition() {

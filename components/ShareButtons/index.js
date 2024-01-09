@@ -19,7 +19,7 @@ export default function ShareButtons({ url, text = "" }) {
     text = description + "\n\n";
   }
 
-  const via = "3Blue1Brown"
+  const via = "3Blue1Brown";
 
   if (!url) {
     url = "https://www.3blue1brown.com" + router.asPath;

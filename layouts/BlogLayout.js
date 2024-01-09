@@ -1,6 +1,5 @@
 import NormalLayout from "./NormalLayout";
 import PageContent from "../components/PageContent";
-import Disqus from "../components/Disqus";
 import Jump from "../components/Jump";
 import LessonVideo from "../components/LessonVideo";
 import Section from "../components/Section";

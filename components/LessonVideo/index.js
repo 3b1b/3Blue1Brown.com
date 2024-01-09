@@ -11,7 +11,6 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
     video: videoId,
     topic: topicName,
     thumbnail,
-    chapter,
     slug,
   } = useContext(PageContext);
 
@@ -40,7 +39,7 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
 
   const [showCoverImage, setShowCoverImage] = useState(true);
   const startVideo = () => {
-    if(!wideVideo) toggleExpansion();
+    if (!wideVideo) toggleExpansion();
     setShowCoverImage(false);
   };
 
@@ -52,17 +51,12 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
       dark={true}
       width={wideVideo ? "wide" : "narrow"}
     >
-      <div
-        className={styles.videoArea}
-        data-showcoverimage={showCoverImage}
-      >
+      <div className={styles.videoArea} data-showcoverimage={showCoverImage}>
         {topic && (
-          (<Link href={`/topics/${topic.slug}`} className={styles.topicLink}>
-
+          <Link href={`/topics/${topic.slug}`} className={styles.topicLink}>
             <i className="fas fa-arrow-left"></i>
             {topicName}
-
-          </Link>)
+          </Link>
         )}
 
         {!showCoverImage && wideEnoughToToggle() && (
@@ -76,14 +70,13 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         )}
 
         {prevLesson && videoId && (
-          (<Link
+          <Link
             href={lessonRedirects[prevLesson] || `/lessons/${prevLesson}`}
             className={styles.arrowLeft}
-            aria-label="Previous">
-
+            aria-label="Previous"
+          >
             <i className="fas fa-angle-left" />
-
-          </Link>)
+          </Link>
         )}
 
         {videoId && (
@@ -115,7 +108,9 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
                 <iframe
                   title="YouTube Video"
                   className={styles.iframe}
-                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${ timestamp ? '&start=' + timestamp : '' }`}
+                  src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1${
+                    timestamp ? "&start=" + timestamp : ""
+                  }`}
                   allow="autoplay"
                   allowFullScreen
                   referrerPolicy="origin"
@@ -126,14 +121,13 @@ export default function LessonVideo({ timestamp, defaultToWide }) {
         )}
 
         {nextLesson && videoId && (
-          (<Link
+          <Link
             href={lessonRedirects[nextLesson] || `/lessons/${nextLesson}`}
             className={styles.arrowRight}
-            aria-label="Next">
-
+            aria-label="Next"
+          >
             <i className="fas fa-angle-right" />
-
-          </Link>)
+          </Link>
         )}
       </div>
       {wideVideo && <div className={styles.bottomSpacer} />}

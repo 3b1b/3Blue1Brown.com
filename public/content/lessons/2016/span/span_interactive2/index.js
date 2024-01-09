@@ -85,11 +85,11 @@ export default function PyramidPlot() {
     sketch.strokeWeight(0.5);
 
     let first = sketch.createVector(VEC1_mag, 0, 0);
-    let angle = (VEC1_mag > 0) ? 0 : 180;
+    let angle = VEC1_mag > 0 ? 0 : 180;
     drawArrow(sketch, first, 0.05, angle, sketch.color(VEC1_COLOR));
 
     let second = sketch.createVector(0, VEC2_mag, 0);
-    angle = (VEC2_mag > 0) ? 90 : 270;
+    angle = VEC2_mag > 0 ? 90 : 270;
     drawArrow(sketch, second, 0.05, angle, sketch.color(VEC2_COLOR));
 
     let third = sketch.createVector(VEC1_mag, VEC2_mag, 0);
@@ -121,7 +121,7 @@ export default function PyramidPlot() {
     sketch.push();
 
     for (let step = 0; step <= STEPS; step++) {
-      if (step % MAJOR_STEP == 0) {
+      if (step % MAJOR_STEP === 0) {
         sketch.stroke(sketch.color(MAJR_COLOR));
       } else {
         sketch.stroke(sketch.color(MINR_COLOR));
@@ -269,7 +269,7 @@ export default function PyramidPlot() {
   function setupMouseEvents(sketch) {
     sketch.mousePressed = () => {
       activeSlider = hoveredSlider;
-      if (activeSlider != -1) sketch.cursor("grab");
+      if (activeSlider !== -1) sketch.cursor("grab");
     };
 
     sketch.mouseReleased = () => {
@@ -278,7 +278,7 @@ export default function PyramidPlot() {
     };
 
     sketch.mouseMoved = () => {
-      if (activeSlider == -1) {
+      if (activeSlider === -1) {
         for (let i = 0; i < sliders.length; i++) {
           if (sliders[i].isOver(sketch.mouseX, sketch.mouseY)) {
             sketch.cursor(sketch.HAND);
@@ -292,7 +292,7 @@ export default function PyramidPlot() {
     };
 
     sketch.mouseDragged = () => {
-      if (activeSlider != -1) {
+      if (activeSlider !== -1) {
         // Overwrite the items to be updated with the background color
         sketch.fill(sketch.color(BKGD_COLOR));
         sketch.noStroke();
@@ -314,9 +314,9 @@ export default function PyramidPlot() {
   }
 
   function updateValues() {
-    if (activeSlider == 0) {
+    if (activeSlider === 0) {
       VEC1_mag = -sliders[activeSlider].getValue() * 0.75;
-    } else if (activeSlider == 1) {
+    } else if (activeSlider === 1) {
       VEC2_mag = sliders[activeSlider].getValue() * 0.75;
     }
   }
@@ -375,7 +375,7 @@ class Slider {
     this.higherBound = higherBound;
     this.value = initialValue;
     this.radius = radius;
-    this.color = NMBR_COLOR
+    this.color = NMBR_COLOR;
 
     this.xScale = (pos2.x - pos1.x) / (higherBound - lowerBound);
     this.yScale = (pos2.y - pos1.y) / (higherBound - lowerBound);

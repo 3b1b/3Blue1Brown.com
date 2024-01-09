@@ -9,7 +9,7 @@ import Sketch from "react-p5";
 const WIDTH = 700;
 const HEIGHT = 700;
 const EDGE = 0.9;
-const ANIM_TIME = 15;  // 60ths of a second
+const ANIM_TIME = 15; // 60ths of a second
 const WAIT_TIME = 5;
 
 export default function PyramidPlot() {
@@ -41,7 +41,7 @@ export default function PyramidPlot() {
     scoreColor = sketch.color(LINE_COLOR);
 
     sketch.mouseReleased = () => {
-      if (sketch.mouseButton == sketch.LEFT) {
+      if (sketch.mouseButton === sketch.LEFT) {
         throwDart(sketch);
       }
     };
@@ -185,7 +185,11 @@ export default function PyramidPlot() {
       fadeChordAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, chordToCenterAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      chordToCenterAnimation,
+      "cubic"
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Shrink circle
@@ -205,7 +209,11 @@ export default function PyramidPlot() {
       shrinkCircleAnimation,
       translateChordAnimation,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, newCircleAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      newCircleAnimation,
+      "cubic"
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
 
     // Fade old circle
@@ -213,7 +221,7 @@ export default function PyramidPlot() {
     shrinkCircleAnimation = Animations.freeze(shrinkCircleAnimation, 1);
     let updateAlpha = (sketch, progress) => {
       circleAlpha = (1 - progress) * 0.5;
-      if (progress == 1) {
+      if (progress === 1) {
         gameRadius = nextGameRadius;
         circleAlpha = 1;
       }
@@ -223,7 +231,11 @@ export default function PyramidPlot() {
       translateChordAnimation,
       updateAlpha,
     ]);
-    dartThrowAnimation.registerAnimation(ANIM_TIME, completeCircleAnimation, "cubic");
+    dartThrowAnimation.registerAnimation(
+      ANIM_TIME,
+      completeCircleAnimation,
+      "cubic"
+    );
     dartThrowAnimation.registerFreezeFrame(WAIT_TIME);
   }
 
@@ -381,7 +393,7 @@ export default function PyramidPlot() {
       // Returns true when the animation is done, false if still working
 
       let progress = this.interpolator(frameNumber, this.frameLength);
-      if (this.draw == undefined) {
+      if (this.draw === undefined) {
         console.log(
           "Animation with length " +
             this.frameLength +
@@ -414,11 +426,11 @@ export default function PyramidPlot() {
     }
 
     chooseInterpolator(interpolator) {
-      if (interpolator == "cubic") {
+      if (interpolator === "cubic") {
         return this.cubicInterpolate;
-      } else if (interpolator == "lightfoot") {
+      } else if (interpolator === "lightfoot") {
         return this.lightfootInterpolate;
-      } else if (interpolator == "heavyfoot") {
+      } else if (interpolator === "heavyfoot") {
         return this.heavyfootInterpolate;
       }
 
@@ -453,7 +465,7 @@ export default function PyramidPlot() {
       // Adds a "clip" which animates the last frame of the previous clip for a certain number of frames
 
       // Don't do anything if there aren't any clips
-      if (this.animations.length == 0) return;
+      if (this.animations.length === 0) return;
 
       const previousAnimation = this.animations[this.animations.length - 1];
       let animation = {};
@@ -482,7 +494,7 @@ export default function PyramidPlot() {
     }
 
     update(sketch) {
-      if (this.state == "stop") return;
+      if (this.state === "stop") return;
 
       if (this.currentClip >= this.animations.length) {
         this._finish();
@@ -494,7 +506,7 @@ export default function PyramidPlot() {
         this.currentFrame
       );
 
-      if (this.state == "pause") return;
+      if (this.state === "pause") return;
 
       this.currentFrame++;
 
@@ -516,7 +528,7 @@ export default function PyramidPlot() {
         this.stop();
       }
 
-      if (this.onFinish != undefined) this.onFinish(sketch);
+      if (this.onFinish !== undefined) this.onFinish(sketch);
     }
 
     play() {
@@ -549,7 +561,7 @@ export default function PyramidPlot() {
       // Removes all of the clips in this sequence
       // Can only be called when the animation is stopped
 
-      if (this.state != "stop") return;
+      if (this.state !== "stop") return;
 
       this.animations = [];
       this.restart();
@@ -566,7 +578,7 @@ export default function PyramidPlot() {
       // Returns an animation lambda which draws a line starting from (x1, y1) to (x2, y2)
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         let cx = x1 + (x2 - x1) * progress;
         let cy = y1 + (y2 - y1) * progress;
@@ -581,7 +593,7 @@ export default function PyramidPlot() {
 
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         let currentAngle = (endAngle - beginAngle) * progress;
         sketch.rotate(beginAngle + offsetAngle);
@@ -596,7 +608,7 @@ export default function PyramidPlot() {
 
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         sketch.translate(tx * progress, ty * progress);
         drawing(sketch, progress);
@@ -609,7 +621,7 @@ export default function PyramidPlot() {
 
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         let currentRadius = beginRadius + (endRadius - beginRadius) * progress;
         sketch.circle(0, 0, currentRadius * 2);
@@ -623,7 +635,7 @@ export default function PyramidPlot() {
 
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         // Set opacity. May need to draw to a texture first because can't access color from here
         // Using global alpha isn't the best practice
@@ -654,7 +666,7 @@ export default function PyramidPlot() {
 
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         let cumDistance = 0;
         for (let i = 0; i < sublambdas.length; i++) {
@@ -707,7 +719,7 @@ export default function PyramidPlot() {
       // Takes in an animation and creates an animation lambda which freezes at a certain progress
       return (sketch, progress) => {
         sketch.push();
-        if (formatting != undefined) formatting(sketch);
+        if (formatting !== undefined) formatting(sketch);
 
         drawing(sketch, frozenProgress);
 

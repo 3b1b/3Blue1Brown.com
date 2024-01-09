@@ -52,13 +52,17 @@ export default function BasicWindingMachine() {
     let deltaTime = currentTime - previousTime;
     previousTime = currentTime;
 
-    if (sketch.movedX == 0 && sketch.movedY == 0 && frequencyMovement < 1e-4) {
+    if (
+      sketch.movedX === 0 &&
+      sketch.movedY === 0 &&
+      frequencyMovement < 1e-4
+    ) {
       // If the mouse didn't move and the winding frequency is pretty much the same,
       // Then don't bother to draw everything again. Its a waste
       return;
     }
 
-    if (frequencyMovement == 1) {
+    if (frequencyMovement === 1) {
       drawTopGraph(sketch);
     }
 
@@ -114,10 +118,10 @@ export default function BasicWindingMachine() {
 
   function formatNumber(number) {
     let strNumber = number.toFixed(2);
-    if (strNumber[strNumber.length - 1] == "0") {
+    if (strNumber[strNumber.length - 1] === "0") {
       strNumber = strNumber.substring(0, strNumber.length - 1);
     }
-    if (strNumber[strNumber.length - 1] == "0") {
+    if (strNumber[strNumber.length - 1] === "0") {
       strNumber = strNumber.substring(0, strNumber.length - 2);
     }
 
@@ -127,7 +131,7 @@ export default function BasicWindingMachine() {
   function drawHzs(sketch) {
     let str = "";
     for (let i = 0; i < FREQS.length; i++) {
-      if (str != "") str += " + ";
+      if (str !== "") str += " + ";
 
       str += formatNumber(FREQS[i]) + "Hz";
     }
@@ -147,7 +151,7 @@ export default function BasicWindingMachine() {
       if (float > 4.4) continue;
 
       frequencies.push(float);
-      if (frequencies.length == MAX_FREQS) break;
+      if (frequencies.length === MAX_FREQS) break;
     }
 
     FREQS = frequencies;
