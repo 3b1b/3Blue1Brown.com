@@ -3,13 +3,13 @@ export default function FaqLinks(){
     <>
         <a href="/faq#manim">Animations</a> 
         <span> &bull; </span>
-        <a href="/faq#requests">Requests</a> 
+        <a href="/faq#requests">Topic Requests</a> 
         <span> &bull; </span>
         <a href="/faq#translations">Translations</a> 
         <span> &bull; </span>
         <a href="/contact#licensing-inquiry">Licensing</a> 
         <span> &bull; </span>
-        <a href="/contact#speaking-inquiry">Speaking</a> 
+        <a href="/faq#speaking">Speaking</a> 
         <span> &bull; </span>
         <a href="/faq#sponsor">Sponsorships</a> 
         <span> &bull; </span>
