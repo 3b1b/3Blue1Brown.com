@@ -124,10 +124,8 @@ This is because a matrix whose columns represent $\vec{\mathbf{v}}$ and $\vec{\m
 The determinant is all about measuring how areas change due to a transformation, and the prototypical area to look at is the unit square resting on $\hat{\imath}$ and $\hat{\jmath}$. After the transformation, that square turns into the parallelogram we care about. So the determinant, which generally measures the factor by which areas are changed, gives the area of this parallelogram, since it evolved from a square that started with area 1. 
 
 <Figure
-    image="./figures/determinant-basis-vectors-transformed-orientation.png" 
+    image="./figures/compute-with-determinant/determinant-basis-vectors-transformed-orientation.png" 
 />
-
-<!--TODO: replace with image callback from chapter five-->
 
 What's more, if $\vec{\mathbf{w}}$ is a _clockwise_ rotation away from $\vec{\mathbf{v}}$, it means orientation is flipped during the transformation, which is what it means for a determinant to be negative.
 
@@ -218,56 +216,119 @@ Something else you might notice is that if you scale up one of the vectors, perh
     image="./figures/properties/Scaling.svg" 
 />
 
-## 3d cross product, standard view
+## Standard 3d View
 
-Now, even though everything we just did is a perfectly fine mathematical operation, what I just described is technically not the cross product. The true cross product is something that combines two 3d vectors to get a new 3d vector. You still consider the parallelogram defined by the two vectors, and the area of that parallelogram still plays a big role. To be concrete let's say that area is $2.5$ for the vectors shown here.
+Now, even though everything we just did is a perfectly fine mathematical operation, what I just described is technically not the cross product. The true cross product is something that combines two 3d vectors to get a new 3d vector.
+
+$$
+\left[\begin{array}{l}
+v_1 \\
+v_2 \\
+v_3
+\end{array}\right]
+\times
+\left[\begin{array}{l}
+w_1 \\
+w_2 \\
+w_3
+\end{array}\right]
+= 
+\left[\begin{array}{l}
+p_1 \\
+p_2 \\
+p_3
+\end{array}\right]
+$$
+
+You still consider the parallelogram defined by the two vectors, and the area of that parallelogram still plays a big role. To be concrete the area is $9$ units for the vectors shown here.
 
 <Figure
-    image="./figures/3d-area-of-parallelogram.png" 
+    image="./figures/standard-view/AreaOfParallelogram.svg" 
 />
 
-The 3d cross product does not return a number, it returns a vector. This new vector's length will be the area of that parallelogram, which in this example is 2.5, and the direction of that new vector is perpendicular
+The 3d cross product does not return a number, it returns a vector. This new vector's length will be the area of that parallelogram, which in this example is $9$, and the direction of that new vector is perpendicular to that parallelogram.
 
 <Figure
-    image="./figures/3d-resulting-vector.png" 
+    image="./figures/standard-view/ResultingVector.svg" 
 />
 
-<!--TODO: lock orientation of the axis so that the two views are identical-->
-
-But which way? There are two possible vectors with length $2.5$ pointing perpendicular to a given plane. This is where the right-hand rule comes in. Point the forefinger of your right hand in the direction of $\vec{\mathbf{v}}$, and stick out your middle finger in the direction of $\vec{\mathbf{w}}$. Now when you point up your thumb, that's the direction of the cross product.
+But which way? There are two possible vectors with length $9$ pointing perpendicular to a given plane. This is where the right-hand rule comes in. Point the forefinger of your right hand in the direction of $\vec{\mathbf{v}}$, and stick out your middle finger in the direction of $\vec{\mathbf{w}}$. Now when you point up your thumb, that's the direction of the cross product.
 
 <Figure
-    image="./figures/3d-righthand-rule.png" 
+    image="./figures/standard-view/RightHandRule.svg" 
 />
 
 For example, let $\vec{\mathbf{v}}$ be the vector with length $2$ in the $z$ direction, and let  $\vec{\mathbf{w}}$ be the vector with length $2$ in the $y$ direction. The parallelogram they define in this simple example is actually a square, since they're perpendicular, and the area of that square is $4$. Using the right hand rule, their cross product should point in the negative $x$ direction, so this cross product is $-4 \hat{\imath}$.
 
 <Figure
-    image="./figures/3d-simple-example.png" 
+    image="./figures/standard-view/RightHandRuleExample1.svg" 
 />
+
+<Question
+  question="What is $\vec{\mathbf{v}} \times \vec{\mathbf{w}}$ where $\vec{\mathbf{v}} = \left[\begin{array}{c}  2  \\  0  \\  0  \end{array}\right]$ and $\vec{\mathbf{w}} = \left[\begin{array}{c}  0  \\  -3  \\  0  \end{array}\right]$?"
+  choice1="$\left[\begin{array}{c}  0  \\  0  \\  6  \end{array}\right]$"
+  choice2="$\left[\begin{array}{c}  -6  \\  0  \\  0  \end{array}\right]$"
+  choice3="$\left[\begin{array}{c}  6  \\  0  \\  0  \end{array}\right]$"
+  choice4="$\left[\begin{array}{c}  0  \\  0  \\  -6  \end{array}\right]$"
+  answer={4}
+>
+
+Using what we know about computing the cross product so far you can draw the parallelogram formed betwen $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$.
+
+<Figure
+    image="./figures/standard-view/RightHandRuleExample2Parallelogram.svg" 
+/>
+
+Which, in this case, is a rectangle with an area of $6$ units. So we know the resulting vector $\vec{\mathbf{p}}$ will have a length of $6$ and will be parallel to the $xy$-coordinate plane, so it will lie either on the positive $z$-axis or the negative $z$-axis. Applying the right-hand rule tell us that it is the vector pointing in the negative direction on the $z$-axis.
+
+<Figure
+    image="./figures/standard-view/RightHandRuleExample2.svg" 
+/>
+
+Writing this out gives us the following computation.
+
+$$
+\left[\begin{array}{c}  2  \\  0  \\  0  \end{array}\right]
+\times
+\left[\begin{array}{c}  0  \\  -3  \\  0  \end{array}\right]
+=
+\left[\begin{array}{c}  0  \\  0  \\  -6  \end{array}\right]
+$$
+
+</Question>
 
 ## Computing
 
 There is a formula you could memorize for this cross product:
 
+$$
+\left[\begin{array}{l}
+v_1 \\
+v_2 \\
+v_3
+\end{array}\right] \times\left[\begin{array}{l}
+w_1 \\
+w_2 \\
+w_3
+\end{array}\right]=\left[\begin{array}{l}
+v_2 \cdot w_3-w_2 \cdot v_3 \\
+v_3 \cdot w_1-w_3 \cdot v_1 \\
+v_1 \cdot w_2-w_1 \cdot v_2
+\end{array}\right]
+$$
+
+However, it's common and easier to remember a certain process involving the 3d determinant. This process looks truly strange at first. Write a 3d matrix where the second column is the coordinates of $\vec{\mathbf{v}}$, and the third column is the coordinates $\vec{\mathbf{w}}$. Then for the first column, write in the basis vector $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$. Then, you compute the determinant of this matrix.
+
 <Figure
-    image="./figures/computing-formula.png" 
-/>
-
-However, it's common and easier to remember a certain process involving the 3d determinant.
-
-This process looks truly strange at first. Write a 3d matrix where the second column is the coordinates of $\vec{\mathbf{v}}$, and the third column is the coordinates $\vec{\mathbf{w}}$. Then for the first column, write in the basis vector $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$. Then, you compute the determinant of this matrix.
-
-<Figure
-    image="./figures/computing-determinant.png" 
+    image="./figures/computing/CrossProductDeterminantForm.svg" 
 />
 
 The silliness is probably clear here. What on earth does it mean to put a vector in as the entry to a matrix? Students are often told that this is just a notational trick; when you carry out all the computations as if $\hat{\imath}$, $\hat{\jmath}$ and $\hat{k}$ were numbers. Then you get some linear combination of those basis vectors, and the vector defined by that linear combination, students are told to just believe, is the unique vector perpendicular to $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ whose magnitude is the area of the appropriate parallelogram, and whose direction obeys the right-hand-rule.
 
 <Figure
-    image="./figures/computing-notational-trick.png" 
+    image="./figures/computing/CrossProductDeterminantFormExpanded.svg" 
 />
 
 And sure, in some sense this is a notational trick, but there is a reason for doing it. It's not just a coincidence that the determinant is once again important, and putting the basis vectors in these slots is not just random. To understand where this all comes from, it helps to use the idea of duality that I introduced in the last chapter. This concept is a bit heavy, though, so I'm putting it into a separate follow-on chapter for those of you curious to learn more.
 
-Arguably, it falls outside the essence of linear algebra, so you can feel comfortable if you want to skip that next chapter. But for those of you willing to go a bit deeper, it's just really cool.
+Arguably, it falls outside the essence of linear algebra, so you can feel comfortable if you want to skip that <LessonLink id="cross-products-extended">next chapter</LessonLink> and go straight to the lesson on <LessonLink id="cramers-rule">Cramer's Rule</LessonLink>. But for those of you willing to go a bit deeper, it's just really cool.
