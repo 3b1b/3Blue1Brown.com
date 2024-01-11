@@ -38,5 +38,30 @@
       "<Accordion title=\"$1\">\n$7\n</Accordion>"
     ],
     "description": "Insert an accordion into markdown."
-  }
+  },
+  "Vector": {
+    "scope": "markdown, mdx",
+    "prefix": "vector",
+    "body": [
+      "\\vec{\\mathbf{$1}}"
+    ],
+    "description": "Insert a vector variable into markdown."
+  },
+  "Array": {
+    "scope": "markdown, mdx",
+    "prefix": "array",
+    "body": [
+      "\\left[\\begin{array}{c}  $1  \\\\\\  $2  \\\\\\  $3  \\end{array}\\right]"
+    ],
+    "description": "Insert a vector array into markdown."
+  },
+  "LessonLink": {
+    "scope": "markdown, mdx",
+    "prefix": "lesson",
+    "body": [
+      "<LessonLink id=\"$1\">$2</LessonLink>"
+    ],
+    "description": "Insert a LessonLink into markdown."
+  },
+
 }

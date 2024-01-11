@@ -3,3 +3,4 @@
 - Possibly reword sentence containing the word "prototypical"
 - Should the parallelogram always be the same color as the first operand vector in the cross product?
 - Should there be some comprehension questions applying the notational trick formula? Or should the student be encouraged into the next more in-depth lesson?
+- TODO: replace `./figures/compute-with-determinant/determinant-basis-vectors-transformed-orientation.png` with image callback from chapter five
