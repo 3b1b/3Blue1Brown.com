@@ -1,4 +1,2 @@
-5:14 vector illustration doesn't match up with the video and doesn't set up the following example
-5:44 create annotated illustration of vector addition
-- If the color usage is feeling a bit busy, I think instead of purple the addition vector v+w could just be white.
-- Should the axes labels $x$ and $y$ be omitted after the coordinate system is introduced?
+- TODO: Add a question about scaling at the end of the section
+- Removed end section visuals, but perhaps better to keep them in

@@ -1,4 +1,7 @@
-- Local interactives throw an error, but interactives on the live site are fine?
-- i-hat and j-hat variables inconsistent between video and lesson (contain extra dot above the letters)
+- TODO: I think there could be something said about dropping labeling the x and y axis, and letting the basis establish the basis of the coordinate system.
+- TODO: Add animation for introction of the span of two vectors
+- TODO: Add hand-drawn looking arrow to LinearCombinationWithDescription figure
+- TODO: Create SVGs for "vectors as points" section
+
 - Move "What values of the scalars α and β satisfy the following equation?" to after the text "The answer is that you can describe every possible two-dimensional vector this way, and I think it's a good puzzle to contemplate why."
 - Keep 50% opacity versions of v and w for choosing different basis vectors?

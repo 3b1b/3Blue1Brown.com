@@ -28,17 +28,22 @@ Now I imagine that vector coordinates were already familiar to many of you, but 
   image="./figures/introduction/VectorCoordinatesAsScalars.svg"
 />
 
-In the $xy$-coordinate system, there are two special vectors. The one pointing to the right with length $1$, commonly called "i hat" $\hat{\imath}$ or "the unit vector in the $x$-direction". The other one is pointing straight up with length $1$, commonly called "j hat" $\hat{\jmath}$ or "the unit vector in the $y$-direction". Now, think of the $x$-coordinate as a scalar that scales $\hat{\imath}$, stretching it by a factor of $3$, and the $y$-coordinate as a scalar that scales $\hat{\jmath}$, flipping it and stretching it by a factor of $2$.
+In the $xy$-coordinate system, there are two special vectors. The one pointing to the right with length $1$, commonly called "i hat" $\hat{\imath}$ or "the unit vector in the $x$-direction". The other one is pointing straight up with length $1$, commonly called "j hat" $\hat{\jmath}$ or "the unit vector in the $y$-direction".
 
 <Figure
   image="./figures/introduction/UnitVectors.svg"
 />
 
-In this sense, the vector that these coordinates describe is the sum of two scaled vectors. This idea of adding together two scaled vectors is a surprisingly important concept. Those two vectors $\hat{\imath}$ and $\hat{\jmath}$ have a special name: Together they are called the "basis" of the coordinate system. What this means is that when you think about coordinates as scalars, the basis vectors are what those scalars actually scale. 
+Now, think of the $x$-coordinate as a scalar that scales $\hat{\imath}$, stretching it by a factor of $3$, and the $y$-coordinate as a scalar that scales $\hat{\jmath}$, flipping it and stretching it by a factor of $2$. In this sense, the vector that these coordinates describe is the sum of two scaled vectors.
+
+<Figure
+  image="./figures/introduction/VectorCoordinatesAsScalarsOfUnitVectors.svg" 
+/>
+
+This idea of adding together two scaled vectors is a surprisingly important concept. Those two vectors $\hat{\imath}$ and $\hat{\jmath}$ have a special name: Together they are called the "basis" of the coordinate system. What this means is that when you think about coordinates as scalars, the basis vectors are what those scalars actually scale. 
 
 <Figure
   image="./figures/introduction/CoordinatesAsScalarsOfBasisVectors.svg"
-  caption="$\hat{\imath}$ and $\hat{\jmath}$ are the basis vectors of the $xy$ coordinate system."
 />
 
 There's also a more technical definition of basis, but we'll get to that later. Framing our familiar coordinate system in terms of these two special basis vectors raises an interesting and subtle point: We could choose a different pair of basis vectors and get a perfectly reasonable *new* coordinate system.
@@ -98,7 +103,7 @@ This system of equations can be solved by substitution to get the answer of $\al
 Any time you're scaling two vectors and adding them like this, it's called a "linear combination" of those two vectors.
 
 <Figure
-  image="./figures/linear-combination/LinearCombination.svg" 
+  image="./figures/linear-combination/LinearCombinationWithDescription.svg" 
 />
 
 Where does the word "linear" come from here? What does this have to do with lines? Well, when you multiply a scalar by a vector, it changes the magnitude of that vector. Multiplying every real number by the vector produces an infinite line that passes through the origin and the point defined by the vector.
@@ -188,25 +193,23 @@ The idea of span gets more interesting if we start thinking about vectors in thr
 
 <Figure
   image="./figures/span-in-3d/SpanOfTwoVectorsIn3dNoPlane.svg"
-  width="540px"
+  width="480px"
 />
 
 Well, their span is the collection of all possible linear combinations of those two vectors, meaning all possible vectors you get by scaling each of the two you start with in some way, then adding them together.
 
 <Figure
   image="./figures/span-in-3d/LinearCombination3d.svg"
-  width="540px"
+  width="480px"
 />
 
 You can imagine turning two knobs to change the two scalars defining the linear combination, adding the scaled vectors and following the tip of the resulting vector.  That tip traces out some kind of flat sheet cutting through the origin of three-dimensional space.
 
 <Figure
   image="./figures/span-in-3d/SpanOfTwoVectorsIn3d.svg"
-  width="540px"
+  video="./figures/span-in-3d/SpanOfTwoVectorsIn3d.mp4"
+  width="480px"
 />
-
-<!--TODO: Make illustration tip to tail-->
-<!--TODO: Animate different linear combinations of v and w in the plane-->
 
 This flat sheet is the span of the two vectors. Or more precisely, the set of all possible vectors whose tips sit on this flat sheet is the span of your two vectors. Isn't that a beautiful mental image?
 
@@ -214,7 +217,7 @@ What happens if you add on a third vector, and consider the span of all three ve
 
 <Figure
   image="./figures/span-in-3d/LinearCombinationOfThreeVectorsWithLines.svg" 
-  width="540px"
+  width="480px"
   caption="The linear combination of $\vec{\mathbf{v}}$, $\vec{\mathbf{w}}$, and $\vec{\mathbf{u}}$: $a\vec{\mathbf{v}} + b\vec{\mathbf{w}} + c\vec{\mathbf{u}}$"
 />
 
@@ -223,36 +226,38 @@ Two things can happen when we add a third vector:
   1. If your third vector happens to be sitting on the span of the first two, then the span doesn't change, you're sort of trapped on that same flat sheet. In other words, adding a scaled version of the third vector to linear combinations of the first two doesn't give you access to any new vectors.
 
   <Figure
-    image="./figures/span-in-3d/ThirdVectorIsInSpan.png" 
+  image="./figures/span-in-3d/ThirdVectorIsInSpan.svg" 
   />
 
-   
 
   2. If you just randomly choose a third vector, it's almost certainly not sitting on the span of the first.  Since it's then pointing in a separate direction, it unlocks access to every possible three-dimensional vector! The way I like to think about this is that as you scale the new third vector, it moves around the span of the first two to sweep it through all of space.
 
   <Figure
-    image="./figures/span-in-3d/ThirdVectorIsNotInSpan.png"
+    image="./figures/span-in-3d/ThirdVectorIsNotInSpan.svg" 
+    video="./figures/span-in-3d/ThirdVectorIsNotInSpan.mp4" 
   />
 
   It's kind of like you're making full use of the three freely-changing scalars that you have at your disposal to access the full three dimensions of space.
 
 In the case where the third vector was sitting on the span of the first two, or the case where two vectors happen to line up, we want some terminology to describe the fact that at least one of these vectors is redundant, not adding anything to our span. Whenever this happens, where you have multiple vectors, and you could remove one without reducing their span, the relevant terminology is to say they are “linearly dependent”.
 
-
 <Figure
-  image="./figures/span-in-3d/LinearlyDependent.png" 
+  image="./figures/span-in-3d/LinearlyDependent.svg"
 />
+
 
 Another way of phrasing this would be to say that one of the vectors can be expressed as a linear combination of the others.  That is, it's already in the span of the other two.
 
 <Figure
-  image="./figures/span-in-3d/LinearlyDependent3d.png" 
+  image="./figures/span-in-3d/LinearlyDependent3d.svg" 
+  width="480px"
 />
 
 On the other hand, if each vector really does add another dimension to the span, they are said to be “linearly independent”.
 
 <Figure
-  image="./figures/span-in-3d/LinearlyIndependent.png" 
+  image="./figures/span-in-3d/LinearlyIndependent3d.svg" 
+  width="480px"
 />
 
 When you write down these definitions with symbols, let's say in the case of three vectors, here's how it looks: A set of vectors is linearly dependent if one of them can be expressed as a linear combination of the others, meaning you can find two scalars such that the sum of the scaled version of the first two vectors gives you the third.
