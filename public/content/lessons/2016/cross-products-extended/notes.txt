@@ -2,7 +2,7 @@
 - Should lesson links try and avoid mentioning the chapter number and instead use the chapter title or something like it?
 - The typesetting of $\left[ \begin{array}{c} x \\ y \\ z \end{array} \right]$ disrupts the paragraph grouping, so I updated the text to use $\vec{\mathbf{u}}$ instead. I've also had it where teachers write vectors horizontally, but I think I prefer the variable approach instead?
 - The moving camera really helps the brain understand the layout of 3d space, I experimented with drawing the corresponding rectangular prisms for the vectors to help the reader understand the geometry from a static perspective. This is the same approach that I would use if I was drawing the vectors by hand with some vanishing points.
-- The parallelepiped whicht talks about volume is drawn with $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ drawn lying on the $xy$-plane... should this be pointed out to the student?
+- The parallelepiped which talks about volume is drawn with $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$ drawn lying on the $xy$-plane... should this be pointed out to the student?
 - TODO: animate figure that has the caption "Even though we are drawing the vector..."
 - Potential question: What is the signed volume of this parallelepiped? 
 - Potential question: Computing the determinant with variables for u (x y z) and collecting like terms

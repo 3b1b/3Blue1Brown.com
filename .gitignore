@@ -39,6 +39,7 @@ public/content/**/*.source.mov
 
 # Custom ignore files
 *.ignore
+*.temp
 *.zip
 *.patch
 _archive
