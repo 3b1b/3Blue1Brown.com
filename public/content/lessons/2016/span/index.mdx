@@ -245,7 +245,6 @@ In the case where the third vector was sitting on the span of the first two, or 
   image="./figures/span-in-3d/LinearlyDependent.svg"
 />
 
-
 Another way of phrasing this would be to say that one of the vectors can be expressed as a linear combination of the others.  That is, it's already in the span of the other two.
 
 <Figure
@@ -260,18 +259,36 @@ On the other hand, if each vector really does add another dimension to the span,
   width="480px"
 />
 
-When you write down these definitions with symbols, let's say in the case of three vectors, here's how it looks: A set of vectors is linearly dependent if one of them can be expressed as a linear combination of the others, meaning you can find two scalars such that the sum of the scaled version of the first two vectors gives you the third.
+In the next chapter, we get into one of the most important topics in linear algebra: <LessonLink id="linear-transformations">Linear Transformations</LessonLink>. See you there!
 
-Since textbooks and mathematicians like to maximize the chances that students are confused, you might commonly see the definition of linear dependence written a different way, with all vectors sitting on one side of the equal sign: First, vector on the left side here to the right, and remember, since this is an equation with vectors, what's left on the left side is the zero vector, commonly written more compactly as a boldfaced 0.
+## Questions
 
-TODO: show tex
+**Given the span of two vectors $\left[\begin{array}{c}  0  \\  3  \\  2  \end{array}\right]$ and $\left[\begin{array}{c}  0  \\  1  \\  -2  \end{array}\right]$ illustrated below:**
 
-In this arrangement, you might want to say these three vectors are linearly dependent if there is a linear combination of all three that equals 0. Except, that's not quite right, because you could just set all of the scalars to 0, even when the three vectors are linearly independent. Given how I wrote things, you might want to add the caveat that one of those scalars has to be $-1$.  That would be a fine definition, but it's more common to just say you're not allowed to make all of them zero. I mean, when you think about it, if at least one of them is nonzero, you could multiply the entire equation by an appropriate constant to make it zero.
+<Figure
+  image="./figures/span-in-3d/IndepentOrDependent.svg" 
+  width="480px"
+/>
 
-On the other hand, the definition of vectors being linearly independent is if the only possible linear combination that can bring them to zero is when all of the scalars are zero. Okay, I'm being unfair to textbooks and mathematicians, what's nice about this alternate definition is that all vector are treated equally.  But still, isn't that more convoluted than just thinking about whether or not one of the vectors is redundant for the full span?
+<Question
+  question="Which of the following vectors is linearly dependent of the vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$?"
+  choice1="$\left[\begin{array}{c}  1  \\  0  \\  4  \end{array}\right]$"
+  choice2="$\left[\begin{array}{c}  -2  \\  4  \\  0  \end{array}\right]$"
+  choice3="$\left[\begin{array}{c}  1  \\  2  \\  3  \end{array}\right]$"
+  choice4="$\left[\begin{array}{c}  0  \\  -2  \\  4  \end{array}\right]$"
+  answer={4}
+>
 
-## Conclusion
+The vector $\vec{\mathbf{u}} = \left[\begin{array}{c}  0  \\  -2  \\  4  \end{array}\right]$ is the only vector that can be expressed using just $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$.
 
-Before I go, let me leave you with a question: The technical definition for the “basis” of a space is a set of linearly independent vectors that span that space, given how I described a basis earlier, and given your understanding of the words “span” and “linearly independent”, why does this definition make sense?
+</Question>
+
+**The technical definition for the “basis” of a space is a set of linearly independent vectors that span that space, given how I described a basis earlier, and given your understanding of the words “span” and “linearly independent”, why does this definition make sense?**
+
+<FreeResponse>
+
+Earlier we learned that any pair of vectors could form a new basis as long as they didn't line up. If pair of vectors are linearly independent, their linear combination can span the entire 2D plane, meaning they can form the basis for the plane.
+
+</FreeResponse>
 
 In the next chapter I'll get into matrices and transforming space.  See you then!

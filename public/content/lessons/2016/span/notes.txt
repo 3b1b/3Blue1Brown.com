@@ -2,6 +2,6 @@
 - TODO: Add animation for introction of the span of two vectors
 - TODO: Add hand-drawn looking arrow to LinearCombinationWithDescription figure
 - TODO: Create SVGs for "vectors as points" section
+- TODO: Section about differing termonologies removed from before conclusion section
 
 - Move "What values of the scalars α and β satisfy the following equation?" to after the text "The answer is that you can describe every possible two-dimensional vector this way, and I think it's a good puzzle to contemplate why."
-- Keep 50% opacity versions of v and w for choosing different basis vectors?
