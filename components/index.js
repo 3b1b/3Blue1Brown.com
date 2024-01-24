@@ -1,3 +1,7 @@
+import {
+   AboutPageGallery,
+   TeamMember
+} from "./AboutPageGallery";
 import Accordion from "./Accordion";
 import Announcement from "./Announcement";
 import BlogPostList from "./BlogPostList";
@@ -40,6 +44,7 @@ import Twitter from "./Twitter";
 const components = {
   Accordion,
   Announcement,
+  AboutPageGallery,
   BlogPostList,
   BookShelf,
   Book,
@@ -69,6 +74,7 @@ const components = {
   Section,
   SpeakingForm,
   Spoiler,
+  TeamMember,
   ThanksForm,
   Tooltip,
   TranslationForm,
