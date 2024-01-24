@@ -1,5 +1,9 @@
 import { bucket } from "../data/site.yaml";
-const path = require('path');
+
+function ensureLeadingSlash(str) {
+    if (!str.startsWith("/")) return "/" + str;
+    return str;
+}
 
 // change provided srcs (png & mp4) to external bucket location for production.
 export const transformSrc = (src, dir = "") => {
@@ -14,8 +18,8 @@ export const transformSrc = (src, dir = "") => {
     // process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
     !src.endsWith("svg")
   ) {
-    return path.join(bucket, dir, src);
+    return bucket + ensureLeadingSlash(dir) + src;
   } else {
-    return path.join(dir, src);
+    return dir + src;
   }
 };
