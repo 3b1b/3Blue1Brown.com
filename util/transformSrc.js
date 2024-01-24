@@ -1,4 +1,5 @@
 import { bucket } from "../data/site.yaml";
+const path = require('path');
 
 // change provided srcs (png & mp4) to external bucket location for production.
 export const transformSrc = (src, dir = "") => {
@@ -10,11 +11,11 @@ export const transformSrc = (src, dir = "") => {
     return src;
   } else if (
     process.env.NODE_ENV === "production" &&
-    process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
+    // process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
     !src.endsWith("svg")
   ) {
-    return bucket + dir + src;
+    return path.join(bucket, dir, src);
   } else {
-    return dir + src;
+    return path.join(dir, src);
   }
 };
