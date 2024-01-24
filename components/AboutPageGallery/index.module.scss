@@ -1,0 +1,53 @@
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.teamMember {
+    text-align: center;
+    width: 200px;
+
+    .headshot {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .name {
+        margin: 0;
+        color: #333;
+    }
+
+    .role {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .websiteLink {
+        color: #007bff;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.link {
+    color: #7b7b7b;
+    text-decoration: none;
+    font-size: 24px; // Adjust size as needed
+}
+
+.link:hover {
+    color: #007bff;
+}
