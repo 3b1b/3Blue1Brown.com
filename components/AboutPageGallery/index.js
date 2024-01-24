@@ -25,7 +25,7 @@ const TeamMember = ({ name, role, imageSrc, links }) => {
             <div className={styles.headshot}>
                 <img src={imageSrc} alt={name} />
             </div>
-            <h3 className={styles.name}>{name}</h3>
+            <p className={styles.name}>{name}</p>
             <p className={styles.role}>{role}</p>
             <TeamMemberLinks links={links} />
         </div>
