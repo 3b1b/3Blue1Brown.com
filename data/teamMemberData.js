@@ -23,7 +23,7 @@ const teamMembers = [
   },
   {
     name: "Kurt Bruns",
-    role: "Video artwork and written adaptation of the Calculus series",
+    role: "Video artwork, written adaptation of the Calculus series, site management",
     imageSrc: "images/about/kurt-bruns.png",
     links: [
       {
@@ -57,8 +57,8 @@ const teamMembers = [
   },
   {
     name: "James Schloss",
-    role: "Organization and community management for the Summers of Math Exposition",
-    imageSrc: "images/about/james-schloss.png",
+    role: "Running the Summers of Math Exposition",
+    imageSrc: "images/about/james-schloss.jpeg",
     links: [
       {
         icon: "fa-solid fa-globe",
@@ -79,7 +79,7 @@ const teamMembers = [
   },
   {
     name: "Josh Pullen",
-    role: "2021 Intern, website interactives and written adaptations of videos",
+    role: "2021 Intern, written and interactive adaptations of videos",
     imageSrc: "images/about/josh-pullen.png",
     links: [
       {
@@ -91,7 +91,7 @@ const teamMembers = [
   },
   {
     name: "River Way",
-    role: "2021 Intern, website interactives and written adaptations of videos",
+    role: "2021 Intern, written and interactive adaptations of videos",
     imageSrc: "images/about/river-way.png",
     links: [
       {
@@ -103,7 +103,7 @@ const teamMembers = [
   },
   {
     name: "Vivek Verma",
-    role: "2021 Intern, written adaptations of videos",
+    role: "2021 Intern, written and interactive adaptations of videos",
     imageSrc: "images/about/vivek-verma.jpeg",
     links: [
       {
