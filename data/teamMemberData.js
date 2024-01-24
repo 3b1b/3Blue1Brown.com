@@ -5,8 +5,8 @@ const teamMembers = [
     imageSrc: "images/about/quinn-brodsky.jpeg",
     links: [
       {
-        icon: "fa-solid fa-youtube",
-        url: " www.youtube.com/@quinnphys",
+        icon: "fab fa-youtube",
+        url: "https://www.youtube.com/@quinnphys",
         label: "YouTube",
       },
       {
@@ -36,7 +36,7 @@ const teamMembers = [
   {
     name: "Vincent Rubinetti",
     role: "Composing music for the videos and web development",
-    imageSrc: "images/contact/vince-bandcamp-portrait.jpeg",
+    imageSrc: "images/about/vincent-rubinetti.jpg",
     links: [
       {
         icon: "fa-solid fa-globe",

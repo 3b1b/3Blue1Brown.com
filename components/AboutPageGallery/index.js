@@ -22,7 +22,9 @@ const TeamMemberLinks = ({ links }) => {
 const TeamMember = ({ name, role, imageSrc, links }) => {
     return (
         <div className={styles.teamMember}>
-            <img src={imageSrc} alt={name} className={styles.headshot} />
+            <div className={styles.headshot}>
+                <img src={imageSrc} alt={name} />
+            </div>
             <h3 className={styles.name}>{name}</h3>
             <p className={styles.role}>{role}</p>
             <TeamMemberLinks links={links} />
