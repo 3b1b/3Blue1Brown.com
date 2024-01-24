@@ -18,7 +18,7 @@ export const transformSrc = (src, dir = "") => {
     // process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
     !src.endsWith("svg")
   ) {
-    return bucket + ensureLeadingSlash(dir) + src;
+    return bucket + ensureLeadingSlash(dir + src);
   } else {
     return dir + src;
   }
