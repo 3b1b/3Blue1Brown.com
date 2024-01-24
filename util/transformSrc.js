@@ -1,7 +1,7 @@
 import { bucket } from "../data/site.yaml";
 
 function ensureLeadingSlash(str) {
-    if (!str.startsWith("/")) return "/" + str;
+    if (str && !str.startsWith("/")) return "/" + str;
     return str;
 }
 
