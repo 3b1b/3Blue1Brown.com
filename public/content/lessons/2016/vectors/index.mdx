@@ -38,7 +38,7 @@ The physics student perspective is that vectors are arrows pointing in space. Wh
   image="./figures/introduction/MagnitudeAndDirection.svg"
 />
 
-Vectors that live in a flat plane are two-dimensional, and those sitting in the broader space that you and I live in are three-dimensional.
+Vectors that live in a flat plane are two-dimensional, and those sitting in the broader space that we live in are three-dimensional.
 
 <Figure
   image="./figures/introduction/2dAnd3DVectors.png"
@@ -59,19 +59,17 @@ Notice that order matters here. In the lingo, you'd be modeling houses as two-di
 
 ### Mathematician's Perspective
 
-The mathematician generalizes both of these views, basically saying that a vector can be anything where there's a sensible notion of adding two vectors and multiplying a vector by a number, operations that I'll talk about later in this chapter.
+The mathematician generalizes both of these views, basically saying that a vector can be anything where there's a sensible notion of adding two vectors and multiplying a vector by a number, operations that we'll talk about later in this chapter.
 
 <Figure
   image="./figures/introduction/MathematiciansPerspective.svg"
 />
 
-The details of this view are rather abstract, and I actually think it's healthy to ignore it until later in this series, favoring a more concrete setting in the interim. The reason I bring it up here is that it hints at the fact that the ideas of vector addition and multiplication by numbers will play an important role throughout these topics.
-
-<!--TODO: part of the video script is omitted here-->
+The details of this view are rather abstract, and it can be healthy to ignore it until later in this series, favoring a more concrete setting in the interim. The reason we bring it up here is that it hints at the fact that the ideas of vector addition and multiplication by numbers will play an important role throughout these topics.
 
 ## Thinking About Coordinate Systems
 
-Now, while I'm sure many of you are already familiar with coordinate systems, it's worth walking through them explicitly since this is where all the important back and forth between the two main perspectives of linear algebra happens. Focusing our attention on two dimensions for the moment, you have a horizontal line, called the *x-axis*, and a vertical line, called the *y-axis*.
+Now, while many of you are already familiar with coordinate systems, it's worth walking through them explicitly since this is where all the important back and forth between the two main perspectives of linear algebra happens. Focusing our attention on two dimensions for the moment, you have a horizontal line, called the *x-axis*, and a vertical line, called the *y-axis*.
 
 <Figure
   image="./figures/coordinate-systems/CoordinateSystemAxes.svg" 
@@ -89,13 +87,13 @@ After choosing an arbitrary distance to represent a length of $1$, you make tick
   image="./figures/coordinate-systems/CoordinateSystemTickMarks.svg"
 />
 
-When I want to convey the idea of 2d space as a whole, which comes up a lot in this text, I'll extend these tick marks to make grid lines, like so:
+When we want to convey the idea of 2d space as a whole, which comes up a lot in this text, we'll extend these tick marks to make grid lines, like so:
 
 <Figure
   image="./figures/coordinate-systems/CoordinateSystemGrid.svg"
 />
 
-Let's settle on a specific thought to have in mind when I say the word _vector_. Given the geometric focus I'm shooting for here, whenever I introduce a new topic involving vectors, I want you to first think about an arrow, and specifically think about an arrow inside a coordinate system, like the $xy$-plane, with its tail sitting at the origin.
+Let's settle on a specific thought to have in mind when we say the word _vector_. Given the geometric focus we're shooting for here, whenever we introduce a new topic involving vectors, we want you to first think about an arrow, and specifically think about an arrow inside a coordinate system, like the $xy$-plane, with its tail sitting at the origin.
 
 <Figure
   image="./figures/coordinate-systems/VectorAsArrow.svg"
@@ -152,9 +150,7 @@ To add these two vectors, move the second vector so that it's tail sits on the t
   image="./figures/vector-operations/VectorAddition.svg"
 />
 
-<!--TODO: add animation for moving the vector tip to tail-->
-
-Why is this a reasonable thing to do? Why this definition of addition and not some other? Well, the way I like to think about it is that each vector represents a certain movement; a step with a certain distance and direction. If you take a step along the first vector, then take a step in the direction and distance described by the second vector, the overall effect is the same as if it just moved along the sum of those two vectors.
+Why is this a reasonable thing to do? Why this definition of addition and not some other? Well, one way to think about it is that each vector represents a certain movement; a step with a certain distance and direction. If you take a step along the first vector, then take a step in the direction and distance described by the second vector, the overall effect is the same as if it just moved along the sum of those two vectors.
 
 You could think of this as an extension of how we think about adding numbers on a number line. One of the ways we teach kids to think about addition, say $2+5$, is to think of moving $2$ steps to the right, followed by another $5$ steps to the right. The overall effect is the same as if you just took $7$ steps to the right.
 
@@ -254,9 +250,10 @@ $$
 
 ## Conclusion
 
-You'll see in the following chapters what I mean when I say pretty much every linear algebra topic revolves around these two fundamental operation: vector addition and scalar multiplication. I'll also talk more in the last linear algebra chapter about how and why the mathematician thinks *only* about these operations, independent and abstracted away from however you choose to represent vectors.
+You'll see in the following chapters what we mean when we say pretty much every linear algebra topic revolves around these two fundamental operation: vector addition and scalar multiplication. We'll also talk more in the last linear algebra chapter about how and why the mathematician thinks *only* about these operations, independent and abstracted away from however you choose to represent vectors.
 
 In truth, it doesn't matter whether you think of vectors as fundamentally being arrows in space that happen to have a nice numerical representation, or fundamentally as lists of numbers that happen to have a nice geometric interpretation. The usefulness of linear algebra has less to do with either one of these views than it does with the ability to translate back and forth between them. It gives the data-analyst a nice way to conceptualize many lists of numbers in a visual way, which can seriously clarify patterns in the data and give a global view of what certain operations do.
 
-On the flip side, it gives people like physicists and computer graphics programmers a language to describe space, and the manipulation of space, using numbers that can be crunched and run through a computer. When I do mathy animations, for example, I start by thinking about what's going on in space, then get the computer to represent things numerically, and figure out where to place which pixels on the screen, and doing that often relies on an understanding of linear algebra. In the <LessonLink id="span">next lesson</LessonLink>, we'll start getting into some neat concepts surrounding vectors, like span, bases and linear dependence.
+On the flip side, it gives people like physicists and computer graphics programmers a language to describe space, and the manipulation of space, using numbers that can be crunched and run through a computer. When one does mathy animations, for example, they start by thinking about what's going on in space, then get the computer to represent things numerically, and figure out where to place which pixels on the screen, and doing that often relies on an understanding of linear algebra.
 
+In the <LessonLink id="span">next lesson</LessonLink>, we'll start getting into some neat concepts surrounding vectors, like span, bases and linear dependence.
