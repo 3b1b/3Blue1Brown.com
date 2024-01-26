@@ -56,7 +56,7 @@ It gets very crowded to think about all vectors all at once, each as an arrow. S
   show="video"
 />
 
-In the case of transformations in two dimensions, to get a better feel for the shape of a transformation, I like to do this with all the points on an infinite grid. It can also be helpful to keep a static copy of the grid in the background, just to help keep track of where everything ends up relative to where it starts.
+In the case of transformations in two dimensions, to get a better feel for the shape of a transformation, we can do this with all the points on an infinite grid. It can also be helpful to keep a static copy of the grid in the background, just to help keep track of where everything ends up relative to where it starts.
 
 <Figure
   video="./figures/transformations-are-functions/TransformGrid.mp4" 
@@ -94,7 +94,7 @@ And this one would not be a linear transformation because the origin moves.
   image="./figures/what-makes-a-transformation-linear/NonLinearTransformationOriginMoves.png" 
 />
 
-This one here fixes the origin, and it might look like it keeps lines straight, but that's just because I'm only showing horizontal and vertical grid lines.
+This one here fixes the origin, and it might look like it keeps lines straight, but that's just because we're only showing horizontal and vertical grid lines.
 
 <Figure
   image="./figures/what-makes-a-transformation-linear/NonLinearTransformationDiagonalLines.png" 
@@ -161,20 +161,20 @@ For example, consider the vector $\vec{\mathbf{v}}$ with coordinates $\begin{bma
   image="./figures/matrices/LinearTransformationSetup.svg" 
 />
 
-If we play some transformation, and follow where all three of these vectors go, the property that grid lines remain parallel and evenly spaced has a really important consequence: the place where v lands will be (-1) times the vector where i hat landed, plus 2 times the vector where j hat landed. 
+If we play some transformation, and follow where all three of these vectors go, the property that grid lines remain parallel and evenly spaced has a really important consequence: the place where $\vec{\mathbf{v}}$ lands will be $(-1)$ times the vector where $\hat{\imath}$ landed, plus $2$ times the vector where $\hat{\jmath}$ landed. 
 
 <Figure
   image="./figures/matrices/LinearTransformation.svg"
   video="./figures/matrices/LinearTransformation.mp4" 
 />
 
-In other words, it started off as a certain linear combination of i hat and j hat, and it ended up at that same linear combination of where those two vectors landed. 
+In other words, it started off as a certain linear combination of $\hat{\imath}$ and $\hat{\jmath}$, and it ended up at that same linear combination of where those two vectors landed. 
 
 <Figure
   image="./figures/matrices/LinearTransformationCombination.svg"
 />
 
-Now, given that we're actually showing you the full transformation, you could have just looked to see that v has coordinates [5, 2], but the cool part here is that this gives us a technique to deduce where the vector lands without needing to watch the transformation.
+Now, given that we're actually showing you the full transformation, you could have just looked to see that $\vec{\mathbf{v}}$ has coordinates $\left[\begin{array}{c} 5 \\ 2 \end{array}\right]$, but the cool part here is that this gives us a technique to deduce where the vector lands without needing to watch the transformation.
 
 <Figure
   image="./figures/matrices/LinearTransformationTechnique.svg" 
@@ -361,7 +361,7 @@ What about the other way around? If we are given a matrix, say with columns $\le
 
 <FreeResponse>
 
-One way to imagine it is to first move i hat to [1, 2], then move j hat to [3, 1], always moving the rest of space in such a way that keeps the grid lines parallel and evenly spaced.
+One way to imagine it is to first move $\hat{\imath}$ to $\left[\begin{array}{c} 1 \\ 2 \end{array}\right]$, then move $\hat{\jmath}$ to $\left[\begin{array}{c} 3 \\ 1 \end{array}\right]$, always moving the rest of space in such a way that keeps the grid lines parallel and evenly spaced.
 
 TODO: visual i moves
 
@@ -373,7 +373,7 @@ TODO: visual together
 
 ### Linearly Dependent Columns
 
-If the vectors that i hat and j hat land on are linearly dependent, which if you recall from the last chapter means one is a scaled version of the other, it means the linear transformation squishes all of 2d space onto the line where those vectors sit, also known as the one-dimensional span of these two linearly dependent vectors.
+If the vectors that $\hat{\imath}$ and $\hat{\jmath}$ land on are linearly dependent, which if you recall from the last chapter means one is a scaled version of the other, it means the linear transformation squishes all of 2d space onto the line where those vectors sit, also known as the one-dimensional span of these two linearly dependent vectors.
 
 TODO: dependent columns visual
 
@@ -386,7 +386,6 @@ There's an unimaginably large number of possible transformations, many which are
 />
 
 To help appreciate just how constraining these two properties are, and to reason about what this implies a linear transformation must _look_ like, consider the important fact from the <LessonLink id="span">last chapter</LessonLink> that when you write down a vector with coordinates, say $\vec{\mathbf{v}} = \begin{bmatrix}-1\\2\end{bmatrix}$, you are effectively writing it as a linear combination of two basis vectors.
-
 
 <Figure
   image="./figures/formal-properties/LinearCombinationOfBasisVectorsBefore.svg" 
