@@ -116,7 +116,6 @@ Some linear transformations are simple to think about, like rotations about the 
 
 <Figure
   image="./figures/what-makes-a-transformation-linear/ExampleRotateAboutOrigin.png" 
-  caption="This linear transformation rotates XX about the origin."
 />
 
 Others, as we will see later, are a little trickier to describe with words.
@@ -129,13 +128,13 @@ Others, as we will see later, are a little trickier to describe with words.
 
 <Question
   question=" "
-  choice1="A"
-  choice2="B"
-  choice3="C"
-  choice4="D"
+  choice1="$A$"
+  choice2="$B$"
+  choice3="$C$"
+  choice4="$D$"
   answer={3} >
   
-C is the only transformation where the lines are parallel and evenly spaced.
+$C$ is the only transformation where the lines are parallel and evenly spaced.
 
 </Question>
 
@@ -147,7 +146,7 @@ How do you think you could do these transformations numerically?  If you were, s
   image="./figures/matrices/HowToDescribeTransformation.svg"
 />
 
-It turns out, you only need to record where the two basis vectors i-hat and j-hat go, and everything else will follow.
+It turns out, you only need to record where the two basis vectors $\hat{\imath}$ and $\hat{\jmath}$ go, and everything else will follow.
 
 <Figure
   image="./figures/matrices/RecordWhereBasisVectorsLand.svg" 
@@ -363,11 +362,11 @@ What about the other way around? If we are given a matrix, say with columns $\le
 
 One way to imagine it is to first move $\hat{\imath}$ to $\left[\begin{array}{c} 1 \\ 2 \end{array}\right]$, then move $\hat{\jmath}$ to $\left[\begin{array}{c} 3 \\ 1 \end{array}\right]$, always moving the rest of space in such a way that keeps the grid lines parallel and evenly spaced.
 
-TODO: visual i moves
-
-TODO: visual j moves
-
-TODO: visual together
+<Figure
+  image="./figures/examples/TransformationFromMatrixAlt.svg" 
+  video="./figures/examples/TransformationFromMatrix.mp4" 
+  show="video"
+/>
 
 </FreeResponse>
 
@@ -375,7 +374,11 @@ TODO: visual together
 
 If the vectors that $\hat{\imath}$ and $\hat{\jmath}$ land on are linearly dependent, which if you recall from the last chapter means one is a scaled version of the other, it means the linear transformation squishes all of 2d space onto the line where those vectors sit, also known as the one-dimensional span of these two linearly dependent vectors.
 
-TODO: dependent columns visual
+<Figure
+  image="./figures/examples/LinearlyDependentColumns.svg" 
+  video="./figures/examples/LinearlyDependentColumns.mp4" 
+  show="video"
+/>
 
 ## Formal Properties
 
@@ -400,8 +403,6 @@ If you consider how the transformation acts separately on the two vectors that m
 
 Since the transformation preserves scaling, we can rewrite the linear combination as the transformed basis vectors multiplied by the coordinates of the input vector.
 
-
-
 <Figure
   image="./figures/formal-properties/ApplyingTheTransformation.svg" 
 />
@@ -417,53 +418,138 @@ This is why if you know where the two basis vectors $\hat{\imath}$ and $\hat{\jm
   answer={1}
 >
 
-Let $A$ be the transformation matrix we are solving for, in the form:
+We know the input and output of the transformation for two inputs.
 
 $$
-A=\left[\begin{array}{ll}a & b \\ c & d\end{array}\right]
-$$
-
-Next, we set up the systems of equations based on the given transformations. The transformations can be expressed as matrix equations:
-
-$$
-A\left[\begin{array}{c}
+\begin{aligned}
+\left[\begin{array}{ll}
+a & b \\
+c & d
+\end{array}\right]\left[\begin{array}{c}
 -2 \\
 1
-\end{array}\right]=\left[\begin{array}{l}
+\end{array}\right]&=\left[\begin{array}{l}
 0 \\
 3
-\end{array}\right]
-$$
-
-$$
-A\left[\begin{array}{l}
+\end{array}\right] \\ \rule{0pt}{2em}
+\left[\begin{array}{ll}
+a & b \\
+c & d
+\end{array}\right]\left[\begin{array}{l}
 2 \\
 3
-\end{array}\right]=\left[\begin{array}{l}
+\end{array}\right]&=\left[\begin{array}{l}
 8 \\
 1
 \end{array}\right]
+\end{aligned}
 $$
 
-Expanding these matrix equations by applying the matrix to the input vector we get the following equations.
+Apply the transformation to the vectors to get the linear combinations.
 
-1. $-2 a+b=0$
-2. $-2 c+d=3$
-3. $2 a+3 b=8$
-4. $2 c+3 d=1$
+$$
+\begin{aligned}
+-2\left[\begin{array}{l}
+a \\
+c
+\end{array}\right]+1\left[\begin{array}{l}
+b \\
+d
+\end{array}\right]&=\left[\begin{array}{l}
+0 \\
+3
+\end{array}\right] \\
+2\left[\begin{array}{l}
+a \\
+c
+\end{array}\right]+3\left[\begin{array}{l}
+b \\
+d
+\end{array}\right]&=\left[\begin{array}{l}
+8 \\
+1
+\end{array}\right]
+\end{aligned}
+$$
 
-Solve this system of equaitons to findthe values of $a, b, c$, and $d$ :
+Equate the components of the vectors together, giving us the following system of equations.
 
-- From $-2 a+b=0$, we can express $b$ in terms of $a$ as $b=2 a$.
-- Substituting $b=2 a$ into $2 a+3 b=8$, we solve for $a$, which gives us $a=1$.
-- Plugging $a=1$ back into $b=2 a$, we find $b=2$.
-- Using similar substitutions and solving methods for $c$ and $d$ in the equations $-2 c+$ $d=3$ and $2 c+3 d=1$, we find $c=-1$ and $d=1$.
+$$
+\begin{aligned}
+-2 a+b & =0 \\
+-2 c+d & =3 \\
+2 a+3 b & =8 \\
+2 c+3 d & =1
+\end{aligned}
+$$
 
-In conclusion, the transformation matrix which is described by the behavior $\left[\begin{array}{c} 2 \\ 3 \end{array}\right] \to \left[\begin{array}{c} 8 \\ 1 \end{array}\right]$ and $\left[\begin{array}{c} -2 \\ 1 \end{array}\right] \to \left[\begin{array}{c} 0 \\ 3 \end{array}\right]$ is defined as $\left[\begin{array}{cc}1 & 2 \\ -1 & 1\end{array}\right]$.
+Solve for $a$ in the first equation.
+
+$$
+\begin{aligned}
+-2 a+b & =0 \\
+2 a & =b \\
+a & =\frac{b}{2}
+\end{aligned}
+$$
+
+Substitute this expression for $a$ into the third equation and solve for $b$.
+
+$$
+\begin{aligned}
+2\left(\frac{b}{2}\right)+3 b & =8 \\
+4 b & =8 \\
+b & =2
+\end{aligned}
+$$
+
+Using this value for $b$ solve for the value of $a$.
+
+$$
+\begin{aligned}
+& a=\frac{2}{2} \\
+& a=1
+\end{aligned}
+$$
+
+Solve for $c$ in the second equation.
+
+$$
+\begin{aligned}
+-2 c+d & =3 \\
+2 c & =d-3 \\
+c & =\frac{d-3}{2}
+\end{aligned}
+$$
+
+Substitute this expression in for $d$ in the fourth equation.
+
+$$
+\begin{aligned}
+2\left(\frac{d-3}{2}\right)+3 d & =1 \\
+d-3+3 d & =1 \\
+4 d & =4 \\
+d & =1
+\end{aligned}
+$$
+
+Using this value for $d$ solve for the value of $c$.
+
+$$
+\begin{aligned}
+c&=\frac{1-3}{2} \\
+c&=-1
+\end{aligned}
+$$
+
+In conclusion,, the transformation matrix that is described by $\left[\begin{array}{c} -2 \\ 1 \end{array}\right] \to \left[\begin{array}{c} 0 \\ 3 \end{array}\right]$ and $\left[\begin{array}{c} 2 \\ 3 \end{array}\right] \to \left[\begin{array}{c} 8 \\ 1 \end{array}\right]$ is defined as $\left[\begin{array}{cc}1 & 2 \\ -1 & 1\end{array}\right]$.
+
+We can also double check our work visually by tracking where the basis vectors go.
 
 <Figure
   image="./figures/formal-properties/MatrixFromTwoVectors.svg" 
   video="./figures/formal-properties/MatrixFromTwoVectors.mp4" 
+  show="video"
 />
 
 </Question>
