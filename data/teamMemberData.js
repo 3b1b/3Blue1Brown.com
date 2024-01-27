@@ -7,17 +7,17 @@ const teamMembers = [
       {
         icon: "fab fa-youtube",
         url: "https://www.youtube.com/@quinnphys",
-        label: "YouTube",
+        label: "Quinn's YouTube channel",
       },
       {
         icon: "fab fa-spotify",
         url: "https://open.spotify.com/artist/6tBc4zGfGwgS7yoKpfNqs3?si=UDeNq2QKQNO9jHVYySC_mw&nd=1&dlsi=355c8e85bedb47ff",
-        label: "On Bandcap",
+        label: "Quinn's music",
       },
       {
         icon: "fab fa-linkedin",
         url: "https://www.linkedin.com/in/quinn-brodsky/",
-        label: "LinkedIn",
+        label: "Quinn's LinkedIn",
       },
     ],
   },
@@ -29,7 +29,7 @@ const teamMembers = [
       {
         icon: "fab fa-github",
         url: "https://kurtbruns.github.io/",
-        label: "Github",
+        label: "Kurt's Github",
       },
     ],
   },
@@ -46,7 +46,7 @@ const teamMembers = [
       {
         icon: "fab fa-bandcamp",
         url: "https://vincerubinetti.bandcamp.com/",
-        label: "On Bandcap",
+        label: "On Bandcamp",
       },
       {
         icon: "fab fa-spotify",
@@ -109,18 +109,36 @@ const teamMembers = [
       {
         icon: "fab fa-youtube",
         url: "https://youtube.com/vcubingx",
-        label: "River's website",
+        label: "Vivek's YouTube channel",
       },
       {
         icon: "fab fa-twitter",
         url: "https://twitter.com/vcubingx",
-        label: "River's website",
+        label: "Vivek's Twitter",
       },
       {
         icon: "fab fa-github",
         url: "https://github.com/vivek3141",
-        label: "River's website",
+        label: "Vivek's Github",
       },
+    ],
+  },
+  {
+    name: "Sridhar Ramesh",
+    role: "Writing and visuals for the winding number and Wallis product videos",
+    imageSrc: "images/about/sridhar-ramesh.jpeg",
+    links: [],
+  },
+  {
+    name: "Ben Hambrecht",
+    role: "Writing and visuals for the Basel problem and pi day 2018 videos",
+    imageSrc: "images/about/ben-hambrecht.jpeg",
+    links: [
+      {
+        icon: "fab fa-twitter",
+        url: "https://twitter.com/benhambrecht",
+        label: "Ben's twitter"
+      }
     ],
   },
 ];
