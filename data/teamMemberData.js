@@ -78,6 +78,18 @@ const teamMembers = [
     ],
   },
   {
+    name: "Dawid Kołodziej",
+    role: "Turning long-form videos into shorts",
+    imageSrc: "images/about/dawid-kołodziej.jpeg",
+    links: [
+      {
+        icon: "fab fa-instagram",
+        url: "https://www.instagram.com/dawid.the.editor/",
+        label: "Dawid's instagram",
+      },
+    ],
+  },
+  {
     name: "Josh Pullen",
     role: "2021 Intern, written and interactive adaptations of videos",
     imageSrc: "images/about/josh-pullen.png",
