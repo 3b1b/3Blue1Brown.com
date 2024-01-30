@@ -1,0 +1,4 @@
+Notes from Kurt:
+
+- I removed end section visuals, but is better to keep them in?
+- TODO: VectorAddition animation for moving vector to tip to tail
