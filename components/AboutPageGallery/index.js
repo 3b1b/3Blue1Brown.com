@@ -21,7 +21,7 @@ const TeamMemberLinks = ({ links }) => {
 
 const TeamMember = ({ name, role, imageSrc, links }) => {
     return (
-        <div className={styles.teamMember}>
+        <div className={styles.teamMember} id={name.toLowerCase().split(' ').join('-')}>
             <div className={styles.headshot}>
                 <img src={imageSrc} alt={name} />
             </div>
@@ -47,6 +47,5 @@ const AboutPageGallery = () => {
         </div>
     );
 };
-
 
 export { AboutPageGallery, TeamMember };

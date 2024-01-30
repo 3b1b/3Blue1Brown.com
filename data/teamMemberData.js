@@ -27,9 +27,14 @@ const teamMembers = [
     imageSrc: "images/about/kurt-bruns.png",
     links: [
       {
-        icon: "fab fa-github",
-        url: "https://kurtbruns.github.io/",
-        label: "Kurt's Github",
+        icon: "fab fa-youtube",
+        url: "https://www.youtube.com/@wumbo_dot_net",
+        label: "Kurt's Youtube",
+      },
+      {
+        icon: "fa-solid fa-globe",
+        url: "https://kurtbruns.com/",
+        label: "Kurt's Website",
       },
     ],
   },
