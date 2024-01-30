@@ -4,3 +4,25 @@ Notes from Kurt:
 - TODO: add animation for illustrations below "Take a moment to think about all the different vectors you can get by choosing two scalars, using each to scale one of the vectors, then adding them. Which two-dimensional vectors can you reach by altering your choice of scalars?"
 - TODO: Create SVGs for "vectors vs points" section
 - The section about differing terminologies was removed from before the conclusion section.
+- Removed this question:
+
+    <Question
+    question="Given the equation $\alpha \vec{\mathbf{v}} + \beta \vec{\mathbf{w}} =5\hat{\imath} -\frac12\hat{\jmath}$, where $\vec{\mathbf{v}} = \left[\begin{array}{c} 1 \\ 2 \end{array}\right]$ and $\vec{\mathbf{w}} = \left[\begin{array}{c} 3 \\ -1 \end{array}\right]$, what are the values of the scalars $\alpha$ and $\beta$?"
+    choice1="$\alpha=1\ \beta=0.5$"
+    choice2="$\alpha=0.5\ \beta=1.5$"
+    choice3="$\alpha=-1\ \beta=-1.5$"
+    choice4="$\alpha=0.5\ \beta=-1.5$"
+    answer={2}>
+
+    The standard basis vectors are $\hat i = \begin{bmatrix}1\\ 0\end{bmatrix}$ and $\hat j = \begin{bmatrix}0\\ 1\end{bmatrix}$. The vector equation can be separated into a system of equations for the $x$ and $y$ components:
+
+    $$
+    \begin{align*}
+    \alpha\cdot1+\beta\cdot3&=5\cdot1-0.5\cdot 0=5 \\
+    \alpha\cdot2+\beta\cdot(-1)&=5\cdot0-0.5\cdot1=-0.5
+    \end{align*}
+    $$
+
+    This system of equations can be solved by substitution to get the answer of $\alpha=0.5$ and $\beta=1.5$.
+
+    </Question>

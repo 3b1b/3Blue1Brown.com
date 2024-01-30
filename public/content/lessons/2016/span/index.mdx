@@ -75,27 +75,6 @@ The answer is, for these two vectors, you can describe *every* possible two-dime
 
 We'll go into much more detail on this point in a <LessonLink id="change-of-basis">later chapter</LessonLink>, describing the relationship between different coordinate systems, but for now we just want you to appreciate that any way to describe vectors numerically depends on your choice of basis vectors.
 
-<Question
-  question="Given the equation $\alpha \vec{\mathbf{v}} + \beta \vec{\mathbf{w}} =5\hat{\imath} -\frac12\hat{\jmath}$, where $\vec{\mathbf{v}} = \left[\begin{array}{c} 1 \\ 2 \end{array}\right]$ and $\vec{\mathbf{w}} = \left[\begin{array}{c} 3 \\ -1 \end{array}\right]$, what are the values of the scalars $\alpha$ and $\beta$?"
-  choice1="$\alpha=1\ \beta=0.5$"
-  choice2="$\alpha=0.5\ \beta=1.5$"
-  choice3="$\alpha=-1\ \beta=-1.5$"
-  choice4="$\alpha=0.5\ \beta=-1.5$"
-  answer={2}>
-
-The standard basis vectors are $\hat i = \begin{bmatrix}1\\ 0\end{bmatrix}$ and $\hat j = \begin{bmatrix}0\\ 1\end{bmatrix}$. The vector equation can be separated into a system of equations for the $x$ and $y$ components:
-
-$$
-\begin{align*}
-\alpha\cdot1+\beta\cdot3&=5\cdot1-0.5\cdot 0=5 \\
-\alpha\cdot2+\beta\cdot(-1)&=5\cdot0-0.5\cdot1=-0.5
-\end{align*}
-$$
-
-This system of equations can be solved by substitution to get the answer of $\alpha=0.5$ and $\beta=1.5$.
-
-</Question>
-
 ## Linear Combinations
 
 Any time you're scaling two vectors and adding them like this, it's called a "linear combination" of those two vectors.
@@ -155,12 +134,12 @@ Of all the answers, $\vec{\mathbf{v}} = \left[\begin{array}{c}2 \\ 3\end{array}\
 
 <Question
   question="What is the span of $\begin{bmatrix}3\\ -2\end{bmatrix}$ and $\begin{bmatrix}-6\\ 4\end{bmatrix}$?"
-  choice1="$\mathbf{0}$"
-  choice2="$\mathbb{R}$"
-  choice3="$\mathbb{R}^2$"
+  choice1="A point"
+  choice2="A line"
+  choice3="The full 2d plane"
   answer={2}>
 
-These two vectors line up because $\begin{bmatrix}-6\\ 4\end{bmatrix}=-2\begin{bmatrix}3\\ -2\end{bmatrix}$. That means their span is just the line going through the origin and the tips of the vectors, since it is just a single dimension we use the symbol $\mathbb{R}$ to represent the span. If the two vectors did not lie on the same line, their span would be the entire 2D plane, denoted $\mathbb{R}^2$. The span is the zero vector $\mathbf{0}$ only if both vectors were the zero vector.
+These two vectors line up because $\begin{bmatrix}-6\\ 4\end{bmatrix}=-2\begin{bmatrix}3\\ -2\end{bmatrix}$, meaning their span is the line going through the origin and the tips of the vectors. If the two vectors did not lie on the same line, their span would be the full 2d plane. Alternatively, if both vectors were the zero vector their span would be the point at the origin.
 
 </Question>
 
