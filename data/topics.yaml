@@ -22,7 +22,6 @@
   slug: linear-algebra
   description: An introduction to visualizing what matrices are really doing
   lessons:
-    - eola-preview
     - vectors
     - span
     - linear-transformations
