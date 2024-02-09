@@ -7,4 +7,478 @@ video: rHLEWRxRGiM
 source: _2016/eola/footnote.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+- Text adaptation by James Schloss
 ---
+
+> Lisa: Well, where's my dad? 
+>
+> Frink: Well, it should be obvious to even the most dimwitted individual who holds an advanced degree in hyperbolic topology that Homer Simpson has stumbled into... *dramatic pause*... the third dimension.
+
+In the last two chapters, we talked about linear transformations and matrices, but only showed the specific case of transformations that take two-dimensional vectors to other two-dimensional vectors. Throughout this series we will work mainly in two-dimensions, mostly because it's easier to actually see on the screen and wrap your mind around. And more importantly, once you get all the core ideas in two dimensions, they carry over pretty seamlessly to higher dimensions.
+
+Nevertheless it's good to peek our head outside of flatland now and then to see what it means to apply these ideas to more dimensions. 
+
+## Three-dimensions
+
+For example, consider a linear transformation with three-dimensional vectors as inputs and three-dimensional vectors as outputs.
+
+<Figure
+    image="./figures/three-dimensions/TransformationFunction.svg" 
+/>
+
+Just like in two dimensions, we can visualize the transformation as the input vector *moving* to the output vector.
+
+<Figure
+    image="./figures/three-dimensions/Transform3dVector.svg"
+    video="./figures/three-dimensions/Transform3dVector.mp4"
+    width="480px"
+/>
+
+To understand the transformation as a whole, we imagine every possible vector move to its corresponding output vector.
+
+<Figure
+    image="./figures/three-dimensions/TransformManyVectors.svg" 
+    video="./figures/three-dimensions/TransformManyVectors.mp4" 
+/>
+
+It gets very crowded to think about all the vectors as arrows all at once. Instead, we can get a sense for the behavior of the function by transforming the grid in a way that keeps grid lines parallel and evenly spaced.
+
+<Figure
+    image="./figures/three-dimensions/TransformGrid.svg"
+    video="./figures/three-dimensions/TransformGrid.mp4"
+/>
+
+Just as with two dimensions, one of these transformations is completely determined by where the basis vectors go. But now, there are three basis vectors: The unit vector in the $x$-direction, $\hat{\imath}$, the unit vector in the $y$-direction, $\hat{\jmath}$, and the unit vector in the $z$-direction, called $\hat{k}$.
+
+<Figure
+    image="./figures/three-dimensions/BasisVectors.svg" 
+/>
+
+In fact it's easier to think about these transformations by only following the basis vectors, since the full 3d grid representing all points can get messy. By leaving a copy of the original axes in the background, we can think about the coordinates where each of the three basis vectors lands. 
+
+<Figure
+    image="./figures/three-dimensions/FollowBasisVectors.svg" 
+    video="./figures/three-dimensions/FollowBasisVectors.mp4" 
+/>
+
+Record the coordinates of these three resulting vectors as the columns of a 3x3 matrix. This gives a matrix that completely describes your transformation using nine numbers.
+
+<Figure
+    image="./figures/three-dimensions/TransformMatrix.svg" 
+/>
+
+To see where a vector with coordinates $x$, $y$ and $z$ lands, the reasoning is almost identical to what it was for two dimensions: Each of those coordinates can be thought of as instructions for how to scale each basis vector, so that they add together to get your vector.
+
+<Figure
+    image="./figures/three-dimensions/VectorAsTransformationBefore.svg" 
+    width="720px"
+/>
+
+The important part, just like the 2d case, is that this scaling and adding process works both before and after the transformation. Note how the axis are tilted in the following image:
+
+<Figure
+    image="./figures/three-dimensions/VectorAsTransformationAfter.svg" 
+    width="720px"
+/>
+
+To see where your vector lands, you multiply those coordinates by the corresponding column of the matrix, and add together the three results.
+
+<Figure
+    image="./figures/three-dimensions/TransformationMatrix.svg" 
+/>
+
+**Given the transformation function defined by the matrix $\left[\begin{array}{ccc} 0 & 0.5 & -0.5 \\ 0 & 0.5 & 1 \\ 1 & 0 & 0.5\end{array}\right]$ and the vector $\left[\begin{array}{c} 1 \\ 0 \\ -2 \end{array}\right]$ as input what is the resulting output vector? For reference, here is the corresponding visualization of where the basis vectors land.**
+
+<Figure
+    image="./figures/three-dimensions/Question1Transformation3d.svg" 
+    width="720px"
+/>
+
+<Question
+  question="Select from the vectors below:"
+  choice1="$\left[\begin{array}{c} -2 \\ 1 \\ -2 \end{array}\right]$"
+  choice2="$\left[\begin{array}{c} 0 \\ 2 \\ 4 \end{array}\right]$"
+  choice3="$\left[\begin{array}{c} 2 \\ -1 \\ 1 \end{array}\right]$"
+  choice4="$\left[\begin{array}{c} 1 \\ -2 \\ 0 \end{array}\right]$"
+  answer={4}
+>
+
+$$
+\begin{aligned}
+{\left[\begin{array}{ccc}
+0 & 0.5 & -0.5 \\
+0 & 0.5 & 1 \\
+1 & 0 & 0.5
+\end{array}\right]\left[\begin{array}{c}
+1 \\
+0 \\
+-2
+\end{array}\right] } & =1\left[\begin{array}{l}
+0 \\
+0 \\
+1
+\end{array}\right]+0\left[\begin{array}{c}
+0.5 \\
+0.5 \\
+0
+\end{array}\right]+(-2)\left[\begin{array}{c}
+-0.5 \\
+1 \\
+0.5
+\end{array}\right] \\ \rule{0pt}{3em}
+& =\left[\begin{array}{c}
+0 \\
+0 \\
+1
+\end{array}\right]+
+\left[\begin{array}{c}
+0 \\
+0 \\
+0
+\end{array}\right]+
+\left[\begin{array}{c}
+1 \\
+-2 \\
+-1
+\end{array}\right] \\ \rule{0pt}{3em}
+& =\left[\begin{array}{c}
+1 \\
+-2 \\
+0
+\end{array}\right]
+\end{aligned}
+$$
+
+<Figure
+    video="./figures/three-dimensions/Question1AnswerTransformation3d.mp4" 
+/>
+
+</Question>
+
+## Examples
+
+Consider the transformation here that rotate space $90$ degrees around the $y$-axis. 
+
+<Figure
+    image="./figures/examples/Rotate90DegreesAroundYAxis.svg" 
+    video="./figures/examples/Rotate90DegreesAroundYAxis.mp4" 
+    width="720px"
+/>
+
+It takes $\hat{\imath}$ to the coordinates $\left[\begin{array}{c} 0 \\ 0 \\ -1 \end{array}\right]$, so that's the first column of our matrix. It doesn't move $\hat{\jmath}$, so the second column is $\left[\begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right]$. And it moves $\hat{k}$ onto the $x$-axis at $\left[\begin{array}{c} 1 \\ 0 \\ 0 \end{array}\right]$, so that becomes the third column of our matrix.
+
+$$
+\hat{\imath} \rightarrow\left[\begin{array}{c}
+0 \\
+0 \\
+-1
+\end{array}\right] \hat{\jmath} \rightarrow\left[\begin{array}{l}
+0 \\
+1 \\
+0
+\end{array}\right] \hat{k} \rightarrow\left[\begin{array}{l}
+1 \\
+0 \\
+0
+\end{array}\right]
+$$
+
+<Question
+    question="What is the transformation matrix that rotates space $90$ degrees counterclockwise around the $z$-axis? To differentiate clockwise from counterclockwise, imagine a clock lying flat in the $xy$-plane that is facing the positive $z$ direction."
+    choice1="$\left[\begin{array}{ccc} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & -1 \end{array}\right]$"
+    choice2="$\left[\begin{array}{ccc} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+    choice3="$\left[\begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+    choice4="$\left[\begin{array}{ccc} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+    answer={2}
+>
+
+The transformation that rotates space $90$ degrees counterclockwise around the $z$-axis takes $\hat{\imath}$ to the coordinates $\left[\begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right]$, $\hat{\jmath}$ to the coordinates $\left[\begin{array}{c} -1 \\ 0 \\ 0 \end{array}\right]$, and doesn't move $\hat{k}$.
+
+<Figure
+    video="./figures/examples/Rotate90DegreesAroundZAxis.mp4" 
+/>
+
+</Question>
+
+
+## Combining Transformations
+
+Multiplying two matrices is also similar to what we did for two dimensions: Whenever you see two 3x3 matrices getting multiplied together, you should imagine first applying the transformation encoded by the right one, then applying the transformation encoded by the left one.
+
+<Figure
+    image="./figures/combining-transformations/MatrixMultiplication.svg" 
+/>
+
+The resulting transformation is the combination of applying the two matrices one after the other.
+
+
+<Figure
+    image="./figures/combining-transformations/ComposingTransformations.svg"
+    video="./figures/combining-transformations/ComposingTransformations.mp4" 
+/>
+
+Three dimension matrix multiplication turns out to be very important for computer graphics and robotics, since things like rotations in three-dimensions can be very hard to describe, but are easier to wrap your mind around if you break them down as the composition of different transformations.
+
+Performing this matrix multiplication numerically is, once again, very analogous to the two-dimensional case. In fact, a good way to test your understanding of the last chapter would be to reason through what specifically it should look like, thinking closely about how it relates to the idea of applying two successive transformations of space.
+
+<FreeResponse>
+
+From the last chapter, we reasoned through what matrix multiplication should look like by following where the basis vectors $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$ land after applying one transformation and then the other, because where the original basis vectors land will make up the columns of the composed matrix.
+
+$$
+M_2 M_1 = M_3
+$$
+
+Using the two transformations from above:
+
+$$
+M_1 = \left[\begin{array}{ccc}
+1 & 1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1
+\end{array}\right]
+$$
+
+$$
+M_2 = \left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]
+$$
+
+Let's reason through where $\hat{\imath}$ ends up.
+
+$$
+\begin{aligned}
+M_2\left(M_1(\hat{\imath})\right) &=
+{\left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left[\begin{array}{lll}
+1 & 1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1
+\end{array}\right]\left[\begin{array}{l}
+1 \\
+0 \\
+0
+\end{array}\right] } \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{ccc}
+0 & 0 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left(1\left[\begin{array}{c}
+1 \\
+0 \\
+-1
+\end{array}\right]+0\left[\begin{array}{c} 1 \\ 1 \\ 0 \end{array}\right]+0\left[\begin{array}{c} 1 \\ 0 \\ 1 \end{array}\right]\right) \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{ccc}
+0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left[\begin{array}{c}
+1 \\
+0 \\
+-1
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =1\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+0\left[\begin{array}{l}
+0 \\
+2 \\
+0
+\end{array}\right]+\left(\begin{array}{l}
+-1
+\end{array}\right)\left[\begin{array}{l}
+2 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+\left[\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right]+\left[\begin{array}{c}
+-2 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+ & =\left[\begin{array}{c}
+-2 \\
+0 \\
+-2
+\end{array}\right]
+\end{aligned}
+$$
+
+This result gives us the first column of the composed matrix. Next, let's follow the same logic to reasons where $\hat{\jmath}$ lands.
+
+$$
+\begin{aligned}
+M_2\left(M_1(\hat{\jmath})\right) & =\left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left[\begin{array}{lll}
+1 & 1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1
+\end{array}\right]\left[\begin{array}{l}
+0 \\
+1 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+& =\left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left[\begin{array}{l}
+1 \\
+1 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+& =1\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+1\left[\begin{array}{l}
+0 \\
+2 \\
+0
+\end{array}\right]+0\left[\begin{array}{l}
+2 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+& =\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+\left[\begin{array}{l}
+0 \\
+2 \\
+0
+\end{array}\right]+\left[\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+
+& =\left[\begin{array}{c}
+0 \\
+2 \\
+-2
+\end{array}\right]
+\end{aligned}
+$$
+
+This result gives us the second column of the composed matrix. Finally, let's reason where $\hat{k}$ lands.
+
+$$
+\begin{aligned}
+M_2\left(M_1(\hat{k})\right) & =\left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
+\end{array}\right]\left[\begin{array}{l}
+1 \\
+0 \\
+1
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =1\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+0\left[\begin{array}{l}
+0 \\
+2 \\
+0
+\end{array}\right]+1\left[\begin{array}{l}
+2 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{c}
+0 \\
+0 \\
+-2
+\end{array}\right]+\left[\begin{array}{l}
+0 \\
+0 \\
+0
+\end{array}\right]+\left[\begin{array}{l}
+2 \\
+0 \\
+0
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{c}
+2 \\
+0 \\
+-2
+\end{array}\right]
+\end{aligned}
+$$
+
+This result gives us the third colum of the composed matrix, so the product of the two matrices is:
+
+$$
+M_3=\left[\begin{array}{ccc}
+-2 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & -2 & -2
+\end{array}\right]
+$$
+
+Of course, we could generalize this into a formula, but the nice thing about about sending the standard basis vectors through the composition of two matrices is that not only are you able to calculate the resulting matrix, but it also leverages your existing understanding of a transformation.
+
+We can double check our work visually to see that the basis vectors do indeed correspond to the columns of the resulting matrix.
+
+</FreeResponse>
+
+## Puzzle
+
+Here's another puzzle for you: It's also meaningful to talk about a linear transformation from two-dimensional space to three-dimensional space, or from three-dimensions down to two. Can you visualize such a transformation? And can you represent them with matrices? How many rows and columns for each one? When is it meaningful to talk about multiplying such matrices, and why?
+
+<FreeResponse>
+
+A simple example from 3d to 2d would be the shadow cast by a 3d object onto a 2d plane. Although, in order for the transformation to be linear, the light rays should be considered parallel to eachother to simplify the problem. If you consider the light source to be something really far away, like the sun, then this is a reasonable choice to make.
+
+You can represent these transformations with matrices. The number of columns corresponds to the dimension of the input and the number of rows corresponds to the dimension of the output. For example, a matrix that maps coordinates on a sphere to a plane would have three columns and two rows.
+
+$$
+A = \left[\begin{array}{ccc}
+a_1 & a_2 & a_3 \\
+a_4 & a_5 & a_6
+\end{array}\right]
+$$
+
+It's meaningful to talk about multiplying these matrices when the number of columns on the left matrix is equal to the number of rows on the right matrix. That whey when apply these matrices to a vector, reading right to left, the dimensions of the input and output match up.
+
+$$
+\left[\begin{array}{cc}
+b_1 & b_2 \\
+b_3 & b_4
+\end{array}\right]
+\left[\begin{array}{ccc}
+a_1 & a_2 & a_3 \\
+a_4 & a_5 & a_6
+\end{array}\right]
+$$
+
+We'll cover nonsquare matrices in more detail in a <LessonLink id="nonsquare-matrices">following chapter</LessonLink>.
+
+</FreeResponse>
+
+In the next chapter, we'll get into the determinant.
