@@ -1,0 +1,3 @@
+Notes from Kurt:
+
+- Remove 'x' and 'y' labels from grid in "LinearTransformationVectorToNumber.svg"
