@@ -4,6 +4,7 @@
   lessons:
     - essence-of-calculus
     - derivatives
+    - derivative-formulas-geometrically
     - derivatives-power-rule
     - derivatives-trig-functions
     - chain-rule-and-product-rule
@@ -131,6 +132,7 @@
     - convolutions2
     - gaussian-convolution
     - bayes-theorem
+    - bayes-theorem-quick
     - better-bayes
     - binomial-distributions
     - pdfs
@@ -140,7 +142,7 @@
   lessons:
     - convolutions
     - wordle
-    - wordle2
+    - wordle-2
     - bitcoin
     - 256-bit-security
     - hamming-codes
@@ -180,6 +182,14 @@
     - ldm-power-towers
     - ldm-i-to-i
     - ldm-tips-to-problem-solving
+- name: Summer of Math Exposition
+  slug: some
+  lessons:
+    - some1
+    - some1-results
+    - some2
+    - some2-results
+    - some3-results
 - name: Miscellaneous
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere
