@@ -224,7 +224,9 @@ Performing this matrix multiplication numerically is, once again, very analogous
 
 <FreeResponse>
 
-From the last chapter, we reasoned through what matrix multiplication should look like by following where the basis vectors $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$ land after applying one transformation and then the other, because where the original basis vectors land will make up the columns of the composed matrix.
+<Accordion title="Reveal">
+
+Given two transformations $M_1$ and $M_2$, we need to follow where the basis vectors $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$ land after applying one transformation and then the other to each basis vector. This will give us the columns of the resulting matrix.
 
 $$
 M_2 M_1 = M_3
@@ -267,50 +269,13 @@ M_2\left(M_1(\hat{\imath})\right) &=
 0
 \end{array}\right] } \\ \rule{0pt}{2.5em}
 & =\left[\begin{array}{ccc}
-0 & 0 \\
-0 & 2 & 0 \\
--2 & 0 & 0
-\end{array}\right]\left(1\left[\begin{array}{c}
-1 \\
-0 \\
--1
-\end{array}\right]+0\left[\begin{array}{c} 1 \\ 1 \\ 0 \end{array}\right]+0\left[\begin{array}{c} 1 \\ 0 \\ 1 \end{array}\right]\right) \\ \rule{0pt}{2.5em}
-& =\left[\begin{array}{ccc}
-0 & 2 \\
+0 & 0 & 2 \\
 0 & 2 & 0 \\
 -2 & 0 & 0
 \end{array}\right]\left[\begin{array}{c}
 1 \\
 0 \\
 -1
-\end{array}\right] \\ \rule{0pt}{2.5em}
-& =1\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+0\left[\begin{array}{l}
-0 \\
-2 \\
-0
-\end{array}\right]+\left(\begin{array}{l}
--1
-\end{array}\right)\left[\begin{array}{l}
-2 \\
-0 \\
-0
-\end{array}\right] \\ \rule{0pt}{2.5em}
-& =\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+\left[\begin{array}{l}
-0 \\
-0 \\
-0
-\end{array}\right]+\left[\begin{array}{c}
--2 \\
-0 \\
-0
 \end{array}\right] \\ \rule{0pt}{2.5em}
  & =\left[\begin{array}{c}
 -2 \\
@@ -347,35 +312,6 @@ M_2\left(M_1(\hat{\jmath})\right) & =\left[\begin{array}{ccc}
 1 \\
 0
 \end{array}\right] \\ \rule{0pt}{2.5em}
-
-& =1\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+1\left[\begin{array}{l}
-0 \\
-2 \\
-0
-\end{array}\right]+0\left[\begin{array}{l}
-2 \\
-0 \\
-0
-\end{array}\right] \\ \rule{0pt}{2.5em}
-
-& =\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+\left[\begin{array}{l}
-0 \\
-2 \\
-0
-\end{array}\right]+\left[\begin{array}{l}
-0 \\
-0 \\
-0
-\end{array}\right] \\ \rule{0pt}{2.5em}
-
 & =\left[\begin{array}{c}
 0 \\
 2 \\
@@ -392,36 +328,23 @@ M_2\left(M_1(\hat{k})\right) & =\left[\begin{array}{ccc}
 0 & 0 & 2 \\
 0 & 2 & 0 \\
 -2 & 0 & 0
+\end{array}\right]\left[\begin{array}{lll}
+1 & 1 & 1 \\
+0 & 1 & 0 \\
+-1 & 0 & 1
+\end{array}\right]\left[\begin{array}{l}
+0 \\
+0 \\
+1
+\end{array}\right] \\ \rule{0pt}{2.5em}
+& =\left[\begin{array}{ccc}
+0 & 0 & 2 \\
+0 & 2 & 0 \\
+-2 & 0 & 0
 \end{array}\right]\left[\begin{array}{l}
 1 \\
 0 \\
 1
-\end{array}\right] \\ \rule{0pt}{2.5em}
-& =1\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+0\left[\begin{array}{l}
-0 \\
-2 \\
-0
-\end{array}\right]+1\left[\begin{array}{l}
-2 \\
-0 \\
-0
-\end{array}\right] \\ \rule{0pt}{2.5em}
-& =\left[\begin{array}{c}
-0 \\
-0 \\
--2
-\end{array}\right]+\left[\begin{array}{l}
-0 \\
-0 \\
-0
-\end{array}\right]+\left[\begin{array}{l}
-2 \\
-0 \\
-0
 \end{array}\right] \\ \rule{0pt}{2.5em}
 & =\left[\begin{array}{c}
 2 \\
@@ -443,7 +366,7 @@ $$
 
 Of course, we could generalize this into a formula, but the nice thing about about sending the standard basis vectors through the composition of two matrices is that not only are you able to calculate the resulting matrix, but it also leverages your existing understanding of a transformation.
 
-We can double check our work visually to see that the basis vectors do indeed correspond to the columns of the resulting matrix.
+</Accordion>
 
 </FreeResponse>
 
