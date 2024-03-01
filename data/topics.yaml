@@ -4,6 +4,7 @@
   lessons:
     - essence-of-calculus
     - derivatives
+    - derivative-formulas-geometrically
     - derivatives-power-rule
     - derivatives-trig-functions
     - chain-rule-and-product-rule
@@ -22,6 +23,7 @@
   slug: linear-algebra
   description: An introduction to visualizing what matrices are really doing
   lessons:
+    - eola-preview
     - vectors
     - span
     - linear-transformations
@@ -108,42 +110,6 @@
     - winding-numbers
     - inventing-math
     - music-and-measure-theory
-- name: Probability
-  slug: probability
-  description: An assortment of introductory ideas in probability
-  lessons:
-    - clt
-    - gaussian-integral
-    - convolutions2
-    - gaussian-convolution
-    - bayes-theorem
-    - better-bayes
-    - binomial-distributions
-    - pdfs
-- name: Topology
-  slug: topology
-  description: A few clever proofs that make use of topological facts
-  lessons:
-    - inscribed-rectangle-problem
-    - borsuk-ulam
-- name: Group Theory
-  slug: group-theory
-  description: The study of symmetry
-  lessons:
-    - groups-and-monsters
-    - eulers-formula-via-group-theory
-- name: Computer Science
-  slug: computer-science
-  description: An assortment of topics related to algorithms
-  lessons:
-    - convolutions
-    - wordle
-    - wordle2
-    - bitcoin
-    - 256-bit-security
-    - hamming-codes
-    - hamming-codes-2
-    - hanoi-and-sierpinski
 - name: Physics
   slug: physics
   description: An assortment of topics from physics
@@ -157,6 +123,43 @@
     - brachistochrone
     - snells-law
     - turbulence
+- name: Probability
+  slug: probability
+  description: An assortment of introductory ideas in probability
+  lessons:
+    - clt
+    - gaussian-integral
+    - convolutions2
+    - gaussian-convolution
+    - bayes-theorem
+    - bayes-theorem-quick
+    - better-bayes
+    - binomial-distributions
+    - pdfs
+- name: Computer Science
+  slug: computer-science
+  description: An assortment of topics related to algorithms
+  lessons:
+    - convolutions
+    - wordle
+    - wordle-2
+    - bitcoin
+    - 256-bit-security
+    - hamming-codes
+    - hamming-codes-2
+    - hanoi-and-sierpinski
+- name: Topology
+  slug: topology
+  description: A few clever proofs that make use of topological facts
+  lessons:
+    - inscribed-rectangle-problem
+    - borsuk-ulam
+- name: Group Theory
+  slug: group-theory
+  description: The study of symmetry
+  lessons:
+    - groups-and-monsters
+    - eulers-formula-via-group-theory
 - name: Epidemics
   slug: epidemics
   description: Videos made about and during the COVID-19 pandemic
@@ -179,6 +182,14 @@
     - ldm-power-towers
     - ldm-i-to-i
     - ldm-tips-to-problem-solving
+- name: Summer of Math Exposition
+  slug: some
+  lessons:
+    - some1
+    - some1-results
+    - some2
+    - some2-results
+    - some3-results
 - name: Miscellaneous
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere

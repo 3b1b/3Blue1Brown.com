@@ -1,0 +1,3 @@
+Notes from Kurt:
+
+- Could add a visual & animation at the end of the combining transformations section. Something like, "We can double check our work visually to see that the basis vectors do indeed correspond to the columns of the resulting matrix."
