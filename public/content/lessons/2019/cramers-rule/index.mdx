@@ -19,33 +19,33 @@ credits:
 >
 > Kramer: Is it?! Or is it so possible your head is spinning like a top?
 
-In a previous chapter, we talked about linear systems of equations, and sort of brushed aside the discussion of actually computing solutions to these systems. And while it's true that number-crunching is something we typically leave to the computers, digging into some of these computational methods is a good litmus test for whether or not you actually understand what's going on, since this is really where the rubber meets the road.
+In a previous chapter, we talked about linear systems of equations, and sort of brushed aside the discussion of actually computing solutions to these systems. While it's true that number-crunching is something we typically leave to the computers, digging into some of these computational methods is a good litmus test for whether or not you actually understand what's going on, since this is really where the rubber meets the road.
 
 <Figure
     image="./figures/introduction/ComputingSolutions.light.svg" 
     width="480px"
 />
 
-Here I want to describe the geometry behind a certain method for computing solutions to these systems, known as Cramer's rule. The relevant background needed here is an understanding of <LessonLink id="determinant">determinants</LessonLink>, <LessonLink id="dot-products">dot products</LessonLink>, and of <LessonLink id="inverse-matrices">linear systems of equations</LessonLink>, so be sure to read the relevant chapters on those topics if you're unfamiliar or rusty.
+Here we want to describe the geometry behind a certain method for computing solutions to these systems, known as Cramer's rule. The relevant background needed here is an understanding of <LessonLink id="determinant">determinants</LessonLink>, <LessonLink id="dot-products">dot products</LessonLink>, and of <LessonLink id="inverse-matrices">linear systems of equations</LessonLink>, so be sure to read the relevant chapters on those topics if you're unfamiliar or rusty.
 
-But first!  I should say up front that Cramer's rule is not the best way for computing solutions to linear systems of equations. Gaussian elimination, for example, will always be faster. So why learn it?
+But first! We should say up front that Cramer's rule is not the best way for computing solutions to linear systems of equations. Gaussian elimination, for example, will always be faster. So why learn it?
 
 Think of this as a sort of cultural excursion; it's a helpful exercise in deepening your knowledge of the *theory* of these systems. Wrapping your mind around this concept will help consolidate ideas from linear algebra, like the determinant and linear systems, by seeing how they relate to each other. Also, from a purely artistic standpoint, the ultimate result is just really pretty to think about, much more so that Gaussian elimination.
 
-Alright, so the setup here will be some linear system of equations, say with two unknowns, $x$ and $y$, and two equations. In principle, everything we're talking about will work systems with a larger number of unknowns, and the same number of equations. But for simplicity, a smaller example is nicer to hold in our heads.
+The setup here will be some linear system of equations, say with two unknowns, $x$ and $y$, and two equations. In principle, everything we're talking about will work systems with a larger number of unknowns, and the same number of equations. But for simplicity, a smaller example is nicer to hold in our heads.
 
 <Figure
     image="./figures/introduction/SystemOfEquations.light.svg" 
     width="480px"
 />
 
-So as we talked about in a previous chapter, you can think of this setup geometrically as a certain known matrix transforming an unknown vector, $\left[\begin{array}{c} x \\ y \end{array}\right]$, where you know what the output is going to be, in this case $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$. Remember, the columns of this matrix tell you how the matrix acts as a transform, each one telling you where the basis vectors of the input space land.
+As we talked about in a previous chapter, you can think of this setup geometrically as a certain known matrix transforming an unknown vector, $\left[\begin{array}{c} x \\ y \end{array}\right]$, where you know what the output is going to be, in this case $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$. Remember, the columns of this matrix tell you how the matrix acts as a transform, each one telling you where the basis vectors of the input space land.
 
 <Figure
     image="./figures/introduction/GeometricSetup.light.svg" 
 />
 
-So this is a sort of puzzle, what input $\left[\begin{array}{c} x \\ y \end{array}\right]$, is going to give you this output $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$?
+This is a sort of puzzle, what input $\left[\begin{array}{c} x \\ y \end{array}\right]$, is going to give you this output $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$?
 
 <Figure
     image="./figures/introduction/SystemOfEquationsPuzzle.light.svg" 
@@ -81,7 +81,7 @@ One way to think about our puzzle is that we know the given output vector is som
 
 ### What about dot products with basis vectors?
 
-As a first pass, let me show an idea that is wrong, but in the right direction.
+As a first pass, let's show an idea that is wrong, but in the right direction.
 
 The $x$-coordinate of this mystery input vector is what you get by taking its dot product with $\hat{\imath}$. Likewise the $y$-coordinate is what you get by dotting it with $\hat{\jmath}$.
 
@@ -89,7 +89,7 @@ The $x$-coordinate of this mystery input vector is what you get by taking its do
     image="./figures/wrong-but-helpful-approach/DotProductsWithBasisVectorsBefore.light.svg" 
 />
 
-So maybe you hope that after the transformation, the dot products with the transformed version of the mystery vector with the transformed versions of the basis vectors will also be these coordinates $x$ and $y$.
+Maybe you hope that after the transformation, the dot products with the transformed version of the mystery vector with the transformed versions of the basis vectors will also be these coordinates $x$ and $y$.
 
 <Figure
     image="./figures/wrong-but-helpful-approach/DotProductsWithBasisVectorsAfter.light.svg" 
@@ -123,7 +123,7 @@ You often think of these as rotation matrices. They correspond to rigid motion, 
 
 Solving a linear system with an orthonormal matrix is very easy: Since dot products are preserved, taking the dot product between the output vector and all the columns of your matrix will be the same as taking the dot products between the input vector and all the basis vectors, which is the same as finding the coordinates of the input vector.
 
-So, in that very special case, $x$ would be the dot product of the first column with the output vector, and $y$ would be the dot product of the second column with the output vector.
+In that very special case, $x$ would be the dot product of the first column with the output vector, and $y$ would be the dot product of the second column with the output vector.
 
 <Figure
     image="./figures/wrong-but-helpful-approach/OrthonormalZoomed.light.svg" 
@@ -139,7 +139,7 @@ If your mind has been mulling over determinants, you might think of this clever 
     image="./figures/a-better-approach/ParallelogramIhatAndInputVector.light.svg" 
 />
 
-So, the area of this parallelogram is sort of a screwy roundabout way to describe the vector's $y$-coordinate; it's a wacky way to talk about coordinates, but run with us.
+The area of this parallelogram is sort of a screwy roundabout way to describe the vector's $y$-coordinate; it's a wacky way to talk about coordinates, but run with us.
 
 Actually, to be more accurate, you should think of the signed area of this parallelogram, in the sense described by the determinant video. That way, a vector with negative $y$-coordinate would correspond to a negative area for this parallelogram.
 
