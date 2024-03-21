@@ -1,0 +1,47 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1351_6579)">
+<path d="M640 0H0V360H640V0Z" fill="black"/>
+<g clip-path="url(#clip1_1351_6579)">
+<path d="M0 20H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 60H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 100H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 140H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 180H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 220H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 260H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 300H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 340H640" stroke="#505050" stroke-width="1.5"/>
+<path d="M0 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M40 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M80 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M120 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M160 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M200 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M240 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M280 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M320 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M360 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M400 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M440 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M480 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M520 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M560 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M600 0V360" stroke="#505050" stroke-width="1.5"/>
+<path d="M640 0V360" stroke="#505050" stroke-width="1.5"/>
+</g>
+<path d="M0 180H640" stroke="#D0D0D0" stroke-width="1.5"/>
+<path d="M320 0V360" stroke="#D0D0D0" stroke-width="1.5"/>
+<path d="M640 0H0V360H640V0Z" stroke="#404040" stroke-width="2"/>
+<path d="M320 183.5C321.933 183.5 323.5 181.933 323.5 180C323.5 178.067 321.933 176.5 320 176.5C318.067 176.5 316.5 178.067 316.5 180C316.5 181.933 318.067 183.5 320 183.5Z" fill="#F0F0F0"/>
+<path d="M378 99C355.333 113.667 339.333 134.333 330 161" stroke="#F0F0F0" stroke-width="1.5"/>
+<path d="M339.474 154.935L330 161.001L326.829 150.207" stroke="#F0F0F0" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_1351_6579">
+<rect width="640" height="360" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1351_6579">
+<rect width="640" height="360" fill="white"/>
+</clipPath>
+</defs>
+</svg>
