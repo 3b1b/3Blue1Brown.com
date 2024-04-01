@@ -10,7 +10,7 @@ export default function SocialIcons() {
         <Link
           link="https://www.youtube.com/3blue1brown"
           icon="fab fa-youtube"
-          tooltip="Join over 5 million subscribers"
+          tooltip="Join over 6 million subscribers"
           hoverColor="#ff0000"
           restingColor="#ff0000"
           label={""}
