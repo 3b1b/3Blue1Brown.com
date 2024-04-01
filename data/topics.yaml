@@ -48,6 +48,7 @@
     - neural-network-analysis
     - backpropagation
     - backpropagation-calculus
+    - gpt
 - name: Differential Equations
   slug: differential-equations
   description: A tour through some of the most beautiful methods for studying dynamic systems
