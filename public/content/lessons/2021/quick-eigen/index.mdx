@@ -7,4 +7,357 @@ video: e50Bj7jn9IQ
 source: _2021/quick_eigen.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
 ---
+
+This is a video for anyone who already knows what eigenvalues and eigenvectors are, and who might enjoy a quick way to compute them in the case of 2x2 matrices. If you're unfamiliar with eigenvalues, take a look at the <LessonLink id="eigenvalues"> previous chapter</LessonLink> which introduces them.
+
+You can skip ahead if you just want to see the trick, but if possible we'd like you to rediscover it for yourself, so let's lay down a little background.
+
+As a quick reminder, if the effect of a linear transformation on a given vector is to scale it by some constant, we call that vector an eigenvector of the transformation, and we call the relevant scaling factor the corresponding eigenvalue, often denoted with the letter lambda. 
+
+
+<Figure
+    image="./figures/introduction/QuickReviewLinearTransformation.light.svg" 
+    video="./figures/introduction/QuickReviewLinearTransformation.light.mp4" 
+    width="512px"
+/>
+
+When you write this as an equation and rearrange a little, what you see is that if a number $\lambda$ is an eigenvalue of a matrix $A$, then the matrix $(A - \lambda I)$ must send some nonzero vector, namely the corresponding eigenvector, to the zero vector, which in turn means the determinant of this modified matrix must be $0$.
+
+$$
+\begin{aligned}
+A \vec{\mathbf{v}} & =\lambda I \vec{\mathbf{v}} \\ \rule{0pt}{1.25em}
+A \vec{\mathbf{v}}-\lambda I \vec{\mathbf{v}} & =\vec{\mathbf{0}} \\ \rule{0pt}{1.25em}
+(A-\lambda I) \vec{\mathbf{v}} & =\vec{\mathbf{0}} \\ \rule{0pt}{1.25em}
+\operatorname{det}(A-\lambda I) &= 0
+\end{aligned}
+$$
+
+That's a bit of a mouthful, but again, we're assuming this is review for anyone reading.
+
+The usual way to compute eigenvalues and how most students are taught to carry it out, is to subtract a variable lambda off the diagonals of a matrix and solve for when the determinant equals $0$. For example, when finding the eigenvalues of the matrix $\left[\begin{array}{ll} 3 & 1 \\ 4 & 1 \end{array}\right]$ this looks like:
+
+$$
+\operatorname{det}\left(\left[\begin{array}{cc}
+3-\lambda & 1 \\
+4 & 1-\lambda
+\end{array}\right]\right)=(3-\lambda)(1-\lambda)-(1)(4)
+$$
+
+This always involves a few steps to expand this and simplify it to get a clean quadratic polynomial, known as the “characteristic polynomial” of the matrix. The eigenvalues are the roots of this polynomial, so to find them you apply the quadratic formula, which typically requires one or two more steps of simplification.
+
+$$
+\begin{aligned}
+\operatorname{det}\left(\left[\begin{array}{cc}
+3-\lambda & 1 \\
+4 & 1-\lambda
+\end{array}\right]\right) & =(3-\lambda)(1-\lambda)-(1)(4) \\ \rule{0pt}{1.5em}
+& =\left(3-4 \lambda+\lambda^2\right)-4 \\ \rule{0pt}{1.5em}
+& =\lambda^2-4 \lambda-1=0 \\ \rule{0pt}{2.0em}
+\lambda_1, \lambda_2 & = \frac{4 \pm \sqrt{4^2-4(1)(-1)}}{2} =2 \pm \sqrt{5} 
+\end{aligned}
+$$
+
+This process isn't *terrible*, but at least for 2x2 matrices, there's a much more direct way to get at this answer. If you want to rediscover this trick, there are three relevant facts you'll need to know, each of which is worth knowing in its own right and can help with other problem-solving.
+
+1. The trace of a matrix, which is the sum of these two diagonal entries, is equal to the sum of the eigenvalues.
+
+    $$
+    \operatorname{tr}\left(\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\right)=a+d=\lambda_1+\lambda_2
+    $$
+    
+    Or another way to phrase it, more useful for our purposes, is that the mean of the two eigenvalues is the same as the mean of these two diagonal entries.
+
+    $$
+    \frac{1}{2} \operatorname{tr}\left(\left[\begin{array}{cc}a & b \\ c & d\end{array}\right]\right)=\frac{a+d}{2}=\frac{\lambda_1+\lambda_2}{2}
+    $$
+    
+
+2. The determinant of a matrix, our usual $ad-bc$ formula, equals the product of the two eigenvalues.
+
+    $$
+    \operatorname{det}\left(\left[\begin{array}{ll}a & b \\ c & d\end{array}\right]\right)=a d-b c=\lambda_1 \lambda_2
+    $$
+
+    This should make sense if you understand that an eigenvalue describes how much an operator stretches space in a particular direction and that the determinant describes how much an operator scales areas (or volumes).
+
+
+3. (We'll get to this...)
+
+Before getting to the third fact, notice how you can essentially read these first two values out of the matrix. Take this matrix $\left[\begin{array}{ll}8 & 4 \\ 2 & 6\end{array}\right]$ as an example. Straight away you can know that the mean of the eigenvalues is the same as the mean of $8$ and $6$, which is $7$.
+
+$$
+m = \frac{\lambda_1 + \lambda_2}{2} = 7
+$$
+
+Likewise, most linear algebra students are well-practiced at finding the determinant, which in this case is $48 - 8$, so you know the product of our two eigenvalues is $40$.
+
+$$
+p = \lambda_1 \lambda_2= 40
+$$
+
+Take a moment to see how you can derive what will be our third relevant fact, which is how to recover two numbers when you know their mean and product.
+
+Focus on this example. You know the two values are evenly spaced around $7$, so they look like $7$ plus or minus something; let's call it $d$ for distance.
+
+<Figure
+    image="./figures/introduction/MeanProductSetup.light.svg" 
+/>
+
+You also know that the product of these two numbers is $40$.
+
+$$
+40 = (7+d)(7-d)
+$$
+
+To find $d$, notice how this product expands nicely as a difference of squares. This lets you cleanly solve for $d$:
+
+$$
+\begin{aligned}
+40 & = (7+d)(7-d) \\ \rule{0pt}{1.25em}
+40 & = 7^2-d^2 \\ \rule{0pt}{1.25em}
+d^2 & =7^2-40 \\ \rule{0pt}{1.25em}
+d^2 & =9 \\ \rule{0pt}{1.25em}
+d & =3
+\end{aligned}
+$$
+
+In other words, the two values for this very specific example work out to be $4$ and $10$.
+
+<Figure
+    image="./figures/introduction/MeanProductSpecific.light.svg" 
+/>
+
+But our goal is a quick trick and you wouldn't want to think through this each time, so let's wrap up what we just did in a general formula.
+
+For any mean, $m$, and product, $p$, the distance squared is always going to be $m^2 - p$. This gives the third key fact, which is that when two numbers have a mean and a product, you can write those two numbers as $m \pm \sqrt{m^2 - p}$.
+
+<Figure
+    image="./figures/introduction/MeanProductFormula.light.svg" 
+/>
+
+This is decently fast to rederive on the fly if you ever forget it and it's essentially just a rephrasing of the difference of squares formula, but even still it's a fact worth memorizing. In fact, Tim from Acapella Science wrote us a quick jingle to make it a little more memorable.
+
+<Figure
+    video="./figures/introduction/jingle.mp4" 
+    muted={false}
+/>
+
+## Examples
+
+Let me show you how this works, say for the matrix $\left[\begin{array}{cc}3 & 1 \\ 4 & 1\end{array}\right]$. You start by thinking of the formula, stating it all in your head.
+
+<Figure
+    image="./figures/examples/ThinkingOfTheFormula.light.svg" 
+/>
+
+But as you write it down, you fill in the appropriate values of $m$ and $p$ as you go. Here, the mean of the eigenvalues is the same as the mean of $3$ and $1$, which is $2$, so you start by writing:
+
+$$
+\lambda_1, \lambda_2 = 2 \pm \sqrt{2^2 - …}
+$$
+
+The product of the eigenvalues is the determinant, which in this example is $3 \cdot 1 - 1 \cdot 4 = -1$, so that's the final thing you fill in.
+
+$$
+\lambda_1, \lambda_2 = 2 \pm \sqrt{2^2 - (-1)}
+$$
+
+So the eigenvalues are $2 \pm \sqrt{5}$. You may noticed this is the same matrix we were using at the start, but notice how much more directly we can get at the answer compared to the characteristic polynomial route.
+
+<Figure
+    image="./figures/examples/MoreDirect.light.svg" 
+/>
+
+Here, let's try another one using the matrix $\left[\begin{array}{ll}2 & 7 \\ 1 & 8\end{array}\right]$. This time the mean of the eigenvalues is the same as the mean of $2$ and $8$, which is $5$. So again, start writing out the formula, but writing $5$ in place of $m$:
+
+$$
+\lambda_1, \lambda_2 =  5 \pm \sqrt{5^2 - …}
+$$
+
+ The determinant is $2 \cdot 8 - 7 \cdot 1 = 9$. So in this example, the eigenvalues look like $5 ± \sqrt{16}$, which gives us $9$ and $1$.
+
+ $$
+\lambda_1, \lambda_2 =  5 \pm \sqrt{5^2 - 9} = 9, 1
+$$
+
+You see what we mean about how you can basically just write down the eigenvalues while staring at the matrix? It's typically just the tiniest bit of simplifying at the end.
+
+<Question
+  question="What are the eigenvalue(s) of the matrix $\left[\begin{array}{ll}2 & 3 \\ 2 & 4\end{array}\right]$?"
+  choice1="$3 \pm \sqrt{11}$"
+  choice2="$3 \pm \sqrt{7}$"
+  choice3="$3 \pm \sqrt{2}$"
+  choice4="$3 \pm \sqrt{10}$"
+  answer={2}
+>
+
+$$
+\begin{aligned}
+A & =\left[\begin{array}{ll}
+2 & 3 \\
+2 & 4
+\end{array}\right] \\ \rule{0pt}{1.5em}
+m & =\frac{2+4}{2}=3 \\ \rule{0pt}{1.25em}
+p & =\operatorname{det}(A)=8-6=2 \\ \rule{0pt}{1.25em}
+\lambda_{1,} \lambda_2 & =3 \pm \sqrt{3^2-2} \\ \rule{0pt}{1.25em}
+& =3 \pm \sqrt{7}
+\end{aligned}
+$$
+
+</Question>
+
+This trick is especially useful when you need to read off the eigenvalues from small examples without losing the main line of thought by getting bogged down in calculations.[^1]
+
+[^1]: For example, this trick was used while making the video: <a href="https://www.youtube.com/watch?v=O85OWBJ2ayo?">How (and why) to raise e to the power of a matrix</a>
+
+For more practice, let's try this out on a common set of matrices which pop up in quantum mechanics, known as the Pauli spin matrices.
+
+<Figure
+    image="./figures/examples/PauliSpinMatrices.light.svg" 
+    width="512px"
+/>
+
+If you know quantum mechanics, you'll know the eigenvalues of these are highly relevant to the physics they describe, and if you don't then let this just be a little glimpse of how these computations are actually relevant to real applications.
+
+The mean of the diagonal in all three cases is $0$, so the mean of the eigenvalues in all cases is $0$, making our formula look especially simple.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesMean.light.svg" 
+/>
+
+What about the products of the eigenvalues, the determinants?  For the first one, it's $0 - 1$ or $-1$. The second also looks like $0 - 1$, though it takes a moment more to see because of the complex numbers. And the final one looks like $-1 - 0$. So in all three cases, the eigenvalues are $±1$.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesEigenvalues.light.svg" 
+/>
+
+Although in this case you don't even really need the formula to find two values evenly spaced around zero whose product is $-1$.
+
+If you're curious, in the context of quantum mechanics, these matrices correspond with observations you might make about the spin of a particle in the $x$, $y$ or $z$-direction, and the fact that these eigenvalues are $±1$ corresponds with the idea that the values for the spin you would observe would be entirely in one direction or entirely in another, as opposed to something continuously ranging in between.
+
+Maybe you'd wonder how exactly this works, and why you'd use 2x2 matrices with complex numbers to describe spin in three dimensions. Those would be valid questions, just beyond the scope of what we're talking about here.
+
+You know it's funny, this section is supposed to be about a case where 2x2 matrices are not just toy examples or homework problems, but actually come up in practice, and quantum mechanics is great for that. However, the example kind of undercuts the whole ponit we're trying to make. For these specific matrices, if you use the traditional method with characteristic polynomials, it's essentially just as fast, and might actually faster.
+
+For the first matrix, the relevant determinant directly gives you a characteristic polynomial of $\lambda^2 - 1$, which clearly has roots of plus and minus $1$. Same answer for the second matrix. And for the last, forget about doing any computations, traditional or otherwise, it's already a diagonal matrix, so those diagonal entries are the eigenvalues!
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesCharacteristicPolynomial.light.svg" 
+/> 
+
+However, the example is not totally lost on our cause, where you would actually feel the speed up is the more general case where you take a linear combination of these matrices and then try to compute the eigenvalues.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesGeneralCase.light.svg" 
+/>
+
+We might write this as $a$ times the first one, plus $b$ times the second, plus $c$ times the third. In physics, this would describe spin observations in the direction of a vector $\left[\begin{array}{c} a \\ b \\ c \end{array}\right]$.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesGeneralDirection.light.svg" 
+/>
+
+More specifically, you should assume this vector is normalized, meaning $a^2 + b^2 + c^2 = 1$. When you look at this new matrix, it's immediate to see that the mean of the eigenvalues here is still zero, and you may enjoy pausing for a brief moment to confirm that the product of those eigenvalues is still $-1$, and from there concluding what the eigenvalues must be.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesGeneralDirectionPauseAndConfirm.light.svg"
+    width="390px" 
+/>
+
+The characteristic polynomial approach, on the other hand, is now actually more cumbersome to do in your head.
+
+<Figure
+    image="./figures/examples/PauliSpinMatricesGeneralCaseCharacteristicPolynomial.light.svg" 
+    width="520px" 
+/>
+
+## Relation to the quadratic formula
+
+To be clear, using the mean-product formula is the same thing as finding roots of the characteristic polynomial; it has to be. In fact, this formula is a nice way to think about solving quadratics in general and some viewers of the channel may recognize this.
+
+<Figure
+    image="./figures/relation-to-quadratic-formula/QuadraticExample.light.svg" 
+/>
+
+If you're trying to find the roots of a quadratic given its coefficients, you can think of that as a puzzle where you know the sum of two values, and you know their product, and you're trying to recover the original two values.
+
+<Figure
+    image="./figures/relation-to-quadratic-formula/QuadraticExampleWithEquations.light.svg" 
+/>
+
+Specifically, if the polynomial is normalized so that the leading coefficient is $1$, then the mean of the roots is $-1/2$ times the linear coefficient, for the example on screen that would be $5$, and the product of the roots is even easier, it's just the constant term. From there, you'd apply the mean product formula to find the roots.
+
+<Figure
+    image="./figures/relation-to-quadratic-formula/ApplyMeanProductFormula.light.svg"
+    width="480px" 
+/>
+
+Now, you could think of the mean product formula as being a lighter-weight reframing of the traditional quadratic formula. But the real advantage is that the terms have more meaning to them.
+
+The whole point of this eigenvalue trick is that because you can read out the mean and product directly from the matrix, you can jump straight to writing down the roots without thinking about what the characteristic polynomial looks like. But to do that, we need a version of the quadratic formula where the terms carry some kind of meaning.
+
+<Figure
+    image="./figures/relation-to-quadratic-formula/SkipCharacteristicPolynomial.light.svg" 
+/>
+
+<Question
+  question="What are the eigenvalue(s) of the matrix $\left[\begin{array}{ll}3 & 1 \\ 5 & 7\end{array}\right]$?"
+  choice1="$5$"
+  choice2="$3$ and $7$"
+  choice3="$2$ and $8$"
+  choice4="$4$ and $6$"
+  answer={3}
+>
+
+$$
+\begin{aligned}
+\lambda_1, \lambda_2 & =5 \pm \sqrt{5^2-16} \\ \rule{0pt}{1.25em}
+& =5 \pm \sqrt{25-16} \\ \rule{0pt}{1.25em}
+& =5 \pm \sqrt{9} \\ \rule{0pt}{1.25em}
+& =2,8
+\end{aligned}
+$$
+
+</Question>
+
+<Question
+  question="What are the eigenvalue(s) of the matrix $\left[\begin{array}{ll}8 & 4 \\ 2 & 6\end{array}\right]$?"
+  choice1="$7$"
+  choice2="$6$ and $8$"
+  choice3="$3$ and $11$"
+  choice4="$4$ and $10$"
+  answer={4}
+>
+
+$$
+\begin{aligned}
+\lambda_1, \lambda_2 & = 7 \pm \sqrt{7^2-40} \\ \rule{0pt}{1.25em}
+& = 7 \pm \sqrt{49-40} \\ \rule{0pt}{1.25em}
+& = 7 \pm \sqrt{9} \\ \rule{0pt}{1.25em}
+& = 4, 10
+\end{aligned}
+$$
+
+</Question>
+
+## Last thoughts
+
+This is an oddly specific trick, but it's something that could be helpful in college, so if you know any students you think might benefit from this, consider sharing it with them.
+
+The hope is that it's not just one more thing to memorize, but that the framing reinforces other nice facts worth knowing, like how the trace and determinant relate to eigenvalues. If you want to prove these facts, by the way, take a moment to expand out the characteristic polynomial for a general matrix, and think hard about the meaning of each coefficient.
+
+<Figure
+    image="./figures/last-thoughts/ThinkAboutTheseCoefficients.light.svg"
+    width="480px" 
+/>
+
+Many thanks to Tim, for ensuring that the mean-product formula will stay stuck in all of our heads for at least a few months.
+
+<Figure
+    video="./figures/introduction/jingle.mp4"
+    muted={false}
+/>
+
+If you don't know about [his channel](https://www.youtube.com/@acapellascience), do check it out. The [Molecular Shape of You](https://www.youtube.com/watch?v=f8FAJXPBdOg), in particular, is one of the greatest things on the internet.
