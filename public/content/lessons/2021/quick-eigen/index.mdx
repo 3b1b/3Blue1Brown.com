@@ -14,7 +14,7 @@ This is a video for anyone who already knows what eigenvalues and eigenvectors a
 
 You can skip ahead if you just want to see the trick, but if possible we'd like you to rediscover it for yourself, so let's lay down a little background.
 
-As a quick reminder, if the effect of a linear transformation on a given vector is to scale it by some constant, we call that vector an eigenvector of the transformation, and we call the relevant scaling factor the corresponding eigenvalue, often denoted with the letter lambda. 
+As a quick reminder, if the effect of a linear transformation on a given vector is to scale it by some constant, we call that vector an eigenvector of the transformation, and we call the relevant scaling factor the corresponding eigenvalue, often denoted with the letter lambda, $\lambda$. 
 
 
 <Figure
@@ -42,7 +42,7 @@ $$
 \operatorname{det}\left(\left[\begin{array}{cc}
 3-\lambda & 1 \\
 4 & 1-\lambda
-\end{array}\right]\right)=(3-\lambda)(1-\lambda)-(1)(4)
+\end{array}\right]\right)=(3-\lambda)(1-\lambda)-(1)(4) = 0
 $$
 
 This always involves a few steps to expand this and simplify it to get a clean quadratic polynomial, known as the “characteristic polynomial” of the matrix. The eigenvalues are the roots of this polynomial, so to find them you apply the quadratic formula, which typically requires one or two more steps of simplification.
@@ -91,7 +91,7 @@ $$
 m = \frac{\lambda_1 + \lambda_2}{2} = 7
 $$
 
-Likewise, most linear algebra students are well-practiced at finding the determinant, which in this case is $48 - 8$, so you know the product of our two eigenvalues is $40$.
+Likewise, most linear algebra students are well-practiced at finding the determinant, which in this case is $8 \cdot 6 - 4 \cdot 2 = 48 - 8$, so you know the product of our two eigenvalues is $40$.
 
 $$
 p = \lambda_1 \lambda_2= 40
@@ -344,7 +344,6 @@ $$
 
 ## Last thoughts
 
-This is an oddly specific trick, but it's something that could be helpful in college, so if you know any students you think might benefit from this, consider sharing it with them.
 
 The hope is that it's not just one more thing to memorize, but that the framing reinforces other nice facts worth knowing, like how the trace and determinant relate to eigenvalues. If you want to prove these facts, by the way, take a moment to expand out the characteristic polynomial for a general matrix, and think hard about the meaning of each coefficient.
 
