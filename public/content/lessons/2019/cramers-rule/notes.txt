@@ -1,0 +1,7 @@
+Kurt notes:
+
+- To convert the article to dark mode illustrations (to match the rest of the series) replace ".light" with "" in the sources.
+- Add footnote from Grant's youtube comment about "orthnormal vs. orthogonal" matrices.
+- Removed visuals from introduction
+- MAYBE: question with orthnormal matrix
+- TODO: link specific previous chapter in "So as we talked about in a previous chapter"?
