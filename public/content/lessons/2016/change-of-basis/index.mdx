@@ -252,7 +252,7 @@ How do we know that it would have coordinates $\left[\begin{array}{c} 5/3 \\ 1/3
     image="./figures/change-of-basis-matrix/TranslateOursToHersAlternative.light.svg" 
 />
 
-Well, you start with that change of basis matrix that translates Jennifer's language into ours, then you take its inverse. Remember, the inverse of a transformation is a new transformation that corresponds to playing that first one backwards. In practice, especially when you're working in more than two dimensions, you'd use a computer to compute the matrix which represents this inverse.
+Well, you start with that change of basis matrix that translates Jennifer's language into ours, then you take its inverse. Remember, the inverse of a transformation is a new transformation that corresponds to playing that first one backwards. 
 
 <Figure
     image="./figures/change-of-basis-matrix/InverseMatrix.light.svg"
@@ -276,6 +276,12 @@ So for example, to see what the vector $\left[\begin{array}{c} 3 \\ 2 \end{array
 <Figure
     image="./figures/change-of-basis-matrix/TranslateOursToHersMatrix.light.svg" 
 />
+
+In practice, especially when you're working in more than two dimensions, you'd use a computer to compute the matrix which represents this inverse, but for a small matrix, like $M = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$, the inverse can be computed by swapping along one diagonal, negating the other, and dividing by the determinant.
+
+$$
+M ^{-1} =  \frac{1}{\det(M)} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+$$
 
 <Question
   question="In Olive's language, defined by the basis $\vec{\mathbf{b}}_1 = \left[\begin{array}{c} 2 \\ 3 \end{array}\right]$ and $\vec{\mathbf{b}}_2 = \left[\begin{array}{c} -3 \\ 2 \end{array}\right]$, how would they describe the vector that we would describe with the coordinates $\left[\begin{array}{c} -5 \\ -1 \end{array}\right]$?"
