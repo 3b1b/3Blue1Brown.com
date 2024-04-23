@@ -19,7 +19,7 @@ credits:
 >
 > Kramer: Is it?! Or is it so possible your head is spinning like a top?
 
-In a previous chapter, we talked about linear systems of equations, and sort of brushed aside the discussion of actually computing solutions to these systems. While it's true that number-crunching is something we typically leave to the computers, digging into some of these computational methods is a good litmus test for whether or not you actually understand what's going on, since this is really where the rubber meets the road.
+In a previous chapter, we talked about linear systems of equations, and sort of brushed aside the discussion of actually computing solutions to these systems. While it's true that number-crunching is something we typically leave to the computers, digging into some of these computational methods is a good test for whether or not you understand what's going on since this is where the rubber meets the road.
 
 <Figure
     image="./figures/introduction/ComputingSolutions.light.svg" 
@@ -28,7 +28,7 @@ In a previous chapter, we talked about linear systems of equations, and sort of 
 
 Here we want to describe the geometry behind a certain method for computing solutions to these systems, known as Cramer's rule. The relevant background needed here is an understanding of <LessonLink id="determinant">determinants</LessonLink>, <LessonLink id="dot-products">dot products</LessonLink>, and of <LessonLink id="inverse-matrices">linear systems of equations</LessonLink>, so be sure to read the relevant chapters on those topics if you're unfamiliar or rusty.
 
-But first! We should say up front that Cramer's rule is not the best way for computing solutions to linear systems of equations. Gaussian elimination, for example, will always be faster. So why learn it?
+But first! We should say up front that Cramer's rule is not the best way to compute solutions to linear systems of equations. Gaussian elimination, for example, will generally be faster, especially for larger matrices. So why learn it?
 
 Think of this as a sort of cultural excursion; it's a helpful exercise in deepening your knowledge of the *theory* of these systems. Wrapping your mind around this concept will help consolidate ideas from linear algebra, like the determinant and linear systems, by seeing how they relate to each other. Also, from a purely artistic standpoint, the ultimate result is just really pretty to think about, much more so that Gaussian elimination.
 
@@ -45,7 +45,7 @@ As we talked about in a previous chapter, you can think of this setup geometrica
     image="./figures/introduction/GeometricSetup.light.svg" 
 />
 
-This is a sort of puzzle, what input $\left[\begin{array}{c} x \\ y \end{array}\right]$, is going to give you this output $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$?
+This is a puzzle. What input $\left[\begin{array}{c} x \\ y \end{array}\right]$, is going to give you this output $\left[\begin{array}{c} -4 \\ -2 \end{array}\right]$?
 
 <Figure
     image="./figures/introduction/SystemOfEquationsPuzzle.light.svg" 
