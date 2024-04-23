@@ -77,7 +77,7 @@ So in effect, we are speaking different languages. We're all looking at the same
 
 ## The grid
 
-One quick word on how we're representing things here: When animating 2d space, we typically use a square grid square grid. But this grid is just a construct, a way to visualize our coordinate system, and so it depends on our choice of basis vectors. Space itself has no intrinsic grid.
+One quick word on how we're representing things here: When illustrating 2d space, we typically use a square grid square grid. But this grid is just a construct, a way to visualize our coordinate system, so it depends on our choice of basis vectors. Space itself has no intrinsic grid.
 
 <Figure
     image="./figures/the-grid/SquareGrid.light.svg" 
@@ -350,7 +350,7 @@ However, vectors aren't the only thing we describe using coordinates. For this n
 
 ### Follow Rotation
 
-Consider some linear transformation, like a $90$ degree counterclockwise rotation. When we represent this with a matrix, we follow where the basis vectors $\hat{\imath}$ and $\hat{\jmath}$ each go. $\hat{\imath}$ ends up at the spot with coordinates $\left[\begin{array}{c} 0 \\ 1 \end{array}\right]$, and $\hat{\jmath}$ ends up at the spot with coordinates $\left[\begin{array}{c} -1 \\ 0 \end{array}\right]$, so those coordinates become the columns of our matrix.
+Consider some linear transformation, like a $90$ degree counterclockwise rotation. In our coordinate system, we represent this with the matrix $\left[\begin{array}{c} 0 & -1 \\ 1 & 0 \end{array}\right]$. The first column tells us that $\hat{\imath}$ goes to $\left[\begin{array}{c} 0 \\ 1 \end{array}\right]$, and the second column tells us that $\hat{\jmath}$ goes to $\left[\begin{array}{c} -1 \\ 0 \end{array}\right]$.
 
 <Figure
     image="./figures/translating-transformations/RotationMatrixOurs.light.svg" 
