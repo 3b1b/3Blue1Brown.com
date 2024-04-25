@@ -17,7 +17,7 @@ export default function TopicHeader({ topic }) {
       <div className={styles.imageWrapper}>
         <img
           className={styles.image}
-          src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
+          src={transformSrc(`/images/topics/${topic.slug}.svg`)}
           alt=""
         />
       </div>
