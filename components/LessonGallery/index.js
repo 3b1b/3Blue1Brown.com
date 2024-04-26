@@ -124,7 +124,7 @@ const TopicCard = ({ topic }) => {
 
       <img
         className={styles.image}
-        src={transformSrc(`/images/topics/${topic.slug}.jpg`)}
+        src={transformSrc(`/images/topics/${topic.slug}.svg`)}
         alt={topic.name}
       />
       <span className={styles.title}>{topic.name}</span>
