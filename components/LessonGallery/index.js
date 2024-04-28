@@ -93,6 +93,7 @@ export default function LessonGallery({ show = "topic" }) {
       {view === "topic" && (
         <div className={styles.topicGrid}>
           {topics.map((topic) => (
+            (topic.slug != "miscellaneous") &&
             <TopicCard key={topic.slug} topic={topic} />
           ))}
         </div>
