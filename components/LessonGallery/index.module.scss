@@ -82,7 +82,7 @@
 .image {
   $width: 225px;
   width: $width;
-  height: math.div($width, 2);
+  height: 9 * math.div($width, 16);
   object-fit: cover;
 }
 
