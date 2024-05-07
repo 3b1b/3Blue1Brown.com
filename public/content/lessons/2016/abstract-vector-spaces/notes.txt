@@ -1,0 +1,11 @@
+
+
+- Removed the following section from the very end:
+
+```txt
+Why textbooks are abstract
+
+- The unfortunate consequence for the student is that textbooks tend to be written, well, abstractly, even though from a pedagogical standpoint it's more effective to learn by starting in a concrete setting.
+
+- My advice for learners who are working through abstract definitions and results is to make a habit of relating these things to a concrete, preferably visual setting like 2d vectors with gridlines to help keep track of where you are. Then, think of the result in terms of some completely different vector space, like a function space. Only after that should you try thinking through why a result is true in the fully abstract axioms-first perspective.
+```
