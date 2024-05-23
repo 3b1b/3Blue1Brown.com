@@ -1,5 +1,6 @@
 Kurt notes:
 
+- Link to fimga page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-7
 - To convert the article to dark mode illustrations (to match the rest of the series) replace ".light" with "" in the sources.
 - Add footnote from Grant's youtube comment about "orthnormal vs. orthogonal" matrices.
 - Removed visuals from introduction

@@ -1,5 +1,6 @@
 Notes from Kurt:
 
+- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=97-2214
 - I removed the end-section visuals, but is better to keep them in?
 - TODO: VectorAddition animation for moving vector to tip to tail
 - Figma page link: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=97-2214

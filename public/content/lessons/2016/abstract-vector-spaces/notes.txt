@@ -1,4 +1,6 @@
+Notes from Kurt:
 
+- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-11
 
 - Removed the following section from the very end:
 

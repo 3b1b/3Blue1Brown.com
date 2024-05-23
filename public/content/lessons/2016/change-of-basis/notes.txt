@@ -1,4 +1,5 @@
 Notes from Kurt:
 
+- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-8
 - Removed this text right after calculating the inverse: "One way to interpret this is that from Jennifer's perspective, our first basis vector $\hat{\imath}$ has the coordinates $\left[\begin{array}{c} 1/3 \\ -1/3 \end{array}\right]$, and our second basis vector $\hat{\jmath}$ has coordinates $\left[\begin{array}{c} 1/3 \\ 2/3 \end{array}\right]$."
 - See figma page for illustrations: https://www.figma.com/file/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?type=design&node-id=759-8&mode=design

@@ -1,5 +1,9 @@
 Notes from Kurt:
 
+- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-10
+
+- There is a bigger restructuring recommended by Grant in the pull request: https://github.com/3b1b/3Blue1Brown.com/pull/417
+
 - "You can skip ahead" rewrite to transition either to the next chapter or the quick tip formula
 
 - There's a visual that could be recreated for: "This should make sense if you understand that an eigenvalue describes how much an operator stretches space in a particular direction and that the determinant describes how much an operator scales areas (or volumes)."
