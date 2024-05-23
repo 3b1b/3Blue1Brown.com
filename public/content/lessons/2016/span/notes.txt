@@ -1,5 +1,6 @@
 Notes from Kurt:
 
+- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=280-2
 - The question at the end of the "Choosing Different Basis Vectors" section is a good question, but given the flow of the preceding paragraph "I'll go into much more detail on this point in a later chapter, describing the relationship between different coordinate systems..." does it make sense to punt it later down the road? If it stayed, I think I would want to write a different explanation since we haven't talked about linear systems of equations yet.
 - TODO: add animation for illustrations below "Take a moment to think about all the different vectors you can get by choosing two scalars, using each to scale one of the vectors, and then adding them. Which two-dimensional vectors can you reach by altering your choice of scalars?"
 - TODO: Create SVGs for the "vectors vs points" section

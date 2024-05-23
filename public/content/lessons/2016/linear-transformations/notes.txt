@@ -1,5 +1,6 @@
 Notes from Kurt:
 
+- Link to figma file: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=11-328
 - Thoughts on keeping the original input for the vectors, dots, and grid visuals?
 - TODO: Vectorize "What makes a transformation 'linear'?" section
 - Note on "Then you could make high schoolers memorize this formula for no apparent reason."
