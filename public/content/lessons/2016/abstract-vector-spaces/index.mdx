@@ -31,7 +31,7 @@ Otherwise they're only vague geometric notions that are pretty difficult to desc
     image="./figures/introduction/DimensionsWavingHands.light.svg" 
 />
 
-On the other hand, a common sensation for those actually doing linear algebra, especially as you get more fluent with changing your basis, is that you're dealing with a space that exists is independently from the coordinates you give it, and that the coordinates are actually somewhat arbitrary, depending on what you happen to choose as basis vectors.
+On the other hand, a common sensation for those actually doing linear algebra, especially as you get more fluent with changing your basis, is that you're dealing with a space that exists independently from the coordinates you give it and that the coordinates are actually somewhat arbitrary, depending on what you happen to choose as basis vectors.
 
 Core topics in linear algebra like determinants and eigenvectors seem indifferent to your choice of coordinate system. The determinant tells you how much a transformation scales areas, and eigenvectors are the ones that stay on their own span during a transformation.
 
@@ -47,7 +47,7 @@ Both of those properties are inherently spatial, and you can freely change your 
     width="520px"
 />
 
-If vectors are not fundamentally lists of real numbers, and if their underlying essence is something more spatial, this just begs the question of what mathematicians mean when they use the word “space”.
+If vectors are not fundamentally lists of real numbers, and if their underlying essence is something more spatial, this raises the question of what mathematicians mean when they use the word “space”.
 
 ## Functions as vectors
 
@@ -55,11 +55,13 @@ To build up to where this is going, let's spend the bulk of this lesson talking 
 
 You see, there's a sense in which functions are just another type of vector. In the same way that we can add two vectors together, there's also a sensible notion for adding two functions $f$ and $g$ to get a new function, $f+g$.
 
+$$(f + g)(x) = f(x) + g(x)$$
+
+This is one of those expressions that take a moment to parse. The output of the new function $(f + g)$ at any given input $x$, say $x = -4$, is the sum of the outputs of $f$ and $g$ when you evaluate them each at that same input.
+
 <Figure
     image="./figures/functions-as-vectors/AddingTwoFunctions.light.svg" 
 />
-
-It's the one of those things where you kind of already know what it will be, but which is a mouthful to actually articulate: The output of the new function at any given input, like $-4$, is the sum of the outputs of $f$ and $g$ when you evaluate them each at that same input, $-4$.
 
 <Figure
     image="./figures/functions-as-vectors/AddingTwoFunctionsResult.light.svg" 
@@ -81,7 +83,7 @@ Similarly, there's a sensible notion for scaling a function by a real number: Ju
 
 Now, given that the only thing vectors can really do is get added together or scaled, it feels like we should be able to take all the same useful constructs and problem-solving techniques of linear algebra that we originally thought of in terms of arrows in space, and apply them to functions as well.
 
-For example, there's a perfectly reasonable notion of a linear transformation for functions, something that takes one function and turns it into another. One familiar example comes from calculus: The derivative. It's something which transforms one function into another function.
+For example, there's a perfectly reasonable notion of a linear transformation for functions. One familiar example comes from calculus: The derivative. It's something that transforms one function into another function.
 
 <Figure
     image="./figures/functions-as-vectors/DerivativeAsTransformation.light.svg" 
@@ -92,18 +94,23 @@ Sometimes in this context of functions you'll hear these called “operators” 
 
 ### Standard definition of linear
 
-The formal definition of linearity is relatively abstract and symbolically driven compared to the way we first talked about it in <LessonLink id="linear-transformations">chapter 3</LessonLink> of this series. The reward of the abstract definition is that we'll get something general enough to apply to functions as well as arrows.
+In <LessonLink id="linear-transformations">chapter 3</LessonLink> we offered a geometric constraint that characterizes linear transformations: They transform lines into lines, keep grid lines evenly spaced, and fix the origin in place.
 
-A transformation is *linear* if it satisfies two properties: Additivity and scaling.
+The true formal definition of linearity is more abstract, but the reward of the abstract definition is that we'll get something general enough to apply to functions as well as arrows, and ultimately to a much broader set of mathematical objects that deserve to be called vectors.
 
-Additivity means that when you add any two vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, then apply the transformation to their sum, you get the same result as if you add the transformed versions of $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$.
+A transformation $L$ is *linear* if for any two vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, and any scalar $s$, the following two equations are true:
+
+$$L(\vec{\mathbf{v}} + \vec{\mathbf{w}}) = L(\vec{\mathbf{v}}) + L(\vec{\mathbf{w}})$$
+$$L(s\vec{\mathbf{v}}) = sL(\vec{\mathbf{v}})$$
+
+The first equation says that when you add any two vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, then apply the transformation to their sum, you get the same result as if you add the transformed versions of $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$.
 
 <Figure
     image="./figures/standard-definition-of-linear/AdditivityProperty.light.svg" 
     width="520px"
 />
 
-The scaling property is that when you scale a vector $\vec{\mathbf{v}}$ by some number, then apply the transformation to the result, you get the same ultimate vector as if you scale the transformed version of $\vec{\mathbf{v}}$ by that same amount.
+The second property says that when you scale a vector $\vec{\mathbf{v}}$ by some number $s$, then apply the transformation to the result, you get the same ultimate vector as if you scale the transformed version of $\vec{\mathbf{v}}$ by that same amount $s$.
 
 <Figure
     image="./figures/standard-definition-of-linear/ScalingProperty.light.svg" 
@@ -209,7 +216,7 @@ Take a moment to imagine yourself as a mathematician developing the theory of li
     width="520px"
 />
 
-These sets of vector-ish things, like arrows, lists of numbers and functions, are called “vector spaces”, and what you as the mathematician might do is say “Hey everyone, I don't want to think about all the different types of crazy vector spaces that y'all might come up with”, so you establish a list of rules that vector addition and scaling have to abide by in order for the results that you-the-mathematician discover to apply to someone's chosen definition of vectors.
+A set of vector-ish objects, like the set of all points in 3d space, the set of all lists of 4 numbers, the set of all finite polynomial functions, etc., is called a “vector space”. What you as the mathematician might do is say “Hey everyone, I don't want to think about all the different types of crazy vector spaces that y'all might come up with”, so you establish a list of rules that vector addition and scaling have to abide by in order for the results that you-the-mathematician discover to apply to someone's chosen definition of vectors.
 
 <Figure
     image="./figures/abstract-vector-spaces/Axioms.light.svg"
@@ -235,7 +242,7 @@ You as the mathematician never have to think about all the possible crazy vector
 
 For example, this is why every textbook you find will define linear transformations in terms of additivity and scaling, rather than talking about grid lines remaining parallel and evenly spaced, even though the latter is more intuitive and, at least in my view, more helpful for first-time learners.
 
-So the mathematician's answer to “what are vectors?” is to ignore the question. In the modern theory, the form they take doesn't really matter: arrows, lists of numbers, functions, pi creatures, really they can be *anything*, so long as there is some notion of adding and scaling vectors that follows these rules.
+So the mathematician's answer to “what are vectors?” is to ignore the question. In modern theory, the form they take doesn't matter: arrows, lists of numbers, functions, pi creatures, really they can be *anything*, so long as there is some notion of adding and scaling vectors that follows these rules.
 
 It's like asking what the number 3 really is. Whenever it comes up concretely, it's in the context of some triplet of things. But in math it's treated as an abstraction of all possible triplets of things that lets you reason about all those triplets using a single idea.
 
@@ -243,7 +250,7 @@ It's like asking what the number 3 really is. Whenever it comes up concretely, i
     image="./figures/abstract-vector-spaces/Triplets.light.svg" 
 />
 
-Some goes with vectors, which have many embodiments, but math abstracts them all into a single intangible notion of a vector space. As anyone reading this series knows, we think it's better to begin reasoning about vectors in a concrete, visualizable setting like 2d space with arrows rooted at the origin. But as you learn more linear algebra, know that these tools apply much more generally, and that this is the underlying reason why textbooks and lectures tend to be phrased, well, abstractly.
+It's the same with vectors, which have many embodiments, but math abstracts them all into a single intangible notion of a vector space. As anyone reading this series knows, we think it's better to begin reasoning about vectors in a concrete, visualizable setting like 2d space with arrows rooted at the origin. But as you learn more linear algebra, know that these tools apply much more generally and that this is the underlying reason why textbooks and lectures tend to be phrased, well, abstractly.
 
 ## Conclusion
 
