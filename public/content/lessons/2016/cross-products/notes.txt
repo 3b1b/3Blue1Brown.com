@@ -7,3 +7,5 @@ Notes from Kurt:
 - Should the parallelogram always be the same color as the first operand vector in the cross product?
 - Should there be some comprehension questions applying the notational trick formula? Or should the student be encouraged into the next more in-depth lesson?
 - TODO: replace `./figures/compute-with-determinant/determinant-basis-vectors-transformed-orientation.png` with image callback from chapter five
+
+- TODO: have before-and-after for image following "This is because a matrix whose columns represent v and w corresponds with a linear transformation that moves the basis vector..."
