@@ -7,4 +7,255 @@ video: TgKwz5Ikpc8
 source: _2016/eola/chapter11.py
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Kurt Bruns
+- Text adaptation by James Schloss
 ---
+
+> "Such axioms, together with other unmotivated definitions, serve mathematicians mainly by making it difficult for the uninitiated to master their subject, thereby elevating its authority"
+>
+> $\qquad$ — Vladmir Arnold
+
+We'd like to revisit a deceptively simple question posed in the very first video of this series: What are vectors?
+
+Is a two-dimensional vector, for example, fundamentally an arrow on a flat plane that we describe with coordinates for convenience, or is it fundamentally that pair of real numbers, which is just nicely visualized as an arrow on a flat plane. Or are both of these just manifestations of something deeper?
+
+On the one hand, defining vectors as primarily being lists of numbers feels very clear-cut and unambiguous. It makes things like 4-dimensional vectors or 100-dimensional vectors sound like real concrete ideas that you can work with. 
+
+<Figure
+    image="./figures/introduction/4d5d100dVectors.light.svg" 
+/>
+
+Otherwise they're only vague geometric notions that are pretty difficult to describe without waving your hands a bit.
+
+<Figure
+    image="./figures/introduction/DimensionsWavingHands.light.svg" 
+/>
+
+On the other hand, a common sensation for those actually doing linear algebra, especially as you get more fluent with changing your basis, is that you're dealing with a space that exists independently from the coordinates you give it and that the coordinates are actually somewhat arbitrary, depending on what you happen to choose as basis vectors.
+
+Core topics in linear algebra like determinants and eigenvectors seem indifferent to your choice of coordinate system. The determinant tells you how much a transformation scales areas, and eigenvectors are the ones that stay on their own span during a transformation.
+
+<Figure
+    image="./figures/introduction/StandardCoordinateSystem.light.svg"
+    width="520px"
+/>
+
+Both of those properties are inherently spatial, and you can freely change your coordinate system without changing the value of either one. For example, the figure below demonstrates the same transformation as the one above and has the same determinant and eigenvectors, but is expressed in a different coordinate system.
+
+<Figure
+    image="./figures/introduction/DifferentCoordinateSystem.light.svg"
+    width="520px"
+/>
+
+If vectors are not fundamentally lists of real numbers, and if their underlying essence is something more spatial, this raises the question of what mathematicians mean when they use the word “space”.
+
+## Functions as vectors
+
+To build up to where this is going, let's spend the bulk of this lesson talking about something which is neither an arrow nor a list of numbers but also has vector-ish qualities: Functions.
+
+You see, there's a sense in which functions are just another type of vector. In the same way that we can add two vectors together, there's also a sensible notion for adding two functions $f$ and $g$ to get a new function, $f+g$.
+
+$$(f + g)(x) = f(x) + g(x)$$
+
+This is one of those expressions that take a moment to parse. The output of the new function $(f + g)$ at any given input $x$, say $x = -4$, is the sum of the outputs of $f$ and $g$ when you evaluate them each at that same input.
+
+<Figure
+    image="./figures/functions-as-vectors/AddingTwoFunctions.light.svg" 
+/>
+
+<Figure
+    image="./figures/functions-as-vectors/AddingTwoFunctionsResult.light.svg" 
+/>
+
+More generally, the value of the sum function at any input $x$ is the sum of the values of $f$ and $g$ at that input $x$. This is very similar to adding vectors coordinate-by-coordinate. It's just that there are, in a sense, infinitely many coordinates to deal with.
+
+<Figure
+    image="./figures/functions-as-vectors/AddingTwoFunctionsGeneral.light.svg" 
+    caption="Very similar to adding vectors: $\left[\begin{array}{l}x_1 \\ y_1 \\ z_1\end{array}\right]+\left[\begin{array}{l}x_2 \\ y_2 \\ z_2\end{array}\right]=\left[\begin{array}{l}x_1+x_2 \\ y_1+y_2 \\ z_1+z_2\end{array}\right]$"
+/>
+
+Similarly, there's a sensible notion for scaling a function by a real number: Just scale all of its outputs by that number. Again, this is very analogous to scaling a vector coordinate-by-coordinate. 
+
+<Figure
+    image="./figures/functions-as-vectors/ScalingAFunction.light.svg" 
+    caption="Very similar to scaling a vector: $2 \cdot\left[\begin{array}{l}x \\ y \\ z\end{array}\right]=\left[\begin{array}{l}2 x \\ 2 y \\ 2 z\end{array}\right]$"
+/>
+
+Now, given that the only thing vectors can really do is get added together or scaled, it feels like we should be able to take all the same useful constructs and problem-solving techniques of linear algebra that we originally thought of in terms of arrows in space, and apply them to functions as well.
+
+For example, there's a perfectly reasonable notion of a linear transformation for functions. One familiar example comes from calculus: The derivative. It's something that transforms one function into another function.
+
+<Figure
+    image="./figures/functions-as-vectors/DerivativeAsTransformation.light.svg" 
+    caption="The derivative can be expressed as a linear transformation: $L\left(\frac{1}{9} x^3-x\right)=\frac{1}{3} x^2-1$"
+/>
+
+Sometimes in this context of functions you'll hear these called “operators” instead of “transformations”, but the meaning is the same. A natural question you might ask is what it means for a transformation of functions to be “linear”.
+
+### Standard definition of linear
+
+In <LessonLink id="linear-transformations">chapter 3</LessonLink> we offered a geometric constraint that characterizes linear transformations: They transform lines into lines, keep grid lines evenly spaced, and fix the origin in place.
+
+The true formal definition of linearity is more abstract, but the reward of the abstract definition is that we'll get something general enough to apply to functions as well as arrows, and ultimately to a much broader set of mathematical objects that deserve to be called vectors.
+
+A transformation $L$ is *linear* if for any two vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, and any scalar $s$, the following two equations are true:
+
+$$L(\vec{\mathbf{v}} + \vec{\mathbf{w}}) = L(\vec{\mathbf{v}}) + L(\vec{\mathbf{w}})$$
+$$L(s\vec{\mathbf{v}}) = sL(\vec{\mathbf{v}})$$
+
+The first equation says that when you add any two vectors $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$, then apply the transformation to their sum, you get the same result as if you add the transformed versions of $\vec{\mathbf{v}}$ and $\vec{\mathbf{w}}$.
+
+<Figure
+    image="./figures/standard-definition-of-linear/AdditivityProperty.light.svg" 
+    width="520px"
+/>
+
+The second property says that when you scale a vector $\vec{\mathbf{v}}$ by some number $s$, then apply the transformation to the result, you get the same ultimate vector as if you scale the transformed version of $\vec{\mathbf{v}}$ by that same amount $s$.
+
+<Figure
+    image="./figures/standard-definition-of-linear/ScalingProperty.light.svg" 
+    width="520px"
+/>
+
+The way you'll often hear this described is that linear transformations “preserve” the operations of vector addition and scalar-vector multiplication. The idea of grid lines remaining parallel and evenly spaced that we've talked about before is really just an illustration of what these two properties mean in the specific case of points in 2d space.
+
+One of the most important consequences of these properties, which makes matrix-vector multiplication possible, is that a linear transformation is completely described by where it takes the basis vectors. Since any vector can be expressed by scaling and adding the basis vectors in some way, finding the transformed version of a vector comes down to scaling and adding the transformed basis vectors in that same way. As you'll see in just a moment, this is as true for functions as it is for arrows.
+
+### Derivative as linear transformation
+
+Calculus students are always using the fact that the derivative is additive and has the scaling property, even if they've never heard it phrased that way. If you add two functions, then take the derivative, it's the same as first taking the derivative of each separately and adding the results.
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/DerivativeIsLinearAdditivity.light.svg" 
+    width="480px"
+/>
+
+Similarly, if you scale a function then take the derivative, it's the same as first taking the derivative then scaling the result.
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/DerivativeIsLinearScaling.light.svg" 
+    width="480px"
+/>
+
+To really drill in the parallel, let's show one way to describe the derivative with a matrix. This will be a little tricky, since function-spaces have a tendency to be infinite-dimensional, but the exercise is actually quite satisfying.
+
+Let's limit ourselves to polynomials, things like $x^2+3x+5$ or $4x^7-5x^2$. Each polynomial can only have finitely many terms, but our full space of polynomials will include polynomials with arbitrarily large degrees.
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/AllPolynomialsSpace.light.svg" 
+/>
+
+The first thing we need to do is give coordinates to this space, which requires choosing a basis. Since polynomials are already expressed as the sum of scaled powers of $x$, it's pretty natural to choose pure powers of $x$ as basis functions. In other words, the first basis function is the constant function $b_0(x) = 1$, the second basis function is $b_1(x) = x$, then $b_2(x) = x^2$, then $b_3(x) = x^3$, and so on. 
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/BasisFunctions.light.svg" 
+/>
+
+The role these functions serve will be similar to the roles of $\hat{\imath}$, $\hat{\jmath}$ and $\hat{k}$ in the world of vectors as arrows. Since our polynomials can have arbitrarily large degrees, this set of basis functions is infinite, but that's okay, it just means vectors have infinitely many coordinates. A polynomial like $x^2+3x+5$ would be described with the coordinates $\left[\begin{array}{c} 5 \\ 3 \\ 1 \\ \vdots \end{array}\right]$, then infinitely many zeros. 
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/AllPolynomialSpaceExampleVector.light.svg" 
+/>
+
+You'd read this as saying it's $5$ times the first basis function, plus $3$ times the second basis function plus $1$ times the third basis function, then none of the other basis functions should be added from that point on.
+
+The polynomial $4x^7-5x^2$ would have coordinates:
+
+$$
+\left[\begin{array}{c} 0 \\ 0 \\ -5 \\ 0 \\ 0 \\ 0 \\ 0 \\ 4 \\ \vdots \end{array}\right]
+$$
+
+then infinitely many zeros to follow. In general, since every individual polynomial has only finitely many terms, its coordinates will be some finite string of numbers with an infinite tail of zeros.
+
+<Figure
+    image="./figures/derivative-as-linear-transformation/AllPolynomialSpaceGeneralVector.light.svg" 
+/>
+
+### The matrix of a derivative
+
+In this coordinate system, the derivative is described with an infinite matrix that's mostly full of zeros, but which has the positive integers counting down on the offset diagonal.
+
+<Figure
+    image="./figures/the-matrix-of-a-derivative/DerivativeMatrix.light.svg" 
+/>
+
+We'll talk about how you could find this matrix in just a moment, but the best way to get a feel for it is to just watch it in action. Take the coordinates representing the polynomial $x^3 + 5x^2 + 4x + 5$, then put them on the right of the matrix.
+
+<Figure
+    image="./figures/the-matrix-of-a-derivative/DerivativeMatrixVectorMultiplication.light.svg" 
+/>
+
+The only term that contributes to the first coordinate of the result is $1\cdot4$, which means the constant term in the result will be $4$. This corresponds to the derivative of $4x$. The only term contributing to the second coordinate of our result is $2\cdot5$, which means the coefficient in front of $x$ in our derivative is $10$. This corresponds to the derivative of $5x^2$ being $10x$. Similarly, the third coordinate of the result comes down to taking $3\cdot1$, which corresponds to the derivative of $x^3$ being $3x^2$. And after that, it will be nothing but $0$'s. 
+
+What makes this possible is that the derivative is linear, and for those of you who like to pause and ponder, you can construct this matrix by taking the derivative of each basis function, and putting the coordinates of the results in each column.
+
+<Figure
+    image="./figures/the-matrix-of-a-derivative/CalculateMatrix.light.svg" 
+    width="720px"
+/>
+
+The upshot here is that matrix-vector multiplication and taking a derivative, which at first seem like completely different animals, are really members of the same family. In fact, most of the concepts we've talked about in this series with respect to vectors as arrows in space, things like the dot product of eigenvectors, have direct analogs in the world of functions, though you might see them go by different names like inner product and eigenfunction.
+
+<Figure
+    image="./figures/the-matrix-of-a-derivative/AlternateNames.light.svg" 
+/>
+
+## Abstract vector space
+
+To return to the question of what is a vector, the point is that there are other vector-ish things in math. As long as you're dealing with a set of objects where there's a reasonable notion of scaling and adding, whether that's a set of arrows in space, lists of numbers, functions, or some other crazy thing you choose to define, all the tools developed in linear algebra regarding vectors, linear transformation and all that stuff, should be able to apply. 
+
+<Figure
+    image="./figures/abstract-vector-spaces/VectorSpaces.light.svg"
+    caption="Tools: Linear transformations, Null space, Eigenvectors, Dot products"
+/>
+
+Take a moment to imagine yourself as a mathematician developing the theory of linear algebra, you want all your definitions and discoveries to work for all of these vector-ish things in full generality.
+
+<Figure
+    image="./figures/abstract-vector-spaces/YouAsAMathematician.light.svg"
+    width="520px"
+/>
+
+A set of vector-ish objects, like the set of all points in 3d space, the set of all lists of 4 numbers, the set of all finite polynomial functions, etc., is called a “vector space”. What you as the mathematician might do is say “Hey everyone, I don't want to think about all the different types of crazy vector spaces that y'all might come up with”, so you establish a list of rules that vector addition and scaling have to abide by in order for the results that you-the-mathematician discover to apply to someone's chosen definition of vectors.
+
+<Figure
+    image="./figures/abstract-vector-spaces/Axioms.light.svg"
+    width="600px"
+/>
+
+These rules are called “axioms”, and in the modern theory of linear algebra there are 8 axioms that any vector space must satisfy. They are all shown in the image above for anyone who wants to pause and ponder, but basically it's a checklist to be sure the notions of vector addition and scalar multiplication are reasonable.
+
+These axioms are not so much fundamental rules of nature as they are an interface between you, the mathematician discovering results, and other people who may want to apply those results to new sorts of vector spaces.
+
+<Figure
+    image="./figures/abstract-vector-spaces/AxiomsAreAnInterface.light.svg"
+    width="520px" 
+/>
+
+If, for example, someone defines some crazy type of vector space, like the set of all pi creatures with some definitions of adding and scaling pi creatures, these axioms are like a checklist of things they need to verify about those definitions before they can start applying the results of linear algebra.
+
+<Figure
+    image="./figures/abstract-vector-spaces/PiCreatureSpace.light.svg" 
+/>
+
+You as the mathematician never have to think about all the possible crazy vector spaces people might define; you just have to prove your results in terms of these axioms, so anyone whose definitions satisfy these axioms can happily apply your results. As a consequence, you'd tend to phrase all your results abstractly, which is to say only in terms of these axioms, rather than centering on a specific type of vector like arrows in space or functions.
+
+For example, this is why every textbook you find will define linear transformations in terms of additivity and scaling, rather than talking about grid lines remaining parallel and evenly spaced, even though the latter is more intuitive and, at least in my view, more helpful for first-time learners.
+
+So the mathematician's answer to “what are vectors?” is to ignore the question. In modern theory, the form they take doesn't matter: arrows, lists of numbers, functions, pi creatures, really they can be *anything*, so long as there is some notion of adding and scaling vectors that follows these rules.
+
+It's like asking what the number 3 really is. Whenever it comes up concretely, it's in the context of some triplet of things. But in math it's treated as an abstraction of all possible triplets of things that lets you reason about all those triplets using a single idea.
+
+<Figure
+    image="./figures/abstract-vector-spaces/Triplets.light.svg" 
+/>
+
+It's the same with vectors, which have many embodiments, but math abstracts them all into a single intangible notion of a vector space. As anyone reading this series knows, we think it's better to begin reasoning about vectors in a concrete, visualizable setting like 2d space with arrows rooted at the origin. But as you learn more linear algebra, know that these tools apply much more generally and that this is the underlying reason why textbooks and lectures tend to be phrased, well, abstractly.
+
+## Conclusion
+
+With that, folks, we'll call it an end to this "Essence of linear algebra" series.
+
+If you've read and understood the chapters in this series, we really do believe you have a solid foundation in the underlying intuitions of linear algebra. If you've also taken the time to answer the practice problems for each lesson then you're well on your way to learning the full topic and the learning you do moving forward can be substantially more efficient with the right intuitions in place.
+
+Have fun applying those intuitions, and keep loving math.
