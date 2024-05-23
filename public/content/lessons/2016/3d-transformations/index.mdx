@@ -381,27 +381,22 @@ A simple example from 3d to 2d would be the shadow cast by a 3d object onto a 2d
 You can represent these transformations with matrices. The number of columns corresponds to the dimension of the input and the number of rows corresponds to the dimension of the output. For example, a matrix that maps coordinates in 3d to 2d would have three columns and two rows.
 
 $$
-M = \left[\begin{array}{ccc}
-m_{1} & m_{2} & m_{3} \\
-m_{4} & m_{5} & m_{6}
+A = \left[\begin{array}{ccc}
+a_1 & a_2 & a_3 \\
+a_4 & a_5 & a_6
 \end{array}\right]
 $$
 
-It's meaningful to talk about multiplying these matrices when the number of columns on the left matrix is equal to the number of rows on the right matrix. That when we apply these matrices to a vector, reading right to left, the dimensions of the input and output are as we expect.
+It's meaningful to talk about multiplying these matrices when the number of columns on the left matrix is equal to the number of rows on the right matrix. That way, when we apply these matrices to a vector, reading right to left, the dimensions of the input and output are as we expect.
 
 $$
+\left[\begin{array}{cc}
+b_1 & b_2 \\
+b_3 & b_4
+\end{array}\right]
 \left[\begin{array}{ccc}
-m_{1} & m_{2} & m_{3} \\
-m_{4} & m_{5} & m_{6}
-\end{array}\right]
-\left[\begin{array}{c}
-a_1  \\
-a_2  \\
-a_3
-\end{array}\right]
-=\left[\begin{array}{c}
-b_1 \\
-b_2 
+a_1 & a_2 & a_3 \\
+a_4 & a_5 & a_6
 \end{array}\right]
 $$
 
