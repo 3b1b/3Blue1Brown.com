@@ -1,0 +1,19 @@
+Notes from Kurt:
+
+- "You can skip ahead" rewrite to transition either to the next chapter or the quick tip formula
+
+- There's a visual that could be recreated for: "This should make sense if you understand that an eigenvalue describes how much an operator stretches space in a particular direction and that the determinant describes how much an operator scales areas (or volumes)."
+
+- Which video is Grant referring to for:
+
+    "I've actually found myself using this trick a lot when I'm sketching quick notes related to linear algebra and using small matrices as examples. I've been working on a video about matrix exponents, where eigenvalues pop up, and I realized it's just very handy if students can read off the eigenvalues from small examples without losing the main line of thought by getting bogged down in calculations."
+    
+    Is it this one https://www.youtube.com/watch?v=O85OWBJ2ayo?
+
+    Probably makes sense to add a footnote. In the meantime I've changed the text to be:
+    
+    This trick is especially useful when you need to read off the eigenvalues from small examples without losing the main line of thought by getting bogged down in calculations.
+
+- What does the diagram with the wedge downwards and the u-block upwards demonstrate?
+
+- Small error in the video where -sqrt(25 - 9) and +sqrt(25 - 9) are flipped
