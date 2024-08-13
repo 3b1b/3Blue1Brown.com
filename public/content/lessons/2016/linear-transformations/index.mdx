@@ -16,11 +16,11 @@ credits:
 >
 > \- Morpheus
 
-If there was one topic that makes all of the others in linear algebra start to click, it might be this one. We'll be learning about the idea of a linear transformation, and its relation to matrices. For this chapter, the focus will simply be on what these linear transformations look like in the case of two-dimensions, and how they relate to the idea of matrix-vector multiplication. In particular, we want to show you a way to think about matrix multiplication that doesn't rely on memorization.
+If there was one topic that makes all of the others in linear algebra start to click, it might be this one. We'll be learning about the idea of a linear transformation and its relation to matrices. For this chapter, the focus will simply be on what these linear transformations look like in the case of two dimensions, and how they relate to the idea of matrix-vector multiplication. In particular, we want to show you a way to think about matrix multiplication that doesn't rely on memorization.
 
 ## Transformations Are Functions
 
-To start, let's parse this term: "Linear transformation". _Transformation_ is essentially a fancy word for function; it's something that takes in inputs, and spit out some output for each one. Specifically, in the context of linear algebra, we think about transformations that take in some vector, and spit out another vector.
+To start, let's parse this term: "Linear transformation". _Transformation_ is essentially a fancy word for function; it's something that takes in inputs, and spits out some output for each one. Specifically, in the context of linear algebra, we think about transformations that take in some vector and spit out another vector.
 
 <Figure
   image="./figures/transformations-are-functions/InputOutput.svg" 
@@ -67,7 +67,7 @@ In the case of transformations in two dimensions, to get a better feel for the s
   show="video"
 />
 
-Visualizing functions with 2d inputs and 2d outputs like this can be beautiful, and it's often difficult to communicate the idea on a static medium like a blackboard. Here are couple more particularly pretty examples of such functions.
+Visualizing functions with 2d inputs and 2d outputs like this can be beautiful, and it's often difficult to communicate the idea on a static medium like a blackboard. Here are a couple more particularly pretty examples of such functions.
 
 <Figure
   image="./figures/transformations-are-functions/ex_parabola.png"
@@ -111,13 +111,11 @@ When you see what it does to a diagonal line, it becomes clear that it's not a l
   image="./figures/what-makes-a-transformation-linear/NonLinearTransformationDiagonalLinesGetCurved.png" 
 />
 
-In general you should think of linear transformations as keeping grid lines parallel and evenly spaced, although they might change the angles between perpendicular grid lines. Some linear transformations are simple to think about, like rotations about the origin. Others are a little trickier to describe with words.
+In general, you should think of linear transformations as keeping grid lines parallel and evenly spaced, although they might change the angles between perpendicular grid lines. Some linear transformations are simple to think about, like rotations about the origin.
 
 <Figure
   image="./figures/what-makes-a-transformation-linear/GridLinesRemainParallelAndEvenlySpaced.png" 
 />
-
-Some linear transformations are simple to think about, like rotations about the origin.
 
 <Figure
   image="./figures/what-makes-a-transformation-linear/ExampleRotateAboutOrigin.png" 
@@ -145,7 +143,7 @@ $C$ is the only transformation where the lines are parallel and evenly spaced.
 
 ## Matrices
 
-How do you think you could do these transformations numerically?  If you were, say, programming some animations to make a video teaching the topic, what formula do you give the computer so that if you give it the coordinates of a vector, it can tell you the coordinates of where that vector lands.
+How do you think you could do these transformations numerically?  If you were, say, programming some animations to make a video teaching the topic, what formula do you give the computer so that if you give it the coordinates of a vector, it can tell you the coordinates of where that vector lands?
 
 <Figure
   image="./figures/matrices/HowToDescribeTransformation.svg"
@@ -165,7 +163,7 @@ For example, consider the vector $\vec{\mathbf{v}}$ with coordinates $\begin{bma
   image="./figures/matrices/LinearTransformationSetup.svg" 
 />
 
-If we play some transformation, and follow where all three of these vectors go, the property that grid lines remain parallel and evenly spaced has a really important consequence: the place where $\vec{\mathbf{v}}$ lands will be $(-1)$ times the vector where $\hat{\imath}$ landed, plus $2$ times the vector where $\hat{\jmath}$ landed. 
+If we play some transformation and follow where all three of these vectors go, the property that grid lines remain parallel and evenly spaced has a really important consequence: the place where $\vec{\mathbf{v}}$ lands will be $(-1)$ times the vector where $\hat{\imath}$ landed, plus $2$ times the vector where $\hat{\jmath}$ landed. 
 
 <Figure
   image="./figures/matrices/LinearTransformation.svg"
@@ -184,7 +182,7 @@ Now, given that we're actually showing you the full transformation, you could ha
   image="./figures/matrices/LinearTransformationTechnique.svg" 
 />
 
-This is a good point to pause and ponder, because it's pretty important.
+This is a good point to pause and ponder because it's pretty important.
 
 <Question
   question="Given a transformation with the effect $\hat{\imath}\to\begin{bmatrix}-1\\1\end{bmatrix}$ and $\hat{\jmath}\to\begin{bmatrix}-2\\-1\end{bmatrix}$, how will it transform the input vector $\begin{bmatrix}-3\\-1\end{bmatrix}$?"
@@ -256,7 +254,7 @@ Well, it will be $x \left[\begin{array}{c} a \\ c \end{array}\right] + y \left[\
   image="./figures/matrices/MatrixNotation2x2InputOutputGeneral.svg" 
 />
 
-You could even define this as "matrix vector multiplication" when you put the matrix to the left of the vector like a function. Then you could make high schoolers memorize this formula for no apparent reason.
+You could even define this as "matrix vector multiplication" when you put the matrix to the left of the vector, like a function. Then you could make high schoolers memorize this formula for no apparent reason.
 
 <Figure
   image="./figures/matrices/MatrixNotationIntuition.svg" 
@@ -322,7 +320,7 @@ To figure out what happens to any vector after a $90$ degree counterclockwise ro
   answer={1}
 >
 
-We can work it out by hand applying the matrix to the vector:
+We can work it out by hand by applying the matrix to the vector:
 
 <Figure
   image="./figures/examples/RotationMatrixTex.svg" 
@@ -388,7 +386,7 @@ If the vectors that $\hat{\imath}$ and $\hat{\jmath}$ land on are linearly depen
 
 ## Formal Properties
 
-There's an unimaginably large number of possible transformations, many which are rather complicated to think about. As we discussed, linear algebra limits itself to a special type of transformation called a *linear* transformation which we defined as a transformation where grid lines remain parallel and evenly spaced. In addition to the geometric notion of "linearity" we can also express that a function is linear if it satisfies the following two properties:
+There's an unimaginably large number of possible transformations, many of which are rather complicated to think about. As we discussed, linear algebra limits itself to a special type of transformation called a *linear* transformation which we defined as a transformation where grid lines remain parallel and evenly spaced. In addition to the geometric notion of "linearity," we can also express that a function is linear if it satisfies the following two properties:
 
 <Figure
   image="./figures/formal-properties/AlgebraicProperties.svg" 
@@ -572,4 +570,4 @@ A consequence of the scaling property is that $L(0 \cdot \vec{\mathbf{v}}) = \ma
 
 Understanding how matrices can be thought of as transformation is a powerful mental tool for understanding the various constructs and definitions concerning matrices, which we'll explore as the series continues. This includes the ideas of matrix multiplication, determinants, how to solve systems of equations, what eigenvalues are, and much more. In all these cases, holding the picture of a linear transformation in your head can make the computations much more understandable.
 
-On the flip side, there are cases where you may want to actually describe manipulations of space; again graphics programmings offers a wealth of examples. In those cases, knowing that matrices give a way to describe these transformations symbolically, in a manner conducive to concrete computations, is exceedingly helpful.
+On the flip side, there are cases where you may want to actually describe manipulations of space; again graphics programming offers a wealth of examples. In those cases, knowing that matrices give a way to describe these transformations symbolically, in a manner conducive to concrete computations, is exceedingly helpful.
