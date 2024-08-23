@@ -1,5 +1,5 @@
 ---
-title: Inverse matrices, column space and null space
+title: Inverse matrices, column space, and null space
 description: How do you think about the column space and null space of a matrix visually?  How do you think about the inverse of a matrix?
 date: 2016-08-15
 chapter: 7
@@ -14,13 +14,13 @@ credits:
 >
 > $\qquad$ — Georg Cantor
 
-As you can probably tell by now, the bulk of this series is on understanding matrix and vector operations through the more visual lens of linear transformations. This chapter will be no exception, describing the concepts of inverse matrices, column space, rank and null space through that lens.
+As you can probably tell by now, the bulk of this series is on understanding matrix and vector operations through the more visual lens of linear transformations. This chapter will be no exception, describing the concepts of inverse matrices, column space, rank, and null space through that lens.
 
 A forewarning though, I’m not going to talk at all about the methods for computing these things, which some would argue is rather important. There are a lot of good resources for learning those methods outside this series, keywords “Gaussian elimination” and “row echelon form”. I think most of the actual value I have to offer here is on the intuition half. Plus, in practice, we usually get software to compute these operations for us anyway.
 
 ## Linear Systems of Equations
 
-You have a hint by now of how linear algebra is useful for describing the manipulation of space, which is useful for things like computer graphics and robotics. But one of the main reasons linear algebra is more broadly applicable, and required for just about any technical discipline, is that it lets us solve certain systems of equations. When I say “system of equations”, I mean you have a list of variables you don’t know, and a list of equations relating them.
+You have a hint by now of how linear algebra is useful for describing the manipulation of space, which is useful for things like computer graphics and robotics. But one of the main reasons linear algebra is more broadly applicable, and required for just about any technical discipline, is that it lets us solve certain systems of equations. When I say “system of equations”, I mean you have a list of variables you don’t know and a list of equations relating them.
 $$
 \begin{matrix}
 \underbrace{
@@ -37,9 +37,9 @@ _{\large\text{Equations}}
 \end{matrix}
 \end{matrix}
 $$
-These variables could be voltages across various elements in a circuit, prices of certain stocks, parameters in a machine learning network, really any situation where you might be dealing with multiple unknown numbers that somehow depend on one another.
+These variables could be voltages across various elements in a circuit, prices of certain stocks, parameters in a machine learning network, or any situation where you might be dealing with multiple unknown numbers that somehow depend on one another.
 
-How exactly they depend on each other is determined by the substance of your science, whether that means modeling the physics of circuits, the dynamics of the economy, or interactions in a neural network, but often you end up with a list of equations which relate these variables to one another. In many situations, these equations can get *very* complicated.
+How exactly they depend on each other is determined by the substance of your science, whether that means modeling the physics of circuits, the dynamics of the economy, or interactions in a neural network, but often you end up with a list of equations that relate these variables to one another. In many situations, these equations can get *very* complicated.
 $$
 \begin{align*}
 \frac1{1-e^{2x-3y+4z}}&=1 \\
@@ -47,7 +47,7 @@ $$
 x^2+y^2&=e^{-z}
 \end{align*}
 $$
-But if you’re lucky, they might take a certain special form. Within each equation, the only thing happening to each variable is that it will be scaled by some constant, and the only thing happening to each of those scaled variables is that they are added to each other. So no exponents, fancy functions, or multiplying two variables together.
+But if you’re lucky, they might take a certain special form. Within each equation, the only thing happening to each variable is that it will be scaled by some constant, and the only thing happening to each of those scaled variables is that they are added to each other. There are no exponents, fancy functions, or multiplying two variables together.
 $$
 \begin{align*}
 \color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
@@ -55,7 +55,7 @@ $$
 \color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
 \end{align*}
 $$
-The typical way to organize this sort of special system of equations is to throw all the variables on the left, and to put any lingering constants on the right. It’s also nice to vertically line up all common variables, throwing in zero coefficients whenever one of the variables doesn’t show up in one of the equations. This is called a “linear system of equations”.
+The typical way to organize this sort of special system of equations is to throw all the variables on the left and to put any lingering constants on the right. It’s also nice to vertically line up all common variables, throwing in zero coefficients whenever one of the variables doesn’t show up in one of the equations. This is called a “linear system of equations”.
 
 You might notice that this looks a lot like matrix-vector multiplication. In fact, you can package all the equations together into one *vector* equation where you have the matrix containing all the constant coefficients, and a vector containing all the variables, and their matrix-vector product equals some different, constant vector.
 $$
@@ -115,9 +115,9 @@ Let’s name this coefficient matrix $A$, denote the vector holding all our vari
   video="transformation_ax=v.mp4"
 />
 
-Just think about what’s happening here for a moment. You can hold in your head this complex idea of multiple variables all intermingling with each other just by thinking about squishing and morphing space, and trying to find which vector lands on another. Cool, right?
+Just think about what’s happening here for a moment. You can hold in your head this complex idea of multiple variables all intermingling with each other just by thinking about squishing and morphing space and trying to find which vector lands on another. Cool, right?
 
-To start simple, let’s say you have a system with two equations and two unknowns. This means the matrix $A$ is a $2\times 2$ matrix, and $\overrightarrow{\mathbf{x}}$ and $\overrightarrow{\mathbf{v}}$ are both two dimensional vectors.
+To start simply, let’s say you have a system with two equations and two unknowns. This means the matrix $A$ is a $2\times 2$ matrix, and $\overrightarrow{\mathbf{x}}$ and $\overrightarrow{\mathbf{v}}$ are both two dimensional vectors.
 $$
 \begin{align*}
 \color{black}2\color{green}x\color{black}+2\color{red}y\color{black}&=-4 \\
@@ -267,7 +267,7 @@ A\color{purple}\overrightarrow{\mathbf{x}}
 \end{bmatrix}
 }_{\large \color{orange}\overrightarrow{\mathbf{v}}}
 $$
-Just like in 2D, we can play a 3D transform in reverse to find where the vector $\overrightarrow{\mathbf{x}}$ came from when it landed on $\overrightarrow{\mathbf{v}}$.
+Just like in 2D, we can play a 3D transformation in reverse to find where the vector $\overrightarrow{\mathbf{x}}$ came from when it landed on $\overrightarrow{\mathbf{v}}$.
 
 <Figure
   image="inverse_3D.svg"
@@ -314,7 +314,7 @@ It’s still possible that a solution exists even when there is no inverse, it�
   image="no_solution_exists.svg"
 />
 
-You might notice that some of these zero determinant cases feel much more restrictive than others. Given a $3\times 3$ matrix, it seems much harder for a solution to exist when it squishes space onto a line compared to when it squishes things onto a plane.
+You might notice that some of these zero-determinant cases feel much more restrictive than others. Given a $3\times 3$ matrix, it seems much harder for a solution to exist when it squishes space onto a line compared to when it squishes things onto a plane.
 
 We have some language that’s a bit more specific than just saying zero-determinant. When the output of a transformation is a line, meaning it is one-dimensional, we say the transformation has a rank of $1$.
 
@@ -322,7 +322,7 @@ We have some language that’s a bit more specific than just saying zero-determi
   image="rank_1.svg"
 />
 
-If all the vectors land on some two dimensional plane, we say the transformation has a rank of $2$. So the word “rank” means the number of dimensions in the output of a transformation.
+If all the vectors land on some two-dimensional plane, we say the transformation has a rank of $2$. So the word “rank” means the number of dimensions in the output of a transformation.
 
 <Figure
   image="rank_2.svg"
@@ -330,9 +330,9 @@ If all the vectors land on some two dimensional plane, we say the transformation
 
 So for instance, in the case of $2\times 2$ matrices, rank $2$ is the best it can be, it means the basis vectors continue to span the full 2D space and the determinant is nonzero. But for $3\times 3$ matrices, rank $2$ means things have collapsed, but not as much as they would have for a rank $1$ transformation.
 
-If a 3D transform has non-zero determinant and its output fills all of 3D space, it has a rank of $3$. This set of all possible outputs for your matrix, whether it’s a line, a plane, 3D space; is called the “column space” of your matrix. You can probably guess where the name comes from; the columns of your matrix tell you where the basis vectors land, and the span of those transformed basis vectors gives you all possible outputs. In other words, the column space is the span of the columns of your matrix.
+If a 3D transform has a non-zero determinant and its output fills all of 3D space, it has a rank of $3$. This set of all possible outputs for your matrix, whether it’s a line, a plane, or 3D space; is called the “column space” of your matrix. You can probably guess where the name comes from; the columns of your matrix tell you where the basis vectors land and the span of those transformed basis vectors gives you all possible outputs. In other words, the column space is the span of the columns of your matrix.
 
-So a more precise definition of rank is that it’s the number of dimensions in the column space. When this rank is as high as it can be, equaling the number of columns in the matrix, the matrix is called “full-rank”.
+So a more precise definition of rank is that it’s the number of dimensions in the column space. When this rank is as high as it can be, equaling the number of columns in the matrix, the matrix is called “full rank”.
 
 <Question
   question="What is the rank of this matrix? $\begin{bmatrix}1&-2&4\\-2&4&-8\\5&-10&20\end{bmatrix}$"
@@ -342,13 +342,13 @@ So a more precise definition of rank is that it’s the number of dimensions in 
   choice4="Rank 3 (full rank)"
   answer={2} >
 
-The columns of these matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$.
+The columns of this matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$.
 
 </Question>
 
 ### Null Space
 
-Notice the zero vector will always be included in the column space, since linear transformations must keep the origin fixed in place.
+Notice the zero vector will always be included in the column space since linear transformations must keep the origin fixed in place.
 
 For a full-rank transformation, the only vector that lands at the origin is the zero vector itself. But for matrices that aren’t full rank, which squish to a smaller dimension, you can have a whole bunch of vectors land on zero. If a 2D transformation squishes space onto a line, there is a separate line in a different direction full of vectors that get squished on the origin.
 
@@ -369,7 +369,7 @@ If a 3D transformation squishes all of space onto a line, there is a whole *plan
   image="null_plane.svg"
 />
 
-This set of vectors that land on the origin is called the “null space” or the “kernel” of your matrix. It’s the space of vectors that become null, in the sense that they land on the zero vector. In terms of the linear system of equations, if $\overrightarrow{\mathbf{v}}$ happens to be the zero vector, the null space gives you all possible solutions to the equation.
+This set of vectors that land on the origin is called the “null space” or the “kernel” of your matrix. It’s the space of vectors that becomes null, in the sense that they land on the zero vector. In terms of the linear system of equations, if $\overrightarrow{\mathbf{v}}$ happens to be the zero vector, the null space gives you all possible solutions to the equation.
 
 <Question
   question="What does the null space of this matrix look like? $\begin{bmatrix}1&-2&4\\-2&4&-8\\5&-10&20\end{bmatrix}$"
@@ -379,12 +379,12 @@ This set of vectors that land on the origin is called the “null space” or th
   choice4="All of 3D space"
   answer={3} >
 
-The columns of these matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$. This means an entire plane gets squished to the origin. The dimensionality of the null space is inversely proportional to the rank of the matrix. $3\text{ (size of matrix)}-1\text{ (rank)}=2\text{ (size of null space)}$.
+The columns of this matrix can be expressed as $\begin{bmatrix}1\\-2\\5\end{bmatrix}=-\frac12\begin{bmatrix}-2\\4\\-10\end{bmatrix}=\frac14\begin{bmatrix}4\\-8\\20\end{bmatrix}$. Since they are all linearly dependent and form a line, the rank is $1$. This means an entire plane gets squished to the origin. The dimensionality of the null space is inversely proportional to the rank of the matrix. $3\text{ (size of matrix)}-1\text{ (rank)}=2\text{ (size of null space)}$.
 
 </Question>
 
 ## Conclusion
 
-So that’s a very high level overview of how to think about linear systems of equations geometrically. Each system has linear transformation associated with it. When that transformation has an inverse, you can use that inverse to solve your system. Otherwise, the ideas of column space and null space let us know when there is a solution, and what the set of all possible solutions can look like.
+So that’s a very high-level overview of how to think about linear systems of equations geometrically. Each system has linear transformation associated with it. When that transformation has an inverse, you can use that inverse to solve your system. Otherwise, the ideas of column space and null space let us know when there is a solution, and what the set of all possible solutions can look like.
 
-Again, there’s a lot I haven’t covered, most notably how to compute these things. Also, I limited my scope of examples here to equations where the number of unknowns equals the number of equations. But my goal here is that you come away with a strong intuition for inverse matrices, column space and null space that can make any future learning you do more fruitful.
+Again, there’s a lot I haven’t covered, most notably how to compute these things. Also, I limited my scope of examples here to equations where the number of unknowns equals the number of equations. But my goal here is that you come away with a strong intuition for inverse matrices, column space, and null space that can make any future learning you do more fruitful.
