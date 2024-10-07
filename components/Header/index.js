@@ -61,9 +61,9 @@ const Nav = () => {
         tooltip="Various maths topics, in video and text form"
       />
       <NavLink
-        link="/podcast"
-        text="Podcast"
-        tooltip="Interviews about math and education"
+        link="https://some.3b1b.co"
+        text="SoME"
+        tooltip="The Summer of Math Exposition"
       />
       <NavLink link="/blog" text="Blog" tooltip="Writing about math and more" />
       <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
