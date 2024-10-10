@@ -41,3 +41,5 @@ public/content/**/*.source.mov
 *.ignore
 *.zip
 *.patch
+package.json
+yarn.lock
