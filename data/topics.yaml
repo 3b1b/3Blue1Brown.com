@@ -196,6 +196,7 @@
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere
   lessons:
+    - manim-demo
     - qa1
     - qa2
     - qa3
