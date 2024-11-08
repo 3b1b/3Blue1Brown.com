@@ -64,6 +64,7 @@
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader lessons
   lessons:
+    - one-more-dim
     - subsets-puzzle
     - hardest-problem
     - windmills
