@@ -32,24 +32,24 @@ export default function SocialIcons() {
           label={""}
         />
         <Link
-          link="https://twitter.com/3blue1brown"
+          link="https://x.com/3blue1brown"
           icon="fa-brands fa-x-twitter"
-          tooltip="Occasional animations and mathy threads"
-          hoverColor="#1DA1F2"
-          restingColor="#1DA1F2"
+          tooltip="Tweets"
+          hoverColor="#AAAAAA"
+          restingColor="#AAAAAA"
           label={""}
         />
         <Link
           link="https://www.instagram.com/3blue1brown/"
           icon="fab fa-instagram"
-          tooltip="Animations and video excerpts"
+          tooltip="Instagram"
           hoverColor="#FFDC80"
           restingColor="#FFDC80"
         />
         <Link
           link="https://bsky.app/profile/3b1b.bsky.social"
           icon="fa-brands fa-bluesky"
-          tooltip="I guess this is a thing now?"
+          tooltip="Bluesky"
           hoverColor="#87CEEB"
           restingColor="#87CEEB"
         />
