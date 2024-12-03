@@ -30,7 +30,7 @@ const Head = () => {
 
       {/* fonts */}
       <link
-        href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+        href="https://use.fontawesome.com/releases/v6.7.1/css/all.css"
         rel="stylesheet"
       />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
