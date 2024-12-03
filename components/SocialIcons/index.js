@@ -33,7 +33,7 @@ export default function SocialIcons() {
         />
         <Link
           link="https://twitter.com/3blue1brown"
-          icon="fab fa-twitter"
+          icon="fa-brands fa-x-twitter"
           tooltip="Occasional animations and mathy threads"
           hoverColor="#1DA1F2"
           restingColor="#1DA1F2"
@@ -45,6 +45,13 @@ export default function SocialIcons() {
           tooltip="Animations and video excerpts"
           hoverColor="#FFDC80"
           restingColor="#FFDC80"
+        />
+        <Link
+          link="https://bsky.app/profile/3b1b.bsky.social"
+          icon="fa-brands fa-bluesky"
+          tooltip="I guess this is a thing now?"
+          hoverColor="#87CEEB"
+          restingColor="#87CEEB"
         />
       </div>
       <div className={styles.restRow}>
