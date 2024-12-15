@@ -40,7 +40,7 @@ Then each "token" is assigned a vector which encodes its meaning. If you view th
 ### Attention Block
 The encoded vectors then pass through an **Attention Block** where they communicate with eachother to update their values based on context. For example, the meaning of the word "model" in the phrase “a machine learning model” is different from its meaning in the phrase “a fashion model”. The **Attention Block** is responsible for figuring out which words in the context are relevant to updating the meanings of other words, and how exactly those meanings should be updated.
 
-<img src="attentions.png" alt="Attention Block Adjusting Vector Values Based on Context" width="600"/>
+<img src="attent.png" alt="Attention Block Adjusting Vector Values Based on Context" width="600"/>
 
 ### Multilayer Perceptron(Feed-Forward Layer)
 Following the Attention Block, these vectors pass through a Multilayer Perceptron, or Feed-Forward Layer, in which each vector updates its values independently of the other vectors. This step is similar to asking a long list of questions about each vector and updating their values based on the answers.
