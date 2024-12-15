@@ -7,3 +7,45 @@ source: _2024/transformers/
 credits:
 - Lesson by Grant Sanderson
 ---
+
+The recent boom of _Generative AI_ Language Models, namely Chat GPT, has led to two important questions:
+1. Will AI take over the world?
+2. How does the _GPT_ model work?
+
+While the future of AI's role in society can only be answered with time, Grant seeks to explore the second question-how the _GPT_ model truly works-through his videos on Transformers.
+
+## What is a GPT model?
+Formally speaking, a GPT is a **Generative Pre-Trained Transformer**. The first two words are self-explanatory: **generative** means the model generates new text; **pre-trained** means the model was trained on large amounts of data. What Grant focuses on is the **transformer** aspect of the language model, the main proponent of the recent boom in AI.
+### What exactly is a Transformer?
+A **transformer** is a special kind of neural network, a _Machine Learning Model_. There are a wide variety of models that can be built using **transformers**: voice-to-text, text-to-voice, text-to-image, machine translation, and many more. The model Grant will focus on will be a specific transformer model designed to process a given text and predict the next word with high accuracy.
+<a name="predict"></a>
+<img src="predict.png"  alt="predict" width="600"/>
+
+## What happens in a **Prediction Transformer**?
+To start off, we'll first preview the transformer with a High-Level perspective.
+
+### Tokens
+When a transformer takes in an input, it first partitions the text into small chunks that are known as **"tokens"**. For example, in the sentence:
+
+**To date, the cleverest thinker of all time was ...**
+
+the Transformer could truncate the input as such:
+
+**To | date | , | the | cle | ve | rest | think | er | of | all | time | was ...**
+
+Then each "token" is assigned a vector which encodes its meaning. If you view these vectors as coordinates in a high dimensional space, words with similar meanings will tend to have vectors that are close to eachother.
+
+<img src="tokens.png" alt="tokens" width="600"/>
+
+### Attention Block
+The encoded vectors then pass through an **Attention Block** where they communicate with eachother to update their values based on context. For example, the meaning of the word "model" in the phrase “a machine learning model” is different from its meaning in the phrase “a fashion model”. The **Attention Block** is responsible for figuring out which words in the context are relevant to updating the meanings of other words, and how exactly those meanings should be updated.
+
+<img src="attentions.png" alt="Attention Block Adjusting Vector Values Based on Context" width="600"/>
+
+### Multilayer Perceptron(Feed-Forward Layer)
+Following the Attention Block, these vectors pass through a Multilayer Perceptron, or Feed-Forward Layer, in which each vector updates its values independently of the other vectors. This step is similar to asking a long list of questions about each vector and updating their values based on the answers.
+
+<img src="multilayer.png" alt="tokens" width="600"/>
+
+After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeats the same process many times. All the operations in both blocks are numerous matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many repetitions, the essential meaning of the input should be encoded in the last vector in the sequence, and performing an operation on the last vector generates a probability distribution of all possible succeeding tokens, as seen 
+[here](#predict)
