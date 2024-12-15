@@ -48,4 +48,4 @@ Following the Attention Block, these vectors pass through a Multilayer Perceptro
 <img src="multi.png" alt="tokens" width="600"/>
 
 After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeats the same process many times. All the operations in both blocks are numerous matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many repetitions, the essential meaning of the input should be encoded in the last vector in the sequence, and performing an operation on the last vector generates a probability distribution of all possible succeeding tokens, as seen 
-[here](#predict)
+[here](#predict).
