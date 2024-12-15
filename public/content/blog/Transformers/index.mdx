@@ -15,8 +15,8 @@ While the future of AI's role in society can only be answered with time, Grant s
 Formally speaking, a GPT is a **Generative Pre-Trained Transformer**. The first two words are self-explanatory: **generative** means the model generates new text; **pre-trained** means the model was trained on large amounts of data. What Grant focuses on is the **transformer** aspect of the language model, the main proponent of the recent boom in AI.
 ### What exactly is a Transformer?
 A **transformer** is a special kind of neural network, a _Machine Learning Model_. There are a wide variety of models that can be built using **transformers**: voice-to-text, text-to-voice, text-to-image, machine translation, and many more. The model Grant will focus on will be a specific transformer model designed to process a given text and predict the next word with high accuracy.
-
-<img src="predict.png" alt="predict" width="600"/>
+<a name="predict"></a>
+<img src="predict.png"  alt="predict" width="600"/>
 
 ## What happens in a **Prediction Transformer**?
 To start off, we'll first preview the transformer with a High-Level perspective.
@@ -44,4 +44,5 @@ Following the Attention Block, these vectors pass through a Multilayer Perceptro
 
 <img src="multilayer.png" alt="tokens" width="600"/>
 
-After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeats the same process many times. All the operations in both blocks are numerous matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many repetitions, the essential meaning of the input should be encoded in the last vector in the sequence, and performing an operation on the last vector generates a probability distribution of all possible succeeding tokens, as seen here
+After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeats the same process many times. All the operations in both blocks are numerous matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many repetitions, the essential meaning of the input should be encoded in the last vector in the sequence, and performing an operation on the last vector generates a probability distribution of all possible succeeding tokens, as seen 
+[here](#predict)
