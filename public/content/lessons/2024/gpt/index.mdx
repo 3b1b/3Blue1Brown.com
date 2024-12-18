@@ -8,24 +8,19 @@ credits:
 - Lesson by Grant Sanderson
 ---
 
-The recent boom of _Generative AI_ Language Models, namely Chat GPT, has led to two important questions:
-1. Will AI take over the world?
-2. How does the _GPT_ model work?
-
-While the future of AI's role in society can only be answered with time, we seek to understand the second question-how the _GPT_ model truly works-through exploring transformers.
-
 ## What is a GPT model?
 Formally speaking, a GPT is a **Generative Pre-Trained Transformer**. The first two words are self-explanatory: **generative** means the model generates new text; **pre-trained** means the model was trained on large amounts of data. What we will focus on is the **transformer** aspect of the language model, the main proponent of the recent boom in AI.
+
 ### What exactly is a Transformer?
 A **transformer** is a special kind of neural network, a _Machine Learning Model_. There are a wide variety of models that can be built using **transformers**: voice-to-text, text-to-voice, text-to-image, machine translation, and many more. The specific variant that we will focus on, which is the type that underlies tools like ChatGPT, will be a model trained to take in a piece of text, maybe even with some surrounding images or sound accompanying it, then produce a prediction of what comes next, in the form of a probability distribution over all chunks of text that might follow.
 
-<a name="predict"></a>
 <Figure image="predict.png" width="30%"/>
 
 At first, predicting the next word might feel like a different goal from generating new text, but once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
 
 ## What happens in a **Prediction Transformer**?
-To start off, we'll first preview the transformer with a High-Level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
+We'll first preview the transformer with a High-Level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
+
 
 ### Tokens
 An input is first broken into small chunks that are known as **"tokens"**. For example, in the sentence:
@@ -41,14 +36,17 @@ Each of these tokens is then associated with a vector, meaning some list of numb
 <Figure image="token.png" width="30%"/>
 
 ### Attention Block
-The encoded vectors then pass through an **Attention Block** where they communicate with eachother to update their values based on context. For example, the meaning of the word "model" in the phrase “a machine learning model” is different from its meaning in the phrase “a fashion model”. The **Attention Block** is responsible for figuring out which words in the context are relevant to updating the meanings of other words, and how exactly those meanings should be updated.
+The encoded vectors then pass through an **Attention Block** where they communicate with each other to update their values based on context. For example, the meaning of the word "model" in the phrase “a machine learning model” is different from its meaning in the phrase “a fashion model”. The **Attention Block** is responsible for figuring out which words in the context are relevant to updating the meanings of other words, and how exactly those meanings should be updated.
 
 <Figure image="multi.png" width="30%"/>
 
 ### Multilayer Perceptron(Feed-Forward Layer)
-Following the Attention Block, these vectors pass through a Multilayer Perceptron, or Feed-Forward Layer. Here, the vectors don’t talk to each other, they all go through the same operation in parallel. We’ll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
-
+Following the Attention Block, these vectors then pass through a Multilayer Perceptron, or Feed-Forward Layer. Here, the vectors don’t talk to each other, they all go through the same operation in parallel. We’ll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
 
 <Figure image="attent.png" width="30%"/>
 
 After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeats the same process many times. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many iterations, the eseential meaning of the passage has been somehow encoded into the very last vector in the sequence, which is then used to produce a probability distribution over all the possible chunks of text that might come next.
+
+---
+
+<Accordion title = "Comprehension Question 1: What is a common interpretation of the coordinates of the vectors that are associated with the tokens?" children = " A common interpretation is that the coordinates of these vectors may somehow <b>encode the meaning of each token</b>. If you think of these vectors as giving coordinates in some high-dimensional space, words with similar meanings tend to land on vectors close to each other in that space.">
