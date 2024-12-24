@@ -65,6 +65,7 @@
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader lessons
   lessons:
+    - inscribed-rect-v2
     - one-more-dim
     - subsets-puzzle
     - hardest-problem
