@@ -157,7 +157,7 @@
   slug: topology
   description: A few clever proofs that make use of topological facts
   lessons:
-    - inscribed-rectangle-problem
+    - inscribed-rect-v2
     - borsuk-ulam
 - name: Group Theory
   slug: group-theory
