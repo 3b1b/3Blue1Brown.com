@@ -65,7 +65,6 @@
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader lessons
   lessons:
-    - inscribed-rect-v2
     - one-more-dim
     - subsets-puzzle
     - hardest-problem
@@ -157,7 +156,7 @@
   slug: topology
   description: A few clever proofs that make use of topological facts
   lessons:
-    - inscribed-rectangle-problem
+    - inscribed-rect-v2
     - borsuk-ulam
 - name: Group Theory
   slug: group-theory
