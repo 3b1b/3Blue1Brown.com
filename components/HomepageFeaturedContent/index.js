@@ -33,7 +33,7 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
       lesson={lesson.slug}
       caption={"Latest video: " + lesson.title}
       youtube_id={lesson.video}
-      link={"http://youtu.be/" + lesson.video}
+      link={`/lessons/${lesson.slug}`}
     />
   );
 
