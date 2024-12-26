@@ -6,7 +6,6 @@ video: wjZofJX0v4M
 source: _2024/transformers/
 credits:
 - Lesson by Grant Sanderson
-- Written Adaption by Justin Sun
 ---
 
 ## What is a GPT model?
@@ -141,6 +140,7 @@ Again, how specifically each word gets embedded is learned using data. The embed
     <>
         Comprehension Question 3: In a vector space representing meanings, the following relationship holds: <br />
         <u> Cat - Meow + Bark = ? </u> <br />
+        The closest answer would be: <br />
         A. Tree <br /> 
         B. Sound <br /> 
         C. Dog <br /> 
@@ -151,3 +151,81 @@ children={
     "In this vector space, Cat - Meow represents a sort of sound direction. The animal that most commonly makes the bark sound is C. Dog"
     }
 />
+
+### Beyond words
+
+In the case of a transformer, we also want to think of the vectors in this embedding space as not merely representing individual words. These embeddings will also encode information about the position of the word, which we’ll talk about later. But more importantly, we should view these vectors as having the capacity to soak in context.
+
+For example, a vector that started its life as the embedding of the word “king” may progressively get tugged and pulled by the various blocks in the network to end up pointing in a much more nuanced direction that somehow encodes a king who lived in Scotland, who had achieved his post after murdering the previous king, who is being described in Shakespearean language, and so on.
+
+<Figure image="king.png" width="100%"/>
+
+Think about our understanding of a word, like quill. Its meaning is clearly informed by its surroundings and context, whether it be a hedgehog quill or a type of pen. Sometimes, we may even include context from a long distance away. When putting together a model that is able to predict the next word, the goal is to somehow empower it to do the same thing, take in context efficiently. 
+
+In that very first step, when you create the array of vectors based on the input text, each one is simply plucked out of this embedding matrix, and each one only encodes the meaning of the single word its associated with no input from the surroundings. But as these vectors flow through the network, we should view the primary goal of this network as enabling each one of those vectors to soak up meaning that is more rich and specific than what mere individual words can represent.
+
+The network can only look at a fixed number of vectors at a time, known as its _context size_, which for GPT-3 is 2048. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
+
+<Figure image="InitialContext.png" width="100%"/>
+
+## Unembedding
+
+We'll go into the details of the Attention Block in due time, but first we'll skip ahead and talk about what happens at the very end of the Transformer. Remember, the desired output is a probability distribution over all possible chunks of text that might come next.
+
+For example, if the last word is _Professor_, and the context includes words like _Harry Potter_, and the immediately preceding is _least favorite_, and if we pretend that all tokens look like full words, a well-trained network would presumably assign a high number to the word _Snape_.
+
+<Figure image="Snape.png" width="100%"/>
+
+
+## Unembedding Matrix
+
+This process involves two steps. The first is to use another matrix that maps the very last vector in the context to a list of ~50,000 values, one for each token in the vocabulary, then there’s a function that normalizes this into a probability distribution, called _softmax_, which we’ll talk more about in just a second.
+
+It might seem weird to only use the last embedding to make a prediction when there are thousands of other vectors in that last layer just sitting here with their own context-rich meanings. This has to do with how the training process turns out to be much more efficient if we use each vector in this final layer to simultaneously make a prediction for what comes immediately after it. We'll talk a lot more about the training process later.
+
+This is often called the "unembedding matrix", and we'll give it the label $$W_U$$.  Again, like all the weight matrices we’ll see, its entries begin random but are tuned during the training process.
+
+<Figure image="WU.png" width="100%"/>
+
+Keeping score on our total number of parameters, the unembedding matrix has one row for each word in the vocabulary, giving 50,257 words, and each row has the same number of elements as the dimension of the embedding, giving 12,288 columns. It’s very similar to the embedding matrix, just with order swapped, so it adds another 617M parameters to the network, making our parameter count so far a little over a billion; a small but not insignificant fraction of the 175 billion that we'll end up with in total.
+
+<Accordion title={
+    <>
+        Comprehension Question 4: If the model has a predefined vocabulary of 32,000 tokens and the dimension of the embedding matrix is 10,000, the dimension of the umembedding matrix is: <br />
+        A. 10,000 x 32,000 <br /> 
+        B. 320,000,000 <br /> 
+        C. 32,000 x 10,000 <br /> 
+        D. 175,000,000,000
+    </>
+} 
+children={
+    "C. 32,000 x 10,000. The unembedding matrix has one row for each token in the predefined vocabulary, giving 32,000 rows. Each row in the unembeedding matrix also has the same number of elements as the dimension fo the embedding matrix, giving 10,000 columns"
+    }
+/>
+
+## Softmax
+
+For the last lesson of this chapter, we will go over the softmax function, since it will appear again once we dive into the attention blocks.
+
+The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where everything we do looks like a matrix-vector product, the outputs we get by default won’t abide by this at all. The values are often negative, or bigger than 1, and they almost certainly don’t all add up to 1.
+
+<Figure image="SoftMax.png" width="100%"/>
+
+Softmax turns an arbitrary list of numbers into a valid distribution, in such a way that the largest values end up closest to 1, and the smaller values end up closer to 0. 
+
+The way it works is to first raise e to the power of each number, which gives a bunch of positive values. Then you take the sum of all these new terms and divide each term by that sum, which normalizes it into an list which adds up to 1.
+
+The reason for calling it “softmax” is that instead of simply pulling out the biggest value, it produces a distribution that gives weight to all the relatively large values, commensurate with how large they are. If one entry in the input is much bigger than the rest, the corresponding output will be very close to 1, so sampling from the distribution is likely the same as just choosing the maximizing index from the input.
+
+<Figure image="howsoftmax.png" width="100%"/>
+
+In some cases, such as when ChatGPT is using this distribution to sample each next word, we can add a little extra spice into this softmax function with a constant T inserted into all these exponents. It's called T since it vaguely resembles the role of temperature in certain thermodynamics equations. The effect of this constant is that when T is larger, more weight is given to lower values, making the distribution more uniform. When T is smaller, the larger values will dominate the distribution, and in the extreme setting when T is equal to 0, all the weight goes to the maximum value.
+
+<Figure image="temperatureReal.png" width="100%"/>
+
+Here's another bit of jargon:  
+In the same way that we might call the components of the output of this function _probabilities_, people often refer to the components of the input the inputs as _logits_. So when you feed in some text, have the word embeddings flow through the network, and do this final multiplication by the unembedding matrix, machine learning people would refer to the components of that raw unnormalized output as the _logits_ for the next word prediction.
+
+### And Thats The Basics
+
+Our goal for this chapter was to lay the foundations for understanding the attention mechanism. If we have a strong intuition for _word embeddings_, _softmax_, how _dot products_ measure similarity, and the underlying premise that most calculations look like matrix multiplication with matrices full of tunable parameters, then understanding the attention mechanism, one of the keystone pieces of the whole modern boom in AI that we will explore in the next chapter, should be relatively smooth.
