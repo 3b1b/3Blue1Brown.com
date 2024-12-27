@@ -6,6 +6,7 @@ video: wjZofJX0v4M
 source: _2024/transformers/
 credits:
 - Lesson by Grant Sanderson
+- Text adaption by Justin Sun
 ---
 
 ## What is a GPT model?
@@ -37,12 +38,12 @@ Each of these tokens is then associated with a vector, meaning some list of numb
 ### Attention Block
 The encoded vectors then pass through an **Attention Block** where they communicate with each other to update their values based on context. For example, the meaning of the word _model_ in the phrase _a machine learning model_ is different from its meaning in the phrase _a fashion model_. The **Attention Block** is responsible for figuring out which words in the context are relevant to updating the meanings of other words and how exactly those meanings should be updated.
 
-<Figure image="multi.png" width="100%"/>
+<Figure image="attent.png" width="100%"/>
 
 ### Multilayer Perceptron(Feed-Forward Layer)
 Following the Attention Block, these vectors then pass through a Multilayer Perceptron, or Feed-Forward Layer. Here, the vectors don’t talk to each other; they all go through the same operation in parallel. We’ll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
 
-<Figure image="attent.png" width="100%"/>
+<Figure image="multi.png" width="100%"/>
 
 After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeat the same process many times. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many iterations, the essential meaning of the passage has been somehow encoded into the very last vector in the sequence, which is then used to produce a probability distribution over all the possible chunks of text that might come next.
 
