@@ -48,7 +48,7 @@ function MDXWrapper({ children }) {
   let footnotesComponent = null;
 
   Children.forEach(children, (child) => {
-    if (child.props.className === "footnotes") {
+    if (child && child.props && child.props.className === "footnotes") {
       footnotesComponent = child;
     }
   });
