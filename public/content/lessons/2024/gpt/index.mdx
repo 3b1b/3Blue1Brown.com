@@ -17,7 +17,7 @@ A **transformer** is a special kind of neural network, a _Machine Learning Model
 
 <Figure image="predict.png" width="100%"/>
 
-At first, predicting the next word might feel like a different goal from generating new text, but once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
+At first, predicting the next word might feel like a different goal from generating new text. But once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
 
 We'll first preview the transformer with a High-Level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
 
