@@ -166,7 +166,7 @@ Think about our understanding of a word, like quill. Its meaning is clearly info
 
 In that very first step, when you create the array of vectors based on the input text, each one is simply plucked out of this embedding matrix, and each one only encodes the meaning of the single word it's associated with; no input from its surroundings. But as these vectors flow through the network, we should view the primary goal of this network as enabling each one of those vectors to soak up meaning that is more rich and specific than what mere individual words can represent.
 
-The network can only look at a fixed number of vectors at a time, known as its _context size_, which for GPT-3 is 2048. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
+The network can only look at a fixed number of vectors at a time, known as its _context size_. GPT-3 was trained with a context size of 2048 tokens. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
 
 <Figure image="InitialContext.png" width="100%"/>
 
