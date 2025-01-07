@@ -60,7 +60,7 @@ With that as a high-level preview, in this lesson we will expand on the details 
 ## Premise of Deep Learning
 Machine learning, broadly speaking, describes a body of methods where one uses _data_ to determine the behavior of a program, as opposed to relying entirely on an explicitly encoded set of rules. For example, to write a function that takes in an image and produces a label, rather than explicitly defining a procedure for doing this in code, a machine learning model will consist of flexible parameters that determine its behavior, like a bunch of knobs and dials. The job of the engineer is not to set those dials, but to determine a procedure to tune those parameters based on data. For example, an image-labeling program may be trained using a large set of images with known labels.
 
-For example, the simplest form of machine learning might be linear regression, where inputs and outputs are single numbers, such as the square footage of a house and its price. The goal is to find the line of best fit through the data to predict future house prices. This line is determined by two parameters: the slope and the y-intercept, which are tuned to most closely match the data.
+For example, the simplest form of machine learning might be linear regression, where inputs and outputs are single numbers, such as the square footage of a house and its price. A linear regression finds the line of best fit through the data to predict future house prices. This line is determined by two parameters: the slope and the y-intercept, which are tuned to most closely match the data. Then for future houses, with unknown prices, the predicted price would be determined based on the value of this line over the given square footage.
 
 <Figure image="linreg.png" width="100%"/>
 
