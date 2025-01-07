@@ -221,7 +221,7 @@ The reason for calling it _softmax_ is that instead of simply pulling out the bi
 
 <Figure image="howsoftmax.png" width="100%"/>
 
-In some cases, such as when ChatGPT is using this distribution to sample each next word, we can add a little extra spice into this softmax function with a constant _T_ inserted into all these exponents. It's called _T_ since it vaguely resembles the role of temperature in certain thermodynamics equations. The effect of this constant is that when _T_ is larger, more weight is given to lower values, making the distribution more uniform. When _T_ is smaller, the larger values will dominate the distribution, and in the extreme setting when _T_ is equal to 0, all the weight goes to the maximum value.
+In some cases, such as when ChatGPT is using this distribution to sample each next word, we can add a little extra spice into this softmax function with a constant _T_ inserted into all these exponents. We call it "temperature" since it vaguely resembles the role of temperature in certain thermodynamics equations. The effect of this constant is that when _T_ is larger, more weight is given to lower values, making the distribution more uniform. When _T_ is smaller, the larger values will dominate the distribution, and in the extreme setting when _T_ is equal to 0, all the weight goes to the maximum value.
 
 <Figure image="temperatureReal.png" width="100%"/>
 
