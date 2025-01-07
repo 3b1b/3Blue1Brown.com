@@ -45,7 +45,9 @@ Following the Attention Block, these vectors then pass through a Multilayer Perc
 
 <Figure image="multi.png" width="100%"/>
 
-After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeat the same process many times. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many iterations, the essential meaning of the passage has been somehow encoded into the very last vector in the sequence, which is then used to produce a probability distribution over all the possible chunks of text that might come next.
+After that, the vectors pass through another attention block, then another multilayer perceptron block, then another attention block, and so on, getting altered by many variants of these two operations interlaced with one another. A large number of layers like this is what puts the "deep" in deep learning. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. 
+
+After many iterations, all the information necessary to predict the next word needs to be encoded into the last vector of the sequence, which will go through one final computation to produce a probability distribution over all the possible chunks of text that might come next.
 
 ---
 
