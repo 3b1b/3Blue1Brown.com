@@ -17,9 +17,9 @@ A **transformer** is a special kind of neural network, a _Machine Learning Model
 
 <Figure image="predict.png" width="100%"/>
 
-At first, predicting the next word might feel like a different goal from generating new text, but once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
+At first, predicting the next word might feel like a different goal from generating new text. But once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
 
-We'll first preview the transformer with a High-Level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
+We'll first preview the transformer with a high-level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
 
 
 ### Tokens
@@ -29,7 +29,7 @@ An input is first broken into small chunks that are known as **tokens**. For exa
 
 The tokenization of this input would be:
 
-**To | date | , | the | cle | ve | rest | think | er | of | all | time | was ...**
+**To| date|,| the| cle|ve|rest| thinker| of| all| time| was ...**
 
 Each of these tokens is then associated with a vector, meaning some list of numbers. A common interpretation of these embeddings is that the coordinates of these vectors may somehow encode the meaning of each token. If you think of these vectors as giving coordinates in some high-dimensional space, words with similar meanings tend to land on vectors close to each other in that space. These steps are pre-processing steps that occur before anything enters the transformer itself.
 
@@ -45,62 +45,68 @@ Following the Attention Block, these vectors then pass through a Multilayer Perc
 
 <Figure image="multi.png" width="100%"/>
 
-After passing through the Multilayer Perceptron, the vectors then return to the Attention Block and repeat the same process many times. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. After many iterations, the essential meaning of the passage has been somehow encoded into the very last vector in the sequence, which is then used to produce a probability distribution over all the possible chunks of text that might come next.
+After that, the vectors pass through another attention block, then another multilayer perceptron block, then another attention block, and so on, getting altered by many variants of these two operations interlaced with one another. A large number of layers like this is what puts the "deep" in deep learning. Computationally, all the operations in both blocks will look like a giant pile of matrix multiplications, and our goal will be to understand how to read the underlying matrices. 
+
+After many iterations, all the information necessary to predict the next word needs to be encoded into the last vector of the sequence, which will go through one final computation to produce a probability distribution over all the possible chunks of text that might come next.
 
 ---
 
-<Accordion title="Comprehension Question 1: What is a common interpretation of the coordinates of the vectors that are associated with the tokens?" children="A common interpretation is that the coordinates of these vectors may somehow encode the meaning of each token. If you think of these vectors as giving coordinates in some high-dimensional space, words with similar meanings tend to land on vectors close to each other in that space." />
+<Accordion title="What is a common interpretation of the coordinates of the vectors that are associated with the tokens?" children="A common interpretation is that the coordinates of these vectors may somehow encode the meaning of each token. If you think of these vectors as giving coordinates in some high-dimensional space, words with similar meanings tend to land on vectors close to each other in that space." />
 
 ---
 
-With that as a high-level preview, in this lesson we will expand on the details of what happens both at the beginning and the end of the network. But first, we will dedicate a lot of time to reviewing important pieces of background knowledge that would have been second nature to any machine learning engineer by the time transformers came around.
+With that as a high-level preview, in this lesson we will expand on the details of what happens both at the beginning and the end of the network. But first, it may help to review some of the background knowledge that would have been second nature to any machine learning engineer by the time transformers came around.
 
 ## Premise of Deep Learning
-Deep Learning is a subfield of Machine Learning, which describes any model where data is used to determine the model’s behavior. A function that takes in an image and produces a label describing it, or predicts the next word in a passage of text, or any other task that seems to require an element of pattern recognition and intuition are all examples of Machine Learning. Instead of explicitly defining a procedure for doing the desired task in code, a flexible structure with tunable parameters is set up, like a bunch of knobs and dials. Many examples of input-output pairs are then used to somehow tweak and tune these parameters to mimic the desired behavior.
+Machine learning, broadly speaking, describes a body of methods where one uses _data_ to determine the behavior of a program, as opposed to relying entirely on an explicitly encoded set of rules. For example, to write a function that takes in an image and produces a label, rather than explicitly defining a procedure for doing this in code, a machine learning model will consist of flexible parameters that determine its behavior, like a bunch of knobs and dials. The job of the engineer is not to set those dials, but to determine a procedure to tune those parameters based on data. For example, an image-labeling program may be trained using a large set of images with known labels.
 
-For example, the simplest form of machine learning might be linear regression, where inputs and outputs are single numbers, such as the square footage of a house and its price. The goal is to find the line of best fit through the data to predict future house prices. This line is determined by two parameters: the slope and the y-intercept, which are tuned to most closely match the data.
+<Figure image="imagetraining.png" width="100%"/>
+
+For example, the simplest form of machine learning might be linear regression, where inputs and outputs are single numbers, such as the square footage of a house and its price. A linear regression finds the line of best fit through the data to predict future house prices. This line is determined by two parameters: the slope and the y-intercept, which are tuned to most closely match the data. Then for future houses, with unknown prices, the predicted price would be determined based on the value of this line over the given square footage.
 
 <Figure image="linreg.png" width="100%"/>
 
-Deep learning models are significantly more complex, building on foundational concepts to process vast amounts of data and recognize patterns. For example, GPT-3 has an astounding 175 billion parameters. However, designing such a massive model is no simple task—it faces challenges like severe overfitting or becoming completely intractable to train.
+Deep learning is a subfield of Machine Learning, focused on a specific category of models known as Neural Networks. Needless to say, these can get dramatically more complicated than the simple linear regression example. GPT-3, for example, had an astounding 175 billion parameters. However, simply giving a model a huge number of parameters not guarantee that it will perform better. Models at such scales risk being either completely intractable to train, prone to overfitting, or both.
 
-Despite these challenges, deep learning models have proven to scale remarkably well, thanks to a training algorithm all models use called **backpropagation**. In order for this algorithm to work at scale, these models have to adhere to a specific format. Understanding this format will help explain many of the choices in how transformers process language—choices that might otherwise seem arbitrary.
+Some deep learning models have shown a remarkable increase in capability as they size of the model and data it's trained on scale to enormous sizes. They are trained using an algorithm called <LessonLink id="backpropagation">backpropagation</LessonLink>, but in order for this algorithm to work well at scale, these models have to adhere to a specific format. Understanding this format will help explain many of the choices in how transformers process language—choices that might otherwise seem arbitrary.
 
-**First**, the input to the model has to be formatted as an array of real numbers. This could simply mean a list of numbers, a 2D array, or often higher-dimensional arrays, where the general term used here is _tensor_. The input data is progressively transformed into many different layers, always structured like some array of numbers, until it reaches the final layer as the output. For example, the final layer in our model is the probability distribution over all possible next tokens.
+**First**, the input to the model has to be formatted as an array of real numbers. This could simply mean a list of numbers, a 2D array, or often higher-dimensional arrays, where the general term used here is _tensor_. The input data is progressively transformed into many different layers, always structured like some array of numbers, until it reaches the final layer as the output. For example, the final layer in our next-token-prediction model is the probability distribution over all possible next tokens.
 
-In deep learning, the model parameters are almost always referred to as **weights**, because, and this is a key constraint for all your models, the only way they interact with the data being processed is through weighted sums. There are also some nonlinear functions sprinkled throughout, but they won’t depend on parameters. Typically, we would find the weighted sums packaged together as various components in a matrix-vector product. It represents the same idea; since each component in the output of a matrix-vector product looks like a weighted sum, it’s just often conceptually cleaner to think about matrices filled with tunable parameters transforming vectors drawn from the data being processed.
+In deep learning, the model parameters are almost always referred to as **weights**, because for the most part, the only way they interact with the data being processed is through weighted sums. Typically, you will find the weights packaged together in matrices, and instead of seeing weighted sums written out explicitly in the mathematics of such a model, you only see matrix-vector products. It represents the same idea, since each component in the output of a matrix-vector product looks like a weighted sum, it’s just often conceptually cleaner to think about matrices filled with tunable parameters transforming vectors drawn from the data being processed.
+
+To prevent the entire model from being linear, there will typically also be some nonlinear functions sprinkled in between these matrix-vector products, such as the softmax operation we will see at the end of this article.
 
 <Figure image="arrays.png" width="100%"/>
 
-For example, the **175 billion weights** in GPT-3 are organized into just under 28,000 different matrices. Those matrices fall into 8 different categories, and we will step through each type to understand what it does. As we go through, it will be fun for us to reference the numbers from GPT-3 to count up exactly where those 175 billion parameters all come from. Our goal is to set the scene going inside a tool like ChatGPT when it generates text-almost all of the actual computation looks like matrix-vector multiplication. There's a risk of getting lost in the vast amount of numbers, but a sharp distinction should be drawn between the weights of the model, colored in blue or red, and the data being processed, colored in grey. The weights are the actual brains of the model, learned during training and determining how it behaves. The data being processed encodes whatever specific input was fed into the model in a given instance, like an example snippet of text.
+For example, the **175 billion weights** in GPT-3 are organized into just under 28,000 different matrices. Those matrices fall into 8 different categories, and we will step through each type to understand what it does. As we go through, it will be fun for us to reference the numbers from GPT-3 to count up exactly where those 175 billion parameters all come from. There's a risk of getting lost in the vast amount of numbers, and in the hopes of adding clarity we'll draw a sharp distinction between the weights of the model, colored in blue or red, and the data being processed, colored in grey. The weights are the actual brains of the model, learned during training and determining how it behaves. The data being processed encodes whatever specific input was fed into the model in a given instance, like an example snippet of text.
 
 <Figure image="distinction.png" width="100%"/>
 
 ---
 
-<Accordion title={
-    <>
-        Comprehension Question 2: The model parameters are commonly referred to as... <br /> 
-        A. Tensors <br /> 
-        B. Weights <br /> 
-        C. Non-Linear Functions <br /> 
-        D. None of the Above
-    </>
-} 
-children={"The model parameters are almost always referred to as weights, as the only way models interact with the data being processed is through weighted sums."}
-/>
+<Question 
+    question={"The model parameters are commonly referred to as..."} 
+    choice1="Tensors" 
+    choice2="Weights" 
+    choice3="Non-Linear Functions" 
+    answer={2} 
+>
+
+The model parameters are almost always referred to as weights, as the only way models interact with the data being processed is through weighted sums.
+
+</Question>
 
 ---
 
 ## Embedding
 
-With all that as a foundation, let’s dig into the text-processing example, starting with this first step of breaking up the input into little chunks and turning those chunks into vectors. We mentioned earlier how these little chunks are called tokens, which might be pieces of words or punctuation. For the sake of simplicity, we will pretend that the input is clearly broken into words, as since we humans think in words, this will make it much easier to reference little examples to clarify each step.
+With all that as a foundation, let’s dig into the text-processing example, starting with this first step of breaking up the input into little chunks and turning those chunks into vectors. We mentioned earlier how these little chunks are called tokens, which might be pieces of words or punctuation. For the sake of simplicity, we will pretend that the input is cleanly broken into words. Since we humans think in words, this will make it much easier to reference little examples to clarify each step.
 
 ### Embedding Matrix
 
-The model has a predefined vocabulary, some list of all possible words, say 50,000 of them, and the first matrix of the transformer, known as the **embedding matrix**, will have one column for each of these words. These columns determine what vector each word turns into in that first step. We label it as $W_E$, and like all the matrices we see, its values begin random, but they're going to be learned based on data.
+The model has a predefined vocabulary, some list of all possible words, say 50,000 of them. The first matrix of the transformer, known as the **embedding matrix**, will have one column for each of these words. These columns determine what vector each word turns into in that first step. We label it as $W_E$, and like all the matrices we see, its values begin random, but they're going to be learned based on data.
 
-Turning words into vectors was common practice in machine learning long before transformers, and it sets the foundation for everything that follows, so let’s take a moment to get familiar with it. This is often called _embedding the word_, which invites thinking of these vectors geometrically as points or directions in some space. Visualizing a list of three numbers as coordinates for a point in 3D space is no problem, but word embeddings tend to be very high dimensional. For GPT-3, they have 12,288 dimensions, and as seen, it matters to work in a space with lots of distinct directions.
+Turning words into vectors was common practice in machine learning long before transformers. This is often called _embedding the word_, which invites thinking of these vectors geometrically as points or directions in some space. Visualizing a list of three numbers as coordinates for a point in 3D space is no problem, but word embeddings tend to be very high dimensional. For GPT-3, they have 12,288 dimensions, and as you will see, it matters to work in a space with lots of distinct directions.
 
 <Figure image="embedding.png" width="100%"/>
 
@@ -108,7 +114,7 @@ In the same way that you can take a 2D slice through 3D space and project points
 
 ### Direction
 
-The big idea we need to understand here is that as a model tweaks and tunes its weights to decide how exactly words get embedded as vectors during training, it tends to settle on a set of embeddings where directions in this space have semantic meaning. Below, a simple word-to-vector model is running, and when I run a search for all words whose embeddings are closest to that of _tower_, they all generally have the same vibe.
+The big idea we need to understand here is that as a model tweaks and tunes its weights to decide how exactly words get embedded as vectors during training, it tends to settle on a set of embeddings where directions in this space have meaning. Below, a simple word-to-vector model is running, and when I run a search for all words whose embeddings are closest to that of _tower_, they all generally have the same vibe.
 
 <Figure image="tower.png" width="100%"/>
 
@@ -116,7 +122,7 @@ Another classic example of this is when the difference between the vectors for _
 
 <Figure image="queen.png" width="100%"/>
 
-At least, kind of. Despite this being the classic example, for this model the true embedding of _queen_ is a little farther off than the difference would suggest, presumably because the way _queen_ is used in training data is not merely a feminine version of a king. Family relations illustrate the idea better:
+At least, kind of. Despite this being the classic example, for the model I was playing with when making this video, the true embedding of _queen_ is a little farther off than the difference would suggest, presumably because the way _queen_ is used in training data is not merely a feminine version of a king. Family relations illustrate the idea better:
 
 <Figure image="gender.png" width="100%"/>
 
@@ -130,31 +136,29 @@ Another example of this would be taking the embedding of _Italy_, subtracting th
 
 One bit of mathematical intuition helpful to have in mind as we continue is how the dot product of two vectors can be thought of as measuring how well they align. Computationally, dot products involve multiplying all aligning components and adding the result. Geometrically, the dot product is positive when the vectors point in a similar direction, zero if they're _perpendicular_, and negative when they point in opposite directions. 
 
-For example, suppose we wanted to test if the embedding of _cats_ minus that of _cat_ represents a kind of plurality direction in this space. To test this, notice what values we get when we take a dot product between this vector and various singular and plural nouns. It looks like the plural ones do indeed end up with consistently higher values than singular ones. Also, if we take this dot product with the embeddings of the words _one_, _two_, _three_, and so on, they give increasing values, as if it’s quantitatively measuring how plural the model finds a given word.
+<Figure image="HowToDot.png" width="100%"/>
+
+For example, suppose we wanted to test if the embedding of _cats_ minus that of _cat_ represents a kind of plurality direction in this space. To test this, you could take the dot product between this vector and various singular and plural nouns. When I did this for a simple word-to-vector model while making this video, it looked like the plural ones do indeed end up with consistently higher values than singular ones. Also, taking this dot product with the embeddings of the words _one_, _two_, _three_, and _four_, they give increasing values, as if it’s quantitatively measuring how plural the model finds a given word.
 
 <Figure image="dotProduct.png" width="100%"/>
 
-Again, how specifically each word gets embedded is learned using data. The embedding matrix, whose columns store the embedding of each word, is the first pile of weights in our model. Using the GPT-3 numbers, the vocabulary size is 50,257, and again, technically this consists not of words, per se, but different little chunks of text called tokens. The embedding dimension is 12,288, giving us **617,558,016 weights** in total for this first step. Let’s go ahead and add that to a running tally, remembering that by the end we should count up to 175 billion weights.
+Again, how specifically each word gets embedded is learned using data. The embedding matrix, whose columns store the embedding of each word, is the first pile of weights in our model. Using the GPT-3 numbers, the vocabulary size is 50,257, and again, technically this consists not of words, per se, but different little chunks of text called tokens. The embedding dimension is 12,288, giving us **617,558,016 weights** in total for this first step. Let’s go add that to a running tally, remembering that by the end we should count up to 175 billion weights.
 
-<Accordion title={
-    <>
-        Comprehension Question 3: In a vector space representing meanings, the following relationship holds: <br />
-        <u> Cat - Meow + Bark = ? </u> <br />
-        The closest answer would be: <br />
-        A. Tree <br /> 
-        B. Sound <br /> 
-        C. Dog <br /> 
-        D. None of the Above
-    </>
-} 
-children={
-    "In this vector space, Cat - Meow represents a sort of sound direction. The animal that most commonly makes the bark sound is C. Dog"
-    }
-/>
+<Question 
+    question={"In a vector space representing meanings, which of the following would you expect to be closest to the vector Embedding(Cat) - Embedding(Meow) + Embedding(Bark)"} 
+    choice1="Embedding(Tree)" 
+    choice2="Embedding(Sound)" 
+    choice3="Embedding(Dog)" 
+    answer={3} 
+>
+    
+In this vector space, Embedding(Cat) - Embedding(Meow) represents a sort of sound direction. The animal that most commonly makes the bark sound is dog.
+
+</Question>
 
 ### Beyond words
 
-In the case of a transformer, we also want to think of the vectors in this embedding space as not merely representing individual words. These embeddings will also encode information about the position of the word, which we’ll talk about later. But more importantly, we should view these vectors as having the capacity to soak in context.
+In the case of a transformer, we also want to think of the vectors in this embedding space as not merely representing individual words. For one thing, these embeddings will also encode information about the position of the word, but more importantly, they need to have the capacity to soak in context.
 
 For example, a vector that started its life as the embedding of the word “king” may progressively get tugged and pulled by the various blocks in the network to end up pointing in a much more nuanced direction that somehow encodes a king who lived in Scotland, who had achieved his post after murdering the previous king, who is being described in Shakespearean language, and so on.
 
@@ -162,15 +166,15 @@ For example, a vector that started its life as the embedding of the word “king
 
 Think about our understanding of a word, like quill. Its meaning is clearly informed by its surroundings and context, whether it be a hedgehog quill or a type of pen. Sometimes, we may even include context from a long distance away. When putting together a model that is able to predict the next word, the goal is to somehow empower it to do the same thing: take in context efficiently. 
 
-In that very first step, when you create the array of vectors based on the input text, each one is simply plucked out of this embedding matrix, and each one only encodes the meaning of the single word it's associated with; no input from its surroundings. But as these vectors flow through the network, we should view the primary goal of this network as enabling each one of those vectors to soak up meaning that is more rich and specific than what mere individual words can represent.
+In that very first step, when you create the array of vectors based on the input text, each one is simply plucked out of this embedding matrix, and each one only encodes the meaning of the single word it's associated with. It's effectively a lookup table with no input from the surroundings. But as these vectors flow through the network, we should view the primary goal of this network as enabling each one of those vectors to soak up meaning that is more rich and specific than what mere individual words can represent.
 
-The network can only look at a fixed number of vectors at a time, known as its _context size_, which for GPT-3 is 2048. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
+The network can only look at a fixed number of vectors at a time, known as its _context size_. GPT-3 was trained with a context size of 2048 tokens. So the data flowing through the network will look like this array of 2048 columns, each of which has around 12k dimensions. This context size limits how much text the transformer can incorporate to make its prediction of the next word, which is why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation.
 
 <Figure image="InitialContext.png" width="100%"/>
 
 ## Unembedding
 
-We'll go into the details of the Attention Block in due time, but first we'll skip ahead and talk about what happens at the very end of the Transformer. Remember, the desired output is a probability distribution over all possible chunks of text that might come next.
+We'll go into the details of the Attention Block in the next chapter, but first we'll skip ahead and talk about what happens at the very end of the Transformer. Remember, the desired output is a probability distribution over all possible chunks of text that might come next.
 
 For example, if the last word is _Professor_, and the context includes words like _Harry Potter_, and the immediately preceding is _least favorite_, and if we pretend that all tokens look like full words, a well-trained network would presumably assign a high number to the word _Snape_.
 
@@ -189,25 +193,25 @@ This is often called the **unembedding matrix**, and we'll give it the label $$W
 
 Keeping score on our total number of parameters, the unembedding matrix has one row for each word in the vocabulary, giving 50,257 words, and each row has the same number of elements as the dimension of the embedding, giving 12,288 columns. It’s very similar to the embedding matrix, just with the dimensions of the rows and columns swapped, so it adds another 617M parameters to the network, making our parameter count so far a little over a billion; a small but not insignificant fraction of the 175 billion that we'll end up with in total.
 
-<Accordion title={
-    <>
-        Comprehension Question 4: If the model has a predefined vocabulary of 32,000 tokens and the dimension of the embedding matrix dimension is 10,000, the unembedding matrix has: <br />
-        A. 10,000 rows <br /> 
-        B. 320,000,000 tokens <br /> 
-        C. 32,000 rows <br /> 
-        D. 175,000,000,000 columns
-    </>
-} 
-children={
-    "C. 32,000 rows. Since the dimension the embedding matrix exists in is 10,000, the embedding matrix must have 10,000 rows. Then the embedding matrix must have 32,000 columns, one for each token. The unembedding matrix is similar to the embedding matrix, but the dimensions of the rows and columns are swapped, giving 32,000 rows and 10,000 columns."
-    }
-/>
+<Question 
+    question={"If the model has a predefined vocabulary of 32,000 tokens and the dimension of the embedding matrix dimension is 10,000, the unembedding matrix has:"} 
+    choice1="32,000 rows" 
+    choice2="320,000,000 tokens" 
+    choice3="10,000 rows" 
+    answer={1} 
+>
+
+Since the dimension the embedding matrix exists in is 10,000, the embedding matrix must have 10,000 rows. Then the embedding matrix must have 32,000 columns, one for each token.  
+    
+The unembedding matrix is similar to the embedding matrix, but the dimensions of the rows and columns are swapped, giving 32,000 rows and 10,000 columns.
+
+</Question>
 
 ## Softmax
 
 For the last lesson of this chapter, we will go over the softmax function, since it will appear again once we dive into the attention blocks.
 
-The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where everything we do looks like a matrix-vector product, the outputs we get by default won’t abide by this at all. The values are often negative or sometimes greater than 1, and they almost certainly don’t all add up to 1.
+The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where so much of what we do looks like a matrix-vector products, the outputs we get by default won’t abide by this at all. The values are often negative or sometimes greater than 1, and they almost certainly don’t all add up to 1.
 
 <Figure image="SoftMax.png" width="100%"/>
 
@@ -219,7 +223,7 @@ The reason for calling it _softmax_ is that instead of simply pulling out the bi
 
 <Figure image="howsoftmax.png" width="100%"/>
 
-In some cases, such as when ChatGPT is using this distribution to sample each next word, we can add a little extra spice into this softmax function with a constant _T_ inserted into all these exponents. It's called _T_ since it vaguely resembles the role of temperature in certain thermodynamics equations. The effect of this constant is that when _T_ is larger, more weight is given to lower values, making the distribution more uniform. When _T_ is smaller, the larger values will dominate the distribution, and in the extreme setting when _T_ is equal to 0, all the weight goes to the maximum value.
+In some cases, such as when ChatGPT is using this distribution to sample each next word, we can add a little extra spice into this softmax function with a constant _T_ inserted into all these exponents. We call it "temperature" since it vaguely resembles the role of temperature in certain thermodynamics equations. The effect of this constant is that when _T_ is larger, more weight is given to lower values, making the distribution more uniform. When _T_ is smaller, the larger values will dominate the distribution, and in the extreme setting when _T_ is equal to 0, all the weight goes to the maximum value.
 
 <Figure image="temperatureReal.png" width="100%"/>
 
