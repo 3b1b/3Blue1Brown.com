@@ -29,21 +29,17 @@ This is just one of the many examples of how directions in this high-dimensional
 
 <Figure image="Recap.png" width="80%"/>
 
----
+<Question
+  question="Recap Question: What do we call the high-dimensional vector each token is associated with in the first step in a transformer?"
+  choice1="Token"
+  choice2="Weight"
+  choice3="Embedding"
+  answer={3}
+>
 
-<Accordion title={
-    <>
-        Recap Question: What do we call the high-dimensional vector each token is associated with in the first step in a transformer? <br /> 
-        A. Token <br /> 
-        B. Weight <br /> 
-        C. Embedding <br /> 
-        D. None of the Above
-    </>
-} 
-children={"The first step in a transformer is to associate each token with a high-dimensional vector, what we call its C. Embedding."}
-/>
+The first step in a transformer is to associate each token with a high-dimensional vector, what we call its embedding.
 
----
+</Question>
 
 ## Attention Mechanism
 
@@ -166,21 +162,18 @@ The way we measure how well each key matches with each query is by computing the
 
 In our adjective-noun example, the grid would look like the one above. The keys produced by _fluffy_ and _blue_ align closely with the query produced by _creature_, resulting in the dot products in these two spots being large positive numbers. In machine learning terms, this indicates that the embeddings of _fluffy_ **attend to** the embeddings of _creature_. By contrast, the dot products between the key for some other word like _the_ and the query for the word _creature_ would be some small or negative value that reflects that the words are unrelated to each other.
 
----
+<Question
+  question="Conceptually, the key vectors act as potential ____ to the query vectors."
+  choice1="Questions"
+  choice2="Answers"
+  choice3="Nouns"
+  answer={2}
+>
 
-<Accordion title={
-    <>
-        Comprehension Question 1: Conceptually, the key vectors act as potential ____ to the query vectors.<br /> 
-        A. Questions <br /> 
-        B. Answers <br /> 
-        C. Nouns <br /> 
-        D. None of the Above
-    </>
-} 
-children={"Conceptually, we want to think of these keys as potential B. Answers to the queries."}
-/>
+Conceptually, we want to think of these keys as potential answers to the queries.
 
----
+</Question>
+
 
 After computing all the dot products of the key-query pairs, we're left with this grid, containing values ranging from $$-\infty$$ to $$\infty$$, that displays a score of how relevant each word is to updating the meaning of every other word.
 
@@ -200,21 +193,17 @@ After we apply softmax to all of the columns, we'll fill in the grid with these 
 
 At this point we're safe to think about each column as giving weights according to how relevant the word on the left is to the corresponding value at the top.
 
----
+<Question
+  question="Based on the image, how much weight does the word _blue_ hold relevant to the word _creature_?"
+  choice1="0.00"
+  choice2="0.42"
+  choice3="0.58"
+  answer={3}
+>
 
-<Accordion title={
-    <>
-        Comprehension Question 2: Based on the image, how much weight does the word "blue" hold relevant to the word "creature"?<br /> 
-        A. 0.00 <br /> 
-        B. 0.42 <br /> 
-        C. 0.58 <br /> 
-        D. "blue" is not relevant to "creature".
-    </>
-} 
-children={"C. 0.58. In the image, the word on the left, blue, holds a weight of 0.58 of relevance to the word on the top, creature."}
-/>
+In the image, the word on the left, blue, holds a weight of 0.58 of relevance to the word on the top, creature.
 
----
+</Question>
 
 Looking at the original transformer paper, we can see that there's a really compact way that they write this all down. 
 
@@ -258,21 +247,18 @@ This process is called **masking**.
 
 There are versions of attention mechanisms where masking isn’t always applied. However, in our GPT example, masking is always used to ensure that later tokens don’t influence earlier ones. This is especially relevant during training, though less so when the model is running as a chatbot.
 
----
+<Question
+  question="The masking process is done to prevent ___ tokens from influencing ___ tokens."
+  choice1="later, earlier"
+  choice2="noun, adjective"
+  choice3="earlier, later"
+  choice4="adjective, noun"
+  answer={1}
+>
 
-<Accordion title={
-    <>
-        Comprehension Question 3: The masking process is done to prevent ___ tokens from influencing ___ tokens.<br /> 
-        A. later, earlier <br /> 
-        B. noun, adjective <br /> 
-        C. earlier, later <br /> 
-        D. adjective, noun
-    </>
-} 
-children={"A. The masking process is done to prevent later tokens from influencing earlier tokens, as the later tokens could give away the word that comes next."}
-/>
+The masking process is done to prevent later tokens from influencing earlier tokens, as the later tokens could give away the word that comes next.
 
----
+</Question>
 
 Another fact that's worth reflecting on about this attention pattern is how its size is equal to the _square_ of the context size. This is why context size could act as a significant limitation for large language models and why scaling it up is nontrivial. Of course, motivated by a desire for larger context windows, in recent years we have seen some variations to the attention mechanism that are aimed at making context more scalable, but for now, all we're focused on are the basics.
 
@@ -311,22 +297,6 @@ Of course, this process isn't only done to one embedding. We would apply the sam
 <Figure image="SingleHead.png" width="80%"/>
 
 Zooming out, this whole process is what we would describe as a single head of attention.
-
----
-
-<Accordion title={
-    <>
-        Comprehension Question 4: Looking at the diagram above, how large of a proportion of the value vector of "fluffy" is to be added onto the embedding of "creature"?<br /> 
-        A. 0.42 <br /> 
-        B. 0.00 <br /> 
-        C. 1.00 <br /> 
-        D. 0.58
-    </>
-} 
-children={"A. 0.42. Since fluffy is the second word in the sentence, the value vector of the word fluffy would be multiplied throughout the second row. Since creature is the fourth word, the value vectors influencing creature would be in the fourth column. Looking in the second row and the fourth column returns a value of 0.42"}
-/>
-
----
 
 As we've covered so far, this single head of attention is parameterized by three distinct matrices: the **key matrix**, the **query matrix**, and the **value matrix**, all filled with tunable parameters.
 
