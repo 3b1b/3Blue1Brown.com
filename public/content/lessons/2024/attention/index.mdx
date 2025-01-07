@@ -6,4 +6,451 @@ video: eMlx5fFNoYc
 source: _2024/transformers/
 credits:
 - Lesson by Grant Sanderson
+- Text adaptation by Justin Sun
 ---
+
+In the previous chapter we started to explore the internal workings of transformers-one of the foundational pieces of technology inside large language models as well as many other tools in the modern wave of AI. These transformers were first introduced in a (now-famous) paper called _Attention is All You Need_, and in this chapter, we will dig into what this attention mechanism is as well as visualize how it processes data. 
+
+## Recap
+
+As a quick refresher, here is the important context we should have in mind. 
+
+The goal of the model that we are studying is to take in a piece of _text_ and _predict_ what word will come next. The input text that we take in is first broken up into little pieces that we call _tokens_, and these tokens are often words or pieces of words. This process, called tokenization, is a preprocessing step before any of the input actually enters the transformer. 
+
+To make the examples in this video simpler for us to conceptualize, let's pretend that these _tokens_ are always just words.
+
+<Figure image="TokenConventientLie.png" width="100%"/>
+
+As the tokens of the input text enter the transformer, the first step is to associate each token with a high-dimensional vector, which we call its _embedding_. 
+
+The most important idea that we should have in mind as we continue into the attention mechanism is that directions in this high-dimensional space of all possible embeddings can correspond with **semantic meaning**. For example, in the last chapter we saw how direction can correspond to gender, in the sense that adding a certain step in this space can take you from the embedding of a masculine noun to the embedding of the corresponding feminine noun. 
+
+This is just one of the many examples of how directions in this high-dimensional space could correspond to aspects of a word's meaning. The aim of a transformer is to progressively adjust these embeddings so that they don't merely encode an individual word, but rather a much, much richer contextual meaning.
+
+<Figure image="Recap.png" width="80%"/>
+
+---
+
+<Accordion title={
+    <>
+        Recap Question: What do we call the high-dimensional vector each token is associated with in the first step in a transformer? <br /> 
+        A. Token <br /> 
+        B. Weight <br /> 
+        C. Embedding <br /> 
+        D. None of the Above
+    </>
+} 
+children={"The first step in a transformer is to associate each token with a high-dimensional vector, what we call its C. Embedding."}
+/>
+
+---
+
+## Attention Mechanism
+
+Before we dive into the attention mechanism, the key piece in a transformer, it's important for us to acknowledge that some may find it quite challenging to grasp, so don't worry if it takes time to sink in. 
+
+### Motivating Examples
+
+When discussing the attention mechanism, I believe it's best to start off thinking about a couple of examples of the kind of behavior that we want the attention block to enable before we dive into any of the computational details or matrix multiplications.
+
+Consider these three phrases:  
+-American shrew **mole**.  
+-One **mole** of carbon dioxide.  
+-Take a biopsy of the **mole**.
+
+All of us know that the word **mole** in each of these sentences has different meanings that can be determined based on the context. 
+
+However, after the first step of a transformer-the one that breaks up the text and associates each token with a vector-the vector that's associated with mole would be the same in all of these cases, as the initial embedding of each token contains no reference to the context. It's only in the next step of the transformer, the attention mechanism, when the surrounding embeddings have the chance to pass information into the mole embedding and update its values. 
+
+<Figure image="MoleExample.png" width="80%"/>
+
+The big idea here is that there are multiple distinct directions in this embedding space encoding the multiple distinct meanings of the word mole. It is the job of a well-trained attention block to calculate what it needs to add to the generic embedding, as a function of its context, to move it to one of those specific directions.
+
+---
+
+To take another example, let's consider the embedding of the word **tower**. This is presumably some very generic, non-specific direction in the space, associated with lots of other large, tall nouns. 
+
+If this word was immediately preceded by **Eiffel**, you could imagine wanting the mechanism to update this vector so that it points in a direction that more specifically encodes the Eiffel Tower, maybe correlated with vectors associated with Paris and France and things made of steel. 
+
+If it was also preceded by the word **miniature**, then the vector should be updated even further so that it no longer correlates with large, tall things. 
+
+<Figure image="TowerExample.png" width="80%"/>
+
+In the previous chapter, we explored how the vectors flow through the network, including various attention blocks. More generally than just refining the meaning of a word, the attention block allows the model to move information encoded in one embedding to that of another. This transfer of information can occur over potentially large distances and can involve information that’s much richer than just a single word. Ultimately, the computation used to predict the next token depends entirely on a function of the last vector in the sequence. 
+
+---
+
+For example, imagine that the text we input was most of an entire mystery novel, all the way up to a point near the end, which reads:  
+_Therefore the murderer was..._  
+If the model is going to accurately predict the next word, that final vector in the sequence that began its life simply embedding the word *was* will have to have been updated by all of the attention blocks to represent more than the individual word. It will have to have somehow encoded all of the information from the full context window that's relevant to predicting the next word. 
+
+<Figure image="AllContext.png" width="100%"/>
+
+### The Attention Pattern
+
+What we're about to go over is what we would call a **single head of attention**, and later we will see how the attention block consists of many different heads run in parallel. 
+
+<Figure image="HeadOfAttention.png" width="80%"/>
+
+Let's explore a much simpler example as we go through this attention mechanism.
+
+---
+
+Imagine that our input includes the phrase:  
+_A fluffy blue creature roamed the verdant forest._  
+And suppose that the only type of update that we care about, for now, is having the adjectives in the phrase adjust the initial embeddings of their corresponding nouns.
+
+<Figure image="SimplerExample.png" width="100%"/>
+
+Again, the initial embedding for each word is some high-dimensional vector that only encodes the meaning of that particular word with no context. 
+
+Actually, that's only partly true, as these embeddings also encode the position of the word. There's a lot more to say about the specific way that the positions are encoded, but for now, all we need to know is that the entries of this vector are enough to tell you both what the word is and where it exists in the context. Let's go ahead and denote these embeddings with the letter E. 
+
+Our goal is to have a series of computations produce a new refined set of embeddings where, in our case, those corresponding to the nouns have ingested the meaning from their corresponding adjectives.
+
+<Figure image="Embeddings.png" width="80%"/>
+
+As we're engaging in the deep learning process, we want most of the computations involved to look like matrix-vector products, where the matrices are full of tunable weights, things that the model will learn based on data. 
+
+<Figure image="DeepLearning.png" width="100%"/>
+
+To be clear, this example of adjectives updating nouns is just to illustrate the type of behavior that an attention head could be doing. The true behavior of an attention head is much harder to parse-as is with much of deep learning-as it’s based on the tweaking and tuning of a huge number of parameters to minimize some cost function. 
+
+As we explore all of the different matrices filled with parameters involved in this process, having a visual example of what the attention mechanism might be doing will help keep the concepts much more concrete.
+
+---
+
+### Queries
+
+Going back to the sentence:  
+_A fluffy blue creature roamed the verdant forest._  
+
+For the first step in this attention block, we can imagine each noun, like creature, in the sentence asking the question:  
+**"Hey, are there any adjectives sitting in front of me?"**  
+and for the adjectives fluffy and blue responding:  
+**"Yeah, I'm an adjective and I'm in that position."**
+
+These questions, like the one asked by the noun _creature_, are somehow encoded as yet another vector that we call the **query**. This query vector has a much smaller dimension than the embedding vector.
+
+Computing this query looks like taking a certain matrix, which we'll label as $$W_Q$$, and multiplying it by the embedding of the word. To compress things a bit, let's write the query vector as $$\vec{Q}$$.
+
+<Figure image="W_Q.png" width="80%"/>
+
+When we place a matrix next to an arrow, like $$W_Q$$ in the image, it's meant to represent multiplying the matrix by the vector at the arrow's start returns the vector at the arrow's end. In our case, we'll multiply this matrix $$W_Q$$ by all of the embeddings in the context and produce one query vector for each token. 
+
+<Figure image="Q_I.png" width="100%"/>
+
+The entries of the matrix $$W_Q$$ are the parameters of the model, which means that their true behavior is learned from data. In practice, what this query matrix $$W_Q$$ does in a particular attention head is challenging to parse. 
+
+As we imagine an example that we might hope our attention mechanism might learn, that being having the adjectives adjust the embeddings of the nouns, we'll suppose that this query matrix $$W_Q$$ maps the embeddings of nouns to certain directions in a smaller query space that somehow encode the notion of _looking for adjectives in preceding positions_.
+
+<Figure image="QuerySpace.png" width="100%"/>
+
+But what does it do to non-noun embeddings?
+
+Who knows? Maybe it's simultaneously trying to accomplish some other goal with them. What we're focused on right now is what is happening with the nouns.
+
+### Keys
+
+At the same time, a second matrix-the **key matrix**-is also multiplied by each of the embeddings. This key matrix is full of tunable parameters, just like the query matrix. The product is a second sequence of vectors that we call the **keys**. Conceptually, we want to think of these keys as potential answers to the queries. We'll label the key matrix as $$W_k$$ and the keys as $$\vec{K}$$.
+
+<Figure image="Keys.png" width="80%"/>
+
+This key matrix, just like the query matrix, maps the embedding vectors to that same smaller dimensional space. We want to think of the keys as matching the queries whenever they closely align with each other. For example, in our case we would imagine that the key matrix maps the adjectives like _fluffy_ and _blue_ to vectors that are closely aligned with the query produced by the word _creature_.
+
+<Figure image="QueryKey.png" width="80%"/>
+
+The way we measure how well each key matches with each query is by computing the dot product for each key-query pair. One way we could visualize this is as a grid of dots, where bigger dots correspond to larger dot products. The larger dot products indicate higher alignment between the key and the query, while smaller dot products represent weaker alignment.
+
+<Figure image="DotProduct.png" width="80%"/>
+
+In our adjective-noun example, the grid would look like the one above. The keys produced by _fluffy_ and _blue_ align closely with the query produced by _creature_, resulting in the dot products in these two spots being large positive numbers. In machine learning terms, this indicates that the embeddings of _fluffy_ **attend to** the embeddings of _creature_. By contrast, the dot products between the key for some other word like _the_ and the query for the word _creature_ would be some small or negative value that reflects that the words are unrelated to each other.
+
+---
+
+<Accordion title={
+    <>
+        Comprehension Question 1: Conceptually, the key vectors act as potential ____ to the query vectors.<br /> 
+        A. Questions <br /> 
+        B. Answers <br /> 
+        C. Nouns <br /> 
+        D. None of the Above
+    </>
+} 
+children={"Conceptually, we want to think of these keys as potential B. Answers to the queries."}
+/>
+
+---
+
+After computing all the dot products of the key-query pairs, we're left with this grid, containing values ranging from $$-\infty$$ to $$\infty$$, that displays a score of how relevant each word is to updating the meaning of every other word.
+
+<Figure image="Score.png" width="80%"/>
+
+The way we're about to use these scores is by taking a certain weighted sum along each column, weighted by the relevance. 
+
+---
+
+Instead of having values range from $$-\infty$$ to $$\infty$$, what we want is for the numbers in these columns to be between 0 and 1 and for each column to add up to 1, as if they were a probability distribution. If you're coming from the last chapter, you're already familiar with what we need to do: compute a **softmax** along each one of these columns to normalize its values. 
+
+<Figure image="SoftMax.png" width="80%"/>
+
+After we apply softmax to all of the columns, we'll fill in the grid with these normalized values. We call this grid the **attention pattern**.
+
+<Figure image="Normalized.png" width="80%"/>
+
+At this point we're safe to think about each column as giving weights according to how relevant the word on the left is to the corresponding value at the top.
+
+---
+
+<Accordion title={
+    <>
+        Comprehension Question 2: Based on the image, how much weight does the word "blue" hold relevant to the word "creature"?<br /> 
+        A. 0.00 <br /> 
+        B. 0.42 <br /> 
+        C. 0.58 <br /> 
+        D. "blue" is not relevant to "creature".
+    </>
+} 
+children={"C. 0.58. In the image, the word on the left, blue, holds a weight of 0.58 of relevance to the word on the top, creature."}
+/>
+
+---
+
+Looking at the original transformer paper, we can see that there's a really compact way that they write this all down. 
+
+<Figure image="Paper.png" width="100%"/>
+
+Here, the variables $$Q$$ and $$K$$ represent the full arrays of query and key vectors, respectively—those smaller vectors obtained by multiplying the embeddings by the query and key matrices.
+
+Shifting our focus to the right side, the numerator in the softmax function, $$QK^T$$, is a really compact way to represent the grid of all possible dot products between key-query pairs.
+
+<Figure image="Compact.png" width="80%"/>
+
+A small technical detail that we didn't mention is that for numerical stability, it's helpful to divide all of these values by the square root of the dimension of that key-query space, hence the denominator $$\sqrt{d_k}$$.
+
+Next, the softmax function that's wrapped around the full expression is meant to be understood as applying softmax column by column. 
+
+<Figure image="SoftMaxEq.png" width="80%"/>
+
+As for that $$V$$ term, we'll talk about it in just a second, as there's one other technical detail that we've skipped so far. 
+
+---
+
+During the training process, the model is run on a given text example, and its weights are adjusted to either reward or punish it based on the probability it assigns to the true next word. It turns out that, to make the process more efficient, the model also simultaneously predicts every possible next token following each subsequence of tokens in the passage.
+
+For example, with the phrase that we've been focusing on:  
+_A fluffy blue creature roamed the verdant forest._    
+The model might also be predicting what words follow creature and what words follow the.
+
+<Figure image="Prediction.png" width="80%"/>
+
+This is much more efficient, as what would otherwise be a single training example effectively acts as many. For the purposes of our attention pattern, it means that we would never want words that appear later in the input to influence words that appear earlier, since otherwise they could kind of give away the answer for what comes next. 
+
+What this means is that we want all of these spots where later tokens influence earlier ones, as indicated with orange, to somehow be forced to be zero.
+
+<Figure image="Forced0.png" width="80%"/>
+
+The simplest thing we _could_ do is to set them equal to 0, but if we did that, then the columns wouldn't add up to 1 anymore and wouldn't be normalized. Instead, a common way to force them to equal 0, prior to applying softmax, is to set all of those entries to be negative infinity. That way, after applying softmax, all of those spots get turned into 0, but the columns stay normalized. 
+
+This process is called **masking**.
+
+<Figure image="Masking.png" width="80%"/>
+
+There are versions of attention mechanisms where masking isn’t always applied. However, in our GPT example, masking is always used to ensure that later tokens don’t influence earlier ones. This is especially relevant during training, though less so when the model is running as a chatbot.
+
+---
+
+<Accordion title={
+    <>
+        Comprehension Question 3: The masking process is done to prevent ___ tokens from influencing ___ tokens.<br /> 
+        A. later, earlier <br /> 
+        B. noun, adjective <br /> 
+        C. earlier, later <br /> 
+        D. adjective, noun
+    </>
+} 
+children={"A. The masking process is done to prevent later tokens from influencing earlier tokens, as the later tokens could give away the word that comes next."}
+/>
+
+---
+
+Another fact that's worth reflecting on about this attention pattern is how its size is equal to the _square_ of the context size. This is why context size could act as a significant limitation for large language models and why scaling it up is nontrivial. Of course, motivated by a desire for larger context windows, in recent years we have seen some variations to the attention mechanism that are aimed at making context more scalable, but for now, all we're focused on are the basics.
+
+---
+
+Up till now, we've covered how computing this pattern lets the model deduce which words are relevant to which other words. Now we're going to need to actually update the embeddings, allowing words to pass information to whichever other words they're relevant to.
+
+For example, we would want the embedding of _fluffy_ to somehow cause a change to the embedding of _creature_, one that moves it to a different part of this dimensional embedding space that more specifically encodes a _fluffy creature_.
+
+<Figure image="Update.png" width="80%"/>
+
+What we're going to go over first is the most straightforward way that you could do this, though there's a slight way that this gets modified in the context of multi-headed attention. The most straightforward way would be to use a third matrix, what we call the **value matrix**, which you multiply by the embedding of that first word, for example _fluffy_. We'll denote this value matrix as $$W_V$$.
+
+The result of this is what we would call a **value vector**, and this is something that we would add to the embedding of the second word. In our case, this value vector is something we would add to the embedding of _creature_ to move it to a different part of the dimensional embedding space that encodes a _fluffy creature_.
+
+<Figure image="W_V.png" width="80%"/>
+
+This value vector lives in the same very high-dimensional space as the embeddings, and when the value matrix is multiplied by a word’s embedding, we can think of it effectively answering the question: if this word is relevant to adjusting the meaning of another word, what specific adjustments should be made to the other word's embedding to reflect this relevance accurately?
+
+---
+
+Looking back at our grid, we can set aside all of the keys and the queries, since after we compute the attention pattern, we're done with those. We're then going to take this value matrix and multiply it by every one of those embeddings to produce a sequence of value vectors.
+
+We might think of these value vectors as being associated with the corresponding keys. For each column in our grid, we would multiply each of the value vectors by the corresponding weight in that column.
+
+For example, under the embedding of Creature, we would be adding large proportions of the value vectors for _fluffy_ and _blue_, while all of the other value vectors get nearly zeroed out.
+
+<Figure image="ValueVector.png" width="80%"/>
+
+Then finally, the way we actually update the embedding associated with this column, previously encoding some context-free meaning of Creature, is by adding together all of these rescaled values in the column. This produces the change that we want to add, which we'll label as $$\Delta \vec{E}$$. Then, adding this $$\Delta \vec{E}$$ to the original embedding hopefully results in a refined vector that encodes a much more contextually rich meaning, like a _fluffy blue creature_ in our example.
+
+<Figure image="DeltaE.png" width="80%"/>
+
+Of course, this process isn't only done to one embedding. We would apply the same weighted sum across all of the columns in this picture, producing a sequence of changes. When adding all of those changes to the corresponding embeddings, they produce a full sequence of more refined embeddings popping out of the attention block. 
+
+<Figure image="SingleHead.png" width="80%"/>
+
+Zooming out, this whole process is what we would describe as a single head of attention.
+
+---
+
+<Accordion title={
+    <>
+        Comprehension Question 4: Looking at the diagram above, how large of a proportion of the value vector of "fluffy" is to be added onto the embedding of "creature"?<br /> 
+        A. 0.42 <br /> 
+        B. 0.00 <br /> 
+        C. 1.00 <br /> 
+        D. 0.58
+    </>
+} 
+children={"A. 0.42. Since fluffy is the second word in the sentence, the value vector of the word fluffy would be multiplied throughout the second row. Since creature is the fourth word, the value vectors influencing creature would be in the fourth column. Looking in the second row and the fourth column returns a value of 0.42"}
+/>
+
+---
+
+As we've covered so far, this single head of attention is parameterized by three distinct matrices: the **key matrix**, the **query matrix**, and the **value matrix**, all filled with tunable parameters.
+
+### Counting Parameters
+
+Let's take a moment to continue what we started in the last chapter and count up the total number of model parameters using the numbers from GPT-3.
+
+---
+
+In GPT-3, the key and query matrices each have **12,288 columns**, matching the embedding dimension, and **128 rows**, matching the dimension of that smaller key-query space. This gives us an additional **1,572,864 parameters** for each matrix. 
+
+<Figure image="CountQueryKey.png" width="100%"/>
+
+Looking at that value matrix, the way we've described things so far would suggest that it's a square matrix that has **12,288 columns** and **12,288 rows**, since both its inputs and outputs live in the very large embedding space. If this were true, that would mean **150,994,944 added parameters**, which is many magnitudes more than the added parameters for the key and query matrices. While we _could_ devote many more parameters to the value map than to the key and query, in practice it's much more efficient to make it so the amount of parameters devoted to the value matrix is equal to that devoted to the query and key matrices.
+
+<Figure image="ValueQueryKey.png" width="80%"/>
+
+This is especially relevant in the setting of running multiple attention heads in parallel. The way this looks is that the value map is factored as a product of two smaller matrices. Conceptually, we should still think about the overall linear map, one with inputs and outputs, both in this larger embedding space, just broken up into two different steps.
+
+<Figure image="LinearMap.png" width="80%"/>
+
+The matrix on the right, the one with 12,288 columns, has the smaller amount of rows, typically the same size as the key-query space, which in our case is 128. We can think of this as mapping the large embedding vectors down to a much smaller space. We'll call this the _value-down matrix_ for now, though note that it isn't the conventional name.
+
+The second matrix, the one on the left, maps from this smaller space back up to the embedding space, producing the vectors that you use to make the actual updates. We're going to refer to this matrix as the _value-up matrix_, which again isn't the conventional name.
+
+The way this is written in most papers looks a little different and tends to make things a little more conceptually confusing. We'll go over why that's the case later.
+
+<Figure image="ValueUpMatrix.png" width="80%"/>
+
+In Linear Algebra terms, what we're essentially doing is constraining the overall value map to be a _low-rank transformation_.
+
+---
+
+Going back to the parameter count, all four of these matrices have the same size, and adding them all up gets about 6.3 million parameters for one attention head.
+
+<Figure image="AttentionHeadCount.png" width="80%"/>
+
+---
+
+As a quick side note, to be a little more accurate, everything described so far is what people would call a self-attention head, which is different from a variation that comes up in other models known as a cross-attention head. 
+
+This isn't relevant to our GPT example, but if you're curious, a cross-attention head is involved in models that process two distinct types of data, like text in one language and text in another language that's part of an ongoing generation of a translation.
+
+<Figure image="CrossAttention.png" width="100%"/>
+
+A cross-attention head looks almost identical to a self-attention head, with the only difference being that the key and query maps act on different data sets. In a model doing translation, for example, the keys might come from one language, while the queries come from another, and the attention pattern could describe which words from one language correspond to which words in another. And in this setting there would typically be no masking, since there's not really any notion of later tokens affecting earlier ones.
+
+<Figure image="CrossAttentionKeyQuery.png" width="80%"/>
+
+---
+
+Focusing back on a self-attention head, if you've understood everything so far and were to stop here, you would go with an understanding of the essence of what attention really is. All that's really left to us to do is to understand that this process is repeated many, many different times.
+
+In our central example we focused on adjectives updating nouns, but of course there are lots of different ways that context can influence the meaning of a word.
+
+For example, if the words _they crashed the_ preceded the word car, it has implications for the shape and structure of that car.
+
+<Figure image="Example.png" width="100%"/>
+
+And a lot of associations might be less grammatical. If the word wizard is anywhere in the same passage as Harry, it suggests that this might be referring to Harry Potter, whereas if instead the words Queen, Sussex, and William were in that passage, then perhaps the embedding of Harry should instead be updated to refer to the prince.
+
+The point is, for every different type of contextual updating that we might imagine, the parameters of these key and query matrices would be different to capture the different attention patterns, and the parameters of our value map would be different based on what should be added to the embeddings.
+
+<Figure image="Different.png" width="100%"/>
+
+Again, in practice the true behavior of these maps is much more difficult to interpret, where the weights are set to do whatever the model needs them to do to best accomplish its goal of predicting the next token.
+
+---
+
+Everything we've described so far is a single head of attention. A full attention block consists of what's called a multi-headed attention, where a lot of these operations are run in parallel, each with its own distinct key, query, and value maps.
+
+<Figure image="MultiHeaded.png" width="80%"/>
+
+GPT-3, for example, uses 96 attention heads inside each block. Just to spell it all out very explicitly, this means you have 96 distinct key and query matrices producing 96 distinct attention patterns. Then each head has its own distinct value matrices used to produce 96 sequences of value vectors. These value vectors are then all added together using the corresponding attention patterns as weights.
+
+<Figure image="ManyMany.png" width="100%"/>
+
+What this means is that for each token, or position in the context, every one of these heads produces a proposed change, labeled as $$\Delta \vec{E}$$, to be added to the embedding in that position. Then, all of these proposed changes would be added up, one for each head, and the result is added to the original embedding of that position. 
+
+<Figure image="AddEmbed.png" width="80%"/>
+
+This entire sum would be one _slice_ of what's outputted from this multi-headed attention block; a single one of those refined embeddings that pops out the other end of it. 
+
+Again, this is a lot to think about, so don't worry at all if it takes some time to sink in. The overall idea is that by running many distinct heads in parallel, the model is given the capacity to learn many distinct ways that context changes meaning.
+
+---
+
+Pulling up our running tally for parameter count, with 96 heads-each including its own variation of these four matrices-each block of multi-headed attention ends up with around 600 million parameters.
+
+<Figure image="ParameterCount2.png" width="80%"/>
+
+There's one other slightly annoying thing that we should really mention for any of you who go on to read more about transformers. Going back to when we covered the value map and how it is factored out into these two distinct matrices, which we labeled as the _value down_ and the _value up_ matrices, the way that we framed things suggests that this pair of matrices would be seen inside each attention head. While this _would_ be a valid design, the way that this is written in papers and the way that it's implemented in practice looks a little different. All of the _value-up matrices_ for each head appear stapled together in one giant matrix that we call the **output matrix**. This output matrix is associated with the entire multi-headed attention block. 
+
+<Figure image="OutputMatrix.png" width="80%"/>
+
+And when people refer to the value matrix for a given attention head, they're typically only referring to this first step, the one that I was labeling as the _value down_ projection into the smaller space. For those who are curious, here's an onscreen note to prevent straying too far from the main conceptual points:
+
+<Figure image="Onscreen.png" width="80%"/>
+
+Setting aside all the technical nuances, in the preview from the last chapter, we saw how data flowing through a transformer doesn't just flow through a single attention block. For one thing, it also goes through these other operations called multi-layer perceptrons, which we'll talk more about in the next chapter. This process is then repeated many, many times as the data goes through many, many copies of both operations.
+
+<Figure image="ManyBlocks.png" width="100%"/>
+
+What this means is that after a given word absorbs some of its context, there are many more chances for this more _nuanced_ embedding to be influenced by its more _nuanced_ surroundings. The further down the network we go, with each embedding taking in more and more meaning from all the other embeddings, which themselves are getting more and more nuanced, the hope is that there's the capacity to encode higher-level and more abstract ideas about a given input beyond just descriptors and grammatical structure-things like sentiment, tone, and _whether it's a poem_ and things like that.
+
+<Figure image="DeeperMeaning.png" width="80%"/>
+
+Going back once more to our parameter counting, GPT-3 includes 96 distinct layers, bringing the total number of key, query, and value parameters to just under 58 billion, all devoted to the attention heads. That is a lot, but it's only about a third of the billion that are in the network in total. So even though _attention gets all of the attention_, the majority of parameters come from the blocks sitting in between these steps.
+
+<Figure image="FinalCount.png" width="80%"/>
+
+In the next chapter, we will talk more about those other blocks and also a lot more about the training process. A big part of the story for the success of the attention mechanism is not so much any specific kind of behavior that it enables, but the fact that it's extremely _parallelizable_, meaning that it can run a huge number of computations in a short time using GPUs. Given that one of the big lessons about deep learning in the last decade or two has been that _scale alone_ seems to give huge qualitative improvements in model performance, there's a huge advantage to parallelizable architectures that allow for scaling.
+
+### More Resources
+
+If you want to learn more about this stuff, here are a couple of links.  
+- [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY&t=0s)
+- [What does it mean for computers to understand language?](https://www.youtube.com/watch?v=1il-s4mgNdI&t=0s)
+
+In particular, anything produced by Andrej Karpathy or Chris Ola tend to be pure gold. 
+
+In this lesson, we just covered attention in its current form, but if you're curious about more of the history for how we got here and how you might reinvent this idea for yourself, here is a video giving a lot more of that motivation:  
+- [Introduction to Language Modeling](https://www.youtube.com/watch?v=1il-s4mgNdI)
+
+Also, Britt Cruz from the channel The Art of the Problem has a really nice video about the history of large language models.  
+- [30 Year History of ChatGPT](https://www.youtube.com/watch?v=OFS90-FX6pg&t=0s)
+
