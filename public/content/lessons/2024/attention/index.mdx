@@ -113,7 +113,7 @@ It will have to have somehow encoded _all of the information_ from the full cont
 
 We’ll begin by describing a **single head of attention**, and later we will see how the attention block consists of many different heads running in parallel. 
 
-<Figure image="HeadOfAttention.png" width="80%"/>
+<Figure image="att.png" width="80%"/>
 
 It helps to have a simple example to reference as we do this. Imagine that our input includes the phrase:
 
@@ -274,13 +274,7 @@ This makes the training process much more efficient, as what would otherwise be 
 
 For the purposes of our attention pattern, this also means that we would never want words that appear _later_ in the input to influence words that appear _earlier_, since otherwise they could kind of give away the answer for what comes next. 
 
-In order to prevent this, what we want is for all of these spots where later tokens influence earlier ones, as indicated with orange, to somehow be forced to be zero.
-
-<Figure image="Forced0.png" width="80%"/>
-
-The simplest thing we _could_ do is to set them equal to 0, but if we did that, then the columns wouldn't add up to **1** anymore and wouldn't be normalized. 
-
-Instead, a common way to force them to equal 0, prior to applying softmax, is to set all of those entries to be negative infinity. That way, after applying softmax, all of those spots get turned into 0, but the columns stay normalized. 
+In order to prevent this, what we want is for all of these spots where later tokens influence earlier ones to somehow be forced to be zero. A common way to force them to equal zero, prior to applying softmax, is to set all of those entries to be negative infinity. That way, after applying softmax, all of those spots get turned into zero, but the columns stay normalized. 
 
 <Figure image="Masking.png" width="80%"/>
 
@@ -373,9 +367,11 @@ Conceptually, we should still think about the overall linear map, one with input
 
 The matrix on the right, the one with 12,288 columns, has the smaller number of rows, typically the same size as the key-query space, which in our case is 128. We can think of this as mapping the large embedding vectors down to a much smaller space. We'll call this the $$Value_\downarrow$$ matrix for now, though note that it isn't the conventional name.
 
-The second matrix, the one on the left, maps from this smaller space back up to the embedding space, producing the vectors that you use to make the actual updates. We're going to refer to this matrix as the $$Value_\uparrow$$ matrix, which again isn't the conventional name.
+<Figure image="vdown.png" width="80%"/>
 
-<Figure image="ValueUpMatrix.png" width="80%"/>
+The second matrix maps from this smaller space back up to the embedding space, producing the vectors that you use to make the actual updates. We're going to refer to this matrix as the $$Value_\uparrow$$ matrix, which again isn't the conventional name.
+
+<Figure image="vup.png" width="80%"/>
 
 In Linear Algebra terms, what we're essentially doing is constraining the overall value map to be a _low-rank transformation_.
 
@@ -417,7 +413,7 @@ Or a lot of associations might be less grammatical. If the word wizard is anywhe
 
 The point is, for every different type of contextual updating that we might imagine, the parameters of these key and query matrices would be different to capture the different attention patterns, and the parameters of our value map would be different based on what should be added to the embeddings.
 
-<Figure image="Different.png" width="100%"/>
+<Figure image="brakesUpdated.png" width="100%"/>
 
 Again, in practice the true behavior of these maps is much more difficult to interpret, where the weights are set to do whatever the model needs them to do to best accomplish its goal of predicting the next token.
 
