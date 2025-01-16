@@ -231,11 +231,9 @@ In the image, the word on the left, blue, holds a weight of 0.58 of relevance to
 
 The original transformer paper presents us with a really compact way to write this all down:
 
-$$\text{Attention}(Q,K,V) = \text{softmax}(\frac{K^TQ}{\sqrt{d_k}})V$$
+<Figure image="Paper.png" width="100%"/>
 
 Here, the variables $$Q$$ and $$K$$ represent the full arrays of query and key vectors, respectively—those smaller vectors obtained by multiplying the embeddings by the query and key matrices.
-
-<Figure image="Paper.png" width="100%"/>
 
 ---
 
