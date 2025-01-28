@@ -9,41 +9,31 @@ credits:
 - Text adaptation by Justin Sun
 ---
 
-If you feed a large language model the phrase:
-
-Michael Jordan plays the sport of ___.
-
-And the model correctly predicts _basketball_ as the following word, this would suggest that somewhere inside the model's hundreds of billions of parameters is stored knowledge about a specific person and his specific sport.
+If you feed a large language model the phrase “Michael Jordan plays the sport of \_\_\_” and the model correctly predicts _basketball_ as the following word, this would suggest that somewhere inside the model's hundreds of billions of parameters it has stored an association between a specific person and his specific sport.
 
 <Figure image="MotivatingExample.png" width="80%"/>
 
-In general, anyone who's played around with one of these models has a clear sense of the sheer amount of facts it has memorized. 
-
-With that being said, the motivating question for this lesson is, how exactly does this work? Where are those facts stored?
+In general, anyone who's played around with one of these models has a clear sense of the sheer amount of facts it has memorized.
 
 ## Where are facts in LLMs stored?
 
-In December of 2023, a few researchers from Google DeepMind posted about work on this question, using this same specific example of matching athletes to their sports. Although a full mechanistic understanding of how facts are stored remained unsolved, the researchers had reported some interesting partial results, including the very general high-level conclusion that facts seem to be stored inside a specific part of these networks known as the **multi-layer perceptrons**(_MLPs_ for short). 
+In December of 2023, a few researchers from Google DeepMind [posted work](https://www.alignmentforum.org/posts/iGuwZTHWb6DFY3sKB/fact-finding-attempting-to-reverse-engineer-factual-recall) on this question, using this same specific example of matching athletes to their sports. Although a full mechanistic understanding of how facts are stored remained unsolved, the researchers had reported some interesting partial results, including the very general high-level conclusion that facts seem to be stored inside a specific part of these networks known as the **multi-layer perceptrons**, often abbreviated as MLP.
 
 <Figure image="MLP.png" width="80%"/>
 
-In the last few chapters, you and I have been digging into the details of a transformer-the architecture underlying large language models.
+In the last few chapters, you and I have been digging into the details of a transformer–the architecture underlying large language models.
 
-In the previous chapter, we were focusing on a piece called attention, the block on the left of the image. The next step for us is to explore the details of what happens inside these **multi-layer perceptrons**, which make up the other big portion of the network.
+In the previous chapter, we focused on a piece called attention. The next step for us is to unpack these **multi-layer perceptrons**, which make up the other big portion of the network.
 
 ---
 
-Compared to attention, the computations in the MLPs are relatively simple, as they're essentially a pair of matrix multiplications with a simple function in between. However, interpreting what these computations are actually doing is exceedingly challenging. 
+Compared to attention, the computations in the MLPs are relatively simple, consisting essentially of a pair of matrix multiplications with a simple function in between. However, interpreting what these computations are doing is exceedingly challenging.
 
 <Figure image="Overview.png" width="80%"/>
 
 Our main goal in this lesson will be to step through the computations and make them memorable, but we'll do it in the context of showing a specific example of how one of these blocks could store a concrete fact. Specifically, it'll be storing the fact that _Michael Jordan plays basketball_.
 
-As we go through the MLP block, I will assume that you've either watched/read the last two chapters or have a basic sense of what a transformer is. But if not, here is a recap:
-
 <Accordion title="Recap">
-
-But as a refresher, here's a quick reminder of the overall flow:
 
 In the previous chapters, we've been studying a model that's trained to take in a piece of text and predict what text comes next. 
 
@@ -51,21 +41,21 @@ First, the input text is broken up into a bunch of **tokens**, which are little 
 
 <Figure image="tokens.png" width="100%"/>
 
-Then each token is associated with a high-dimensional vector, which is to say a long list of numbers, called it's **embedding**.
+Then each token is associated with a high-dimensional vector, which is to say a long list of numbers, called its **embedding**.
 
 <Figure image="embedding.png" width="100%"/>
 
 This sequence of vectors is then repeatedly passed through two kinds of operations, the first being the attention, which allows the vectors to pass information between one another, followed by the multilayer perceptron, the thing that we're going to focus on today. 
 
-<Figure image="manylayers.png" width="100%" caption="There is also a _certain_ normalization step in between, but we'll leave that for another lesson."/>
+<Figure image="manylayers.png" width="100%" caption="There is also a certain normalization step in between, but we'll leave that for another lesson."/>
 
 After this sequence of vectors has flowed through _many, many_ different iterations of both of these blocks, the hope is that each vector has soaked up enough information, both from the context as well as from the general knowledge that was encoded into the model's weights through training, that it can be used to make a prediction of what token comes next.
 
 <Figure image="MLPRecap.png" width="100%"/>
 
-As we dive into this MLP block, one of the key ideas that we **need** to have in mind is that all of these vectors live in a very, very high-dimensional space. And when we think about this space, we need to conceptualize that different directions can encode different kinds of meaning. 
+As we dive into this MLP block, one of the key ideas that we **need** to have in mind is that all of these vectors live in a very, very high-dimensional space. And when we think about this space, we need to conceptualize that different directions can encode different kinds of meaning.
 
-A very classic example is how if the embedding of _man_ is subtracted from the embedding of _woman_, and then that little step was added to another masculine noun, like uncle, it will lead to a vector that is very close to the corresponding feminine noun. 
+A very classic example is how if the embedding of _man_ is subtracted from the embedding of _woman_, and then that little step is added to another masculine noun, like uncle, it will lead to a vector that is very close to the corresponding feminine noun. 
 
 <Figure image="DirectionExample.png" width="80%" caption="In this case, this particular direction would encode _gender information_."/>
 
@@ -73,15 +63,15 @@ However, in the context of a transformer, these vectors don't merely encode the 
 
 <Figure image="strong.png" width="100%"/>
 
-Ultimately, each vector needs to encode something far, far beyond the meaning of a single word, since it needs to be sufficient to predict what will come next. 
+Ultimately, each vector needs to encode something far, far beyond the meaning of a single word, since it needs to be sufficient to predict what will come next.  
 
 </Accordion>
 
-In the last chapter, we've already covered how attention blocks let us incorporate context, but a majority of the model parameters actually live inside the MLP blocks. A common thought for what these MLP blocks might be doing is that they offer _an extra capacity to store facts_. 
+In the last chapter, we've already covered how attention blocks let us incorporate context, but a majority of the model parameters live inside the MLP blocks. A common thought for what these MLP blocks might be doing is that they offer _an extra capacity to store facts_.
 
 ### Assumptions
 
-Now before we dive into this example of how exactly the MLP could store the fact that _Michael Jordan plays basketball_, we're going to have to make a couple of assumptions about the high-dimensional space that we're working in.
+Before we dive into this example of how exactly the MLP could store the fact that _Michael Jordan plays basketball_, we're going to have to make a couple of assumptions about the high-dimensional space that we're working in.
 
 First, we'll suppose that one of the directions in this high-dimension space represents the idea of a first name _Michael_; another nearly perpendicular direction represents the idea of the last name _Jordan_; and a third, also nearly perpendicular, direction that represents the idea of _basketball_:
 
@@ -89,7 +79,7 @@ First, we'll suppose that one of the directions in this high-dimension space rep
 
 What this means is that, if we looked into the network and took out one of the vectors being processed, the dot product between one of the directions in this high-dimensional space and the vector will represent how well it aligns with the direction. 
 
-For example, if the dot product of the direction _Michael_ and the vector was one, that would mean the vector encodes the idea of a person with the first name Michael. Otherwise, if the dot product were zero or negative, it would mean the vector doesn't really align with the _Michael_ direction.
+For example, if the dot product of the direction _Michael_ and the vector is one, that would mean the vector encodes the idea of a person with the first name Michael. Otherwise, if the dot product were zero or negative, it would mean the vector doesn't really align with the _Michael_ direction.
 
 <Figure image="align.png" width="50%" caption="This $$\vec{E}$$ vector aligns with the _Micheal_ direction"/>
 <Figure image="noalign.png" width="50%" caption="This $$\vec{E}$$ vector doesn't align with the _Micheal_ direction"/>
@@ -104,14 +94,14 @@ Now, let's think of a vector that is meant to represent the full name, Michael J
 
 <Figure image="BothNames.png" width="100%"/>
 
-Since the text Michael Jordan spans two different tokens, _Michael_ and _Jordan_, this would also mean we have to assume that an earlier attention block has successfully passed information to the second of these two vectors, _Jordan_, to ensure that it can encode both names.
+Since the text Michael Jordan spans two different tokens, _Michael_ and _Jordan_, this would also mean we have to assume that an earlier attention block has successfully passed information to the second of these two vectors, Jordan, to ensure that it can encode both names.
 
 
-With all that as the assumptions, let's now dive into the core of the lesson. What happens inside a **multilayer perceptron**?
+With all that as the assumptions, let's now dive into the core of the lesson. What happens inside a multilayer perceptron?
 
 ### Inside an MLP
 
-When entering the MLP block, each vector that was originally associated with one of the tokens from the input text is going to go through a short series of operations that'll result in another vector of the same dimension.
+When entering the MLP block, each vector that was originally associated with one of the tokens from the input text is going to go through a short series of operations that will result in another vector of the same dimension.
 
 <Figure image="mlppre.png" width="100%" caption="This sequence of operations is applied to every vector in the sequence and all happens in parallel."/>
 
@@ -129,12 +119,12 @@ What this means is that the vectors don't exchange information with each other i
   answer={3}
 >
 
-Vectors that pass through the MLP go through the operation in parallel, meaning they do not communicate and exchange information with each other.
+Vectors that pass through the MLP go through the operation in parallel, and they do not communicate and exchange information with each other.
 
 </Question>
 
 
-Now, when we say that this MLP block is going to encode the fact that _Michael Jordan plays basketball_, what we mean is that, if a vector that encodes the first name _Michael_ and last name _Jordan_ flows in the block, then we hope that the sequence of computations that exist in this block will produce an output, one that includes the direction _basketball_, to be added on to the vector encoding _Michael Jordan_.
+When we say that this MLP block is going to encode the fact that _Michael Jordan plays basketball_, what we mean is that, if a vector that encodes the first name _Michael_ and last name _Jordan_ flows in the block, then we hope that the sequence of computations that exist in this block will produce an output, one that includes the direction _basketball_, to be added on to the vector encoding _Michael Jordan_.
 
 <Figure image="MLPJordan.png" width="100%"/>
 
@@ -154,17 +144,17 @@ For our example, let's suppose that the very first row happened to equal this _f
 
 <Figure image="Step13.png" width="100%"/>
 
-And even better, take a moment to think about what it would mean if that first row was this _first name Michael_ plus _last name Jordan_ direction, which for simplicity we'll write as $$\vec{M}+\vec{J}$$.
+Even better, take a moment to think about what it would mean if that first row was this _first name Michael_ plus _last name Jordan_ direction, which for simplicity we'll write as $$\vec{M}+\vec{J}$$.
 
 As we take the dot product of $$\vec{M}+\vec{J}$$ with this embedding $$\vec{E}$$, things distribute really nicely, resulting in $$\vec{M}·\vec{E} + \vec{J}·\vec{E}$$.
 
 <Figure image="Step14.png" width="100%"/>
 
-Notice how the value of this dot product would be 2 if the vector encodes the full name _Michael Jordan_, and otherwise it would be less than or equal to 1.
+Notice how the value of this dot product would be two if the vector encodes the full name _Michael Jordan_, and otherwise it would be less than or equal to one.
 
 This is just one row in this matrix. We might think of all of the other rows as asking some other kinds of questions in parallel, probing at some other sorts of features of the vector being processed.
 
-<Figure image="Step15.png" width="80%"/>
+<Figure image="Step15Updated.png" width="80%"/>
 
 ### Bias
 
@@ -174,13 +164,11 @@ For our example, let's imagine that the value of this bias in that very first co
 
 <Figure image="Bias1.png" width="100%"/>
 
-Now, you might very reasonably wonder why we would want to assume that the model has learned this, and in a moment you'll see why it'll turn out very clean if we have a value here that is positive if and only if a vector encodes the full name _Michael Jordan_.
-
-Before that, let's first finish discussing the rest of this process.
+You might very reasonably wonder why we would want to assume that the model has learned this, and in a moment you'll see why it'll turn out very clean if we have a value here that is positive if and only if a vector encodes the full name _Michael Jordan_.
 
 ---
 
-The total number of rows in this matrix-which is something like the _number of questions being asked_-in the case of GPT-3, whose numbers we've been following, is just under 50,000 and is exactly four times the number of dimensions in this embedding space. There's no specific reason why. You could make it more; you could make it less, but having a clean multiple tends to be friendly for hardware.
+The total number of rows in this matrix is something like the _number of questions being asked_. In the case of GPT-3, whose numbers we've been following, is just under 50,000 and is exactly four times the number of dimensions in this embedding space. There's no specific reason why. You could make it more; you could make it less, but having a clean multiple tends to be friendly for hardware.
 
 <Figure image="4embed.png" width="100%"/>
 
@@ -194,11 +182,11 @@ At this point, a problem is that this operation is purely linear, but language i
 
 ### Rectified Linear Unit (ReLU)
 
-In order to obtain this simple yes/no answer, the next step in this process is to pass this large intermediate vector through a very simple non-linear function, known as the **Rectified Linear Unit**, or ReLU for short. A common choice for this ReLU function is one that takes all of the negative values and maps them to zero and leaves all of the positive values unchanged.
+In order to obtain this simple yes/no answer, the next step in this process is to pass this large intermediate vector through a very simple non-linear function. A common choice is one known as the **Rectified Linear Unit**, or ReLU for short. If you pass in a negative value, it returns a zero, and if you pass in a positive value, it leaves it unchanged.
 
 <Figure image="ReLU.png" width="80%"/>
 
-Taking our imagined example where this first entry of the intermediate vector is one if and only if the full name is _Michael Jordan_ and zero or negative otherwise, after you pass it through the ReLU, you'll end up with a very clean value where all of the zero and negative values are clipped to zero. So this output would be one for the full name _Michael Jordan_ and zero otherwise. 
+Consider our imagined example where this first entry of the intermediate vector is one if and only if the full name is _Michael Jordan_ and zero or negative otherwise, after you pass it through the ReLU, we can simply say that it is zero otherwise, as all the negative values get clipped to zero.
 
 <Figure image="And.png" width="100%" caption="This function very directly mimics the behavior of an AND gate."/>
 
@@ -206,41 +194,42 @@ Often models will use a slightly modified function called GELU, which has the sa
 
 ### Neurons
 
-When people refer to the **neurons** of a transformer, they're often referring to the values leaving the ReLU. 
+When people refer to the **neurons** of a transformer, they're referring to the values leaving this ReLU.
 
 <Figure image="Neurons1.png" width="100%"/>
 
-And whenever you see that common neural network picture with a layer of dots and a bunch of lines connecting to the previous layer, which we had in the earlier lessons of this series, it's typically meant to convey this combination of a linear step, a matrix multiplication, followed by some simple term-wise nonlinear function like a ReLU.
+Whenever you see that common neural network picture with a layer of dots and a bunch of lines connecting to the previous layer, which we had in the earlier lessons of this series, it's typically meant to convey this combination of a linear step, a matrix multiplication, followed by some simple term-wise nonlinear function like a ReLU.
 
 <Figure image="NeuralNetwork.png" width="100%"/>
 
-A neuron would be referred to as **active** whenever this value is positive and **inactive** if that value were zero. In the image above, the white dots would symbolize that neuron being active. 
+A neuron would be called **active** whenever this value is positive and **inactive** if that value is zero. In the image above, the white dots symbolize a neuron being active. 
 
 <Question
-  question="For our example, the purpose of the ReLU is to..."
-  choice1="Make all the values zero."
-  choice2="Return a simple yes/no answer for the full name Michael Jordan by setting all zero and negative values to zero."
-  choice3="Add a linear step to the MLP."
-  answer={2}
+  question=" Using the GPT-3 numbers, how many parameters does the ReLU function require?"
+  choice1="0"
+  choice2="1"
+  choice3="12,288"
+  choice4="49,152"
+  answer={1}
 >
 
-In order to obtain this simple yes/no answer, the next step in the MLP is to pass the large intermediate vector leaving the first linear step through a very simple non-linear function, known as the **Rectified Linear Unit**, or ReLU for short.
+The ReLU does not use any parameters. It acts the same regardless of how the network has been trained.
 
 </Question>
 
 ### Third Step
 
-The next step in this MLP process looks very similar to the first one. The vector leaving the ReLU would be multiplied by a very large matrix, followed by adding a certain bias vector. However, in this case the number of dimensions in the output is back down to the size of the initial embedding space.  We'll denote this matrix as the down projection matrix.
+The next step in this MLP process looks very similar to the first one. The vector leaving the ReLU would be multiplied by a very large matrix, followed by adding a certain bias vector. However, in this case, the number of dimensions in the output is back down to the size of the initial embedding space.  We'll denote this matrix as the down projection matrix.
 
 <Figure image="DPM.png" width="100%"/>
 
-And this time, instead of thinking of things row by row, it's actually nicer to think of it column by column. 
+This time, instead of thinking of things row by row, it's nicer to think of it column by column.
 
 <Figure image="Column1.png" width="100%"/>
 
 Another way to conceptually think of matrix multiplication is by taking each column of the matrix and multiplying it by the corresponding term in the vector that it's processing, and then adding together all of those rescaled columns.
 
-The reason it's nicer to think about it this way is because here the columns have the same dimension as the embedding space, so we can think of the columns as directions in that space. For instance, let's imagine that the model has learned to make that first column of this matrix into this _basketball_ direction that we'll suppose exists.
+The reason it's nicer to think about it this way is because here the columns have the same dimension as the embedding space, so we can think of the columns as directions in that space. For instance, let's imagine that the model has learned to make that first column of this matrix into this _basketball_ direction that we suppose exists.
 
 <Figure image="BDirection.jpeg" width="100%"/>
 
@@ -248,27 +237,27 @@ What that would mean is that when the relevant neuron in that first position is 
 
 <Figure image="BNeuron.png" width="100%"/>
 
-But it doesn't just have to be basketball. The model could also bake into this column many other features that it wants to associate with something that has the full name Michael Jordan, like the Chicago Bulls, or maybe the number 23. On top of that, all of the other columns in this matrix are telling you what will be added to the final result if the corresponding neuron is _active_.
+It doesn't just have to be basketball. The model could also bake into this column many other features that it wants to associate with something that has the full name Michael Jordan, like the Chicago Bulls, or the number 23. On top of that, all of the other columns in this matrix tell you what will be added to the final result if the corresponding neuron is _active_.
 
-And if you have a bias in this case, it's something that's added on regardless of the neuron values. For now, feel free to ignore it, as it's kind of hard to understand exactly what it's doing, just like all other parameter-filled objects. We'll label this down projection matrix as $$W_\downarrow$$ and this bias vector as $$B_\downarrow$$.
+If you have a bias in this case, it's something that's added on regardless of the neuron values. For now, feel free to ignore it, as it's kind of hard to say exactly what it's doing, just like all other parameter-filled objects. We'll label this down projection matrix as $$W_\downarrow$$ and this bias vector as $$B_\downarrow$$.
 
 ---
 
-As we previewed earlier, what we do with this resulting vector is add it to the vector that flowed into the block at that position, and that returns the final result. 
+As we previewed earlier, the result of the last linear step is added to the one that flowed into the block at that position, and that returns the final result. 
 
 <Figure image="MLPEnd.png" width="100%"/>
 
-For example, if the vector flowing in encoded both first name _Michael_ and last name _Jordan_, then because this sequence of operations will trigger that AND gate, it will add on the _basketball_ direction and result in a vector that encodes all of those together.
+For example, if the vector flowing in encoded both first name _Michael_ and last name _Jordan_, then because this sequence of operations will trigger what is effectively an AND gate, it will add on the _basketball_ direction and result in a vector that encodes all of those together.
 
 <Figure image="MJBex.png" width="100%"/>
 
-And remember, this is a process happening to every one of those vectors in parallel, not just this one vector. In particular, taking the GPT-3 numbers, it means that this block doesn't just have 50,000 neurons in it; it has 50,000 times the number of tokens in the input.
+Remember, this is a process happening to every one of those vectors in parallel, not just this one vector. In particular, taking the GPT-3 numbers, the number of neuron activations in one of these blocks is not just 50,000, it’s 50,000 times the number of tokens in the input.
 
 <Figure image="Figure1.png" width="100%"/>
 
 ---
 
-And that concludes the MLP operation: two matrix products, each with a bias added, and a simple clipping function in between.
+And that’s it! That’s all there is to an MLP: Two matrix products, each with a bias added, and a simple clipping function in between.
 
 If any of you have watched the earlier videos of the series, you will recognize this structure as the most basic kind of neural network that we studied there. In the previous example, the neural network was trained to recognize handwritten digits. 
 
@@ -282,13 +271,13 @@ But before we conclude the lesson, I do want to step back and reflect on two dif
 
 ### Counting Parameters
 
-In the last two chapters, we started counting up the total number of parameters in GPT-3 and seeing exactly where they live, so let's quickly finish it up here. We already mentioned how this up projection matrix, $$W_\uparrow$$, has just under 50,000 rows and that each row matches the size of the embedding space, which for GPT-3 is 12,288. Multiplying those together gives us 604 million parameters just for that matrix. The down projection matrix, $$W_\downarrow$$, has the same number of parameters, just with a transposed shape, giving us another 604 million parameters. 
+In the last two chapters, we started counting up the total number of parameters in GPT-3 and seeing exactly where they live, so let's quickly finish it up here. We already mentioned how this up projection matrix, $$W_\uparrow$$, has just under 50,000 rows and that each row matches the size of the embedding space, which for GPT-3 is 12,288. Multiplying those together gives us 604 million parameters just for that matrix. The down projection matrix, $$W_\downarrow$$, has the same number of parameters, just with a transposed shape, giving us another 604 million parameters.
 
-Together, these two matrices contain about 1.2 billion parameters. While the bias vector does also account for a couple more parameters, it's a trivial proportion of the total, so we're not going to cover it.
+Together, these two matrices contain about 1.2 billion parameters. While the bias vector does also account for a couple more parameters, it's a trivial proportion of the total, so we’ll disregard it.
 
 <Figure image="Parameter.png" width="100%"/>
 
-But that's not all. In GPT-3, this sequence of embedding vectors flows through not one, but 96 distinct MLPs, so the total number of parameters devoted to all of these blocks adds up to about 116 billion. This is around 2 thirds of the total parameters in the network, and when you add it to everything that we had before, for the attention blocks, the embedding, and the unembedding, you do indeed get that grand total of **175 billion** parameters.
+That's not all. In GPT-3, this sequence of embedding vectors flows through not one, but 96 distinct MLPs, so the total number of parameters devoted to all of these blocks adds up to about 116 billion. This is around two-thirds of the total parameters in the network, and when you add it to everything that we had before, for the attention blocks, the embedding, and the unembedding, you do indeed get that grand total of **175 billion parameters**.
 
 <Figure image="TotalParam.png" width="80%"/>
 
@@ -300,43 +289,55 @@ As to that second point of reflection, you might be wondering if this central _M
 
 It _is_ true that the rows of that first matrix can be thought of as directions in this embedding space, and that means the activation of each neuron tells you how much a given vector aligns with some specific direction. It _is_ also true that the columns of that second matrix tell you what will be added to the result if that neuron is active.
 
-However, evidence suggests that individual neurons very rarely represent a single clean feature like _Michael Jordan_, and there may actually be a very good reason that this is the case. It's related to an idea known to interpretability researchers as **superposition**, and it might help to explain both why the models are especially hard to interpret as well as why they scale surprisingly well.
+However, evidence suggests that individual neurons very rarely represent a single clean feature like _Michael Jordan_, and there may actually be a very good reason that this is the case. It's related to an idea known to interpretability researchers as [superposition](https://transformer-circuits.pub/2022/toy_model/index.html), and it might help to explain both why the models are especially hard to interpret as well as why they scale surprisingly well.
+
 
 ### Superposition
 
-The basic idea is, if you have an n-dimensional space and you want to represent a bunch of different features using directions that are all perpendicular to one another in that space, that way if you add a component in one direction it won't influence any of the other directions, then the maximum number of vectors you can fit is only n, the number of dimensions.
+The basic idea is that if you have an n-dimensional space and you want to represent a bunch of different features using directions that are all perpendicular to one another in that space (that way if you add a component in one direction it won't influence any of the other directions) then the maximum number of vectors you can fit is only n, the number of dimensions.
 
 <Figure image="SuperPos1.png" width="80%" caption="To a mathematician this is the definition of dimension!"/>
 
-But where it gets interesting is when you relax that constraint a little bit and you tolerate some noise. Say you allow those features to be represented by vectors that aren't exactly perpendicular; they're just nearly perpendicular, maybe between _89_ and _91_ degrees apart.
+However, what if you relax that constraint a little bit and tolerate some noise? Say you allow those features to be represented by vectors that aren't exactly perpendicular; they're just nearly perpendicular, maybe between _85_ and _95_ degrees apart.
 
 For smaller dimensions, this hardly gives you any extra wiggle room to fit more vectors in, which makes it all the more counterintuitive that, for higher dimensions, the answer changes dramatically.
-
-For visualization purposes, here is a really quick illustration of this using some Python. The program we wrote is going to create a list of 100-dimensional vectors, each one initialized randomly, and this list is going to contain 10,000 distinct vectors, so 100 times as many vectors as there are dimensions.
-
-<Figure image="RandomDis.png" width="80%"/>
-
-This plot right here shows the distribution of angles between pairs of these vectors. Because they started at random, those angles could be anything from 0 to 180 degrees, but you'll notice that already, even just for random vectors, there's this heavy bias for the angle to be closer to 90 degrees.
-
-Then, after running a certain optimization process that iteratively nudges all of these vectors so that they try to become more perpendicular to one another, here's what the new distribution of angles looks like.
-
-<Figure image="RandomDis1.png" width="80%"/>
-
-Now, all of the possible angles between pairs of vectors sit inside this narrow range between 89 and 91 degrees.
-
----
 
 In general, a consequence of something known as the **Johnson-Lindenstrauss lemma** is that the number of vectors that can be crammed into a space that are _nearly perpendicular_ grows exponentially with the number of dimensions.
 
 <Figure image="JLL.png" width="100%"/>
 
-This is very significant for large language models, which benefit from associating independent ideas with nearly perpendicular directions. It means that it's possible for the models to store many, many more ideas than there are dimensions in the space that it's allotted. This might explain why model performance seems to scale so well with size. 
+### A Quick Demo
+
+For the video version of this lesson, I pulled up some quick and scrappy Python to demonstrate. However, in the video I made an error. I started by taking 10,000 distinct vectors, each of 100 dimensions. They begin at random, and here is a blot of what all the angles between pairs of those vectors look like.
+
+<Figure image="RandomDis.png" width="80%"/>
+
+Even though these are randomly chosen, you can already see how with a higher dimension, there is a bias towards pairs being closer to 90 degrees apart. 
+
+I then ran a certain optimization process to iteratively nudge these vectors to try to become more perpendicular to each other, and in the end, this was the distribution.
+
+<Figure image="RandomDis1.png" width="80%"/>
+
+All the angles are between 89 and 91. Amazing! That’s 10,000 vectors, all being crammed to be nearly perpendicular in a space with 100 times fewer dimensions.
+
+However, there was a mistake in the code and it looks like what was really happening is that a few pairs get shot out to have dot products near ±1, hiding in the wings of the plot. I was using a bad cost function that didn't appreciably punish those cases. On closer inspection, I think it's not actually possible to get 100,000 vectors in 100 dimensions to be as "nearly orthogonal" as this. 100 dimensions are not enough, at least for the (89°, 91°) range, for the Johnson-Lindenstrauss lemma to really kick in.
+
+The broader point made at that point in the video is true, though, which is that the number of nearly orthogonal vectors you can cram in will scale exponentially. But when that makes for an appreciable effect is an interesting question. The viewer Nick Yoder wrote in with more explorations on this, with these as a few highlights:
+
+1. Forcing pairs of vectors into the range (89°, 91°) is rather tight. At this angle, things don't get interesting until dimensions > 250,000
+2. 85 degrees (dot product of only 0.087) scales VERY quickly
+3. 85 degrees and 12,288 dimensions (GPT3 embedding space) holds well over 40 Billion vectors (likely more than $$10^{17}$$)
+4. 85 degrees and 116,000 dimensions (within reason for GPT4, GPT-o1, -o3 or similar newer models) holds well over a Googol ($$10^{100}$$) vectors and likely over $$10^{160}$$
+
+---
+
+This point is very significant for large language models, which benefit from associating independent ideas with nearly perpendicular directions. It means that it's possible for the models to store many, many more ideas than there are dimensions in the space that it's allotted. This might explain why model performance seems to scale so well with size.
 
 <Figure image="GPTScale.png" width="100%"/>
 
 A space that has 10 times as many dimensions can store way, way more than 10 times as many independent ideas. 
 
-And this is relevant not just to the embedding space of the model, but also to that vector full of neurons in the middle of that multilayer perceptron that we just studied. In our case, at the sizes of GPT-3, it might not just be probing at 50,000 features. If it instead leveraged this enormous added capacity by using nearly perpendicular directions of the space, it could be probing at many magnitudes more features of the vector being processed.
+And this is relevant not just to the embedding space of the model, but also to that vector full of neurons in the middle of that multilayer perceptron that we just studied. In our case, at the sizes of GPT-3, it might not just be probing at 50,000 features. If it instead leveraged this enormous added capacity by using nearly perpendicular directions of the space, it could be probing at orders of magnitude more features of the vector being processed.
 
 <Figure image="ManyMore.png" width="80%"/>
 
@@ -353,7 +354,7 @@ In doing so, it means that individual features aren't going to be visible as a s
   answer={2}
 >
 
-In general, a consequence of something known as the Johnson-Lindenstrauss lemma is that the number of vectors that can be crammed into a space that are _nearly_ perpendicular grows exponentially with the number of dimensions.
+In general, a consequence of something known as the Johnson-Lindenstrauss lemma is that the number of vectors that can be crammed into a space that are nearly perpendicular grows exponentially with the number of dimensions.
 
 </Question>
 
