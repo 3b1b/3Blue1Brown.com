@@ -1,0 +1,9 @@
+---
+title: Terence Tao on how we measure the cosmos | Part 1
+description: The Cosmic Distance Ladder, how we learned distances in the heavens.
+date: 2025-02-08
+video: YdOXS_9_P4U
+source: _2025/cosmic_distance/
+credits:
+- Lesson by Grant Sanderson
+---

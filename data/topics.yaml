@@ -118,11 +118,12 @@
   slug: physics
   description: An assortment of topics from physics
   lessons:
+    - cosmic-distance-1
+    - holograms
     - barber-pole-1
     - barber-pole-2
     - prism
     - refractive-index-questions
-    - holograms
     - light-quantum-mechanics
     - feynmans-lost-lecture
     - brachistochrone
