@@ -118,8 +118,9 @@
   slug: physics
   description: An assortment of topics from physics
   lessons:
-    - cosmic-distance-1
     - holograms
+    - cosmic-distance-1
+    - cosmic-distance-2
     - barber-pole-1
     - barber-pole-2
     - prism
