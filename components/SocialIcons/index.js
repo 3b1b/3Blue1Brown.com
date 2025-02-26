@@ -47,7 +47,7 @@ export default function SocialIcons() {
           restingColor="#FFDC80"
         />
         <Link
-          link="https://bsky.app/profile/3blue1brown.bsky.social"
+          link="https://bsky.app/profile/3blue1brown.com"
           icon="fa-brands fa-bluesky"
           tooltip="Bluesky"
           hoverColor="#87CEEB"
