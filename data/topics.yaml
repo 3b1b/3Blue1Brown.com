@@ -147,6 +147,8 @@
   slug: computer-science
   description: An assortment of topics related to algorithms
   lessons:
+    - grover
+    - grover-clarification
     - convolutions
     - wordle
     - wordle-2
