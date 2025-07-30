@@ -45,7 +45,6 @@ config = withSentryConfig(config, {
   //   urlPrefix, include, ignore
 
   silent: true, // Suppresses all logs
-  dryRun: true, // Skip release creation to avoid 401 errors when over limits
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 });
