@@ -17,11 +17,11 @@ export function LicensingForm() {
   return (
     <Form name="contact-licensing">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="organization_name" label="Organization name:" />
+      <Input name="organization_name" label="Organization name" />
       <Input name="website" label="Website:" />
 
       <RadioSet
@@ -57,7 +57,7 @@ export function LicensingForm() {
       <Input
         type="textarea"
         name="message"
-        label="Tell us more about what you're looking for:"
+        label="Tell us more about what you're looking for."
       />
     </Form>
   );
@@ -67,22 +67,22 @@ export function SpeakingForm() {
   return (
     <Form name="contact-speaking">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="subject" label="Organization name:" />
+      <Input name="subject" label="Organization name" />
 
       <Input
         name="estimated_date"
-        label="Approximate date for the desired talk:"
+        label="Approximate date for the desired talk"
       />
-      <Input name="estimated_honorarium" label="Estimated speaking fee:" />
+      <Input name="estimated_honorarium" label="Estimated speaking fee" />
 
       <Input
         type="textarea"
         name="message"
-        label="Details about what you're looking for:"
+        label="Tell us more about what you're looking for."
       />
     </Form>
   );
@@ -114,14 +114,14 @@ export function ContactForm() {
   return (
     <Form name="contact-general">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="subject" label="Subject:" />
-      <Input type="textarea" name="message" label="Message:" />
+      <Input name="subject" label="Subject" />
+      <Input type="textarea" name="message" label="Message" />
 
-      <VerificationCheckbox label="I am not asking a question that is answered in the FAQs." />
+      <VerificationCheckbox label="I have checked whether my question is in the FAQs." />
     </Form>
   );
 }
@@ -130,12 +130,12 @@ export function TranslationForm() {
   return (
     <Form name="contact-translation">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
       <InputRow>
-        <Input name="video_url" label="Video URL:" />
-        <Input name="language" label="Language:" />
+        <Input name="video_url" label="Video URL" />
+        <Input name="language" label="Language" />
       </InputRow>
       
       <label className={styles.inputWrapper}>
