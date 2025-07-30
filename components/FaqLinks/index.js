@@ -5,7 +5,7 @@ export default function FaqLinks(){
         <span> &bull; </span>
         <a href="/faq#requests">Topic Requests</a> 
         <span> &bull; </span>
-        <a href="/faq#name">Name</a> 
+        <a href="/faq#name">What does "3Blue1Brown" mean?</a> 
         <span> &bull; </span>
         <a href="/faq#translations">Translations</a> 
         <span> &bull; </span>
@@ -17,7 +17,7 @@ export default function FaqLinks(){
         <span> &bull; </span>
         <a href="/faq#music">Music</a> 
         <span> &bull; </span>
-        <a href="/faq#recommendations">Recommendations</a> 
+        <a href="/faq#recommendations">Recommended resources</a> 
         <span> &bull; </span>
         <a href="/faq#math-question">Math question</a> 
         <span> &bull; </span>

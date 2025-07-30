@@ -114,14 +114,14 @@ export function ContactForm() {
   return (
     <Form name="contact-general">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="subject" label="Subject:" />
-      <Input type="textarea" name="message" label="Message:" />
+      <Input name="subject" label="Subject" />
+      <Input type="textarea" name="message" label="Message" />
 
-      <VerificationCheckbox label="I am not asking a question that is answered in the FAQs." />
+      <VerificationCheckbox label="I have checked whether my question is in the FAQs." />
     </Form>
   );
 }
@@ -130,12 +130,12 @@ export function TranslationForm() {
   return (
     <Form name="contact-translation">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
       <InputRow>
-        <Input name="video_url" label="Video URL:" />
-        <Input name="language" label="Language:" />
+        <Input name="video_url" label="Video URL" />
+        <Input name="language" label="Language" />
       </InputRow>
       
       <label className={styles.inputWrapper}>
