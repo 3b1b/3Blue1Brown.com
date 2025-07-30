@@ -5,15 +5,15 @@ export default function FaqLinks(){
         <span> &bull; </span>
         <a href="/faq#requests">Topic Requests</a> 
         <span> &bull; </span>
+        <a href="/faq#name">Name</a> 
+        <span> &bull; </span>
         <a href="/faq#translations">Translations</a> 
         <span> &bull; </span>
-        <a href="/contact#licensing-inquiry">Licensing</a> 
+        <a href="/faq#licensing">Licensing</a> 
         <span> &bull; </span>
         <a href="/faq#speaking">Speaking</a> 
         <span> &bull; </span>
         <a href="/faq#sponsor">Sponsorships</a> 
-        <span> &bull; </span>
-        <a href="/faq#name">Name</a> 
         <span> &bull; </span>
         <a href="/faq#music">Music</a> 
         <span> &bull; </span>

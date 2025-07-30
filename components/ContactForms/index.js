@@ -17,11 +17,11 @@ export function LicensingForm() {
   return (
     <Form name="contact-licensing">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="organization_name" label="Organization name:" />
+      <Input name="organization_name" label="Organization name" />
       <Input name="website" label="Website:" />
 
       <RadioSet
@@ -57,7 +57,7 @@ export function LicensingForm() {
       <Input
         type="textarea"
         name="message"
-        label="Tell us more about what you're looking for:"
+        label="Tell us more about what you're looking for."
       />
     </Form>
   );
@@ -67,22 +67,22 @@ export function SpeakingForm() {
   return (
     <Form name="contact-speaking">
       <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
+        <Input name="name" label="Name" />
+        <Input name="email" type="email" label="Email" />
       </InputRow>
 
-      <Input name="subject" label="Organization name:" />
+      <Input name="subject" label="Organization name" />
 
       <Input
         name="estimated_date"
-        label="Approximate date for the desired talk:"
+        label="Approximate date for the desired talk"
       />
-      <Input name="estimated_honorarium" label="Estimated speaking fee:" />
+      <Input name="estimated_honorarium" label="Estimated speaking fee" />
 
       <Input
         type="textarea"
         name="message"
-        label="Details about what you're looking for:"
+        label="Tell us more about what you're looking for."
       />
     </Form>
   );
