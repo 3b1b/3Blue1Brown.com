@@ -1,29 +1,20 @@
+import styles from "./index.module.scss";
+
 export default function FaqLinks(){
   return (
-    <>
+    <div className={styles.faqLinks}>
         <a href="/faq#manim">Animations</a> 
-        <span> &bull; </span>
         <a href="/faq#requests">Topic Requests</a> 
-        <span> &bull; </span>
-        <a href="/faq#name">What does "3Blue1Brown" mean?</a> 
-        <span> &bull; </span>
+        <a href="/faq#name">"3Blue1Brown" name</a> 
         <a href="/faq#translations">Translations</a> 
-        <span> &bull; </span>
         <a href="/faq#licensing">Licensing</a> 
-        <span> &bull; </span>
         <a href="/faq#speaking">Speaking</a> 
-        <span> &bull; </span>
         <a href="/faq#sponsor">Sponsorships</a> 
-        <span> &bull; </span>
         <a href="/faq#music">Music</a> 
-        <span> &bull; </span>
         <a href="/faq#recommendations">Recommended resources</a> 
-        <span> &bull; </span>
         <a href="/faq#math-question">Math question</a> 
-        <span> &bull; </span>
         <a href="/faq#unsolved">Math results</a>
-        <span> &bull; </span>
         <a href="/faq#advice">Advice for creators</a>
-    </>
+    </div>
   );
 };

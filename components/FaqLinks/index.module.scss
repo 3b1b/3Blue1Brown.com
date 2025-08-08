@@ -1,0 +1,15 @@
+.faqLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-center;
+  gap: 8px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

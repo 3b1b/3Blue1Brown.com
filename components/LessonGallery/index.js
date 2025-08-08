@@ -12,10 +12,11 @@ import { transformSrc } from "../../util/transformSrc";
 
 LessonGallery.propTypes = {
   show: PropTypes.oneOf(["topic", "all", "written"]),
+  skipMostRecent: PropTypes.bool,
 };
 
 // gallery that shows all lessons in various ways with tabs. show by topic or all
-export default function LessonGallery({ show = "topic" }) {
+export default function LessonGallery({ show = "topic", skipMostRecent = false }) {
   const { lessons } = useContext(PageContext);
   const topic_names = topics.map((topic) => topic.name);
   const sorted_lessons = [...lessons].sort((a, b) => {
@@ -48,8 +49,12 @@ export default function LessonGallery({ show = "topic" }) {
       );
     }
     // Otherwise, return all by date
-    return lessons;
-  }, [lessons, view, searchText]);
+    let lessonsByDate = lessons;
+    if (skipMostRecent && view === "all") {
+      lessonsByDate = lessons.slice(1); // Skip the first (most recent) lesson
+    }
+    return lessonsByDate;
+  }, [lessons, view, searchText, skipMostRecent]);
 
   return (
     <div>
