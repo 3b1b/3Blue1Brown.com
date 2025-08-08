@@ -1,44 +1,5 @@
 const teamMembers = [
   {
-    name: "Quinn Brodsky",
-    role: "Filming and research for the Barber pole videos",
-    imageSrc: "images/about/quinn-brodsky.jpeg",
-    links: [
-      {
-        icon: "fab fa-youtube",
-        url: "https://www.youtube.com/@quinnphys",
-        label: "Quinn's YouTube channel",
-      },
-      {
-        icon: "fab fa-spotify",
-        url: "https://open.spotify.com/artist/6tBc4zGfGwgS7yoKpfNqs3?si=UDeNq2QKQNO9jHVYySC_mw&nd=1&dlsi=355c8e85bedb47ff",
-        label: "Quinn's music",
-      },
-      {
-        icon: "fab fa-linkedin",
-        url: "https://www.linkedin.com/in/quinn-brodsky/",
-        label: "Quinn's LinkedIn",
-      },
-    ],
-  },
-  {
-    name: "Kurt Bruns",
-    role: "Video artwork, written adaptation of the Calculus series, site management",
-    imageSrc: "images/about/kurt-bruns.png",
-    links: [
-      {
-        icon: "fab fa-youtube",
-        url: "https://www.youtube.com/@wumbo_dot_net",
-        label: "Kurt's Youtube",
-      },
-      {
-        icon: "fa-solid fa-globe",
-        url: "https://kurtbruns.com/",
-        label: "Kurt's Website",
-      },
-    ],
-  },
-  {
     name: "Vincent Rubinetti",
     role: "Composing music for the videos and web development",
     imageSrc: "images/about/vincent-rubinetti.jpg",
@@ -57,6 +18,30 @@ const teamMembers = [
         icon: "fab fa-spotify",
         url: "https://open.spotify.com/artist/2SRhEEt2tlDQWxzwfUo9Dl",
         label: "Spotify",
+      },
+    ],
+  },
+  {
+    name: "Paul Dancstep",
+    role: "Animation and writing",
+    imageSrc: "images/about/paul-dancstep.jpeg",
+    links: [
+    ],
+  },
+  {
+    name: "Kurt Bruns",
+    role: "Video artwork, written adaptation of the Calculus series, site management",
+    imageSrc: "images/about/kurt-bruns.png",
+    links: [
+      {
+        icon: "fab fa-youtube",
+        url: "https://www.youtube.com/@wumbo_dot_net",
+        label: "Kurt's Youtube",
+      },
+      {
+        icon: "fa-solid fa-globe",
+        url: "https://kurtbruns.com/",
+        label: "Kurt's Website",
       },
     ],
   },
@@ -91,6 +76,28 @@ const teamMembers = [
         icon: "fab fa-instagram",
         url: "https://www.instagram.com/dawid.the.editor/",
         label: "Dawid's instagram",
+      },
+    ],
+  },
+  {
+    name: "Quinn Brodsky",
+    role: "Filming and research for the Barber pole videos",
+    imageSrc: "images/about/quinn-brodsky.jpeg",
+    links: [
+      {
+        icon: "fab fa-youtube",
+        url: "https://www.youtube.com/@quinnphys",
+        label: "Quinn's YouTube channel",
+      },
+      {
+        icon: "fab fa-spotify",
+        url: "https://open.spotify.com/artist/6tBc4zGfGwgS7yoKpfNqs3?si=UDeNq2QKQNO9jHVYySC_mw&nd=1&dlsi=355c8e85bedb47ff",
+        label: "Quinn's music",
+      },
+      {
+        icon: "fab fa-linkedin",
+        url: "https://www.linkedin.com/in/quinn-brodsky/",
+        label: "Quinn's LinkedIn",
       },
     ],
   },
