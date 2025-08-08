@@ -10,92 +10,41 @@ export default function SocialIcons() {
         <Link
           link="https://www.youtube.com/3blue1brown"
           icon="fab fa-youtube"
-          tooltip="Join over 6 million subscribers"
-          hoverColor="#ff0000"
-          restingColor="#ff0000"
+          tooltip="Join over 7.5 million subscribers"
+          hoverColor="#FF0000"
           label={""}
         />
         <Link
           link="https://3blue1brown.substack.com/"
-          icon="fas fa-envelope-open-text"
-          tooltip="Mailing list for new videos and meaningful projects"
-          hoverColor="#d2b48c"
-          restingColor="#d2b48c"
-          label={""}
-        />
-        <Link
-          link="https://www.patreon.com/3blue1brown"
-          icon="fab fa-patreon"
-          tooltip="Support future lessons"
-          hoverColor="#f96854"
-          restingColor="#f96854"
+          icon="fa-solid fa-envelope"
+          tooltip="Mailing list"
+          hoverColor="#FF6719"
           label={""}
         />
         <Link
           link="https://x.com/3blue1brown"
           icon="fa-brands fa-x-twitter"
           tooltip="Tweets"
-          hoverColor="#AAAAAA"
-          restingColor="#AAAAAA"
+          hoverColor="#000000"
           label={""}
-        />
-        <Link
-          link="https://www.instagram.com/3blue1brown/"
-          icon="fab fa-instagram"
-          tooltip="Instagram"
-          hoverColor="#FFDC80"
-          restingColor="#FFDC80"
         />
         <Link
           link="https://bsky.app/profile/3blue1brown.com"
           icon="fa-brands fa-bluesky"
           tooltip="Bluesky"
-          hoverColor="#87CEEB"
-          restingColor="#87CEEB"
-        />
-      </div>
-      <div className={styles.restRow}>
-        <Link
-          link="https://www.youtube.com/@GrantSanderson"
-          icon="fab fa-youtube"
-          tooltip="Second channel"
-          hoverColor="#ff0000"
+          hoverColor="#00A8E8"
         />
         <Link
-          link="https://www.tiktok.com/@3blue1brown"
-          icon="fab fa-tiktok"
-          tooltip="Excerpts from the main videos"
-          hoverColor="#ff0050"
-        />
-        <Link
-          link="https://www.reddit.com/r/3Blue1Brown/"
-          icon="fab fa-reddit"
-          tooltip="Discussion and community"
-          hoverColor="#FF4500"
-        />
-        <Link
-          link="https://store.dftba.com/collections/3blue1brown"
-          icon="fas fa-store"
-          tooltip="Store"
-          hoverColor="#09f2fb"
-        />
-        <Link
-          link="http://www.facebook.com/3blue1brown"
-          icon="fab fa-facebook"
-          tooltip="An unloved facebook presence"
-          hoverColor="#4267B2"
-        />
-        <Link
-          link="https://space.bilibili.com/88461692/#/"
-          icon="fab fa-bilibili"
-          tooltip="Chinese translations"
-          hoverColor="#049ed1"
+          link="https://www.instagram.com/3blue1brown/"
+          icon="fab fa-instagram"
+          tooltip="Instagram"
+          hoverColor="#E4405F"
         />
         <Link
           link="https://3blue1brown.substack.com/feed"
           icon="fa-solid fa-rss"
           tooltip="RSS Feed"
-          hoverColor="#ffff00"
+          hoverColor="#FF6600"
         />
       </div>
     </div>
