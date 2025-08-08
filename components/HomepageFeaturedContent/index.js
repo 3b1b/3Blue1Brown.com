@@ -31,7 +31,7 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
   var latest_video = (
     <HomepageFeaturedItem
       lesson={lesson.slug}
-      caption={"Latest video: " + lesson.title}
+      caption={<><div className={styles.latestLabel}>Latest Video</div><div className={styles.lessonTitle}><Link href={`https://www.youtube.com/watch?v=${lesson.video}`}>{lesson.title}</Link></div></>}
       youtube_id={lesson.video}
       link={`/lessons/${lesson.slug}`}
     />
@@ -88,9 +88,7 @@ export function HomepageFeaturedItem({
         <figure className={styles.itemFigure}>
           {item}
           <figcaption className={styles.itemCaption}>
-            <Link href={link}>
-              {caption}
-            </Link>
+            {caption}
           </figcaption>
         </figure>
       </div>
