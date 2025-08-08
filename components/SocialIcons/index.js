@@ -25,7 +25,7 @@ export default function SocialIcons() {
           link="https://x.com/3blue1brown"
           icon="fa-brands fa-x-twitter"
           tooltip="Tweets"
-          hoverColor="#000000"
+          hoverColor="#FFFFFF"
           label={""}
         />
         <Link
