@@ -59,6 +59,17 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
 
   return (
     <div>
+      <div className={styles.search} data-active={view === "search"}>
+        <i className="fas fa-search" />
+        <input
+          type="text"
+          placeholder="Search lessons, for example 'Fourier series'"
+          value={searchText}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
+        />
+      </div>
       <div className={styles.tabs}>
         <Clickable
           text="Topics"
@@ -84,17 +95,6 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           }}
           active={view === "written"}
         />
-
-        <div className={styles.search} data-active={view === "search"}>
-          <i className="fas fa-search" />
-          <input
-            type="text"
-            value={searchText}
-            onChange={(event) => {
-              setSearchText(event.target.value);
-            }}
-          />
-        </div>
       </div>
       {view === "topic" && (
         <div className={styles.topicGrid}>
