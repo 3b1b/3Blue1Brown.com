@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
+import Tooltip from "../Tooltip";
+import Chip from "../Chip";
 import styles from "./index.module.scss";
 
 export default function FeaturedVideo() {
@@ -51,11 +53,22 @@ export default function FeaturedVideo() {
       
       <div className={styles.videoInfo}>
         <div className={styles.latestVideoLabel}>
-          {isLatest ? 'Latest video' : new Date(currentLesson.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
+          <span>
+            {isLatest ? 'Latest video' : new Date(currentLesson.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </span>
+          {!currentLesson.empty && (
+            <Tooltip content="Read the text version">
+              <Link href={`/lessons/${currentLesson.slug}#title`} className={styles.writtenVersionLink}>
+                <button className={styles.writtenVersionButton}>
+                  <i className="far fa-newspaper"></i>
+                </button>
+              </Link>
+            </Tooltip>
+          )}
         </div>
         <div className={styles.videoTitle}>
           <Link href={`https://www.youtube.com/watch?v=${currentLesson.video}`}>
@@ -74,13 +87,14 @@ export default function FeaturedVideo() {
           <i className="fas fa-angle-left" />
         </button>
         
-        <button 
-          className={styles.randomButton}
-          onClick={goToRandom}
-          title="Random video"
-        >
-          Random
-        </button>
+        <Tooltip content="Random">
+          <button 
+            className={styles.randomButton}
+            onClick={goToRandom}
+          >
+            <i className="fa-solid fa-dice"></i>
+          </button>
+        </Tooltip>
         
         <button
           className={styles.arrowRight}

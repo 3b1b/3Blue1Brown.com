@@ -1,6 +1,6 @@
 .container {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 25px auto 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -31,10 +31,14 @@
 }
 
 .latestVideoLabel {
-  font-size: 22px;
+  font-size: 20px;
   color: #BBB;
   text-align: center;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .videoTitle {
@@ -60,6 +64,7 @@
   border: none;
   color: #BBB;
   cursor: pointer;
+  font-family: inherit;
   font-size: 20px;
   padding: 12px;
   border-radius: 4px;
@@ -105,4 +110,27 @@
 
 .arrowRight {
   // No specific grid area needed, will be in flex container
+}
+
+.writtenVersionLink {
+  text-decoration: none;
+}
+
+.writtenVersionButton {
+  background-color: #1C758A;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 6px 10px;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: #205a6b;
+  }
+  
+  &:focus {
+    outline: none;
+  }
 }
