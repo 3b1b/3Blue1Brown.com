@@ -37,6 +37,7 @@
 
 .topRow {
   display: inline-flex;
+  align-items: center;
   font-size: 1.3em;
   margin-bottom: 0.5em;
 }
@@ -44,6 +45,37 @@
 .restRow {
   display: inline-flex;
   font-size: 1em;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expandButton {
+  background: none;
+  border: none;
+  color: #ddd;
+  padding: 6px;
+  margin: 0 0px;
+  cursor: pointer;
+  font-size: 0.8em;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #fff;
+  }
+  
+  &:focus {
+    outline: none;
+  }
 }
 
 

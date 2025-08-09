@@ -4,6 +4,8 @@ import styles from "./index.module.scss";
 import {useState, useEffect} from "react";
 
 export default function SocialIcons() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <div className={styles.socialIcons}>
       <div className={styles.topRow}>
@@ -40,13 +42,78 @@ export default function SocialIcons() {
           tooltip="Instagram"
           hoverColor="#E4405F"
         />
-        <Link
-          link="https://3blue1brown.substack.com/feed"
-          icon="fa-solid fa-rss"
-          tooltip="RSS Feed"
-          hoverColor="#FF6600"
-        />
+        <button
+          className={styles.expandButton}
+          onClick={() => setShowMore(!showMore)}
+          title={showMore ? "Show less" : "Show more"}
+        >
+          <i className={showMore ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}></i>
+        </button>
       </div>
+      {showMore && (
+        <div className={styles.restRow}>
+          <Link
+            link="https://www.youtube.com/@grantsanderson"
+            icon="fab fa-youtube"
+            tooltip="Second channel"
+            hoverColor="#FF0000"
+          />
+          <Link
+            link="https://www.tiktok.com/@3blue1brown"
+            icon="fab fa-tiktok"
+            tooltip="TikTok"
+            hoverColor="#FF0050"
+          />
+          <Link
+            link="https://open.spotify.com/show/4MFZ3m3PIfsKBNoVR7yIf2"
+            icon="fab fa-spotify"
+            tooltip="Videos on spotify"
+            hoverColor="#1DB954"
+          />
+          <Link
+            link="https://space.bilibili.com/88461692"
+            icon="fa-brands fa-bilibili"
+            tooltip="Chinese translations"
+            hoverColor="#00A1D6"
+          />
+          <Link
+            link="https://www.facebook.com/3blue1brown"
+            icon="fab fa-facebook"
+            tooltip="Facebook"
+            hoverColor="#1877F2"
+          />
+          <Link
+            link="https://github.com/3b1b"
+            icon="fab fa-github"
+            tooltip="Source code"
+            hoverColor="#FFF"
+          />
+          <Link
+            link="https://www.reddit.com/r/3blue1brown"
+            icon="fab fa-reddit"
+            tooltip="Community discussions"
+            hoverColor="#FF4500"
+          />
+          <Link
+            link="https://www.patreon.com/3blue1brown"
+            icon="fab fa-patreon"
+            tooltip="Patreon"
+            hoverColor="#F96854"
+          />
+          <Link
+            link="https://store.dftba.com/collections/3blue1brown"
+            icon="fa-solid fa-store"
+            tooltip="Merchandise"
+            hoverColor="#4CAF50"
+          />
+          <Link
+            link="https://3blue1brown.substack.com/feed"
+            icon="fa-solid fa-rss"
+            tooltip="RSS Feed"
+            hoverColor="#FF6600"
+          />
+        </div>
+      )}
     </div>
   );
 }
