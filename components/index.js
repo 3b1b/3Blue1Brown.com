@@ -24,6 +24,9 @@ import HomepageFeaturedContent, {
   HomepageFeaturedItem,
   HomepageFeaturedVideo,
 } from "./HomepageFeaturedContent";
+import FeaturedContent from "./FeaturedContent";
+import FeaturedVideo from "./FeaturedVideo";
+import HomePageTitle from "./HomePageTitle";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
@@ -54,8 +57,11 @@ const components = {
   ContactFormReceivedMessage,
   FaqLinks,
   FeatureCard,
+  FeaturedContent,
+  FeaturedVideo,
   Figure,
   FreeResponse,
+  HomePageTitle,
   HomepageFeaturedContent,
   HomepageFeaturedItem,
   HomepageFeaturedVideo,

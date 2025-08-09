@@ -1,0 +1,108 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.videoPlayer {
+  width: 100%;
+}
+
+.videoInfo {
+  text-align: center;
+}
+
+.videoControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.videoLabel {
+  font-size: 22px;
+  color: #BBB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.latestVideoLabel {
+  font-size: 22px;
+  color: #BBB;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.videoTitle {
+  font-size: 24px;
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.randomButtonContainer {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.randomButton {
+  background: none;
+  border: none;
+  color: #BBB;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 12px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  
+  &:hover {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}
+
+.arrowLeft,
+.arrowRight {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  padding: 12px;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #FFF;
+  }
+  
+  &:focus {
+    outline: none;
+  }
+  
+  &:disabled {
+    color: #444;
+    cursor: not-allowed;
+  }
+}
+
+.arrowLeft {
+  // No specific grid area needed, will be in flex container
+}
+
+.arrowRight {
+  // No specific grid area needed, will be in flex container
+}

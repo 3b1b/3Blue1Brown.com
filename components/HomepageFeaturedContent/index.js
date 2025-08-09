@@ -10,7 +10,6 @@ import {
 import PropTypes from "prop-types";
 import Clickable from "../Clickable";
 import PiCreature from "../PiCreature";
-import SocialIcons from "../SocialIcons";
 import Markdownify from "../Markdownify";
 import Interactive from "../Interactive";
 import Link from "next/link";
@@ -26,25 +25,59 @@ HomepageFeaturedContent.propTypes = {
 
 export default function HomepageFeaturedContent({ title, show_latest_video=true, children}) {
   const { lessons } = useContext(PageContext);
-  const lesson = lessons[0];
+  const [showRandom, setShowRandom] = useState(false);
+  const [randomLesson, setRandomLesson] = useState(null);
+
+  // Get a random lesson that has a video
+  const getRandomLesson = () => {
+    const lessonsWithVideo = lessons.filter(lesson => lesson.video && lesson.video.trim() !== '');
+    if (lessonsWithVideo.length === 0) return lessons[0]; // fallback to first lesson
+    const randomIndex = Math.floor(Math.random() * lessonsWithVideo.length);
+    return lessonsWithVideo[randomIndex];
+  };
+
+  const handleRandomVideo = () => {
+    if (!showRandom) {
+      setRandomLesson(getRandomLesson());
+    }
+    setShowRandom(!showRandom);
+  };
+
+  const currentLesson = showRandom && randomLesson ? randomLesson : lessons[0];
+  const label = showRandom ? "Random Video" : "Latest Video";
 
   var latest_video = (
     <HomepageFeaturedItem
-      lesson={lesson.slug}
-      caption={<><div className={styles.latestLabel}>Latest Video</div><div className={styles.lessonTitle}><Link href={`https://www.youtube.com/watch?v=${lesson.video}`}>{lesson.title}</Link></div></>}
-      youtube_id={lesson.video}
-      link={`/lessons/${lesson.slug}`}
+      lesson={currentLesson.slug}
+      caption={
+        <>
+          <div className={styles.latestLabel}>
+            {label}
+            <button 
+              className={styles.randomButton}
+              onClick={handleRandomVideo}
+              title={showRandom ? "Show latest video" : "Show random video"}
+            >
+              <i className={showRandom ? "fa-solid fa-clock" : "fa-solid fa-shuffle"}></i>
+            </button>
+          </div>
+          <div className={styles.lessonTitle}>
+            <Link href={`https://www.youtube.com/watch?v=${currentLesson.video}`}>
+              {currentLesson.title}
+            </Link>
+          </div>
+        </>
+      }
+      youtube_id={currentLesson.video}
+      link={`/lessons/${currentLesson.slug}`}
     />
   );
 
-  var items = show_latest_video ? [latest_video, ...children] : children;
+  var items = show_latest_video ? [latest_video, ...Children.toArray(children)] : Children.toArray(children);
 
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.social}>
-        <SocialIcons />
-      </div>
       <div className={styles.featured}>
         <Carousel>{items}</Carousel>
       </div>
