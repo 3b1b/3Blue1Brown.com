@@ -120,8 +120,6 @@ export function ContactForm() {
 
       <Input name="subject" label="Subject" />
       <Input type="textarea" name="message" label="Message" />
-
-      <VerificationCheckbox label="I have checked whether my question is in the FAQs." />
     </Form>
   );
 }

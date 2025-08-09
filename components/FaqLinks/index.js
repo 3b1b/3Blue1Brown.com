@@ -15,6 +15,7 @@ export default function FaqLinks(){
         <a href="/faq#math-question">Math question</a> 
         <a href="/faq#unsolved">Math results</a>
         <a href="/faq#advice">Advice for creators</a>
+        <a href="/faq#contact">Contact</a>
     </div>
   );
 };
