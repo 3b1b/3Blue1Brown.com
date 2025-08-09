@@ -89,6 +89,29 @@
   font-size: 18px;
   color: #BBB;
   margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.randomButton {
+  background: none;
+  border: none;
+  color: #BBB;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  
+  &:hover {
+    color: #FFF;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:focus {
+    outline: none;
+  }
 }
 
 .lessonTitle {
