@@ -176,18 +176,32 @@ export function HomepageFeaturedVideo({
   const { lesson } = useContext(FeaturedItemContext);
   const videoRef = useRef();
 
+  // Only autoplay and preload when the slide is visible
+  const shouldAutoPlay = autoPlay && visible;
+  const preloadSetting = visible ? "metadata" : "none";
+
+  // When slide becomes visible, trigger loading if not already loaded
+  useEffect(() => {
+    if (visible && videoRef.current) {
+      const video = videoRef.current;
+      if (video.readyState === 0) { // HAVE_NOTHING - no data loaded
+        video.load(); // Trigger loading
+      }
+    }
+  }, [visible]);
+
   return (
       <a className={styles.videoLink}>
         <video
           ref={videoRef}
           className={styles.video}
-          autoPlay={autoPlay}
+          autoPlay={shouldAutoPlay}
           loop={loop}
           muted={muted}
           controls={controls}
           width={width}
           height={height}
-          preload="metadata"
+          preload={preloadSetting}
           playsInline={true}
         >
           <source src={transformSrc(src, dir)} />
