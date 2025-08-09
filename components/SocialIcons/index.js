@@ -59,10 +59,22 @@ export default function SocialIcons() {
             hoverColor="#FF0000"
           />
           <Link
+            link="https://www.patreon.com/3blue1brown"
+            icon="fab fa-patreon"
+            tooltip="Patreon"
+            hoverColor="#F96854"
+          />
+          <Link
             link="https://www.tiktok.com/@3blue1brown"
             icon="fab fa-tiktok"
             tooltip="TikTok"
             hoverColor="#FF0050"
+          />
+          <Link
+            link="https://www.facebook.com/3blue1brown"
+            icon="fab fa-facebook"
+            tooltip="Facebook"
+            hoverColor="#1877F2"
           />
           <Link
             link="https://open.spotify.com/show/4MFZ3m3PIfsKBNoVR7yIf2"
@@ -77,12 +89,6 @@ export default function SocialIcons() {
             hoverColor="#00A1D6"
           />
           <Link
-            link="https://www.facebook.com/3blue1brown"
-            icon="fab fa-facebook"
-            tooltip="Facebook"
-            hoverColor="#1877F2"
-          />
-          <Link
             link="https://github.com/3b1b"
             icon="fab fa-github"
             tooltip="Source code"
@@ -93,12 +99,6 @@ export default function SocialIcons() {
             icon="fab fa-reddit"
             tooltip="Community discussions"
             hoverColor="#FF4500"
-          />
-          <Link
-            link="https://www.patreon.com/3blue1brown"
-            icon="fab fa-patreon"
-            tooltip="Patreon"
-            hoverColor="#F96854"
           />
           <Link
             link="https://store.dftba.com/collections/3blue1brown"

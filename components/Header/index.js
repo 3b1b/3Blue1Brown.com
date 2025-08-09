@@ -25,12 +25,15 @@ const Header = () => {
 
 export default Header;
 
-// centered site title with logo and text
+// site title with logo and text stack
 const Title = ({ big }) => (
   (<Link href="/" className={styles.title}>
 
     <Logo big={big} />
-    <Text />
+    <div className={styles.textStack}>
+      <Text />
+      <div className={styles.tagline}>Animated math</div>
+    </div>
 
   </Link>)
 );

@@ -4,7 +4,7 @@ $phone: 700px;
 .header {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   padding: 30px;
@@ -21,12 +21,17 @@ $phone: 700px;
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  align-self: flex-start;
-  width: 100%;
+  flex-wrap: wrap;
   @include hover;
   z-index: 1;
+
+  @media (max-width: $tablet) {
+    width: 100%;
+    justify-content: center;
+    order: 3;
+  }
 
   @media (max-width: $phone) {
     justify-content: center;
@@ -70,21 +75,17 @@ $phone: 700px;
 }
 
 .title {
-  position: absolute;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-grow: 1;
   color: $white;
   opacity: 1 !important;
-  text-align: center;
   text-decoration: none;
   z-index: 2;
 
   @media (max-width: $tablet) {
-    position: static;
     flex-basis: 100%;
     margin-bottom: 20px;
+    order: 1;
   }
 }
 
@@ -93,7 +94,6 @@ $phone: 700px;
 }
 
 .text {
-  margin-left: 20px;
   font-family: $serif;
   font-size: 1.8rem;
   letter-spacing: 2px;
@@ -113,6 +113,21 @@ $phone: 700px;
 .header[data-big="true"] .text {
   margin-left: 0;
   margin-top: 20px;
+}
+
+.textStack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.tagline {
+  font-family: $serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: #BBB;
+  margin-top: 2px;
 }
 
 @media (max-width: $phone) {

@@ -26,7 +26,7 @@ import HomepageFeaturedContent, {
 } from "./HomepageFeaturedContent";
 import FeaturedContent from "./FeaturedContent";
 import FeaturedVideo from "./FeaturedVideo";
-import HomePageTitle from "./HomePageTitle";
+import SocialIcons from "./SocialIcons";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
@@ -61,7 +61,7 @@ const components = {
   FeaturedVideo,
   Figure,
   FreeResponse,
-  HomePageTitle,
+  SocialIcons,
   HomepageFeaturedContent,
   HomepageFeaturedItem,
   HomepageFeaturedVideo,
