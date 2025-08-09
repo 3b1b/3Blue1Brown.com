@@ -12,10 +12,11 @@
 }
 
 .search {
-  margin-right: 0;
+  margin: 0 auto 20px auto;
   display: flex;
   align-items: stretch;
   position: relative;
+  width: 50%;
 
   & > i {
     position: absolute;
@@ -27,11 +28,14 @@
 
   & > input {
     flex-grow: 1;
-    padding: 10px 0;
+    width: 100%;
+    padding: 16px 0;
     padding-left: 44px;
     font: inherit;
+    font-size: 18px;
     background: $gray-200;
     border: none;
+    border-radius: 4px;
   }
 
   &[data-active="true"] > input {
@@ -41,7 +45,6 @@
 
 .no_results {
   margin: 20px;
-  font-style: italic;
 
   p {
     text-align: center;

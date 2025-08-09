@@ -5,6 +5,7 @@ import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
 import topics from "../../data/topics.yaml";
+import { topic_suggestion_form } from "../../data/site.yaml";
 import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
@@ -58,6 +59,17 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
 
   return (
     <div>
+      <div className={styles.search} data-active={view === "search"}>
+        <i className="fas fa-search" />
+        <input
+          type="text"
+          placeholder="Search lessons, for example 'Fourier series'"
+          value={searchText}
+          onChange={(event) => {
+            setSearchText(event.target.value);
+          }}
+        />
+      </div>
       <div className={styles.tabs}>
         <Clickable
           text="Topics"
@@ -83,17 +95,6 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           }}
           active={view === "written"}
         />
-
-        <div className={styles.search} data-active={view === "search"}>
-          <i className="fas fa-search" />
-          <input
-            type="text"
-            value={searchText}
-            onChange={(event) => {
-              setSearchText(event.target.value);
-            }}
-          />
-        </div>
       </div>
       {view === "topic" && (
         <div className={styles.topicGrid}>
@@ -111,9 +112,18 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         <div className={styles.no_results}>
           <PiCreature
             text="No lessons match your search."
-            emotion="maybe"
+            emotion="erm"
             placement="inline"
           />
+          <Center>
+            <Clickable
+              link={topic_suggestion_form}
+              icon="fa-solid fa-align-justify"
+              text="Suggest a topic"
+              design="rounded"
+              style={{ width: '200px' }}
+            />
+          </Center>
         </div>
       )}
       {view === "written" &&

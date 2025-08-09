@@ -8,6 +8,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import sizeOfImage from "image-size";
 import topics from "../data/topics.yaml";
+import * as site from "../data/site.yaml";
 
 // define some terms to avoid confusion:
 // pages = top level /content pages like home, about, lessons, etc
@@ -73,6 +74,7 @@ const parseMdx = (file) => {
 // make serialized file for mdx renderer
 const serializeMdx = async ({ content, ...rest }) => {
   const source = await serialize(content, {
+    scope: { site },
     mdxOptions: {
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex, rehypeSlug],
@@ -189,6 +191,7 @@ export const pageProps = async (slug) => {
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
+  props.site = site;
   return { props };
 };
 
@@ -199,6 +202,7 @@ export const lessonProps = async (slug) => {
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
+  props.site = site;
   return { props };
 };
 
@@ -209,5 +213,6 @@ export const blogProps = async (slug) => {
   props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
+  props.site = site;
   return { props };
 };

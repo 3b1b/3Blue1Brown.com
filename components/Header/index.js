@@ -71,19 +71,19 @@ const Nav = () => {
       <div className={styles.break} />
 
       <NavLink
+        link="https://www.patreon.com/c/3blue1brown"
+        text="Patreon"
+        tooltip="Support"
+      />
+      <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
         text="Store"
         tooltip="Notebooks, shirts, plushies, and more"
       />
       <NavLink
         link="/faq"
-        text="FAQ"
+        text="FAQ/Contact"
         tooltip="Have a question?"
-      />
-      <NavLink
-        link="/contact"
-        text="Contact"
-        tooltip="Email"
       />
       <NavLink
         link="/about"
