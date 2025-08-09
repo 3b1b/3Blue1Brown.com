@@ -10,9 +10,9 @@ export default function SocialIcons() {
     <div className={styles.socialIcons}>
       <div className={styles.topRow}>
         <Link
-          link="https://www.youtube.com/3blue1brown"
+          link="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw?sub_confirmation=1"
           icon="fab fa-youtube"
-          tooltip="Join over 7.5 million subscribers"
+          tooltip="Subscribe on YouTube"
           hoverColor="#FF0000"
           label={""}
         />
