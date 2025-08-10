@@ -42,6 +42,14 @@ export default function FeaturedVideo() {
     setCurrentIndex(randomIndex);
   };
   
+  const goToFirst = () => {
+    setCurrentIndex(0);
+  };
+  
+  const goToLast = () => {
+    setCurrentIndex(videosLessons.length - 1);
+  };
+  
   const isLatest = currentIndex === videosLessons.length - 1;
   
   return (
@@ -79,6 +87,15 @@ export default function FeaturedVideo() {
 
       <div className={styles.videoControls}>
         <button
+          className={styles.arrowFirst}
+          aria-label="First video"
+          onClick={goToFirst}
+          disabled={currentIndex === 0}
+        >
+          <i className="fas fa-step-backward" />
+        </button>
+        
+        <button
           className={styles.arrowLeft}
           aria-label="Previous video"
           onClick={goToPrevious}
@@ -101,6 +118,15 @@ export default function FeaturedVideo() {
           disabled={currentIndex === videosLessons.length - 1}
         >
           <i className="fas fa-angle-right" />
+        </button>
+        
+        <button
+          className={styles.arrowLast}
+          aria-label="Last video"
+          onClick={goToLast}
+          disabled={currentIndex === videosLessons.length - 1}
+        >
+          <i className="fas fa-step-forward" />
         </button>
       </div>
     </div>
