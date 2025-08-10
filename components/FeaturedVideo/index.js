@@ -87,14 +87,12 @@ export default function FeaturedVideo() {
           <i className="fas fa-angle-left" />
         </button>
         
-        <Tooltip content="Random">
-          <button 
-            className={styles.randomButton}
-            onClick={goToRandom}
-          >
-            <i className="fa-solid fa-dice"></i>
-          </button>
-        </Tooltip>
+        <button 
+          className={styles.randomButton}
+          onClick={goToRandom}
+        >
+          <i className="fa-solid fa-dice"></i>
+        </button>
         
         <button
           className={styles.arrowRight}
