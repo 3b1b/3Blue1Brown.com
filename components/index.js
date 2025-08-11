@@ -40,6 +40,7 @@ import PreviewText from "./PreviewText";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
+import Teaser from "./Teaser";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
 
@@ -81,6 +82,7 @@ const components = {
   SpeakingForm,
   Spoiler,
   TeamMember,
+  Teaser,
   ThanksForm,
   Tooltip,
   TranslationForm,
