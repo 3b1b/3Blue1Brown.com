@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 Section.propTypes = {
   children: PropTypes.node.isRequired,
   dark: PropTypes.bool,
+  gray: PropTypes.oneOf([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]),
   width: PropTypes.oneOf(["narrow", "normal", "full"]),
 };
 
@@ -17,6 +18,7 @@ const SectionContext = createContext({ width: "normal" });
 export default function Section({
   children,
   dark = false,
+  gray,
   width = "normal",
   ...props
 }) {
@@ -26,6 +28,7 @@ export default function Section({
         {...props}
         className={styles.section}
         data-dark={dark}
+        data-gray={gray}
         data-width={width}
       >
         <div className={styles.wrapper}>{children}</div>
