@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PageContext } from "../../pages/_app";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
 import Tooltip from "../Tooltip";
-import Chip from "../Chip";
 import styles from "./index.module.scss";
 
 export default function FeaturedVideo() {
@@ -21,17 +20,15 @@ export default function FeaturedVideo() {
   }
   
   const currentLesson = videosLessons[currentIndex];
+  const isLatest = currentIndex === videosLessons.length - 1;
   
+  // Navigation functions
   const goToPrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
   };
   
   const goToNext = () => {
-    if (currentIndex < videosLessons.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    }
+    if (currentIndex < videosLessons.length - 1) setCurrentIndex(currentIndex + 1);
   };
   
   const goToRandom = () => {
@@ -42,93 +39,114 @@ export default function FeaturedVideo() {
     setCurrentIndex(randomIndex);
   };
   
-  const goToFirst = () => {
-    setCurrentIndex(0);
-  };
-  
-  const goToLast = () => {
-    setCurrentIndex(videosLessons.length - 1);
-  };
-  
-  const isLatest = currentIndex === videosLessons.length - 1;
+  const goToFirst = () => setCurrentIndex(0);
+  const goToLast = () => setCurrentIndex(videosLessons.length - 1);
   
   return (
     <div className={styles.container}>
-      
-      <div className={styles.videoPlayer}>
-        <HomepageFeaturedYouTube slug={currentLesson.video} />
-      </div>
-      
-      <div className={styles.videoInfo}>
-        <div className={styles.latestVideoLabel}>
-          <span>
-            {isLatest ? 'Latest video' : new Date(currentLesson.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </span>
-          {!currentLesson.empty && (
-            <Tooltip content="Read the text version">
-              <Link href={`/lessons/${currentLesson.slug}#title`} className={styles.writtenVersionLink}>
-                <button className={styles.writtenVersionButton}>
-                  <i className="far fa-newspaper"></i>
-                </button>
-              </Link>
-            </Tooltip>
-          )}
-        </div>
-        <div className={styles.videoTitle}>
-          <Link href={`https://www.youtube.com/watch?v=${currentLesson.video}`}>
-            {currentLesson.title}
-          </Link>
-        </div>
-      </div>
-
-      <div className={styles.videoControls}>
-        <button
-          className={styles.arrowFirst}
-          aria-label="First video"
-          onClick={goToFirst}
-          disabled={currentIndex === 0}
-        >
-          <i className="fas fa-step-backward" />
-        </button>
-        
-        <button
-          className={styles.arrowLeft}
-          aria-label="Previous video"
-          onClick={goToPrevious}
-          disabled={currentIndex === 0}
-        >
-          <i className="fas fa-angle-left" />
-        </button>
-        
-        <button 
-          className={styles.randomButton}
-          onClick={goToRandom}
-        >
-          <i className="fa-solid fa-dice"></i>
-        </button>
-        
-        <button
-          className={styles.arrowRight}
-          aria-label="Next video"
-          onClick={goToNext}
-          disabled={currentIndex === videosLessons.length - 1}
-        >
-          <i className="fas fa-angle-right" />
-        </button>
-        
-        <button
-          className={styles.arrowLast}
-          aria-label="Last video"
-          onClick={goToLast}
-          disabled={currentIndex === videosLessons.length - 1}
-        >
-          <i className="fas fa-step-forward" />
-        </button>
-      </div>
+      <VideoPlayer lesson={currentLesson} />
+      <VideoInfo lesson={currentLesson} isLatest={isLatest} />
+      <VideoControls
+        currentIndex={currentIndex}
+        totalVideos={videosLessons.length}
+        onFirst={goToFirst}
+        onPrevious={goToPrevious}
+        onRandom={goToRandom}
+        onNext={goToNext}
+        onLast={goToLast}
+      />
     </div>
   );
 }
+
+// Video player component
+const VideoPlayer = ({ lesson }) => (
+  <div className={styles.videoPlayer}>
+    <HomepageFeaturedYouTube slug={lesson.video} />
+  </div>
+);
+
+// Video info component (date, title, written version indicator)
+const VideoInfo = ({ lesson, isLatest }) => (
+  <div className={styles.videoInfo}>
+    <div className={styles.latestVideoLabel}>
+      <span>
+        {isLatest ? 'Latest video' : new Date(lesson.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </span>
+      {!lesson.empty && (
+        <Tooltip content="Read the text version">
+          <Link href={`/lessons/${lesson.slug}#title`} className={styles.writtenVersionLink}>
+            <button className={styles.writtenVersionButton}>
+              <i className="far fa-newspaper"></i>
+            </button>
+          </Link>
+        </Tooltip>
+      )}
+    </div>
+    <div className={styles.videoTitle}>
+      <Link href={`https://www.youtube.com/watch?v=${lesson.video}`}>
+        {lesson.title}
+      </Link>
+    </div>
+  </div>
+);
+
+// Video navigation controls component
+const VideoControls = ({ 
+  currentIndex, 
+  totalVideos, 
+  onFirst, 
+  onPrevious, 
+  onRandom, 
+  onNext, 
+  onLast 
+}) => (
+  <div className={styles.videoControls}>
+    <button
+      className={styles.arrowFirst}
+      aria-label="First video"
+      onClick={onFirst}
+      disabled={currentIndex === 0}
+    >
+      <i className="fas fa-step-backward" />
+    </button>
+    
+    <button
+      className={styles.arrowLeft}
+      aria-label="Previous video"
+      onClick={onPrevious}
+      disabled={currentIndex === 0}
+    >
+      <i className="fas fa-angle-left" />
+    </button>
+    
+    <button 
+      className={styles.randomButton}
+      onClick={onRandom}
+    >
+      <i className="fa-solid fa-dice"></i>
+    </button>
+    
+    <button
+      className={styles.arrowRight}
+      aria-label="Next video"
+      onClick={onNext}
+      disabled={currentIndex === totalVideos - 1}
+    >
+      <i className="fas fa-angle-right" />
+    </button>
+    
+    <button
+      className={styles.arrowLast}
+      aria-label="Last video"
+      onClick={onLast}
+      disabled={currentIndex === totalVideos - 1}
+    >
+      <i className="fas fa-step-forward" />
+    </button>
+  </div>
+);
