@@ -61,14 +61,14 @@ const Nav = () => {
       <NavLink
         link="/#lessons"
         text="Lessons"
-        tooltip="Various maths topics, in video and text form"
+        tooltip="Both video and text form"
       />
       <NavLink
         link="https://some.3b1b.co"
         text="SoME"
         tooltip="The Summer of Math Exposition"
       />
-      <NavLink link="/blog" text="Blog" tooltip="Writing about math and more" />
+      <NavLink link="/blog" text="Blog"/>
       <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
 
       <div className={styles.break} />
@@ -76,22 +76,18 @@ const Nav = () => {
       <NavLink
         link="https://www.patreon.com/c/3blue1brown"
         text="Patreon"
-        tooltip="Support"
       />
       <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
         text="Store"
-        tooltip="Notebooks, shirts, plushies, and more"
       />
       <NavLink
         link="/faq"
         text="FAQ/Contact"
-        tooltip="Have a question?"
       />
       <NavLink
         link="/about"
         text="About"
-        tooltip="What and who is 3blue1brown"
       />
     </nav>
   );
