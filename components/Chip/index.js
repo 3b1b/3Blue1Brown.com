@@ -7,6 +7,7 @@ Chip.propTypes = {
   icon: requireTextOrIcon,
   mini: PropTypes.bool,
   tooltip: PropTypes.node,
+  mode: PropTypes.oneOf(["dark", "light"]),
 };
 
 function requireTextOrIcon(props, propName, componentName) {
@@ -24,10 +25,10 @@ function requireTextOrIcon(props, propName, componentName) {
 }
 
 // generic chip component with text and icon
-export default function Chip({ text, icon, mini = false, tooltip }) {
+export default function Chip({ text, icon, mini = false, tooltip, mode = "dark" }) {
   return (
     <Tooltip content={tooltip}>
-      <span className={styles.chip} data-mini={mini}>
+      <span className={styles.chip} data-mini={mini} data-mode={mode}>
         {icon && <i className={icon} />}
         {text}
       </span>

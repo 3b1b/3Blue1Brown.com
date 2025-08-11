@@ -51,7 +51,7 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     modifiers: [
       // https://github.com/popperjs/popper-core/issues/1138
       { name: "computeStyles", options: { adaptive: false } },
-      { name: "offset", options: { offset: [0, 10] } },
+      { name: "offset", options: { offset: [0, 5] } },
       { name: "arrow", options: { element: arrow, padding: 10 } },
     ],
   };

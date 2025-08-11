@@ -13,6 +13,7 @@ PiCreature.propTypes = {
   placement: PropTypes.oneOf(["side", "auto", "inline"]),
   flip: PropTypes.bool,
   design: PropTypes.oneOf(["small", "big"]),
+  dark: PropTypes.bool,
 };
 
 // pi creature/character, with "smart" positioning, and speech/thought bubble
@@ -23,6 +24,7 @@ export default function PiCreature({
   placement = "auto",
   flip = false,
   design,
+  dark = false,
 }) {
   // bubble component
   let Bubble = Fragment;
@@ -40,18 +42,31 @@ export default function PiCreature({
       data-design={design}
       data-text={text ? true : false}
       data-sectionwidth={sectionWidth}
+      data-dark={dark}
     >
-      <div className={styles.frame}>
+      {/* Speech bubble (CSS-based) */}
+      {text && !thought && (
+        <div className={styles.speech_bubble}>
+          <Markdownify>{text}</Markdownify>
+        </div>
+      )}
+      
+      {/* Thought bubble (SVG-based) */}
+      {text && thought && (
+        <div className={styles.thought_bubble}>
+          <Bubble />
+          <div className={styles.thought_text}>
+            <Markdownify>{text}</Markdownify>
+          </div>
+        </div>
+      )}
+      
+      {/* Pi creature itself */}
+      <div className={styles.creature}>
         <img
           src={`/images/pi-creatures/${emotion}.svg`}
           alt={`${emotion} pi creature`}
         />
-        <Bubble />
-        {text && (
-          <div className={styles.text}>
-            <Markdownify>{text}</Markdownify>
-          </div>
-        )}
       </div>
     </div>
   );

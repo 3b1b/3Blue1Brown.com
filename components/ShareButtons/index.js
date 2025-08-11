@@ -47,22 +47,24 @@ export default function ShareButtons({ url, text = "" }) {
         text="Twitter"
         icon="fab fa-twitter"
         target="_blank"
+        design="rounded"
       />
       <Clickable
         link={redditURL.href}
         text="Reddit"
         icon="fab fa-reddit"
         target="_blank"
+        design="rounded"
       />
       <Clickable
         link={facebookURL}
         text="Facebook"
         icon="fab fa-facebook"
         target="_blank"
+        design="rounded"
       />
 
       <div className={styles.header}>Want more math in your life?</div>
-      <SocialIcons />
     </div>
   );
 }

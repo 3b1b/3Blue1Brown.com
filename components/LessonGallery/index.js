@@ -63,7 +63,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         <i className="fas fa-search" />
         <input
           type="text"
-          placeholder="Search lessons, for example 'Fourier series'"
+          placeholder="Search lessons"
           value={searchText}
           onChange={(event) => {
             setSearchText(event.target.value);
@@ -73,6 +73,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
       <div className={styles.tabs}>
         <Clickable
           text="Topics"
+          design="tab"
           onClick={() => {
             setTab("topic");
             setSearchText("");
@@ -81,6 +82,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         />
         <Clickable
           text="By date"
+          design="tab"
           onClick={() => {
             setTab("all");
             setSearchText("");
@@ -89,6 +91,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         />
         <Clickable
           text="Written"
+          design="tab"
           onClick={() => {
             setTab("written");
             setSearchText("");
@@ -112,8 +115,11 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         <div className={styles.no_results}>
           <PiCreature
             text="No lessons match your search."
-            emotion="erm"
+            emotion="shruggie"
             placement="inline"
+            design="big"
+            flip={true}
+            dark={true}
           />
           <Center>
             <Clickable
@@ -136,14 +142,17 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
 
 const TopicCard = ({ topic }) => {
   return (
-    (<Link href={`/topics/${topic.slug}`} className={styles.topic_card}>
+    (<Link href={`/topics/${topic.slug}`} className={styles.topic_card} data-title={topic.name}>
 
-      <img
-        className={styles.image}
-        src={transformSrc(`/images/topics/${topic.slug}.svg`)}
-        alt={topic.name}
-      />
-      <span className={styles.title}>{topic.name}</span>
+      <div className={styles.imageContainer}>
+        <img
+          className={styles.image}
+          src={transformSrc(`/images/topics/${topic.slug}.svg`)}
+          alt={topic.name}
+        />
+        <div className={styles.gradientOverlay}></div>
+        <span className={styles.overlayTitle}>{topic.name}</span>
+      </div>
 
     </Link>)
   );

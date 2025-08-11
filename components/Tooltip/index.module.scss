@@ -1,5 +1,5 @@
 $arrow: 10px;
-$color: $gray-800;
+$color: #000;
 
 .tooltip {
   position: absolute;
@@ -7,16 +7,17 @@ $color: $gray-800;
   top: -9999px;
   max-width: min(500px, calc(100vw - 40px));
   background: $color;
-  color: $white;
+  color: white;
   font-family: $sans;
   font-size: 0.9rem;
+  border-radius: 8px;
   z-index: 12;
   pointer-events: none;
   transition: opacity $fast;
 }
 
 .content {
-  padding: 10px 15px;
+  padding: 6px 10px;
   pointer-events: all;
 }
 
