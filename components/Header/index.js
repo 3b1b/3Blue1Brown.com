@@ -61,7 +61,6 @@ const Nav = () => {
       <NavLink
         link="/#lessons"
         text="Lessons"
-        tooltip="Both video and text form"
       />
       <NavLink
         link="https://some.3b1b.co"
@@ -69,7 +68,7 @@ const Nav = () => {
         tooltip="The Summer of Math Exposition"
       />
       <NavLink link="/blog" text="Blog"/>
-      <NavLink link="/extras" text="Extras" tooltip="Work elsewhere on the web" />
+      <NavLink link="/extras" text="Extras"/>
 
       <div className={styles.break} />
 
