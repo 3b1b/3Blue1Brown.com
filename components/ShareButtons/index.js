@@ -62,7 +62,6 @@ export default function ShareButtons({ url, text = "" }) {
       />
 
       <div className={styles.header}>Want more math in your life?</div>
-      <SocialIcons />
     </div>
   );
 }
