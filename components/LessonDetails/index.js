@@ -29,7 +29,7 @@ const Title = () => {
   const { title, chapter } = useContext(PageContext);
   return (
     <h1 id="title">
-      {chapter !== undefined && <Chip text={`Chapter ${chapter}`} />}
+      {chapter !== undefined && <Chip text={`Chapter ${chapter}`} mode="light" />}
       {title}
     </h1>
   );

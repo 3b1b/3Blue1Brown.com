@@ -13,7 +13,8 @@ $phone: 600px;
   transition: background $fast;
 
   &:hover {
-    background: $light-blue-100;
+    background: rgba($blue-900, 0.5);
+    color: white;
   }
 
   & > * {

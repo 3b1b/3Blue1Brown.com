@@ -10,12 +10,13 @@ export default function Topic({ topic }) {
   return (
     <NormalLayout>
       <TopicHeader topic={topic} />
-      <Section width="narrow">
+      <Section width="narrow" dark={true}>
         <div style={{ textAlign: "left" }}>
           <Clickable
             link="/#lessons"
             text="Lessons"
             icon="fas fa-arrow-left"
+            design="tab"
             style={{ margin: 0 }}
           />
         </div>

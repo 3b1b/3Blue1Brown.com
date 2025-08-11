@@ -11,6 +11,7 @@
   }
 }
 
+
 .search {
   margin: 0 auto 20px auto;
   display: flex;
@@ -24,6 +25,7 @@
     transform: translateY(-50%);
     left: 16px;
     pointer-events: none;
+    color: $gray-100;
   }
 
   & > input {
@@ -33,13 +35,18 @@
     padding-left: 44px;
     font: inherit;
     font-size: 18px;
-    background: $gray-200;
+    background: black;
+    color: white;
     border: none;
     border-radius: 4px;
+
+    &::placeholder {
+      color: #ccc;
+    }
   }
 
   &[data-active="true"] > input {
-    background: $gray-300;
+    background: black;
   }
 }
 
@@ -49,6 +56,7 @@
   p {
     text-align: center;
   }
+
 }
 
 .topicGrid {
@@ -78,8 +86,14 @@
   }
 
   &:hover {
-    background: $light-blue-100;
+    background: $blue-700;
+    color: white;
   }
+}
+
+.imageContainer {
+  position: relative;
+  display: inline-block;
 }
 
 .image {
@@ -89,18 +103,43 @@
   object-fit: cover;
 }
 
+.gradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  pointer-events: none;
+}
+
+.overlayTitle {
+  position: absolute;
+  top: 6px;
+  left: 5%;
+  width: 95%;
+  color: white;
+  font-family: $serif;
+  font-weight: $medium;
+  font-size: 22px;
+  text-align: center;
+  z-index: 1;
+}
+
 @media screen and (max-width: 768px) {
-  .image {
+  .imageContainer {
     display: none;
   }
   .topicGrid {
     flex-direction: column;
   }
+  
+  .topic_card::after {
+    content: attr(data-title);
+    display: block;
+    margin: 10px;
+    font-weight: $medium;
+    font-size: 16px;
+  }
 }
 
-.title {
-  margin-top: 4px;
-  margin-bottom: 4px;
-  font-weight: $medium;
-  font-size: 16px;
-}
