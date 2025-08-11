@@ -1,13 +1,21 @@
 .chip {
   margin: 5px;
   padding: 2px 8px;
-  background: $light-blue-100;
   border-radius: 999px;
   font-size: 0.8rem;
   vertical-align: middle;
   letter-spacing: 0;
+  color: white;
 
   &[data-mini="false"] {
     margin-right: 10px;
+  }
+
+  &[data-mode="dark"] {
+    background: $blue-900;
+  }
+
+  &[data-mode="light"] {
+    background: $blue-600;
   }
 }
