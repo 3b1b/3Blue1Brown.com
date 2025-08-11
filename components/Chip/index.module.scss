@@ -12,10 +12,10 @@
   }
 
   &[data-mode="dark"] {
-    background: $blue-900;
+    background: rgba($blue-300, 0.5);
   }
 
   &[data-mode="light"] {
-    background: $blue-600;
+    background: rgba($blue-800, 0.5);
   }
 }

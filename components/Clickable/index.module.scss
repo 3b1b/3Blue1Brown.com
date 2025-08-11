@@ -67,11 +67,11 @@
   transition: background 0.2s ease;
 
   &:hover {
-    background: rgba($blue-700, 0.75);
+    background: rgba($blue-400, 0.75);
   }
 
   &[data-active="true"] {
-    background: rgba($blue-800, 0.75);
+    background: rgba($blue-400, 0.25);
   }
 
   &[data-active="false"] {
