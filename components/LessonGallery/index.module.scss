@@ -127,19 +127,24 @@
 }
 
 @media screen and (max-width: 768px) {
-  .imageContainer {
-    display: none;
-  }
   .topicGrid {
     flex-direction: column;
+    align-items: center;
+    gap: 15px;
   }
   
-  .topic_card::after {
-    content: attr(data-title);
-    display: block;
-    margin: 10px;
-    font-weight: $medium;
-    font-size: 16px;
+  .topic_card {
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .imageContainer {
+    /* Keep thumbnails visible but smaller */
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
   }
 }
 
