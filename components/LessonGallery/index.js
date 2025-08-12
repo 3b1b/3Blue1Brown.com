@@ -1,6 +1,5 @@
 import { useContext, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import Link from "next/link";
 import Center from "../Center";
 import Clickable from "../Clickable";
 import LessonCard from "../LessonCard";
@@ -37,8 +36,10 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
   const [tab, setTab] = useState(show); // active tab
 
   const [searchText, setSearchText] = useState("");
+  
+  const [selectedTopic, setSelectedTopic] = useState(null); // selected topic for filtering
 
-  const view = searchText ? "search" : tab;
+  const view = searchText ? "search" : selectedTopic ? "topic-lessons" : tab;
 
   const filteredLessons = useMemo(() => {
     if (view === "written") {
@@ -49,13 +50,16 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         matchesSearch(lesson, searchText)
       );
     }
+    if (view === "topic-lessons") {
+      return sorted_lessons.filter((lesson) => lesson.topic === selectedTopic);
+    }
     // Otherwise, return all by date
     let lessonsByDate = lessons;
     if (skipMostRecent && view === "all") {
       lessonsByDate = lessons.slice(1); // Skip the first (most recent) lesson
     }
     return lessonsByDate;
-  }, [lessons, view, searchText, skipMostRecent]);
+  }, [lessons, view, searchText, selectedTopic, skipMostRecent]);
 
   return (
     <div>
@@ -77,6 +81,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("topic");
             setSearchText("");
+            setSelectedTopic(null);
           }}
           active={view === "topic"}
         />
@@ -86,6 +91,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("all");
             setSearchText("");
+            setSelectedTopic(null);
           }}
           active={view === "all"}
         />
@@ -95,6 +101,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("written");
             setSearchText("");
+            setSelectedTopic(null);
           }}
           active={view === "written"}
         />
@@ -103,15 +110,19 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
         <div className={styles.topicGrid}>
           {topics.map((topic) => (
             (topic.slug != "miscellaneous") &&
-            <TopicCard key={topic.slug} topic={topic} />
+            <TopicCard 
+              key={topic.slug} 
+              topic={topic} 
+              onTopicClick={setSelectedTopic} 
+            />
           ))}
         </div>
       )}
-      {(view === "all" || view === "search") &&
+      {(view === "all" || view === "search" || view === "topic-lessons") &&
         filteredLessons.map((lesson) => (
           <LessonCard key={lesson.slug} id={lesson.slug} />
         ))}
-      {(view === "all" || view === "search") && filteredLessons.length === 0 && (
+      {(view === "all" || view === "search" || view === "topic-lessons") && filteredLessons.length === 0 && (
         <div className={styles.no_results}>
           <PiCreature
             text="No lessons match your search."
@@ -140,10 +151,20 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
   );
 }
 
-const TopicCard = ({ topic }) => {
+const TopicCard = ({ topic, onTopicClick }) => {
   return (
-    (<Link href={`/topics/${topic.slug}`} className={styles.topic_card} data-title={topic.name}>
-
+    <div 
+      className={styles.topic_card} 
+      data-title={topic.name}
+      onClick={() => onTopicClick(topic.name)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onTopicClick(topic.name);
+        }
+      }}
+    >
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
@@ -153,8 +174,7 @@ const TopicCard = ({ topic }) => {
         <div className={styles.gradientOverlay}></div>
         <span className={styles.overlayTitle}>{topic.name}</span>
       </div>
-
-    </Link>)
+    </div>
   );
 };
 
