@@ -3,7 +3,7 @@ $phone: 600px;
 .lesson_card {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   padding: 20px;
   color: inherit;
@@ -105,7 +105,44 @@ $phone: 600px;
 }
 
 .description {
+  font-family: $sans;
+  font-size: 0.85rem;
   @include line-clamp(3);
+}
+
+.blogVersionLink {
+  margin-top: 2px;
+}
+
+.blogLink {
+  color: $blue-400;
+  font-size: 1.0rem;
+  text-decoration: none;
+  font-weight: $medium;
+  
+  &:hover {
+    color: $blue-700;
+    text-decoration: underline;
+  }
+  
+  // Make it more prominent on card hover
+  .lesson_card:hover & {
+    color: $blue-200;
+    
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.date {
+  font-size: 0.85rem;
+  color: $gray-400;
+  
+  // Make it lighter when card is hovered
+  .lesson_card:hover & {
+    color: $gray-300;
+  }
 }
 
 .lesson_card[data-mini="true"] .text {

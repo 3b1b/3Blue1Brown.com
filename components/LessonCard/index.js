@@ -77,26 +77,26 @@ export default function LessonCard({
 
       <div className={styles.text}>
         <span>{title && <span className={styles.title}>{title}</span>}</span>
+        
+        {/* Show blog version link for lessons with video that also have text version */}
+        {hasVideo && !empty && !mini && (
+          <div className={styles.blogVersionLink}>
+            <NextLink 
+              href={lessonRedirects[slug] || `/lessons/${slug}#title`} 
+              className={styles.blogLink}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <i className="far fa-newspaper"></i> Read
+            </NextLink>
+          </div>
+        )}
+        
         {description && !mini && (
           <span className={styles.description}>{description}</span>
         )}
-        {(chapter !== undefined || !empty || date) && !mini && (
+        {(chapter !== undefined || date) && !mini && (
           <span>
-            {chapter !== undefined && (
-              <Chip
-                text={(mini ? "Ch" : "Chapter") + " " + chapter}
-                mini={mini}
-                tooltip={`In topic "${topic}"`}
-              />
-            )}
-            {!empty && (
-              <Chip
-                icon="far fa-newspaper"
-                mini={mini}
-                tooltip="This lesson has a text version"
-              />
-            )}
-            {date && <span>{date}</span>}{" "}
+            {date && <span className={styles.date}>{date}</span>}{" "}
           </span>
         )}
       </div>
@@ -126,9 +126,7 @@ const VideoButton = ({ lesson, playLesson, tooltip, ...rest }) => {
   };
 
   return (
-    <Tooltip content={tooltip || "Click to play video"}>
-      <a {...rest} onClick={handleClick} style={{ cursor: 'pointer' }} />
-    </Tooltip>
+    <a {...rest} onClick={handleClick} style={{ cursor: 'pointer' }} />
   );
 };
 
