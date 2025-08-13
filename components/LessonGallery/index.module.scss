@@ -149,3 +149,51 @@
   }
 }
 
+/* Topic header styles */
+.topicHeader {
+  position: relative;
+  width: 100%;
+  height: 80px; /* Very small height as requested */
+  overflow: hidden;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.topicHeaderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.topicHeaderOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topicHeaderTitle {
+  color: white;
+  font-family: $serif;
+  font-size: 28px;
+  font-weight: $medium;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .topicHeader {
+    height: 60px;
+  }
+  
+  .topicHeaderTitle {
+    font-size: 24px;
+  }
+}

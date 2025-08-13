@@ -37,7 +37,10 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
 
   const [searchText, setSearchText] = useState("");
   
-  const [selectedTopic, setSelectedTopic] = useState(null); // selected topic for filtering
+  const [selectedTopicName, setSelectedTopicName] = useState(null); // selected topic name for filtering
+  
+  // Find the full topic object for the selected topic
+  const selectedTopic = selectedTopicName ? topics.find(topic => topic.name === selectedTopicName) : null;
 
   const view = searchText ? "search" : selectedTopic ? "topic-lessons" : tab;
 
@@ -51,7 +54,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
       );
     }
     if (view === "topic-lessons") {
-      return sorted_lessons.filter((lesson) => lesson.topic === selectedTopic);
+      return sorted_lessons.filter((lesson) => lesson.topic === selectedTopicName);
     }
     // Otherwise, return all by date
     let lessonsByDate = lessons;
@@ -59,7 +62,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
       lessonsByDate = lessons.slice(1); // Skip the first (most recent) lesson
     }
     return lessonsByDate;
-  }, [lessons, view, searchText, selectedTopic, skipMostRecent]);
+  }, [lessons, view, searchText, selectedTopicName, skipMostRecent]);
 
   return (
     <div>
@@ -81,7 +84,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("topic");
             setSearchText("");
-            setSelectedTopic(null);
+            setSelectedTopicName(null);
           }}
           active={view === "topic"}
         />
@@ -91,7 +94,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("all");
             setSearchText("");
-            setSelectedTopic(null);
+            setSelectedTopicName(null);
           }}
           active={view === "all"}
         />
@@ -101,11 +104,26 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           onClick={() => {
             setTab("written");
             setSearchText("");
-            setSelectedTopic(null);
+            setSelectedTopicName(null);
           }}
           active={view === "written"}
         />
       </div>
+      
+      {/* Topic header when filtering by topic */}
+      {view === "topic-lessons" && selectedTopic && (
+        <div className={styles.topicHeader}>
+          <img
+            className={styles.topicHeaderImage}
+            src={transformSrc(`/images/topics/${selectedTopic.slug}.svg`)}
+            alt={selectedTopic.name}
+          />
+          <div className={styles.topicHeaderOverlay}>
+            <h2 className={styles.topicHeaderTitle}>{selectedTopic.name}</h2>
+          </div>
+        </div>
+      )}
+      
       {view === "topic" && (
         <div className={styles.topicGrid}>
           {topics.map((topic) => (
@@ -113,7 +131,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
             <TopicCard 
               key={topic.slug} 
               topic={topic} 
-              onTopicClick={setSelectedTopic} 
+              onTopicClick={setSelectedTopicName} 
             />
           ))}
         </div>
