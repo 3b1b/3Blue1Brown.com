@@ -77,9 +77,9 @@ export default function LessonCard({
 
       <div className={styles.text}>
         <span>{title && <span className={styles.title}>{title}</span>}</span>
-        
+
         {/* Show blog version link for lessons with video that also have text version */}
-        {hasVideo && !empty && !mini && (
+        {!empty && (
           <div className={styles.blogVersionLink}>
             <NextLink 
               href={lessonRedirects[slug] || `/lessons/${slug}#title`} 
@@ -90,15 +90,11 @@ export default function LessonCard({
             </NextLink>
           </div>
         )}
-        
+
         {description && !mini && (
           <span className={styles.description}>{description}</span>
         )}
-        {(chapter !== undefined || date) && !mini && (
-          <span>
-            {date && <span className={styles.date}>{date}</span>}{" "}
-          </span>
-        )}
+
       </div>
     </Component>
   );

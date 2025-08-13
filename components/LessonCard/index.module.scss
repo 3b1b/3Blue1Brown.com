@@ -93,7 +93,7 @@ $phone: 600px;
   word-break: break-word;
 
   @media (max-width: $phone) {
-    & > *:not(:first-child) {
+    & > *:not(:first-child):not(.blogVersionLink) {
       display: none;
     }
   }
