@@ -13,7 +13,7 @@ export default function Teaser({ title, link }) {
       <div className={styles.center}>
         <div className={styles.content}>
           <div className={styles.label}>
-            Upcoming video (early view for channel supporters)
+            Upcoming video (early view for patrons)
           </div>
           <div className={styles.title}>{title}</div>
         </div>
