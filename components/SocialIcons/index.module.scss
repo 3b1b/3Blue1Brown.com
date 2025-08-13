@@ -31,8 +31,30 @@
   align-items: center;
 }
 
-.iconLabelContainer > i {
+.iconLabelContainer > .iconWrapper > i {
   margin-right: 5px;
+}
+
+.iconWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.badge {
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.6em;
+  font-weight: bold;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
 }
 
 .topRow {

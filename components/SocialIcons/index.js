@@ -51,6 +51,7 @@ export default function SocialIcons() {
             link="https://www.youtube.com/@grantsanderson"
             icon="fab fa-youtube"
             hoverColor="#FF0000"
+            badge="2"
           />
           <Link
             link="https://www.patreon.com/3blue1brown"
@@ -136,7 +137,7 @@ function formatNumber(number) {
   }
 }
 
-function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverColor="inherit"}) {
+function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverColor="inherit", badge}) {
 
   const [color, setColor] = useState(restingColor);
 
@@ -148,7 +149,14 @@ function Link({ link, icon, tooltip, label = "", restingColor="inherit", hoverCo
     >
       <Tooltip content={tooltip}>
           <div className={styles.iconLabelContainer}>
-            <i className={icon} style={{ color: color }}/>
+            <div className={styles.iconWrapper}>
+              <i className={icon} style={{ color: color }}/>
+              {badge && (
+                <span className={styles.badge}>
+                  {badge}
+                </span>
+              )}
+            </div>
             {label && (
               <span className={styles.followers} >
                 {label}
