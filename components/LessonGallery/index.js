@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Center from "../Center";
 import Clickable from "../Clickable";
@@ -86,19 +86,31 @@ function useGalleryState(initialShow) {
 }
 
 // TopicCard component
-const TopicCard = ({ topic, onTopicClick }) => {
+const TopicCard = ({ topic, onTopicClick, galleryRef }) => {
+  const handleClick = () => {
+    onTopicClick(topic.name);
+    // Scroll to top of gallery after a brief delay to allow state update
+    setTimeout(() => {
+      if (galleryRef?.current) {
+        galleryRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    }, 100);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      handleClick();
+    }
+  };
+
   return (
     <div 
       className={styles.topic_card} 
       data-title={topic.name}
-      onClick={() => onTopicClick(topic.name)}
+      onClick={handleClick}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onTopicClick(topic.name);
-        }
-      }}
+      onKeyDown={handleKeyDown}
     >
       <div className={styles.imageContainer}>
         <img
@@ -201,6 +213,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
   const { lessons } = useContext(PageContext);
   const topicNames = topics.map((topic) => topic.name);
   const sortedLessons = getSortedLessons(lessons, topicNames);
+  const galleryRef = useRef(null);
   
   const {
     searchText,
@@ -237,7 +250,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
   const showNoResults = showLessonList && filteredLessons.length === 0;
 
   return (
-    <div>
+    <div ref={galleryRef}>
       <div className={styles.searchAndTabs}>
         <NavigationTabs
           currentView={currentView}
@@ -262,7 +275,8 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
               <TopicCard 
                 key={topic.slug} 
                 topic={topic} 
-                onTopicClick={setSelectedTopicName} 
+                onTopicClick={setSelectedTopicName}
+                galleryRef={galleryRef}
               />
             ))
           }
