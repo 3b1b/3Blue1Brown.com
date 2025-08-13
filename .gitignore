@@ -43,3 +43,5 @@ public/content/**/*.source.mov
 *.patch
 package.json
 yarn.lock
+scripts/sync_youtube_titles.py
+scripts/create_lesson.py
