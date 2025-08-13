@@ -11,7 +11,7 @@ import PiCreature from "../PiCreature";
 import { transformSrc } from "../../util/transformSrc";
 
 LessonGallery.propTypes = {
-  show: PropTypes.oneOf(["topic", "all", "written"]),
+  show: PropTypes.oneOf(["topic", "all"]),
   skipMostRecent: PropTypes.bool,
 };
 
@@ -45,9 +45,6 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
   const view = searchText ? "search" : selectedTopic ? "topic-lessons" : tab;
 
   const filteredLessons = useMemo(() => {
-    if (view === "written") {
-      return sorted_lessons.filter((lesson) => !lesson.empty);
-    }
     if (view === "search") {
       return sorted_lessons.filter((lesson) =>
         matchesSearch(lesson, searchText)
@@ -97,16 +94,6 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
             setSelectedTopicName(null);
           }}
           active={view === "all"}
-        />
-        <Clickable
-          text="Written"
-          design="tab"
-          onClick={() => {
-            setTab("written");
-            setSearchText("");
-            setSelectedTopicName(null);
-          }}
-          active={view === "written"}
         />
       </div>
       
@@ -161,10 +148,6 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           </Center>
         </div>
       )}
-      {view === "written" &&
-        filteredLessons.map((lesson) => (
-          <LessonCard key={lesson.slug} id={lesson.slug} />
-        ))}
     </div>
   );
 }
