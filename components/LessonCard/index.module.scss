@@ -63,7 +63,7 @@ $phone: 600px;
   max-width: 50%;
 
   @media (max-width: $phone) {
-    max-width: 35%;
+    max-width: 45%;
   }
 }
 
@@ -106,7 +106,7 @@ $phone: 600px;
   font-weight: $medium;
   
   @media (max-width: $phone) {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     @include line-clamp(2);
   }
 }
