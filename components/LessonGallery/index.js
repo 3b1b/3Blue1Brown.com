@@ -89,10 +89,16 @@ function useGalleryState(initialShow) {
 const TopicCard = ({ topic, onTopicClick, galleryRef }) => {
   const handleClick = () => {
     onTopicClick(topic.name);
-    // Scroll to top of gallery after a brief delay to allow state update
+    // Scroll to top of gallery only if currently scrolled below it
     setTimeout(() => {
       if (galleryRef?.current) {
-        galleryRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
+        const galleryTop = galleryRef.current.getBoundingClientRect().top + window.scrollY;
+        const currentScrollY = window.scrollY;
+        
+        // Only scroll up if we're currently below the gallery top
+        if (currentScrollY > galleryTop) {
+          galleryRef.current.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
       }
     }, 100);
   };
