@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
@@ -15,7 +15,7 @@
 
   & > * {
     margin: 0;
-    margin-right: 20px;
+    margin-right: 5px;
     margin-bottom: 0;
   }
 }
