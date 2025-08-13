@@ -78,6 +78,10 @@ export default function LessonCard({
       <div className={styles.text}>
         <span>{title && <span className={styles.title}>{title}</span>}</span>
 
+        {description && !mini && (
+          <span className={styles.description}>{description}</span>
+        )}
+
         {/* Show blog version link for lessons with video that also have text version */}
         {!empty && (
           <div className={styles.blogVersionLink}>
@@ -89,10 +93,6 @@ export default function LessonCard({
               <i className="far fa-newspaper"></i> Read
             </NextLink>
           </div>
-        )}
-
-        {description && !mini && (
-          <span className={styles.description}>{description}</span>
         )}
 
       </div>

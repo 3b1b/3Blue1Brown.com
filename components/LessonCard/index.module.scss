@@ -93,6 +93,8 @@ $phone: 600px;
   word-break: break-word;
 
   @media (max-width: $phone) {
+    grid-gap: 10px;
+    
     & > *:not(:first-child):not(.blogVersionLink) {
       display: none;
     }
@@ -117,6 +119,10 @@ $phone: 600px;
 
 .blogVersionLink {
   margin-top: 2px;
+  
+  @media (max-width: $phone) {
+    margin-top: 5px;
+  }
 }
 
 .blogLink {
