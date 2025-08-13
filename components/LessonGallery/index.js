@@ -280,7 +280,7 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
             .map((topic) => (
               <TopicCard 
                 key={topic.slug} 
-                topic={topic} 
+                topic={topic}
                 onTopicClick={setSelectedTopicName}
                 galleryRef={galleryRef}
               />

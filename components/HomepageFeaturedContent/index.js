@@ -131,19 +131,35 @@ export function HomepageFeaturedItem({
 
 HomepageFeaturedYouTube.propTypes = {
   slug: PropTypes.string.isRequired,
+  autoplay: PropTypes.bool,
+  userInitiated: PropTypes.bool,
 };
 
 // Note, too much of this is copied over from LessonVideo
 
 export function HomepageFeaturedYouTube({
   slug,
+  autoplay = false,
+  userInitiated = false,
 }) {
   const thumbnail = `https://img.youtube.com/vi/${slug}/maxresdefault.jpg`;
 
-  const [showCoverImage, setShowCoverImage] = useState(true);  
+  const [showCoverImage, setShowCoverImage] = useState(!autoplay);  
   const startVideo = () => {
     setShowCoverImage(false);
   };
+
+  // Reset cover image state when slug changes and autoplay is enabled
+  useEffect(() => {
+    if (autoplay) {
+      setShowCoverImage(false);
+    } else {
+      setShowCoverImage(true);
+    }
+  }, [slug, autoplay]);
+
+  // Only mute if autoplay is enabled but not user-initiated
+  const shouldMute = autoplay && !userInitiated;
 
   return (
     <div>
@@ -174,7 +190,7 @@ export function HomepageFeaturedYouTube({
         <iframe
           title="YouTube Video"
           className={styles.iframe}
-        src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1`}
+          src={`https://www.youtube-nocookie.com/embed/${slug}?rel=0&autoplay=1${shouldMute ? '&mute=1' : ''}`}
           allow="autoplay"
           allowFullScreen
           referrerPolicy="origin"
