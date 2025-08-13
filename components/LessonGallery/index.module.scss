@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
@@ -26,7 +26,7 @@
   position: relative;
   max-width: 500px;
   flex: 1;
-  min-width: 300px;
+  min-width: 200px;
 
   & > i {
     position: absolute;
