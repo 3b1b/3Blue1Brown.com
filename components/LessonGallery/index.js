@@ -238,17 +238,19 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
 
   return (
     <div>
-      <SearchBar
-        searchText={searchText}
-        onSearchChange={setSearchText}
-        isActive={currentView === "search"}
-      />
-      
-      <NavigationTabs
-        currentView={currentView}
-        onTopicView={setTopicView}
-        onDateView={setDateView}
-      />
+      <div className={styles.searchAndTabs}>
+        <NavigationTabs
+          currentView={currentView}
+          onTopicView={setTopicView}
+          onDateView={setDateView}
+        />
+
+        <SearchBar
+          searchText={searchText}
+          onSearchChange={setSearchText}
+          isActive={currentView === "search"}
+        />
+      </div>
       
       <TopicHeader topic={selectedTopic} />
       

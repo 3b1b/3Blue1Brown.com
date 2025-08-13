@@ -1,3 +1,12 @@
+.searchAndTabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
 .tabs {
   display: flex;
   align-items: stretch;
@@ -7,17 +16,17 @@
   & > * {
     margin: 0;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 }
 
-
 .search {
-  margin: 0 auto 20px auto;
   display: flex;
   align-items: stretch;
   position: relative;
   max-width: 500px;
+  flex: 1;
+  min-width: 300px;
 
   & > i {
     position: absolute;
