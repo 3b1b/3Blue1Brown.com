@@ -13,8 +13,13 @@ $phone: 500px;
     background: $white;
   }
 
-  &[data-dark="true"] {
+  &[data-dark="true"]:nth-child(odd) {
     background: $gray-900;
+    color: $white;
+  }
+
+  &[data-dark="true"]:nth-child(even) {
+    background: #252525;
     color: $white;
   }
 
