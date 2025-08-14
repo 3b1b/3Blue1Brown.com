@@ -56,8 +56,10 @@ export default function LessonCard({
     lesson;
   if (date) date = formatDate(date);
 
-  // Generate responsive thumbnails for video lessons
-  const responsiveThumbnails = hasVideo && lesson.video 
+  // Generate responsive thumbnails only for video lessons using YouTube thumbnails
+  // (Don't use responsive thumbnails for custom thumbnails)
+  const isYouTubeThumbnail = hasVideo && lesson.video && thumbnail && thumbnail.includes('img.youtube.com');
+  const responsiveThumbnails = isYouTubeThumbnail 
     ? getResponsiveYouTubeThumbnails(lesson.video)
     : null;
 
