@@ -128,6 +128,19 @@ $phone: 700px;
   letter-spacing: 1px;
   color: #BBB;
   margin-top: 2px;
+
+  span {
+    opacity: 0;
+    @include fade-in;
+  }
+
+  // Start tagline animation after title completes (11 chars * 0.075s = 0.825s)
+  // Add a small buffer and start at 1s
+  @for $i from 1 through 13 {
+    span:nth-child(#{$i}) {
+      animation-delay: #{1 + ($i * 0.075)}s;
+    }
+  }
 }
 
 @media (max-width: $phone) {
