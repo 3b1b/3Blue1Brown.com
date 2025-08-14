@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
@@ -12,6 +13,7 @@ FeaturedVideo.propTypes = {
 };
 
 export default function FeaturedVideo({ autoplay = false }) {
+  const router = useRouter();
   const { lessons } = useContext(PageContext);
   const { targetLesson, clearTargetLesson } = useFeaturedVideo();
   
@@ -20,51 +22,41 @@ export default function FeaturedVideo({ autoplay = false }) {
     .filter(lesson => lesson.video && lesson.video.trim() !== '')
     .sort((a, b) => new Date(a.date) - new Date(b.date));
   
-  // If targetLesson is provided, find its index, otherwise default to latest
-  const getInitialIndex = () => {
-    if (targetLesson) {
-      const targetIndex = videosLessons.findIndex(lesson => lesson.slug === targetLesson.slug);
-      return targetIndex !== -1 ? targetIndex : Math.max(0, videosLessons.length - 1);
-    }
-    return Math.max(0, videosLessons.length - 1);
-  };
-  
-  const [currentIndex, setCurrentIndex] = useState(getInitialIndex());
-  
-  // Update currentIndex when targetLesson changes
-  useEffect(() => {
-    if (targetLesson && targetLesson.slug) {
-      const targetIndex = videosLessons.findIndex(lesson => lesson.slug === targetLesson.slug);
-      if (targetIndex !== -1) {
-        setCurrentIndex(targetIndex);
-      } else {
-        console.warn('FeaturedVideo: Target lesson not found in videos list:', targetLesson.slug);
-        // Optionally clear the target lesson if it's not found
-        clearTargetLesson();
-      }
-    }
-  }, [targetLesson, videosLessons, clearTargetLesson]);
-  
   if (videosLessons.length === 0) {
     return <div>No videos available</div>;
   }
   
-  const currentLesson = videosLessons[currentIndex];
-  const isLatest = currentIndex === videosLessons.length - 1;
-  // Force autoplay when a target lesson is specified (user clicked a topic)
-  const shouldAutoplay = autoplay || !!targetLesson;
+  // Determine current lesson from URL or fallback to latest
+  const getCurrentLesson = () => {
+    const { v } = router.query;
+    if (v) {
+      const urlLesson = videosLessons.find(lesson => lesson.slug === v);
+      if (urlLesson) return urlLesson;
+    }
+    // Fallback to latest video
+    return videosLessons[videosLessons.length - 1];
+  };
   
-  // Navigation functions
+  const currentLesson = getCurrentLesson();
+  const currentIndex = videosLessons.findIndex(lesson => lesson.slug === currentLesson.slug);
+  const isLatest = currentIndex === videosLessons.length - 1;
+  
+  // Only autoplay if explicitly requested via prop
+  const shouldAutoplay = autoplay;
+  
+  // Navigation functions using router
   const goToPrevious = () => {
     if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
+      const prevLesson = videosLessons[currentIndex - 1];
+      router.replace(`/?v=${prevLesson.slug}`);
       clearTargetLesson();
     }
   };
   
   const goToNext = () => {
     if (currentIndex < videosLessons.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      const nextLesson = videosLessons[currentIndex + 1];
+      router.replace(`/?v=${nextLesson.slug}`);
       clearTargetLesson();
     }
   };
@@ -74,18 +66,20 @@ export default function FeaturedVideo({ autoplay = false }) {
     do {
       randomIndex = Math.floor(Math.random() * videosLessons.length);
     } while (randomIndex === currentIndex && videosLessons.length > 1);
-    setCurrentIndex(randomIndex);
-    // Clear target lesson so random navigation works normally
+    const randomLesson = videosLessons[randomIndex];
+    router.replace(`/?v=${randomLesson.slug}`);
     clearTargetLesson();
   };
   
   const goToFirst = () => {
-    setCurrentIndex(0);
+    const firstLesson = videosLessons[0];
+    router.replace(`/?v=${firstLesson.slug}`);
     clearTargetLesson();
   };
   
   const goToLast = () => {
-    setCurrentIndex(videosLessons.length - 1);
+    const lastLesson = videosLessons[videosLessons.length - 1];
+    router.replace(`/?v=${lastLesson.slug}`);
     clearTargetLesson();
   };
   

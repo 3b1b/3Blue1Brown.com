@@ -4,7 +4,6 @@ import NextLink from "next/link";
 import Chip from "../Chip";
 import { formatDate } from "../../util/locale";
 import { PageContext } from "../../pages/_app";
-import { useFeaturedVideo } from "../../util/featuredVideoContext";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
@@ -30,7 +29,6 @@ export default function LessonCard({
   className = "",
 }) {
   const { lessons = [] } = useContext(PageContext);
-  const { playLesson } = useFeaturedVideo();
 
   // find lesson with matching slug
   const lesson = lessons.find((lesson) => lesson.slug === id);
@@ -46,7 +44,7 @@ export default function LessonCard({
   if (active) {
     Component = Stub;
   } else if (hasVideo) {
-    Component = VideoButton;
+    Component = VideoLink;
   } else {
     Component = Link;
   }
@@ -60,7 +58,6 @@ export default function LessonCard({
     <Component
       link={lessonRedirects[slug] || `/lessons/${slug}`}
       lesson={lesson}
-      playLesson={playLesson}
       className={styles.lesson_card + " " + className}
       tooltip={tooltip}
       data-active={active || false}
@@ -108,21 +105,19 @@ const Link = ({ link, tooltip, ...rest }) => (
   </NextLink>
 );
 
-const VideoButton = ({ lesson, playLesson, tooltip, ...rest }) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    
-    // Double-check lesson has video before calling playLesson
-    if (!lesson || !lesson.video || lesson.video.trim() === '') {
-      console.warn('VideoButton: Lesson missing video property:', lesson);
-      return;
-    }
-    
-    playLesson(lesson);
-  };
+const VideoLink = ({ lesson, tooltip, ...rest }) => {
+  // Double-check lesson has video
+  if (!lesson || !lesson.video || lesson.video.trim() === '') {
+    console.warn('VideoLink: Lesson missing video property:', lesson);
+    return <Stub {...rest} />;
+  }
 
   return (
-    <a {...rest} onClick={handleClick} style={{ cursor: 'pointer' }} />
+    <NextLink href={`/?v=${lesson.slug}`} passHref legacyBehavior>
+      <Tooltip content={tooltip}>
+        <a {...rest} />
+      </Tooltip>
+    </NextLink>
   );
 };
 
