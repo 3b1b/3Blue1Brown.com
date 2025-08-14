@@ -199,16 +199,12 @@
     - some2
     - some2-results
     - some3-results
-- name: Talks
-  slug: talks
-  description: Various talks  
-  lessons:
-    - harvey-mudd-speech
-    - transformers-talk
 - name: Miscellaneous
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere
   lessons:
+    - harvey-mudd-speech
+    - transformers-talk
     - manim-demo
     - qa1
     - qa2
