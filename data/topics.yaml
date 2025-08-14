@@ -12,26 +12,6 @@
     - gpt
     - attention
     - mlp
-- name: Calculus
-  slug: calculus
-  description: Visual introductions to the core ideas of derivatives, integrals, limits and more
-  lessons:
-    - essence-of-calculus
-    - derivatives
-    - derivatives-power-rule
-    - derivatives-trig-functions
-    - chain-rule-and-product-rule
-    - eulers-number
-    - implicit-differentiation
-    - limits
-    - epsilon-delta
-    - l-hopitals-rule
-    - integration
-    - area-and-slope
-    - higher-order-derivatives
-    - taylor-series
-    - taylor-series-geometric-view
-    - derivatives-and-transforms
 - name: Linear Algebra
   slug: linear-algebra
   description: An introduction to visualizing what matrices are really doing
@@ -52,6 +32,27 @@
     - eigenvalues
     - quick-eigen
     - abstract-vector-spaces
+- name: Calculus
+  slug: calculus
+  description: Visual introductions to the core ideas of derivatives, integrals, limits and more
+  lessons:
+    - essence-of-calculus
+    - derivatives
+    - derivatives-power-rule
+    - derivatives-trig-functions
+    - chain-rule-and-product-rule
+    - eulers-number
+    - implicit-differentiation
+    - limits
+    - epsilon-delta
+    - l-hopitals-rule
+    - integration
+    - area-and-slope
+    - higher-order-derivatives
+    - taylor-series
+    - taylor-series-geometric-view
+    - derivatives-and-transforms
+    - divergence-and-curl
 - name: Differential Equations
   slug: differential-equations
   description: A tour through some of the most beautiful methods for studying dynamic systems
@@ -107,7 +108,6 @@
     - newtons-fractal
     - holomorphic-dynamics
     - zeta
-    - divergence-and-curl
     - borwein
     - hilbert-curve
     - fractal-dimension
@@ -199,6 +199,12 @@
     - some2
     - some2-results
     - some3-results
+- name: Talks
+  slug: talks
+  description: Various talks  
+  lessons:
+    - harvey-mudd-speech
+    - transformers-talk
 - name: Miscellaneous
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere
