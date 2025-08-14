@@ -15,7 +15,7 @@ import styles from "./index.module.scss";
 
 export function LicensingForm() {
   return (
-    <Form name="contact-licensing">
+    <Form name="contact-licensing" anchor="licensing">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -65,7 +65,7 @@ export function LicensingForm() {
 
 export function SpeakingForm() {
   return (
-    <Form name="contact-speaking">
+    <Form name="contact-speaking" anchor="speaking">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -112,7 +112,7 @@ export function ThanksForm() {
 
 export function ContactForm() {
   return (
-    <Form name="contact-general">
+    <Form name="contact-general" anchor="contact">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -188,7 +188,7 @@ export function ContactFormReceivedMessage() {
   }
 }
 
-function Form({ name, children }) {
+function Form({ name, children, anchor }) {
   const hiddenSubmitRef = useRef();
 
   const submit = () => {
@@ -203,11 +203,13 @@ function Form({ name, children }) {
     hiddenSubmitRef.current.click();
   };
 
+  const actionUrl = anchor ? `/faq?received=${name}#${anchor}` : `/faq?received=${name}`;
+
   return (
     <div className={styles.form}>
       <form
         method="POST"
-        action={`/faq?received=${name}#contact`}
+        action={actionUrl}
         data-netlify="true"
         name={name}
       >
