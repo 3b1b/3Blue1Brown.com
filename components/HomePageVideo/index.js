@@ -135,13 +135,6 @@ const VideoControls = ({
       <i className="fas fa-angle-left" />
     </button>
     
-    <button 
-      className={styles.randomButton}
-      onClick={onRandom}
-    >
-      <i className="fa-solid fa-dice"></i>
-    </button>
-    
     <button
       className={styles.arrowRight}
       aria-label="Next video"
@@ -158,6 +151,13 @@ const VideoControls = ({
       disabled={currentIndex === totalVideos - 1}
     >
       <i className="fas fa-step-forward" />
+    </button>
+    
+    <button 
+      className={styles.randomButton}
+      onClick={onRandom}
+    >
+      <i className="fa-solid fa-dice"></i>
     </button>
   </div>
 );
