@@ -112,7 +112,7 @@ export function ThanksForm() {
 
 export function ContactForm() {
   return (
-    <Form name="contact-general" anchor="contact">
+    <Form name="contact-general">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -188,7 +188,7 @@ export function ContactFormReceivedMessage() {
   }
 }
 
-function Form({ name, children, anchor }) {
+function Form({ name, children }) {
   const hiddenSubmitRef = useRef();
 
   const submit = () => {
@@ -203,13 +203,11 @@ function Form({ name, children, anchor }) {
     hiddenSubmitRef.current.click();
   };
 
-  const actionUrl = anchor ? `/faq?received=${name}#${anchor}` : `/faq?received=${name}`;
-
   return (
     <div className={styles.form}>
       <form
         method="POST"
-        action={actionUrl}
+        action={`/faq?received=${name}#contact`}
         data-netlify="true"
         name={name}
       >
