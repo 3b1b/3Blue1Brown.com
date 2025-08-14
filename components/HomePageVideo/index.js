@@ -101,9 +101,7 @@ const VideoInfo = ({ lesson, isLatest }) => (
       )}
     </div>
     <div className={styles.videoTitle}>
-      <Link href={`https://www.youtube.com/watch?v=${lesson.video}`}>
-        {lesson.title}
-      </Link>
+      {lesson.title}
     </div>
   </div>
 );

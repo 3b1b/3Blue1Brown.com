@@ -62,9 +62,7 @@ export default function HomepageFeaturedContent({ title, show_latest_video=true,
             </button>
           </div>
           <div className={styles.lessonTitle}>
-            <Link href={`https://www.youtube.com/watch?v=${currentLesson.video}`}>
-              {currentLesson.title}
-            </Link>
+            {currentLesson.title}
           </div>
         </>
       }
