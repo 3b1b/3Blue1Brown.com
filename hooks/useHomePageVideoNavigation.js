@@ -26,7 +26,7 @@ export const useHomePageVideoNavigation = (videosLessons) => {
     try {
       setIsNavigating(true);
       const url = createVideoUrl(lesson.slug);
-      await router.replace(url);
+      await router.replace(url, undefined, { scroll: false });
       clearTargetLesson();
       
       // Brief delay to allow content to stabilize
