@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
@@ -21,11 +21,7 @@ export default function HomePageVideo({ autoplay = false }) {
     .filter(lesson => lesson.video && lesson.video.trim() !== '')
     .sort((a, b) => new Date(a.date) - new Date(b.date));
   
-  if (videosLessons.length === 0) {
-    return <div>No videos available</div>;
-  }
-  
-  // Use the custom hook for navigation logic
+  // Use the custom hook for navigation logic (must be called before any early returns)
   const { 
     currentLesson, 
     currentIndex, 
@@ -33,6 +29,10 @@ export default function HomePageVideo({ autoplay = false }) {
     isNavigating,
     navigation 
   } = useHomePageVideoNavigation(videosLessons);
+  
+  if (videosLessons.length === 0) {
+    return <div>No videos available</div>;
+  }
   
   return (
     <div className={styles.container} data-homepage-video>
@@ -51,6 +51,7 @@ export default function HomePageVideo({ autoplay = false }) {
           onRandom={navigation.goToRandom}
           onNext={navigation.goToNext}
           onLast={navigation.goToLast}
+          videosLessons={videosLessons}
         />
       </div>
       {isNavigating && (
@@ -114,50 +115,95 @@ const VideoControls = ({
   onPrevious, 
   onRandom, 
   onNext, 
-  onLast 
-}) => (
-  <div className={styles.videoControls}>
-    <button
-      className={styles.arrowFirst}
-      aria-label="First video"
-      onClick={onFirst}
-      disabled={currentIndex === 0}
-    >
-      <i className="fas fa-step-backward" />
-    </button>
+  onLast,
+  videosLessons 
+}) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Generate 10 random titles for the slot machine effect
+  const generateRandomTitles = () => {
+    const titles = [];
+    for (let i = 0; i < 10; i++) {
+      const randomIndex = Math.floor(Math.random() * videosLessons.length);
+      titles.push(videosLessons[randomIndex].title);
+    }
+    return titles;
+  };
+
+  const handleRandomClick = () => {
+    if (isAnimating) return; // Prevent multiple animations
     
-    <button
-      className={styles.arrowLeft}
-      aria-label="Previous video"
-      onClick={onPrevious}
-      disabled={currentIndex === 0}
-    >
-      <i className="fas fa-angle-left" />
-    </button>
-    
-    <button
-      className={styles.arrowRight}
-      aria-label="Next video"
-      onClick={onNext}
-      disabled={currentIndex === totalVideos - 1}
-    >
-      <i className="fas fa-angle-right" />
-    </button>
-    
-    <button
-      className={styles.arrowLast}
-      aria-label="Last video"
-      onClick={onLast}
-      disabled={currentIndex === totalVideos - 1}
-    >
-      <i className="fas fa-step-forward" />
-    </button>
-    
-    <button 
-      className={styles.randomButton}
-      onClick={onRandom}
-    >
-      <i className="fa-solid fa-dice"></i>
-    </button>
-  </div>
-);
+    setIsAnimating(true);
+    const randomTitles = generateRandomTitles();
+    let titleIndex = 0;
+
+    // Get the title element to animate
+    const titleElement = document.querySelector(`[data-homepage-video] .${styles.videoTitle}`);
+
+    // Flash through titles quickly
+    const interval = setInterval(() => {
+      if (titleElement) {
+        titleElement.textContent = randomTitles[titleIndex];
+      }
+      titleIndex++;
+      
+      if (titleIndex >= randomTitles.length) {
+        clearInterval(interval);
+        // After animation completes, trigger the actual random navigation
+        setTimeout(() => {
+          setIsAnimating(false);
+          onRandom();
+        }, 50);
+      }
+    }, 40); // 40ms per title = ~400ms total animation
+  };
+
+  return (
+    <div className={styles.videoControls}>
+      <button
+        className={styles.arrowFirst}
+        aria-label="First video"
+        onClick={onFirst}
+        disabled={currentIndex === 0}
+      >
+        <i className="fas fa-step-backward" />
+      </button>
+      
+      <button
+        className={styles.arrowLeft}
+        aria-label="Previous video"
+        onClick={onPrevious}
+        disabled={currentIndex === 0}
+      >
+        <i className="fas fa-angle-left" />
+      </button>
+      
+      <button
+        className={styles.arrowRight}
+        aria-label="Next video"
+        onClick={onNext}
+        disabled={currentIndex === totalVideos - 1}
+      >
+        <i className="fas fa-angle-right" />
+      </button>
+      
+      <button
+        className={styles.arrowLast}
+        aria-label="Last video"
+        onClick={onLast}
+        disabled={currentIndex === totalVideos - 1}
+      >
+        <i className="fas fa-step-forward" />
+      </button>
+      
+      <button 
+        className={`${styles.randomButton} ${isAnimating ? styles.animating : ''}`}
+        onClick={handleRandomClick}
+        title="Show random video"
+        disabled={isAnimating}
+      >
+        <i className="fa-solid fa-dice"></i>
+      </button>
+    </div>
+  );
+};

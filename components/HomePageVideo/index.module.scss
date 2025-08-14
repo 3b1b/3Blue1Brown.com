@@ -69,6 +69,13 @@
   100% { transform: rotate(360deg); }
 }
 
+@keyframes diceRoll {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(90deg); }
+  50% { transform: scale(1.05) rotate(180deg); }
+  75% { transform: scale(1.1) rotate(270deg); }
+}
+
 /* Screen reader only text */
 .srOnly {
   position: absolute;
@@ -190,6 +197,16 @@
   
   &:focus {
     outline: none;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  &.animating {
+    animation: diceRoll 0.4s ease-in-out;
+    color: #FFF;
   }
 }
 
