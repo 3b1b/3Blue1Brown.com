@@ -70,10 +70,8 @@
 }
 
 @keyframes diceRoll {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.1) rotate(90deg); }
-  50% { transform: scale(1.05) rotate(180deg); }
-  75% { transform: scale(1.1) rotate(270deg); }
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1) rotate(360deg); }
 }
 
 /* Screen reader only text */

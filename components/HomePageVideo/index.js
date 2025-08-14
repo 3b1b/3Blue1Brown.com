@@ -120,10 +120,10 @@ const VideoControls = ({
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Generate 10 random titles for the slot machine effect
+  // Generate 5 random titles for the slot machine effect
   const generateRandomTitles = () => {
     const titles = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 5; i++) {
       const randomIndex = Math.floor(Math.random() * videosLessons.length);
       titles.push(videosLessons[randomIndex].title);
     }
@@ -134,13 +134,18 @@ const VideoControls = ({
     if (isAnimating) return; // Prevent multiple animations
     
     setIsAnimating(true);
+    
+    // Start navigation immediately for instant switching
+    onRandom();
+    
+    // Run slot machine animation in parallel for visual effect
     const randomTitles = generateRandomTitles();
     let titleIndex = 0;
 
     // Get the title element to animate
     const titleElement = document.querySelector(`[data-homepage-video] .${styles.videoTitle}`);
 
-    // Flash through titles quickly
+    // Flash through titles quickly while new page loads
     const interval = setInterval(() => {
       if (titleElement) {
         titleElement.textContent = randomTitles[titleIndex];
@@ -149,13 +154,12 @@ const VideoControls = ({
       
       if (titleIndex >= randomTitles.length) {
         clearInterval(interval);
-        // After animation completes, trigger the actual random navigation
+        // Animation complete - the new video should be loaded by now
         setTimeout(() => {
           setIsAnimating(false);
-          onRandom();
         }, 50);
       }
-    }, 40); // 40ms per title = ~400ms total animation
+    }, 40); // 40ms per title = ~200ms total animation
   };
 
   return (
