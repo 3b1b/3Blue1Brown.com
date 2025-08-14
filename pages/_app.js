@@ -1,7 +1,7 @@
 import { useEffect, createContext } from "react";
 import { useRouter } from "next/router";
 import * as gtag from "../util/gtag";
-import { FeaturedVideoProvider } from "../util/featuredVideoContext";
+import { HomePageVideoProvider } from "../util/homePageVideoContext";
 import "../styles/global.scss";
 import "katex/dist/katex.min.css";
 
@@ -25,9 +25,9 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <PageContext.Provider value={pageProps}>
-      <FeaturedVideoProvider>
+      <HomePageVideoProvider>
         <Component {...pageProps} />
-      </FeaturedVideoProvider>
+      </HomePageVideoProvider>
     </PageContext.Provider>
   );
 };

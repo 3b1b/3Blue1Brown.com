@@ -32,7 +32,7 @@ const Title = ({ big }) => (
     <Logo big={big} />
     <div className={styles.textStack}>
       <Text />
-      <div className={styles.tagline}>Animated math</div>
+      <Tagline />
     </div>
 
   </Link>)
@@ -43,6 +43,15 @@ const Text = () => (
   <span className={styles.text}>
     {title.split("").map((char, index) => (
       <span key={index}>{char}</span>
+    ))}
+  </span>
+);
+
+// animated tagline text
+const Tagline = () => (
+  <span className={styles.tagline}>
+    {"Animated math".split("").map((char, index) => (
+      <span key={index}>{char === " " ? "\u00A0" : char}</span>
     ))}
   </span>
 );
