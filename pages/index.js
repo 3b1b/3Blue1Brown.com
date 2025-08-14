@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
@@ -8,17 +8,19 @@ function HomePage(props) {
   const router = useRouter();
   const { playLesson } = useFeaturedVideo();
   const { lessons = [] } = props;
+  const hasPlayedFromUrl = useRef(false);
 
   useEffect(() => {
     const { v } = router.query;
     
-    if (v) {
+    if (v && !hasPlayedFromUrl.current) {
       // Find the lesson with the matching slug
       const targetLesson = lessons.find(lesson => lesson.slug === v);
       
       if (targetLesson && targetLesson.video && targetLesson.video.trim() !== '') {
         // Auto-play the lesson
         playLesson(targetLesson);
+        hasPlayedFromUrl.current = true;
       } else if (targetLesson) {
         console.warn(`Lesson "${v}" found but has no video`);
       } else {
