@@ -15,7 +15,7 @@ import styles from "./index.module.scss";
 
 export function LicensingForm() {
   return (
-    <Form name="contact-licensing">
+    <Form name="contact-licensing" anchor="licensing">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -65,7 +65,7 @@ export function LicensingForm() {
 
 export function SpeakingForm() {
   return (
-    <Form name="contact-speaking">
+    <Form name="contact-speaking" anchor="speaking">
       <InputRow>
         <Input name="name" label="Name" />
         <Input name="email" type="email" label="Email" />
@@ -207,7 +207,7 @@ function Form({ name, children }) {
     <div className={styles.form}>
       <form
         method="POST"
-        action={`/faq?received=${name}`}
+        action={`/faq?received=${name}#contact`}
         data-netlify="true"
         name={name}
       >
