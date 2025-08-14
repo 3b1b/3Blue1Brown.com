@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useFeaturedVideo } from "../util/featuredVideoContext";
 import { createVideoUrl, getVideoSlugFromQuery } from "../util/videoNavigation";
@@ -9,15 +10,23 @@ import { createVideoUrl, getVideoSlugFromQuery } from "../util/videoNavigation";
 export const useFeaturedVideoNavigation = (videosLessons) => {
   const router = useRouter();
   const { clearTargetLesson } = useFeaturedVideo();
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Helper function for safe navigation with error handling
   const navigateToLesson = async (lesson, action = "navigate") => {
     try {
+      setIsNavigating(true);
       const url = createVideoUrl(lesson.slug);
       await router.replace(url);
       clearTargetLesson();
+      
+      // Brief delay to allow content to stabilize
+      setTimeout(() => {
+        setIsNavigating(false);
+      }, 200);
     } catch (error) {
       console.error(`Failed to ${action} to lesson ${lesson.slug}:`, error);
+      setIsNavigating(false);
       // Could show user-facing error message here if needed
     }
   };
@@ -77,6 +86,7 @@ export const useFeaturedVideoNavigation = (videosLessons) => {
     currentLesson,
     currentIndex,
     isLatest,
+    isNavigating,
     navigation
   };
 };

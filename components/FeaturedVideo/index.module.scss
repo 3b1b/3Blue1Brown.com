@@ -4,11 +4,52 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 600px; /* Prevent layout shift during transitions */
+  /* Calculate minimum height based on 16:9 video + UI elements */
+  min-height: calc(min(100vw, 1000px) * (9/16) + 150px);
+  position: relative;
+  
+  @media (max-width: 768px) {
+    /* Smaller UI elements on mobile */
+    min-height: calc(min(100vw, 1000px) * (9/16) + 120px);
+  }
+}
+
+.content {
+  transition: opacity 0.2s ease;
+  
+  &.navigating {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .videoPlayer {
   width: 100%;
+  /* Maintain consistent 16:9 aspect ratio */
+  aspect-ratio: 16 / 9;
+  height: calc(min(100vw, 1000px) * (9/16)); /* Responsive 16:9 ratio */
   transition: opacity 0.2s ease;
 }
 

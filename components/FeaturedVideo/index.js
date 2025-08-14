@@ -30,26 +30,34 @@ export default function FeaturedVideo({ autoplay = false }) {
     currentLesson, 
     currentIndex, 
     isLatest, 
+    isNavigating,
     navigation 
   } = useFeaturedVideoNavigation(videosLessons);
   
   return (
     <div className={styles.container} data-featured-video>
-      <VideoPlayer 
-        lesson={currentLesson} 
-        autoplay={autoplay} 
-        userInitiated={!!targetLesson}
-      />
-      <VideoInfo lesson={currentLesson} isLatest={isLatest} />
-      <VideoControls
-        currentIndex={currentIndex}
-        totalVideos={videosLessons.length}
-        onFirst={navigation.goToFirst}
-        onPrevious={navigation.goToPrevious}
-        onRandom={navigation.goToRandom}
-        onNext={navigation.goToNext}
-        onLast={navigation.goToLast}
-      />
+      <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
+        <VideoPlayer 
+          lesson={currentLesson} 
+          autoplay={autoplay} 
+          userInitiated={!!targetLesson}
+        />
+        <VideoInfo lesson={currentLesson} isLatest={isLatest} />
+        <VideoControls
+          currentIndex={currentIndex}
+          totalVideos={videosLessons.length}
+          onFirst={navigation.goToFirst}
+          onPrevious={navigation.goToPrevious}
+          onRandom={navigation.goToRandom}
+          onNext={navigation.goToNext}
+          onLast={navigation.goToLast}
+        />
+      </div>
+      {isNavigating && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.spinner}></div>
+        </div>
+      )}
     </div>
   );
 }
