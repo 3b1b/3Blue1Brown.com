@@ -207,7 +207,7 @@ function Form({ name, children }) {
     <div className={styles.form}>
       <form
         method="POST"
-        action={`/contact?received=${name}`}
+        action={`/faq?received=${name}`}
         data-netlify="true"
         name={name}
       >
