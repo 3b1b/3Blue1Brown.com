@@ -5,6 +5,7 @@ import { PageContext } from "../../pages/_app";
 import { useHomePageVideo } from "../../util/homePageVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
 import { useHomePageVideoNavigation } from "../../hooks/useHomePageVideoNavigation";
+import { createVideoUrl } from "../../util/videoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
@@ -81,31 +82,74 @@ const VideoPlayer = ({ lesson, autoplay = false, userInitiated = false }) => (
 );
 
 // Video info component (date, title, written version indicator)
-const VideoInfo = ({ lesson, isLatest }) => (
-  <div className={styles.videoInfo}>
-    <div className={styles.latestVideoLabel}>
-      <span>
-        {isLatest ? 'Latest video' : new Date(lesson.date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-      </span>
-      {!lesson.empty && (
-        <Tooltip content="Read the text version">
-          <Link href={`/lessons/${lesson.slug}#title`} className={styles.writtenVersionLink}>
-            <button className={styles.writtenVersionButton}>
-              <i className="far fa-newspaper"></i>
+const VideoInfo = ({ lesson, isLatest }) => {
+  const [copySuccess, setCopySuccess] = useState(false);
+
+  const handleShare = async () => {
+    try {
+      const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
+      await navigator.clipboard.writeText(videoUrl);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000); // Hide after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy URL:', err);
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    }
+  };
+
+  return (
+    <div className={styles.videoInfo}>
+      <div className={styles.videoMetadata}>
+        {/* Left section: Share button */}
+        <div className={styles.leftSection}>
+          <Tooltip content={copySuccess ? "URL copied!" : "Share video"}>
+            <button 
+              className={`${styles.shareButton} ${copySuccess ? styles.copied : ''}`}
+              onClick={handleShare}
+            >
+              <i className={copySuccess ? "fas fa-check" : "fas fa-share"}></i>
             </button>
-          </Link>
-        </Tooltip>
-      )}
+          </Tooltip>
+        </div>
+        
+        {/* Center section: Date */}
+        <div className={styles.centerSection}>
+          <span className={styles.dateLabel}>
+            {isLatest ? 'Latest video' : new Date(lesson.date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </span>
+        </div>
+        
+        {/* Right section: Read button */}
+        <div className={styles.rightSection}>
+          {!lesson.empty && (
+            <Tooltip content="Read the text version">
+              <Link href={`/lessons/${lesson.slug}#title`} className={styles.writtenVersionLink}>
+                <button className={styles.writtenVersionButton}>
+                  <i className="far fa-newspaper"></i>
+                </button>
+              </Link>
+            </Tooltip>
+          )}
+        </div>
+      </div>
+      <div className={styles.videoTitle}>
+        {lesson.title}
+      </div>
     </div>
-    <div className={styles.videoTitle}>
-      {lesson.title}
-    </div>
-  </div>
-);
+  );
+};
 
 // Video navigation controls component
 const VideoControls = ({ 
