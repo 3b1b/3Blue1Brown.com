@@ -5,6 +5,7 @@ import Chip from "../Chip";
 import { formatDate } from "../../util/locale";
 import { PageContext } from "../../pages/_app";
 import { createVideoUrl, VIDEO_URLS } from "../../util/videoNavigation";
+import { getResponsiveYouTubeThumbnails } from "../../util/youtubeThumbnails";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
@@ -55,6 +56,11 @@ export default function LessonCard({
     lesson;
   if (date) date = formatDate(date);
 
+  // Generate responsive thumbnails for video lessons
+  const responsiveThumbnails = hasVideo && lesson.video 
+    ? getResponsiveYouTubeThumbnails(lesson.video)
+    : null;
+
   return (
     <Component
       link={lessonRedirects[slug] || `/lessons/${slug}`}
@@ -69,7 +75,20 @@ export default function LessonCard({
 
       <div className={styles.image}>
         <div className={styles.frame}>
-          <img src={thumbnail} alt="" />
+          {responsiveThumbnails ? (
+            <img 
+              src={responsiveThumbnails.default}
+              srcSet={`
+                ${responsiveThumbnails.mobile} 480w,
+                ${responsiveThumbnails.tablet} 768w,
+                ${responsiveThumbnails.desktop} 1200w
+              `}
+              sizes="(max-width: 480px) 320px, (max-width: 768px) 400px, 500px"
+              alt=""
+            />
+          ) : (
+            <img src={thumbnail} alt="" />
+          )}
         </div>
       </div>
 
