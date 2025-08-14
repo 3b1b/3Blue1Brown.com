@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 import { useFeaturedVideo } from "../util/featuredVideoContext";
 import { createVideoUrl, getVideoSlugFromQuery } from "../util/videoNavigation";
 
+// Configuration constants
+const NAVIGATION_TRANSITION_DURATION = 200; // ms - Time to allow content to stabilize after navigation
+
 /**
  * Custom hook for FeaturedVideo navigation logic
  * Handles all video navigation state and actions
@@ -14,6 +17,12 @@ export const useFeaturedVideoNavigation = (videosLessons) => {
 
   // Helper function for safe navigation with error handling
   const navigateToLesson = async (lesson, action = "navigate") => {
+    // Prevent rapid navigation clicks
+    if (isNavigating) {
+      console.log(`Navigation blocked: already navigating (${action})`);
+      return;
+    }
+
     try {
       setIsNavigating(true);
       const url = createVideoUrl(lesson.slug);
@@ -23,7 +32,7 @@ export const useFeaturedVideoNavigation = (videosLessons) => {
       // Brief delay to allow content to stabilize
       setTimeout(() => {
         setIsNavigating(false);
-      }, 200);
+      }, NAVIGATION_TRANSITION_DURATION);
     } catch (error) {
       console.error(`Failed to ${action} to lesson ${lesson.slug}:`, error);
       setIsNavigating(false);

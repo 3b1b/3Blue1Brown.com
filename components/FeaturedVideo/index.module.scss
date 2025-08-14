@@ -1,29 +1,52 @@
 .container {
-  max-width: 1000px;
+  /* CSS Custom Properties for maintainable calculations */
+  --max-video-width: 1000px;
+  --video-aspect-ratio: 0.5625; /* 9/16 = 0.5625 for 16:9 videos */
+  --video-controls-height: 60px;
+  --video-info-height: 80px;
+  --container-padding: 10px;
+  --ui-total-height: calc(var(--video-controls-height) + var(--video-info-height) + var(--container-padding));
+  
+  /* Layout */
+  max-width: var(--max-video-width);
   margin: 25px auto 0 auto;
+  position: relative;
+  
+  /* Flexbox */
   display: flex;
   flex-direction: column;
   gap: 12px;
-  /* Calculate minimum height based on 16:9 video + UI elements */
-  min-height: calc(min(100vw, 1000px) * (9/16) + 150px);
-  position: relative;
+  
+  /* Prevent layout shift: video height + UI elements height */
+  min-height: calc(var(--max-video-width) * var(--video-aspect-ratio) + var(--ui-total-height));
   
   @media (max-width: 768px) {
-    /* Smaller UI elements on mobile */
-    min-height: calc(min(100vw, 1000px) * (9/16) + 120px);
+    --video-controls-height: 50px; /* Smaller controls on mobile */
+    --video-info-height: 60px; /* Smaller info section on mobile */
+  }
+  
+  /* For screens smaller than max video width, use responsive width */
+  @media (max-width: 1000px) {
+    min-height: calc(100vw * var(--video-aspect-ratio) + var(--ui-total-height));
   }
 }
 
+/* ==========================================================================
+   Loading States & Transitions
+   ========================================================================== */
+
 .content {
+  /* Smooth transitions during navigation */
   transition: opacity 0.2s ease;
   
   &.navigating {
     opacity: 0.3;
-    pointer-events: none;
+    pointer-events: none; /* Prevent interaction during loading */
   }
 }
 
 .loadingOverlay {
+  /* Center the loading spinner */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -32,6 +55,7 @@
 }
 
 .spinner {
+  /* Loading spinner styling */
   width: 40px;
   height: 40px;
   border: 3px solid rgba(255, 255, 255, 0.3);
@@ -45,26 +69,66 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Screen reader only text */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .videoPlayer {
+  /* Video Player Sizing */
   width: 100%;
-  /* Maintain consistent 16:9 aspect ratio */
+  max-width: var(--max-video-width);
+  
+  /* Fallback height calculation for older browsers */
+  height: calc(var(--max-video-width) * var(--video-aspect-ratio));
+  
+  /* Progressive enhancement: use aspect-ratio when supported */
   aspect-ratio: 16 / 9;
-  height: calc(min(100vw, 1000px) * (9/16)); /* Responsive 16:9 ratio */
+  
+  @supports (aspect-ratio: 16 / 9) {
+    height: auto; /* Let aspect-ratio handle the height */
+  }
+  
+  /* Responsive sizing for smaller screens */
+  @media (max-width: 1000px) {
+    height: calc(100vw * var(--video-aspect-ratio));
+    
+    @supports (aspect-ratio: 16 / 9) {
+      height: auto; /* Aspect-ratio handles responsive sizing */
+    }
+  }
+  
+  /* Transitions */
   transition: opacity 0.2s ease;
 }
 
+/* ==========================================================================
+   Video Information & Controls
+   ========================================================================== */
+
 .videoInfo {
+  /* Center-aligned video metadata */
   text-align: center;
   transition: opacity 0.2s ease;
 }
 
 .videoControls {
+  /* Navigation button layout */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
 
+/* Video Labels & Titles */
 .videoLabel {
   font-size: 22px;
   color: #BBB;
@@ -98,12 +162,17 @@
   }
 }
 
+/* ==========================================================================
+   Navigation Buttons & Controls
+   ========================================================================== */
+
 .randomButtonContainer {
   margin-top: 12px;
   text-align: center;
 }
 
 .randomButton {
+  /* Random video button styling */
   background: none;
   border: none;
   color: #BBB;
@@ -124,6 +193,7 @@
   }
 }
 
+/* Navigation arrow buttons */
 .arrowLeft,
 .arrowRight,
 .arrowFirst,
@@ -150,19 +220,16 @@
   }
 }
 
-.arrowLeft {
-  // No specific grid area needed, will be in flex container
-}
-
-.arrowRight {
-  // No specific grid area needed, will be in flex container
-}
+/* ==========================================================================
+   Utility Links & Buttons
+   ========================================================================== */
 
 .writtenVersionLink {
   text-decoration: none;
 }
 
 .writtenVersionButton {
+  /* Written version access button */
   background-color: #1C758A;
   border: none;
   border-radius: 15px;

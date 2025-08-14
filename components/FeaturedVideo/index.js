@@ -54,8 +54,14 @@ export default function FeaturedVideo({ autoplay = false }) {
         />
       </div>
       {isNavigating && (
-        <div className={styles.loadingOverlay}>
-          <div className={styles.spinner}></div>
+        <div 
+          className={styles.loadingOverlay} 
+          role="status" 
+          aria-live="polite"
+          aria-label="Loading new video"
+        >
+          <div className={styles.spinner} aria-hidden="true"></div>
+          <span className={styles.srOnly}>Loading new video...</span>
         </div>
       )}
     </div>
