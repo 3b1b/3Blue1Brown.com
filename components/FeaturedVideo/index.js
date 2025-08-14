@@ -1,19 +1,49 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
+import { useFeaturedVideo } from "../../util/featuredVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
-export default function FeaturedVideo() {
+FeaturedVideo.propTypes = {
+  autoplay: PropTypes.bool,
+};
+
+export default function FeaturedVideo({ autoplay = false }) {
   const { lessons } = useContext(PageContext);
+  const { targetLesson, clearTargetLesson } = useFeaturedVideo();
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
     .filter(lesson => lesson.video && lesson.video.trim() !== '')
     .sort((a, b) => new Date(a.date) - new Date(b.date));
   
-  const [currentIndex, setCurrentIndex] = useState(Math.max(0, videosLessons.length - 1));
+  // If targetLesson is provided, find its index, otherwise default to latest
+  const getInitialIndex = () => {
+    if (targetLesson) {
+      const targetIndex = videosLessons.findIndex(lesson => lesson.slug === targetLesson.slug);
+      return targetIndex !== -1 ? targetIndex : Math.max(0, videosLessons.length - 1);
+    }
+    return Math.max(0, videosLessons.length - 1);
+  };
+  
+  const [currentIndex, setCurrentIndex] = useState(getInitialIndex());
+  
+  // Update currentIndex when targetLesson changes
+  useEffect(() => {
+    if (targetLesson && targetLesson.slug) {
+      const targetIndex = videosLessons.findIndex(lesson => lesson.slug === targetLesson.slug);
+      if (targetIndex !== -1) {
+        setCurrentIndex(targetIndex);
+      } else {
+        console.warn('FeaturedVideo: Target lesson not found in videos list:', targetLesson.slug);
+        // Optionally clear the target lesson if it's not found
+        clearTargetLesson();
+      }
+    }
+  }, [targetLesson, videosLessons, clearTargetLesson]);
   
   if (videosLessons.length === 0) {
     return <div>No videos available</div>;
@@ -21,14 +51,22 @@ export default function FeaturedVideo() {
   
   const currentLesson = videosLessons[currentIndex];
   const isLatest = currentIndex === videosLessons.length - 1;
+  // Force autoplay when a target lesson is specified (user clicked a topic)
+  const shouldAutoplay = autoplay || !!targetLesson;
   
   // Navigation functions
   const goToPrevious = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      clearTargetLesson();
+    }
   };
   
   const goToNext = () => {
-    if (currentIndex < videosLessons.length - 1) setCurrentIndex(currentIndex + 1);
+    if (currentIndex < videosLessons.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      clearTargetLesson();
+    }
   };
   
   const goToRandom = () => {
@@ -37,14 +75,27 @@ export default function FeaturedVideo() {
       randomIndex = Math.floor(Math.random() * videosLessons.length);
     } while (randomIndex === currentIndex && videosLessons.length > 1);
     setCurrentIndex(randomIndex);
+    // Clear target lesson so random navigation works normally
+    clearTargetLesson();
   };
   
-  const goToFirst = () => setCurrentIndex(0);
-  const goToLast = () => setCurrentIndex(videosLessons.length - 1);
+  const goToFirst = () => {
+    setCurrentIndex(0);
+    clearTargetLesson();
+  };
+  
+  const goToLast = () => {
+    setCurrentIndex(videosLessons.length - 1);
+    clearTargetLesson();
+  };
   
   return (
-    <div className={styles.container}>
-      <VideoPlayer lesson={currentLesson} />
+    <div className={styles.container} data-featured-video>
+      <VideoPlayer 
+        lesson={currentLesson} 
+        autoplay={shouldAutoplay} 
+        userInitiated={!!targetLesson}
+      />
       <VideoInfo lesson={currentLesson} isLatest={isLatest} />
       <VideoControls
         currentIndex={currentIndex}
@@ -60,9 +111,14 @@ export default function FeaturedVideo() {
 }
 
 // Video player component
-const VideoPlayer = ({ lesson }) => (
+const VideoPlayer = ({ lesson, autoplay = false, userInitiated = false }) => (
   <div className={styles.videoPlayer}>
-    <HomepageFeaturedYouTube slug={lesson.video} />
+    <HomepageFeaturedYouTube 
+      key={lesson.video} // Force re-mount when video changes
+      slug={lesson.video} 
+      autoplay={autoplay} 
+      userInitiated={userInitiated}
+    />
   </div>
 );
 

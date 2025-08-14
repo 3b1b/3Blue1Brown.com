@@ -3,7 +3,7 @@ $phone: 600px;
 .lesson_card {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   padding: 20px;
   color: inherit;
@@ -63,7 +63,7 @@ $phone: 600px;
   max-width: 50%;
 
   @media (max-width: $phone) {
-    max-width: 35%;
+    max-width: 45%;
   }
 }
 
@@ -93,7 +93,9 @@ $phone: 600px;
   word-break: break-word;
 
   @media (max-width: $phone) {
-    & > *:not(:first-child) {
+    grid-gap: 10px;
+    
+    & > *:not(:first-child):not(.blogVersionLink) {
       display: none;
     }
   }
@@ -102,10 +104,60 @@ $phone: 600px;
 .title {
   font-family: $sans;
   font-weight: $medium;
+  
+  @media (max-width: $phone) {
+    font-size: 0.8rem;
+    @include line-clamp(2);
+  }
 }
 
 .description {
+  font-family: $sans;
+  font-size: 0.85rem;
   @include line-clamp(3);
+}
+
+.blogVersionLink {
+  margin-top: 2px;
+  
+  @media (max-width: $phone) {
+    margin-top: 5px;
+  }
+}
+
+.blogLink {
+  color: $blue-400;
+  font-size: 1.0rem;
+  text-decoration: none;
+  font-weight: $medium;
+  
+  &:hover {
+    color: $blue-700;
+    text-decoration: underline;
+  }
+  
+  // Make it more prominent on card hover
+  .lesson_card:hover & {
+    color: $blue-200;
+    
+    &:hover {
+      color: white;
+    }
+  }
+  
+  @media (max-width: $phone) {
+    font-size: 0.85rem;
+  }
+}
+
+.date {
+  font-size: 0.85rem;
+  color: $gray-400;
+  
+  // Make it lighter when card is hovered
+  .lesson_card:hover & {
+    color: $gray-300;
+  }
 }
 
 .lesson_card[data-mini="true"] .text {
