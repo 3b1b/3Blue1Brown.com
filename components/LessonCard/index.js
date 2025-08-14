@@ -4,6 +4,7 @@ import NextLink from "next/link";
 import Chip from "../Chip";
 import { formatDate } from "../../util/locale";
 import { PageContext } from "../../pages/_app";
+import { createVideoUrl, VIDEO_URLS } from "../../util/videoNavigation";
 import styles from "./index.module.scss";
 import Tooltip from "../Tooltip";
 import lessonRedirects from "../../data/lesson-redirects.yaml";
@@ -98,11 +99,9 @@ export default function LessonCard({
 }
 
 const Link = ({ link, tooltip, ...rest }) => (
-  <NextLink href={link} passHref legacyBehavior>
-    <Tooltip content={tooltip}>
-      <a {...rest} />
-    </Tooltip>
-  </NextLink>
+  <Tooltip content={tooltip}>
+    <NextLink href={link} {...rest} />
+  </Tooltip>
 );
 
 const VideoLink = ({ lesson, tooltip, ...rest }) => {
@@ -113,11 +112,9 @@ const VideoLink = ({ lesson, tooltip, ...rest }) => {
   }
 
   return (
-    <NextLink href={`/?v=${lesson.slug}`} passHref legacyBehavior>
-      <Tooltip content={tooltip}>
-        <a {...rest} />
-      </Tooltip>
-    </NextLink>
+    <Tooltip content={tooltip}>
+      <NextLink href={createVideoUrl(lesson.slug)} {...rest} />
+    </Tooltip>
   );
 };
 

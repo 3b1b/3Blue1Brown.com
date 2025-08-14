@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
 import { useFeaturedVideo } from "../util/featuredVideoContext";
+import { getVideoSlugFromQuery } from "../util/videoNavigation";
 
 function HomePage(props) {
   const router = useRouter();
@@ -11,23 +12,26 @@ function HomePage(props) {
   const hasPlayedFromUrl = useRef(false);
 
   useEffect(() => {
-    const { v } = router.query;
+    // Wait for router to be ready to avoid missing URL parameters
+    if (!router.isReady) return;
     
-    if (v && !hasPlayedFromUrl.current) {
+    const videoSlug = getVideoSlugFromQuery(router.query);
+    
+    if (videoSlug && !hasPlayedFromUrl.current) {
       // Find the lesson with the matching slug
-      const targetLesson = lessons.find(lesson => lesson.slug === v);
+      const targetLesson = lessons.find(lesson => lesson.slug === videoSlug);
       
       if (targetLesson && targetLesson.video && targetLesson.video.trim() !== '') {
         // Auto-play the lesson
         playLesson(targetLesson);
         hasPlayedFromUrl.current = true;
       } else if (targetLesson) {
-        console.warn(`Lesson "${v}" found but has no video`);
+        console.warn(`Lesson "${videoSlug}" found but has no video`);
       } else {
-        console.warn(`Lesson "${v}" not found`);
+        console.warn(`Lesson "${videoSlug}" not found`);
       }
     }
-  }, [router.query, lessons, playLesson]);
+  }, [router.isReady, router.query.v, lessons, playLesson]);
 
   return <NormalLayout {...props} />;
 }

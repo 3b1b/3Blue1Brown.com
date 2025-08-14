@@ -14,8 +14,9 @@ export const useFeaturedVideo = () => {
 
 export const FeaturedVideoProvider = ({ children }) => {
   const [targetLesson, setTargetLesson] = useState(null);
-  const router = useRouter();
 
+  // playLesson is now primarily for programmatic use (e.g., homepage URL parameters)
+  // Most navigation should use direct URL links
   const playLesson = (lesson) => {
     // Validate lesson has required video property
     if (!lesson || !lesson.video || lesson.video.trim() === '') {
@@ -23,7 +24,7 @@ export const FeaturedVideoProvider = ({ children }) => {
       return;
     }
 
-    // Set target lesson for autoplay detection
+    // Set target lesson for legacy compatibility
     setTargetLesson(lesson);
     
     // Scroll to the featured video section

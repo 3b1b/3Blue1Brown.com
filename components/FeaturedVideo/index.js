@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
 import { useFeaturedVideo } from "../../util/featuredVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
+import { useFeaturedVideoNavigation } from "../../hooks/useFeaturedVideoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
@@ -13,9 +13,8 @@ FeaturedVideo.propTypes = {
 };
 
 export default function FeaturedVideo({ autoplay = false }) {
-  const router = useRouter();
   const { lessons } = useContext(PageContext);
-  const { targetLesson, clearTargetLesson } = useFeaturedVideo();
+  const { targetLesson } = useFeaturedVideo();
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
@@ -26,79 +25,30 @@ export default function FeaturedVideo({ autoplay = false }) {
     return <div>No videos available</div>;
   }
   
-  // Determine current lesson from URL or fallback to latest
-  const getCurrentLesson = () => {
-    const { v } = router.query;
-    if (v) {
-      const urlLesson = videosLessons.find(lesson => lesson.slug === v);
-      if (urlLesson) return urlLesson;
-    }
-    // Fallback to latest video
-    return videosLessons[videosLessons.length - 1];
-  };
-  
-  const currentLesson = getCurrentLesson();
-  const currentIndex = videosLessons.findIndex(lesson => lesson.slug === currentLesson.slug);
-  const isLatest = currentIndex === videosLessons.length - 1;
-  
-  // Only autoplay if explicitly requested via prop
-  const shouldAutoplay = autoplay;
-  
-  // Navigation functions using router
-  const goToPrevious = () => {
-    if (currentIndex > 0) {
-      const prevLesson = videosLessons[currentIndex - 1];
-      router.replace(`/?v=${prevLesson.slug}`);
-      clearTargetLesson();
-    }
-  };
-  
-  const goToNext = () => {
-    if (currentIndex < videosLessons.length - 1) {
-      const nextLesson = videosLessons[currentIndex + 1];
-      router.replace(`/?v=${nextLesson.slug}`);
-      clearTargetLesson();
-    }
-  };
-  
-  const goToRandom = () => {
-    let randomIndex;
-    do {
-      randomIndex = Math.floor(Math.random() * videosLessons.length);
-    } while (randomIndex === currentIndex && videosLessons.length > 1);
-    const randomLesson = videosLessons[randomIndex];
-    router.replace(`/?v=${randomLesson.slug}`);
-    clearTargetLesson();
-  };
-  
-  const goToFirst = () => {
-    const firstLesson = videosLessons[0];
-    router.replace(`/?v=${firstLesson.slug}`);
-    clearTargetLesson();
-  };
-  
-  const goToLast = () => {
-    const lastLesson = videosLessons[videosLessons.length - 1];
-    router.replace(`/?v=${lastLesson.slug}`);
-    clearTargetLesson();
-  };
+  // Use the custom hook for navigation logic
+  const { 
+    currentLesson, 
+    currentIndex, 
+    isLatest, 
+    navigation 
+  } = useFeaturedVideoNavigation(videosLessons);
   
   return (
     <div className={styles.container} data-featured-video>
       <VideoPlayer 
         lesson={currentLesson} 
-        autoplay={shouldAutoplay} 
+        autoplay={autoplay} 
         userInitiated={!!targetLesson}
       />
       <VideoInfo lesson={currentLesson} isLatest={isLatest} />
       <VideoControls
         currentIndex={currentIndex}
         totalVideos={videosLessons.length}
-        onFirst={goToFirst}
-        onPrevious={goToPrevious}
-        onRandom={goToRandom}
-        onNext={goToNext}
-        onLast={goToLast}
+        onFirst={navigation.goToFirst}
+        onPrevious={navigation.goToPrevious}
+        onRandom={navigation.goToRandom}
+        onNext={navigation.goToNext}
+        onLast={navigation.goToLast}
       />
     </div>
   );
@@ -108,7 +58,6 @@ export default function FeaturedVideo({ autoplay = false }) {
 const VideoPlayer = ({ lesson, autoplay = false, userInitiated = false }) => (
   <div className={styles.videoPlayer}>
     <HomepageFeaturedYouTube 
-      key={lesson.video} // Force re-mount when video changes
       slug={lesson.video} 
       autoplay={autoplay} 
       userInitiated={userInitiated}
