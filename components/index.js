@@ -25,7 +25,7 @@ import HomepageFeaturedContent, {
   HomepageFeaturedVideo,
 } from "./HomepageFeaturedContent";
 import FeaturedContent from "./FeaturedContent";
-import FeaturedVideo from "./FeaturedVideo";
+import HomePageVideo from "./HomePageVideo";
 import SocialIcons from "./SocialIcons";
 import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
@@ -60,7 +60,7 @@ const components = {
   FaqLinks,
   FeatureCard,
   FeaturedContent,
-  FeaturedVideo,
+  HomePageVideo,
   Figure,
   FreeResponse,
   SocialIcons,

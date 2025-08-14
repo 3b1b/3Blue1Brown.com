@@ -2,17 +2,17 @@ import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 
-const FeaturedVideoContext = createContext();
+const HomePageVideoContext = createContext();
 
-export const useFeaturedVideo = () => {
-  const context = useContext(FeaturedVideoContext);
+export const useHomePageVideo = () => {
+  const context = useContext(HomePageVideoContext);
   if (!context) {
-    throw new Error("useFeaturedVideo must be used within a FeaturedVideoProvider");
+    throw new Error("useHomePageVideo must be used within a HomePageVideoProvider");
   }
   return context;
 };
 
-export const FeaturedVideoProvider = ({ children }) => {
+export const HomePageVideoProvider = ({ children }) => {
   const [targetLesson, setTargetLesson] = useState(null);
 
   // playLesson is now primarily for programmatic use (e.g., homepage URL parameters)
@@ -29,9 +29,9 @@ export const FeaturedVideoProvider = ({ children }) => {
     
     // Scroll to the featured video section
     setTimeout(() => {
-      const featuredVideoElement = document.querySelector('[data-featured-video]');
-      if (featuredVideoElement) {
-        featuredVideoElement.scrollIntoView({ 
+      const homePageVideoElement = document.querySelector('[data-homepage-video]');
+      if (homePageVideoElement) {
+        homePageVideoElement.scrollIntoView({ 
           behavior: 'smooth', 
           block: 'center' 
         });
@@ -44,16 +44,16 @@ export const FeaturedVideoProvider = ({ children }) => {
   };
 
   return (
-    <FeaturedVideoContext.Provider value={{
+    <HomePageVideoContext.Provider value={{
       targetLesson,
       playLesson,
       clearTargetLesson,
     }}>
       {children}
-    </FeaturedVideoContext.Provider>
+    </HomePageVideoContext.Provider>
   );
 };
 
-FeaturedVideoProvider.propTypes = {
+HomePageVideoProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

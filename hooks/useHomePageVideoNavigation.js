@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useFeaturedVideo } from "../util/featuredVideoContext";
+import { useHomePageVideo } from "../util/homePageVideoContext";
 import { createVideoUrl, getVideoSlugFromQuery } from "../util/videoNavigation";
 
 // Configuration constants
 const NAVIGATION_TRANSITION_DURATION = 200; // ms - Time to allow content to stabilize after navigation
 
 /**
- * Custom hook for FeaturedVideo navigation logic
+ * Custom hook for HomePageVideo navigation logic
  * Handles all video navigation state and actions
  */
-export const useFeaturedVideoNavigation = (videosLessons) => {
+export const useHomePageVideoNavigation = (videosLessons) => {
   const router = useRouter();
-  const { clearTargetLesson } = useFeaturedVideo();
+  const { clearTargetLesson } = useHomePageVideo();
   const [isNavigating, setIsNavigating] = useState(false);
 
   // Helper function for safe navigation with error handling

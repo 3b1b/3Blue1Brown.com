@@ -2,12 +2,12 @@ import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
-import { useFeaturedVideo } from "../util/featuredVideoContext";
+import { useHomePageVideo } from "../util/homePageVideoContext";
 import { getVideoSlugFromQuery } from "../util/videoNavigation";
 
 function HomePage(props) {
   const router = useRouter();
-  const { playLesson } = useFeaturedVideo();
+  const { playLesson } = useHomePageVideo();
   const { lessons = [] } = props;
   const hasPlayedFromUrl = useRef(false);
 

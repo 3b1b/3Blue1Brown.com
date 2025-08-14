@@ -2,19 +2,19 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
-import { useFeaturedVideo } from "../../util/featuredVideoContext";
+import { useHomePageVideo } from "../../util/homePageVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
-import { useFeaturedVideoNavigation } from "../../hooks/useFeaturedVideoNavigation";
+import { useHomePageVideoNavigation } from "../../hooks/useHomePageVideoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
-FeaturedVideo.propTypes = {
+HomePageVideo.propTypes = {
   autoplay: PropTypes.bool,
 };
 
-export default function FeaturedVideo({ autoplay = false }) {
+export default function HomePageVideo({ autoplay = false }) {
   const { lessons } = useContext(PageContext);
-  const { targetLesson } = useFeaturedVideo();
+  const { targetLesson } = useHomePageVideo();
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
@@ -32,10 +32,10 @@ export default function FeaturedVideo({ autoplay = false }) {
     isLatest, 
     isNavigating,
     navigation 
-  } = useFeaturedVideoNavigation(videosLessons);
+  } = useHomePageVideoNavigation(videosLessons);
   
   return (
-    <div className={styles.container} data-featured-video>
+    <div className={styles.container} data-homepage-video>
       <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
         <VideoPlayer 
           lesson={currentLesson} 
