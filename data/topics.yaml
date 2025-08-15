@@ -1,216 +1,233 @@
-
 - name: Neural Networks
   slug: neural-networks
   description: The basics of neural networks, and the math behind how they learn
   lessons:
-    - neural-networks
-    - gradient-descent
-    - neural-network-analysis
-    - backpropagation
-    - backpropagation-calculus
-    - mini-llm
-    - gpt
-    - attention
-    - mlp
+  - neural-networks
+  - gradient-descent
+  - neural-network-analysis
+  - backpropagation
+  - backpropagation-calculus
+  - mini-llm
+  - gpt
+  - attention
+  - mlp
 - name: Linear Algebra
   slug: linear-algebra
   description: An introduction to visualizing what matrices are really doing
   lessons:
-    - vectors
-    - span
-    - linear-transformations
-    - matrix-multiplication
-    - 3d-transformations
-    - determinant
-    - inverse-matrices
-    - nonsquare-matrices
-    - dot-products
-    - cross-products
-    - cross-products-extended
-    - cramers-rule
-    - change-of-basis
-    - eigenvalues
-    - quick-eigen
-    - abstract-vector-spaces
+  - vectors
+  - span
+  - linear-transformations
+  - matrix-multiplication
+  - 3d-transformations
+  - determinant
+  - inverse-matrices
+  - nonsquare-matrices
+  - dot-products
+  - cross-products
+  - cross-products-extended
+  - cramers-rule
+  - change-of-basis
+  - eigenvalues
+  - quick-eigen
+  - abstract-vector-spaces
 - name: Calculus
   slug: calculus
-  description: Visual introductions to the core ideas of derivatives, integrals, limits and more
+  description: Visual introductions to the core ideas of derivatives, integrals, limits
+    and more
   lessons:
-    - essence-of-calculus
-    - derivatives
-    - derivatives-power-rule
-    - derivatives-trig-functions
-    - chain-rule-and-product-rule
-    - eulers-number
-    - implicit-differentiation
-    - limits
-    - epsilon-delta
-    - l-hopitals-rule
-    - integration
-    - area-and-slope
-    - higher-order-derivatives
-    - taylor-series
-    - taylor-series-geometric-view
-    - derivatives-and-transforms
-    - divergence-and-curl
+  - essence-of-calculus
+  - derivatives
+  - derivatives-power-rule
+  - derivatives-trig-functions
+  - chain-rule-and-product-rule
+  - eulers-number
+  - implicit-differentiation
+  - limits
+  - epsilon-delta
+  - l-hopitals-rule
+  - integration
+  - area-and-slope
+  - higher-order-derivatives
+  - taylor-series
+  - taylor-series-geometric-view
+  - derivatives-and-transforms
+  - divergence-and-curl
 - name: Differential Equations
   slug: differential-equations
-  description: A tour through some of the most beautiful methods for studying dynamic systems
+  description: A tour through some of the most beautiful methods for studying dynamic
+    systems
   lessons:
-    - differential-equations
-    - pdes
-    - heat-equation
-    - fourier-series
-    - eulers-formula-dynamically
-    - matrix-exponents
+  - differential-equations
+  - pdes
+  - heat-equation
+  - fourier-series
+  - eulers-formula-dynamically
+  - matrix-exponents
+  - exponential-and-epidemics
+  - diffusion-equation
 - name: Puzzles
   slug: puzzles
-  description: Challenging questions whose solutions have interesting twists and broader lessons
+  description: Challenging questions whose solutions have interesting twists and broader
+    lessons
   lessons:
-    - one-more-dim
-    - subsets-puzzle
-    - hardest-problem
-    - windmills
-    - prime-spirals
-    - moser-reboot
-    - chessboard-puzzle
-    - shadows
-    - three-utilities
-- name: Why Pi
-  slug: why-pi
-  description: Why does pi show up in so many unexpected places?
-  lessons:
-    - clacks
-    - colliding-blocks-v2
-    - clacks-via-light
-    - basel-problem
-    - leibniz-formula
-    - wallis-product
-    - pi-was-628
+  - hardest-problem
+  - windmills
+  - one-more-dim
+  - subsets-puzzle
+  - moser-reboot
+  - chessboard-puzzle
+  - shadows
+  - hyperdarts
+  - three-utilities
+  - eulers-characteristic-formula
 - name: Geometry
   slug: geometry
   description: An assortment of topics related to geometry and higher dimensions
   lessons:
-    - sphere-area
-    - dandelin-spheres
-    - higher-dimensions
-    - pythagorean-triples
-    - quaternions
-    - quaternions-and-3d-rotation
-    - eulers-characteristic-formula
-    - hyperdarts
+  - sphere-area
+  - inscribed-rect-v2
+  - dandelin-spheres
+  - quaternions
+  - quaternions-and-3d-rotation
+  - borsuk-ulam
+  - higher-dimensions
+- name: Why Pi
+  slug: why-pi
+  description: Why does pi show up in so many unexpected places?
+  lessons:
+  - clacks
+  - colliding-blocks-v2
+  - clacks-via-light
+  - basel-problem
+  - leibniz-formula
+  - gaussian-integral
+  - wallis-product
+  - pi-was-628
 - name: Analysis
   slug: analysis
-  description: An assortment of topics loosely related to the field of analysis
+  description: Topics about functions, either complex or real valued
   lessons:
-    - fourier-transforms
-    - uncertainty-principle
-    - newtons-fractal
-    - holomorphic-dynamics
-    - zeta
-    - borwein
-    - hilbert-curve
-    - fractal-dimension
-    - winding-numbers
-    - inventing-math
-    - music-and-measure-theory
+  - zeta
+  - fourier-transforms
+  - uncertainty-principle
+  - fourier-series
+  - borwein
+  - convolutions
+  - winding-numbers
+  - inventing-math
+  - music-and-measure-theory
 - name: Physics
   slug: physics
   description: An assortment of topics from physics
   lessons:
-    - holograms
-    - cosmic-distance-1
-    - cosmic-distance-2
-    - barber-pole-1
-    - barber-pole-2
-    - prism
-    - refractive-index-questions
-    - light-quantum-mechanics
-    - feynmans-lost-lecture
-    - brachistochrone
-    - snells-law
-    - turbulence
-- name: Probability
-  slug: probability
-  description: An assortment of introductory ideas in probability
-  lessons:
-    - clt
-    - gaussian-integral
-    - convolutions2
-    - gaussian-convolution
-    - bayes-theorem
-    - bayes-theorem-quick
-    - better-bayes
-    - binomial-distributions
-    - pdfs
+  - holograms
+  - cosmic-distance-1
+  - cosmic-distance-2
+  - barber-pole-1
+  - barber-pole-2
+  - prism
+  - refractive-index-questions
+  - light-quantum-mechanics
+  - uncertainty-principle
+  - feynmans-lost-lecture
+  - turbulence
+  - brachistochrone
+  - snells-law
 - name: Computer Science
   slug: computer-science
   description: An assortment of topics related to algorithms
   lessons:
-    - grover
-    - grover-clarification
-    - convolutions
-    - wordle
-    - wordle-2
-    - bitcoin
-    - 256-bit-security
-    - hamming-codes
-    - hamming-codes-2
-    - hanoi-and-sierpinski
-- name: Topology
-  slug: topology
-  description: A few clever proofs that make use of topological facts
+  - wordle
+  - wordle-2
+  - bitcoin
+  - 256-bit-security
+  - epidemic-simulations
+  - hamming-codes
+  - hamming-codes-2
+  - grover
+  - grover-clarification
+  - hanoi-and-sierpinski
+  - image-convolution
+  - seam-carving
+  - discrete-fourier-transform
+- name: Fractals
+  slug: fractals
+  description: Fractals and chaotic dynamics
   lessons:
-    - inscribed-rect-v2
-    - borsuk-ulam
+  - newtons-fractal
+  - holomorphic-dynamics
+  - fractal-dimension
+  - hilbert-curve
+- name: Probability
+  slug: probability
+  description: An assortment of introductory ideas in probability
+  lessons:
+  - bayes-theorem
+  - clt
+  - bertrands-paradox
+  - gaussian-integral
+  - convolutions2
+  - gaussian-convolution
+  - better-bayes
+  - bayes-theorem-quick
+  - binomial-distributions
+  - pdfs
 - name: Group Theory
   slug: group-theory
   description: The study of symmetry
   lessons:
-    - groups-and-monsters
-    - eulers-formula-via-group-theory
-- name: Epidemics
-  slug: epidemics
-  description: Videos made about and during the COVID-19 pandemic
+  - groups-and-monsters
+  - eulers-formula-via-group-theory
+- name: Number Theory
+  slug: number-theory
+  description: Topics related to integer patterns and primes
   lessons:
-    - exponential-and-epidemics
-    - epidemic-simulations
-    - dp3t
+  - prime-spirals
+  - pythagorean-triples
+  - leibniz-formula
+  - prime-number-race
 - name: Lockdown Math
   slug: lockdown-math
-  description: A series of live-streamed lectures starting with foundational ideas in high school math, and exploring what interesting places they can lead to
+  description: A series of live-streamed lectures starting with foundational ideas
+    in high school math, and exploring what interesting places they can lead to
   lessons:
-    - lockdown-math-announcement
-    - ldm-quadratic
-    - ldm-trigonometry
-    - ldm-complex-numbers
-    - ldm-eulers-formula
-    - ldm-imaginary-interest
-    - ldm-logarithms
-    - ldm-natural-logs
-    - ldm-power-towers
-    - ldm-i-to-i
-    - ldm-tips-to-problem-solving
-- name: Summer of Math Exposition
-  slug: some
+  - lockdown-math-announcement
+  - ldm-quadratic
+  - ldm-trigonometry
+  - ldm-complex-numbers
+  - ldm-eulers-formula
+  - ldm-imaginary-interest
+  - ldm-logarithms
+  - ldm-natural-logs
+  - ldm-power-towers
+  - ldm-i-to-i
+  - ldm-tips-to-problem-solving
+- name: Talks
+  slug: talks
+  description: Various talks
   lessons:
-    - some1
-    - some1-results
-    - some2
-    - some2-results
-    - some3-results
+  - harvey-mudd-speech
+  - tedx-talk
+  - transformers-talk
+  - pedagogical-curse
+  - ego-and-math
 - name: Miscellaneous
   slug: miscellaneous
   description: Odd videos that defy categorization elsewhere
   lessons:
-    - harvey-mudd-speech
-    - transformers-talk
-    - manim-demo
-    - qa1
-    - qa2
-    - qa3
-    - tattoos-on-math
-    - triangle-of-power
-    - binary-counting
-    - eulers-formula-old
-    - eulers-formula-poem
+  - manim-demo
+  - qa1
+  - qa2
+  - qa3
+  - some1
+  - some1-results
+  - some2
+  - some2-results
+  - some3-results
+  - dp3t
+  - tattoos-on-math
+  - triangle-of-power
+  - binary-counting
+  - eulers-formula-old
+  - eulers-formula-poem

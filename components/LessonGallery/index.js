@@ -10,6 +10,22 @@ import styles from "./index.module.scss";
 import PiCreature from "../PiCreature";
 import { transformSrc } from "../../util/transformSrc";
 
+// Helper function to get topic thumbnail with fallback between formats
+function getTopicThumbnail(topicSlug) {
+  // Try formats in order: SVG, JPEG, JPG
+  const svgPath = `/images/topics/${topicSlug}.svg`;
+  const jpegPath = `/images/topics/${topicSlug}.jpeg`;
+  const jpgPath = `/images/topics/${topicSlug}.jpg`;
+  
+  const result = {
+    primary: transformSrc(svgPath),
+    fallback1: transformSrc(jpegPath),
+    fallback2: transformSrc(jpgPath)
+  };
+  
+  return result;
+}
+
 // Helper function to match search terms
 function matchesSearch(lesson, searchText) {
   const searchStrings = [
@@ -109,6 +125,29 @@ const TopicCard = ({ topic, onTopicClick, galleryRef }) => {
     }
   };
 
+  const handleImageError = (e) => {
+    // Try fallbacks in order: SVG -> JPEG -> JPG
+    const thumbnail = getTopicThumbnail(topic.slug);
+    console.log(`Image error for topic "${topic.slug}":`, {
+      failed: e.target.src,
+      primary: thumbnail.primary,
+      fallback1: thumbnail.fallback1,
+      fallback2: thumbnail.fallback2
+    });
+    
+    if (e.target.src === thumbnail.primary) {
+      console.log(`Trying fallback1 (.jpeg): ${thumbnail.fallback1}`);
+      e.target.src = thumbnail.fallback1; // Try .jpeg
+    } else if (e.target.src === thumbnail.fallback1) {
+      console.log(`Trying fallback2 (.jpg): ${thumbnail.fallback2}`);
+      e.target.src = thumbnail.fallback2; // Try .jpg
+    } else {
+      console.log('All thumbnail formats failed');
+    }
+  };
+
+  const thumbnail = getTopicThumbnail(topic.slug);
+
   return (
     <div 
       className={styles.topic_card} 
@@ -121,8 +160,9 @@ const TopicCard = ({ topic, onTopicClick, galleryRef }) => {
       <div className={styles.imageContainer}>
         <img
           className={styles.image}
-          src={transformSrc(`/images/topics/${topic.slug}.svg`)}
+          src={thumbnail.primary}
           alt={topic.name}
+          onError={handleImageError}
         />
         <div className={styles.gradientOverlay}></div>
         <span className={styles.overlayTitle}>{topic.name}</span>
@@ -135,12 +175,26 @@ const TopicCard = ({ topic, onTopicClick, galleryRef }) => {
 const TopicHeader = ({ topic }) => {
   if (!topic) return null;
   
+  const handleHeaderImageError = (e) => {
+    // Try fallbacks in order: SVG -> JPEG -> JPG
+    const thumbnail = getTopicThumbnail(topic.slug);
+    if (e.target.src === thumbnail.primary) {
+      e.target.src = thumbnail.fallback1; // Try .jpeg
+    } else if (e.target.src === thumbnail.fallback1) {
+      e.target.src = thumbnail.fallback2; // Try .jpg
+    }
+    // If fallback2 also fails, we've tried all options
+  };
+
+  const thumbnail = getTopicThumbnail(topic.slug);
+  
   return (
     <div className={styles.topicHeader}>
       <img
         className={styles.topicHeaderImage}
-        src={transformSrc(`/images/topics/${topic.slug}.svg`)}
+        src={thumbnail.primary}
         alt={topic.name}
+        onError={handleHeaderImageError}
       />
       <div className={styles.topicHeaderOverlay}>
         <h2 className={styles.topicHeaderTitle}>{topic.name}</h2>
@@ -243,13 +297,18 @@ export default function LessonGallery({ show = "topic", skipMostRecent = false }
           matchesSearch(lesson, searchText)
         );
       case "topic-lessons":
-        return sortedLessons.filter((lesson) => lesson.topic === selectedTopicName);
+        // Directly use the lesson order from topics.yaml for the selected topic
+        if (!selectedTopic || !selectedTopic.lessons) return [];
+        
+        return selectedTopic.lessons
+          .map(lessonSlug => lessons.find(lesson => lesson.slug === lessonSlug))
+          .filter(lesson => lesson !== undefined); // Filter out any lessons that don't exist
       case "all":
         return skipMostRecent ? lessons.slice(1) : lessons;
       default:
         return lessons;
     }
-  }, [lessons, currentView, searchText, selectedTopicName, skipMostRecent, sortedLessons]);
+  }, [lessons, currentView, searchText, selectedTopic, skipMostRecent, sortedLessons]);
 
   const showLessonList = ["all", "search", "topic-lessons"].includes(currentView);
   const showTopicGrid = currentView === "topic";
