@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
 import { useHomePageVideo } from "../util/homePageVideoContext";
@@ -10,6 +11,10 @@ function HomePage(props) {
   const { playLesson } = useHomePageVideo();
   const { lessons = [] } = props;
   const hasPlayedFromUrl = useRef(false);
+
+  // Get current video for meta tags
+  const videoSlug = router.isReady ? getVideoSlugFromQuery(router.query) : null;
+  const currentLesson = videoSlug ? lessons.find(lesson => lesson.slug === videoSlug) : null;
 
   useEffect(() => {
     // Wait for router to be ready to avoid missing URL parameters
@@ -33,54 +38,29 @@ function HomePage(props) {
     }
   }, [router.isReady, router.query.v, lessons, playLesson]);
 
-  return <NormalLayout {...props} />;
+  return (
+    <>
+      {/* Dynamic meta tags for video sharing - rendered after default Head */}
+      {currentLesson && currentLesson.video && (
+        <Head>
+          <title>{currentLesson.title} | 3Blue1Brown</title>
+          <meta name="title" content={`${currentLesson.title} | 3Blue1Brown`} />
+          <meta name="description" content={currentLesson.description || 'Check out this math video from 3Blue1Brown'} />
+          <meta property="og:title" content={`${currentLesson.title} | 3Blue1Brown`} />
+          <meta property="og:description" content={currentLesson.description || 'Check out this math video from 3Blue1Brown'} />
+          <meta property="og:image" content={`https://img.youtube.com/vi/${currentLesson.video}/maxresdefault.jpg`} />
+          <meta property="og:url" content={`https://www.3blue1brown.com/?v=${currentLesson.slug}`} />
+          <meta property="twitter:title" content={`${currentLesson.title} | 3Blue1Brown`} />
+          <meta property="twitter:description" content={currentLesson.description || 'Check out this math video from 3Blue1Brown'} />
+          <meta property="twitter:image" content={`https://img.youtube.com/vi/${currentLesson.video}/maxresdefault.jpg`} />
+          <meta property="twitter:url" content={`https://www.3blue1brown.com/?v=${currentLesson.slug}`} />
+        </Head>
+      )}
+      <NormalLayout {...props} />
+    </>
+  );
 }
 
 export default HomePage;
 
-// Use getServerSideProps instead of getStaticProps to access query parameters
-export const getServerSideProps = async ({ query }) => {
-  try {
-    const result = await pageProps("index");
-    
-    // Ensure we have valid props structure
-    if (!result?.props) {
-      console.error('Invalid pageProps result structure');
-      return result;
-    }
-    
-    // If there's a video query parameter, get the lesson data for meta tags
-    if (query.v && typeof query.v === 'string') {
-      const lessons = result.props.lessons;
-      
-      // Validate lessons array exists
-      if (!Array.isArray(lessons)) {
-        console.warn('No lessons array found in pageProps');
-        return result;
-      }
-      
-      const lesson = lessons.find(l => l?.slug === query.v);
-      
-      if (lesson?.video && typeof lesson.video === 'string' && lesson.video.trim()) {
-        // Override page meta tags with video-specific data
-        result.props.title = lesson.title || 'Untitled Video';
-        result.props.description = lesson.description || 'Check out this math video from 3Blue1Brown';
-        result.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
-        
-        // Use site config for base URL, fallback to hardcoded
-        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.3blue1brown.com';
-        result.props.location = `${baseUrl}/?v=${lesson.slug}`;
-      } else if (lesson) {
-        console.warn(`Lesson "${query.v}" found but has no valid video ID`);
-      } else {
-        console.warn(`Lesson "${query.v}" not found`);
-      }
-    }
-    
-    return result;
-  } catch (error) {
-    console.error('Error in getServerSideProps:', error);
-    // Return basic props as fallback
-    return { props: { lessons: [], blogPosts: [], site: {} } };
-  }
-};
+export const getStaticProps = async () => await pageProps("index");
