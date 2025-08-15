@@ -155,10 +155,10 @@
   slug: fractals
   description: Fractals and chaotic dynamics
   lessons:
-  - fractal-dimension
-  - hilbert-curve
   - newtons-fractal
   - holomorphic-dynamics
+  - fractal-dimension
+  - hilbert-curve
 - name: Probability
   slug: probability
   description: An assortment of introductory ideas in probability
