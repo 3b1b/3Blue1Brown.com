@@ -48,9 +48,9 @@ const parseMdx = (file) => {
   data.file = "/" + file.split(/[\\/]/).slice(1).join("/");
   data.dir = "/" + file.split(/[\\/]/).slice(1, -1).join("/") + "/";
 
-  // get topic of lesson
+  // get topic of lesson (first match for consistency)
   data.topic =
-    topics.find(({ lessons }) => lessons.find((lesson) => lesson === data.slug))
+    topics.find(({ lessons }) => lessons && lessons.find((lesson) => lesson === data.slug))
       ?.name || "Uncategorized";
 
   if (data.thumbnail) {
