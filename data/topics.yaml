@@ -65,6 +65,7 @@
   - eulers-formula-dynamically
   - matrix-exponents
   - exponential-and-epidemics
+  - diffusion-equation
 - name: Puzzles
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader
@@ -148,6 +149,8 @@
   - grover-clarification
   - hanoi-and-sierpinski
   - image-convolution
+  - seam-carving
+  - discrete-fourier-transform
 - name: Fractals
   slug: fractals
   description: Fractals and chaotic dynamics
