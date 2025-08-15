@@ -36,7 +36,7 @@ export default function HomePageVideo({ autoplay = false }) {
   }
   
   return (
-    <div className={styles.container} data-homepage-video>
+    <div id="video" className={styles.container} data-homepage-video>
       <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
         <VideoPlayer 
           lesson={currentLesson} 
@@ -83,39 +83,111 @@ const VideoPlayer = ({ lesson, autoplay = false, userInitiated = false }) => (
 
 // Video info component (date, title, written version indicator)
 const VideoInfo = ({ lesson, isLatest }) => {
-  const [copySuccess, setCopySuccess] = useState(false);
+  const [shareState, setShareState] = useState({ type: null, success: false });
 
-  const handleShare = async () => {
+  // Unified copy to clipboard utility
+  const copyToClipboard = async (text) => {
     try {
-      const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
-      await navigator.clipboard.writeText(videoUrl);
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000); // Hide after 2 seconds
+      await navigator.clipboard.writeText(text);
+      return true;
     } catch (err) {
-      console.error('Failed to copy URL:', err);
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
+      console.error('Clipboard API failed, using legacy method:', err);
+      // Legacy fallback for older browsers
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        return true;
+      } catch (legacyErr) {
+        console.error('All clipboard methods failed:', legacyErr);
+        return false;
+      }
     }
   };
+
+  // Unified success feedback
+  const showSuccess = (type) => {
+    setShareState({ type, success: true });
+    setTimeout(() => setShareState({ type: null, success: false }), 2000);
+  };
+
+  // Main share function with smart fallback
+  const handleShare = async (forceClipboard = false) => {
+    const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
+    
+    // Try Web Share API first (unless forced to use clipboard)
+    if (!forceClipboard && navigator.share) {
+      const shareData = {
+        title: lesson.title,
+        url: videoUrl,
+      };
+
+      try {
+        await navigator.share(shareData);
+        // No visual feedback needed for native share - the system UI handles it
+        return;
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          // User cancelled sharing - no action needed
+          return;
+        }
+        // Other errors fall through to clipboard
+        console.log('Web Share API failed, falling back to clipboard:', error);
+      }
+    }
+
+    // Clipboard fallback
+    const success = await copyToClipboard(videoUrl);
+    if (success) {
+      showSuccess(forceClipboard ? 'copy' : 'share');
+    }
+  };
+
+  // Direct copy function for copy button
+  const handleCopyLink = () => handleShare(true);
 
   return (
     <div className={styles.videoInfo}>
       <div className={styles.videoMetadata}>
-        {/* Left section: Share button */}
+        {/* Left section: Share and Copy buttons */}
         <div className={styles.leftSection}>
-          <Tooltip content={copySuccess ? "URL copied!" : "Share video"}>
+          <Tooltip content={
+            shareState.success && shareState.type === 'share' 
+              ? "URL copied!" 
+              : "Share video"
+          }>
             <button 
-              className={`${styles.shareButton} ${copySuccess ? styles.copied : ''}`}
-              onClick={handleShare}
+              className={`${styles.shareButton} ${
+                shareState.success && shareState.type === 'share' ? styles.copied : ''
+              }`}
+              onClick={() => handleShare(false)}
             >
-              <i className={copySuccess ? "fas fa-check" : "fas fa-share"}></i>
+              <i className={
+                shareState.success && shareState.type === 'share' 
+                  ? "fas fa-check" 
+                  : "fas fa-arrow-up-from-bracket"
+              }></i>
+            </button>
+          </Tooltip>
+          <Tooltip content={
+            shareState.success && shareState.type === 'copy' 
+              ? "Link copied!" 
+              : "Copy link"
+          }>
+            <button 
+              className={`${styles.copyButton} ${
+                shareState.success && shareState.type === 'copy' ? styles.copied : ''
+              }`}
+              onClick={handleCopyLink}
+            >
+              <i className={
+                shareState.success && shareState.type === 'copy' 
+                  ? "fas fa-check" 
+                  : "fas fa-link"
+              }></i>
             </button>
           </Tooltip>
         </div>
