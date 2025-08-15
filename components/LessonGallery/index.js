@@ -198,6 +198,9 @@ const TopicHeader = ({ topic }) => {
       />
       <div className={styles.topicHeaderOverlay}>
         <h2 className={styles.topicHeaderTitle}>{topic.name}</h2>
+        {topic.description && (
+          <p className={styles.topicHeaderDescription}>{topic.description}</p>
+        )}
       </div>
     </div>
   );
