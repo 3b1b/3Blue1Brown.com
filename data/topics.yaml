@@ -80,6 +80,7 @@
   - shadows
   - hyperdarts
   - three-utilities
+  - eulers-characteristic-formula
 - name: Geometry
   slug: geometry
   description: An assortment of topics related to geometry and higher dimensions
@@ -91,7 +92,6 @@
   - quaternions-and-3d-rotation
   - borsuk-ulam
   - higher-dimensions
-  - eulers-characteristic-formula
 - name: Why Pi
   slug: why-pi
   description: Why does pi show up in so many unexpected places?
@@ -131,9 +131,9 @@
   - light-quantum-mechanics
   - uncertainty-principle
   - feynmans-lost-lecture
+  - turbulence
   - brachistochrone
   - snells-law
-  - turbulence
 - name: Computer Science
   slug: computer-science
   description: An assortment of topics related to algorithms
@@ -183,8 +183,8 @@
   slug: number-theory
   description: Topics related to integer patterns and primes
   lessons:
-  - pythagorean-triples
   - prime-spirals
+  - pythagorean-triples
   - leibniz-formula
   - prime-number-race
 - name: Lockdown Math
