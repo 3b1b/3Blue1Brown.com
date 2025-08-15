@@ -38,4 +38,21 @@ function HomePage(props) {
 
 export default HomePage;
 
-export const getStaticProps = async () => await pageProps("index");
+// Use getServerSideProps instead of getStaticProps to access query parameters
+export const getServerSideProps = async ({ query }) => {
+  const props = await pageProps("index");
+  
+  // If there's a video query parameter, get the lesson data for meta tags
+  if (query.v) {
+    const lesson = props.props.lessons.find(l => l.slug === query.v);
+    if (lesson && lesson.video) {
+      // Override page meta tags with video-specific data
+      props.props.title = lesson.title;
+      props.props.description = lesson.description || 'Check out this math video from 3Blue1Brown';
+      props.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
+      props.props.location = `https://www.3blue1brown.com/?v=${lesson.slug}`;
+    }
+  }
+  
+  return props;
+};

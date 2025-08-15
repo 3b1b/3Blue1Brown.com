@@ -8,25 +8,26 @@ import { PageContext } from "../../pages/_app";
 const Head = () => {
   let { title, description, location, thumbnail } = useContext(PageContext);
 
-  title = [siteTitle, title].filter((e) => e).join(" - ");
-  description = description || siteDescription;
-  location = location || siteLocation;
+  // Apply site title formatting and defaults
+  const finalTitle = [siteTitle, title].filter((e) => e).join(" - ");
+  const finalDescription = description || siteDescription;
+  const finalLocation = location || siteLocation;
 
   return (
     <NextHead>
-      <title>{title}</title>
+      <title>{finalTitle}</title>
 
       {/* metadata */}
-      <meta name="title" content={title} />
-      <meta name="description" content={description} />
+      <meta name="title" content={finalTitle} />
+      <meta name="description" content={finalDescription} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={location} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:url" content={finalLocation} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
       <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={location} />
-      <meta property="twitter:title" content={title} />
-      <meta property="twitter:description" content={description} />
+      <meta property="twitter:url" content={finalLocation} />
+      <meta property="twitter:title" content={finalTitle} />
+      <meta property="twitter:description" content={finalDescription} />
 
       {/* fonts */}
       <link
