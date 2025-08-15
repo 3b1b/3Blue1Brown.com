@@ -40,19 +40,47 @@ export default HomePage;
 
 // Use getServerSideProps instead of getStaticProps to access query parameters
 export const getServerSideProps = async ({ query }) => {
-  const props = await pageProps("index");
-  
-  // If there's a video query parameter, get the lesson data for meta tags
-  if (query.v) {
-    const lesson = props.props.lessons.find(l => l.slug === query.v);
-    if (lesson && lesson.video) {
-      // Override page meta tags with video-specific data
-      props.props.title = lesson.title;
-      props.props.description = lesson.description || 'Check out this math video from 3Blue1Brown';
-      props.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
-      props.props.location = `https://www.3blue1brown.com/?v=${lesson.slug}`;
+  try {
+    const result = await pageProps("index");
+    
+    // Ensure we have valid props structure
+    if (!result?.props) {
+      console.error('Invalid pageProps result structure');
+      return result;
     }
+    
+    // If there's a video query parameter, get the lesson data for meta tags
+    if (query.v && typeof query.v === 'string') {
+      const lessons = result.props.lessons;
+      
+      // Validate lessons array exists
+      if (!Array.isArray(lessons)) {
+        console.warn('No lessons array found in pageProps');
+        return result;
+      }
+      
+      const lesson = lessons.find(l => l?.slug === query.v);
+      
+      if (lesson?.video && typeof lesson.video === 'string' && lesson.video.trim()) {
+        // Override page meta tags with video-specific data
+        result.props.title = lesson.title || 'Untitled Video';
+        result.props.description = lesson.description || 'Check out this math video from 3Blue1Brown';
+        result.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
+        
+        // Use site config for base URL, fallback to hardcoded
+        const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.3blue1brown.com';
+        result.props.location = `${baseUrl}/?v=${lesson.slug}`;
+      } else if (lesson) {
+        console.warn(`Lesson "${query.v}" found but has no valid video ID`);
+      } else {
+        console.warn(`Lesson "${query.v}" not found`);
+      }
+    }
+    
+    return result;
+  } catch (error) {
+    console.error('Error in getServerSideProps:', error);
+    // Return basic props as fallback
+    return { props: { lessons: [], blogPosts: [], site: {} } };
   }
-  
-  return props;
 };

@@ -87,6 +87,11 @@ const VideoInfo = ({ lesson, isLatest }) => {
 
   // Unified copy to clipboard utility
   const copyToClipboard = async (text) => {
+    if (!text || typeof text !== 'string') {
+      console.error('Invalid text provided to copyToClipboard');
+      return false;
+    }
+
     try {
       await navigator.clipboard.writeText(text);
       return true;
@@ -96,11 +101,13 @@ const VideoInfo = ({ lesson, isLatest }) => {
       try {
         const textArea = document.createElement('textarea');
         textArea.value = text;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
         document.body.appendChild(textArea);
         textArea.select();
-        document.execCommand('copy');
+        const success = document.execCommand('copy');
         document.body.removeChild(textArea);
-        return true;
+        return success;
       } catch (legacyErr) {
         console.error('All clipboard methods failed:', legacyErr);
         return false;
@@ -116,33 +123,44 @@ const VideoInfo = ({ lesson, isLatest }) => {
 
   // Main share function with smart fallback
   const handleShare = async (forceClipboard = false) => {
-    const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
-    
-    // Try Web Share API first (unless forced to use clipboard)
-    if (!forceClipboard && navigator.share) {
-      const shareData = {
-        title: lesson.title,
-        url: videoUrl,
-      };
-
-      try {
-        await navigator.share(shareData);
-        // No visual feedback needed for native share - the system UI handles it
-        return;
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          // User cancelled sharing - no action needed
-          return;
-        }
-        // Other errors fall through to clipboard
-        console.log('Web Share API failed, falling back to clipboard:', error);
-      }
+    if (!lesson?.slug) {
+      console.error('No lesson data available for sharing');
+      return;
     }
 
-    // Clipboard fallback
-    const success = await copyToClipboard(videoUrl);
-    if (success) {
-      showSuccess(forceClipboard ? 'copy' : 'share');
+    try {
+      const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
+      
+      // Try Web Share API first (unless forced to use clipboard)
+      if (!forceClipboard && navigator.share) {
+        const shareData = {
+          title: lesson.title || 'Check out this video from 3Blue1Brown',
+          url: videoUrl,
+        };
+
+        try {
+          await navigator.share(shareData);
+          // No visual feedback needed for native share - the system UI handles it
+          return;
+        } catch (error) {
+          if (error.name === 'AbortError') {
+            // User cancelled sharing - no action needed
+            return;
+          }
+          // Other errors fall through to clipboard
+          console.log('Web Share API failed, falling back to clipboard:', error);
+        }
+      }
+
+      // Clipboard fallback
+      const success = await copyToClipboard(videoUrl);
+      if (success) {
+        showSuccess(forceClipboard ? 'copy' : 'share');
+      } else {
+        console.error('Failed to copy URL to clipboard');
+      }
+    } catch (error) {
+      console.error('Error in handleShare:', error);
     }
   };
 
