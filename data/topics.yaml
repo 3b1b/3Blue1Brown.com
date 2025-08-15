@@ -186,6 +186,7 @@
   - pythagorean-triples
   - prime-spirals
   - leibniz-formula
+  - prime-number-race
 - name: Lockdown Math
   slug: lockdown-math
   description: A series of live-streamed lectures starting with foundational ideas
