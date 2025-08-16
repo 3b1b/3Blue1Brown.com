@@ -22,7 +22,7 @@ function HomePage(props) {
       const targetLesson = lessons.find(lesson => lesson.slug === videoSlug);
       
       if (targetLesson && targetLesson.video && targetLesson.video.trim() !== '') {
-        // Auto-play the lesson
+        // Auto-play the lesson immediately to prevent flash
         playLesson(targetLesson);
         hasPlayedFromUrl.current = true;
       } else if (targetLesson) {

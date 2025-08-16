@@ -45,6 +45,22 @@
   }
 }
 
+.loadingState {
+  /* Loading state while router initializes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--max-video-width) * var(--video-aspect-ratio));
+  font-size: 18px;
+  color: #666;
+  background: #f5f5f5;
+  border-radius: 8px;
+  
+  @media (max-width: 1000px) {
+    height: calc(100vw * var(--video-aspect-ratio));
+  }
+}
+
 .loadingOverlay {
   /* Center the loading spinner */
   position: absolute;

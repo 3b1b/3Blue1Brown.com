@@ -40,13 +40,27 @@ export const useHomePageVideoNavigation = (videosLessons) => {
     }
   };
 
+  // Get target lesson from context
+  const { targetLesson } = useHomePageVideo();
+  
   // Determine current lesson from URL or fallback to latest
   const getCurrentLesson = () => {
+    // Prioritize target lesson from context when router isn't ready
+    if (!router.isReady && targetLesson) {
+      return targetLesson;
+    }
+    
     const videoSlug = getVideoSlugFromQuery(router.query);
     if (videoSlug) {
       const urlLesson = videosLessons.find(lesson => lesson.slug === videoSlug);
       if (urlLesson) return urlLesson;
     }
+    
+    // If we have a target lesson from context, use it
+    if (targetLesson) {
+      return targetLesson;
+    }
+    
     // Fallback to latest video
     return videosLessons[videosLessons.length - 1];
   };

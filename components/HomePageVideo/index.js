@@ -35,6 +35,7 @@ export default function HomePageVideo({ autoplay = false }) {
     return <div>No videos available</div>;
   }
   
+  
   return (
     <div id="video" className={styles.container} data-homepage-video>
       <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
