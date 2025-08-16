@@ -10,7 +10,7 @@ const NAVIGATION_TRANSITION_DURATION = 200; // ms - Time to allow content to sta
  * Custom hook for HomePageVideo navigation logic
  * Handles all video navigation state and actions
  */
-export const useHomePageVideoNavigation = (videosLessons) => {
+export const useHomePageVideoNavigation = (videosLessons, targetLesson) => {
   const router = useRouter();
   const { clearTargetLesson } = useHomePageVideo();
   const [isNavigating, setIsNavigating] = useState(false);
@@ -40,9 +40,6 @@ export const useHomePageVideoNavigation = (videosLessons) => {
     }
   };
 
-  // Get target lesson from context
-  const { targetLesson } = useHomePageVideo();
-  
   // Determine current lesson from URL or fallback to latest
   const getCurrentLesson = () => {
     // Prioritize target lesson from context when router isn't ready

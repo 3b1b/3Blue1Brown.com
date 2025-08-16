@@ -9,6 +9,11 @@ import { createVideoShareUrl } from "../../util/videoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
+// Constants
+const FEEDBACK_DISPLAY_DURATION = 2000; // ms - How long to show success feedback
+const SLOT_MACHINE_INTERVAL = 40; // ms - Time between title changes in random animation
+const SLOT_MACHINE_TITLES = 5; // Number of titles to cycle through in random animation
+
 HomePageVideo.propTypes = {
   autoplay: PropTypes.bool,
 };
@@ -29,7 +34,7 @@ export default function HomePageVideo({ autoplay = false }) {
     isLatest, 
     isNavigating,
     navigation 
-  } = useHomePageVideoNavigation(videosLessons);
+  } = useHomePageVideoNavigation(videosLessons, targetLesson);
   
   if (videosLessons.length === 0) {
     return <div>No videos available</div>;
@@ -119,7 +124,7 @@ const VideoInfo = ({ lesson, isLatest }) => {
   // Unified success feedback
   const showSuccess = (type) => {
     setShareState({ type, success: true });
-    setTimeout(() => setShareState({ type: null, success: false }), 2000);
+    setTimeout(() => setShareState({ type: null, success: false }), FEEDBACK_DISPLAY_DURATION);
   };
 
   // Main share function with smart fallback
@@ -187,7 +192,7 @@ const VideoInfo = ({ lesson, isLatest }) => {
               <i className={
                 shareState.success && shareState.type === 'share' 
                   ? "fas fa-check" 
-                  : "fas fa-arrow-up-from-bracket"
+                  : "fas fa-share"
               }></i>
             </button>
           </Tooltip>
@@ -255,10 +260,10 @@ const VideoControls = ({
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Generate 5 random titles for the slot machine effect
+  // Generate random titles for the slot machine effect
   const generateRandomTitles = () => {
     const titles = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < SLOT_MACHINE_TITLES; i++) {
       const randomIndex = Math.floor(Math.random() * videosLessons.length);
       titles.push(videosLessons[randomIndex].title);
     }
@@ -294,7 +299,7 @@ const VideoControls = ({
           setIsAnimating(false);
         }, 50);
       }
-    }, 40); // 40ms per title = ~200ms total animation
+    }, SLOT_MACHINE_INTERVAL); // Total animation time based on interval and title count
   };
 
   return (

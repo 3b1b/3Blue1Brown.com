@@ -1,9 +1,47 @@
 import { lessonMeta } from '../../util/pages';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, Component } from 'react';
 import { useRouter } from 'next/router';
 
-export default function VideoPage({ lesson, notFound }) {
+// Error boundary component for video pages
+class VideoPageErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('Video page error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <>
+          <Head>
+            <title>Error Loading Video - 3Blue1Brown</title>
+            <meta name="description" content="There was an error loading this video." />
+          </Head>
+          <div>
+            <h1>Something went wrong</h1>
+            <p>There was an error loading this video. Redirecting to homepage...</p>
+            <script dangerouslySetInnerHTML={{
+              __html: `setTimeout(() => window.location.href = '/', 2000);`
+            }} />
+          </div>
+        </>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+function VideoPageContent({ lesson, notFound }) {
   const router = useRouter();
   
   useEffect(() => {
@@ -44,7 +82,7 @@ export default function VideoPage({ lesson, notFound }) {
         <title>{title}</title>
         <meta name="title" content={title} />
         <meta name="description" content={description} />
-        <meta property="og:type" content="video.other" />
+        <meta property="og:type" content="video" />
         <meta property="og:url" content={`https://3blue1brown.com/video/${lesson.slug}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -61,6 +99,14 @@ export default function VideoPage({ lesson, notFound }) {
         <p>Redirecting to video...</p>
       </div>
     </>
+  );
+}
+
+export default function VideoPage(props) {
+  return (
+    <VideoPageErrorBoundary>
+      <VideoPageContent {...props} />
+    </VideoPageErrorBoundary>
   );
 }
 
