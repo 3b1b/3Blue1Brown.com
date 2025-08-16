@@ -8,7 +8,6 @@ import { PageContext } from "../../pages/_app";
 const Head = () => {
   let { title, description, location, thumbnail } = useContext(PageContext);
 
-  // Apply site title formatting and defaults
   const finalTitle = [siteTitle, title].filter((e) => e).join(" - ");
   const finalDescription = description || siteDescription;
   const finalLocation = location || siteLocation;

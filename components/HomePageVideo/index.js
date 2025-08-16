@@ -1,11 +1,11 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { PageContext } from "../../pages/_app";
 import { useHomePageVideo } from "../../util/homePageVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
 import { useHomePageVideoNavigation } from "../../hooks/useHomePageVideoNavigation";
-import { createVideoUrl } from "../../util/videoNavigation";
+import { createVideoShareUrl } from "../../util/videoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
@@ -129,7 +129,7 @@ const VideoInfo = ({ lesson, isLatest }) => {
     }
 
     try {
-      const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
+      const videoUrl = `${window.location.origin}${createVideoShareUrl(lesson.slug)}`;
       
       // Try Web Share API first (unless forced to use clipboard)
       if (!forceClipboard && navigator.share) {

@@ -7,6 +7,7 @@ export const VIDEO_URLS = {
   HOME: '/',
   LESSON: (slug) => `/lessons/${slug}`,
   LESSON_WITH_TITLE: (slug) => `/lessons/${slug}#title`,
+  VIDEO_SHARE: (slug) => `/video/${slug}`, // For social media sharing with proper meta tags
 };
 
 export const VIDEO_QUERY_PARAM = 'v';
@@ -20,6 +21,17 @@ export const createVideoUrl = (slug) => {
     return VIDEO_URLS.HOME;
   }
   return VIDEO_URLS.HOME_WITH_VIDEO(slug);
+};
+
+/**
+ * Helper function to create video sharing URLs (with proper meta tags)
+ */
+export const createVideoShareUrl = (slug) => {
+  if (!slug) {
+    console.warn('createVideoShareUrl called without slug');
+    return VIDEO_URLS.HOME;
+  }
+  return VIDEO_URLS.VIDEO_SHARE(slug);
 };
 
 /**
