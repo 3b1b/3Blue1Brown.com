@@ -92,6 +92,7 @@
   - quaternions-and-3d-rotation
   - borsuk-ulam
   - higher-dimensions
+  - alpha-geometry
 - name: Why Pi
   slug: why-pi
   description: Why does pi show up in so many unexpected places?
