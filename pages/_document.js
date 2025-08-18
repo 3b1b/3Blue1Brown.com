@@ -23,6 +23,17 @@ export default class MyDocument extends Document {
           `,
             }}
           />
+          
+          {/* External Stylesheets */}
+          <link
+            href="https://use.fontawesome.com/releases/v6.7.1/css/all.css"
+            rel="stylesheet"
+          />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

@@ -79,7 +79,10 @@ const Tooltip = forwardRef(({ content, children, ...rest }, ref) => {
     onBlur: close,
     ref: (el) => {
       setTarget(el);
-      return ref;
+      if (ref) {
+        if (typeof ref === 'function') ref(el);
+        else ref.current = el;
+      }
     },
   };
   children = Children.map(children, (element, index) => {
