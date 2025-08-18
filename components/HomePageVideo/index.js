@@ -18,17 +18,12 @@ export default function HomePageVideo({ autoplay = false }) {
   const router = useRouter();
   const { lessons } = useContext(PageContext);
   const { targetLesson } = useHomePageVideo();
+  const [isClient, setIsClient] = useState(false);
   
-  // Don't render until router is ready to avoid hydration mismatch/flash
-  if (!router.isReady) {
-    return (
-      <div id="video" className={styles.container} data-homepage-video>
-        <div className={styles.content}>
-          <div className={styles.loadingState}>Loading...</div>
-        </div>
-      </div>
-    );
-  }
+  // Ensure we're on the client side to avoid hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
@@ -43,6 +38,17 @@ export default function HomePageVideo({ autoplay = false }) {
     isNavigating,
     navigation 
   } = useHomePageVideoNavigation(videosLessons);
+  
+  // Don't render until we're on the client and router is ready
+  if (!isClient || !router.isReady) {
+    return (
+      <div id="video" className={styles.container} data-homepage-video>
+        <div className={styles.content}>
+          <div className={styles.loadingState}>Loading...</div>
+        </div>
+      </div>
+    );
+  }
   
   if (videosLessons.length === 0) {
     return <div>No videos available</div>;
