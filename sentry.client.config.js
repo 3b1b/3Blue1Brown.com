@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_SENTRY_ENAB
     
     // Reduce noise from blocked requests
     integrations: [
-      Sentry.browserTracingIntegration({
+      new Sentry.BrowserTracing({
         // Don't create spans for requests that are likely to be blocked
         traceFetch: false,
         traceXHR: false,
