@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { PageContext } from "../../pages/_app";
 import { useHomePageVideo } from "../../util/homePageVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
@@ -14,8 +15,20 @@ HomePageVideo.propTypes = {
 };
 
 export default function HomePageVideo({ autoplay = false }) {
+  const router = useRouter();
   const { lessons } = useContext(PageContext);
   const { targetLesson } = useHomePageVideo();
+  
+  // Don't render until router is ready to avoid hydration mismatch/flash
+  if (!router.isReady) {
+    return (
+      <div id="video" className={styles.container} data-homepage-video>
+        <div className={styles.content}>
+          <div className={styles.loadingState}>Loading...</div>
+        </div>
+      </div>
+    );
+  }
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
