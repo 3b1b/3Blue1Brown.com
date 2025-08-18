@@ -68,26 +68,19 @@ const Nav = () => {
       </button>
 
       <NavLink
-        link="/#lessons"
-        text="Lessons"
-      />
-      <NavLink
-        link="https://some.3b1b.co"
-        text="SoME"
-        tooltip="The Summer of Math Exposition"
-      />
-      <NavLink link="/blog" text="Blog"/>
-      <NavLink link="/extras" text="Extras"/>
-
-      <div className={styles.break} />
-
-      <NavLink
         link="https://www.patreon.com/c/3blue1brown"
         text="Patreon"
       />
       <NavLink
         link="https://store.dftba.com/collections/3blue1brown"
         text="Store"
+      />
+      <NavLink link="/blog" text="Blog"/>
+      <NavLink link="/extras" text="Extras"/>
+      <NavLink
+        link="https://some.3b1b.co"
+        text="SoME"
+        tooltip="The Summer of Math Exposition"
       />
       <NavLink
         link="/faq"

@@ -177,6 +177,10 @@
 
 .videoTitle {
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   
   a {
     color: inherit;
@@ -185,6 +189,50 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.descriptionToggle {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    color: #333;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+  }
+  
+  i {
+    transition: transform 0.2s ease;
+  }
+}
+
+.videoDescription {
+  font-size: 16px;
+  color: $gray-400;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.4;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
+    max-width: 90%;
   }
 }
 

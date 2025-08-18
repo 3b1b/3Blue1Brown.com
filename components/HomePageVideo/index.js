@@ -19,11 +19,48 @@ export default function HomePageVideo({ autoplay = false }) {
   const { lessons } = useContext(PageContext);
   const { targetLesson } = useHomePageVideo();
   const [isClient, setIsClient] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   
   // Ensure we're on the client side to avoid hydration mismatch
   useEffect(() => {
     setIsClient(true);
+    
+    // Load description preference from sessionStorage, or use responsive default
+    const savedPreference = sessionStorage.getItem('homepage-description-expanded');
+    if (savedPreference !== null) {
+      // User has a saved preference, use it
+      setIsDescriptionExpanded(savedPreference === 'true');
+    } else {
+      // No saved preference, use responsive default
+      const isWideScreen = window.innerWidth >= 768; // Same breakpoint as mobile styles
+      setIsDescriptionExpanded(isWideScreen);
+      // Save the default so it persists
+      sessionStorage.setItem('homepage-description-expanded', isWideScreen.toString());
+    }
   }, []);
+
+  // Handle window resize to update defaults for users who haven't manually set preference
+  useEffect(() => {
+    const handleResize = () => {
+      const userHasSetPreference = sessionStorage.getItem('homepage-description-user-set') === 'true';
+      if (!userHasSetPreference) {
+        const isWideScreen = window.innerWidth >= 768;
+        setIsDescriptionExpanded(isWideScreen);
+        sessionStorage.setItem('homepage-description-expanded', isWideScreen.toString());
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Save description preference to sessionStorage when it changes
+  const handleDescriptionToggle = (expanded) => {
+    setIsDescriptionExpanded(expanded);
+    sessionStorage.setItem('homepage-description-expanded', expanded.toString());
+    // Mark that user has manually set a preference
+    sessionStorage.setItem('homepage-description-user-set', 'true');
+  };
   
   // Filter lessons that have videos and sort by date (oldest first)
   const videosLessons = lessons
@@ -42,7 +79,7 @@ export default function HomePageVideo({ autoplay = false }) {
   // Don't render until we're on the client and router is ready
   if (!isClient || !router.isReady) {
     return (
-      <div id="video" className={styles.container} data-homepage-video>
+      <div id="video-section" className={styles.container} data-homepage-video>
         <div className={styles.content}>
           <div className={styles.loadingState}>Loading...</div>
         </div>
@@ -55,14 +92,19 @@ export default function HomePageVideo({ autoplay = false }) {
   }
   
   return (
-    <div id="video" className={styles.container} data-homepage-video>
+    <div id="video-section" className={styles.container} data-homepage-video>
       <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
         <VideoPlayer 
           lesson={currentLesson} 
           autoplay={autoplay} 
           userInitiated={!!targetLesson}
         />
-        <VideoInfo lesson={currentLesson} isLatest={isLatest} />
+        <VideoInfo 
+          lesson={currentLesson} 
+          isLatest={isLatest}
+          isDescriptionExpanded={isDescriptionExpanded}
+          setIsDescriptionExpanded={handleDescriptionToggle}
+        />
         <VideoControls
           currentIndex={currentIndex}
           totalVideos={videosLessons.length}
@@ -101,7 +143,7 @@ const VideoPlayer = ({ lesson, autoplay = false, userInitiated = false }) => (
 );
 
 // Video info component (date, title, written version indicator)
-const VideoInfo = ({ lesson, isLatest }) => {
+const VideoInfo = ({ lesson, isLatest, isDescriptionExpanded, setIsDescriptionExpanded }) => {
   const [shareState, setShareState] = useState({ type: null, success: false });
 
   // Unified copy to clipboard utility
@@ -237,9 +279,31 @@ const VideoInfo = ({ lesson, isLatest }) => {
       </div>
       <div className={styles.videoTitle}>
         {lesson.title}
+        {lesson.description && (
+          <button 
+            className={styles.descriptionToggle}
+            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+            aria-expanded={isDescriptionExpanded}
+            aria-label={isDescriptionExpanded ? "Hide description" : "Show description"}
+          >
+            <i className={`fas fa-chevron-${isDescriptionExpanded ? 'up' : 'down'}`}></i>
+          </button>
+        )}
       </div>
+      {lesson.description && isDescriptionExpanded && (
+        <div className={styles.videoDescription}>
+          {lesson.description}
+        </div>
+      )}
     </div>
   );
+};
+
+VideoInfo.propTypes = {
+  lesson: PropTypes.object.isRequired,
+  isLatest: PropTypes.bool.isRequired,
+  isDescriptionExpanded: PropTypes.bool.isRequired,
+  setIsDescriptionExpanded: PropTypes.func.isRequired,
 };
 
 // Video navigation controls component

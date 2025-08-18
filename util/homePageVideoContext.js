@@ -27,10 +27,20 @@ export const HomePageVideoProvider = ({ children }) => {
     // Set target lesson for legacy compatibility
     setTargetLesson(lesson);
     
-    // Only scroll to top if this was triggered by a LessonCard click (indicated by #video hash)
+    // Only scroll if this was triggered by a LessonCard click (indicated by #video-section hash)
     setTimeout(() => {
-      if (window.location.hash === '#video') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash === '#video-section') {
+        // Scroll to the video-section section with id="video-section"
+        const videoSection = document.getElementById('video-section');
+        if (videoSection) {
+          videoSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        } else {
+          // Fallback: scroll to top if section not found
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         // Remove the hash after scrolling
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
       }

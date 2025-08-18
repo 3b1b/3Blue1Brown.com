@@ -8,7 +8,7 @@ Clickable.propTypes = {
   onClick: requireLinkOrOnClick,
   icon: requireTextOrIcon,
   text: requireTextOrIcon,
-  design: PropTypes.oneOf(["normal", "rounded"]),
+  design: PropTypes.oneOf(["normal", "rounded", "tab"]),
   active: PropTypes.bool,
   className: PropTypes.string,
 };
