@@ -27,11 +27,11 @@ export const HomePageVideoProvider = ({ children }) => {
     // Set target lesson for legacy compatibility
     setTargetLesson(lesson);
     
-    // Only scroll if this was triggered by a LessonCard click (indicated by #video hash)
+    // Only scroll if this was triggered by a LessonCard click (indicated by #video-section hash)
     setTimeout(() => {
-      if (window.location.hash === '#video') {
-        // Scroll to the video section with id="video"
-        const videoSection = document.getElementById('video');
+      if (window.location.hash === '#video-section') {
+        // Scroll to the video-section section with id="video-section"
+        const videoSection = document.getElementById('video-section');
         if (videoSection) {
           videoSection.scrollIntoView({ 
             behavior: 'smooth', 

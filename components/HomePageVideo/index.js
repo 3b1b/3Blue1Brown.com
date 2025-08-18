@@ -79,7 +79,7 @@ export default function HomePageVideo({ autoplay = false }) {
   // Don't render until we're on the client and router is ready
   if (!isClient || !router.isReady) {
     return (
-      <div id="video" className={styles.container} data-homepage-video>
+      <div id="video-section" className={styles.container} data-homepage-video>
         <div className={styles.content}>
           <div className={styles.loadingState}>Loading...</div>
         </div>
@@ -92,7 +92,7 @@ export default function HomePageVideo({ autoplay = false }) {
   }
   
   return (
-    <div id="video" className={styles.container} data-homepage-video>
+    <div id="video-section" className={styles.container} data-homepage-video>
       <div className={`${styles.content} ${isNavigating ? styles.navigating : ''}`}>
         <VideoPlayer 
           lesson={currentLesson} 

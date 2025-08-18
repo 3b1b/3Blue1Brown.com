@@ -134,7 +134,7 @@ const VideoLink = ({ lesson, tooltip, ...rest }) => {
 
   return (
     <Tooltip content={tooltip}>
-      <NextLink href={`${createVideoUrl(lesson.slug)}#video`} {...rest} />
+      <NextLink href={`${createVideoUrl(lesson.slug)}#video-section`} {...rest} />
     </Tooltip>
   );
 };
