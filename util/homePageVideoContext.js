@@ -27,14 +27,12 @@ export const HomePageVideoProvider = ({ children }) => {
     // Set target lesson for legacy compatibility
     setTargetLesson(lesson);
     
-    // Scroll to the featured video section
+    // Only scroll to top if this was triggered by a LessonCard click (indicated by #video hash)
     setTimeout(() => {
-      const homePageVideoElement = document.querySelector('[data-homepage-video]');
-      if (homePageVideoElement) {
-        homePageVideoElement.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
+      if (window.location.hash === '#video') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Remove the hash after scrolling
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
       }
     }, 100);
   };
