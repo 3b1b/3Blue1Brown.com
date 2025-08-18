@@ -63,7 +63,7 @@ function OGPage({ lesson, notFound }) {
         <link rel="canonical" href={videoUrl} />
         
         {/* Auto-redirect for regular browsers */}
-        <meta httpEquiv="refresh" content="0;url=/" />
+        <meta httpEquiv="refresh" content={`0;url=${videoUrl}`} />
       </Head>
       
       <div style={{ 
