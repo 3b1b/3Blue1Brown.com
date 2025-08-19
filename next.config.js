@@ -43,8 +43,8 @@ config = withSentryConfig(config, {
   // Hide source maps in production for security
   hideSourceMaps: true,
   
-  // Disable automatic release creation (avoids auth errors)  
-  dryRun: process.env.NODE_ENV !== 'production',
+  // Disable automatic release creation to avoid organization limit errors
+  dryRun: true,
   
   // Only enable webpack plugins if Sentry is properly configured
   disableServerWebpackPlugin: !process.env.SENTRY_DSN,
