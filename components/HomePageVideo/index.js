@@ -207,13 +207,11 @@ const VideoInfo = ({ lesson, isLatest, isDescriptionExpanded, setIsDescriptionEx
     }
   };
 
-  // Direct copy function for copy button
-  const handleCopyLink = () => handleShare(true);
 
   return (
     <div className={styles.videoInfo}>
       <div className={styles.videoMetadata}>
-        {/* Left section: Share and Copy buttons */}
+        {/* Left section: Share button */}
         <div className={styles.leftSection}>
           <Tooltip content={
             shareState.success && shareState.type === 'share' 
@@ -230,24 +228,6 @@ const VideoInfo = ({ lesson, isLatest, isDescriptionExpanded, setIsDescriptionEx
                 shareState.success && shareState.type === 'share' 
                   ? "fas fa-check" 
                   : "fas fa-arrow-up-from-bracket"
-              }></i>
-            </button>
-          </Tooltip>
-          <Tooltip content={
-            shareState.success && shareState.type === 'copy' 
-              ? "Link copied!" 
-              : "Copy link"
-          }>
-            <button 
-              className={`${styles.copyButton} ${
-                shareState.success && shareState.type === 'copy' ? styles.copied : ''
-              }`}
-              onClick={handleCopyLink}
-            >
-              <i className={
-                shareState.success && shareState.type === 'copy' 
-                  ? "fas fa-check" 
-                  : "fas fa-link"
               }></i>
             </button>
           </Tooltip>

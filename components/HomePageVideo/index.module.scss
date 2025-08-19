@@ -361,32 +361,3 @@
   }
 }
 
-.copyButton {
-  /* Copy button styling - similar to share button */
-  background-color: #666;
-  border: none;
-  border-radius: 15px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 6px 10px;
-  margin-left: 8px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  
-  &:hover {
-    background-color: #777;
-  }
-  
-  &:focus {
-    outline: none;
-  }
-  
-  &.copied {
-    background-color: #4CAF50;
-    transform: scale(1.05);
-    
-    &:hover {
-      background-color: #45a049;
-    }
-  }
-}
