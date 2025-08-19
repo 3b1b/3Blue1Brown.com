@@ -53,6 +53,16 @@ function HomePage(props) {
       <Section width="narrow">
         <SupportPitch />
       </Section>
+      
+      <Section>
+        <iframe 
+          src="https://3blue1brown.substack.com/embed" 
+          width="640" 
+          height="180"
+          style={{ border: 'none', maxWidth: '100%' }}
+          title="3Blue1Brown Newsletter"
+        />
+      </Section>
     </NormalLayout>
   );
 }
