@@ -35,21 +35,24 @@ config = withImages(config);
 
 config = withYAML(config);
 
-// Make sure adding Sentry options is the last code to run before exporting, to
-// ensure that your source maps include changes from all other Webpack plugins
+// Sentry configuration - only active in production with proper DSN
 config = withSentryConfig(config, {
-  // Additional config options for the Sentry Webpack plugin. Keep in mind that
-  // the following options are set automatically, and overriding them is not
-  // recommended:
-  //   release, url, org, project, authToken, configFile, stripPrefix,
-  //   urlPrefix, include, ignore
-
-  silent: true, // Suppresses all logs
-  dryRun: true, // Skip release creation to avoid 401 errors when over limits
-  disableServerWebpackPlugin: true, // Disable server-side Sentry plugin
-  disableClientWebpackPlugin: true, // Disable client-side Sentry plugin
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options.
+  // Suppress Sentry logs during build
+  silent: true,
+  
+  // Hide source maps in production for security
+  hideSourceMaps: true,
+  
+  // Disable automatic release creation (avoids auth errors)  
+  dryRun: process.env.NODE_ENV !== 'production',
+  
+  // Only enable webpack plugins if Sentry is properly configured
+  disableServerWebpackPlugin: !process.env.SENTRY_DSN,
+  disableClientWebpackPlugin: !process.env.NEXT_PUBLIC_SENTRY_DSN,
+  
+  // Additional Sentry webpack plugin options
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
 });
 
 module.exports = config;

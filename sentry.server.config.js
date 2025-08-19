@@ -1,17 +1,36 @@
-// This file configures the initialization of Sentry on the server.
-// The config you add here will be used whenever the server handles a request.
+// Server-side Sentry configuration for API and SSR error monitoring
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs';
 
-const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
-
-Sentry.init({
-  dsn: SENTRY_DSN || 'https://3ce68c63823641db95d7bd65d08db5d8@o932861.ingest.sentry.io/5881803',
-  // Adjust this value in production, or use tracesSampler for greater control
-  tracesSampleRate: 1.0,
-  // ...
-  // Note: if you want to override the automatic release value, do not set a
-  // `release` value here - use the environment variable `SENTRY_RELEASE`, so
-  // that it will also get attached to your source maps
-});
+// Only initialize Sentry in production
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    
+    // Lower sampling for server-side performance monitoring
+    tracesSampleRate: 0.05,
+    
+    // Enhanced error filtering for server
+    beforeSend(event, hint) {
+      // Skip if no DSN configured
+      if (!process.env.SENTRY_DSN) {
+        return null;
+      }
+      return event;
+    },
+    
+    // Server-specific context
+    initialScope: {
+      tags: {
+        component: 'server',
+        site: '3blue1brown',
+      },
+    },
+    
+    // Capture additional server context
+    integrations: [
+      // Avoid BrowserTracing on server to prevent conflicts
+    ],
+  });
+}
