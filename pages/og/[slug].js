@@ -22,6 +22,27 @@ function OGPage({ lesson, notFound }) {
   const videoUrl = `https://www.3blue1brown.com/?v=${lesson.slug}`;
   const youtubeUrl = `https://www.youtube.com/watch?v=${lesson.video}`;
 
+  // Structured data for Google Search Console
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": lesson.title,
+    "description": description,
+    "thumbnailUrl": imageUrl,
+    "embedUrl": youtubeUrl,
+    "contentUrl": youtubeUrl,
+    "uploadDate": lesson.date,
+    "publisher": {
+      "@type": "Organization",
+      "name": "3Blue1Brown",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.3blue1brown.com/favicons/android-chrome-512x512.png"
+      }
+    },
+    "url": videoUrl
+  };
+
   return (
     <>
       <Head>
@@ -58,6 +79,17 @@ function OGPage({ lesson, notFound }) {
         <meta property="video:duration" content="600" />
         <meta property="video:tag" content="mathematics" />
         <meta property="video:tag" content="education" />
+        
+        {/* Structured Data for Google Search Console */}
+        <script 
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData)
+          }}
+        />
+        
+        {/* Preload thumbnail for faster social media preview loading */}
+        <link rel="preload" href={imageUrl} as="image" />
         
         {/* Canonical URL */}
         <link rel="canonical" href={videoUrl} />
