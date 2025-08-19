@@ -299,46 +299,18 @@ const VideoControls = ({
 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Generate 5 random titles for the slot machine effect
-  const generateRandomTitles = () => {
-    const titles = [];
-    for (let i = 0; i < 5; i++) {
-      const randomIndex = Math.floor(Math.random() * videosLessons.length);
-      titles.push(videosLessons[randomIndex].title);
-    }
-    return titles;
-  };
-
   const handleRandomClick = () => {
-    if (isAnimating) return; // Prevent multiple animations
+    if (isAnimating) return; // Prevent multiple clicks
     
     setIsAnimating(true);
     
-    // Start navigation immediately for instant switching
+    // Simply navigate to random lesson
     onRandom();
     
-    // Run slot machine animation in parallel for visual effect
-    const randomTitles = generateRandomTitles();
-    let titleIndex = 0;
-
-    // Get the title element to animate
-    const titleElement = document.querySelector(`[data-homepage-video] .${styles.videoTitle}`);
-
-    // Flash through titles quickly while new page loads
-    const interval = setInterval(() => {
-      if (titleElement) {
-        titleElement.textContent = randomTitles[titleIndex];
-      }
-      titleIndex++;
-      
-      if (titleIndex >= randomTitles.length) {
-        clearInterval(interval);
-        // Animation complete - the new video should be loaded by now
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 50);
-      }
-    }, 40); // 40ms per title = ~200ms total animation
+    // Reset animation state after a brief delay
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300); // Match the dice rotation animation duration
   };
 
   return (

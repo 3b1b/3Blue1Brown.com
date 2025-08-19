@@ -266,9 +266,8 @@
     cursor: not-allowed;
   }
   
-  &.animating {
-    animation: diceRoll 0.4s ease-in-out;
-    color: #FFF;
+  &.animating i {
+    animation: diceRoll 0.3s ease-in-out;
   }
 }
 
