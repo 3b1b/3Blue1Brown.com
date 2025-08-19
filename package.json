@@ -15,7 +15,7 @@
     "@babel/eslint-parser": "^7.21.3",
     "@popperjs/core": "^2.9.2",
     "@react-three/fiber": "^7.0.2",
-    "@sentry/nextjs": "^6.10.0",
+    "@sentry/nextjs": "^7.118.0",
     "@types/react": "^18.2.0",
     "disqus-react": "^1.0.11",
     "eslint-config-next": "^13.3.1",

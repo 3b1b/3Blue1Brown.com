@@ -4,6 +4,11 @@ import NormalLayout from "../layouts/NormalLayout";
 import { pageProps } from "../util/pages";
 import { useHomePageVideo } from "../util/homePageVideoContext";
 import { getVideoSlugFromQuery } from "../util/videoNavigation";
+import Section from "../components/Section";
+import SocialIcons from "../components/SocialIcons";
+import HomePageVideo from "../components/HomePageVideo";
+import LessonGallery from "../components/LessonGallery";
+import SupportPitch from "../components/SupportPitch";
 
 function HomePage(props) {
   const router = useRouter();
@@ -33,7 +38,33 @@ function HomePage(props) {
     }
   }, [router.isReady, router.query.v, lessons, playLesson]);
 
-  return <NormalLayout {...props} />;
+  // Render homepage content directly without MDX to save ~100kB
+  return (
+    <NormalLayout {...props}>
+      <Section id="video-section" dark={true}>
+        <SocialIcons />
+        <HomePageVideo />
+      </Section>
+      
+      <Section id="lessons" dark={true}>
+        <LessonGallery show="topic"/>
+      </Section>
+      
+      <Section width="narrow">
+        <SupportPitch />
+      </Section>
+      
+      <Section>
+        <iframe 
+          src="https://3blue1brown.substack.com/embed" 
+          width="640" 
+          height="180"
+          style={{ border: 'none', maxWidth: '100%' }}
+          title="3Blue1Brown Newsletter"
+        />
+      </Section>
+    </NormalLayout>
+  );
 }
 
 export default HomePage;

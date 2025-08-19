@@ -195,24 +195,19 @@
 .descriptionToggle {
   background: none;
   border: none;
-  color: #666;
-  font-size: 16px;
+  color: #ddd;
+  padding: 6px;
+  margin: 0 0px;
   cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 0.8em;
+  transition: color 0.2s ease;
   
   &:hover {
-    color: #333;
-    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
   }
   
   &:focus {
-    outline: 2px solid #007acc;
-    outline-offset: 2px;
+    outline: none;
   }
   
   i {
@@ -271,9 +266,8 @@
     cursor: not-allowed;
   }
   
-  &.animating {
-    animation: diceRoll 0.4s ease-in-out;
-    color: #FFF;
+  &.animating i {
+    animation: diceRoll 0.3s ease-in-out;
   }
 }
 
@@ -361,32 +355,3 @@
   }
 }
 
-.copyButton {
-  /* Copy button styling - similar to share button */
-  background-color: #666;
-  border: none;
-  border-radius: 15px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 6px 10px;
-  margin-left: 8px;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  
-  &:hover {
-    background-color: #777;
-  }
-  
-  &:focus {
-    outline: none;
-  }
-  
-  &.copied {
-    background-color: #4CAF50;
-    transform: scale(1.05);
-    
-    &:hover {
-      background-color: #45a049;
-    }
-  }
-}

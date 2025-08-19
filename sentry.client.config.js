@@ -1,48 +1,53 @@
-// This file configures the initialization of Sentry on the browser.
-// The config you add here will be used whenever a page is visited.
+// Modern Sentry configuration for browser-side error monitoring
+// Only runs in production to avoid development noise
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs';
 
-const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
-
-// Only initialize Sentry in production or when explicitly enabled
-if (process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_SENTRY_ENABLED === 'true') {
+// Only initialize Sentry in production
+if (process.env.NODE_ENV === 'production') {
   Sentry.init({
-    dsn: SENTRY_DSN || 'https://3ce68c63823641db95d7bd65d08db5d8@o932861.ingest.sentry.io/5881803',
-    // Adjust this value in production, or use tracesSampler for greater control
-    tracesSampleRate: process.env.NODE_ENV === 'production' ? 0.1 : 1.0,
+    dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
     
-    // Handle network errors gracefully (ad blockers, etc.)
+    // Performance monitoring - sample 10% of transactions in production
+    tracesSampleRate: 0.1,
+    
+    // Filter out noise from ad blockers and development
     beforeSend(event, hint) {
-      // Don't send events if we're in development and not explicitly enabled
-      if (process.env.NODE_ENV !== 'production' && process.env.NEXT_PUBLIC_SENTRY_ENABLED !== 'true') {
-        return null;
+      // Don't send events for blocked requests (ad blockers, etc.)
+      const error = hint.originalException;
+      if (error && typeof error === 'object' && 'message' in error) {
+        const message = String(error.message).toLowerCase();
+        if (message.includes('blocked') || message.includes('network')) {
+          return null;
+        }
       }
       return event;
     },
     
-    // Reduce noise from blocked requests
+    // Modern integrations for v7 (Edge Runtime compatible)
     integrations: [
-      new Sentry.BrowserTracing({
-        // Don't create spans for requests that are likely to be blocked
-        traceFetch: false,
-        traceXHR: false,
+      Sentry.browserTracingIntegration({
+        traceFetch: false, // Avoid tracking blocked requests
+        traceXHR: false,   // Avoid tracking blocked XHR
       }),
     ],
     
-    // Filter out noise from ad blockers
+    // Filter out common noise
     ignoreErrors: [
-      // Network errors that occur when requests are blocked
       'NetworkError',
-      'fetch',
-      'ERR_BLOCKED_BY_CLIENT',
+      'ERR_BLOCKED_BY_CLIENT', 
       'ERR_NETWORK',
       'Failed to fetch',
+      'Non-Error promise rejection captured', // React dev noise
     ],
     
-    // Note: if you want to override the automatic release value, do not set a
-    // `release` value here - use the environment variable `SENTRY_RELEASE`, so
-    // that it will also get attached to your source maps
+    // Capture user context for better debugging
+    initialScope: {
+      tags: {
+        component: 'client',
+        site: '3blue1brown',
+      },
+    },
   });
 }

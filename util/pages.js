@@ -172,6 +172,24 @@ export const lessonMeta = lessonFiles
   .map(({ patrons, content, ...rest }) => rest)
   .sort((b, a) => new Date(a.date) - new Date(b.date));
 
+// lightweight lesson metadata for homepage (only essential fields)
+export const lessonMetaLight = lessonMeta.map(lesson => ({
+  slug: lesson.slug,
+  title: lesson.title,
+  // Truncate descriptions to reduce payload (homepage only shows first ~100 chars anyway)
+  description: lesson.description ? 
+    (lesson.description.length > 200 ? lesson.description.substring(0, 200) + '...' : lesson.description) 
+    : null,
+  date: lesson.date,
+  video: lesson.video || null,
+  // Use standardized YouTube thumbnail URL to save space vs custom paths
+  thumbnail: lesson.video ? 
+    `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg` : 
+    lesson.thumbnail,
+  topic: lesson.topic,
+  empty: lesson.empty,
+}));
+
 const searchBlogFile = (slug) =>
   glob.sync(`public/content/blog/${slug || "*"}/index.mdx`);
 
@@ -188,6 +206,29 @@ export const blogMeta = blogFiles
 // get desired props for pages
 export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
+  
+  // Special optimization for homepage - skip heavy MDX serialization
+  if (slug === 'index') {
+    const parsedMdx = parseMdx(file);
+    return {
+      props: {
+        // Only include essential fields for homepage
+        title: parsedMdx.title || site.title,
+        description: parsedMdx.description || site.description,
+        lessons: lessonMetaLight,
+        blogPosts: [],
+        site: site,
+        // Skip source (serialized MDX) to save ~100kB
+        content: parsedMdx.content,
+        // Add minimal metadata needed by layout
+        slug: parsedMdx.slug,
+        file: parsedMdx.file,
+        dir: parsedMdx.dir,
+        date: parsedMdx.date,
+      }
+    };
+  }
+  
   const props = await serializeMdx(parseMdx(file));
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
