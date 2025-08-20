@@ -9,6 +9,7 @@ import SocialIcons from "../components/SocialIcons";
 import HomePageVideo from "../components/HomePageVideo";
 import LessonGallery from "../components/LessonGallery";
 import SupportPitch from "../components/SupportPitch";
+import Teaser from "../components/Teaser";
 
 function HomePage(props) {
   const router = useRouter();
@@ -44,8 +45,12 @@ function HomePage(props) {
       <Section id="video-section" dark={true}>
         <SocialIcons />
         <HomePageVideo />
+        <Teaser
+          title="The Math of Phase Transitions"
+          link="https://www.patreon.com/posts/136930526"
+        />
       </Section>
-      
+
       <Section id="lessons" dark={true}>
         <LessonGallery show="topic"/>
       </Section>
