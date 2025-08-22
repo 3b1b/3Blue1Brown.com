@@ -139,7 +139,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: 'blocking' // Generate pages for new lessons on-demand
+    fallback: false // All pages generated at build time
   };
 }
 
