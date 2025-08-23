@@ -11,6 +11,7 @@
   - gpt
   - attention
   - mlp
+  - diffusion-models
 - name: Linear Algebra
   slug: linear-algebra
   description: An introduction to visualizing what matrices are really doing
