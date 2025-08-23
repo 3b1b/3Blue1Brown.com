@@ -8,7 +8,7 @@ Teaser.propTypes = {
   thumbnail: PropTypes.string,
 };
 
-export default function Teaser({ title, link, thumbnail }) {
+export default function Teaser({ title, link, thumbnail = "/images/home/teaser.jpeg" }) {
   return (
     <Link href={link} className={styles.teaser}>
       <div className={styles.center}>

@@ -48,7 +48,6 @@ function HomePage(props) {
         <Teaser
           title="Simulating Phase Transitions"
           link="https://www.patreon.com/posts/136930526"
-          thumbnail="/images/home/teaser.jpeg"
         />
       </Section>
 
