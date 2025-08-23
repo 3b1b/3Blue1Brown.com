@@ -46,8 +46,9 @@ function HomePage(props) {
         <SocialIcons />
         <HomePageVideo />
         <Teaser
-          title="The Math of Phase Transitions"
+          title="Simulating Phase Transitions"
           link="https://www.patreon.com/posts/136930526"
+          thumbnail="/images/home/teaser.jpeg"
         />
       </Section>
 
