@@ -31,7 +31,7 @@
 }
 
 .thumbnail {
-  height: 60px;
+  height: 80px;
   width: auto;
   border-radius: 6px;
   object-fit: contain;
@@ -40,7 +40,7 @@
 .textContent {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   flex: 1;
 }
 
@@ -78,5 +78,24 @@
   
   .title {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .textContent {
+    order: 1;
+  }
+  
+  .thumbnailContainer {
+    order: 2;
+  }
+  
+  .thumbnail {
+    height: 120px;
   }
 }
