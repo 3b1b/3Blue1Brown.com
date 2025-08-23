@@ -3,7 +3,7 @@
   background: linear-gradient(135deg, rgba($blue-300, 0.4), rgba($blue-500, 0.2));
   color: white;
   text-decoration: none;
-  max-width: 500px;
+  max-width: 550px;
   margin: 30px auto 0 auto;
   border-radius: 8px;
   
@@ -16,15 +16,32 @@
 .center {
   max-width: $page;
   margin: 0 auto;
-  padding: 20px 40px;
+  padding: 20px 30px 20px 20px;
 }
 
 .content {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  text-align: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.thumbnailContainer {
+  flex-shrink: 0;
+}
+
+.thumbnail {
+  height: 60px;
+  width: auto;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
 }
 
 .label {
@@ -39,12 +56,20 @@
   font-size: 20px;
   font-weight: $medium;
   color: white;
-  text-align: center;
 }
 
 @media (max-width: 768px) {
   .center {
     padding: 16px 20px;
+  }
+  
+  .content {
+    gap: 16px;
+  }
+  
+  .thumbnail {
+    height: 50px;
+    width: auto;
   }
   
   .label {
