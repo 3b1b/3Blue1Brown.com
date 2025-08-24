@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import NextLink from "next/link";
 import Chip from "../Chip";
@@ -75,24 +75,10 @@ export default function LessonCard({
     >
       {icon && <i className={icon}></i>}
 
-      <div className={styles.image}>
-        <div className={styles.frame}>
-          {responsiveThumbnails ? (
-            <img 
-              src={responsiveThumbnails.default}
-              srcSet={`
-                ${responsiveThumbnails.mobile} 480w,
-                ${responsiveThumbnails.tablet} 768w,
-                ${responsiveThumbnails.desktop} 1200w
-              `}
-              sizes="(max-width: 480px) 320px, (max-width: 768px) 400px, 500px"
-              alt=""
-            />
-          ) : (
-            <img src={thumbnail} alt="" />
-          )}
-        </div>
-      </div>
+      <LazyImage 
+        responsiveThumbnails={responsiveThumbnails}
+        thumbnail={thumbnail}
+      />
 
       <div className={styles.text}>
         <span>{title && <span className={styles.title}>{title}</span>}</span>
@@ -140,3 +126,66 @@ const VideoLink = ({ lesson, tooltip, ...rest }) => {
 };
 
 const Stub = ({ ...props }) => <a {...props} />;
+
+// Lazy loading image component with Intersection Observer
+const LazyImage = ({ responsiveThumbnails, thumbnail }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        rootMargin: '50px', // Start loading 50px before entering viewport
+        threshold: 0.1
+      }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+  };
+
+  return (
+    <div className={styles.image} ref={imgRef}>
+      <div className={styles.frame}>
+        {!isVisible ? (
+          // Placeholder while not visible
+          <div className={styles.placeholder} />
+        ) : responsiveThumbnails ? (
+          <img 
+            src={responsiveThumbnails.default}
+            srcSet={`
+              ${responsiveThumbnails.mobile} 480w,
+              ${responsiveThumbnails.tablet} 768w,
+              ${responsiveThumbnails.desktop} 1200w
+            `}
+            sizes="(max-width: 480px) 320px, (max-width: 768px) 400px, 500px"
+            alt=""
+            onLoad={handleImageLoad}
+            className={isLoaded ? styles.loaded : styles.loading}
+          />
+        ) : (
+          <img 
+            src={thumbnail} 
+            alt="" 
+            onLoad={handleImageLoad}
+            className={isLoaded ? styles.loaded : styles.loading}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
