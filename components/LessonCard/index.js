@@ -18,6 +18,7 @@ LessonCard.propTypes = {
   tooltip: PropTypes.node,
   active: PropTypes.bool,
   className: PropTypes.string,
+  linkToLessonPage: PropTypes.bool,
 };
 
 // button that links to a lesson, showing details like thumbnail, title, etc.
@@ -29,6 +30,7 @@ export default function LessonCard({
   tooltip,
   active,
   className = "",
+  linkToLessonPage = false,
 }) {
   const { lessons = [] } = useContext(PageContext);
 
@@ -66,16 +68,24 @@ export default function LessonCard({
     ? getResponsiveYouTubeThumbnails(lesson.video)
     : null;
 
+  // Prepare props based on component type
+  const componentProps = {
+    link: lessonRedirects[slug] || `/lessons/${slug}`,
+    lesson: lesson,
+    className: styles.lesson_card + " " + className,
+    tooltip: tooltip,
+    "data-active": active || false,
+    "data-mini": mini || false,
+    "data-reverse": reverse || false,
+  };
+
+  // Only pass linkToLessonPage to VideoLink component
+  if (Component === VideoLink) {
+    componentProps.linkToLessonPage = linkToLessonPage;
+  }
+
   return (
-    <Component
-      link={lessonRedirects[slug] || `/lessons/${slug}`}
-      lesson={lesson}
-      className={styles.lesson_card + " " + className}
-      tooltip={tooltip}
-      data-active={active || false}
-      data-mini={mini || false}
-      data-reverse={reverse || false}
-    >
+    <Component {...componentProps}>
       {icon && <i className={icon}></i>}
 
       <LazyImage 
@@ -114,16 +124,21 @@ const Link = ({ link, tooltip, ...rest }) => (
   </Tooltip>
 );
 
-const VideoLink = ({ lesson, tooltip, ...rest }) => {
+const VideoLink = ({ lesson, tooltip, linkToLessonPage = false, ...rest }) => {
   // Double-check lesson has video
   if (!lesson || !lesson.video || lesson.video.trim() === '') {
     console.warn('VideoLink: Lesson missing video property:', lesson);
     return <Stub {...rest} />;
   }
 
+  // Choose URL based on linkToLessonPage prop
+  const href = linkToLessonPage 
+    ? `${VIDEO_URLS.LESSON_WITH_TITLE(lesson.slug)}`
+    : `${createVideoUrl(lesson.slug)}#video-section`;
+
   return (
     <Tooltip content={tooltip}>
-      <NextLink href={`${createVideoUrl(lesson.slug)}#video-section`} {...rest} />
+      <NextLink href={href} {...rest} />
     </Tooltip>
   );
 };
