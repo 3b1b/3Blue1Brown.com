@@ -58,7 +58,10 @@ export default function LessonCard({
 
   // Generate responsive thumbnails only for video lessons using YouTube thumbnails
   // (Don't use responsive thumbnails for custom thumbnails)
-  const isYouTubeThumbnail = hasVideo && lesson.video && thumbnail && thumbnail.includes('img.youtube.com');
+  // Only use YouTube responsive thumbnails if:
+  // 1. The lesson has a video
+  // 2. The thumbnail URL is actually from YouTube (not a custom thumbnail path)
+  const isYouTubeThumbnail = hasVideo && lesson.video && thumbnail && thumbnail.startsWith('https://img.youtube.com/');
   const responsiveThumbnails = isYouTubeThumbnail 
     ? getResponsiveYouTubeThumbnails(lesson.video)
     : null;
