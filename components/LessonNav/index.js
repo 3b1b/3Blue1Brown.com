@@ -31,6 +31,7 @@ const LessonNav = () => {
               icon="fas fa-arrow-left"
               tooltip="Previous lesson"
               className={styles.prev}
+              linkToLessonPage={true}
             />
           )}
           <Clickable
@@ -49,13 +50,14 @@ const LessonNav = () => {
               icon="fas fa-arrow-right"
               tooltip="Next lesson"
               className={styles.next}
+              linkToLessonPage={true}
             />
           )}
         </div>
         {open && (
           <div className={styles.list}>
             {topic.lessons.map((lesson, index) => (
-              <LessonCard key={index} id={lesson} mini={true} />
+              <LessonCard key={index} id={lesson} mini={true} linkToLessonPage={true} />
             ))}
           </div>
         )}
