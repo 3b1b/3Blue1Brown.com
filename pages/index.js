@@ -46,8 +46,8 @@ function HomePage(props) {
         <SocialIcons />
         <HomePageVideo />
         <Teaser
-          title="Simulating Phase Transitions"
-          link="https://www.patreon.com/posts/136930526"
+          title="Exploration and Epiphany"
+          link="https://www.patreon.com/posts/exploration-view-137159192"
         />
       </Section>
 

@@ -136,6 +136,7 @@
   - turbulence
   - brachistochrone
   - snells-law
+  - phase-change
 - name: Computer Science
   slug: computer-science
   description: An assortment of topics related to algorithms
