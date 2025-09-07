@@ -46,8 +46,8 @@ function HomePage(props) {
         <SocialIcons />
         <HomePageVideo />
         <Teaser
-          title="Exploration and Epiphany"
-          link="https://www.patreon.com/posts/exploration-view-137159192"
+          title="Math's most influential book"
+          link="https://www.patreon.com/posts/is-euclids-137473211"
         />
       </Section>
 

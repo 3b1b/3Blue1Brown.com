@@ -182,6 +182,7 @@
   lessons:
   - groups-and-monsters
   - eulers-formula-via-group-theory
+  - incomplete-cubes
 - name: Number Theory
   slug: number-theory
   description: Topics related to integer patterns and primes
