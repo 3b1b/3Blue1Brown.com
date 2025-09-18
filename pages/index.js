@@ -46,8 +46,8 @@ function HomePage(props) {
         <SocialIcons />
         <HomePageVideo />
         <Teaser
-          title="Math's most influential book"
-          link="https://www.patreon.com/posts/is-euclids-137473211"
+          title="The atoms of calculus"
+          link="https://www.patreon.com/posts/atoms-of-prelude-138875760"
         />
       </Section>
 
