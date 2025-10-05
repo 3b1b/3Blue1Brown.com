@@ -46,8 +46,8 @@ function HomePage(props) {
         <SocialIcons />
         <HomePageVideo />
         <Teaser
-          title="The atoms of calculus"
-          link="https://www.patreon.com/posts/atoms-of-prelude-138875760"
+          title="But what is a Laplace Transform?"
+          link="https://www.patreon.com/posts/laplace-early-140428165"
         />
       </Section>
 
