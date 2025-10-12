@@ -45,10 +45,6 @@ function HomePage(props) {
       <Section id="video-section" dark={true}>
         <SocialIcons />
         <HomePageVideo />
-        <Teaser
-          title="But what is a Laplace Transform?"
-          link="https://www.patreon.com/posts/laplace-early-140428165"
-        />
       </Section>
 
       <Section id="lessons" dark={true}>

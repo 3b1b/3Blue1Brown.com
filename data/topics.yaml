@@ -63,11 +63,12 @@
   - pdes
   - heat-equation
   - fourier-series
+  - complex-exponents
+  - laplace-transform
   - eulers-formula-dynamically
   - matrix-exponents
   - exponential-and-epidemics
   - diffusion-equation
-  - complex-exponents
 - name: Puzzles
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader
