@@ -45,10 +45,10 @@ function HomePage(props) {
       <Section id="video-section" dark={true}>
         <SocialIcons />
         <HomePageVideo />
-        <Teaser
-          title="The atoms of calculus"
-          link="https://www.patreon.com/posts/atoms-of-prelude-138875760"
-        />
+        {/*<Teaser*/}
+          {/*title="The atoms of calculus"*/}
+          {/*link="https://www.patreon.com/posts/atoms-of-prelude-138875760"*/}
+        {/*/>*/}
       </Section>
 
       <Section id="lessons" dark={true}>
