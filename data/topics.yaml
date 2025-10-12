@@ -67,6 +67,7 @@
   - matrix-exponents
   - exponential-and-epidemics
   - diffusion-equation
+  - laplace-transform
 - name: Puzzles
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader
