@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import NormalLayout from "../layouts/NormalLayout";
-import { pageProps } from "../util/pages";
+import { pageProps, lessonMetaLight } from "../util/pages";
 import { useHomePageVideo } from "../util/homePageVideoContext";
 import { getVideoSlugFromQuery } from "../util/videoNavigation";
 import Section from "../components/Section";
@@ -10,6 +10,7 @@ import HomePageVideo from "../components/HomePageVideo";
 import LessonGallery from "../components/LessonGallery";
 import SupportPitch from "../components/SupportPitch";
 import Teaser from "../components/Teaser";
+import * as site from "../data/site.yaml";
 
 function HomePage(props) {
   const router = useRouter();
@@ -71,18 +72,27 @@ function HomePage(props) {
 export default HomePage;
 
 export const getServerSideProps = async (context) => {
-  const props = await pageProps("index");
   const videoSlug = context.query.v;
+
+  // Start with default homepage props (use precomputed data to avoid file system operations)
+  const props = {
+    title: site.title,
+    description: site.description,
+    thumbnail: site.thumbnail || "/favicons/share-thumbnail.jpg",
+    lessons: lessonMetaLight,
+    blogPosts: [],
+    site: site,
+  };
 
   // If there's a ?v= parameter, customize the title, description, and thumbnail for social sharing
   if (videoSlug) {
-    const lesson = props.props.lessons.find(l => l.slug === videoSlug);
+    const lesson = lessonMetaLight.find(l => l.slug === videoSlug);
     if (lesson && lesson.video) {
-      props.props.title = lesson.title;
-      props.props.description = lesson.description || props.props.description;
-      props.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
+      props.title = lesson.title;
+      props.description = lesson.description || props.description;
+      props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
     }
   }
 
-  return props;
+  return { props };
 };
