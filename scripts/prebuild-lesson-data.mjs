@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Import the lesson metadata computation (lightweight version without MDX dependencies)
-import { lessonMetaLight } from '../util/lessonData.js';
+import { lessonMetaLight } from '../util/lessonData.mjs';
 
 // Write to public directory so it's available in the deployed build
 const outputPath = path.join(__dirname, '../public/lesson-data.json');
