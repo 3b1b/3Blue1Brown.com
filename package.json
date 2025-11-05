@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/prebuild-lesson-data.js",
+    "prebuild": "node scripts/prebuild-lesson-data.mjs",
     "build": "npm run prebuild && next build",
     "start": "next start",
     "fresh": "rm -rf node_modules .next yarn.lock && yarn cache clean && yarn install",
