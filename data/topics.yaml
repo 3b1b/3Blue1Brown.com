@@ -65,11 +65,11 @@
   - fourier-series
   - complex-exponents
   - laplace-transform
+  - laplace-for-odes
   - eulers-formula-dynamically
   - matrix-exponents
   - exponential-and-epidemics
   - diffusion-equation
-  - laplace-for-odes
 - name: Puzzles
   slug: puzzles
   description: Challenging questions whose solutions have interesting twists and broader
