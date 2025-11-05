@@ -70,15 +70,20 @@ function HomePage(props) {
 export default HomePage;
 
 export const getServerSideProps = async (context) => {
-  // Import server-side only modules inside getServerSideProps
-  const { lessonMetaLight } = await import("../util/pages");
+  const fs = await import("fs");
+  const path = await import("path");
+
+  // Read precomputed lesson data from JSON file (generated at build time)
+  const lessonDataPath = path.join(process.cwd(), "public/lesson-data.json");
+  const lessonMetaLight = JSON.parse(fs.readFileSync(lessonDataPath, "utf8"));
+
+  // Import site data
   const siteModule = await import("../data/site.yaml");
-  // Extract the actual data from the module (it's the default export)
   const site = siteModule.default || siteModule;
 
   const videoSlug = context.query.v;
 
-  // Start with default homepage props (use precomputed data to avoid file system operations)
+  // Start with default homepage props
   const props = {
     title: site.title,
     description: site.description,

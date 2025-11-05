@@ -15,6 +15,9 @@ node_modules/
 # production
 /build
 
+# generated at build time
+/public/lesson-data.json
+
 # misc
 .DS_Store
 *.pem
