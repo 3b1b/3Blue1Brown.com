@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import NormalLayout from "../layouts/NormalLayout";
-import { pageProps, lessonMetaLight } from "../util/pages";
 import { useHomePageVideo } from "../util/homePageVideoContext";
 import { getVideoSlugFromQuery } from "../util/videoNavigation";
 import Section from "../components/Section";
@@ -10,7 +9,6 @@ import HomePageVideo from "../components/HomePageVideo";
 import LessonGallery from "../components/LessonGallery";
 import SupportPitch from "../components/SupportPitch";
 import Teaser from "../components/Teaser";
-import * as site from "../data/site.yaml";
 
 function HomePage(props) {
   const router = useRouter();
@@ -72,6 +70,12 @@ function HomePage(props) {
 export default HomePage;
 
 export const getServerSideProps = async (context) => {
+  // Import server-side only modules inside getServerSideProps
+  const { lessonMetaLight } = await import("../util/pages");
+  const siteModule = await import("../data/site.yaml");
+  // Extract the actual data from the module (it's the default export)
+  const site = siteModule.default || siteModule;
+
   const videoSlug = context.query.v;
 
   // Start with default homepage props (use precomputed data to avoid file system operations)
