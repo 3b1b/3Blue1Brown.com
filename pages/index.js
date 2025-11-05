@@ -74,13 +74,13 @@ export const getServerSideProps = async (context) => {
   const props = await pageProps("index");
   const videoSlug = context.query.v;
 
-  // If there's a ?v= parameter, customize the title and description for social sharing
+  // If there's a ?v= parameter, customize the title, description, and thumbnail for social sharing
   if (videoSlug) {
     const lesson = props.props.lessons.find(l => l.slug === videoSlug);
-    if (lesson) {
+    if (lesson && lesson.video) {
       props.props.title = lesson.title;
       props.props.description = lesson.description || props.props.description;
-      // Keep the default thumbnail (or could use lesson.thumbnail if desired)
+      props.props.thumbnail = `https://img.youtube.com/vi/${lesson.video}/maxresdefault.jpg`;
     }
   }
 
