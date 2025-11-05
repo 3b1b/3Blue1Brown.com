@@ -6,7 +6,6 @@ import { PageContext } from "../../pages/_app";
 import { useHomePageVideo } from "../../util/homePageVideoContext";
 import { HomepageFeaturedYouTube } from "../HomepageFeaturedContent";
 import { useHomePageVideoNavigation } from "../../hooks/useHomePageVideoNavigation";
-import { createVideoUrl } from "../../util/videoNavigation";
 import Tooltip from "../Tooltip";
 import styles from "./index.module.scss";
 
@@ -177,13 +176,13 @@ const VideoInfo = ({ lesson, isLatest, isDescriptionExpanded, setIsDescriptionEx
 
   // Main share function with smart fallback
   const handleShare = async (forceClipboard = false) => {
-    const videoUrl = `${window.location.origin}${createVideoUrl(lesson.slug)}`;
-    
+    const youtubeUrl = `https://www.youtube.com/watch?v=${lesson.video}`;
+
     // Try Web Share API first (unless forced to use clipboard)
     if (!forceClipboard && navigator.share) {
       const shareData = {
         title: lesson.title,
-        url: videoUrl,
+        url: youtubeUrl,
       };
 
       try {
@@ -201,7 +200,7 @@ const VideoInfo = ({ lesson, isLatest, isDescriptionExpanded, setIsDescriptionEx
     }
 
     // Clipboard fallback
-    const success = await copyToClipboard(videoUrl);
+    const success = await copyToClipboard(youtubeUrl);
     if (success) {
       showSuccess(forceClipboard ? 'copy' : 'share');
     }
