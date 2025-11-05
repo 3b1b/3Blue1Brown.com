@@ -70,4 +70,19 @@ function HomePage(props) {
 
 export default HomePage;
 
-export const getStaticProps = async () => await pageProps("index");
+export const getServerSideProps = async (context) => {
+  const props = await pageProps("index");
+  const videoSlug = context.query.v;
+
+  // If there's a ?v= parameter, customize the title and description for social sharing
+  if (videoSlug) {
+    const lesson = props.props.lessons.find(l => l.slug === videoSlug);
+    if (lesson) {
+      props.props.title = lesson.title;
+      props.props.description = lesson.description || props.props.description;
+      // Keep the default thumbnail (or could use lesson.thumbnail if desired)
+    }
+  }
+
+  return props;
+};
