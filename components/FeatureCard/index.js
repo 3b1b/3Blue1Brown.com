@@ -22,23 +22,29 @@ export default function FeatureCard({
   title,
   text,
   width = 300,
-  height = 200,
+  height = 300,
   id,
 }) {
+  // For cards with backgrounds (recruiting), use full width, otherwise use specified width
+  const cardStyle = background ? { height } : { width, height };
+
   return (
-    <a className={styles.feature_card} href={link} style={{ width }}>
-      <div
-        className={styles.image}
-        style={{ maxHeight: height }}
-        data-dark={background ? true : false}
-        id={id}
-      >
-        {background && <img src={transformSrc(background)} alt="" />}
-        <img src={transformSrc(image)} alt="" />
-      </div>
-      <div className={styles.title}>{title}</div>
-      <div className={styles.text}>
-        <Markdownify noParagraph={true}>{text}</Markdownify>
+    <a className={styles.feature_card} href={link} style={cardStyle} id={id}>
+      {background && (
+        <div
+          className={styles.background}
+          style={{ backgroundImage: `url(${transformSrc(background)})` }}
+        />
+      )}
+      <div className={styles.overlay} />
+      <div className={styles.content}>
+        <div className={styles.logo}>
+          <img src={transformSrc(image)} alt="" />
+        </div>
+        <div className={styles.title}>{title}</div>
+        <div className={styles.text}>
+          <Markdownify noParagraph={true}>{text}</Markdownify>
+        </div>
       </div>
     </a>
   );
