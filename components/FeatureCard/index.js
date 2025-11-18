@@ -25,26 +25,39 @@ export default function FeatureCard({
   height = 300,
   id,
 }) {
-  // For cards with backgrounds (recruiting), use full width, otherwise use specified width
-  const cardStyle = background ? { height } : { width, height };
-
-  return (
-    <a className={styles.feature_card} href={link} style={cardStyle} id={id}>
-      {background && (
-        <div
-          className={styles.background}
-          style={{ backgroundImage: `url(${transformSrc(background)})` }}
-        />
-      )}
-      <div className={styles.overlay} />
-      <div className={styles.content}>
-        <div className={styles.logo}>
+  // For cards with backgrounds (recruiting), create a horizontal layout with logo on left
+  if (background) {
+    return (
+      <a className={styles.feature_card_horizontal} href={link} style={{ height }} id={id}>
+        <div className={styles.logo_left} style={{ width: height, height }}>
           <img src={transformSrc(image)} alt="" />
         </div>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.text}>
-          <Markdownify noParagraph={true}>{text}</Markdownify>
+        <div className={styles.banner_right}>
+          <div
+            className={styles.background}
+            style={{ backgroundImage: `url(${transformSrc(background)})` }}
+          />
+          <div className={styles.overlay} />
+          <div className={styles.content}>
+            <div className={styles.title}>{title}</div>
+            <div className={styles.text}>
+              <Markdownify noParagraph={true}>{text}</Markdownify>
+            </div>
+          </div>
         </div>
+      </a>
+    );
+  }
+
+  // Original vertical card layout (no background)
+  return (
+    <a className={styles.feature_card} href={link} style={{ width, height }}>
+      <div className={styles.image} style={{ maxHeight: height }}>
+        <img src={transformSrc(image)} alt="" />
+      </div>
+      <div className={styles.title}>{title}</div>
+      <div className={styles.text}>
+        <Markdownify noParagraph={true}>{text}</Markdownify>
       </div>
     </a>
   );

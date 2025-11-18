@@ -1,24 +1,41 @@
-.feature_card {
-  position: relative;
+// Horizontal layout for recruiting cards (with background)
+.feature_card_horizontal {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   width: 100%;
   margin: 10px 0;
-  color: white;
   font-family: $sans;
   text-decoration: none;
   overflow: hidden;
   transition: transform $fast;
 
   &:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 
     .overlay {
       background: rgba(0, 0, 0, 0.5);
     }
   }
+}
+
+.logo_left {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 20px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+.banner_right {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
 }
 
 .background {
@@ -52,21 +69,8 @@
   justify-content: center;
   text-align: center;
   padding: 40px 20px;
-}
-
-.logo {
-  margin-bottom: 20px;
-  max-width: 300px;
-  max-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    max-width: 100%;
-    max-height: 100px;
-    object-fit: contain;
-  }
+  height: 100%;
+  color: white;
 }
 
 .title {
@@ -79,4 +83,34 @@
 .text {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.1rem;
+}
+
+// Original vertical card layout (no background)
+.feature_card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 10px;
+  padding: 20px;
+  color: $black;
+  font-family: $sans;
+  text-decoration: none;
+  transition: background $fast;
+
+  &:hover {
+    background: $light-blue-50;
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
