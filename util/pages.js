@@ -72,9 +72,9 @@ const parseMdx = (file) => {
 };
 
 // make serialized file for mdx renderer
-const serializeMdx = async ({ content, ...rest }) => {
+const serializeMdx = async ({ content, ...rest }, additionalScope = {}) => {
   const source = await serialize(content, {
-    scope: { site },
+    scope: { site, ...additionalScope },
     mdxOptions: {
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex, rehypeSlug],
@@ -212,6 +212,10 @@ export const recruitingPaths = recruitingFiles
   .map(getSlugFromFile)
   .map((slug) => `/recruiting/${slug}`);
 
+export const recruitingMeta = recruitingFiles
+  .map(parseMdx)
+  .map(({ patrons, content, ...rest }) => rest);
+
 // get desired props for pages
 export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
@@ -238,10 +242,14 @@ export const pageProps = async (slug) => {
     };
   }
   
-  const props = await serializeMdx(parseMdx(file));
+  const additionalScope = slug === 'recruiting/index' ? { recruitingMeta } : {};
+  const props = await serializeMdx(parseMdx(file), additionalScope);
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
   props.site = site;
+  if (slug === 'recruiting/index') {
+    props.recruitingMeta = recruitingMeta;
+  }
   return { props };
 };
 
