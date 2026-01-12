@@ -25,7 +25,7 @@ export default function FeatureCard({
   height = 300,
   id,
 }) {
-  // For cards with backgrounds (recruiting), create a horizontal layout with logo on left
+  // For cards with backgrounds (talent), create a horizontal layout with logo on left
   if (background) {
     return (
       <a className={styles.feature_card_horizontal} href={link} style={{ height }} id={id}>

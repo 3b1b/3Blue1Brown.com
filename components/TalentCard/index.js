@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { PageContext } from "../../pages/_app";
 import FeatureCard from "../FeatureCard";
 
-const RecruitingCard = ({ slug, text, ...otherProps }) => {
-  const { recruitingMeta } = useContext(PageContext);
+const TalentCard = ({ slug, text, ...otherProps }) => {
+  const { talentMeta } = useContext(PageContext);
 
   // Find company by slug
-  const company = recruitingMeta?.find(c => c.slug === slug);
+  const company = talentMeta?.find(c => c.slug === slug);
 
   if (!company) {
     console.error(`Company not found: ${slug}`);
@@ -15,7 +15,7 @@ const RecruitingCard = ({ slug, text, ...otherProps }) => {
 
   return (
     <FeatureCard
-      link={`recruiting/${slug}`}
+      link={`talent/${slug}`}
       background={company.banner}
       image={company.logo}
       title={company.title}
@@ -27,4 +27,4 @@ const RecruitingCard = ({ slug, text, ...otherProps }) => {
   );
 };
 
-export default RecruitingCard;
+export default TalentCard;

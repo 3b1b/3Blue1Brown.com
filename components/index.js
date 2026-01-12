@@ -19,7 +19,7 @@ import {
 import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
-import RecruitingCard from "./RecruitingCard";
+import TalentCard from "./TalentCard";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
@@ -81,7 +81,7 @@ const components = {
   Portrait,
   PreviewText,
   Question,
-  RecruitingCard,
+  TalentCard,
   Section,
   SpeakingForm,
   Spoiler,

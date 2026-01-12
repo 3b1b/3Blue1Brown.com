@@ -6,21 +6,21 @@ import Jump from "../components/Jump";
 import Section from "../components/Section";
 import { PageContext } from "../pages/_app";
 
-// layout for recruiting company pages
-const RecruitingLayout = () => {
+// layout for talent company pages
+const TalentLayout = () => {
   const { title, description, logo, about, careers, slug } = useContext(PageContext);
 
   return (
     <NormalLayout>
       <style jsx global>{`
-        .recruiting-page .anchor {
+        .talent-page .anchor {
           display: none !important;
         }
       `}</style>
-      <Section width="narrow" className="recruiting-page">
+      <Section width="narrow" className="talent-page">
         <div style={{ position: 'relative' }}>
           {/* "More companies" link positioned in upper left */}
-          <a href={"/recruiting#" + slug} style={{ textDecoration: 'none', position: 'absolute', top: 0, left: 0 }}>
+          <a href={"/talent#" + slug} style={{ textDecoration: 'none', position: 'absolute', top: 0, left: 0 }}>
             <h4 style={{ margin: 0 }}>
               <i className="fas fa-arrow-left"></i> More companies
             </h4>
@@ -48,7 +48,7 @@ const RecruitingLayout = () => {
         </div>
       </Section>
 
-      <div className="recruiting-page">
+      <div className="talent-page">
         <PageContent />
       </div>
 
@@ -65,4 +65,4 @@ const RecruitingLayout = () => {
   );
 };
 
-export default RecruitingLayout;
+export default TalentLayout;
