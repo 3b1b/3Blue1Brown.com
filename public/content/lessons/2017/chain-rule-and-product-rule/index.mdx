@@ -248,15 +248,11 @@ The resulting nudge to this second value, the change to $x^2$ caused by such a $
 
 Now think of that third value, which is pegged at $\sin(h)$. Its change is $d\left(\sin(h)\right)$, the tiny change *caused* by the nudge $dh$. Well, we know the derivative of sine, so we can expand $d\left(\sin(h)\right)$ as $\cos(h) \cdot dh$; that’s what it means for the derivative of sine to be cosine.
 
-<Figure
-  image="figures/chain-rule-example-dh-derivative.svg"
-  caption="The derivative of $f(x) = \sin(x^2)$ is reframed by using the transformation $h=x^2$."
-/>
-
 Now we can unfold the transformation, replacing $h$ with $x^2$ and $dh$ with $d(x^2)$. So the bottom nudge becomes $\cos(x^2)d(x^2)$ and the middle nudge becomes $d(x^2)$. Of course, we also know that $d(x^2) = 2x \cdot dx$ and so we can substitute that into the diagram as well.
 
 <Figure
   image="figures/chain-rule-example-dh-expanded.svg"
+  caption="The derivative of $f(x) = \sin(x^2)$ is reframed by using the transformation $h=x^2$."
 />
 
 It’s always good to remind yourself of what this all actually means. In this case where we started at $x = 1.5$ up top, this means that the size of that nudge on the third line is about $\cos(1.5^2) \cdot 2(1.5)$ multiplied by the size of $dx$; proportional to the size of $dx$, where the derivative here gives us that proportionality constant.
