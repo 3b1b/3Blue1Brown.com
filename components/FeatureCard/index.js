@@ -25,31 +25,6 @@ export default function FeatureCard({
   height = 300,
   id,
 }) {
-  // For cards with backgrounds (talent), create a horizontal layout with logo on left
-  if (background) {
-    return (
-      <a className={styles.feature_card_horizontal} href={link} style={{ height }} id={id}>
-        <div className={styles.logo_left} style={{ width: height, height }}>
-          <img src={transformSrc(image)} alt="" />
-        </div>
-        <div className={styles.banner_right}>
-          <div
-            className={styles.background}
-            style={{ backgroundImage: `url(${transformSrc(background)})` }}
-          />
-          <div className={styles.overlay} />
-          <div className={styles.content}>
-            <div className={styles.title}>{title}</div>
-            <div className={styles.text}>
-              <Markdownify noParagraph={true}>{text}</Markdownify>
-            </div>
-          </div>
-        </div>
-      </a>
-    );
-  }
-
-  // Original vertical card layout (no background)
   return (
     <a className={styles.feature_card} href={link} style={{ width, height }}>
       <div className={styles.image} style={{ maxHeight: height }}>

@@ -1,0 +1,22 @@
+.testimonial_card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+  margin: 20px;
+  color: $gray-700;
+  border-right: solid 2px $gray-400;
+}
+
+.text {
+  text-align: left;
+  align-self: flex-start;
+  font-size: 16px;
+}
+
+.attribution {
+  font-style: italic;
+  text-align: right;
+  align-self: flex-end;
+}

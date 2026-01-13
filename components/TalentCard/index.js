@@ -1,12 +1,17 @@
+import PropTypes from "prop-types";
 import { useContext } from "react";
 import { PageContext } from "../../pages/_app";
-import FeatureCard from "../FeatureCard";
+import styles from "./index.module.scss";
 
-const TalentCard = ({ slug, text, ...otherProps }) => {
+TalentCard.propTypes = {
+  slug: PropTypes.string.isRequired,
+};
+
+export default function TalentCard({ slug }) {
   const { talentMeta } = useContext(PageContext);
 
   // Find company by slug
-  const company = talentMeta?.find(c => c.slug === slug);
+  const company = talentMeta?.find((c) => c.slug === slug);
 
   if (!company) {
     console.error(`Company not found: ${slug}`);
@@ -14,17 +19,14 @@ const TalentCard = ({ slug, text, ...otherProps }) => {
   }
 
   return (
-    <FeatureCard
-      link={`talent/${slug}`}
-      background={company.banner}
-      image={company.logo}
-      title={company.title}
-      text={text || company.description}
-      height={150}
-      id={slug}
-      {...otherProps}
-    />
+    <a className={styles.talent_card} href={`talent/${slug}`}>
+      <div className={styles.image}>
+        <img className={styles.banner} src={company.banner} alt="" />
+        <div className={styles.vignette}></div>
+        <img className={styles.logo} src={company.logo} alt="" />
+      </div>
+      <div className={styles.title}>{company.title}</div>
+      <div className={styles.text}>{company.description}</div>
+    </a>
   );
-};
-
-export default TalentCard;
+}
