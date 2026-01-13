@@ -1,65 +1,93 @@
 import { useContext } from "react";
 import NormalLayout from "./NormalLayout";
 import PageContent from "../components/PageContent";
+import Center from "../components/Center";
 import Clickable from "../components/Clickable";
 import Jump from "../components/Jump";
 import Section from "../components/Section";
 import { PageContext } from "../pages/_app";
+import styles from "./Talent.module.scss";
 
 // layout for talent company pages
 const TalentLayout = () => {
-  const { title, description, logo, about, careers, slug } = useContext(PageContext);
+  const {
+    banner = "",
+    logo = "",
+    title = "",
+    description = "",
+    introduction = "",
+    highlights = "",
+    links = [],
+    tags = [],
+    images = [],
+  } = useContext(PageContext);
 
   return (
     <NormalLayout>
-      <style jsx global>{`
-        .talent-page .anchor {
-          display: none !important;
-        }
-      `}</style>
-      <Section width="narrow" className="talent-page">
-        <div style={{ position: 'relative' }}>
-          {/* "More companies" link positioned in upper left */}
-          <a href={"/talent#" + slug} style={{ textDecoration: 'none', position: 'absolute', top: 0, left: 0 }}>
-            <h4 style={{ margin: 0 }}>
-              <i className="fas fa-arrow-left"></i> More companies
-            </h4>
-          </a>
+      <div>
+        <Clickable
+          link="/talent"
+          text="More companies"
+          icon="fas fa-arrow-left"
+        />
+      </div>
 
-          {/* Logo positioned absolutely in upper left, below "More companies" link */}
-          <div style={{ position: 'absolute', top: 50, left: 0 }}>
-            <img src={logo} alt={title} style={{ width: 120, height: 120, objectFit: 'contain' }}/>
-          </div>
-
-          {/* Centered content - unaffected by absolutely positioned elements */}
-          <div style={{ paddingTop: '40px' }}>
-            <h1 style={{ margin: '0 0 15px 0', fontSize: '2.5rem', textAlign: 'center' }}>{title}</h1>
-            <p style={{ margin: '0 auto 30px auto', fontSize: '1.2rem', color: '#666', textAlign: 'center', maxWidth: '800px' }}>{description}</p>
-
-            <div style={{ display: 'flex', gap: '25px', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a href={about} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <i className="fas fa-external-link-alt"></i> About {title}
-              </a>
-              <a href={careers} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                <i className="fas fa-external-link-alt"></i> Explore open positions
-              </a>
-            </div>
+      <Section width="narrow">
+        <div className={styles.header}>
+          <img src={logo} alt={`${title} logo`} className={styles.logo} />
+          <div className={styles["header-text"]}>
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.description}>{description}</p>
           </div>
         </div>
       </Section>
 
-      <div className="talent-page">
+      <Section width="narrow" dark image={banner}>
+        <p
+          className={styles.highlights}
+          dangerouslySetInnerHTML={{ __html: highlights }}
+        />
+      </Section>
+
+      <Section width="narrow">
+        <p className={styles.introduction}>{introduction}</p>
+      </Section>
+
+      <Section width="narrow">
+        <Center>
+          {links.map((link, index) => (
+            <Clickable
+              key={index}
+              link={link.url}
+              text={link.label}
+              icon="fas fa-external-link-alt"
+              design="rounded"
+              className={styles.link}
+            />
+          ))}
+        </Center>
+
+        <Center>
+          {tags.map((tag, index) => (
+            <div key={index} className={styles.tag}>
+              {tag}
+            </div>
+          ))}
+        </Center>
+      </Section>
+
+      <div className={styles.images}>
+        {images.map((src, index) => (
+          <a key={index} href={src} target="_blank">
+            <img src={src} alt="" />
+          </a>
+        ))}
+      </div>
+
+      <div>
         <PageContent />
       </div>
 
-      <Section>
-        <Clickable
-          link={careers}
-          icon="fas fa-external-link-alt"
-          text="Explore open positions"
-          design="rounded"
-        />
-      </Section>
       <Jump />
     </NormalLayout>
   );
