@@ -21,6 +21,7 @@ import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
 import TalentCard from "./TalentCard";
+import TalentIntro from "./TalentIntro";
 import TestimonialCard from "./TestimonialCard";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
@@ -85,6 +86,7 @@ const components = {
   PreviewText,
   Question,
   TalentCard,
+  TalentIntro,
   TestimonialCard,
   Section,
   SpeakingForm,
