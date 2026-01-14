@@ -1,0 +1,20 @@
+.banner {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -40px;
+  margin-bottom: 2rem;
+
+  @media (max-width: 500px) {
+    margin-top: -20px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}

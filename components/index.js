@@ -4,6 +4,7 @@ import {
 } from "./AboutPageGallery";
 import Accordion from "./Accordion";
 import Announcement from "./Announcement";
+import Banner from "./Banner";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
 import Center from "./Center";
@@ -53,6 +54,7 @@ const components = {
   Accordion,
   Announcement,
   AboutPageGallery,
+  Banner,
   BlogPostList,
   BookShelf,
   Book,
