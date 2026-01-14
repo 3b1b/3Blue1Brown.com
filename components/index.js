@@ -4,6 +4,7 @@ import {
 } from "./AboutPageGallery";
 import Accordion from "./Accordion";
 import Announcement from "./Announcement";
+import Banner from "./Banner";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
 import Center from "./Center";
@@ -19,6 +20,9 @@ import {
 import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
+import TalentCard from "./TalentCard";
+import TalentIntro from "./TalentIntro";
+import TestimonialCard from "./TestimonialCard";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
@@ -40,6 +44,7 @@ import PreviewText from "./PreviewText";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
+import Subtle from "./Subtle";
 import SupportPitch from "./SupportPitch";
 import Teaser from "./Teaser";
 import Tooltip from "./Tooltip";
@@ -50,6 +55,7 @@ const components = {
   Accordion,
   Announcement,
   AboutPageGallery,
+  Banner,
   BlogPostList,
   BookShelf,
   Book,
@@ -79,9 +85,13 @@ const components = {
   Portrait,
   PreviewText,
   Question,
+  TalentCard,
+  TalentIntro,
+  TestimonialCard,
   Section,
   SpeakingForm,
   Spoiler,
+  Subtle,
   SupportPitch,
   TeamMember,
   Teaser,

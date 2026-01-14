@@ -1,0 +1,92 @@
+.talent_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 5px;
+  color: $black;
+  font-family: $sans;
+  text-decoration: none;
+  transition: background 0.4s;
+  border-radius: 8px;
+
+  &:hover {
+    background: $light-blue-50;
+  }
+}
+
+.main_content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.quote {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s, max-height 0.4s;
+  margin-top: 20px;
+  padding: 20px;
+  padding-left: 30px;
+  border-left: 3px solid $blue;
+  font-style: italic;
+  color: $gray-700;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: left;
+
+  p {
+    margin: 0;
+    white-space: pre-line;
+  }
+}
+
+.talent_card:hover .quote {
+  opacity: 1;
+  max-height: 300px;
+
+  @media (max-width: 768px) {
+    opacity: 0;
+    max-height: 0;
+  }
+}
