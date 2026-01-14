@@ -44,5 +44,10 @@
 
 .text {
   font-size: 1rem;
+  opacity: 0;
+  transition: opacity $fast;
+}
+
+.talent_card:hover .text {
   opacity: 0.8;
 }
