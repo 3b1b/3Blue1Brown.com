@@ -15,7 +15,13 @@ export default function Banner({ src, alt = "", title, tagline }) {
       {(title || tagline) && (
         <div className={styles.overlay}>
           {title && <div className={styles.title}>{title}</div>}
-          {tagline && <div className={styles.tagline}>{tagline}</div>}
+          {tagline && (
+            <div className={styles.tagline}>
+              {tagline.split("").map((char, index) => (
+                <span key={index}>{char === " " ? "\u00A0" : char}</span>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

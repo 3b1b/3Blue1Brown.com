@@ -71,6 +71,17 @@
   max-width: 800px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 
+  span {
+    opacity: 0;
+    @include fade-in;
+  }
+
+  @for $i from 1 through 60 {
+    span:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.02}s;
+    }
+  }
+
   @media (max-width: 768px) {
     font-size: 1.25rem;
   }
