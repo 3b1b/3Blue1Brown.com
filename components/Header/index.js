@@ -7,12 +7,22 @@ import { title } from "../../data/site.yaml";
 import styles from "./index.module.scss";
 
 // header component to show at top of every page
-const Header = () => {
+const Header = ({ light = false }) => {
   // It used to be the case that the header was larger
   // for the home page. If we decide to stick with a
   // universally small one, this option should probably
   // just be removed.
   const big = false;
+
+  if (light) {
+    return (
+      <header className={styles.header} data-light="true">
+        <Link href="/" className={styles.logoOnly}>
+          <Logo big={false} />
+        </Link>
+      </header>
+    );
+  }
 
   return (
     <header className={styles.header} data-big={big}>

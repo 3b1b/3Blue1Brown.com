@@ -7,14 +7,75 @@
   margin-right: -50vw;
   margin-top: -40px;
   margin-bottom: 2rem;
+  max-height: 400px;
+  overflow: hidden;
 
   @media (max-width: 500px) {
     margin-top: -20px;
+    max-height: 250px;
   }
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
     display: block;
+
+    @media (max-width: 500px) {
+      max-height: 250px;
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+
+  @media (max-width: 500px) {
+    padding: 20px;
+  }
+}
+
+.title {
+  font-family: $serif;
+  font-size: 6rem;
+  color: white;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 2rem;
+  }
+}
+
+.tagline {
+  font-family: $serif;
+  font-size: 2rem;
+  color: white;
+  margin: 1rem 0 0 0;
+  max-width: 800px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
   }
 }
