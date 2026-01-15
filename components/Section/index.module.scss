@@ -1,6 +1,9 @@
 $phone: 500px;
 
 .section {
+  position: relative;
+  z-index: 0;
+
   &:last-child {
     flex-grow: 1;
   }
@@ -23,20 +26,44 @@ $phone: 500px;
     color: $white;
   }
 
-  &[data-gray="50"] { background: $gray-50; }
-  &[data-gray="100"] { background: $gray-100; }
-  &[data-gray="200"] { background: $gray-200; }
-  &[data-gray="300"] { background: $gray-300; }
-  &[data-gray="400"] { background: $gray-400; }
-  &[data-gray="500"] { background: $gray-500; color: $white; }
-  &[data-gray="600"] { background: $gray-600; color: $white; }
-  &[data-gray="700"] { background: $gray-700; color: $white; }
-  &[data-gray="800"] { background: $gray-800; color: $white; }
-  &[data-gray="900"] { background: $gray-900; color: $white; }
+  &[data-gray="50"] {
+    background: $gray-50;
+  }
+  &[data-gray="100"] {
+    background: $gray-100;
+  }
+  &[data-gray="200"] {
+    background: $gray-200;
+  }
+  &[data-gray="300"] {
+    background: $gray-300;
+  }
+  &[data-gray="400"] {
+    background: $gray-400;
+  }
+  &[data-gray="500"] {
+    background: $gray-500;
+    color: $white;
+  }
+  &[data-gray="600"] {
+    background: $gray-600;
+    color: $white;
+  }
+  &[data-gray="700"] {
+    background: $gray-700;
+    color: $white;
+  }
+  &[data-gray="800"] {
+    background: $gray-800;
+    color: $white;
+  }
+  &[data-gray="900"] {
+    background: $gray-900;
+    color: $white;
+  }
 }
 
 .wrapper {
-  position: relative;
   width: 100%;
   max-width: $page;
   margin: 0 auto;
@@ -54,4 +81,17 @@ $phone: 500px;
 
 .section[data-width="wide"] > .wrapper {
   max-width: $page-wide;
+}
+
+.background {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  opacity: 0.25;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
