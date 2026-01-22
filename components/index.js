@@ -20,6 +20,7 @@ import {
 import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
+import ImageRow from "./ImageRow";
 import TalentCard from "./TalentCard";
 import TalentIntro from "./TalentIntro";
 import TestimonialCard from "./TestimonialCard";
@@ -68,6 +69,7 @@ const components = {
   FeaturedContent,
   HomePageVideo,
   Figure,
+  ImageRow,
   FreeResponse,
   SocialIcons,
   HomepageFeaturedContent,

@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 30px 0;
+  @include trim-v-margins;
+}
+
+.image {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
