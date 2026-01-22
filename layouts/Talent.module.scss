@@ -234,5 +234,10 @@
 }
 
 .pageContent section:first-child > div {
-  padding-top: 0;
+  padding-top: 0px;
+}
+
+.pageContent section:first-child h1:first-child,
+.pageContent section:first-child > div > h1:first-child {
+  margin-top: 0;
 }
