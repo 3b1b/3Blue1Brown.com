@@ -49,10 +49,11 @@
   min-width: 50px;
   min-height: 50px;
   margin: 20px 15px;
-  padding: 10px 15px;
+  padding: 14px 25px;
   border-radius: 999px;
-  background: $gray-700;
+  background: $gray-600;
   color: $white;
+  font-size: 1.1em;
 
   &:hover {
     background: $light-blue-500;

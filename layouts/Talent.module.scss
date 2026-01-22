@@ -250,3 +250,7 @@
   font-size: 0.9rem;
   margin: 5px;
 }
+
+.pageContent section:first-child > div {
+  padding-top: 0;
+}

@@ -5,7 +5,6 @@ import Header from "../components/Header";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import PageContent from "../components/PageContent";
-import Anchors from "../components/Anchors";
 import Glow from "../components/Glow";
 import Center from "../components/Center";
 import Clickable from "../components/Clickable";
@@ -32,7 +31,6 @@ const TalentLayout = () => {
     <>
       <Head />
       <Header light={true} />
-      <Anchors />
       <Glow />
       <Main>
       {/* Company Banner */}
@@ -56,19 +54,18 @@ const TalentLayout = () => {
       </div>
 
       <Section width="narrow">
+        <h1 className={styles.exploreRoles}>Explore open roles</h1>
         <Center>
           {links.map((link, index) => (
             <Clickable
               key={index}
               link={link.url}
               text={link.label}
-              icon="fas fa-external-link-alt"
               design="rounded"
               className={styles.link}
             />
           ))}
         </Center>
-
         <Center>
           {tags.map((tag, index) => (
             <div key={index} className={styles.tag}>
@@ -82,15 +79,7 @@ const TalentLayout = () => {
       <Section width="narrow">
         <p className={styles.introduction}>{introduction}</p>
       </Section>
-      <div className={styles.images}>
-        {images.map((src, index) => (
-          <a key={index} href={src} target="_blank">
-            <img src={src} alt="" />
-          </a>
-        ))}
-      </div>
-
-      <div>
+      <div className={styles.pageContent}>
         <PageContent />
       </div>
 
