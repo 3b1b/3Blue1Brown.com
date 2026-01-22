@@ -7,6 +7,7 @@ import Announcement from "./Announcement";
 import Banner from "./Banner";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
+import Carousel from "./Carousel";
 import Center from "./Center";
 import Clickable from "./Clickable";
 import {
@@ -60,6 +61,7 @@ const components = {
   BlogPostList,
   BookShelf,
   Book,
+  Carousel,
   Center,
   Clickable,
   ContactForm,
