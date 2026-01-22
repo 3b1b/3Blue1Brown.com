@@ -36,7 +36,6 @@ const TalentLayout = () => {
       {/* Company Banner */}
       <div className={styles.companyBanner}>
         <img src={banner} alt="" className={styles.bannerImage} />
-        <div className={styles.topOverlay}></div>
         <div className={styles.backLink}>
           <Link href="/talent">
             <i className="fas fa-arrow-left"></i> More companies
@@ -52,30 +51,7 @@ const TalentLayout = () => {
           </div>
         </div>
       </div>
-
-      <Section width="narrow">
-        <h1 className={styles.exploreRoles}>Explore open roles</h1>
-        <Center>
-          {links.map((link, index) => (
-            <Clickable
-              key={index}
-              link={link.url}
-              text={link.label}
-              design="rounded"
-              className={styles.link}
-            />
-          ))}
-        </Center>
-        <Center>
-          {tags.map((tag, index) => (
-            <div key={index} className={styles.tag}>
-              {tag}
-            </div>
-          ))}
-        </Center>
-      </Section>
-
-
+      <div />
       <Section width="narrow">
         <p className={styles.introduction}>{introduction}</p>
       </Section>

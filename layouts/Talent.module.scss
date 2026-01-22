@@ -9,7 +9,7 @@
   }
 
   @media (max-width: 500px) {
-    height: 250px;
+    height: 300px;
   }
 }
 
@@ -19,24 +19,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-}
-
-.topOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 250px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
-  z-index: 5;
-
-  @media (max-width: 768px) {
-    height: 120px;
-  }
-
-  @media (max-width: 500px) {
-    height: 100px;
-  }
 }
 
 .bannerOverlay {
@@ -52,7 +34,7 @@
   }
 
   @media (max-width: 500px) {
-    padding: 50px 20px 20px;
+    padding: 80px 20px 20px;
   }
 }
 
@@ -132,12 +114,12 @@
   z-index: 10;
 
   @media (max-width: 768px) {
-    top: 75px;
+    top: 100px;
     left: 20px;
   }
 
   @media (max-width: 500px) {
-    top: 65px;
+    top: 100px;
     left: 15px;
   }
 
@@ -148,7 +130,7 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     background: none;
     border: none;
-    padding: 0;
+    padding: 10;
     display: inline;
 
     &:hover {
