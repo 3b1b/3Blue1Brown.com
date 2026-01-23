@@ -1,8 +1,15 @@
 .portrait {
   margin: 0 auto 20px auto;
   @include trim-v-margins;
-  border-radius: 999px;
   overflow: hidden;
+
+  &[data-round="true"] {
+    border-radius: 999px;
+  }
+
+  &[data-round="false"] {
+    border-radius: 8px;
+  }
 
   img {
     object-fit: cover;

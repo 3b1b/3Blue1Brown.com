@@ -1,22 +1,37 @@
 .testimonial_card {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   padding: 20px;
-  align-items: center;
-  margin: 20px;
+  margin: 10px;
+  width: calc(50% - 40px);
+  min-width: 250px;
+  max-width: 400px;
   color: $gray-700;
-  border-right: solid 2px $gray-400;
+  border-left: solid 3px $blue;
+  background: $gray-50;
+  border-radius: 4px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .text {
   text-align: left;
-  align-self: flex-start;
-  font-size: 16px;
+  text-justify: none;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  p {
+    text-align: left;
+  }
 }
 
 .attribution {
   font-style: italic;
+  font-size: 0.85rem;
   text-align: right;
-  align-self: flex-end;
+  color: $gray-500;
 }

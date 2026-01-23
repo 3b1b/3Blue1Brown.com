@@ -1,10 +1,10 @@
 .talent_card {
   position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 10px auto;
   padding: 5px;
   color: $black;
@@ -22,6 +22,15 @@
   display: flex;
   align-items: center;
   gap: 30px;
+  transition: transform 0.4s;
+}
+
+.talent_card:hover .main_content {
+  transform: translateX(100px);
+
+  @media (max-width: 900px) {
+    transform: none;
+  }
 }
 
 .image {
@@ -47,6 +56,8 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 300px;
+  flex-shrink: 0;
 }
 
 .title {
@@ -60,33 +71,32 @@
 }
 
 .quote {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s, max-height 0.4s;
-  margin-top: 20px;
-  padding: 20px;
-  padding-left: 30px;
-  border-left: 3px solid $blue;
+  transition: opacity 0.4s;
+  padding: 10px;
+  padding-left: 15px;
+  border-left: 2px solid $blue;
   font-style: italic;
   color: $gray-700;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  width: 100%;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 280px;
+  width: max-content;
   text-align: left;
 
   p {
     margin: 0;
-    white-space: pre-line;
   }
 }
 
 .talent_card:hover .quote {
   opacity: 1;
-  max-height: 300px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     opacity: 0;
-    max-height: 0;
   }
 }

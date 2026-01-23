@@ -8,18 +8,23 @@ import styles from "./index.module.scss";
 export default function ImageRow({ images = [], height = 250, gap = 20 }) {
   const { dir } = useContext(PageContext);
   const containerRef = useRef(null);
-  const [visibleCount, setVisibleCount] = useState(images.length);
+  const [visibleCount, setVisibleCount] = useState(null);
   const [imageWidths, setImageWidths] = useState(null);
+
+  // Parse height in case it's a string like "200px"
+  const numericHeight = typeof height === "string" ? parseInt(height, 10) : height;
 
   // Load all image dimensions on mount
   useEffect(() => {
     let cancelled = false;
+    setImageWidths(null);
+    setVisibleCount(null);
 
     Promise.all(
       images.map((src) => new Promise((resolve) => {
         const img = new Image();
-        img.onload = () => resolve(height * (img.naturalWidth / img.naturalHeight));
-        img.onerror = () => resolve(height);
+        img.onload = () => resolve(numericHeight * (img.naturalWidth / img.naturalHeight));
+        img.onerror = () => resolve(numericHeight);
         img.src = transformSrc(src, dir);
       }))
     ).then((widths) => {
@@ -27,7 +32,7 @@ export default function ImageRow({ images = [], height = 250, gap = 20 }) {
     });
 
     return () => { cancelled = true; };
-  }, [images, height, dir]);
+  }, [images, numericHeight, dir]);
 
   // Calculate visible count when widths are loaded or window resizes
   useEffect(() => {
@@ -38,7 +43,8 @@ export default function ImageRow({ images = [], height = 250, gap = 20 }) {
       if (!container) return;
 
       // Use page width (1100px) or viewport width if smaller
-      const availableWidth = Math.min(1100, window.innerWidth - 80);
+      const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1100;
+      const availableWidth = Math.min(1100, viewportWidth - 80);
       let total = 0;
       let count = 0;
 
@@ -64,7 +70,7 @@ export default function ImageRow({ images = [], height = 250, gap = 20 }) {
 
   return (
     <div ref={containerRef} className={styles.row} style={{ height, gap }}>
-      {images.slice(0, visibleCount).map((src, index) => (
+      {visibleCount !== null && images.slice(0, visibleCount).map((src, index) => (
         <img
           key={index}
           src={transformSrc(src, dir)}
