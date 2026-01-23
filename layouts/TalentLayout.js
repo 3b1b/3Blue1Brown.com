@@ -18,13 +18,11 @@ const TalentLayout = () => {
   const {
     banner = "",
     logo = "",
+    logo_height = null,
+    hide_banner_overlay = false,
+    light_banner_overlay = false,
     title = "",
     description = "",
-    introduction = "",
-    highlights = "",
-    links = [],
-    tags = [],
-    images = [],
   } = useContext(PageContext);
 
   return (
@@ -37,15 +35,20 @@ const TalentLayout = () => {
       <div className={styles.companyBanner}>
         <img src={banner} alt="" className={styles.bannerImage} />
         <div className={styles.leftOverlay}></div>
-        <div className={styles.backLink}>
-          <Link href="/talent">
-            <i className="fas fa-arrow-left"></i> More companies
-          </Link>
-        </div>
-        <div className={styles.bannerOverlay}>
+        <div
+          className={styles.bannerOverlay}
+          style={
+            hide_banner_overlay
+              ? { background: 'none' }
+              : light_banner_overlay
+                ? { background: 'linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent)' }
+                : {}
+          }
+          data-light={light_banner_overlay}
+        >
           <div className={styles.bannerContent}>
             <div className={styles.titleRow}>
-              <img src={logo} alt={`${title} logo`} className={styles.companyLogo} />
+              <img src={logo} alt={`${title} logo`} className={styles.companyLogo} style={logo_height ? { height: logo_height } : {}} />
               <h1 className={styles.companyName}>{title}</h1>
             </div>
             <p className={styles.companyDescription}>{description}</p>
@@ -53,10 +56,12 @@ const TalentLayout = () => {
         </div>
       </div>
       <div />
-      <Section width="narrow">
-        <p className={styles.introduction}>{introduction}</p>
-      </Section>
       <div className={styles.pageContent}>
+        <div className={styles.backLinkRow}>
+          <Link href="/talent" className={styles.backLink}>
+            <i className="fas fa-arrow-left"></i> More companies
+          </Link>
+        </div>
         <PageContent />
       </div>
 

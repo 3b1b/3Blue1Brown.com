@@ -51,6 +51,7 @@ import SupportPitch from "./SupportPitch";
 import Teaser from "./Teaser";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
+import VimeoEmbed from "./VimeoEmbed";
 import YouTubeEmbed from "./YouTubeEmbed";
 
 // components to automatically import into all .mdx files
@@ -104,6 +105,7 @@ const components = {
   Tooltip,
   TranslationForm,
   Twitter,
+  VimeoEmbed,
   YouTubeEmbed,
 };
 

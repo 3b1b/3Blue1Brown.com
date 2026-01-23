@@ -23,7 +23,7 @@ export default function TalentCard({ logo, name, tagline, slug, quote }) {
       </div>
       {quote && (
         <div className={styles.quote}>
-          <p>{quote}</p>
+          <p>“{quote}”</p>
         </div>
       )}
     </a>

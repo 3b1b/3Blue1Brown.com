@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 10px auto;
   padding: 5px;
   color: $black;
@@ -26,8 +26,6 @@
 }
 
 .talent_card:hover .main_content {
-  transform: translateX(100px);
-
   @media (max-width: 900px) {
     transform: none;
   }
@@ -84,7 +82,7 @@
   color: $gray-700;
   font-size: 0.85rem;
   line-height: 1.4;
-  max-width: 280px;
+  max-width: 350px;
   width: max-content;
   text-align: left;
 
@@ -96,7 +94,13 @@
 .talent_card:hover .quote {
   opacity: 1;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     opacity: 0;
   }
+}
+
+.section[data-width="full"] .talent_card {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
 }

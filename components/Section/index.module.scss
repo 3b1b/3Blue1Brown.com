@@ -83,6 +83,12 @@ $phone: 500px;
   max-width: $page-wide;
 }
 
+.section[data-width="full"] > .wrapper {
+  max-width: none;
+  // padding: 0;
+  width: 100%;
+}
+
 .background {
   z-index: -1;
   position: absolute;
