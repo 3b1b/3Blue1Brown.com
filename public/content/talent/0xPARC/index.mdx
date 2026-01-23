@@ -10,16 +10,20 @@ logo: /content/talent/0xPARC/wordmark.svg
 
 ## About
 
-0xPARC is a research organization focused on accelerating the evelopment and deployment of programmable cryptography.
-
-<ImageRow
-  images={[
-    "./hats.jpeg",
-    "./rob-presentation.jpeg",
-    "./air-quality-monitor.jpeg",
-  ]}
-  height="250px"
+<Portrait
+  image="./rob-presentation.jpeg"
+  round={false}
 />
+
+0xPARC, pronounced "zero-ex-park", is a research organization focused on accelerating the development and deployment of programmable cryptography. One core area of research is lattice-based cryptography and fully homomorphic encryption, and more generally the goal of building an encrypted computing platform.
+
+<Portrait
+  image="./air-quality-monitor.jpeg"
+  flip={true}
+  round={false}
+/>
+
+As one example of the kind of work we do, one recent project we partnered with was an air quality sensor, where the goal is to deploy a set of gamified sensors to better understand a community's air quality without compromising private information about people with each monitor. You can learn more about it [here](link).
 
 </Section>
 
@@ -27,14 +31,30 @@ logo: /content/talent/0xPARC/wordmark.svg
 
 ## Puzzles
 
-These puzzles were put together by 0xPARC's Holden Mui, for the 3blue1brown audience. If these kinds of problems are up you're alley, consider reaching out to learn more!
+A lot of pure math problems, often the kind that would arise in a contest math setting, are very relevant to the work we do. To take one example:
 
-**Problem 1 (TST 2018/4):**
+> Suppose I have a secret list of positive integers: $(v_1, v_2, ..., v_n)$. You can't see my list, but you can ask me dot product questions. Give me any list of numbers $(x_1, x_2, ..., x_n)$ of the same length, and I'll tell you $x_1 \cdot v_1 + x_2 \cdot v_2 + ... + x_n \cdot v_n$.
+> 
+> Figure out my secret list using as few questions as possible.
+
+The standard "best" solution works similarly to how some Fully Homomorphic Encryption (FHE) schemes pack data. In FHE schemes such as [BGV](https://eprint.iacr.org/2011/277) and [BFV](https://eprint.iacr.org/2012/144), a vector of values is packed into a polynomial in similar ways to the best solution to this puzzle.
+
+More generally, cleverness with packing and representation is foundational to several modern FHE schemes. By packing values into a polynomial's evaluation points and harnessing the Chinese Remainder Theorem, BGV, BFV, and [CKKS](https://eprint.iacr.org/2016/421) (another scheme used by 0xPARC's encrypted computing platform) are all able to enable operations on polynomials to apply to all packed values simultaneously. This enables SIMD (Single Instruction, Multiple Data) for encrypted computation, which is essential to harnessing modern parallel computing hardware for better performance.
+
+### More puzzles
+
+Here is a further collection put together by 0xPARC's Holden Mui, for the 3blue1brown audience. If these kinds of problems appeal to you, we'd love to hear from you!
+
+<Accordion title="Problem 1 (TST 2018/4)">
+
 Suppose you have many black-box majority functions on three binary
 inputs. Is it possible to chain them to construct a majority function on 2025 binary inputs? (You
 can duplicate inputs and outputs of the black-box function for free.)
 
-**Problem 2 (homomorphic FFT).**
+</Accordion>
+
+<Accordion title="Problem 2 (homomorphic FFT).">
+
 The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in ${C}^{32{,}768}$ such that anyone can add encrypted vectors elementwise, multiply encrypted vectors elementwise, or “rotate” ciphertexts $\left(z_1, z_2, \ldots, z_{65536}\right) \mapsto\left(z_i, z_{i+1}, \ldots, z_{i-1}\right)$ by any "offset" $i$. Suppose that:
 
 - encrypted addition takes 4 microseconds
@@ -44,7 +64,10 @@ The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in $
 Find a fast arithmetic circuit that computes the Fourier transform on an encrypted vector, conditioned
 on the multiplicative depth of the circuit being at most three.
 
-**Problem 3.**
+</Accordion>
+
+<Accordion title="Problem 3 (A mod p system)">
+
 Are there any nontrivial solutions to the system of equations
 
 $$
@@ -57,7 +80,11 @@ $$
 
 for $p=2^{127} - 1$?
 
-**Problem 4 (zero-knowledge factorization).**
+
+</Accordion>
+
+<Accordion title="Problem 4 (zero-knowledge factorization).">
+
 The programming language circom allows users to prove that they have an assignment to a set of variables satisfying a system of quadratic constraints
 
 $$
@@ -80,6 +107,7 @@ Some of the variables are set to be public, Some of the variables are set to be 
 
 (d) Give a system of quadratic constraints in 64 public variables $\ell_0, \ell_1, \ldots, \ell_{63} \in\left\{0,1, \ldots, 2^{64}-1\right\}$ and private variables $s_1, s_2, s_3, \ldots$ such that finding a satisfying solution to the system of quadratic constraints is equivalent to finding a nontrivial factorization of $\ell_0+2^{64} \ell_1+2^{128} \ell_2+ \cdots+2^{4032} \ell_{63}$.
 
+</Accordion>
 
 </Section>
 
