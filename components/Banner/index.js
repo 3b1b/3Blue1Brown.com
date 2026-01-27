@@ -6,12 +6,13 @@ Banner.propTypes = {
   alt: PropTypes.string,
   title: PropTypes.string,
   tagline: PropTypes.string,
+  character: PropTypes.string,
 };
 
-export default function Banner({ src, alt = "", title, tagline }) {
+export default function Banner({ src, alt = "", title, tagline, character }) {
   return (
     <div className={styles.banner}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} className={styles.backgroundImage} />
       {(title || tagline) && (
         <div className={styles.overlay}>
           {title && <div className={styles.title}>{title}</div>}
@@ -23,6 +24,9 @@ export default function Banner({ src, alt = "", title, tagline }) {
             </div>
           )}
         </div>
+      )}
+      {character && (
+        <img src={character} alt="" className={styles.character} />
       )}
     </div>
   );
