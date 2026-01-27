@@ -21,16 +21,6 @@
   display: block;
 }
 
-.leftOverlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 150px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.85), transparent);
-  z-index: 5;
-}
-
 .bannerOverlay {
   position: absolute;
   bottom: 0;

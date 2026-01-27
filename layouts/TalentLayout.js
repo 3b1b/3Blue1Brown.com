@@ -34,7 +34,6 @@ const TalentLayout = () => {
       {/* Company Banner */}
       <div className={styles.companyBanner}>
         <img src={banner} alt="" className={styles.bannerImage} />
-        <div className={styles.leftOverlay}></div>
         <div
           className={styles.bannerOverlay}
           style={
