@@ -1,12 +1,12 @@
 ---
 banner: /content/talent/metr/banner.jpeg
-wordmark: /content/talent/metr/wordmark.svg
+wordmark: /content/talent/metr/logo-with-wordmark.svg
 hide_header: true
 ---
 
 <Section width="narrow">
 
-<VimeoEmbed video="1157671526" hash="c6f71a8907" />
+<VimeoEmbed video="1158946636" hash="c6f71a8907" />
 
 </Section>
 
@@ -23,8 +23,61 @@ hide_header: true
 
 ## About
 
-Words about METR
+METR (pronounced ‘meter’) evaluates frontier AI models to help companies and wider society understand AI capabilities and what risks they pose.
 
-## Featured
+Most of METR’s research consists of evaluations assessing the [extent to which an AI system can autonomously carry out substantial tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/), including general-purpose tasks like conducting research or developing an app, and concerning capabilities such as conducting cyberattacks or making itself hard to shut down. Recently, we’ve begun studying the [effects of AI on real-world software developer productivity](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) as well as [potential AI behavior that threatens the integrity of evaluations](https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/) and [mitigations for such behavior](https://metr.org/blog/2025-08-08-cot-may-be-highly-informative-despite-unfaithfulness/).
+
+
+<ImageRow
+  images={[
+    "./joelmischarae.jpg",
+    "./samikitkrisrae.jpg",
+  ]}
+  height="225px"
+/>
+
+
+</Section>
+
+<Section width="narrow">
+
+## Technical challenge
+
+<Clickable
+  link="https://mlpuzzles.com/"
+  text="A challenge for the 3blue1brown audience"
+  design="rounded"
+/>
+
+</Section>
+
+<Section width="narrow">
+
+## Featured work
+
+### Uplift study
+
+We conducted a randomized controlled trial (RCT) measuring how early-2025 AI tools affected the productivity of 16 experienced open-source developers working on large, mature codebases (avg. 5 years xp w/ repo). Developers completed 246 real issues, which were randomly assigned to either allow or disallow AI usage. Surprisingly, we found that when developers used AI tools, they took 19% longer—AI slowed them down. This contrasted sharply with both the developers' own expectations and expert forecasts (24% and 38-39% shorter time to complete tasks when allowed to use AI, respectively).
+
+<Figure
+  image="./uplift-diagram.png"
+  caption="Read the [full result](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)"
+  width="800px"
+/>
+
+
+### Time horizon study
+
+We propose measuring AI performance in terms of the length of tasks AI agents can complete. We show that this metric has been consistently exponentially increasing over the past 6 years, with a doubling time of around 7 months. Extrapolating this trend predicts that, in under a decade, we will see AI agents that can independently complete a large fraction of software tasks that currently take humans days or weeks.
+
+<Figure
+  image="./length-of-tasks-log.png"
+  caption="Read the [full result](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)"
+  width="800px"
+/>
+
+### Interview with our founder
+
+<YouTubeEmbed video="jXtk68Kzmms"/>
 
 </Section>
