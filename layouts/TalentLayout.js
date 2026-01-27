@@ -17,18 +17,18 @@ import styles from "./Talent.module.scss";
 const TalentLayout = () => {
   const {
     banner = "",
-    logo = "",
-    logo_height = null,
+    wordmark = "",
+    wordmark_height = null,
+    hide_header = false,
     hide_banner_overlay = false,
     light_banner_overlay = false,
     title = "",
-    description = "",
   } = useContext(PageContext);
 
   return (
     <>
       <Head />
-      <Header light={true} />
+      {!hide_header && <Header light={true} />}
       <Glow />
       <Main>
       {/* Company Banner */}
@@ -46,11 +46,7 @@ const TalentLayout = () => {
           data-light={light_banner_overlay}
         >
           <div className={styles.bannerContent}>
-            <div className={styles.titleRow}>
-              <img src={logo} alt={`${title} logo`} className={styles.companyLogo} style={logo_height ? { height: logo_height } : {}} />
-              <h1 className={styles.companyName}>{title}</h1>
-            </div>
-            <p className={styles.companyDescription}>{description}</p>
+            <img src={wordmark} alt={`${title}`} className={styles.wordmark} style={wordmark_height ? { height: wordmark_height } : {}} />
           </div>
         </div>
       </div>
