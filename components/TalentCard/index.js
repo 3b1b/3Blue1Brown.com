@@ -1,15 +1,21 @@
 import PropTypes from "prop-types";
+import talentData from "../../data/talent.yaml";
 import styles from "./index.module.scss";
 
 TalentCard.propTypes = {
-  logo: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  tagline: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  quote: PropTypes.string,
 };
 
-export default function TalentCard({ logo, name, tagline, slug, quote }) {
+export default function TalentCard({ slug }) {
+  const data = talentData[slug];
+
+  if (!data) {
+    console.warn(`TalentCard: No data found for slug "${slug}"`);
+    return null;
+  }
+
+  const { logo, name, tagline, featured_quote } = data;
+
   return (
     <a className={styles.talent_card} href={`talent/${slug}`}>
       <div className={styles.main_content}>
@@ -21,9 +27,9 @@ export default function TalentCard({ logo, name, tagline, slug, quote }) {
           <div className={styles.text}>{tagline}</div>
         </div>
       </div>
-      {quote && (
+      {featured_quote && (
         <div className={styles.quote}>
-          <p>“{quote}”</p>
+          <p>"{featured_quote}"</p>
         </div>
       )}
     </a>
