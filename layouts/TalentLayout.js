@@ -54,7 +54,7 @@ const TalentLayout = () => {
       <div className={styles.pageContent}>
         <div className={styles.backLinkRow}>
           <Link href="/talent" className={styles.backLink}>
-            <i className="fas fa-arrow-left"></i> More companies
+            <i className="fas fa-arrow-left"></i> More 3b1b partners
           </Link>
         </div>
         <PageContent />

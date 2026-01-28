@@ -26,6 +26,8 @@
 }
 
 .talent_card:hover .main_content {
+  transform: translateX(25px);
+
   @media (max-width: 900px) {
     transform: none;
   }

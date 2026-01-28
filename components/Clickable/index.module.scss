@@ -82,6 +82,37 @@
   }
 }
 
+.clickable[data-design="featured"] {
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 20px 15px;
+  padding: 14px 25px;
+  border-radius: 999px;
+  background: white;
+  color: $gray-800;
+  font-size: 1.1em;
+  border: none;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #60a5fa, #9cdceb);
+    z-index: -1;
+  }
+
+  &:hover {
+    background: $gray-100;
+
+    &::before {
+      background: linear-gradient(135deg, #5cd0b3, #55c1a7);
+    }
+  }
+}
+
 .text {
   text-align: center;
   font-family: $sans;
