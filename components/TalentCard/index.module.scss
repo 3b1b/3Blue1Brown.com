@@ -76,12 +76,12 @@
   flex-shrink: 0;
 
   @media (max-width: 768px) {
-    width: 200px;
+    width: 250px;
     gap: 5px;
   }
 
   @media (max-width: 500px) {
-    width: 150px;
+    width: 200px;
     gap: 5px;
   }
 }
