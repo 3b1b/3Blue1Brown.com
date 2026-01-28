@@ -82,6 +82,8 @@
     -1px -1px 0 rgba(0, 0, 0, 0.2),
     1px -1px 0 rgba(0, 0, 0, 0.2),
     -1px 1px 0 rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   span {
     opacity: 0;
@@ -96,10 +98,20 @@
 
   @media (max-width: 768px) {
     font-size: 1.25rem;
+    max-width: 90%;
   }
 
   @media (max-width: 500px) {
     font-size: 1rem;
+    max-width: 95%;
+  }
+}
+
+.mobileBreak {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
   }
 }
 

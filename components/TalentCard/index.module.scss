@@ -23,6 +23,10 @@
   align-items: center;
   gap: 30px;
   transition: transform 0.4s;
+
+  @media (max-width: 600px) {
+    gap: 15px;
+  }
 }
 
 .talent_card:hover .main_content {
@@ -42,6 +46,18 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+  }
+
+  @media (max-width: 500px) {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+  }
 }
 
 .logo {
@@ -58,16 +74,42 @@
   gap: 10px;
   width: 300px;
   flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 200px;
+    gap: 5px;
+  }
+
+  @media (max-width: 500px) {
+    width: 150px;
+    gap: 5px;
+  }
 }
 
 .title {
   font-size: 2rem;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 }
 
 .text {
   font-size: 1rem;
   opacity: 0.8;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 }
 
 .quote {
