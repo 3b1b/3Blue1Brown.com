@@ -71,7 +71,7 @@ h4 {
 p {
   margin: 20px 0;
   @include trim-v-margins;
-  text-align: justify;
+  text-align: left;
   line-height: $spacing + 0.3;
 }
 
