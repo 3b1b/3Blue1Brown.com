@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  right: 40px;
+  top: 0;
+  padding-top: 80px;
+  pointer-events: none;
+
+  @media (max-width: 1300px) {
+    display: none;
+  }
+}
+
+.image {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+}

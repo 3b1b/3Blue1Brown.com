@@ -37,6 +37,7 @@ import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
+import MarginImage from "./MarginImage";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
 import PodcastEpisodes from "./PodcastEpisodes";
@@ -84,6 +85,7 @@ const components = {
   LessonGallery,
   LessonLink,
   LicensingForm,
+  MarginImage,
   Patrons,
   PiCreature,
   PodcastEpisodes,
