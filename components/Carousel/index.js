@@ -1,23 +1,36 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { PageContext } from "../../pages/_app";
 import { transformSrc } from "../../util/transformSrc";
 import styles from "./index.module.scss";
 
 // Simple image carousel with arrow navigation
-export default function Carousel({ images = [], caption = "" }) {
+export default function Carousel({ images = [], desktop_images = [], mobile_images = [], caption = "" }) {
   const { dir } = useContext(PageContext);
   const [index, setIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  if (!images.length) return null;
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-  const prev = () => setIndex((i) => (i - 1 + images.length) % images.length);
-  const next = () => setIndex((i) => (i + 1) % images.length);
+  // Use responsive images if provided, otherwise fall back to images
+  const displayImages = desktop_images.length > 0 && mobile_images.length > 0
+    ? (isMobile ? mobile_images : desktop_images)
+    : images;
+
+  if (!displayImages.length) return null;
+
+  const prev = () => setIndex((i) => (i - 1 + displayImages.length) % displayImages.length);
+  const next = () => setIndex((i) => (i + 1) % displayImages.length);
 
   return (
     <div className={styles.carousel}>
       <div className={styles.imageContainer}>
         <img
-          src={transformSrc(images[index], dir)}
+          src={transformSrc(displayImages[index], dir)}
           alt=""
           className={styles.image}
         />
@@ -28,7 +41,7 @@ export default function Carousel({ images = [], caption = "" }) {
           <i className="fas fa-chevron-left" />
         </button>
         <span className={styles.indicator}>
-          {index + 1} / {images.length}
+          {index + 1} / {displayImages.length}
         </span>
         <button onClick={next} className={styles.arrow} aria-label="Next">
           <i className="fas fa-chevron-right" />
