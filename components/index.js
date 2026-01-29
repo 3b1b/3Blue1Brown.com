@@ -4,7 +4,7 @@ import {
 } from "./AboutPageGallery";
 import Accordion from "./Accordion";
 import Announcement from "./Announcement";
-import Banner from "./Banner";
+import TalentBanner from "./TalentBanner";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
 import Carousel from "./Carousel";
@@ -60,7 +60,7 @@ const components = {
   Accordion,
   Announcement,
   AboutPageGallery,
-  Banner,
+  TalentBanner,
   BlogPostList,
   BookShelf,
   Book,

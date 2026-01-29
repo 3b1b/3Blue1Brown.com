@@ -1,4 +1,4 @@
-.banner {
+.container {
   width: 100vw;
   position: relative;
   left: 50%;
@@ -7,11 +7,18 @@
   margin-right: -50vw;
   margin-top: -40px;
   margin-bottom: 2rem;
+
+  @media (max-width: 500px) {
+    margin-top: -20px;
+  }
+}
+
+.banner {
+  position: relative;
   max-height: 400px;
   overflow: hidden;
 
   @media (max-width: 500px) {
-    margin-top: -20px;
     max-height: 250px;
   }
 }
@@ -40,10 +47,12 @@
   justify-content: center;
   align-items: center;
   padding: 40px;
+  padding-bottom: 60px;
   text-align: center;
 
   @media (max-width: 500px) {
     padding: 20px;
+    padding-bottom: 50px;
   }
 }
 
@@ -132,5 +141,78 @@
     height: 60px;
     right: 10px;
     top: 10px;
+  }
+}
+
+.accordionTrigger {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  color: $gray-400;
+  font-family: $serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+    bottom: 10px;
+    padding: 6px 12px;
+  }
+}
+
+.arrow {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: $gray-100;
+}
+
+.accordionOpen {
+  max-height: 300px;
+}
+
+.accordionInner {
+  padding: 25px 40px;
+  max-width: $page-narrow;
+  margin: 0 auto;
+  font-family: $serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $gray-700;
+  text-align: left;
+
+  p {
+    margin: 0 0 1em 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 500px) {
+    padding: 20px;
+    font-size: 0.85rem;
   }
 }
