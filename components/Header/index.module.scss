@@ -162,6 +162,10 @@ $phone: 700px;
   left: 0;
   right: 0;
   z-index: 10;
+
+  @media (max-width: 400px) {
+    padding: 10px 15px;
+  }
 }
 
 .logoOnly {
