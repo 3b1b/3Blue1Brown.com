@@ -25,6 +25,7 @@ import ImageRow from "./ImageRow";
 import TalentCard from "./TalentCard";
 import TalentIntro from "./TalentIntro";
 import TestimonialCard from "./TestimonialCard";
+import TriangleBackground from "./TriangleBackground";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
@@ -106,6 +107,7 @@ const components = {
   ThanksForm,
   Tooltip,
   TranslationForm,
+  TriangleBackground,
   Twitter,
   VimeoEmbed,
   YouTubeEmbed,

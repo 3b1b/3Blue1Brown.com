@@ -1,64 +1,43 @@
 .container {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  margin-top: -40px;
-  margin-bottom: 2rem;
+  margin: -40px -40px 2rem -40px;
 
   @media (max-width: 500px) {
-    margin-top: -20px;
+    margin: -20px -20px 2rem -20px;
   }
 }
 
 .banner {
+  z-index: 0;
   position: relative;
-  max-height: 400px;
-  overflow: hidden;
-
-  @media (max-width: 500px) {
-    max-height: 250px;
-  }
+  background: black;
 }
 
-.backgroundImage {
+.banner > :first-child {
+  z-index: -1;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-
-  @media (max-width: 500px) {
-    max-height: 250px;
-  }
 }
 
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  padding: 60px 20px;
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 40px;
-  padding-bottom: 60px;
+  gap: 10px;
   text-align: center;
 
   @media (max-width: 500px) {
-    padding: 20px;
-    padding-bottom: 50px;
+    padding: 40px 20px;
+    padding-bottom: 60px;
   }
 }
 
 .title {
   font-family: $serif;
-  font-size: 6rem;
+  font-size: 5rem;
   color: white;
   margin: 0;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
@@ -82,7 +61,7 @@
   font-family: $serif;
   font-size: 2rem;
   color: white;
-  margin: 1rem 0 0 0;
+  margin: 0;
   max-width: 800px;
   -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.4);
   text-shadow:
@@ -146,7 +125,7 @@
 
 .accordionTrigger {
   position: absolute;
-  bottom: 5px;
+  bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
   background: none;
@@ -159,7 +138,6 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   transition: opacity 0.2s;
 
   &:hover {
