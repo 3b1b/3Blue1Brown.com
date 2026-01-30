@@ -1,6 +1,9 @@
 .portrait {
   margin: 0 auto 20px auto;
   @include trim-v-margins;
+}
+
+.imageWrapper {
   overflow: hidden;
 
   &[data-round="true"] {
@@ -16,6 +19,15 @@
     width: 100%;
     height: 100%;
   }
+}
+
+.caption {
+  font-family: $sans;
+  font-size: 1.0rem;
+  color: $gray-700;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.3;
 }
 
 @media (min-width: $page) {

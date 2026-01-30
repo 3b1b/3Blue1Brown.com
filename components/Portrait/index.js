@@ -10,10 +10,11 @@ Portrait.propTypes = {
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flip: PropTypes.bool,
   round: PropTypes.bool,
+  caption: PropTypes.string,
 };
 
 // image that floats to left/right of text content, useful for pictures of people
-export default function Portrait({ image, size = "180px", flip = false, round = true }) {
+export default function Portrait({ image, size = "180px", flip = false, round = true, caption }) {
   const { dir } = useContext(PageContext);
   const sectionWidth = useSectionWidth();
 
@@ -25,12 +26,18 @@ export default function Portrait({ image, size = "180px", flip = false, round = 
       <div className={styles.clearfix} />
       <div
         className={styles.portrait}
-        style={{ width: size, height: size }}
+        style={{ width: size }}
         data-flip={flip}
-        data-round={round}
         data-sectionwidth={sectionWidth}
       >
-        <img src={transformSrc(image, dir)} />
+        <div
+          className={styles.imageWrapper}
+          style={{ width: size, height: size }}
+          data-round={round}
+        >
+          <img src={transformSrc(image, dir)} />
+        </div>
+        {caption && <div className={styles.caption}>{caption}</div>}
       </div>
     </>
   );
