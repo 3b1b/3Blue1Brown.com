@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
-import talentData from "../../data/talent.yaml";
+import { PageContext } from "../../pages/_app";
 import styles from "./index.module.scss";
 
 TalentCard.propTypes = {
@@ -7,7 +8,9 @@ TalentCard.propTypes = {
 };
 
 export default function TalentCard({ slug }) {
-  const data = talentData[slug];
+  const { talentMeta } = useContext(PageContext);
+
+  const data = talentMeta?.find((t) => t.slug === slug);
 
   if (!data) {
     console.warn(`TalentCard: No data found for slug "${slug}"`);

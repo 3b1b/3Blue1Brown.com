@@ -20,10 +20,20 @@ const TalentLayout = () => {
     wordmark = "",
     wordmark_height = null,
     hide_header = false,
-    hide_banner_overlay = false,
+    dark_banner_overlay = false,
     light_banner_overlay = false,
     title = "",
   } = useContext(PageContext);
+
+  const getOverlayStyle = () => {
+    if (dark_banner_overlay) {
+      return { background: 'linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent)' };
+    }
+    if (light_banner_overlay) {
+      return { background: 'linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent)' };
+    }
+    return { background: 'none' };
+  };
 
   return (
     <>
@@ -36,13 +46,7 @@ const TalentLayout = () => {
         <img src={banner} alt="" className={styles.bannerImage} />
         <div
           className={styles.bannerOverlay}
-          style={
-            hide_banner_overlay
-              ? { background: 'none' }
-              : light_banner_overlay
-                ? { background: 'linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent)' }
-                : {}
-          }
+          style={getOverlayStyle()}
           data-light={light_banner_overlay}
         >
           <div className={styles.bannerContent}>
