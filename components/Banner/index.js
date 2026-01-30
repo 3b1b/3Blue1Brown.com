@@ -2,17 +2,21 @@ import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
 Banner.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string,
+  bg: PropTypes.element.isRequired,
   title: PropTypes.string,
   tagline: PropTypes.string,
   character: PropTypes.string,
 };
 
-export default function Banner({ src, alt = "", title, tagline, character }) {
+export default function Banner({
+  bg,
+  title,
+  tagline,
+  character,
+}) {
   return (
     <div className={styles.banner}>
-      <img src={src} alt={alt} className={styles.backgroundImage} />
+      {bg}
       {(title || tagline) && (
         <div className={styles.overlay}>
           {title && <div className={styles.title}>{title}</div>}
@@ -25,9 +29,7 @@ export default function Banner({ src, alt = "", title, tagline, character }) {
           )}
         </div>
       )}
-      {character && (
-        <img src={character} alt="" className={styles.character} />
-      )}
+      {character && <img src={character} alt="" className={styles.character} />}
     </div>
   );
 }
