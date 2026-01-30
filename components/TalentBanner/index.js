@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
 TalentBanner.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string,
+  bg: PropTypes.node.isRequired,
   title: PropTypes.string,
   tagline: PropTypes.string,
   tagline_break: PropTypes.number,
@@ -13,8 +12,7 @@ TalentBanner.propTypes = {
 };
 
 export default function TalentBanner({
-  src,
-  alt = "",
+  bg,
   title,
   tagline,
   tagline_break,
@@ -41,7 +39,7 @@ export default function TalentBanner({
   return (
     <div className={styles.container}>
       <div className={styles.banner}>
-        <img src={src} alt={alt} className={styles.backgroundImage} />
+        {bg}
         {(title || tagline) && (
           <div className={styles.overlay}>
             {title && <div className={styles.title}>{title}</div>}
