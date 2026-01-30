@@ -78,6 +78,10 @@ const Nav = () => {
       </button>
 
       <NavLink
+        link="/talent"
+        text="Talent"
+      />
+      <NavLink
         link="https://www.patreon.com/c/3blue1brown"
         text="Patreon"
       />
@@ -87,11 +91,6 @@ const Nav = () => {
       />
       <NavLink link="/blog" text="Blog"/>
       <NavLink link="/extras" text="Extras"/>
-      <NavLink
-        link="https://some.3b1b.co"
-        text="SoME"
-        tooltip="The Summer of Math Exposition"
-      />
       <NavLink
         link="/faq"
         text="FAQ/Contact"
