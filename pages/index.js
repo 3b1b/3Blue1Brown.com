@@ -56,8 +56,8 @@ function HomePage(props) {
       <Section width="full">
         <TalentBanner
           bg={<TriangleBackground />}
-          title="Seeking a job?"
-          tagline="Explore 3b1b Talent"
+          title="3b1b Talent"
+          tagline="A virtual career fair"
           href="/talent"
         />
       </Section>
@@ -65,7 +65,9 @@ function HomePage(props) {
       <Section width="narrow">
         <SupportPitch />
       </Section>
-      
+
+      <div />
+
       <Section>
         <iframe 
           src="https://3blue1brown.substack.com/embed" 
@@ -75,6 +77,7 @@ function HomePage(props) {
           title="3Blue1Brown Newsletter"
         />
       </Section>
+      
     </NormalLayout>
   );
 }

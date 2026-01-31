@@ -5,13 +5,11 @@ import Clickable from "../Clickable";
 export default function SupportPitch() {
   return (
     <>
-      <h2>Become a member, gain early access</h2>
-
       <Center>
         <Clickable
           link="https://www.patreon.com/3blue1brown"
           icon="fab fa-patreon"
-          text="Join on Patreon"
+          text="Become a supporting member"
           design="rounded"
         />
       </Center>
