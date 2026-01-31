@@ -49,10 +49,11 @@
   min-width: 50px;
   min-height: 50px;
   margin: 20px 15px;
-  padding: 10px 15px;
+  padding: 14px 25px;
   border-radius: 999px;
-  background: $gray-700;
+  background: $gray-600;
   color: $white;
+  font-size: 1.1em;
 
   &:hover {
     background: $light-blue-500;
@@ -77,6 +78,37 @@
   &[data-active="false"] {
     &:hover {
       background: rgba($blue-700, 0.75);
+    }
+  }
+}
+
+.clickable[data-design="featured"] {
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+  margin: 20px 15px;
+  padding: 14px 25px;
+  border-radius: 999px;
+  background: white;
+  color: $gray-800;
+  font-size: 1.1em;
+  border: none;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #60a5fa, #9cdceb);
+    z-index: -1;
+  }
+
+  &:hover {
+    background: $gray-100;
+
+    &::before {
+      background: linear-gradient(135deg, #5cd0b3, #55c1a7);
     }
   }
 }

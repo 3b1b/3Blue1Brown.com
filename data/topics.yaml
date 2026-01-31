@@ -91,6 +91,7 @@
   lessons:
   - sphere-area
   - inscribed-rect-v2
+  - hairy-ball
   - dandelin-spheres
   - quaternions
   - quaternions-and-3d-rotation

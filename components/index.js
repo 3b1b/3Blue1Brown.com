@@ -4,8 +4,10 @@ import {
 } from "./AboutPageGallery";
 import Accordion from "./Accordion";
 import Announcement from "./Announcement";
+import TalentBanner from "./TalentBanner";
 import BlogPostList from "./BlogPostList";
 import BookShelf, { Book } from "./BookShelf";
+import Carousel from "./Carousel";
 import Center from "./Center";
 import Clickable from "./Clickable";
 import {
@@ -19,6 +21,11 @@ import {
 import FaqLinks from "./FaqLinks";
 import FeatureCard from "./FeatureCard";
 import Figure from "./Figure";
+import ImageRow from "./ImageRow";
+import TalentCard from "./TalentCard";
+import TalentIntro from "./TalentIntro";
+import TestimonialCard from "./TestimonialCard";
+import TriangleBackground from "./TriangleBackground";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
@@ -31,6 +38,7 @@ import Interactive from "./Interactive";
 import LessonCard from "./LessonCard";
 import LessonGallery from "./LessonGallery";
 import LessonLink from "./LessonLink";
+import MarginImage from "./MarginImage";
 import Patrons from "./Patrons";
 import PiCreature from "./PiCreature";
 import PodcastEpisodes from "./PodcastEpisodes";
@@ -40,19 +48,24 @@ import PreviewText from "./PreviewText";
 import Question from "./Question";
 import Section from "./Section";
 import Spoiler from "./Spoiler";
+import Subtle from "./Subtle";
 import SupportPitch from "./SupportPitch";
 import Teaser from "./Teaser";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
+import VimeoEmbed from "./VimeoEmbed";
+import YouTubeEmbed from "./YouTubeEmbed";
 
 // components to automatically import into all .mdx files
 const components = {
   Accordion,
   Announcement,
   AboutPageGallery,
+  TalentBanner,
   BlogPostList,
   BookShelf,
   Book,
+  Carousel,
   Center,
   Clickable,
   ContactForm,
@@ -62,6 +75,7 @@ const components = {
   FeaturedContent,
   HomePageVideo,
   Figure,
+  ImageRow,
   FreeResponse,
   SocialIcons,
   HomepageFeaturedContent,
@@ -72,6 +86,7 @@ const components = {
   LessonGallery,
   LessonLink,
   LicensingForm,
+  MarginImage,
   Patrons,
   PiCreature,
   PodcastEpisodes,
@@ -79,16 +94,23 @@ const components = {
   Portrait,
   PreviewText,
   Question,
+  TalentCard,
+  TalentIntro,
+  TestimonialCard,
   Section,
   SpeakingForm,
   Spoiler,
+  Subtle,
   SupportPitch,
   TeamMember,
   Teaser,
   ThanksForm,
   Tooltip,
   TranslationForm,
+  TriangleBackground,
   Twitter,
+  VimeoEmbed,
+  YouTubeEmbed,
 };
 
 export default components;

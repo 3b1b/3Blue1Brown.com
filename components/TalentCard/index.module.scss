@@ -1,0 +1,172 @@
+.talent_card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 10px auto;
+  padding: 5px;
+  color: $black;
+  font-family: $sans;
+  text-decoration: none;
+  transition: background 0.4s;
+  border-radius: 8px;
+
+  &:hover {
+    background: $light-blue-50;
+  }
+}
+
+.main_content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  transition: transform 0.4s;
+
+  @media (max-width: 600px) {
+    gap: 15px;
+  }
+
+  @media (max-width: 400px) {
+    gap: 10px;
+  }
+}
+
+.talent_card:hover .main_content {
+  transform: translateX(25px);
+
+  @media (max-width: 900px) {
+    transform: none;
+  }
+}
+
+.image {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+  }
+
+  @media (max-width: 500px) {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+  }
+
+  @media (max-width: 400px) {
+    width: 60px;
+    height: 60px;
+    padding: 3px;
+  }
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    gap: 5px;
+  }
+
+  @media (max-width: 500px) {
+    width: 200px;
+    gap: 5px;
+  }
+
+  @media (max-width: 400px) {
+    width: 150px;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1rem;
+  }
+}
+
+.text {
+  font-size: 1rem;
+  opacity: 0.8;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.7rem;
+  }
+}
+
+.quote {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  padding: 10px;
+  padding-left: 15px;
+  border-left: 2px solid $blue;
+  font-style: italic;
+  color: $gray-700;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-width: 350px;
+  width: max-content;
+  text-align: left;
+
+  p {
+    margin: 0;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
+}
+
+.talent_card:hover .quote {
+  opacity: 1;
+}
+
+.section[data-width="full"] .talent_card {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}

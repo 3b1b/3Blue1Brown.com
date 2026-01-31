@@ -1,14 +1,33 @@
 .portrait {
   margin: 0 auto 20px auto;
   @include trim-v-margins;
-  border-radius: 999px;
+}
+
+.imageWrapper {
   overflow: hidden;
+
+  &[data-round="true"] {
+    border-radius: 999px;
+  }
+
+  &[data-round="false"] {
+    border-radius: 8px;
+  }
 
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
+}
+
+.caption {
+  font-family: $sans;
+  font-size: 1.0rem;
+  color: $gray-700;
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.3;
 }
 
 @media (min-width: $page) {

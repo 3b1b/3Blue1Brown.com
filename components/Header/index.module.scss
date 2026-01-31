@@ -153,6 +153,27 @@ $phone: 700px;
   }
 }
 
+.header[data-light="true"] {
+  background: transparent;
+  box-shadow: none;
+  padding: 20px 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  @media (max-width: 400px) {
+    padding: 10px 15px;
+  }
+}
+
+.logoOnly {
+  display: block;
+  opacity: 1 !important;
+  z-index: 2;
+}
+
 @media print {
   .header {
     display: none;

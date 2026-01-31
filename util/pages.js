@@ -72,9 +72,9 @@ const parseMdx = (file) => {
 };
 
 // make serialized file for mdx renderer
-const serializeMdx = async ({ content, ...rest }) => {
+const serializeMdx = async ({ content, ...rest }, additionalScope = {}) => {
   const source = await serialize(content, {
-    scope: { site },
+    scope: { site, ...additionalScope },
     mdxOptions: {
       remarkPlugins: [remarkMath],
       rehypePlugins: [rehypeKatex, rehypeSlug],
@@ -203,6 +203,19 @@ export const blogMeta = blogFiles
   .map(parseMdx)
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
+const searchTalentFile = (slug) =>
+  glob.sync(`public/content/talent/${slug || "*"}/index.mdx`);
+
+const talentFiles = searchTalentFile();
+
+export const talentPaths = talentFiles
+  .map(getSlugFromFile)
+  .map((slug) => `/talent/${slug}`);
+
+export const talentMeta = talentFiles
+  .map(parseMdx)
+  .map(({ patrons, content, ...rest }) => rest);
+
 // get desired props for pages
 export const pageProps = async (slug) => {
   const file = searchPageFile(slug)[0];
@@ -229,10 +242,14 @@ export const pageProps = async (slug) => {
     };
   }
   
-  const props = await serializeMdx(parseMdx(file));
+  const additionalScope = slug === 'talent/index' ? { talentMeta } : {};
+  const props = await serializeMdx(parseMdx(file), additionalScope);
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
   props.site = site;
+  if (slug === 'talent/index') {
+    props.talentMeta = talentMeta;
+  }
   return { props };
 };
 
@@ -247,7 +264,7 @@ export const lessonProps = async (slug) => {
   return { props };
 };
 
-// get desired props for
+// get desired props for blog
 export const blogProps = async (slug) => {
   const file = searchBlogFile(slug)[0];
   const props = await serializeMdx(parseMdx(file));
@@ -255,5 +272,13 @@ export const blogProps = async (slug) => {
   props.lessons = lessonMeta;
   props.blogPosts = blogMeta;
   props.site = site;
+  return { props };
+};
+
+// get desired props for talent
+export const talentProps = async (slug) => {
+  const file = searchTalentFile(slug)[0];
+  const props = await serializeMdx(parseMdx(file));
+  props.mediaDimensions = await getMediaDimensionsFromDir(dirname(file));
   return { props };
 };

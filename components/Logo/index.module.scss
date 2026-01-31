@@ -7,6 +7,18 @@
     height: 120px;
     margin-top: 20px;
   }
+
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+
+  @media (max-width: 500px) {
+    height: 40px;
+  }
+
+  @media (max-width: 400px) {
+    height: 30px;
+  }
 }
 
 .dilate_outer {

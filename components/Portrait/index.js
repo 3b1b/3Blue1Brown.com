@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
+import { PageContext } from "../../pages/_app";
 import { useSectionWidth } from "../Section";
 import { transformSrc } from "../../util/transformSrc";
 import styles from "./index.module.scss";
@@ -7,11 +9,13 @@ Portrait.propTypes = {
   image: PropTypes.string.isRequired,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   flip: PropTypes.bool,
+  round: PropTypes.bool,
+  caption: PropTypes.string,
 };
 
-// circular image that floats to left/right of text content, useful for pictures
-// of people
-export default function Portrait({ image, size = "180px", flip = false }) {
+// image that floats to left/right of text content, useful for pictures of people
+export default function Portrait({ image, size = "180px", flip = false, round = true, caption }) {
+  const { dir } = useContext(PageContext);
   const sectionWidth = useSectionWidth();
 
   // if no image, don't render
@@ -22,11 +26,18 @@ export default function Portrait({ image, size = "180px", flip = false }) {
       <div className={styles.clearfix} />
       <div
         className={styles.portrait}
-        style={{ width: size, height: size }}
+        style={{ width: size }}
         data-flip={flip}
         data-sectionwidth={sectionWidth}
       >
-        <img src={transformSrc(image)} />
+        <div
+          className={styles.imageWrapper}
+          style={{ width: size, height: size }}
+          data-round={round}
+        >
+          <img src={transformSrc(image, dir)} />
+        </div>
+        {caption && <div className={styles.caption}>{caption}</div>}
       </div>
     </>
   );

@@ -1,79 +1,39 @@
-import React from "react";
 import Center from "../Center";
 import Clickable from "../Clickable";
-import PreviewText from "../PreviewText";
 
 // Component containing the support pitch content
 export default function SupportPitch() {
   return (
     <>
-      <h2>Funded by viewers</h2>
-      
-      <PreviewText>
-        <p>
-          In 2018, I did what many of my YouTube colleagues think is mildly crazy, and stopped doing video sponsorships. 
-          Sponsorships account for most income for many YouTubers, but I don't want to be an "influencer". 
-          I feel proudest of a video when its sole focus is the lesson at hand, and if whatever limited influence I have over the viewer 
-          is not sold to a third-party, but is directed towards making that viewer love math.
-        </p>
-        
-        <p>
-          I wrote <a href="https://www.patreon.com/posts/going-sponsor-19586800">more detailed thoughts</a> about it at the time. 
-          To put it shortly, with an ad-dominant model, the determinant of success is how many people watch a video. 
-          With a direct-payment model, the key question is whether those watching find it valuable enough to pay for.
-        </p>
-        
-        <p>
-          The most straightforward business model based on direct funding is to sell the content. 
-          Perhaps some lessons are free, but others are behind a paywall. If this channel were just about entertainment, I would probably do that. 
-          However, given the goals of education and inspiring more people to love math, I also place a high premium on ensuring that 
-          these lessons are freely available to all who may enjoy them.
-        </p>
-        
-        <p>
-          So here's the deal. Viewers will never have to pay for any videos; everything I produce will always be free. 
-          These videos will also not have any integrated brand deals; their sole focus will be the lesson at hand. 
-          However, this only works if some viewers choose to pay for them, despite having no obligation to do so.
-        </p>
-        
-        <Center>
-          <Clickable
-            link="https://www.patreon.com/3blue1brown"
-            icon="fab fa-patreon"
-            text="Join on Patreon"
-            design="rounded"
-          />
-        </Center>
-        
-        <p>
-          There are perks. Those who support will see content early, and those who give especially generously will have their names included 
-          at the end of videos they support. But more than anything, the feedback I get from channel supporters is that they joined because 
-          they wanted to help keep the lessons going.
-        </p>
-        
-        <p>
-          Most of us find it normal to pay for textbooks and to pay (often handsomely) for courses. 
-          If you find these videos to bring value to your life comparable to that of a textbook or course, 
-          and if you have the disposable income to spare some funds, it would mean a lot to me if you'd consider joining those 
-          who made the choice to pay for them.
-        </p>
-        
-        <p>
-          This funding also helps to support side projects associated with the channel, such as the written and interactive adaptations 
-          of many videos on this website, or the Summer of Math Exposition. The open-source project manim underlying the channel could be 
-          considered another such side project. However, it's worth noting that the most user-friendly version of it is the community edition, 
-          which is maintained by a group outside of 3b1b.
-        </p>
-        
-        <h3>One-time contributions</h3>
-        
-        <p>
-          If you're uncomfortable with monthly support, there's also <a href="https://www.paypal.me/3Blue1Brown">PayPal</a>, 
-          some <a href="https://www.3blue1brown.com/crypto">crypto addresses</a>, and a <a href="https://www.3blue1brown.com/store">store</a>. 
-          Just know that the Patreon page is where all supporter benefits, like early releases, are organized and published, 
-          and that monthly support is most helpful for planning future projects.
-        </p>
-      </PreviewText>
+      <h2>Become a member, gain early access</h2>
+
+      <Center>
+        <Clickable
+          link="https://www.patreon.com/3blue1brown"
+          icon="fab fa-patreon"
+          text="Join on Patreon"
+          design="rounded"
+        />
+      </Center>
+
+      <p>
+        Supporters get early access to new videos and make up the core inner
+        audience that provides feedback and insights to refine the final form
+        of these lessons.
+      </p>
+
+      <p>
+        There are other perks, including a meaningful store discount and, for
+        the higher-tier patrons, having your name appear in the video.
+      </p>
+
+      <p>
+        Most of us find it normal to pay for textbooks and to pay (often
+        handsomely) for courses. I believe educational videos are most
+        valuable when they are free. Although viewers are not obligated
+        to pay for them as they would for a textbook or course, I am very
+        grateful for those who choose to do so anyway.
+      </p>
     </>
   );
 }

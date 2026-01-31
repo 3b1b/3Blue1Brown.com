@@ -1,0 +1,37 @@
+.testimonial_card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  margin: 20px;
+  width: calc(50% - 40px);
+  min-width: 250px;
+  max-width: 400px;
+  color: $gray-700;
+  border-left: solid 3px $blue;
+  background: $gray-50;
+  border-radius: 4px;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.text {
+  text-align: left;
+  text-justify: none;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  p {
+    text-align: left;
+  }
+}
+
+.attribution {
+  font-style: italic;
+  font-size: 0.85rem;
+  text-align: right;
+  color: $gray-500;
+}
