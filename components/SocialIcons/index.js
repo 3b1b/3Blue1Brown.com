@@ -22,6 +22,16 @@ export default function SocialIcons() {
           label={""}
         />
         <Link
+          link="https://www.patreon.com/3blue1brown"
+          icon="fab fa-patreon"
+          hoverColor="#F96854"
+        />
+        <Link
+          link="https://www.instagram.com/3blue1brown/"
+          icon="fab fa-instagram"
+          hoverColor="#E4405F"
+        />
+        <Link
           link="https://x.com/3blue1brown"
           icon="fa-brands fa-x-twitter"
           hoverColor="#999"
@@ -31,11 +41,6 @@ export default function SocialIcons() {
           link="https://bsky.app/profile/3blue1brown.com"
           icon="fa-brands fa-bluesky"
           hoverColor="#00A8E8"
-        />
-        <Link
-          link="https://www.instagram.com/3blue1brown/"
-          icon="fab fa-instagram"
-          hoverColor="#E4405F"
         />
         <button
           className={styles.expandButton}
@@ -52,11 +57,6 @@ export default function SocialIcons() {
             icon="fab fa-youtube"
             hoverColor="#FF0000"
             badge="2"
-          />
-          <Link
-            link="https://www.patreon.com/3blue1brown"
-            icon="fab fa-patreon"
-            hoverColor="#F96854"
           />
           <Link
             link="https://www.tiktok.com/@3blue1brown"
