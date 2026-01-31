@@ -30,7 +30,7 @@ export default function SupportPitch() {
       <p>
         Most of us find it normal to pay for textbooks and to pay (often
         handsomely) for courses. I believe educational videos are most
-        valuable when they are free, and although viewers are not obligated
+        valuable when they are free. Although viewers are not obligated
         to pay for them as they would for a textbook or course, I am very
         grateful for those who choose to do so anyway.
       </p>
