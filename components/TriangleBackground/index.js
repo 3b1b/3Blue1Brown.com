@@ -71,9 +71,9 @@ export default function HexBG() {
     // remove isolated nodes
     let isolated = {};
     while (!!isolated && graph.size > 0) {
-      const isolated = graph
-        .keys()
-        .find((node) => graph.get(node).size < minConnections);
+      const isolated = [...graph.keys()].find(
+        (node) => graph.get(node).size < minConnections
+      );
       if (!isolated) break;
       removeNode(isolated);
     }
@@ -86,31 +86,26 @@ export default function HexBG() {
             graph.get(neighbor).delete(node);
 
     // flatten graph for rendering
-    const dots = [
-      ...graph.keys().map(({ x, y }) => ({
-        x,
-        y,
-        // normalize to [-1,1]
-        normX: x / (width / 2),
-        normY: y / (height / 2),
-      })),
-    ];
-    const lines = [
-      ...graph.keys().map((node) => [
-        ...graph
-          .get(node)
-          .values()
-          .map((neighbor) => ({
-            x1: node.x,
-            y1: node.y,
-            x2: neighbor.x,
-            y2: neighbor.y,
-            // midpoint, normalize to [-1,1]
-            normX: (node.x + neighbor.x) / 2 / (width / 2),
-            normY: (node.y + neighbor.y) / 2 / (height / 2),
-          })),
-      ]),
-    ].flat();
+    const dots = [...graph.keys()].map(({ x, y }) => ({
+      x,
+      y,
+      // normalize to [-1,1]
+      normX: x / (width / 2),
+      normY: y / (height / 2),
+    }));
+    const lines = [...graph.keys()]
+      .map((node) =>
+        [...graph.get(node).values()].map((neighbor) => ({
+          x1: node.x,
+          y1: node.y,
+          x2: neighbor.x,
+          y2: neighbor.y,
+          // midpoint, normalize to [-1,1]
+          normX: (node.x + neighbor.x) / 2 / (width / 2),
+          normY: (node.y + neighbor.y) / 2 / (height / 2),
+        }))
+      )
+      .flat();
 
     setDots(dots);
     setLines(lines);
