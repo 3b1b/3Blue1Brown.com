@@ -9,6 +9,8 @@ import SocialIcons from "../components/SocialIcons";
 import HomePageVideo from "../components/HomePageVideo";
 import LessonGallery from "../components/LessonGallery";
 import SupportPitch from "../components/SupportPitch";
+import TalentBanner from "../components/TalentBanner";
+import TriangleBackground from "../components/TriangleBackground";
 import Teaser from "../components/Teaser";
 
 function HomePage(props) {
@@ -50,11 +52,22 @@ function HomePage(props) {
       <Section id="lessons" dark={true}>
         <LessonGallery show="topic"/>
       </Section>
-      
+
+      <Section width="full">
+        <TalentBanner
+          bg={<TriangleBackground />}
+          title="3b1b Talent"
+          tagline="A virtual career fair"
+          href="/talent"
+        />
+      </Section>
+
       <Section width="narrow">
         <SupportPitch />
       </Section>
-      
+
+      <div />
+
       <Section>
         <iframe 
           src="https://3blue1brown.substack.com/embed" 
@@ -64,6 +77,7 @@ function HomePage(props) {
           title="3Blue1Brown Newsletter"
         />
       </Section>
+      
     </NormalLayout>
   );
 }

@@ -4,12 +4,31 @@
   @media (max-width: 500px) {
     margin: -20px -20px 2rem -20px;
   }
+
+  &[data-clickable="true"] {
+    margin-bottom: 0;
+  }
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .banner {
   z-index: 0;
   position: relative;
   background: black;
+
+  &[data-clickable="true"] {
+    cursor: pointer;
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
 }
 
 .banner > :first-child {

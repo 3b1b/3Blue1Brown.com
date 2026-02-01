@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import styles from "./index.module.scss";
 
@@ -9,6 +10,7 @@ TalentBanner.propTypes = {
   tagline_break: PropTypes.number,
   character: PropTypes.string,
   children: PropTypes.node,
+  href: PropTypes.string,
 };
 
 export default function TalentBanner({
@@ -18,6 +20,7 @@ export default function TalentBanner({
   tagline_break,
   character,
   children,
+  href,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,37 +39,47 @@ export default function TalentBanner({
     return chars;
   };
 
+  const bannerContent = (
+    <div className={styles.banner} data-clickable={!!href}>
+      {bg}
+      {(title || tagline) && (
+        <div className={styles.overlay}>
+          {title && <div className={styles.title}>{title}</div>}
+          {tagline && (
+            <div className={styles.tagline}>
+              {renderTagline()}
+            </div>
+          )}
+        </div>
+      )}
+      {children && !href && (
+        <button
+          className={styles.accordionTrigger}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+        >
+          <span>What is this?</span>
+          <span className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ""}`}>
+            ▼
+          </span>
+        </button>
+      )}
+      {character && (
+        <img src={character} alt="" className={styles.character} />
+      )}
+    </div>
+  );
+
   return (
-    <div className={styles.container}>
-      <div className={styles.banner}>
-        {bg}
-        {(title || tagline) && (
-          <div className={styles.overlay}>
-            {title && <div className={styles.title}>{title}</div>}
-            {tagline && (
-              <div className={styles.tagline}>
-                {renderTagline()}
-              </div>
-            )}
-          </div>
-        )}
-        {children && (
-          <button
-            className={styles.accordionTrigger}
-            onClick={() => setIsOpen(!isOpen)}
-            aria-expanded={isOpen}
-          >
-            <span>What is this?</span>
-            <span className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ""}`}>
-              ▼
-            </span>
-          </button>
-        )}
-        {character && (
-          <img src={character} alt="" className={styles.character} />
-        )}
-      </div>
-      {children && (
+    <div className={styles.container} data-clickable={!!href}>
+      {href ? (
+        <Link href={href} className={styles.link}>
+          {bannerContent}
+        </Link>
+      ) : (
+        bannerContent
+      )}
+      {children && !href && (
         <div
           className={`${styles.accordionContent} ${isOpen ? styles.accordionOpen : ""}`}
         >
