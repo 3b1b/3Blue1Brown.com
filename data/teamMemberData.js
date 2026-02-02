@@ -104,7 +104,7 @@ const teamMembers = [
   {
     name: "Josh Pullen",
     role: "2021 Intern, written and interactive adaptations of videos",
-    imageSrc: "images/about/josh-pullen.png",
+    imageSrc: "images/about/josh-pullen.jpeg",
     links: [
       {
         icon: "fa-solid fa-globe",
