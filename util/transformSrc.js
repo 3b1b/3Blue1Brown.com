@@ -11,15 +11,22 @@ export const transformSrc = (src, dir = "") => {
     // Hack to make preview images show on Safari
     src = src + "#t=0.001";
   }
+  // Don't modify absolute URLs
   if (src.startsWith("http")) {
     return src;
-  } else if (
+  }
+
+  // For absolute paths (starting with /), don't prepend dir
+  // For relative paths, prepend dir
+  const fullPath = src.startsWith("/") ? src : dir + src;
+
+  if (
     process.env.NODE_ENV === "production" &&
     process.env.NEXT_PUBLIC_NETLIFY_CONTEXT === "production" && // Not a deploy preview
     !src.endsWith("svg")
   ) {
-    return bucket + ensureLeadingSlash(dir + src);
+    return bucket + ensureLeadingSlash(fullPath);
   } else {
-    return dir + src;
+    return fullPath;
   }
 };
