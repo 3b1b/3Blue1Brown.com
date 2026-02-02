@@ -1,9 +1,0 @@
-[build]
-  publish = ".next"
-  command = "yarn build"
-
-[context.production.environment]
-  GIT_LFS_ENABLED = "true"
-
-[context.deploy-preview]
-  command = "yarn build"

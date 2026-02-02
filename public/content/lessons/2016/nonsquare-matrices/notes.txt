@@ -1,4 +1,0 @@
-Notes from Kurt:
-
-- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-6
-- Remove 'x' and 'y' labels from grid in "LinearTransformationVectorToNumber.svg"

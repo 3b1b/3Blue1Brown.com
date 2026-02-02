@@ -1,7 +1,0 @@
-Notes from Kurt:
-
-- Link to figma page: https://www.figma.com/design/mrGqFEpSdqWmWCgv0Yer6I/Essence-of-Linear-Algebra?node-id=759-9
-- Left introduction in first person because it is an opinion.
-- Changed sneaky vector to [1 -1] from [-1 1] for formatting purposes.
-- Most transformations are illustrated using a before and after image. Some of these could be made more compact by comparing them left-to-right, but I left most of them as top-to-bottom comparisons because it was faster to illustrate.
-- Does solving the characteristic polynomial and finding there is only one eigenvalue guarantee that there is only one line of eigenvectors?
