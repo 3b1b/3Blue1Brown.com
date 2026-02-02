@@ -3,6 +3,8 @@ import {
    TeamMember
 } from "./AboutPageGallery";
 import Accordion from "./Accordion";
+import TeamMemberCard from "./TeamMemberCard";
+import TeamGallery from "./TeamGallery";
 import Announcement from "./Announcement";
 import TalentBanner from "./TalentBanner";
 import BlogPostList from "./BlogPostList";
@@ -103,6 +105,8 @@ const components = {
   Subtle,
   SupportPitch,
   TeamMember,
+  TeamMemberCard,
+  TeamGallery,
   Teaser,
   ThanksForm,
   Tooltip,
