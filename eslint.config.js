@@ -43,7 +43,8 @@ export default defineConfig([
         "warn",
         { strictness: "loose" },
       ],
+      "better-tailwindcss/no-unknown-classes": ["warn", { ignore: ["dark"] }],
     },
-    settings: { "better-tailwindcss": { entryPoint: "app/app.css" } },
+    settings: { "better-tailwindcss": { entryPoint: "app/theme.css" } },
   },
 ]);

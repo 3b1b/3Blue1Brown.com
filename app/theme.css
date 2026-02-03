@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+
+  --color-theme-light: oklch(80% 0.15 240);
+  --color-theme: oklch(60% 0.15 240);
+  --color-theme-dark: oklch(40% 0.15 240);
+
+  --color-black: hsl(0, 0%, 0%);
+  --color-off-black: hsl(0, 0%, 10%);
+  --color-dark-gray: hsl(0, 0%, 40%);
+  --color-gray: hsl(0, 0%, 60%);
+  --color-light-gray: hsl(0, 0%, 80%);
+  --color-off-white: hsl(0, 0%, 95%);
+  --color-alt-white: hsl(0, 0%, 98%);
+  --color-white: hsl(0, 0%, 100%);
+
+  --color-shadow: #00000020;
+  --color-overlay: #00000080;
+  --color-info: #818cf8;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #fb7185;
+
+  --content: --spacing(300);
+
+  --radius: 3px;
+  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
+  --shadow-md:
+    0 0 5px var(--color-shadow), 0 1px 10px var(--color-shadow),
+    0 2px 15px var(--color-shadow);
+  --shadow-overlay: 0 0 0 9999px var(--color-overlay);
+
+  --font-serif: "Source Serif 4 Variable", serif;
+  --font-sans: "Figtree Variable", sans-serif;
+  --font-mono: "Sometype Mono Variable", monospace;
+
+  --font-weight-*: initial;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --breakpoint-xs: 20rem;
+  --breakpoint-sm: 32rem;
+  --breakpoint-md: 44rem;
+  --breakpoint-lg: 56rem;
+  --breakpoint-xl: 68rem;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-theme-light: oklch(50% 0.15 240);
+  --color-theme: oklch(70% 0.15 240);
+  --color-theme-dark: oklch(90% 0.15 240);
+
+  --color-black: hsl(0, 0%, 100%);
+  --color-off-black: hsl(0, 0%, 95%);
+  --color-dark-gray: hsl(0, 0%, 80%);
+  --color-gray: hsl(0, 0%, 60%);
+  --color-light-gray: hsl(0, 0%, 40%);
+  --color-off-white: hsl(0, 0%, 20%);
+  --color-alt-white: hsl(0, 0%, 10%);
+  --color-white: hsl(0, 0%, 0%);
+
+  --color-shadow: #ffffff20;
+  --color-overlay: #ffffff80;
+  --color-info: #4f46e5;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #e11d48;
+}
+
+@layer base {
+  html {
+    @apply font-serif leading-normal font-normal text-black underline-offset-2;
+  }
+
+  body {
+    @apply flex min-h-dvh flex-col;
+  }
+
+  main {
+    @apply flex grow flex-col;
+  }
+
+  section {
+    --width: 300;
+    @apply even:bg-alt-white relative z-0 flex flex-col items-center gap-12 bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)];
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply flex w-full items-center gap-[0.75em] font-sans leading-normal font-medium;
+  }
+
+  hr {
+    @apply h-px w-full border-0 bg-current/25;
+  }
+
+  h1 {
+    @apply justify-center text-center text-3xl tracking-widest uppercase;
+  }
+
+  h2 {
+    @apply justify-center text-center text-2xl tracking-wider uppercase;
+  }
+
+  h3 {
+    @apply text-xl tracking-wide;
+  }
+
+  h4 {
+    @apply text-lg tracking-wide;
+  }
+
+  p {
+    @apply text-justify leading-loose;
+  }
+
+  strong,
+  b {
+    @apply font-bold;
+  }
+
+  svg {
+    @apply overflow-visible;
+  }
+
+  img {
+    @apply max-h-full max-w-full;
+  }
+
+  ul,
+  ol {
+    @apply flex list-[revert] flex-col pl-6 leading-loose;
+  }
+
+  li {
+    @apply pl-2;
+  }
+
+  li:has(ul, ol) {
+    @apply list-none;
+  }
+
+  blockquote {
+    @apply bg-off-white border-theme-light gap-4 rounded-md border-l-4 p-8 leading-loose;
+
+    & :last-child {
+      @apply text-dark-gray float-right mt-4 ml-4 leading-normal italic;
+    }
+  }
+
+  pre {
+    @apply bg-off-black max-w-full overflow-auto rounded-md p-4 text-white;
+  }
+
+  :not(pre) > code {
+    @apply rounded-md bg-current/10 px-0.5 py-px;
+  }
+
+  table {
+    @apply border-collapse overflow-hidden rounded-md;
+  }
+
+  thead tr {
+    @apply bg-off-white;
+  }
+
+  tr {
+    @apply even:bg-alt-white bg-white;
+  }
+
+  th {
+    @apply font-medium;
+  }
+
+  th,
+  td {
+    @apply not-last:border-light-gray p-2 not-last:border-r;
+  }
+
+  a {
+    @apply text-theme underline transition hover:text-current;
+  }
+
+  button,
+  summary {
+    @apply flex cursor-pointer items-center justify-center;
+  }
+
+  details {
+    @apply contents;
+  }
+
+  label {
+    @apply flex cursor-pointer items-center gap-2 rounded-md;
+  }
+
+  input {
+    @apply min-w-0;
+  }
+
+  textarea {
+    @apply min-w-0;
+  }
+}
+
+@utility narrow {
+  &:is(section) {
+    --width: 150;
+  }
+}
+
+@utility full {
+  &:is(section) {
+    --width: 9999;
+  }
+}

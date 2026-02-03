@@ -2,33 +2,31 @@ import type { Route } from "./+types/root";
 import {
   isRouteErrorResponse,
   Links,
-  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
 } from "react-router";
-import "./app.css";
+import "~/theme.css";
+import "@fontsource-variable/source-serif-4";
+import "@fontsource-variable/figtree";
+import "@fontsource-variable/sometype-mono";
 
-export function Layout({ children }: { children: React.ReactNode }) {
+// app entrypoint
+export default function App() {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
         <Links />
       </head>
       <body>
-        {children}
+        <Outlet />
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
-}
-
-export default function App() {
-  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

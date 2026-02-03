@@ -4,6 +4,12 @@
     "": {
       "name": "my-react-router-app",
       "dependencies": {
+        "@fontsource-variable/crimson-pro": "^5.2.8",
+        "@fontsource-variable/figtree": "^5.2.10",
+        "@fontsource-variable/geist-mono": "^5.2.7",
+        "@fontsource-variable/lora": "^5.2.8",
+        "@fontsource-variable/sometype-mono": "^5.2.7",
+        "@fontsource-variable/source-serif-4": "^5.2.9",
         "@react-router/node": "7.12.0",
         "@react-router/serve": "7.12.0",
         "isbot": "^5.1.31",
@@ -167,6 +173,18 @@
     "@eslint/object-schema": ["@eslint/object-schema@2.1.7", "", {}, "sha512-VtAOaymWVfZcmZbp6E2mympDIHvyjXs/12LqWYjVw6qjrfF+VK+fyG33kChz3nnK+SU5/NeHOqrTEHS8sXO3OA=="],
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
+
+    "@fontsource-variable/crimson-pro": ["@fontsource-variable/crimson-pro@5.2.8", "", {}, "sha512-En4uvz5Wb9gZFi/EVPA9jfC7Bh5NLYwOGc2KhUIT5mPSKrOSCaI1IyvQ3SbUXeHJ04MhWJiRLJSuU9CmyDcOIA=="],
+
+    "@fontsource-variable/figtree": ["@fontsource-variable/figtree@5.2.10", "", {}, "sha512-a5Gumbpy3mdd+Yg31g6Qb7CmjYbrfyutJa3bWfP5q8A4GclIOwX7mI+ZuSHsJnw/mHvW6r9oh1AHJcJTIxK4JA=="],
+
+    "@fontsource-variable/geist-mono": ["@fontsource-variable/geist-mono@5.2.7", "", {}, "sha512-ZKlZ5sjtalb2TwXKs400mAGDlt/+2ENLNySPx0wTz3bP3mWARCsUW+rpxzZc7e05d2qGch70pItt3K4qttbIYA=="],
+
+    "@fontsource-variable/lora": ["@fontsource-variable/lora@5.2.8", "", {}, "sha512-cxjTJ9BbOWIzusewR4UMBLVePvTSWV6dtNaNsCkF/oKoyA68fJGWfaYCILOOP1BObE4dmjfZ3xo6m9hdHhtYhg=="],
+
+    "@fontsource-variable/sometype-mono": ["@fontsource-variable/sometype-mono@5.2.7", "", {}, "sha512-g+oLeksMVCKKK3pHdbw96TuufXNr2x+rcqeOa0zPx8aJlU9VFsTyY/5e8ySNceqdmkJxqKbcLmKfkZUVQYlIkw=="],
+
+    "@fontsource-variable/source-serif-4": ["@fontsource-variable/source-serif-4@5.2.9", "", {}, "sha512-PPcxjLFk/fS0WHg79pDM2YNvz61kC+oYZ5cWZZyCS0DHpJncmuYOuiZAsvj4tDxlWPBEvxxcRLQQNmSaRbPkqw=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

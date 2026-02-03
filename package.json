@@ -12,6 +12,12 @@
     "install-playwright": "bunx playwright install chromium --with-deps"
   },
   "dependencies": {
+    "@fontsource-variable/crimson-pro": "^5.2.8",
+    "@fontsource-variable/figtree": "^5.2.10",
+    "@fontsource-variable/geist-mono": "^5.2.7",
+    "@fontsource-variable/lora": "^5.2.8",
+    "@fontsource-variable/sometype-mono": "^5.2.7",
+    "@fontsource-variable/source-serif-4": "^5.2.9",
     "@react-router/node": "7.12.0",
     "@react-router/serve": "7.12.0",
     "isbot": "^5.1.31",
