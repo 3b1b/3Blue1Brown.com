@@ -13,103 +13,6 @@ import { useRouter } from "next/router";
 import Clickable from "../Clickable";
 import styles from "./index.module.scss";
 
-export function LicensingForm() {
-  return (
-    <Form name="contact-licensing" anchor="licensing">
-      <InputRow>
-        <Input name="name" label="Name" />
-        <Input name="email" type="email" label="Email" />
-      </InputRow>
-
-      <Input name="organization_name" label="Organization name" />
-      <Input name="website" label="Website:" />
-
-      <RadioSet
-        name="clip_type"
-        title="Are you seeking to license clips or full videos?"
-      >
-        <Radio value="clips" label="Clips" />
-        <Radio value="full_videos" label="Full videos" />
-      </RadioSet>
-
-      <CheckboxSet
-        name="series"
-        title="Are you looking to license any of the following series?"
-      >
-        <Checkbox
-          value="neural_networks"
-          label="Neural networks (4 videos, ~1 hour)"
-        />
-        <Checkbox
-          value="calculus"
-          label="Calculus series (12 videos, ~3.25 hours)"
-        />
-        <Checkbox
-          value="linear_algebra"
-          label="Linear algebra series (16 videos, ~3.2 hours)"
-        />
-        <Checkbox
-          value="differential_equations"
-          label="Differential equations (6 videos, ~2 hours)"
-        />
-      </CheckboxSet>
-
-      <Input
-        type="textarea"
-        name="message"
-        label="Tell us more about what you're looking for."
-      />
-    </Form>
-  );
-}
-
-export function SpeakingForm() {
-  return (
-    <Form name="contact-speaking" anchor="speaking">
-      <InputRow>
-        <Input name="name" label="Name" />
-        <Input name="email" type="email" label="Email" />
-      </InputRow>
-
-      <Input name="subject" label="Organization name" />
-
-      <Input
-        name="estimated_date"
-        label="Approximate date for the desired talk"
-      />
-      <Input name="estimated_honorarium" label="Estimated speaking fee" />
-
-      <Input
-        type="textarea"
-        name="message"
-        label="Tell us more about what you're looking for."
-      />
-    </Form>
-  );
-}
-
-export function ThanksForm() {
-  return (
-    <Form name="contact-thanks">
-      <InputRow>
-        <Input name="name" label="Name:" />
-        <Input name="email" type="email" label="Email:" />
-      </InputRow>
-
-      <Input name="subject" label="Subject:" />
-      <Input type="textarea" name="message" label="Message:" />
-
-      <RadioSet
-        name="allow_anonymous_sharing"
-        title="Would you be comfortable with this note being shared anonymously with people who have helped or supported the channel?"
-      >
-        <Radio value="yes" label="Yes" />
-        <Radio value="no" label="No" />
-      </RadioSet>
-    </Form>
-  );
-}
-
 export function ContactForm() {
   return (
     <Form name="contact-general">
@@ -118,47 +21,24 @@ export function ContactForm() {
         <Input name="email" type="email" label="Email" />
       </InputRow>
 
+      <Select
+        name="reason"
+        label="Reason for contacting"
+        options={[
+          { value: "blank", label: "" },
+          { value: "speaking", label: "Speaking request" },
+          { value: "licensing", label: "Licensing request" },
+          { value: "correction", label: "Video Correction" },
+          { value: "website", label: "Issue with the website" },
+          { value: "talent", label: "Inquiry about 3b1b Talent" },
+          { value: "share", label: "Want to share something" },
+          { value: "merchandise", label: "Merchandise question" },
+          { value: "thanks", label: "Jut saying thanks" },
+          { value: "other", label: "Other" },
+        ]}
+      />
       <Input name="subject" label="Subject" />
       <Input type="textarea" name="message" label="Message" />
-    </Form>
-  );
-}
-
-export function TranslationForm() {
-  return (
-    <Form name="contact-translation">
-      <InputRow>
-        <Input name="name" label="Name" />
-        <Input name="email" type="email" label="Email" />
-      </InputRow>
-      <InputRow>
-        <Input name="video_url" label="Video URL" />
-        <Input name="language" label="Language" />
-      </InputRow>
-      
-      <label className={styles.inputWrapper}>
-        <span className={styles.label}>Upload .srt file for subtitles:</span>
-        <input
-          className={styles.input}
-          type="file"
-          name="srt_file"
-          accept=".srt"
-        />
-      </label>
-
-      <label className={styles.inputWrapper}>
-        <span className={styles.label}>Upload .mp3 file for time-synced narration (optional):</span>
-        <input
-          className={styles.input}
-          type="file"
-          name="mp3_file"
-          accept=".mp3"
-        />
-      </label>
-
-      <Input name="links" label="Any social media links we should include when crediting you?" />
-
-      <Input name="message" label="Additional information:" />
     </Form>
   );
 }
@@ -166,26 +46,15 @@ export function TranslationForm() {
 export function ContactFormReceivedMessage() {
   const router = useRouter();
 
-  switch (router.query.received) {
-    case "contact-licensing":
-    case "contact-speaking":
-      return (
-        <div className={styles.receivedFormThanks}>
-          <strong>Thank you for your submission!</strong>
-          <div>We will try to get back to you shortly.</div>
-        </div>
-      );
-    case "contact-thanks":
-    case "contact-general":
-    case "contact-translation":
-      return (
-        <div className={styles.receivedFormThanks}>
-          <strong>Thank you for your submission!</strong>
-        </div>
-      );
-    default:
-      return null;
+  if (router.query.received === "contact-general") {
+    return (
+      <div className={styles.receivedFormThanks}>
+        <strong>Thank you for your submission!</strong>
+      </div>
+    );
   }
+
+  return null;
 }
 
 function Form({ name, children }) {
@@ -251,6 +120,21 @@ function Input({ name, label, type = "text", required = true }) {
         <input className={styles.input} name={name} required={required} />
       )}
     </label>
+  );
+}
+
+function Select({ name, label, options, required = true }) {
+  return (
+    <div className={styles.inputWrapper}>
+      <span className={styles.label}>{label}</span>
+      <select className={styles.input} name={name} required={required}>
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 
