@@ -79,3 +79,35 @@ jobs:
 
       - name: Run test
         run: bun run test:format
+
+  test-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install packages
+        run: bun install
+
+      - name: SSH debug
+        if: runner.debug == '1'
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Install Playwright
+        run: bun run install-playwright
+
+      - name: Run test
+        run: bun run test:e2e
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: reports
+          path: |
+            ./frontend/playwright-report
+            ./frontend/lighthouse-report
+          retention-days: 30

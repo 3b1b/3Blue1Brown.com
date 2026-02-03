@@ -1,13 +1,15 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "react-router dev --open --port 3141",
+    "dev": "react-router dev --open --port 31415",
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
     "test:types": "react-router typegen && tsc",
     "test:lint": "eslint .",
     "test:format": "prettier --check .",
-    "test": "bun run test:types && bun run test:lint && bun run test:format"
+    "test:e2e": "playwright test",
+    "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e",
+    "install-playwright": "bunx playwright install chromium --with-deps"
   },
   "dependencies": {
     "@react-router/node": "7.12.0",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@playwright/test": "^1.58.1",
     "@react-router/dev": "7.12.0",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",
