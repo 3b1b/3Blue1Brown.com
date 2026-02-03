@@ -1,0 +1,6 @@
+[build]
+command = "bun run build"
+publish = "build/client"
+
+[dev]
+command = "bun run dev"
