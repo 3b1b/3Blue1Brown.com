@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "yoavbls.pretty-ts-errors",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode"
+    // "christian-kohler.path-intellisense",
+    // "bennycode.sort-everything",
+    // "tyriar.sort-lines",
+    // "zachhardesty.jsdoc-comment-toggler",
+    // "nmsmith89.incrementor",
+  ]
+}
