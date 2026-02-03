@@ -8,12 +8,11 @@ export default defineConfig({
   fullyParallel: true,
   workers: "75%",
   retries: 1,
-  reporter: [["html", { open: process.env.CI ? "never" : "always" }]],
+  reporter: [["html", { open: process.env.CI ? "never" : "on-failure" }]],
 
-  // shared settings
   use: {
-    trace: "on-first-retry",
     baseURL: url,
+    trace: "on-first-retry",
   },
 
   projects: [

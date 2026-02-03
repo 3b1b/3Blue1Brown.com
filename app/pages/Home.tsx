@@ -1,5 +1,9 @@
 export default function Home() {
-  return <>Hello world</>;
+  return (
+    <main>
+      <h1>Hello world</h1>
+    </main>
+  );
 }
 
 export function meta() {
