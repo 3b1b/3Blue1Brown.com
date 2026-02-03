@@ -19,46 +19,18 @@ export default function HomePageVideo({ autoplay = false }) {
   const { targetLesson } = useHomePageVideo();
   const [isClient, setIsClient] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  
-  // Ensure we're on the client side to avoid hydration mismatch
+
   useEffect(() => {
     setIsClient(true);
-    
-    // Load description preference from sessionStorage, or use responsive default
     const savedPreference = sessionStorage.getItem('homepage-description-expanded');
-    if (savedPreference !== null) {
-      // User has a saved preference, use it
-      setIsDescriptionExpanded(savedPreference === 'true');
-    } else {
-      // No saved preference, use responsive default
-      const isWideScreen = window.innerWidth >= 768; // Same breakpoint as mobile styles
-      setIsDescriptionExpanded(isWideScreen);
-      // Save the default so it persists
-      sessionStorage.setItem('homepage-description-expanded', isWideScreen.toString());
+    if (savedPreference === 'true') {
+      setIsDescriptionExpanded(true);
     }
   }, []);
 
-  // Handle window resize to update defaults for users who haven't manually set preference
-  useEffect(() => {
-    const handleResize = () => {
-      const userHasSetPreference = sessionStorage.getItem('homepage-description-user-set') === 'true';
-      if (!userHasSetPreference) {
-        const isWideScreen = window.innerWidth >= 768;
-        setIsDescriptionExpanded(isWideScreen);
-        sessionStorage.setItem('homepage-description-expanded', isWideScreen.toString());
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Save description preference to sessionStorage when it changes
   const handleDescriptionToggle = (expanded) => {
     setIsDescriptionExpanded(expanded);
     sessionStorage.setItem('homepage-description-expanded', expanded.toString());
-    // Mark that user has manually set a preference
-    sessionStorage.setItem('homepage-description-user-set', 'true');
   };
   
   // Filter lessons that have videos and sort by date (oldest first)

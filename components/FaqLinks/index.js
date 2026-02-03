@@ -10,8 +10,9 @@ export default function FaqLinks(){
         <a href="/faq#licensing">Licensing</a> 
         <a href="/faq#speaking">Speaking</a> 
         <a href="/faq#sponsor">Sponsorships</a> 
+        <a href="/faq#talent">3b1b Talent</a> 
         <a href="/faq#music">Music</a> 
-        <a href="/faq#recommendations">Recommended resources</a> 
+        <a href="/faq#recommendations">Recommendations</a> 
         <a href="/faq#math-question">Math question</a> 
         <a href="/faq#unsolved">Math results</a>
         <a href="/faq#advice">Advice for creators</a>
