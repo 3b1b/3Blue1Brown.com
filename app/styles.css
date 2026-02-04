@@ -38,15 +38,13 @@
 
   --font-weight-*: initial;
 
-  --font-weight-normal: 400;
+  --font-weight-normal: 350;
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
-  --breakpoint-xs: 20rem;
   --breakpoint-sm: 32rem;
   --breakpoint-md: 44rem;
   --breakpoint-lg: 56rem;
-  --breakpoint-xl: 68rem;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -75,7 +73,7 @@
 
 @layer base {
   html {
-    @apply font-serif leading-normal font-normal text-black underline-offset-2;
+    @apply bg-white font-serif leading-normal font-normal text-black underline-offset-2;
   }
 
   body {
@@ -191,7 +189,7 @@
 
   button,
   summary {
-    @apply flex cursor-pointer items-center justify-center;
+    @apply flex cursor-pointer items-center justify-center transition;
   }
 
   details {
@@ -208,6 +206,10 @@
 
   textarea {
     @apply min-w-0;
+  }
+
+  .icon {
+    @apply inline-block h-[1.25em] w-[unset];
   }
 }
 

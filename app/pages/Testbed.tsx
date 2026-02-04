@@ -1,8 +1,11 @@
-import { Meta } from "~/Meta";
+import GridPlane from "~/components/GridPlane";
+import Logo from "~/components/Logo";
+import { Meta, site } from "~/Meta";
+import { pauseAnimations } from "~/util/dom";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Meta title="Testbed" />
 
       <section>
@@ -116,6 +119,25 @@ popup.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
           </tbody>
         </table>
       </section>
-    </main>
+
+      <section>
+        <Logo className="size-100" />
+        {/*  eslint-disable-next-line */}
+        <div
+          className="
+            relative z-10 flex h-200 w-300 items-center justify-center gap-12
+            bg-black font-serif text-lg text-white
+          "
+          onClick={(event) => pauseAnimations(event.currentTarget, 45000)}
+        >
+          <GridPlane />
+          <Logo className="size-48" />
+          <div className="flex flex-col gap-4">
+            <div className="text-6xl">{site.title}</div>
+            <div className="text-3xl opacity-50">{site.subtitle}</div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

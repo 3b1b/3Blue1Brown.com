@@ -20,7 +20,7 @@ const checkPage = (path: string) =>
     await page.goto(path);
 
     // wait for content to load
-    // await page.waitForSelector("footer");
+    await page.waitForSelector("footer");
 
     // axe check
     const check = async () => {
@@ -47,11 +47,9 @@ const checkPage = (path: string) =>
     // check page
     await check();
     // turn on dark mode
-    // await page
-    //   .locator("button[role='switch'][aria-label*='dark mode']")
-    //   .click();
+    await page.getByLabel(/dark mode/i).click();
     // check page again
-    // await check();
+    await check();
   });
 
 // check all pages
