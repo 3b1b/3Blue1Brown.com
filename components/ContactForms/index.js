@@ -25,16 +25,16 @@ export function ContactForm() {
         name="reason"
         label="Reason for contacting"
         options={[
-          { value: "blank", label: "" },
-          { value: "speaking", label: "Speaking request" },
-          { value: "licensing", label: "Licensing request" },
-          { value: "correction", label: "Video Correction" },
-          { value: "website", label: "Issue with the website" },
-          { value: "talent", label: "Inquiry about 3b1b Talent" },
-          { value: "share", label: "Want to share something" },
-          { value: "merchandise", label: "Merchandise question" },
-          { value: "thanks", label: "Jut saying thanks" },
-          { value: "other", label: "Other" },
+          { value: "", label: "" },
+          { value: "[speaking-request]", label: "Speaking request" },
+          { value: "[licensing-request]", label: "Licensing request" },
+          { value: "[video-correction]", label: "Video Correction" },
+          { value: "[website-issue]", label: "Issue with the website" },
+          { value: "[talent-inquiry]", label: "Inquiry about 3b1b Talent" },
+          { value: "[share-something]", label: "Want to share something" },
+          { value: "[merchandise-question]", label: "Merchandise question" },
+          { value: "[thanks]", label: "Jut saying thanks" },
+          { value: "[other]", label: "Other" },
         ]}
       />
       <Input name="subject" label="Subject" />
