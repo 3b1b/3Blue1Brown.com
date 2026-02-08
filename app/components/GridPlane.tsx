@@ -3,7 +3,7 @@ import clsx from "clsx";
 import classes from "./GridPlane.module.css";
 
 // number of cells in each direction
-const cells = 6 * 4;
+const cells = 3 * 4;
 // every nth line is major
 const major = 4;
 // size of each cell in svg units
@@ -33,22 +33,26 @@ const majorLines = minorLines.filter((_, index) => index % major === 0);
 const layers = [
   {
     lines: minorLines,
-    className: "stroke-2 stroke-light-gray [stroke-dasharray:1]",
+    className: "stroke-3 stroke-light-gray [stroke-dasharray:1]",
     delay: (index: number) => (cells / 2) * stagger + stagger * index,
   },
   {
     lines: majorLines,
-    className: "stroke-4 stroke-theme-light [stroke-dasharray:1]",
+    className: "stroke-6 stroke-theme [stroke-dasharray:1]",
     delay: (index: number) => index * stagger,
   },
 ];
 
-export default function Grid() {
+export default function GridPlane() {
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden opacity-50">
+    <div
+      className="
+        absolute inset-0 -z-10 mask-b-from-0% mask-b-to-100% opacity-50
+      "
+    >
       <svg
         viewBox={[-radius, -radius, radius * 2, radius * 2].join(" ")}
-        className={clsx("absolute top-1/2 w-full", classes.grid)}
+        className={clsx("absolute top-1/3 w-full", classes.grid)}
       >
         {layers.map(({ lines, className, delay }, key) => (
           <g key={key} className={className}>

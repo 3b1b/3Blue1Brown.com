@@ -4,19 +4,17 @@ import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
 import { IconContext } from "@phosphor-icons/react";
 import { Links, Outlet, Scripts, ScrollRestoration } from "react-router";
-import Footer from "~/components/Footer";
-import Header from "~/components/Header";
 
 // app entrypoint
 export default function App() {
   return (
     <IconContext.Provider value={{ className: "icon" }}>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <script>
             {`
               // set dark mode immediately to prevent FOUC
-              const dark = localStorage.getItem("darkMode") === "true";
+              const dark = localStorage.getItem("dark-mode") === "true";
               const root = document.documentElement;
               root.classList[dark ? "add" : "remove"]("dark");
             `}
@@ -26,11 +24,7 @@ export default function App() {
           <Links />
         </head>
         <body>
-          <Header />
-          <main>
-            <Outlet />
-          </main>
-          <Footer />
+          <Outlet />
           <ScrollRestoration />
           <Scripts />
         </body>

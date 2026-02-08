@@ -1,80 +1,75 @@
 import { ListIcon, XIcon } from "@phosphor-icons/react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { clsx } from "clsx";
-import DarkMode from "~/components/DarkMode";
 import GridPlane from "~/components/GridPlane";
-import Logo from "~/components/Logo";
+import HomeLink from "~/components/HomeLink";
+import Nav from "~/components/Nav";
 import { site } from "~/Meta";
 
-const links = [
-  { name: "Channel", to: "https://www.youtube.com/c/3blue1brown" },
-  { name: "Talent", to: "/talent" },
-  { name: "Patreon", to: "https://www.patreon.com/c/3blue1brown" },
-  { name: "Store", to: "https://store.dftba.com/collections/3blue1brown" },
-  { name: "Extras", to: "/extras" },
-  { name: "FAQ", to: "/faq" },
-  { name: "About", to: "/about" },
-];
-
 type Props = {
-  sticky?: boolean;
+  children?: ReactNode;
 };
 
-export default function Header({ sticky = false }: Props) {
+export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
+
+  /** button/link class */
+  const className = `
+    border-b border-transparent p-2 leading-none text-black no-underline
+    transition
+    hover:border-black
+  `;
 
   return (
     <header
-      className={clsx(
-        `
-          dark relative z-10 flex flex-wrap items-center gap-8 bg-white p-8
-          font-sans text-black
-          max-md:p-6
-          [&_a,&_button]:text-black [&_a,&_button]:no-underline
-          [&_a,&_button]:hover:text-theme
-        `,
-        sticky && "sticky top-0",
-      )}
+      className="
+        dark relative isolate flex flex-col overflow-hidden bg-white
+        *:bg-transparent
+      "
     >
       <GridPlane />
 
-      <a href="/" className="flex items-center gap-4 font-serif text-lg">
-        <Logo className="size-16" />
-        <div className="flex flex-col">
-          <div className="text-2xl">{site.title}</div>
-          <div className="opacity-50">{site.subtitle}</div>
+      <div className="flex flex-wrap items-center">
+        {/* title */}
+        <HomeLink className="flex-1" childClassName={className} />
+
+        {/* toggle */}
+        <button
+          className={clsx("lg:hidden", className)}
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-controls="nav"
+          aria-label={open ? "Collapse menu" : "Expand menu"}
+        >
+          {open ? <XIcon /> : <ListIcon />}
+        </button>
+
+        {/* nav */}
+        <Nav
+          className={clsx(
+            `
+              flex-3
+              max-xl:justify-end
+              max-lg:w-full max-lg:flex-[unset]
+            `,
+            !open && "max-lg:hidden",
+          )}
+          childClassName={className}
+        />
+
+        {/* sub title */}
+        <div
+          className="
+            flex-1 text-right text-gray italic
+            max-xl:hidden
+          "
+        >
+          {site.subtitle}
         </div>
-      </a>
+      </div>
 
-      <button
-        className="
-          ml-auto
-          lg:hidden
-        "
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-controls="nav"
-        aria-label={open ? "Collapse menu" : "Expand menu"}
-      >
-        {open ? <XIcon /> : <ListIcon />}
-      </button>
-
-      <nav
-        className={clsx(
-          `
-            ml-auto flex flex-wrap items-center justify-center gap-6
-            max-lg:w-full max-lg:flex-col max-lg:items-end
-          `,
-          !open && "max-lg:hidden",
-        )}
-      >
-        {links.map(({ name, to }) => (
-          <a key={to} href={to} className="flex items-center gap-1">
-            {name}
-          </a>
-        ))}
-        <DarkMode />
-      </nav>
+      {children}
     </header>
   );
 }

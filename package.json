@@ -4,12 +4,15 @@
     "dev": "react-router dev --open --port 31415",
     "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
     "test:types": "react-router typegen && tsc",
     "test:lint": "eslint .",
     "test:format": "prettier --check .",
     "test:e2e": "playwright test",
     "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e",
-    "install-playwright": "bunx playwright install chromium --with-deps"
+    "install-playwright": "bunx playwright install chromium --with-deps",
+    "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.2.10",
@@ -25,6 +28,7 @@
     "lodash": "^4.17.23",
     "lodash-es": "^4.17.23",
     "react": "^19.2.4",
+    "react-children-utilities": "^2.10.0",
     "react-dom": "^19.2.4",
     "react-router": "7.12.0"
   },

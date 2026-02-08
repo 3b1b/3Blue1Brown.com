@@ -1,36 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-*: initial;
-
-  --color-theme-light: oklch(80% 0.15 240);
-  --color-theme: oklch(60% 0.15 240);
-  --color-theme-dark: oklch(40% 0.15 240);
-
-  --color-black: hsl(0, 0%, 0%);
-  --color-off-black: hsl(0, 0%, 10%);
-  --color-dark-gray: hsl(0, 0%, 40%);
-  --color-gray: hsl(0, 0%, 60%);
-  --color-light-gray: hsl(0, 0%, 80%);
-  --color-off-white: hsl(0, 0%, 95%);
-  --color-alt-white: hsl(0, 0%, 98%);
-  --color-white: hsl(0, 0%, 100%);
-
-  --color-shadow: #00000020;
-  --color-overlay: #00000080;
-  --color-info: #818cf8;
-  --color-success: #34d399;
-  --color-warning: #fbbf24;
-  --color-error: #fb7185;
-
-  --content: --spacing(300);
-
-  --radius: 3px;
-  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
-  --shadow-md:
-    0 0 5px var(--color-shadow), 0 1px 10px var(--color-shadow),
-    0 2px 15px var(--color-shadow);
-  --shadow-overlay: 0 0 0 9999px var(--color-overlay);
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 55rem;
+  --breakpoint-lg: 70rem;
+  --breakpoint-xl: 85rem;
 
   --font-serif: "Source Serif 4 Variable", serif;
   --font-sans: "Figtree Variable", sans-serif;
@@ -42,33 +16,45 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
-  --breakpoint-sm: 32rem;
-  --breakpoint-md: 44rem;
-  --breakpoint-lg: 56rem;
+  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
+  --shadow-md:
+    0 0 5px var(--color-shadow), 0 1px 10px var(--color-shadow),
+    0 2px 15px var(--color-shadow);
+  --shadow-overlay: 0 0 0 9999px var(--color-overlay);
+
+  --color-*: initial;
+
+  --color-theme: oklch(55% 0.15 240);
+  --color-secondary: oklch(55% 0.15 60);
+
+  --color-black: hsl(0, 0%, 0%);
+  --color-off-black: hsl(0, 0%, 10%);
+  --color-dark-gray: hsl(0, 0%, 30%);
+  --color-gray: hsl(0, 0%, 60%);
+  --color-light-gray: hsl(0, 0%, 90%);
+  --color-off-white: hsl(0, 0%, 97%);
+  --color-white: hsl(0, 0%, 100%);
+
+  --color-shadow: #00000020;
+  --color-overlay: #00000080;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 .dark {
-  --color-theme-light: oklch(50% 0.15 240);
-  --color-theme: oklch(70% 0.15 240);
-  --color-theme-dark: oklch(90% 0.15 240);
+  --color-theme: oklch(80% 0.15 240);
+  --color-secondary: oklch(80% 0.15 60);
 
   --color-black: hsl(0, 0%, 100%);
-  --color-off-black: hsl(0, 0%, 95%);
-  --color-dark-gray: hsl(0, 0%, 80%);
+  --color-off-black: hsl(0, 0%, 97%);
+  --color-dark-gray: hsl(0, 0%, 90%);
   --color-gray: hsl(0, 0%, 60%);
-  --color-light-gray: hsl(0, 0%, 40%);
-  --color-off-white: hsl(0, 0%, 20%);
-  --color-alt-white: hsl(0, 0%, 10%);
+  --color-light-gray: hsl(0, 0%, 30%);
+  --color-off-white: hsl(0, 0%, 10%);
   --color-white: hsl(0, 0%, 0%);
 
   --color-shadow: #ffffff20;
   --color-overlay: #ffffff80;
-  --color-info: #4f46e5;
-  --color-success: #059669;
-  --color-warning: #d97706;
-  --color-error: #e11d48;
 }
 
 @layer base {
@@ -84,20 +70,25 @@
     @apply flex grow flex-col;
   }
 
+  header,
+  footer {
+    @apply gap-8 bg-white p-8 text-black max-md:gap-4 max-md:p-4;
+  }
+
   section {
-    --width: 300;
-    @apply even:bg-alt-white relative z-0 flex flex-col items-center gap-12 bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)];
+    --width: 250;
+    @apply relative z-0 flex flex-col gap-(--pad) bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
+  }
+
+  hr {
+    @apply col-span-full h-px w-full border-0 bg-current/10;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply flex w-full items-center gap-[0.75em] font-sans leading-normal font-medium;
-  }
-
-  hr {
-    @apply h-px w-full border-0 bg-current/25;
+    @apply flex w-full items-center gap-4 font-sans leading-normal font-medium;
   }
 
   h1 {
@@ -106,14 +97,19 @@
 
   h2 {
     @apply justify-center text-center text-2xl tracking-wider uppercase;
+
+    &::before,
+    &::after {
+      @apply bg-light-gray h-px grow content-[""];
+    }
   }
 
   h3 {
-    @apply text-xl tracking-wide;
+    @apply text-2xl tracking-wide;
   }
 
   h4 {
-    @apply text-lg tracking-wide;
+    @apply text-xl tracking-wide;
   }
 
   p {
@@ -147,7 +143,7 @@
   }
 
   blockquote {
-    @apply bg-off-white border-theme-light gap-4 rounded-md border-l-4 p-8 leading-loose;
+    @apply bg-off-white border-theme gap-4 border-l-4 p-8 leading-loose;
 
     & :last-child {
       @apply text-dark-gray float-right mt-4 ml-4 leading-normal italic;
@@ -155,15 +151,15 @@
   }
 
   pre {
-    @apply bg-off-black max-w-full overflow-auto rounded-md p-4 text-white;
+    @apply bg-off-black max-w-full overflow-auto p-4 text-white;
   }
 
   :not(pre) > code {
-    @apply rounded-md bg-current/10 px-0.5 py-px;
+    @apply bg-current/10 px-0.5 py-px;
   }
 
   table {
-    @apply border-collapse overflow-hidden rounded-md;
+    @apply border-collapse overflow-hidden;
   }
 
   thead tr {
@@ -171,7 +167,7 @@
   }
 
   tr {
-    @apply even:bg-alt-white bg-white;
+    @apply even:bg-off-white bg-white;
   }
 
   th {
@@ -189,7 +185,7 @@
 
   button,
   summary {
-    @apply flex cursor-pointer items-center justify-center transition;
+    @apply inline-flex cursor-pointer items-center justify-center font-sans transition;
   }
 
   details {
@@ -197,15 +193,12 @@
   }
 
   label {
-    @apply flex cursor-pointer items-center gap-2 rounded-md;
+    @apply inline-flex cursor-pointer items-center gap-2;
   }
 
-  input {
-    @apply min-w-0;
-  }
-
+  input,
   textarea {
-    @apply min-w-0;
+    @apply min-w-0 font-sans;
   }
 
   .icon {
@@ -215,7 +208,13 @@
 
 @utility narrow {
   &:is(section) {
-    --width: 150;
+    --width: 200;
+  }
+}
+
+@utility wide {
+  &:is(section) {
+    --width: 350;
   }
 }
 
@@ -223,4 +222,55 @@
   &:is(section) {
     --width: 9999;
   }
+}
+
+[data-draw] {
+  @apply relative;
+  animation: text-fade-in 1s 1s linear both;
+
+  &::before,
+  &::after {
+    @apply absolute inset-0 grid place-items-center content-[attr(data-draw)];
+  }
+
+  &::before {
+    @apply wipe;
+    -webkit-text-stroke: 0.5px var(--color-theme);
+    -webkit-text-fill-color: transparent;
+  }
+
+  &::after {
+    @apply wipe text-black [--delay:0.5s];
+  }
+}
+
+@keyframes text-fade-in {
+  from {
+    color: transparent;
+  }
+}
+
+@utility wipe {
+  mask-image: linear-gradient(
+    to right,
+    transparent 25%,
+    white 35%,
+    white 65%,
+    transparent 75%
+  );
+  mask-size: 400% 100%;
+  animation: wipe var(--duration, 3s) var(--delay, 0s) linear both;
+}
+
+@keyframes wipe {
+  from {
+    mask-position: 100% 0%;
+  }
+  to {
+    mask-position: 0% 0%;
+  }
+}
+
+@utility badge {
+  @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
 }

@@ -1,30 +1,22 @@
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
-import { getDefaultStore, useAtom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { useLocalStorage } from "@reactuses/core";
+import { useEffect } from "react";
 
-// dark mode state
-export const darkModeAtom = atomWithStorage("darkMode", false);
+export default function DarkMode({ className = "" }) {
+  const [darkMode, setDarkMode] = useLocalStorage("dark-mode", false);
 
-// update root element data attribute that switches css color vars
-export const update = () => {
-  if (getDefaultStore().get(darkModeAtom))
-    document.documentElement.classList.add("dark");
-  else document.documentElement.classList.remove("dark");
-};
-
-// when dark mode state changes
-getDefaultStore().sub(darkModeAtom, update);
-// using useEffect in toggle component causes FOUC b/c have to wait for render
-
-export default function DarkMode() {
-  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList[darkMode ? "add" : "remove"]("dark");
+  }, [darkMode]);
 
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
       role="switch"
-      aria-checked={darkMode}
+      aria-checked={!!darkMode}
       aria-label="Toggle dark mode"
+      className={className}
     >
       {darkMode ? <SunIcon /> : <MoonIcon />}
     </button>

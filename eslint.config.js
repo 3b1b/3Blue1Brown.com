@@ -8,7 +8,13 @@ import globals from "globals";
 import typescriptEslint from "typescript-eslint";
 
 export default defineConfig([
-  globalIgnores(["dist", "public", ".react-router"]),
+  globalIgnores([
+    "dist",
+    "public",
+    ".react-router",
+    "playwright-report",
+    "test-results",
+  ]),
   eslintJs.configs.recommended,
   typescriptEslint.configs.recommended,
   eslintPluginPrettierRecommended,

@@ -8,10 +8,10 @@
 
 @keyframes rotate-grid {
   0% {
-    transform: translateY(-50%) perspective(1000px) rotateX(65deg) rotateZ(0deg);
+    transform: translateY(-50%) perspective(4000px) rotateX(65deg) rotateZ(0deg);
   }
   100% {
-    transform: translateY(-50%) perspective(1000px) rotateX(65deg)
+    transform: translateY(-50%) perspective(4000px) rotateX(65deg)
       rotateZ(360deg);
   }
 }

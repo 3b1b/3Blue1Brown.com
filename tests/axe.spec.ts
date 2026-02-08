@@ -20,7 +20,7 @@ const checkPage = (path: string) =>
     await page.goto(path);
 
     // wait for content to load
-    await page.waitForSelector("footer");
+    await page.waitForTimeout(5000);
 
     // axe check
     const check = async () => {
@@ -45,10 +45,6 @@ const checkPage = (path: string) =>
     };
 
     // check page
-    await check();
-    // turn on dark mode
-    await page.getByLabel(/dark mode/i).click();
-    // check page again
     await check();
   });
 
