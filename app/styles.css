@@ -72,12 +72,12 @@
 
   header,
   footer {
-    @apply gap-8 bg-white p-8 text-black max-md:gap-4 max-md:p-4;
+    @apply relative isolate gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4;
   }
 
   section {
     --width: 250;
-    @apply relative z-0 flex flex-col gap-(--pad) bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
+    @apply relative z-0 flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
   }
 
   hr {
@@ -224,6 +224,10 @@
   }
 }
 
+@utility badge {
+  @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
+}
+
 [data-draw] {
   @apply relative;
   animation: text-fade-in 1s 1s linear both;
@@ -271,6 +275,33 @@
   }
 }
 
-@utility badge {
-  @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
+@utility perspective-rotate {
+  animation: perspective-rotate 120s linear both infinite;
+}
+
+@keyframes perspective-rotate {
+  0% {
+    transform: rotateX(65deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(65deg) rotateZ(360deg);
+  }
+}
+
+@utility stroke-path {
+  animation: stroke-path 15s ease-in-out both infinite;
+  stroke-dasharray: 1;
+}
+
+@keyframes stroke-path {
+  0% {
+    stroke-dashoffset: 3;
+  }
+  25%,
+  75% {
+    stroke-dashoffset: 2;
+  }
+  100% {
+    stroke-dashoffset: 1;
+  }
 }

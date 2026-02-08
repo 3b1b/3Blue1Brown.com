@@ -79,8 +79,9 @@ export class Vector {
     return new Vector(this.x - other.x, this.y - other.y);
   }
 
-  translate(x: number, y: number) {
-    return new Vector(this.x + x, this.y + y);
+  translate(x: number | Vector, y?: number) {
+    const other = x instanceof Vector ? x : new Vector(x, y ?? x);
+    return new Vector(this.x + other.x, this.y + other.y);
   }
 
   translateX(x: number) {
@@ -91,8 +92,9 @@ export class Vector {
     return new Vector(this.x, this.y + y);
   }
 
-  scale(value: number) {
-    return new Vector(this.x * value, this.y * value);
+  scale(x: number | Vector, y?: number) {
+    const other = x instanceof Vector ? x : new Vector(x, y ?? x);
+    return new Vector(this.x * other.x, this.y * other.y);
   }
 
   scaleX(x: number) {
@@ -103,8 +105,9 @@ export class Vector {
     return new Vector(this.x, this.y * y);
   }
 
-  divide(value: number) {
-    return new Vector(this.x / value, this.y / value);
+  divide(x: number | Vector, y?: number) {
+    const other = x instanceof Vector ? x : new Vector(x, y ?? x);
+    return new Vector(this.x / other.x, this.y / other.y);
   }
 
   normalize() {

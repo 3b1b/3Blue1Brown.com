@@ -2,7 +2,7 @@ import { ListIcon, XIcon } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { clsx } from "clsx";
-import GridPlane from "~/components/GridPlane";
+import Grid from "~/components/Grid";
 import HomeLink from "~/components/HomeLink";
 import Nav from "~/components/Nav";
 import { site } from "~/Meta";
@@ -24,11 +24,11 @@ export default function Header({ children }: Props) {
   return (
     <header
       className="
-        dark relative isolate flex flex-col overflow-hidden bg-white
+        dark flex flex-col bg-white
         *:bg-transparent
       "
     >
-      <GridPlane />
+      <Grid />
 
       <div className="flex flex-wrap items-center">
         {/* title */}

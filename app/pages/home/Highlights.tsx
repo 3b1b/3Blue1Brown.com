@@ -9,7 +9,7 @@ import Heading from "~/components/Heading";
 
 export default function Highlights() {
   return (
-    <section className="overflow-hidden">
+    <section>
       <Heading level={2} className="sr-only">
         Highlights
       </Heading>
@@ -25,7 +25,7 @@ function Patreon() {
     <div className="relative flex flex-col items-center gap-8 p-8">
       <div
         className="
-          absolute inset-y-0 -right-8 -left-200 -z-10 rounded-4xl bg-theme/10
+          absolute inset-y-0 -right-8 -left-200 -z-10 skew-x-15 bg-theme/15
         "
       />
 
@@ -46,15 +46,14 @@ function Patreon() {
           content is <em>most valuable when it's free</em>. Instead of up-front
           fees or ads, this channel is{" "}
           <strong>supported directly by viewers</strong> through Patreon. This
-          helps the channel stay accessible and without distraction or
-          influence.
+          helps the channel stay accessible and without distraction.
         </p>
 
         <p>
           Patrons get early access to new videos and provide essential feedback
           to refine their final form. Other perks include a meaningful store
           discount and having your name in a video. Viewers aren't obligated to
-          become supporters, but I am very grateful for those who are able to.
+          become supporters, but I'm very grateful for those who do.
         </p>
       </div>
 
@@ -71,8 +70,7 @@ function Talent() {
     <div className="relative flex flex-col items-center gap-8 p-8">
       <div
         className="
-          absolute inset-y-0 -right-200 -left-8 -z-10 rounded-4xl
-          bg-secondary/10
+          absolute inset-y-0 -right-200 -left-8 -z-10 skew-x-15 bg-secondary/15
         "
       />
 
@@ -84,7 +82,7 @@ function Talent() {
       <p className="max-w-100">
         Think of it like a <strong>virtual career fair!</strong> We partner with
         organizations interested in hiring the kinds of technically curious
-        people who watch 3blue1brown.
+        people who watch 3Blue1Brown.
       </p>
 
       <Button to="" color="accent">
@@ -100,7 +98,7 @@ function Extras() {
     <div className="relative flex flex-col items-center gap-8 p-8">
       <div
         className="
-          absolute inset-y-0 -right-8 -left-200 -z-10 rounded-4xl bg-gray/10
+          absolute inset-y-0 -right-8 -left-200 -z-10 skew-x-15 bg-gray/15
         "
       />
 

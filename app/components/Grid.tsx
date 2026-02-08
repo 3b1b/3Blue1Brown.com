@@ -1,6 +1,4 @@
 import { Fragment } from "react";
-import clsx from "clsx";
-import classes from "./GridPlane.module.css";
 
 // number of cells in each direction
 const cells = 3 * 4;
@@ -8,6 +6,8 @@ const cells = 3 * 4;
 const major = 4;
 // size of each cell in svg units
 const size = 100;
+// thickness of lines in svg units
+const thickness = 3;
 // how much to stagger line animations
 const stagger = 0.1;
 
@@ -33,17 +33,19 @@ const majorLines = minorLines.filter((_, index) => index % major === 0);
 const layers = [
   {
     lines: minorLines,
-    className: "stroke-3 stroke-light-gray [stroke-dasharray:1]",
+    className: "stroke-light-gray",
+    thickness,
     delay: (index: number) => (cells / 2) * stagger + stagger * index,
   },
   {
     lines: majorLines,
-    className: "stroke-6 stroke-theme [stroke-dasharray:1]",
+    className: "stroke-theme",
+    thickness: 2 * thickness,
     delay: (index: number) => index * stagger,
   },
 ];
 
-export default function GridPlane() {
+export default function Grid() {
   return (
     <div
       className="
@@ -52,10 +54,10 @@ export default function GridPlane() {
     >
       <svg
         viewBox={[-radius, -radius, radius * 2, radius * 2].join(" ")}
-        className={clsx("absolute top-1/3 w-full", classes.grid)}
+        className="absolute top-1/2 -translate-y-1/2 perspective-rotate"
       >
-        {layers.map(({ lines, className, delay }, key) => (
-          <g key={key} className={className}>
+        {layers.map(({ lines, className, thickness, delay }, key) => (
+          <g key={key} className={className} strokeWidth={thickness}>
             {lines.map(({ horizontal, vertical, index }) => (
               <Fragment key={index}>
                 <line
@@ -65,7 +67,7 @@ export default function GridPlane() {
                   y2={horizontal.y2}
                   pathLength={1}
                   style={{ animationDelay: `${delay(index)}s` }}
-                  className={classes.line}
+                  className="stroke-path"
                 />
                 <line
                   x1={vertical.x1}
@@ -74,7 +76,7 @@ export default function GridPlane() {
                   y2={vertical.y2}
                   pathLength={1}
                   style={{ animationDelay: `${delay(index)}s` }}
-                  className={classes.line}
+                  className="stroke-path"
                 />
               </Fragment>
             ))}
