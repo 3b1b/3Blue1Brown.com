@@ -11,7 +11,7 @@ const length = 20;
 const thickness = 1;
 
 // generate points of hilbert curve
-const hilbert = (order: number, angle = 90) => {
+const hilbert = (order: number, angle: number) => {
   // current point
   let point = new Vector(0, 0);
   // step direction/length
@@ -89,12 +89,9 @@ export default function Hilbert() {
         </linearGradient>
         <polyline
           fill="none"
-          className="stroke-path"
           stroke="url(#gradient)"
           strokeWidth={thickness}
           points={points.map((point) => point.toString()).join(" ")}
-          pathLength={1}
-          style={{ animationDuration: 120 + "s" }}
         />
       </svg>
     </div>

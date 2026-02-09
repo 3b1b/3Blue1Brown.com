@@ -33,15 +33,15 @@ const majorLines = minorLines.filter((_, index) => index % major === 0);
 const layers = [
   {
     lines: minorLines,
-    className: "stroke-light-gray",
+    className: "stroke-gray",
     thickness,
-    delay: (index: number) => (cells / 2) * stagger + stagger * index,
+    delay: (index: number) => 5 + (cells / 2) * stagger + stagger * index,
   },
   {
     lines: majorLines,
     className: "stroke-theme",
     thickness: 2 * thickness,
-    delay: (index: number) => index * stagger,
+    delay: (index: number) => 5 + index * stagger,
   },
 ];
 
@@ -49,7 +49,7 @@ export default function Grid() {
   return (
     <div
       className="
-        absolute inset-0 -z-10 mask-b-from-0% mask-b-to-100% opacity-50
+        absolute inset-0 -z-10 mask-b-from-0% mask-b-to-100% opacity-25
       "
     >
       <svg

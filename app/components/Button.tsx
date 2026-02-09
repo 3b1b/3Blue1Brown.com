@@ -24,7 +24,7 @@ export default function Button({
   children,
   ...props
 }: Props) {
-  const _class = clsx(
+  className = clsx(
     `
       inline-flex items-center justify-center gap-2 rounded-full font-sans
       leading-none no-underline
@@ -32,22 +32,22 @@ export default function Button({
     color === "none" &&
       `
         text-black
-        hover:bg-off-white hover:text-theme
+        hover:bg-theme/10 hover:text-theme
       `,
     color === "light" &&
       `
         bg-theme/10 text-black
-        hover:bg-light-gray
+        hover:bg-theme hover:text-white
       `,
     color === "theme" &&
       `
-        bg-theme text-white
-        hover:bg-gray
+        bg-theme text-white ring-black ring-offset-2
+        hover:bg-black hover:ring-2
       `,
     color === "accent" &&
       `
-        bg-black text-white
-        hover:bg-dark-gray
+        bg-black text-white ring-theme ring-offset-2
+        hover:bg-theme hover:ring-2
       `,
     size === "small" && "p-2",
     size === "medium" && "p-4 text-lg",
@@ -59,7 +59,7 @@ export default function Button({
     return (
       <Link
         ref={ref as Ref<HTMLAnchorElement>}
-        className={_class}
+        className={className}
         arrow={false}
         {...props}
       >
@@ -68,7 +68,11 @@ export default function Button({
     );
   else
     return (
-      <button ref={ref as Ref<HTMLButtonElement>} className={_class} {...props}>
+      <button
+        ref={ref as Ref<HTMLButtonElement>}
+        className={className}
+        {...props}
+      >
         {children}
       </button>
     );

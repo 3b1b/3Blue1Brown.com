@@ -16,12 +16,6 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
-  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
-  --shadow-md:
-    0 0 5px var(--color-shadow), 0 1px 10px var(--color-shadow),
-    0 2px 15px var(--color-shadow);
-  --shadow-overlay: 0 0 0 9999px var(--color-overlay);
-
   --color-*: initial;
 
   --color-theme: oklch(55% 0.15 240);
@@ -52,9 +46,6 @@
   --color-light-gray: hsl(0, 0%, 30%);
   --color-off-white: hsl(0, 0%, 10%);
   --color-white: hsl(0, 0%, 0%);
-
-  --color-shadow: #ffffff20;
-  --color-overlay: #ffffff80;
 }
 
 @layer base {
