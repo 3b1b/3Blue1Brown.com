@@ -2,9 +2,10 @@
   "compilerOptions": {
     // basic
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "@modyfi/vite-plugin-yaml/modules"],
     "target": "ESNext",
     "module": "ESNext",
+    "plugins": [{ "name": "typescript-yaml-plugin" }],
 
     // bundling
     "moduleResolution": "bundler",

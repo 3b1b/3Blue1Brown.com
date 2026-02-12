@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import Grid from "~/components/Grid";
 import HomeLink from "~/components/HomeLink";
 import Nav from "~/components/Nav";
-import { site } from "~/Meta";
+import site from "~/data/site.yaml";
 
 type Props = {
   children?: ReactNode;

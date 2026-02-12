@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
-import { site } from "~/Meta";
+import site from "~/data/site.yaml";
 
 export default function HomeLink({ className = "", childClassName = "" }) {
   return (

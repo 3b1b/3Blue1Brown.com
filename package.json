@@ -35,6 +35,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@playwright/test": "^1.58.1",
     "@react-router/dev": "7.12.0",
     "@tailwindcss/vite": "^4.1.13",
@@ -49,11 +50,13 @@
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^17.3.0",
+    "googleapis": "^171.4.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.54.0",
+    "typescript-yaml-plugin": "^1.0.11",
     "vite": "^7.1.7",
     "vite-tsconfig-paths": "^5.1.4"
   }

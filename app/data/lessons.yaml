@@ -1,0 +1,2136 @@
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: neural-networks
+  name: Neural Networks
+  description: The basics of neural networks, and the math behind how they learn
+  lessons:
+    - id: neural-networks
+      year: "2017"
+      title: But what is a Neural Network?
+      description:
+        An overview of what a neural network is, introduced in the context
+        of recognizing hand-written digits.
+      date: 2017-10-05
+      video: aircAruvnKk
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2017/nn/part1.py
+    - id: gradient-descent
+      year: "2017"
+      title: Gradient descent, how neural networks learn
+      description:
+        An overview of gradient descent in the context of neural networks.
+        This is a method used widely throughout machine learning for optimizing
+        how a computer performs on certain tasks.
+      date: 2017-10-16
+      video: IHZwWFHWa-w
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2017/nn/part2.py
+    - id: neural-network-analysis
+      year: "2017"
+      title: Analyzing our neural network
+      description: ""
+      date: 2017-10-16
+      video: ""
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: ""
+    - id: backpropagation
+      year: "2017"
+      title: What is backpropagation really doing?
+      description:
+        An overview of backpropagation, the algorithm behind how neural
+        networks learn.
+      date: 2017-11-03
+      video: Ilg3gGewQ5U
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2017/nn/part3.py
+    - id: backpropagation-calculus
+      year: "2017"
+      title: Backpropagation calculus
+      description:
+        The math of backpropagation, the algorithm by which neural networks
+        learn.
+      date: 2017-11-03
+      video: tIeHLnjs5U8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2017/nn/part3.py
+    - id: mini-llm
+      year: "2024"
+      title: Large Language Models explained briefly
+      description: A lightweight intro to LLMs, laying the foundation for the
+        following lessons.
+      date: 2024-11-20
+      video: LPZh9BOjkQs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Justin Sun
+      source: _2024/transformers/
+    - id: gpt
+      year: "2024"
+      title: Transformers, the tech behind LLMs | Deep Learning Chapter 5
+      description:
+        A visual introduction to transformers. This chapter focuses on the
+        overall structure, and word embeddings
+      date: 2024-04-01
+      video: wjZofJX0v4M
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Justin Sun
+      source: _2024/transformers/
+    - id: attention
+      year: "2024"
+      title: Attention in transformers, step-by-step | Deep Learning Chapter 6
+      description: Demystifying attention, the key mechanism inside transformers and LLMs.
+      date: 2024-04-07
+      video: eMlx5fFNoYc
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Justin Sun
+      source: _2024/transformers/
+    - id: mlp
+      year: "2024"
+      title: How might LLMs store facts | Deep Learning Chapter 7
+      description:
+        Unpacking the multilayer perceptrons in a transformer, and how they
+        may store facts.
+      date: 2024-08-31
+      video: 9-Jl0dxWQs8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Justin Sun
+      source: _2024/transformers/
+    - id: diffusion-models
+      year: "2025"
+      title:
+        But how do AI images and videos actually work? | Guest video by Welch
+        Labs
+      description: Diffusion models, CLIP, and the math of turnin text into images
+      date: 2025-07-25
+      video: iv-5mZ_9CPY
+      thumbnail: ""
+      credits:
+        - Lesson by Stephen Welch
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: linear-algebra
+  name: Linear Algebra
+  description: An introduction to visualizing what matrices are really doing
+  lessons:
+    - id: vectors
+      year: "2016"
+      title: Vectors, what even are they?
+      description:
+        This lesson describes the multiple interpretations for what vectors
+        are and the operations on vectors.
+      date: 2016-08-06
+      video: fNk_zzaMoSs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+        - Text adaptation by River Way
+      source: _2016/eola/chapter1.py
+    - id: span
+      year: "2016"
+      title: Linear combinations, span, and basis vectors
+      description: "Some foundational ideas in linear algebra: Span, linear
+        combinations, and linear dependence."
+      date: 2016-08-06
+      video: k7RM-ot2NWY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+        - Text adaptation by River Way
+      source: _2016/eola/chapter2.py
+    - id: linear-transformations
+      year: "2016"
+      title: Linear transformations and matrices
+      description:
+        When you think of matrices as transforming space, rather than as
+        grids of numbers, so much of linear algebra starts to make sense.
+      date: 2016-08-07
+      video: kYB8IZa5AuE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+        - Text adaptation by River Way
+      source: _2016/eola/chapter3.py
+    - id: matrix-multiplication
+      year: "2016"
+      title: Matrix multiplication as composition
+      description:
+        How to think about matrix multiplication visually as successively
+        applying two different linear transformations.
+      date: 2016-08-08
+      video: XkY2DOUCWMU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2016/eola/chapter4.py
+    - id: 3d-transformations
+      year: "2016"
+      title: Three-dimensional linear transformations
+      description: How to think of 3x3 matrices as transforming 3d space
+      date: 2016-08-09
+      video: rHLEWRxRGiM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/footnote.py
+    - id: determinant
+      year: "2016"
+      title: The determinant
+      description:
+        The determinant has a very natural visual intuition, even though
+        it's formula can make it seem more complicated than it really is.
+      date: 2016-08-10
+      video: Ip3X9LOh2dk
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2016/eola/chapter5.py
+    - id: inverse-matrices
+      year: "2016"
+      title: Inverse matrices, column space, and null space
+      description:
+        How do you think about the column space and null space of a matrix
+        visually?  How do you think about the inverse of a matrix?
+      date: 2016-08-15
+      video: uQhTuRlWMxw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2016/eola/chapter6.py
+    - id: nonsquare-matrices
+      year: "2016"
+      title: Nonsquare matrices as transformations between dimensions
+      description: How do you think about a non-square matrix as a transformation?
+      date: 2016-08-16
+      video: v8VSDg_WQlA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/footnote2.py
+    - id: dot-products
+      year: "2016"
+      title: Dot products and duality
+      description:
+        What is the dot product?  What does it represent?  Why does it have
+        the formula that it does?  All this is explained visually.
+      date: 2016-08-24
+      video: LyGKycYT2v0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter7.py
+    - id: cross-products
+      year: "2016"
+      title: Cross products
+      description:
+        The cross product is a way to multiple to vectors in 3d. This video
+        shows how to visualize what it means.
+      date: 2016-09-01
+      video: eu6i7WJeinw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter8p2.py
+    - id: cross-products-extended
+      year: "2016"
+      title: Cross products in the light of linear transformations
+      description:
+        The formula for the cross product can feel like a mystery, or some
+        kind of crazy coincidence. But it isn't. There is a fundamental
+        connection between the cross product and determinants.
+      date: 2016-09-01
+      video: BaM7OCEm3G0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter8.py
+    - id: cramers-rule
+      year: "2019"
+      title: Cramer's rule, explained geometrically
+      description: What Cramer's rule is, and a geometric reason it's true
+      date: 2019-03-17
+      video: jBsC34PxzoM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2018/cramer.py
+    - id: change-of-basis
+      year: "2016"
+      title: Change of basis
+      description: What is a change of basis, and how do you do it?
+      date: 2016-09-11
+      video: P2LTAUO1TdA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter9.py
+    - id: eigenvalues
+      year: "2016"
+      title: Eigenvectors and eigenvalues
+      description:
+        Eigenvalues and eigenvectors are one of the most important ideas in
+        linear algebra, but what on earth are they?
+      date: 2016-09-15
+      video: PFDu9oVAE-g
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter10.py
+    - id: quick-eigen
+      year: "2021"
+      title: A quick trick for computing eigenvalues
+      description: A quick way to compute eigenvalues of a 2x2 matrix
+      date: 2021-05-07
+      video: e50Bj7jn9IQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2021/quick_eigen.py
+    - id: abstract-vector-spaces
+      year: "2016"
+      title: Abstract vector spaces
+      description:
+        What is a vector space?  Even though they are initial taught in the
+        context of arrows in space, or with vectors being lists of numbers, the
+        idea is much more general and far-reaching.
+      date: 2016-09-24
+      video: TgKwz5Ikpc8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+        - Text adaptation by James Schloss
+      source: _2016/eola/chapter11.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: calculus
+  name: Calculus
+  description: Visual introductions to the core ideas of derivatives, integrals,
+    limits and more
+  lessons:
+    - id: essence-of-calculus
+      year: "2017"
+      title: The Essence of Calculus
+      description:
+        An overview of what calculus is all about, with an emphasis on
+        making it seem like something students could discover for
+        themselves.  The central example is that of rediscovering the formula
+        for a circle's area, and how this is an isolated instance of the
+        fundamental theorem of calculus
+      date: 2017-04-28
+      video: WUvTyaaNkzM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter1.py
+    - id: derivatives
+      year: "2017"
+      title: The paradox of the derivative
+      description:
+        An introduction to what a derivative is, and how it formalizes an
+        otherwise paradoxical idea.
+      date: 2017-04-29
+      video: 9vKqVkMQHKk
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter2.py
+    - id: derivatives-power-rule
+      year: "2017"
+      title: Power Rule through geometry
+      description:
+        Introduction to the derivatives of polynomial terms thought about
+        geometrically and intuitively. The goal is for these formulas to feel
+        like something the student could have discovered, rather than something
+        to be memorized.
+      date: 2017-04-30
+      video: S0_qX4VJhMQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter3.py
+    - id: derivatives-trig-functions
+      year: "2017"
+      title: Trig Derivatives through geometry
+      description:
+        Introduction to the derivatives trigonometric functions thought
+        about geometrically and intuitively.
+      date: 2017-04-30
+      video: ""
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter3.py
+    - id: chain-rule-and-product-rule
+      year: "2017"
+      title: Visualizing the chain rule and product rule
+      description:
+        The product rule and chain rule in calculus can feel like they were
+        pulled out of thin air, but is there an intuitive way to think about
+        them?
+      date: 2017-05-01
+      video: YG15m2VwSjA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter4.py
+    - id: eulers-number
+      year: "2017"
+      title: What's so special about Euler's number e?
+      description: What is the derivative of a^x?  Why is e^x its own
+        derivative?  This video shows how to think about the rule for
+        differentiating exponential functions.
+      date: 2017-05-02
+      video: m2MIpDrF7Es
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter5.py
+    - id: implicit-differentiation
+      year: "2017"
+      title: Implicit differentiation, what's going on here?
+      description:
+        How to think about implicit differentiation in terms of functions
+        with multiple inputs, and tiny nudges to those inputs.
+      date: 2017-05-03
+      video: qb40J4N1fa4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter6.py
+    - id: limits
+      year: "2017"
+      title: Limits and the definition of derivatives
+      description:
+        What are limits? How are they defined? How are they used to define
+        the derivative?
+      date: 2017-05-04
+      video: kfF40MiS7zA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter7.py
+    - id: epsilon-delta
+      year: "2017"
+      title: (ε, δ) "epsilon delta" definitions of limits
+      description:
+        How does (ε, δ) "epsilon delta" help us formalize what exactly it
+        means for one value to approach another?
+      date: 2017-05-04
+      video: ""
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter7.py
+    - id: l-hopitals-rule
+      year: "2017"
+      title: L'Hôpital's rule
+      description: What is L'Hopital's rule and how does it help us evaluate limits?
+      date: 2017-05-04
+      video: ""
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter7.py
+    - id: integration
+      year: "2017"
+      title: Integration and the fundamental theorem of calculus
+      description: What is integration?  Why is it computed as the opposite of
+        differentiation?  What is the fundamental theorem of calculus?
+      date: 2017-05-05
+      video: rfG8ce4nNh0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter8.py
+    - id: area-and-slope
+      year: "2017"
+      title: What does area have to do with slope?
+      description:
+        Derivatives are about slope, and integration is about area. These
+        ideas seem completely different, so why are they inverses?
+      date: 2017-05-06
+      video: FnJqaIESC2s
+      thumbnail: thumbnail-2880-1620.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter9.py
+    - id: higher-order-derivatives
+      year: "2017"
+      title: Higher order derivatives
+      description:
+        What is the second derivative?  Third derivative?  How do you think
+        about these?
+      date: 2017-05-07
+      video: BLkz5LGWihw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/footnote.py
+    - id: taylor-series
+      year: "2017"
+      title: Taylor series
+      description:
+        Taylor series are extremely useful in engineering and math, but
+        what are they?  This video shows why they're useful, and how to make
+        sense of the formula.
+      date: 2017-05-07
+      video: 3d6DsjIBzJ4
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter10.py
+    - id: taylor-series-geometric-view
+      year: "2017"
+      title: Taylor series (geometric view)
+      description:
+        A different perspective of Taylor Series that's related to the
+        fundamental theorem of calculus.
+      date: 2017-05-07
+      video: ""
+      thumbnail: thumbnail.png
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Kurt Bruns
+      source: _2017/eoc/chapter10.py
+    - id: derivatives-and-transforms
+      year: "2018"
+      title: The other way to visualize derivatives
+      description:
+        A visual for derivatives which generalizes more nicely to topics
+        beyond calculus. Thinking of a function as a transformation, the
+        derivative measure how much that function locally stretches or squishes
+        a given region.
+      date: 2018-05-19
+      video: CfW845LNObM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Blog Adaptation by Vivek Verma
+      source: _2018/alt_calc.py
+    - id: divergence-and-curl
+      year: "2018"
+      title:
+        "Divergence and curl:  The language of Maxwell's equations, fluid flow,
+        and more"
+      description: Divergence, curl, and their relation to fluid flow and electromagnetism
+      date: 2018-06-21
+      video: rB83DpBJQsE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/div_curl.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: differential-equations
+  name: Differential Equations
+  description: A tour through some of the most beautiful methods for studying
+    dynamic systems
+  lessons:
+    - id: differential-equations
+      year: "2019"
+      title: Differential equations, studying the unsolvable
+      description:
+        What is a differential equation, the pendulum equation, and some
+        basic numerical methods
+      date: 2019-03-31
+      video: p_di4Zn4wz4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2019/diffyq/part1
+    - id: pdes
+      year: "2019"
+      title: But what is a partial differential equation?
+      description: The heat equation, as an introductory PDE.
+      date: 2019-04-21
+      video: ly4S0oi3Yz8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaptation by Vivek Verma
+      source: _2019/diffyq/par $T_2$
+    - id: heat-equation
+      year: "2019"
+      title: Solving the heat equation
+      description: Solving the heat equation.
+      date: 2019-06-16
+      video: ToIXSwZ1pJU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2019/diffyq/part3
+    - &a1
+      id: fourier-series
+      year: "2019"
+      title: But what is a Fourier series? From heat flow to circle drawings
+      description:
+        How Fourier series arose from studying heat flow, and how they can
+        be thought of as decomposing any drawing in 2d into a sum of rotations.
+      date: 2019-06-30
+      video: r6sGWTCMz2k
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaptaion by Vivek Verma
+      source: _2019/diffyq/part4
+    - id: complex-exponents
+      year: "2025"
+      title: The Physics of Euler's Formula | Laplace Transform Prelude
+      description:
+        How dynamics explain Euler's formula, and vice versa. Solutions to
+        differential equations can often be broken down as sums of complex
+        exponentials, and understanding this sets up an understanding of the
+        Laplace Transform.
+      date: 2025-10-05
+      video: -j8PzkZ70Lg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/laplace/
+    - id: laplace-transform
+      year: "2025"
+      title: But what is a Laplace Transform?
+      description:
+        Visualizing the most important tool for differential equations, and
+        how it decomposes functions into exponential pieces.
+      date: 2025-10-11
+      video: j0wJBEZdwLs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/laplace/
+    - id: laplace-for-odes
+      year: "2025"
+      title: Why Laplace transforms are so useful
+      description: Studying the forced harmonic oscillator by taking a Laplace
+        transform and studying its poles.
+      date: 2025-11-05
+      video: FE-hM1kRK4Y
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/laplace/
+    - id: eulers-formula-dynamically
+      year: "2019"
+      title: e^(iπ) in 3.14 minutes, using dynamics
+      description:
+        A quick explanation of e^(pi i) in terms of motion and differential
+        equations
+      date: 2019-07-07
+      video: v0YEaeIClKY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaptaion by Vivek Verma
+      source: _2019/diffyq/part5
+    - id: matrix-exponents
+      year: "2021"
+      title: How (and why) to raise e to the power of a matrix
+      description: Exponentiating matrices, and the kinds of linear differential
+        equations this solves.
+      date: 2021-04-01
+      video: O85OWBJ2ayo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/matrix_exp.py
+    - id: exponential-and-epidemics
+      year: "2020"
+      title: Exponential growth and epidemics
+      description:
+        A primer on exponential and logistic growth, with epidemics as a
+        central example
+      date: 2020-03-08
+      video: Kas0tIxDvrg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/covid.py
+    - id: diffusion-equation
+      year: "2020"
+      title: The diffusion equation
+      description:
+        How the diffusion equation can arise from a simple random walk
+        model. Week 12, MIT 18.S191 Fall 2020
+      date: 2020-11-17
+      video: a3V0BJLIo_c
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: puzzles
+  name: Puzzles
+  description: Challenging questions whose solutions have interesting twists and
+    broader lessons
+  lessons:
+    - id: hardest-problem
+      year: "2017"
+      title: The hardest problem on the hardest test
+      description: A challenging question of geometry and probability on the
+        Putnam.  The shift in perspective used for the solution here carries
+        with it broader loessons for problem-solving.
+      date: 2017-12-08
+      video: OkmNXy7er84
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by James Schloss
+      source: _2017/putnam.py
+    - id: windmills
+      year: "2019"
+      title: The unexpectedly hard windmill question (2011 IMO, Q2)
+      description:
+        Problem 2 from the 2011 IMO, a seemingly easy question that turned
+        out to be ridiculously difficult
+      date: 2019-08-04
+      video: M64HUIJFTZM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaptation by Vivek Verma
+      source: _2019/windmill.py
+    - id: one-more-dim
+      year: "2024"
+      title: Five puzzles for thinking outside the box
+      description: A series of geometry puzzles with clever solutions, with a
+        discussion about the role of higher dimensions in math.
+      date: 2024-11-08
+      video: piJkuavhV50
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2024/puzzles/
+    - id: subsets-puzzle
+      year: "2022"
+      title: Olympiad level counting  (Generating functions)
+      description: Generating functions, as applied to a hard puzzle used for IMO training.
+      date: 2022-05-23
+      video: bOXCLR3Wric
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/puzzles/subsets.py
+    - id: moser-reboot
+      year: "2023"
+      title: This pattern breaks, but for a good reason | Moser's circle problem
+      description: An apparent pattern that breaks, and the reason behind it.
+      date: 2023-07-01
+      video: YtkIWDE36qU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/moser_reboot/main.py
+    - id: chessboard-puzzle
+      year: "2020"
+      title: The impossible chessboard puzzle
+      description: An information puzzle with an interesting twist
+      date: 2020-07-05
+      video: wTJI_WuZSwE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/chess.py
+    - id: shadows
+      year: "2021"
+      title: Alice, Bob, and the average shadow of a cube
+      description:
+        A tale of two problem solvers, looking for the average area of a
+        cube's shadow
+      date: 2021-12-20
+      video: ltLUadnCyi0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Artwork by Kurt Bruns
+      source: _2021/shadows.py
+    - id: hyperdarts
+      year: "2019"
+      title: Darts in Higher Dimensions [Numberphile]
+      description: A game of darts yields an interesting connection to higher
+        dimensional geometry.
+      date: 2019-11-19
+      video: 6_yU9eJ0NxA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2019/hyperdarts.py
+    - id: three-utilities
+      year: "2017"
+      title: The three utilities puzzle with math/science YouTubers
+      description: A classic puzzle in graph theory, the "Utilities problem", a
+        description of why it is unsolvable on a plane, and how it becomes
+        solvable on surfaces with a different topology.
+      date: 2017-12-23
+      video: VvCytJvd4H0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/mug.py
+    - id: eulers-characteristic-formula
+      year: "2015"
+      title: Euler's Formula and Graph Duality
+      description: A very clever proof of Euler's characteristic formula using
+        spanning trees.
+      date: 2015-06-21
+      video: -9OUyo8NFZg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2015/eulers_characteristic_formula.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: geometry
+  name: Geometry
+  description: An assortment of topics related to geometry and higher dimensions
+  lessons:
+    - id: sphere-area
+      year: "2018"
+      title: But why is a sphere's surface area four times its shadow?
+      description: Two proofs for the surface area of a sphere
+      date: 2018-12-02
+      video: GNcFjFmqEc8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2018/sphere_area.py
+    - id: inscribed-rect-v2
+      year: "2024"
+      title: This open problem taught me what topology is
+      description: The inscribed rectangle problem, and how it leads to studying
+        Mobius strips, klein bottles and topology.
+      date: 2024-12-24
+      video: IQqtsm-bBRU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Blog adaptation by Josh Pullen
+      source: _2024/inscribed_rect
+    - id: hairy-ball
+      year: "2026"
+      title: The Hairy Ball Theorem
+      description:
+        A few surprising applications of one of the most absurdly named
+        theorems in topology, together with a beautiful proof for why it is
+        true.
+      date: 2026-01-31
+      video: BHdbsHFs2P0
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2026/hairy_ball/
+    - id: dandelin-spheres
+      year: "2018"
+      title: Why slicing a cone gives an ellipse
+      description: A beautiful proof of why slicing a cone gives an ellipse.
+      date: 2018-08-01
+      video: pQa_tWZmlGs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/dandelin.py
+    - id: quaternions
+      year: "2018"
+      title: Visualizing quaternions (4d numbers) with stereographic projection
+      description: How to visualize quaternions, a 4d number system, in our 3d world
+      date: 2018-09-06
+      video: d4EgbgTm0Bg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/quaternions.py
+    - id: quaternions-and-3d-rotation
+      year: "2018"
+      title: Quaternions and 3d rotation, explained interactively
+      description:
+        An introduction to an interactive experience on why quaternions
+        describe 3d rotations
+      date: 2018-10-26
+      video: zjMuIxRvygQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/quat3d.py
+    - id: borsuk-ulam
+      year: "2018"
+      title: Sneaky Topology | The Borsuk-Ulam theorem and stolen necklaces
+      description:
+        Solving a discrete math puzzle, namely the stolen necklace problem,
+        using topology, namely the Borsuk Ulam theorem
+      date: 2018-11-18
+      video: yuVqxCSsE7c
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/borsuk.py
+    - id: higher-dimensions
+      year: "2017"
+      title: Thinking outside the 10-dimensional box
+      description:
+        A method for thinking about high-dimensional spheres, introduced in
+        the context of a classic example involving a high-dimensional sphere
+        inside a high-dimensional box.
+      date: 2017-08-11
+      video: zwAD6dRSVyI
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/highD.py
+    - id: alpha-geometry
+      year: "2025"
+      title: The AI that solved IMO Geometry Problems | Guest video by @Aleph0
+      description: How AlphaGeometry combines logic and intuition.
+      date: 2025-08-17
+      video: 4NlrfOl0l8U
+      thumbnail: ""
+      credits:
+        - Lesson by Adithya Chakravarthy
+      source: ""
+    - id: euclid
+      year: "2025"
+      title: What was Euclid really doing? | Guest video by Ben Syversen
+      description:
+        Discussing the history of Euclid’s Elements and the role ruler and
+        compass constructions really served.
+      date: 2025-09-17
+      video: M-MgQC6z3VU
+      thumbnail: ""
+      credits:
+        - Lesson by Ben Syversen
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: why-pi
+  name: Why Pi
+  description: Why does pi show up in so many unexpected places?
+  lessons:
+    - id: clacks
+      year: "2019"
+      title: The most unexpected answer to a counting puzzle
+      description: A puzzle involving colliding blocks where the number pi, vey
+        unexpectedly, shows up.
+      date: 2019-01-13
+      video: HEfHFsfGXjs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2019/clacks/question.py
+    - id: colliding-blocks-v2
+      year: "2025"
+      title: Why colliding blocks compute pi
+      description:
+        Two colliding blocks compute pi, here we dig into the physics to
+        explain why.
+      date: 2025-03-13
+      video: 6dTyOl1fmDo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2025/block_and_grover/
+    - id: clacks-via-light
+      year: "2019"
+      title: How colliding blocks act like a beam of light...to compute pi.
+      description: The third and final part of the block collision sequence.
+      date: 2019-02-03
+      video: brU5yLm9DZM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2019/clacks/solution2
+    - id: basel-problem
+      year: "2018"
+      title:
+        Why is pi here?  And why is it squared?  A geometric answer to the Basel
+        problem
+      description:
+        A beautiful solution to the Basel Problem (1+1/4+1/9+1/16+...)
+        using Euclidian geometry.  Unlike many more common proofs, this one
+        makes it very clear why pi is involved in the answer.
+      date: 2018-03-02
+      video: d-o3eB9sfls
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/basel
+    - &a4
+      id: leibniz-formula
+      year: "2017"
+      title: Pi hiding in prime regularities
+      description: A beautiful derivation of a formula for pi.  At first,
+        1-1/3+1/5-1/7+1/9-.... seems unrelated to circles, but in fact, there is
+        a circle hiding here, as well as some interesting facts about prime
+        numbers in the context of complex numbers.
+      date: 2017-05-19
+      video: NaL_Cb42WyY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/leibniz.py
+    - &a3
+      id: gaussian-integral
+      year: "2023"
+      title: Why π is in the normal distribution (beyond integral tricks)
+      description: A classic proof explaining the pi in a Gaussian distribution,
+        combined with a derivation of that distribution, the Herschel-Maxwell
+        derivation, that explains why the proof is reasonable.
+      date: 2023-04-02
+      video: cy8r7WSuT1I
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Artwork by Kurt Bruns + Midjourney
+      source: _2023/clt/integral.py
+    - id: wallis-product
+      year: "2018"
+      title: The Wallis product for pi, proved geometrically
+      description: A proof of the Wallis product for pi, together with some neat
+        tricks using complex numbers to analyze circle geometry.
+      date: 2018-04-20
+      video: 8GPy_UMV-08
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/wallis.py
+    - id: pi-was-628
+      year: "2018"
+      title: How pi was almost 6.283185...
+      description:
+        A bit of the history behind how we came to use the symbol "pi" to
+        represent what it does today, and how Euler used it to refer to several
+        different circle constants.
+      date: 2018-03-14
+      video: bcPTiiiYDs8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/pi_day.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: analysis
+  name: Analysis
+  description: Topics about functions, either complex or real valued
+  lessons:
+    - id: zeta
+      year: "2016"
+      title: Visualizing the Riemann zeta function and analytic continuation
+      description:
+        What is the Riemann zeta function? What is analytic continuation?
+        This video lays out the complex analysis needed to answer these
+        questions.
+      date: 2016-12-09
+      video: sD0NjbwqlYw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaptation by Vivek Verma
+      source: _2016/zeta.py
+    - id: fourier-transforms
+      year: "2018"
+      title: But what is the Fourier Transform?  A visual introduction.
+      description:
+        An animated introduction to the Fourier Transform, winding graphs
+        around circles.
+      date: 2018-01-26
+      video: spUNpyF58BY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by James Schloss
+        - Interactives by River Way
+      source: _2018/fourier.py
+    - &a2
+      id: uncertainty-principle
+      year: "2018"
+      title: The more general uncertainty principle, beyond quantum
+      description:
+        The general uncertainty principle, about the concentration of a
+        wave vs the concentration of its fourier transform, applied to two
+        non-quantum examples before showing what it means for the Heisenberg
+        uncertainty principle.
+      date: 2018-02-25
+      video: MBnnXbOM5S4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/uncertainty.py
+    - *a1
+    - id: borwein
+      year: "2022"
+      title: Researchers thought this was a bug (Borwein integrals)
+      description: A curious pattern of integrals that all equal pi...until they don't.
+      date: 2022-11-04
+      video: 851U557j6HE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/borwein/main.py
+    - id: convolutions
+      year: "2022"
+      title: But what is a convolution?
+      description: From probability to image processing and FFTs, an overview of
+        discrete convolutions
+      date: 2022-11-18
+      video: KuXjwB4LzSA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/convolutions/discrete.py
+    - id: winding-numbers
+      year: "2018"
+      title: Winding numbers and domain coloring
+      description: An algorithm for solving continuous 2d equations using winding numbers.
+      date: 2018-03-24
+      video: b7FxPsqfkOY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/WindingNumber.py
+    - id: inventing-math
+      year: "2015"
+      title: What does it feel like to invent math?
+      description:
+        A journey through infinite sums, p-adic numbers, and what it feels
+        like to invent new math.
+      date: 2015-08-14
+      video: XFDM1ip5HdU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2015/inventing_math.py
+    - id: music-and-measure-theory
+      year: "2015"
+      title: Music And Measure Theory
+      description: How one of the introductory ideas in a field called "measure
+        theory" can be thought of in terms of musical harnomy and dissonance.
+      date: 2015-10-04
+      video: cyW5z-M2yzw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2015/music_and_measure.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: physics
+  name: Physics
+  description: An assortment of topics from physics
+  lessons:
+    - id: holograms
+      year: "2024"
+      title: How are holograms possible?
+      description:
+        Holograms store 3d scenes on 2d film, here we explore how, with a
+        lesson on diffraction along way.
+      date: 2024-10-04
+      video: EmKQsSDlaa4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2024/holograms/
+    - id: cosmic-distance-1
+      year: "2025"
+      title: Terence Tao on the cosmic distance ladder
+      description: The Cosmic Distance Ladder, how we learned distances in the heavens.
+      date: 2025-02-08
+      video: YdOXS_9_P4U
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/cosmic_distance/
+    - id: cosmic-distance-2
+      year: "2025"
+      title: Terence Tao continuing history’s cleverest cosmological measurements
+      description: How we know the distances to the planets, stars, and faraway galaxies.
+      date: 2025-02-23
+      video: hFMaT9oRbs4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/cosmic_distance/
+    - id: barber-pole-1
+      year: "2023"
+      title: This tests your understanding of light | The barber pole effect
+      description:
+        How shining polarized light through sugar water results in colored
+        diagonal stripes
+      date: 2023-09-01
+      video: QCX62YJCmGk
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/barber_pole/
+    - id: barber-pole-2
+      year: "2023"
+      title: How wiggling charges give rise to light
+      description:
+        How light can be described by a force due to the delayed effect of
+        an accelerating charge, and how it can be used to explain the demo from
+        the previous lesson.
+      date: 2023-08-31
+      video: aXRTczANuIs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/barber_pole/
+    - id: prism
+      year: "2023"
+      title:
+        But why would light "slow down"? | Visualizing Feynman's lecture on the
+        refractive index
+      description: The origins of the index of refraction, and why it depends on color
+      date: 2023-11-30
+      video: KTzGBJPuJwM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/barber_pole/
+    - id: refractive-index-questions
+      year: "2023"
+      title: Answering viewer questions about refraction
+      description: Answering a few viewer questions about the refractive index.
+      date: 2023-12-03
+      video: Cz4Q4QOuoo8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/barber_pole/
+    - id: light-quantum-mechanics
+      year: "2017"
+      title: Some light quantum mechanics (with minutephysics)
+      description:
+        An introduction to the quantum behavior of light, specifically the
+        polarization of light.  The emphasis is on how many ideas that seem
+        "quantumly weird" are actually just wave mechanics, applicable in a lot
+        of classical physics.
+      date: 2017-09-13
+      video: MzRCDLre1b4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2017/waves.py
+    - *a2
+    - id: feynmans-lost-lecture
+      year: "2018"
+      title: Feynman's Lost Lecture (ft. 3Blue1Brown)
+      description: This video recounts a lecture by Richard Feynman giving an
+        elementary demonstration of why planets orbit in ellipses.  See the
+        excellent book by Judith and David Goodstein, "Feynman's lost lecture”,
+        for the full story behind this lecture, and a deeper dive into its
+        content.
+      date: 2018-07-20
+      video: xdIjYBtnvZU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/lost_lecture.py
+    - id: turbulence
+      year: "2018"
+      title: Why 5/3 is a fundamental constant for turbulence
+      description: A look at what turbulence is (in fluid flow), and a result by
+        Kolmogorov regarding the energy cascade of turbulence.
+      date: 2018-11-07
+      video: _UoTTq651dE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2018/turbulence.py
+    - id: brachistochrone
+      year: "2016"
+      title: The Brachistochrone, with Steven Strogatz
+      description: A classic problem that Johann Bernoulli posed to famous
+        mathematicians of his time, such as Newton, and how Bernoulli found an
+        incredibly clever solution using properties of light.
+      date: 2016-04-01
+      video: Cld0p3a43fU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2016/brachistochrone
+    - id: snells-law
+      year: "2016"
+      title: Snell's law proof using springs
+      description: A clever mechanical proof of Snell's law.
+      date: 2016-04-01
+      video: Iq1a_KJTWJ8
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2016/brachistochrone
+    - id: phase-change
+      year: "2025"
+      title: Simulating and understanding phase change | Guest video by Vilas Winstein
+      description:
+        Deriving the Boltzmann formula, defining temperature, and using
+        both to create a discretized model of fluid demonstrating a phase change
+        from liquid to gas, including supercritical states.
+      date: 2025-08-28
+      video: itRV2jEtV8Q
+      thumbnail: ""
+      credits:
+        - Lesson by Vilas Winstein
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: computer-science
+  name: Computer Science
+  description: An assortment of topics related to algorithms
+  lessons:
+    - id: wordle
+      year: "2022"
+      title: Solving Wordle using information theory
+      description:
+        A lesson on information theory and Shannon entropy, told through an
+        exploration of writing a Wordle solver.
+      date: 2022-02-06
+      video: v68zYyaEmEA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/wordle/simulations.py
+    - id: wordle-2
+      year: "2022"
+      title: Oh, wait, actually the best Wordle opener is not “crane”…
+      description: Following up on the previous video about Wordle and information theory
+      date: 2022-02-13
+      video: fRed0Xmc2Wg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/wordle/simulations.py
+    - id: bitcoin
+      year: "2017"
+      title: But how does bitcoin actually work?
+      description:
+        How does bitcoin work? What is a "block chain"? What problem is
+        this system trying to solve, and how does it use the tools of
+        cryptography to do so?
+      date: 2017-07-07
+      video: bBC-nXj3Ng4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2017/crypto.py
+    - id: 256-bit-security
+      year: "2017"
+      title: How secure is 256 bit security?
+      description: When a piece of cryptography is described as having "256-bit
+        security", what exactly does that mean?  Just how big is the number
+        2^256?
+      date: 2017-07-08
+      video: S9JGmA5_unY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by River Way
+      source: _2017/256.py
+    - id: epidemic-simulations
+      year: "2020"
+      title: Simulating an epidemic
+      description:
+        SIR models for epidemics, showing how tweakign behavior can change
+        an outbreak.
+      date: 2020-03-27
+      video: gxAaO2rsdIs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/sir.py
+    - id: hamming-codes
+      year: "2020"
+      title: Hamming codes and error correction
+      description: A discovery-oriented introduction to error correction codes.
+      date: 2020-09-04
+      video: X8jsijhllIA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/hamming.py
+    - id: hamming-codes-2
+      year: "2020"
+      title: Hamming codes part 2, the elegance of it all
+      description: How to implement Hamming Codes with xors
+      date: 2020-09-04
+      video: b3NxrZOu_CE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/hamming.py
+    - id: grover
+      year: "2025"
+      title: But what is quantum computing?  (Grover's Algorithm)
+      description:
+        Covering the fundamentals of qubits and quantum state vectors,
+        building up to a walk through of Grover's algorithm for search.
+      date: 2025-04-29
+      video: RQWpF2Gb-gU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/blocks_and_grover/
+    - id: grover-clarification
+      year: "2025"
+      title: Where my explanation of Grover’s algorithm failed
+      description:
+        Addressing viewer questions from the last video, and taking the
+        chance to further discuss linearity
+      date: 2025-05-04
+      video: Dlsa9EBKDGI
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2025/blocks_and_grover/
+    - id: hanoi-and-sierpinski
+      year: "2016"
+      title: Binary, Hanoi and Sierpinski, part 1
+      description: How counting in binary can solve the famous Tower of Hanoi puzzle.
+      date: 2016-11-25
+      video: 2SUvWfNJSsM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2016/hanoi.py
+    - id: image-convolution
+      year: "2020"
+      title: Convolutions in Image Processing
+      description:
+        The basics of convolutions in the context of image processing.
+        Lecture for 18.S191 MIT Fall 2020
+      date: 2020-09-03
+      video: 8rrHTtUzyZA
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/18S191/
+    - id: seam-carving
+      year: "2020"
+      title: Seam Carving
+      description:
+        An algorithm for intelligently resizing images and an introduction
+        to. Week 2, lecture 7, 18.S191 MIT Fall 2020 dynamic programming.
+      date: 2020-09-08
+      video: rpB6zQNsbQU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/18S191/
+    - id: discrete-fourier-transform
+      year: "2020"
+      title: What is a Discrete Fourier Transform? Sanderson
+      description:
+        An overview with Julia of what the Discret Fourier Transform (DFT)
+        does by applying it to analyze sounds. Week 14, MIT 18.S191 Fall 2020 |
+        Grant
+      date: 2020-12-08
+      video: g8RkArhtCc4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/18S191/
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: fractals
+  name: Fractals
+  description: Fractals and chaotic dynamics
+  lessons:
+    - id: newtons-fractal
+      year: "2021"
+      title: Newton's Fractal (which Newton knew nothing about)
+      description:
+        A surprising fractal that arises from Newton's method for finding
+        roots of polynomials.
+      date: 2021-10-12
+      video: -RdOwhmqP5s
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/newton_fractal.py
+    - id: holomorphic-dynamics
+      year: "2021"
+      title: How a Mandelbrot set arises from Newton’s work
+      description:
+        An introduction to holomorphic dynamics, which studies iterative
+        processes in the complex plane.
+      date: 2021-10-16
+      video: LqbZpur38nw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/holomorphic_dynamics.py
+    - id: fractal-dimension
+      year: "2017"
+      title: Fractals are typically not self-similar
+      description:
+        What exactly are fractals?  A common misconception is that they are
+        shapes which look exactly like themselves when you zoom in.  In fact,
+        the definition has something to do with the idea of "fractal dimension".
+      date: 2017-01-27
+      video: gB9n2gHsHN4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/fractal_dimension.py
+    - id: hilbert-curve
+      year: "2017"
+      title: "Hilbert's Curve: Is infinite math useful?"
+      description:
+        Drawing curves that fill all of space, and a philosophical take on
+        why mathematics about infinite objects can still be useful in finite
+        contexts.
+      date: 2017-07-21
+      video: 3s7h2MHQtxc
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2016/hilbert
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: probability
+  name: Probability
+  description: An assortment of introductory ideas in probability
+  lessons:
+    - id: bayes-theorem
+      year: "2019"
+      title: Bayes' theorem
+      description:
+        A visual way to think about Bayes' theorem, and strategies for
+        making probability more intuitive.
+      date: 2019-12-22
+      video: HZGCoVF3YvM
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text adaptation by Josh Pullen
+      source: _2019/bayes/part1.py
+    - id: clt
+      year: "2023"
+      title: But what is the Central Limit Theorem?
+      description: A visual introduction to one of probabilty's most important theorems
+      date: 2023-03-14
+      video: zeJD6dqJ5lo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/clt/main.py
+    - id: bertrands-paradox
+      year: "2021"
+      title: Bertrand's Paradox [Numberphile]
+      description: Why probabilities can be ambiguous if you're not careful.
+      date: 2021-12-20
+      video: mZBwsm6B280
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/bertrands_paradox.py
+    - *a3
+    - id: convolutions2
+      year: "2023"
+      title: Convolutions | Why X+Y in probability is a beautiful mess
+      description:
+        How to add random varaibles, with a focus on two distinct ways to
+        visualize the continuous case
+      date: 2023-06-27
+      video: IaSGqQa5O-M
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/convolutions2/
+    - id: gaussian-convolution
+      year: "2023"
+      title: A pretty reason why Gaussian + Gaussian = Gaussian
+      description:
+        A visual trick for computing the sum of two normally-distributed
+        variables, and how it fits into the Central Limit Theorem
+      date: 2023-07-11
+      video: d_qvLDhkg00
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/convolutions2/gauss_example_supplements.py
+    - id: better-bayes
+      year: "2020"
+      title: "The medical test paradox: Can redesigning Bayes rule help?"
+      description: ""
+      date: 2020-12-22
+      video: lG4VkPoG3ko
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/med_test.py
+    - id: bayes-theorem-quick
+      year: "2019"
+      title: The quick proof of Bayes' theorem
+      description:
+        A short explanation of why Bayes' theorem is true, together with
+        discussion on a common misconception in probability
+      date: 2019-12-22
+      video: U_85TaXbeIo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2019/bayes/footnote.py
+    - id: binomial-distributions
+      year: "2020"
+      title: Binomial distributions | Probabilities of probabilities, part 1
+      description:
+        The binomial distribution, introduced as setup to talk about the
+        beta distribution
+      date: 2020-03-15
+      video: 8idr1WZ1A7Q
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/beta/beta1.py
+    - id: pdfs
+      year: "2020"
+      title:
+        Why “probability of 0” does not mean “impossible” | Probabilities of
+        probabilities, part 2
+      description: Introduction to probability density functions.
+      date: 2020-04-12
+      video: ZA4JkHKZM50
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/beta/beta2.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: group-theory
+  name: Group Theory
+  description: The study of symmetry
+  lessons:
+    - id: groups-and-monsters
+      year: "2020"
+      title: Group theory, abstraction, and the 196,883-dimensional monster
+      description:
+        An introduction to symmetry, group theory, isomorphisms, and the
+        monster group.
+      date: 2020-08-19
+      video: mH0oCDa74tE
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adpation by River Way
+      source: _2020/monster.py
+    - id: eulers-formula-via-group-theory
+      year: "2017"
+      title: Euler's formula with introductory group theory
+      description: Euler's formula, e^{pi i} = -1, is one of the most famous
+        expressions in math, but why on earth is this true?  A few perspectives
+        from the field of group theory can make this formula a bit more
+        intuitive.
+      date: 2017-03-03
+      video: mvmuCPvRoWQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2017/efvgt.py
+    - id: incomplete-cubes
+      year: "2025"
+      title: Exploration & Epiphany | Guest video by Paul Dancstep
+      description: The mathematics behind Sol Lewitt's "Incomplete Open Cubes",
+        involving Group theory and Burnside's lemma
+      date: 2025-09-07
+      video: _BrFKp-U8GI
+      thumbnail: ""
+      credits:
+        - Lesson by Paul Dancstep
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: number-theory
+  name: Number Theory
+  description: Topics related to integer patterns and primes
+  lessons:
+    - id: prime-spirals
+      year: "2019"
+      title: Why do prime numbers make these spirals?
+      description:
+        A curious pattern in polar plots with prime numbers, together with
+        discussion of Dirichlet's theorem
+      date: 2019-10-08
+      video: EK32jo7i5LQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+        - Text Adaption by River Way
+      source: _2019/spirals.py
+    - id: pythagorean-triples
+      year: "2017"
+      title: All possible pythagorean triples, visualized
+      description:
+        There are a few special right triangles many of us learn about in
+        school, like the 3-4-5 triangle or the 5-12-13 triangle.  Is there a way
+        to understand all triplets of numbers (a, b, c) that satisfy a^2 + b^2 =
+        c^2?  There is!  And it uses complex numbers in a clever way.
+      date: 2017-05-26
+      video: QJYmyhnaaek
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/triples.py
+    - *a4
+    - id: prime-number-race
+      year: "2023"
+      title: The Prime Number Race [Numberphile]
+      description: A race between two types of prime numbers - and an unexpected result.
+      date: 2023-02-23
+      video: YAsHGOwB408
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/prime_race.py/
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: lockdown-math
+  name: Lockdown Math
+  description:
+    A series of live-streamed lectures starting with foundational ideas
+    in high school math, and exploring what interesting places they can lead to
+  lessons:
+    - id: lockdown-math-announcement
+      year: "2020"
+      title: Lockdown math announcement
+      description: ""
+      date: 2020-04-16
+      video: ppWPuXsnf1Q
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-quadratic
+      year: "2020"
+      title: The simpler quadratic formula
+      description: ""
+      date: 2020-04-17
+      video: MHXO86wKeDY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-trigonometry
+      year: "2020"
+      title: Trigonometry fundamentals
+      description: ""
+      date: 2020-04-21
+      video: yBw67Fb31Cs
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-complex-numbers
+      year: "2020"
+      title: Complex number fundamentals
+      description: ""
+      date: 2020-04-24
+      video: 5PcpBw5Hbwo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-eulers-formula
+      year: "2020"
+      title: What is Euler's formula actually saying?
+      description: ""
+      date: 2020-04-28
+      video: ZxYOEwM6Wbk
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-imaginary-interest
+      year: "2020"
+      title: Imaginary interest rates
+      description: ""
+      date: 2020-05-01
+      video: IAEASE5GjdI
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-logarithms
+      year: "2020"
+      title: Logarithm Fundamentals
+      description: ""
+      date: 2020-05-05
+      video: cEvgcoyZvB4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-natural-logs
+      year: "2020"
+      title: What makes the natural log "natural"?
+      description: ""
+      date: 2020-05-08
+      video: 4PDoT7jtxmw
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-power-towers
+      year: "2020"
+      title: The power tower puzzle
+      description: ""
+      date: 2020-05-12
+      video: elQVZLLiod4
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-i-to-i
+      year: "2020"
+      title: Intuition for i to the power i
+      description: ""
+      date: 2020-05-15
+      video: pq9LcwC7CoY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: ldm-tips-to-problem-solving
+      year: "2020"
+      title: Tips to be a better problem solver
+      description: ""
+      date: 2020-05-22
+      video: QvuQH4_05LI
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: talks
+  name: Talks
+  description: Various talks
+  lessons:
+    - id: harvey-mudd-speech
+      year: "2024"
+      title: What "Follow Your Dreams" Misses | Harvey Mudd Commencement Speech 2024
+      description:
+        I had the honor and pleasure of being invited to give Harvey Mudd's
+        commencement speech this year.
+      date: 2024-05-18
+      video: W3I3kAg2J7w
+      thumbnail: ""
+      credits: []
+      source: ""
+    - id: tedx-talk
+      year: "2020"
+      title: What Makes People Engage With Math
+      description:
+        Talk delivered at TEDxBerkeley, on the mixed role of application
+        and story in motivating math
+      date: 2020-03-13
+      video: s_L-fp8gDzY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: transformers-talk
+      year: "2024"
+      title: Visualizing transformers and attention | Talk for TNG Big Tech Day '24
+      description: An overview of transforms, as used in LLMs, and the attention
+        mechanism within them. Delivered as a talk for TNG Big Tech Day 2024
+      date: 2024-11-20
+      video: KJtZARuO3JY
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: pedagogical-curse
+      year: "2023"
+      title: Math's pedagogical curse | Grant Sanderson JPBM Award Lecture, JMM 2023
+      description: What steps can the math community make to improve its
+        communication? Lecture for receiving the 2023 JPBM communications award
+      date: 2023-03-31
+      video: UOuxo6SA8Uc
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: ego-and-math
+      year: "2023"
+      title: Ego and Math | Stanford Math Department Commencement Speech 2023
+      description:
+        I had the honor and pleasure of being invited to deliver an address
+        for the mathematics graduation ceremony at Stanford.
+      date: 2023-06-20
+      video: z7GVHB2wiyg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+- id: miscellaneous
+  name: Miscellaneous
+  description: Odd videos that defy categorization elsewhere
+  lessons:
+    - id: manim-demo
+      year: "2024"
+      title: How I animate 3Blue1Brown | A Manim demo with Ben Sparks
+      description: A behind the scenes look at the tool and workflow underlying
+        3blue1brown animations.
+      date: 2024-10-12
+      video: rbu7Zu5X1zI
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2024/manim-demo/
+    - id: qa1
+      year: "2018"
+      title: Q&A with Grant Sanderson (3blue1brown)
+      description: A simple Q&A
+      date: 2018-08-24
+      video: Qe6o9j4IjTo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: qa2
+      year: "2018"
+      title: Q&A with Grant Sanderson (3blue1brown)
+      description: A simple Q&A
+      date: 2018-08-24
+      video: Qe6o9j4IjTo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: qa3
+      year: "2018"
+      title: Q&A with Grant Sanderson (3blue1brown)
+      description: A simple Q&A
+      date: 2018-08-24
+      video: Qe6o9j4IjTo
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: some1
+      year: "2021"
+      title: Summer of Math Exposition 1 announcement
+      description: Advice on creating math videos
+      date: 2021-07-16
+      video: ojjzXyQCzso
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/some1
+    - id: some1-results
+      year: "2021"
+      title: Summer of Math Exposition 1 results
+      description: Winners for the first summer of math exposition
+      date: 2023-10-23
+      video: F3Qixy-r_rQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2021/some1
+    - id: some2
+      year: "2022"
+      title: Summer of Math Exposition 2 Invitation
+      description: Winners for the second summer of math exposition
+      date: 2023-06-08
+      video: hZuYICAEN9Y
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/some2
+    - id: some2-results
+      year: "2022"
+      title: What makes a great math explanation? | SoME2 results
+      description: Winners for the second summer of math exposition
+      date: 2023-10-01
+      video: cDofhN-RJqg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2022/some2
+    - id: some3-results
+      year: "2023"
+      title: 25 Math explainers you may enjoy | SoME3 results
+      description: Winners for the third summer of math exposition
+      date: 2023-07-23
+      video: 6a1fLEToyvU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2023/some3
+    - id: dp3t
+      year: "2020"
+      title: The DP-3T algorithm for contact tracing (via Nicky Case)
+      description:
+        An overview of a simplified version of the DP-3T algorithm for
+        privacy-first contact-tracing
+      date: 2020-05-14
+      video: D__UaR5MQao
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2020/ldm.py
+    - id: tattoos-on-math
+      year: "2017"
+      title: Tattoos on Math
+      description:
+        After a friend of mine got a tattoo with a representation of the
+        cosecant function, it got me thinking about how there's another sense in
+        which this function is a tattoo on math, so to speak.
+      date: 2017-01-06
+      video: IxNb1WG_Ido
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2017/tattoo.py
+    - id: triangle-of-power
+      year: "2016"
+      title: Triangle of Power
+      description:
+        Logarithms are confusing, but perhaps some alternate notation could
+        make them more intuitive.
+      date: 2016-06-26
+      video: sULa9Lc4pck
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2016/triangle_of_power
+    - id: binary-counting
+      year: "2015"
+      title: How to count to 1000 on two hands
+      description: How to count in binary, and how this lets you count to 1023 on two hands.
+      date: 2015-09-18
+      video: 1SMmc9gQmHQ
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: _2015/counting_in_binary.py
+    - id: eulers-formula-old
+      year: "2015"
+      title: e to the pi i, a nontraditional take (old version)
+      description:
+        The enigmatic equation e^{pi i} = -1 is usually explained using
+        Taylor's formula during a calculus class.  This video offers a different
+        perspective, which involves thinking about numbers as actions, and about
+        e^x as something which turns one action into another.
+      date: 2015-03-05
+      video: F_0yfvm0UoU
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
+    - id: eulers-formula-poem
+      year: "2015"
+      title: Euler's Formula Poem
+      description:
+        A silly poem encapsulating the ideas from the video about Euler's
+        formula through graph theory.
+      date: 2015-03-05
+      video: zLzLxVeqdQg
+      thumbnail: ""
+      credits:
+        - Lesson by Grant Sanderson
+      source: ""
