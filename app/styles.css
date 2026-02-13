@@ -68,7 +68,7 @@
 
   section {
     --width: 250;
-    @apply relative z-0 flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
+    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
   }
 
   hr {

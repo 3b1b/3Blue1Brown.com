@@ -3,7 +3,8 @@ import Header from "~/components/Header";
 import Heading from "~/components/Heading";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
-import { Meta, site } from "~/Meta";
+import site from "~/data/site.yaml";
+import { Meta } from "~/Meta";
 
 export default function Home() {
   return (

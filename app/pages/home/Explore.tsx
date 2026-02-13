@@ -1,25 +1,12 @@
 import { useState } from "react";
 import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
+import lessons from "~/data/lessons.yaml";
+import { images } from "~/pages/home/topics";
 
-const topics = [
-  "Neural Networks",
-  "Linear Algebra",
-  "Calculus",
-  "Differential Equations",
-  "Puzzles",
-  "Geometry",
-  "Why Pi",
-  "Analysis",
-  "Physics",
-  "Computer Science",
-  "Fractals",
-  "Probability",
-  "Group Theory",
-  "Number Theory",
-  "Lockdown Math",
-  "Talks",
-];
+const topics = lessons
+  .concat([{ id: "all", name: "All", description: "All lessons", lessons: [] }])
+  .map(({ id, name }) => ({ name, img: images[id] }));
 
 export default function Explore() {
   const [search, setSearch] = useState("");
@@ -37,21 +24,23 @@ export default function Explore() {
           className="col-span-full mb-4"
           placeholder="Search"
         />
-        {topics.map((topic, index) => (
+        {topics.map(({ name, img }, index) => (
           <button
             key={index}
-            className="aspect-video bg-off-black text-white"
-            onClick={() => setSearch(`Topic: ${topic}`)}
+            className="
+              flex-col bg-off-black text-white ring-theme ring-offset-2
+              hover:bg-theme hover:ring-2
+            "
+            onClick={() => setSearch(`Topic: ${name}`)}
           >
-            {topic}
+            <img
+              src={img ?? ""}
+              alt=""
+              className="aspect-video w-full mask-b-from-50% mask-b-to-100%"
+            />
+            <div className="p-2">{name}</div>
           </button>
         ))}
-        <button
-          className="col-span-full bg-off-black p-4 text-white"
-          onClick={() => setSearch("ALL")}
-        >
-          All
-        </button>
       </div>
     </section>
   );
