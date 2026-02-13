@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
-import lessons from "~/data/lessons.yaml";
+import { lessons } from "~/data/lessons";
 import { images } from "~/pages/home/topics";
 
 const topics = lessons

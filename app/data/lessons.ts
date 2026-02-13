@@ -1,26 +1,45 @@
 import { orderBy } from "lodash-es";
-import lessons from "./lessons.yaml";
+import _lessons from "./lessons.yaml";
 
-export type Topic = (typeof lessons)[number];
-export type Lesson = Topic["lessons"][number];
+// lesson data w/ type defs
+export const lessons = _lessons as Topic[];
+
+type Topic = {
+  id: string;
+  name: string;
+  description: string;
+  lessons: Lesson[];
+};
+
+type Lesson = {
+  id: string;
+  year: string;
+  title: string;
+  description: string;
+  date: Date;
+  video: string;
+  thumbnail: string;
+  credits: string[];
+  source: string;
+};
 
 // get lessons ordered by date, most recent first
 export const byDate = orderBy(
   lessons.flatMap(({ lessons }) => lessons),
-  (lesson) => lesson.date,
+  (lesson) => lesson?.date,
   "desc",
 );
 
 // get next lesson relative to this one by date
 export const getNextByDate = (id: string) => {
-  const index = byDate.findIndex((lesson) => lesson.id === id);
+  const index = byDate.findIndex((lesson) => lesson?.id === id);
   if (index === -1) return;
   return byDate[index + 1];
 };
 
 // get previous lesson relative to this one by date
 export const getPreviousByDate = (id: string) => {
-  const index = byDate.findIndex((lesson) => lesson.id === id);
+  const index = byDate.findIndex((lesson) => lesson?.id === id);
   if (index === -1) return null;
   return byDate[index - 1];
 };

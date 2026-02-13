@@ -44,7 +44,6 @@
         "tailwindcss": "^4.1.13",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.54.0",
-        "typescript-yaml-plugin": "^1.0.11",
         "vite": "^7.1.7",
         "vite-tsconfig-paths": "^5.1.4",
       },
@@ -1056,8 +1055,6 @@
     "typescript": ["typescript@5.9.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="],
 
     "typescript-eslint": ["typescript-eslint@8.54.0", "", { "dependencies": { "@typescript-eslint/eslint-plugin": "8.54.0", "@typescript-eslint/parser": "8.54.0", "@typescript-eslint/typescript-estree": "8.54.0", "@typescript-eslint/utils": "8.54.0" }, "peerDependencies": { "eslint": "^8.57.0 || ^9.0.0", "typescript": ">=4.8.4 <6.0.0" } }, "sha512-CKsJ+g53QpsNPqbzUsfKVgd3Lny4yKZ1pP4qN3jdMOg/sisIDLGyDMezycquXLE5JsEU0wp3dGNdzig0/fmSVQ=="],
-
-    "typescript-yaml-plugin": ["typescript-yaml-plugin@1.0.11", "", { "dependencies": { "typescript": "^5.9.3", "yaml": "^2.8.1" } }, "sha512-GDVOnNiCIIh1sVdDv+TLq4XeeZiBcIv9DWIm03sZw9SG/Jkx+IJK5O+nfcBO05mAKCif7SvrYQpaVOiXeyUH1w=="],
 
     "unbox-primitive": ["unbox-primitive@1.1.0", "", { "dependencies": { "call-bound": "^1.0.3", "has-bigints": "^1.0.2", "has-symbols": "^1.1.0", "which-boxed-primitive": "^1.1.1" } }, "sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw=="],
 
