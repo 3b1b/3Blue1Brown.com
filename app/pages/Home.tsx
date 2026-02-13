@@ -2,8 +2,10 @@ import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import { Meta } from "~/Meta";
 import Explore from "~/pages/home/Explore";
+import Extras from "~/pages/home/Extras";
 import Follow from "~/pages/home/Follow";
-import Highlights from "~/pages/home/Highlights";
+import Patreon from "~/pages/home/Patreon";
+import Talent from "~/pages/home/Talent";
 import Theater from "~/pages/home/Theater";
 
 export default function Home() {
@@ -17,8 +19,10 @@ export default function Home() {
 
       <main>
         <Explore />
-        <Highlights />
+        <Patreon />
+        <Talent />
         <Follow />
+        <Extras />
       </main>
 
       <Footer />

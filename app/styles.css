@@ -83,16 +83,16 @@
   }
 
   h1 {
-    @apply justify-center text-center text-3xl tracking-widest uppercase;
+    @apply justify-center text-center text-4xl tracking-widest uppercase;
   }
 
   h2 {
-    @apply justify-center text-center text-2xl tracking-wider uppercase;
+    @apply justify-center text-center text-3xl tracking-wider uppercase;
 
-    &::before,
+    /* &::before,
     &::after {
       @apply bg-light-gray h-px grow content-[""];
-    }
+    } */
   }
 
   h3 {
@@ -171,12 +171,12 @@
   }
 
   a {
-    @apply text-theme underline transition hover:text-current;
+    @apply text-theme underline transition-all hover:text-current;
   }
 
   button,
   summary {
-    @apply inline-flex cursor-pointer items-center justify-center font-sans transition;
+    @apply inline-flex cursor-pointer items-center justify-center font-sans transition-all;
   }
 
   details {

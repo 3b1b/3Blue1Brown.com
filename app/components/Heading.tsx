@@ -1,4 +1,4 @@
-import type { JSX, ReactNode } from "react";
+import type { ComponentProps, JSX, ReactNode } from "react";
 import { useRef } from "react";
 import Link from "~/components/Link";
 import { renderText } from "~/util/dom";
@@ -9,13 +9,11 @@ type Props = {
   level: 1 | 2 | 3 | 4;
   // manually set anchor link instead of automatically from children text
   anchor?: string;
-  // class on heading
-  className?: string;
   // heading content
   children: ReactNode;
-};
+} & ComponentProps<"h1" | "h2" | "h3" | "h4">;
 
-export default function Heading({ level, anchor, className, children }: Props) {
+export default function Heading({ level, anchor, children, ...props }: Props) {
   const ref = useRef<HTMLHeadingElement>(null);
 
   // heading tag
@@ -25,14 +23,8 @@ export default function Heading({ level, anchor, className, children }: Props) {
   const id = anchor ?? slugify(renderText(children));
 
   return (
-    <Tag id={id} ref={ref} className={className}>
-      <Link
-        to={"#" + id}
-        className="
-          contents! text-black no-underline
-          hover:text-theme
-        "
-      >
+    <Tag id={id} ref={ref} {...props}>
+      <Link to={"#" + id} className="contents! text-black no-underline">
         {children}
       </Link>
     </Tag>

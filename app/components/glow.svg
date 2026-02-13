@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter
+    id="filter"
+    colorInterpolationFilters="linearRGB"
+    filterUnits="objectBoundingBox"
+    primitiveUnits="userSpaceOnUse"
+  >
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feComponentTransfer in="blur" result="glow">
+      <feFuncA type="linear" slope="2" intercept="0" />
+    </feComponentTransfer>
+    <feBlend in="SourceGraphic" in2="glow" mode="screen" />
+  </filter>
+</svg>

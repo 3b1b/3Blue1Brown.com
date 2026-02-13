@@ -17,7 +17,12 @@ export default function Explore() {
         Explore
       </Heading>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div
+        className="
+          grid grid-cols-4 gap-4
+          max-md:grid-cols-2
+        "
+      >
         <Textbox
           value={search}
           onChange={setSearch}
@@ -28,8 +33,8 @@ export default function Explore() {
           <button
             key={index}
             className="
-              flex-col bg-off-black text-white ring-theme ring-offset-2
-              hover:bg-theme hover:ring-2
+              flex-col bg-off-black text-white outline-offset-2 outline-theme
+              hover:bg-theme hover:outline-2
             "
             onClick={() => setSearch(`Topic: ${name}`)}
           >

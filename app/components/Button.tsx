@@ -41,13 +41,13 @@ export default function Button({
       `,
     color === "theme" &&
       `
-        bg-theme text-white ring-black ring-offset-2
-        hover:bg-black hover:ring-2
+        bg-theme text-white outline-offset-2 outline-black
+        hover:bg-black hover:outline-2
       `,
     color === "accent" &&
       `
-        bg-black text-white ring-theme ring-offset-2
-        hover:bg-theme hover:ring-2
+        bg-black text-white outline-offset-2 outline-theme
+        hover:bg-theme hover:outline-2
       `,
     size === "small" && "p-2",
     size === "medium" && "p-4 text-lg",
