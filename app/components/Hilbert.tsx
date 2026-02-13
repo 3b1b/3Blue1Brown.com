@@ -1,3 +1,5 @@
+import type { ComponentProps } from "react";
+import clsx from "clsx";
 import { max, min } from "lodash-es";
 import { Vector } from "~/util/vector";
 
@@ -70,13 +72,11 @@ const hilbert = (order: number, angle: number) => {
 // generate hilbert
 const { points, left, top, width, height } = hilbert(order, angle);
 
-export default function Hilbert() {
+type Props = ComponentProps<"div">;
+
+export default function Hilbert({ className }: Props) {
   return (
-    <div
-      className="
-        absolute inset-0 -z-10 mask-b-from-0% mask-b-to-100% opacity-50
-      "
-    >
+    <div className={clsx("absolute inset-0 -z-10", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={[left, top, width, height].join(" ")}

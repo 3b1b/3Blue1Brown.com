@@ -8,7 +8,7 @@ export default function Footer() {
         max-md:p-6
       "
     >
-      <Hilbert />
+      <Hilbert className="mask-b-from-0% mask-b-to-100% opacity-50" />
       &copy; 2026 Grant Sanderson
     </footer>
   );

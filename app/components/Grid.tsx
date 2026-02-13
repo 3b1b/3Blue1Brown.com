@@ -1,4 +1,6 @@
+import type { ComponentProps } from "react";
 import { Fragment } from "react";
+import clsx from "clsx";
 
 // number of cells in each direction
 const cells = 3 * 4;
@@ -45,13 +47,11 @@ const layers = [
   },
 ];
 
-export default function Grid() {
+type Props = ComponentProps<"div">;
+
+export default function Grid({ className }: Props) {
   return (
-    <div
-      className="
-        absolute inset-0 -z-10 mask-b-from-0% mask-b-to-100% opacity-25
-      "
-    >
+    <div className={clsx("absolute inset-0 -z-10", className)}>
       <svg
         viewBox={[-radius, -radius, radius * 2, radius * 2].join(" ")}
         className="absolute top-1/2 -translate-y-1/2 perspective-rotate"

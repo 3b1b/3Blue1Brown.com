@@ -1,7 +1,7 @@
 import { ListIcon, XIcon } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { clsx } from "clsx";
+import clsx from "clsx";
 import Grid from "~/components/Grid";
 import HomeLink from "~/components/HomeLink";
 import Nav from "~/components/Nav";
@@ -28,7 +28,7 @@ export default function Header({ children }: Props) {
         *:bg-transparent
       "
     >
-      <Grid />
+      <Grid className="mask-b-from-0% mask-b-to-100% opacity-25" />
 
       <div className="flex flex-wrap items-center">
         {/* title */}

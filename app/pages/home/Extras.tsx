@@ -1,20 +1,12 @@
 import { ArrowRightIcon, CirclesThreePlusIcon } from "@phosphor-icons/react";
-import { useRef } from "react";
 import Button from "~/components/Button";
 import Heading from "~/components/Heading";
-import { useScroll } from "~/util/hooks";
+import SectionFlare from "~/components/SectionFlare";
 
 export default function Extras() {
-  const ref = useRef<HTMLDivElement>(null);
-  const percent = useScroll(ref);
-
   return (
     <section className="items-center">
-      <div
-        ref={ref}
-        className="absolute inset-0 -z-10 -skew-x-15 bg-gray/15"
-        style={{ translate: `-${percent * 10}% 0` }}
-      />
+      <SectionFlare className="text-gray" />
 
       <Heading level={2}>
         <CirclesThreePlusIcon />
