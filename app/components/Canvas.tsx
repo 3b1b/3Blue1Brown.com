@@ -1,4 +1,9 @@
-import { useDebounce, useElementSize, useRafFn } from "@reactuses/core";
+import {
+  useDebounce,
+  useElementSize,
+  useMergedRefs,
+  useRafFn,
+} from "@reactuses/core";
 import type { ComponentProps } from "react";
 import { useEffect, useRef } from "react";
 
@@ -10,6 +15,7 @@ type Props = {
 
 // general canvas component that handles animation loop, resizing, and etc.
 export default function Canvas({
+  ref,
   scale = 1,
   render,
   onResize,
@@ -53,5 +59,7 @@ export default function Canvas({
     return cleanup;
   }, [width, height, onResize]);
 
-  return <canvas ref={canvas} {...props} />;
+  const refs = useMergedRefs(canvas, ref);
+
+  return <canvas ref={refs} {...props} />;
 }

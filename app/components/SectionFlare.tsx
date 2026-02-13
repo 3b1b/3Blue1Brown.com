@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import clsx from "clsx";
-import { useScroll } from "~/util/hooks";
+import { useParallax } from "~/util/hooks";
 
 type Props = {
   offset?: number;
@@ -10,7 +10,7 @@ type Props = {
 // section bg with animated flare
 export default function SectionFlare({ className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const percent = useScroll(ref);
+  const percent = useParallax(ref);
 
   return (
     <div

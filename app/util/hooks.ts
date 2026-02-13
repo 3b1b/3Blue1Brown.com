@@ -2,7 +2,7 @@ import { useElementBounding, useWindowSize } from "@reactuses/core";
 import type { RefObject } from "react";
 
 // scroll "progress" of element down viewport, -1 to 1
-export const useScroll = (ref: RefObject<HTMLElement | null>) => {
+export const useParallax = (ref: RefObject<HTMLElement | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
   const percent =

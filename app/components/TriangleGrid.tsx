@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
 import { clamp, sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import glow from "~/components/glow.svg?inline";
+import { useParallax } from "~/util/hooks";
 import { Vector } from "~/util/vector";
 
 // params
@@ -12,9 +13,75 @@ const spacing = 100;
 const limit = 400;
 const minConnections = 1;
 const duration = 2;
-const colorA = "#00bfff";
-const colorB = "#8080ff";
-const delay = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;
+const colorA = "#0088ff";
+const colorB = "#ff88ff";
+const delayEq = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;
+
+gsap.defaults({ ease: "power1.inOut" });
+
+export default function TriangleGrid() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  const percent = useParallax(ref);
+
+  const [{ dots = [], lines = [] } = {}, setObjects] =
+    useState<ReturnType<typeof generate>>();
+
+  const onResize = useCallback((width: number, height: number) => {
+    const ctx = gsap.context(() => setObjects(generate(width, height)));
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <Canvas
+      ref={ref}
+      className="
+        absolute inset-0 -z-10 size-full mask-radial-from-transparent
+        mask-radial-from-0% mask-radial-to-white mask-radial-to-100%
+      "
+      style={{
+        translate: `0 ${-percent * 10}%`,
+        scale: 1.1,
+        filter: `url("${glow}#filter")`,
+      }}
+      render={(ctx) => {
+        for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {
+          ctx.strokeStyle = color;
+          ctx.globalAlpha = opacity;
+          ctx.lineWidth = thickness;
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+        for (const { x, y, opacity, radius, color } of dots) {
+          ctx.fillStyle = color;
+          ctx.globalAlpha = opacity;
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }}
+      onResize={onResize}
+    />
+  );
+}
+
+const makeGraph = <Type,>() => {
+  // map nodes to neighbors
+  const graph = new Map<Type, Set<Type>>();
+
+  // graph funcs
+  const getNodes = () => [...graph.keys()];
+  const addNode = (node: Type) => graph.set(node, new Set());
+  const addEdge = (node: Type, neighbor: Type) =>
+    graph.get(node)?.add(neighbor);
+  const removeNode = (node: Type) => {
+    for (const neighbors of graph.values()) neighbors.delete(node);
+    graph.delete(node);
+  };
+
+  return { graph, getNodes, addNode, addEdge, removeNode };
+};
 
 // equilateral triangle h/w ratio
 const tri = Math.sqrt(3) / 2;
@@ -49,6 +116,7 @@ const generate = (width: number, height: number) => {
     const node = sample(getNodes());
     if (!node) continue;
     const dist = node.divide(width, height).length() * 2;
+    // favor removing points near center
     if (dist < Math.random()) removeNode(node);
   }
 
@@ -68,7 +136,7 @@ const generate = (width: number, height: number) => {
     removeNode(isolated);
   }
 
-  // remove double edges
+  // remove double links
   for (const node of getNodes())
     for (const neighbor of getNodes())
       if (node !== neighbor)
@@ -106,78 +174,24 @@ const generate = (width: number, height: number) => {
     .flat();
 
   // animate
-  for (const dot of dots)
+  for (const dot of dots) {
+    const delay = delayEq(dot.normX, dot.normY) * duration;
     gsap
-      .timeline({
-        repeat: -1,
-        yoyo: true,
-        delay: delay(dot.normX, dot.normY) * duration,
-      })
-      .to(dot, { opacity: 1, radius, color: colorB, duration });
-  for (const line of lines)
+      .timeline({ repeat: -1, yoyo: true, delay })
+      .to(dot, { opacity: 1, radius, duration });
     gsap
-      .timeline({
-        repeat: -1,
-        yoyo: true,
-        delay: delay(line.normX, line.normY) * duration,
-      })
-      .to(line, { opacity: 1, thickness, color: colorB, duration });
+      .timeline({ repeat: -1, delay })
+      .to(dot, { color: colorB, duration: duration * 2 });
+  }
+  for (const line of lines) {
+    const delay = delayEq(line.normX, line.normY) * duration;
+    gsap
+      .timeline({ repeat: -1, yoyo: true, delay })
+      .to(line, { opacity: 1, thickness, duration });
+    gsap
+      .timeline({ repeat: -1, yoyo: true, delay })
+      .to(line, { color: colorB, duration: duration * 2 });
+  }
 
   return { dots, lines };
-};
-
-export default function TriangleGrid() {
-  const [{ dots = [], lines = [] } = {}, setObjects] =
-    useState<ReturnType<typeof generate>>();
-
-  const onResize = useCallback((width: number, height: number) => {
-    const ctx = gsap.context(() => setObjects(generate(width, height)));
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <Canvas
-      className="
-        absolute inset-0 -z-10 size-full mask-radial-from-transparent
-        mask-radial-from-0% mask-radial-to-white mask-radial-to-100%
-      "
-      render={(ctx) => {
-        for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {
-          ctx.strokeStyle = color;
-          ctx.globalAlpha = opacity;
-          ctx.lineWidth = thickness;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
-          ctx.stroke();
-        }
-        for (const { x, y, opacity, radius, color } of dots) {
-          ctx.fillStyle = color;
-          ctx.globalAlpha = opacity;
-          ctx.beginPath();
-          ctx.arc(x, y, radius, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }}
-      onResize={onResize}
-      style={{ filter: `url("${glow}#filter")` }}
-    />
-  );
-}
-
-const makeGraph = <Type,>() => {
-  // map nodes to neighbors
-  const graph = new Map<Type, Set<Type>>();
-
-  // graph funcs
-  const getNodes = () => [...graph.keys()];
-  const addNode = (node: Type) => graph.set(node, new Set());
-  const addEdge = (node: Type, neighbor: Type) =>
-    graph.get(node)?.add(neighbor);
-  const removeNode = (node: Type) => {
-    for (const neighbors of graph.values()) neighbors.delete(node);
-    graph.delete(node);
-  };
-
-  return { graph, getNodes, addNode, addEdge, removeNode };
 };

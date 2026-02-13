@@ -13,8 +13,10 @@ export default function Explore() {
 
   return (
     <section className="narrow">
-      <Heading level={2} className="sr-only">
+      <Heading level={2}>
+        <hr />
         Explore
+        <hr />
       </Heading>
 
       <div

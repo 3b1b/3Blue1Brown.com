@@ -87,20 +87,15 @@
   }
 
   h2 {
-    @apply justify-center text-center text-3xl tracking-wider uppercase;
-
-    /* &::before,
-    &::after {
-      @apply bg-light-gray h-px grow content-[""];
-    } */
+    @apply justify-center text-center text-2xl tracking-wider uppercase;
   }
 
   h3 {
-    @apply text-2xl tracking-wide;
+    @apply text-xl tracking-wide;
   }
 
   h4 {
-    @apply text-xl tracking-wide;
+    @apply text-lg tracking-wide;
   }
 
   p {
