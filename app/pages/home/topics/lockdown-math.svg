@@ -1,21 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 240 135">
   <rect width="240" height="135" fill="black" />
-  <g stroke="gray">
-    <line x1="0" y1="42.5" x2="240" y2="42.5" />
-    <line x1="0" y1="92.5" x2="240" y2="92.5" />
-    <line x1="45" y1="0" x2="45" y2="135" />
-    <line x1="95" y1="0" x2="95" y2="135" />
-    <line x1="145" y1="0" x2="145" y2="135" />
-    <line x1="195" y1="0" x2="195" y2="135" />
-    <line x1="0" y1="17.5" x2="240" y2="17.5" />
-    <line x1="0" y1="67.5" x2="240" y2="67.5" />
-    <line x1="0" y1="117.5" x2="240" y2="117.5" />
-    <line x1="20" y1="0" x2="20" y2="135" />
-    <line x1="70" y1="0" x2="70" y2="135" />
-    <line x1="120" y1="0" x2="120" y2="135" />
-    <line x1="170" y1="0" x2="170" y2="135" />
-    <line x1="220" y1="0" x2="220" y2="135" />
-  </g>
   <path stroke="gray" d="M240 0H0v135h240z" />
   <line x1="145" y1="67.5" x2="145" y2="24.199" stroke="mediumaquamarine" />
   <line x1="120" y1="24.199" x2="145" y2="24.199" stroke="palevioletred" />

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 240 135">
-  <g stroke="gray">
+  <g stroke="gray" opacity="0.25">
     <line x1="59" y1="27" x2="100" y2="57" />
     <line x1="59" y1="47" x2="100" y2="37" />
     <line x1="59" y1="47" x2="100" y2="99" />
