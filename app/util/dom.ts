@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
+import { waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
 export const renderText = (node: ReactNode) =>
@@ -21,3 +22,50 @@ export const renderText = (node: ReactNode) =>
   render/lifecycle (could be worked around by making it async, but then using
   this function in situ becomes much more of pain).
 */
+
+// get coordinates of element relative to document
+export const getDocBbox = (element: Element) => {
+  const { left, top, right, bottom } = element.getBoundingClientRect();
+  return {
+    top: top + window.scrollY,
+    bottom: bottom + window.scrollY,
+    left: left + window.scrollX,
+    right: right + window.scrollX,
+  };
+};
+
+// scroll to element
+export const scrollTo = async (
+  element: Element | null | undefined,
+  options: ScrollIntoViewOptions = { behavior: "smooth" },
+) => element?.scrollIntoView(options);
+
+// check if css selector is valid
+const validSelector = (selector: unknown) => {
+  if (typeof selector !== "string") return false;
+  try {
+    document.querySelector(selector);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+// scroll to element by selector
+export const scrollToSelector = async (
+  selector: string,
+  options: ScrollIntoViewOptions = { behavior: "smooth" },
+  waitForLayoutShift = false,
+) => {
+  if (!validSelector(selector)) return;
+
+  // wait for element to appear
+  const element = await waitFor(() => document.querySelector(selector));
+  if (!element) return;
+
+  // wait for layout shifts to stabilize
+  if (waitForLayoutShift) await waitForStable(() => getDocBbox(element).top);
+
+  // scroll to element
+  scrollTo(element, options);
+};

@@ -29,22 +29,22 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      /** GENERAL */
+      // GENERAL
       "prefer-const": ["error", { destructuring: "all" }],
 
-      /** TYPESCRIPT */
+      // TYPESCRIPT
       "@typescript-eslint/no-unused-vars": ["warn", { caughtErrors: "none" }],
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/consistent-type-imports": "error",
 
-      /** ACCESSIBILITY */
-      /** https://github.com/dequelabs/axe-core/issues/4566 */
+      // ACCESSIBILITY
+      // https://github.com/dequelabs/axe-core/issues/4566
       "jsx-a11y/no-noninteractive-tabindex": ["off"],
 
-      /** FORMATTING */
+      // FORMATTING
       "prettier/prettier": "warn",
       ...eslintPluginBetterTailwindcss.configs["recommended-warn"].rules,
-      /** https://github.com/schoero/eslint-plugin-better-tailwindcss/issues/302 */
+      // https://github.com/schoero/eslint-plugin-better-tailwindcss/issues/302
       "better-tailwindcss/enforce-consistent-line-wrapping": [
         "warn",
         { strictness: "loose" },

@@ -14,7 +14,6 @@ type Props = {
 export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
 
-  /** button/link class */
   const className = `
     border-b border-transparent p-2 leading-none text-black no-underline
     transition

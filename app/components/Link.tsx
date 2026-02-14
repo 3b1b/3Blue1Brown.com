@@ -1,7 +1,8 @@
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import type { ComponentProps, ReactNode } from "react";
-import { Link as RouterLink, useLocation } from "react-router";
+import { Link as RouterLink, useLocation, useResolvedPath } from "react-router";
 import clsx from "clsx";
+import { mergeTo } from "~/util/url";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -41,10 +42,15 @@ export default function Link({
   // class name string
   className = clsx("inline-flex items-center gap-1", className);
 
-  const { pathname } = useLocation();
+  // current location
+  const from = useLocation();
+
+  // destination location, as full path object
+  const resolved = useResolvedPath(to);
 
   // are we already on target page
-  const active = !external && pathname === to;
+  const active =
+    !external && (from.pathname === to || from.pathname === resolved.pathname);
 
   // external link
   if (external)
@@ -67,11 +73,11 @@ export default function Link({
   return (
     <RouterLink
       ref={ref}
-      to={to}
+      to={mergeTo(from, to)}
       target={target}
       className={className}
       {...props}
-      viewTransition
+      viewTransition={resolved.pathname !== from.pathname ? true : undefined}
     >
       {children}
       {arrow && <ArrowSquareOutIcon />}

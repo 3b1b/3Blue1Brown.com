@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import clsx from "clsx";
+import { clamp } from "lodash-es";
 import { useParallax } from "~/util/hooks";
 
 type Props = {
@@ -15,10 +16,14 @@ export default function SectionFlare({ className }: Props) {
   return (
     <div
       ref={ref}
-      className={clsx("absolute inset-0 -z-10 skew-x-25 bg-current", className)}
+      className={clsx(
+        "absolute inset-y-0 -z-10 skew-x-10 bg-current",
+        className,
+      )}
       style={{
-        translate: `${percent * 10}% 0`,
-        opacity: (1 - Math.abs(-percent)) * 0.15,
+        opacity: clamp((1 - percent) * 0.2, 0, 0.2),
+        left: `${-10 + percent * 25}%`,
+        right: `${-10 + percent * 25}%`,
       }}
     />
   );

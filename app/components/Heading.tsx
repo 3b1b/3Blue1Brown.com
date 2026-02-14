@@ -24,7 +24,7 @@ export default function Heading({ level, anchor, children, ...props }: Props) {
 
   return (
     <Tag id={id} ref={ref} {...props}>
-      <Link to={"#" + id} className="contents! text-black no-underline">
+      <Link to={"#" + id} className="contents! text-current no-underline">
         {children}
       </Link>
     </Tag>

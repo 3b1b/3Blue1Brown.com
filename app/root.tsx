@@ -3,10 +3,30 @@ import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
 import { IconContext } from "@phosphor-icons/react";
-import { Links, Outlet, Scripts, ScrollRestoration } from "react-router";
+import {
+  Links,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLocation,
+} from "react-router";
+import { scrollToSelector } from "~/util/dom";
+import { useChanged } from "~/util/hooks";
 
 // app entrypoint
 export default function App() {
+  // current route info
+  const { hash, pathname, search } = useLocation();
+
+  // did any key part of url change
+  const changed = useChanged({ pathname, search, hash });
+  // did hash change
+  const hashChanged = useChanged(hash);
+
+  if (changed)
+    // if just hash changed, scroll immediately. else, wait for layout shifts
+    scrollToSelector(hash, undefined, hashChanged);
+
   return (
     <IconContext.Provider value={{ className: "icon" }}>
       <html lang="en" suppressHydrationWarning>

@@ -1,4 +1,4 @@
-/** https://gist.github.com/vincerubinetti/52ec86385ef42f1cd205ad4783a87d5d */
+// https://gist.github.com/vincerubinetti/52ec86385ef42f1cd205ad4783a87d5d
 
 export class Vector {
   x: number;

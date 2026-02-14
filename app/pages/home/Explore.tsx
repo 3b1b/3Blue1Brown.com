@@ -3,13 +3,22 @@ import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { lessons } from "~/data/lessons";
 import { images } from "~/pages/home/topics";
+import { useSearchParams } from "~/util/hooks";
 
 const topics = lessons
   .concat([{ id: "all", name: "All", description: "All lessons", lessons: [] }])
   .map(({ id, name }) => ({ name, img: images[id] }));
 
 export default function Explore() {
-  const [search, setSearch] = useState("");
+  const [params, setParams] = useSearchParams();
+  const [search, _setSearch] = useState(params.get("search") ?? "");
+  const setSearch = (search: string) => {
+    _setSearch(search);
+    setParams((params) => {
+      if (search.trim()) params.set("search", search.trim());
+      else params.delete("search");
+    });
+  };
 
   return (
     <section className="narrow">

@@ -79,7 +79,7 @@
   h2,
   h3,
   h4 {
-    @apply flex w-full items-center gap-4 font-sans leading-normal font-medium;
+    @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal font-medium;
   }
 
   h1 {
