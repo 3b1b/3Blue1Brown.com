@@ -5,9 +5,12 @@ import {
 } from "@reactuses/core";
 import type { RefObject } from "react";
 import type { NavigateOptions, To } from "react-router";
-import { useCallback, useEffect, useState } from "react";
+import type { searchList, setList } from "~/util/fuzzy";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { wrap } from "comlink";
 import { isEqual } from "lodash-es";
+import FuzzyWorker from "~/util/fuzzy?worker";
 import { mergeTo } from "~/util/url";
 
 // scroll "progress" of element down viewport, -1 to 1
@@ -64,4 +67,52 @@ export const useSearchParams = (debounce = 1000, options?: NavigateOptions) => {
   }, [debounced, navigate, options]);
 
   return [search, set] as const;
+};
+
+// use search results with instant exact matches and async fuzzy matches
+export const useFuzzySearch = <Entry extends Record<string, unknown>>(
+  list: Entry[],
+  _search: string,
+) => {
+  // debounce to avoid excessive work
+  const search = useDebounce(_search.trim(), 300);
+
+  // create web worker thread
+  const worker = useMemo(
+    () =>
+      typeof Worker !== "undefined"
+        ? wrap<{
+            searchList: typeof searchList<Entry>;
+            setList: typeof setList<Entry>;
+          }>(new FuzzyWorker())
+        : undefined,
+    [],
+  );
+
+  const [matches, setMatches] = useState<Entry[]>([]);
+
+  // set search list when input list changes
+  useEffect(() => {
+    if (!worker) return;
+    worker.setList(list);
+  }, [worker, list]);
+
+  // re-search when search changes
+  useEffect(() => {
+    if (!worker) return;
+    let latest = true;
+
+    (async () => {
+      if (!search) return setMatches(list);
+      const matches = await worker.searchList(search);
+      if (!latest) return;
+      setMatches(matches);
+    })();
+
+    return () => {
+      latest = false;
+    };
+  }, [worker, search, list]);
+
+  return matches;
 };

@@ -6,7 +6,7 @@ export const lessons = _lessons as Topic[];
 
 type Topic = {
   id: string;
-  name: string;
+  title: string;
   description: string;
   lessons: Lesson[];
 };
@@ -25,7 +25,9 @@ type Lesson = {
 
 // get lessons ordered by date, most recent first
 export const byDate = orderBy(
-  lessons.flatMap(({ lessons }) => lessons),
+  lessons.flatMap(({ lessons, ...topic }) =>
+    lessons.map((lesson) => ({ ...lesson, topic })),
+  ),
   (lesson) => lesson?.date,
   "desc",
 );
@@ -44,7 +46,7 @@ export const getPreviousByDate = (id: string) => {
   return byDate[index - 1];
 };
 
-// get lesson by id, plus topic it belonds to and chapter index
+// get lesson by id, plus topic it belongs to and chapter index
 export const getLesson = (id: string) => {
   let chapter = -1;
   let lesson: Lesson | undefined;

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 135">
+  <rect width="240" height="135" fill="black" />
+
+  <path
+    id="path"
+    d="M 1 0 A 1 1 0 0 1 -1 0 A 1 1 0 0 1 1 0"
+    transform="translate(120, 67.5) scale(85)"
+  />
+
+  <text
+    fill="gray"
+    dominant-baseline="middle"
+    font-size="20"
+  >
+    <textPath href="#path"  textLength="510">
+      ζπ∑∞θ∫√⨀∮א∡Δ≈±∈
+    </textPath>
+  </text>
+
+  <g transform="translate(120, 67.5) scale(0.25) translate(-128, -128)">
+    <rect
+      x="40"
+      y="40"
+      width="176"
+      height="176"
+      rx="24"
+      fill="black"
+      stroke="white"
+      stroke-width="4"
+    />
+    <g fill="white">
+      <circle cx="92" cy="92" r="8" />
+      <circle cx="128" cy="128" r="8" />
+      <circle cx="164" cy="164" r="8" />
+    </g>
+  </g>
+</svg>

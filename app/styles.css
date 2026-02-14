@@ -16,6 +16,11 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
+  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
+  --shadow-md: 0 0 4px var(--color-shadow), 0 4px 10px var(--color-shadow);
+  --shadow-lg: 0 0 6px var(--color-shadow), 0 6px 15px var(--color-shadow);
+  --shadow-xl: 0 0 8px var(--color-shadow), 0 8px 20px var(--color-shadow);
+
   --color-*: initial;
 
   --color-theme: oklch(55% 0.15 240);
@@ -29,7 +34,7 @@
   --color-off-white: hsl(0, 0%, 97%);
   --color-white: hsl(0, 0%, 100%);
 
-  --color-shadow: #00000020;
+  --color-shadow: #00000040;
   --color-overlay: #00000080;
 }
 

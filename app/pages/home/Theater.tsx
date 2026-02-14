@@ -1,9 +1,5 @@
 import {
   BookOpenTextIcon,
-  CaretDoubleRightIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  DiceThreeIcon,
   InfoIcon,
   ShareNetworkIcon,
 } from "@phosphor-icons/react";
@@ -59,24 +55,6 @@ export default function Theater() {
           <Button size="small">
             <BookOpenTextIcon />
             Read
-          </Button>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <Button size="small">
-            <DiceThreeIcon />
-            Random
-          </Button>
-          <Button size="small">
-            <CaretLeftIcon />
-            Previous
-          </Button>
-          <Button size="small">
-            Next
-            <CaretRightIcon />
-          </Button>
-          <Button size="small">
-            Newest
-            <CaretDoubleRightIcon />
           </Button>
         </div>
       </div>
