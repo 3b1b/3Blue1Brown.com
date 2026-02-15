@@ -2,7 +2,6 @@ import "~/styles.css";
 import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
-import { IconContext } from "@phosphor-icons/react";
 import {
   Links,
   Outlet,
@@ -10,6 +9,7 @@ import {
   ScrollRestoration,
   useLocation,
 } from "react-router";
+import { IconContext } from "@phosphor-icons/react";
 import { scrollToSelector } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useLocalStorage } from "@reactuses/core";
-import { useEffect } from "react";
 
 export default function DarkMode({ className = "" }) {
   const [darkMode, setDarkMode] = useLocalStorage("dark-mode", false);

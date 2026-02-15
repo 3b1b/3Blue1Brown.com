@@ -1,12 +1,25 @@
+import { useEffect } from "react";
 import {
   BookOpenTextIcon,
   InfoIcon,
   ShareNetworkIcon,
 } from "@phosphor-icons/react";
+import { useAtomValue } from "jotai";
 import Button from "~/components/Button";
 import Heading from "~/components/Heading";
+import { getLatest, getLesson } from "~/data/lessons";
+import { lessonAtom } from "~/pages/home/Explore";
+import { getThumbnail } from "~/util/youtube";
 
 export default function Theater() {
+  // current lesson details
+  const lesson = getLesson(useAtomValue(lessonAtom)).lesson ?? getLatest();
+
+  // scroll to top when lesson changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [lesson?.id]);
+
   return (
     <section className="wide">
       <Heading level={1} className="sr-only">
@@ -15,11 +28,11 @@ export default function Theater() {
       <Heading level={2} className="sr-only">
         Theater
       </Heading>
-      <div className="flex flex-col gap-2">
-        <div className="flex gap-2">
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4">
           <div
             className="
-              grid flex-1 grid-rows-3 gap-2
+              grid flex-1 grid-rows-3 gap-4
               *:aspect-video *:bg-off-white
               max-lg:hidden
             "
@@ -28,10 +41,16 @@ export default function Theater() {
             <div />
             <div />
           </div>
-          <div className="aspect-video flex-3 bg-light-gray" />
+          <div className="aspect-video flex-3 bg-light-gray">
+            <img
+              src={getThumbnail(lesson?.video ?? "")}
+              alt=""
+              className="size-full object-cover"
+            />
+          </div>
           <div
             className="
-              grid flex-1 grid-rows-3 gap-2
+              grid flex-1 grid-rows-3 gap-4
               *:aspect-video *:bg-off-white
               max-lg:hidden
             "
@@ -42,8 +61,8 @@ export default function Theater() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="text-lg">{lesson?.title}</div>
           <Button size="small">
             <ShareNetworkIcon />
             Share

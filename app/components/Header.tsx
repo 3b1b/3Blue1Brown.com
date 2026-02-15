@@ -1,6 +1,6 @@
-import { ListIcon, XIcon } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Grid from "~/components/Grid";
 import HomeLink from "~/components/HomeLink";

@@ -34,12 +34,6 @@ export const getDocBbox = (element: Element) => {
   };
 };
 
-// scroll to element
-export const scrollTo = async (
-  element: Element | null | undefined,
-  options: ScrollIntoViewOptions = { behavior: "smooth" },
-) => element?.scrollIntoView(options);
-
 // check if css selector is valid
 const validSelector = (selector: unknown) => {
   if (typeof selector !== "string") return false;
@@ -67,5 +61,5 @@ export const scrollToSelector = async (
   if (waitForLayoutShift) await waitForStable(() => getDocBbox(element).top);
 
   // scroll to element
-  scrollTo(element, options);
+  element.scrollIntoView(options);
 };

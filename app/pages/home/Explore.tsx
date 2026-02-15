@@ -1,53 +1,84 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  EyeIcon,
+  MagnifyingGlassIcon,
+  XIcon,
+} from "@phosphor-icons/react";
+import clsx from "clsx";
+import { useAtom } from "jotai";
 import { shuffle } from "lodash-es";
+import Button from "~/components/Button";
 import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { byDate, lessons } from "~/data/lessons";
 import { images } from "~/pages/home/images";
-import { useFuzzySearch, useSearchParams } from "~/util/hooks";
+import { atomWithQuery } from "~/util/atom";
+import { useFuzzySearch } from "~/util/hooks";
 import { getThumbnail } from "~/util/youtube";
 
-const buttons = [
+const topics = [
   {
     id: "all",
     title: "All",
-    description: "All lessons",
+    description: "All lessons, newest to oldest",
     lessons: byDate,
-    prefix: "All",
   },
+  // {
+  //   id: "best of",
+  //   title: "Best Of",
+  //   description: "A few hand-picked favorite lessons",
+  //   lessons: [],
+  // },
   {
     id: "shuffle",
     title: "Shuffle",
-    description: "Shuffled lessons",
+    description: "All lessons, in random order. Refresh for a new shuffle!",
     lessons: shuffle(byDate),
-    prefix: "Shuffle",
   },
 
-  ...lessons.map((topic) => ({ ...topic, prefix: `${topic.title}` })),
+  ...lessons,
 ]
   .filter((topic) => !topic.id.match(/misc/i))
   .map((button) => ({ ...button, img: images[button.id] }));
 
+const limit = 12;
+
+export const topicAtom = atomWithQuery("topic");
+export const searchAtom = atomWithQuery("search");
+export const lessonAtom = atomWithQuery("lesson");
+
 export default function Explore() {
-  const [params, setParams] = useSearchParams();
-  const [search, _setSearch] = useState(params.get("search") ?? "");
+  const searchBox = useRef<HTMLInputElement>(null);
 
-  const setSearch = (search: string) => {
-    _setSearch(search);
-    setParams((params) => {
-      if (search.trim()) params.set("search", search.trim());
-      else params.delete("search");
-    });
+  // current topic
+  const [topicId, setTopicId] = useAtom(topicAtom);
+
+  // current search
+  const [search, setSearch] = useAtom(searchAtom);
+
+  // current lesson
+  const [lesson, setLesson] = useAtom(lessonAtom);
+
+  // current topic details
+  const topic = topics.find((topic) => topic.id === topicId);
+
+  // search results
+  let results = useFuzzySearch(
+    topics.find((topic) => topic.id === topicId)?.lessons ?? byDate,
+    search,
+  );
+
+  // show all or truncate results
+  const [expanded, setExpanded] = useState(false);
+  if (!expanded) results = results.slice(0, limit);
+
+  // scroll to search box
+  const scroll = () => {
+    searchBox.current?.scrollIntoView();
+    searchBox.current?.focus();
   };
-
-  const [prefix = "", query = ""] = search.includes(":")
-    ? search.split(":")
-    : ["", search];
-
-  const list =
-    buttons.find((button) => button.prefix === prefix)?.lessons ?? byDate;
-
-  const results = useFuzzySearch(list, query);
 
   return (
     <section>
@@ -57,63 +88,123 @@ export default function Explore() {
         <hr />
       </Heading>
 
-      <div
-        className="
-          grid grid-cols-3 gap-4
-          max-md:grid-cols-2
-          max-sm:grid-cols-1
-        "
-      >
-        <Textbox
-          value={search}
-          onChange={setSearch}
-          className="col-span-full mb-4"
-          placeholder="Search"
-        />
+      <Textbox
+        ref={searchBox}
+        icon={<MagnifyingGlassIcon />}
+        value={search}
+        onChange={setSearch}
+        className="mb-4 text-lg"
+        placeholder="Search"
+      />
 
-        {/* topic cards */}
-        {!search.trim() &&
-          buttons.map(({ title, img, prefix }, index) => (
+      {/* topic cards */}
+      {!topicId?.trim() ? (
+        <div
+          className="
+            grid grid-cols-3 gap-8
+            max-md:grid-cols-2
+            max-sm:grid-cols-1
+          "
+        >
+          {topics.map(({ id, title, img }, index) => (
             <button
               key={index}
-              className="
-                flex-col bg-off-black text-white outline-offset-2 outline-theme
-                hover:bg-theme hover:outline-2
-              "
-              onClick={() => setSearch(`${prefix}:`)}
+              className="card-button"
+              onClick={() => {
+                setTopicId(id);
+                scroll();
+              }}
             >
-              <img
-                src={img ?? ""}
-                alt=""
-                className="aspect-video w-full mask-b-from-50% mask-b-to-100%"
-              />
-              <div className="p-2">{title}</div>
+              <img src={img ?? ""} alt="" />
+              <div>{title}</div>
             </button>
           ))}
-
-        {/* search results */}
-        {!!search.trim() &&
-          results.map(({ title, description, video }, index) => (
-            <button
-              key={index}
+        </div> //
+      ) : results.length ? (
+        <>
+          {/* selected topic */}
+          {topic && (
+            <div
               className="
-                flex-col justify-start bg-off-black text-white outline-offset-2
-                outline-theme
-                hover:bg-theme hover:outline-2
+                flex items-center gap-8
+                max-md:flex-col
               "
             >
-              <img
-                src={getThumbnail(video)}
-                alt=""
-                className="aspect-video w-full mask-b-from-50% mask-b-to-100%"
-              />
-              <div className="flex flex-col gap-2 p-4">
-                <strong className="font-sans">{title}</strong>
-                <p className="line-clamp-5">{description}</p>
+              <img src={topic.img ?? ""} alt="" className="aspect-video h-30" />
+              <div className="flex grow flex-col gap-2">
+                <div className="w-max shrink-0 font-sans text-lg font-medium">
+                  {topic.title}
+                </div>
+                <div>{topic.description}</div>
               </div>
-            </button>
-          ))}
-      </div>
+              <Button
+                onClick={async () => {
+                  setTopicId("");
+                  scroll();
+                }}
+                aria-label="Clear topic"
+              >
+                <XIcon />
+              </Button>
+            </div>
+          )}
+
+          {/* search results */}
+          <div
+            className="
+              grid grid-cols-2 gap-8
+              max-sm:grid-cols-1
+            "
+          >
+            {results.map(({ id, title, description, video }, index) => (
+              <button
+                key={index}
+                className="card-button"
+                onClick={() => setLesson(id)}
+              >
+                <img
+                  src={getThumbnail(video)}
+                  alt=""
+                  className={clsx(lesson === id && "opacity-50")}
+                />
+
+                <div>{title}</div>
+                <div>{description}</div>
+                {lesson === id && (
+                  <div
+                    className="
+                      absolute -top-4 -right-4 grid size-8 place-items-center
+                      rounded-full bg-theme text-white
+                    "
+                  >
+                    <EyeIcon />
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* expand/collapse results */}
+          {results.length >= limit && (
+            <Button onClick={() => setExpanded(!expanded)}>
+              {expanded ? (
+                <>
+                  Show Less
+                  <CaretUpIcon />
+                </>
+              ) : (
+                <>
+                  Show All
+                  <CaretDownIcon />
+                </>
+              )}
+            </Button>
+          )}
+        </>
+      ) : (
+        // empty
+        <div className="text-center text-dark-gray">No results</div>
+      )}
     </section>
   );
 }

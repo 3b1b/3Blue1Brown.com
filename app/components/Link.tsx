@@ -1,6 +1,6 @@
-import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import type { ComponentProps, ReactNode } from "react";
 import { Link as RouterLink, useLocation, useResolvedPath } from "react-router";
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { mergeTo } from "~/util/url";
 

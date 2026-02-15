@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 240 135">
+  <rect width="240" height="135" fill="black" />
   <g stroke="deepskyblue">
     <line x1="59" y1="27" x2="100" y2="37" />
     <line x1="59" y1="27" x2="100" y2="99" />

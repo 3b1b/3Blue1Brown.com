@@ -52,12 +52,15 @@ export const getLesson = (id: string) => {
   let lesson: Lesson | undefined;
   const topic = lessons.find(({ lessons }) => {
     chapter = lessons.findIndex((lesson) => lesson.id === id);
-    if (chapter !== -1) return false;
+    if (chapter === -1) return false;
     lesson = lessons[chapter];
     return true;
   });
   return { lesson, topic, chapter };
 };
+
+// get latest lesson
+export const getLatest = () => byDate[0];
 
 // get next lesson relative to this one by topic
 export const getNextByTopic = (id: string) => {

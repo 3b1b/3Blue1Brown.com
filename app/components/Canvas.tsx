@@ -1,11 +1,11 @@
+import type { ComponentProps } from "react";
+import { useEffect, useRef } from "react";
 import {
   useDebounce,
   useElementSize,
   useMergedRefs,
   useRafFn,
 } from "@reactuses/core";
-import type { ComponentProps } from "react";
-import { useEffect, useRef } from "react";
 
 type Props = {
   scale?: number;

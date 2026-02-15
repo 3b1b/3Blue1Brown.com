@@ -21,7 +21,7 @@ export default function SectionFlare({ className }: Props) {
         className,
       )}
       style={{
-        opacity: clamp((1 - percent) * 0.2, 0, 0.2),
+        opacity: clamp((1 - percent) * 0.25, 0, 0.25),
         left: `${-10 + percent * 25}%`,
         right: `${-10 + percent * 25}%`,
       }}

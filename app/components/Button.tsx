@@ -1,4 +1,4 @@
-import type { ComponentProps, Ref } from "react";
+import type { ComponentPropsWithRef, Ref } from "react";
 import clsx from "clsx";
 import Link from "~/components/Link";
 
@@ -9,11 +9,9 @@ type Base = {
   size?: "small" | "medium" | "large";
 };
 
-type _Link = { ref?: Ref<HTMLAnchorElement> } & ComponentProps<typeof Link>;
+type _Link = ComponentPropsWithRef<typeof Link>;
 
-type _Button = {
-  ref?: Ref<HTMLButtonElement>;
-} & ComponentProps<"button">;
+type _Button = ComponentPropsWithRef<"button">;
 
 // looks like a button and either goes somewhere (link) or does something (button)
 export default function Button({
