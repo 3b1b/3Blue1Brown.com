@@ -36,7 +36,7 @@ export default function Patreon() {
         </p>
       </div>
 
-      <Button to="" color="accent">
+      <Button to="https://www.patreon.com/c/3blue1brown" color="accent">
         Become a Supporter
         <ArrowRightIcon />
       </Button>

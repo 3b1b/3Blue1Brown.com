@@ -19,62 +19,62 @@ const links = [
   {
     icon: <YoutubeLogoIcon />,
     label: "2nd Channel",
-    link: "",
+    link: "https://www.youtube.com/@grantsanderson",
   },
   {
     icon: <NewspaperIcon />,
     label: "Newsletter",
-    link: "",
+    link: "https://3blue1brown.substack.com",
   },
   {
     icon: <InstagramLogoIcon />,
     label: "Instagram",
-    link: "",
+    link: "https://www.instagram.com/3blue1brown",
   },
   {
     icon: <XLogoIcon />,
     label: "X",
-    link: "",
+    link: "https://x.com/3blue1brown",
   },
   {
     icon: <ButterflyIcon />,
     label: "BlueSky",
-    link: "",
+    link: "https://bsky.app/profile/3blue1brown.com",
   },
   {
     icon: <TiktokLogoIcon />,
     label: "TikTok",
-    link: "",
+    link: "https://www.tiktok.com/@3blue1brown",
   },
   {
     icon: <FacebookLogoIcon />,
     label: "Facebook",
-    link: "",
+    link: "https://www.facebook.com/3blue1brown",
   },
   {
     icon: <SpotifyLogoIcon />,
     label: "Spotify",
-    link: "",
+    link: "https://open.spotify.com/show/4MFZ3m3PIfsKBNoVR7yIf2",
   },
   {
     icon: <RedditLogoIcon />,
     label: "Reddit",
-    link: "",
+    link: "https://www.reddit.com/r/3blue1brown",
   },
   {
     icon: <GithubLogoIcon />,
     label: "GitHub",
-    link: "",
+    link: "https://github.com/3b1b",
   },
   {
     icon: <RssIcon />,
     label: "RSS",
-    link: "",
+    link: "https://3blue1brown.substack.com/feed",
   },
   {
     icon: <TelevisionIcon />,
     label: "Bilibili",
-    link: "",
+    link: "https://space.bilibili.com/88461692",
   },
 ];
 

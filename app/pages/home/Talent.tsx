@@ -18,7 +18,7 @@ export default function Talent() {
         people who watch 3Blue1Brown.
       </p>
 
-      <Button to="" color="accent">
+      <Button to="/talent" color="accent">
         Explore Opportunities
         <ArrowRightIcon />
       </Button>
