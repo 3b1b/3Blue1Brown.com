@@ -13,25 +13,10 @@ export default function Extras() {
         Extras
       </Heading>
 
-      <div
-        className="
-          grid w-full grid-cols-2 items-start justify-center
-          justify-items-center gap-x-12 gap-y-4
-          max-md:grid-cols-1
-        "
-      >
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-          sapien nec ipsum efficitur efficitur. Curabitur ac ligula quis metus
-          consectetur convallis. Donec a nunc ut nisl efficitur tincidunt.
-        </p>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-          sapien nec ipsum efficitur efficitur. Curabitur ac ligula quis metus
-          consectetur convallis. Donec a nunc ut nisl efficitur tincidunt.
-        </p>
-      </div>
+      <p className="max-w-100 self-center text-lg">
+        Resources, podcasts, blog, collabs, courses, conversations, and other
+        miscellany that don't fit elsewhere on the site.
+      </p>
 
       <Button to="/extras" color="accent">
         Go on a Tangent

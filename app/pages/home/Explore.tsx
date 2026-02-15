@@ -94,12 +94,14 @@ export default function Explore() {
         value={search}
         onChange={setSearch}
         className="mb-4 text-lg"
-        placeholder="Search"
+        placeholder="Search..."
+        aria-controls="results"
       />
 
       {/* topic cards */}
       {!topicId?.trim() ? (
         <div
+          id="results"
           className="
             grid grid-cols-3 gap-8
             max-md:grid-cols-2
@@ -151,6 +153,7 @@ export default function Explore() {
 
           {/* search results */}
           <div
+            id="results"
             className="
               grid grid-cols-2 gap-8
               max-sm:grid-cols-1

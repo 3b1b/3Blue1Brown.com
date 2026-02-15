@@ -12,7 +12,7 @@ export default function Talent() {
         3b1b Talent
       </Heading>
 
-      <p className="max-w-100 text-lg">
+      <p className="max-w-100 self-center text-lg">
         Think of it like a <strong>virtual career fair!</strong> We partner with
         organizations interested in hiring the kinds of technically curious
         people who watch 3Blue1Brown.

@@ -11,7 +11,7 @@ export const setList = <Entry extends Record<string, unknown>>(
   // search all top level keys
   const keys = [...new Set(list.flatMap((entry) => Object.keys(entry)))];
   // re-init searcher
-  searcher = new Fuse(list, { keys, threshold: 0.2 });
+  searcher = new Fuse(list, { keys, threshold: 0.2, ignoreLocation: true });
 };
 
 // execute search
