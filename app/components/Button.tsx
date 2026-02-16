@@ -1,8 +1,8 @@
-import type { ComponentPropsWithRef, Ref } from "react";
+import type { ComponentPropsWithRef, ReactNode, Ref } from "react";
 import clsx from "clsx";
 import Link from "~/components/Link";
 
-type Props = Base & (_Link | _Button);
+type Props = Base & (_Link | _Button | _Summary);
 
 type Base = {
   color?: "none" | "light" | "theme" | "accent";
@@ -12,6 +12,8 @@ type Base = {
 type _Link = ComponentPropsWithRef<typeof Link>;
 
 type _Button = ComponentPropsWithRef<"button">;
+
+type _Summary = { expanded: ReactNode } & ComponentPropsWithRef<"summary">;
 
 // looks like a button and either goes somewhere (link) or does something (button)
 export default function Button({
@@ -63,6 +65,15 @@ export default function Button({
       >
         {children}
       </Link>
+    );
+  else if ("expanded" in props)
+    return (
+      <details>
+        <summary ref={ref as Ref<HTMLElement>} className={className} {...props}>
+          {children}
+        </summary>
+        {props.expanded}
+      </details>
     );
   else
     return (

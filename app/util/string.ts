@@ -6,3 +6,9 @@ export const slugify = (value: string) =>
     .replaceAll(/\s+/g, " ")
     .trim()
     .replaceAll(" ", "-");
+
+// format date
+export const formatDate = (date?: string | number | Date | null) => {
+  if (!date) return "-";
+  return new Date(date).toLocaleDateString(undefined, { dateStyle: "medium" });
+};

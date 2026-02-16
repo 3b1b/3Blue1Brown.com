@@ -35,12 +35,7 @@ export default function Nav({ className = "", childClassName = "" }) {
         )}
       >
         {links.map(({ name, to }) => (
-          <Link
-            key={to}
-            to={to}
-            arrow={false}
-            className={clsx("flex items-center gap-2", childClassName)}
-          >
+          <Link key={to} to={to} arrow={false} className={childClassName}>
             {name}
           </Link>
         ))}

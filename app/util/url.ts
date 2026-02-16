@@ -35,3 +35,18 @@ export const mergeTo = (from: To, to: To) => {
 
   return path;
 };
+
+// share current page
+export const share = async () => {
+  try {
+    await window.navigator.share({
+      url: window.location.href,
+      text: document.title,
+    });
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") return;
+    console.error(error);
+    await window.navigator.clipboard.writeText(window.location.href);
+    window.alert("Link copied to clipboard!");
+  }
+};

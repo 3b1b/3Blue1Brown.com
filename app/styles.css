@@ -16,10 +16,10 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
-  --shadow-sm: 0 0 2px var(--color-shadow), 0 2px 5px var(--color-shadow);
-  --shadow-md: 0 0 4px var(--color-shadow), 0 4px 10px var(--color-shadow);
-  --shadow-lg: 0 0 6px var(--color-shadow), 0 6px 15px var(--color-shadow);
-  --shadow-xl: 0 0 8px var(--color-shadow), 0 8px 20px var(--color-shadow);
+  --shadow-sm: 0 0 5px var(--color-shadow);
+  --shadow-md: 0 0 10px var(--color-shadow);
+  --shadow-lg: 0 0 15px var(--color-shadow);
+  --shadow-xl: 0 0 20px var(--color-shadow);
 
   --color-*: initial;
 
@@ -171,7 +171,7 @@
   }
 
   a {
-    @apply text-theme underline transition-all hover:text-current;
+    @apply text-theme inline-flex items-center gap-1 underline transition-all hover:text-current;
   }
 
   button,
@@ -181,6 +181,10 @@
 
   details {
     @apply contents;
+  }
+
+  ::details-content {
+    @apply w-full;
   }
 
   label {

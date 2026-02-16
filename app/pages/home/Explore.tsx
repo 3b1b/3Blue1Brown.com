@@ -12,6 +12,7 @@ import { shuffle } from "lodash-es";
 import Button from "~/components/Button";
 import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
+import { play } from "~/components/Youtube";
 import { byDate, lessons } from "~/data/lessons";
 import { images } from "~/pages/home/images";
 import { atomWithQuery } from "~/util/atom";
@@ -163,7 +164,10 @@ export default function Explore() {
               <button
                 key={index}
                 className="card-button"
-                onClick={() => setLesson(id)}
+                onClick={() => {
+                  setLesson(id);
+                  play();
+                }}
               >
                 <img
                   src={getThumbnail(video)}

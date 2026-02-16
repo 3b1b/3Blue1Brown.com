@@ -52,3 +52,7 @@ export default function App() {
     </IconContext.Provider>
   );
 }
+
+// common route data loader
+export const loader = async () =>
+  await import("virtual:react-router/server-build");

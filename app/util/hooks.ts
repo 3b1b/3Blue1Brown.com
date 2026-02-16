@@ -10,15 +10,6 @@ import { wrap } from "comlink";
 import { isEqual } from "lodash-es";
 import FuzzyWorker from "~/util/fuzzy?worker";
 
-// scroll "progress" of element down viewport, -1 to 1
-export const useParallax = (ref: RefObject<HTMLElement | null>) => {
-  const elementBbox = useElementBounding(ref);
-  const windowSize = useWindowSize();
-  const percent =
-    (elementBbox.top + elementBbox.height / 2) / windowSize.height;
-  return -1 + 2 * percent || 0;
-};
-
 // check if value changed from previous render
 export const useChanged = <Value>(value: Value, countUndefined = true) => {
   const [prev, setPrev] = useState<Value>();
@@ -73,4 +64,13 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   }, [worker, search, list]);
 
   return matches;
+};
+
+// scroll "progress" of element down viewport, -1 to 1
+export const useParallax = (ref: RefObject<HTMLElement | null>) => {
+  const elementBbox = useElementBounding(ref);
+  const windowSize = useWindowSize();
+  const percent =
+    (elementBbox.top + elementBbox.height / 2) / windowSize.height;
+  return -1 + 2 * percent || 0;
 };

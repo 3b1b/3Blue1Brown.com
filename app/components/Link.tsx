@@ -1,7 +1,13 @@
 import type { ComponentProps, ReactNode } from "react";
-import { Link as RouterLink, useLocation, useResolvedPath } from "react-router";
+import {
+  Link as RouterLink,
+  useLocation,
+  useMatch,
+  useResolvedPath,
+} from "react-router";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { useRouteExists } from "~/routes";
 import { mergeTo } from "~/util/url";
 
 type Props = Base & (_Anchor | _Router);
@@ -39,9 +45,6 @@ export default function Link({
   // whether to show arrow icon
   arrow ??= !!target;
 
-  // class name string
-  className = clsx("inline-flex items-center gap-1", className);
-
   // current location
   const from = useLocation();
 
@@ -49,8 +52,13 @@ export default function Link({
   const resolved = useResolvedPath(to);
 
   // are we already on target page
-  const active =
-    !external && (from.pathname === to || from.pathname === resolved.pathname);
+  const active = useMatch(to.toString()) && !external;
+
+  // check if broken internal link
+  const broken = !useRouteExists(to.toString()) && !external && !active;
+
+  // class name string
+  className = clsx(broken && "line-through!", className);
 
   // external link
   if (external)
