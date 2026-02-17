@@ -33,14 +33,15 @@ const topics = [
   //   description: "A few hand-picked favorite lessons",
   //   lessons: [],
   // },
+
+  ...lessons,
+
   {
     id: "shuffle",
     title: "Shuffle",
     description: "All lessons, in random order. Refresh for a new shuffle!",
     lessons: shuffle(byDate),
   },
-
-  ...lessons,
 ]
   .filter((topic) => !topic.id.match(/misc/i))
   .map((button) => ({ ...button, img: images[button.id] }));
@@ -61,7 +62,7 @@ export default function Explore() {
   const [search, setSearch] = useAtom(searchAtom);
 
   // current lesson
-  const [lesson, setLesson] = useAtom(lessonAtom);
+  const [lessonId, setLessonId] = useAtom(lessonAtom);
 
   // current topic details
   const topic = topics.find((topic) => topic.id === topicId);
@@ -101,7 +102,7 @@ export default function Explore() {
       />
 
       {/* topic cards */}
-      {!topicId?.trim() ? (
+      {!topicId?.trim() && !search.trim() ? (
         <div
           id="results"
           className="
@@ -164,19 +165,19 @@ export default function Explore() {
                 key={index}
                 className="card-button"
                 onClick={() => {
-                  setLesson(id);
+                  setLessonId(id);
                   play();
                 }}
               >
                 <img
                   src={getThumbnail(video)}
                   alt=""
-                  className={clsx(lesson === id && "opacity-50")}
+                  className={clsx(lessonId === id && "opacity-50")}
                 />
 
                 <div>{title}</div>
                 <div>{description}</div>
-                {lesson === id && (
+                {lessonId === id && (
                   <div
                     className="
                       absolute -top-4 -right-4 grid size-8 place-items-center

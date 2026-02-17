@@ -1,4 +1,4 @@
-import { orderBy } from "lodash-es";
+import { orderBy, sample } from "lodash-es";
 import _lessons from "./lessons.yaml";
 
 // lesson data w/ type defs
@@ -32,18 +32,21 @@ export const byDate = orderBy(
   "desc",
 );
 
+// get random lesson
+export const getRandom = () => sample(byDate)!;
+
 // get next lesson relative to this one by date
 export const getNextByDate = (id: string) => {
   const index = byDate.findIndex((lesson) => lesson?.id === id);
   if (index === -1) return;
-  return byDate[index + 1];
+  return byDate[index - 1];
 };
 
 // get previous lesson relative to this one by date
 export const getPreviousByDate = (id: string) => {
   const index = byDate.findIndex((lesson) => lesson?.id === id);
   if (index === -1) return null;
-  return byDate[index - 1];
+  return byDate[index + 1];
 };
 
 // get lesson by id, plus topic it belongs to and chapter index

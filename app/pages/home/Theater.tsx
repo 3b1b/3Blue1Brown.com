@@ -1,26 +1,44 @@
 import { useState } from "react";
 import {
   BookOpenTextIcon,
+  CaretDoubleRightIcon,
+  CaretLeftIcon,
+  CaretRightIcon,
+  DiceThreeIcon,
   InfoIcon,
   ShareNetworkIcon,
 } from "@phosphor-icons/react";
-import clsx from "clsx";
-import { useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
+import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
 import Heading from "~/components/Heading";
-import Youtube, { playingAtom } from "~/components/Youtube";
-import { getLatest, getLesson } from "~/data/lessons";
-import { lessonAtom } from "~/pages/home/Explore";
+import Youtube, { play, playingAtom } from "~/components/Youtube";
+import {
+  getLatest,
+  getLesson,
+  getNextByDate,
+  getNextByTopic,
+  getPreviousByDate,
+  getPreviousByTopic,
+  getRandom,
+} from "~/data/lessons";
+import { lessonAtom, topicAtom } from "~/pages/home/Explore";
 import { useRouteExists } from "~/routes";
 import { formatDate } from "~/util/string";
 import { share } from "~/util/url";
 
 export default function Theater() {
+  // current lesson
+  const [, setLessonId] = useAtom(lessonAtom);
+
+  // latest lesson details
+  const latest = getLatest();
+
   // current lesson details
-  const lesson = getLesson(useAtomValue(lessonAtom)).lesson ?? getLatest();
+  const lesson = getLesson(useAtomValue(lessonAtom)).lesson ?? latest;
 
   // is this latest lesson
-  const isLatest = getLatest()?.id === lesson?.id;
+  const isLatest = latest?.id === lesson?.id;
 
   // link to readable lesson
   const readLink = lesson ? `/lessons/${lesson.id}` : "";
@@ -31,7 +49,20 @@ export default function Theater() {
   // show video details
   const [details, setDetails] = useState(false);
 
+  // is video playing
   const playing = useAtomValue(playingAtom);
+
+  // current topic
+  const topic = useAtomValue(topicAtom);
+
+  // previous video
+  const previous =
+    lesson &&
+    (topic ? getPreviousByTopic(lesson.id) : getPreviousByDate(lesson.id));
+
+  // next video
+  const next =
+    lesson && (topic ? getNextByTopic(lesson.id) : getNextByDate(lesson.id));
 
   return (
     <>
@@ -43,14 +74,16 @@ export default function Theater() {
       </Heading>
 
       <div
-        className={clsx(
-          "flex max-w-full flex-col gap-4 self-center transition-all",
-          playing ? "w-300" : "w-250",
-        )}
+        className="
+          flex w-250 max-w-full flex-col gap-4 self-center transition-all
+        "
       >
         <Youtube
           id={lesson?.video ?? ""}
           className="aspect-video w-full self-center border border-black"
+          style={{
+            filter: playing ? `url("${backlight}#filter")` : undefined,
+          }}
         />
 
         <div className="flex flex-wrap items-center justify-center gap-4">
@@ -85,6 +118,55 @@ export default function Theater() {
             <p>{lesson?.description}</p>
           </div>
         )}
+
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Button
+            size="small"
+            onClick={() => {
+              setLessonId(getRandom().id);
+              play();
+            }}
+          >
+            <DiceThreeIcon />
+            Random
+          </Button>
+          {previous && (
+            <Button
+              size="small"
+              onClick={() => {
+                setLessonId(previous.id);
+                play();
+              }}
+            >
+              <CaretLeftIcon />
+              Previous
+            </Button>
+          )}
+          {next && (
+            <Button
+              size="small"
+              onClick={() => {
+                setLessonId(next.id);
+                play();
+              }}
+            >
+              Next
+              <CaretRightIcon />
+            </Button>
+          )}
+          {latest && !isLatest && (
+            <Button
+              size="small"
+              onClick={() => {
+                setLessonId(latest.id);
+                play();
+              }}
+            >
+              Latest
+              <CaretDoubleRightIcon />
+            </Button>
+          )}
+        </div>
       </div>
     </>
   );

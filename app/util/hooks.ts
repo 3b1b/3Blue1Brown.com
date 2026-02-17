@@ -52,7 +52,7 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
     let latest = true;
 
     (async () => {
-      if (!search) return setMatches(list);
+      if (!search) return setMatches([]);
       const matches = await worker.searchList(search);
       if (!latest) return;
       setMatches(matches);

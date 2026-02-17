@@ -42,7 +42,7 @@ export default function Youtube({ id, className, ...props }: Props) {
       src={`https://www.youtube.com/watch?v=${id}`}
       poster={getThumbnail(id)}
       controls
-      muted
+      autoPlay={false}
       {...props}
     />
   );
