@@ -18,8 +18,9 @@
 
   --shadow-sm: 0 0 5px var(--color-shadow);
   --shadow-md: 0 0 10px var(--color-shadow);
-  --shadow-lg: 0 0 15px var(--color-shadow);
-  --shadow-xl: 0 0 20px var(--color-shadow);
+  --shadow-lg: 0 0 20px var(--color-shadow);
+  --shadow-xl: 0 0 40px var(--color-shadow);
+  --shadow-overlay: 0 0 0 9999px var(--color-shadow);
 
   --color-*: initial;
 
@@ -35,7 +36,6 @@
   --color-white: hsl(0, 0%, 100%);
 
   --color-shadow: #00000040;
-  --color-overlay: #00000080;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -64,11 +64,6 @@
 
   main {
     @apply flex grow flex-col;
-  }
-
-  header,
-  footer {
-    @apply relative isolate gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4;
   }
 
   section {
@@ -296,10 +291,10 @@
 
 @keyframes perspective-rotate {
   0% {
-    transform: rotateX(65deg) rotateZ(0deg);
+    transform: perspective(2000px) rotateX(65deg) rotateZ(0deg);
   }
   100% {
-    transform: rotateX(65deg) rotateZ(360deg);
+    transform: perspective(2000px) rotateX(65deg) rotateZ(360deg);
   }
 }
 

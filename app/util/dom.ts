@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
-import { waitFor, waitForStable } from "~/util/misc";
+import { frame, waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
 export const renderText = (node: ReactNode) =>
@@ -62,4 +62,13 @@ export const scrollToSelector = async (
 
   // scroll to element
   element.scrollIntoView(options);
+};
+
+// scroll page so that mouse stays at same position in document
+export const preserveScroll = async (element?: Element | null) => {
+  if (!element) return;
+  const oldY = element.getBoundingClientRect().top;
+  await frame();
+  const newY = element.getBoundingClientRect().top;
+  window.scrollBy({ top: newY - oldY, behavior: "instant" });
 };

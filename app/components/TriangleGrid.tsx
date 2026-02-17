@@ -12,7 +12,7 @@ const thickness = 3;
 const spacing = 100;
 const limit = 400;
 const minConnections = 1;
-const duration = 2;
+const duration = 4;
 const colorA = "#0088ff";
 const colorB = "#ff88ff";
 const delayEq = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;

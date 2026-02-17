@@ -13,7 +13,7 @@ export default function Extras() {
         Extras
       </Heading>
 
-      <p className="max-w-100 self-center text-lg">
+      <p className="max-w-100 self-center">
         Resources, podcasts, blog, collabs, courses, conversations, and other
         miscellany that don't fit elsewhere on the site.
       </p>

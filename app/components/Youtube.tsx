@@ -1,10 +1,12 @@
 import type { ComponentProps } from "react";
 import { useRef } from "react";
+import { useEventListener } from "@reactuses/core";
 import clsx from "clsx";
+import { atom } from "jotai";
+import { waitFor } from "~/util/misc";
 import { getThumbnail } from "~/util/youtube";
 import "youtube-video-element";
-import { useEventListener } from "@reactuses/core";
-import { waitFor } from "~/util/misc";
+import { setAtom } from "~/util/atom";
 
 type Props = {
   id?: string;
@@ -28,6 +30,9 @@ export default function Youtube({ id, className, ...props }: Props) {
   // listen for stop event
   useEventListener("youtube-video-stop", () => ref.current?.pause());
 
+  useEventListener("play", () => setAtom(playingAtom, true), ref);
+  useEventListener("pause", () => setAtom(playingAtom, false), ref);
+
   if (!id) return <div className={className}>No video</div>;
 
   return (
@@ -38,13 +43,14 @@ export default function Youtube({ id, className, ...props }: Props) {
       poster={getThumbnail(id)}
       controls
       muted
-      autoPlay
       {...props}
     />
   );
 }
 
 // funcs to conveniently control video from outside component
+
+export const playingAtom = atom(false);
 
 // trigger play event
 export const play = async () =>

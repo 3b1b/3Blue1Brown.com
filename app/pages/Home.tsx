@@ -24,9 +24,9 @@ export default function Home() {
 
       <main>
         <Explore />
+        <Follow />
         <Patreon />
         <Talent />
-        <Follow />
         <Extras />
       </main>
 

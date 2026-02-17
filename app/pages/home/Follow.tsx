@@ -81,6 +81,7 @@ const links = [
 export default function Follow() {
   return (
     <section>
+      <hr />
       <Heading level={2} className="sr-only">
         Follow
       </Heading>

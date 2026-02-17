@@ -29,6 +29,7 @@ export default function Nav({ className = "", childClassName = "" }) {
   return (
     <>
       <nav
+        id="nav"
         className={clsx(
           `flex flex-wrap items-center justify-center gap-4 font-sans text-lg`,
           className,

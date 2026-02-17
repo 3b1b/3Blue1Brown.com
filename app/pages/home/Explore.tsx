@@ -16,6 +16,7 @@ import { play } from "~/components/Youtube";
 import { byDate, lessons } from "~/data/lessons";
 import { images } from "~/pages/home/images";
 import { atomWithQuery } from "~/util/atom";
+import { preserveScroll } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
 import { getThumbnail } from "~/util/youtube";
 
@@ -72,8 +73,8 @@ export default function Explore() {
   );
 
   // show all or truncate results
-  const [expanded, setExpanded] = useState(false);
-  if (!expanded) results = results.slice(0, limit);
+  const [all, setAll] = useState(false);
+  if (!all) results = results.slice(0, limit);
 
   // scroll to search box
   const scroll = () => {
@@ -141,10 +142,7 @@ export default function Explore() {
                 <div>{topic.description}</div>
               </div>
               <Button
-                onClick={async () => {
-                  setTopicId("");
-                  scroll();
-                }}
+                onClick={async () => setTopicId("")}
                 aria-label="Clear topic"
               >
                 <XIcon />
@@ -156,7 +154,8 @@ export default function Explore() {
           <div
             id="results"
             className="
-              grid grid-cols-2 gap-8
+              grid grid-cols-3 gap-8
+              max-md:grid-cols-2
               max-sm:grid-cols-1
             "
           >
@@ -193,8 +192,15 @@ export default function Explore() {
 
           {/* expand/collapse results */}
           {results.length >= limit && (
-            <Button onClick={() => setExpanded(!expanded)}>
-              {expanded ? (
+            <Button
+              className="self-center"
+              color="theme"
+              onClick={(event) => {
+                if (all) preserveScroll(event.currentTarget);
+                setAll(!all);
+              }}
+            >
+              {all ? (
                 <>
                   Show Less
                   <CaretUpIcon />

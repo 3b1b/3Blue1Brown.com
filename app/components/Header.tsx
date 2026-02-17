@@ -22,12 +22,15 @@ export default function Header({ children }: Props) {
 
   return (
     <header
-      className="
-        dark flex flex-col bg-white
-        *:bg-transparent
-      "
+      className={clsx(
+        `
+          dark relative isolate flex flex-col gap-8 overflow-hidden bg-white p-8
+          text-black
+          max-md:gap-4 max-md:p-4
+        `,
+      )}
     >
-      <Grid className="mask-b-from-0% mask-b-to-100% opacity-25" />
+      <Grid className="max-h-100 mask-b-from-0% mask-b-to-100% opacity-25" />
 
       <div className="flex flex-wrap items-center">
         {/* title */}

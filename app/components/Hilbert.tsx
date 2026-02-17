@@ -76,7 +76,7 @@ type Props = ComponentProps<"div">;
 
 export default function Hilbert({ className }: Props) {
   return (
-    <div className={clsx("absolute inset-0 -z-10", className)}>
+    <div className={clsx("absolute inset-0 -z-10 overflow-hidden", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={[left, top, width, height].join(" ")}
