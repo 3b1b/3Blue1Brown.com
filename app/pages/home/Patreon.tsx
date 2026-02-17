@@ -5,7 +5,7 @@ import SectionFlare from "~/components/SectionFlare";
 
 export default function Patreon() {
   return (
-    <section className="items-center">
+    <section className="my-8 items-center">
       <SectionFlare className="text-theme" />
 
       <Heading level={2}>

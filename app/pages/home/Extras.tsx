@@ -5,7 +5,7 @@ import SectionFlare from "~/components/SectionFlare";
 
 export default function Extras() {
   return (
-    <section className="items-center">
+    <section className="my-8 items-center">
       <SectionFlare className="text-gray" />
 
       <Heading level={2}>

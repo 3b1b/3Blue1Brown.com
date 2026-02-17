@@ -80,8 +80,7 @@ const links = [
 
 export default function Follow() {
   return (
-    <section>
-      <hr />
+    <section className="bg-off-white">
       <Heading level={2} className="sr-only">
         Follow
       </Heading>

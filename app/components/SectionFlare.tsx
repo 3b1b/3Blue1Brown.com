@@ -11,20 +11,24 @@ type Props = {
 // section bg with animated flare
 export default function SectionFlare({ className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const percent = useParallax(ref);
+  let percent = useParallax(ref);
+  percent = clamp(percent ** 4, 0, 1);
 
   return (
     <div
       ref={ref}
       className={clsx(
-        "absolute inset-y-0 -z-10 skew-x-10 bg-current",
+        `
+          absolute top-1/2 left-1/2 -z-10 box-content flex size-full
+          -translate-1/2 skew-x-5 bg-current/10
+        `,
         className,
       )}
-      style={{
-        opacity: clamp((1 - percent) * 0.25, 0, 0.25),
-        left: `${-10 + percent * 25}%`,
-        right: `${-10 + percent * 25}%`,
-      }}
-    />
+      style={{ maxWidth: (1 - Math.abs(percent)) * 1200, opacity: 1 - percent }}
+    >
+      <div className="w-8 border-3 border-r-0 border-current/25" />
+      <div className="grow" />
+      <div className="w-8 border-3 border-l-0 border-current/25" />
+    </div>
   );
 }
