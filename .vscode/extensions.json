@@ -3,7 +3,8 @@
     "yoavbls.pretty-ts-errors",
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "unifiedjs.vscode-mdx"
     // "christian-kohler.path-intellisense",
     // "bennycode.sort-everything",
     // "tyriar.sort-lines",

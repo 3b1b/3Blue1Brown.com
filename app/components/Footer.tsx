@@ -5,7 +5,7 @@ export default function Footer() {
     <footer
       className="
         dark relative isolate flex min-h-50 items-end justify-center gap-8
-        overflow-hidden bg-white p-8 text-black
+        overflow-hidden bg-white p-8 font-sans text-black
         max-md:gap-4 max-md:p-6
       "
     >

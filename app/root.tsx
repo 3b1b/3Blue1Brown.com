@@ -10,6 +10,7 @@ import {
   useLocation,
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
+import Anchors from "~/components/Anchors";
 import { scrollToSelector } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
@@ -45,6 +46,7 @@ export default function App() {
         </head>
         <body>
           <Outlet />
+          <Anchors />
           <ScrollRestoration />
           <Scripts />
         </body>

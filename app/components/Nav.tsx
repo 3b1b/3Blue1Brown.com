@@ -1,3 +1,4 @@
+import { href } from "react-router";
 import clsx from "clsx";
 import DarkMode from "~/components/DarkMode";
 import Link from "~/components/Link";
@@ -9,7 +10,7 @@ const links = [
   },
   {
     name: "Talent",
-    to: "/talent",
+    to: href("/talent"),
   },
   {
     name: "Patreon",
@@ -21,7 +22,7 @@ const links = [
   },
   {
     name: "About",
-    to: "/about",
+    to: href("/about"),
   },
 ];
 

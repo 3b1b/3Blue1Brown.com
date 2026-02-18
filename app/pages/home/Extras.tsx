@@ -1,17 +1,13 @@
 import { ArrowRightIcon, CirclesThreePlusIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
-import SectionFlare from "~/components/SectionFlare";
 
 export default function Extras() {
   return (
-    <section className="my-8 items-center">
-      <SectionFlare className="text-gray" />
-
-      <Heading level={2}>
+    <section className="items-center">
+      <h2>
         <CirclesThreePlusIcon />
         Extras
-      </Heading>
+      </h2>
 
       <p className="max-w-100 self-center">
         Resources, podcasts, blog, collabs, courses, conversations, and other

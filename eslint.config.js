@@ -1,6 +1,7 @@
 import eslintJs from "@eslint/js";
 import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
+import * as eslintPluginMdx from "eslint-plugin-mdx";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import { defineConfig, globalIgnores } from "eslint/config";
@@ -15,35 +16,46 @@ export default defineConfig([
     "playwright-report",
     "test-results",
   ]),
-  eslintJs.configs.recommended,
-  typescriptEslint.configs.recommended,
-  eslintPluginPrettierRecommended,
-  eslintPluginReactHooks.configs.flat.recommended,
-  eslintPluginJsxA11y.flatConfigs.recommended,
-  {
-    plugins: {
-      "better-tailwindcss": eslintPluginBetterTailwindcss,
-    },
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-    rules: {
-      // GENERAL
-      "prefer-const": ["error", { destructuring: "all" }],
 
-      // TYPESCRIPT
+  // https://github.com/mdx-js/eslint-mdx/issues/92
+  {
+    name: "TypeScript",
+    extends: typescriptEslint.configs.recommended,
+    ignores: ["**/*.mdx"],
+    rules: {
       "@typescript-eslint/no-unused-vars": ["warn", { caughtErrors: "none" }],
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "@typescript-eslint/consistent-type-imports": "error",
-
-      // ACCESSIBILITY
+    },
+  },
+  {
+    name: "JavaScript",
+    ...eslintJs.configs.recommended,
+    rules: {
+      "prefer-const": ["error", { destructuring: "all" }],
+    },
+  },
+  {
+    name: "React Hooks",
+    ...eslintPluginReactHooks.configs.flat.recommended,
+  },
+  {
+    name: "JSX Accessibility",
+    ...eslintPluginJsxA11y.flatConfigs.recommended,
+    rules: {
       // https://github.com/dequelabs/axe-core/issues/4566
       "jsx-a11y/no-noninteractive-tabindex": ["off"],
-
-      // FORMATTING
-      "prettier/prettier": "warn",
-      ...eslintPluginBetterTailwindcss.configs["recommended-warn"].rules,
+    },
+  },
+  {
+    name: "Prettier",
+    ...eslintPluginPrettierRecommended,
+    ignores: ["**/*.mdx"],
+  },
+  {
+    name: "Tailwind",
+    extends: [eslintPluginBetterTailwindcss.configs.recommended],
+    rules: {
       // https://github.com/schoero/eslint-plugin-better-tailwindcss/issues/302
       "better-tailwindcss/enforce-consistent-line-wrapping": [
         "warn",
@@ -51,6 +63,18 @@ export default defineConfig([
       ],
       "better-tailwindcss/no-unknown-classes": ["warn", { ignore: ["dark"] }],
     },
-    settings: { "better-tailwindcss": { entryPoint: "app/styles.css" } },
+    settings: {
+      "better-tailwindcss": { entryPoint: "app/styles.css" },
+    },
+  },
+  {
+    name: "MDX",
+    ...eslintPluginMdx.flat,
+  },
+  {
+    languageOptions: {
+      globals: globals.browser,
+      ecmaVersion: 2020,
+    },
   },
 ]);

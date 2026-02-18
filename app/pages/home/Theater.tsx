@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { href } from "react-router";
 import {
   BookOpenTextIcon,
   CaretDoubleRightIcon,
@@ -11,7 +12,6 @@ import {
 import { useAtom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
 import Youtube, { play, playingAtom } from "~/components/Youtube";
 import {
   getLatest,
@@ -22,10 +22,10 @@ import {
   getPreviousByTopic,
   getRandom,
 } from "~/data/lessons";
-import { lessonAtom, topicAtom } from "~/pages/home/Explore";
 import { useRouteExists } from "~/routes";
 import { formatDate } from "~/util/string";
 import { share } from "~/util/url";
+import { lessonAtom, topicAtom } from "./Explore";
 
 export default function Theater() {
   // current lesson
@@ -41,7 +41,9 @@ export default function Theater() {
   const isLatest = latest?.id === lesson?.id;
 
   // link to readable lesson
-  const readLink = lesson ? `/lessons/${lesson.id}` : "";
+  const readLink = lesson
+    ? href(`/lessons/:lessonId`, { lessonId: lesson.id })
+    : "";
 
   // does readable lesson exist
   const readExists = useRouteExists(readLink);
@@ -66,12 +68,8 @@ export default function Theater() {
 
   return (
     <>
-      <Heading level={1} className="sr-only">
-        Home
-      </Heading>
-      <Heading level={2} className="sr-only">
-        Theater
-      </Heading>
+      <h1 className="sr-only">Home</h1>
+      <h2 className="sr-only">Theater</h2>
 
       <div
         className="

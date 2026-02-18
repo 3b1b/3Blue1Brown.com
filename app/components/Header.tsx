@@ -1,10 +1,13 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { href } from "react-router";
 import { ListIcon, XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Grid from "~/components/Grid";
-import HomeLink from "~/components/HomeLink";
+import Link from "~/components/Link";
+import Logo from "~/components/Logo";
 import Nav from "~/components/Nav";
+import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.yaml";
 
 type Props = {
@@ -34,7 +37,14 @@ export default function Header({ children }: Props) {
 
       <div className="flex flex-wrap items-center">
         {/* title */}
-        <HomeLink className="flex-1" childClassName={className} />
+        <Link to={href("/")} className="flex-1 no-underline">
+          <div className="flex items-center gap-2 font-serif">
+            <Logo className="size-12" />
+            <StrokeType className={clsx("w-fit text-3xl", className)}>
+              {site.title}
+            </StrokeType>
+          </div>
+        </Link>
 
         {/* toggle */}
         <button

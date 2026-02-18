@@ -238,45 +238,33 @@
   @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
 }
 
-[data-draw] {
-  @apply relative;
-  animation: text-fade-in 1s 1s linear both;
-
-  &::before,
-  &::after {
-    @apply absolute inset-0 grid place-items-center content-[attr(data-draw)];
-  }
-
-  &::before {
-    @apply wipe;
-    -webkit-text-stroke: 0.5px var(--color-theme);
-    -webkit-text-fill-color: transparent;
-  }
-
-  &::after {
-    @apply wipe text-black [--delay:0.5s];
-  }
+@utility stroke-type {
+  animation: stroke-type 1s linear both;
+  -webkit-text-stroke-width: 0.5px;
 }
 
-@keyframes text-fade-in {
-  from {
+@keyframes stroke-type {
+  0% {
     color: transparent;
+    -webkit-text-stroke-color: transparent;
+  }
+  50% {
+    color: transparent;
+    -webkit-text-stroke-color: var(--color-theme);
+  }
+  100% {
+    color: currentColor;
+    -webkit-text-stroke-color: transparent;
   }
 }
 
-@utility wipe {
-  mask-image: linear-gradient(
-    to right,
-    transparent 25%,
-    white 35%,
-    white 65%,
-    transparent 75%
-  );
-  mask-size: 400% 100%;
-  animation: wipe var(--duration, 3s) var(--delay, 0s) linear both;
+@utility wipe-in {
+  mask-image: linear-gradient(to right, black 33%, transparent 66%);
+  mask-size: 300% 100%;
+  animation: wipe-in var(--duration, 1s) var(--delay, 0s) linear both;
 }
 
-@keyframes wipe {
+@keyframes wipe-in {
   from {
     mask-position: 100% 0%;
   }

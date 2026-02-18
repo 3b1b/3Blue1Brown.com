@@ -72,9 +72,7 @@ export default function Link({
   // internal link, active
   if (active)
     return (
-      <span className={clsx("pointer-events-none", className)} data-active>
-        {children}
-      </span>
+      <span className={clsx("pointer-events-none", className)}>{children}</span>
     );
 
   // other internal link
@@ -84,8 +82,8 @@ export default function Link({
       to={mergeTo(from, to)}
       target={target}
       className={className}
-      {...props}
       viewTransition={resolved.pathname !== from.pathname ? true : undefined}
+      {...props}
     >
       {children}
       {arrow && <ArrowSquareOutIcon />}

@@ -1,14 +1,14 @@
 import { useAtomValue } from "jotai";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
+import Meta from "~/components/Meta";
 import { getLesson } from "~/data/lessons";
-import { Meta } from "~/Meta";
-import Explore, { lessonAtom } from "~/pages/home/Explore";
-import Extras from "~/pages/home/Extras";
-import Follow from "~/pages/home/Follow";
-import Patreon from "~/pages/home/Patreon";
-import Talent from "~/pages/home/Talent";
-import Theater from "~/pages/home/Theater";
+import Explore, { lessonAtom } from "./Explore";
+import Extras from "./Extras";
+import Follow from "./Follow";
+import Patreon from "./Patreon";
+import Talent from "./Talent";
+import Theater from "./Theater";
 
 export default function Home() {
   // page title
@@ -24,8 +24,8 @@ export default function Home() {
 
       <main>
         <Explore />
-        <Follow />
         <Patreon />
+        <Follow />
         <Talent />
         <Extras />
       </main>

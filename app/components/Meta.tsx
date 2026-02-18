@@ -6,7 +6,7 @@ type Props = {
 };
 
 // conveniently set page meta
-export const Meta = ({ title, description }: Props) => {
+export default function Meta({ title, description }: Props) {
   const combinedTitle = [title, site.title].flat().filter(Boolean).join(" | ");
 
   const combinedDescription = (description || site.description).trim();
@@ -26,4 +26,4 @@ export const Meta = ({ title, description }: Props) => {
       <meta property="og:image" content="/share.jpg" />
     </>
   );
-};
+}

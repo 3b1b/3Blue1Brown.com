@@ -1,17 +1,13 @@
 import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
-import SectionFlare from "~/components/SectionFlare";
 
 export default function Patreon() {
   return (
-    <section className="my-8 items-center">
-      <SectionFlare className="text-theme" />
-
-      <Heading level={2}>
+    <section className="items-center bg-theme/10">
+      <h2>
         <PatreonLogoIcon />
         Patreon
-      </Heading>
+      </h2>
 
       <div
         className="

@@ -10,15 +10,14 @@ import clsx from "clsx";
 import { useAtom } from "jotai";
 import { shuffle } from "lodash-es";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/Youtube";
 import { byDate, lessons } from "~/data/lessons";
-import { images } from "~/pages/home/images";
 import { atomWithQuery } from "~/util/atom";
 import { preserveScroll } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
 import { getThumbnail } from "~/util/youtube";
+import { images } from "./images";
 
 const topics = [
   {
@@ -85,11 +84,7 @@ export default function Explore() {
 
   return (
     <section>
-      <Heading level={2}>
-        <hr />
-        Explore
-        <hr />
-      </Heading>
+      <h2>Explore Lessons</h2>
 
       <Textbox
         ref={searchBox}

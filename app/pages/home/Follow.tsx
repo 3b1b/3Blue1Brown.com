@@ -13,7 +13,6 @@ import {
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
 
 const links = [
   {
@@ -80,10 +79,8 @@ const links = [
 
 export default function Follow() {
   return (
-    <section className="bg-off-white">
-      <Heading level={2} className="sr-only">
-        Follow
-      </Heading>
+    <section className="bg-gray/10">
+      <h2 className="sr-only">Follow</h2>
 
       <div
         className="

@@ -2,7 +2,8 @@
   "compilerOptions": {
     // basic
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "vite/client", "@modyfi/vite-plugin-yaml/modules"],
+    "types": ["node", "vite/client", "mdx", "@modyfi/vite-plugin-yaml/modules"],
+    "plugins": [{ "name": "@mdx-js/typescript-plugin" }],
     "target": "ESNext",
     "module": "ESNext",
 
@@ -35,5 +36,8 @@
     "**/.server/**/*",
     "**/.client/**/*",
     ".react-router/types/**/*"
-  ]
+  ],
+  "mdx": {
+    "checkMdx": true
+  }
 }

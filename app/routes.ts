@@ -1,13 +1,21 @@
 import type { RouteObject } from "react-router";
-import type { RouteConfig } from "@react-router/dev/routes";
 import type { loader } from "~/root";
 import { matchRoutes, useRouteLoaderData } from "react-router";
-import { index, route } from "@react-router/dev/routes";
+import { index, layout, route } from "@react-router/dev/routes";
 
 export default [
-  index("pages/Home.tsx"),
-  route("testbed", "pages/Testbed.tsx"),
-] satisfies RouteConfig;
+  index("pages/home/Home.tsx"),
+  layout("pages/Layout.tsx", [
+    route("testbed", "pages/testbed/Testbed.tsx"),
+    route("about", "pages/about/About.mdx"),
+  ]),
+  layout("pages/talent/Layout.tsx", [
+    route("talent", "pages/talent/Talent.tsx"),
+  ]),
+  layout("pages/lessons/Layout.tsx", [
+    route("lessons/:lessonId", "pages/lessons/Lessons.tsx"),
+  ]),
+];
 
 // use flat list of all (statically) available routes
 export const useRoutes = () => {

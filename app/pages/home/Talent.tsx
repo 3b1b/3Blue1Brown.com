@@ -1,6 +1,5 @@
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import Heading from "~/components/Heading";
 import TriangleGrid from "~/components/TriangleGrid";
 
 export default function Talent() {
@@ -8,9 +7,7 @@ export default function Talent() {
     <section className="dark items-center">
       <TriangleGrid />
 
-      <Heading level={2} className="self-center">
-        3b1b Talent
-      </Heading>
+      <h2 className="self-center">3b1b Talent</h2>
 
       <p className="max-w-100 self-center text-lg">
         Think of it like a <strong>virtual career fair!</strong> We partner with

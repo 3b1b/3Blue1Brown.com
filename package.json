@@ -38,6 +38,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.11.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@mdx-js/rollup": "^3.1.1",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
     "@playwright/test": "^1.58.1",
     "@react-router/dev": "7.12.0",
@@ -50,8 +51,10 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-better-tailwindcss": "^4.1.1",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-mdx": "^3.6.2",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react-hooks": "^7.0.1",
+    "glob": "^13.0.5",
     "globals": "^17.3.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
