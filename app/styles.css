@@ -229,22 +229,18 @@
 }
 
 @utility card-button {
-  @apply outline-theme hover:bg-theme/10 relative flex-col justify-start gap-4 p-4 outline-offset-2 hover:outline-2;
-
-  &::before {
-    @apply aspect-video w-full content-[''];
-  }
+  @apply hover:outline-theme hover:bg-theme/10 relative flex flex-col items-center justify-start text-center text-balance text-black no-underline outline-2 outline-offset-2 outline-transparent;
 
   & > :nth-child(1) {
-    @apply absolute top-0 left-0 aspect-video w-full;
+    @apply w-full;
   }
 
   & > :nth-child(2) {
-    @apply font-sans text-lg font-medium;
+    @apply m-4 font-sans text-lg font-medium;
   }
 
   & > :nth-child(3) {
-    @apply line-clamp-3 text-justify font-serif;
+    @apply m-4 mt-0 line-clamp-3 font-serif;
   }
 }
 

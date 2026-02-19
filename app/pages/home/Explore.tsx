@@ -16,8 +16,13 @@ import { byDate, lessons } from "~/data/lessons";
 import { atomWithQuery } from "~/util/atom";
 import { preserveScroll } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
+import { importAssets } from "~/util/import";
 import { getThumbnail } from "~/util/youtube";
-import { images } from "./images";
+
+// import all svgs in this folder
+const getTopicImage = importAssets(
+  import.meta.glob("./images/*.svg", { eager: true }),
+);
 
 const topics = [
   {
@@ -43,7 +48,7 @@ const topics = [
   },
 ]
   .filter((topic) => !topic.id.match(/misc/i))
-  .map((button) => ({ ...button, img: images[button.id] }));
+  .map((button) => ({ ...button, image: getTopicImage(button.id) }));
 
 const limit = 12;
 
@@ -67,20 +72,11 @@ export default function Explore() {
   const topic = topics.find((topic) => topic.id === topicId);
 
   // search results
-  let results = useFuzzySearch(
-    topics.find((topic) => topic.id === topicId)?.lessons ?? byDate,
-    search,
-  );
+  let results = useFuzzySearch(topic?.lessons ?? byDate, search);
 
   // show all or truncate results
   const [all, setAll] = useState(false);
   if (!all) results = results.slice(0, limit);
-
-  // scroll to search box
-  const scroll = () => {
-    searchBox.current?.scrollIntoView();
-    searchBox.current?.focus();
-  };
 
   return (
     <section>
@@ -91,10 +87,26 @@ export default function Explore() {
         icon={<MagnifyingGlassIcon />}
         value={search}
         onChange={setSearch}
-        className="mb-4 text-lg"
+        className="scroll-mt-12 text-lg"
         placeholder="Search..."
         aria-controls="results"
       />
+
+      {/* selected topic */}
+      {topic && (
+        <div className="flex items-center gap-8 max-md:flex-col">
+          <img src={topic.image ?? ""} alt="" className="aspect-video h-30" />
+          <div className="flex grow flex-col gap-2">
+            <div className="w-max shrink-0 font-sans text-lg font-medium">
+              {topic.title}
+            </div>
+            <div>{topic.description}</div>
+          </div>
+          <Button onClick={async () => setTopicId("")} aria-label="Clear topic">
+            <XIcon />
+          </Button>
+        </div>
+      )}
 
       {/* topic cards */}
       {!topicId?.trim() && !search.trim() ? (
@@ -102,41 +114,23 @@ export default function Explore() {
           id="results"
           className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
-          {topics.map(({ id, title, img }, index) => (
+          {topics.map(({ id, title, image }, index) => (
             <button
               key={index}
               className="card-button"
               onClick={() => {
                 setTopicId(id);
-                scroll();
+                searchBox.current?.scrollIntoView({ behavior: "smooth" });
               }}
+              aria-label={`Explore topic "${title}"`}
             >
-              <img src={img ?? ""} alt="" />
+              <img src={image ?? ""} alt="" />
               <div>{title}</div>
             </button>
           ))}
-        </div> //
+        </div>
       ) : results.length ? (
         <>
-          {/* selected topic */}
-          {topic && (
-            <div className="flex items-center gap-8 max-md:flex-col">
-              <img src={topic.img ?? ""} alt="" className="aspect-video h-30" />
-              <div className="flex grow flex-col gap-2">
-                <div className="w-max shrink-0 font-sans text-lg font-medium">
-                  {topic.title}
-                </div>
-                <div>{topic.description}</div>
-              </div>
-              <Button
-                onClick={async () => setTopicId("")}
-                aria-label="Clear topic"
-              >
-                <XIcon />
-              </Button>
-            </div>
-          )}
-
           {/* search results */}
           <div
             id="results"
@@ -150,13 +144,13 @@ export default function Explore() {
                   setLessonId(id);
                   play();
                 }}
+                aria-label={`Play lesson "${title}"`}
               >
                 <img
                   src={getThumbnail(video)}
                   alt=""
                   className={clsx(lessonId === id && "opacity-50")}
                 />
-
                 <div>{title}</div>
                 <div>{description}</div>
                 {lessonId === id && (

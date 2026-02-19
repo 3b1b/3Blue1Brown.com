@@ -1,5 +1,7 @@
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
+import Blog from "~/pages/extras/Blog";
+import OtherWork from "~/pages/extras/OtherWork";
 
 export default function Extras() {
   return (
@@ -11,6 +13,9 @@ export default function Extras() {
           <StrokeType>Extras</StrokeType>
         </h1>
       </section>
+
+      <OtherWork />
+      <Blog />
     </>
   );
 }

@@ -1,29 +1,16 @@
 import type { ComponentProps } from "react";
 import clsx from "clsx";
-import { fromPairs, toPairs } from "lodash-es";
 import Link from "~/components/Link";
-import { slugify } from "~/util/string";
+import { importAssets } from "~/util/import";
 
-// import all images in sub-folder
-const imageImports = import.meta.glob<{ default: string }>(
-  "./images/portraits/*.jpg",
-  {
+// get portrait image
+const getImage = importAssets(
+  import.meta.glob("./images/portraits/*.jpg", {
     eager: true,
     // limit size, compress
     query: "url&w=600&format=webp",
-  },
+  }),
 );
-
-// create map of filename to import url
-const imageLookup = fromPairs(
-  toPairs(imageImports).map(
-    ([path, module]) =>
-      [path.split("/").pop()?.split(".")[0] ?? "", module.default] as const,
-  ),
-);
-
-// lookup image file by name
-const getImage = (name: string) => imageLookup[slugify(name)];
 
 type Member = {
   name: string;
