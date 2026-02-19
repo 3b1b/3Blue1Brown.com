@@ -16,6 +16,9 @@
   --font-weight-medium: 500;
   --font-weight-bold: 600;
 
+  --radius-*: initial;
+  --radius-md: 10px;
+
   --shadow-sm: 0 0 5px var(--color-shadow);
   --shadow-md: 0 0 10px var(--color-shadow);
   --shadow-lg: 0 0 20px var(--color-shadow);
@@ -35,6 +38,10 @@
   --color-off-white: hsl(0, 0%, 97%);
   --color-white: hsl(0, 0%, 100%);
 
+  --color-success: oklch(55% 0.15 180);
+  --color-warning: oklch(55% 0.15 50);
+  --color-error: oklch(55% 0.15 10);
+
   --color-shadow: #00000080;
 }
 
@@ -51,6 +58,10 @@
   --color-light-gray: hsl(0, 0%, 30%);
   --color-off-white: hsl(0, 0%, 10%);
   --color-white: hsl(0, 0%, 0%);
+
+  --color-success: oklch(80% 0.15 180);
+  --color-warning: oklch(80% 0.15 50);
+  --color-error: oklch(80% 0.15 10);
 }
 
 @layer base {
@@ -133,7 +144,7 @@
   }
 
   blockquote {
-    @apply bg-off-white border-theme gap-4 border-l-4 p-8 leading-loose;
+    @apply bg-off-white border-theme gap-4 rounded-r-md border-l-2 p-8 leading-loose;
 
     & :last-child {
       @apply text-dark-gray float-right mt-4 ml-4 leading-normal italic;
@@ -141,7 +152,7 @@
   }
 
   pre {
-    @apply bg-off-black max-w-full overflow-auto p-4 text-white;
+    @apply bg-off-black max-w-full overflow-auto rounded-md p-4 text-white;
   }
 
   :not(pre) > code {
@@ -149,7 +160,7 @@
   }
 
   table {
-    @apply border-collapse overflow-hidden;
+    @apply border-collapse overflow-hidden rounded-md;
   }
 
   thead tr {
@@ -170,20 +181,28 @@
   }
 
   a {
-    @apply text-theme underline transition-all hover:text-current;
+    @apply text-theme underline transition hover:text-current;
   }
 
   button {
-    @apply inline-flex cursor-pointer items-center justify-center font-sans transition-all;
+    @apply inline-flex cursor-pointer items-center justify-center font-sans transition;
   }
 
   label {
-    @apply inline-flex cursor-pointer items-center gap-2;
+    @apply inline-flex cursor-pointer flex-col gap-2 transition;
   }
 
   input,
   textarea {
-    @apply min-w-0 font-sans transition-all;
+    @apply min-w-0 font-sans transition;
+  }
+
+  select {
+    @apply min-w-0 cursor-pointer font-sans transition;
+  }
+
+  :focus-visible {
+    @apply outline-theme! outline-2 outline-offset-2;
   }
 }
 
@@ -210,7 +229,7 @@
 }
 
 @utility card-button {
-  @apply outline-theme hover:bg-theme/25 relative flex-col justify-start gap-4 p-4 outline-offset-2 hover:outline-2;
+  @apply outline-theme hover:bg-theme/10 relative flex-col justify-start gap-4 p-4 outline-offset-2 hover:outline-2;
 
   &::before {
     @apply aspect-video w-full content-[''];
@@ -230,7 +249,7 @@
 }
 
 @utility badge {
-  @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
+  @apply bg-theme mx-1 rounded-md px-1 font-sans text-white;
 }
 
 @utility stroke-type {

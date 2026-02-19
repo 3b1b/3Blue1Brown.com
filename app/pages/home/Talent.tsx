@@ -9,7 +9,7 @@ export default function Talent() {
 
       <h2 className="self-center">3b1b Talent</h2>
 
-      <p className="max-w-100 self-center text-lg">
+      <p className="max-w-100 self-center">
         Think of it like a <strong>virtual career fair!</strong> We partner with
         organizations interested in hiring the kinds of technically curious
         people who watch 3Blue1Brown.

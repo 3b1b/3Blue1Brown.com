@@ -5,7 +5,9 @@ import { CaretRightIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 
 type Props = {
+  // button content
   title: ReactNode;
+  // panel content
   children: ReactNode;
 } & ComponentProps<"button">;
 
@@ -20,7 +22,7 @@ export default function Collapsible({ title, children, className }: Props) {
     >
       <Button
         className={clsx(
-          "gap-2 rounded-full bg-gray/10 px-4 py-2 text-lg font-medium hover:bg-theme/10",
+          "gap-2 rounded-md bg-gray/10 p-2 font-medium hover:bg-theme/10",
           className,
         )}
         onClick={() => setIsExpanded(!isExpanded)}
@@ -32,7 +34,7 @@ export default function Collapsible({ title, children, className }: Props) {
       </Button>
       <DisclosurePanel
         className={clsx(
-          "flex h-(--disclosure-panel-height) flex-col gap-4 overflow-hidden px-12 py-2 transition-[height]",
+          "flex h-(--disclosure-panel-height) flex-col gap-4 overflow-hidden px-8 py-2 transition-[height]",
           isExpanded ? "" : "sr-only",
         )}
       >

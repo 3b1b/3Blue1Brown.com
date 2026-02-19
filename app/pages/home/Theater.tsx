@@ -71,7 +71,7 @@ export default function Theater() {
       <h1 className="sr-only">Home</h1>
       <h2 className="sr-only">Theater</h2>
 
-      <div className="flex w-250 max-w-full flex-col gap-4 self-center transition-all">
+      <div className="flex w-250 max-w-full flex-col gap-4 self-center transition">
         <Youtube
           id={lesson?.video ?? ""}
           className="aspect-video w-full self-center border border-black"

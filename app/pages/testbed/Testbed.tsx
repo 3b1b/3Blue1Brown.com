@@ -1,10 +1,16 @@
+import Alert from "~/components/Alert";
 import Button from "~/components/Button";
+import Checkbox from "~/components/Checkbox";
+import Collapsible from "~/components/Collapsible";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
+import Textbox from "~/components/Textbox";
 import site from "~/data/site.yaml";
+import { getVariants } from "~/util/misc";
 
+// a place to test and see all components side-by-side to ensure consistency
 export default function Testbed() {
   return (
     <>
@@ -28,18 +34,56 @@ export default function Testbed() {
       <section>
         <h2>Button</h2>
 
-        <div className="flex justify-center gap-4">
-          <Button to="https://3blue1brown.com">Lorem</Button>
-          <Button onClick={console.log} color="light">
-            Ipsum
-          </Button>
-          <Button onClick={console.log} color="theme">
-            Dolor
-          </Button>
-          <Button onClick={console.log} color="accent">
-            Sit
-          </Button>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] place-content-center place-items-center gap-4">
+          {getVariants({
+            size: ["small", "medium"] as const,
+            color: ["none", "light", "theme", "accent"] as const,
+          }).map((props, index) => (
+            <Button key={index} {...props} to="/">
+              Lorem ipsum
+            </Button>
+          ))}
         </div>
+      </section>
+
+      <section>
+        <h2>Collapsible</h2>
+
+        <Collapsible title="Collapsible content" className="self-center">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit
+        </Collapsible>
+      </section>
+
+      <section>
+        <h2>Textbox</h2>
+
+        <Textbox placeholder="Lorem ipsum dolor sit amet" />
+        <Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+      </section>
+
+      <section>
+        <h2>Checkbox</h2>
+
+        <Checkbox className="self-center">Lorem ipsum dolor sit amet</Checkbox>
+      </section>
+
+      <section>
+        <h2>Select</h2>
+
+        <Textbox placeholder="Lorem ipsum dolor sit amet" />
+        <Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+      </section>
+
+      <section>
+        <h2>Alert</h2>
+
+        {(["loading", "info", "success", "warning", "error"] as const).map(
+          (type) => (
+            <Alert key={type} type={type} className="self-center">
+              Lorem ipsum dolor sit amet
+            </Alert>
+          ),
+        )}
       </section>
 
       <section>

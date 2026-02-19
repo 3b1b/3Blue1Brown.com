@@ -70,7 +70,7 @@ export default function Link({
     );
 
   // internal link, active
-  if (active)
+  if (active || !to)
     return (
       <span className={clsx("pointer-events-none", className)}>{children}</span>
     );

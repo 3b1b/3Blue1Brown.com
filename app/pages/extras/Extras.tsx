@@ -1,0 +1,16 @@
+import Meta from "~/components/Meta";
+import StrokeType from "~/components/StrokeType";
+
+export default function Extras() {
+  return (
+    <>
+      <Meta title="Extras" />
+
+      <section className="bg-theme/10">
+        <h1>
+          <StrokeType>Extras</StrokeType>
+        </h1>
+      </section>
+    </>
+  );
+}

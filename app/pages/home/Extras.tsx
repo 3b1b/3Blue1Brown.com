@@ -1,3 +1,4 @@
+import { href } from "react-router";
 import { ArrowRightIcon, CirclesThreePlusIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 
@@ -14,7 +15,7 @@ export default function Extras() {
         miscellany that don't fit elsewhere on the site.
       </p>
 
-      <Button to="/extras" color="accent">
+      <Button to={href("/extras")} color="theme">
         Go on a Tangent
         <ArrowRightIcon />
       </Button>

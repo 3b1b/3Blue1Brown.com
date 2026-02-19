@@ -8,6 +8,7 @@ export default [
   layout("pages/Layout.tsx", [
     route("testbed", "pages/testbed/Testbed.tsx"),
     route("about", "pages/about/About.mdx"),
+    route("extras", "pages/extras/Extras.tsx"),
   ]),
   layout("pages/talent/Layout.tsx", [
     route("talent", "pages/talent/Talent.tsx"),

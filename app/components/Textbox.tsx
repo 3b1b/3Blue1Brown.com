@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from "react";
 import { useRef } from "react";
 import { XIcon } from "@phosphor-icons/react";
-import { useElementBounding } from "@reactuses/core";
+import { useElementBounding, useMergedRefs } from "@reactuses/core";
 import clsx from "clsx";
 
 type Props = Base & (Single | Multi);
@@ -10,9 +10,9 @@ type Base = {
   // hint icon to show on side
   icon?: ReactElement;
   // text state
-  value: string;
+  value?: string;
   // on text state change
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 type Single = {
@@ -27,7 +27,7 @@ type Multi = {
 
 // single or multi-line text input box
 const Textbox = ({
-  ref,
+  ref: passedRef,
   multi,
   icon,
   value,
@@ -35,13 +35,21 @@ const Textbox = ({
   className,
   ...props
 }: Props) => {
+  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const mergedRef = useMergedRefs(inputRef, passedRef);
   const sideRef = useRef<HTMLDivElement>(null);
 
   // side elements
   let side: ReactNode = "";
   if (value)
     side = (
-      <button onClick={() => onChange("")} aria-label="Clear text">
+      <button
+        onClick={() => {
+          if (inputRef.current) inputRef.current.value = "";
+          onChange?.("");
+        }}
+        aria-label="Clear text"
+      >
         <XIcon />
       </button>
     );
@@ -53,20 +61,21 @@ const Textbox = ({
   // input field
   const input = multi ? (
     <textarea
-      ref={ref}
-      className="min-h-[calc(3lh+--spacing(4)+2px)] grow resize rounded-md border border-light-gray bg-white p-2 hover:border-theme"
+      ref={mergedRef}
+      rows={6}
+      className="grow resize rounded-md border border-light-gray bg-white p-2 outline-2 outline-offset-2 outline-transparent hover:outline-theme"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={(event) => onChange?.(event.target.value)}
       {...(props as Multi)}
     />
   ) : (
     <input
-      ref={ref}
-      className="grow rounded-md border border-light-gray bg-white p-2 hover:border-theme"
+      ref={mergedRef}
+      className="grow rounded-md border border-light-gray bg-white p-2 outline-2 outline-offset-2 outline-transparent hover:outline-theme"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={(event) => onChange?.(event.target.value)}
       {...(props as Single)}
     />
   );

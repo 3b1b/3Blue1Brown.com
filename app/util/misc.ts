@@ -44,3 +44,26 @@ export const waitForStable = async <Return>(
     await sleep(interval);
   }
 };
+
+type Variations = Record<string, readonly unknown[]>;
+
+type Permutations<Type extends Variations> = {
+  // go through each array value and convert to union of possible values
+  [Key in keyof Type]: Type[Key][number];
+};
+
+// get all combinations of props
+export const getVariants = <Type extends Variations>(
+  props: Type,
+): Permutations<Type>[] =>
+  Object.keys(props).reduce<Partial<Permutations<Type>>[]>(
+    (combinations, key) =>
+      combinations.flatMap(
+        (combination) =>
+          props[key]?.map((value) => ({
+            ...combination,
+            [key]: value,
+          })) ?? [],
+      ),
+    [{}],
+  ) as Permutations<Type>[];
