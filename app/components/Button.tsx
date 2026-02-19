@@ -23,7 +23,7 @@ export default function Button({
   ...props
 }: Props) {
   className = clsx(
-    "inline-flex items-center justify-center gap-2 rounded-full font-sans leading-none no-underline",
+    "inline-flex items-center justify-center gap-2 rounded-full font-sans no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hover:bg-theme/10 hover:text-theme",
     color === "light" &&
       "bg-theme/10 text-black hover:bg-theme hover:text-white",
@@ -31,9 +31,8 @@ export default function Button({
       "bg-theme text-white outline-offset-2 outline-black hover:bg-black hover:outline-2",
     color === "accent" &&
       "bg-black text-white outline-offset-2 outline-theme hover:bg-theme hover:outline-2",
-    size === "small" && "p-2",
-    size === "medium" && "p-4 text-lg",
-    size === "large" && "p-6 text-xl",
+    size === "small" && "px-2 py-0",
+    size === "medium" && "px-4 py-2 text-lg",
     className,
   );
 

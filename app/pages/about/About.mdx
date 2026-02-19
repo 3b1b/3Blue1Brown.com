@@ -1,9 +1,18 @@
-import { CaretDownIcon } from "@phosphor-icons/react";
-import Details from "~/components/Details.tsx";
-import Link from "~/components/Link";
+import {
+  CaretDownIcon,
+  CodeIcon,
+  GithubLogoIcon,
+  PlayIcon,
+  TableIcon,
+  TranslateIcon,
+} from "@phosphor-icons/react";
+import Button from "~/components/Button.tsx";
+import Collapsible from "~/components/Collapsible.tsx";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType.tsx";
+import site from "~/data/site.yaml";
+import manim from "./images/manim.png";
 import { Current, Grant, Past } from "./Team.tsx";
 
 <Meta title="About" />
@@ -24,7 +33,7 @@ import { Current, Grant, Past } from "./Team.tsx";
 
 <div className="flex flex-col gap-4">
 
-**3Blue1Brown** (3b1b) is primarily a <Link to="https://www.youtube.com/3blue1brown">YouTube channel</Link> about
+**3Blue1Brown** (3b1b) is primarily a [YouTube channel](https://www.youtube.com/3blue1brown) about
 discovery and creativity in math, with an emphasis on visualizations.
 
 Some lessons cover _standard, commonly-sought topics_ — like linear algebra, calculus, neural networks, quantum computing — motivating math by its usefulness.
@@ -42,7 +51,7 @@ On other platforms and elsewhere on the web, you'll find talks, collaborations, 
 
 <section className="bg-secondary/10">
 
-## Creator
+## Author
 
 <div className="flex items-center gap-12 max-md:flex-col">
 
@@ -51,7 +60,7 @@ On other platforms and elsewhere on the web, you'll find talks, collaborations, 
 <div className="flex flex-col gap-4">
 
 My name is Grant Sanderson.
-These videos — and <Link to="https://github.com/3b1b/manim">Manim, the animation engine behind them</Link> — began as side projects as I was wrapping up my time studying math and computer science at Stanford.
+These videos — and [Manim, the animation engine behind them](https://github.com/3b1b/manim) — began as side projects as I was wrapping up my time studying math and computer science at Stanford.
 After graduating, I worked for Khan Academy producing videos, articles and exercises, primarily focussed on multivariable calculus.
 Since the end of 2016, my primary focus has been on 3Blue1Brown and its associated projects.
 
@@ -63,14 +72,255 @@ In those years, I've also had the pleasure of contributing to a number of differ
 
 </section>
 
-<section className="narrow">
+<section>
 
 ## Team
 
 <Current />
 
-<Details title="Past Contributors" className="self-center">
+<Collapsible title="Past Contributors" className="self-center">
   <Past />
-</Details>
+</Collapsible>
+
+</section>
+
+<section className="bg-gray/10">
+
+## FAQs
+
+<div className="flex flex-col gap-8">
+
+<Collapsible
+  title="What do you use to animate your videos?"
+  className="justify-start"
+>
+
+<img src={manim} className="max-h-50 self-center" alt="Manim" />
+
+<div className="my-8 flex flex-wrap justify-center gap-4">
+
+<Button to="https://github.com/3b1b/manim" color="light">
+  <GithubLogoIcon />
+  Manim
+</Button>
+
+<Button to="https://github.com/3b1b/videos" color="light">
+  <CodeIcon />
+  Source for Videos
+</Button>
+
+<Button to="https://youtu.be/rbu7Zu5X1zI" color="light">
+  <PlayIcon />
+  Video Demo
+</Button>
+
+<Button to="https://github.com/ManimCommunity/manim/" color="light">
+  <GithubLogoIcon />
+  Manim Community Edition
+</Button>
+
+</div>
+
+Almost all animations are made using a custom open-source Python library I've written called **Manim**.
+
+It began as a scrappy playground of code for my own uses cases back when I started the channel, not intended to be a public-facing, professionally maintained tool.
+Luckily, [some folks got together](https://www.manim.community/) to make an [alternate fork](https://github.com/ManimCommunity/manim/) that aims to be more stable, documented, and tested.
+Anyone looking to get started with Manim should probably start with this **Community Edition**.
+The original version is basically a testing ground where I try to quickly put new things together while developing videos.
+
+If you want to make your own animated math videos, you should also take a look at the full landscape of tools available, like Desmos, Geogebra and Mathematica.
+The main difference between Manim and other math-visualizing tools is that it's structured to build potentially long scenes and hopefully look smoother and prettier than, say, matplotlib.
+
+Keep in mind that plenty of professional animation tools like Blender and After Effects can be made programmatic too.
+Also, be sure to ask yourself if what you're doing benefits from being programmatic at all.
+If all you need is simple moving/fading animations, using something like Keynote or PowerPoint might take you farther than you'd expect.
+
+It's wonderful to see others using Manim, especially if it helps them explain math in ways that otherwise would have been hard.
+But sometimes I see folks using it to just animate simple movements or manipulate LaTeX.
+In those cases, I can't help wonder if another tool would've been easier.
+I worry when I hear people ask things like "How do I sync up narration into manim?".
+This is just a tool for making individual clips to be edited together later.
+You should certainly use traditional video-editing software for as much as you can.
+
+Where programmatic animations work best is where the code directly reflects the math you're trying to explain, or where iteration/abstraction/conditionals/etc. can make an illustration that would've been impractical to make manually.
+
+</Collapsible>
+
+<Collapsible title="Will you please make a video on [some topic]?" className="justify-start">
+
+<div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
+
+<div className="flex flex-col items-center gap-4">
+
+For general topic requests — e.g. "Please make an explainer on X" — use this form:
+
+<Button to={site.topic_suggestion_form} color="theme">
+  <TableIcon />
+  Suggest Topic
+</Button>
+
+</div>
+
+<div className="flex flex-col items-center gap-4">
+
+For video pitches — i.e you have a vision for _how_ a given topic ought to be covered — use this form:
+
+<Button to={site.video_pitch_form} color="theme">
+  <TableIcon />
+  Pitch Video
+</Button>
+
+</div>
+
+</div>
+
+</Collapsible>
+
+<Collapsible title="What does the name 3Blue1Brown refer to?" className="justify-start">
+
+<div className="flex items-center gap-12 max-md:flex-col">
+
+<Logo className="size-30" />
+
+<div className="flex flex-col gap-4">
+
+The logo is a loose depiction of my right eye, which has "**sectoral heterochromia**", meaning there are different colors in different sectors.
+In my case, it looks **3/4 blue and 1/4 brown**.
+
+In the same way that many channels are named after their authors, a younger me thought that a unique genetic signature might be neat.
+Plus, the channel is all about seeing math in certain ways, so it felt fitting.
+The name is just a reference to the logo, plus a desire for something deliberately weird-sounding and unique.
+
+</div>
+
+</div>
+
+</Collapsible>
+
+<Collapsible title="Can I contribute/fix translations of the videos?" className="justify-start">
+
+<Button to="https://criblate.com/" color="theme" className="self-center">
+  <TranslateIcon />
+  Contribute Subtitles on Criblate
+</Button>
+
+That would be wonderful, thank you!
+
+For **subtitles**, my friend Ben Eater built [**Criblate**](https://criblate.com/), a website to make it easier for communities to contribute translations to YouTube channels they follow.
+You can review, edit, and add your own translations.
+Once approved, your contributions are added as the official subtitles for that language on YouTube with attribution to you.
+
+For **dubs**, we already have translators working on that for Spanish, French, Hindi, Portuguese, Russian and Japanese.
+There is currently [an application](https://forms.gle/rKZ9zeyh8NFVGyn66) up to hire translators for Arabic, Korean and Vietnamese.
+
+Since YouTube is not available in China, there is a small team of volunteers that make them available on [Bilibili](https://space.bilibili.com/88461692/#/) with Chinese translations.
+See that page if you want to help out.
+
+If you feel passionately about contributing in another language, and have experience with narration and voice-overs, feel free to contact us, but keep in mind there is a finite budget, so we may not be able to accommodate.
+
+**You may not re-upload the content on your own channel, and such re-uploaded content will be taken down as a copyright violation**.
+I know that might seem harsh, and that many re-uploaded dubbed videos are done in good faith trying to spread math around the world.
+However, there need to be consistent principles around how the lessons are put out under the channel name.
+To highlight one potential problem: there is otherwise no mechanism to prevent inserting promotions/sponsors or other sorts of edits that misrepresent the original intent of a video or the creators behind it.
+
+</Collapsible>
+
+<Collapsible title="Can I license these videos? Is it okay to use the material in my own work?" className="justify-start">
+
+You may use still images or clips from 3b1b videos as long as you **follow all of these criteria**:
+
+1. You are using less than 60 seconds of material, and clearly adding to it in the surrounding context (i.e. you are not reuploading a clip whole-sale).
+1. There is clear on-screen attribution to 3blue1brown.
+1. You provide links where applicable so someone can easily find the original content.
+
+For any other use case, please reach out via the contact form with a licensing inquiry.
+
+</Collapsible>
+
+<Collapsible title="Will you speak at our event?" className="justify-start">
+
+I enjoy giving talks on topics I'm passionate about, but please know that I generally don't have the availability to accept most speaking requests.
+Nevertheless, feel free to reach out via the contact form with details, including the date, location, and whether you have any estimated speaking fee in mind.
+
+</Collapsible>
+
+<Collapsible title="Can my organization sponsor one of your videos?" className="justify-start">
+
+We do not do brand integrations or sponsorships in videos.
+
+However we do have recruiting partnerships through [3b1b Talent](/talent).
+
+</Collapsible>
+
+<Collapsible title="What is the music playing in the videos?" className="justify-start">
+
+You can find it on [Bandcamp](https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown), [Spotify](https://open.spotify.com/artist/2SRhEEt2tlDQWxzwfUo9Dl), [Apple Music](https://music.apple.com/us/artist/vincent-rubinetti/274886492), and other streaming services.
+Almost all of it was written by [Vincent Rubinetti](https://vincentrubinetti.com/).
+The piano pieces used in the Linear Algebra and Calculus series were written by me.
+For usage and licensing questions, see [this form](https://vincerubinetti.github.io/using-the-music-of-3blue1brown/).
+
+</Collapsible>
+
+<Collapsible title="What books/resources do you recommend for learning math?" className="justify-start">
+
+See [this blog post for general recommendations](/blog/recommendations) on how to learn math.
+
+See [this post for specific book recommendations](/blog/book-recommendations).
+
+</Collapsible>
+
+<Collapsible title="Can I ask you a question about math, or about one of your videos?" className="justify-start">
+
+I wish I had the time to respond with thoughtful answers to all the people writing in with questions, but the unfortunate reality is that I don't.
+Instead I recommend asking on an active forum online somewhere.
+
+If you are a [Patreon supporter](https://www.patreon.com/cw/3blue1brown), and you ask a question about a new video after its early release there, I'll try my best to either answer in the Patreon comments or, better yet, to incorporate an answer to the question in the final version of the video before it goes out to the wider public, so that all viewers can benefit.
+
+For general questions, it's worth noting that LLMs these days are really quite good with standard math topics.
+There are caveats, of course, and you should always fact-check claims.
+Nevertheless, I've noticed that quite a few questions people write in with could be answered quickly and effectively with most of the latest models.
+
+</Collapsible>
+
+<Collapsible title="I believe I've solved a famous unsolved math problem/developed a novel idea, will you check it for me?" className="justify-start">
+
+Unfortunately, no. There are two important things to note here:
+
+1. I am not a research mathematician, so am not the one to ask.
+1. There is already too little time to read and learn all the things I'd like to, so I have to draw certain boundaries.
+
+</Collapsible>
+
+<Collapsible title="I'd like to start making math videos online, do you have any advice?" className="justify-start">
+
+When we kicked off the Summer of Math Exposition in 2021, I made [a video centered around this question](https://youtu.be/ojjzXyQCzso).
+Here are the main points I made there:
+
+- Just get started.
+  Begin iterating and receiving feedback before overthinking it.
+- When explaining new topics, try putting concrete and specific ideas before general and abstract frameworks.
+  This runs contrary to how most of us start explaining things that we already understand well.
+- Topic choice matters way more than production quality.
+  That said, get a good microphone and learn how to use it (an embarrassing number of 3blue1brown videos have terrible audio.)
+- Embrace niche topics, especially when getting started, rather than trying to cast the widest net you can.
+- Know your genre, and be wary of pattern matching from creators outside your genre.
+  Some educational creators play the role of student documenting their own learning, others play the role of an expert conveying what they've spent years learning, others are teachers targeting students in school, others are journalists trying to summarize recent breakthroughs.
+  All these (and more) have value, but they have different implications for pacing and style, so what works for one may not work for another.
+- In math especially, topic definitions should not be seen as a starting point, but an ending point.
+- Always ask what picture or visual you could use to elucidate a topic.
+  It doesn't have to be fancy, and sometimes topics don't lend themselves to a visual, but it's always worth asking.
+- Using math animation software (like Manim) can be useful when the topic at hand lends itself to a programmatic description, but I've seen many people overuse and abuse it, e.g. by just displaying a series of equations or text which are unnecessarily animated.
+
+Various [other](https://youtu.be/F3Qixy-r_rQ) [videos](https://youtu.be/cDofhN-RJqg) I've made associated with the Summer of Math Exposition also implicitly convey thoughts I have about the matter.
+
+</Collapsible>
+
+</div>
+
+</section>
+
+<section>
+
+## Contact
 
 </section>

@@ -170,24 +170,11 @@
   }
 
   a {
-    @apply text-theme inline-flex items-center gap-1 underline transition-all hover:text-current;
+    @apply text-theme underline transition-all hover:text-current;
   }
 
-  button,
-  summary {
+  button {
     @apply inline-flex cursor-pointer items-center justify-center font-sans transition-all;
-  }
-
-  details {
-    @apply contents;
-  }
-
-  ::details-content {
-    @apply w-full;
-  }
-
-  summary {
-    @apply border-theme w-fit gap-2 rounded-full border border-dashed px-4 py-2;
   }
 
   label {

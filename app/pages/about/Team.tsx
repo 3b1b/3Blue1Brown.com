@@ -4,11 +4,14 @@ import { fromPairs, toPairs } from "lodash-es";
 import { slugify } from "~/util/string";
 
 // import all images in sub-folder
-const imageImports = import.meta.glob<{ default: string }>("./images/*.jpg", {
-  eager: true,
-  // limit size, compress
-  query: "url&w=600&format=webp",
-});
+const imageImports = import.meta.glob<{ default: string }>(
+  "./images/portraits/*.jpg",
+  {
+    eager: true,
+    // limit size, compress
+    query: "url&w=600&format=webp",
+  },
+);
 
 // create map of filename to import url
 const imageLookup = fromPairs(
@@ -96,7 +99,7 @@ type Member = (typeof current)[number] | (typeof past)[number];
 // grid of current team members
 export function Current() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(0,--spacing(40)))] justify-center gap-12">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(0,--spacing(40)))] justify-center gap-12 p-2">
       {current.map((member, index) => (
         <Portrait key={index} {...member} />
       ))}
@@ -107,7 +110,7 @@ export function Current() {
 // grid of past contributors
 export function Past() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(0,--spacing(30)))] justify-center gap-8">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(0,--spacing(30)))] justify-center gap-8 p-2">
       {past.map((member, index) => (
         <Portrait key={index} {...member} className="text-sm" />
       ))}
@@ -133,7 +136,7 @@ function Portrait({
         <img
           src={image}
           alt={name}
-          className="size-full object-cover transition group-hover:scale-105 group-hover:grayscale"
+          className="size-full object-cover transition group-hover:grayscale"
         />
       </div>
       {name && <div className="mt-2 font-sans text-lg font-medium">{name}</div>}
