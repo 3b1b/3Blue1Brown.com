@@ -35,7 +35,7 @@
   --color-off-white: hsl(0, 0%, 97%);
   --color-white: hsl(0, 0%, 100%);
 
-  --color-shadow: #00000040;
+  --color-shadow: #00000080;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -68,18 +68,22 @@
 
   section {
     --width: 250;
-    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)] max-sm:[--pad:--spacing(4)];
+    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)];
   }
 
   hr {
-    @apply col-span-full h-px w-full border-0 bg-current/10;
+    @apply col-span-full h-px w-full grow border-0 bg-current/10;
   }
 
   h1,
   h2,
   h3,
   h4 {
-    @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal font-medium;
+    @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal;
+
+    hr {
+      @apply w-[unset];
+    }
   }
 
   h1 {
@@ -91,11 +95,11 @@
   }
 
   h3 {
-    @apply text-xl tracking-wide;
+    @apply justify-center text-center text-xl font-medium tracking-wide;
   }
 
   h4 {
-    @apply text-lg tracking-wide;
+    @apply justify-center text-center text-lg font-medium tracking-wide;
   }
 
   p {
@@ -182,6 +186,10 @@
     @apply w-full;
   }
 
+  summary {
+    @apply border-theme w-fit gap-2 rounded-full border border-dashed px-4 py-2;
+  }
+
   label {
     @apply inline-flex cursor-pointer items-center gap-2;
   }
@@ -190,10 +198,10 @@
   textarea {
     @apply min-w-0 font-sans transition-all;
   }
+}
 
-  .icon {
-    @apply inline-block h-[1.25em] w-[unset];
-  }
+@utility icon {
+  @apply inline-block h-[1.25em] w-[unset];
 }
 
 @utility narrow {

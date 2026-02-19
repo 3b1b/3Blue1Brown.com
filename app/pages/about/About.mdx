@@ -1,10 +1,14 @@
+import { CaretDownIcon } from "@phosphor-icons/react";
+import Details from "~/components/Details.tsx";
+import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType.tsx";
+import { Current, Grant, Past } from "./Team.tsx";
 
 <Meta title="About" />
 
-<section className="flex bg-theme/10">
+<section className="bg-theme/10">
 
 <h1>
   <StrokeType>About</StrokeType>
@@ -12,12 +16,61 @@ import StrokeType from "~/components/StrokeType.tsx";
 
 </section>
 
-<section className="items-center gap-4 narrow">
+<section>
+
+<div className="flex flex-row-reverse items-center gap-12 max-md:flex-col">
 
 <Logo className="size-50" />
 
-**3blue1brown** (3b1b) is primarily a [YouTube
-channel](https://www.youtube.com/3blue1brown) about discovery and creativity in
-math, with an emphasis on visualizations.
+<div className="flex flex-col gap-4">
+
+**3Blue1Brown** (3b1b) is primarily a <Link to="https://www.youtube.com/3blue1brown">YouTube channel</Link> about
+discovery and creativity in math, with an emphasis on visualizations.
+
+Some lessons cover _standard, commonly-sought topics_ — like linear algebra, calculus, neural networks, quantum computing — motivating math by its usefulness.
+Other lessons are more _playful explorations of puzzles and problems_ — ones that seem challenging but become doable and even beautiful with a shift in perspective — motivating math as an art form.
+
+Much 3b1b content exists outside of the channel as well.
+On this site you'll find written versions of some videos, often with interactive elements sprinkled in.
+On other platforms and elsewhere on the web, you'll find talks, collaborations, projects, and a variety of other content.
+
+</div>
+
+</div>
+
+</section>
+
+<section className="bg-secondary/10">
+
+## Creator
+
+<div className="flex items-center gap-12 max-md:flex-col">
+
+<Grant />
+
+<div className="flex flex-col gap-4">
+
+My name is Grant Sanderson.
+These videos — and <Link to="https://github.com/3b1b/manim">Manim, the animation engine behind them</Link> — began as side projects as I was wrapping up my time studying math and computer science at Stanford.
+After graduating, I worked for Khan Academy producing videos, articles and exercises, primarily focussed on multivariable calculus.
+Since the end of 2016, my primary focus has been on 3Blue1Brown and its associated projects.
+
+In those years, I've also had the pleasure of contributing to a number of different outlets for math exposition, including spending a semester lecturing for an MIT course on computational thinking, contributing a Netflix documentary about infinity, writing for Quanta, and collaborating with many other educational YouTube channels.
+
+</div>
+
+</div>
+
+</section>
+
+<section className="narrow">
+
+## Team
+
+<Current />
+
+<Details title="Past Contributors" className="self-center">
+  <Past />
+</Details>
 
 </section>

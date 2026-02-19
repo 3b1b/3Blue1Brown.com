@@ -56,10 +56,13 @@ export default defineConfig([
     name: "Tailwind",
     extends: [eslintPluginBetterTailwindcss.configs.recommended],
     rules: {
-      // https://github.com/schoero/eslint-plugin-better-tailwindcss/issues/302
       "better-tailwindcss/enforce-consistent-line-wrapping": [
         "warn",
-        { strictness: "loose" },
+        {
+          preferSingleLine: true,
+          group: "never",
+          printWidth: 0,
+        },
       ],
       "better-tailwindcss/no-unknown-classes": ["warn", { ignore: ["dark"] }],
     },

@@ -9,13 +9,7 @@ export default function Patreon() {
         Patreon
       </h2>
 
-      <div
-        className="
-          grid w-full grid-cols-2 items-start justify-center
-          justify-items-center gap-x-12 gap-y-4
-          max-md:grid-cols-1
-        "
-      >
+      <div className="grid w-full grid-cols-2 items-start justify-center justify-items-center gap-x-12 gap-y-4 max-md:grid-cols-1">
         <p>
           Textbooks and courses are often expensive. I believe educational
           content is <em>most valuable when it's free</em>. Instead of up-front

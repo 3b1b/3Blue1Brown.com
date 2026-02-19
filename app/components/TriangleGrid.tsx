@@ -34,10 +34,7 @@ export default function TriangleGrid() {
   return (
     <Canvas
       ref={ref}
-      className="
-        absolute inset-0 -z-10 size-full mask-radial-from-transparent
-        mask-radial-from-0% mask-radial-to-white mask-radial-to-100%
-      "
+      className="absolute inset-0 -z-10 size-full mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%"
       style={{
         translate: `0 ${-percent * 10}%`,
         scale: 1.1,

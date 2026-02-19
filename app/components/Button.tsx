@@ -23,30 +23,14 @@ export default function Button({
   ...props
 }: Props) {
   className = clsx(
-    `
-      inline-flex items-center justify-center gap-2 rounded-full font-sans
-      leading-none no-underline
-    `,
-    color === "none" &&
-      `
-        text-black
-        hover:bg-theme/10 hover:text-theme
-      `,
+    "inline-flex items-center justify-center gap-2 rounded-full font-sans leading-none no-underline",
+    color === "none" && "text-black hover:bg-theme/10 hover:text-theme",
     color === "light" &&
-      `
-        bg-theme/10 text-black
-        hover:bg-theme hover:text-white
-      `,
+      "bg-theme/10 text-black hover:bg-theme hover:text-white",
     color === "theme" &&
-      `
-        bg-theme text-white outline-offset-2 outline-black
-        hover:bg-black hover:outline-2
-      `,
+      "bg-theme text-white outline-offset-2 outline-black hover:bg-black hover:outline-2",
     color === "accent" &&
-      `
-        bg-black text-white outline-offset-2 outline-theme
-        hover:bg-theme hover:outline-2
-      `,
+      "bg-black text-white outline-offset-2 outline-theme hover:bg-theme hover:outline-2",
     size === "small" && "p-2",
     size === "medium" && "p-4 text-lg",
     size === "large" && "p-6 text-xl",

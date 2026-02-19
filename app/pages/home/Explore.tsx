@@ -84,7 +84,7 @@ export default function Explore() {
 
   return (
     <section>
-      <h2>Explore Lessons</h2>
+      <h2>Explore</h2>
 
       <Textbox
         ref={searchBox}
@@ -100,11 +100,7 @@ export default function Explore() {
       {!topicId?.trim() && !search.trim() ? (
         <div
           id="results"
-          className="
-            grid grid-cols-3 gap-8
-            max-md:grid-cols-2
-            max-sm:grid-cols-1
-          "
+          className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
           {topics.map(({ id, title, img }, index) => (
             <button
@@ -124,12 +120,7 @@ export default function Explore() {
         <>
           {/* selected topic */}
           {topic && (
-            <div
-              className="
-                flex items-center gap-8
-                max-md:flex-col
-              "
-            >
+            <div className="flex items-center gap-8 max-md:flex-col">
               <img src={topic.img ?? ""} alt="" className="aspect-video h-30" />
               <div className="flex grow flex-col gap-2">
                 <div className="w-max shrink-0 font-sans text-lg font-medium">
@@ -149,11 +140,7 @@ export default function Explore() {
           {/* search results */}
           <div
             id="results"
-            className="
-              grid grid-cols-3 gap-8
-              max-md:grid-cols-2
-              max-sm:grid-cols-1
-            "
+            className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
           >
             {results.map(({ id, title, description, video }, index) => (
               <button
@@ -173,12 +160,7 @@ export default function Explore() {
                 <div>{title}</div>
                 <div>{description}</div>
                 {lessonId === id && (
-                  <div
-                    className="
-                      absolute -top-4 -right-4 grid size-8 place-items-center
-                      rounded-full bg-theme text-white
-                    "
-                  >
+                  <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
                     <EyeIcon />
                   </div>
                 )}

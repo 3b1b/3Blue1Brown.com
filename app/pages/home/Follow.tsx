@@ -79,15 +79,10 @@ const links = [
 
 export default function Follow() {
   return (
-    <section className="bg-gray/10">
+    <section className="bg-secondary/10">
       <h2 className="sr-only">Follow</h2>
 
-      <div
-        className="
-          grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))]
-          justify-center gap-4
-        "
-      >
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] justify-center gap-4">
         {links.map(({ icon, label, link }) => (
           <Button
             key={label}

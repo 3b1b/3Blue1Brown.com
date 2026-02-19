@@ -17,25 +17,18 @@ type Props = {
 export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
 
-  const className = `
-    border-b border-transparent p-2 leading-none text-black no-underline
-    transition
-    hover:border-black
-  `;
+  const className =
+    "border-b border-transparent p-2 leading-none text-black no-underline transition hover:border-black";
 
   return (
     <header
       className={clsx(
-        `
-          dark relative isolate flex flex-col gap-8 overflow-hidden bg-white p-8
-          text-black
-          max-md:gap-4 max-md:p-4
-        `,
+        "dark relative isolate flex flex-col gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4",
       )}
     >
       <Grid className="max-h-100 mask-b-from-0% mask-b-to-100% opacity-25" />
 
-      <div className="flex flex-wrap items-center">
+      <div className="flex flex-wrap items-center gap-4">
         {/* title */}
         <Link to={href("/")} className="flex-1 no-underline">
           <div className="flex items-center gap-2 font-serif">
@@ -60,23 +53,14 @@ export default function Header({ children }: Props) {
         {/* nav */}
         <Nav
           className={clsx(
-            `
-              flex-3
-              max-xl:justify-end
-              max-lg:w-full max-lg:flex-[unset]
-            `,
+            "flex-3 max-xl:justify-end max-lg:w-full max-lg:flex-[unset] max-sm:flex-col",
             !open && "max-lg:hidden",
           )}
           childClassName={className}
         />
 
         {/* sub title */}
-        <div
-          className="
-            flex-1 text-right text-gray italic
-            max-xl:hidden
-          "
-        >
+        <div className="flex-1 text-right text-gray italic max-xl:hidden">
           {site.subtitle}
         </div>
       </div>

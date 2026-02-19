@@ -161,13 +161,7 @@ popup.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
         <h2>Icons</h2>
 
         <Logo className="size-100" />
-        <div
-          className="
-            dark relative isolate flex h-160 w-240 flex-col items-center
-            justify-center gap-4 overflow-hidden bg-white font-serif text-lg
-            text-black
-          "
-        >
+        <div className="dark relative isolate flex h-160 w-240 flex-col items-center justify-center gap-4 overflow-hidden bg-white font-serif text-lg text-black">
           <Logo className="absolute -z-10 scale-250 blur-[100px]" />
           <Logo className="mb-4 size-60" />
           <div className="text-6xl">{site.title}</div>

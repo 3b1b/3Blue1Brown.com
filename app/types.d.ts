@@ -7,3 +7,9 @@ namespace React.JSX {
     "youtube-video": JSX.HTMLAttributes<HTMLVideoElement>;
   }
 }
+
+/** https://github.com/JonasKruckenberg/imagetools/issues/160 */
+declare module "*url&format=webp" {
+  const value: string;
+  export default value;
+}
