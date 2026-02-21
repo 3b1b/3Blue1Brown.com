@@ -45,16 +45,19 @@ const validSelector = (selector: unknown) => {
   }
 };
 
-// scroll to element by selector
-export const scrollToSelector = async (
-  selector: string,
+// scroll to element, optionally by selector
+export const scrollTo = async (
+  element: Element | string | undefined | null,
   options: ScrollIntoViewOptions = { behavior: "smooth" },
   waitForLayoutShift = false,
 ) => {
-  if (!validSelector(selector)) return;
+  if (typeof element === "string") {
+    const selector = element;
+    if (!validSelector(selector)) return;
+    // wait for element to appear
+    element = await waitFor(() => document.querySelector(selector));
+  }
 
-  // wait for element to appear
-  const element = await waitFor(() => document.querySelector(selector));
   if (!element) return;
 
   // wait for layout shifts to stabilize

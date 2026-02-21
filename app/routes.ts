@@ -9,8 +9,10 @@ export default [
     route("testbed", "pages/testbed/Testbed.tsx"),
     route("about", "pages/about/About.mdx"),
     route("extras", "pages/extras/Extras.tsx"),
+    route("*", "pages/NotFound.tsx"),
   ]),
   route("blog/:postId", "pages/blog/Post.tsx"),
+  route("sitemap.xml", "sitemap.xml.server.ts"),
 ];
 
 // use server build data

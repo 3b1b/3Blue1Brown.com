@@ -21,7 +21,7 @@ export default function Home() {
         <Theater />
       </Header>
 
-      <main>
+      <main id="content">
         <Explore />
         <Patreon />
         <Talent />

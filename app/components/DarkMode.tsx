@@ -22,3 +22,10 @@ export default function DarkMode({ className = "" }) {
     </button>
   );
 }
+
+// set dark mode immediately to prevent FOUC
+export const load = `
+  const dark = localStorage.getItem("dark-mode") === "true";
+  const root = document.documentElement;
+  root.classList[dark ? "add" : "remove"]("dark");
+`;

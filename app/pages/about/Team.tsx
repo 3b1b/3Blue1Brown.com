@@ -35,7 +35,7 @@ export function Grant() {
     <Portrait
       name="Grant Sanderson"
       image={lookUp("Grant Sanderson")}
-      description="Creator"
+      description="Math educator"
       className="w-50"
     />
   );

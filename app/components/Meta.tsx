@@ -1,12 +1,19 @@
+import type { Thing, WithContext } from "schema-dts";
+import { JsonLd } from "react-schemaorg";
 import site from "~/data/site.yaml";
 
-type Props = {
+type Props<Type extends Thing> = {
   title?: string | string[];
   description?: string;
+  jsonLd?: WithContext<Type>;
 };
 
 // conveniently set page meta
-export default function Meta({ title, description }: Props) {
+export default function Meta<Type extends Thing>({
+  title,
+  description,
+  jsonLd,
+}: Props<Type>) {
   const combinedTitle = [title, site.title].flat().filter(Boolean).join(" | ");
 
   const combinedDescription = (description || site.description).trim();
@@ -24,6 +31,8 @@ export default function Meta({ title, description }: Props) {
       <meta property="og:title" content={combinedTitle} />
       <meta property="og:description" content={combinedDescription} />
       <meta property="og:image" content="/share.jpg" />
+
+      {jsonLd && <JsonLd<Type> item={jsonLd} />}
     </>
   );
 }

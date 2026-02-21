@@ -29,7 +29,7 @@ export default function Testbed() {
 
         <div className="flex justify-center gap-4">
           <Link to="/">Internal link</Link>
-          <Link to="https://3blue1brown.com">External link</Link>
+          <Link to="https://google.com">External link</Link>
         </div>
       </section>
 

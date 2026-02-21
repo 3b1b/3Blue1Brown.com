@@ -1,4 +1,5 @@
 import type { MDXContent } from "mdx/types";
+import type { Article } from "schema-dts";
 import type { Route } from "./+types/Post";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
@@ -52,8 +53,19 @@ export default function Post({ loaderData: { path } }: Route.ComponentProps) {
   return (
     <>
       <Header />
-      <main className="[&>section]:odd:bg-off-white">
-        <Meta title={title} description={description} />
+      <main id="content" className="[&>section]:odd:bg-off-white">
+        <Meta<Article>
+          title={title}
+          description={description}
+          jsonLd={{
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: title,
+            description,
+            author,
+            datePublished: date,
+          }}
+        />
 
         <section className="items-center gap-8 bg-theme/10!">
           <h1>

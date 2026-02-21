@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 type Props = {
   // type of alert, determines styling
-  type?: keyof typeof types;
+  type?: Type;
   // optionally override custom icon
   icon?: ReactElement;
   // alert content
@@ -46,7 +46,7 @@ export const types = {
 };
 
 // alert type
-export type Type = keyof typeof types;
+type Type = keyof typeof types;
 
 // box with icon and text */
 export default function Alert({

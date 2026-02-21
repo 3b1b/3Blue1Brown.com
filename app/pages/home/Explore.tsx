@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CaretDownIcon,
   CaretUpIcon,
@@ -13,8 +13,8 @@ import Button from "~/components/Button";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/Youtube";
 import { byDate, lessons } from "~/data/lessons";
-import { atomWithQuery } from "~/util/atom";
-import { preserveScroll } from "~/util/dom";
+import { atomWithQuery, getAtom } from "~/util/atom";
+import { preserveScroll, scrollTo } from "~/util/dom";
 import { importAssets } from "~/util/file";
 import { useFuzzySearch } from "~/util/hooks";
 import { getThumbnail } from "~/util/youtube";
@@ -77,6 +77,14 @@ export default function Explore() {
   // show all or truncate results
   const [all, setAll] = useState(false);
   if (!all) results = results.slice(0, limit);
+
+  // run once on page load
+  useEffect(() => {
+    // if user just navigated to topic/search, scroll to section
+    if ((getAtom(topicAtom) || getAtom(searchAtom)) && !getAtom(lessonAtom)) {
+      scrollTo(searchBox.current, { behavior: "smooth" }, true);
+    }
+  }, []);
 
   return (
     <section>

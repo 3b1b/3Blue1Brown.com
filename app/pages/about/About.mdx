@@ -8,6 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import Button from "~/components/Button.tsx";
 import Collapsible from "~/components/Collapsible.tsx";
+import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType.tsx";
@@ -34,7 +35,7 @@ import { Current, Grant, Past } from "./Team.tsx";
 
 <div className="flex flex-col gap-12">
 
-**3Blue1Brown** (3b1b) is primarily a [YouTube channel](https://www.youtube.com/3blue1brown) about
+**3Blue1Brown** (3b1b) is primarily a <Link to={site.channel}>YouTube channel</Link> about
 discovery and creativity in math, with an emphasis on visualizations.
 
 Some lessons cover _standard, commonly-sought topics_ — like linear algebra, calculus, neural networks, quantum computing — motivating math by its usefulness.
@@ -275,7 +276,7 @@ See [this post for specific book recommendations](/blog/book-recommendations).
 I wish I had the time to respond with thoughtful answers to all the people writing in with questions, but the unfortunate reality is that I don't.
 Instead I recommend asking on an active forum online somewhere.
 
-If you are a [Patreon supporter](https://www.patreon.com/cw/3blue1brown), and you ask a question about a new video after its early release there, I'll try my best to either answer in the Patreon comments or, better yet, to incorporate an answer to the question in the final version of the video before it goes out to the wider public, so that all viewers can benefit.
+If you are a <Link to={site.patreon}>Patreon supporter</Link>, and you ask a question about a new video after its early release there, I'll try my best to either answer in the Patreon comments or, better yet, to incorporate an answer to the question in the final version of the video before it goes out to the wider public, so that all viewers can benefit.
 
 For general questions, it's worth noting that LLMs these days are really quite good with standard math topics.
 There are caveats, of course, and you should always fact-check claims.

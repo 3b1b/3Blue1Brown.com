@@ -13,67 +13,68 @@ import {
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
+import site from "~/data/site.yaml";
 
 const links = [
   {
     icon: <YoutubeLogoIcon />,
     label: "2nd Channel",
-    link: "https://www.youtube.com/@grantsanderson",
+    link: site.second_channel,
   },
   {
     icon: <NewspaperIcon />,
     label: "Newsletter",
-    link: "https://3blue1brown.substack.com",
-  },
-  {
-    icon: <InstagramLogoIcon />,
-    label: "Instagram",
-    link: "https://www.instagram.com/3blue1brown",
-  },
-  {
-    icon: <XLogoIcon />,
-    label: "X",
-    link: "https://x.com/3blue1brown",
-  },
-  {
-    icon: <ButterflyIcon />,
-    label: "BlueSky",
-    link: "https://bsky.app/profile/3blue1brown.com",
-  },
-  {
-    icon: <TiktokLogoIcon />,
-    label: "TikTok",
-    link: "https://www.tiktok.com/@3blue1brown",
-  },
-  {
-    icon: <FacebookLogoIcon />,
-    label: "Facebook",
-    link: "https://www.facebook.com/3blue1brown",
-  },
-  {
-    icon: <SpotifyLogoIcon />,
-    label: "Spotify",
-    link: "https://open.spotify.com/show/4MFZ3m3PIfsKBNoVR7yIf2",
-  },
-  {
-    icon: <RedditLogoIcon />,
-    label: "Reddit",
-    link: "https://www.reddit.com/r/3blue1brown",
-  },
-  {
-    icon: <GithubLogoIcon />,
-    label: "GitHub",
-    link: "https://github.com/3b1b",
+    link: site.newsletter,
   },
   {
     icon: <RssIcon />,
     label: "RSS",
-    link: "https://3blue1brown.substack.com/feed",
+    link: site.rss,
+  },
+  {
+    icon: <InstagramLogoIcon />,
+    label: "Instagram",
+    link: site.instagram,
+  },
+  {
+    icon: <XLogoIcon />,
+    label: "X",
+    link: site.x,
+  },
+  {
+    icon: <ButterflyIcon />,
+    label: "BlueSky",
+    link: site.bluesky,
+  },
+  {
+    icon: <TiktokLogoIcon />,
+    label: "TikTok",
+    link: site.tiktok,
+  },
+  {
+    icon: <FacebookLogoIcon />,
+    label: "Facebook",
+    link: site.facebook,
+  },
+  {
+    icon: <SpotifyLogoIcon />,
+    label: "Spotify",
+    link: site.spotify,
+  },
+  {
+    icon: <RedditLogoIcon />,
+    label: "Reddit",
+    link: site.reddit,
+  },
+  {
+    icon: <GithubLogoIcon />,
+    label: "GitHub",
+    link: site.github,
   },
   {
     icon: <TelevisionIcon />,
     label: "Bilibili",
-    link: "https://space.bilibili.com/88461692",
+    link: site.bilibili,
   },
 ];
 

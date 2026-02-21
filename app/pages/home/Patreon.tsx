@@ -1,5 +1,6 @@
 import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
+import site from "~/data/site.yaml";
 
 export default function Patreon() {
   return (
@@ -26,7 +27,7 @@ export default function Patreon() {
         </p>
       </div>
 
-      <Button to="https://www.patreon.com/c/3blue1brown" color="theme">
+      <Button to={site.patreon} color="theme">
         Become a Supporter
         <ArrowRightIcon />
       </Button>

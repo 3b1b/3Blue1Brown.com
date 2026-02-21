@@ -9,7 +9,7 @@ type Props<O extends Option> = {
   onChange?: (value: O["value"]) => void;
 } & Omit<ComponentProps<"select">, "value" | "onChange">;
 
-export type Option<Value = string> = {
+type Option<Value = string> = {
   value: Value;
   label?: string;
 };

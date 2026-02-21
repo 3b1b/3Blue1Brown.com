@@ -1,6 +1,6 @@
 import { fileURLToPath } from "url";
 import mdx from "@mdx-js/rollup";
-import ViteYaml from "@modyfi/vite-plugin-yaml";
+import viteYaml from "@modyfi/vite-plugin-yaml";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import remarkFrontmatter from "remark-frontmatter";
@@ -17,7 +17,7 @@ export default defineConfig({
     tailwindcss(),
     reactRouter(),
     tsconfigPaths(),
-    ViteYaml(),
+    viteYaml(),
     imagetools(),
   ],
   resolve: {

@@ -2,11 +2,12 @@ import { href } from "react-router";
 import clsx from "clsx";
 import DarkMode from "~/components/DarkMode";
 import Link from "~/components/Link";
+import site from "~/data/site.yaml";
 
 const links = [
   {
     name: "Channel",
-    to: "https://www.youtube.com/c/3blue1brown",
+    to: site.channel,
   },
   {
     name: "Talent",
@@ -14,11 +15,11 @@ const links = [
   },
   {
     name: "Patreon",
-    to: "https://www.patreon.com/c/3blue1brown",
+    to: site.patreon,
   },
   {
     name: "Store",
-    to: "https://store.dftba.com/collections/3blue1brown",
+    to: site.store,
   },
   {
     name: "Extras",
@@ -40,6 +41,15 @@ export default function Nav({ className = "", childClassName = "" }) {
           className,
         )}
       >
+        {/* jump button for accessibility */}
+        <a
+          href="#content"
+          className="fixed top-0 left-0 z-100 bg-white p-2 text-black not-focus-visible:opacity-0"
+          tabIndex={0}
+        >
+          Jump to main content
+        </a>
+        );
         {links.map(({ name, to }) => (
           <Link key={to} to={to} arrow={false} className={childClassName}>
             {name}

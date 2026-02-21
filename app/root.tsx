@@ -11,7 +11,8 @@ import {
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Anchors from "~/components/Anchors";
-import { scrollToSelector } from "~/util/dom";
+import { load } from "~/components/DarkMode";
+import { scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
 // app entrypoint
@@ -26,29 +27,22 @@ export default function App() {
 
   if (changed)
     // if just hash changed, scroll immediately. else, wait for layout shifts
-    scrollToSelector(hash, undefined, hashChanged);
+    scrollTo(hash, undefined, hashChanged);
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <script>
-            {`
-              // set dark mode immediately to prevent FOUC
-              const dark = localStorage.getItem("dark-mode") === "true";
-              const root = document.documentElement;
-              root.classList[dark ? "add" : "remove"]("dark");
-            `}
-          </script>
+          <script dangerouslySetInnerHTML={{ __html: load }} />
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <Links />
         </head>
         <body>
           <Outlet />
-          <Anchors />
           <ScrollRestoration />
           <Scripts />
+          <Anchors />
         </body>
       </html>
     </IconContext.Provider>

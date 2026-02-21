@@ -1,9 +1,28 @@
 # site-wide meta
 
+# general
 title: 3Blue1Brown
 subtitle: Animated math
 description: Mathematics with a distinct visual perspective. Linear algebra, calculus, neural networks, topology, and more.
 url: https://3blue1brown.com
 
+# socials
+channel: https://www.youtube.com/@3blue1brown
+patreon: https://www.patreon.com/@3blue1brown
+store: https://store.dftba.com/collections/3blue1brown
+second_channel: https://www.youtube.com/@grantsanderson
+newsletter: https://3blue1brown.substack.com
+rss: https://3blue1brown.substack.com/feed
+instagram: https://www.instagram.com/3blue1brown
+x: https://x.com/3blue1brown
+bluesky: https://bsky.app/profile/3blue1brown.com
+tiktok: https://www.tiktok.com/@3blue1brown
+facebook: https://www.facebook.com/3blue1brown
+spotify: https://open.spotify.com/show/4MFZ3m3PIfsKBNoVR7yIf2
+reddit: https://www.reddit.com/r/3blue1brown
+github: https://github.com/3b1b
+bilibili: https://space.bilibili.com/88461692
+
+# forms
 topic_suggestion_form: "https://forms.gle/Ls8xVg6CKQumXfDR6"
 video_pitch_form: "https://forms.gle/jvRCU8zJzb6tnEWM9"
