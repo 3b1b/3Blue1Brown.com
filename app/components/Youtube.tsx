@@ -1,12 +1,13 @@
 import type { ComponentProps } from "react";
-import { useRef } from "react";
-import { useEventListener } from "@reactuses/core";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router";
+import { useEventListener, useUnmount } from "@reactuses/core";
 import clsx from "clsx";
 import { atom } from "jotai";
+import { setAtom } from "~/util/atom";
 import { waitFor } from "~/util/misc";
 import { getThumbnail } from "~/util/youtube";
 import "youtube-video-element";
-import { setAtom } from "~/util/atom";
 
 type Props = {
   id?: string;
@@ -20,18 +21,36 @@ export default function Youtube({ id, className, ...props }: Props) {
     className,
   );
 
-  // listen for play event
-  useEventListener("youtube-video-play", async () => {
+  const play = async () => {
     await waitFor(() => (ref.current?.readyState ?? 0) > 0);
     ref.current?.play();
     ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
+    setAtom(playingAtom, true);
+  };
+
+  const stop = () => {
+    ref.current?.pause();
+    setAtom(playingAtom, false);
+  };
+
+  // listen for play event
+  useEventListener("youtube-video-play", play);
 
   // listen for stop event
-  useEventListener("youtube-video-stop", () => ref.current?.pause());
+  useEventListener("youtube-video-stop", stop);
 
+  // listen for play/pause events to set playing state
   useEventListener("play", () => setAtom(playingAtom, true), ref);
   useEventListener("pause", () => setAtom(playingAtom, false), ref);
+
+  // stop playback on route change
+  const location = useLocation();
+  useEffect(() => {
+    stop();
+  }, [location]);
+
+  // stop playback on unmount
+  useUnmount(stop);
 
   if (!id) return <div className={className}>No video</div>;
 

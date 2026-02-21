@@ -2,9 +2,11 @@ import Alert from "~/components/Alert";
 import Button from "~/components/Button";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
+import Figure from "~/components/Figure";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
+import Portrait from "~/components/Portrait";
 import StrokeType from "~/components/StrokeType";
 import Textbox from "~/components/Textbox";
 import site from "~/data/site.yaml";
@@ -84,6 +86,25 @@ export default function Testbed() {
             </Alert>
           ),
         )}
+      </section>
+
+      <section>
+        <h2>Portrait</h2>
+
+        <Portrait
+          image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
+          name="Lorem ipsum"
+          description="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+          className="max-w-50 self-center"
+        />
+      </section>
+
+      <section>
+        <h2>Figure</h2>
+
+        <Figure image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
+          Lorem ipsum dolor sit amet consectetur adipiscing elit
+        </Figure>
       </section>
 
       <section>

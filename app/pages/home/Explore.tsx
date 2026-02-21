@@ -117,7 +117,7 @@ export default function Explore() {
           {topics.map(({ id, title, image }, index) => (
             <button
               key={index}
-              className="card-button"
+              className="card"
               onClick={() => {
                 setTopicId(id);
                 searchBox.current?.scrollIntoView({ behavior: "smooth" });
@@ -125,7 +125,7 @@ export default function Explore() {
               aria-label={`Explore topic "${title}"`}
             >
               <img src={image ?? ""} alt="" />
-              <div>{title}</div>
+              <div className="font-sans font-medium">{title}</div>
             </button>
           ))}
         </div>
@@ -139,7 +139,7 @@ export default function Explore() {
             {results.map(({ id, title, description, video }, index) => (
               <button
                 key={index}
-                className="card-button"
+                className="card"
                 onClick={() => {
                   setLessonId(id);
                   play();
@@ -151,8 +151,8 @@ export default function Explore() {
                   alt=""
                   className={clsx(lessonId === id && "opacity-50")}
                 />
-                <div>{title}</div>
-                <div>{description}</div>
+                <div className="font-sans font-medium">{title}</div>
+                <div className="line-clamp-3">{description}</div>
                 {lessonId === id && (
                   <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
                     <EyeIcon />

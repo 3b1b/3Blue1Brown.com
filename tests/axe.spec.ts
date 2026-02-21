@@ -3,7 +3,16 @@ import { expect, test } from "@playwright/test";
 import { log, stringify } from "./util";
 
 // paths to test, hand-picked to reduce test time
-const paths = ["/", "/testbed", "/about", "/extras", "/blog/some2"];
+const paths = [
+  "/",
+  "/testbed",
+  "/about",
+  "/extras",
+  "/blog/some2",
+  "/blog/recommendations",
+  "/blog/book-recommendations",
+  "/blog/livestream-setup",
+];
 
 log();
 

@@ -4,7 +4,6 @@ import Header from "~/components/Header";
 import Meta from "~/components/Meta";
 import { getLesson } from "~/data/lessons";
 import Explore, { lessonAtom } from "./Explore";
-import Extras from "./Extras";
 import Follow from "./Follow";
 import Patreon from "./Patreon";
 import Talent from "./Talent";
@@ -25,9 +24,8 @@ export default function Home() {
       <main>
         <Explore />
         <Patreon />
-        <Follow />
         <Talent />
-        <Extras />
+        <Follow />
       </main>
 
       <Footer />

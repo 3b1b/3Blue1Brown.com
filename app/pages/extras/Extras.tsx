@@ -1,5 +1,6 @@
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
+import Blog from "~/pages/extras/Blog";
 import OtherWork from "~/pages/extras/OtherWork";
 
 export default function Extras() {
@@ -11,9 +12,15 @@ export default function Extras() {
         <h1>
           <StrokeType>Extras</StrokeType>
         </h1>
+
+        <p className="max-w-100 self-center">
+          Resources, podcasts, blog, collabs, courses, conversations, and other
+          miscellany that don't fit elsewhere on the site.
+        </p>
       </section>
 
       <OtherWork />
+      <Blog />
     </>
   );
 }

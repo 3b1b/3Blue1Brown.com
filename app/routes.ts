@@ -13,24 +13,26 @@ export default [
   route("blog/:postId", "pages/blog/Post.tsx"),
 ];
 
-// use flat list of all (statically) available routes
-export const useRoutes = () => {
+// use server build data
+export const useBuild = () => {
   const data = useRouteLoaderData<typeof loader>("root");
-  const manifest = data?.routes ?? {};
-  // flatten ServerRouteManifest into AgnosticRouteObject[] for matchRoutes
-  const flat: RouteObject[] = Object.values(manifest).map((route) => ({
-    id: route?.id,
-    path: route?.path,
-    index: route?.index,
-    caseSensitive: route?.caseSensitive,
-    parentId: route?.parentId,
-  }));
 
-  return flat;
+  // flatten ServerRouteManifest into AgnosticRouteObject[] for matchRoutes
+  const flatRoutes: RouteObject[] = Object.values(data?.routes ?? {}).map(
+    (route) => ({
+      id: route?.id,
+      path: route?.path,
+      index: route?.index,
+      caseSensitive: route?.caseSensitive,
+      parentId: route?.parentId,
+    }),
+  );
+
+  return { ...data, flatRoutes };
 };
 
 // check if internal route exists
 export const useRouteExists = (to: string) => {
-  const routes = useRoutes();
-  return !!matchRoutes(routes, to);
+  const { flatRoutes } = useBuild();
+  return !!matchRoutes(flatRoutes, to);
 };

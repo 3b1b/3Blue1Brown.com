@@ -10,7 +10,7 @@ import typescriptEslint from "typescript-eslint";
 
 export default defineConfig([
   globalIgnores([
-    "dist",
+    "build",
     "public",
     ".react-router",
     "playwright-report",

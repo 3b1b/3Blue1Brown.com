@@ -28,10 +28,10 @@ export default function Button({
     color === "light" &&
       "bg-theme/10 text-black hover:bg-theme hover:text-white",
     color === "theme" &&
-      "bg-theme text-white outline-2 outline-offset-2 outline-transparent hover:bg-black hover:outline-black",
+      "bg-theme text-white hover-ring hover:bg-black hover:outline-black",
     color === "accent" &&
-      "bg-black text-white outline-2 outline-offset-2 outline-transparent hover:bg-theme hover:outline-theme",
-    size === "small" && "px-2 py-0",
+      "bg-black text-white hover-ring hover:bg-theme hover:outline-theme",
+    size === "small" && "px-2 py-1",
     size === "medium" && "px-4 py-2 text-lg",
     className,
   );

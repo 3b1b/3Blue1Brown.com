@@ -20,13 +20,13 @@ export default function Portrait({
   return (
     <div
       className={clsx(
-        "group flex shrink-0 flex-col items-center gap-1 text-center",
+        "group flex shrink-0 flex-col items-center gap-2 text-center",
         className,
       )}
     >
       <Link
         to={link}
-        className="aspect-square w-full overflow-hidden rounded-full outline-2 outline-offset-2 outline-theme"
+        className="aspect-square w-full overflow-hidden rounded-full static-ring"
       >
         <img
           src={image}

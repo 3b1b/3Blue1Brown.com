@@ -63,7 +63,7 @@ const Textbox = ({
     <textarea
       ref={mergedRef}
       rows={6}
-      className="grow resize rounded-md border border-light-gray bg-white p-2 outline-2 outline-offset-2 outline-transparent hover:outline-theme"
+      className="grow resize rounded-md border border-light-gray bg-white p-2 hover-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -72,7 +72,7 @@ const Textbox = ({
   ) : (
     <input
       ref={mergedRef}
-      className="grow rounded-md border border-light-gray bg-white p-2 outline-2 outline-offset-2 outline-transparent hover:outline-theme"
+      className="grow rounded-md border border-light-gray bg-white p-2 hover-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}

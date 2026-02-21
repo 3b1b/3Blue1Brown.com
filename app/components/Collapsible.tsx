@@ -34,7 +34,7 @@ export default function Collapsible({ title, children, className }: Props) {
       </Button>
       <DisclosurePanel
         className={clsx(
-          "flex h-(--disclosure-panel-height) flex-col gap-4 overflow-hidden px-8 py-2 transition-[height]",
+          "flex h-(--disclosure-panel-height) flex-col gap-8 overflow-hidden px-8 py-2 transition-[height]",
           isExpanded ? "" : "sr-only",
         )}
       >

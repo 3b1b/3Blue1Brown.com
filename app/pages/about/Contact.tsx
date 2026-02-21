@@ -33,7 +33,9 @@ export default function Contact() {
   const [message, setMessage] = useLocalStorage("contact-message", "");
 
   // form status
-  const [status, setStatus] = useState<"" | "success" | "error">("");
+  const [status, setStatus] = useState<"" | "loading" | "success" | "error">(
+    "",
+  );
 
   return (
     <form
@@ -53,6 +55,7 @@ export default function Contact() {
         }
 
         try {
+          setStatus("loading");
           // send form data to netlify
           const response = await window.fetch("/", {
             method: "POST",
@@ -138,6 +141,12 @@ export default function Contact() {
           <PaperPlaneIcon />
           Send
         </Button>
+      )}
+
+      {status === "loading" && (
+        <Alert type="loading" className="col-span-full">
+          Sending message...
+        </Alert>
       )}
 
       {status === "success" && (

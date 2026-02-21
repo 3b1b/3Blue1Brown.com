@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "react-router dev --open --port 31415",
     "build": "react-router build",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "bunx serve ./build/client",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "test:types": "react-router typegen && tsc",
@@ -20,7 +20,6 @@
     "@fontsource-variable/source-serif-4": "^5.2.9",
     "@phosphor-icons/react": "^2.1.10",
     "@react-router/node": "7.12.0",
-    "@react-router/serve": "7.12.0",
     "@reactuses/core": "^6.1.11",
     "clsx": "^2.1.1",
     "comlink": "^4.4.2",

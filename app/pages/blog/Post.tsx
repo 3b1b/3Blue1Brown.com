@@ -21,7 +21,7 @@ type Post = {
 };
 
 // import all posts on prerender/buildtime and client/runtime
-const posts = import.meta.glob<Post>("./**/*.mdx", { eager: true });
+export const posts = import.meta.glob<Post>("./**/*.mdx", { eager: true });
 
 export const loader = ({ params: { postId } }: Route.LoaderArgs) => {
   // path to mdx source file
@@ -55,14 +55,16 @@ export default function Post({ loaderData: { path } }: Route.ComponentProps) {
       <main className="[&>section]:odd:bg-off-white">
         <Meta title={title} description={description} />
 
-        <section className="items-center bg-theme/10!">
+        <section className="items-center gap-8 bg-theme/10!">
           <h1>
             <StrokeType>{title}</StrokeType>
           </h1>
-          {description && <p className="text-lg">{description}</p>}
-          <div className="flex flex-wrap gap-8 text-lg opacity-50">
-            {author && <div>{author}</div>}
-            {date && <div>{formatDate(date)}</div>}
+          <div className="flex flex-col items-center gap-4">
+            {description && <p className="text-lg">{description}</p>}
+            <div className="flex flex-wrap gap-8 text-lg opacity-50">
+              {author && <div>{author}</div>}
+              {date && <div>{formatDate(date)}</div>}
+            </div>
           </div>
           {video && <Youtube id={video} className="aspect-video w-full" />}
         </section>

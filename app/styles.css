@@ -82,12 +82,12 @@
   }
 
   section {
-    --width: 250;
-    @apply relative isolate flex flex-col gap-8 overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)];
+    --width: 300;
+    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)];
   }
 
   hr {
-    @apply h-px border-0 bg-current/10;
+    @apply h-px border-0 bg-current/10 grow;
   }
 
   h1,
@@ -144,7 +144,7 @@
   }
 
   blockquote {
-    @apply bg-light-gray border-theme gap-4 rounded-r-md border-l-2 p-8 leading-loose;
+    @apply bg-light-gray border-theme flex flex-col gap-4 rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -198,7 +198,7 @@
   }
 
   :focus-visible {
-    @apply outline-theme! outline-2 outline-offset-2;
+    @apply static-ring!;
   }
 }
 
@@ -214,7 +214,7 @@
 
 @utility wide {
   &:is(section) {
-    --width: 350;
+    --width: 400;
   }
 }
 
@@ -224,20 +224,20 @@
   }
 }
 
-@utility card-button {
-  @apply hover:outline-theme hover:bg-theme/10 relative flex flex-col items-center justify-start text-center text-balance text-black no-underline outline-2 outline-offset-2 outline-transparent;
+@utility card {
+  @apply hover:bg-theme/10 hover-ring relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline not-hover:outline-transparent;
 
-  & > :nth-child(1) {
-    @apply w-full;
+  & > img:first-child {
+    @apply -mb-2 w-[calc(100%+--spacing(4))] max-w-[unset] -translate-y-2;
   }
+}
 
-  & > :nth-child(2) {
-    @apply m-4 font-sans text-lg font-medium;
-  }
+@utility static-ring {
+  @apply outline-theme outline-2 outline-offset-2;
+}
 
-  & > :nth-child(3) {
-    @apply m-4 mt-0 line-clamp-3 font-serif;
-  }
+@utility hover-ring {
+  @apply hover:outline-theme outline-2 outline-offset-2 outline-transparent;
 }
 
 @utility badge {

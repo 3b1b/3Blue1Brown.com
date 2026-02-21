@@ -15,8 +15,6 @@ export default {
         path.match(new RegExp("./app/pages(/blog/.*)/index.mdx"))?.[1] ?? "",
     );
 
-    console.log(posts);
-
     return [
       // regular, non-glob routes
       ...getStaticPaths(),

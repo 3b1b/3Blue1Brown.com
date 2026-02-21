@@ -21,6 +21,10 @@ const links = [
     to: "https://store.dftba.com/collections/3blue1brown",
   },
   {
+    name: "Extras",
+    to: href("/extras"),
+  },
+  {
     name: "About",
     to: href("/about"),
   },
