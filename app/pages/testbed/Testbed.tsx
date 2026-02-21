@@ -151,7 +151,6 @@ export default function Testbed() {
           was the epoch of incredulity, it was the season of light, it was the
           season of darkness, it was the spring of hope, it was the winter of
           despair.
-          <span>— Charles Dickens</span>
         </blockquote>
       </section>
 

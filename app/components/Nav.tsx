@@ -10,7 +10,7 @@ const links = [
   },
   {
     name: "Talent",
-    to: href("/talent"),
+    to: href("/"),
   },
   {
     name: "Patreon",

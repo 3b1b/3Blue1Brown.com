@@ -3,13 +3,17 @@ import mdx from "@mdx-js/rollup";
 import ViteYaml from "@modyfi/vite-plugin-yaml";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    mdx(),
+    mdx({
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+    }),
     tailwindcss(),
     reactRouter(),
     tsconfigPaths(),

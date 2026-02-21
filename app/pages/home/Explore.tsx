@@ -15,12 +15,12 @@ import { play } from "~/components/Youtube";
 import { byDate, lessons } from "~/data/lessons";
 import { atomWithQuery } from "~/util/atom";
 import { preserveScroll } from "~/util/dom";
+import { importAssets } from "~/util/file";
 import { useFuzzySearch } from "~/util/hooks";
-import { importAssets } from "~/util/import";
 import { getThumbnail } from "~/util/youtube";
 
 // import all svgs in this folder
-const getTopicImage = importAssets(
+const { lookUp } = importAssets(
   import.meta.glob("./images/*.svg", { eager: true }),
 );
 
@@ -48,7 +48,7 @@ const topics = [
   },
 ]
   .filter((topic) => !topic.id.match(/misc/i))
-  .map((button) => ({ ...button, image: getTopicImage(button.id) }));
+  .map((button) => ({ ...button, image: lookUp(button.id) }));
 
 const limit = 12;
 

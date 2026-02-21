@@ -10,12 +10,7 @@ export default [
     route("about", "pages/about/About.mdx"),
     route("extras", "pages/extras/Extras.tsx"),
   ]),
-  layout("pages/talent/Layout.tsx", [
-    route("talent", "pages/talent/Talent.tsx"),
-  ]),
-  layout("pages/lessons/Layout.tsx", [
-    route("lessons/:lessonId", "pages/lessons/Lessons.tsx"),
-  ]),
+  route("blog/:postId", "pages/blog/Post.tsx"),
 ];
 
 // use flat list of all (statically) available routes

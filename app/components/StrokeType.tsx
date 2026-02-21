@@ -2,7 +2,7 @@ import type { ComponentProps } from "react";
 
 type Props = {
   children: string;
-} & ComponentProps<"span">;
+} & Omit<ComponentProps<"span">, "children">;
 
 export default function StrokeType({ children, ...props }: Props) {
   const chars = children.split("");

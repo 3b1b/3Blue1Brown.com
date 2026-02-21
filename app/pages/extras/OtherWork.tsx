@@ -1,11 +1,11 @@
 import Link from "~/components/Link";
-import { importAssets } from "~/util/import";
+import { importAssets } from "~/util/file";
 
-const getOtherImage = importAssets(
-  import.meta.glob("./images/*.{jpg,jpeg,png}", {
+const { lookUp } = importAssets(
+  import.meta.glob("./images/*.{jpg,png}", {
     eager: true,
     // limit size, compress
-    query: "url&w=600&format=webp",
+    query: "w=600&format=webp",
   }),
 );
 
@@ -58,14 +58,14 @@ const entries = [
   },
 ].map((entry) => ({
   ...entry,
-  image: getOtherImage(entry.name),
+  image: lookUp(entry.name),
 }));
 
 export default function OtherWork() {
   return (
     <>
       <section>
-        <h2 className="sr-only">Other Work</h2>
+        <h2>Other Work</h2>
 
         <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
           {entries.map(({ link, name, description, image }, index) => (

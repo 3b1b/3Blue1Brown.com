@@ -1,14 +1,12 @@
-import type { ComponentProps } from "react";
-import clsx from "clsx";
-import Link from "~/components/Link";
-import { importAssets } from "~/util/import";
+import Portrait from "~/components/Portrait";
+import { importAssets } from "~/util/file";
 
 // get portrait image
-const getImage = importAssets(
+const { lookUp } = importAssets(
   import.meta.glob("./images/portraits/*.jpg", {
     eager: true,
     // limit size, compress
-    query: "url&w=600&format=webp",
+    query: "w=600&format=webp",
   }),
 );
 
@@ -27,7 +25,7 @@ const mapMember = ({
 }: Partial<Member>) => ({
   name,
   description,
-  image: getImage(name),
+  image: lookUp(name),
   link,
 });
 
@@ -36,9 +34,9 @@ export function Grant() {
   return (
     <Portrait
       name="Grant Sanderson"
-      image={getImage("Grant Sanderson")}
+      image={lookUp("Grant Sanderson")}
       description="Creator"
-      className="w-50 shrink-0"
+      className="w-50"
     />
   );
 }
@@ -127,37 +125,6 @@ export function Past() {
       {past.map((member, index) => (
         <Portrait key={index} {...member} className="text-sm" />
       ))}
-    </div>
-  );
-}
-
-// member image, name, and description
-function Portrait({
-  name,
-  image,
-  description,
-  link = "",
-  className,
-}: Partial<Member> & ComponentProps<"div">) {
-  return (
-    <div
-      className={clsx(
-        "group flex flex-col items-center gap-1 text-center",
-        className,
-      )}
-    >
-      <Link
-        to={link}
-        className="aspect-square w-full overflow-hidden rounded-full outline-2 outline-offset-2 outline-theme"
-      >
-        <img
-          src={image}
-          alt={name}
-          className="size-full object-cover transition group-hover:grayscale"
-        />
-      </Link>
-      {name && <div className="mt-4 font-sans font-medium">{name}</div>}
-      {description && <div>{description}</div>}
     </div>
   );
 }

@@ -65,6 +65,10 @@
 }
 
 @layer base {
+  * {
+    text-box: trim-both text;
+  }
+
   html {
     @apply bg-white font-serif leading-normal font-normal text-black underline-offset-2;
   }
@@ -79,11 +83,11 @@
 
   section {
     --width: 250;
-    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(12)] last:grow max-md:[--pad:--spacing(8)];
+    @apply relative isolate flex flex-col gap-8 overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)];
   }
 
   hr {
-    @apply col-span-full h-px w-full grow border-0 bg-current/10;
+    @apply h-px border-0 bg-current/10;
   }
 
   h1,
@@ -91,10 +95,6 @@
   h3,
   h4 {
     @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal;
-
-    hr {
-      @apply w-[unset];
-    }
   }
 
   h1 {
@@ -132,7 +132,7 @@
 
   ul,
   ol {
-    @apply flex list-[revert] flex-col pl-6 leading-loose;
+    @apply flex list-[revert] flex-col gap-4 pl-6 leading-loose;
   }
 
   li {
@@ -144,11 +144,7 @@
   }
 
   blockquote {
-    @apply bg-off-white border-theme gap-4 rounded-r-md border-l-2 p-8 leading-loose;
-
-    & :last-child {
-      @apply text-dark-gray float-right mt-4 ml-4 leading-normal italic;
-    }
+    @apply bg-light-gray border-theme gap-4 rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {

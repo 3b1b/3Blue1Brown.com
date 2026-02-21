@@ -6,9 +6,6 @@ import {
   useResolvedPath,
 } from "react-router";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
-import { useRouteExists } from "~/routes";
-import { mergeTo } from "~/util/url";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -54,12 +51,6 @@ export default function Link({
   // are we already on target page
   const active = useMatch(to.toString()) && !external;
 
-  // check if broken internal link
-  const broken = !useRouteExists(to.toString()) && !external && !active;
-
-  // class name string
-  className = clsx(broken && "line-through!", className);
-
   // external link
   if (external)
     return (
@@ -70,16 +61,13 @@ export default function Link({
     );
 
   // internal link, active
-  if (active || !to)
-    return (
-      <span className={clsx("pointer-events-none", className)}>{children}</span>
-    );
+  if (active || !to) return <span className={className}>{children}</span>;
 
   // other internal link
   return (
     <RouterLink
       ref={ref}
-      to={mergeTo(from, to)}
+      to={to}
       target={target}
       className={className}
       viewTransition={resolved.pathname !== from.pathname ? true : undefined}

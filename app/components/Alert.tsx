@@ -19,16 +19,30 @@ type Props = {
   className?: string;
 };
 
+const className = "relative top-0.5 icon";
+
 // available categories of alerts and associated styles
 export const types = {
-  info: { color: "var(--color-theme)", icon: <InfoIcon /> },
+  info: {
+    color: "var(--color-theme)",
+    icon: <InfoIcon className={className} />,
+  },
   loading: {
     color: "var(--color-gray)",
-    icon: <CircleNotchIcon className="icon animate-spin" />,
+    icon: <CircleNotchIcon className={clsx(className, "animate-spin")} />,
   },
-  success: { color: "var(--color-success)", icon: <CheckCircleIcon /> },
-  warning: { color: "var(--color-warning)", icon: <WarningCircleIcon /> },
-  error: { color: "var(--color-error)", icon: <WarningDiamondIcon /> },
+  success: {
+    color: "var(--color-success)",
+    icon: <CheckCircleIcon className={className} />,
+  },
+  warning: {
+    color: "var(--color-warning)",
+    icon: <WarningCircleIcon className={className} />,
+  },
+  error: {
+    color: "var(--color-error)",
+    icon: <WarningDiamondIcon className={className} />,
+  },
 };
 
 // alert type
@@ -45,13 +59,13 @@ export default function Alert({
     <div
       role="alert"
       className={clsx(
-        "flex items-center gap-4 rounded-r-md border-l-2 border-current bg-current/10 p-4",
+        "flex items-start gap-4 rounded-r-md border-l-2 border-current bg-current/10 p-4",
         className,
       )}
       style={{ color: types[type].color }}
     >
       {icon ?? types[type].icon}
-      <div className="text-black">{children}</div>
+      <div className="flex flex-col gap-4 text-black">{children}</div>
     </div>
   );
 }

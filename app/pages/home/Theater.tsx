@@ -41,9 +41,7 @@ export default function Theater() {
   const isLatest = latest?.id === lesson?.id;
 
   // link to readable lesson
-  const readLink = lesson
-    ? href(`/lessons/:lessonId`, { lessonId: lesson.id })
-    : "";
+  const readLink = lesson ? href(`/`) : "";
 
   // does readable lesson exist
   const readExists = useRouteExists(readLink);
