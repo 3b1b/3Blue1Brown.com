@@ -11,7 +11,6 @@
   --font-mono: "Sometype Mono Variable", monospace;
 
   --font-weight-*: initial;
-
   --font-weight-normal: 350;
   --font-weight-medium: 500;
   --font-weight-bold: 600;
@@ -26,7 +25,6 @@
   --shadow-overlay: 0 0 0 9999px var(--color-shadow);
 
   --color-*: initial;
-
   --color-theme: oklch(55% 0.15 240);
   --color-secondary: oklch(55% 0.15 60);
 
@@ -87,7 +85,7 @@
   }
 
   hr {
-    @apply h-px border-0 bg-current/10 grow;
+    @apply h-px grow border-0 bg-current/10;
   }
 
   h1,

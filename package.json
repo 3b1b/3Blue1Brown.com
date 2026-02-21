@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "react-router dev --open --port 31415",
     "build": "react-router build",
-    "start": "bunx serve ./build/client",
+    "preview": "bunx serve ./build/client --port 31415",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
     "test:types": "react-router typegen && tsc",
