@@ -1,3 +1,4 @@
+import { writeFileSync } from "fs";
 import type { Config } from "@react-router/dev/config";
 
 export default {
@@ -15,11 +16,16 @@ export default {
         path.match(new RegExp("./app/pages(/blog/.*)/index.mdx"))?.[1] ?? "",
     );
 
-    return [
+    const routes = [
       // regular, non-glob routes
       ...getStaticPaths(),
       // dynamic routes
       ...posts,
     ];
+
+    // export pre-rendered routes for testing purposes
+    writeFileSync("./tests/routes.json", JSON.stringify(routes, null, 2));
+
+    return routes;
   },
 } satisfies Config;

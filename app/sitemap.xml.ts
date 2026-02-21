@@ -1,5 +1,5 @@
 import { Readable } from "stream";
-import type { Route } from "./+types/sitemap.xml.server";
+import type { Route } from "./+types/sitemap.xml";
 import { SitemapStream, streamToPromise } from "sitemap";
 
 // generate sitemap.xml from prerendered routes

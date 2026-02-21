@@ -1,18 +1,10 @@
 import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import routes from "./routes.json" with { type: "json" };
 import { log, stringify } from "./util";
 
-// paths to test, hand-picked to reduce test time
-const paths = [
-  "/",
-  "/testbed",
-  "/about",
-  "/extras",
-  "/blog/some2",
-  "/blog/recommendations",
-  "/blog/book-recommendations",
-  "/blog/livestream-setup",
-];
+// paths to test, auto-generated any time site is built or dev'd
+const paths = routes.filter((path) => !path.endsWith(".xml"));
 
 log();
 

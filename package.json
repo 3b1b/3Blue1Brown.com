@@ -10,7 +10,7 @@
     "test:lint": "eslint .",
     "test:format": "prettier --check .",
     "test:e2e": "playwright test",
-    "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e",
+    "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e && bun run build",
     "install-playwright": "bunx playwright install chromium --with-deps",
     "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm",
     "check-spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum",

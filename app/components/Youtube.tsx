@@ -62,6 +62,7 @@ export default function Youtube({ id, className, ...props }: Props) {
       poster={getThumbnail(id)}
       controls
       autoPlay={false}
+      role="region"
       {...props}
     />
   );

@@ -12,7 +12,7 @@ export default [
     route("*", "pages/NotFound.tsx"),
   ]),
   route("blog/:postId", "pages/blog/Post.tsx"),
-  route("sitemap.xml", "sitemap.xml.server.ts"),
+  route("sitemap.xml", "sitemap.xml.ts"),
 ];
 
 // use server build data

@@ -41,19 +41,31 @@ If Bun disappeared tomorrow, going back to Node should be as simple as replacing
 
 | Command                      | Description                                       |
 | ---------------------------- | ------------------------------------------------- |
+| **Setup**                    |                                                   |
 | `bun install`                | Install packages                                  |
-| `bun run some-script`        | Runs `some-script` defined in `package.json`      |
 | `bun run install-playwright` | Install browsers for integration tests            |
+| `bun run clean`              | "Hard uninstall", to be followed with re-install  |
+| **Basic**                    |                                                   |
+| `bun run some-script`        | Runs `some-script` defined in `package.json`      |
 | `bun run dev`                | Start local dev server with hot-reloading         |
 | `bun run build`              | Build production version of app                   |
 | `bun run preview`            | Serve built version of app (must run build first) |
+| **Fix**                      |                                                   |
 | `bun run lint`               | Fix linting                                       |
 | `bun run format`             | Fix formatting                                    |
+| **Test**                     |                                                   |
 | `bun run test:types`         | Test types                                        |
 | `bun run test:lint`          | Test linting                                      |
 | `bun run test:format`        | Test formatting                                   |
 | `bun run test:e2e`           | Run integration tests, including Axe              |
 | `bun run test`               | Run all tests                                     |
+| **Checks**\*                 |                                                   |
+| `bun run check-spelling`     | Check for spelling errors                         |
+| `bun run check-unused`       | Check for unused code                             |
+| `bun run check-links`        | Check for broken links                            |
+
+\* Scripts that are valuable, but have too many false positives to be tests that fail critically.
+Run periodically, manually review, and use discretion.
 
 ## Repo Structure
 

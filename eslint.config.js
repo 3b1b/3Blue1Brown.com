@@ -73,6 +73,9 @@ export default defineConfig([
   {
     name: "MDX",
     ...eslintPluginMdx.flat,
+    rules: {
+      "@typescript-eslint/consistent-type-imports": "off",
+    },
   },
   {
     languageOptions: {
