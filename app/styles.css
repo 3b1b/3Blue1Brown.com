@@ -204,19 +204,26 @@
   @apply inline-block h-[1.25em] w-[unset];
 }
 
-@utility narrow {
+
+@utility width-xs {
+  &:is(section) {
+    --width: 100;
+  }
+}
+
+@utility width-sm {
   &:is(section) {
     --width: 200;
   }
 }
 
-@utility wide {
+@utility width-lg {
   &:is(section) {
     --width: 400;
   }
 }
 
-@utility full {
+@utility width-full {
   &:is(section) {
     --width: 9999;
   }

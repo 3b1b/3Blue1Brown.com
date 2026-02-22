@@ -87,7 +87,7 @@ export default function Explore() {
   }, []);
 
   return (
-    <section>
+    <section className="width-sm">
       <h2>Explore</h2>
 
       <Textbox

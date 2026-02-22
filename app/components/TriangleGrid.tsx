@@ -10,7 +10,7 @@ import { Vector } from "~/util/vector";
 const radius = 6;
 const thickness = 3;
 const spacing = 100;
-const limit = 400;
+const density = 8;
 const minConnections = 1;
 const duration = 4;
 const colorA = "#0088ff";
@@ -86,9 +86,6 @@ const tri = Math.sqrt(3) / 2;
 const generate = (width: number, height: number) => {
   const { graph, getNodes, addNode, addEdge, removeNode } = makeGraph<Vector>();
 
-  width = clamp(width, 100, 3000);
-  height = clamp(height, 100, 2000);
-
   // boundaries
   const left = -width / 2;
   const right = width / 2;
@@ -108,12 +105,20 @@ const generate = (width: number, height: number) => {
     for (let y = yStart; y <= bottom; y += spacing) addNode(new Vector(x, y));
   }
 
+  // make limit proportional to area
+  const limit = clamp((density / 80000) * (width * height), 10, 1000);
+
+  console.log(limit);
+
   // hard limit points
-  while (graph.size > limit) {
+  for (let tries = 0; tries < 10000; tries++) {
+    // if under limit, done
+    if (graph.size < limit) break;
+    // pick random node
     const node = sample(getNodes());
-    if (!node) continue;
-    const dist = node.divide(width, height).length() * 2;
+    if (!node) break;
     // favor removing points near center
+    const dist = node.divide(width, height).length() * 2;
     if (dist < Math.random()) removeNode(node);
   }
 

@@ -39,6 +39,16 @@ export default function App() {
           <Links />
         </head>
         <body>
+          <nav>
+            {/* jump button for accessibility */}
+            <a
+              href="#content"
+              className="fixed top-0 left-0 z-100 bg-white p-2 text-black no-underline not-focus-visible:opacity-0"
+              tabIndex={0}
+            >
+              Jump to main content
+            </a>
+          </nav>
           <Outlet />
           <ScrollRestoration />
           <Scripts />

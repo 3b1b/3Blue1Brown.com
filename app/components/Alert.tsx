@@ -19,7 +19,7 @@ type Props = {
   className?: string;
 };
 
-const className = "relative top-0.5 icon";
+const className = "icon translate-y-[0.25lh]";
 
 // available categories of alerts and associated styles
 export const types = {
@@ -59,7 +59,7 @@ export default function Alert({
     <div
       role="alert"
       className={clsx(
-        "flex items-start gap-4 rounded-r-md border-l-2 border-current bg-current/10 p-4",
+        "flex items-start gap-4 rounded-r-md border-l-2 border-current bg-current/10 p-4 leading-loose",
         className,
       )}
       style={{ color: types[type].color }}

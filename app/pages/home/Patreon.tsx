@@ -4,7 +4,7 @@ import site from "~/data/site.yaml";
 
 export default function Patreon() {
   return (
-    <section className="items-center bg-theme/10">
+    <section className="items-center bg-theme/10 width-sm">
       <h2>
         <PatreonLogoIcon />
         Patreon

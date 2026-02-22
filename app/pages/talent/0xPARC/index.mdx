@@ -1,0 +1,147 @@
+---
+name: 0xPARC
+tagline: Cryptography research
+quote: The correlation between a background in contest math and being able to work with the stuff that we're doing is extraordinarily high
+---
+
+<Section width="narrow">
+
+<VimeoEmbed video="1158109614" hash="c6f71a8907" />
+
+<Clickable
+  link="https://0xparc.org/3b1b"
+  text="Learn more and apply"
+  design="featured"
+/>
+
+</Section>
+
+<Section width="narrow">
+
+## About
+
+<Portrait image="./rob-presentation.jpeg" round={false} size="200px" />
+
+At 0xPARC, we strive to envision, invent, and improve the digital ecology of the future. Our efforts center around advancing the frontier of combining computing and mathematics, since we believe what makes a computer truly powerful is not just how fast it runs, but what it is capable of doing. It’s easier to describe what we aren’t than what we are, but it may help to think of 0xPARC as a grant-funded research organization and extended community of explorers whose activities include research, prototyping, engineering, and productionization.
+
+</Section>
+
+<Section width="narrow">
+
+## Select examples of our work
+
+### Pure Computing
+
+In conventional systems, computing on data requires revealing the data to the party performing the computation. This comes with a permanent epistemic side effect in the form of the irreversible sharing of information. Pure Computing is computing without this side effect, akin to how a pure function executes with no side effects outside of the function’s scope. Fully Homomorphic Encryption (FHE) enables computation over encrypted data, making Pure Computing mathematically possible.
+
+<Portrait
+  image="./air-quality-monitor.jpeg"
+  flip={true}
+  round={false}
+  size="250px"
+/>
+
+0xPARC is building an encrypted computing platform to bring Pure Computing from a mathematical possibility to being practical and accessible. By designing around for the strengths of modern GPUs, using kernel fusion, harnessing ideas from cryptography research and high performance computing systems, optimizing implementations of cryptographic schemes, and more, we’ve achieved performance orders of magnitude beyond naive implementations. The first real world deployment on top of the encrypted computing platform is an encrypted air quality monitoring network, where each air quality monitor’s sensor data is immediately encrypted on-device, scientific computations run entirely on ciphertext, and raw data is never decrypted.
+
+For more on the air quality monitoring network and how the encrypted computing platform works, check out [this video presentation](https://0xparc.org/ucritair).
+
+### Digital Significance
+
+A palimpsest carries its latest words, but also traces of past texts. A quilt made from clothes provides warmth, while also holding hints of the history of the garments it absorbed, and perhaps even the people who once donned them. Physical objects through their mere existence are self-evidently historical, valid, and thus significant. The opposite is true with conventional digital objects, made of strings of bits that are trivially copyable, history-free, and entirely dependent on external systems for meaning.
+
+Recursive zero-knowledge proofs enable logic and history to accrue to a digital packet without requiring it to grow larger – compressing experience and capabilities into the packet, rather than appending it. 0xPARC’s work on Provable Object Data harnesses this capability, along with other computing techniques and concepts, in order to be self-interpreting and self-evidently valid, by carrying their own statements, composition rules, and cryptographic anchors. This is part of our broader efforts and exploration of how independent digital objects can realize a level of significance we take for granted in the physical world, and perhaps more.
+
+For more on Provable Object Data, see [0xparc.org/about-pod](https://0xparc.org/about-pod)
+
+<Clickable
+  link="https://0xparc.org/about-pod"
+  text="Learn more about Provable Object Data"
+  design="rounded"
+/>
+
+</Section>
+
+<Section width="narrow">
+
+## Puzzles
+
+A lot of pure math problems, often the kind that would arise in a contest math setting, are very relevant to the work we do. To take one example:
+
+> Suppose I have a secret list of positive integers: $(v_1, v_2, ..., v_n)$. You can't see my list, but you can ask me dot product questions. Give me any list of numbers $(x_1, x_2, ..., x_n)$ of the same length, and I'll tell you $x_1 \cdot v_1 + x_2 \cdot v_2 + ... + x_n \cdot v_n$.
+>
+> Figure out my secret list using as few questions as possible.
+
+If you’re interested in learning why this problem has surprising connections to lattice-based cryptography and fully homomorphic encryption, check out [0xparc.org/3b1b#puzzle1](https://0xparc.org/3b1b#puzzle1)
+
+### More puzzles
+
+Here is a further collection put together by 0xPARC’s Holden Mui, for the 3blue1brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
+
+<Accordion title="Problem 1 (TST 2018/4)">
+
+Suppose you have many black-box majority functions on three binary
+inputs. Is it possible to chain them to construct a majority function on 2025 binary inputs? (You
+can duplicate inputs and outputs of the black-box function for free.)
+
+</Accordion>
+
+<Accordion title="Problem 2 (homomorphic FFT).">
+
+The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in ${C}^{32{,}768}$ such that anyone can add encrypted vectors elementwise, multiply encrypted vectors elementwise, or “rotate” ciphertexts $\left(z_1, z_2, \ldots, z_{65536}\right) \mapsto\left(z_i, z_{i+1}, \ldots, z_{i-1}\right)$ by any "offset" $i$. Suppose that:
+
+- encrypted addition takes 4 microseconds
+- encrypted multiplication takes 5600 microseconds
+- encrypted rotation takes 6100 microseconds
+
+Find a fast arithmetic circuit that computes the Fourier transform on an encrypted vector, conditioned
+on the multiplicative depth of the circuit being at most three.
+
+</Accordion>
+
+<Accordion title="Problem 3 (A mod p system)">
+
+Are there any nontrivial solutions to the system of equations
+
+$$
+\begin{aligned}
+a+b+c+d & \equiv 0 \quad(\bmod p) \\
+a^2+b^2+c^2+d^2 & \equiv 0 \quad(\bmod p) \\
+a^3+b^3+c^3+d^3 & \equiv 0 \quad(\bmod p)
+\end{aligned}
+$$
+
+for $p=2^{127} - 1$?
+
+</Accordion>
+
+<Accordion title="Problem 4 (zero-knowledge factorization).">
+
+The programming language circom allows users to prove that they have an assignment to a set of variables satisfying a system of quadratic constraints
+
+$$
+\begin{aligned}
+(\text{lin. comb. of vars}) \times (\text{lin. comb. of vars}) &\equiv (\text{lin. comb. of vars}) \quad (\bmod p) \\
+(\text{lin. comb. of vars}) \times (\text{lin. comb. of vars}) &\equiv (\text{lin. comb. of vars}) \quad (\bmod p) \\
+&\vdots \\
+(\text{lin. comb. of vars}) \times (\text{lin. comb. of vars}) &\equiv (\text{lin. comb. of vars}) \quad (\bmod p) \\
+\end{aligned}
+$$
+
+without revealing the complete assignment of variables[^1].
+Some of the variables are set to be public, Some of the variables are set to be public, and the rest are set to be private
+
+(a) Give a system of quadratic constraints in private variables $x, s_1, s_2, s_3, \ldots$ that has a satisfying solution if and only if $x \in\left\{0,1, \ldots, 2^{64}-1\right\}$.
+
+(b) Give a system of quadratic constraints in private variables $x, s_1, s_2, s_3, \ldots$ that has a satisfying solution if and only if $r \ne 1$.
+
+(c) Give a system of quadratic constraints in one public variable $n \in\left\{2,3, \ldots, 2^{64}-1\right\}$ and private variables $s_1, s_2, s_3, \ldots$ such that finding a satisfying solution to the system of quadratic constraints is equivalent to finding a nontrivial factorization of $n$.
+
+(d) Give a system of quadratic constraints in 64 public variables $\ell_0, \ell_1, \ldots, \ell_{63} \in\left\{0,1, \ldots, 2^{64}-1\right\}$ and private variables $s_1, s_2, s_3, \ldots$ such that finding a satisfying solution to the system of quadratic constraints is equivalent to finding a nontrivial factorization of $\ell_0+2^{64} \ell_1+2^{128} \ell_2+ \cdots+2^{4032} \ell_{63}$.
+
+</Accordion>
+
+</Section>
+
+[^1]:
+    For those curious, p = 21888242871839275222246405745257275088548364400416034343698204186575808495617 is
+    a 254-bit prime number.

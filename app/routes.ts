@@ -11,6 +11,8 @@ export default [
     route("extras", "pages/extras/Extras.tsx"),
     route("*", "pages/NotFound.tsx"),
   ]),
+  route("talent", "pages/talent/Talent.tsx"),
+  route("talent/:orgId", "pages/talent/Org.tsx"),
   route("blog/:postId", "pages/blog/Post.tsx"),
   route("sitemap.xml", "sitemap.xml.ts"),
 ];

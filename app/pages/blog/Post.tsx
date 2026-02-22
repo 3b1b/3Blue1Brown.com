@@ -21,7 +21,7 @@ type Post = {
   frontmatter: Frontmatter;
 };
 
-// import all posts on prerender/buildtime and client/runtime
+// import all posts
 export const posts = import.meta.glob<Post>("./**/*.mdx", { eager: true });
 
 export const loader = ({ params: { postId } }: Route.LoaderArgs) => {

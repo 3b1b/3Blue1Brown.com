@@ -25,7 +25,7 @@ export default function Anchors() {
       // add link to heading
       heading.replaceChildren(link);
     }
-  }, []);
+  });
 
   return null;
 }
