@@ -74,3 +74,15 @@ export const useParallax = (ref: RefObject<HTMLElement | null>) => {
     (elementBbox.top + elementBbox.height / 2) / windowSize.height;
   return -1 + 2 * percent || 0;
 };
+
+// is element in viewport
+export const useInView = (ref: RefObject<HTMLElement | null>) => {
+  const elementBbox = useElementBounding(ref);
+  const windowSize = useWindowSize();
+  return (
+    elementBbox.bottom > 0 &&
+    elementBbox.top < windowSize.height &&
+    elementBbox.right > 0 &&
+    elementBbox.left < windowSize.width
+  );
+};

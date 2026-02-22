@@ -6,19 +6,20 @@ import {
   useMergedRefs,
   useRafFn,
 } from "@reactuses/core";
+import { useInView } from "~/util/hooks";
 
 type Props = {
   scale?: number;
   render: (ctx: CanvasRenderingContext2D) => void;
-  onResize?: (width: number, height: number) => (() => void) | void;
-} & ComponentProps<"canvas">;
+  onChange?: (width: number, height: number) => (() => void) | void;
+} & Omit<ComponentProps<"canvas">, "onChange">;
 
 // general canvas component that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref,
   scale = 1,
   render,
-  onResize,
+  onChange,
   ...props
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -30,6 +31,9 @@ export default function Canvas({
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
   const width = useDebounce(_width, 100) * scale;
   const height = useDebounce(_height, 100) * scale;
+
+  // is canvas in view
+  const inView = useInView(canvas);
 
   // init context
   useEffect(() => {
@@ -48,16 +52,17 @@ export default function Canvas({
     render(ctx.current);
   });
 
-  // on resize
+  // re-init canvas
   useEffect(() => {
-    const cleanup = onResize?.(width * 2, height * 2);
     if (!canvas.current || !ctx.current) return;
+    if (!inView) return;
+    const cleanup = onChange?.(width * 2, height * 2);
     canvas.current.width = width;
     canvas.current.height = height;
     ctx.current.resetTransform();
     ctx.current.translate(width / 2, height / 2);
     return cleanup;
-  }, [width, height, onResize]);
+  }, [width, height, inView, onChange]);
 
   const refs = useMergedRefs(canvas, ref);
 

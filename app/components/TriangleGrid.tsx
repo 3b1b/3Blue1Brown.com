@@ -26,7 +26,7 @@ export default function TriangleGrid() {
   const [{ dots = [], lines = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
-  const onResize = useCallback((width: number, height: number) => {
+  const onChange = useCallback((width: number, height: number) => {
     const ctx = gsap.context(() => setObjects(generate(width, height)));
     return () => ctx.revert();
   }, []);
@@ -58,7 +58,7 @@ export default function TriangleGrid() {
           ctx.fill();
         }
       }}
-      onResize={onResize}
+      onChange={onChange}
     />
   );
 }
