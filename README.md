@@ -104,3 +104,5 @@ Run periodically, manually review, and use discretion.
 - Prefer using CSS [flex](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) and [grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) layout over the traditional [flow](https://www.joshwcomeau.com/css/understanding-layout-algorithms/) layout.
   This generally keeps alignment and spacing consistent with what the eye expects, and makes responsive design easier.
 - Use browser dev tools to become familiar with CSS layout and box model.
+- Try to name files in lower-kebab-case, and components in UpperCamelCase.
+- Generally, put a section break after level 2 headings.

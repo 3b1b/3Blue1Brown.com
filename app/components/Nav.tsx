@@ -41,8 +41,8 @@ export default function Nav({ className = "" }) {
           className,
         )}
       >
-        {links.map(({ name, to }) => (
-          <Button key={to} to={to} arrow={false} size="sm">
+        {links.map(({ name, to }, index) => (
+          <Button key={index} to={to} arrow={false} size="sm">
             {name}
           </Button>
         ))}

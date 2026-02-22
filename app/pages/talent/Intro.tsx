@@ -1,6 +1,6 @@
 export default function Intro() {
   return (
-    <section className="bg-theme/10 width-sm">
+    <section className="bg-theme/10">
       <p>
         Think of this as a <strong>virtual career fair</strong>. The
         organizations are interested in hiring the kinds of{" "}

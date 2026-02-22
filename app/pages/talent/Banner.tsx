@@ -20,7 +20,12 @@ export default function Banner({ name, banner, wordmark }: Props) {
         className="absolute inset-0 -z-10 size-full object-cover opacity-25"
       />
 
-      <Button to={href("/")} size="sm" className="absolute top-4 left-4">
+      <Button
+        to={href("/")}
+        size="sm"
+        className="absolute top-4 left-4"
+        aria-label="Home"
+      >
         <Logo className="size-12" />
       </Button>
 

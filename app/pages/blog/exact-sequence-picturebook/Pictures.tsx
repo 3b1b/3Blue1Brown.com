@@ -8,7 +8,6 @@ export default function Pictures() {
   return Object.values(pictures).map(({ default: src }, index) => (
     <section key={index}>
       <img
-        key={index}
         src={src}
         style={{ backgroundColor: "white" }}
         alt="See PDF version for accessible text"

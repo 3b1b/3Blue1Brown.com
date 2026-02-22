@@ -60,8 +60,17 @@ export const scrollTo = async (
 
   if (!element) return;
 
+  // track if user scrolled
+  let userScrolled = false;
+  window.addEventListener("scroll", () => (userScrolled = true), {
+    once: true,
+  });
+
   // wait for layout shifts to stabilize
   if (waitForLayoutShift) await waitForStable(() => getDocBbox(element).top);
+
+  // if user scrolled while waiting, abort
+  if (userScrolled) return;
 
   // scroll to element
   element.scrollIntoView(options);
@@ -74,4 +83,20 @@ export const preserveScroll = async (element?: Element | null) => {
   await frame();
   const newY = element.getBoundingClientRect().top;
   window.scrollBy({ top: newY - oldY, behavior: "instant" });
+};
+
+// find next/previous node that matches condition, in dom order
+export const findClosest = (
+  element: HTMLElement,
+  condition: (element: HTMLElement) => boolean,
+  direction: "next" | "previous",
+) => {
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_ELEMENT,
+  );
+  walker.currentNode = element;
+  while (direction === "next" ? walker.nextNode() : walker.previousNode())
+    if (condition(walker.currentNode as HTMLElement))
+      return walker.currentNode as HTMLElement;
 };

@@ -6,6 +6,8 @@ import StrokeType from "~/components/StrokeType";
 // redirects
 export const clientLoader = async ({ request }: Route.LoaderArgs) => {
   const { pathname } = new URL(request.url);
+
+  // old links
   if (pathname === "/faqs") throw redirect("/about");
   if (pathname === "/blog") throw redirect("/extras");
   const topic = pathname.match(new RegExp(`/topics/(.+)$`))?.[1];

@@ -13,7 +13,7 @@ type Props = {
   id?: string;
 } & ComponentProps<"video">;
 
-export default function Youtube({ id, className, ...props }: Props) {
+export default function YouTube({ id, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   className = clsx(
@@ -57,7 +57,7 @@ export default function Youtube({ id, className, ...props }: Props) {
   return (
     <youtube-video
       ref={ref}
-      className={className}
+      className={clsx("aspect-video w-full", className)}
       src={`https://www.youtube.com/watch?v=${id}`}
       poster={getThumbnail(id)}
       controls

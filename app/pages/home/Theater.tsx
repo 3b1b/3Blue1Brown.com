@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { href } from "react-router";
 import {
   BookOpenTextIcon,
@@ -12,7 +11,8 @@ import {
 import { useAtom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
-import Youtube, { play, playingAtom } from "~/components/Youtube";
+import Collapsible from "~/components/Collapsible";
+import YouTube, { play, playingAtom } from "~/components/YouTube";
 import {
   getLatest,
   getLesson,
@@ -22,7 +22,6 @@ import {
   getPreviousByTopic,
   getRandom,
 } from "~/data/lessons";
-import { useRouteExists } from "~/routes";
 import { formatDate } from "~/util/string";
 import { share } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Explore";
@@ -44,10 +43,7 @@ export default function Theater() {
   const readLink = lesson ? href(`/`) : "";
 
   // does readable lesson exist
-  const readExists = useRouteExists(readLink);
-
-  // show video details
-  const [details, setDetails] = useState(false);
+  const readExists = false;
 
   // is video playing
   const playing = useAtomValue(playingAtom);
@@ -70,48 +66,22 @@ export default function Theater() {
       <h2 className="sr-only">Theater</h2>
 
       <div className="flex w-250 max-w-full flex-col gap-4 self-center transition">
-        <Youtube
+        <YouTube
           id={lesson?.video ?? ""}
-          className="aspect-video w-full self-center border border-black"
+          className="self-center border border-black"
           style={{
             filter: playing ? `url("${backlight}#filter")` : undefined,
           }}
         />
 
         <div className="flex flex-wrap items-center justify-center gap-4">
+          {/* title */}
           <div className="grow font-sans text-lg">
             {lesson?.title}
             {isLatest && <sup className="badge">New</sup>}
           </div>
 
-          {readExists && (
-            <Button size="sm" to={readLink}>
-              <BookOpenTextIcon />
-              Read
-            </Button>
-          )}
-          <Button
-            size="sm"
-            onClick={() => setDetails(!details)}
-            aria-expanded={details}
-            aria-controls="theater-details"
-          >
-            <InfoIcon />
-            Details
-          </Button>
-          <Button size="sm" onClick={share}>
-            <ShareNetworkIcon />
-            Share
-          </Button>
-        </div>
-        {details && (
-          <div id="theater-details" className="flex flex-col gap-4">
-            <p>{formatDate(lesson?.date)}</p>
-            <p>{lesson?.description}</p>
-          </div>
-        )}
-
-        <div className="flex flex-wrap items-center justify-center gap-4">
+          {/* controls */}
           <Button
             size="sm"
             onClick={() => {
@@ -158,7 +128,33 @@ export default function Theater() {
               <CaretDoubleRightIcon />
             </Button>
           )}
+
+          {/* actions */}
+          {readExists && (
+            <Button size="sm" to={readLink}>
+              <BookOpenTextIcon />
+              Read
+            </Button>
+          )}
+          <Button size="sm" onClick={share}>
+            <ShareNetworkIcon />
+            Share
+          </Button>
         </div>
+
+        <Collapsible
+          title={
+            <>
+              <InfoIcon />
+              Details
+            </>
+          }
+        >
+          <div id="theater-details" className="flex flex-col gap-4">
+            <p>{formatDate(lesson?.date)}</p>
+            <p>{lesson?.description}</p>
+          </div>
+        </Collapsible>
       </div>
     </>
   );

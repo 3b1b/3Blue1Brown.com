@@ -56,8 +56,8 @@ export default function Grid({ className }: Props) {
         viewBox={[-radius, -radius, radius * 2, radius * 2].join(" ")}
         className="absolute top-1/2 -translate-y-1/2 perspective-rotate"
       >
-        {layers.map(({ lines, className, thickness, delay }, key) => (
-          <g key={key} className={className} strokeWidth={thickness}>
+        {layers.map(({ lines, className, thickness, delay }, index) => (
+          <g key={index} className={className} strokeWidth={thickness}>
             {lines.map(({ horizontal, vertical, index }) => (
               <Fragment key={index}>
                 <line

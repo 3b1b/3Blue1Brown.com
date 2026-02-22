@@ -12,6 +12,10 @@ import { imagetools } from "vite-imagetools";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  server: {
+    // enable for hmr in mdx files
+    // watch: { usePolling: true, interval: 1000 },
+  },
   plugins: [
     mdx({
       remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkMath],

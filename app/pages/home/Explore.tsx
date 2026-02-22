@@ -11,7 +11,7 @@ import { useAtom } from "jotai";
 import { shuffle } from "lodash-es";
 import Button from "~/components/Button";
 import Textbox from "~/components/Textbox";
-import { play } from "~/components/Youtube";
+import { play } from "~/components/YouTube";
 import { byDate, lessons } from "~/data/lessons";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
@@ -87,7 +87,7 @@ export default function Explore() {
   }, []);
 
   return (
-    <section className="width-sm">
+    <section>
       <h2>Explore</h2>
 
       <Textbox

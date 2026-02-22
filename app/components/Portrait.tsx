@@ -20,7 +20,7 @@ export default function Portrait({
   return (
     <div
       className={clsx(
-        "group flex shrink-0 flex-col items-center gap-2 text-center",
+        "group flex max-w-full shrink-0 flex-col items-center gap-2 text-center",
         className,
       )}
     >

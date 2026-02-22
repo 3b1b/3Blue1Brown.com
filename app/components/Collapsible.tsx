@@ -9,7 +9,7 @@ type Props = {
   title: ReactNode;
   // panel content
   children: ReactNode;
-} & ComponentProps<"button">;
+} & Omit<ComponentProps<"button">, "title">;
 
 export default function Collapsible({ title, children, className }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -30,7 +30,7 @@ export default function Collapsible({ title, children, className }: Props) {
         <CaretRightIcon
           className={clsx("icon transition", isExpanded && "rotate-90")}
         />
-        <span>{title}</span>
+        {title}
       </Button>
       <DisclosurePanel
         className={clsx(

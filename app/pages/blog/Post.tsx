@@ -5,7 +5,7 @@ import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
-import Youtube from "~/components/Youtube";
+import YouTube from "~/components/YouTube";
 import { importAssets } from "~/util/import";
 import { formatDate } from "~/util/string";
 
@@ -73,7 +73,7 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
               {date && <div>{formatDate(date)}</div>}
             </div>
           </div>
-          {video && <Youtube id={video} className="aspect-video w-full" />}
+          {video && <YouTube id={video} />}
         </section>
 
         <Component />

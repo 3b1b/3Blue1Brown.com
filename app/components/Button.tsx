@@ -6,7 +6,7 @@ import Link from "~/components/Link";
 type Props = Base & (_Link | _Button);
 
 type Base = {
-  color?: "none" | "light" | "theme" | "accent";
+  color?: "none" | "light" | "theme" | "critical";
   size?: "sm" | "md" | "lg";
 };
 
@@ -24,19 +24,20 @@ export default function Button({
   ...props
 }: Props) {
   // wrap text children in spans to allow text box trimming
-  children = deepMap(children, (child: ReactNode) => {
-    if (child && typeof child === "string") return <span>{child}</span>;
+  children = deepMap(children, (child: ReactNode, index?: number) => {
+    if (child && typeof child === "string")
+      return <span key={index}>{child}</span>;
     return child;
   });
 
   className = clsx(
-    "inline-flex items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
+    "inline-flex items-center justify-center gap-2 rounded-full font-sans no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hocus:bg-theme/10 hocus:text-theme",
     color === "light" &&
       "bg-theme/10 text-black hocus:bg-theme hocus:text-white",
     color === "theme" &&
       "bg-theme text-white hover-ring hocus:bg-black hocus:outline-black",
-    color === "accent" &&
+    color === "critical" &&
       "bg-black text-white hover-ring hocus:bg-theme hocus:outline-theme",
     size === "sm" && "p-2",
     size === "md" && "p-4 text-lg",

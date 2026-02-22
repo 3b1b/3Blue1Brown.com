@@ -20,7 +20,7 @@ export default function Header({ children }: Props) {
   return (
     <header
       className={clsx(
-        "dark relative isolate flex flex-col gap-8 overflow-hidden bg-off-white p-4 text-black max-md:gap-4 max-md:p-4",
+        "dark relative isolate flex flex-col gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4",
       )}
     >
       <Grid className="max-h-100 mask-b-from-0% mask-b-to-100% opacity-25" />
@@ -28,7 +28,7 @@ export default function Header({ children }: Props) {
       <div className="flex flex-wrap items-center gap-4">
         {/* title */}
         <div className="flex flex-1 items-center">
-          <Button to={href("/")} size="sm">
+          <Button to={href("/")} size="sm" aria-label="Home">
             <Logo className="size-12" />
             <StrokeType className="ml-1 w-fit font-serif text-3xl">
               {site.title}

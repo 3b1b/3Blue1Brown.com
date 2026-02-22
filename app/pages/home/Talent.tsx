@@ -5,7 +5,7 @@ import TriangleGrid from "~/components/TriangleGrid";
 
 export default function Talent() {
   return (
-    <section className="dark items-center width-xs">
+    <section className="dark items-center width-sm">
       <TriangleGrid />
 
       <h2>3b1b Talent</h2>
@@ -16,7 +16,7 @@ export default function Talent() {
         people who watch 3Blue1Brown.
       </p>
 
-      <Button to={href("/talent")} color="accent">
+      <Button to={href("/talent")} color="theme">
         Explore Opportunities
         <ArrowRightIcon />
       </Button>

@@ -1,12 +1,13 @@
 import type { ComponentProps } from "react";
+import clsx from "clsx";
 
 type Props = {
-  video: string;
+  id: string;
   hash?: string;
 } & ComponentProps<"iframe">;
 
-export default function VimeoEmbed({ video, hash, ...props }: Props) {
-  const url = new URL(`https://player.vimeo.com/video/${video}`);
+export default function VimeoEmbed({ id, hash, className, ...props }: Props) {
+  const url = new URL(`https://player.vimeo.com/video/${id}`);
   url.searchParams.set("badge", "0");
   url.searchParams.set("autopause", "0");
   url.searchParams.set("player_id", "0");
@@ -22,6 +23,7 @@ export default function VimeoEmbed({ video, hash, ...props }: Props) {
       src={url.toString()}
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
       referrerPolicy="strict-origin-when-cross-origin"
+      className={clsx("aspect-video w-full", className)}
       {...props}
     />
   );

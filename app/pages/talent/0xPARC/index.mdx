@@ -8,29 +8,30 @@ color: 76
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Collapsible from "~/components/Collapsible";
+import Image from "~/components/Image";
 import Portrait from "~/components/Portrait";
 import Vimeo from "~/components/Vimeo";
 import airQualityMonitor from "./air-quality-monitor.jpg";
 import robPresentation from "./rob-presentation.jpg";
 
-<section className="width-sm">
+<section>
 
-<Vimeo video="1158109614" hash="c6f71a8907" className="aspect-video w-full" />
+<Vimeo id="1158109614" hash="c6f71a8907" />
 
-<Button to="https://0xparc.org/3b1b" color="accent" className="self-center">
-  Learn more and apply
+<Button to="https://0xparc.org/3b1b" color="theme">
+  Learn More and Apply
   <ArrowUpRightIcon />
 </Button>
 
 </section>
 
-<section className="width-sm">
+<section>
 
 ## About
 
 <div className="flex items-center gap-8 max-md:flex-col">
 
-<img src={robPresentation} alt="" className="w-80" />
+<Image image={robPresentation} className="w-80 shrink-0" />
 
 At 0xPARC, we strive to envision, invent, and improve the digital ecology of the future. Our efforts center around advancing the frontier of combining computing and mathematics, since we believe what makes a computer truly powerful is not just how fast it runs, but what it is capable of doing. It’s easier to describe what we aren’t than what we are, but it may help to think of 0xPARC as a grant-funded research organization and extended community of explorers whose activities include research, prototyping, engineering, and productionization.
 
@@ -38,9 +39,9 @@ At 0xPARC, we strive to envision, invent, and improve the digital ecology of the
 
 </section>
 
-<section className="width-sm">
+<section>
 
-## Select examples of our work
+## Select Examples of Our Work
 
 ### Pure Computing
 
@@ -48,7 +49,7 @@ In conventional systems, computing on data requires revealing the data to the pa
 
 <div className="flex flex-row-reverse items-center gap-8 max-md:flex-col">
 
-<img src={airQualityMonitor} alt="" className="w-80" />
+<Image image={airQualityMonitor} className="w-80 shrink-0" />
 
 0xPARC is building an encrypted computing platform to bring Pure Computing from a mathematical possibility to being practical and accessible. By designing around for the strengths of modern GPUs, using kernel fusion, harnessing ideas from cryptography research and high performance computing systems, optimizing implementations of cryptographic schemes, and more, we’ve achieved performance orders of magnitude beyond naive implementations. The first real world deployment on top of the encrypted computing platform is an encrypted air quality monitoring network, where each air quality monitor’s sensor data is immediately encrypted on-device, scientific computations run entirely on ciphertext, and raw data is never decrypted.
 
@@ -64,18 +65,14 @@ Recursive zero-knowledge proofs enable logic and history to accrue to a digital 
 
 For more on Provable Object Data, see [0xparc.org/about-pod](https://0xparc.org/about-pod)
 
-<Button
-  to="https://0xparc.org/about-pod"
-  color="accent"
-  className="self-center"
->
+<Button to="https://0xparc.org/about-pod" color="theme" className="self-center">
   Learn more about Provable Object Data
   <ArrowUpRightIcon />
 </Button>
 
 </section>
 
-<section className="width-sm">
+<section>
 
 ## Puzzles
 
@@ -87,9 +84,9 @@ A lot of pure math problems, often the kind that would arise in a contest math s
 
 If you’re interested in learning why this problem has surprising connections to lattice-based cryptography and fully homomorphic encryption, check out [0xparc.org/3b1b#puzzle1](https://0xparc.org/3b1b#puzzle1)
 
-### More puzzles
+### More Puzzles
 
-Here is a further collection put together by 0xPARC’s Holden Mui, for the 3blue1brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
+Here is a further collection put together by 0xPARC’s Holden Mui, for the 3Blue1Brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
 
 <div className="flex flex-col gap-8">
 

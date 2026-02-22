@@ -88,9 +88,9 @@ export default function Follow() {
       </h2>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] justify-center gap-4">
-        {links.map(({ icon, label, link }) => (
+        {links.map(({ icon, label, link }, index) => (
           <Button
-            key={label}
+            key={index}
             to={link}
             color="none"
             className="justify-start"

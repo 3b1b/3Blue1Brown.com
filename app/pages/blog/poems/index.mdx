@@ -3,6 +3,7 @@ title: Math Poetry
 date: 2015-03-03
 ---
 
+import Image from "~/components/Image";
 import circ2 from "./circ2.png";
 import circ4 from "./circ4.png";
 import circ8 from "./circ8.png";
@@ -25,35 +26,35 @@ After I made the first couple of 3Blue1Brown videos, and put together a website 
 
 <div className="grid grid-cols-[--spacing(50)_auto] items-center justify-center gap-8 max-md:flex max-md:flex-col [&>img]:size-50">
 
-<img src={circ2} alt="" />
+<Image image={circ2} />
 
 Take two points on a circle,  
 and draw a line straight through.  
 The space that was encircled  
 is divided into two.
 
-<img src={circ4} alt="" />
+<Image image={circ4} />
 
 To these points add a third one,  
 which gives us two more chords.  
 The space through which these lines run  
 has been fissured into four.
 
-<img src={circ8} alt="" />
+<Image image={circ8} />
 
 Continue with a fourth point,  
 and three more lines drawn straight.  
 The new number of disjoint  
 regions sums, in all, to eight.
 
-<img src={circ16} alt="" />
+<Image image={circ16} />
 
 A fifth point and its four lines  
 support this pattern gleaned.  
 Counting sections, one divines  
 that there are now sixteen.
 
-<img src={circ31} alt="" />
+<Image image={circ31} />
 
 This pattern here of doubling  
 does seems a sturdy one.  
@@ -64,7 +65,7 @@ as the sixth gives thirty-one.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Primes
 
@@ -100,7 +101,7 @@ just as the rhyme and rhythm of the primes seems to fade as numbers grow, though
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## All Numbers are Interesting
 
@@ -128,7 +129,7 @@ yet some treat “choice” like it’s an axiom.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Invention vs Discovery
 
@@ -167,7 +168,7 @@ a structure that makes math and world align.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## 2π
 
@@ -195,7 +196,7 @@ shines clean and clear, as if by poetry.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## 1-1+1-1+...
 
@@ -223,7 +224,7 @@ the universe gives “half”.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Defining Math
 
@@ -251,7 +252,7 @@ and it alone encloses what’s exact
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Euler's Formula
 
@@ -343,7 +344,7 @@ hence we’re done.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Ode To Infinity
 
@@ -371,7 +372,7 @@ just say "infinity", and woes are gone.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Groups
 
@@ -407,7 +408,7 @@ just say "infinity", and woes are gone.
 
 </section>
 
-<section className="width-xs">
+<section className="width-sm">
 
 ## Abstraction
 

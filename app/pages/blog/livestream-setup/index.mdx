@@ -3,7 +3,7 @@ title: Tips for setting up remote lessons
 date: 2020-07-02
 ---
 
-import Figure from "~/components/Figure";
+import Image from "~/components/Image";
 import audienceQuestions from "./audience-questions.jpg?w=800&format=webp&imagetools";
 import faceCam from "./face-cam.jpg?w=800&format=webp&imagetools";
 import hardware2 from "./hardware-2.jpg?w=800&format=webp&imagetools";
@@ -14,9 +14,9 @@ import overhead from "./overhead.jpg?w=800&format=webp&imagetools";
 import screenCapture from "./screen-capture.jpg?w=800&format=webp&imagetools";
 import throughTheInternet from "./through-the-internet.jpg?w=800&format=webp&imagetools";
 
-<section >
+<section>
 
-<img src={throughTheInternet} alt="" className="max-w-100 self-center" />
+<Image image={throughTheInternet} className="max-w-100 self-center" />
 
 Many schools around the world are still planning to run their classes and lectures remotely this fall, or at least to operate under a mix of distance and in-person classes. So all the usual balls that teachers and professors need to juggle, keeping students engaged, being responsive to their misconceptions, hitting all the points of a dense lesson plan, etc., are now supposed to be handled with all the awkwardness and impersonality of a video call.
 
@@ -32,7 +32,7 @@ If instead of thinking of remote classes as a more awkward form of a normal clas
 
 </section>
 
-<section >
+<section>
 
 ## Software
 
@@ -44,16 +44,16 @@ For example, in my lessons, I set up 5 basic scenes:
 
 <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
 
-<Figure image={faceCam}>A simple face camera</Figure>
-<Figure image={overhead}>
+<Image image={faceCam}>A simple face camera</Image>
+<Image image={overhead}>
   An overhead shot of pen and paper where I wrote out the lesson.
-</Figure>
-<Figure image={screenCapture}>
+</Image>
+<Image image={screenCapture}>
   A screen capture used to show animations, graphs on Desmos, and coding
   examples
-</Figure>
-<Figure image={audienceQuestions}>Questions from the audience</Figure>
-<Figure image={liveQuiz}>The live quiz</Figure>
+</Image>
+<Image image={audienceQuestions}>Questions from the audience</Image>
+<Image image={liveQuiz}>The live quiz</Image>
 
 </div>
 
@@ -63,7 +63,7 @@ In OBS you can set up keyboard shortcuts, so I set up a few to associate certain
 
 The tool used for the live quiz is part of [Itempool](https://itempool.com/), put together by two former coworkers of mine from Khan Academy. The way it worked is that I’d queue up a question on the screen, and students could go to a certain link (e.g. from their phones) to follow along with the quiz and answer questions. The statistics of how everyone was answering would show up in real time on the stream, where viewers would see bars showing the relative proportions for each answer. But until I flipped a switch to reveal, it was a mystery which answers corresponded to which bars.
 
-<Figure image={itempool} className="max-w-100 self-center" />
+<Image image={itempool} className="max-w-100 self-center" />
 
 To get the bars overlaid on the stream, we set up a webpage that displays the real-time updated bars and a title on a transparent background. That way, making that webpage an input source to OBS and creating a scene that combines the face camera with that page gave the effect we wanted.
 
@@ -81,7 +81,7 @@ One potential benefit of classes becoming remote is how much more natural it bec
 
 </section>
 
-<section >
+<section>
 
 ## Hardware
 
@@ -102,17 +102,17 @@ Here’s what we used:
 
 <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
 
-<Figure image={hardware}>
+<Image image={hardware}>
   The masking tape on the desk was to know what region is inside the shot of the
   overhead cam, though even then I’d occasionally write off-screen. The sticky
   notes on the overhead camera rig let me know where to point in the air to
   reference links and things on the screen.
-</Figure>
+</Image>
 
-<Figure image={hardware2}>
+<Image image={hardware2}>
   The microphone in this shot was just a backup in case the lav mic failed on us
   for some reason.
-</Figure>
+</Image>
 
 </div>
 
@@ -124,7 +124,7 @@ This advice comes from the category of “do what I say, not what I do”. The e
 
 </section>
 
-<section >
+<section>
 
 ## Questions from the audience
 
@@ -136,7 +136,7 @@ As far as integrating this with the setup, what was easiest was to have a shared
 
 </section>
 
-<section >
+<section>
 
 ## Other tips
 

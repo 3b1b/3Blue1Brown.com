@@ -2,7 +2,7 @@ import Alert from "~/components/Alert";
 import Button from "~/components/Button";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
-import Figure from "~/components/Figure";
+import Image from "~/components/Image";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
@@ -39,7 +39,7 @@ export default function Testbed() {
         <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] place-content-center place-items-center gap-4">
           {getVariants({
             size: ["sm", "md", "lg"] as const,
-            color: ["none", "light", "theme", "accent"] as const,
+            color: ["none", "light", "theme", "critical"] as const,
           }).map((props, index) => (
             <Button key={index} {...props} to="/">
               Lorem ipsum
@@ -100,11 +100,11 @@ export default function Testbed() {
       </section>
 
       <section>
-        <h2>Figure</h2>
+        <h2>Image</h2>
 
-        <Figure image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
+        <Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
           Lorem ipsum dolor sit amet consectetur adipiscing elit
-        </Figure>
+        </Image>
       </section>
 
       <section>

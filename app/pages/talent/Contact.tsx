@@ -6,7 +6,7 @@ const email = "talent@3blue1brown.com";
 export default function Details() {
   return (
     <>
-      <section className="bg-gray/10 width-sm">
+      <section className="bg-gray/10">
         <h2>Want to be listed here?</h2>
 
         <p>
@@ -17,7 +17,7 @@ export default function Details() {
         </p>
       </section>
 
-      <section className="bg-secondary/10 width-sm">
+      <section className="bg-secondary/10">
         <h2>Find a job here?</h2>
 
         <p className="text-center">

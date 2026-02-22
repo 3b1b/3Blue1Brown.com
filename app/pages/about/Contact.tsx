@@ -129,13 +129,13 @@ export default function Contact() {
         required
         className="col-span-full justify-self-center"
       >
-        My message is not addressed by any of of the FAQs above.
+        My message is not addressed by any of the FAQs
       </Checkbox>
 
       {!status && (
         <Button
           type="submit"
-          color="accent"
+          color="critical"
           className="col-span-full w-50 justify-self-center"
         >
           <PaperPlaneIcon />
