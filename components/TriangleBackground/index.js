@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
-import styles from "./index.module.scss";
+// import styles from "./index.module.scss";
 
 // params
 const width = 1600;
@@ -118,35 +118,15 @@ export default function HexBG() {
       viewBox={[left, top, width, height].join(" ")}
       preserveAspectRatio="xMidYMid slice"
     >
-      <filter
-        id={id}
-        colorInterpolationFilters="linearRGB"
-        filterUnits="objectBoundingBox"
-        primitiveUnits="userSpaceOnUse"
-      >
-        <feGaussianBlur
-          in="SourceGraphic"
-          stdDeviation={glowSize}
-          result="blur"
-        />
-        <feComponentTransfer in="blur" result="glow">
-          <feFuncA type="linear" slope={glowAmount} intercept="0" />
-        </feComponentTransfer>
-        <feBlend in="SourceGraphic" in2="glow" mode="screen" />
-      </filter>
+      
 
       <rect x={left} y={top} width={width} height={height} fill="black" />
 
-      <g filter={`url(#${id})`}>
+      <g style={{ color: "#74c0e3" }}>
         <g stroke="currentColor">
           {lines.map(({ x1, y1, x2, y2, normX, normY }, index) => (
             <line
               key={index}
-              className={styles.pulse}
-              style={{
-                animationDuration: `${duration}s`,
-                animationDelay: `${delay(normX, normY) * duration}s`,
-              }}
               x1={x1}
               y1={y1}
               x2={x2}
@@ -160,11 +140,6 @@ export default function HexBG() {
           {dots.map(({ x, y, normX, normY }, index) => (
             <circle
               key={index}
-              className={styles.pulse}
-              style={{
-                animationDuration: `${duration}s`,
-                animationDelay: `${delay(normX, normY) * duration}s`,
-              }}
               cx={x}
               cy={y}
               r={radius}
