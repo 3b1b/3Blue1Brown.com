@@ -16,11 +16,21 @@ export default {
         path.match(new RegExp("./app/pages(/blog/.*)/index.mdx"))?.[1] ?? "",
     );
 
+    // get all partner routes to prerender
+    const partners = Object.keys(
+      import.meta.glob("./app/pages/talent/**/*.mdx", { eager: true }),
+    ).map(
+      (path) =>
+        // get route name from path
+        path.match(new RegExp("./app/pages(/talent/.*)/index.mdx"))?.[1] ?? "",
+    );
+
     const routes = [
       // regular, non-glob routes
       ...getStaticPaths(),
       // dynamic routes
       ...posts,
+      ...partners,
     ];
 
     // export pre-rendered routes for testing purposes
