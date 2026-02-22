@@ -51,6 +51,9 @@ export default defineConfig([
     name: "Prettier",
     ...eslintPluginPrettierRecommended,
     ignores: ["**/*.mdx"],
+    rules: {
+      "prettier/prettier": "warn",
+    },
   },
   {
     name: "Tailwind",

@@ -1,9 +1,9 @@
 import Footer from "~/components/Footer";
 import Meta from "~/components/Meta";
 import Details from "./Contact";
-import Gallery from "./Gallery";
 import Header from "./Header";
 import Intro from "./Intro";
+import Gallery from "./Partners";
 
 export default function Talent() {
   return (

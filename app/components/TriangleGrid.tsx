@@ -108,8 +108,6 @@ const generate = (width: number, height: number) => {
   // make limit proportional to area
   const limit = clamp((density / 80000) * (width * height), 10, 1000);
 
-  console.log(limit);
-
   // hard limit points
   for (let tries = 0; tries < 10000; tries++) {
     // if under limit, done

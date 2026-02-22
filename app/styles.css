@@ -62,6 +62,8 @@
   --color-error: oklch(80% 0.15 10);
 }
 
+@custom-variant hocus (&:is(:hover, :focus));
+
 @layer base {
   * {
     text-box: trim-both text;
@@ -80,8 +82,7 @@
   }
 
   section {
-    --width: 300;
-    @apply relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)];
+    @apply width-md relative isolate flex flex-col gap-(--pad) overflow-hidden bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)];
   }
 
   hr {
@@ -175,7 +176,7 @@
   }
 
   a {
-    @apply text-theme underline transition hover:text-current;
+    @apply text-theme underline transition hocus:text-current;
   }
 
   button {
@@ -196,14 +197,13 @@
   }
 
   :focus-visible {
-    @apply static-ring!;
+    @apply static-ring;
   }
 }
 
 @utility icon {
   @apply inline-block h-[1.25em] w-[unset];
 }
-
 
 @utility width-xs {
   &:is(section) {
@@ -214,6 +214,12 @@
 @utility width-sm {
   &:is(section) {
     --width: 200;
+  }
+}
+
+@utility width-md {
+  &:is(section) {
+    --width: 300;
   }
 }
 
@@ -230,11 +236,7 @@
 }
 
 @utility card {
-  @apply hover:bg-theme/10 hover-ring relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline not-hover:outline-transparent;
-
-  & > img:first-child {
-    @apply -mb-2 w-[calc(100%+--spacing(4))] max-w-[unset] -translate-y-2;
-  }
+  @apply hocus:bg-theme/10 hover-ring relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline not-hocus:outline-transparent;
 }
 
 @utility static-ring {
@@ -242,7 +244,7 @@
 }
 
 @utility hover-ring {
-  @apply hover:outline-theme outline-2 outline-offset-2 outline-transparent;
+  @apply hocus:outline-theme outline-2 outline-offset-2 outline-transparent;
 }
 
 @utility badge {

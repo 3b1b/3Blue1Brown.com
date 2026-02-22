@@ -1,7 +1,7 @@
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
-import Blog from "~/pages/extras/Blog";
 import OtherWork from "~/pages/extras/OtherWork";
+import Blog from "~/pages/extras/Posts";
 
 export default function Extras() {
   return (

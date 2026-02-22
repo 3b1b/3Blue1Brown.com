@@ -12,8 +12,8 @@ export default [
     route("*", "pages/NotFound.tsx"),
   ]),
   route("talent", "pages/talent/Talent.tsx"),
-  route("talent/:orgId", "pages/talent/Org.tsx"),
-  route("blog/:postId", "pages/blog/Post.tsx"),
+  route("talent/:id", "pages/talent/Partner.tsx"),
+  route("blog/:id", "pages/blog/Post.tsx"),
   route("sitemap.xml", "sitemap.xml.ts"),
 ];
 

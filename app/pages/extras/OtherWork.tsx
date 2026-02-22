@@ -1,8 +1,9 @@
 import Link from "~/components/Link";
-import { importAssets } from "~/util/file";
+import { importAssets } from "~/util/import";
 
-const { lookUp } = importAssets(
-  import.meta.glob("./images/*.{jpg,png}", {
+// get work image
+const [getImage] = importAssets(
+  import.meta.glob<{ default: string }>("./images/*.{jpg,png}", {
     eager: true,
     // limit size, compress
     query: "w=600&format=webp",
@@ -58,23 +59,21 @@ const entries = [
   },
 ].map((entry) => ({
   ...entry,
-  image: lookUp(entry.name),
+  image: getImage(entry.name)?.default,
 }));
 
 export default function OtherWork() {
   return (
-    <>
-      <section>
-        <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
-          {entries.map(({ link, name, description, image }, index) => (
-            <Link key={index} className="card" to={link} arrow={false}>
-              <img src={image} alt="" />
-              <div className="font-sans font-medium">{name}</div>
-              <div>{description}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </>
+    <section>
+      <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
+        {entries.map(({ link, name, description, image }, index) => (
+          <Link key={index} className="card" to={link} arrow={false}>
+            <img src={image} alt="" />
+            <div className="font-sans font-medium">{name}</div>
+            <div>{description}</div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

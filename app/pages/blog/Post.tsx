@@ -6,6 +6,7 @@ import Header from "~/components/Header";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import Youtube from "~/components/Youtube";
+import { importAssets } from "~/util/import";
 import { formatDate } from "~/util/string";
 
 type Frontmatter = {
@@ -22,19 +23,13 @@ type Post = {
 };
 
 // import all posts
-export const posts = import.meta.glob<Post>("./**/*.mdx", { eager: true });
-
-export const loader = ({ params: { postId } }: Route.LoaderArgs) => {
-  // path to mdx source file
-  const path = `./${postId}/index.mdx`;
-  const post = posts[path];
-  if (!post) throw new Response("Not found", { status: 404 });
-  return { path };
-};
+export const [getPost, posts] = importAssets(
+  import.meta.glob<Post>("./**/*.mdx", { eager: true }),
+);
 
 // blog post layout
-export default function Post({ loaderData: { path } }: Route.ComponentProps) {
-  const post = posts[path];
+export default function Post({ params: { id } }: Route.ComponentProps) {
+  const post = getPost(id);
   if (!post) return;
 
   const {

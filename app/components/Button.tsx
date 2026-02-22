@@ -24,13 +24,13 @@ export default function Button({
 }: Props) {
   className = clsx(
     "inline-flex items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
-    color === "none" && "text-black hover:bg-theme/10 hover:text-theme",
+    color === "none" && "text-black hocus:bg-theme/10 hocus:text-theme",
     color === "light" &&
-      "bg-theme/10 text-black hover:bg-theme hover:text-white",
+      "bg-theme/10 text-black hocus:bg-theme hocus:text-white",
     color === "theme" &&
-      "bg-theme text-white hover-ring hover:bg-black hover:outline-black",
+      "bg-theme text-white hover-ring hocus:bg-black hocus:outline-black",
     color === "accent" &&
-      "bg-black text-white hover-ring hover:bg-theme hover:outline-theme",
+      "bg-black text-white hover-ring hocus:bg-theme hocus:outline-theme",
     size === "small" && "px-2 py-1",
     size === "medium" && "px-4 py-2 text-lg",
     className,

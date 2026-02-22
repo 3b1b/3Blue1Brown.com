@@ -31,7 +31,7 @@ export default function Portrait({
         <img
           src={image}
           alt={name}
-          className="size-full object-cover transition group-hover:grayscale hover:scale-105"
+          className="size-full object-cover transition group-hocus:grayscale hocus:scale-105"
         />
       </Link>
       {name && <div className="mt-4 font-sans font-medium">{name}</div>}

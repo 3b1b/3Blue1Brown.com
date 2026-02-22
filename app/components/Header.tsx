@@ -18,7 +18,7 @@ export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
 
   const className =
-    "border-b border-transparent p-2 leading-none text-black no-underline transition hover:border-black";
+    "border-b border-transparent p-2 leading-none text-black no-underline transition hocus:border-black";
 
   return (
     <header

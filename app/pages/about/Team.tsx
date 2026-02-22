@@ -1,9 +1,9 @@
 import Portrait from "~/components/Portrait";
-import { importAssets } from "~/util/file";
+import { importAssets } from "~/util/import";
 
-// get portrait image
-const { lookUp } = importAssets(
-  import.meta.glob("./images/portraits/*.jpg", {
+// get member portrait image
+const [getImage] = importAssets(
+  import.meta.glob<{ default: string }>("./portraits/*.jpg", {
     eager: true,
     // limit size, compress
     query: "w=600&format=webp",
@@ -25,21 +25,15 @@ const mapMember = ({
 }: Partial<Member>) => ({
   name,
   description,
-  image: lookUp(name),
+  image: getImage(name)?.default,
   link,
 });
 
 // main author
-export function Grant() {
-  return (
-    <Portrait
-      name="Grant Sanderson"
-      image={lookUp("Grant Sanderson")}
-      description="Math educator"
-      className="w-50"
-    />
-  );
-}
+const author = mapMember({
+  name: "Grant Sanderson",
+  description: "Math educator",
+});
 
 // current team members
 const current = [
@@ -106,6 +100,11 @@ const past = [
     link: "https://www.hambrecht.ch",
   },
 ].map(mapMember);
+
+// main author
+export function Grant() {
+  return <Portrait {...author} className="w-50" />;
+}
 
 // grid of current team members
 export function Current() {
