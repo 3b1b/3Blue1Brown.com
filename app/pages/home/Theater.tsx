@@ -85,13 +85,13 @@ export default function Theater() {
           </div>
 
           {readExists && (
-            <Button size="small" to={readLink}>
+            <Button size="sm" to={readLink}>
               <BookOpenTextIcon />
               Read
             </Button>
           )}
           <Button
-            size="small"
+            size="sm"
             onClick={() => setDetails(!details)}
             aria-expanded={details}
             aria-controls="theater-details"
@@ -99,7 +99,7 @@ export default function Theater() {
             <InfoIcon />
             Details
           </Button>
-          <Button size="small" onClick={share}>
+          <Button size="sm" onClick={share}>
             <ShareNetworkIcon />
             Share
           </Button>
@@ -113,7 +113,7 @@ export default function Theater() {
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Button
-            size="small"
+            size="sm"
             onClick={() => {
               setLessonId(getRandom().id);
               play();
@@ -124,7 +124,7 @@ export default function Theater() {
           </Button>
           {previous && (
             <Button
-              size="small"
+              size="sm"
               onClick={() => {
                 setLessonId(previous.id);
                 play();
@@ -136,7 +136,7 @@ export default function Theater() {
           )}
           {next && (
             <Button
-              size="small"
+              size="sm"
               onClick={() => {
                 setLessonId(next.id);
                 play();
@@ -148,7 +148,7 @@ export default function Theater() {
           )}
           {latest && !isLatest && (
             <Button
-              size="small"
+              size="sm"
               onClick={() => {
                 setLessonId(latest.id);
                 play();

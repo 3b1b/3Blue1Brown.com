@@ -67,6 +67,13 @@
 @layer base {
   * {
     text-box: trim-both text;
+
+    .katex,
+    .katex *,
+    .katex-display,
+    .katex-display * {
+      text-box: unset;
+    }
   }
 
   html {
@@ -143,7 +150,7 @@
   }
 
   blockquote {
-    @apply bg-light-gray border-theme flex flex-col gap-4 rounded-r-md border-l-2 p-8 leading-loose;
+    @apply bg-current/5 border-theme flex flex-col gap-4 rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -176,7 +183,7 @@
   }
 
   a {
-    @apply text-theme underline transition hocus:text-current;
+    @apply text-theme hocus:text-current underline transition;
   }
 
   button {
@@ -236,7 +243,7 @@
 }
 
 @utility card {
-  @apply hocus:bg-theme/10 hover-ring relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline not-hocus:outline-transparent;
+  @apply hocus:bg-theme/10 hover-ring not-hocus:outline-transparent relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline;
 }
 
 @utility static-ring {

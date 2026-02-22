@@ -103,3 +103,4 @@ Run periodically, manually review, and use discretion.
 - Put things that might be commonly edited at the top of files, e.g. an array of member info for a team gallery, or some tweak-able parameters for a visualization.
 - Prefer using CSS [flex](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) and [grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) layout over the traditional [flow](https://www.joshwcomeau.com/css/understanding-layout-algorithms/) layout.
   This generally keeps alignment and spacing consistent with what the eye expects, and makes responsive design easier.
+- Use browser dev tools to become familiar with CSS layout and box model.

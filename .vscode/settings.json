@@ -5,5 +5,8 @@
     "javascriptreact",
     "typescriptreact",
     "mdx"
-  ]
+  ],
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

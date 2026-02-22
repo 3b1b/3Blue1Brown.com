@@ -37,7 +37,10 @@
     "**/.client/**/*",
     ".react-router/types/**/*"
   ],
+
+  // check mdx in editor
   "mdx": {
-    "checkMdx": true
+    "checkMdx": true,
+    "plugins": ["remark-math"]
   }
 }

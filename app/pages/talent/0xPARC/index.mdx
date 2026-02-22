@@ -5,29 +5,40 @@ quote: The correlation between a background in contest math and being able to wo
 color: 76
 ---
 
-<Section width="narrow">
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Collapsible from "~/components/Collapsible";
+import Portrait from "~/components/Portrait";
+import Vimeo from "~/components/Vimeo";
+import airQualityMonitor from "./air-quality-monitor.jpg";
+import robPresentation from "./rob-presentation.jpg";
 
-<VimeoEmbed video="1158109614" hash="c6f71a8907" />
+<section className="width-sm">
 
-<Clickable
-  link="https://0xparc.org/3b1b"
-  text="Learn more and apply"
-  design="featured"
-/>
+<Vimeo video="1158109614" hash="c6f71a8907" className="aspect-video w-full" />
 
-</Section>
+<Button to="https://0xparc.org/3b1b" color="accent" className="self-center">
+  Learn more and apply
+  <ArrowUpRightIcon />
+</Button>
 
-<Section width="narrow">
+</section>
+
+<section className="width-sm">
 
 ## About
 
-<Portrait image="./rob-presentation.jpeg" round={false} size="200px" />
+<div className="flex items-center gap-8 max-md:flex-col">
+
+<img src={robPresentation} alt="" className="w-80" />
 
 At 0xPARC, we strive to envision, invent, and improve the digital ecology of the future. Our efforts center around advancing the frontier of combining computing and mathematics, since we believe what makes a computer truly powerful is not just how fast it runs, but what it is capable of doing. It’s easier to describe what we aren’t than what we are, but it may help to think of 0xPARC as a grant-funded research organization and extended community of explorers whose activities include research, prototyping, engineering, and productionization.
 
-</Section>
+</div>
 
-<Section width="narrow">
+</section>
+
+<section className="width-sm">
 
 ## Select examples of our work
 
@@ -35,14 +46,13 @@ At 0xPARC, we strive to envision, invent, and improve the digital ecology of the
 
 In conventional systems, computing on data requires revealing the data to the party performing the computation. This comes with a permanent epistemic side effect in the form of the irreversible sharing of information. Pure Computing is computing without this side effect, akin to how a pure function executes with no side effects outside of the function’s scope. Fully Homomorphic Encryption (FHE) enables computation over encrypted data, making Pure Computing mathematically possible.
 
-<Portrait
-  image="./air-quality-monitor.jpeg"
-  flip={true}
-  round={false}
-  size="250px"
-/>
+<div className="flex flex-row-reverse items-center gap-8 max-md:flex-col">
+
+<img src={airQualityMonitor} alt="" className="w-80" />
 
 0xPARC is building an encrypted computing platform to bring Pure Computing from a mathematical possibility to being practical and accessible. By designing around for the strengths of modern GPUs, using kernel fusion, harnessing ideas from cryptography research and high performance computing systems, optimizing implementations of cryptographic schemes, and more, we’ve achieved performance orders of magnitude beyond naive implementations. The first real world deployment on top of the encrypted computing platform is an encrypted air quality monitoring network, where each air quality monitor’s sensor data is immediately encrypted on-device, scientific computations run entirely on ciphertext, and raw data is never decrypted.
+
+</div>
 
 For more on the air quality monitoring network and how the encrypted computing platform works, check out [this video presentation](https://0xparc.org/ucritair).
 
@@ -54,15 +64,18 @@ Recursive zero-knowledge proofs enable logic and history to accrue to a digital 
 
 For more on Provable Object Data, see [0xparc.org/about-pod](https://0xparc.org/about-pod)
 
-<Clickable
-  link="https://0xparc.org/about-pod"
-  text="Learn more about Provable Object Data"
-  design="rounded"
-/>
+<Button
+  to="https://0xparc.org/about-pod"
+  color="accent"
+  className="self-center"
+>
+  Learn more about Provable Object Data
+  <ArrowUpRightIcon />
+</Button>
 
-</Section>
+</section>
 
-<Section width="narrow">
+<section className="width-sm">
 
 ## Puzzles
 
@@ -78,15 +91,17 @@ If you’re interested in learning why this problem has surprising connections t
 
 Here is a further collection put together by 0xPARC’s Holden Mui, for the 3blue1brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
 
-<Accordion title="Problem 1 (TST 2018/4)">
+<div className="flex flex-col gap-8">
+
+<Collapsible title="Problem 1 (TST 2018/4)">
 
 Suppose you have many black-box majority functions on three binary
 inputs. Is it possible to chain them to construct a majority function on 2025 binary inputs? (You
 can duplicate inputs and outputs of the black-box function for free.)
 
-</Accordion>
+</Collapsible>
 
-<Accordion title="Problem 2 (homomorphic FFT).">
+<Collapsible title="Problem 2 (homomorphic FFT).">
 
 The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in ${C}^{32{,}768}$ such that anyone can add encrypted vectors elementwise, multiply encrypted vectors elementwise, or “rotate” ciphertexts $\left(z_1, z_2, \ldots, z_{65536}\right) \mapsto\left(z_i, z_{i+1}, \ldots, z_{i-1}\right)$ by any "offset" $i$. Suppose that:
 
@@ -97,9 +112,9 @@ The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in $
 Find a fast arithmetic circuit that computes the Fourier transform on an encrypted vector, conditioned
 on the multiplicative depth of the circuit being at most three.
 
-</Accordion>
+</Collapsible>
 
-<Accordion title="Problem 3 (A mod p system)">
+<Collapsible title="Problem 3 (A mod p system)">
 
 Are there any nontrivial solutions to the system of equations
 
@@ -113,9 +128,9 @@ $$
 
 for $p=2^{127} - 1$?
 
-</Accordion>
+</Collapsible>
 
-<Accordion title="Problem 4 (zero-knowledge factorization).">
+<Collapsible title="Problem 4 (zero-knowledge factorization).">
 
 The programming language circom allows users to prove that they have an assignment to a set of variables satisfying a system of quadratic constraints
 
@@ -139,9 +154,11 @@ Some of the variables are set to be public, Some of the variables are set to be 
 
 (d) Give a system of quadratic constraints in 64 public variables $\ell_0, \ell_1, \ldots, \ell_{63} \in\left\{0,1, \ldots, 2^{64}-1\right\}$ and private variables $s_1, s_2, s_3, \ldots$ such that finding a satisfying solution to the system of quadratic constraints is equivalent to finding a nontrivial factorization of $\ell_0+2^{64} \ell_1+2^{128} \ell_2+ \cdots+2^{4032} \ell_{63}$.
 
-</Accordion>
+</Collapsible>
 
-</Section>
+</div>
+
+</section>
 
 [^1]:
     For those curious, p = 21888242871839275222246405745257275088548364400416034343698204186575808495617 is

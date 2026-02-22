@@ -2,6 +2,7 @@ import "~/styles.css";
 import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
+import "katex/dist/katex.min.css";
 import {
   Links,
   Outlet,

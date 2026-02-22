@@ -1,10 +1,17 @@
 import type { ComponentProps } from "react";
 
 type Props = {
+  delay?: number;
+  duration?: number;
   children: string;
 } & Omit<ComponentProps<"span">, "children">;
 
-export default function StrokeType({ children, ...props }: Props) {
+export default function StrokeType({
+  delay = 0,
+  duration = 1,
+  children,
+  ...props
+}: Props) {
   const chars = children.split("");
 
   return (
@@ -13,7 +20,9 @@ export default function StrokeType({ children, ...props }: Props) {
         <span
           key={index}
           className="stroke-type"
-          style={{ animationDelay: `${index * 0.1}s` }}
+          style={{
+            animationDelay: `${delay + index * (duration / chars.length)}s`,
+          }}
         >
           {char}
         </span>

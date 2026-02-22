@@ -1,7 +1,7 @@
 import { href } from "react-router";
 import clsx from "clsx";
+import Button from "~/components/Button";
 import DarkMode from "~/components/DarkMode";
-import Link from "~/components/Link";
 import site from "~/data/site.yaml";
 
 const links = [
@@ -11,7 +11,7 @@ const links = [
   },
   {
     name: "Talent",
-    to: href("/"),
+    to: href("/talent"),
   },
   {
     name: "Patreon",
@@ -31,7 +31,7 @@ const links = [
   },
 ];
 
-export default function Nav({ className = "", childClassName = "" }) {
+export default function Nav({ className = "" }) {
   return (
     <>
       <nav
@@ -42,11 +42,11 @@ export default function Nav({ className = "", childClassName = "" }) {
         )}
       >
         {links.map(({ name, to }) => (
-          <Link key={to} to={to} arrow={false} className={childClassName}>
+          <Button key={to} to={to} arrow={false} size="sm">
             {name}
-          </Link>
+          </Button>
         ))}
-        <DarkMode className={childClassName} />
+        <DarkMode />
       </nav>
     </>
   );

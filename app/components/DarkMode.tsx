@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useLocalStorage } from "@reactuses/core";
+import Button from "~/components/Button";
 
 export default function DarkMode({ className = "" }) {
   const [darkMode, setDarkMode] = useLocalStorage("dark-mode", false);
@@ -11,15 +12,16 @@ export default function DarkMode({ className = "" }) {
   }, [darkMode]);
 
   return (
-    <button
+    <Button
       onClick={() => setDarkMode(!darkMode)}
+      size="sm"
       role="switch"
       aria-checked={!!darkMode}
       aria-label="Toggle dark mode"
       className={className}
     >
       {darkMode ? <SunIcon /> : <MoonIcon />}
-    </button>
+    </Button>
   );
 }
 

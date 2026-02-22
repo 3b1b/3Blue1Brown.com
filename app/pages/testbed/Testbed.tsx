@@ -38,7 +38,7 @@ export default function Testbed() {
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] place-content-center place-items-center gap-4">
           {getVariants({
-            size: ["small", "medium"] as const,
+            size: ["sm", "md", "lg"] as const,
             color: ["none", "light", "theme", "accent"] as const,
           }).map((props, index) => (
             <Button key={index} {...props} to="/">

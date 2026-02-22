@@ -22,7 +22,7 @@ export default function Collapsible({ title, children, className }: Props) {
     >
       <Button
         className={clsx(
-          "gap-2 rounded-md bg-gray/10 p-2 font-medium hocus:bg-theme/10",
+          "justify-start gap-2 rounded-md bg-gray/10 p-2 font-medium hocus:bg-theme/10",
           className,
         )}
         onClick={() => setIsExpanded(!isExpanded)}
