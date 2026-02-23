@@ -24,6 +24,7 @@ export default function VimeoEmbed({ id, hash, className, ...props }: Props) {
       allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
       referrerPolicy="strict-origin-when-cross-origin"
       className={clsx("aspect-video w-full", className)}
+      aria-label="Vimeo video"
       {...props}
     />
   );

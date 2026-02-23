@@ -10,7 +10,7 @@ type Props = {
   children?: string;
 } & ComponentProps<"figure">;
 
-export default function Image({ image, alt, children, className }: Props) {
+export default function Image({ image, alt = "", children, className }: Props) {
   const ref = useRef<HTMLImageElement>(null);
 
   // set alt from children
@@ -24,12 +24,13 @@ export default function Image({ image, alt, children, className }: Props) {
     <img
       ref={ref}
       src={image}
-      alt={alt}
+      alt={alt || "Image"}
       tabIndex={0}
       onClick={toggleFullscreen}
       onKeyDown={({ key }) => {
         if (key === "Enter" || key === " ") toggleFullscreen();
       }}
+      aria-label={isFullscreen ? "Exit fullscreen" : "View image in fullscreen"}
       className={clsx(
         "cursor-pointer",
         isFullscreen && "object-contain!",

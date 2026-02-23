@@ -40,7 +40,7 @@ export default function App() {
           <Links />
         </head>
         <body>
-          <nav>
+          <nav aria-label="jump">
             {/* jump button for accessibility */}
             <a
               href="#content"

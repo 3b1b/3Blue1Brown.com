@@ -38,7 +38,7 @@ const checkPage = (path: string) =>
       // annotate test with all
       test.info().annotations.push({
         type: "Axe violations",
-        description: stringify(violations),
+        description: stringify(critical),
       });
 
       // fail test on critical

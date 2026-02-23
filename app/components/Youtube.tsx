@@ -63,6 +63,7 @@ export default function YouTube({ id, className, ...props }: Props) {
       controls
       autoPlay={false}
       role="region"
+      aria-label="YouTube video"
       {...props}
     />
   );
