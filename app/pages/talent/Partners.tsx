@@ -59,7 +59,7 @@ export default function Partners() {
         })}
       </div>
 
-      <Alert className="self-center">
+      <Alert>
         The organizations we partner with are selectively chosen and carefully
         vetted, but we still encourage you to research them yourself before
         applying.

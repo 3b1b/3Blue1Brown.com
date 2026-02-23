@@ -95,7 +95,7 @@ export default function Testbed() {
           image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
           name="Lorem ipsum"
           description="Lorem ipsum dolor sit amet consectetur adipiscing elit"
-          className="max-w-50 self-center"
+          className="w-50 self-center"
         />
       </section>
 

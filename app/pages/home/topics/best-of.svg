@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 135">
+  <rect width="240" height="135" fill="black" />
+
+  <defs>
+    <path
+      id="path"
+      d="M 1 0 A 1 1 0 0 1 -1 0 A 1 1 0 0 1 1 0"
+      transform="translate(120, 67.5) scale(75)"
+    />
+  </defs>
+
+  <text fill="gray" dominant-baseline="middle" font-size="20">
+    <textPath href="#path" textLength="445">ζ∑∞θ∫√⨀∮א∡Δ≈±∈</textPath>
+  </text>
+
+  <text
+    x="120"
+    y="67.5"
+    fill="white"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-size="80"
+  >
+    π
+  </text>
+</svg>

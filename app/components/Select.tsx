@@ -22,7 +22,7 @@ export default function Select<O extends Option>({
 }: Props<O>) {
   return (
     <select
-      className="grow rounded-md bg-gray/10 p-2 font-medium hocus:bg-theme/10"
+      className="grow rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/15"
       value={value}
       onChange={(event) => onChange?.(event.currentTarget.value)}
       {...props}

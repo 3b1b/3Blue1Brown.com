@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import clsx from "clsx";
 import { max, min } from "lodash-es";
 import { Vector } from "~/util/vector";
+import classes from "./Hilbert.module.css";
 
 // order of hilbert curve
 const order = 5;
@@ -82,16 +83,13 @@ export default function Hilbert({ className }: Props) {
         viewBox={[left, top, width, height].join(" ")}
         className="absolute top-1/2 -translate-y-1/2 perspective-rotate"
       >
-        <linearGradient id="gradient">
-          <stop offset="0%" stopColor="var(--color-secondary)" />
-          <stop offset="25%" stopColor="var(--color-secondary)" />
-          <stop offset="25%" stopColor="var(--color-theme)" />
-        </linearGradient>
         <polyline
+          className={classes.stroke}
           fill="none"
-          stroke="url(#gradient)"
+          stroke="currentColor"
           strokeWidth={thickness}
           points={points.map((point) => point.toString()).join(" ")}
+          pathLength={2 ** 4}
         />
       </svg>
     </div>

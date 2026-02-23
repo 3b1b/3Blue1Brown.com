@@ -159,7 +159,7 @@
   }
 
   :not(pre) > code {
-    @apply bg-current/10 px-0.5 py-px;
+    @apply bg-current/5 px-0.5 py-px;
   }
 
   table {
@@ -238,7 +238,11 @@
 }
 
 @utility card {
-  @apply hocus:bg-theme/10 hover-ring not-hocus:outline-transparent relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline;
+  @apply hocus:bg-theme/15 hover-ring not-hocus:outline-transparent relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline;
+
+  & > img:first-child {
+    @apply -mb-2 w-[calc(100%+--spacing(4))] max-w-[unset] -translate-y-2;
+  }
 }
 
 @utility static-ring {
@@ -298,23 +302,5 @@
   }
   100% {
     transform: perspective(2000px) rotateX(65deg) rotateZ(360deg);
-  }
-}
-
-@utility stroke-path {
-  animation: stroke-path 15s ease-in-out both infinite;
-  stroke-dasharray: 1;
-}
-
-@keyframes stroke-path {
-  0% {
-    stroke-dashoffset: 3;
-  }
-  25%,
-  75% {
-    stroke-dashoffset: 2;
-  }
-  100% {
-    stroke-dashoffset: 1;
   }
 }

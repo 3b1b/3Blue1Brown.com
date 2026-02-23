@@ -29,16 +29,24 @@ const checkPage = (path: string) =>
       const { violations } = await new AxeBuilder({ page }).analyze();
 
       // split up critical/non-critical
-      const { critical = [] } = Object.groupBy(violations, ({ id }) => {
-        // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
-        if (id === "color-contrast") return "warning";
-        else return "critical";
-      });
+      const { critical = [], warning = [] } = Object.groupBy(
+        violations,
+        ({ id }) => {
+          // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
+          if (id === "color-contrast") return "warning";
+          else return "critical";
+        },
+      );
 
       // annotate test with all
       test.info().annotations.push({
         type: "Axe violations",
         description: stringify(critical),
+      });
+
+      test.info().annotations.push({
+        type: "Axe warnings",
+        description: stringify(warning),
       });
 
       // fail test on critical

@@ -15,7 +15,7 @@ export default function Posts() {
             <Link
               key={id}
               to={`/blog/${id}`}
-              className="card items-start gap-1 overflow-hidden bg-gray/10 p-4 text-left"
+              className="card items-start gap-2 overflow-hidden bg-current/5 p-4 text-left"
             >
               <FeatherIcon className="absolute top-1/2 right-0 size-20 -translate-y-1/2 text-xl text-gray opacity-10" />
               <div className="font-sans font-medium">{title}</div>

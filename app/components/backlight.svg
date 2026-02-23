@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg">
   <filter
     id="filter"
+    color-interpolation-filters="sRGB"
     filterUnits="objectBoundingBox"
     primitiveUnits="userSpaceOnUse"
     x="-50%"

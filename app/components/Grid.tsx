@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import { Fragment } from "react";
 import clsx from "clsx";
+import classes from "./Grid.module.css";
 
 // number of cells in each direction
 const cells = 3 * 4;
@@ -67,7 +68,7 @@ export default function Grid({ className }: Props) {
                   y2={horizontal.y2}
                   pathLength={1}
                   style={{ animationDelay: `${delay(index)}s` }}
-                  className="stroke-path"
+                  className={classes.stroke}
                 />
                 <line
                   x1={vertical.x1}
@@ -76,7 +77,7 @@ export default function Grid({ className }: Props) {
                   y2={vertical.y2}
                   pathLength={1}
                   style={{ animationDelay: `${delay(index)}s` }}
-                  className="stroke-path"
+                  className={classes.stroke}
                 />
               </Fragment>
             ))}

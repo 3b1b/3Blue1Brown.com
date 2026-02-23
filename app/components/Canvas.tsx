@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useEffectEvent, useRef } from "react";
 import {
   useDebounce,
   useElementSize,
@@ -19,7 +19,7 @@ export default function Canvas({
   ref,
   scale = 1,
   render,
-  onChange,
+  onChange = () => {},
   ...props
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -52,17 +52,20 @@ export default function Canvas({
     render(ctx.current);
   });
 
+  // prevent onChange from being dep of useEffect
+  const _onChange = useEffectEvent(onChange);
+
   // re-init canvas
   useEffect(() => {
     if (!canvas.current || !ctx.current) return;
     if (!inView) return;
-    const cleanup = onChange?.(width * 2, height * 2);
+    const cleanup = _onChange?.(width * 2, height * 2);
     canvas.current.width = width;
     canvas.current.height = height;
     ctx.current.resetTransform();
     ctx.current.translate(width / 2, height / 2);
     return cleanup;
-  }, [width, height, inView, onChange]);
+  }, [width, height, inView]);
 
   const refs = useMergedRefs(canvas, ref);
 

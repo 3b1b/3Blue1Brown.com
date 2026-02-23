@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { href } from "react-router";
 import {
   BookOpenTextIcon,
@@ -11,7 +12,6 @@ import {
 import { useAtom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
-import Collapsible from "~/components/Collapsible";
 import YouTube, { play, playingAtom } from "~/components/YouTube";
 import {
   getLatest,
@@ -44,6 +44,9 @@ export default function Theater() {
 
   // does readable lesson exist
   const readExists = false;
+
+  // show video details
+  const [details, setDetails] = useState(false);
 
   // is video playing
   const playing = useAtomValue(playingAtom);
@@ -81,6 +84,38 @@ export default function Theater() {
             {isLatest && <sup className="badge">New</sup>}
           </div>
 
+          {/* actions */}
+          {readExists && (
+            <Button size="sm" to={readLink}>
+              <BookOpenTextIcon />
+              Read
+            </Button>
+          )}
+          <Button
+            size="sm"
+            onClick={() => setDetails(!details)}
+            aria-expanded={details}
+            aria-controls="theater-details"
+          >
+            <InfoIcon />
+            Details
+          </Button>
+          <Button size="sm" onClick={share}>
+            <ShareNetworkIcon />
+            Share
+          </Button>
+        </div>
+
+        {details && (
+          <div id="theater-details" className="flex flex-col gap-4">
+            <p>{formatDate(lesson?.date)}</p>
+            <p>{lesson?.description}</p>
+          </div>
+        )}
+
+        <div />
+
+        <div className="flex flex-wrap items-center justify-center gap-4">
           {/* controls */}
           <Button
             size="sm"
@@ -128,33 +163,7 @@ export default function Theater() {
               <CaretDoubleRightIcon />
             </Button>
           )}
-
-          {/* actions */}
-          {readExists && (
-            <Button size="sm" to={readLink}>
-              <BookOpenTextIcon />
-              Read
-            </Button>
-          )}
-          <Button size="sm" onClick={share}>
-            <ShareNetworkIcon />
-            Share
-          </Button>
         </div>
-
-        <Collapsible
-          title={
-            <>
-              <InfoIcon />
-              Details
-            </>
-          }
-        >
-          <div id="theater-details" className="flex flex-col gap-4">
-            <p>{formatDate(lesson?.date)}</p>
-            <p>{lesson?.description}</p>
-          </div>
-        </Collapsible>
       </div>
     </>
   );

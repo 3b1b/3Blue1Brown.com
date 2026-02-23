@@ -8,11 +8,10 @@ import {
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { useAtom } from "jotai";
-import { shuffle } from "lodash-es";
 import Button from "~/components/Button";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/YouTube";
-import { byDate, lessons } from "~/data/lessons";
+import { byDate, getLesson, lessons } from "~/data/lessons";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
@@ -26,26 +25,35 @@ const [getImage] = importAssets(
 
 const topics = [
   {
+    id: "best of",
+    title: "Best Of",
+    description: "A few hand-picked favorite lessons",
+    lessons: [
+      "fourier-series",
+      "hardest-problem",
+      "colliding-blocks-v2",
+      "wordle",
+      "essence-of-calculus",
+      "prime-spirals",
+      "windmills",
+      "zeta",
+      "cosmic-distance-1",
+      "fractal-dimension",
+      "shadows",
+      "newtons-fractal",
+    ]
+      .map((id) => getLesson(id).lesson)
+      .filter((lesson) => lesson !== undefined),
+  },
+
+  {
     id: "all",
     title: "All",
     description: "All lessons, newest to oldest",
     lessons: byDate,
   },
-  // {
-  //   id: "best of",
-  //   title: "Best Of",
-  //   description: "A few hand-picked favorite lessons",
-  //   lessons: [],
-  // },
 
   ...lessons,
-
-  {
-    id: "shuffle",
-    title: "Shuffle",
-    description: "All lessons, in random order. Refresh for a new shuffle!",
-    lessons: shuffle(byDate),
-  },
 ]
   .filter((topic) => !topic.id.match(/misc/i))
   .map((button) => ({ ...button, image: getImage(button.id)?.default }));
@@ -102,17 +110,27 @@ export default function Explore() {
 
       {/* selected topic */}
       {topic && (
-        <div className="flex items-center gap-8 max-md:flex-col">
-          <img src={topic.image ?? ""} alt="" className="aspect-video h-30" />
-          <div className="flex grow flex-col gap-2">
-            <div className="w-max shrink-0 font-sans text-lg font-medium">
-              {topic.title}
+        <div className="relative isolate grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
+          <div className="absolute -inset-y-4 -right-999 -left-999 -z-10 bg-off-white" />
+          <img
+            src={topic.image ?? ""}
+            alt=""
+            className="size-full object-cover"
+          />
+          <div className="flex grow items-center gap-4 p-4 md:col-span-2">
+            <div className="flex grow flex-col gap-2">
+              <div className="w-max shrink-0 font-sans text-lg font-medium">
+                {topic.title}
+              </div>
+              <div>{topic.description}</div>
             </div>
-            <div>{topic.description}</div>
+            <Button
+              onClick={async () => setTopicId("")}
+              aria-label="Clear topic"
+            >
+              <XIcon />
+            </Button>
           </div>
-          <Button onClick={async () => setTopicId("")} aria-label="Clear topic">
-            <XIcon />
-          </Button>
         </div>
       )}
 
@@ -171,7 +189,7 @@ export default function Explore() {
           </div>
 
           {/* expand/collapse results */}
-          {results.length >= limit && (
+          {results.length > limit && (
             <Button
               className="self-center"
               color="theme"
