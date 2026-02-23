@@ -1,4 +1,6 @@
 import type { ComponentProps } from "react";
+import { CaretDownIcon } from "@phosphor-icons/react";
+import clsx from "clsx";
 
 type Props<O extends Option> = {
   // pass with "as const"
@@ -18,20 +20,29 @@ export default function Select<O extends Option>({
   value,
   onChange,
   options,
+  className,
   ...props
 }: Props<O>) {
   return (
-    <select
-      className="grow rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/15"
-      value={value}
-      onChange={(event) => onChange?.(event.currentTarget.value)}
-      {...props}
+    <div
+      className={clsx(
+        "relative flex grow rounded-md bg-current/5 font-medium hocus:bg-theme/15",
+        className,
+      )}
     >
-      {options.map((option, index) => (
-        <option key={index} value={option.value}>
-          {option.label ?? option.value}
-        </option>
-      ))}
-    </select>
+      <select
+        className="size-full appearance-none rounded-md p-2 pr-8"
+        value={value}
+        onChange={(event) => onChange?.(event.currentTarget.value)}
+        {...props}
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.label ?? option.value}
+          </option>
+        ))}
+      </select>
+      <CaretDownIcon className="absolute top-1/2 right-2 icon -translate-y-1/2" />
+    </div>
   );
 }

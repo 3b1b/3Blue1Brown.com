@@ -12,7 +12,7 @@
     <feGaussianBlur in="SourceAlpha" stdDeviation="50" result="alpha-blur" />
     <feGaussianBlur in="SourceGraphic" stdDeviation="100" result="image-blur" />
     <feComponentTransfer in="image-blur" result="image-brighten">
-      <feFuncA type="linear" slope="1.5" intercept="0.5" />
+      <feFuncA type="linear" slope="1.25" intercept="0.25" />
     </feComponentTransfer>
     <feComposite
       in="image-brighten"

@@ -2,7 +2,7 @@ export default function Intro() {
   return (
     <section className="bg-theme/10">
       <p>
-        Think of this as a <strong>virtual career fair</strong>. The
+        Think of this as a <strong>virtual career fair</strong>. These
         organizations are interested in hiring the kinds of{" "}
         <strong>technically curious</strong> people who watch 3Blue1Brown. Each
         featured page is like a <strong>booth at this fair</strong>, where the

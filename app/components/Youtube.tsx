@@ -17,7 +17,7 @@ export default function YouTube({ id, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   className = clsx(
-    `grid place-items-center bg-current/5 font-sans text-xl`,
+    `grid aspect-video w-full place-items-center font-sans text-xl`,
     className,
   );
 
@@ -52,15 +52,12 @@ export default function YouTube({ id, className, ...props }: Props) {
   // stop playback on unmount
   useUnmount(stop);
 
-  if (!id)
-    return (
-      <div className={clsx("aspect-video w-full", className)}>No video</div>
-    );
+  if (!id) return <div className={className}>No video</div>;
 
   return (
     <youtube-video
       ref={ref}
-      className={clsx("aspect-video w-full", className)}
+      className={className}
       src={`https://www.youtube.com/watch?v=${id}`}
       poster={getThumbnail(id)}
       controls

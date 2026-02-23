@@ -6,6 +6,7 @@ import {
   useMergedRefs,
   useRafFn,
 } from "@reactuses/core";
+import { clamp } from "lodash-es";
 import { useInView } from "~/util/hooks";
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
 // general canvas component that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref,
-  scale = 1,
+  scale = 2,
   render,
   onChange = () => {},
   ...props
@@ -25,12 +26,14 @@ export default function Canvas({
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
 
-  if (typeof window !== "undefined") scale *= window.devicePixelRatio || 1;
-
   // size of canvas in dom
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
-  const width = useDebounce(_width, 100) * scale;
-  const height = useDebounce(_height, 100) * scale;
+  let width = useDebounce(_width, 100) * scale;
+  let height = useDebounce(_height, 100) * scale;
+
+  // hard limit size
+  width = clamp(width, 1, 4000);
+  height = clamp(height, 1, 2000);
 
   // is canvas in view
   const inView = useInView(canvas);

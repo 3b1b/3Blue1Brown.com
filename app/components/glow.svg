@@ -11,7 +11,7 @@
   >
     <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
     <feComponentTransfer in="blur" result="brighten">
-      <feFuncA type="linear" slope="2" intercept="0" />
+      <feFuncA type="linear" slope="1.5" intercept="0" />
     </feComponentTransfer>
     <feBlend in="SourceGraphic" in2="brighten" mode="screen" />
   </filter>

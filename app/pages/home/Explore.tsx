@@ -80,11 +80,10 @@ export default function Explore() {
   const topic = topics.find((topic) => topic.id === topicId);
 
   // search results
-  let results = useFuzzySearch(topic?.lessons ?? byDate, search);
+  const results = useFuzzySearch(topic?.lessons ?? byDate, search);
 
   // show all or truncate results
   const [all, setAll] = useState(false);
-  if (!all) results = results.slice(0, limit);
 
   // run once on page load
   useEffect(() => {
@@ -162,30 +161,32 @@ export default function Explore() {
             id="results"
             className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
           >
-            {results.map(({ id, title, description, video }, index) => (
-              <button
-                key={index}
-                className="card"
-                onClick={() => {
-                  setLessonId(id);
-                  play();
-                }}
-                aria-label={`Play lesson "${title}"`}
-              >
-                <img
-                  src={getThumbnail(video)}
-                  alt=""
-                  className={clsx(lessonId === id && "opacity-50")}
-                />
-                <div className="font-sans font-medium">{title}</div>
-                <div className="line-clamp-3">{description}</div>
-                {lessonId === id && (
-                  <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
-                    <EyeIcon />
-                  </div>
-                )}
-              </button>
-            ))}
+            {results
+              .slice(0, all ? Infinity : limit)
+              .map(({ id, title, description, video }, index) => (
+                <button
+                  key={index}
+                  className="card"
+                  onClick={() => {
+                    setLessonId(id);
+                    play();
+                  }}
+                  aria-label={`Play lesson "${title}"`}
+                >
+                  <img
+                    src={getThumbnail(video)}
+                    alt=""
+                    className={clsx(lessonId === id && "opacity-50")}
+                  />
+                  <div className="font-sans font-medium">{title}</div>
+                  <div className="line-clamp-3">{description}</div>
+                  {lessonId === id && (
+                    <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
+                      <EyeIcon />
+                    </div>
+                  )}
+                </button>
+              ))}
           </div>
 
           {/* expand/collapse results */}

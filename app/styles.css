@@ -25,20 +25,20 @@
   --shadow-overlay: 0 0 0 9999px var(--color-shadow);
 
   --color-*: initial;
-  --color-theme: oklch(55% 0.15 240);
-  --color-secondary: oklch(55% 0.15 60);
+  --color-theme: oklch(60% 0.15 240);
+  --color-secondary: oklch(60% 0.15 60);
 
-  --color-black: hsl(0, 0%, 0%);
-  --color-off-black: hsl(0, 0%, 10%);
-  --color-dark-gray: hsl(0, 0%, 30%);
-  --color-gray: hsl(0, 0%, 60%);
-  --color-light-gray: hsl(0, 0%, 90%);
-  --color-off-white: hsl(0, 0%, 97%);
-  --color-white: hsl(0, 0%, 100%);
+  --color-black: oklch(0% 0 240);
+  --color-off-black: oklch(10% 0 240);
+  --color-dark-gray: oklch(30% 0 240);
+  --color-gray: oklch(60% 0 240);
+  --color-light-gray: oklch(90% 0 240);
+  --color-off-white: oklch(97% 0 240);
+  --color-white: oklch(100% 0 240);
 
-  --color-success: oklch(55% 0.15 180);
-  --color-warning: oklch(55% 0.15 50);
-  --color-error: oklch(55% 0.15 10);
+  --color-success: oklch(60% 0.15 180);
+  --color-warning: oklch(60% 0.15 50);
+  --color-error: oklch(60% 0.15 10);
 
   --color-shadow: #00000080;
 }
@@ -49,13 +49,13 @@
   --color-theme: oklch(80% 0.15 240);
   --color-secondary: oklch(80% 0.15 60);
 
-  --color-black: hsl(0, 0%, 100%);
-  --color-off-black: hsl(0, 0%, 97%);
-  --color-dark-gray: hsl(0, 0%, 90%);
-  --color-gray: hsl(0, 0%, 60%);
-  --color-light-gray: hsl(0, 0%, 30%);
-  --color-off-white: hsl(0, 0%, 10%);
-  --color-white: hsl(0, 0%, 0%);
+  --color-black: oklch(100% 0 240);
+  --color-off-black: oklch(97% 0 240);
+  --color-dark-gray: oklch(90% 0 240);
+  --color-gray: oklch(60% 0 240);
+  --color-light-gray: oklch(30% 0 240);
+  --color-off-white: oklch(10% 0 240);
+  --color-white: oklch(0% 0 240);
 
   --color-success: oklch(80% 0.15 180);
   --color-warning: oklch(80% 0.15 50);
@@ -78,6 +78,7 @@
 
   html {
     @apply bg-white font-serif leading-normal font-normal text-black underline-offset-2;
+    font-size: 105%;
   }
 
   body {
@@ -206,6 +207,10 @@
 
   :focus-visible {
     @apply static-ring;
+  }
+
+  [aria-disabled="true"] {
+    @apply pointer-events-none opacity-35;
   }
 }
 

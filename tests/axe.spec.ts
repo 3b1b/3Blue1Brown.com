@@ -23,10 +23,17 @@ const checkPage = (path: string) =>
     // wait for content to load
     await page.waitForTimeout(5000);
 
+    // builder
+    const builder = new AxeBuilder({ page });
+
+    // exclude embeds from third parties
+    builder.exclude("iframe");
+    builder.exclude("youtube-video");
+
     // axe check
     const check = async () => {
       // get page violations
-      const { violations } = await new AxeBuilder({ page }).analyze();
+      const { violations } = await builder.analyze();
 
       // split up critical/non-critical
       const { critical = [], warning = [] } = Object.groupBy(

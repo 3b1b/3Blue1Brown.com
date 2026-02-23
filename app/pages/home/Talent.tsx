@@ -16,7 +16,7 @@ export default function Talent() {
         people who watch 3Blue1Brown.
       </p>
 
-      <Button to={href("/talent")} color="theme">
+      <Button to={href("/talent")} color="critical">
         Explore Opportunities
         <ArrowRightIcon />
       </Button>

@@ -22,10 +22,10 @@ export default function Header() {
       <DarkMode className="absolute top-4 right-4" />
 
       <hgroup className="contents">
-        <h1 className="text-4xl font-medium">
+        <h1 className="text-4xl font-bold">
           <StrokeType>3b1b Talent</StrokeType>
         </h1>
-        <div className="text-xl">
+        <div className="text-center text-lg text-balance">
           Connecting curious minds with exceptional teams
         </div>
       </hgroup>

@@ -57,12 +57,12 @@ export default function Alert({
 }: Props) {
   return (
     <div
-      role="alert"
       className={clsx(
         "flex items-start gap-4 border-l-2 border-current bg-current/5 p-4 leading-loose",
         className,
       )}
       style={{ color: types[type].color }}
+      role="alert"
     >
       {icon ?? types[type].icon}
       <div className="flex flex-col gap-4 text-black">{children}</div>

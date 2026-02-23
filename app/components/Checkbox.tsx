@@ -25,20 +25,20 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex-row items-center rounded-md p-2 hover-ring outline-2 focus-within:outline-theme hocus:bg-theme/15",
+        "group flex-row items-center rounded-md p-2 outline-2 outline-offset-2 outline-transparent hocus:bg-theme/15 [&:has(:focus-visible)]:bg-theme/15 [&:has(:focus-visible)]:outline-theme",
         className,
       )}
     >
       <div className="relative size-6 *:absolute *:inset-0">
         <input
           type="checkbox"
+          className="opacity-0"
           checked={value}
           onChange={(event) => {
             const value = event.currentTarget.checked;
             setLocalValue(value);
             onChange?.(value);
           }}
-          className="opacity-0"
           {...props}
         />
         {localValue ? (

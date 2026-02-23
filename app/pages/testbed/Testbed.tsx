@@ -7,12 +7,13 @@ import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Meta from "~/components/Meta";
 import Portrait from "~/components/Portrait";
+import Select from "~/components/Select";
 import StrokeType from "~/components/StrokeType";
 import Textbox from "~/components/Textbox";
 import site from "~/data/site.yaml";
 import { getVariants } from "~/util/misc";
 
-// a place to test and see all components side-by-side to ensure consistency
+// a place to test and see all components side-by-sid e to ensure consistency
 export default function Testbed() {
   return (
     <>
@@ -25,11 +26,24 @@ export default function Testbed() {
       </section>
 
       <section>
-        <h2>Link</h2>
+        <h2>Colors</h2>
 
-        <div className="flex justify-center gap-4">
-          <Link to="/">Internal link</Link>
-          <Link to="https://google.com">External link</Link>
+        <div className="flex flex-wrap justify-center *:size-10">
+          {[
+            "bg-theme",
+            "bg-secondary",
+            "bg-success",
+            "bg-error",
+            "bg-black",
+            "bg-off-black",
+            "bg-dark-gray",
+            "bg-gray",
+            "bg-light-gray",
+            "bg-off-white",
+            "bg-white",
+          ].map((color) => (
+            <div key={color} className={color} />
+          ))}
         </div>
       </section>
 
@@ -49,6 +63,13 @@ export default function Testbed() {
       </section>
 
       <section>
+        <h2>Textbox</h2>
+
+        <Textbox placeholder="Lorem ipsum dolor sit amet" />
+        <Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+      </section>
+
+      <section>
         <h2>Collapsible</h2>
 
         <Collapsible title="Collapsible content" className="self-center">
@@ -57,23 +78,25 @@ export default function Testbed() {
       </section>
 
       <section>
-        <h2>Textbox</h2>
+        <h2>Select</h2>
 
-        <Textbox placeholder="Lorem ipsum dolor sit amet" />
-        <Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+        <label>
+          Lorem ipsum
+          <Select
+            options={[
+              { value: "option1", label: "Option 1" },
+              { value: "option2", label: "Option 2" },
+              { value: "option3", label: "Option 3" },
+            ]}
+            className="self-center"
+          />
+        </label>
       </section>
 
       <section>
         <h2>Checkbox</h2>
 
         <Checkbox className="self-center">Lorem ipsum dolor sit amet</Checkbox>
-      </section>
-
-      <section>
-        <h2>Select</h2>
-
-        <Textbox placeholder="Lorem ipsum dolor sit amet" />
-        <Textbox multi placeholder="Lorem ipsum dolor sit amet" />
       </section>
 
       <section>
@@ -105,6 +128,15 @@ export default function Testbed() {
         <Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
           Lorem ipsum dolor sit amet consectetur adipiscing elit
         </Image>
+      </section>
+
+      <section>
+        <h2>Link</h2>
+
+        <div className="flex justify-center gap-4">
+          <Link to="/">Internal link</Link>
+          <Link to="https://google.com">External link</Link>
+        </div>
       </section>
 
       <section>

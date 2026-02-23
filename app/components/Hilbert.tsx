@@ -89,7 +89,7 @@ export default function Hilbert({ className }: Props) {
           stroke="currentColor"
           strokeWidth={thickness}
           points={points.map((point) => point.toString()).join(" ")}
-          pathLength={2 ** 4}
+          pathLength={8 * 4}
         />
       </svg>
     </div>

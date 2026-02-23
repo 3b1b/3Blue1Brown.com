@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
-import { clamp, sample } from "lodash-es";
+import { sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import glow from "~/components/glow.svg?inline";
 import { useParallax } from "~/util/hooks";
@@ -10,8 +10,9 @@ import { Vector } from "~/util/vector";
 const radius = 6;
 const thickness = 3;
 const spacing = 100;
-const density = 8;
-const minConnections = 1;
+const density = 1.5;
+const minConnections = 2;
+const limit = 1000;
 const duration = 4;
 const colorA = "#0088ff";
 const colorB = "#ff88ff";
@@ -105,19 +106,11 @@ const generate = (width: number, height: number) => {
     for (let y = yStart; y <= bottom; y += spacing) addNode(new Vector(x, y));
   }
 
-  // make limit proportional to area
-  const limit = clamp((density / 80000) * (width * height), 10, 1000);
-
-  // hard limit points
-  for (let tries = 0; tries < 10000; tries++) {
-    // if under limit, done
-    if (graph.size < limit) break;
-    // pick random node
-    const node = sample(getNodes());
-    if (!node) break;
-    // favor removing points near center
+  // remove some points at random
+  for (const node of graph.keys()) {
     const dist = node.divide(width, height).length() * 2;
-    if (dist < Math.random()) removeNode(node);
+    // favor removing points near center
+    if (Math.random() > dist * density) removeNode(node);
   }
 
   // link adjacent points
@@ -128,12 +121,20 @@ const generate = (width: number, height: number) => {
           addEdge(node, neighbor);
 
   // remove isolated nodes
-  while (graph.size > 0) {
+  for (let tries = 0; tries < 10000; tries++) {
     const isolated = getNodes().find(
       (node) => (graph.get(node)?.size ?? 0) < minConnections,
     );
     if (!isolated) break;
     removeNode(isolated);
+  }
+
+  // hard limit points for performance
+  for (let tries = 0; tries < 10000; tries++) {
+    if (graph.size < limit) break;
+    const node = sample(getNodes());
+    if (!node) break;
+    removeNode(node);
   }
 
   // remove double links

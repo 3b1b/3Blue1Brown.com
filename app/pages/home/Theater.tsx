@@ -127,42 +127,42 @@ export default function Theater() {
             <DiceThreeIcon />
             Random
           </Button>
-          {previous && (
-            <Button
-              size="sm"
-              onClick={() => {
-                setLessonId(previous.id);
-                play();
-              }}
-            >
-              <CaretLeftIcon />
-              Previous
-            </Button>
-          )}
-          {next && (
-            <Button
-              size="sm"
-              onClick={() => {
-                setLessonId(next.id);
-                play();
-              }}
-            >
-              Next
-              <CaretRightIcon />
-            </Button>
-          )}
-          {latest && !isLatest && (
-            <Button
-              size="sm"
-              onClick={() => {
-                setLessonId(latest.id);
-                play();
-              }}
-            >
-              Latest
-              <CaretDoubleRightIcon />
-            </Button>
-          )}
+          <Button
+            size="sm"
+            onClick={() => {
+              if (!previous) return;
+              setLessonId(previous.id);
+              play();
+            }}
+            aria-disabled={!previous}
+          >
+            <CaretLeftIcon />
+            Previous
+          </Button>
+          <Button
+            size="sm"
+            onClick={() => {
+              if (!next) return;
+              setLessonId(next.id);
+              play();
+            }}
+            aria-disabled={!next}
+          >
+            Next
+            <CaretRightIcon />
+          </Button>
+          <Button
+            size="sm"
+            onClick={() => {
+              if (!latest || isLatest) return;
+              setLessonId(latest.id);
+              play();
+            }}
+            aria-disabled={!latest || isLatest}
+          >
+            Latest
+            <CaretDoubleRightIcon />
+          </Button>
         </div>
       </div>
     </>
