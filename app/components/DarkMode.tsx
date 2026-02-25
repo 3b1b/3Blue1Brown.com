@@ -3,6 +3,7 @@ import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useLocalStorage } from "@reactuses/core";
 import Button from "~/components/Button";
 
+// dark/light mode toggle
 export default function DarkMode({ className = "" }) {
   const [darkMode, setDarkMode] = useLocalStorage("dark-mode", false);
 

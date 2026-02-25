@@ -11,6 +11,7 @@ type Props = {
   children: ReactNode;
 } & Omit<ComponentProps<"button">, "title">;
 
+// aka disclosure, accordion, etc.
 export default function Collapsible({ title, children, className }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
 

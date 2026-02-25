@@ -6,7 +6,8 @@ type Props = {
   hash?: string;
 } & ComponentProps<"iframe">;
 
-export default function VimeoEmbed({ id, hash, className, ...props }: Props) {
+// vimeo video player embed
+export default function Vimeo({ id, hash, className, ...props }: Props) {
   const url = new URL(`https://player.vimeo.com/video/${id}`);
   url.searchParams.set("badge", "0");
   url.searchParams.set("autopause", "0");

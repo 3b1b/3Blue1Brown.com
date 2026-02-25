@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { QuotesIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 
@@ -6,8 +6,10 @@ type Props = {
   bg?: boolean;
   children: ReactNode;
   name?: ReactNode;
-} & ComponentProps<"div">;
+  className?: string;
+};
 
+// box with quote and attribution
 export default function Quote({ bg = true, children, name, className }: Props) {
   return (
     <blockquote

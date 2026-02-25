@@ -1,4 +1,3 @@
-import type { ComponentProps } from "react";
 import { Fragment } from "react";
 import clsx from "clsx";
 import classes from "./Grid.module.css";
@@ -48,7 +47,9 @@ const layers = [
   },
 ];
 
-type Props = ComponentProps<"div">;
+type Props = {
+  className?: string;
+};
 
 export default function Grid({ className }: Props) {
   return (

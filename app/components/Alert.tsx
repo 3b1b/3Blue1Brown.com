@@ -58,7 +58,7 @@ export default function Alert({
   return (
     <div
       className={clsx(
-        "flex items-start gap-4 border-l-2 border-current bg-current/5 p-4 leading-loose",
+        "flex items-start gap-4 border-l-2 border-current bg-current/10 p-4 leading-loose",
         className,
       )}
       style={{ color: types[type].color }}

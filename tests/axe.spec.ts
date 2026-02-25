@@ -41,7 +41,9 @@ const checkPage = (path: string) =>
         ({ id }) => {
           // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
           if (id === "color-contrast") return "warning";
-          else return "critical";
+          // https://github.com/dequelabs/axe-core/issues/4566
+          if (id === "scrollable-region-focusable") return "warning";
+          return "critical";
         },
       );
 

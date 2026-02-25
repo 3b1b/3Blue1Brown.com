@@ -56,14 +56,21 @@ export default function Button({
         {children}
       </Link>
     );
-  else
+  else {
+    const { type = "button", onClick, ...rest } = props;
     return (
       <button
         ref={ref as Ref<HTMLButtonElement>}
         className={className}
-        {...props}
+        type={type}
+        onClick={(event) => {
+          // prevent click action when disabled
+          if (!rest["aria-disabled"]) onClick?.(event);
+        }}
+        {...rest}
       >
         {children}
       </button>
     );
+  }
 }

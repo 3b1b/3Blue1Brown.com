@@ -156,7 +156,7 @@
   }
 
   pre {
-    @apply bg-off-black max-w-full overflow-auto p-4 text-white;
+    @apply bg-off-black max-w-full overflow-x-auto p-4 text-white;
   }
 
   :not(pre) > code {
@@ -256,6 +256,10 @@
 
 @utility hover-ring {
   @apply hocus:outline-theme outline-2 outline-offset-2 outline-transparent;
+}
+
+@utility focus-ring {
+  @apply [&:has(:focus-visible)]:bg-theme/15 [&:has(:focus-visible)]:outline-theme outline-2 outline-offset-2 outline-transparent;
 }
 
 @utility badge {

@@ -4,6 +4,7 @@ import { useLocalStorage } from "@reactuses/core";
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
 import Checkbox from "~/components/Checkbox";
+import Form from "~/components/Form";
 import Select from "~/components/Select";
 import Textbox from "~/components/Textbox";
 
@@ -38,18 +39,15 @@ export default function Contact() {
   );
 
   return (
-    <form
+    <Form
       method="POST"
       data-netlify="true"
       name={formName}
       className="grid grid-cols-2 gap-8 max-md:grid-cols-1"
-      onSubmit={async (event) => {
-        // prevent page navigation
-        event.preventDefault();
-
+      onSubmit={async (data) => {
         // collect form data as url string params (netlify only supports this format)
         const params = new URLSearchParams();
-        for (const [key, value] of new FormData(event.target).entries()) {
+        for (const [key, value] of data.entries()) {
           if (typeof value !== "string") continue;
           params.append(key, value);
         }
@@ -161,6 +159,6 @@ export default function Contact() {
           or reach out on social media platforms.
         </Alert>
       )}
-    </form>
+    </Form>
   );
 }

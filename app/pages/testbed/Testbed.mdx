@@ -1,0 +1,243 @@
+import { AirplaneIcon } from "@phosphor-icons/react";
+import Alert from "~/components/Alert";
+import Button from "~/components/Button";
+import Checkbox from "~/components/Checkbox";
+import Collapsible from "~/components/Collapsible";
+import FreeResponse from "~/components/FreeResponse";
+import Image from "~/components/Image";
+import Link from "~/components/Link";
+import Logo from "~/components/Logo";
+import Meta from "~/components/Meta";
+import Portrait from "~/components/Portrait";
+import Question from "~/components/Question";
+import Quote from "~/components/Quote";
+import Radios from "~/components/Radios";
+import Select from "~/components/Select";
+import ShowPartial from "~/components/ShowPartial";
+import Spoiler from "~/components/Spoiler";
+import StrokeType from "~/components/StrokeType";
+import Textbox from "~/components/Textbox";
+import site from "~/data/site.yaml";
+
+<Meta title="Testbed" />
+
+<section>
+
+# <StrokeType>Testbed</StrokeType>
+
+<div className="flex flex-wrap gap-4 *:size-10">
+  <div className="bg-theme" />
+  <div className="bg-secondary" />
+  <div className="bg-success" />
+  <div className="bg-error" />
+  <div className="bg-black" />
+  <div className="bg-off-black" />
+  <div className="bg-dark-gray" />
+  <div className="bg-gray" />
+  <div className="bg-light-gray" />
+  <div className="bg-off-white" />
+  <div className="bg-white" />
+</div>
+
+<Textbox placeholder="Lorem ipsum dolor sit amet" />
+<Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+
+<Collapsible title="Collapsible content">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit
+</Collapsible>
+
+<label>
+  Lorem ipsum
+  <Select
+    options={[
+      { value: "option1", label: "Option 1" },
+      { value: "option2", label: "Option 2" },
+      { value: "option3", label: "Option 3" },
+    ]}
+  />
+</label>
+
+<Checkbox>Lorem ipsum dolor sit amet</Checkbox>
+
+<Radios
+  label="Lorem ipsum"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ]}
+/>
+
+<Question
+  question="Why did the chicken cross the road?"
+  choice1="To get to the other side"
+  choice2="For a bit of $f(x) = e^{i pi} \times sin(x)$ and some haggis"
+  choice3="Cannot be determined"
+  choice4="A superposition of all the answers above"
+  answer={4}
+>
+
+Superposition is pretty neat :)
+
+</Question>
+
+<FreeResponse question="What is the nature of reality? (Hint: $E = mc^2$)">
+
+The true nature of reality remains a mystery, but physicists suspect it has something to do with [ducks](https://shop-us.kurzgesagt.org/collections/all-kurzgesagt-products/products/baby-duck-plushie).
+
+</FreeResponse>
+
+<Quote name="Charles Dickens">
+  It was the best of times it was the worst of times. It was the age of wisdom,
+  it was the age of foolishness. It was the spring of hope, it was the winter of
+  despair.
+</Quote>
+
+<div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+  <Alert>Lorem ipsum dolor sit amet</Alert>
+  <Alert type="loading">Lorem ipsum dolor sit amet</Alert>
+  <Alert type="success">Lorem ipsum dolor sit amet</Alert>
+  <Alert type="warning">Lorem ipsum dolor sit amet</Alert>
+  <Alert type="error">Lorem ipsum dolor sit amet</Alert>
+</div>
+
+<div className="grid grid-cols-2 place-items-center gap-4 max-md:grid-cols-1">
+
+<Portrait
+  image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
+  name="Lorem ipsum"
+  description="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+  className="w-50"
+/>
+
+<Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit
+</Image>
+
+</div>
+
+Tempus leo eu <Spoiler>aenean sed diam urna tempor. Pulvinar vivamus</Spoiler>
+fringilla lacus nec metus bibendum.
+
+{/* util classes */}
+
+<div className="grid grid-cols-2 place-items-center gap-4 max-md:grid-cols-1">
+
+<button className="card">Card</button>
+
+<div className="static-ring">Static Ring</div>
+
+<div className="hover-ring">Hover Ring</div>
+
+<div className="badge">Badge</div>
+
+</div>
+
+## <hr />Secondary heading<hr />
+
+<span>
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+### Very specific heading
+
+<span className="font-sans">
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+#### Even more specific heading
+
+<span className="font-mono">
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+<ShowPartial>
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
+sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis
+convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
+fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada
+lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
+sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
+sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis
+convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
+fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada
+lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
+sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+</ShowPartial>
+
+<div className="flex justify-center gap-4">
+  <Link to="/">Internal link</Link>
+  <Link to="https://google.com">External link</Link>
+</div>
+
+- List item 1
+- List item 2
+- 1.  Nested list item 3a
+  2.  Nested list item 3b
+  3.  Nested list item 3c
+
+| TABLE | Game 1 | Game 2 | Game 3 | Total |
+| :---- | :----: | :----: | :----: | ----: |
+| Anna  |  144   |  123   |  218   |   485 |
+| Bill  |   90   |  175   |  120   |   385 |
+| Cara  |  102   |  214   |  233   |   549 |
+
+> It was the best of times it was the worst of times.
+> It was the age of wisdom, it was the age of foolishness.
+> It was the spring of hope, it was the winter of despair.
+
+```javascript
+// a comment
+const popup = document.querySelector("#popup");
+popup.style.width = "100%";
+popup.innerText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+```
+
+This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
+
+An example of inline math $f(x) = e^{i \pi} + sin(x)$ in the middle of a sentence.
+An example a block of math:
+
+$$
+\underbrace{\frac{1}{t_2-t_1}\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Center of mass}}
+\qquad\rightarrow\qquad
+\underbrace{\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Scaled center of mass}}
+$$
+
+{/* favicon */}
+
+<Logo className="size-100" />
+
+{/* share thumbnail */}
+
+<div className="dark relative isolate flex h-160 w-240 flex-col items-center justify-center gap-4 overflow-hidden bg-white font-serif text-lg text-black">
+  <Logo className="absolute -z-10 scale-250 blur-[100px]" />
+  <Logo className="mb-4 size-60" />
+  <div className="text-6xl">{site.title}</div>
+  <div className="text-3xl opacity-50">{site.subtitle}</div>
+</div>
+
+</section>

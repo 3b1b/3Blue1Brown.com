@@ -14,6 +14,7 @@ type Props = {
   id?: string;
 } & ComponentProps<"video">;
 
+// youtube player embed
 export default function YouTube({ id, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 

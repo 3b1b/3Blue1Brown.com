@@ -5,6 +5,7 @@ import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import rehypeKatex from "rehype-katex";
 import remarkFrontmatter from "remark-frontmatter";
+import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
@@ -12,13 +13,14 @@ import { imagetools } from "vite-imagetools";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  server: {
-    // enable for hmr in mdx files
-    // watch: { usePolling: true, interval: 1000 },
-  },
   plugins: [
     mdx({
-      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkMath],
+      remarkPlugins: [
+        remarkFrontmatter,
+        remarkMdxFrontmatter,
+        remarkMath,
+        remarkGfm,
+      ],
       rehypePlugins: [rehypeKatex],
     }),
     tailwindcss(),

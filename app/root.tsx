@@ -13,6 +13,7 @@ import {
 import { IconContext } from "@phosphor-icons/react";
 import Anchors from "~/components/Anchors";
 import { load } from "~/components/DarkMode";
+import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
@@ -54,6 +55,7 @@ export default function App() {
           <ScrollRestoration />
           <Scripts />
           <Anchors />
+          <ViewCorner />
         </body>
       </html>
     </IconContext.Provider>

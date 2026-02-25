@@ -10,6 +10,7 @@ type Props = {
   children?: string;
 } & ComponentProps<"figure">;
 
+// plain image or figure with caption
 export default function Image({ image, alt = "", children, className }: Props) {
   const ref = useRef<HTMLImageElement>(null);
 

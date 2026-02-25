@@ -25,7 +25,7 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex-row items-center rounded-md p-2 outline-2 outline-offset-2 outline-transparent hocus:bg-theme/15 [&:has(:focus-visible)]:bg-theme/15 [&:has(:focus-visible)]:outline-theme",
+        "group flex-row items-center rounded-md focus-ring p-2 hocus:bg-theme/15",
         className,
       )}
     >

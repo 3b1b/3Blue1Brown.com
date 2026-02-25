@@ -3,7 +3,7 @@ import { index, layout, route } from "@react-router/dev/routes";
 export default [
   index("pages/home/Home.tsx"),
   layout("pages/Layout.tsx", [
-    route("testbed", "pages/testbed/Testbed.tsx"),
+    route("testbed", "pages/testbed/Testbed.mdx"),
     route("about", "pages/about/About.mdx"),
     route("extras", "pages/extras/Extras.tsx"),
     route("*", "pages/NotFound.tsx"),

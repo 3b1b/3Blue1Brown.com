@@ -1,4 +1,3 @@
-import type { ComponentProps } from "react";
 import clsx from "clsx";
 import { max, min } from "lodash-es";
 import { Vector } from "~/util/vector";
@@ -73,7 +72,9 @@ const hilbert = (order: number, angle: number) => {
 // generate hilbert
 const { points, left, top, width, height } = hilbert(order, angle);
 
-type Props = ComponentProps<"div">;
+type Props = {
+  className?: string;
+};
 
 export default function Hilbert({ className }: Props) {
   return (

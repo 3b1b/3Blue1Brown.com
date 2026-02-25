@@ -31,6 +31,7 @@ const links = [
   },
 ];
 
+// main site navigation
 export default function Nav({ className = "" }) {
   return (
     <>

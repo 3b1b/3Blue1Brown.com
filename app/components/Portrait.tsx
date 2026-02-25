@@ -9,7 +9,7 @@ type Props = {
   className?: string;
 };
 
-// image, name, description, link
+// image, name, description, link. usually for a person.
 export default function Portrait({
   image,
   link = "",

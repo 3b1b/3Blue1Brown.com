@@ -16,6 +16,7 @@ type Option<Value = string> = {
   label?: string;
 };
 
+// dropdown single-select
 export default function Select<O extends Option>({
   value,
   onChange,
