@@ -95,14 +95,18 @@ export default function Explore() {
 
   return (
     <section>
-      <h2>Explore</h2>
+      <h2>
+        <hr />
+        Explore
+        <hr />
+      </h2>
 
       <Textbox
         ref={searchBox}
         icon={<MagnifyingGlassIcon />}
         value={search}
         onChange={setSearch}
-        className="scroll-mt-12 text-lg"
+        className="text-lg"
         placeholder="Search..."
         aria-controls="results"
       />
@@ -145,7 +149,7 @@ export default function Explore() {
               className="card"
               onClick={() => {
                 setTopicId(id);
-                searchBox.current?.scrollIntoView({ behavior: "smooth" });
+                scrollTo(searchBox.current, { behavior: "smooth" });
               }}
               aria-label={`Explore topic "${title}"`}
             >

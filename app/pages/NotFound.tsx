@@ -10,6 +10,7 @@ export const clientLoader = async ({ request }: Route.LoaderArgs) => {
   // old links
   if (pathname === "/faqs") throw redirect("/about");
   if (pathname === "/blog") throw redirect("/extras");
+  if (pathname === "/podcast") throw redirect("/extras");
   const topic = pathname.match(new RegExp(`/topics/(.+)$`))?.[1];
   if (topic) throw redirect(`/?topic=${topic}`);
 };

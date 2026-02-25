@@ -6,8 +6,9 @@ import clsx from "clsx";
 import { atom } from "jotai";
 import { setAtom } from "~/util/atom";
 import { waitFor } from "~/util/misc";
-import { getThumbnail } from "~/util/youtube";
+import { getThumbnail, getWatch } from "~/util/youtube";
 import "youtube-video-element";
+import { scrollTo } from "~/util/dom";
 
 type Props = {
   id?: string;
@@ -24,7 +25,7 @@ export default function YouTube({ id, className, ...props }: Props) {
   const play = async () => {
     await waitFor(() => (ref.current?.readyState ?? 0) > 0);
     ref.current?.play();
-    ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    scrollTo(ref.current, { behavior: "smooth", block: "center" });
     setAtom(playingAtom, true);
   };
 
@@ -58,7 +59,7 @@ export default function YouTube({ id, className, ...props }: Props) {
     <youtube-video
       ref={ref}
       className={className}
-      src={`https://www.youtube.com/watch?v=${id}`}
+      src={getWatch(id)}
       poster={getThumbnail(id)}
       controls
       autoPlay={false}

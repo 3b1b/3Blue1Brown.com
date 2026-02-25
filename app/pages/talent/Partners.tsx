@@ -25,21 +25,12 @@ export default function Partners() {
         {order.map((id) => {
           const partner = getPartner(id);
           if (!partner) return null;
-          const {
-            name = "",
-            tagline = "",
-            quote = "",
-            color = "",
-          } = partner.frontmatter;
+          const { name = "", tagline = "", quote = "" } = partner.frontmatter;
           return (
             <Link
               key={id}
               to={`/talent/${id}`}
-              className="group card relative items-stretch border-l-2 p-8 hocus:bg-transparent"
-              style={{
-                borderColor: `oklch(55% 0.15 ${color})`,
-                backgroundColor: `oklch(55% 0.15 ${color} / 0.05)`,
-              }}
+              className="group card relative items-stretch"
             >
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
                 <img src={getLogo(id)?.default} alt="" className="w-40" />

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
-import { frame, waitFor, waitForStable } from "~/util/misc";
+import { frame, sleep, waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
 export const renderText = (node: ReactNode) =>
@@ -59,6 +59,9 @@ export const scrollTo = async (
   }
 
   if (!element) return;
+
+  // wait for any rendering/layout shift
+  await sleep(100);
 
   // track if user scrolled
   let userScrolled = false;

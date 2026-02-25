@@ -6,6 +6,7 @@ import {
   useResolvedPath,
 } from "react-router";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
+import clsx from "clsx";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -61,7 +62,10 @@ export default function Link({
     );
 
   // internal link, active
-  if (active || !to) return <span className={className}>{children}</span>;
+  if (active || !to)
+    return (
+      <span className={clsx("pointer-events-none", className)}>{children}</span>
+    );
 
   // other internal link
   return (

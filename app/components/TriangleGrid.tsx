@@ -37,7 +37,7 @@ export default function TriangleGrid() {
       ref={ref}
       className="absolute inset-0 -z-10 size-full mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%"
       style={{
-        translate: `0 ${-percent * 10}%`,
+        translate: `0 ${-percent * 25}%`,
         scale: 1.1,
         filter: `url("${glow}#filter")`,
       }}

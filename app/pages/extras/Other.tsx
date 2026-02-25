@@ -17,11 +17,6 @@ const entries = [
     link: "https://github.com/3b1b/manim",
   },
   {
-    name: "3b1b Podcast",
-    description: "A dormant podcast, perhaps to be spun up again one day",
-    link: "https://www.youtube.com/playlist?list=PLfx0NKbQXfNBc5n8LOXYRTMzvTofAY8d6",
-  },
-  {
     name: "Collaborations",
     description: "Collaborations and cameos on YouTube",
     link: "https://www.youtube.com/playlist?list=PLZHQObOWTQDMhxE4XbNHLlJ56E2TGBZ0_",
@@ -62,9 +57,10 @@ const entries = [
   image: getImage(entry.name)?.default,
 }));
 
-export default function OtherWork() {
+export default function Other() {
   return (
     <section>
+      <h2 className="sr-only">Other</h2>
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         {entries.map(({ link, name, description, image }, index) => (
           <Link key={index} className="card" to={link} arrow={false}>
