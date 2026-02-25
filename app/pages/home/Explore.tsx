@@ -27,7 +27,7 @@ const topics = [
   {
     id: "best of",
     title: "Best Of",
-    description: "A few hand-picked favorite lessons",
+    description: "A few hand-picked favorites",
     lessons: [
       "fourier-series",
       "hardest-problem",
