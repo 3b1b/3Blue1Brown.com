@@ -3,6 +3,7 @@ import type { Article } from "schema-dts";
 import type { Route } from "./+types/Post";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
+import { H1 } from "~/components/Heading";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import YouTube from "~/components/YouTube";
@@ -63,9 +64,9 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
         />
 
         <section className="items-center gap-8 bg-theme/10!">
-          <h1>
+          <H1>
             <StrokeType>{title}</StrokeType>
-          </h1>
+          </H1>
           <div className="flex flex-col items-center gap-4">
             {description && <p className="text-lg">{description}</p>}
             <div className="flex flex-wrap gap-8 text-lg opacity-50">

@@ -1,3 +1,4 @@
+import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 import { importAssets } from "~/util/import";
 
@@ -60,7 +61,7 @@ const entries = [
 export default function Other() {
   return (
     <section>
-      <h2 className="sr-only">Other</h2>
+      <H2 className="sr-only">Other</H2>
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         {entries.map(({ link, name, description, image }, index) => (
           <Link key={index} className="card" to={link} arrow={false}>

@@ -1,6 +1,7 @@
 import { href } from "react-router";
 import Button from "~/components/Button";
 import DarkMode from "~/components/DarkMode";
+import { H1 } from "~/components/Heading";
 import Logo from "~/components/Logo";
 import StrokeType from "~/components/StrokeType";
 import TriangleGrid from "~/components/TriangleGrid";
@@ -22,9 +23,9 @@ export default function Header() {
       <DarkMode className="absolute top-4 right-4" />
 
       <hgroup className="contents">
-        <h1 className="text-4xl font-bold">
+        <H1 className="text-4xl font-bold">
           <StrokeType>3b1b Talent</StrokeType>
-        </h1>
+        </H1>
         <div className="text-center text-lg text-balance">
           Connecting curious minds with exceptional teams
         </div>

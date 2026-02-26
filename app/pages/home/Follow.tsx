@@ -13,6 +13,7 @@ import {
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
+import { H2 } from "~/components/Heading";
 import site from "~/data/site.yaml";
 
 const links = [
@@ -81,11 +82,11 @@ const links = [
 export default function Follow() {
   return (
     <section className="bg-secondary/10">
-      <h2>
+      <H2>
         <hr />
         Follow
         <hr />
-      </h2>
+      </H2>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(50)))] justify-center gap-4">
         {links.map(({ icon, label, link }, index) => (

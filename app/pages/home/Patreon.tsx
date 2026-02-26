@@ -1,5 +1,6 @@
 import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
+import { H2 } from "~/components/Heading";
 import Image from "~/components/Image";
 import site from "~/data/site.yaml";
 import support from "./images/support.png";
@@ -7,12 +8,12 @@ import support from "./images/support.png";
 export default function Patreon() {
   return (
     <section className="items-center bg-theme/10">
-      <h2>
+      <H2>
         <hr />
         <PatreonLogoIcon />
         Patreon
         <hr />
-      </h2>
+      </H2>
 
       <div className="grid w-full grid-cols-2 items-start justify-center justify-items-center gap-x-12 gap-y-8 max-md:grid-cols-1">
         <p>

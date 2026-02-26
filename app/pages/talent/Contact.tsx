@@ -1,4 +1,5 @@
 import { href } from "react-router";
+import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 
 const email = "talent@3blue1brown.com";
@@ -7,7 +8,7 @@ export default function Details() {
   return (
     <>
       <section className="bg-off-white">
-        <h2>Want to be listed here?</h2>
+        <H2>Want to be listed here?</H2>
 
         <p>
           If your organization would like to be featured here, please send an
@@ -18,7 +19,7 @@ export default function Details() {
       </section>
 
       <section className="bg-secondary/10">
-        <h2>Find a job here?</h2>
+        <H2>Find a job here?</H2>
 
         <p className="text-center">
           Did you find a job through this page? Let us know, we'd love to hear

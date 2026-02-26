@@ -1,4 +1,5 @@
 import Alert from "~/components/Alert";
+import { H2 } from "~/components/Heading.tsx";
 import Link from "~/components/Link";
 import Quote from "~/components/Quote.tsx";
 import { getLogo, getPartner } from "./Partner.tsx";
@@ -19,7 +20,7 @@ const order = [
 export default function Partners() {
   return (
     <section className="width-lg">
-      <h2>Partners</h2>
+      <H2>Partners</H2>
 
       <div className="grid max-w-max grid-cols-2 gap-8 self-center max-lg:grid-cols-1">
         {order.map((id) => {

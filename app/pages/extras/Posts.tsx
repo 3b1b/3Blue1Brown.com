@@ -1,4 +1,5 @@
 import { FeatherIcon } from "@phosphor-icons/react";
+import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 import { posts } from "~/pages/blog/Post";
 
@@ -6,7 +7,7 @@ import { posts } from "~/pages/blog/Post";
 export default function Posts() {
   return (
     <section className="bg-secondary/10">
-      <h2>Blog</h2>
+      <H2>Blog</H2>
 
       <div className="grid grid-cols-2 gap-8 max-sm:grid-cols-1">
         {Object.entries(posts).map(([id, post]) => {

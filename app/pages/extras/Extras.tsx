@@ -1,3 +1,4 @@
+import { H1 } from "~/components/Heading";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import Other from "~/pages/extras/Other";
@@ -10,9 +11,9 @@ export default function Extras() {
       <Meta title="Extras" />
 
       <section className="bg-theme/10">
-        <h1>
+        <H1>
           <StrokeType>Extras</StrokeType>
-        </h1>
+        </H1>
       </section>
 
       <Other />

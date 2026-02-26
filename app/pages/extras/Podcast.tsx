@@ -1,3 +1,4 @@
+import { H2, H3 } from "~/components/Heading";
 import Link from "~/components/Link";
 import podcast from "~/pages/podcast/images/3b1b-podcast.svg";
 import { importAssets } from "~/util/import";
@@ -75,7 +76,7 @@ const episodes = [
 export default function Podcast() {
   return (
     <section className="bg-off-white">
-      <h2>Podcast</h2>
+      <H2>Podcast</H2>
 
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         <img
@@ -112,7 +113,7 @@ export default function Podcast() {
 
         <hr className="col-span-full" />
 
-        <h3 className="sr-only">Episodes</h3>
+        <H3 className="sr-only">Episodes</H3>
 
         {episodes.map(({ title, video }, index) => (
           <Link key={index} to={getWatch(video)} className="card" arrow={false}>

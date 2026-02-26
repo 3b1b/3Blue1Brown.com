@@ -9,6 +9,7 @@ import {
 import clsx from "clsx";
 import { useAtom } from "jotai";
 import Button from "~/components/Button";
+import { H2 } from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/YouTube";
 import { byDate, getLesson, lessons } from "~/data/lessons";
@@ -95,11 +96,11 @@ export default function Explore() {
 
   return (
     <section>
-      <h2>
+      <H2>
         <hr />
         Explore
         <hr />
-      </h2>
+      </H2>
 
       <Textbox
         ref={searchBox}

@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import Footnote from "~/components/Footnote";
+import { H1, H2, H3, H4 } from "~/components/Heading";
 
 type Props = {
   children: ReactNode;
@@ -32,7 +33,7 @@ export default function Markdownify({ children, noParagraph = false }: Props) {
   );
 }
 
-// replace components
+// replace components, in both markdownify runtime component and buildtime mdx rollup plugin
 // https://mdxjs.com/packages/mdx
 export const useMDXComponents = (noParagraph?: boolean): Components => ({
   // render paragraphs as spans to avoid unwanted spacing
@@ -45,10 +46,19 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
     return <a {...props} />;
   },
 
+  // h1
+  h1: (props) => <H1 {...props} />,
+
   // h2
   h2: (props) => {
     // remove footnote heading to remove from table of contents
     if (props.id === "footnote-label") return null;
-    return <h2 {...props} />;
+    return <H2 {...props} />;
   },
+
+  // h3
+  h3: (props) => <H3 {...props} />,
+
+  // h4
+  h4: (props) => <H4 {...props} />,
 });

@@ -12,7 +12,6 @@ import {
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import { load } from "~/components/DarkMode";
-import Headings from "~/components/Headings";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
@@ -54,7 +53,6 @@ export default function App() {
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-          <Headings />
           <ViewCorner />
         </body>
       </html>

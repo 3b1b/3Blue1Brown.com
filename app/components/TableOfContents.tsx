@@ -10,7 +10,7 @@ import {
 } from "@reactuses/core";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
-import { headingsAtom } from "~/components/Headings";
+import { headingsAtom } from "~/components/Heading";
 import Link from "~/components/Link";
 import { firstInView, scrollTo } from "~/util/dom";
 import { useChanged, useInView } from "~/util/hooks";
@@ -115,7 +115,7 @@ export default function TableOfContents() {
 
       {/* links */}
       <div ref={listRef} className="flex flex-col overflow-y-auto py-2">
-        {headings.map(({ id, level, clone }, index) => (
+        {headings.map(({ id, level, content }, index) => (
           <Link
             key={index}
             ref={active === index ? activeRef : undefined}
@@ -128,10 +128,7 @@ export default function TableOfContents() {
             replace
             onClick={() => scrollTo("#" + id)}
           >
-            <span
-              className="contents"
-              dangerouslySetInnerHTML={{ __html: clone.innerHTML }}
-            />
+            {content}
           </Link>
         ))}
       </div>

@@ -1,6 +1,7 @@
 import { href } from "react-router";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
+import { H2 } from "~/components/Heading";
 import TriangleGrid from "~/components/TriangleGrid";
 
 export default function Talent() {
@@ -8,7 +9,7 @@ export default function Talent() {
     <section className="dark items-center width-sm">
       <TriangleGrid />
 
-      <h2>3b1b Talent</h2>
+      <H2>3b1b Talent</H2>
 
       <p>
         Think of it like a <strong>virtual career fair!</strong> We partner with

@@ -1,6 +1,7 @@
 import type { MDXContent } from "mdx/types";
 import type { Route } from "./+types/Partner";
 import Footer from "~/components/Footer";
+import { H1 } from "~/components/Heading";
 import Meta from "~/components/Meta";
 import Banner from "~/pages/talent/Banner";
 import { importAssets } from "~/util/import";
@@ -62,7 +63,7 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
       <Banner name={name} banner={banner.default} wordmark={wordmark.default} />
 
       <main id="content" className="[&>section]:odd:bg-off-white">
-        <h1 className="sr-only">{name}</h1>
+        <H1 className="sr-only">{name}</H1>
 
         <Component />
       </main>

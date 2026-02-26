@@ -1,5 +1,6 @@
 import type { Route } from "./+types/NotFound";
 import { redirect } from "react-router";
+import { H1 } from "~/components/Heading";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 
@@ -21,9 +22,9 @@ export default function NotFound() {
       <Meta title="Not Found" />
 
       <section className="bg-theme/10">
-        <h1>
+        <H1>
           <StrokeType>Not Found</StrokeType>
-        </h1>
+        </H1>
         <p className="max-w-100 self-center">
           The page you are looking for does not exist or may have moved.
         </p>

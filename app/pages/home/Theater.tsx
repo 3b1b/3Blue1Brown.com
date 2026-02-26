@@ -12,6 +12,7 @@ import {
 import { useAtom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
+import { H1, H2 } from "~/components/Heading";
 import YouTube, { play, playingAtom } from "~/components/YouTube";
 import {
   getLatest,
@@ -65,8 +66,8 @@ export default function Theater() {
 
   return (
     <>
-      <h1 className="sr-only">Home</h1>
-      <h2 className="sr-only">Theater</h2>
+      <H1 className="sr-only">Home</H1>
+      <H2 className="sr-only">Theater</H2>
 
       <div className="flex w-250 max-w-full flex-col gap-4 self-center transition">
         <YouTube
