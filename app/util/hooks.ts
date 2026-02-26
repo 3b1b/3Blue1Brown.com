@@ -1,6 +1,12 @@
 import type { RefObject } from "react";
 import type { searchList, setList } from "~/util/fuzzy";
-import { useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 import {
   useDebounce,
   useElementBounding,
@@ -85,4 +91,23 @@ export const useInView = (ref: RefObject<HTMLElement | null>) => {
     elementBbox.right > 0 &&
     elementBbox.left < windowSize.width
   );
+};
+
+// fit svg view box to content
+export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
+  // fit svg view box to content
+  const fit = useCallback(() => {
+    if (!ref.current) return;
+    // get bbox of contents
+    const { x, y, width, height } = ref.current.getBBox();
+    // fit view to contents
+    ref.current.setAttribute("viewBox", [x, y, width, height].join(" "));
+  }, [ref]);
+
+  // run fit after every render
+  useLayoutEffect(() => {
+    fit();
+  });
+
+  return fit;
 };

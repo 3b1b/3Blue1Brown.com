@@ -7,6 +7,7 @@ import {
   WarningDiamondIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { getVariants } from "~/util/misc";
 
 type Props = {
   // type of alert, determines styling
@@ -19,7 +20,7 @@ type Props = {
   className?: string;
 };
 
-const className = "icon translate-y-[0.25lh]";
+const className = "icon translate-y-[0.2lh]";
 
 // available categories of alerts and associated styles
 export const types = {
@@ -66,6 +67,20 @@ export default function Alert({
     >
       {icon ?? types[type].icon}
       <div className="flex flex-col gap-4 text-black">{children}</div>
+    </div>
+  );
+}
+
+export function Demo({ children }: { children: ReactNode }) {
+  const variants = getVariants({ type: Object.keys(types) as Type[] });
+
+  return (
+    <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+      {variants.map((props, index) => (
+        <Alert key={index} {...props}>
+          {children}
+        </Alert>
+      ))}
     </div>
   );
 }

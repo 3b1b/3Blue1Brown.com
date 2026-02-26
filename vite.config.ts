@@ -10,6 +10,7 @@ import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
+import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
@@ -27,6 +28,15 @@ export default defineConfig({
     reactRouter(),
     tsconfigPaths(),
     viteYaml(),
+    svgr({
+      svgrOptions: {
+        /** https://github.com/gregberge/svgr/discussions/770 */
+        expandProps: "start",
+        svgProps: {
+          className: `{props.className ? props.className + " icon" : "icon"}`,
+        },
+      },
+    }),
     imagetools(),
   ],
   resolve: {

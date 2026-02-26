@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-68 -50 136 100">
+  <defs>
+    <filter id="invert">
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0" />
+        <feFuncG type="table" tableValues="1 0" />
+        <feFuncB type="table" tableValues="1 0" />
+      </feComponentTransfer>
+    </filter>
+    <path
+      id="speech-bubble"
+      stroke-width="1"
+      vector-effect="non-scaling-stroke"
+      d="
+        M -35 38
+        A 64 45 0 1 0 -48 30
+        L -59 54
+        z
+      "
+    />
+  </defs>
+  <use href="#speech-bubble" fill="currentColor" filter="url(#invert)" />
+  <use href="#speech-bubble" fill="none" stroke="currentColor" />
+</svg>

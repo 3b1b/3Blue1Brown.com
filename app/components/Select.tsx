@@ -36,6 +36,23 @@ export default function Select<O extends Option>({
         value={value}
         onChange={(event) => onChange?.(event.currentTarget.value)}
         {...props}
+        onKeyDown={(event) => {
+          const element = event.currentTarget;
+
+          const left = event.key === "ArrowLeft";
+          const right = event.key === "ArrowRight";
+
+          // allow quick scrub with left/right when focused
+          if (left || right) {
+            event.preventDefault();
+            if (left && element.selectedIndex > 0) element.selectedIndex--;
+
+            if (right && element.selectedIndex < options.length - 1)
+              element.selectedIndex++;
+
+            onChange?.(options[element.selectedIndex]!.value);
+          }
+        }}
       >
         {options.map((option, index) => (
           <option key={index} value={option.value}>

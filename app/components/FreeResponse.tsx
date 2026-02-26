@@ -38,13 +38,15 @@ export default function FreeResponse({ question, children }: Props) {
           className="grow"
         />
         <Button
-          onClick={() => setState("revealed")}
+          onClick={() =>
+            setState(state === "revealed" ? "unrevealed" : "revealed")
+          }
           color="light"
           size="sm"
           aria-disabled={state === "disabled"}
         >
           <EyeglassesIcon />
-          Reveal
+          {state === "revealed" ? "Hide" : "Reveal"}
         </Button>
       </div>
       {state === "revealed" && children}

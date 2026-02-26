@@ -8,6 +8,22 @@ const count = 28;
 // colors
 const blues = ["#000000", "#224C5B", "#528EA3", "#3E6576", "#74C0E3"] as const;
 const browns = ["#000000", "#42210b", "#754C24", "#603813", "#8C6239"] as const;
+// alt colors
+// const blues = [
+//   "oklch(0% 0 224)",
+//   "oklch(40% 0.1 224)",
+//   "oklch(60% 0.1 224)",
+//   "oklch(50% 0.1 224)",
+//   "oklch(80% 0.1 224)",
+// ];
+// const browns = [
+//   "oklch(0% 0 60)",
+//   "oklch(30% 0.1 60)",
+//   "oklch(50% 0.1 60)",
+//   "oklch(40% 0.1 60)",
+//   "oklch(60% 0.1 60)",
+// ];
+
 // radii of iris/furrows/pupil
 const radii = [25, 30, 37.5, 43.75, 50] as const;
 

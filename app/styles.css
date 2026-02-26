@@ -65,17 +65,6 @@
 @custom-variant hocus (&:is(:hover, :focus));
 
 @layer base {
-  * {
-    text-box: trim-both text;
-
-    .katex,
-    .katex *,
-    .katex-display,
-    .katex-display * {
-      text-box: unset;
-    }
-  }
-
   html {
     @apply bg-white font-serif leading-normal font-normal text-black underline-offset-2;
     font-size: 105%;
@@ -101,7 +90,7 @@
   h2,
   h3,
   h4 {
-    @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal;
+    @apply trim flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal;
   }
 
   h1 {
@@ -121,7 +110,7 @@
   }
 
   p {
-    @apply text-justify leading-loose;
+    @apply trim text-justify leading-loose;
   }
 
   strong,
@@ -144,7 +133,7 @@
   }
 
   li {
-    @apply pl-2;
+    @apply trim pl-2;
   }
 
   li:has(ul, ol) {
@@ -152,7 +141,7 @@
   }
 
   blockquote {
-    @apply border-theme flex flex-col gap-4 border-l-2 bg-current/5 p-8 leading-loose;
+    @apply border-theme trim flex flex-col gap-4 border-l-2 bg-current/5 p-8 leading-loose;
   }
 
   pre {
@@ -185,15 +174,15 @@
   }
 
   a {
-    @apply text-theme hocus:text-current underline transition;
+    @apply text-theme hocus:text-current trim underline transition;
   }
 
   button {
-    @apply inline-flex cursor-pointer items-center justify-center font-sans transition;
+    @apply trim inline-flex cursor-pointer items-center justify-center font-sans transition;
   }
 
   label {
-    @apply inline-flex cursor-pointer flex-col gap-2 transition;
+    @apply trim inline-flex cursor-pointer flex-col gap-2 transition;
   }
 
   input,
@@ -212,10 +201,6 @@
   [aria-disabled="true"] {
     @apply pointer-events-none opacity-35;
   }
-}
-
-@utility icon {
-  @apply inline-block h-[1.25em] w-[unset];
 }
 
 @utility width-sm {
@@ -240,6 +225,14 @@
   &:is(section) {
     --width: 9999;
   }
+}
+
+@utility icon {
+  @apply inline-block h-[1.25em] w-[unset];
+}
+
+@utility trim {
+  text-box: trim-both text;
 }
 
 @utility card {
