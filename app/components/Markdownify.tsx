@@ -44,4 +44,11 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
     if ("data-footnote-ref" in props) return <Footnote {...props} />;
     return <a {...props} />;
   },
+
+  // h2
+  h2: (props) => {
+    // remove footnote heading to remove from table of contents
+    if (props.id === "footnote-label") return null;
+    return <h2 {...props} />;
+  },
 });

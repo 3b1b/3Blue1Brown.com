@@ -11,8 +11,8 @@ import {
   useLocation,
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
-import Anchors from "~/components/Anchors";
 import { load } from "~/components/DarkMode";
+import Headings from "~/components/Headings";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
@@ -45,7 +45,7 @@ export default function App() {
             {/* jump button for accessibility */}
             <a
               href="#content"
-              className="fixed top-0 left-0 z-100 bg-white p-2 text-black no-underline not-focus-visible:opacity-0"
+              className="pointer-events-none fixed top-0 left-0 z-100 bg-white p-2 text-black no-underline not-focus-visible:opacity-0"
               tabIndex={0}
             >
               Jump to main content
@@ -54,7 +54,7 @@ export default function App() {
           <Outlet />
           <ScrollRestoration />
           <Scripts />
-          <Anchors />
+          <Headings />
           <ViewCorner />
         </body>
       </html>

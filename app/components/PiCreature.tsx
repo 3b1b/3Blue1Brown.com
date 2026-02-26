@@ -20,10 +20,15 @@ export const [, emotions] = importAssets(
 );
 
 type Props = {
+  // expression or variation
   emotion: string;
+  // whether bubble is thought bubble instead of speech
   thought?: boolean;
+  // size of creature and bubble
   size?: "sm" | "md";
+  // whether to face creature left instead of right
   flip?: boolean;
+  // bubble content. leave empty for no bubble.
   children?: ReactNode;
 } & ComponentProps<"svg">;
 
@@ -124,7 +129,7 @@ export function Demo({ children }: { children: ReactNode }) {
         thought={thought}
         size={size}
         flip={flip}
-        className="self-center border"
+        className="self-center"
       >
         {content ? content.trim() : children}
       </PiCreature>
@@ -153,7 +158,7 @@ export function Demo({ children }: { children: ReactNode }) {
         <Textbox
           value={content}
           onChange={setContent}
-          placeholder="Bubble content"
+          placeholder="Bubble content. Enter whitespace to see w/o bubble."
           className="col-span-full"
         />
         <Checkbox value={flip} onChange={setFlip}>

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
-import { frame, sleep, waitFor, waitForStable } from "~/util/misc";
+import { frame, waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
 export const renderText = (node: ReactNode) =>
@@ -60,9 +60,6 @@ export const scrollTo = async (
 
   if (!element) return;
 
-  // wait for any rendering/layout shift
-  await sleep(100);
-
   // track if user scrolled
   let userScrolled = false;
   window.addEventListener("scroll", () => (userScrolled = true), {
@@ -88,18 +85,14 @@ export const preserveScroll = async (element?: Element | null) => {
   window.scrollBy({ top: newY - oldY, behavior: "instant" });
 };
 
-// find next/previous node that matches condition, in dom order
-export const findClosest = (
-  element: HTMLElement,
-  condition: (element: HTMLElement) => boolean,
-  direction: "next" | "previous",
-) => {
-  const walker = document.createTreeWalker(
-    document.body,
-    NodeFilter.SHOW_ELEMENT,
-  );
-  walker.currentNode = element;
-  while (direction === "next" ? walker.nextNode() : walker.previousNode())
-    if (condition(walker.currentNode as HTMLElement))
-      return walker.currentNode as HTMLElement;
+// find index of first element "in view". model behavior off of wikiwand.com.
+export const firstInView = (elements: Element[]) => {
+  for (let index = elements.length - 1; index >= 0; index--) {
+    const element = elements[index]!;
+    const offset =
+      parseFloat(window.getComputedStyle(element).scrollMarginTop) || 0;
+    const { top } = element.getBoundingClientRect();
+    if (top < offset) return index;
+  }
+  return 0;
 };

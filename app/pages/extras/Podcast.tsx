@@ -100,9 +100,11 @@ export default function Podcast() {
                 to={link}
                 key={name}
                 arrow={false}
-                className="transition hover:grayscale"
+                className="transition hocus:grayscale"
+                title={`Listen via ${name}`}
+                aria-label={`Listen via ${name}`}
               >
-                <img src={image} alt={`Listen via ${name}`} />
+                <img src={image} alt="" />
               </Link>
             ))}
           </div>

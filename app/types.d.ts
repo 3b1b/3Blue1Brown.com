@@ -8,7 +8,7 @@ namespace React.JSX {
   }
 }
 
-/** https://github.com/JonasKruckenberg/imagetools/issues/160 */
+// https://github.com/JonasKruckenberg/imagetools/issues/160
 declare module "*&imagetools" {
   /**
    * actual types

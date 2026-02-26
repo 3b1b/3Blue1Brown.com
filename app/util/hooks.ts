@@ -82,9 +82,22 @@ export const useParallax = (ref: RefObject<HTMLElement | null>) => {
 };
 
 // is element in viewport
-export const useInView = (ref: RefObject<HTMLElement | null>) => {
+export const useInView = (
+  ref: RefObject<HTMLElement | null>,
+  fallback = false,
+) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
+
+  // if on server or otherwise don't have sizes, use fallback
+  if (
+    !windowSize.height ||
+    !windowSize.width ||
+    !elementBbox.width ||
+    !elementBbox.height
+  )
+    return fallback;
+
   return (
     elementBbox.bottom > 0 &&
     elementBbox.top < windowSize.height &&

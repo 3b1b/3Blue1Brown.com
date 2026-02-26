@@ -32,7 +32,7 @@ export default defineConfig({
     viteYaml(),
     svgr({
       svgrOptions: {
-        /** https://github.com/gregberge/svgr/discussions/770 */
+        // https://github.com/gregberge/svgr/discussions/770
         expandProps: "start",
         svgProps: {
           className: `{props.className ? props.className + " icon" : "icon"}`,

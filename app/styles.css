@@ -18,10 +18,9 @@
   --radius-*: initial;
   --radius-md: 10px;
 
-  --shadow-sm: 0 0 5px var(--color-shadow);
-  --shadow-md: 0 0 10px var(--color-shadow);
-  --shadow-lg: 0 0 20px var(--color-shadow);
-  --shadow-xl: 0 0 40px var(--color-shadow);
+  --shadow-sm: 0 0 5px var(--color-shadow), 0 0 2px var(--color-shadow);
+  --shadow-md: 0 0 10px var(--color-shadow), 0 0 2px var(--color-shadow);
+  --shadow-lg: 0 0 20px var(--color-shadow), 0 0 2px var(--color-shadow);
   --shadow-overlay: 0 0 0 9999px var(--color-shadow);
 
   --color-*: initial;
@@ -39,8 +38,7 @@
   --color-success: oklch(60% 0.15 180);
   --color-warning: oklch(60% 0.15 50);
   --color-error: oklch(60% 0.15 10);
-
-  --color-shadow: #00000080;
+  --color-shadow: #00000020;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -60,6 +58,7 @@
   --color-success: oklch(80% 0.15 180);
   --color-warning: oklch(80% 0.15 50);
   --color-error: oklch(80% 0.15 10);
+  --color-shadow: #ffffff40;
 }
 
 @custom-variant hocus (&:is(:hover, :focus));

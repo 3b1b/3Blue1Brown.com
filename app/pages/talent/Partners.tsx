@@ -21,17 +21,13 @@ export default function Partners() {
     <section className="width-lg">
       <h2>Partners</h2>
 
-      <div className="grid grid-cols-2 gap-8 max-lg:grid-cols-1">
+      <div className="grid max-w-max grid-cols-2 gap-8 self-center max-lg:grid-cols-1">
         {order.map((id) => {
           const partner = getPartner(id);
           if (!partner) return null;
           const { name = "", tagline = "", quote = "" } = partner.frontmatter;
           return (
-            <Link
-              key={id}
-              to={`/talent/${id}`}
-              className="group card relative items-stretch"
-            >
+            <Link key={id} to={`/talent/${id}`} className="group card relative">
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
                 <img src={getLogo(id)?.default} alt="" className="w-40" />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
