@@ -15,13 +15,14 @@ const checkPage = (path: string) =>
     test.skip(browserName !== "chromium", "Only test Axe on chromium");
 
     // test can be slow on ci on very large page
-    test.setTimeout(2 * 60 * 1000);
+    test.setTimeout(1 * 60 * 1000);
 
     // navigate to page
     await page.goto(path);
 
     // wait for content to load
-    await page.waitForTimeout(5000);
+    await page.waitForSelector("footer");
+    await page.waitForTimeout(3000);
 
     // builder
     const builder = new AxeBuilder({ page });
@@ -30,40 +31,34 @@ const checkPage = (path: string) =>
     builder.exclude("iframe");
     builder.exclude("youtube-video");
 
-    // axe check
-    const check = async () => {
-      // get page violations
-      const { violations } = await builder.analyze();
+    // get page violations
+    const { violations } = await builder.analyze();
 
-      // split up critical/non-critical
-      const { critical = [], warning = [] } = Object.groupBy(
-        violations,
-        ({ id }) => {
-          // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
-          if (id === "color-contrast") return "warning";
-          // https://github.com/dequelabs/axe-core/issues/4566
-          if (id === "scrollable-region-focusable") return "warning";
-          return "critical";
-        },
-      );
+    // split up critical/non-critical
+    const { critical = [], warning = [] } = Object.groupBy(
+      violations,
+      ({ id }) => {
+        // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
+        if (id === "color-contrast") return "warning";
+        // https://github.com/dequelabs/axe-core/issues/4566
+        if (id === "scrollable-region-focusable") return "warning";
+        return "critical";
+      },
+    );
 
-      // annotate test with all
-      test.info().annotations.push({
-        type: "Axe violations",
-        description: stringify(critical),
-      });
+    // annotate test with all
+    test.info().annotations.push({
+      type: "Axe violations",
+      description: stringify(critical),
+    });
 
-      test.info().annotations.push({
-        type: "Axe warnings",
-        description: stringify(warning),
-      });
+    test.info().annotations.push({
+      type: "Axe warnings",
+      description: stringify(warning),
+    });
 
-      // fail test on critical
-      expect(critical?.length).toBe(0);
-    };
-
-    // check page
-    await check();
+    // fail test on critical
+    expect(critical?.length).toBe(0);
   });
 
 // check all pages

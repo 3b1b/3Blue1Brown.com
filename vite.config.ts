@@ -23,6 +23,8 @@ export default defineConfig({
         remarkGfm,
       ],
       rehypePlugins: [rehypeKatex],
+      // https://mdxjs.com/packages/mdx
+      providerImportSource: "~/components/Markdownify",
     }),
     tailwindcss(),
     reactRouter(),

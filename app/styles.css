@@ -256,7 +256,7 @@
 }
 
 @utility badge {
-  @apply bg-theme mx-1 rounded-md px-1 font-sans text-white;
+  @apply bg-theme mx-1 inline-flex rounded-full px-1 font-sans text-white;
 }
 
 @utility stroke-type {
