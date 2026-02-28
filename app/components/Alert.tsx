@@ -20,36 +20,34 @@ type Props = {
   className?: string;
 };
 
-const className = "icon translate-y-[0.2lh]";
-
 // available categories of alerts and associated styles
 export const types = {
   info: {
     color: "var(--color-theme)",
-    icon: <InfoIcon className={className} />,
+    icon: <InfoIcon />,
   },
   loading: {
     color: "var(--color-gray)",
-    icon: <CircleNotchIcon className={clsx(className, "animate-spin")} />,
+    icon: <CircleNotchIcon className="icon animate-spin" />,
   },
   success: {
     color: "var(--color-success)",
-    icon: <CheckCircleIcon className={className} />,
+    icon: <CheckCircleIcon />,
   },
   warning: {
     color: "var(--color-warning)",
-    icon: <WarningCircleIcon className={className} />,
+    icon: <WarningCircleIcon />,
   },
   error: {
     color: "var(--color-error)",
-    icon: <WarningDiamondIcon className={className} />,
+    icon: <WarningDiamondIcon />,
   },
 };
 
 // alert type
 type Type = keyof typeof types;
 
-// box with icon and text */
+// box with icon and text
 export default function Alert({
   type = "info",
   icon,
@@ -59,7 +57,7 @@ export default function Alert({
   return (
     <div
       className={clsx(
-        "flex items-start gap-4 border-l-2 border-current bg-current/10 p-4 leading-loose",
+        "flex items-center gap-4 border-l-2 border-current bg-current/10 p-4 leading-loose",
         className,
       )}
       style={{ color: types[type].color }}

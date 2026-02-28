@@ -12,3 +12,13 @@ export const formatDate = (date?: string | number | Date | null) => {
   if (!date) return "-";
   return new Date(date).toLocaleDateString(undefined, { dateStyle: "medium" });
 };
+
+// shorten url text
+export const shortenUrl = (value: string) => {
+  try {
+    const url = new URL(value);
+    return (url.hostname + url.pathname).replace(/\/+$/, "");
+  } catch (error) {
+    return value;
+  }
+};

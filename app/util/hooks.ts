@@ -13,7 +13,8 @@ import {
   useWindowSize,
 } from "@reactuses/core";
 import { wrap } from "comlink";
-import { isEqual } from "lodash-es";
+import { isEqual, mapValues } from "lodash-es";
+import { UAParser } from "ua-parser-js";
 import FuzzyWorker from "~/util/fuzzy?worker";
 
 // check if value changed from previous render
@@ -123,4 +124,35 @@ export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
   });
 
   return fit;
+};
+
+// use debug info
+export const useDebug = () => {
+  const [ua, setUA] = useState<UAParser.IResult>();
+
+  const isFirefox = ua?.browser.name?.toLowerCase().includes("firefox");
+
+  const isSafari = ua?.browser.name?.toLowerCase().includes("safari");
+
+  // https://github.com/faisalman/ua-parser-js/issues/182
+  const isDesktop = !ua?.device.type;
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    setUA(new UAParser(window.navigator.userAgent).getResult());
+  }, []);
+
+  // combine user agent info into convenient list
+  const userAgent = mapValues(
+    {
+      Browser: [ua?.browser.name, ua?.browser.version],
+      Engine: [ua?.engine.name, ua?.engine.version],
+      OS: [ua?.os.name, ua?.os.version],
+      Device: [ua?.device.type, ua?.device.model, ua?.device.vendor],
+      CPU: [ua?.cpu.architecture],
+    },
+    (value) => value.filter(Boolean).join(" "),
+  );
+
+  return { userAgent, isFirefox, isSafari, isDesktop };
 };

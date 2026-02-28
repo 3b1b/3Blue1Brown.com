@@ -1,8 +1,10 @@
 import { AirplaneIcon } from "@phosphor-icons/react";
-import Alert, { Demo as AlertDemo } from "~/components/Alert";
-import Button, { Demo as ButtonDemo } from "~/components/Button";
+import { Demo as AlertDemo } from "~/components/Alert";
+import { Demo as ButtonDemo } from "~/components/Button";
+import Carousel from "~/components/Carousel";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
+import { Demo as DialogDemo } from "~/components/Dialog";
 import Float from "~/components/Float";
 import FreeResponse from "~/components/FreeResponse";
 import Image from "~/components/Image";
@@ -20,6 +22,7 @@ import Spoiler from "~/components/Spoiler";
 import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
 import Textbox from "~/components/Textbox";
+import YouTube from "~/components/YouTube";
 import site from "~/data/site.yaml";
 
 <Meta title="Testbed" />
@@ -49,6 +52,18 @@ import site from "~/data/site.yaml";
 Wow, $e^{i \pi}$ is really cool!
 
 </PiCreatureDemo>
+
+<Carousel>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg" />
+  
+  <div className="bg-theme/10 p-8">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+  </div>
+
+  <YouTube id="dQw4w9WgXcQ" />
+</Carousel>
+
+<DialogDemo />
 
 <ButtonDemo>Lorem Ipsum</ButtonDemo>
 

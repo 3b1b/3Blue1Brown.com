@@ -193,6 +193,18 @@
     @apply min-w-0 cursor-pointer font-sans transition;
   }
 
+  dl {
+    @apply grid max-w-max grid-cols-[repeat(var(--cols),auto)] gap-x-6 gap-y-4 [--cols:2];
+  }
+
+  dt {
+    @apply text-gray font-sans;
+  }
+
+  dd:empty {
+    @apply before:text-gray before:content-['-'];
+  }
+
   :focus-visible {
     @apply static-ring;
   }

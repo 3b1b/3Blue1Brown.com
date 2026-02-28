@@ -27,12 +27,16 @@ export default function Button({
   // wrap text children in spans to allow text box trimming
   children = deepMap(children, (child: ReactNode, index?: number) => {
     if (child && typeof child === "string")
-      return <span key={index}>{child}</span>;
+      return (
+        <span key={index} className="trim">
+          {child}
+        </span>
+      );
     return child;
   });
 
   className = clsx(
-    "inline-flex items-center justify-center gap-2 rounded-md font-sans no-underline trim [&_p]:contents [&_p]:leading-normal",
+    "inline-flex items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hocus:bg-theme/15 hocus:text-theme",
     color === "light" &&
       "bg-theme/15 text-theme hocus:bg-theme hocus:text-white",
@@ -41,7 +45,7 @@ export default function Button({
     color === "critical" &&
       "bg-black text-white hover-ring hocus:bg-theme hocus:outline-theme",
     size === "sm" && "p-2",
-    size === "md" && "p-4 text-lg",
+    size === "md" && "p-3 text-lg",
     className,
   );
 

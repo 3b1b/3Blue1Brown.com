@@ -90,7 +90,7 @@ export default function TableOfContents() {
     <aside
       ref={ref}
       className={clsx(
-        "fixed inset-y-0 z-20 flex max-w-80 flex-col bg-white font-sans shadow-md transition",
+        "fixed inset-y-0 z-40 flex max-w-80 flex-col bg-white font-sans shadow-md transition",
         hide ? "pointer-events-none opacity-0" : "opacity-100",
         open ? "" : "-translate-x-full",
       )}
