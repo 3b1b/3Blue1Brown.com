@@ -2,7 +2,7 @@ import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
 import Image from "~/components/Image";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 import support from "./images/support.png";
 
 export default function Patreon() {
@@ -33,7 +33,7 @@ export default function Patreon() {
 
         <Image image={support} alt="" className="w-50" />
 
-        <Button to={site.patreon} color="theme" className="self-center">
+        <Button to={site.socials.patreon} color="theme" className="self-center">
           Become a Supporter
           <ArrowRightIcon />
         </Button>

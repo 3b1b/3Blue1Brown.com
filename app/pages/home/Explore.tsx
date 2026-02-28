@@ -57,7 +57,7 @@ const topics = [
   ...lessons,
 ]
   .filter((topic) => !topic.id.match(/misc/i))
-  .map((button) => ({ ...button, image: getImage(button.id)?.default }));
+  .map((button) => ({ ...button, image: getImage(button.id)?.default ?? "" }));
 
 const limit = 12;
 

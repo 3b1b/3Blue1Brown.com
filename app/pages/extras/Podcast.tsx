@@ -37,7 +37,7 @@ const platforms = [
   },
 ].map((platform) => ({
   ...platform,
-  image: getLogo(platform.name)?.default,
+  image: getLogo(platform.name)?.default ?? "",
 }));
 
 const episodes = [

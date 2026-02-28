@@ -27,10 +27,11 @@ export default function Partners() {
           const partner = getPartner(id);
           if (!partner) return null;
           const { name = "", tagline = "", quote = "" } = partner.frontmatter;
+          const image = getLogo(id)?.default ?? "";
           return (
             <Link key={id} to={`/talent/${id}`} className="group card relative">
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
-                <img src={getLogo(id)?.default} alt="" className="w-40" />
+                <img src={image} alt="" className="w-40" />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
                   <div className="text-xl font-bold">{name}</div>
                   <div className="text-lg">{tagline}</div>

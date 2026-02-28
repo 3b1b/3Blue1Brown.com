@@ -1,6 +1,6 @@
 import type { Thing, WithContext } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 
 type Props<Type extends Thing> = {
   title?: string | string[];

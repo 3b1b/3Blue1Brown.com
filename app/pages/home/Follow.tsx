@@ -14,68 +14,68 @@ import {
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 
 const links = [
   {
     icon: <YoutubeLogoIcon />,
     label: "2nd Channel",
-    link: site.second_channel,
+    link: site.socials.second_channel,
   },
   {
     icon: <NewspaperIcon />,
     label: "Newsletter",
-    link: site.newsletter,
+    link: site.socials.newsletter,
   },
   {
     icon: <RssIcon />,
     label: "RSS",
-    link: site.rss,
+    link: site.socials.rss,
   },
   {
     icon: <InstagramLogoIcon />,
     label: "Instagram",
-    link: site.instagram,
+    link: site.socials.instagram,
   },
   {
     icon: <XLogoIcon />,
     label: "X",
-    link: site.x,
+    link: site.socials.x,
   },
   {
     icon: <ButterflyIcon />,
     label: "BlueSky",
-    link: site.bluesky,
+    link: site.socials.bluesky,
   },
   {
     icon: <TiktokLogoIcon />,
     label: "TikTok",
-    link: site.tiktok,
+    link: site.socials.tiktok,
   },
   {
     icon: <FacebookLogoIcon />,
     label: "Facebook",
-    link: site.facebook,
+    link: site.socials.facebook,
   },
   {
     icon: <SpotifyLogoIcon />,
     label: "Spotify",
-    link: site.spotify,
+    link: site.socials.spotify,
   },
   {
     icon: <RedditLogoIcon />,
     label: "Reddit",
-    link: site.reddit,
+    link: site.socials.reddit,
   },
   {
     icon: <GithubLogoIcon />,
     label: "GitHub",
-    link: site.github,
+    link: site.socials.github,
   },
   {
     icon: <TelevisionIcon />,
     label: "Bilibili",
-    link: site.bilibili,
+    link: site.socials.bilibili,
   },
 ];
 

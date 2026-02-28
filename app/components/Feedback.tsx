@@ -13,7 +13,7 @@ import Form from "~/components/Form";
 import Link from "~/components/Link";
 import Textbox from "~/components/Textbox";
 import Tooltip from "~/components/Tooltip";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 import { useDebug } from "~/util/hooks";
 import { shortenUrl } from "~/util/string";
 
@@ -118,7 +118,7 @@ export default function Feedback() {
           }
         }}
       >
-        <div className="grid w-200 grid-cols-2 gap-4 max-md:grid-cols-1">
+        <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
           <Textbox
             label="Name"
             help="Optional. So we can address you properly."

@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 import { useState } from "react";
 import { Dialog as _Dialog } from "@base-ui/react";
 import { XIcon } from "@phosphor-icons/react";
+import clsx from "clsx";
 import Button from "~/components/Button";
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
   children: Content;
   bottomContent?: Content;
   onChange?: (open: boolean) => void;
+  className?: string;
 };
 
 type Content = ReactNode | ((close: () => void, open: () => void) => ReactNode);
@@ -20,6 +22,7 @@ export default function Dialog({
   children,
   bottomContent,
   onChange,
+  className,
 }: Props) {
   const [isOpen, setOpen] = useState(false);
 
@@ -47,7 +50,12 @@ export default function Dialog({
       <_Dialog.Portal>
         <_Dialog.Backdrop className="fixed inset-0 z-50 bg-black/50" />
         <_Dialog.Popup className="pointer-events-none fixed inset-0 z-50 grid place-items-center p-8">
-          <div className="pointer-events-auto flex max-h-full min-h-0 max-w-400 min-w-0 flex-col rounded-md bg-white">
+          <div
+            className={clsx(
+              "pointer-events-auto flex max-h-full min-h-0 max-w-300 min-w-[min(100%,--spacing(100))] flex-col rounded-md bg-white",
+              className,
+            )}
+          >
             {/* top, heading */}
             <div className="flex items-start gap-4 p-4 shadow-md">
               <_Dialog.Title className="justify-start text-left">

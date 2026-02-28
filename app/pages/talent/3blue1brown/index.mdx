@@ -11,7 +11,7 @@ import {
   VideoIcon,
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 
 <section>
 
@@ -80,7 +80,7 @@ That said, I have no illusions that my own ideas are the best, and I fully recog
 
 It's important to emphasize, though, that the number of topics I would love to cover is vast, and it grows at a rate greatly exceeding the current ability to produce them. So in most cases, I simply will not be able to take it on.
 
-<Button to={site.video_pitch_form} color="theme" className="self-center">
+<Button to={site.forms.video_pitch} color="theme" className="self-center">
   <VideoIcon />
   Video pitches
 </Button>

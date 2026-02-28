@@ -55,7 +55,7 @@ const entries = [
   },
 ].map((entry) => ({
   ...entry,
-  image: getImage(entry.name)?.default,
+  image: getImage(entry.name)?.default ?? "",
 }));
 
 export default function Other() {

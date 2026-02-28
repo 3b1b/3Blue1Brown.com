@@ -8,7 +8,7 @@ import Grid from "~/components/Grid";
 import Logo from "~/components/Logo";
 import Nav from "~/components/Nav";
 import StrokeType from "~/components/StrokeType";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 
 type Props = {
   children?: ReactNode;

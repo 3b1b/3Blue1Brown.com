@@ -2,12 +2,12 @@ import { href } from "react-router";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import DarkMode from "~/components/DarkMode";
-import site from "~/data/site.yaml";
+import site from "~/data/site.json";
 
 const links = [
   {
     name: "Channel",
-    to: site.channel,
+    to: site.socials.channel,
   },
   {
     name: "Talent",
@@ -15,11 +15,11 @@ const links = [
   },
   {
     name: "Patreon",
-    to: site.patreon,
+    to: site.socials.patreon,
   },
   {
     name: "Store",
-    to: site.store,
+    to: site.socials.store,
   },
   {
     name: "Extras",

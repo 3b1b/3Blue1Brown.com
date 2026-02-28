@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Grant Sanderson",
+    "description": "Math Educator",
+    "link": "/about",
+    "group": "author"
+  },
+  {
+    "name": "Paul Dancstep",
+    "description": "Animation, Writing",
+    "link": "https://www.patreon.com/posts/interview-with-138346173",
+    "group": "current"
+  },
+  {
+    "name": "Ashley Hamer Pritchard",
+    "description": "Head of Operations",
+    "link": "https://www.linkedin.com/in/ashley-hamer",
+    "group": "current"
+  },
+  {
+    "name": "Vincent Rubinetti",
+    "description": "Music, Web Dev",
+    "link": "https://vincentrubinetti.com",
+    "group": "current"
+  },
+  {
+    "name": "James Schloss",
+    "description": "Running the Summers of Math Exposition",
+    "link": "https://github.com/leios",
+    "group": "past"
+  },
+  {
+    "name": "Quinn Brodsky",
+    "description": "Filming and research for the Barber pole videos",
+    "link": "https://wescarroll.com/quinn",
+    "group": "past"
+  },
+  {
+    "name": "Dawid Kołodziej",
+    "description": "Turning long-form videos into shorts",
+    "link": "/about",
+    "group": "past"
+  },
+  {
+    "name": "Kurt Bruns",
+    "description": "Video artwork, written adaptation of the Calculus series, site management",
+    "link": "https://kurtbruns.com",
+    "group": "past"
+  },
+  {
+    "name": "Josh Pullen",
+    "description": "2021 Intern, written and interactive adaptations of videos",
+    "link": "https://www.joshuapullen.com",
+    "group": "past"
+  },
+  {
+    "name": "River Way",
+    "description": "2021 Intern, written and interactive adaptations of videos",
+    "link": "/about",
+    "group": "past"
+  },
+  {
+    "name": "Vivek Verma",
+    "description": "2021 Intern, written and interactive adaptations of videos",
+    "link": "/about",
+    "group": "past"
+  },
+  {
+    "name": "Sridhar Ramesh",
+    "description": "Writing and visuals for the winding number and Wallis product videos",
+    "link": "/about",
+    "group": "past"
+  },
+  {
+    "name": "Ben Hambrecht",
+    "description": "Writing and visuals for the Basel problem and pi day 2018",
+    "link": "https://www.hambrecht.ch",
+    "group": "past"
+  }
+]
