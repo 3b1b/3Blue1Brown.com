@@ -70,58 +70,49 @@ export default function Contact() {
         }
       }}
     >
-      <label>
-        Name
-        <Textbox
-          name="name"
-          placeholder="Name"
-          required
-          value={name ?? ""}
-          onChange={setName}
-        />
-      </label>
-      <label>
-        Email
-        <Textbox
-          name="email"
-          type="email"
-          placeholder="Email"
-          required
-          value={email ?? ""}
-          onChange={setEmail}
-        />
-      </label>
-      <label>
-        Subject
-        <Textbox
-          name="subject"
-          placeholder="Subject"
-          required
-          value={subject ?? ""}
-          onChange={setSubject}
-        />
-      </label>
-      <label>
-        Reason
-        <Select
-          name="reason"
-          options={reasonOptions}
-          required
-          value={reason ?? ""}
-          onChange={setReason}
-        />
-      </label>
-      <label className="col-span-full">
-        Message
-        <Textbox
-          multi
-          name="message"
-          placeholder="Message"
-          required
-          value={message ?? ""}
-          onChange={setMessage}
-        />
-      </label>
+      <Textbox
+        label="Name"
+        name="name"
+        placeholder="Name"
+        required
+        value={name ?? ""}
+        onChange={setName}
+      />
+      <Textbox
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+        value={email ?? ""}
+        onChange={setEmail}
+      />
+      <Textbox
+        label="Subject"
+        name="subject"
+        placeholder="Subject"
+        required
+        value={subject ?? ""}
+        onChange={setSubject}
+      />
+      <Select
+        label="Reason"
+        name="reason"
+        options={reasonOptions}
+        required
+        value={reason ?? ""}
+        onChange={setReason}
+      />
+      <Textbox
+        label="Message"
+        multi
+        name="message"
+        placeholder="Message"
+        required
+        value={message ?? ""}
+        onChange={setMessage}
+        className="col-span-full"
+      />
       <Checkbox
         name="read-faqs"
         required

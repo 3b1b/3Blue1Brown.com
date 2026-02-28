@@ -3,10 +3,15 @@ import { useRef } from "react";
 import { XIcon } from "@phosphor-icons/react";
 import { useElementBounding, useMergedRefs } from "@reactuses/core";
 import clsx from "clsx";
+import Help from "~/components/Help";
 
 type Props = Base & (Single | Multi);
 
 type Base = {
+  // label, optional if placeholder present
+  label?: string;
+  // help content
+  help?: ReactNode;
   // hint icon to show on side
   icon?: ReactElement;
   // text state
@@ -26,15 +31,17 @@ type Multi = {
 } & Omit<ComponentPropsWithRef<"textarea">, "onChange">;
 
 // single or multi-line text input box
-const Textbox = ({
+export default function Textbox({
   ref: passedRef,
+  label,
+  help,
   multi,
   icon,
   value,
   onChange,
   className,
   ...props
-}: Props) => {
+}: Props) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
   const mergedRef = useMergedRefs(inputRef, passedRef);
   const sideRef = useRef<HTMLDivElement>(null);
@@ -80,13 +87,15 @@ const Textbox = ({
     />
   );
   return (
-    <>
-      <div
-        className={clsx(`
-          relative flex items-start
-          ${className}
-        `)}
-      >
+    <label
+      className={clsx("flex flex-col gap-2", !label && "contents", className)}
+    >
+      <div className="flex items-center gap-2">
+        {label}
+        {help && <Help>{help}</Help>}
+        {props.required && <span className="text-error">*</span>}
+      </div>
+      <div className="relative flex items-start">
         {input}
         <div
           ref={sideRef}
@@ -95,8 +104,6 @@ const Textbox = ({
           {side}
         </div>
       </div>
-    </>
+    </label>
   );
-};
-
-export default Textbox;
+}

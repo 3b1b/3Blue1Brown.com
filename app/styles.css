@@ -140,7 +140,7 @@
   }
 
   blockquote {
-    @apply border-theme trim flex flex-col gap-4 border-l-2 bg-current/5 p-8 leading-loose;
+    @apply border-theme trim bg-off-white flex flex-col gap-4 border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -181,7 +181,7 @@
   }
 
   label {
-    @apply trim inline-flex cursor-pointer flex-col gap-2 transition;
+    @apply trim cursor-pointer transition;
   }
 
   input,

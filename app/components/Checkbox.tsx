@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { useState } from "react";
 import { CheckIcon, SquareIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import Help from "~/components/Help";
 
 type Props = {
   // checked state
@@ -10,6 +11,8 @@ type Props = {
   onChange?: (value: boolean) => void;
   // label content
   children: ReactNode;
+  // help content
+  help?: ReactNode;
 } & Pick<ComponentProps<"label">, "className"> &
   Pick<ComponentProps<"input">, "required" | "name">;
 
@@ -18,6 +21,7 @@ export default function Checkbox({
   onChange,
   children,
   className,
+  help,
   ...props
 }: Props) {
   const [localValue, setLocalValue] = useState(value ?? false);
@@ -25,7 +29,7 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex-row items-center rounded-md focus-ring p-2 hocus:bg-theme/15",
+        "group flex flex-row items-center gap-2 rounded-md focus-ring p-2 hocus:bg-theme/15",
         className,
       )}
     >
@@ -48,6 +52,8 @@ export default function Checkbox({
         )}
       </div>
       {children}
+      {help && <Help>{help}</Help>}
+      {props.required && <span className="text-error">*</span>}
     </label>
   );
 }

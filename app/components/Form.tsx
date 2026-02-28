@@ -7,7 +7,7 @@ type Props = {
 } & Omit<ComponentProps<"form">, "onSubmit">;
 
 // form wrapper with extra conveniences
-const Form = ({ onSubmit, ...props }: Props) => {
+export default function Form({ onSubmit, ...props }: Props) {
   // prevent implicit form submit from pressing enter on input
   useEventListener("keydown", (event) => {
     if (
@@ -36,6 +36,4 @@ const Form = ({ onSubmit, ...props }: Props) => {
       {...props}
     />
   );
-};
-
-export default Form;
+}

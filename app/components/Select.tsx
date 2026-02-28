@@ -1,8 +1,13 @@
 import type { ComponentProps } from "react";
 import { CaretDownIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import Help from "~/components/Help";
 
 type Props<O extends Option> = {
+  // label content
+  label: string;
+  // help content
+  help?: string;
   // pass with "as const"
   options: readonly O[];
   // selected option state
@@ -18,6 +23,8 @@ type Option<Value = string> = {
 
 // dropdown single-select
 export default function Select<O extends Option>({
+  label,
+  help,
   value,
   onChange,
   options,
@@ -25,42 +32,49 @@ export default function Select<O extends Option>({
   ...props
 }: Props<O>) {
   return (
-    <div
-      className={clsx(
-        "relative flex grow rounded-md bg-current/5 font-medium hocus:bg-theme/15",
-        className,
-      )}
-    >
-      <select
-        className="size-full appearance-none rounded-md p-2 pr-8"
-        value={value}
-        onChange={(event) => onChange?.(event.currentTarget.value)}
-        {...props}
-        onKeyDown={(event) => {
-          const element = event.currentTarget;
-
-          const left = event.key === "ArrowLeft";
-          const right = event.key === "ArrowRight";
-
-          // allow quick scrub with left/right when focused
-          if (left || right) {
-            event.preventDefault();
-            if (left && element.selectedIndex > 0) element.selectedIndex--;
-
-            if (right && element.selectedIndex < options.length - 1)
-              element.selectedIndex++;
-
-            onChange?.(options[element.selectedIndex]!.value);
-          }
-        }}
+    <label className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
+        {label}
+        {help && <Help>{help}</Help>}
+        {props.required && <span className="text-error">*</span>}
+      </div>
+      <div
+        className={clsx(
+          "relative flex grow rounded-md bg-current/5 font-medium hocus:bg-theme/15",
+          className,
+        )}
       >
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.label ?? option.value}
-          </option>
-        ))}
-      </select>
-      <CaretDownIcon className="absolute top-1/2 right-2 icon -translate-y-1/2" />
-    </div>
+        <select
+          className="size-full appearance-none rounded-md p-2 pr-8"
+          value={value}
+          onChange={(event) => onChange?.(event.currentTarget.value)}
+          {...props}
+          onKeyDown={(event) => {
+            const element = event.currentTarget;
+
+            const left = event.key === "ArrowLeft";
+            const right = event.key === "ArrowRight";
+
+            // allow quick scrub with left/right when focused
+            if (left || right) {
+              event.preventDefault();
+              if (left && element.selectedIndex > 0) element.selectedIndex--;
+
+              if (right && element.selectedIndex < options.length - 1)
+                element.selectedIndex++;
+
+              onChange?.(options[element.selectedIndex]!.value);
+            }
+          }}
+        >
+          {options.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label ?? option.value}
+            </option>
+          ))}
+        </select>
+        <CaretDownIcon className="absolute top-1/2 right-2 icon -translate-y-1/2" />
+      </div>
+    </label>
   );
 }

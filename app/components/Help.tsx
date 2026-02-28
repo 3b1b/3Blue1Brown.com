@@ -7,16 +7,16 @@ type Props = {
 };
 
 // help button (?)
-const Help = ({ children }: Props) => (
-  <Tooltip
-    trigger={
-      <button className="cursor-help text-dark-gray">
-        <QuestionIcon />
-      </button>
-    }
-  >
-    {children}
-  </Tooltip>
-);
-
-export default Help;
+export default function Help({ children }: Props) {
+  return (
+    <Tooltip
+      trigger={
+        <button className="cursor-help text-dark-gray" aria-label="Help">
+          <QuestionIcon />
+        </button>
+      }
+    >
+      {children}
+    </Tooltip>
+  );
+}

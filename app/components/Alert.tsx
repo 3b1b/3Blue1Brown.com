@@ -23,29 +23,29 @@ type Props = {
 // available categories of alerts and associated styles
 export const types = {
   info: {
-    color: "var(--color-theme)",
+    color: "text-theme",
     icon: <InfoIcon />,
   },
   loading: {
-    color: "var(--color-gray)",
+    color: "text-gray",
     icon: <CircleNotchIcon className="icon animate-spin" />,
   },
   success: {
-    color: "var(--color-success)",
+    color: "text-success",
     icon: <CheckCircleIcon />,
   },
   warning: {
-    color: "var(--color-warning)",
+    color: "text-warning",
     icon: <WarningCircleIcon />,
   },
   error: {
-    color: "var(--color-error)",
+    color: "text-error",
     icon: <WarningDiamondIcon />,
   },
 };
 
 // alert type
-type Type = keyof typeof types;
+export type Type = keyof typeof types;
 
 // box with icon and text
 export default function Alert({
@@ -57,10 +57,10 @@ export default function Alert({
   return (
     <div
       className={clsx(
-        "flex items-center gap-4 border-l-2 border-current bg-current/10 p-4 leading-loose",
+        "flex items-center gap-4 border-l-2 border-current bg-current/5 p-4 leading-loose",
         className,
+        types[type].color,
       )}
-      style={{ color: types[type].color }}
       role="alert"
     >
       {icon ?? types[type].icon}

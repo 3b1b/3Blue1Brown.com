@@ -4,7 +4,6 @@ import { Demo as ButtonDemo } from "~/components/Button";
 import Carousel from "~/components/Carousel";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
-import { Demo as DialogDemo } from "~/components/Dialog";
 import Float from "~/components/Float";
 import FreeResponse from "~/components/FreeResponse";
 import Image from "~/components/Image";
@@ -54,7 +53,7 @@ Wow, $e^{i \pi}$ is really cool!
 </PiCreatureDemo>
 
 <Carousel>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg" />
+  <Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg" />
   
   <div className="bg-theme/10 p-8">
   Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
@@ -63,32 +62,39 @@ Wow, $e^{i \pi}$ is really cool!
   <YouTube id="dQw4w9WgXcQ" />
 </Carousel>
 
-<DialogDemo />
-
 <ButtonDemo>Lorem Ipsum</ButtonDemo>
 
-<Textbox placeholder="Lorem ipsum dolor sit amet" />
-<Textbox multi placeholder="Lorem ipsum dolor sit amet" />
+<Textbox
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  placeholder="Lorem ipsum dolor sit amet"
+/>
+<Textbox
+  multi
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  placeholder="Lorem ipsum dolor sit amet"
+/>
 
 <Collapsible title="Collapsible content">
   Lorem ipsum dolor sit amet consectetur adipiscing elit
 </Collapsible>
 
-<label>
-  Lorem ipsum
-  <Select
-    options={[
-      { value: "option1", label: "Option 1" },
-      { value: "option2", label: "Option 2" },
-      { value: "option3", label: "Option 3" },
-    ]}
-  />
-</label>
+<Select
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ]}
+/>
 
-<Checkbox>Lorem ipsum dolor sit amet</Checkbox>
+<Checkbox help="Yep, lorem ipsum">Lorem ipsum dolor sit amet</Checkbox>
 
 <Radios
   label="Lorem ipsum"
+  help="Yep, lorem ipsum"
   options={[
     { value: "option1", label: "Option 1" },
     { value: "option2", label: "Option 2" },

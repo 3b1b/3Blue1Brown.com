@@ -135,26 +135,22 @@ export function Demo({ children }: { children: ReactNode }) {
       </PiCreature>
 
       <div className="grid grid-cols-2 items-end gap-4 max-md:grid-cols-1">
-        <label>
-          Emotion
-          <Select
-            value={emotion}
-            onChange={setEmotion}
-            options={Object.keys(emotions).map((emotion) => ({
-              value: emotion,
-            }))}
-          />
-        </label>
-        <label>
-          Size
-          <Select
-            value={size}
-            onChange={setSize}
-            options={(["sm", "md"] as const).map((size) => ({
-              value: size,
-            }))}
-          />
-        </label>
+        <Select
+          label="Emotion"
+          value={emotion}
+          onChange={setEmotion}
+          options={Object.keys(emotions).map((emotion) => ({
+            value: emotion,
+          }))}
+        />
+        <Select
+          label="Size"
+          value={size}
+          onChange={setSize}
+          options={(["sm", "md"] as const).map((size) => ({
+            value: size,
+          }))}
+        />
         <Textbox
           value={content}
           onChange={setContent}

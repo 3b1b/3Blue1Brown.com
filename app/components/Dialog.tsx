@@ -39,7 +39,10 @@ export default function Dialog({
   if (trigger.props["aria-disabled"]) return trigger;
 
   return (
-    <_Dialog.Root open={isOpen} onOpenChange={setOpen}>
+    <_Dialog.Root
+      open={isOpen}
+      onOpenChange={(isOpen) => (isOpen ? open() : close())}
+    >
       <_Dialog.Trigger render={trigger} />
       <_Dialog.Portal>
         <_Dialog.Backdrop className="fixed inset-0 z-50 bg-black/50" />
@@ -70,54 +73,5 @@ export default function Dialog({
         </_Dialog.Popup>
       </_Dialog.Portal>
     </_Dialog.Root>
-  );
-}
-
-export function Demo() {
-  return (
-    <>
-      <Dialog
-        title="Dialog Title"
-        trigger={<Button>Open Dialog</Button>}
-        bottomContent={
-          <Button size="sm" color="theme">
-            Test
-          </Button>
-        }
-      >
-        <p>
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem
-          ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor
-          sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet.
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet.
-        </p>
-
-        <p>
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem
-          ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor
-          sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet.
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet.
-        </p>
-
-        <p>
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem
-          ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor
-          sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit amet.
-          lorem ipsum dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum
-          dolor sit amet. lorem ipsum dolor sit amet. lorem ipsum dolor sit
-          amet. lorem ipsum dolor sit amet.
-        </p>
-      </Dialog>
-    </>
   );
 }

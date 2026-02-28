@@ -2,10 +2,13 @@ import type { ReactNode } from "react";
 import { Label, Radio, RadioGroup } from "react-aria-components";
 import { CircleIcon, RadioButtonIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import Help from "~/components/Help";
 
 type Props<O extends Option> = {
   // label content
   label: ReactNode;
+  // help content
+  help?: ReactNode;
   // pass with "as const"
   options: readonly O[];
   // selected option state
@@ -25,6 +28,7 @@ type Option<Value = string> = {
 // radio buttons
 export default function Radios<O extends Option>({
   label,
+  help,
   options,
   value,
   onChange,
@@ -37,7 +41,12 @@ export default function Radios<O extends Option>({
       onChange={onChange}
       isRequired={required}
     >
-      <Label>{label}</Label>
+      <Label className="flex items-center gap-2">
+        {label}
+        {help && <Help>{help}</Help>}
+        {required && <span className="text-error">*</span>}
+      </Label>
+
       <div className="flex flex-col gap-2">
         {options.map(({ value, label, className }, index) => (
           <Radio
