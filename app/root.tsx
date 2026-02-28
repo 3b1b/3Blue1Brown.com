@@ -11,7 +11,8 @@ import {
   useLocation,
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
-import { load } from "~/components/DarkMode";
+import Analytics from "~/components/Analytics";
+import { load as loadDarkMode } from "~/components/DarkMode";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
@@ -34,7 +35,8 @@ export default function App() {
     <IconContext.Provider value={{ className: "icon" }}>
       <html lang="en" suppressHydrationWarning>
         <head>
-          <script dangerouslySetInnerHTML={{ __html: load }} />
+          <Analytics />
+          <script dangerouslySetInnerHTML={{ __html: loadDarkMode }} />
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <Links />
