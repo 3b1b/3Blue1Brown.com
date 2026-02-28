@@ -73,6 +73,8 @@ Run periodically, manually review, and use discretion.
   - `root.tsx` - Entrypoint of site, and root layout for every page.
   - `routes.ts` - A mapping of paths (local component/MDX files) to routes (URLs).
   - `styles.css` - Theme variable definitions (including dark/light-mode colors), global styles that affect native HTML elements, and reuseable utility classes.
+  - `/api` - For client-side requests.
+  - `/assets` - General purpose assets like images.
   - `/components` - Low-level building blocks like buttons, inputs, etc., or higher-level ones that are used across the site, e.g. header.
   - `/data` - Top-level site data.
   - `/pages` - Hierarchy of the site's pages.

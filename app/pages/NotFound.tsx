@@ -2,6 +2,7 @@ import type { Route } from "./+types/NotFound";
 import { redirect } from "react-router";
 import { H1 } from "~/components/Heading";
 import Meta from "~/components/Meta";
+import PiCreature from "~/components/PiCreature";
 import StrokeType from "~/components/StrokeType";
 
 // redirects
@@ -25,6 +26,9 @@ export default function NotFound() {
         <H1>
           <StrokeType>Not Found</StrokeType>
         </H1>
+
+        <PiCreature emotion="sad" className="self-center" />
+
         <p className="max-w-100 self-center">
           The page you are looking for does not exist or may have moved.
         </p>

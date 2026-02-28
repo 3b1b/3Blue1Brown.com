@@ -48,7 +48,7 @@ export default function Nav({ className = "" }) {
             to={to}
             arrow={false}
             size="sm"
-            color={index === 0 ? "light" : undefined}
+            className={index === 0 ? "border" : undefined}
           >
             {name}
           </Button>
