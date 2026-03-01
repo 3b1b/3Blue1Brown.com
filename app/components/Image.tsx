@@ -45,10 +45,12 @@ export default function Image({ image, alt = "", children, className }: Props) {
 
   // if caption, figure and figcaption
   return (
-    <figure className={clsx("flex flex-col items-center gap-4", className)}>
+    <figure className={clsx("flex flex-col gap-4", className)}>
       {img}
       {children && (
-        <figcaption className="text-dark-gray italic">{children}</figcaption>
+        <figcaption className="self-center text-dark-gray italic">
+          {children}
+        </figcaption>
       )}
     </figure>
   );

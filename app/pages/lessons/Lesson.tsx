@@ -1,22 +1,35 @@
 import type { Article } from "schema-dts";
 import type { Route } from "./+types/Lesson";
+import { href } from "react-router";
 import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  BookIcon,
   BracketsCurlyIcon,
   CalendarBlankIcon,
+  ShareNetworkIcon,
   UserIcon,
 } from "@phosphor-icons/react";
 import { find } from "lodash-es";
+import Button from "~/components/Button";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
-import { H1 } from "~/components/Heading";
+import { H1, H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 import Meta from "~/components/Meta";
+import ShowPartial from "~/components/ShowPartial";
 import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
 import YouTube from "~/components/YouTube";
 import team from "~/data/team.json";
-import { getLesson } from "~/pages/lessons/lessons";
+import { getLesson, getPatrons, hasContent } from "~/pages/lessons/lessons";
+import {
+  getNextByTopic,
+  getPreviousByTopic,
+  getTopic,
+} from "~/pages/lessons/topics";
 import { formatDate } from "~/util/string";
+import { share } from "~/util/url";
 
 // lesson page layout
 export default function Lesson({ params: { id } }: Route.ComponentProps) {
@@ -34,8 +47,19 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
       credits = ["Lesson by Grant Sanderson"],
       video = "",
       source = "",
+      chapter = -1,
     },
   } = lesson;
+
+  // load patrons
+  const patrons = getPatrons(id)?.default?.split("\n") ?? [];
+
+  // load topic
+  const topic = getTopic(id);
+
+  // load previous/next lessons in topic
+  const previous = getPreviousByTopic(id)?.frontmatter;
+  const next = getNextByTopic(id)?.frontmatter;
 
   return (
     <>
@@ -52,19 +76,46 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             description,
             author: credits,
             datePublished: date.toISOString(),
+            articleSection: chapter !== -1 ? `Chapter ${chapter}` : undefined,
           }}
         />
 
+        {/* lesson header */}
         <section className="items-center gap-8 bg-theme/10!">
+          {/* title */}
           <H1>
             <StrokeType>{title}</StrokeType>
           </H1>
-          <div className="flex flex-col items-center gap-4">
+
+          <div className="flex items-center gap-8">
+            {topic && (
+              <Button
+                color="light"
+                to={{ pathname: "/", search: `?topic=${topic.id}` }}
+                className="flex items-center gap-2 text-lg"
+              >
+                <ArrowLeftIcon />
+                {topic.title}
+              </Button>
+            )}
+
+            {chapter !== -1 && (
+              <div className="flex items-center gap-2 text-lg">
+                <BookIcon />
+                Chapter {chapter}
+              </div>
+            )}
+          </div>
+
+          {/* embed */}
+          {video && <YouTube id={video} />}
+
+          {/* details */}
+          <div className="flex flex-col items-center gap-8">
             {description && <p className="text-lg">{description}</p>}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
               {credits.map((credit, index) => {
                 const [, role, name] = credit.match(/(.*) by (.*)/) ?? [];
-
                 return (
                   <div key={index}>
                     <UserIcon />
@@ -94,12 +145,77 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
               )}
             </div>
           </div>
-          {video && <YouTube id={video} />}
         </section>
 
-        <TableOfContents />
+        {hasContent(id) && <TableOfContents />}
 
+        {/* lesson content */}
         <Component />
+
+        {/* nav */}
+        <section>
+          <Button color="theme" onClick={share} className="self-center">
+            <ShareNetworkIcon />
+            Share Lesson
+          </Button>
+
+          <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
+            {previous?.id ? (
+              <Link
+                to={href("/lessons/:id", { id: previous.id })}
+                className="card"
+              >
+                <img src={previous.image ?? ""} alt="" />
+                <div className="flex items-center gap-2 font-sans font-medium">
+                  <ArrowLeftIcon />
+                  Previous Lesson
+                </div>
+                <div>{previous.title}</div>
+              </Link>
+            ) : (
+              <div />
+            )}
+            <div />
+            {next?.id ? (
+              <Link
+                to={href("/lessons/:id", { id: next?.id })}
+                className="card"
+              >
+                <img src={next.image ?? ""} alt="" />
+                <div className="flex items-center gap-2 font-sans font-medium">
+                  Next Lesson
+                  <ArrowRightIcon />
+                </div>
+                <div>{next.title}</div>
+              </Link>
+            ) : (
+              <div />
+            )}
+          </div>
+        </section>
+
+        {/* patrons */}
+        {!!patrons.length && (
+          <section className="bg-secondary/10!">
+            <H2>
+              <hr />
+              Thanks
+              <hr />
+            </H2>
+
+            <p className="text-center text-balance">
+              Special thanks to those below for supporting this lesson.
+            </p>
+
+            <ShowPartial>
+              <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
+                {patrons.map((patron, index) => (
+                  <div key={index}>{patron}</div>
+                ))}
+              </div>
+            </ShowPartial>
+          </section>
+        )}
       </main>
       <Footer />
     </>

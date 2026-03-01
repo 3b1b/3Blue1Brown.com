@@ -7,24 +7,29 @@ import Image from "~/components/Image";
 type Props = {
   image?: string;
   video?: string;
+  show?: "image" | "video";
   children?: string;
   className?: string;
 };
 
 // combination image/video
-export default function Figure({ image, video, children, className }: Props) {
-  const _className = clsx("grid w-full place-items-center", className);
-
+export default function Figure({
+  image,
+  video,
+  show,
+  children,
+  className,
+}: Props) {
   // image to render
   const imageElement = (
-    <Image image={image ?? ""} className={_className}>
+    <Image image={image ?? ""} className={clsx("w-full", className)}>
       {children}
     </Image>
   );
 
   // video to render
   const videoElement = (
-    <video controls className={_className}>
+    <video controls className={className}>
       <source src={video ?? ""} type="video/mp4" />
     </video>
   );
@@ -43,7 +48,7 @@ export default function Figure({ image, video, children, className }: Props) {
 
   // if both, show tabs
   return (
-    <Tabs.Root className="flex flex-col items-center gap-4">
+    <Tabs.Root className="flex flex-col items-center gap-4" defaultValue={show}>
       <Tabs.List className="flex items-center gap-4">
         <Tabs.Tab value="image" render={Tab}>
           <ImageIcon />

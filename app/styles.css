@@ -31,8 +31,8 @@
   --color-off-black: oklch(10% 0 240);
   --color-dark-gray: oklch(30% 0 240);
   --color-gray: oklch(60% 0 240);
-  --color-light-gray: oklch(90% 0 240);
-  --color-off-white: oklch(97% 0 240);
+  --color-light-gray: oklch(95% 0 240);
+  --color-off-white: oklch(98% 0 240);
   --color-white: oklch(100% 0 240);
 
   --color-success: oklch(60% 0.15 180);
@@ -48,8 +48,8 @@
   --color-secondary: oklch(80% 0.15 60);
 
   --color-black: oklch(100% 0 240);
-  --color-off-black: oklch(97% 0 240);
-  --color-dark-gray: oklch(90% 0 240);
+  --color-off-black: oklch(98% 0 240);
+  --color-dark-gray: oklch(95% 0 240);
   --color-gray: oklch(60% 0 240);
   --color-light-gray: oklch(30% 0 240);
   --color-off-white: oklch(10% 0 240);
@@ -144,7 +144,7 @@
   }
 
   blockquote {
-    @apply border-theme trim bg-off-white flex flex-col gap-4 border-l-2 p-8 leading-loose;
+    @apply border-theme trim bg-off-white flex flex-col gap-4 self-center border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -178,10 +178,10 @@
 
   a {
     @apply text-theme hocus:text-current trim underline transition;
+  }
 
-    & > .icon {
-      @apply mx-1 mb-1;
-    }
+  p > a > .icon {
+    @apply mx-1 mb-1;
   }
 
   button {

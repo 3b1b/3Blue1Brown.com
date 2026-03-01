@@ -3,7 +3,6 @@ import { Label, Radio, RadioGroup } from "react-aria-components";
 import { CircleIcon, RadioButtonIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Help from "~/components/Help";
-import Markdownify from "~/components/Markdownify";
 
 type Props<O extends Option> = {
   // label content
@@ -44,7 +43,7 @@ export default function Radios<O extends Option>({
     >
       <Label>
         <p className="flex items-center gap-2">
-          {label && <Markdownify noParagraph>{label}</Markdownify>}
+          {label}
           {help && <Help>{help}</Help>}
           {required && <span className="text-error">*</span>}
         </p>

@@ -3,7 +3,7 @@ import { useEventListener } from "@reactuses/core";
 
 type Props = {
   // called when form submitted
-  onSubmit: (data: FormData) => unknown;
+  onSubmit: (data: FormData, submitter: HTMLElement | null) => unknown;
 } & Omit<ComponentProps<"form">, "onSubmit">;
 
 // form wrapper with extra conveniences
@@ -31,7 +31,7 @@ export default function Form({ onSubmit, ...props }: Props) {
           event.nativeEvent.submitter?.matches("button[type='submit']")
         )
           // call callback
-          onSubmit(new FormData(event.target));
+          onSubmit(new FormData(event.target), event.nativeEvent.submitter);
       }}
       {...props}
     />

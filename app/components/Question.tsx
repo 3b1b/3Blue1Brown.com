@@ -1,16 +1,13 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
-import {
-  ArrowsClockwiseIcon,
-  CheckIcon,
-  EyeglassesIcon,
-  XIcon,
-} from "@phosphor-icons/react";
+import { CheckIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Form from "~/components/Form";
 import Markdownify from "~/components/Markdownify";
+import PiCreature from "~/components/PiCreature";
 import Radios from "~/components/Radios";
+import { celebrate, shake } from "~/util/dom";
 import { sleep } from "~/util/misc";
 
 type Props = {
@@ -56,27 +53,32 @@ export default function Question({
   );
 
   // is option index right answer
-  const isRight = (index: number) =>
-    state !== "unanswered" && index + 1 === answer;
-  // is option index wrong answer
-  const isWrong = (index: number) =>
-    state !== "unanswered" &&
-    String(index + 1) === value &&
-    index + 1 !== answer;
+  const isRight = (index: number) => state === "right" && index + 1 === answer;
 
   return (
     <Form
       className="flex flex-col gap-8"
-      onSubmit={async () => {
-        setState("unanswered");
-        // allow aria alert to fully unmount & re-mount so it gets re-announced
-        await sleep();
-        if (value === String(answer)) setState("right");
-        else setState("wrong");
+      onSubmit={async (event, submitter) => {
+        if (state === "right") setState("unanswered");
+        else if (value === String(answer)) {
+          setState("right");
+          celebrate();
+        } else if (state === "wrong") {
+          // give indication of another submit
+          shake(submitter);
+          // un-set and re-set to re-trigger screen reader
+          setState("unanswered");
+          await sleep();
+          setState("wrong");
+        } else setState("wrong");
       }}
     >
       <Radios
-        label={question}
+        label={
+          <strong>
+            <Markdownify noParagraph>{question}</Markdownify>
+          </strong>
+        }
         options={choices.map((choice, index) => ({
           value: String(index + 1),
           label: (
@@ -85,13 +87,9 @@ export default function Question({
               {isRight(index) && (
                 <CheckIcon className="ml-auto icon text-success" />
               )}
-              {isWrong(index) && <XIcon className="ml-auto icon text-error" />}
             </>
           ),
-          className: clsx(
-            isRight(index) && "bg-success/10",
-            isWrong(index) && "bg-error/10",
-          ),
+          className: clsx(isRight(index) && "bg-success/10"),
         }))}
         value={value}
         onChange={setValue}
@@ -104,28 +102,47 @@ export default function Question({
         </div>
       )}
 
-      <Button
-        type={state === "unanswered" ? "submit" : undefined}
-        onClick={
-          state !== "unanswered"
-            ? // reset
-              async () => {
-                // wait so button doesn't immediately become type="submit" and re-handle same click and trigger form
-                await sleep();
-                setState("unanswered");
-              }
-            : undefined
-        }
-        color="light"
-        size="sm"
-        className="self-start"
-        aria-disabled={!value}
-      >
-        {state === "unanswered" ? <EyeglassesIcon /> : <ArrowsClockwiseIcon />}
-        {state === "unanswered" ? "Check" : "Reset"}
-      </Button>
+      <div className="flex items-center gap-8">
+        <Button
+          type="submit"
+          onClick={async (event) => {
+            // if already wrong and submitted another wrong
+            if (state === "wrong" && value !== String(answer)) {
+              // give indication of another submit
+              shake(event?.currentTarget);
+              // un-set and re-set to re-trigger screen reader
+              setState("unanswered");
+              await sleep();
+              setState("wrong");
+            }
+          }}
+          color="light"
+          size="sm"
+          className="self-start"
+          aria-disabled={!value}
+        >
+          {state === "right" && "Reset"}
+          {state === "wrong" && "Try Again"}
+          {state === "unanswered" && "Check Answer"}
+        </Button>
 
-      {state !== "unanswered" && children}
+        {state === "wrong" && (
+          <>
+            <PiCreature emotion="pondering" size="xs" />
+            Not quite...
+          </>
+        )}
+        {state === "right" && (
+          <>
+            <PiCreature emotion="hooray" size="xs" />
+            Correct!
+          </>
+        )}
+      </div>
+
+      {state === "right" && (
+        <div className="flex flex-col gap-8 bg-light-gray p-8">{children}</div>
+      )}
     </Form>
   );
 }

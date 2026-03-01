@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
+import confetti from "canvas-confetti";
 import { frame, waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
@@ -95,4 +96,35 @@ export const firstInView = (elements: Element[]) => {
     if (top < offset) return index;
   }
   return 0;
+};
+
+// shake animation
+export const shake = (element: Element | null | undefined) => {
+  element?.animate(
+    [
+      { translate: "0 0" },
+      { translate: "-5px 0" },
+      { translate: "5px 0" },
+      { translate: "-5px 0" },
+      { translate: "5px 0" },
+      { translate: "0 0" },
+    ],
+    { duration: 500, easing: "linear" },
+  );
+};
+
+// confetti animation
+export const celebrate = () => {
+  confetti({
+    scalar: 0.5,
+    spread: 360,
+    particleCount: 100,
+    ticks: 100,
+    origin: { x: 0.5, y: 0.5 },
+    startVelocity: 10,
+    gravity: 0,
+    decay: 0.95,
+    colors: ["#3187ca"],
+    disableForReducedMotion: true,
+  });
 };

@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
-import { EyeglassesIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Markdownify from "~/components/Markdownify";
 import Textbox from "~/components/Textbox";
@@ -30,7 +29,7 @@ export default function FreeResponse({ question, children }: Props) {
   return (
     <>
       {question && <Markdownify>{question}</Markdownify>}
-      <div ref={ref} className="flex flex-wrap items-center gap-4">
+      <div ref={ref} className="flex flex-wrap gap-4">
         <Textbox
           multi
           rows={2}
@@ -38,14 +37,13 @@ export default function FreeResponse({ question, children }: Props) {
           className="grow"
         />
         <Button
+          color="light"
+          size="sm"
           onClick={() =>
             setState(state === "revealed" ? "unrevealed" : "revealed")
           }
-          color="light"
-          size="sm"
           aria-disabled={state === "disabled"}
         >
-          <EyeglassesIcon />
           {state === "revealed" ? "Hide" : "Reveal"}
         </Button>
       </div>

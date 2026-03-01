@@ -20,7 +20,7 @@ import {
   getNextByDate,
   getPreviousByDate,
   getRandom,
-  hasText,
+  hasContent,
 } from "~/pages/lessons/lessons";
 import { getNextByTopic, getPreviousByTopic } from "~/pages/lessons/topics";
 import { formatDate } from "~/util/string";
@@ -44,7 +44,7 @@ export default function Theater() {
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
 
   // does readable lesson exist
-  const readExists = hasText(lesson?.id ?? "");
+  const readExists = hasContent(lesson?.id ?? "");
 
   // show video details
   const [details, setDetails] = useState(false);

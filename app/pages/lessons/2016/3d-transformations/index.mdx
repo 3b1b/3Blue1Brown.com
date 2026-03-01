@@ -42,7 +42,6 @@ Just like in two dimensions, we can visualize the transformation as the input ve
 <Figure
   image="$lesson/figures/three-dimensions/Transform3dVector.svg"
   video="$lesson/figures/three-dimensions/Transform3dVector.mp4"
-  className="w-48"
 />
 
 To understand the transformation as a whole, we imagine every possible vector move to its corresponding output vector.
@@ -76,17 +75,11 @@ Record the coordinates of these three resulting vectors as the columns of a 3x3 
 
 To see where a vector with coordinates $x$, $y$ and $z$ lands, the reasoning is almost identical to what it was for two dimensions: Each of those coordinates can be thought of as instructions for how to scale each basis vector, so that they add together to get your vector.
 
-<Figure
-  image="$lesson/figures/three-dimensions/VectorAsTransformationBefore.svg"
-  className="w-72"
-/>
+<Figure image="$lesson/figures/three-dimensions/VectorAsTransformationBefore.svg" />
 
 The important part, just like the 2d case, is that this scaling and adding process works both before and after the transformation. Note how the axis are tilted in the following image:
 
-<Figure
-  image="$lesson/figures/three-dimensions/VectorAsTransformationAfter.svg"
-  className="w-72"
-/>
+<Figure image="$lesson/figures/three-dimensions/VectorAsTransformationAfter.svg" />
 
 To see where your vector lands, you multiply those coordinates by the corresponding column of the matrix, and add together the three results.
 
@@ -97,7 +90,6 @@ To see where your vector lands, you multiply those coordinates by the correspond
 <Figure
   image="$lesson/figures/three-dimensions/Question1Transformation3d.svg"
   video="$lesson/figures/three-dimensions/Question1AnswerTransformation3d.mp4"
-  className="w-72"
 />
 
 <Question
@@ -168,7 +160,6 @@ Consider the transformation here that rotates space $90$ degrees around the $y$-
 <Figure
   image="$lesson/figures/examples/Rotate90DegreesAroundYAxis.svg"
   video="$lesson/figures/examples/Rotate90DegreesAroundYAxis.mp4"
-  className="w-72"
 />
 
 It takes $\hat{\imath}$ to the coordinates $\left[\begin{array}{c} 0 \\ 0 \\ -1 \end{array}\right]$, so that's the first column of our matrix. It doesn't move $\hat{\jmath}$, so the second column is $\left[\begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right]$. And it moves $\hat{k}$ onto the $x$-axis at $\left[\begin{array}{c} 1 \\ 0 \\ 0 \end{array}\right]$, so that becomes the third column of our matrix.
@@ -190,12 +181,12 @@ $$
 $$
 
 <Question
-    question="What is the transformation matrix that rotates space $90$ degrees counterclockwise around the $z$-axis? To differentiate clockwise from counterclockwise, imagine a clock lying flat in the $xy$-plane that is facing the positive $z$ direction."
-    choice1="$\left[\begin{array}{ccc} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & -1 \end{array}\right]$"
-    choice2="$\left[\begin{array}{ccc} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
-    choice3="$\left[\begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
-    choice4="$\left[\begin{array}{ccc} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
-    answer={2}
+  question="What is the transformation matrix that rotates space $90$ degrees counterclockwise around the $z$-axis? To differentiate clockwise from counterclockwise, imagine a clock lying flat in the $xy$-plane that is facing the positive $z$ direction."
+  choice1="$\left[\begin{array}{ccc} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & -1 \end{array}\right]$"
+  choice2="$\left[\begin{array}{ccc} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+  choice3="$\left[\begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+  choice4="$\left[\begin{array}{ccc} -1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{array}\right]$"
+  answer={2}
 >
 
 The transformation that rotates space $90$ degrees counterclockwise around the $z$-axis takes $\hat{\imath}$ to the coordinates $\left[\begin{array}{c} 0 \\ 1 \\ 0 \end{array}\right]$, $\hat{\jmath}$ to the coordinates $\left[\begin{array}{c} -1 \\ 0 \\ 0 \end{array}\right]$, and doesn't move $\hat{k}$.

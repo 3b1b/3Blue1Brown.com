@@ -2,6 +2,7 @@ import type { MDXContent } from "mdx/types";
 import { orderBy, sample } from "lodash-es";
 import { renderText } from "~/util/dom";
 import { importAssets } from "~/util/import";
+import { getThumbnail } from "~/util/youtube";
 
 type LessonFrontmatter = {
   id?: string;
@@ -11,12 +12,22 @@ type LessonFrontmatter = {
   credits?: string[];
   video?: string;
   source?: string;
+  chapter?: number;
+  image?: string;
 };
 
 type Lesson = {
   default: MDXContent;
   frontmatter: LessonFrontmatter;
 };
+
+// import all lesson custom thumbnails
+const [getCustomThumbnail] = importAssets(
+  import.meta.glob<{ default: string }>("./20\\d\\d/**/thumbnail.*.{jpg}", {
+    eager: true,
+  }),
+  "thumbnail",
+);
 
 // import all lessons
 export const [getLesson, lessons] = importAssets(
@@ -29,8 +40,21 @@ export const [getLesson, lessons] = importAssets(
       ...lesson.frontmatter,
       id,
       date: new Date(lesson.frontmatter.date ?? ""),
+      image:
+        getThumbnail(lesson.frontmatter.video ?? "") ||
+        getCustomThumbnail(id)?.default ||
+        "",
     },
   }),
+);
+
+// import all lesson patrons
+export const [getPatrons, patrons] = importAssets(
+  import.meta.glob<{ default: string }>("./20\\d\\d/**/patrons.txt", {
+    eager: true,
+    query: "raw",
+  }),
+  "patrons",
 );
 
 // get lessons ordered by date, most recent first
@@ -65,5 +89,5 @@ export const getPreviousByDate = (id: string) => {
 };
 
 // check if lesson has text content
-export const hasText = (id: string) =>
+export const hasContent = (id: string) =>
   !!renderText(getLesson(id)?.default?.({}));
