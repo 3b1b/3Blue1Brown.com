@@ -1,0 +1,5 @@
+why have we been able to ignore the $dx^2$ terms?
+
+used limits for the derivative of exponentials
+
+compound interest example of a natural place where limits come into play

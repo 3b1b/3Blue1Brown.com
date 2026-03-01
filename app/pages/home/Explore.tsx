@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import type { TopicId } from "~/pages/lessons/topics";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CaretDownIcon,
   CaretUpIcon,
@@ -12,52 +13,12 @@ import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/YouTube";
-import { byDate, getLesson, lessons } from "~/data/lessons";
+import { byDate, getLesson } from "~/pages/lessons/lessons";
+import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
-import { importAssets } from "~/util/import";
 import { getThumbnail } from "~/util/youtube";
-
-// get topic image
-const [getImage] = importAssets(
-  import.meta.glob<{ default: string }>("./topics/*.svg", { eager: true }),
-);
-
-const topics = [
-  {
-    id: "best of",
-    title: "Best Of",
-    description: "A few hand-picked favorites",
-    lessons: [
-      "fourier-series",
-      "hardest-problem",
-      "colliding-blocks-v2",
-      "wordle",
-      "essence-of-calculus",
-      "prime-spirals",
-      "windmills",
-      "zeta",
-      "cosmic-distance-1",
-      "fractal-dimension",
-      "shadows",
-      "newtons-fractal",
-    ]
-      .map((id) => getLesson(id).lesson)
-      .filter((lesson) => lesson !== undefined),
-  },
-
-  {
-    id: "all",
-    title: "All",
-    description: "All lessons, newest to oldest",
-    lessons: byDate,
-  },
-
-  ...lessons,
-]
-  .filter((topic) => !topic.id.match(/misc/i))
-  .map((button) => ({ ...button, image: getImage(button.id)?.default ?? "" }));
 
 const limit = 12;
 
@@ -78,10 +39,20 @@ export default function Explore() {
   const [lessonId, setLessonId] = useAtom(lessonAtom);
 
   // current topic details
-  const topic = topics.find((topic) => topic.id === topicId);
+  const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
+
+  // current topic lesson details
+  const lessons = useMemo(
+    // make stable reference
+    () =>
+      (topic?.lessons ?? byDate)
+        ?.map((id) => getLesson(id)?.frontmatter)
+        .filter((lesson) => !!lesson),
+    [topic],
+  );
 
   // search results
-  const results = useFuzzySearch(topic?.lessons ?? byDate, search);
+  const results = useFuzzySearch(lessons, search);
 
   // show all or truncate results
   const [all, setAll] = useState(false);
@@ -144,7 +115,7 @@ export default function Explore() {
           id="results"
           className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
-          {topics.map(({ id, title, image }, index) => (
+          {Object.entries(topics).map(([id, { title, image }], index) => (
             <button
               key={index}
               className="card"
@@ -161,37 +132,42 @@ export default function Explore() {
         </div>
       ) : results.length ? (
         <>
-          {/* search results */}
+          {/* search result cards */}
           <div
             id="results"
             className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
           >
             {results
               .slice(0, all ? Infinity : limit)
-              .map(({ id, title, description, video }, index) => (
-                <button
-                  key={index}
-                  className="card"
-                  onClick={() => {
-                    setLessonId(id);
-                    play();
-                  }}
-                  aria-label={`Play lesson "${title}"`}
-                >
-                  <img
-                    src={getThumbnail(video)}
-                    alt=""
-                    className={clsx(lessonId === id && "opacity-50")}
-                  />
-                  <div className="font-sans font-medium">{title}</div>
-                  <div className="line-clamp-3">{description}</div>
-                  {lessonId === id && (
-                    <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
-                      <EyeIcon />
-                    </div>
-                  )}
-                </button>
-              ))}
+              .map(
+                (
+                  { id = "", title = "", description = "", video = "" },
+                  index,
+                ) => (
+                  <button
+                    key={index}
+                    className="card"
+                    onClick={() => {
+                      setLessonId(id);
+                      play();
+                    }}
+                    aria-label={`Play lesson "${title}"`}
+                  >
+                    <img
+                      src={getThumbnail(video)}
+                      alt=""
+                      className={clsx(lessonId === id && "opacity-50")}
+                    />
+                    <div className="font-sans font-medium">{title}</div>
+                    <div className="line-clamp-3">{description}</div>
+                    {lessonId === id && (
+                      <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
+                        <EyeIcon />
+                      </div>
+                    )}
+                  </button>
+                ),
+              )}
           </div>
 
           {/* expand/collapse results */}

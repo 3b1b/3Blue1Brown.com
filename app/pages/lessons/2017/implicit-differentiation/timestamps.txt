@@ -1,0 +1,6 @@
+0:00 Implicit Curves
+3:16 Related Rates
+8:00 Implicit Differentiation
+10:50 Another Example
+12:32 Finding the derivative of ln(x)
+14:31 Outro

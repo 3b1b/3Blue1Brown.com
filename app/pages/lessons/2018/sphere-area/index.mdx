@@ -1,0 +1,426 @@
+---
+title: But why is a sphere's surface area four times its shadow?
+description: Two proofs for the surface area of a sphere
+date: 2018-12-02
+video: GNcFjFmqEc8
+source: _2018/sphere_area.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Josh Pullen
+---
+
+Some of you may have seen in school that the surface area of a sphere is $4\pi R^2$, a suspiciously suggestive formula given that it’s a clean multiple of $\pi R^2$, the area of a circle with the same radius.
+
+<Figure image="sphere-vs-circles.png" />
+
+But have you ever wondered *why* is this true? And I don’t just mean proving this $4\pi R^2$ formula. I mean feeling, viscerally, a connection between the sphere's surface area, and those four circles.
+
+<PiCreature text="But why?!?" emotion="angry" />
+
+How lovely would it be if there was some shift in perspective that showed how you could nicely and perfectly fit those four circles onto the sphere’s surface?
+
+Nothing can be quite that simple, since the [curvature](https://math.stackexchange.com/questions/70210/is-there-any-easy-way-to-understand-the-definition-of-gaussian-curvature) of a sphere’s surface is different from the curvature of a flat plane, which is why trying to fit paper around a sphere doesn’t really work.
+
+<Figure image="paper-circle.png" caption="Good luck." />
+
+Nevertheless, I’d like to show you two ways of thinking about the surface area of a sphere which connect it in a satisfying way to four circles of the same radius.
+
+<Figure image="two-proofs.png" />
+
+The first is a classic. It's one of the true gems of geometry that all students should experience.
+
+The second line of reasoning is something of my own which draws a more direct line between the sphere and its shadow.
+
+And lastly I’ll share why this four-fold relation is not unique to spheres, but is instead one specific instance of a much more general fact for all convex shapes in 3D.
+
+## First approach
+Starting with a bird's eye view here, the idea for the first approach is to show that the surface area of the sphere is the same as the area of a cylinder with the same radius and the same height as the sphere.
+
+<Figure image="sphere-equals-cylinder.png" />
+
+Or, rather, a cylinder without its top and bottom, which you might call the “label” of that cylinder.
+
+<Figure image="label-of-cylinder.png" />
+
+We can unwrap the label to see that it is in fact a simple rectangle.
+
+<Figure image="rectangle.png" video="unwrap-cylinder.mp4" />
+
+The width of this rectangle comes from the cylinder’s circumference, $2\pi R$, and the height comes from the height of the sphere, which is $2R$. Multiplying these already gives the formula $4\pi R^2$.
+
+<Figure image="rectangle-dimensions.png" />
+
+But in the spirit of mathematical playfulness, it’s nice to see how four circles with radius $R$ fit into this. The idea is that you can unwrap each circle into a triangle, without changing its area, and fit these nicely onto our unfolded cylinder label. More on that in a bit.
+
+<!-- We could probably create a still image to convey the same idea -->
+<Figure video="fit-circles-into-rectangle.mp4" />
+
+The more pressing question is why on earth the sphere can be related to the cylinder. This animation is already suggestive of how it works:
+
+<Figure video="sphere-to-cylinder.mp4" />
+
+The idea is to approximate the area of the sphere with many tiny rectangles covering it. We will show that if you project those little rectangles directly outward, as if casting a shadow from little lights positioned on the z-axis, the projection of each rectangle onto the cylinder ends up having the same area as the original rectangle.
+
+<Figure
+  image="projection-equal.png"
+  caption="Each little rectangle on the sphere has the same area as its projection on the cylinder."
+/>
+
+But why should that be? Well, there are two competing effects at play here. On the one hand, as this rectangle is projected outward, its width will get scaled up.
+
+<Figure
+  image="width-scaled-up.png"
+  caption="The projected rectangle is wider than the original."
+/>
+
+For rectangles towards the poles, that width is scaled quite a bit, since they’re projected over a longer distance. For those closer to the equator, less so.
+
+<Figure
+  video="width-variation.mp4"
+  caption="The width difference is more extreme at the poles."
+/>
+
+But on the other hand, because these rectangles are at a slant with respect to the z-direction, during this projection the height of each such rectangle will get scaled down. Think about holding some flat object and looking at its shadow. As you reorient that object, the shadow looks more or less squished for some angles.
+
+<Figure image="slant-shadow.png" video="slant-shadow.mp4" />
+
+Those rectangles towards the poles are quite slanted in this way, so their height gets squished a lot. For those closer to the equator, less so.
+
+<Figure
+  image="height-variation.png"
+  caption="The height difference is also more extreme at the poles."
+/>
+
+It will turn out that these two effects, of stretching the width and squishing the height, cancel each other out perfectly.
+
+As a rough sketch, wouldn’t you agree that this is a very pretty way of reasoning? Of course, the meat here comes from showing why these two competing effects on each rectangle cancel out perfectly. In some ways, the details fleshing this out are just as pretty as the zoomed out structure of the full argument.
+
+### Stretching the width
+For any mathematical problem-solving it never hurts to start by giving names to things. Let’s say the radius of the sphere is $R$. Also, focusing on one specific rectangle, let’s call the distance between our rectangle and the z-axis $d$.
+
+<Figure
+  image="R-and-d.png"
+  caption="This cross-section of the sphere shows how we're choosing to label things."
+/>
+
+You could rightfully complain that this distance $d$ is a little ambiguous depending on which point on the rectangle you’re starting from, but for tinier and tinier rectangles that ambiguity will be negligible. And *tinier and tinier* is precisely when this approximation with rectangles gets closer to the true surface area anyway. To choose an arbitrary standard, let’s say $d$ is the distance from the bottom of the rectangle to the z-axis.
+
+To think about projecting out to the cylinder, picture two similar triangles.
+
+<Figure image="similar-triangles.png" />
+
+This first one shares its base with the rectangle on the sphere. The second is a scaled up version of this, scaled so that it just barely reaches the cylinder, meaning its long side now has length $R$. So the ratio of their bases, which is how much our rectangle’s width gets stretched out, is $\frac{R}{d}$.
+
+### Squishing the height
+What about the height? How precisely does that get scaled down as we project?
+
+To figure it out, let's begin by focusing our attention on this 2D cross section:
+
+<Figure image="2d-cross-section.png" video="2d-cross-section.mp4" />
+
+Then, to think about the projection, let’s zoom in and make a little right triangle like this:
+
+<Figure
+  image="right-triangle.png"
+  caption="Our right triangle is positioned with its hypotenuse along the original rectangle, and one of its legs along the projection of that rectangle onto the cylinder."
+/>
+
+**Pro tip:** Any time you’re doing geometry with circles or spheres, keep at the forefront of your mind that anything tangent to the circle is perpendicular to the radius drawn to that point of tangency. It’s crazy how helpful that one little fact can be.
+
+Once we draw that radial line, together with the distance $d$, we have another right triangle.
+
+<Figure image="right-triangle-2.png" />
+
+Often in geometry, I like to imagine tweaking the parameters of a setup and imagining how the relevant shapes change; this helps to make guesses about what relations there are.
+
+In this case, you might predict that the two triangles I’ve drawn are similar to each other, since their shapes change in concert with each other.
+
+<Figure video="tweak-parameters.mp4" />
+
+This is indeed true, but as always, don’t take my word for it, see if you can justify this for yourself.
+
+### Similar triangles
+Again, it never hurts to give more names to things. Let's call these angles $\alpha$ and $\beta$:
+
+<Figure image="alpha-and-beta.png" />
+
+Since this is a right triangle, you know that $\alpha + \beta + 90\degree = 180\degree$. Now zoom in to our little triangle, and see if we can figure out its angles:
+
+<Figure image="small-triangle-angles.png" />
+
+You have $90\degree + \beta + \text{(some angle)}$ forming a straight line. So that little angle must be $\alpha$. This lets us fill in a few more values, revealing that this little triangle has the same angles, $\alpha$ and $\beta$, as the big one.
+
+<Figure image="small-triangle-angles-complete.png" />
+
+So they are indeed similar.
+
+Deep in the weeds, it’s sometimes easy to forget why we’re doing this. We want to know how much the height of our sphere-rectangle gets squished during the projection, which is the ratio of the hypotenuse to the leg on the right. By the similarity with the big triangle, that ratio is $\frac{R}{d}$.
+
+<Figure image="R-over-d.png" />
+
+So indeed, as this rectangle gets projected outward onto the cylinder, the effect of stretching out the width is perfectly canceled out by how much the height gets squished due to the slant.
+
+<Figure image="before-and-after.png" />
+
+<Accordion title="Sidenote: Is that a rotation?">
+
+As a fun sidenote, you might notice that it looks like the projected rectangle is a $90\degree$ rotation of the original. This would *not* be true in general, but by a lovely coincidence, the way I’m parametrizing the sphere results in rectangles where the ratio of the width to the height starts out as $d$ to $R$. So for this very specific case, rescaling the width by $\frac{R}{d}$ and the height by $\frac{d}{R}$ actually does have the same effect as a $90\degree$ rotation.
+
+This lends itself to a rather bizarre way to animate the relation, where instead of projecting each rectangular piece, you rotate each one and rearrange them to make the cylinder.
+
+<Figure video="rotation-animation.mp4" />
+
+</Accordion>
+
+Now, if you’re really thinking critically, you might still not be satisfied that this shows that the surface area of the sphere equals the area of this cylinder label. After all, these little rectangles only *approximate* the relevant areas.
+
+The idea is that this approximation gets closer and closer to the true value for finer and finer coverings. Since for any specific covering, the sphere rectangles have the same area as the cylinder rectangles, whatever values each of these two series of approximations are approaching must actually be the same.
+
+<Figure image="equal-in-limit.png" />
+
+As you get more philosophical and ask what exactly we mean by surface area, these sorts of rectangular approximations and not just aids in our problem-solving toolbox, they end up serving as a way of rigorously defining the area of smooth curved surfaces, though often [some care is required](https://en.wikipedia.org/wiki/Schwarz_lantern).
+
+<Figure image="surface-area-definition.png" />
+
+This kind of reasoning is essentially calculus, just stated without any of the jargon. In fact, I think neat geometric arguments like this, which require no background in calculus to understand, can serve as a great way to tee things up for new calculus students so that they have the core ideas before seeing the definitions which make them precise (rather than the other way around).
+
+<Figure
+  image="preparing-for-calculus.png"
+  caption="These geometric arguments are great preparation for understanding calculus."
+/>
+
+### Connection to circles
+If you’re itching to see a direct connection to four circles, one nice way is to unwrap these circles into triangles. If this is something you haven’t seen before, I go into much more detail about why this works in <LessonLink id="essence-of-calculus">the first lesson of the calculus series</LessonLink>.
+
+The basic idea is to relate thin concentric rings of the circle with horizontal slices of this triangle.
+
+<Figure
+  image="ring-to-slice.png"
+  caption="Each circle is unwrapped such that a thin ring of the circle corresponds to a thin line of the triangle."
+/>
+
+Because the circumference of each such ring increases linearly in proportion to the radius, always equal to $2\pi r$, when you unwrap them all and line them up, their ends will form a straight line (as opposed to some kind of curvey shape), giving you a triangle with a base of $2\pi r$ and a height of $r$.
+
+And four of these unwrapped circles fit into our rectangle, which is in some sense an unwrapped version of the sphere’s surface.
+
+<Figure image="triangles-fit-rectangle.png" />
+
+## Second approach
+Nevertheless, you might wonder if there’s a way to relate the sphere directly to a circle with the same radius, rather than going through this intermediary of the cylinder.
+
+<Figure image="direct-proof.png" />
+
+If you're willing to roll up your sleeves and leverage a little trigonometry, it is actually possible to draw this more direct connection.
+
+I’m a big believer that the best way to really learn math is to do problems yourself, which is a bit hypocritical coming from a channel essentially consisting of lectures. So let's try something a little different here and present the proof as a heavily guided sequence of exercises. Yes, I know that’s less fun and it means you have to pull out some paper to do some work, but I guarantee you’ll get more out of it this way.
+
+### Solution overview
+At a high level, the approach will be to cut the sphere into many thin rings parallel to the xy-plane.
+
+<Figure image="slice-into-rings.png" />
+
+We will compare the area of these rings to the area of their shadows on the xy-plane.
+
+<Figure
+  image="ring-shadows.png"
+  video="ring-shadows.mp4"
+  caption="The shadows of all the rings in the top hemisphere form a perfect circle."
+/>
+
+All the shadows of the rings from the top hemisphere make up a circle with the same radius as the sphere. The main idea will be to show a correspondence between these ring shadows, and every 2nd ring on the sphere.
+
+<Figure
+  image="every-2nd-ring.png"
+  caption="Here we are looking at every other ring of the sphere. Your goal will be to find a correspondence between the alternating rings shown here and the *shadows* of the top hemisphere rings, shown above."
+/>
+
+Challenge mode here is to stop reading now and try to predict how that might go.
+
+We’ll label each one of these rings based on the angle $\theta$ between the z-axis and a line out to the ring from the sphere’s center.
+
+<Figure
+  image="labelled-with-theta.png"
+  video="labelled-with-theta.mp4"
+  caption="Each ring will be identified by its corresponding angle $\theta$."
+/>
+
+So $\theta$ ranges from 0 to 180 degrees, or $0$ to $\pi$ radians. And let’s call the change in angle from one ring to the next $d \theta$, which means the thickness of one of these rings will be $R \mathop{d\theta}$, where $R$ is the radius of the sphere.
+
+<Figure image="R-d-theta.png" />
+
+Alright, structured exercise time. We’ll ease in with a warm-up.
+
+### Question 1
+What is the circumference of the inner edge of this ring, in terms of $R$ and $\theta$?
+
+<Figure image="question-1.png" />
+
+<FreeResponse>
+
+The circumference of the ring depends on its radius. The ring's radius is the distance from the z-axis to the ring itself, which I'll call lowercase $r$. (Note that we're *not* talking about the radius of the sphere, which we're calling capital $R$.)
+
+$r$ can be found using some trigonometry based on this right triangle:
+
+<Figure image="question-1-diagram.png" />
+
+We know that $\sin(\theta) = \frac{r}{R}$,[^1] which means that $r = R\sin(\theta)$.
+
+And now that we have the radius of the ring, finding its circumference is just a matter of multiplying by $2\pi$.
+
+The circumference, then, is $2\pi R\sin(\theta)$.
+
+</FreeResponse>
+
+Now, go ahead and multiply your answer by the thickness $R \mathop{d\theta}$ to get an approximation for this ring’s area. (This approximation gets better and better as you chop up the sphere more and more finely.)
+
+<Figure image="question-1b.png" />
+
+<FreeResponse>
+
+We found the circumference to be $2\pi R\sin(\theta)$, so multiplying by $R \mathop{d\theta}$ gives an area of approximately $2\pi R^2 \sin(\theta) \mathop{d\theta}$ for the ring at angle $\theta$.
+
+</FreeResponse>
+
+<Accordion title="Bonus challenge: Find the sphere's surface area by integrating">
+
+At this point, if you know your calculus, you could integrate. Finding the surface area of the sphere by integrating is *not* the main point of this exercise, but it can be a fun challenge and a good way to check your answer from part 1.
+
+So, can you find the surface area of the sphere by integrating the ring area formula above?
+
+<FreeResponse>
+
+We are splitting up our sphere into little rings based on the angle $\theta$, where $\theta$ runs from 0 radians (the top ring) to $\pi$ radians (the bottom ring).
+
+So to find the surface area of the sphere, we just add up all the little areas of all the little rings, which&mdash;in the limit&mdash;we represent with the following integral:
+
+$$
+\int_{0}^{\pi} 2\pi R^2 \sin(\theta) \mathop{d\theta}
+$$
+
+From here, it's just a matter of computation:
+
+$$
+\begin{align*}
+=& 2\pi R^2 \int_{0}^{\pi} \sin(\theta) \mathop{d\theta} \\
+=& 2\pi R^2 \left(-\cos(\theta) \Big|_{0}^{\pi} \right) \\
+=& 2\pi R^2 \left(-\cos(\pi) - -\cos(0) \right) \\
+=& 2\pi R^2 \left(1 + 1 \right) \\
+=& 4\pi R^2
+\end{align*}
+$$
+
+That's great! We found the formula for the surface area of a sphere. But our goal is not just to find the answer, it’s to feel the connection between the sphere its shadow. So let's continue.
+
+</FreeResponse>
+
+</Accordion>
+
+### Question 2
+What is the area of the shadow of one of these rings on the xy-plane? Express your answer in terms of $R$, $\theta$ and $\mathop{d \theta}$.
+
+(Hint: Think back to the similar right triangles used in the projection-onto-a-cylinder proof.)
+
+<Figure image="question-2.png" />
+
+<FreeResponse>
+
+Think back to the original projection-onto-a-cylinder proof. Remember how the height of the rectangle got squished as it was projected onto the cylinder, and the amount that it was squished depended on how tilted the rectangle was?
+
+<Figure image="height-squish-review.png" />
+
+It's a very similar story here.
+
+As the ring is projected down onto the xy-plane, its thickness will be squished down, and that squishing will depend on the angle $\theta$. We will set up two similar right triangles, which should feel familiar:
+
+<Figure image="question-2-diagram.png" />
+
+The squishing factor we are trying to find is the ratio of the shadow thickness to the ring thickness. From the perspective of the angle $\theta$ in our little triangle, it's $\frac{\text{Shadow}}{\text{Ring}} = \frac{\text{adjacent}}{\text{hypotenuse}}$, or $\cos(\theta)$.
+
+So the area of the shadow is just the area of the ring times $\cos(\theta)$, or $2\pi R^2 \sin(\theta)\cos(\theta) \mathop{d\theta}$.
+
+</FreeResponse>
+
+### Question 3
+Each of these ring shadows has precisely half the area of one of these rings on the sphere. It’s not the one at angle theta straight above it, but another one. Which one?
+
+<Figure video="which-ring.mp4" loop={true} />
+
+<Accordion title="Hint: A trig identity might help (click to reveal which one)">
+
+$$
+\sin(2\theta) = 2\sin(\theta)\cos(\theta)
+$$
+
+</Accordion>
+
+<FreeResponse>
+
+We determined in question 2 that each ring at angle $\theta$ in the top hemisphere has a shadow of area $2\pi R^2 \sin(\theta)\cos(\theta) \mathop{d\theta}$.
+
+So which ring on this sphere has an area of twice that, $4\pi R^2 \sin(\theta)\cos(\theta) \mathop{d\theta}$?
+
+The original overview of the problem gives a hint that helps eliminate some of the guesswork that might otherwise be involved in trying to find the matching ring:
+
+> "The main idea will be to show a correspondence between these ring shadows [in the top hemisphere], and every 2nd ring on the sphere."
+
+So a reasonable correspondence might be to pair up each ring at $\theta$ with the ring at $2\theta$. That lets us cover alternating rings over the entire sphere, as hinted at above.
+
+So, what is the area of the ring at $2\theta$? Well, we can use our original ring area equation from question 1, but substitute $2\theta$ in place of $\theta$. That gives an area of $2\pi R^2 \sin(2\theta) \mathop{d\theta}$.
+
+We were hoping this would be double the area of the shadow of ring $\theta$, $4\pi R^2 \sin(\theta)\cos(\theta) \mathop{d\theta}$, but it doesn't really appear to be.
+
+This is where a trig identity can save the day:
+
+$$
+\sin(2\theta) = 2\sin(\theta)\cos(\theta)
+$$
+
+Using this substitution, we find that the ring at $2\theta$ has an area of $4\pi R^2 \sin(\theta)\cos(\theta) \mathop{d\theta}$, which is indeed double the area of the shadow of ring $\theta$.
+
+Therefore, the correspondence between ring $\theta$'s shadow and ring $2\theta$ has precisely the property we're looking for.
+
+</FreeResponse>
+
+### Question 4
+I said from the outset that there is a correspondence between all the shadows from the northern hemisphere, which make up a circle with radius $R$, and every other ring on the sphere. Use your answer to the last question to spell out exactly what that correspondence is.
+
+<Figure image="question-4.png" />
+
+<FreeResponse>
+
+Each shadow corresponds to one of the alternating rings of the sphere. The special property of this correspondence, spelled out in question 3, is that corresponding ring has an area double that of the shadow.
+
+This means that the alternating rings have a total area that is exactly double the total area of the shadows.
+
+</FreeResponse>
+
+### Question 5
+Bring it on home. Why does this imply that the area of the circle is exactly ¼ the surface area of the sphere, particularly as we consider thinner and thinner rings?
+
+<Figure image="question-5.png" />
+
+<FreeResponse>
+
+All together, the top-hemisphere ring shadows form a perfect circle of radius $R$ on the xy-plane. This means that the sum of all their areas is exactly $\pi R^2$.
+
+<Figure image="shadows-form-circle.png" video="shadows-form-circle.mp4" />
+
+And because of our special correspondence, we know that the total area of all the alternating rings on the sphere is exactly double the total shadow area. So adding up the areas of these rings of the sphere gives a surface area of $2\pi R^2$:
+
+<Figure
+  image="alternating-rings.png"
+  caption="The total surface area of these rings is $2\pi R^2."
+/>
+
+In the limit as these rings get ever thinner, the area of the alternating rings approaches half the total surface area. This is because each ring has approximately the same area as its immediate neighbors in that limiting case, so for example the sum of the areas of all the odd-numbered rings will equal the sum of the areas of the even-numbered rings. So to get the full surface area of the sphere, we double the total area of the alternating rings, which is $4\pi R^2$.
+
+</FreeResponse>
+
+## The more general shadow formula
+And finally, I’d be remiss not to make a brief mention of the fact that the surface area of a sphere is a specific instance of a much more general fact: If you take any convex shape, and look at the average area of all its shadows, averaged over all possible orientations in 3D space, the surface area of the solid will be precisely 4 times that average shadow area.
+
+<Figure image="average-shadow.png" video="average-shadow.mp4" show="video" />
+
+As to why this is true? I’ll leave those details for another day.
+
+[^1]: $\sin(\theta) = \frac{\text{opposite}}{\text{hypotenuse}}$.

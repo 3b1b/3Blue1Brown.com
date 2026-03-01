@@ -1,0 +1,361 @@
+---
+title: The determinant
+description: The determinant has a very natural visual intuition, even though it's formula can make it seem more complicated than it really is.
+date: 2016-08-10
+chapter: 6
+video: Ip3X9LOh2dk
+source: _2016/eola/chapter5.py
+credits:
+- Lesson by Grant Sanderson
+- Text Adaption by River Way
+---
+
+> "The purpose of computation is insight, not numbers."
+>
+> $\qquad$— Richard Hamming
+
+## Scaling Area
+
+One thing that turns out to be surprisingly useful for understanding a given transformation is to measure exactly how much a given transformation stretches and squishes things. More specifically, to measure the factor by which the area of a given region increases or decreases.
+
+<Figure
+  image="scale_areas.svg"
+  video="scale_areas.mp4"
+/>
+
+For example, the matrix $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ scales $\hat i$ by a factor of $3$, and scales $\hat j$ by a factor of $2$. How can we tell the factor by which space gets stretched? Focus your attention on the $1\times 1$ square whose bottom sits on $\hat i$, and whose left side sits on $\hat j$. After the transformation, this turns into a $2\times 3$ rectangle.
+
+<Figure
+  image="scale_rectangle.svg"
+  video="scale_rectangle.mp4"
+/>
+
+Since this region started with area $1$, and ended up with area $2\times 3=6$, we can say the linear transformation has scaled its area by a factor of $6$.
+
+<Figure
+  image="shear_rectangle.svg"
+  video="shear_rectangle.mp4"
+/>
+
+So even though this transformation smooshes things about, it seems to leave areas unchanged. Actually, though, if you know how much the area of that one unit square changes, it tells you how the area of *any* region in space changes. For starters, notice that whatever happens to one square in the grid happens to any other square in the grid, no matter the size of that other square. This is because grid lines remain parallel and evenly spaced.
+
+<Figure
+  image="any_square.svg"
+  video="any_square.mp4"
+/>
+
+Then, any shape that’s *not* a grid square can be approximated by grid squares, with arbitrarily good approximations if you use small enough grid squares. So since the areas of all those tiny grid squares are being scaled by a certain amount, the area of the blob as a whole will be scaled by that amount.
+
+<Figure
+  image="arbitrary_shape.svg"
+  video="arbitrary_shape.mp4"
+/>
+
+This special scaling factor, the factor by which a linear transformation changes areas, is called the “determinant” of that transformation. 
+
+<Figure
+  image="determinant_6.svg"
+/>
+
+I’ll show how to compute the determinant of transformation using its matrix later on in this video, but understanding what it represents is much more important than the computation.
+
+For example, the determinant of a transformation would be $3$ if that transformation increases the area of a region by a factor of 3. 
+
+<Figure
+  image="determinant_3.svg"
+/>
+
+The determinant of a transformation is $\frac12$ if it squishes down all areas by a factor of 1/2. 
+
+<Figure
+  image="determinant_0.5.svg"
+/>
+
+**What is the determinant of the following transformation?**
+
+<Figure
+  image="determinant_scale_question.svg"
+/>
+
+<Question
+  question=" "
+  choice1="$1$"
+  choice2="$2$"
+  choice3="$4$"
+  choice4="$8$"
+  answer={3} >
+
+This parallelogram has a height of $2$ and a width of $2$, so the unit square was scaled by
+
+$2\times 2=4$.
+
+</Question>
+
+The determinant of a 2D transformation is $0$ if it squishes all of space onto a line, or even onto a single point, since the area of every region would then become 0.
+
+<Figure
+  image="determinant_0.svg"
+/>
+
+That last one is especially important; checking if the determinant of a given matrix is $0$ will give a way of computing whether or not the transformation associated with a matrix squishes everything into a smaller dimension. You’ll see in the next few chapters why this is a useful thing to think about. For now I just want to lay down the visual intuition, which in and of itself is a beautiful thing to think about.
+
+## Negative determinant
+
+Actually, what I’ve said so far is not quite right. The full concept of the determinant allows for negative values, but what does the idea of scaling an area by a negative amount mean?
+$$
+\det\left(
+\begin{bmatrix}
+\color{green}1 & \color{red}2 \\
+\color{green}3 & \color{red}4
+\end{bmatrix}
+\right)
+=
+\color{orange}-2
+$$
+This has to do with the idea of orientation. For example, notice how normally $\hat j$ is to the left of $\hat i$. 
+
+<Figure
+  image="j_left_of_i.svg"
+/>
+
+However, after this transformation now $L(\hat j)$ is on the right of $L(\hat i)$. 
+
+<Figure
+  image="j_right_of_i.svg"
+/>
+
+If you thought of 2D space as a sheet of paper, a transformation like that one seems to turn over that sheet to the other side. Any transformations that do this are said to “invert the orientation of space”. Whenever this happens, the determinant will be negative. The absolute value of the determinant still tells you the factor by which areas have been scaled.
+$$
+\det\left(
+\begin{bmatrix}
+1.5 & 1 \\
+2 & -2
+\end{bmatrix}
+\right)
+=
+-5
+$$
+**What does the determinant of the matrix** $\begin{bmatrix}1&2\\3&4\end{bmatrix}$ **tell us about the space?**
+
+<FreeResponse>
+
+Since $\det\left(\begin{bmatrix}1 &2 \\3 &4\end{bmatrix}\right)=-2$, we know this transformation flips space and doubles the area.
+
+</FreeResponse>
+
+Why would the idea of negative area be a natural way to describe orientation flipping? Well, think about the series of transformations you get by slowly letting $\hat i$ get closer and closer to $\hat j$. As $\hat i$ gets closer, all of the areas in space are getting squished more and more, meaning the determinant approaches $0$. Once $\hat i$ lines up with $\hat j$, the determinant is $0$. Then if $\hat i$ continues the way it was going, doesn’t it feel kind of natural for the determinant to keep decreasing into negative numbers?
+
+<Figure
+  video="determinant_graph.mp4"
+/>
+
+## In Three Dimensions
+
+Okay, so that’s the understanding of the determinant in two-dimensions, what do you think it should mean for three dimensions? It also tells you how much the transformation scales things, but this time, it tells you how much *volumes* get scaled.
+
+Just as in two dimensions, where this is easiest to think about by focusing on one particular square with area $1$, and watching only what happens to it. In three dimensions it helps to focus your attention on the specific $1\times 1\times 1$ cube whose edges are resting on the basis vectors $\hat i$, $\hat j$ and $\hat k$. 
+
+<Figure
+  image="unit_cube.svg"
+/>
+
+After the transformation, that cube might get warped into a slanty cube. That shape has the best name ever: _parallelepiped_. A name made even more delightful when your professor has a thick Russian accent[^1].
+
+<Figure
+  image="parallelepiped.svg"
+/>
+
+Since this cube starts with a volume of $1$, and the determinant gives the factor by which *any* volume is scaled, you can think of the determinant as simply being the volume of the parallelepiped that this cube turns into.
+$$
+\det\left(
+\begin{bmatrix}
+\color{green}-1.0 & \color{red}0.0 & \color{blue}0.05 \\
+\color{green}0.15 & \color{red}1.0 & \color{blue}0.05 \\
+\color{green}0.0 & \color{red}0.25 & \color{blue}1.0
+\end{bmatrix}
+\right)
+=
+\begin{matrix}
+\text{Volume of this} \\
+\text{parallelepiped}
+\end{matrix}
+$$
+A determinant of zero would mean that all of space is squished onto something with zero volume, meaning a flat plane, a line, or in the most extreme case into a single point at the origin.
+
+<Figure
+  image="flat_parallelepiped.svg"
+/>
+
+The above unit cube transforms into a flat parallelepiped, also known as a parallelogram.
+$$
+\det\left(
+\begin{bmatrix}
+\color{green}1.0 & \color{red}0.0 & \color{blue}1.0 \\
+\color{green}0.5 & \color{red}1.0 & \color{blue}1.5 \\
+\color{green}1.0 & \color{red}0.0 & \color{blue}1.0
+\end{bmatrix}
+\right)
+=
+0
+$$
+Those who watched chapter 2 will recognize this as meaning the columns of the matrix are linearly dependent.
+
+**Describe why the columns of this matrix are linearly dependent.**
+
+<FreeResponse>
+
+Any one of these columns can be written as a linear combination of the other two. For example:
+$$
+\color{blue}\begin{bmatrix}
+1.0\\1.5\\1.0
+\end{bmatrix}
+\color{black}-
+\color{green}\begin{bmatrix}
+1.0\\0.5\\1.0
+\end{bmatrix}
+\color{black}=
+\color{red}\begin{bmatrix}
+0.0\\1.0\\0.0
+\end{bmatrix}
+$$
+</FreeResponse>
+
+### Negative determinants in 3D
+
+What about negative determinants in three dimensions, what would that mean? 
+
+One way to describe orientation in three-dimensions is with the right-hand rule: Point the forefinger of your right hand in the direction of $\hat i$, stick out your middle finger in the direction of $\hat j$, and notice how when you point up your thumb, it is in the direction of $\hat k$. 
+
+<Figure
+  image="hand_basis.svg"
+/>
+
+If you can still do this after the transformation, orientation has not changed, and the determinant is positive. Otherwise, if after the transformation it only makes sense to do that with your left hand, orientation has been flipped, and the determinant is negative.
+
+<Figure
+  image="hands.svg"
+/>
+
+**What is the sign of the determinant for the following transformation?**
+
+<Figure
+  image="question_parallelepiped.svg"
+/>
+
+<Question
+  question=" "
+  choice1="Positive"
+  choice2="Negative"
+  answer={2} >
+
+Point your left index finger towards yourself. This finger represents the green arrow $\hat i$. Stick out your left middle finger halfway. This finger represents the red arrow $\hat j$. Your left thumb will naturally point in the direction of the blue arrow $\hat k$. Since this works with your left hand, the determinant must be negative.
+
+</Question>
+
+## Computation
+
+How do you actually compute one of these determinants?
+
+### Two Dimensions
+
+This is the formula for a $2\times 2$ matrix:
+$$
+\det\left(
+\begin{bmatrix}
+\color{green}a&\color{red}b \\
+\color{green}c&\color{red}d
+\end{bmatrix}
+\right)
+=
+\color{green}a\color{red}d
+\color{black}-
+\color{red}b\color{green}c
+$$
+Here’s part of an intuition for this formula. Let’s say the terms $\color{red}b$ and $\color{green}c$ were zero. Then the term $\color{green}a$ tells you how much $\hat i$ is stretched in the $x$-direction, and the term $\color{red}d$ tells you how much $\hat j$ is stretched in the $y$-direction. So if the other terms were zero, it should make sense that $\color{green}a\color{black}\cdot\color{red}d$ gives the area of the rectangle that our favorite unit square turns into, like the $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ example from earlier.
+
+<Figure
+  image="scale_determinant.svg"
+/>
+
+Even if only one of $b$ or $c$ are zero, you’ll have a parallelogram with base $a$ and height $d$, so the area will still be $\color{green}a\color{black}\cdot\color{red}d$. 
+
+<Figure
+  image="shear_determinant.svg"
+/>
+
+Loosely speaking, if both $b$ and $c$ are nonzero, the term $\color{red}b\color{black}\cdot\color{green}c$ tells you how much this rectangle is stretched or squished in the diagonal direction. It shows how much $\hat i$ is changed in the $y$-direction, and how much $\hat j$ is changed in the $x$-direction. Here is a more precise justification of this term $\color{red}b\color{black}\cdot\color{green}c$ shown as a helpful diagram.
+
+<Figure
+  image="determinant_diagram.svg"
+/>
+
+If you feel like computing determinants by hand is something you need to know, then the only way to get it down is to just practice it with a few matrices, there’s not much I can say or show you that will drill in the computation.
+
+### Three Dimensions
+
+This is all triply true for the three dimensional determinant. There is a formula, and if you feel like that’s something you need to know how to do, you should just practice on a few matrices, or, you know, go watch [Sal Khan](https://www.youtube.com/watch?v=v4MenooI1J0) work through a few.
+$$
+\begin{align*}
+\det\left(
+\begin{bmatrix}
+\color{green}a & \color{red}b & \color{blue}c \\
+\color{green}d & \color{red}e & \color{blue}f \\
+\color{green}g & \color{red}h & \color{blue}i
+\end{bmatrix}
+\right)
+&=
+\color{green}a
+\color{black}\det\left(
+\begin{bmatrix}
+\color{red}e&\color{blue}f \\
+\color{red}h&\color{blue}i
+\end{bmatrix}
+\right)
+\\ \color{black}&-
+\color{red}b
+\color{black}\det\left(
+\begin{bmatrix}
+\color{green}d&\color{blue}f \\
+\color{green}g&\color{blue}i
+\end{bmatrix}
+\right)
+\\ \color{black}&+
+\color{blue}c
+\color{black}\det\left(
+\begin{bmatrix}
+\color{green}d&\color{red}e \\
+\color{green}g&\color{red}h
+\end{bmatrix}
+\right)
+\end{align*}
+$$
+Honestly, I don’t think those computations fall into the essence of linear algebra, but I *definitely* think that understanding what the determinant represents falls within that essence.
+
+## Matrix Multiplication
+
+Here’s a kind of fun question to think about: If you multiply two matrices together, the determinant of the resulting matrix is the same as the product of the determinants of the original two matrices.
+$$
+\det(
+\color{blue}M_1
+\color{purple}M_2
+\color{black})=\det(
+\color{blue}M_1
+\color{black})\det(
+\color{purple}M_2
+\color{black})
+$$
+If you tried to justify this numerically, it would be a horrible mess. **But can you explain why in just one sentence?**
+
+<FreeResponse>
+
+The determinant shows how much area scales after the matrix's linear transformation. 
+
+Since applying two matrices sequentially leads to a new linear transformation, it doesn't matter if we first apply $M_2$ which scales space by $\det(M_2)\cdot A$ and then apply $M_1$ which scales space by $\det(M_1)\cdot\det(M_2)\cdot A$ or if we apply both of them which scales space by $\det(M_1M_2)\cdot A$. 
+
+<Figure
+  video="determinant_explaination.mp4"
+/>
+
+</FreeResponse>
+
+[^1]: Whenever I read the word "parallelepiped" I hear the voice of one of my favorite professors, Yakov Eliashberg.

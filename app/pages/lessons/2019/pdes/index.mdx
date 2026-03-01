@@ -1,0 +1,301 @@
+---
+title: But what is a partial differential equation?
+description: The heat equation, as an introductory PDE.
+date: 2019-04-21
+chapter: 2
+video: ly4S0oi3Yz8
+source: _2019/diffyq/par $T_2$
+credits:
+- Lesson by Grant Sanderson
+- Text Adaptation by Vivek Verma
+---
+
+## Introduction
+
+After seeing how we think about ordinary differential equations in <LessonLink id="differential-equations">chapter 1</LessonLink>, we turn now to an example of a partial differential equation, the heat equation.
+
+$$
+\frac{\partial T}{\partial x} = \alpha \nabla^2 T
+$$
+
+## Setup
+
+To set things up, imagine you have some object like a piece of metal, and you know how the heat is distributed across it at one moment; what the temperature of every individual point is. You might think of that temperature here as being graphed over the body.
+
+<Figure image="setup_1.png" id="distribution"/>
+
+The question is, how will that distribution change over time, as heat flows from the warmer spots to the cooler ones. The image on the left shows the temperature of an example plate with color, with the graph of that temperature being shown on the right, both changing with time.
+
+<Figure video="setup_2.mp4" id="distribution"/>
+
+To take a concrete 1d example, say you have two rods at different temperatures, where that temperature is uniform on each one. 
+
+<Figure image="setup_3.png" />
+
+You know that when you bring them into contact, the temperature will tend towards being equal throughout the rod, but how exactly? What will the temperature distribution be at each point in time?
+
+<Figure image="setup_4.png" video="setup_4.mp4"/>
+
+As is typical with differential equations, the idea is that it’s easier to describe how this setup changes from moment to moment than it is to jump to a description of the full evolution. We write this rule of change in the language of derivatives, though as you’ll see we’ll need to expand our vocabulary a bit beyond ordinary derivatives.
+
+<PiCreature
+  emotion="confused"
+  text="What does $\frac{\partial T}{\partial x}$ mean?"
+/>
+
+## Context
+
+Variations of the heat equation show up in many other parts of math and physics, like brownian motion, the Black-Scholes equations from finance, and all sorts of diffusion, so there are many dividends to be had from a deep understanding of this one setup.
+
+<Figure image="context_1.png" />
+
+In the <LessonLink id="differential-equations">last lesson</LessonLink> we looked at ways of building understanding while acknowledging the truth that most differential equations are difficult to actually solve. 
+
+And indeed, PDEs tend to be even harder than ODEs, largely because they involve modeling infinitely many values changing in concert. But our main character for today is an equation we actually can solve.
+
+If you’ve ever heard of Fourier series, you may be interested to know that this is the physical problem which Fourier was solving when he stumbled across the corner of math now so replete with his name. We’ll dig much more deeply into Fourier series in the <LessonLink id="fourier-series">next lesson</LessonLink>, so be sure to give that one a read after this one.
+
+## The heat equation
+
+### What does the graph represent?
+
+Let's start building up to the heat equation. First, let's be clear on what _exactly_ the function we're analyzing is. We have a rod in one-dimension, and we’re thinking of it as sitting on an $x$-axis, so each point of the rod is labeled with a unique number, $x$. The temperature is some function of that position number, $T(x)$, shown here as a graph above it. 
+
+<Figure image="represent_1.png" />
+
+But really, since this value changes over time, we should think of this function as having one more input, $t$ for time. So really, the function we’re analyzing is $T(x, t)$.
+
+You could, if you wanted, think of the input space as a two-dimensional plane, representing space and time, with the temperature being graphed as a surface above it, each slice across time showing you what the distribution looks like at a given moment. 
+
+<Figure image="represent_2.png" />
+
+Or you could simply think of the graph of the temperature changing over time. Both are equivalent.
+
+<Figure image="represent_3.png" />
+
+This surface is not to be confused with what I was showing [earlier](#distribution), the temperature graph of a two-dimensional body. Be mindful of whether time is being represented with its own axis, or if it’s being represented with an animation showing literal changes over time.
+
+### What are partial derivatives?
+
+In the <LessonLink id="differential-equations">last chapter</LessonLink>, we looked at some systems where just a handful of numbers changed over time, like the angle and angular velocity of a pendulum, describing that change in the language of derivatives. But when we have an entire function changing with time, the mathematical tools become slightly more intricate. Because we’re thinking of this temperature as a function with multiple dimensions to its input space, in this case one for space and one for time, there are multiple different rates of change at play.
+
+<Figure image="partial_1.png" />
+
+There’s the derivative with respect to $x$; how rapidly the temperature changes as you move along the rod. You might think of this as the slope of our surface when you slice it parallel to the $x$-axis; given a tiny step in the $x$-direction, and the tiny change to temperature caused by it, what’s the ratio?
+
+<PiCreature
+  emotion="happy"
+  text="$\Large\frac{dT}{dx}$"
+/>
+
+<Figure image="partial_2.png" />
+
+Then there’s the rate of change with time, which you might think of as the slope of this surface when we slice it in a direction parallel to the time axis.
+
+<PiCreature
+  emotion="happy"
+  text="$\Large\frac{dT}{dt}$"
+  flip={true}
+/>
+
+<Figure image="partial_3.png" />
+
+Each one of these derivatives only tells part of the story of how the temperature function changes, so we call them “partial derivatives”. To emphasize this point, the notation changes a little, replacing the letter $d$ with $\partial$, sometimes called “del”. [^1]
+
+$$
+\frac{\partial T}{\partial x}
+$$
+
+To reiterate a point I made in the <LessonLink id="essence-of-calculus">calculus series</LessonLink>, I do think it's healthy to initially read derivatives like this as a literal ratio between a small change to a function's output, and the small change to the input that caused it. Just keep in mind that what this notation is meant to convey is the limit of that ratio for smaller and smaller nudges to the input, rather than for some specific finitely small nudge. This goes for partial derivatives just as it does for ordinary derivatives, and I believe can make partial derivatives easier to reason about.
+
+The heat equation is written in the language of partial derivatives.
+
+$$
+\frac{\partial T}{\partial t} (x, t) = \alpha \frac{\partial^2 T}{\partial x} (x, t)
+$$
+
+It states that the way the temperature changes with respect to time depends on its second derivative with respect to space. At a high level, the intuition is that at points where the temperature distribution curves, it tends to change in the direction of that curvature.
+
+<Figure image="partial_4.png" />
+
+Since a rule like this is written with partial derivatives, we call it a **partial differential equation**. This has the funny result that to an outsider, the name sounds like a tamer version of ordinary differential equations, when to the contrary partial differential equations tend to tell a much richer story than ODEs.
+
+The general heat equation applies to bodies in any number of dimensions, which would mean more inputs to our temperature function, but it’ll be easiest for us to stay focused on the one-dimensional case of a rod. 
+
+<Figure image="partial_5.png" />
+
+As it is, graphing this in a way which gives time its own axis already pushes the visuals into three-dimensions.
+
+### The discrete case
+
+But where does an equation like this come from? How could you have thought this up yourself? Well, for that, let’s simplify things by describing a discrete version of this setup, where you have only finitely many points x in a row. This is sort of like working in a pixelated universe, where instead of having a continuum of temperatures, we have a finite set of separate values.
+
+<Figure image="discrete_1.png" />
+
+<Question
+  question="Earlier, we discussed that heat equation changes temperatures in the direction of curvature. Given this, consider a discrete version of our earlier heat equation setup. If a point $T_2$'s neighbours are, on average, hotter than $T_2$, how will $T_2$ change?"
+  choice1="$T_2$ will increase (heat up)"
+  choice2="$T_2$ will decrease (cool down)"
+  choice3="$T_2$ will not change, but its neighbours $T_1$ and $T_2$ will increase (heat up)"
+  choice4="$T_2$ will not change, but its neighbours $T_1$ and $T_2$ will decrease (cool up)"
+  answer={1}
+>
+
+The intuition here is simple: For a particular point, if its two neighbors on either side are, on average, hotter than it is, then that particular point will tend toward the average of its neighbours, and thus heat up.
+
+<Figure image="discrete_2.png" />
+
+</Question>
+
+If the two neighbours are cooler on average, it will cool down.
+
+<Figure image="discrete_3.png" />
+
+Focus on three neighboring points, $x_1, x_2$ and $x_3$, with corresponding temperatures $T_1, T_2,$ and $T_3$. What we want to compare is the average of $T_1$ and $T_3$ with the value of $T_2$. 
+
+<Figure image="discrete_4.png" />
+
+When this difference is greater than $0$, $T_2$ will tend to heat up. And the bigger the difference, the faster it heats up. 
+
+<Figure image="discrete_5.png" />
+
+Likewise, if it’s negative, $T_2$ will cool down, ak a rate proportional to the difference.
+
+<Figure image="discrete_6.png" />
+
+More formally, the derivative of $T_2$, with respect to time, is proportional to this difference between the average value of its neighbors and its own value. Alpha, here, is simply a proportionality constant.
+
+$$
+\frac{dT_2}{dt} = \alpha \left( \frac{T_1 + T_3}{2} - T_2 \right)
+$$
+
+To write this in a way that will ultimately explain the second derivative in the heat equation, let me rearrange this right hand side in terms of the difference between $T_3$ and $T_2$ and the difference between $T_2$ and $T_1$. [^2]
+
+$$
+\frac{dT_2}{dt}=\frac{\alpha}{2}\left(\left(T_{3}-T_{2}\right)-\left(T_{2}-T_{1}\right)\right)
+$$
+
+Like I said, the reason to rewrite it is that it takes a step closer to the language of derivatives. Let’s write these as $\Delta T_1$ and $\Delta T_2$. 
+
+$$
+\frac{dT_2}{dt}=\frac{\alpha}{2}\left(\Delta T_2-\Delta T_1\right)
+$$
+
+It’s the same number, but we’re adding a new perspective. Instead of comparing the average of the neighbors to $T_2$, we’re thinking of the difference of the differences. Here, take a moment to gut-check that this makes sense. 
+
+If those two differences are the same, then the average of $T_1$ and $T_3$ is the same as $T_2$, so $T_2$ will not tend to change. 
+
+<Figure image="discrete_7.png" />
+
+If $\Delta T_2 > \Delta T_1$, meaning the difference of the differences is positive, notice how the average of $T_1$ and $T_3$ is bigger than $T_2$, so $T_2$ tends to increase. 
+
+<Figure image="discrete_8.png" />
+
+Likewise, if the difference of the differences is negative, meaning $\Delta T_2 < \Delta T_1$, it corresponds to the average of these neighbors being less than $T_2$, and so $T_2$ decreases.
+
+<Figure image="discrete_9.png" />
+
+If we wanted to be compact, we could write $\Delta T_2-\Delta T_1$ as $\Delta \Delta T_1$ This is known in the lingo as a “second difference”. If it feels a little weird to think about, keep in mind that it’s essentially a compact way of writing this idea of how much $T_2$ differs from the average of its neighbors, just with an extra factor of $\frac{1}{2}$ is all. That factor doesn’t really matter, because either way we’re writing our equation in terms of some proportionality constant.
+
+$$
+\frac{dT_2}{dt}=\alpha \Delta \Delta T_1
+$$
+
+The upshot is that the rate of change for the temperature of a point is proportional to the second difference around it.
+
+### Transitioning to the continuous case
+
+As we go from this finite context to the infinite continuous case, the analog of a second difference is the second derivative. 
+
+$$
+\frac{\partial T}{\partial t}=\alpha \frac{\partial^2 T}{\partial x^2} 
+$$
+
+Instead of looking at the difference between temperature values at points some fixed distance apart, you consider what happens as you shrink this size of that step towards $0$. And in calculus, instead of asking about absolute differences, which would approach $0$, you think in terms of the rate of change, in this case what’s the rate of change in temperature per unit distance. Remember, there are two separate rates of change at play: How does the temperature change as time progresses, and how does the temperature change as you move along the rod.
+
+The core intuition remains the same as what we just looked at for the discrete case: To know how a point differs from its neighbors, look not just at how the function changes from one point to the next, but at how that rate of change changes.
+
+$$
+\frac{\partial \left( \frac{\partial T}{\partial x} \right) }{\partial x}= \frac{\partial^2 T}{\partial x^2} 
+$$
+
+This is written as $\frac{\partial^2 T}{\partial x^2}$, the second partial derivative of our function with respect to $x$. 
+
+<Question
+  question="If $\frac{\partial^2 T}{\partial x^2} |_{x=x_1} > 0$, what will the graph around $x_1$ look like?"
+  choice1="The graph will be decreasing"
+  choice2="The graph will be increasing"
+  choice3="The graph will be curved downwards"
+  choice4="The graph will be curved upwards"
+  answer={4}
+>
+
+At places where the second derivative is positive, it means the rate of rate of change is positive, in other words, the rate of change is increasing. This indicates an upward curve, like the figure below.
+
+<Figure image="cont_1.png" />
+
+Similarly, that slope decreases at points where the graph curves downward, where the rate of change of the rate of change is negative. 
+
+<Figure image="cont_2.png" />
+
+</Question>
+
+Tuck that away as a meaningful intuition for problems well beyond the heat equation: Second derivatives give a measure of how a value compares to the average of its neighbors.
+
+<Figure image="cont_3.png" />
+
+Hopefully that gives some satisfying added color to this equation. It’s pretty intuitive when reading it as saying curved points tend to flatten out, but I think there’s something even more satisfying seeing a partial differential equation arise, almost mechanistically, from thinking of each point as tending towards the average of its neighbors.
+ 
+## PDEs vs ODEs
+
+Take a moment to compare what this feels like to the case of ordinary differential equations. For example, let's say we have multiple bodies in space, tugging on each other with gravity. 
+
+<Figure image="compare_1.png" />
+
+We have a handful of changing numbers: The coordinates for the position and velocity of each body. The rate of change for any one of these values depends on the values of the other numbers, which we write down as a system of equations. On the left, we have the derivatives of these values with respect to time, and the right is some combination of all these values.
+
+<Figure image="compare_2.png" />
+
+In our partial differential equation, we have infinitely many values from a continuum, all changing. And again, the way any one of these values changes depends on the other values. But helpfully, each one only depends on its immediate neighbors, in some limiting sense of the word neighbor. 
+
+<Figure image="compare_3.png" />
+
+So here, the relation on the right-hand side is not some sum or product of the other numbers, it’s also a kind of derivative, just a derivative with respect to space instead of time. In a sense, this one partial differential equation is like a system of infinitely many equations, one for each point on the rod.
+
+## Higher dimensions
+
+When your object is spread out in more than one dimension, like a plate, or a cube, the equation looks quite similar, but you include the second derivative with respect to the other spatial directions as well. 
+
+<Figure image="dim_1.png" />
+
+Adding all the second spatial second derivatives like this is a common enough operation that it has its own special name, the “Laplacian”, often written as an $\nabla^2 T$. 
+
+$$
+\nabla^2 f = \sum_{i=1}^n \frac{\partial^2 f}{\partial x_i^2}
+$$
+
+It’s essentially a multivariable version of the second derivative, and the intuition for this equation is no different from the 1d case: This Laplacian still can be thought of as measuring how different a point is from the average of its neighbors, but now these neighbors aren’t just to the left and right, they’re all around.
+
+<Figure image="dim_2.png" />
+
+I did a [couple of videos](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives#laplacian) during my time at Khan Academy on this operator, if you want to check them out. For our purposes, let’s stay focused on one dimension.
+
+## Next lesson
+
+If you feel like you understand all this, pat yourself on the back. Being able to read a PDE is no joke, and it’s a powerful addition to your vocabulary for describing the world around you. But after all this time spent interpreting the equations, I say it’s high time we start solving them, don’t you? And trust me, there are few pieces of math quite as satisfying as what poodle-haired Fourier developed to solve this problem. All this and more in the next chapter.
+
+<Accordion title="Strogatz mention!">
+
+I was originally inspired to cover this particular topic when I got an early view of Steve Strogatz’s new book “Infinite Powers”.
+
+This isn’t a sponsored message or anything like that, but all cards on the table, I do have two selfish ulterior motives for mentioning it. The first is that Steve has been a really strong, perhaps even pivotal, advocate for the channel since its beginnings, and I’ve had the itch to repay the kindness for quite a while. The second is to make more people love math. That might not sound selfish, but think about it: When more people love math, the potential audience base for these videos gets bigger. And frankly, there are few better ways to get people loving the subject than to expose them to Strogatz’s writing.
+
+If you have friends who you know would enjoy the ideas of calculus, but maybe have been intimidated by math in the past, this book really does an outstanding job communicating the heart of the subject both substantively and accessibly. Its core theme is the idea of constructing solutions to complex real-world problems from simple idealized building blocks, which as you’ll see is exactly what Fourier did here.
+
+And for those who already know and love the subject, you will still find no shortage of fresh insights and enlightening stories. Again, I know that sounds like an ad, but it’s not. I actually think you’ll enjoy the book.
+
+</Accordion>
+
+[^1]: Personally, I think it’s a little silly to change the notation for this, since it’s essentially the same operation. I’d rather see notation which emphasizes the del T terms in these numerators to refer to different changes. One refers to a small change to temperature after a small change in time, the other refers to the change in temperature after a small step in space.
+[^2]: You can quickly check that these two are the same. The top has half of $T_1$, and in the bottom there are two min uses in front of the $T_1$, so it’s positive, and that half has been factored out. Likewise, both have half of $T_3$. Then on the bottom, we have a negative $T_2$ effectively written twice, so when you take a half, it’s the same as the single $-T_2$ up top.
+

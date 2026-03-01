@@ -13,6 +13,11 @@ export const clientLoader = async ({ request }: Route.LoaderArgs) => {
   if (pathname === "/faqs") throw redirect("/about");
   if (pathname === "/blog") throw redirect("/extras#blog");
   if (pathname === "/podcast") throw redirect("/extras#podcast");
+  if (pathname === "/contact") throw redirect("/about#contact");
+  if (pathname === "/support") throw redirect("/about#contact");
+
+  // lessons, topics
+  if (pathname === "/lessons") throw redirect("/");
   const topic = pathname.match(new RegExp(`/topics/(.+)$`))?.[1];
   if (topic) throw redirect(`/?topic=${topic}`);
 };

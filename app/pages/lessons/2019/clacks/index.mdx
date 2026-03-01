@@ -1,0 +1,61 @@
+---
+title: The most unexpected answer to a counting puzzle
+description: A puzzle involving colliding blocks where the number pi, vey unexpectedly, shows up.
+date: 2019-01-13
+video: HEfHFsfGXjs
+source: _2019/clacks/question.py
+credits:
+- Lesson by Grant Sanderson
+- Text adaptation by Josh Pullen
+---
+
+Let’s play a strange sort of mathematical croquet. We’ll have two sliding blocks and a wall. The first block starts by coming in at some velocity from the right, while the second starts out stationary. Being overly-idealistic physicists, let’s assume that there’s no friction and that all collisions are perfectly elastic, meaning no energy is lost.[^1]
+
+<Figure video="frictionless-elastic-collisions.mp4" muted={false} />
+
+The simplest case is when both blocks have the same mass.
+
+<Figure video="1kg.mp4" muted={false} />
+
+The first block hits the second, transferring all of its momentum. Then the second one bounces off the wall, then it transfers all of its momentum back to the first, which then sails off towards infinity. Three total clacks.
+
+What about if that first block has 100 times the mass of the second one? It’s not entirely obvious how to predict the dynamics here; I promise I’ll explain all the relevant physics in due course. But in the spirit of getting to the punchline, let’s just watch what happens.
+
+<Figure video="100kg.mp4" muted={false} />
+
+That second one will keep bouncing back and forth between the wall and the first block with 100 times its mass, like a satisfying game of breakout, slowly and discretely redirecting the first block’s momentum to point in the opposite direction. In total, there will be 31 collisions before both blocks are sliding off to infinity, never to touch again.
+
+What if the first block has 10,000 times the mass of the second one?
+
+<Figure video="10000kg.mp4" muted={false} />
+
+In that case, there would be quite a few more clacks, all happening very rapidly at one point, adding up to 314 collisions in all.
+
+If the first block was 1,000,000 times the mass of the second, then again, with all our idealistic conditions, almost all clacks happen in one big burst, this time resulting in 3,141 total collisions.
+
+<Figure video="1000000kg.mp4" muted={false} />
+
+Perhaps you see the pattern here, though it’s forgivable if you don’t, since it defies all expectations. When the mass of that first block is some power of 100 times the mass of the second, the number of collisions will have the same digits as the beginning of $\pi \approx 3.14159$.
+
+This absolutely blew my mind when it was first shared with me. Credit to the viewer Henry Kavle for introducing me to this fact, which was originally discovered by the mathematician Gregory Galperin in 1995, and [published](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf) in 2003.
+
+Part of what I love about this is that if ever there were olympic games for algorithms computing $\pi$, this one would have to win medals both for being the most elegant, and for being the most comically inefficient. I mean, think about the algorithm:
+
+- **Step 1:** Implement a physics engine.
+- **Step 2:** Choose the number of digits, $d$, of $\pi$ that you’d like to compute.
+- **Step 3:** Set the mass of one block to be $100^{d - 1}$, and send it traveling on a frictionless surface towards a block of mass $1$.
+- **Step 4:** Count the number of collisions.
+
+So for example, to calculate only 20 digits of $\pi$, one block would have to be 100 billion billion billion billion times the mass of the other. If the small block was 1 kilogram, that means the big one would have a mass 10 times that of the supermassive black hole at the center of the milky way.
+
+<Figure image="black-hole.png" />
+
+That means you’d need to count about 31 billion billion clacks, and at one point in the virtual process, the frequency of clacks would be around 100 billion billion billion billion clacks per second. So let’s just say that you’d need *very* good numerical precision to get this working accurately, and it would take a very long time to run!
+
+I’ll emphasize again that this process is *way* over-idealized, quickly departing from anything that could possibly happen in real physics. But of course, you and I both know that this is not interesting because of its potential as a $\pi$-computing algorithm, or as a pragmatic physics demonstration.
+
+It’s mind-boggling because *why on earth do the digits of $\pi$ show up here?* And it’s such a weird way for $\pi$ to show up, too: Its decimal digits are counting something, whereas usually its precise value describes something continuous.
+
+I will show you why this is true. Where there is $\pi$, there is a hidden circle. And in this case, that hidden circle comes from the conservation of energy. In fact, in the <LessonLink id="clacks-solution">next</LessonLink> two lessons you’ll see two separate methods for understanding this hidden $\pi$, each as stunning as the surprising fact itself.
+
+[^1]: I’ve included a little clack sound in these videos, which the astute among you might point out is impossible, because perfectly energy-conserving collisions would be silent. But your goal will be to count how many collisions take place, so in slight conflict to the assumptions I want to leave in a little clack sound to better draw your attention to that count.

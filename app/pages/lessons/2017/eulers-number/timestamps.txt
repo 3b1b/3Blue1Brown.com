@@ -1,0 +1,5 @@
+0:00 Intro
+0:31 Population Growth of 2^x
+3:38 Finding the Derivative
+6:28 Different Exponentials
+7:53 Euler's Number

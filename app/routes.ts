@@ -8,6 +8,7 @@ export default [
     route("extras", "pages/extras/Extras.tsx"),
     route("*", "pages/NotFound.tsx"),
   ]),
+  route("lessons/:id", "pages/lessons/Lesson.tsx"),
   route("talent", "pages/talent/Talent.tsx"),
   route("talent/:id", "pages/talent/Partner.tsx"),
   route("blog/:id", "pages/blog/Post.tsx"),

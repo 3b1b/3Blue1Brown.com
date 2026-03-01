@@ -1,0 +1,284 @@
+.chance
+A Zook
+Aaron Binns
+Ada Cohen
+Adam Cedrone
+Adam Dřínek
+aeroeng15
+Alan Stein
+Alex 
+Alex Hackman
+Alex Sidorovsky
+Alexis Olson
+Ali Yahya
+Aljoscha Schulze
+Alon Amit
+Alvin Khaled
+Aman Karunakaran
+Andre Au
+Andrea Di Biagio
+Andrew Busey
+Andrew Guo
+Andrew Wyld
+Andrey Chursin
+Anthony Eufemio
+Aravind C V
+Arkajyoti Misra
+Arthur Zey
+Arun Kulshreshtha
+Ashwany Rayu
+Atlas Fellowship
+Avery Cobb
+Avi Bryant
+Axel Ericsson
+Barry Fam
+Barry McLaurin
+Beckett Madden-Woods
+Ben Delo
+Benjamin Bailey
+Bigyan Bhar
+Boris Veselinovich
+Bpendragon 
+Bradley Pirtle
+Brian Cloutier
+Brian King
+Brian Staroselsky
+Britt Selvitelle
+bruce oberg
+Burt Humburg
+C Carothers
+Carlin Wiegner
+Carlos Iriarte
+Carolus Reinecke
+Charles Southerland
+Chris Connett
+Chris Druta
+Chris Seaby
+Christian Broß
+Christian Mercat
+Constantine Goltsev
+Cooper Jones
+Corey Ogburn
+Cristian Amitroaie
+Cy 'kkm' K'Nelson
+D. Sivakumar
+d5b
+Dallas De Atley
+Dan Davison
+Dan Herbatschek 
+Dan Kinch
+Dan Lawrence
+Dan Martin
+Daniel Badgio
+Daniel Rolandsgard Kjellevold
+Dave Kester
+dave nicponski
+David Bar-On
+David Barker
+David Gow
+David Guimard
+David J Wu
+David Johnston
+Deep Kalra
+Delton Ding
+Donal Botkin
+Dwaipayan D
+Eddy Lazzarin
+emptymachine
+Eric Koslow
+Eric Younge
+Ero Carrera
+Eryq Ouithaqueue
+Eugene Pakhomov
+Evan Miyazono
+Filip Rolenec
+Frank R. Brown, Jr.
+Gabriele Siino
+Garbanarba
+Gerardo Ubaghs
+Gregory Hopper
+gregostras
+Hayden Christensen
+Henry Reich
+Hitoshi Yamauchi
+Holger Flier
+Infinite Flite
+Ivan
+J. Dmitri Gallow
+Jack Thull
+Jacob Harmon
+Jaewon Jung
+James Golab
+James Winegar
+Jan-Hendrik Prinz
+Janak Ramakrishnan
+Jarred Harvey
+Jason Hise
+Jean-Manuel Izaret
+Jed Yeiser
+Jeff Butterworth
+Jeff Dodds
+Jeff Linse
+Jeff R
+Jeff Straathof
+Jeremy 
+Jeremy Cole
+Jeremy Smith
+Jerris Heaton
+Jimmy Yang
+Joe Pregracke
+Johan Auster
+John
+John C. Vesey
+John Camp
+John Haley
+John Le
+John Luttig
+John McClaskey
+John Zelinka
+Jon Adams
+Jonathan 
+Jonathan M.
+Jonathan Whitmore
+Jonathan Wilson
+Jonathon  Krall
+Jono Forbes
+Joseph John Cox
+JosephG
+Joshua Ouellette
+Juan Benet
+Julian Parmar
+Justin Chandler
+Karim Safin
+Karma Shi
+Keith Tyson
+Kenneth Larsen
+Kevin 
+Killian McGuinness
+Konstantin Belotserkovets
+Krishanu Sankar
+Kristoff Kiefer
+Lambda GPU Workstations
+lardysoft
+Lauri Koivula
+leafyleaf
+Lee Burnette
+Lee Redden
+Linda Xie
+Lukas Biewald
+Majid Alfifi
+Mano Prime
+Mara Cating-Subramanian
+Marco
+Marcus Takvam Lexander
+Marek Gluszczuk
+Mark Smith
+MarkM
+Marshall McQuillen
+Martin Mauersberg
+Mathias Jansson
+Matt Parlmer
+Matthew Bouchard
+Matthew Piziak
+Mauricio Sánchez-Bella
+Max Anderson
+Max Li
+Max Welz
+Maxim Nitsche
+Merl
+Michael Dunworth
+Michael Hornacek
+Michael Kokosenski
+Michael Liuzzi
+Mike 
+Mike Dour
+Mike Dussault
+Mikko 
+Mohsen Hejrati
+Molly Mackinlay
+MR. FANTASTIC
+Mutual Information
+namewithheld 
+Nate Glissmeyer
+Nate Pinsky
+Nathan Schuh
+neutrino
+Nick
+Nipun Ramakrishnan
+nothings
+Octavian Voicu
+Oleksandr Kuvshynov
+Oliver Steele
+Olivia Scharfman
+Orb Li
+otavio good
+Patrick Lucas
+Paul Pluzhnikov
+Paul Wolfgang
+Pavel Dubov
+Pāvils Jurjāns
+Perry Taga
+Person
+Peter Freese
+Peter Mcinerney
+Philipp Legner
+Pierre Lancien
+Pradeep Gollakota
+Randy C. Will
+Randy True
+Raymond Fowkes
+Rebecca Lin
+rehmi post
+Ripta Pasay
+Rob
+Rob Granieri
+Rod S
+Ron Capelli
+Ronnie Cheng
+Russel Simmons
+Ryan Atallah
+Sam Stromwall
+Scott Gorlick
+Scott Gray
+Sean Chittenden
+Sergey Korkhov
+Sergey Ovchinnikov
+Shardul Heda
+Siddhesh Vichare
+Sinan Taifour
+Smarter Every Day
+Stefan Korntreff
+Steve Huynh
+Steve Muench
+Steven Siddals
+Sujay Jayakar
+Sundar Subbarayan
+Tal Einav
+Tanmayan Pande
+Taras Bobrovytsky
+Terry Hayes
+Thomas Peter Berntsen
+Thomaz Santana
+Timothy Chklovski
+Tristan Saldanha
+Tugboat
+Tyler Herrmann
+Tyler Parcell
+Tyler Veness
+Ubiquity Ventures
+Vai-Lam Mui
+Ved Deshpande
+Vignan Velivela
+Vignesh Ganapathi Subramanian
+Vignesh Valliappan
+Vijay 
+Vikram Paralkar
+Vince Gabor
+Xierumeng 
+Yana Chernobilsky
+Yoon Suk Oh
+you say long names are tricky but all I hear is sempai noticed me
+Yurii Monastyrshyn
+Zachariah Rosenberg
+Антон Кочков
+Олександр Горленко

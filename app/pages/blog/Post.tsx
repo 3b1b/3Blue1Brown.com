@@ -10,7 +10,7 @@ import YouTube from "~/components/YouTube";
 import { importAssets } from "~/util/import";
 import { formatDate } from "~/util/string";
 
-type Frontmatter = {
+type PostFrontmatter = {
   title?: string;
   date?: string;
   description?: string;
@@ -20,15 +20,15 @@ type Frontmatter = {
 
 type Post = {
   default: MDXContent;
-  frontmatter: Frontmatter;
+  frontmatter: PostFrontmatter;
 };
 
 // import all posts
 export const [getPost, posts] = importAssets(
-  import.meta.glob<Post>("./**/*.mdx", { eager: true }),
+  import.meta.glob<Post>("./**/index.mdx", { eager: true }),
 );
 
-// blog post layout
+// blog post page layout
 export default function Post({ params: { id } }: Route.ComponentProps) {
   const post = getPost(id);
   if (!post) return;

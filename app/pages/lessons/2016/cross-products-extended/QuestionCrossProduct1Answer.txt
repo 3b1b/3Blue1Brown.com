@@ -1,0 +1,47 @@
+$$
+\left[\begin{array}{l}
+v_1 \\
+v_2 \\
+v_3
+\end{array}\right] \times\left[\begin{array}{l}
+w_1 \\
+w_2 \\
+w_3
+\end{array}\right]=\left[\begin{array}{l}
+v_2 \cdot w_3-w_2 \cdot v_3 \\
+v_3 \cdot w_1-w_3 \cdot v_1 \\
+v_1 \cdot w_2-w_1 \cdot v_2
+\end{array}\right]
+$$
+
+$$
+\left[\begin{array}{c}
+0 \\
+2 \\
+-1
+\end{array}\right]
+\times
+\left[\begin{array}{c}
+-2 \\
+-1 \\
+1
+\end{array}\right]
+=
+\left[\begin{array}{l}
+2-1 \\
+2-0 \\
+0+4
+\end{array}\right]
+=
+\left[\begin{array}{l}
+1 \\
+2 \\
+4
+\end{array}\right]
+$$
+
+This also intuitiveley makes sense because using the right-hand rule, we know that the resulting vector should end up somewhere in the first quadrant and positive $z$ direction.
+
+<Figure
+    image="./figures/practice/CrossProduct1Answer.svg" 
+/>

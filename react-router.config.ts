@@ -1,36 +1,52 @@
 import { writeFileSync } from "fs";
 import type { Config } from "@react-router/dev/config";
 
+// helper to extract part of string using regex
+const capture = (string: string, pattern: string) =>
+  string.match(new RegExp(pattern))?.[1] ?? "";
+
 export default {
   // no server
   ssr: false,
 
   // prerender all routes
   prerender: async ({ getStaticPaths }) => {
-    // get all blog post routes to prerender
-    const posts = Object.keys(
-      import.meta.glob("./app/pages/blog/**/*.mdx", { eager: true }),
+    // get all lesson routes to prerender
+    const lessons = Object.keys(
+      import.meta.glob("./app/pages/lessons/2015/**/index.mdx", {
+        eager: true,
+      }),
     ).map(
       (path) =>
         // get route name from path
-        path.match(new RegExp("./app/pages(/blog/.*)/index.mdx"))?.[1] ?? "",
+        "/lessons/" + capture(path, "lessons/2015/(.*)/index.mdx"),
     );
 
     // get all partner routes to prerender
     const partners = Object.keys(
-      import.meta.glob("./app/pages/talent/**/*.mdx", { eager: true }),
+      import.meta.glob("./app/pages/talent/**/index.mdx", { eager: true }),
     ).map(
       (path) =>
         // get route name from path
-        path.match(new RegExp("./app/pages(/talent/.*)/index.mdx"))?.[1] ?? "",
+        "/talent/" + capture(path, "talent/(.*)/index.mdx"),
+    );
+
+    // get all blog post routes to prerender
+    const posts = Object.keys(
+      import.meta.glob("./app/pages/blog/**/index.mdx", { eager: true }),
+    ).map(
+      (path) =>
+        // get route name from path
+        "/blog/" + capture(path, "blog/(.*)/index.mdx"),
     );
 
     const routes = [
       // regular, non-glob routes
       ...getStaticPaths(),
       // dynamic routes
-      ...posts,
+      ...lessons,
       ...partners,
+      ...posts,
     ];
 
     // export pre-rendered routes for testing purposes

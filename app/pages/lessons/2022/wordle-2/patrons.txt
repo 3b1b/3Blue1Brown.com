@@ -1,0 +1,386 @@
+Juan Benet
+Burt Humburg
+Ali Yahya
+Ben Delo
+dave nicponski
+Yana Chernobilsky
+soekul
+Keith Tyson
+Lukas Biewald
+Scott Gray
+D. Sivakumar
+Vijay
+Arthur Zey
+Joseph John Cox
+John Le
+Rish Kundalia
+John Zelinka
+Peter Mcinerney
+Joseph Kelly
+Jeff Linse
+John Haley
+Boris Veselinovich
+Aaron Binns
+Cooper Jones
+Rob Granieri
+Andrew Busey
+Xueqi
+Lambda GPU Workstations
+David Clark
+Mathias Jansson
+Ripta Pasay
+Jeff R
+Ryan Atallah
+Clark Gaebel
+Britt Selvitelle
+Jonathan Wilson
+Chris Connett
+Eric Younge
+Alan Stein
+John Camp
+Magister Mugit
+Tianyu Ge
+Yurii Monastyrshyn
+Delton Ding
+Randy C. Will
+Aravind C V
+Dave Kester
+Dan Herbatschek
+Jeff Straathof
+Keith Smith
+Ben Granger
+Henry Reich
+otavio good
+Alexis Olson
+Jameel Syed
+Oliver Steele
+Matt Parlmer
+Magnus Dahlström
+Pradeep Gollakota
+Lee Burnette
+Michael Hardel
+Kevin Steck
+Charles Southerland
+Hal Hildebrand
+Márton Vaitkus
+Omar Zrien
+Albin Egasse
+Benjamin Bailey
+Tim Ferreira
+Kai-Siang Ang
+Kros Dai
+Roobie
+YinYangBalance.Asia
+Brian Staroselsky
+David Gow
+Christopher Lorton
+Eryq Ouithaqueue
+Lee Redden
+Nero Li
+emptymachine
+Brendan Shah
+Hitoshi Yamauchi
+Michael Fallon
+James Golab
+Anthony Eufemio
+Francisco Lillo
+Russel Simmons
+Kevin
+Manuel Garcia
+Axel Ericsson
+Tal Einav
+Nikita Lesnikov
+rehmi post
+Kartik Cating-Subramanian
+Joshua Claeys
+Martin Price
+Matthew Bouchard
+Adam Dřínek
+Kenneth Larsen
+Tyler Herrmann
+aeroeng15
+Barry Fam
+Josh Kinnear
+Julian Parmar
+Jacob Harmon
+Patrick Lucas
+Steven Siddals
+Dan Davison
+Bradley Pirtle
+Sundar Subbarayan
+Ivan Sorokin
+Andrew Cary
+Michael Dunworth
+Mark Mann
+Steve Muench
+Daniel Herrera C
+Dominik Wagner
+Frank R. Brown, Jr.
+Rex Godby
+Veritasium
+Matt Godbolt
+Mike Dussault
+Mike Dour
+Valentin Mayer-Eichberger
+Cy 'kkm' K'Nelson
+Karl Niu
+D Dasgupta
+Chandra Sripada
+David J Wu
+Alex Hackman
+Tyler Parcell
+Jaewon Jung
+Jean-Manuel Izaret
+Samuel Judge
+Thomas Peter Berntsen
+Sean Barrett
+Evan Miyazono
+Alvin Khaled
+Patch Kessler
+Victor Kostyuk
+Pierre Lancien
+John
+Killian McGuinness
+Tyler Veness
+Andrea Di Biagio
+Steve Huynh
+Xuanji Li
+Terry Hayes
+J. Chris Wesley
+Jimmy Yang
+Chris Druta
+Jeff Dodds
+Joshua Ouellette
+LAI Oscar
+Magnus Hiie
+Maxim Nitsche
+Pavel Dubov
+Petar Veličković
+Taras Bobrovytsky
+Ubiquity Ventures
+Vignesh Ganapathi Subramanian
+you say long names are tricky but all I hear is sempai noticed me
+Corey Ogburn
+Brian Cloutier
+Eric Koslow
+Alex
+Adam Margulies
+Joe Pregracke
+Johan Auster
+John Luttig
+Tim Erbes
+Krishanu Sankar
+Zachariah Rosenberg
+Randy True
+Jono Forbes
+RabidCamel
+Pāvils Jurjāns
+Eugene Pakhomov
+Marcus Takvam Lexander
+JosephG
+Ronnie Cheng
+Gregory Hopper
+Octavian Voicu
+Bpendragon
+Ettore Randazzo
+Sergey Ovchinnikov
+Holger Flier
+Eugene Foss
+Gordon Gould
+Jeremy Cole
+Max Anderson
+Smarter Every Day
+Gerardo Ubaghs
+Matthew Braithwaite
+Meekay
+nancy mehrotra
+Rafael Cosman
+Tugboat
+Henri Stern
+Arkajyoti Misra
+Ernest Hymel
+Jonathan Whitmore
+Yushi Wang
+Aljoscha Schulze
+Jan-Hendrik Prinz
+Paul Pluzhnikov
+Andrew Mohn
+Carlos Iriarte
+Chris Sachs
+Trevor Settles
+Ero Carrera
+Sebastian Lague
+Andrew Wyld
+Xierumeng
+Andrey Portnoy
+SriSatish Ambati
+Aman Karunakaran
+Ben Campbell
+Jon Adams
+justpwd
+Olga Cooperman
+Paul Wolfgang
+Siddhesh Vichare
+Christian Mercat
+J. Dmitri Gallow
+Nate Pinsky
+Robert Klock
+Rod S
+Majid Alfifi
+Nikhel Thavrani
+Pesho Ivanov
+Liang ChaoYi
+Leif Cussen
+Ho Woo Nam
+Arun Iyer
+Jeroen Swinkels
+James Sugrim
+Peter Bryan
+Kristoff Kiefer
+Vince Gabor
+Yoon Suk Oh
+Arne Tobias Malkenes Ødegaard
+Jed Yeiser
+Garbanarba
+Adam Cedrone
+Beckett Madden-Woods
+Harry Eakins
+Luka Korov
+Nipun Ramakrishnan
+Linda Xie
+Marshall McQuillen
+Yair kass
+Dan Kinch
+Jonathan
+Александр Горленко
+Benjamin R.² M.
+Perry Taga
+Sam Stromwall
+Brian King
+Jeff Butterworth
+d5b
+Dallas De Atley
+Eero Hippeläinen
+Elias
+Ian Mcinerney
+Jacob Taylor
+James Winegar
+Karim Safin
+Max Welz
+namewithheld
+Nathan Winchester
+Ron Capelli
+Timothy Chklovski
+泉辉致鉴
+David Bar-On
+Eric Robinson
+Justin Chandler
+Vignan Velivela
+Jeremy
+Dan Martin
+Alejandro Guayaquil
+Kiran Garimella
+Mohsen Hejrati
+Quoc Bao Bui
+Ada Cohen
+Carl Schell
+David Barker
+David Johnston
+Eddy Lazzarin
+Eric Johnson
+Guillaume Sartoretti
+Ivan
+Jonathon  Krall
+Stefan Korntreff
+Jarred Harvey
+Jim Caruso
+Martin Mauersberg
+Gabriele Siino
+Sean Chittenden
+Gerhard van Niekerk
+Arnaldo Leon
+Marek Gluszczuk
+Ben Gutierrez
+Harald
+Vai-Lam Mui
+Ashwany Rayu
+Andre Au
+Infinite Flite
+Christian Broß
+Constantine Goltsev
+Mike
+RICHARD C BRIDGES
+Karma Shi
+Donal Botkin
+Peter Freese
+Jerris Heaton
+Raymond Fowkes
+Sohail Farhangi
+Cardozo Family
+Illia Tulupov
+Mads Munch Andreasen
+Maty Siman
+Donald “Chronos” King
+Scott Gorlick
+Thomaz Santana
+Pablo Balsinde
+Luca Hernandez
+C Carothers
+Cristian Amitroaie
+Kevin Williams
+Tanmayan Pande
+Zachary Gidwitz
+Arun Kulshreshtha
+m0nk
+Mateo Abascal
+Mehmet Budak
+Sinan Taifour
+Fedor Zhdanov
+A Zook
+gregostras
+neutrino
+Person
+Philipp Legner
+Shardul Heda
+Xiaoheng Shen
+Andrew Guo
+John McClaskey
+Marc Folini
+Tom Yedwab
+Cody Merhoff
+Jack Thull
+MR. FANTASTIC
+Mutual Information
+Parker Burchett
+Ram Eshwar Kaundinya
+Rebecca Lin
+Alonso Martinez
+Sujay Jayakar
+tatjana dzambazova
+Nayantara Jain
+Avi Bryant
+Qinghong Shi
+Scott Gibbons
+sevej
+Nathan Schuh
+Barry McLaurin
+Ben Winston
+Henry Töpel
+OnlineBookClub.org
+Deep Kalra
+Ziyang Zhang
+Bacteriovorus
+JackOLantern Panic
+Carolus Reinecke
+Avi Yashchin
+Brian Abbott
+Earthmark
+Maksim Stepanenko
+Manas Verma
+Alex Sidorovsky
+Vikram Paralkar
+Xavier F. G.
+Lauri Koivula
+Jonathan M.
+Vlad
+Shane MacPhillamy

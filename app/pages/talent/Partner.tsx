@@ -6,7 +6,7 @@ import Meta from "~/components/Meta";
 import Banner from "~/pages/talent/Banner";
 import { importAssets } from "~/util/import";
 
-type Frontmatter = {
+type PartnerFrontmatter = {
   name?: string;
   tagline?: string;
   quote?: string;
@@ -15,12 +15,12 @@ type Frontmatter = {
 
 type Partner = {
   default: MDXContent;
-  frontmatter: Frontmatter;
+  frontmatter: PartnerFrontmatter;
 };
 
 // import all partners
 export const [getPartner, partners] = importAssets(
-  import.meta.glob<Partner>("./**/*.mdx", { eager: true }),
+  import.meta.glob<Partner>("./**/index.mdx", { eager: true }),
 );
 
 // import all logos
@@ -41,6 +41,7 @@ export const [getWordmark, wordmarks] = importAssets(
   "wordmark",
 );
 
+// partner page layout
 export default function Partner({ params: { id } }: Route.ComponentProps) {
   const partner = getPartner(id);
   const logo = getLogo(id);

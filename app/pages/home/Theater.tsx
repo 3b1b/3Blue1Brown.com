@@ -18,11 +18,11 @@ import {
   getLatest,
   getLesson,
   getNextByDate,
-  getNextByTopic,
   getPreviousByDate,
-  getPreviousByTopic,
   getRandom,
-} from "~/data/lessons";
+  hasText,
+} from "~/pages/lessons/lessons";
+import { getNextByTopic, getPreviousByTopic } from "~/pages/lessons/topics";
 import { formatDate } from "~/util/string";
 import { share } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Explore";
@@ -32,19 +32,19 @@ export default function Theater() {
   const [, setLessonId] = useAtom(lessonAtom);
 
   // latest lesson details
-  const latest = getLatest();
+  const latest = getLatest()?.frontmatter;
 
   // current lesson details
-  const lesson = getLesson(useAtomValue(lessonAtom)).lesson ?? latest;
+  const lesson = getLesson(useAtomValue(lessonAtom))?.frontmatter ?? latest;
 
   // is this latest lesson
   const isLatest = latest?.id === lesson?.id;
 
   // link to readable lesson
-  const readLink = lesson ? href(`/`) : "";
+  const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
 
   // does readable lesson exist
-  const readExists = false;
+  const readExists = hasText(lesson?.id ?? "");
 
   // show video details
   const [details, setDetails] = useState(false);
@@ -58,11 +58,14 @@ export default function Theater() {
   // previous video
   const previous =
     lesson &&
-    (topic ? getPreviousByTopic(lesson.id) : getPreviousByDate(lesson.id));
+    (topic
+      ? getPreviousByTopic(lesson.id ?? "")
+      : getPreviousByDate(lesson.id ?? ""));
 
   // next video
   const next =
-    lesson && (topic ? getNextByTopic(lesson.id) : getNextByDate(lesson.id));
+    lesson &&
+    (topic ? getNextByTopic(lesson.id ?? "") : getNextByDate(lesson.id ?? ""));
 
   return (
     <>
@@ -121,7 +124,7 @@ export default function Theater() {
           <Button
             size="sm"
             onClick={() => {
-              setLessonId(getRandom().id);
+              setLessonId(getRandom()?.frontmatter?.id ?? "");
               play();
             }}
           >
@@ -132,7 +135,7 @@ export default function Theater() {
             size="sm"
             onClick={() => {
               if (!previous) return;
-              setLessonId(previous.id);
+              setLessonId(previous?.frontmatter?.id ?? "");
               play();
             }}
             aria-disabled={!previous}
@@ -144,7 +147,7 @@ export default function Theater() {
             size="sm"
             onClick={() => {
               if (!next) return;
-              setLessonId(next.id);
+              setLessonId(next?.frontmatter?.id ?? "");
               play();
             }}
             aria-disabled={!next}
@@ -156,7 +159,7 @@ export default function Theater() {
             size="sm"
             onClick={() => {
               if (!latest || isLatest) return;
-              setLessonId(latest.id);
+              setLessonId(latest?.id ?? "");
               play();
             }}
             aria-disabled={!latest || isLatest}

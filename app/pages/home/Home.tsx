@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import Meta from "~/components/Meta";
-import { getLesson } from "~/data/lessons";
+import { getLesson } from "~/pages/lessons/lessons";
 import Explore, { lessonAtom } from "./Explore";
 import Follow from "./Follow";
 import Patreon from "./Patreon";
@@ -11,7 +11,7 @@ import Theater from "./Theater";
 
 export default function Home() {
   // page title
-  const title = getLesson(useAtomValue(lessonAtom)).lesson?.title;
+  const title = getLesson(useAtomValue(lessonAtom) ?? "")?.frontmatter.title;
 
   return (
     <>
