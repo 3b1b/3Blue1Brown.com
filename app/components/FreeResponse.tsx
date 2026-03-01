@@ -8,7 +8,7 @@ import { useInView } from "~/util/hooks";
 import { sleep } from "~/util/misc";
 
 type Props = {
-  question: ReactNode;
+  question?: ReactNode;
   children: ReactNode;
 };
 
@@ -28,9 +28,9 @@ export default function FreeResponse({ question, children }: Props) {
     sleep(1000 * 5).then(() => setState("unrevealed"));
 
   return (
-    <div ref={ref} className="flex flex-col gap-4">
-      <Markdownify>{question}</Markdownify>
-      <div className="flex flex-wrap items-center gap-4">
+    <>
+      {question && <Markdownify>{question}</Markdownify>}
+      <div ref={ref} className="flex flex-wrap items-center gap-4">
         <Textbox
           multi
           rows={2}
@@ -50,6 +50,6 @@ export default function FreeResponse({ question, children }: Props) {
         </Button>
       </div>
       {state === "revealed" && children}
-    </div>
+    </>
   );
 }

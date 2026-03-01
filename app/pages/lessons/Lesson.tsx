@@ -12,6 +12,7 @@ import { H1 } from "~/components/Heading";
 import Link from "~/components/Link";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
+import TableOfContents from "~/components/TableOfContents";
 import YouTube from "~/components/YouTube";
 import team from "~/data/team.json";
 import { getLesson } from "~/pages/lessons/lessons";
@@ -39,6 +40,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
   return (
     <>
       <Header />
+
       <main id="content" className="[&>section]:odd:bg-off-white">
         <Meta<Article>
           title={title}
@@ -59,7 +61,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           </H1>
           <div className="flex flex-col items-center gap-4">
             {description && <p className="text-lg">{description}</p>}
-            <div className="flex flex-wrap gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
               {credits.map((credit, index) => {
                 const [, role, name] = credit.match(/(.*) by (.*)/) ?? [];
 
@@ -67,7 +69,9 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                   <div key={index}>
                     <UserIcon />
                     {role} by{" "}
-                    <Link to={find(team, { name })?.link ?? ""}>{name}</Link>
+                    <Link to={find(team, { name })?.link ?? ""} arrow={false}>
+                      {name}
+                    </Link>
                   </div>
                 );
               })}
@@ -92,6 +96,8 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           </div>
           {video && <YouTube id={video} />}
         </section>
+
+        <TableOfContents />
 
         <Component />
       </main>

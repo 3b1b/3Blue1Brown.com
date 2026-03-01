@@ -4,6 +4,7 @@ import { useLocation } from "react-router";
 import { ListBulletsIcon, XIcon } from "@phosphor-icons/react";
 import {
   useClickOutside,
+  useElementBounding,
   useElementSize,
   useEventListener,
   useWindowSize,
@@ -13,7 +14,7 @@ import { useAtomValue } from "jotai";
 import { headingsAtom } from "~/components/Heading";
 import Link from "~/components/Link";
 import { firstInView, scrollTo } from "~/util/dom";
-import { useChanged, useInView } from "~/util/hooks";
+import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
 const spacing = 100;
@@ -22,7 +23,7 @@ export default function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLAnchorElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
+  const previousRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   // full heading details
@@ -30,12 +31,12 @@ export default function TableOfContents() {
 
   // get associated elements
   useEffect(() => {
-    headerRef.current = document.querySelector("header");
+    previousRef.current = ref.current?.previousElementSibling as HTMLElement;
     sectionRef.current = document.querySelector("section");
   }, []);
 
-  // completely hide if header in view
-  const headerInView = useInView(headerRef, true);
+  // is screen down far enough for toc to not overlap header or other top content
+  const downEnough = useElementBounding(previousRef).bottom < 0;
 
   // measure widths
   const { width: windowWidth } = useWindowSize();
@@ -45,20 +46,20 @@ export default function TableOfContents() {
   // available width in margins
   const availableWidth = (windowWidth - sectionWidth) / 2;
 
-  // view is too narrow to fit toc w/o overlapping content
-  const tooNarrow = tocWidth + 2 * spacing > availableWidth;
+  // view is wide enough to fit toc w/o overlapping content
+  const wideEnough = tocWidth + 2 * spacing < availableWidth;
 
   // complete hide state
-  const hide = headerInView;
+  const hide = !downEnough;
 
   // expanded/collapsed state
   const [open, setOpen] = useState(false);
 
   // when hide changes, change open
-  if (useChanged(hide) && !tooNarrow) setOpen(!hide);
+  if (useChanged(hide) && wideEnough) setOpen(!hide);
 
-  // when tooNarrow changes, change open
-  if (useChanged(tooNarrow)) setOpen(!tooNarrow);
+  // when wideEnough changes, change open
+  if (useChanged(wideEnough)) setOpen(wideEnough);
 
   // when path changes, change open
   const { pathname } = useLocation();
@@ -66,7 +67,7 @@ export default function TableOfContents() {
 
   // on click off, change open
   useClickOutside(ref, () => {
-    if (tooNarrow) setOpen(false);
+    if (!wideEnough) setOpen(false);
   });
 
   // active index

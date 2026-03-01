@@ -110,6 +110,10 @@
 
   p {
     @apply trim text-justify leading-loose;
+
+    &:has(.katex) {
+      @apply no-trim;
+    }
   }
 
   strong,
@@ -174,6 +178,10 @@
 
   a {
     @apply text-theme hocus:text-current trim underline transition;
+
+    & > .icon {
+      @apply mx-1 mb-1;
+    }
   }
 
   button {
@@ -244,6 +252,10 @@
 
 @utility trim {
   text-box: trim-both text;
+}
+
+@utility no-trim {
+  text-box: initial;
 }
 
 @utility card {

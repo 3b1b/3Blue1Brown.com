@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import type { Components } from "react-markdown";
+import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
@@ -16,6 +17,16 @@ type Props = {
 
 // plain string to markdown
 export default function Markdownify({ children, noParagraph = false }: Props) {
+  // https://github.com/KaTeX/KaTeX/discussions/3819
+  useEffect(() => {
+    document.querySelectorAll("annotation").forEach((element) => {
+      const content = element.textContent ?? "";
+      const root = element.closest(".katex");
+      root?.setAttribute("aria-label", content);
+      root?.setAttribute("role", "img");
+    });
+  }, []);
+
   if (typeof children !== "string") return children;
 
   return (

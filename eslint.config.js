@@ -15,6 +15,7 @@ export default defineConfig([
     ".react-router",
     "playwright-report",
     "test-results",
+    "app/pages/lessons/old/",
   ]),
 
   // https://github.com/mdx-js/eslint-mdx/issues/92

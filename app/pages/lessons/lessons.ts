@@ -20,7 +20,7 @@ type Lesson = {
 
 // import all lessons
 export const [getLesson, lessons] = importAssets(
-  import.meta.glob<Lesson>("./2015/**/index.mdx", { eager: true }),
+  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", { eager: true }),
   "index",
   // derive extra details
   (id, path, lesson) => ({

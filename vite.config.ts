@@ -1,4 +1,6 @@
+import { relative, sep } from "path";
 import { fileURLToPath } from "url";
+import type { PluginOption } from "vite";
 import mdx from "@mdx-js/rollup";
 import viteYaml from "@modyfi/vite-plugin-yaml";
 import { reactRouter } from "@react-router/dev/vite";
@@ -12,9 +14,31 @@ import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
+import site from "./app/data/site.json";
+
+// simple plugin to do string replacement in mdx files
+const mdxReplace: PluginOption = {
+  name: "inject-mdx-path",
+  transform(code, path) {
+    // skip non-mdx files
+    if (!path.endsWith(".mdx")) return null;
+    // path of current file, relative to repo root
+    path = relative(process.cwd(), path);
+    const parts = path.split(sep);
+    // list of replacements
+    const replacements = {
+      $lesson: [site.bucket, ...parts.slice(-4, -1)].join(sep),
+    };
+    for (const [key, value] of Object.entries(replacements))
+      code = code.replaceAll(key, value);
+
+    return { code };
+  },
+};
 
 export default defineConfig({
   plugins: [
+    mdxReplace,
     mdx({
       remarkPlugins: [
         remarkFrontmatter,
