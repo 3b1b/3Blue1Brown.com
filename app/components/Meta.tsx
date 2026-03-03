@@ -1,5 +1,6 @@
 import type { Thing, WithContext } from "schema-dts";
 import { JsonLd } from "react-schemaorg";
+import { truncate } from "lodash-es";
 import site from "~/data/site.json";
 
 type Props<Type extends Thing> = {
@@ -14,7 +15,11 @@ export default function Meta<Type extends Thing>({
   description,
   jsonLd,
 }: Props<Type>) {
-  const combinedTitle = [title, site.title].flat().filter(Boolean).join(" | ");
+  const combinedTitle = [title, site.title]
+    .flat()
+    .filter(Boolean)
+    .map((part) => truncate(part, { length: 50 }))
+    .join(" | ");
 
   const combinedDescription = (description || site.description).trim();
 

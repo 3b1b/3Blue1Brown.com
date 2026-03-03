@@ -10,7 +10,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLocation,
   useNavigate,
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
@@ -18,21 +17,14 @@ import Analytics from "~/components/Analytics";
 import { load as loadDarkMode } from "~/components/DarkMode";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
-import { useChanged } from "~/util/hooks";
 
 // app entrypoint
 export default function App() {
-  // current route info
-  const { hash, pathname, search } = useLocation();
-
-  // did any key part of url change
-  const changed = useChanged({ pathname, search, hash });
-  // did hash change
-  const hashChanged = useChanged(hash);
-
-  if (changed)
-    // if just hash changed, scroll immediately. else, wait for layout shifts
-    scrollTo(hash, undefined, hashChanged);
+  // scroll to hash on page load
+  useEffect(() => {
+    const { hash } = window.location;
+    if (hash) scrollTo(hash, undefined, true);
+  }, []);
 
   // react router nav func
   const _navigate = useNavigate();
@@ -64,9 +56,12 @@ export default function App() {
             </a>
           </nav>
           <Outlet />
-          <ScrollRestoration />
-          <Scripts />
           <ViewCorner />
+          <ScrollRestoration
+            // only restore scroll when pathname changes, ignore query/hash changes
+            getKey={(location) => location.pathname}
+          />
+          <Scripts />
         </body>
       </html>
     </IconContext.Provider>

@@ -2,7 +2,6 @@ import { relative, sep } from "path";
 import { fileURLToPath } from "url";
 import type { PluginOption } from "vite";
 import mdx from "@mdx-js/rollup";
-import viteYaml from "@modyfi/vite-plugin-yaml";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import rehypeKatex from "rehype-katex";
@@ -53,7 +52,6 @@ export default defineConfig({
     tailwindcss(),
     reactRouter(),
     tsconfigPaths(),
-    viteYaml(),
     svgr({
       svgrOptions: {
         // https://github.com/gregberge/svgr/discussions/770
