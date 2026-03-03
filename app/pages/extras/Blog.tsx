@@ -4,7 +4,7 @@ import Link from "~/components/Link";
 import { posts } from "~/pages/blog/Post";
 
 // list of blog posts
-export default function Posts() {
+export default function Blog() {
   return (
     <section className="bg-secondary/10">
       <H2>Blog</H2>

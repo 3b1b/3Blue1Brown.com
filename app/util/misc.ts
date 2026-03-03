@@ -67,3 +67,28 @@ export const getVariants = <Type extends Variations>(
       ),
     [{}],
   ) as Permutations<Type>[];
+
+// type-safe Object.toEntries
+export const toEntries = <Key extends PropertyKey, Value>(
+  object: Record<Key, Value>,
+) => Object.entries(object) as [Key, Value][];
+
+// type-safe Object.fromEntries
+export const fromEntries = <Key extends PropertyKey, Value>(
+  entries: [Key, Value][],
+) => Object.fromEntries(entries) as Record<Key, Value>;
+
+// type-safe object entries map
+export const mapEntries = <
+  OldKey extends PropertyKey,
+  OldValue,
+  NewKey extends PropertyKey,
+  NewValue,
+>(
+  object: Record<OldKey, OldValue>,
+  func: (key: OldKey, value: OldValue) => [NewKey, NewValue],
+) => {
+  const entries = toEntries(object);
+  const mapped = entries.map(([key, value]) => func(key, value));
+  return fromEntries(mapped);
+};

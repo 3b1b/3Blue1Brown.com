@@ -34,7 +34,7 @@ export const [getLesson, lessons] = importAssets(
   import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", { eager: true }),
   "index",
   // derive extra details
-  (id, path, lesson) => ({
+  (lesson, id) => ({
     ...lesson,
     frontmatter: {
       ...lesson.frontmatter,
