@@ -1,8 +1,8 @@
 import Alert from "~/components/Alert";
-import { H2 } from "~/components/Heading.tsx";
+import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
-import Quote from "~/components/Quote.tsx";
-import { getLogo, getPartner } from "./Partner.tsx";
+import Quote from "~/components/Quote";
+import { getLogo, getPartner } from "./Partner";
 
 // list partners in specific order
 const order = [
