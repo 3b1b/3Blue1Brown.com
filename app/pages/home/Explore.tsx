@@ -63,7 +63,7 @@ export default function Explore() {
   useEffect(() => {
     // if user just navigated to topic/search, scroll to section
     if ((getAtom(topicAtom) || getAtom(searchAtom)) && !getAtom(lessonAtom)) {
-      scrollTo(searchBox.current, { behavior: "smooth" }, true);
+      scrollTo(searchBox.current, { behavior: "instant" }, true);
     }
   }, []);
 
@@ -149,7 +149,7 @@ export default function Explore() {
                   <div key={index} className="flex flex-col gap-2">
                     <button
                       className="card"
-                      onClick={() => {
+                      onClick={async () => {
                         setLessonId(id);
                         play();
                       }}

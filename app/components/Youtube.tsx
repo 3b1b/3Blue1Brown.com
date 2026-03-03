@@ -25,13 +25,13 @@ export default function YouTube({ id, className, ...props }: Props) {
 
   const play = async () => {
     await waitFor(() => (ref.current?.readyState ?? 0) > 0);
-    ref.current?.play();
+    await ref.current?.play();
     scrollTo(ref.current, { behavior: "smooth", block: "center" });
     setAtom(playingAtom, true);
   };
 
-  const stop = () => {
-    ref.current?.pause();
+  const stop = async () => {
+    await ref.current?.pause();
     setAtom(playingAtom, false);
   };
 
