@@ -29,13 +29,13 @@ import { lessonAtom, topicAtom } from "./Explore";
 
 export default function Theater() {
   // current lesson
-  const [, setLessonId] = useAtom(lessonAtom);
+  const [lessonId, setLessonId] = useAtom(lessonAtom);
 
   // latest lesson details
   const latest = getLatest()?.frontmatter;
 
   // current lesson details
-  const lesson = getLesson(useAtomValue(lessonAtom))?.frontmatter ?? latest;
+  const lesson = getLesson(lessonId)?.frontmatter ?? latest;
 
   // is this latest lesson
   const isLatest = latest?.id === lesson?.id;

@@ -1,6 +1,7 @@
 import type { Article } from "schema-dts";
 import type { Route } from "./+types/Lesson";
 import { href } from "react-router";
+import { Fragment } from "react/jsx-runtime";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -45,6 +46,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
       date = new Date(),
       description = "",
       credits = ["Lesson by Grant Sanderson"],
+      combinedCredits = { Lesson: ["Grant Sanderson"] },
       video = "",
       source = "",
       chapter = -1,
@@ -114,18 +116,22 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           <div className="flex flex-col items-center gap-8">
             {description && <p className="text-lg">{description}</p>}
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
-              {credits.map((credit, index) => {
-                const [, role, name] = credit.match(/(.*) by (.*)/) ?? [];
-                return (
-                  <div key={index}>
-                    <UserIcon />
-                    {role} by{" "}
-                    <Link to={find(team, { name })?.link ?? ""} arrow={false}>
-                      {name}
-                    </Link>
-                  </div>
-                );
-              })}
+              {Object.entries(combinedCredits).map(([role, names], index) => (
+                <div key={index}>
+                  <UserIcon />
+                  {role} by{" "}
+                  {names.map((name, index) => (
+                    <Fragment key={index}>
+                      <Link to={find(team, { name })?.link ?? ""} arrow={false}>
+                        {name}
+                      </Link>
+                      {index < names.length - 1 ? " &" : ""}
+                    </Fragment>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
               {date && (
                 <div>
                   <CalendarBlankIcon />
@@ -159,39 +165,41 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             Share Lesson
           </Button>
 
-          <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
-            {previous?.id ? (
-              <Link
-                to={href("/lessons/:id", { id: previous.id })}
-                className="card"
-              >
-                <img src={previous.image ?? ""} alt="" />
-                <div className="flex items-center gap-2 font-sans font-medium">
-                  <ArrowLeftIcon />
-                  Previous Lesson
-                </div>
-                <div>{previous.title}</div>
-              </Link>
-            ) : (
+          {(!!previous || !!next) && (
+            <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
+              {!!previous ? (
+                <Link
+                  to={href("/lessons/:id", { id: previous.id })}
+                  className="card"
+                >
+                  <img src={previous.image ?? ""} alt="" />
+                  <div className="flex items-center gap-2 font-sans font-medium">
+                    <ArrowLeftIcon />
+                    Previous Lesson
+                  </div>
+                  <div>{previous.title}</div>
+                </Link>
+              ) : (
+                <div />
+              )}
               <div />
-            )}
-            <div />
-            {next?.id ? (
-              <Link
-                to={href("/lessons/:id", { id: next?.id })}
-                className="card"
-              >
-                <img src={next.image ?? ""} alt="" />
-                <div className="flex items-center gap-2 font-sans font-medium">
-                  Next Lesson
-                  <ArrowRightIcon />
-                </div>
-                <div>{next.title}</div>
-              </Link>
-            ) : (
-              <div />
-            )}
-          </div>
+              {!!next ? (
+                <Link
+                  to={href("/lessons/:id", { id: next?.id })}
+                  className="card"
+                >
+                  <img src={next.image ?? ""} alt="" />
+                  <div className="flex items-center gap-2 font-sans font-medium">
+                    Next Lesson
+                    <ArrowRightIcon />
+                  </div>
+                  <div>{next.title}</div>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
+          )}
         </section>
 
         {/* patrons */}

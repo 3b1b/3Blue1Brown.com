@@ -39,11 +39,23 @@ export const [getLesson, lessons] = importAssets(
     frontmatter: {
       ...lesson.frontmatter,
       id,
+      // parse date
       date: new Date(lesson.frontmatter.date ?? ""),
+      // lookup thumbnail
       image:
         getThumbnail(lesson.frontmatter.video ?? "") ||
         getCustomThumbnail(id)?.default ||
         "",
+      // combine credits by role for more compact display
+      combinedCredits: lesson.frontmatter.credits?.reduce(
+        (credits, credit) => {
+          const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
+          credits[role] ??= [];
+          credits[role].push(name);
+          return credits;
+        },
+        {} as Record<string, string[]>,
+      ),
     },
   }),
 );

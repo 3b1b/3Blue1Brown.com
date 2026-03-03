@@ -1,6 +1,8 @@
 import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { href } from "react-router";
 import {
+  BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
   EyeIcon,
@@ -13,7 +15,7 @@ import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/YouTube";
-import { byDate, getLesson } from "~/pages/lessons/lessons";
+import { byDate, getLesson, hasContent } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
@@ -121,7 +123,7 @@ export default function Explore() {
               className="card"
               onClick={() => {
                 setTopicId(id);
-                scrollTo(searchBox.current, { behavior: "smooth" });
+                scrollTo(searchBox.current, { behavior: "instant" });
               }}
               aria-label={`Explore topic "${title}"`}
             >
@@ -144,28 +146,40 @@ export default function Explore() {
                   { id = "", title = "", description = "", video = "" },
                   index,
                 ) => (
-                  <button
-                    key={index}
-                    className="card"
-                    onClick={() => {
-                      setLessonId(id);
-                      play();
-                    }}
-                    aria-label={`Play lesson "${title}"`}
-                  >
-                    <img
-                      src={getThumbnail(video)}
-                      alt=""
-                      className={clsx(lessonId === id && "opacity-50")}
-                    />
-                    <div className="font-sans font-medium">{title}</div>
-                    <div className="line-clamp-3">{description}</div>
-                    {lessonId === id && (
-                      <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
-                        <EyeIcon />
-                      </div>
+                  <div key={index} className="flex flex-col gap-2">
+                    <button
+                      className="card"
+                      onClick={() => {
+                        setLessonId(id);
+                        play();
+                      }}
+                      aria-label={`Play lesson "${title}"`}
+                    >
+                      <img
+                        src={getThumbnail(video)}
+                        alt=""
+                        className={clsx(lessonId === id && "opacity-50")}
+                      />
+                      <div className="font-sans font-medium">{title}</div>
+                      <div className="line-clamp-3">{description}</div>
+                      {lessonId === id && (
+                        <div className="absolute -top-4 -right-4 grid size-8 place-items-center rounded-full bg-theme text-white">
+                          <EyeIcon />
+                        </div>
+                      )}
+                    </button>
+                    {hasContent(id) && (
+                      <Button
+                        size="sm"
+                        color="light"
+                        to={href("/lessons/:id", { id })}
+                        className="mt-auto self-center"
+                      >
+                        <BookOpenTextIcon />
+                        Read
+                      </Button>
                     )}
-                  </button>
+                  </div>
                 ),
               )}
           </div>

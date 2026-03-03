@@ -85,8 +85,9 @@ Run periodically, manually review, and use discretion.
 - `/tests` - Integration tests.
 - `react-router.config.ts` - Configuration for React Router, including which routes are generated when the site is built.
 
-## Guidelines
+## Notes
 
+- MDX files can only be type-checked in the editor, and not with the the `test:types` script. This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
 - Place code in the appropriate places as described in the repo structure.
   The structure tries to collocate by domain rather than by type, i.e. `/blog/images` and `/blog/components` rather than `/images/blog` and `/components/blog`.
 - Before using a third-party package's component, or even a native HTML element, check if we have a custom component for it.

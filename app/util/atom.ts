@@ -1,6 +1,7 @@
 import type { Atom, PrimitiveAtom, SetStateAction } from "jotai";
 import { atom, getDefaultStore } from "jotai";
 import { debounce } from "lodash-es";
+import { navigate } from "~/root";
 
 // convenient storeless atom getter
 export const getAtom = <Value>(atom: Atom<Value>) =>
@@ -31,8 +32,7 @@ export const atomWithQuery = (key: string, delay = 1000) => {
     const url = new URL(window.location.href);
     if (value) url.searchParams.set(key, value);
     else url.searchParams.delete(key);
-    if (url.toString() !== window.location.href)
-      window.history.pushState(null, "", url.toString());
+    if (url.toString() !== window.location.href) navigate?.(url.toString());
   }, delay);
 
   // update atom when url changes

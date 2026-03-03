@@ -180,10 +180,6 @@
     @apply text-theme hocus:text-current trim underline transition;
   }
 
-  p > a > .icon {
-    @apply mx-1 mb-1;
-  }
-
   button {
     @apply trim inline-flex cursor-pointer items-center justify-center font-sans transition;
   }

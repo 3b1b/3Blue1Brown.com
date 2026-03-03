@@ -6,6 +6,8 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import Footnote from "~/components/Footnote";
 import { H1, H2, H3, H4 } from "~/components/Heading";
+import Link from "~/components/Link";
+import Quote from "~/components/Quote";
 
 type Props = {
   children: ReactNode;
@@ -52,9 +54,14 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
 
   // links
   a: (props) => {
+    const { href = "", children = <></>, ...rest } = props;
     // replace footnote reference
     if ("data-footnote-ref" in props) return <Footnote {...props} />;
-    return <a {...props} />;
+    return (
+      <Link to={href} {...rest}>
+        {children}
+      </Link>
+    );
   },
 
   // h1
@@ -72,4 +79,10 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
 
   // h4
   h4: (props) => <H4 {...props} />,
+
+  // quote
+  blockquote: (props) => {
+    const { children = <></>, ...rest } = props;
+    return <Quote {...rest}>{children}</Quote>;
+  },
 });

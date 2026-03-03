@@ -2,7 +2,6 @@ import type { ComponentProps } from "react";
 import { useRef } from "react";
 import { useFullscreen } from "@reactuses/core";
 import clsx from "clsx";
-import { renderText } from "~/util/dom";
 
 type Props = {
   image: string;
@@ -13,9 +12,6 @@ type Props = {
 // plain image or figure with caption
 export default function Image({ image, alt = "", children, className }: Props) {
   const ref = useRef<HTMLImageElement>(null);
-
-  // set alt from children
-  if (!alt && children) alt = renderText(children);
 
   // fullscreen control
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);

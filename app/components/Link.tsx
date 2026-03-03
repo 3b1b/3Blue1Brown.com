@@ -57,7 +57,7 @@ export default function Link({
     return (
       <a ref={ref} href={to} target={target} className={className} {...props}>
         {children}
-        {arrow && <ArrowSquareOutIcon />}
+        {arrow && <ArrowSquareOutIcon className="mx-1 mb-1 icon" />}
       </a>
     );
 

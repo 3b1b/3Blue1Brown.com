@@ -3,12 +3,15 @@ import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
 import "katex/dist/katex.min.css";
+import type { NavigateFunction } from "react-router";
+import { useEffect } from "react";
 import {
   Links,
   Outlet,
   Scripts,
   ScrollRestoration,
   useLocation,
+  useNavigate,
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
@@ -30,6 +33,14 @@ export default function App() {
   if (changed)
     // if just hash changed, scroll immediately. else, wait for layout shifts
     scrollTo(hash, undefined, hashChanged);
+
+  // react router nav func
+  const _navigate = useNavigate();
+
+  // set outside nav func
+  useEffect(() => {
+    navigate = _navigate;
+  }, [_navigate]);
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>
@@ -61,3 +72,6 @@ export default function App() {
     </IconContext.Provider>
   );
 }
+
+// func for navigating outside of react context
+export let navigate: NavigateFunction | null = null;

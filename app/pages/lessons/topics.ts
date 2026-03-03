@@ -50,7 +50,7 @@ export type TopicId = keyof typeof topics;
 // get topic that lesson is in
 export const getTopic = (id: string) => {
   for (const [topicId, topic] of Object.entries(topics))
-    if (topicId in specialTopics && topic.lessons.includes(id)) return topic;
+    if (!(topicId in specialTopics) && topic.lessons.includes(id)) return topic;
 };
 
 // get previous lesson relative to this one by topic

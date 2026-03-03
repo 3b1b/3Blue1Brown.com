@@ -1,22 +1,26 @@
 import { slugify } from "~/util/string";
 
 // wrapper for importing and using bulk assets
-export const importAssets = <Import>(
+export const importAssets = <Import, Transformed = Import>(
   // a passed import.meta.glob<Type>() w/ eager: true
   imports: Record<string, Import>,
   // if filename this, use parent folder instead of filename as asset name
   base = "index",
   // optional transform to apply to each import before returning
-  transform = (name: string, path: string, _import: Import) => _import,
+  transform: (name: string, path: string, _import: Import) => Transformed = (
+    name,
+    path,
+    _import,
+  ) => _import as unknown as Transformed,
 ) => {
   // create map of name to import
   const list = Object.fromEntries(
     Object.entries(imports).map(([path, _import]) => {
       const name = slugify(nameFromPath(path, base));
-      _import = transform(name, path, _import);
-      return [name, _import] as const;
+      const transformedImport = transform(name, path, _import);
+      return [name, transformedImport] as const;
     }),
-  ) as Record<string, Import>;
+  );
 
   return [
     // look up import by slug-ified name

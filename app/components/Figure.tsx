@@ -8,6 +8,7 @@ type Props = {
   image?: string;
   video?: string;
   show?: "image" | "video";
+  loop?: boolean;
   children?: string;
   className?: string;
 };
@@ -17,6 +18,7 @@ export default function Figure({
   image,
   video,
   show,
+  loop,
   children,
   className,
 }: Props) {
@@ -29,7 +31,7 @@ export default function Figure({
 
   // video to render
   const videoElement = (
-    <video controls className={className}>
+    <video controls className={className} loop={loop}>
       <source src={video ?? ""} type="video/mp4" />
     </video>
   );
