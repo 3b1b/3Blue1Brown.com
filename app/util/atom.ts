@@ -32,12 +32,14 @@ export const atomWithQuery = (key: string, delay = 0) => {
     const url = new URL(window.location.href);
     if (value) url.searchParams.set(key, value);
     else url.searchParams.delete(key);
-    navigate(url.toString(), { preventScrollReset: true });
+    navigate(url.toString(), { preventScrollReset: true, state: key });
   }, delay);
 
   // update atom when url changes
   _atom.onMount = (set) => {
     const updateAtom = () => {
+      // ignore if url change was caused by this atom
+      if (history.state === key) return;
       const url = new URL(window.location.href);
       const value = url.searchParams.get(key) ?? "";
       set(value);

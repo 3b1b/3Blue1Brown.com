@@ -152,7 +152,7 @@
   }
 
   blockquote {
-    @apply border-theme trim bg-off-white flex flex-col gap-4 self-center border-l-2 p-8 leading-loose;
+    @apply border-theme trim bg-off-white flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -263,11 +263,7 @@
 }
 
 @utility card {
-  @apply hocus:bg-theme/15 hover-ring not-hocus:outline-transparent relative flex flex-col items-center justify-start gap-4 p-2 text-center text-balance text-black no-underline;
-
-  & > img:first-child {
-    @apply -mb-2 w-[calc(100%+--spacing(4))] max-w-[unset] -translate-y-2;
-  }
+  @apply hover-ring hocus:scale-102 hocus:bg-theme/15 relative flex flex-col items-center justify-start gap-4 rounded-md p-2 text-center text-balance text-black no-underline;
 }
 
 @utility static-ring {

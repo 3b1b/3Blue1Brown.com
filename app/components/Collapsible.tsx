@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { useState } from "react";
-import { Button, Disclosure, DisclosurePanel } from "react-aria-components";
+import { Collapsible as _Collapsible } from "@base-ui/react";
 import { CaretRightIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 
@@ -13,34 +13,30 @@ type Props = {
 
 // aka disclosure, accordion, etc.
 export default function Collapsible({ title, children, className }: Props) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <Disclosure
-      className="contents"
-      isExpanded={isExpanded}
-      onExpandedChange={setIsExpanded}
-    >
-      <Button
+    <_Collapsible.Root className="contents" open={open} onOpenChange={setOpen}>
+      <_Collapsible.Trigger
         className={clsx(
           "justify-start gap-2 rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/15",
           className,
         )}
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <CaretRightIcon
-          className={clsx("icon transition", isExpanded && "rotate-90")}
+          className={clsx("icon transition", open && "rotate-90")}
         />
         {title}
-      </Button>
-      <DisclosurePanel
+      </_Collapsible.Trigger>
+      <_Collapsible.Panel
+        hiddenUntilFound
         className={clsx(
-          "flex h-(--disclosure-panel-height) shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-[height]",
-          isExpanded ? "" : "sr-only",
+          "flex h-(--collapsible-panel-height) shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-[height]",
+          open ? "" : "sr-only",
         )}
       >
         {children}
-      </DisclosurePanel>
-    </Disclosure>
+      </_Collapsible.Panel>
+    </_Collapsible.Root>
   );
 }

@@ -82,22 +82,28 @@ export const getRandom = () => getLesson(sample(byDate)!);
 // get latest lesson
 export const getLatest = () => getLesson(byDate[0]!);
 
-// get next lesson relative to this one by date
-export const getNextByDate = (id: string) => {
-  const index = byDate.indexOf(id);
-  if (index === -1) return;
-  const next = byDate[index - 1];
-  if (!next) return;
-  return getLesson(next);
-};
-
 // get previous lesson relative to this one by date
 export const getPreviousByDate = (id: string) => {
-  const index = byDate.indexOf(id);
-  if (index === -1) return null;
-  const previous = byDate[index + 1];
-  if (!previous) return null;
-  return getLesson(previous);
+  let index = byDate.indexOf(id);
+  if (index === -1) return;
+  for (; index < byDate.length; index++) {
+    const previous = byDate[index + 1];
+    if (!previous) continue;
+    const lesson = getLesson(previous);
+    if (lesson) return lesson;
+  }
+};
+
+// get next lesson relative to this one by date
+export const getNextByDate = (id: string) => {
+  let index = byDate.indexOf(id);
+  if (index === -1) return;
+  for (; index > 0; index--) {
+    const next = byDate[index - 1];
+    if (!next) continue;
+    const lesson = getLesson(next);
+    if (lesson) return lesson;
+  }
 };
 
 // check if lesson has text content

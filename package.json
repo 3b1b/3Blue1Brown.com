@@ -37,7 +37,6 @@
     "lodash-es": "^4.17.23",
     "mathjax-full": "^3.2.2",
     "react": "^19.2.4",
-    "react-aria-components": "^1.15.1",
     "react-children-utilities": "^2.10.0",
     "react-dom": "^19.2.4",
     "react-markdown": "^10.1.0",

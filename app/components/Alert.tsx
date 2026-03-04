@@ -57,7 +57,7 @@ export default function Alert({
   return (
     <div
       className={clsx(
-        "flex items-center gap-4 border-l-2 border-current bg-current/5 p-4 leading-loose",
+        "flex items-center gap-4 rounded-r-md border-l-2 border-current bg-current/5 p-4 leading-loose",
         className,
         types[type].color,
       )}

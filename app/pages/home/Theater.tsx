@@ -9,7 +9,7 @@ import {
   InfoIcon,
   ShareNetworkIcon,
 } from "@phosphor-icons/react";
-import { useAtomValue } from "jotai";
+import { atom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
@@ -23,9 +23,15 @@ import {
   hasContent,
 } from "~/pages/lessons/lessons";
 import { getNextByTopic, getPreviousByTopic } from "~/pages/lessons/topics";
+import { getAtom, setAtom } from "~/util/atom";
 import { formatDate } from "~/util/string";
 import { share } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Explore";
+
+// has user explicitly selected a lesson
+export const selectedAtom = atom(false);
+
+export const userSelected = () => setAtom(selectedAtom, true);
 
 export default function Theater() {
   // current lesson
@@ -69,7 +75,8 @@ export default function Theater() {
 
   // when lesson changes, start playing
   useEffect(() => {
-    play();
+    // only auto-play if user explicitly selected
+    if (getAtom(selectedAtom)) play();
   }, [lessonId]);
 
   return (
@@ -132,6 +139,7 @@ export default function Theater() {
               pathname: href("/"),
               search: "?lesson=" + (getRandom()?.frontmatter?.id ?? ""),
             }}
+            onClick={userSelected}
             suppressHydrationWarning
           >
             <DiceThreeIcon />
@@ -140,6 +148,7 @@ export default function Theater() {
           <Button
             size="sm"
             to={{ search: "?lesson=" + (previous?.frontmatter?.id ?? "") }}
+            onClick={userSelected}
             aria-disabled={!previous}
           >
             <CaretLeftIcon />
@@ -148,6 +157,7 @@ export default function Theater() {
           <Button
             size="sm"
             to={{ search: "?lesson=" + (next?.frontmatter?.id ?? "") }}
+            onClick={userSelected}
             aria-disabled={!next}
           >
             Next
@@ -156,6 +166,7 @@ export default function Theater() {
           <Button
             size="sm"
             to={{ search: "?lesson=" + (latest?.id ?? "") }}
+            onClick={userSelected}
             aria-disabled={!latest || isLatest}
           >
             Latest

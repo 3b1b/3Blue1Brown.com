@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
-import { debounce } from "lodash-es";
 
 // mathjax component
 export default function MathJax() {
@@ -43,6 +42,7 @@ declare global {
         typeset?: boolean;
         promise?: Promise<void>;
       };
+      tex2svg?: (math: string, options: { display: boolean }) => Element;
       tex2svgPromise?: (
         math: string,
         options: { display: boolean },
@@ -77,7 +77,7 @@ const init = async () => {
   await window.MathJax.startup?.promise;
 };
 
-const render = debounce(async () => {
+const render = async () => {
   // get output from remark-math, which processes $ math blocks into <code> elements
   const elements = document.querySelectorAll("code.language-math");
   for (let element of elements) {
@@ -89,7 +89,14 @@ const render = debounce(async () => {
     // block vs inline math
     const display = parent.matches("pre");
     // convert to svg content
-    const content = await window.MathJax.tex2svgPromise?.(math, { display });
+    let content: Element | undefined = undefined;
+    try {
+      // try synchronous for responsiveness
+      content = window.MathJax.tex2svg?.(math, { display });
+    } catch (error) {
+      // fallback to async if things still loading.
+      content = await window.MathJax.tex2svgPromise?.(math, { display });
+    }
     if (!content) continue;
     // make mjx-assistive-mml sr-only
     content
@@ -104,4 +111,4 @@ const render = debounce(async () => {
     srText.textContent = content.getAttribute("aria-label") ?? math;
     content.before(srText);
   }
-}, 50);
+};

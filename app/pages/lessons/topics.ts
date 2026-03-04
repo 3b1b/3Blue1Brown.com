@@ -1,4 +1,4 @@
-import { mapValues } from "lodash-es";
+import { mapValues, omit } from "lodash-es";
 import _topics from "~/data/topics.json";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { importAssets } from "~/util/import";
@@ -37,7 +37,7 @@ const specialTopics = {
 
 // combine special topics with regular topics
 export const topics = mapValues(
-  { ...specialTopics, ..._topics },
+  { ...specialTopics, ...omit(_topics, "miscellaneous") },
   (topic, id) => ({
     id,
     image: getImage(id)?.default ?? "",
@@ -57,20 +57,26 @@ export const getTopic = (id: string) => {
 export const getPreviousByTopic = (id: string) => {
   const topic = getTopic(id);
   if (!topic) return;
-  const index = topic.lessons.indexOf(id);
+  let index = topic.lessons.indexOf(id);
   if (index === -1) return;
-  const previous = topic.lessons[index - 1];
-  if (!previous) return;
-  return getLesson(previous);
+  for (; index < byDate.length; index++) {
+    const previous = byDate[index + 1];
+    if (!previous) continue;
+    const lesson = getLesson(previous);
+    if (lesson) return lesson;
+  }
 };
 
 // get next lesson relative to this one by topic
 export const getNextByTopic = (id: string) => {
   const topic = getTopic(id);
   if (!topic) return;
-  const index = topic.lessons.indexOf(id);
+  let index = topic.lessons.indexOf(id);
   if (index === -1) return;
-  const next = topic.lessons[index + 1];
-  if (!next) return;
-  return getLesson(next);
+  for (; index < byDate.length; index++) {
+    const next = byDate[index + 1];
+    if (!next) continue;
+    const lesson = getLesson(next);
+    if (lesson) return lesson;
+  }
 };

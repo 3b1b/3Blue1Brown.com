@@ -18,7 +18,11 @@ import { UAParser } from "ua-parser-js";
 import FuzzyWorker from "~/util/fuzzy?worker";
 
 // check if value changed from previous render
-export const useChanged = <Value>(value: Value, countUndefined = true) => {
+export const useChanged = <Value>(
+  value: Value,
+  // if false, doesn't trigger on first change from undefined to defined
+  countUndefined = true,
+) => {
   const [prev, setPrev] = useState<Value>();
   const changed = !isEqual(prev, value);
   if (changed) setPrev(value);
