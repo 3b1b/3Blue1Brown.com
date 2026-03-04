@@ -13,7 +13,7 @@ import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import { headingsAtom } from "~/components/Heading";
 import Link from "~/components/Link";
-import { firstInView, scrollTo } from "~/util/dom";
+import { findClosest, firstInView, scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
@@ -31,7 +31,10 @@ export default function TableOfContents() {
 
   // get associated elements
   useEffect(() => {
-    previousRef.current = ref.current?.previousElementSibling as HTMLElement;
+    previousRef.current = ref.current
+      ? (findClosest(ref.current, "section, header") as HTMLElement)
+      : null;
+    // assume all sections on page same width, so just find first one
     sectionRef.current = document.querySelector("section");
   }, []);
 

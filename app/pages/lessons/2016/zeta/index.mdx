@@ -29,7 +29,7 @@ The Riemann zeta function is one of the most important objects in modern math, a
 
 Don’t worry, I’ll explain that animation you just saw further below. A lot of people know about this function because there’s a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the “Riemann hypothesis”.
 
-<PiCreature emotion="confused" flip={true} className="self-center" />
+<PiCreature emotion="confused" flip={true} />
 
 Some of you may have heard of it in the context of the following divergent sum:
 
@@ -125,7 +125,7 @@ The upshot is that when you raise to the power of a purely imaginary number, whi
 
 As you let that pure imaginary input walk up and the imaginary line, the resulting output walks around the unit circle. For a base like $\frac{1}{2}$, this output walks around the unit circle somewhat slowly. For a base farther away from $1$, like $\frac{1}{9}$, then as you let the input walk up and down the imaginary axis, the corresponding output would walk around the unit circle more quickly.
 
-<PiCreature emotion="confused" className="self-center">
+<PiCreature emotion="confused">
   $\left( \frac{1}
   {2} \right)^{2 + i}$ is not repeated multiplication
 </PiCreature>
@@ -197,19 +197,11 @@ What this means is that $\zeta(s)$, defined as the infinite sum $\displaystyle \
 
 Again, this is because it’s the real part of $s$ that determines the size of each term in this sum, and those sizes determine whether the sum converges. Well, that's not exactly true, in principle once rotation enters the game you could get some cancelation. For example the sum
 
-<div className="self-center">
-
 $$\displaystyle \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} \cdots$$
-
-</div>
 
 diverges, but if we rotate every other term $180^\circ$, getting the alternating series
 
-<div className="self-center">
-
 $$\displaystyle \frac{1}{1} - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} \cdots$$
-
-</div>
 
 it then converges. However, in the case of the zeta function the rotation applied to terms where the real part of $s$ is less than $1$ is not enough to make it converge. In the jargon, we'd say this sum converges if and only if it's _absolutely_ convergent.
 
@@ -221,7 +213,7 @@ it then converges. However, in the case of the zeta function the rotation applie
 
 Let's try visualizing this function. It takes in inputs on this right half of the complex plane, and spits out outputs somewhere else on the complex plane. A nice way to understand complex functions is to picture them as transformations, meaning you look at each input to the function, and let it move over to its corresponding output.
 
-<PiCreature emotion="happy" flip={true} thought={true} className="self-center">
+<PiCreature emotion="happy" flip={true} thought={true}>
   How can we visualize this for all complex inputs?
 </PiCreature>
 
@@ -260,7 +252,7 @@ I’ll tell the computer to move every point $s$ on this grid over to its corres
 
 Focus on one of the yellow points, and notice how it moves to the blue point corresponding to its square.
 
-<PiCreature emotion="confused" className="self-center" />
+<PiCreature emotion="confused" />
 
 It’s a bit complicated to see all points moving all at once, but the reward is that it gives a very rich picture for what a complex function is doing, and it all happens in two-dimensions.
 
@@ -275,7 +267,7 @@ To visualize this, let's begin with a portion of the grid sitting on the right s
 
 <Figure image="$lesson/zeta_img1.png" />
 
-<PiCreature emotion="happy" className="self-center">
+<PiCreature emotion="happy">
   We've added more lines near 1, since it gets stretched out
 </PiCreature>
 
@@ -289,9 +281,7 @@ Again, I'll tell the computer to move each point of this grid to the appropriate
 
 First of all, can we all take a moment to appreciate how beautiful this is? If this doesn’t make you want to learn more about complex functions, you have no heart! But more pertinently for our final aim today, this transformed grid is just begging to be extended a little bit [^3].
 
-<PiCreature emotion="hooray" className="self-center">
-  Damn!
-</PiCreature>
+<PiCreature emotion="hooray">Damn!</PiCreature>
 
 <Figure image="$lesson/zeta_img3.png" />
 
@@ -325,7 +315,7 @@ As soon as you open yourself up to the idea of defining the function differently
 
 Well...not exactly. I mean yes, you can give any child a marker and have them extend these lines any which way, but if you add the restriction that the new extended function has a _derivative_ everywhere, it (rather surprisingly!) locks us into one and only one possible extension.
 
-<PiCreature emotion="confused" className="self-center">
+<PiCreature emotion="confused">
   What's the derivative of a complex function?
 </PiCreature>
 
@@ -337,9 +327,7 @@ Let’s go back to that $f(s) = s^2$ example. Again, we’ll think of this funct
 
 For those of you who know calculus, you know you can take the derivative of $s^2$ at any input.
 
-<PiCreature emotion="happy" className="self-center">
-  $f'(s) = 2s$
-</PiCreature>
+<PiCreature emotion="happy">$f'(s) = 2s$</PiCreature>
 
 But here’s an interesting property of the transformation that turns out to be more or less equivalent to that fact.
 If you look at any two lines in the input space that intersect at a certain angle, and consider what they turn into after the transformation, they will still intersect each other at that same angle.
@@ -524,6 +512,9 @@ So is it okay to write that infinite divergent sum above? Perhaps not, since it 
 
 [^3]: The vertical line where everything seems to stop corresponds to the numbers whose real part is the Euler-Mascheroni constant (0.57721)!
 
-[^4]: We can see this from the formula of the Riemann Zeta Function with analytic continuation: $\zeta(s)=2^{s} \pi^{s-1} \sin \left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$. The $\sin \left(\frac{\pi s}{2}\right)$ term equates 0 for negative even numbers, causing the zeta function to equal zero. For positive even numbers, the zeta function forms something called a pole, so those are ruled out. But that's for another lesson.
+[^4]:
+    We can see this from the formula of the Riemann Zeta Function with analytic continuation:<br/><br/>
+    $\zeta(s)=2^{s} \pi^{s-1} \sin \left(\frac{\pi s}{2}\right) \Gamma(1-s) \zeta(1-s)$.<br/><br/>
+    The $\sin \left(\frac{\pi s}{2}\right)$ term equates 0 for negative even numbers, causing the zeta function to equal zero. For positive even numbers, the zeta function forms something called a pole, so those are ruled out. But that's for another lesson.
 
 [^5]: Refer to Euler Product Formula and Riemann's Explicit Formula.

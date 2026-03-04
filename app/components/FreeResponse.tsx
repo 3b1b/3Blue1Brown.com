@@ -28,7 +28,7 @@ export default function FreeResponse({ question, children }: Props) {
 
   return (
     <>
-      {question && <Markdownify>{question}</Markdownify>}
+      {question && <Markdownify noParagraph>{question}</Markdownify>}
       <div ref={ref} className="flex flex-wrap gap-4">
         <Textbox
           multi

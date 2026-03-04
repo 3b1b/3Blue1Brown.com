@@ -1,43 +1,39 @@
-import { relative, sep } from "path";
 import { fileURLToPath } from "url";
-import type { PluginOption } from "vite";
 import mdx from "@mdx-js/rollup";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
-import rehypeKatex from "rehype-katex";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
+import replace from "vite-plugin-filter-replace";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
-// simple plugin to do string replacement in mdx files
-const mdxReplace: PluginOption = {
-  name: "inject-mdx-path",
-  transform(code, path) {
-    // skip non-mdx files
-    if (!path.endsWith(".mdx")) return null;
-    // path of current file, relative to repo root
-    path = relative(process.cwd(), path);
-    const parts = path.split(sep);
-    // list of replacements
-    const replacements = {
-      $lesson: [site.bucket, ...parts.slice(-4, -1)].join(sep),
-    };
-    for (const [key, value] of Object.entries(replacements))
-      code = code.replaceAll(key, value);
-
-    return { code };
-  },
-};
-
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ["better-react-mathjax"],
+  },
   plugins: [
-    mdxReplace,
+    replace([
+      {
+        filter: /\.mdx$/,
+        replace(source, path) {
+          // get relevant part of lesson path
+          let lesson =
+            path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
+            "";
+          // prepend bucket location
+          lesson = `${site.bucket}/${lesson}`;
+          // inject lesson variable into source
+          source = source.replace("$lesson", lesson);
+          return source;
+        },
+      },
+    ]),
     mdx({
       remarkPlugins: [
         remarkFrontmatter,
@@ -45,7 +41,6 @@ export default defineConfig({
         remarkMath,
         remarkGfm,
       ],
-      rehypePlugins: [rehypeKatex],
       // https://mdxjs.com/packages/mdx
       providerImportSource: "~/components/Markdownify",
     }),

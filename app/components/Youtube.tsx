@@ -1,14 +1,13 @@
 import type { ComponentProps } from "react";
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router";
-import { useEventListener, useUnmount } from "@reactuses/core";
+import { useRef } from "react";
+import { useEventListener } from "@reactuses/core";
 import clsx from "clsx";
 import { atom } from "jotai";
 import { setAtom } from "~/util/atom";
+import { scrollTo } from "~/util/dom";
 import { waitFor } from "~/util/misc";
 import { getThumbnail, getWatch } from "~/util/youtube";
 import "youtube-video-element";
-import { scrollTo } from "~/util/dom";
 
 type Props = {
   id?: string;
@@ -24,9 +23,9 @@ export default function YouTube({ id, className, ...props }: Props) {
   );
 
   const play = async () => {
-    await waitFor(() => (ref.current?.readyState ?? 0) > 0);
-    await ref.current?.play();
     scrollTo(ref.current, { behavior: "smooth", block: "center" });
+    await waitFor(() => ref.current?.readyState === 4);
+    await ref.current?.play();
     setAtom(playingAtom, true);
   };
 
@@ -36,23 +35,14 @@ export default function YouTube({ id, className, ...props }: Props) {
   };
 
   // listen for play event
-  useEventListener("youtube-video-play", play);
+  useEventListener(playEvent, play);
 
   // listen for stop event
-  useEventListener("youtube-video-stop", stop);
+  useEventListener(stopEvent, stop);
 
   // listen for play/pause events to set playing state
   useEventListener("play", () => setAtom(playingAtom, true), ref);
   useEventListener("pause", () => setAtom(playingAtom, false), ref);
-
-  // stop playback on route change
-  const location = useLocation();
-  useEffect(() => {
-    stop();
-  }, [location]);
-
-  // stop playback on unmount
-  useUnmount(stop);
 
   if (!id) return <div className={className}>No video</div>;
 
@@ -77,8 +67,25 @@ export const playingAtom = atom(false);
 
 // trigger play event
 export const play = async () =>
-  window.dispatchEvent(new CustomEvent("youtube-video-play"));
+  window.dispatchEvent(new CustomEvent(playEvent));
 
 // trigger stop event
 export const stop = async () =>
-  window.dispatchEvent(new CustomEvent("youtube-video-stop"));
+  window.dispatchEvent(new CustomEvent(stopEvent));
+
+// custom event names
+const playEvent = "youtube-play";
+const stopEvent = "youtube-stop";
+
+// custom event types
+type YouTubePlayEvent = CustomEvent;
+type YouTubeStopEvent = CustomEvent;
+
+// define custom events on window
+declare global {
+  // eslint-disable-next-line
+  interface WindowEventMap {
+    [playEvent]: YouTubePlayEvent;
+    [stopEvent]: YouTubeStopEvent;
+  }
+}

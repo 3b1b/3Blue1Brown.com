@@ -98,6 +98,25 @@ export const firstInView = (elements: Element[]) => {
   return 0;
 };
 
+// find next/previous node that matches condition, in dom order
+export const findClosest = (
+  element: HTMLElement,
+  condition: string | ((element: HTMLElement) => boolean),
+  direction: "next" | "previous" = "previous",
+) => {
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_ELEMENT,
+  );
+  walker.currentNode = element;
+  while (direction === "next" ? walker.nextNode() : walker.previousNode()) {
+    const current = walker.currentNode as HTMLElement;
+    if (typeof condition === "string" && current.matches(condition))
+      return current;
+    if (typeof condition === "function" && condition(current)) return current;
+  }
+};
+
 // shake animation
 export const shake = (element: Element | null | undefined) => {
   element?.animate(

@@ -1,6 +1,5 @@
 import type { JSX, ReactNode } from "react";
 import { Children, isValidElement, useEffect, useRef } from "react";
-import { deepFind, deepMap, getElementName } from "react-children-utilities";
 import { atom, useSetAtom } from "jotai";
 import Link from "~/components/Link";
 import { renderText } from "~/util/dom";
@@ -107,24 +106,7 @@ export function H4(props: HeadingLevel) {
 }
 
 // get id from content
-const getId = (content: ReactNode) =>
-  slugify(
-    renderText(
-      deepMap(content, (node) => {
-        // if math root element, replace with just annotation child
-        if (isMathElement(node)) {
-          const annotation = deepFind(
-            node,
-            (node) => getElementName(node) === "annotation",
-          );
-          if (annotation) return renderText(annotation);
-        }
-
-        // otherwise, render as normal
-        return node;
-      }),
-    ),
-  );
+const getId = (content: ReactNode) => slugify(renderText(content));
 
 // get simplified content for table of contents
 const getContent = (content: ReactNode) =>
@@ -139,4 +121,5 @@ const isMathElement = (node: ReactNode) =>
   typeof node.props === "object" &&
   node.props !== null &&
   "className" in node.props &&
-  node.props.className === "katex";
+  typeof node.props.className === "string" &&
+  node.props.className.includes("language-math");

@@ -23,14 +23,9 @@ export const mergeTo = (from: To, to: To) => {
 
   // preserve parts of url
   const path = {
-    // use old path unless new one defined or to root
-    pathname:
-      to.pathname !== "/" || (to.pathname === "/" && !to.search && !to.hash)
-        ? to.pathname
-        : from.pathname,
+    pathname: to.pathname || from.pathname,
     search: "?" + mergeSearch(from.search, to.search),
-    // keep old hash unless new one defined. always use new if path changed.
-    hash: to.hash || to.pathname !== from.pathname ? to.hash : from.hash,
+    hash: to.hash || from.hash,
   };
 
   return path;

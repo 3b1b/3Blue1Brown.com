@@ -21,8 +21,7 @@ const checkPage = (path: string) =>
     await page.goto(path);
 
     // wait for content to load
-    await page.waitForSelector("footer");
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState();
 
     // builder
     const builder = new AxeBuilder({ page });

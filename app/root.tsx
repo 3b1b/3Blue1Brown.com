@@ -2,19 +2,13 @@ import "~/styles.css";
 import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
-import "katex/dist/katex.min.css";
-import type { NavigateFunction } from "react-router";
 import { useEffect } from "react";
-import {
-  Links,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useNavigate,
-} from "react-router";
+import { Links, Outlet, Scripts } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
 import { load as loadDarkMode } from "~/components/DarkMode";
+import MathJax from "~/components/MathJax";
+import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
 
@@ -25,14 +19,6 @@ export default function App() {
     const { hash } = window.location;
     if (hash) scrollTo(hash, undefined, true);
   }, []);
-
-  // react router nav func
-  const _navigate = useNavigate();
-
-  // set outside nav func
-  useEffect(() => {
-    navigate = _navigate;
-  }, [_navigate]);
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>
@@ -57,16 +43,11 @@ export default function App() {
           </nav>
           <Outlet />
           <ViewCorner />
-          <ScrollRestoration
-            // only restore scroll when pathname changes, ignore query/hash changes
-            getKey={(location) => location.pathname}
-          />
+          <Navigate />
+          <MathJax />
           <Scripts />
         </body>
       </html>
     </IconContext.Provider>
   );
 }
-
-// func for navigating outside of react context
-export let navigate: NavigateFunction | null = null;

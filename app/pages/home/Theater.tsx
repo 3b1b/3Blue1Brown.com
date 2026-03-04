@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { href } from "react-router";
 import {
   BookOpenTextIcon,
@@ -9,7 +9,7 @@ import {
   InfoIcon,
   ShareNetworkIcon,
 } from "@phosphor-icons/react";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
@@ -29,7 +29,7 @@ import { lessonAtom, topicAtom } from "./Explore";
 
 export default function Theater() {
   // current lesson
-  const [lessonId, setLessonId] = useAtom(lessonAtom);
+  const lessonId = useAtomValue(lessonAtom);
 
   // latest lesson details
   const latest = getLatest()?.frontmatter;
@@ -66,6 +66,11 @@ export default function Theater() {
   const next =
     lesson &&
     (topic ? getNextByTopic(lesson.id ?? "") : getNextByDate(lesson.id ?? ""));
+
+  // when lesson changes, start playing
+  useEffect(() => {
+    play();
+  }, [lessonId]);
 
   return (
     <>
@@ -123,21 +128,18 @@ export default function Theater() {
           {/* controls */}
           <Button
             size="sm"
-            onClick={() => {
-              setLessonId(getRandom()?.frontmatter?.id ?? "");
-              play();
+            to={{
+              pathname: href("/"),
+              search: "?lesson=" + (getRandom()?.frontmatter?.id ?? ""),
             }}
+            suppressHydrationWarning
           >
             <DiceThreeIcon />
             Random
           </Button>
           <Button
             size="sm"
-            onClick={() => {
-              if (!previous) return;
-              setLessonId(previous?.frontmatter?.id ?? "");
-              play();
-            }}
+            to={{ search: "?lesson=" + (previous?.frontmatter?.id ?? "") }}
             aria-disabled={!previous}
           >
             <CaretLeftIcon />
@@ -145,11 +147,7 @@ export default function Theater() {
           </Button>
           <Button
             size="sm"
-            onClick={() => {
-              if (!next) return;
-              setLessonId(next?.frontmatter?.id ?? "");
-              play();
-            }}
+            to={{ search: "?lesson=" + (next?.frontmatter?.id ?? "") }}
             aria-disabled={!next}
           >
             Next
@@ -157,11 +155,7 @@ export default function Theater() {
           </Button>
           <Button
             size="sm"
-            onClick={() => {
-              if (!latest || isLatest) return;
-              setLessonId(latest?.id ?? "");
-              play();
-            }}
+            to={{ search: "?lesson=" + (latest?.id ?? "") }}
             aria-disabled={!latest || isLatest}
           >
             Latest

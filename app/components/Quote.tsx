@@ -19,10 +19,10 @@ export default function Quote({ bg = true, children, name, className }: Props) {
         className,
       )}
     >
-      <QuotesIcon className="absolute top-2 left-2 icon -scale-x-100 text-2xl opacity-10" />
+      <QuotesIcon className="absolute top-1 left-1 icon -scale-x-100 text-xl opacity-10" />
       {children}
       {name && <div className="mt-auto italic">&mdash; {name}</div>}
-      <QuotesIcon className="absolute right-2 bottom-2 icon text-2xl opacity-10" />
+      <QuotesIcon className="absolute right-1 bottom-1 icon text-xl opacity-10" />
     </blockquote>
   );
 }

@@ -7,6 +7,7 @@ import {
 } from "react-router";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { mergeTo } from "~/util/url";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -15,6 +16,8 @@ type Base = {
   newTab?: boolean;
   // force showing/hiding arrow icon
   arrow?: boolean;
+  // whether to merge old route with new route
+  merge?: boolean;
   // class on link
   className?: string;
   // content
@@ -29,6 +32,7 @@ export default function Link({
   ref,
   to,
   children,
+  merge = false,
   newTab,
   arrow,
   className,
@@ -71,7 +75,7 @@ export default function Link({
   return (
     <RouterLink
       ref={ref}
-      to={to}
+      to={merge ? mergeTo(from, to) : to}
       target={target}
       className={className}
       viewTransition={resolved.pathname !== from.pathname ? true : undefined}

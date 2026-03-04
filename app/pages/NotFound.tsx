@@ -32,7 +32,7 @@ export default function NotFound() {
           <StrokeType>Not Found</StrokeType>
         </H1>
 
-        <PiCreature emotion="sad" className="self-center" />
+        <PiCreature emotion="sad" />
 
         <p className="max-w-100 self-center">
           The page you are looking for does not exist or may have moved.

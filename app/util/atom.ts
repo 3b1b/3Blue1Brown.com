@@ -1,7 +1,7 @@
 import type { Atom, PrimitiveAtom, SetStateAction } from "jotai";
 import { atom, getDefaultStore } from "jotai";
 import { debounce } from "lodash-es";
-import { navigate } from "~/root";
+import { addListen, navigate, removeListen } from "~/components/Navigate";
 
 // convenient storeless atom getter
 export const getAtom = <Value>(atom: Atom<Value>) =>
@@ -14,7 +14,7 @@ export const setAtom = <Value>(
 ) => getDefaultStore().set(atom, update);
 
 // create atom that syncs with url search param
-export const atomWithQuery = (key: string, delay = 1000) => {
+export const atomWithQuery = (key: string, delay = 0) => {
   // https://jotai.org/docs/recipes/atom-with-listeners
   const base = atom("");
 
@@ -32,7 +32,7 @@ export const atomWithQuery = (key: string, delay = 1000) => {
     const url = new URL(window.location.href);
     if (value) url.searchParams.set(key, value);
     else url.searchParams.delete(key);
-    if (url.toString() !== window.location.href) navigate?.(url.toString());
+    navigate(url.toString(), { preventScrollReset: true });
   }, delay);
 
   // update atom when url changes
@@ -44,8 +44,8 @@ export const atomWithQuery = (key: string, delay = 1000) => {
       updateUrl.cancel();
     };
     updateAtom();
-    window.addEventListener("popstate", updateAtom);
-    return () => window.removeEventListener("popstate", updateAtom);
+    addListen(updateAtom);
+    return () => removeListen(updateAtom);
   };
 
   return _atom;

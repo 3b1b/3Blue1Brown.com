@@ -83,7 +83,7 @@ export default function Question({
           value: String(index + 1),
           label: (
             <>
-              <Markdownify>{choice}</Markdownify>
+              <Markdownify noParagraph>{choice}</Markdownify>
               {isRight(index) && (
                 <CheckIcon className="ml-auto icon text-success" />
               )}
@@ -118,7 +118,6 @@ export default function Question({
           }}
           color="light"
           size="sm"
-          className="self-start"
           aria-disabled={!value}
         >
           {state === "right" && "Reset"}
@@ -128,13 +127,13 @@ export default function Question({
 
         {state === "wrong" && (
           <>
-            <PiCreature emotion="pondering" size="xs" />
+            <PiCreature emotion="pondering" size="sm" />
             Not quite...
           </>
         )}
         {state === "right" && (
           <>
-            <PiCreature emotion="hooray" size="xs" />
+            <PiCreature emotion="hooray" size="sm" />
             Correct!
           </>
         )}

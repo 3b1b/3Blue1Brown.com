@@ -10,9 +10,10 @@ import {
   XIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
+import Link from "~/components/Link";
 import Textbox from "~/components/Textbox";
 import { play } from "~/components/YouTube";
 import { byDate, getLesson, hasContent } from "~/pages/lessons/lessons";
@@ -25,20 +26,20 @@ import { getThumbnail } from "~/util/youtube";
 const limit = 12;
 
 export const topicAtom = atomWithQuery("topic");
-export const searchAtom = atomWithQuery("search");
+export const searchAtom = atomWithQuery("search", 1000);
 export const lessonAtom = atomWithQuery("lesson");
 
 export default function Explore() {
   const searchBox = useRef<HTMLInputElement>(null);
 
   // current topic
-  const [topicId, setTopicId] = useAtom(topicAtom);
+  const topicId = useAtomValue(topicAtom);
 
   // current search
   const [search, setSearch] = useAtom(searchAtom);
 
   // current lesson
-  const [lessonId, setLessonId] = useAtom(lessonAtom);
+  const lessonId = useAtomValue(lessonAtom);
 
   // current topic details
   const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
@@ -62,9 +63,8 @@ export default function Explore() {
   // run once on page load
   useEffect(() => {
     // if user just navigated to topic/search, scroll to section
-    if ((getAtom(topicAtom) || getAtom(searchAtom)) && !getAtom(lessonAtom)) {
+    if ((getAtom(topicAtom) || getAtom(searchAtom)) && !getAtom(lessonAtom))
       scrollTo(searchBox.current, { behavior: "instant" }, true);
-    }
   }, []);
 
   return (
@@ -101,10 +101,7 @@ export default function Explore() {
               </div>
               <div>{topic.description}</div>
             </div>
-            <Button
-              onClick={async () => setTopicId("")}
-              aria-label="Clear topic"
-            >
+            <Button to={{ search: "?topic=" }} merge aria-label="Clear topic">
               <XIcon />
             </Button>
           </div>
@@ -118,18 +115,19 @@ export default function Explore() {
           className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
           {Object.entries(topics).map(([id, { title, image }], index) => (
-            <button
+            <Link
               key={index}
               className="card"
-              onClick={() => {
-                setTopicId(id);
-                scrollTo(searchBox.current, { behavior: "instant" });
-              }}
+              to={{ search: `?topic=${id}` }}
+              merge
+              onClick={() =>
+                scrollTo(searchBox.current, { behavior: "instant" })
+              }
               aria-label={`Explore topic "${title}"`}
             >
               <img src={image ?? ""} alt="" />
               <div className="font-sans font-medium">{title}</div>
-            </button>
+            </Link>
           ))}
         </div>
       ) : results.length ? (
@@ -147,13 +145,13 @@ export default function Explore() {
                   index,
                 ) => (
                   <div key={index} className="flex flex-col gap-2">
-                    <button
+                    <Link
                       className="card"
-                      onClick={async () => {
-                        setLessonId(id);
-                        play();
-                      }}
+                      to={{ search: `?lesson=${id}` }}
+                      merge
+                      onClick={play}
                       aria-label={`Play lesson "${title}"`}
+                      aria-current={lessonId === id}
                     >
                       <img
                         src={getThumbnail(video)}
@@ -167,7 +165,7 @@ export default function Explore() {
                           <EyeIcon />
                         </div>
                       )}
-                    </button>
+                    </Link>
                     {hasContent(id) && (
                       <Button
                         size="sm"
