@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import { find } from "lodash-es";
 import Button from "~/components/Button";
+import Card from "~/components/Card";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import { H1, H2 } from "~/components/Heading";
@@ -168,33 +169,33 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           {(!!previous || !!next) && (
             <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
               {!!previous ? (
-                <Link
+                <Card
                   to={href("/lessons/:id", { id: previous.id })}
-                  className="card"
-                >
-                  <img src={previous.image ?? ""} alt="" />
-                  <div className="flex items-center gap-2 font-sans font-medium">
-                    <ArrowLeftIcon />
-                    Previous Lesson
-                  </div>
-                  <div>{previous.title}</div>
-                </Link>
+                  image={previous.image}
+                  title={
+                    <>
+                      <ArrowLeftIcon />
+                      Previous Lesson
+                    </>
+                  }
+                  description={previous.title}
+                />
               ) : (
                 <div />
               )}
               <div />
               {!!next ? (
-                <Link
+                <Card
                   to={href("/lessons/:id", { id: next?.id })}
-                  className="card"
-                >
-                  <img src={next.image ?? ""} alt="" />
-                  <div className="flex items-center gap-2 font-sans font-medium">
-                    Next Lesson
-                    <ArrowRightIcon />
-                  </div>
-                  <div>{next.title}</div>
-                </Link>
+                  image={next.image}
+                  title={
+                    <>
+                      Next Lesson
+                      <ArrowRightIcon />
+                    </>
+                  }
+                  description={next.title}
+                />
               ) : (
                 <div />
               )}

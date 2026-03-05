@@ -163,7 +163,7 @@ function CameraControls({ prepCamera }) {
     <orbitControls
       ref={controls}
       args={[camera, domElement]}
-      enableDamping={true}
+      enableDamping
     />
   );
 }

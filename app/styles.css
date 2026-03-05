@@ -262,20 +262,24 @@
   text-box: initial;
 }
 
-@utility card {
-  @apply hover-ring hocus:scale-102 hocus:bg-theme/15 relative flex flex-col items-center justify-start gap-4 rounded-md p-2 text-center text-balance text-black no-underline;
-}
-
 @utility static-ring {
   @apply outline-theme outline-2 outline-offset-2;
 }
 
-@utility hover-ring {
-  @apply hocus:outline-theme outline-2 outline-offset-2 outline-transparent;
+@utility change-ring {
+  @apply outline-2 outline-offset-2 outline-transparent;
 }
 
-@utility focus-ring {
-  @apply [&:has(:focus-visible)]:bg-theme/15 [&:has(:focus-visible)]:outline-theme outline-2 outline-offset-2 outline-transparent;
+@utility hocus-ring {
+  @apply hocus:outline-theme change-ring;
+}
+
+@utility group-hocus-ring {
+  @apply group-hocus:outline-theme change-ring;
+}
+
+@utility focus-within-ring {
+  @apply focus-within:outline-theme change-ring;
 }
 
 @utility badge {

@@ -11,9 +11,11 @@ import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
 
 type Props = {
+  // extra content below header
   children?: ReactNode;
 };
 
+// header on every page
 export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -57,7 +59,7 @@ export default function Header({ children }: Props) {
         />
 
         {/* sub title */}
-        <div className="grow basis-0 text-right text-gray italic max-xl:hidden">
+        <div className="grow basis-0 text-right text-gray max-xl:hidden">
           {site.subtitle}
         </div>
       </div>

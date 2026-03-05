@@ -3,14 +3,18 @@ import { QuotesIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 
 type Props = {
+  // whether to show background
   bg?: boolean;
-  children: ReactNode;
+  // quote attribution
   name?: ReactNode;
+  // class on root
   className?: string;
+  // quote content
+  children: ReactNode;
 };
 
 // box with quote and attribution
-export default function Quote({ bg = true, children, name, className }: Props) {
+export default function Quote({ bg = true, name, className, children }: Props) {
   return (
     <blockquote
       className={clsx(

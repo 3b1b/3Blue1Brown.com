@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 type Props = {
+  // content to redact
   children: ReactNode;
 };
 

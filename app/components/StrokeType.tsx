@@ -1,16 +1,20 @@
 type Props = {
+  // delay, in sec
   delay?: number;
+  // duration, in sec
   duration?: number;
-  children: string;
+  // class on root
   className?: string;
+  // text content to animate
+  children: string;
 };
 
 // loose emulation of manim "DrawBorderThenFill"
 export default function StrokeType({
   delay = 0,
   duration = 1,
-  children,
   className,
+  children,
 }: Props) {
   const chars = children.split("");
 

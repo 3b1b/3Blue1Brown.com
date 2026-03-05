@@ -6,12 +6,18 @@ import clsx from "clsx";
 import Button from "~/components/Button";
 
 type Props = {
+  // element that triggers dialog to open
   trigger: ReactElement<Record<string, unknown>>;
+  // dialog title
   title: ReactNode;
-  children: Content;
+  // content at bottom of dialog
   bottomContent?: Content;
+  // callback when dialog open state changes
   onChange?: (open: boolean) => void;
+  // class on dialog container
   className?: string;
+  // main content of dialog
+  children: Content;
 };
 
 type Content = ReactNode | ((close: () => void, open: () => void) => ReactNode);
@@ -19,10 +25,10 @@ type Content = ReactNode | ((close: () => void, open: () => void) => ReactNode);
 export default function Dialog({
   trigger,
   title,
-  children,
   bottomContent,
   onChange,
   className,
+  children,
 }: Props) {
   const [isOpen, setOpen] = useState(false);
 

@@ -3,6 +3,7 @@ import { QuestionIcon } from "@phosphor-icons/react";
 import Tooltip from "~/components/Tooltip";
 
 type Props = {
+  // help tooltip content
   children?: ReactNode;
 };
 
@@ -11,7 +12,10 @@ export default function Help({ children }: Props) {
   return (
     <Tooltip
       trigger={
-        <button className="cursor-help text-dark-gray" aria-label="Help">
+        <button
+          className="cursor-help rounded-full text-dark-gray"
+          aria-label="Help"
+        >
           <QuestionIcon />
         </button>
       }

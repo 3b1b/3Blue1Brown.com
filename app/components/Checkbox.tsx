@@ -5,23 +5,23 @@ import clsx from "clsx";
 import Help from "~/components/Help";
 
 type Props = {
+  // help content
+  help?: ReactNode;
   // checked state
   value?: boolean;
   // on checked state change
   onChange?: (value: boolean) => void;
   // label content
   children: ReactNode;
-  // help content
-  help?: ReactNode;
 } & Pick<ComponentProps<"label">, "className"> &
   Pick<ComponentProps<"input">, "required" | "name">;
 
 export default function Checkbox({
+  help,
   value,
   onChange,
-  children,
   className,
-  help,
+  children,
   ...props
 }: Props) {
   const [localValue, setLocalValue] = useState(value ?? false);
@@ -29,7 +29,7 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex flex-row items-center gap-2 rounded-md focus-ring p-2 hocus:bg-theme/15",
+        "group flex flex-row items-center gap-2 rounded-md p-2 focus-within-ring hocus:bg-theme/10",
         className,
       )}
     >

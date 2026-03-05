@@ -7,6 +7,7 @@ import { range } from "lodash-es";
 import Button from "~/components/Button";
 
 type Props = {
+  // slides content. each child becomes separate slide.
   children: ReactNode;
 };
 
@@ -48,7 +49,7 @@ export default function Carousel({ children }: Props) {
           <Button
             key={index}
             onClick={() => goTo(index)}
-            className={clsx(index === active && "opacity-25")}
+            className={clsx(index !== active && "opacity-25")}
             aria-label={`Go to slide ${index + 1}`}
           >
             <svg viewBox="-1 -1 2 2" className="size-2">

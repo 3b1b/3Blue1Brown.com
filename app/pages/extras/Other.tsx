@@ -1,5 +1,5 @@
+import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
-import Link from "~/components/Link";
 import { importAssets } from "~/util/import";
 
 // get work image
@@ -64,11 +64,13 @@ export default function Other() {
       <H2 className="sr-only">Other</H2>
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         {entries.map(({ link, name, description, image }, index) => (
-          <Link key={index} className="card" to={link} arrow={false}>
-            <img src={image} alt="" />
-            <div className="font-sans font-medium">{name}</div>
-            <div>{description}</div>
-          </Link>
+          <Card
+            key={index}
+            to={link}
+            image={image}
+            title={name}
+            description={description}
+          />
         ))}
       </div>
     </section>

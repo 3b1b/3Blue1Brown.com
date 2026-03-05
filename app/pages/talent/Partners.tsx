@@ -1,6 +1,7 @@
+import { href } from "react-router";
 import Alert from "~/components/Alert";
+import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
-import Link from "~/components/Link";
 import Quote from "~/components/Quote";
 import { getLogo, getPartner } from "./Partner";
 
@@ -29,7 +30,11 @@ export default function Partners() {
           const { name = "", tagline = "", quote = "" } = partner.frontmatter;
           const image = getLogo(id)?.default ?? "";
           return (
-            <Link key={id} to={`/talent/${id}`} className="group card relative">
+            <Card
+              key={id}
+              to={href("/talent/:id", { id })}
+              className="group relative"
+            >
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
                 <img src={image} alt="" className="w-40" />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
@@ -43,7 +48,7 @@ export default function Partners() {
               >
                 {quote}
               </Quote>
-            </Link>
+            </Card>
           );
         })}
       </div>

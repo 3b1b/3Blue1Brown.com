@@ -27,8 +27,8 @@ What is this number, exactly? Well, it’s the size of the monster, but to expla
 <PiCreature
   emotion="alien"
   text="Interesting!"
-  thought={true}
-  flip={true}
+  thought
+  flip
 />
 
 ## Intuitive Definition of a Group
@@ -206,7 +206,7 @@ You might think of the cube symmetries as acting on the 8 corners in a way that 
 
 As it happens, though, these two groups are really the same, in the sense that their multiplication tables will look identical. Anything you can say about one group will be true of the other. For example, there are 8 distinct permutations where applying it three times in a row gets you back to where you started (not counting the identity). These are the ones cycling three elements. There are also 8 rotations of a cube that have this property, the 120 & 240 degree rotations about each diagonal. This is no coincidence.
 
-<Figure image="3_cycle.png" video="3_cycle.mp4" show="video" loop={true} />
+<Figure image="3_cycle.png" video="3_cycle.mp4" show="video" loop />
 
 The way to phrase this precisely is to say there’s a one-to-one mapping between rotations of a cube and permutation of four elements which *preserves composition*. For example, if you rotate 180 degrees about the y axis, then 180 about the x axis, the overall effect is the same as a 180 degree rotation about the z-axis. Remember that’s what we mean by a product of two actions. If you look at the corresponding permutations, this product is still true, applying the two on the left gives the same effect as applying the one on the right.
 
@@ -214,7 +214,7 @@ The way to phrase this precisely is to say there’s a one-to-one mapping betwee
 
 When you have a correspondence where this is true for all products, it’s called an “isomorphism”, which is maybe the most important idea in group theory. When two groups are isomorphic to each other, it means they have the same underlying structure. This particular isomorphism between cube rotations and permutations of four objects is a bit subtle, but for the curious among you, you may enjoy taking a moment to think hard about how the rotation of a cube permutes its four diagonals.
 
-<Figure image="permute_cube.png" video="permute_cube.mp4" show="video" loop={true} />
+<Figure image="permute_cube.png" video="permute_cube.mp4" show="video" loop />
 
 As you see more examples of a given group arising from seemingly unrelated situations, you’ll get a sense for what group theory is all about. Think about how a number like 3 is not about any particular triplet of things, it’s about all possible triplets of things. 
 

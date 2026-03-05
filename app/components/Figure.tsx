@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Tabs } from "@base-ui/react";
 import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
@@ -5,12 +6,18 @@ import Button from "~/components/Button";
 import Image from "~/components/Image";
 
 type Props = {
+  // image source
   image?: string;
+  // video source
   video?: string;
+  // which to show by default
   show?: "image" | "video";
+  // whether to loop video
   loop?: boolean;
-  children?: string;
+  // class on image/video element
   className?: string;
+  // caption content
+  children?: ReactNode;
 };
 
 // combination image/video
@@ -19,8 +26,8 @@ export default function Figure({
   video,
   show,
   loop,
-  children,
   className,
+  children,
 }: Props) {
   // image to render
   const imageElement = (

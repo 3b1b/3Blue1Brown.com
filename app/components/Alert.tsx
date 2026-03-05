@@ -14,10 +14,10 @@ type Props = {
   type?: Type;
   // optionally override custom icon
   icon?: ReactElement;
+  // class on root
+  className?: string;
   // alert content
   children: ReactNode;
-  // class on root element
-  className?: string;
 };
 
 // available categories of alerts and associated styles

@@ -4,7 +4,9 @@ import { useElementSize, useWindowSize } from "@reactuses/core";
 import clsx from "clsx";
 
 type Props = {
+  // whether to flip to right side instead of left
   flip?: boolean;
+  // content to float
   children: ReactNode;
 };
 

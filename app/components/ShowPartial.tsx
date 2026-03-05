@@ -6,8 +6,10 @@ import Button from "~/components/Button";
 import { preserveScroll } from "~/util/dom";
 
 type Props = {
-  children: ReactNode;
+  // class on content
   className?: string;
+  // content to show partially
+  children: ReactNode;
 };
 
 // show partial content with fade, with button to reveal more

@@ -4,8 +4,11 @@ import { truncate } from "lodash-es";
 import site from "~/data/site.json";
 
 type Props<Type extends Thing> = {
+  // page title parts
   title?: string | string[];
+  // page description
   description?: string;
+  // structured data
   jsonLd?: WithContext<Type>;
 };
 

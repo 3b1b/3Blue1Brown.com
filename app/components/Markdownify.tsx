@@ -8,15 +8,17 @@ import Link from "~/components/Link";
 import Quote from "~/components/Quote";
 
 type Props = {
-  children: ReactNode;
+  // don't wrap in paragraphs, which can cause unwanted spacing
   noParagraph?: boolean;
+  // markdown content
+  children: ReactNode;
 };
 
 // avoid using if possible. instead use children prop which automatically
-// gets converted via build setup.
+// gets converted via build plugins.
 
 // plain string to markdown
-export default function Markdownify({ children, noParagraph = false }: Props) {
+export default function Markdownify({ noParagraph = false, children }: Props) {
   if (typeof children !== "string") return children;
 
   return (

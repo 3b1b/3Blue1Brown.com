@@ -4,7 +4,7 @@ import { renderText } from "~/util/dom";
 import { importAssets } from "~/util/import";
 import { getThumbnail } from "~/util/youtube";
 
-type LessonFrontmatter = {
+export type LessonFrontmatter = {
   id?: string;
   title?: string;
   date?: Date;
@@ -16,7 +16,7 @@ type LessonFrontmatter = {
   image?: string;
 };
 
-type Lesson = {
+export type Lesson = {
   default: MDXContent;
   frontmatter: LessonFrontmatter;
 };
@@ -33,7 +33,7 @@ const [getCustomThumbnail] = importAssets(
 export const [getLesson, lessons] = importAssets(
   import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", { eager: true }),
   "index",
-  // derive extra details
+  // transform and derive lesson props
   (lesson, id) => ({
     ...lesson,
     frontmatter: {
@@ -73,33 +73,52 @@ export const [getPatrons, patrons] = importAssets(
 export const byDate = orderBy(
   Object.entries(lessons),
   ([, lesson]) => lesson?.frontmatter?.date,
-  "desc",
+  "asc",
 ).map(([id]) => id);
 
 // get random lesson
-export const getRandom = () => getLesson(sample(byDate)!);
+export const getRandom = (avoid = "", list = byDate) => {
+  const id = sample(list.filter((id) => id !== avoid));
+  if (!id) return;
+  return getLesson(id);
+};
+
+// get first lesson
+export const getFirst = (list = byDate) => {
+  const id = list.at(0);
+  if (!id) return;
+  return getLesson(id);
+};
 
 // get latest lesson
-export const getLatest = () => getLesson(byDate[0]!);
+export const getLast = (list = byDate) => {
+  const id = list.at(-1);
+  if (!id) return;
+  return getLesson(id);
+};
 
-// get previous lesson relative to this one by date
-export const getPreviousByDate = (id: string) => {
-  let index = byDate.indexOf(id);
+// get previous lesson relative to this one in list of lessons
+export const getPrevious = (id: string, list = byDate) => {
+  // lookup own position in list
+  let index = list.indexOf(id);
   if (index === -1) return;
-  for (; index < byDate.length; index++) {
-    const previous = byDate[index + 1];
+  // go backwards until we find lesson that exists
+  for (; index > 0; index--) {
+    const previous = list[index - 1];
     if (!previous) continue;
     const lesson = getLesson(previous);
     if (lesson) return lesson;
   }
 };
 
-// get next lesson relative to this one by date
-export const getNextByDate = (id: string) => {
-  let index = byDate.indexOf(id);
+// get next lesson relative to this one in list of lessons
+export const getNext = (id: string, list = byDate) => {
+  // lookup own position in list
+  let index = list.indexOf(id);
   if (index === -1) return;
-  for (; index > 0; index--) {
-    const next = byDate[index - 1];
+  // go forwards until we find lesson that exists
+  for (; index < list.length; index++) {
+    const next = list[index + 1];
     if (!next) continue;
     const lesson = getLesson(next);
     if (lesson) return lesson;

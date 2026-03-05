@@ -8,19 +8,16 @@ import Tooltip from "~/components/Tooltip";
 import { getLesson } from "~/pages/lessons/lessons";
 
 type Props = {
+  // lesson id
   id: string;
-  compact?: boolean;
-  children: ReactNode;
+  // class on button
   className?: string;
+  // button content
+  children: ReactNode;
 };
 
 // link to a lesson, with hover preview
-export default function LessonLink({
-  id,
-  compact = false,
-  children,
-  className,
-}: Props) {
+export default function LessonLink({ id, className, children }: Props) {
   const lesson = getLesson(id)?.frontmatter;
 
   if (!lesson) return children;
@@ -42,25 +39,21 @@ export default function LessonLink({
           <strong>{title}</strong>
           <div className="text-gray">{description}</div>
 
-          {!compact && (
-            <>
-              <Button
-                to={{
-                  pathname: href("/"),
-                  search: `?lesson=${id}`,
-                }}
-                color="light"
-                size="sm"
-              >
-                <PlayIcon />
-                Watch
-              </Button>
-              <Button to={href("/lessons/:id", { id })} color="light" size="sm">
-                <BookOpenTextIcon />
-                Read
-              </Button>
-            </>
-          )}
+          <Button
+            to={{
+              pathname: href("/"),
+              search: `?lesson=${id}`,
+            }}
+            color="light"
+            size="sm"
+          >
+            <PlayIcon />
+            Watch
+          </Button>
+          <Button to={href("/lessons/:id", { id })} color="light" size="sm">
+            <BookOpenTextIcon />
+            Read
+          </Button>
         </div>
       </Tooltip>
     </>

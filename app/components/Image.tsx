@@ -1,12 +1,15 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { useRef } from "react";
 import { useFullscreen } from "@reactuses/core";
 import clsx from "clsx";
 
 type Props = {
+  // image source
   image: string;
+  // alt text for accessibility
   alt?: string;
-  children?: string;
+  // caption content
+  children?: ReactNode;
 } & ComponentProps<"figure">;
 
 // plain image or figure with caption
@@ -44,7 +47,7 @@ export default function Image({ image, alt = "", children, className }: Props) {
     <figure className={clsx("flex flex-col gap-4", className)}>
       {img}
       {children && (
-        <figcaption className="self-center text-dark-gray italic">
+        <figcaption className="self-center text-dark-gray">
           {children}
         </figcaption>
       )}

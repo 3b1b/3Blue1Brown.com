@@ -7,7 +7,9 @@ import { useInView } from "~/util/hooks";
 import { sleep } from "~/util/misc";
 
 type Props = {
+  // question content
   question?: ReactNode;
+  // answer content
   children: ReactNode;
 };
 

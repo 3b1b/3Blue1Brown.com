@@ -28,10 +28,10 @@ type _Router = ComponentProps<typeof RouterLink>;
 export default function Link({
   ref,
   to,
-  children,
   newTab,
   arrow,
   className,
+  children,
   ...props
 }: Props) {
   // whether link is external (some other site) or internal (within router)

@@ -10,6 +10,7 @@ import { getThumbnail, getWatch } from "~/util/youtube";
 import "youtube-video-element";
 
 type Props = {
+  // youtube video id
   id?: string;
 } & ComponentProps<"video">;
 

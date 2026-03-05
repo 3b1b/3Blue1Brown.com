@@ -19,6 +19,7 @@ import { useChanged } from "~/util/hooks";
 // spacing between toc and section content
 const spacing = 100;
 
+// table of contents on side of screen
 export default function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);

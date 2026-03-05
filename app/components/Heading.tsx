@@ -30,6 +30,7 @@ type Heading = {
 // global list of headings
 export const headingsAtom = atom<Heading[]>([]);
 
+// heading element with link and tracking
 function Heading({ level, id, className, children }: Props) {
   const ref = useRef<HTMLHeadingElement>(null);
 

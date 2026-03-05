@@ -26,6 +26,15 @@ type Post = {
 // import all posts
 export const [getPost, posts] = importAssets(
   import.meta.glob<Post>("./**/index.mdx", { eager: true }),
+  undefined,
+  // transform post props
+  (post) => ({
+    ...post,
+    frontmatter: {
+      ...post.frontmatter,
+      date: new Date(post.frontmatter.date ?? ""),
+    },
+  }),
 );
 
 // blog post page layout
@@ -39,7 +48,7 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
     // get frontmatter
     frontmatter: {
       title = "",
-      date = "",
+      date = new Date(),
       description = "",
       author = "Grant Sanderson",
       video = "",
@@ -59,7 +68,7 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
             headline: title,
             description,
             author,
-            datePublished: date,
+            datePublished: date.toISOString(),
           }}
         />
 

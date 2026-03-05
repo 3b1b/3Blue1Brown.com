@@ -2,10 +2,15 @@ import clsx from "clsx";
 import Link from "~/components/Link";
 
 type Props = {
+  // image source
   image?: string;
+  // image link
   link?: string;
+  // name
   name?: string;
+  // description/role
   description?: string;
+  // class on root
   className?: string;
 };
 

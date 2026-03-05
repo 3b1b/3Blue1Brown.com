@@ -100,7 +100,7 @@ Run periodically, manually review, and use discretion.
 - Use Tailwind for styling, and avoid custom CSS and inline styles as much as possible.
 - Use Tailwind's `--spacing()` function in `calc()`s and such, to ensure consistent spacing.
   Avoid hardcoding pixel values.
-- If a component in `/components` is only being used to apply styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
+- If a component in `/components` is just a single element and some styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
 - Use MDX for pages that are primarily static content, and React components for everything else.
 - Split pages into separate components by "section" to keep them from becoming too monolithic and make them easier to re-order later.
 - Put things that might be commonly edited at the top of files, e.g. an array of member info for a team gallery, or some tweak-able parameters for a visualization.

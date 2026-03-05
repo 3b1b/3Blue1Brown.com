@@ -91,7 +91,7 @@ export default function NewtonsFractalInteractive() {
               <GraphLines
                 step={1}
                 color="rgba(255, 255, 255, 0.5)"
-                labels={true}
+                labels
                 labelY={(n) => `${n}i`}
                 labelStr={(n, axis) => {
                   let str = new Intl.NumberFormat().format(n);

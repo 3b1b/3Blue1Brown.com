@@ -2,7 +2,9 @@ import type { ComponentProps } from "react";
 import clsx from "clsx";
 
 type Props = {
+  // vimeo video id
   id: string;
+  // vimeo video hash for private videos
   hash?: string;
 } & ComponentProps<"iframe">;
 

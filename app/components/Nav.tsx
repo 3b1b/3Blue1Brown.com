@@ -7,6 +7,7 @@ import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
 import { Search } from "~/pages/home/Explore";
 
+// site navigation links
 const links = [
   {
     name: "Channel",
@@ -51,6 +52,7 @@ export default function Nav({ className = "" }) {
               <MagnifyingGlassIcon />
             </Button>
           }
+          click
           className="@container w-200! gap-8 overflow-x-hidden"
         >
           <Search />

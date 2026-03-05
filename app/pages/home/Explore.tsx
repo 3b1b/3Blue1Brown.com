@@ -5,15 +5,13 @@ import {
   BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
-  EyeIcon,
   MagnifyingGlassIcon,
   XIcon,
 } from "@phosphor-icons/react";
-import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import Button from "~/components/Button";
+import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
-import Link from "~/components/Link";
 import Textbox from "~/components/Textbox";
 import { userSelected } from "~/pages/home/Theater";
 import { byDate, getLesson, hasContent } from "~/pages/lessons/lessons";
@@ -50,14 +48,11 @@ export function Search() {
   // current topic
   const topicId = useAtomValue(topicAtom);
 
-  // current search
-  const [search, setSearch] = useAtom(searchAtom);
+  // current topic details
+  const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
 
   // current lesson
   const lessonId = useAtomValue(lessonAtom);
-
-  // current topic details
-  const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
 
   // current topic lesson details
   const lessons = useMemo(
@@ -69,11 +64,17 @@ export function Search() {
     [topic],
   );
 
+  // current search
+  const [search, setSearch] = useAtom(searchAtom);
+
   // search results
   const results = useFuzzySearch(lessons, search);
 
   // show all or truncate results
   const [all, setAll] = useState(false);
+
+  // current route
+  const location = useLocation();
 
   // on page load
   useEffect(() => {
@@ -81,9 +82,6 @@ export function Search() {
     if ((getAtom(topicAtom) || getAtom(searchAtom)) && !getAtom(lessonAtom))
       scrollTo(searchBox.current, { behavior: "instant" });
   }, []);
-
-  // current location
-  const location = useLocation();
 
   return (
     <>
@@ -131,10 +129,11 @@ export function Search() {
           className="grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1"
         >
           {Object.entries(topics).map(([id, { title, image }], index) => (
-            <Link
+            <Card
               key={index}
-              className="card"
               to={{ search: mergeSearch(location.search, `topic=${id}`) }}
+              image={image}
+              title={title}
               onClick={(event) => {
                 // only if not in header search popup
                 if (event.currentTarget?.closest("section"))
@@ -142,10 +141,7 @@ export function Search() {
                   scrollTo(searchBox.current, { behavior: "instant" });
               }}
               aria-label={`Explore topic "${title}"`}
-            >
-              <img src={image ?? ""} alt="" />
-              <div className="font-sans font-medium">{title}</div>
-            </Link>
+            />
           ))}
         </div>
       ) : results.length ? (
@@ -163,28 +159,17 @@ export function Search() {
                   index,
                 ) => (
                   <div key={index} className="flex flex-col gap-2">
-                    <Link
-                      className="card"
+                    <Card
                       to={{
                         pathname: "/",
                         search: mergeSearch(location.search, `lesson=${id}`),
                       }}
                       aria-label={`Play lesson "${title}"`}
-                      aria-current={lessonId === id}
-                    >
-                      <img
-                        src={getThumbnail(video)}
-                        alt=""
-                        className={clsx(lessonId === id && "opacity-50")}
-                      />
-                      <div className="font-sans font-medium">{title}</div>
-                      <div className="line-clamp-3">{description}</div>
-                      {lessonId === id && (
-                        <div className="absolute -top-2 -right-2 grid size-8 place-items-center rounded-full bg-theme text-white">
-                          <EyeIcon />
-                        </div>
-                      )}
-                    </Link>
+                      image={getThumbnail(video)}
+                      description={description}
+                      onClick={userSelected}
+                      active={lessonId === id}
+                    />
                     {hasContent(id) && (
                       <Button
                         size="sm"

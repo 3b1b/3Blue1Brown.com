@@ -19,7 +19,7 @@ export default function Collapsible({ title, children, className }: Props) {
     <_Collapsible.Root className="contents" open={open} onOpenChange={setOpen}>
       <_Collapsible.Trigger
         className={clsx(
-          "justify-start gap-2 rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/15",
+          "justify-start gap-2 rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/10",
           className,
         )}
       >

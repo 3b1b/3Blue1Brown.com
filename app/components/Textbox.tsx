@@ -70,7 +70,7 @@ export default function Textbox({
     <textarea
       ref={mergedRef}
       rows={6}
-      className="grow resize rounded-md border border-gray bg-white p-2 hover-ring"
+      className="grow resize rounded-md border border-gray bg-white p-2 hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -79,7 +79,7 @@ export default function Textbox({
   ) : (
     <input
       ref={mergedRef}
-      className="grow scroll-mt-12 rounded-md border border-gray bg-white p-2 hover-ring"
+      className="grow scroll-mt-12 rounded-md border border-gray bg-white p-2 hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}

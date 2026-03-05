@@ -1,7 +1,5 @@
-import { CaretUpIcon } from "@phosphor-icons/react";
-import { useWindowScroll } from "@reactuses/core";
-import Button from "~/components/Button";
 import Feedback from "~/components/Feedback";
+import Jump from "~/components/Jump";
 
 // small controls that hover in corner of screen
 export default function ViewCorner() {
@@ -10,21 +8,5 @@ export default function ViewCorner() {
       <Jump />
       <Feedback />
     </div>
-  );
-}
-
-// jump to top button
-function Jump() {
-  const { y } = useWindowScroll();
-
-  if (y <= 500) return null;
-
-  return (
-    <Button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Jump to top"
-    >
-      <CaretUpIcon />
-    </Button>
   );
 }

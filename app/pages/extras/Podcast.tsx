@@ -1,3 +1,4 @@
+import Card from "~/components/Card";
 import { H2, H3 } from "~/components/Heading";
 import Link from "~/components/Link";
 import podcast from "~/pages/podcast/images/3b1b-podcast.svg";
@@ -116,10 +117,12 @@ export default function Podcast() {
         <H3 className="sr-only">Episodes</H3>
 
         {episodes.map(({ title, video }, index) => (
-          <Link key={index} to={getWatch(video)} className="card" arrow={false}>
-            <img src={getThumbnail(video)} alt="" />
-            <div className="font-sans font-medium">{title}</div>
-          </Link>
+          <Card
+            key={index}
+            to={getWatch(video)}
+            image={getThumbnail(video)}
+            title={title}
+          />
         ))}
       </div>
     </section>

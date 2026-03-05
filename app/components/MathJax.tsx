@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
 
-// mathjax component
+// enable mathjax on page
 export default function MathJax() {
   // parse math on load
   useEffect(() => {

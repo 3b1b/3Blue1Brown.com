@@ -29,7 +29,7 @@ The Riemann zeta function is one of the most important objects in modern math, a
 
 Don’t worry, I’ll explain that animation you just saw further below. A lot of people know about this function because there’s a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the “Riemann hypothesis”.
 
-<PiCreature emotion="confused" flip={true} />
+<PiCreature emotion="confused" flip />
 
 Some of you may have heard of it in the context of the following divergent sum:
 
@@ -117,11 +117,7 @@ $$
 The term $\left(\frac{1}{2}\right)^2$ is familiar real number exponentiation, no issues there. But what about raising something to a pure imaginary number? If you want to really understand this, I've made <LessonLink id="eulers-formula-dynamically">several</LessonLink> <LessonLink id="eulers-formula-via-group-theory">other</LessonLink> <LessonLink id="eulers-formula-dynamically">lessons</LessonLink> on this very question.
 The upshot is that when you raise to the power of a purely imaginary number, which is to say $t \cdot i$ for a real value $t$, the result sits on the unit circle in the complex plane.
 
-<Figure
-  image="$lesson/complex_exp.png"
-  video="$lesson/complex_exp.mp4"
-  loop={true}
-/>
+<Figure image="$lesson/complex_exp.png" video="$lesson/complex_exp.mp4" loop />
 
 As you let that pure imaginary input walk up and the imaginary line, the resulting output walks around the unit circle. For a base like $\frac{1}{2}$, this output walks around the unit circle somewhat slowly. For a base farther away from $1$, like $\frac{1}{9}$, then as you let the input walk up and down the imaginary axis, the corresponding output would walk around the unit circle more quickly.
 
@@ -213,7 +209,7 @@ it then converges. However, in the case of the zeta function the rotation applie
 
 Let's try visualizing this function. It takes in inputs on this right half of the complex plane, and spits out outputs somewhere else on the complex plane. A nice way to understand complex functions is to picture them as transformations, meaning you look at each input to the function, and let it move over to its corresponding output.
 
-<PiCreature emotion="happy" flip={true} thought={true}>
+<PiCreature emotion="happy" flip thought>
   How can we visualize this for all complex inputs?
 </PiCreature>
 

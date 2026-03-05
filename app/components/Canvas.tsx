@@ -10,8 +10,11 @@ import { clamp } from "lodash-es";
 import { useInView } from "~/util/hooks";
 
 type Props = {
+  // pixel density
   scale?: number;
+  // render one frame
   render: (ctx: CanvasRenderingContext2D) => void;
+  // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
 } & Omit<ComponentProps<"canvas">, "onChange">;
 

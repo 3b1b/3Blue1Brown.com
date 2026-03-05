@@ -54,14 +54,17 @@ export default function Radios<O extends Option>({
           <label
             key={index}
             className={clsx(
-              "rounded-md focus-ring p-2 hocus:bg-theme/15",
+              "rounded-md p-2 focus-within-ring hocus:bg-theme/10",
               className,
             )}
           >
             <Radio.Root
               value={value}
               render={(props, { checked }) => (
-                <span {...props} className="flex flex-row items-center gap-4">
+                <span
+                  className="flex flex-row items-center gap-4 outline-none!"
+                  {...props}
+                >
                   {checked ? (
                     <RadioButtonIcon className="icon text-theme" />
                   ) : (

@@ -1,7 +1,11 @@
+import type { ComponentProps, ReactNode } from "react";
+import type { LessonFrontmatter } from "~/pages/lessons/lessons";
+import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useState } from "react";
-import { href } from "react-router";
+import { href, useLocation } from "react-router";
 import {
   BookOpenTextIcon,
+  CaretDoubleLeftIcon,
   CaretDoubleRightIcon,
   CaretLeftIcon,
   CaretRightIcon,
@@ -15,36 +19,59 @@ import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
 import YouTube, { play, playingAtom } from "~/components/YouTube";
 import {
-  getLatest,
+  getFirst,
+  getLast,
   getLesson,
-  getNextByDate,
-  getPreviousByDate,
+  getNext,
+  getPrevious,
   getRandom,
   hasContent,
 } from "~/pages/lessons/lessons";
-import { getNextByTopic, getPreviousByTopic } from "~/pages/lessons/topics";
+import { topics } from "~/pages/lessons/topics";
 import { getAtom, setAtom } from "~/util/atom";
 import { formatDate } from "~/util/string";
-import { share } from "~/util/url";
+import { mergeSearch, share } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Explore";
 
 // has user explicitly selected a lesson
 export const selectedAtom = atom(false);
-
+// mark that user explicitly selected a lesson
 export const userSelected = () => setAtom(selectedAtom, true);
 
 export default function Theater() {
   // current lesson
   const lessonId = useAtomValue(lessonAtom);
 
-  // latest lesson details
-  const latest = getLatest()?.frontmatter;
+  // latest lesson by date
+  const latest = getLast()?.frontmatter;
 
   // current lesson details
   const lesson = getLesson(lessonId)?.frontmatter ?? latest;
 
-  // is this latest lesson
-  const isLatest = latest?.id === lesson?.id;
+  // current topic id
+  const topicId = useAtomValue(topicAtom);
+
+  // current topic details
+  const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
+
+  // current topic lesson list
+  const topicLessons = topic?.lessons ?? undefined;
+
+  // random lesson in list
+  const random = getRandom(lessonId, topicLessons)?.frontmatter;
+
+  // first lesson in list
+  const first = getFirst(topicLessons)?.frontmatter;
+
+  // previous lesson in list
+  const previous =
+    lesson && getPrevious(lesson.id ?? "", topicLessons)?.frontmatter;
+
+  // next lesson in list
+  const next = lesson && getNext(lesson.id ?? "", topicLessons)?.frontmatter;
+
+  // last lesson in list
+  const last = getLast(topicLessons)?.frontmatter;
 
   // link to readable lesson
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
@@ -57,21 +84,6 @@ export default function Theater() {
 
   // is video playing
   const playing = useAtomValue(playingAtom);
-
-  // current topic
-  const topic = useAtomValue(topicAtom);
-
-  // previous video
-  const previous =
-    lesson &&
-    (topic
-      ? getPreviousByTopic(lesson.id ?? "")
-      : getPreviousByDate(lesson.id ?? ""));
-
-  // next video
-  const next =
-    lesson &&
-    (topic ? getNextByTopic(lesson.id ?? "") : getNextByDate(lesson.id ?? ""));
 
   // when lesson changes, start playing
   useEffect(() => {
@@ -93,33 +105,35 @@ export default function Theater() {
           }}
         />
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-4 max-md:flex-col max-md:text-center">
           {/* title */}
           <div className="grow font-sans text-lg">
             {lesson?.title}
-            {isLatest && <sup className="badge">New</sup>}
+            {lesson?.id === latest?.id && <sup className="badge">New</sup>}
           </div>
 
           {/* actions */}
-          {readExists && (
-            <Button size="sm" to={readLink}>
-              <BookOpenTextIcon />
-              Read
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {readExists && (
+              <Button size="sm" to={readLink}>
+                <BookOpenTextIcon />
+                Read
+              </Button>
+            )}
+            <Button
+              size="sm"
+              onClick={() => setDetails(!details)}
+              aria-expanded={details}
+              aria-controls="theater-details"
+            >
+              <InfoIcon />
+              Details
             </Button>
-          )}
-          <Button
-            size="sm"
-            onClick={() => setDetails(!details)}
-            aria-expanded={details}
-            aria-controls="theater-details"
-          >
-            <InfoIcon />
-            Details
-          </Button>
-          <Button size="sm" onClick={share}>
-            <ShareNetworkIcon />
-            Share
-          </Button>
+            <Button size="sm" onClick={share}>
+              <ShareNetworkIcon />
+              Share
+            </Button>
+          </div>
         </div>
 
         {details && (
@@ -133,47 +147,58 @@ export default function Theater() {
 
         <div className="flex flex-wrap items-center justify-center gap-4">
           {/* controls */}
-          <Button
-            size="sm"
-            to={{
-              pathname: href("/"),
-              search: "?lesson=" + (getRandom()?.frontmatter?.id ?? ""),
-            }}
-            onClick={userSelected}
-            suppressHydrationWarning
-          >
+          <Control current={lesson} target={random} suppressHydrationWarning>
             <DiceThreeIcon />
             Random
-          </Button>
-          <Button
-            size="sm"
-            to={{ search: "?lesson=" + (previous?.frontmatter?.id ?? "") }}
-            onClick={userSelected}
-            aria-disabled={!previous}
-          >
+          </Control>
+          <Control current={lesson} target={first}>
+            <CaretDoubleLeftIcon />
+            First
+          </Control>
+          <Control current={lesson} target={previous}>
             <CaretLeftIcon />
             Previous
-          </Button>
-          <Button
-            size="sm"
-            to={{ search: "?lesson=" + (next?.frontmatter?.id ?? "") }}
-            onClick={userSelected}
-            aria-disabled={!next}
-          >
+          </Control>
+          <Control current={lesson} target={next}>
             Next
             <CaretRightIcon />
-          </Button>
-          <Button
-            size="sm"
-            to={{ search: "?lesson=" + (latest?.id ?? "") }}
-            onClick={userSelected}
-            aria-disabled={!latest || isLatest}
-          >
-            Latest
+          </Control>
+          <Control current={lesson} target={last}>
+            Last
             <CaretDoubleRightIcon />
-          </Button>
+          </Control>
+
+          <div className="text-gray">
+            ({topic?.title ? <>In {topic.title}</> : <>By date</>})
+          </div>
         </div>
       </div>
     </>
+  );
+}
+
+type ControlProps = {
+  current?: LessonFrontmatter;
+  target?: LessonFrontmatter;
+  children: ReactNode;
+} & ComponentProps<typeof Button>;
+
+// control button under player
+function Control({ current, target, children, ...props }: ControlProps) {
+  // current route
+  const location = useLocation();
+
+  return (
+    <Button
+      size="sm"
+      to={{
+        search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
+      }}
+      onClick={userSelected}
+      aria-disabled={current?.id === target?.id}
+      {...props}
+    >
+      {children}
+    </Button>
   );
 }

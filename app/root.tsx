@@ -3,7 +3,7 @@ import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
 import { useEffect } from "react";
-import { Links, Outlet, Scripts } from "react-router";
+import { Links, Outlet, Scripts, ScrollRestoration } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
 import { load as loadDarkMode } from "~/components/DarkMode";
@@ -45,6 +45,7 @@ export default function App() {
           <ViewCorner />
           <Navigate />
           <MathJax />
+          <ScrollRestoration getKey={(location) => location.pathname} />
           <Scripts />
         </body>
       </html>
