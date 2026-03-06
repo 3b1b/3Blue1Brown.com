@@ -79,5 +79,5 @@ export default function Canvas({
 
   const refs = useMergedRefs(canvas, ref);
 
-  return <canvas ref={refs} {...props} />;
+  return <canvas ref={refs} aria-hidden="true" {...props} />;
 }

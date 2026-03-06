@@ -13,7 +13,7 @@ const colors = ["#3187ca"];
 // total length of animation, in sec
 const length = 1;
 // size of shape
-const scale = 150;
+const scale = 120;
 // size of particles
 const size = 3;
 // phosphor icons pi bold path
@@ -21,10 +21,19 @@ const shape = `M236,172a40,40,0,0,1-80,0V76H100V200a12,12,0,0,1-24,0V76H72a36,36
 
 // particle type
 type Particle = {
+  // unique id
   id: string;
-  x: number;
-  y: number;
+  // center of burst, anchor point for particle
+  center: Vector;
+  // particle translate from center
+  translate: Vector;
+  // scale from center
+  scale: number;
+  // rotation angle around center, in deg
+  rotate: number;
+  // particle radius
   size: number;
+  // particle color
   color: string;
 };
 
@@ -55,47 +64,53 @@ export const celebrate = (randPos = false) => {
   const width = window.innerWidth / 2;
   const height = window.innerHeight / 2;
 
-  // center of explosion
-  const centerX = randPos ? random(-width, width) : 0;
-  const centerY = randPos ? random(-height, height) : 0;
-
-  // get random points in shape
-  const rotate = random(-25, 25);
-  const points = samplePath(shape, count).map(({ x, y }) =>
-    Vector.fromObject({ x: x * scale, y: y * scale }).rotate(rotate),
+  // center of burst
+  const center = new Vector(
+    randPos ? random(-width, width) : 0,
+    randPos ? random(-height, height) : 0,
   );
 
+  // get random points in shape
+  const points = samplePath(shape, count).map(Vector.fromObject);
+
+  // random rotation per burst
+  const rotate = random(-25, 25);
+
   // create particle from each point
-  for (const { x, y } of points) {
+  for (const translate of points) {
     // starting props
     const particle: Particle = {
       id: uniqueId(),
-      x: centerX,
-      y: centerY,
+      center,
+      translate,
+      scale: 0,
+      rotate: 0,
       size: 0,
       color: sample(colors)!,
     };
-    const duration = random(length * 0.5, length);
+
+    // random duration per particle
+    const duration = random(0.75, 1) * length;
     // animate to end props
     gsap
       .timeline({
-        delay: random(0.25, true),
+        delay: random(0.1),
         // delete self on finish
         onComplete: () => removeParticle(particle.id),
       })
-      // animate position
+      // animate values up
       .to(particle, {
-        x: centerX + x,
-        y: centerY + y,
+        scale,
+        rotate,
         duration,
         ease: "circ.out",
       })
-      // animate size
+      // animate values up and down
       .to(
         particle,
         {
-          size: random(size * 0.5, size),
-          duration: duration * 0.5,
+          size: random(0.5, 1) * size,
+          duration: duration * 0.1,
           ease: "linear",
         },
         0,
@@ -104,7 +119,8 @@ export const celebrate = (randPos = false) => {
         particle,
         {
           size: 0,
-          duration: duration * 0.5,
+          delay: duration * 0.7,
+          duration: duration * 0.2,
           ease: "linear",
         },
         ">",
@@ -126,7 +142,15 @@ export default function Celebrate() {
       className="pointer-events-none fixed inset-0 z-100 size-full select-none"
       render={(ctx) => {
         // draw each particle
-        for (const { x, y, size, color } of Object.values(particles)) {
+        for (const {
+          center,
+          translate,
+          scale,
+          rotate,
+          size,
+          color,
+        } of Object.values(particles)) {
+          const { x, y } = center.add(translate.rotate(rotate).scale(scale));
           ctx.fillStyle = color;
           ctx.beginPath();
           ctx.arc(x, y, size, 0, 2 * Math.PI);
