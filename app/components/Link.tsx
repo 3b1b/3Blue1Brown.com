@@ -52,12 +52,23 @@ export default function Link({
   // are we already on target page
   const active = useMatch(to.toString()) && !external;
 
+  // add arrow
+  children = (
+    <>
+      {children}
+      {arrow && (
+        <>
+          <ArrowSquareOutIcon className="mb-1 ml-0.5 icon" />
+        </>
+      )}
+    </>
+  );
+
   // external link
   if (external)
     return (
       <a ref={ref} href={to} target={target} className={className} {...props}>
         {children}
-        {arrow && <ArrowSquareOutIcon className="mx-1 mb-1 icon" />}
       </a>
     );
 
@@ -78,7 +89,6 @@ export default function Link({
       {...props}
     >
       {children}
-      {arrow && <ArrowSquareOutIcon />}
     </RouterLink>
   );
 }

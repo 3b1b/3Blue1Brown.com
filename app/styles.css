@@ -185,7 +185,7 @@
   }
 
   a {
-    @apply text-theme hocus:text-current trim underline transition;
+    @apply text-theme hocus:text-current trim inline-block underline transition;
   }
 
   button {

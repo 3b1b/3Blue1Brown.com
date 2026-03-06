@@ -21,7 +21,7 @@ export default function Details() {
       <section className="bg-secondary/10">
         <H2>Find a job here?</H2>
 
-        <p className="text-center">
+        <p className="text-center text-balance">
           Did you find a job through this page? Let us know, we'd love to hear
           your story!
           <br />
