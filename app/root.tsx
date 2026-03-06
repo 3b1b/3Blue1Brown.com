@@ -3,7 +3,13 @@ import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
 import { useEffect } from "react";
-import { Links, Outlet, Scripts, ScrollRestoration } from "react-router";
+import {
+  Links,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLocation,
+} from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
 import { load as loadDarkMode } from "~/components/DarkMode";
@@ -11,14 +17,26 @@ import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
+import { useChanged } from "~/util/hooks";
 
 // app entrypoint
 export default function App() {
-  // scroll to hash on page load
+  const { pathname, hash } = useLocation();
+
+  const pathChanged = useChanged(pathname);
+  const hashChanged = useChanged(hash);
+
   useEffect(() => {
-    const { hash } = window.location;
-    if (hash) scrollTo(hash, undefined, true);
-  }, []);
+    // if hash defined, scroll to it
+    if (hash)
+      scrollTo(
+        hash,
+        undefined,
+        // if path changed (page load or new page), wait for layout shift
+        // otherwise (e.g. user clicked toc link), scroll immediately
+        pathChanged,
+      );
+  }, [hash, pathChanged, hashChanged]);
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>

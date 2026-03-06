@@ -13,7 +13,13 @@ export function Sha() {
 
   return (
     <div className="flex w-84 flex-col gap-2 self-center">
-      <Textbox multi rows={3} value={message} onChange={setMessage} />
+      <Textbox
+        multi
+        placeholder="Message to encode"
+        rows={3}
+        value={message}
+        onChange={setMessage}
+      />
       <Arrow />
       <Hash>{hash}</Hash>
     </div>
@@ -43,6 +49,7 @@ export function Zeroes() {
           type="number"
           step="1"
           min="0"
+          aria-label="Nonce"
           className="mt-1 rounded-md bg-dark-gray p-1"
           value={nonce}
           onInput={(event) => setNonce(event.currentTarget.value)}

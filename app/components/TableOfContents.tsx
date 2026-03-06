@@ -131,7 +131,6 @@ export default function TableOfContents() {
             )}
             to={{ hash: "#" + id }}
             replace
-            onClick={() => scrollTo("#" + id)}
           >
             {content}
           </Link>
