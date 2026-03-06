@@ -30,14 +30,14 @@ export default function Card({
     <Link
       arrow={false}
       className={clsx(
-        "group relative flex flex-col items-center justify-start gap-4 text-center text-balance text-black no-underline outline-none hocus:scale-102",
+        "group relative isolate flex flex-col items-center justify-start gap-4 text-center text-balance text-black no-underline outline-none hocus:scale-102",
         className,
       )}
       aria-current={active}
       {...props}
     >
       {/* do bg as inner el w/ expansion, so other els line up with surroundings */}
-      <div className="absolute -inset-2 rounded-md group-hocus-ring transition group-hocus:bg-theme/10" />
+      <div className="absolute -inset-2 -z-10 rounded-md group-hocus-ring transition group-hocus:bg-theme/10" />
 
       {image && (
         <img src={image} alt="" className={clsx(active && "opacity-50")} />

@@ -101,30 +101,28 @@ In those years, I've also had the pleasure of contributing to a number of differ
 
 <div className="flex flex-col gap-8">
 
-<Collapsible
-  title="What do you use to animate your videos?"
->
+<Collapsible title="What do you use to animate your videos?">
 
 <Image image={manim} className="max-w-100 self-center" alt="Manim" />
 
-<div className="my-8 flex flex-wrap justify-center gap-8">
+<div className="flex flex-wrap justify-center gap-8">
 
-<Button to="https://github.com/3b1b/manim" color="light">
+<Button to="https://github.com/3b1b/manim" color="light" size="sm">
   <GithubLogoIcon />
   Manim
 </Button>
 
-<Button to="https://github.com/3b1b/videos" color="light">
+<Button to="https://github.com/3b1b/videos" color="light" size="sm">
   <CodeIcon />
   Source for Videos
 </Button>
 
-<Button to="https://youtu.be/rbu7Zu5X1zI" color="light">
+<Button to="https://youtu.be/rbu7Zu5X1zI" color="light" size="sm">
   <PlayIcon />
   Video Demo
 </Button>
 
-<Button to="https://github.com/ManimCommunity/manim/" color="light">
+<Button to="https://github.com/ManimCommunity/manim/" color="light" size="sm">
   <GithubLogoIcon />
   Manim Community Edition
 </Button>
@@ -164,7 +162,7 @@ Where programmatic animations work best is where the code directly reflects the 
 
 For general topic requests — e.g. "Please make an explainer on X" — use this form:
 
-<Button to={site.forms.topic_suggestion} color="theme">
+<Button to={site.forms.topic_suggestion} color="theme" size="sm">
   <TableIcon />
   Suggest Topic
 </Button>
@@ -175,7 +173,7 @@ For general topic requests — e.g. "Please make an explainer on X" — use this
 
 For video pitches — i.e you have a vision for _how_ a given topic ought to be covered — use this form:
 
-<Button to={site.forms.video_pitch} color="theme">
+<Button to={site.forms.video_pitch} color="theme" size="sm">
   <TableIcon />
   Pitch Video
 </Button>
@@ -209,7 +207,12 @@ The name is just a reference to the logo, plus a desire for something deliberate
 
 <Collapsible title="Can I contribute/fix translations of the videos?">
 
-<Button to="https://criblate.com/" color="theme" className="self-center">
+<Button
+  to="https://criblate.com/"
+  color="theme"
+  size="sm"
+  className="self-center"
+>
   <TranslateIcon />
   Contribute Subtitles on Criblate
 </Button>

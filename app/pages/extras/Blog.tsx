@@ -23,7 +23,7 @@ export default function Blog() {
             <Card
               key={id}
               to={href("/blog/:id", { id })}
-              className="items-start gap-2 overflow-hidden bg-current/5 p-4 text-left"
+              className="items-start gap-2 bg-current/5 p-4 text-left"
               title={title}
               description={`${formatDate(date)} — ${description}`}
             >

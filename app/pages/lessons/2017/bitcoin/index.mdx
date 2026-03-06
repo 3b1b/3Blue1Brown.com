@@ -13,7 +13,7 @@ import Collapsible from "~/components/Collapsible";
 import Figure from "~/components/Figure";
 import LessonLink from "~/components/LessonLink";
 import PiCreature from "~/components/PiCreature";
-import Interactive from "./interactive";
+import { Sha, Zeroes } from "./interactives";
 
 <section>
 
@@ -76,7 +76,7 @@ So the protocol for being part of this system looks something like this:
 - Anyone can add lines to the ledger.
 - At the end of every month, everyone gets together to settle up with real money.
 
-Of course, there's a glaring problem with a public ledger like this where anyone can add a line. What's to prevent Bob from going in and writing "Alice pays Bob $100" without Alice approving?
+Of course, there's a glaring problem with a public ledger like this where anyone can add a line. What's to prevent Bob from going in and writing "Alice pays Bob \$100" without Alice approving?
 
 <Figure image="$lesson/without-signatures.png">
   On this public ledger, anyone can write any transaction they want.
@@ -115,7 +115,7 @@ So Alice's signature might be `00111010...` on one document, but `11101001...` o
 
 But a signature function is only useful if there's a corresponding function to verify that it's valid.
 
-The way this works is that everyone generates what's called a public key/private key pair, each of which looks like some string of 1's and 0's. The private key is sometimes also called the "secret" key, so that we can abbreviate it to <strong style={{ color: "#c00" }}>sk</strong> while abbreviating the public key as <strong style={{ color: "#38761d" }}>pk</strong>. As the names suggest, the secret key is something you should keep to yourself.
+The way this works is that everyone generates what's called a public key/private key pair, each of which looks like some string of 1's and 0's. The private key is sometimes also called the "secret" key, so that we can abbreviate it to <strong className="text-[#c00]">sk</strong> while abbreviating the public key as <strong className="text-[#38761d]">pk</strong>. As the names suggest, the secret key is something you should keep to yourself.
 
 <Figure image="$lesson/pk-and-sk.png">
   Each person gets their own public key and secret key.
@@ -124,11 +124,11 @@ The way this works is that everyone generates what's called a public key/private
 Any digital signature scheme will consist of two functions, one to produce a signature on a message, and another to verify that a signature is valid.
 
 $$
-\text{Sign(Message, \textcolor{red}{sk}) = \textcolor{blue}{Signature}}
+\text{Sign}(\text{Message}, \textcolor{red}{sk}) = \textcolor{blue}{Signature}
 $$
 
 $$
-\text{Verify(\textcolor{blue}{Signature}, Message, \textcolor{green}{pk}) = True/False}
+\text{Verify}(\textcolor{blue}{Signature}, Message, \textcolor{green}{pk}) = \text{True/False}
 $$
 
 Notice, the signing function requires using the secret key. The goal is that if Alice is the only one who knows her secret key, then only she is able to produce a signature. If that key is compromised, all bets are off.
@@ -139,13 +139,13 @@ The $\text{Verify}$ function is a way of asking "Was this signature on this mess
 
 As a brief side note, once we get to Bitcoin, this public key/private key pair is what defines an entity in the system. Your identity on the network is your public key, and knowing the corresponding private key is what allows you, and only you, to approve of transactions out of your wallet. If you lose that secret key, the ability to make transactions is lost forever, and if someone learns your secret key, they effectively become you in the system.
 
-Your relationship with the secret key is similar to your relationship with a $20 bill, or perhaps to a wallet full of bills, and what happens if _that_ gets lost or stolen.
+Your relationship with the secret key is similar to your relationship with a \$20 bill, or perhaps to a wallet full of bills, and what happens if _that_ gets lost or stolen.
 
 </Collapsible>
 
 Of course, so far I've said nothing about how these two functions $\text{Sign}$ and $\text{Verify}$ actually work. For this article we won't go into the details, which involve quite a bit of mathematical cleverness, but it would be worth you pausing to contemplate what properties you want it to have.
 
-The hope is that producing a valid signature requires knowing the secret key, but there is, inevitably, one other way to produce a valid signature. Because everyone knows the public key, someone could run the function $\text{Verify(\textcolor{blue}{Signature}, Message, \textcolor{green}{pk})}$ over and over on different potential signatures until one finally returns true.
+The hope is that producing a valid signature requires knowing the secret key, but there is, inevitably, one other way to produce a valid signature. Because everyone knows the public key, someone could run the function $\text{Verify}(\textcolor{blue}{Signature}, \text{Message}, \textcolor{green}{pk})$ over and over on different potential signatures until one finally returns true.
 
 For the digital signature scheme which Bitcoin uses[^1], there are $2^{256}$ possible signatures. It's hard to overstate just how many this is. To call it astronomically large would be giving too much credit to astronomy. In fact, I made a <LessonLink id="256-bit-security">supplemental lesson</LessonLink> devoted just to illustrating what a huge number this is.
 
@@ -165,13 +165,13 @@ So, returning to our ledger, we now have a way to sign transactions to verify th
 
 This is all well and good. Any new transaction on the ledger needs to be signed, and the only way to sign it is by knowing the secret key. The signature changes based on the content of the transaction, so copying signatures from one transaction to another won't work.
 
-But there's one problem here. Suppose Alice signs a transaction like "Alice pays Bob $100." Bob can't forge Alice's signature on new messages, but he _could_ just copy that same line as many times as he wants, since the message/signature combination is still valid.
+But there's one problem here. Suppose Alice signs a transaction like "Alice pays Bob \$100." Bob can't forge Alice's signature on new messages, but he _could_ just copy that same line as many times as he wants, since the message/signature combination is still valid.
 
 <Figure image="$lesson/duplicate-transaction.png">
   Anyone can create copies of previous transactions.
 </Figure>
 
-To solve this, we make it so that when you sign a transaction, the message has to include some unique ID associated with that transaction. That way, if Alice pays Bob $100 multiple times, each transaction requires a completely new signature.
+To solve this, we make it so that when you sign a transaction, the message has to include some unique ID associated with that transaction. That way, if Alice pays Bob \$100 multiple times, each transaction requires a completely new signature.
 
 <Figure image="$lesson/unique-ids.png">
   With these unique IDs, every new transaction must get a new signature, even if
@@ -200,13 +200,13 @@ The only real reason to revert to cash to settle up is if some people (_I'm look
   You don't actually *need* to settle up...
 </PiCreature>
 
-One thing you and your friend could do is have everyone pay $100 into the pot, and have the first few lines of the ledger read _Alice gets $100, Bob gets $100, etc._
+One thing you and your friend could do is have everyone pay \$100 into the pot, and have the first few lines of the ledger read _Alice gets \$100, Bob gets \$100, etc._
 
 <Figure image="$lesson/pay-in-100.png">
-  Everyone puts $100 in the pot to start.
+  Everyone puts \$100 in the pot to start.
 </Figure>
 
-Now, just don't accept transactions when someone is spending more than they have on the ledger. For example, after starting everyone off with $100, if the first two transactions are (_Charlie pays Alice $50_ and _Charlie pays Bob $50_), then if he were to try to add _Charlie pays You $20_, readers of the ledger would recognize this as being invalid.
+Now, just don't accept transactions when someone is spending more than they have on the ledger. For example, after starting everyone off with \$100, if the first two transactions are (_Charlie pays Alice \$50_ and _Charlie pays Bob \$50_), then if he were to try to add _Charlie pays You \$20_, readers of the ledger would recognize this as being invalid.
 
 <Figure image="$lesson/invalid.png">
   In this new system, we don't allow people to spend more than they have.
@@ -229,7 +229,7 @@ But suppose you and your friends completely detach your ledger from real cash, w
 
 <Figure image="$lesson/ledgerdollars.png" />
 
-You are, of course, free to exchange Ledger Dollars for real US dollars. For example, maybe Alice gives Bob a $10 bill in the real world in exchange for him adding and signing the transaction "Bob pays Alice 10 LD" to the communal ledger.
+You are, of course, free to exchange Ledger Dollars for real US dollars. For example, maybe Alice gives Bob a \$10 bill in the real world in exchange for him adding and signing the transaction "Bob pays Alice 10 LD" to the communal ledger.
 
 <Figure
   image="$lesson/exchange-for-usd.png"
@@ -237,7 +237,7 @@ You are, of course, free to exchange Ledger Dollars for real US dollars. For exa
   show="video"
 />
 
-But exchanges like this are not guaranteed in the protocol. It's now more analogous to how you might exchange Dollars for Euros or any other currency on the open market. It is its own independent thing. Also, if there's high demand to be part of ledger, it may require more than $10 of physical cash to get a transaction of 10LD pointed your way. And if there's little demand to be part of the system, it might require much less.
+But exchanges like this are not guaranteed in the protocol. It's now more analogous to how you might exchange Dollars for Euros or any other currency on the open market. It is its own independent thing. Also, if there's high demand to be part of ledger, it may require more than \$10 of physical cash to get a transaction of 10LD pointed your way. And if there's little demand to be part of the system, it might require much less.
 
 <Figure image="$lesson/exchange-currency.png" />
 
@@ -298,7 +298,7 @@ It's not random; it always gives the same output for the same document. But the 
 
 Here's a little playground where you can enter a message and see what its hash looks like using a special hash function known as SHA256, which is what bitcoin uses.
 
-<Interactive />
+<Sha />
 
 Notice how when you change the input text, the hash completely changes. In fact, for SHA256, the way that output changes as you slightly change the input is entirely unpredictable. This property is what makes it a _cryptographic_ hash function.
 
@@ -327,13 +327,13 @@ So how can we use this function to prove that a particular list of Bitcoin trans
 
 Consider the following challenge.
 
-In the box below I have a list of transactions, and beneath those transactions is a number. By default the number is zero, but you can change it. Everything in the box is considered one big document, and that document is being hashed using SHA256. Your goal is to change the number in the box so that the resulting hash starts with at least six zeroes.
+In the box below I have a list of transactions, and beneath those transactions is a number. By default the number is zero, but you can change it. Everything in the box is considered one big document, and that document is being hashed using SHA256. Your goal is to change the number in the box so that the resulting hash **starts with at least six zeroes**.
 
-<Interactive />
+<Zeroes />
 
 It's definitely possible, but it takes a while to find a solution. And, because the output of the hash function is unpredictable, there really is no better method than guessing and checking.
 
-This challenge gets exponentially harder as the number of zeroes required increases. Finding 7 zeroes is manageable, and the largest I've found gives 9. If you find any really excellent solutions, which produce lots of zeroes, leave them in the comments!
+This challenge gets exponentially harder as the number of zeroes required increases. Finding 7 zeroes is manageable, and the largest I've found gives 9. If you find any really excellent solutions, which produce lots of zeroes, let us know!
 
 Now suppose that someone shows you a list of transactions, and they say "I found a special number so that when you put this number at the end of the list of transactions, and apply SHA256 the entire thing, the first 30 bits of the output are all zeros".
 
@@ -538,7 +538,7 @@ And more then that, the hope is that you appreciate how powerful it is to be abl
 [^3]:
     It is possible to buy someone else's Bitcoin in the way we just discussed, but no new Bitcoin is created in that process; it just changes hands.
 
-    Here we're talking about the original step where everyone put in $100 at the very beginning of the ledger. That isn't how it really works in Bitcoin.
+    Here we're talking about the original step where everyone put in \$100 at the very beginning of the ledger. That isn't how it really works in Bitcoin.
 
 [^4]: Surprisingly, there isn't actually any rigorous proof which guarantees that it's difficult to compute in the reverse direction. But everyone seems to agree that it's incredibly hard, and a huge amount of modern security depends on this property of cryptographic hash functions.
 

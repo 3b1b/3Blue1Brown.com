@@ -28,8 +28,8 @@
   --color-secondary: oklch(60% 0.15 60);
 
   --color-black: oklch(0% 0 240);
-  --color-off-black: oklch(10% 0 240);
-  --color-dark-gray: oklch(30% 0 240);
+  --color-off-black: oklch(30% 0 240);
+  --color-dark-gray: oklch(45% 0 240);
   --color-gray: oklch(60% 0 240);
   --color-light-gray: oklch(95% 0 240);
   --color-off-white: oklch(98% 0 240);
@@ -51,8 +51,8 @@
   --color-off-black: oklch(98% 0 240);
   --color-dark-gray: oklch(95% 0 240);
   --color-gray: oklch(60% 0 240);
-  --color-light-gray: oklch(30% 0 240);
-  --color-off-white: oklch(10% 0 240);
+  --color-light-gray: oklch(45% 0 240);
+  --color-off-white: oklch(30% 0 240);
   --color-white: oklch(0% 0 240);
 
   --color-success: oklch(80% 0.15 180);

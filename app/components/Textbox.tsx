@@ -88,7 +88,11 @@ export default function Textbox({
   );
   return (
     <label
-      className={clsx("flex flex-col gap-2", !label && "contents", className)}
+      className={clsx(
+        "flex max-w-full flex-col gap-2",
+        !label && "contents",
+        className,
+      )}
     >
       {(label || help) && (
         <div className="flex items-center gap-2">
@@ -97,7 +101,7 @@ export default function Textbox({
           {props.required && <span className="text-error">*</span>}
         </div>
       )}
-      <div className="relative flex items-start">
+      <div className="relative flex max-w-full items-start">
         {input}
         <div
           ref={sideRef}

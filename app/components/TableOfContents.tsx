@@ -17,7 +17,7 @@ import { findClosest, firstInView, scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
-const spacing = 100;
+const spacing = 50;
 
 // table of contents on side of screen
 export default function TableOfContents() {
@@ -103,13 +103,13 @@ export default function TableOfContents() {
     >
       <div className="mb-4 flex items-center gap-4">
         {/* top text */}
-        <span className="grow p-2 font-medium">Table of Contents</span>
+        <span className="grow p-2 pl-4 font-medium">Table of Contents</span>
         {/* toggle button */}
         <button
           onClick={() => setOpen(!open)}
           className={clsx(
-            "size-10 gap-2 bg-white p-2 transition hocus:text-theme",
-            open ? "" : "translate-x-full shadow-md",
+            "size-10 gap-2 p-2 transition hocus:text-theme",
+            open ? "" : "translate-x-full bg-white shadow-md",
           )}
           aria-expanded={open}
           aria-label={open ? "Close" : "Table of contents"}

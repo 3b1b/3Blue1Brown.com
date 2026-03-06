@@ -14,14 +14,19 @@ type Props = {
 
 // show partial content with fade, with button to reveal more
 export default function ShowPartial({ className, children }: Props) {
-  const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col items-center gap-8">
       <div
+        ref={(element) => {
+          if (!element) return;
+          // calculate height to transition to when opening
+          element.style.maxHeight = open ? element.scrollHeight + "px" : "";
+        }}
         className={clsx(
-          "flex flex-col gap-8 overflow-hidden",
-          show ? "" : "max-h-50 to-transparent mask-b-from-50%",
+          "flex max-h-50 flex-col gap-8 overflow-hidden transition-all",
+          open ? "" : "to-transparent mask-b-from-50%",
           className,
         )}
       >
@@ -29,14 +34,14 @@ export default function ShowPartial({ className, children }: Props) {
       </div>
       <Button
         onClick={(event) => {
-          setShow(!show);
-          if (show) preserveScroll(event.currentTarget);
+          setOpen(!open);
+          if (open) preserveScroll(event.currentTarget);
         }}
         size="sm"
         color="light"
       >
-        {show ? <CaretDoubleUpIcon /> : <CaretDoubleDownIcon />}
-        {show ? "Show Less" : "Show More"}
+        {open ? <CaretDoubleUpIcon /> : <CaretDoubleDownIcon />}
+        {open ? "Show Less" : "Show More"}
       </Button>
     </div>
   );

@@ -112,8 +112,6 @@ export default function Podcast() {
           </div>
         </div>
 
-        <hr className="col-span-full" />
-
         <H3 className="sr-only">Episodes</H3>
 
         {episodes.map(({ title, video }, index) => (

@@ -44,7 +44,7 @@ export default function App() {
           <Outlet />
           <ViewCorner />
           <Navigate />
-          {/* <MathJax /> */}
+          <MathJax />
           <ScrollRestoration getKey={(location) => location.pathname} />
           <Scripts />
         </body>

@@ -16,7 +16,11 @@ export default function Collapsible({ title, children, className }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <_Collapsible.Root className="contents" open={open} onOpenChange={setOpen}>
+    <_Collapsible.Root
+      className="flex flex-col gap-8"
+      open={open}
+      onOpenChange={setOpen}
+    >
       <_Collapsible.Trigger
         className={clsx(
           "justify-start gap-2 rounded-md bg-current/5 p-2 font-medium hocus:bg-theme/10",
@@ -29,10 +33,15 @@ export default function Collapsible({ title, children, className }: Props) {
         {title}
       </_Collapsible.Trigger>
       <_Collapsible.Panel
+        ref={(element) => {
+          if (!element) return;
+          // calculate height to transition to when opening
+          element.style.maxHeight = open ? element.scrollHeight + "px" : "";
+        }}
         hiddenUntilFound
         className={clsx(
-          "flex h-(--collapsible-panel-height) shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-[height]",
-          open ? "" : "sr-only",
+          "flex max-h-0 shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-all",
+          open ? "" : "pointer-events-none -mb-12 opacity-0",
         )}
       >
         {children}

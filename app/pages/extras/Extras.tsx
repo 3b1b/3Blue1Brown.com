@@ -1,4 +1,7 @@
+import Footer from "~/components/Footer";
+import Header from "~/components/Header";
 import { H1 } from "~/components/Heading";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import Blog from "~/pages/extras/Blog";
@@ -10,15 +13,21 @@ export default function Extras() {
     <>
       <Meta title="Extras" />
 
-      <section className="bg-theme/10">
-        <H1>
-          <StrokeType>Extras</StrokeType>
-        </H1>
-      </section>
+      <Header />
 
-      <Other />
-      <Podcast />
-      <Blog />
+      <Main>
+        <section className="bg-theme/10">
+          <H1>
+            <StrokeType>Extras</StrokeType>
+          </H1>
+        </section>
+
+        <Other />
+        <Podcast />
+        <Blog />
+      </Main>
+
+      <Footer />
     </>
   );
 }

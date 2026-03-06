@@ -61,17 +61,8 @@ export const scrollTo = async (
 
   if (!element) return;
 
-  // track if user scrolled
-  let userScrolled = false;
-  window.addEventListener("scroll", () => (userScrolled = true), {
-    once: true,
-  });
-
   // wait for layout shifts to stabilize
   if (waitForLayoutShift) await waitForStable(() => getDocBbox(element).top);
-
-  // if user scrolled while waiting, abort
-  if (userScrolled) return;
 
   // scroll to element
   element.scrollIntoView(options);

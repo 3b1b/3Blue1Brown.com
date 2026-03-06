@@ -53,6 +53,9 @@ declare global {
 
 // initialize mathjax
 const init = async () => {
+  // ensure only one load
+  if (window.MathJax) return;
+
   // configure
   window.MathJax = {
     svg: {
