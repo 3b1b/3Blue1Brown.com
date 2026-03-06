@@ -1,8 +1,8 @@
 import gsap from "gsap";
 import { atom, useAtomValue } from "jotai";
-import { isEmpty, random, sample, uniqueId } from "lodash-es";
+import { isEmpty, random, sample, size, uniqueId } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { setAtom } from "~/util/atom";
+import { getAtom, setAtom } from "~/util/atom";
 import { samplePath } from "~/util/dom";
 import { Vector } from "~/util/vector";
 
@@ -14,8 +14,8 @@ const colors = ["#3187ca"];
 const length = 1;
 // size of shape
 const scale = 120;
-// size of particles
-const size = 3;
+// radius of particles
+const radius = 3;
 // phosphor icons pi bold path
 const shape = `M236,172a40,40,0,0,1-80,0V76H100V200a12,12,0,0,1-24,0V76H72a36,36,0,0,0-36,36,12,12,0,0,1-24,0A60.07,60.07,0,0,1,72,52H224a12,12,0,0,1,0,24H180v96a16,16,0,0,0,32,0,12,12,0,0,1,24,0Z`;
 
@@ -32,7 +32,7 @@ type Particle = {
   // rotation angle around center, in deg
   rotate: number;
   // particle radius
-  size: number;
+  radius: number;
   // particle color
   color: string;
 };
@@ -78,6 +78,9 @@ export const celebrate = (randPos = false) => {
 
   // create particle from each point
   for (const translate of points) {
+    // hard limit number of particles
+    if (size(getAtom(particlesAtom)) > 500) break;
+
     // starting props
     const particle: Particle = {
       id: uniqueId(),
@@ -85,7 +88,7 @@ export const celebrate = (randPos = false) => {
       translate,
       scale: 0,
       rotate: 0,
-      size: 0,
+      radius: 0,
       color: sample(colors)!,
     };
 
@@ -109,7 +112,7 @@ export const celebrate = (randPos = false) => {
       .to(
         particle,
         {
-          size: random(0.5, 1) * size,
+          radius: random(0.5, 1) * radius,
           duration: duration * 0.25,
           ease: "linear",
         },
@@ -118,7 +121,7 @@ export const celebrate = (randPos = false) => {
       .to(
         particle,
         {
-          size: 0,
+          radius: 0,
           duration: duration * 0.75,
           ease: "linear",
         },
@@ -146,13 +149,13 @@ export default function Celebrate() {
           translate,
           scale,
           rotate,
-          size,
+          radius,
           color,
         } of Object.values(particles)) {
           const { x, y } = center.add(translate.rotate(rotate).scale(scale));
           ctx.fillStyle = color;
           ctx.beginPath();
-          ctx.arc(x, y, size, 0, 2 * Math.PI);
+          ctx.arc(x, y, radius, 0, 2 * Math.PI);
           ctx.fill();
         }
       }}
