@@ -8,7 +8,6 @@ import {
   BookIcon,
   BracketsCurlyIcon,
   CalendarBlankIcon,
-  ShareNetworkIcon,
   UserIcon,
 } from "@phosphor-icons/react";
 import { find } from "lodash-es";
@@ -18,6 +17,7 @@ import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import { H1, H2 } from "~/components/Heading";
 import Link from "~/components/Link";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import ShowPartial from "~/components/ShowPartial";
 import StrokeType from "~/components/StrokeType";
@@ -30,13 +30,13 @@ import {
   getPreviousByTopic,
   getTopic,
 } from "~/pages/lessons/topics";
+import NotFound from "~/pages/NotFound";
 import { formatDate } from "~/util/string";
-import { share } from "~/util/url";
 
 // lesson page layout
 export default function Lesson({ params: { id } }: Route.ComponentProps) {
   const lesson = getLesson(id);
-  if (!lesson) return;
+  if (!lesson) return <NotFound />;
 
   const {
     // get component to render
@@ -66,23 +66,23 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
   return (
     <>
+      <Meta<Article>
+        title={title}
+        description={description}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: title,
+          description,
+          author: credits,
+          datePublished: date.toISOString(),
+          articleSection: chapter !== -1 ? `Chapter ${chapter}` : undefined,
+        }}
+      />
+
       <Header />
 
-      <main id="content" className="[&>section]:odd:bg-off-white">
-        <Meta<Article>
-          title={title}
-          description={description}
-          jsonLd={{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: title,
-            description,
-            author: credits,
-            datePublished: date.toISOString(),
-            articleSection: chapter !== -1 ? `Chapter ${chapter}` : undefined,
-          }}
-        />
-
+      <Main striped>
         {/* lesson header */}
         <section className="items-center gap-8 bg-theme/10!">
           {/* title */}
@@ -160,48 +160,41 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
         <Component />
 
         {/* nav */}
-        <section>
-          <Button color="theme" onClick={share} className="self-center">
-            <ShareNetworkIcon />
-            Share Lesson
-          </Button>
-
-          {(!!previous || !!next) && (
-            <div className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
-              {!!previous ? (
-                <Card
-                  to={href("/lessons/:id", { id: previous.id })}
-                  image={previous.image}
-                  title={
-                    <>
-                      <ArrowLeftIcon />
-                      Previous Lesson
-                    </>
-                  }
-                  description={previous.title}
-                />
-              ) : (
-                <div />
-              )}
+        {(!!previous || !!next) && (
+          <section className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
+            {!!previous ? (
+              <Card
+                to={href("/lessons/:id", { id: previous.id })}
+                image={previous.image}
+                title={
+                  <>
+                    <ArrowLeftIcon />
+                    Previous Lesson
+                  </>
+                }
+                description={previous.title}
+              />
+            ) : (
               <div />
-              {!!next ? (
-                <Card
-                  to={href("/lessons/:id", { id: next?.id })}
-                  image={next.image}
-                  title={
-                    <>
-                      Next Lesson
-                      <ArrowRightIcon />
-                    </>
-                  }
-                  description={next.title}
-                />
-              ) : (
-                <div />
-              )}
-            </div>
-          )}
-        </section>
+            )}
+            <div />
+            {!!next ? (
+              <Card
+                to={href("/lessons/:id", { id: next?.id })}
+                image={next.image}
+                title={
+                  <>
+                    Next Lesson
+                    <ArrowRightIcon />
+                  </>
+                }
+                description={next.title}
+              />
+            ) : (
+              <div />
+            )}
+          </section>
+        )}
 
         {/* patrons */}
         {!!patrons.length && (
@@ -225,7 +218,8 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             </ShowPartial>
           </section>
         )}
-      </main>
+      </Main>
+
       <Footer />
     </>
   );

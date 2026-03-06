@@ -12,7 +12,7 @@ credits:
 
 ## The Real Case
 
-One way to think about the function $e^t$ is to ask what properties it has. Probably the most important one, from some points of view the defining property, is that it’s a function which is equal to its own derivative. Together with the added condition that inputting $0$ returns $1$, it’s the only function with this property.
+One way to think about the function $e^t$ is to ask what properties it has. Probably the most important one, from some points of view the defining property, is that it's a function which is equal to its own derivative. Together with the added condition that inputting $0$ returns $1$, it's the only function with this property.
 
 <Figure image="1_equation.svg" />
 
@@ -20,7 +20,7 @@ You can illustrate what that means with a physical model: Think of $e^t$ as your
 
 <Figure image="1_img.png" video="1_img.mp4" show="video" />
 
-So even before knowing how to compute $e^t$ exactly, this ability to associate each position with the velocity you must have at that position paints a very strong intuitive picture of how the function must grow. You know you’ll be accelerating, at an accelerating rate, with an all-around feeling of things getting out of hand quickly.
+So even before knowing how to compute $e^t$ exactly, this ability to associate each position with the velocity you must have at that position paints a very strong intuitive picture of how the function must grow. You know you'll be accelerating, at an accelerating rate, with an all-around feeling of things getting out of hand quickly.
 
 <Figure image="ExpGraph.png" />
 
@@ -36,7 +36,7 @@ If that constant was negative, say -0.5, then your velocity vector is always -0.
 
 <Figure image="3_equation.svg" />
 
-Moving in such a way that your velocity always matches this flipped and squished copy of the position vector, you’d go the other direction, slowing down in exponential decay towards 0.
+Moving in such a way that your velocity always matches this flipped and squished copy of the position vector, you'd go the other direction, slowing down in exponential decay towards 0.
 
 <Figure image="-0.5_img.png" video="-0.5_img.mp4" show="video" />
 
@@ -44,7 +44,7 @@ Moving in such a way that your velocity always matches this flipped and squished
 
 What about if the constant was $i$, the imaginary unit? If your position was always $e^{it}$, how would you move as that time, $t$, ticks forward?
 
-Well, assuming there’s any way to make sense out of $e^{it}$, and assuming that derivatives still work the way we’d expect when extending to complex numbers, the derivative of your position $e^{it}$ would now always be $i$ times itself. Multiplying by $i$ has the effect of rotating numbers 90-degrees, and as you might expect, things only make sense here if we start thinking beyond the number line and in the complex plane.
+Well, assuming there's any way to make sense out of $e^{it}$, and assuming that derivatives still work the way we'd expect when extending to complex numbers, the derivative of your position $e^{it}$ would now always be $i$ times itself. Multiplying by $i$ has the effect of rotating numbers 90-degrees, and as you might expect, things only make sense here if we start thinking beyond the number line and in the complex plane.
 
 <Figure image="complex_equation.png" />
 <Question
@@ -73,21 +73,21 @@ Drawing this for all possible positions you might come across, we get a vector f
 
 <Figure image="ExpVectorField.png" video="vect_anim.mp4" />
 
-At time $t=0$, $e^{it}$ will be 1. There’s only one trajectory starting from that position where your velocity is always matching the vector it’s passing through, a 90-degree rotation of position. It’s when you go around the unit circle at a speed of 1 unit per second.
+At time $t=0$, $e^{it}$ will be 1. There's only one trajectory starting from that position where your velocity is always matching the vector it's passing through, a 90-degree rotation of position. It's when you go around the unit circle at a speed of 1 unit per second.
 
 <Figure video="rotate_anim.mp4" image="complex_img2.png" show="video" />
 
-So after $\pi$ seconds, you’ve traced a distance of $\pi$ around; $e^{i\pi} = -1$.
+So after $\pi$ seconds, you've traced a distance of $\pi$ around; $e^{i\pi} = -1$.
 
 <Figure image="e^ipi.png" />
 
-After $\tau = 2\pi$ seconds, you’ve gone full circle; $e^{i\tau} = 1$.
+After $\tau = 2\pi$ seconds, you've gone full circle; $e^{i\tau} = 1$.
 
 <Figure image="e^itau.png" />
 
 And more generally, $e^{it}$ equals a number $t$ radians [[1]](lessons/differential-equations/#footnotes) around this circle.
 
-Nevertheless, something might still feel immoral about putting an imaginary number up in that exponent. And you’d be right to question that! For values of $x$ which are not real numbers, what we write as $e^x$ has very little to do with repeated multiplication, and its relation to the number $e$ feels frankly more incidental than definitional. To dig in a little bit deeper, the <LessonLink id="matrix-exponents">next lesson</LessonLink> covers more general exponents, with a focus on matrices.
+Nevertheless, something might still feel immoral about putting an imaginary number up in that exponent. And you'd be right to question that! For values of $x$ which are not real numbers, what we write as $e^x$ has very little to do with repeated multiplication, and its relation to the number $e$ feels frankly more incidental than definitional. To dig in a little bit deeper, the <LessonLink id="matrix-exponents">next lesson</LessonLink> covers more general exponents, with a focus on matrices.
 
 ## Footnotes
 

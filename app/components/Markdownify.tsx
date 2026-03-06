@@ -38,19 +38,11 @@ export default function Markdownify({ noParagraph = false, children }: Props) {
 // replace components, in both markdownify runtime component and buildtime mdx rollup plugin
 // https://mdxjs.com/packages/mdx
 export const useMDXComponents = (noParagraph?: boolean): Components => ({
-  // render paragraphs as spans to avoid unwanted spacing
-  ...(noParagraph ? { p: "span" } : {}),
-
-  // links
-  a: (props) => {
-    const { href = "", children = <></>, ...rest } = props;
-    // replace footnote reference
-    if ("data-footnote-ref" in props) return <Footnote {...props} />;
-    return (
-      <Link to={href} {...rest}>
-        {children}
-      </Link>
-    );
+  // section
+  section: (props) => {
+    // turn footnotes section into different element to not interfere with alternating section colors
+    if ("data-footnotes" in props) return <aside {...props} />;
+    return <section {...props} />;
   },
 
   // h1
@@ -68,6 +60,21 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
 
   // h4
   h4: (props) => <H4 {...props} />,
+
+  // render paragraphs as spans to avoid unwanted spacing
+  ...(noParagraph ? { p: "span" } : {}),
+
+  // links
+  a: (props) => {
+    const { href = "", children = <></>, ...rest } = props;
+    // replace footnote reference
+    if ("data-footnote-ref" in props) return <Footnote {...props} />;
+    return (
+      <Link to={href} {...rest}>
+        {children}
+      </Link>
+    );
+  },
 
   // quote
   blockquote: (props) => {

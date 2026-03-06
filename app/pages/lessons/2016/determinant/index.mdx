@@ -54,18 +54,18 @@ So even though this transformation smooshes things about, it seems to leave area
   video="$lesson/figures/any_square.mp4"
 />
 
-Then, any shape that’s _not_ a grid square can be approximated by grid squares, with arbitrarily good approximations if you use small enough grid squares. So since the areas of all those tiny grid squares are being scaled by a certain amount, the area of the blob as a whole will be scaled by that amount.
+Then, any shape that's _not_ a grid square can be approximated by grid squares, with arbitrarily good approximations if you use small enough grid squares. So since the areas of all those tiny grid squares are being scaled by a certain amount, the area of the blob as a whole will be scaled by that amount.
 
 <Figure
   image="$lesson/figures/arbitrary_shape.svg"
   video="$lesson/figures/arbitrary_shape.mp4"
 />
 
-This special scaling factor, the factor by which a linear transformation changes areas, is called the “determinant” of that transformation.
+This special scaling factor, the factor by which a linear transformation changes areas, is called the "determinant" of that transformation.
 
 <Figure image="$lesson/figures/determinant_6.svg" />
 
-I’ll show how to compute the determinant of transformation using its matrix later on in this video, but understanding what it represents is much more important than the computation.
+I'll show how to compute the determinant of transformation using its matrix later on in this video, but understanding what it represents is much more important than the computation.
 
 For example, the determinant of a transformation would be $3$ if that transformation increases the area of a region by a factor of 3.
 
@@ -105,7 +105,7 @@ That last one is especially important; checking if the determinant of a given ma
 
 ## Negative determinant
 
-Actually, what I’ve said so far is not quite right. The full concept of the determinant allows for negative values, but what does the idea of scaling an area by a negative amount mean?
+Actually, what I've said so far is not quite right. The full concept of the determinant allows for negative values, but what does the idea of scaling an area by a negative amount mean?
 
 $$
 \det\left(
@@ -126,7 +126,7 @@ However, after this transformation now $L(\hat j)$ is on the right of $L(\hat i)
 
 <Figure image="$lesson/figures/j_right_of_i.svg" />
 
-If you thought of 2D space as a sheet of paper, a transformation like that one seems to turn over that sheet to the other side. Any transformations that do this are said to “invert the orientation of space”. Whenever this happens, the determinant will be negative. The absolute value of the determinant still tells you the factor by which areas have been scaled.
+If you thought of 2D space as a sheet of paper, a transformation like that one seems to turn over that sheet to the other side. Any transformations that do this are said to "invert the orientation of space". Whenever this happens, the determinant will be negative. The absolute value of the determinant still tells you the factor by which areas have been scaled.
 
 $$
 \det\left(
@@ -147,7 +147,7 @@ Since $\det\left(\begin{bmatrix}1 &2 \\3 &4\end{bmatrix}\right)=-2$, we know thi
 
 </FreeResponse>
 
-Why would the idea of negative area be a natural way to describe orientation flipping? Well, think about the series of transformations you get by slowly letting $\hat i$ get closer and closer to $\hat j$. As $\hat i$ gets closer, all of the areas in space are getting squished more and more, meaning the determinant approaches $0$. Once $\hat i$ lines up with $\hat j$, the determinant is $0$. Then if $\hat i$ continues the way it was going, doesn’t it feel kind of natural for the determinant to keep decreasing into negative numbers?
+Why would the idea of negative area be a natural way to describe orientation flipping? Well, think about the series of transformations you get by slowly letting $\hat i$ get closer and closer to $\hat j$. As $\hat i$ gets closer, all of the areas in space are getting squished more and more, meaning the determinant approaches $0$. Once $\hat i$ lines up with $\hat j$, the determinant is $0$. Then if $\hat i$ continues the way it was going, doesn't it feel kind of natural for the determinant to keep decreasing into negative numbers?
 
 <Figure video="$lesson/figures/determinant_graph.mp4" />
 
@@ -157,7 +157,7 @@ Why would the idea of negative area be a natural way to describe orientation fli
 
 ## In Three Dimensions
 
-Okay, so that’s the understanding of the determinant in two-dimensions, what do you think it should mean for three dimensions? It also tells you how much the transformation scales things, but this time, it tells you how much _volumes_ get scaled.
+Okay, so that's the understanding of the determinant in two-dimensions, what do you think it should mean for three dimensions? It also tells you how much the transformation scales things, but this time, it tells you how much _volumes_ get scaled.
 
 Just as in two dimensions, where this is easiest to think about by focusing on one particular square with area $1$, and watching only what happens to it. In three dimensions it helps to focus your attention on the specific $1\times 1\times 1$ cube whose edges are resting on the basis vectors $\hat i$, $\hat j$ and $\hat k$.
 
@@ -253,11 +253,11 @@ $$
 \color{red}b\color{green}c
 $$
 
-Here’s part of an intuition for this formula. Let’s say the terms $\color{red}b$ and $\color{green}c$ were zero. Then the term $\color{green}a$ tells you how much $\hat i$ is stretched in the $x$-direction, and the term $\color{red}d$ tells you how much $\hat j$ is stretched in the $y$-direction. So if the other terms were zero, it should make sense that $\color{green}a\color{black}\cdot\color{red}d$ gives the area of the rectangle that our favorite unit square turns into, like the $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ example from earlier.
+Here's part of an intuition for this formula. Let's say the terms $\color{red}b$ and $\color{green}c$ were zero. Then the term $\color{green}a$ tells you how much $\hat i$ is stretched in the $x$-direction, and the term $\color{red}d$ tells you how much $\hat j$ is stretched in the $y$-direction. So if the other terms were zero, it should make sense that $\color{green}a\color{black}\cdot\color{red}d$ gives the area of the rectangle that our favorite unit square turns into, like the $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ example from earlier.
 
 <Figure image="$lesson/figures/scale_determinant.svg" />
 
-Even if only one of $b$ or $c$ are zero, you’ll have a parallelogram with base $a$ and height $d$, so the area will still be $\color{green}a\color{black}\cdot\color{red}d$.
+Even if only one of $b$ or $c$ are zero, you'll have a parallelogram with base $a$ and height $d$, so the area will still be $\color{green}a\color{black}\cdot\color{red}d$.
 
 <Figure image="$lesson/figures/shear_determinant.svg" />
 
@@ -265,11 +265,11 @@ Loosely speaking, if both $b$ and $c$ are nonzero, the term $\color{red}b\color{
 
 <Figure image="$lesson/figures/determinant_diagram.svg" />
 
-If you feel like computing determinants by hand is something you need to know, then the only way to get it down is to just practice it with a few matrices, there’s not much I can say or show you that will drill in the computation.
+If you feel like computing determinants by hand is something you need to know, then the only way to get it down is to just practice it with a few matrices, there's not much I can say or show you that will drill in the computation.
 
 ### Three Dimensions
 
-This is all triply true for the three dimensional determinant. There is a formula, and if you feel like that’s something you need to know how to do, you should just practice on a few matrices, or, you know, go watch [Sal Khan](https://www.youtube.com/watch?v=v4MenooI1J0) work through a few.
+This is all triply true for the three dimensional determinant. There is a formula, and if you feel like that's something you need to know how to do, you should just practice on a few matrices, or, you know, go watch [Sal Khan](https://www.youtube.com/watch?v=v4MenooI1J0) work through a few.
 
 $$
 \begin{align*}
@@ -307,14 +307,14 @@ $$
 \end{align*}
 $$
 
-Honestly, I don’t think those computations fall into the essence of linear algebra, but I _definitely_ think that understanding what the determinant represents falls within that essence.
+Honestly, I don't think those computations fall into the essence of linear algebra, but I _definitely_ think that understanding what the determinant represents falls within that essence.
 
 </section>
 
 <section>
 ## Matrix Multiplication
 
-Here’s a kind of fun question to think about: If you multiply two matrices together, the determinant of the resulting matrix is the same as the product of the determinants of the original two matrices.
+Here's a kind of fun question to think about: If you multiply two matrices together, the determinant of the resulting matrix is the same as the product of the determinants of the original two matrices.
 
 $$
 \det(

@@ -17,9 +17,9 @@ A **transformer** is a special kind of neural network, a _Machine Learning Model
 
 <Figure image="predict.png" width="100%"/>
 
-At first, predicting the next word might feel like a different goal from generating new text. But once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what’s happening when you interact with ChatGPT and see it producing one word at a time.
+At first, predicting the next word might feel like a different goal from generating new text. But once you have a prediction model like this, one simple way to make this generate a longer piece is to give it an initial bit of text to work with, have it predict the next word, take a random sample from the distribution it just generated, then run it all again to make a new prediction based on all the text, including what it just added. This process of repeated prediction and sampling is essentially what's happening when you interact with ChatGPT and see it producing one word at a time.
 
-We'll first preview the transformer with a high-level perspective. We’ll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here’s what’s going on under the hood.
+We'll first preview the transformer with a high-level perspective. We'll spend much more time motivating, interpreting, and expanding on the details of each step, but in broad strokes, when one of these chatbots is generating text, here's what's going on under the hood.
 
 
 ### Tokens
@@ -41,7 +41,7 @@ The encoded vectors then pass through an **Attention Block** where they communic
 <Figure image="attent.png" width="100%"/>
 
 ### Multilayer Perceptron(Feed-Forward Layer)
-Following the Attention Block, these vectors then pass through a Multilayer Perceptron, or Feed-Forward Layer. Here, the vectors don’t talk to each other; they all go through the same operation in parallel. We’ll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
+Following the Attention Block, these vectors then pass through a Multilayer Perceptron, or Feed-Forward Layer. Here, the vectors don't talk to each other; they all go through the same operation in parallel. We'll talk later about how this step is a bit like asking a long list of questions about each vector and updating them based on the answers.
 
 <Figure image="multi.png" width="100%"/>
 
@@ -72,7 +72,7 @@ Some deep learning models have shown a remarkable increase in capability as they
 
 **First**, the input to the model has to be formatted as an array of real numbers. This could simply mean a list of numbers, a 2D array, or often higher-dimensional arrays, where the general term used here is _tensor_. The input data is progressively transformed into many different layers, always structured like some array of numbers, until it reaches the final layer as the output. For example, the final layer in our next-token-prediction model is the probability distribution over all possible next tokens.
 
-In deep learning, the model parameters are almost always referred to as **weights**, because for the most part, the only way they interact with the data being processed is through weighted sums. Typically, you will find the weights packaged together in matrices, and instead of seeing weighted sums written out explicitly in the mathematics of such a model, you only see matrix-vector products. It represents the same idea, since each component in the output of a matrix-vector product looks like a weighted sum, it’s just often conceptually cleaner to think about matrices filled with tunable parameters transforming vectors drawn from the data being processed.
+In deep learning, the model parameters are almost always referred to as **weights**, because for the most part, the only way they interact with the data being processed is through weighted sums. Typically, you will find the weights packaged together in matrices, and instead of seeing weighted sums written out explicitly in the mathematics of such a model, you only see matrix-vector products. It represents the same idea, since each component in the output of a matrix-vector product looks like a weighted sum, it's just often conceptually cleaner to think about matrices filled with tunable parameters transforming vectors drawn from the data being processed.
 
 To prevent the entire model from being linear, there will typically also be some nonlinear functions sprinkled in between these matrix-vector products, such as the softmax operation we will see at the end of this article.
 
@@ -100,7 +100,7 @@ The model parameters are almost always referred to as weights, as the only way m
 
 ## Embedding
 
-With all that as a foundation, let’s dig into the text-processing example, starting with this first step of breaking up the input into little chunks and turning those chunks into vectors. We mentioned earlier how these little chunks are called tokens, which might be pieces of words or punctuation. For the sake of simplicity, we will pretend that the input is cleanly broken into words. Since we humans think in words, this will make it much easier to reference little examples to clarify each step.
+With all that as a foundation, let's dig into the text-processing example, starting with this first step of breaking up the input into little chunks and turning those chunks into vectors. We mentioned earlier how these little chunks are called tokens, which might be pieces of words or punctuation. For the sake of simplicity, we will pretend that the input is cleanly broken into words. Since we humans think in words, this will make it much easier to reference little examples to clarify each step.
 
 ### Embedding Matrix
 
@@ -128,7 +128,7 @@ At least, kind of. Despite this being the classic example, for the model I was p
 
 The idea here is that it seems as if, during training, the model found it advantageous to choose embeddings such that one direction in this space encodes gender information.
 
-Another example of this would be taking the embedding of _Italy_, subtracting the embedding of _Germany_, and adding it to the embedding of _Hitler_. This results in something very close to the embedding of _Mussolini_. It’s as if the model learned to associate some directions with Italian-ness and others with WWII Axis leaders.
+Another example of this would be taking the embedding of _Italy_, subtracting the embedding of _Germany_, and adding it to the embedding of _Hitler_. This results in something very close to the embedding of _Mussolini_. It's as if the model learned to associate some directions with Italian-ness and others with WWII Axis leaders.
 
 <Figure image="italy.png" width="100%"/>
 
@@ -138,11 +138,11 @@ One bit of mathematical intuition helpful to have in mind as we continue is how 
 
 <Figure image="HowToDot.png" width="100%"/>
 
-For example, suppose we wanted to test if the embedding of _cats_ minus that of _cat_ represents a kind of plurality direction in this space. To test this, you could take the dot product between this vector and various singular and plural nouns. When I did this for a simple word-to-vector model while making this video, it looked like the plural ones do indeed end up with consistently higher values than singular ones. Also, taking this dot product with the embeddings of the words _one_, _two_, _three_, and _four_, they give increasing values, as if it’s quantitatively measuring how plural the model finds a given word.
+For example, suppose we wanted to test if the embedding of _cats_ minus that of _cat_ represents a kind of plurality direction in this space. To test this, you could take the dot product between this vector and various singular and plural nouns. When I did this for a simple word-to-vector model while making this video, it looked like the plural ones do indeed end up with consistently higher values than singular ones. Also, taking this dot product with the embeddings of the words _one_, _two_, _three_, and _four_, they give increasing values, as if it's quantitatively measuring how plural the model finds a given word.
 
 <Figure image="dotProduct.png" width="100%"/>
 
-Again, how specifically each word gets embedded is learned using data. The embedding matrix, whose columns store the embedding of each word, is the first pile of weights in our model. Using the GPT-3 numbers, the vocabulary size is 50,257, and again, technically this consists not of words, per se, but different little chunks of text called tokens. The embedding dimension is 12,288, giving us **617,558,016 weights** in total for this first step. Let’s go add that to a running tally, remembering that by the end we should count up to 175 billion weights.
+Again, how specifically each word gets embedded is learned using data. The embedding matrix, whose columns store the embedding of each word, is the first pile of weights in our model. Using the GPT-3 numbers, the vocabulary size is 50,257, and again, technically this consists not of words, per se, but different little chunks of text called tokens. The embedding dimension is 12,288, giving us **617,558,016 weights** in total for this first step. Let's go add that to a running tally, remembering that by the end we should count up to 175 billion weights.
 
 <Question 
     question={"In a vector space representing meanings, which of the following would you expect to be closest to the vector Embedding(Cat) - Embedding(Meow) + Embedding(Bark)"} 
@@ -160,7 +160,7 @@ In this vector space, Embedding(Cat) - Embedding(Meow) represents a sort of soun
 
 In the case of a transformer, we also want to think of the vectors in this embedding space as not merely representing individual words. For one thing, these embeddings will also encode information about the position of the word, but more importantly, they need to have the capacity to soak in context.
 
-For example, a vector that started its life as the embedding of the word “king” may progressively get tugged and pulled by the various blocks in the network to end up pointing in a much more nuanced direction that somehow encodes a king who lived in Scotland, who had achieved his post after murdering the previous king, who is being described in Shakespearean language, and so on.
+For example, a vector that started its life as the embedding of the word "king" may progressively get tugged and pulled by the various blocks in the network to end up pointing in a much more nuanced direction that somehow encodes a king who lived in Scotland, who had achieved his post after murdering the previous king, who is being described in Shakespearean language, and so on.
 
 <Figure image="king.png" width="100%"/>
 
@@ -183,15 +183,15 @@ For example, if the last word is _Professor_, and the context includes words lik
 
 ## Unembedding Matrix
 
-This process involves two steps. The first is to use another matrix that maps the very last vector in the context to a list of ~50,000 values, one for each token in the vocabulary, then there’s a function that normalizes this into a probability distribution, called _softmax_, which we’ll talk more about in just a second.
+This process involves two steps. The first is to use another matrix that maps the very last vector in the context to a list of ~50,000 values, one for each token in the vocabulary, then there's a function that normalizes this into a probability distribution, called _softmax_, which we'll talk more about in just a second.
 
 It might seem weird to only use the last embedding to make a prediction when there are thousands of other vectors in that last layer just sitting here with their own context-rich meanings. This has to do with how the training process turns out to be much more efficient if we use each vector in this final layer to simultaneously make a prediction for what comes immediately after it. We'll talk a lot more about the training process later.
 
-This is often called the **unembedding matrix**, and we'll give it the label $$W_U$$.  Again, like all the weight matrices we’ll see, its entries begin random but are tuned during the training process.
+This is often called the **unembedding matrix**, and we'll give it the label $$W_U$$.  Again, like all the weight matrices we'll see, its entries begin random but are tuned during the training process.
 
 <Figure image="WU.png" width="100%"/>
 
-Keeping score on our total number of parameters, the unembedding matrix has one row for each word in the vocabulary, giving 50,257 words, and each row has the same number of elements as the dimension of the embedding, giving 12,288 columns. It’s very similar to the embedding matrix, just with the dimensions of the rows and columns swapped, so it adds another 617M parameters to the network, making our parameter count so far a little over a billion; a small but not insignificant fraction of the 175 billion that we'll end up with in total.
+Keeping score on our total number of parameters, the unembedding matrix has one row for each word in the vocabulary, giving 50,257 words, and each row has the same number of elements as the dimension of the embedding, giving 12,288 columns. It's very similar to the embedding matrix, just with the dimensions of the rows and columns swapped, so it adds another 617M parameters to the network, making our parameter count so far a little over a billion; a small but not insignificant fraction of the 175 billion that we'll end up with in total.
 
 <Question 
     question={"If the model has a predefined vocabulary of 32,000 tokens and the dimension of the embedding matrix dimension is 10,000, the unembedding matrix has:"} 
@@ -211,7 +211,7 @@ The unembedding matrix is similar to the embedding matrix, but the dimensions of
 
 For the last lesson of this chapter, we will go over the softmax function, since it will appear again once we dive into the attention blocks.
 
-The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where so much of what we do looks like a matrix-vector products, the outputs we get by default won’t abide by this at all. The values are often negative or sometimes greater than 1, and they almost certainly don’t all add up to 1.
+The idea is that if we want a sequence of numbers to serve as a probability distribution, say a distribution over all possible next words, all the values should be between 0 and 1 and should all add up to be 1. However, in deep learning, where so much of what we do looks like a matrix-vector products, the outputs we get by default won't abide by this at all. The values are often negative or sometimes greater than 1, and they almost certainly don't all add up to 1.
 
 <Figure image="SoftMax.png" width="100%"/>
 

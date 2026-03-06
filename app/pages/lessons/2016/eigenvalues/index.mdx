@@ -22,7 +22,7 @@ import Question from "~/components/Question";
 >
 > \- Serge Lang
 
-Eigenvectors and eigenvalues are some of those topics that a lot of students find particularly unintuitive. Questions like “why are we doing this?” and “what does this actually mean?” are too often left floating away unanswered in a sea of computations. And as I've put out chapters in this series, many of you have commented about looking forward to visualizing this topic in particular.
+Eigenvectors and eigenvalues are some of those topics that a lot of students find particularly unintuitive. Questions like "why are we doing this?" and "what does this actually mean?" are too often left floating away unanswered in a sea of computations. And as I've put out chapters in this series, many of you have commented about looking forward to visualizing this topic in particular.
 
 I suspect that the reason for this is not so much that eigen-things are particularly complicated or poorly explained. In fact, it's comparatively straightforward, and I think most books do a fine job explaining it. The issue is that it only really makes sense if you have a solid visual understanding of many of the topics that precede it. Most important here is that you know how to think about matrices as linear transformations. But you also need to be comfortable with <LessonLink id="determinant">determinants</LessonLink>, <LessonLink id="linear-transformations">linear systems of equations</LessonLink>, and <LessonLink id="change-of-basis">change of basis</LessonLink>. Confusion about eigen-stuffs usually has more to do with a shaky foundation in one of these topics than it does with the eigenvectors and eigenvalues themselves.
 
@@ -502,7 +502,7 @@ The whole point of doing this with eigenvectors is that this new matrix is guara
 
 <Figure image="$lesson/figures/working-in-an-eigenbasis/ChangeOfBasisMatrix.light.svg" />
 
-A set of basis vectors which are all also eigenvectors is called an “eigenbasis”. For example, if you needed to compute the 100th power of this matrix, it would be much easier to change to an eigenbasis, compute the 100th power in that system, then convert back to the standard system. You can't do this with all transformations. A shear, for example, doesn't have enough eigenvectors to span all of space. But if you can find an eigenbasis, it can make matrix operations really lovely.
+A set of basis vectors which are all also eigenvectors is called an "eigenbasis". For example, if you needed to compute the 100th power of this matrix, it would be much easier to change to an eigenbasis, compute the 100th power in that system, then convert back to the standard system. You can't do this with all transformations. A shear, for example, doesn't have enough eigenvectors to span all of space. But if you can find an eigenbasis, it can make matrix operations really lovely.
 
 For anyone willing to work through a neat puzzle to see what this looks like in action, and how it can be used to produce surprising results, we'll put the puzzle prompt below. It's a bit of work, but we think you'll enjoy it.
 

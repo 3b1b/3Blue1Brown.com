@@ -42,7 +42,7 @@ Both of those properties are inherently spatial, and you can freely change your 
 
 <Figure image="$lesson/figures/introduction/DifferentCoordinateSystem.light.svg" />
 
-If vectors are not fundamentally lists of real numbers, and if their underlying essence is something more spatial, this raises the question of what mathematicians mean when they use the word “space”.
+If vectors are not fundamentally lists of real numbers, and if their underlying essence is something more spatial, this raises the question of what mathematicians mean when they use the word "space".
 
 </section>
 
@@ -88,7 +88,7 @@ For example, there's a perfectly reasonable notion of a linear transformation fo
   {3} x^2-1$
 </Figure>
 
-Sometimes in this context of functions you'll hear these called “operators” instead of “transformations”, but the meaning is the same. A natural question you might ask is what it means for a transformation of functions to be “linear”.
+Sometimes in this context of functions you'll hear these called "operators" instead of "transformations", but the meaning is the same. A natural question you might ask is what it means for a transformation of functions to be "linear".
 
 ### Standard definition of linear
 
@@ -110,7 +110,7 @@ The second property says that when you scale a vector $\vec{\mathbf{v}}$ by some
 
 <Figure image="$lesson/figures/standard-definition-of-linear/ScalingProperty.light.svg" />
 
-The way you'll often hear this described is that linear transformations “preserve” the operations of vector addition and scalar-vector multiplication. The idea of grid lines remaining parallel and evenly spaced that we've talked about before is really just an illustration of what these two properties mean in the specific case of points in 2d space.
+The way you'll often hear this described is that linear transformations "preserve" the operations of vector addition and scalar-vector multiplication. The idea of grid lines remaining parallel and evenly spaced that we've talked about before is really just an illustration of what these two properties mean in the specific case of points in 2d space.
 
 One of the most important consequences of these properties, which makes matrix-vector multiplication possible, is that a linear transformation is completely described by where it takes the basis vectors. Since any vector can be expressed by scaling and adding the basis vectors in some way, finding the transformed version of a vector comes down to scaling and adding the transformed basis vectors in that same way. As you'll see in just a moment, this is as true for functions as it is for arrows.
 
@@ -186,11 +186,11 @@ Take a moment to imagine yourself as a mathematician developing the theory of li
 
 <Figure image="$lesson/figures/abstract-vector-spaces/YouAsAMathematician.light.svg" />
 
-A set of vector-ish objects, like the set of all points in 3d space, the set of all lists of 4 numbers, the set of all finite polynomial functions, etc., is called a “vector space”. What you as the mathematician might do is say “Hey everyone, I don't want to think about all the different types of crazy vector spaces that y'all might come up with”, so you establish a list of rules that vector addition and scaling have to abide by in order for the results that you-the-mathematician discover to apply to someone's chosen definition of vectors.
+A set of vector-ish objects, like the set of all points in 3d space, the set of all lists of 4 numbers, the set of all finite polynomial functions, etc., is called a "vector space". What you as the mathematician might do is say "Hey everyone, I don't want to think about all the different types of crazy vector spaces that y'all might come up with", so you establish a list of rules that vector addition and scaling have to abide by in order for the results that you-the-mathematician discover to apply to someone's chosen definition of vectors.
 
 <Figure image="$lesson/figures/abstract-vector-spaces/Axioms.light.svg" />
 
-These rules are called “axioms”, and in the modern theory of linear algebra there are 8 axioms that any vector space must satisfy. They are all shown in the image above for anyone who wants to pause and ponder, but basically it's a checklist to be sure the notions of vector addition and scalar multiplication are reasonable.
+These rules are called "axioms", and in the modern theory of linear algebra there are 8 axioms that any vector space must satisfy. They are all shown in the image above for anyone who wants to pause and ponder, but basically it's a checklist to be sure the notions of vector addition and scalar multiplication are reasonable.
 
 These axioms are not so much fundamental rules of nature as they are an interface between you, the mathematician discovering results, and other people who may want to apply those results to new sorts of vector spaces.
 
@@ -204,7 +204,7 @@ You as the mathematician never have to think about all the possible crazy vector
 
 For example, this is why every textbook you find will define linear transformations in terms of additivity and scaling, rather than talking about grid lines remaining parallel and evenly spaced, even though the latter is more intuitive and, at least in my view, more helpful for first-time learners.
 
-So the mathematician's answer to “what are vectors?” is to ignore the question. In modern theory, the form they take doesn't matter: arrows, lists of numbers, functions, pi creatures, really they can be _anything_, so long as there is some notion of adding and scaling vectors that follows these rules.
+So the mathematician's answer to "what are vectors?" is to ignore the question. In modern theory, the form they take doesn't matter: arrows, lists of numbers, functions, pi creatures, really they can be _anything_, so long as there is some notion of adding and scaling vectors that follows these rules.
 
 It's like asking what the number 3 really is. Whenever it comes up concretely, it's in the context of some triplet of things. But in math it's treated as an abstraction of all possible triplets of things that lets you reason about all those triplets using a single idea.
 

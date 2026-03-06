@@ -133,13 +133,12 @@ export const shake = (element: Element | null | undefined) => {
 };
 
 // confetti animation
-export const celebrate = () => {
+export const celebrate = (x = 0.5, y = 0.5) => {
   confetti({
-    scalar: 0.5,
     spread: 360,
-    particleCount: 100,
-    ticks: 100,
-    origin: { x: 0.5, y: 0.5 },
+    particleCount: 50,
+    ticks: 200,
+    origin: { x, y },
     startVelocity: 10,
     gravity: 0,
     decay: 0.95,

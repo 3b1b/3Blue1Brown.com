@@ -26,13 +26,13 @@ This happens to be the expression that pops out if you unravel the formal defini
   image="figures/derivative-of-x-cubed-at-2-limit.svg" 
 />
 
-However, let’s just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola. Which makes sense because the function has a cubic term divided by a linear term.
+However, let's just think of it as any old function with an input $h$. Its graph is this nice continuous looking parabola. Which makes sense because the function has a cubic term divided by a linear term.
 
 <Figure
   image="figures/example-limit.svg" 
 />
 
-But actually, if you think about what’s going at $h=0$, plugging that in you’d get $0/0$, which is not defined. So really, this graph has a hole at that point.
+But actually, if you think about what's going at $h=0$, plugging that in you'd get $0/0$, which is not defined. So really, this graph has a hole at that point.
 
 <Figure
   image="figures/example-limit-hole.svg" 
@@ -44,14 +44,14 @@ You have to exaggerate to draw that hole, often with a little empty circle like 
   image="figures/example-limit-detail.svg" 
 />
 
-And wouldn’t you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn’t matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
+And wouldn't you agree that as $h$ approaches $0$, the corresponding output, the height of this graph, approaches $12$? And it doesn't matter which side you come at it from. That the limit of this ratio as $h$ goes to $0$ equals $12$.
 
 <Figure
   image="figures/example-limit-detail-appraoches.svg"
   video="figures/5.52-6.08.mp4"
 />
 
-Imagine you’re a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
+Imagine you're a mathematician inventing calculus, and someone skeptically asks "well what exactly do you mean by approach?" That would be an annoying question. I mean, come on, we all know what it means for one value to get closer to another. But let's start thinking about ways you might be able to answer that person completely unambigously.
 
 For a given range of inputs within some distance of $0$, excluding the forbidden point $0$, look at the corresponding outputs, all possible heights of the graph above that range.
 
@@ -115,29 +115,29 @@ As a counter example, consider a function that looks like the one shown below, w
   image="figures/counter-example.svg"
 />
 
-As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there’s not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
+As you approach $h = 0$ from the right, the function approaches $2$, but as you come at $0$ from the left, it approaches $1$. Since there's not a clear, unambiguous value that this function approaches as $h$ approaches $0$, the limit is simply not defined at that point.
 
 <Figure
   image="figures/counter-example-not-defined.svg"
 />
 
-One way to think of this is that when you look at any range of inputs around $0$, and the corresponding range of outputs, as you shrink that input range the corresponding outputs don’t narrow in on any specific value. Instead those outputs straddle a range that never even shrinks smaller than $1$, no matter how small your input range.
+One way to think of this is that when you look at any range of inputs around $0$, and the corresponding range of outputs, as you shrink that input range the corresponding outputs don't narrow in on any specific value. Instead those outputs straddle a range that never even shrinks smaller than $1$, no matter how small your input range.
 
 <Figure
   image="figures/counter-example-straddle.svg"
   video="figures/7.27-7.40.mp4"
 />
 
-This perspective of shrinking an input range around the limiting point, and seeing whether or not you’re restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
+This perspective of shrinking an input range around the limiting point, and seeing whether or not you're restricted in how much that shrinks the output range, leads to something called the "**epsilon delta**" definition of limits.
 
-You’ve already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn’t exist, that output range can’t get smaller than some value, no matter how much you shrink the input range around the limiting input.
+You've already seen the main idea: when a limit exists, you can make this output range as small as you want; but when the limit doesn't exist, that output range can't get smaller than some value, no matter how much you shrink the input range around the limiting input.
 
 <Figure
   image="figures/epsilon-delta.svg"
   caption="The limit $\displaystyle \lim _{h \rightarrow a} f(h)$ exists when the output range defined by $\epsilon$ (epsilon) can be made as small as you want and you can still find some $\delta$ (delta) which corresponds to the output range."
 />
 
-Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where it’s common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
+Let's phrase that same idea, but a little more precisely. In the context of this example where the limiting value was $12$, think of any distance away from $12$, where it's common to use the greek letter $\epsilon$ "epsilon" to denote that distance. And the intent here is going to be that this distance $\epsilon$ can be as small as you want.
 
 <Figure
   image="figures/epsilon-delta-example-epsilon.svg"

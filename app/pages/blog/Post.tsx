@@ -4,9 +4,11 @@ import type { Route } from "./+types/Post";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import { H1 } from "~/components/Heading";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import YouTube from "~/components/YouTube";
+import NotFound from "~/pages/NotFound";
 import { importAssets } from "~/util/import";
 import { formatDate } from "~/util/string";
 
@@ -40,7 +42,7 @@ export const [getPost, posts] = importAssets(
 // blog post page layout
 export default function Post({ params: { id } }: Route.ComponentProps) {
   const post = getPost(id);
-  if (!post) return;
+  if (!post) return <NotFound />;
 
   const {
     // get component to render
@@ -57,21 +59,22 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
 
   return (
     <>
-      <Header />
-      <main id="content" className="[&>section]:odd:bg-off-white">
-        <Meta<Article>
-          title={title}
-          description={description}
-          jsonLd={{
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: title,
-            description,
-            author,
-            datePublished: date.toISOString(),
-          }}
-        />
+      <Meta<Article>
+        title={title}
+        description={description}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: title,
+          description,
+          author,
+          datePublished: date.toISOString(),
+        }}
+      />
 
+      <Header />
+
+      <Main striped>
         <section className="items-center gap-8 bg-theme/10!">
           <H1>
             <StrokeType>{title}</StrokeType>
@@ -87,7 +90,8 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
         </section>
 
         <Component />
-      </main>
+      </Main>
+
       <Footer />
     </>
   );

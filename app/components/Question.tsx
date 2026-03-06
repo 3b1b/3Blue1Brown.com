@@ -140,7 +140,9 @@ export default function Question({
       </div>
 
       {state === "right" && (
-        <div className="flex flex-col gap-8 bg-light-gray p-8">{children}</div>
+        <div className="flex flex-col gap-8 rounded-md bg-light-gray p-8">
+          {children}
+        </div>
       )}
     </Form>
   );

@@ -11,13 +11,13 @@ credits:
 
 ## Light Quantum Mechanics
 
-Quantum mechanics is a huge topic, far more than what can be presented in a single lesson. The goal here is to present foundational intuitions through a specific example. What topic would set the right intuitions for someone before they dove into, say, the Feynman lectures? Well, a natural enough place to start, where quantum mechanics itself started, is light. Specifically, if you want to learn quantum, you have to understand waves and how they’re described mathematically. This leads to the conclusion of relating the energy in a purely classical wave to the probabilities that govern quantum behavior.
+Quantum mechanics is a huge topic, far more than what can be presented in a single lesson. The goal here is to present foundational intuitions through a specific example. What topic would set the right intuitions for someone before they dove into, say, the Feynman lectures? Well, a natural enough place to start, where quantum mechanics itself started, is light. Specifically, if you want to learn quantum, you have to understand waves and how they're described mathematically. This leads to the conclusion of relating the energy in a purely classical wave to the probabilities that govern quantum behavior.
 
 ## Maxwell's Equations
 
-Let’s learn some light quantum mechanics through the quantum mechanics of light. In fact, we’ll actually spend most of the time talking through the pre-quantum understanding of light, since that sets up the relevant wave mechanics. The thing is, a lot of ideas from quantum mechanics, like describing states as superpositions with various amplitudes and phases, come up in the context of classical waves in a way that doesn’t involve any of the quantum weirdness people might be familiar with. This also helps to appreciate what’s actually different in quantum mechanics, namely certain restrictions on how much energy these waves can have and how they behave when measured.
+Let's learn some light quantum mechanics through the quantum mechanics of light. In fact, we'll actually spend most of the time talking through the pre-quantum understanding of light, since that sets up the relevant wave mechanics. The thing is, a lot of ideas from quantum mechanics, like describing states as superpositions with various amplitudes and phases, come up in the context of classical waves in a way that doesn't involve any of the quantum weirdness people might be familiar with. This also helps to appreciate what's actually different in quantum mechanics, namely certain restrictions on how much energy these waves can have and how they behave when measured.
 
-In the late 1800’s, light was understood to be a wave in the electromagnetic field. Let’s break that down. The electric field is a vector field. That means every point in space has some arrow attached to it indicating the direction and strength of the field.
+In the late 1800's, light was understood to be a wave in the electromagnetic field. Let's break that down. The electric field is a vector field. That means every point in space has some arrow attached to it indicating the direction and strength of the field.
 
 <Figure image="electric_vec_field.png" video="electric_vec_field.mp4" width="100%" caption="Each particle will accelerate in the direction of the nearby arrow." />
 
@@ -25,7 +25,7 @@ The physical meaning of those arrows is that if you have a charged particle in s
 
 Likewise, the magnetic field is also a vector field. Now the physical meaning of each arrow is that when a charged particle is moving through space, there is a force orthogonal to both its direction of motion and to the direction of the magnetic field. The strength of that force is proportional to the charge of the particle, its velocity, and the length of that arrow.
 
-<Figure image="magnetic_vec_field.png" video="magnetic_vec_field.mp4" width="100%" caption="Each particle will accelerate in a direction perpendicular to both the velocity and direction of the field at the particle’s position. The direction can be found using the [right hand rule](https://en.wikipedia.org/wiki/Right-hand_rule)." />
+<Figure image="magnetic_vec_field.png" video="magnetic_vec_field.mp4" width="100%" caption="Each particle will accelerate in a direction perpendicular to both the velocity and direction of the field at the particle's position. The direction can be found using the [right hand rule](https://en.wikipedia.org/wiki/Right-hand_rule)." />
 
 For example, a wire with a current of moving charges next to a magnet is either pushed or pulled by that magnetic field. 
 
@@ -35,7 +35,7 @@ In the illustration above, the charged particles moving through the wire produce
 
 <Spoiler>The direction of the force flips 180 degrees and will point downward instead.</Spoiler>
 
-A breakthrough in 19th century physics of understanding how these two fields work are Maxwell’s equations, which among other things describe how each of these fields can cause a change to the other. Specifically, Maxwell’s equations tell us when the electric field arrows seem to be forming a loop around some region, the equations dictate that the magnetic field will be increasing in that region, orthogonal to the plane of the loop.
+A breakthrough in 19th century physics of understanding how these two fields work are Maxwell's equations, which among other things describe how each of these fields can cause a change to the other. Specifically, Maxwell's equations tell us when the electric field arrows seem to be forming a loop around some region, the equations dictate that the magnetic field will be increasing in that region, orthogonal to the plane of the loop.
 
 <Figure image="vxe=dbdt.png" />
 
@@ -43,21 +43,21 @@ Symmetrically, such a loop in the magnetic field causes a change to the electric
 
 <Figure image="vxb=dedt.png" />
 
-The specifics for how exactly these equations work are really beautiful, and worth checking out <LessonLink id="divergence-and-curl">their own video</LessonLink>. For now, all you need to know is that one natural consequence of this mutual interplay in how changes to one field cause changes to the other is that you get these propagating waves where the electric and magnetic fields are oscillating, perpendicular to each other, and perpendicular to the direction of propagation. When you hear the term “electromagnetic radiation,” which refers to things like radio waves and visible light, it is fundamentally a propagating wave in the electric and magnetic fields.
+The specifics for how exactly these equations work are really beautiful, and worth checking out <LessonLink id="divergence-and-curl">their own video</LessonLink>. For now, all you need to know is that one natural consequence of this mutual interplay in how changes to one field cause changes to the other is that you get these propagating waves where the electric and magnetic fields are oscillating, perpendicular to each other, and perpendicular to the direction of propagation. When you hear the term "electromagnetic radiation," which refers to things like radio waves and visible light, it is fundamentally a propagating wave in the electric and magnetic fields.
 
 If you isolate a point in the electromagnetic field that the radiation passes through, the vectors attached to the point representing the electric and magnetic components of the field oscillate with respect to time and form the wave shape shown below. 
 
 <Figure image="em_radiation.png" show="video" width="100%" video="em_radiation.mp4" />
 
-Of course, it’s now almost mainstream to know of light as “electromagnetic radiation,” but it’s neat to think about just how surprising this must have been in Maxwell’s time. That these fields which have to do with forces on charged particles not only have something to do with light, but that light is defined as a propagating wave in these two dancing fields. The fields are tied together in this mutual oscillation of increasing and decreasing magnitude.
+Of course, it's now almost mainstream to know of light as "electromagnetic radiation," but it's neat to think about just how surprising this must have been in Maxwell's time. That these fields which have to do with forces on charged particles not only have something to do with light, but that light is defined as a propagating wave in these two dancing fields. The fields are tied together in this mutual oscillation of increasing and decreasing magnitude.
 
 <Figure image="components_of_light.png" width="50%" />
 
 ## Describing Waves
 
-Let’s take a moment to lay down the math used to describe waves. It’ll still be purely classical, but ideas that are core to quantum mechanics, like superposition, amplitudes and phases come up in this context. Arguably, there is a clearer motivation for what they actually mean.
+Let's take a moment to lay down the math used to describe waves. It'll still be purely classical, but ideas that are core to quantum mechanics, like superposition, amplitudes and phases come up in this context. Arguably, there is a clearer motivation for what they actually mean.
 
-Think of the electromagnetic wave as directed straight out of the screen towards your face. Let’s go ahead and ignore the magnetic field, just looking at how the electric field oscillates. Also, we’ll focus only on the oscillating vector on the plane of the screen, which we’ll think of as the $xy$-plane.
+Think of the electromagnetic wave as directed straight out of the screen towards your face. Let's go ahead and ignore the magnetic field, just looking at how the electric field oscillates. Also, we'll focus only on the oscillating vector on the plane of the screen, which we'll think of as the $xy$-plane.
 
 <Figure image="e_horizontally_polarized.png" show="video" video="e_horizontally_polarized.mp4" width="100%" />
 
@@ -78,11 +78,11 @@ Gamma waves have the highest frequency, which means they have the shortest amoun
 
 </Question>
 
-We’ll include another term in our wave equation, $\phi$, called the “phase shift.” It tells us where that vector is at time $t=0$. You’ll see why that’s important later on.
+We'll include another term in our wave equation, $\phi$, called the "phase shift." It tells us where that vector is at time $t=0$. You'll see why that's important later on.
 
 <Figure image="phi_phase_shift.png" width="50%" />
 
-By default, cosine only oscillates between the values of $-1$ and $1$, so let’s put another term $A_x$ in the front here to give us the amplitude of the wave.
+By default, cosine only oscillates between the values of $-1$ and $1$, so let's put another term $A_x$ in the front here to give us the amplitude of the wave.
 
 <Figure image="Ax_amplitude.png" />
 
@@ -104,7 +104,7 @@ The cosine and sine functions have a phase difference of $\frac{\pi}{2}$, by set
 
 ## Classical Wave Mechanics
 
-To make things look a little more like they often do in quantum mechanics, instead of writing as a column vector, we’ll separate the two components using these symbols, called “kets.”
+To make things look a little more like they often do in quantum mechanics, instead of writing as a column vector, we'll separate the two components using these symbols, called "kets."
 $$
 \overrightarrow{\mathbf{E}} = \begin{bmatrix} A_x\cos(2\pi f_x t + \phi_x) \\ 0 \end{bmatrix}= A_x\cos(2\pi f_x t+\phi_x)|\to\rang+0|\uparrow\rang
 $$
@@ -114,19 +114,19 @@ If the light is vertically polarized, meaning the electric field is wiggling pur
 
 <Figure image="e_vertically_polarized.png" show="video" video="e_vertically_polarized.mp4" width="100%" />
 
-If you have two distinct waves; two ways of wiggling through space over time that solve Maxwell’s equations, then adding both of these together gives another valid wave, at least in a vacuum. 
+If you have two distinct waves; two ways of wiggling through space over time that solve Maxwell's equations, then adding both of these together gives another valid wave, at least in a vacuum. 
 
 <Figure image="adding_waves.png" video="adding_waves.mp4" width="100%" />
 
-That is, at each point in time, add these two vectors tip to tail to get a new vector. Doing that at all points in space, and all points in time, gives a new valid solution to Maxwell’s equations.
+That is, at each point in time, add these two vectors tip to tail to get a new vector. Doing that at all points in space, and all points in time, gives a new valid solution to Maxwell's equations.
 
 <Figure image="add_every_point.png" video="add_every_point.mp4" width="100%" />
 
-This is because Maxwell’s equations in a vacuum are what’s called “linear” equations. They’re essentially a combination of derivatives acting on the electric and magnetic fields to give zero. If one field $F_1$ satisfies this equation $dF_1=0$, and another field $F_2$ satisfies it $dF_2=0$, then their sum, $F_1+F_2$, also satisfies it, since derivatives distribute. So the sum of two (or more) solutions is also a solution.
+This is because Maxwell's equations in a vacuum are what's called "linear" equations. They're essentially a combination of derivatives acting on the electric and magnetic fields to give zero. If one field $F_1$ satisfies this equation $dF_1=0$, and another field $F_2$ satisfies it $dF_2=0$, then their sum, $F_1+F_2$, also satisfies it, since derivatives distribute. So the sum of two (or more) solutions is also a solution.
 
 <Figure image="derivatives_distribute.png" width="60%" caption="The derivative operator is linear, so it can be distributed to the fields." />
 
-The new wave is called a “superposition” of the first two. Superposition essentially means “sum,” or in some contexts, a “weighted sum,” since if you include some kind of amplitude or phase shift to each of these components, it can still be called a superposition of the two original vectors.
+The new wave is called a "superposition" of the first two. Superposition essentially means "sum," or in some contexts, a "weighted sum," since if you include some kind of amplitude or phase shift to each of these components, it can still be called a superposition of the two original vectors.
 
 <Figure image="weighted_sum.png" show="video" video="weighted_sum.mp4" loop width="100%" />
 
@@ -134,7 +134,7 @@ The resulting superposition is a wave wiggling in the diagonal direction. But if
 
 <Figure image="ellipse_phase.png" show="video" video="ellipse_phase.mp4" width="100%" />
 
-In the case where the phases are exactly 90 degrees out of sync with each other, and amplitudes are equal, we call this circularly polarized light. This is why it’s important to keep track not just of the amplitude in each direction, but also of the phase. It affects the way that two waves add together. That’s an important idea which carries over to quantum.
+In the case where the phases are exactly 90 degrees out of sync with each other, and amplitudes are equal, we call this circularly polarized light. This is why it's important to keep track not just of the amplitude in each direction, but also of the phase. It affects the way that two waves add together. That's an important idea which carries over to quantum.
 
 <Figure image="circularly_polarized.png" video="circularly_polarized.mp4" width="100%" />
 
@@ -149,27 +149,27 @@ In the case where the phases are exactly 90 degrees out of sync with each other,
   choice5="An ellipse" 
   answer={4}>
 
-It cannot be a horizontal nor a vertical line because neither amplitude is zero. It cannot be a diagonal line because the phases aren’t the same. The phases are exactly $\frac{\pi}{2}$ radians out of sync and the amplitudes are equal, so it must trace out a circle.
+It cannot be a horizontal nor a vertical line because neither amplitude is zero. It cannot be a diagonal line because the phases aren't the same. The phases are exactly $\frac{\pi}{2}$ radians out of sync and the amplitudes are equal, so it must trace out a circle.
 
 </Question>
 
-Alright, here’s another important idea: We’re describing waves by adding together horizontal and vertical components, but we could also choose to describe everything with respect to different directions.
+Alright, here's another important idea: We're describing waves by adding together horizontal and vertical components, but we could also choose to describe everything with respect to different directions.
 
 For example, you could describe waves as some superposition of the diagonal and antidiagonal directions. In that case, vertically polarized light would be a superposition of these two where both are in phase with each other, and where each has equal magnitude.
 
 <Figure image="vertical_as_diagonal.png" width="50%" />
 
-The choice of which directions you write things in terms of is called a “basis”. Which basis is nicest to work with typically depends on what you are actually doing with the light.
+The choice of which directions you write things in terms of is called a "basis". Which basis is nicest to work with typically depends on what you are actually doing with the light.
 
 <Figure image="choice_of_basis.png" video="choice_of_basis.mp4" width="100%" />
 
 ## What is a Polarizer?
 
-If you have a polarizing filter, like that from a set of polarized sunglasses, the way these work is by absorbing the energy from electromagnetic oscillations in some direction. A vertically oriented polarizer will absorb all the energy from these waves in the horizontal direction. At least, classically that’s how you might think about it.
+If you have a polarizing filter, like that from a set of polarized sunglasses, the way these work is by absorbing the energy from electromagnetic oscillations in some direction. A vertically oriented polarizer will absorb all the energy from these waves in the horizontal direction. At least, classically that's how you might think about it.
 
 <Figure image="vertical_polarizer.png" width="60%" />
 
-If you are analyzing light passing through a filter like this, it’s nice to describe it with respect to the horizontal and vertical directions. So you can say that what passes through the filter is the vertical component of that wave.
+If you are analyzing light passing through a filter like this, it's nice to describe it with respect to the horizontal and vertical directions. So you can say that what passes through the filter is the vertical component of that wave.
 
 <Figure image="vertical_component.png" video="vertical_component.mp4" show="video" width="100%" imageCaption="This polarizer only lets through the vertical component of the wave. In the first example, the horizontal component is much larger, so the resulting wave is small. In the second example, the wave is nearly vertical, so the resulting wave is almost as large." videoCaption="This polarizer only lets through the vertical component of the wave. When the wave is almost sideways, the horizontal component is much larger, so the resulting wave is small. When the wave is nearly vertical, the resulting wave is almost as large." />
 
@@ -183,11 +183,11 @@ These ideas will carry over almost word for word to the quantum case: Quantum st
 
 <Figure image="quantum_waves_description.png" width="70%" />
 
-For those of you who do read more into quantum mechanics, you’ll find that these components are actually given using a single complex number, rather than a cosine expression like this one. One way to think of this is that complex numbers are just a very convenient and natural way to encode an amplitude $A$ and a phase $\phi$ with a single value.
+For those of you who do read more into quantum mechanics, you'll find that these components are actually given using a single complex number, rather than a cosine expression like this one. One way to think of this is that complex numbers are just a very convenient and natural way to encode an amplitude $A$ and a phase $\phi$ with a single value.
 
 <Figure image="complex_amplitude.png" width="70%" />
 
-That can make things a little confusing, because it’s hard to visualize a pair of complex numbers, which is what would describe a superposition of two base states. But just remember that the use of complex numbers throughout quantum physics is really a result of the underlying wave mechanics, because of this need to encapsulate the amplitude and the phase for each direction.
+That can make things a little confusing, because it's hard to visualize a pair of complex numbers, which is what would describe a superposition of two base states. But just remember that the use of complex numbers throughout quantum physics is really a result of the underlying wave mechanics, because of this need to encapsulate the amplitude and the phase for each direction.
 
 <Figure image="two_complex.png" width="70%" />
 
@@ -200,7 +200,7 @@ That can make things a little confusing, because it’s hard to visualize a pair
   choice5="$2e^{2\pi ift}|\nwarrow\rang$" 
   answer={5}>
 
-The polarizer only lets through the part of the wave aligned with it: $|\nwarrow\rang$. So it sets the other basis state’s amplitude to zero: $0|\nearrow\rang+2e^{2\pi ft}|\nwarrow\rang=2e^{2\pi ft}|\nwarrow\rang$.
+The polarizer only lets through the part of the wave aligned with it: $|\nwarrow\rang$. So it sets the other basis state's amplitude to zero: $0|\nearrow\rang+2e^{2\pi ft}|\nwarrow\rang=2e^{2\pi ft}|\nwarrow\rang$.
 
 </Question>
 
@@ -210,7 +210,7 @@ If you describe this wave as a superposition of a horizontal component with ampl
 
 <Figure image="energy_components.png" width="80%" />
 
-You can think of this either because you’re adding up the energies of each component of the superposition, or because you’re figuring out the new amplitude using the Pythagorean theorem, and taking its square. Isn’t that nice?
+You can think of this either because you're adding up the energies of each component of the superposition, or because you're figuring out the new amplitude using the Pythagorean theorem, and taking its square. Isn't that nice?
 
 ## Bridging to Quantum Physics
 
@@ -218,7 +218,7 @@ In the classical understanding of light, you should be able to dial this energy 
 
 <Figure image="non_continous.png" width="70%" />
 
-Specifically, the energy of one of these electromagnetic waves always seems to come as an integer multiple of a specific constant times the frequency of that wave. The frequency being the value $f$ we’ve been using to describe the rate at which the phase changes. We’ll now call this specific constant $h$, known as Planck's constant.
+Specifically, the energy of one of these electromagnetic waves always seems to come as an integer multiple of a specific constant times the frequency of that wave. The frequency being the value $f$ we've been using to describe the rate at which the phase changes. We'll now call this specific constant $h$, known as Planck's constant.
 
 <Figure image="plancks_constant.png" width="70%" />
 
@@ -234,7 +234,7 @@ That feels weird when the conception of a wave is a nice, continuously oscillati
 
 <Figure image="showing_photon.png" width="50%" />
 
-However, this phenomenon is actually common in waves when they’re constrained in certain ways, like in pipes, or an instrument string: it’s called “harmonics”. What’s weird is that electromagnetic waves do this in free space even when they’re not constrained. 
+However, this phenomenon is actually common in waves when they're constrained in certain ways, like in pipes, or an instrument string: it's called "harmonics". What's weird is that electromagnetic waves do this in free space even when they're not constrained. 
 
 <Figure image="quantization_harmonics.png" width="70%" />
 
@@ -242,15 +242,15 @@ But as previously said, the math used to describe a classical electromagnetic wa
 
 <Figure image="describing_photon.png" width="70%" />
 
-And with a different choice of basis, this same state can be expressed as a superposition of two other directions. All of this is stuff you’ll see if you start reading more into quantum mechanics.
+And with a different choice of basis, this same state can be expressed as a superposition of two other directions. All of this is stuff you'll see if you start reading more into quantum mechanics.
 
 <Figure image="describing_photon_alt.png" width="70%" />
 
-But this superposition has a different interpretation than before… and it has to. Let’s say you were thinking of this diagonally-polarized photon somewhat classically, and you described its amplitude as $1$ unit. This would make the hypothetical amplitudes of its left and right components each the square root of one half: $\sqrt{\frac12}$.
+But this superposition has a different interpretation than before… and it has to. Let's say you were thinking of this diagonally-polarized photon somewhat classically, and you described its amplitude as $1$ unit. This would make the hypothetical amplitudes of its left and right components each the square root of one half: $\sqrt{\frac12}$.
 
 <Figure image="sqrt12_decomp.png" width="70%" />
 
-The energy of a photon is the special constant $h$ times its frequency. Because in a classical setting energy is proportional to the square of the amplitude of this wave, it’s tempting to think of half that energy being in the horizontal component, and half being in the vertical component.
+The energy of a photon is the special constant $h$ times its frequency. Because in a classical setting energy is proportional to the square of the amplitude of this wave, it's tempting to think of half that energy being in the horizontal component, and half being in the vertical component.
 $$
 \begin{align*}
 \text{Energy}&=(hf)(\color{blue}1\color{black})^2
@@ -263,19 +263,19 @@ But waves of this frequency cannot have half the energy of the photon. I mean, t
 
 <PiCreature emotion="confused" text="?!?" thought />
 
-Well, let’s get experimental about it. If you take a vertically oriented polarizing filter, and shoot this diagonally polarized photon at it, what do you think will happen?
+Well, let's get experimental about it. If you take a vertically oriented polarizing filter, and shoot this diagonally polarized photon at it, what do you think will happen?
 
 <Figure image="getting_experimental.png" width="80%" />
 
-Classically, the way you’d interpret this superposition is that half its energy would be absorbed in that horizontal direction. However, energy comes in these discrete photon packets, it must either pass through with all its energy, or get absorbed entirely.
+Classically, the way you'd interpret this superposition is that half its energy would be absorbed in that horizontal direction. However, energy comes in these discrete photon packets, it must either pass through with all its energy, or get absorbed entirely.
 
 If you actually did this experiment, about half the time the photon would pass through entirely, and half the time it would get fully absorbed. And it appears to be random whether a given photon passes through or not.
 
 <Figure image="measurement.png" width="100%" />
 
-If it does pass through, forcing it to make a decision will change the resulting wave so that its polarization is oriented along the filter’s direction.
+If it does pass through, forcing it to make a decision will change the resulting wave so that its polarization is oriented along the filter's direction.
 
-This is analogous to the classic Schrödinger’s cat setup: You have something that’s in a superposition of two states, but once you make a measurement of that superposition, it collapses so it is entirely in one state or another. When a quantum object (such as the cat in the box) is forced to interact with an observer (opening the box), the observer will only see the resulting state.
+This is analogous to the classic Schrödinger's cat setup: You have something that's in a superposition of two states, but once you make a measurement of that superposition, it collapses so it is entirely in one state or another. When a quantum object (such as the cat in the box) is forced to interact with an observer (opening the box), the observer will only see the resulting state.
 
 <Figure image="schrodingers_cat.png" width="70%" />
 
@@ -293,11 +293,11 @@ But if you insert a third filter oriented at 45 degrees between the two, it actu
 
 <Figure image="45deg_polarizer.png" width="80%" />
 
-What’s going on here is that 50% of the photons passing the vertical filter will also pass the diagonal filter, and when they do, they will be changed to have a purely diagonal polarization.
+What's going on here is that 50% of the photons passing the vertical filter will also pass the diagonal filter, and when they do, they will be changed to have a purely diagonal polarization.
 
 <Figure image="changed_ket_nearrow.png" video="changed_ket_nearrow.mp4" width="100%" />
 
-Once they’re in that state, they have a 50% chance of passing through the filter oriented at 90 degrees.
+Once they're in that state, they have a 50% chance of passing through the filter oriented at 90 degrees.
 
 <Figure image="double_5050.png" width="70%" />
 
@@ -321,7 +321,7 @@ Since $P_1$ and $P_2$ are 90 degrees apart, 0% of the light will make it through
 
 </Question>
 
-For another example, what is the probability of a photon passing through a filter $22.5$ degrees off from the polarization of the light? Again, it’s helpful to think of this wave as having amplitude $1$. Its horizontal component has an amplitude of $\sin(22.5^\circ)\approx 0.38$, and its vertical component has amplitude $\cos(22.5^\circ)\approx 0.92$. 
+For another example, what is the probability of a photon passing through a filter $22.5$ degrees off from the polarization of the light? Again, it's helpful to think of this wave as having amplitude $1$. Its horizontal component has an amplitude of $\sin(22.5^\circ)\approx 0.38$, and its vertical component has amplitude $\cos(22.5^\circ)\approx 0.92$. 
 $$
 \color{blue}|\psi\rang\color{black}=\sin(22.5^\circ)\color{red}|\to\rang\color{black}+\cos(22.5^\circ)\color{green}|\uparrow\rang
 $$
@@ -331,7 +331,7 @@ But because the energy of light comes in these quanta that cannot be subdivided,
 
 <Figure image="22.5deg.png" video="22.5deg.mp4" />
 
-The wave equations haven’t changed, the photon is still described as a superposition of two oscillating components, each with some phase and amplitude that are often encoded as a single complex number. The difference is that classically, the squares of the amplitudes of each component in this superposition tells you the amount of that wave’s energy in each direction. But with quantized light at the minimal nonzero energy level, the squares of those amplitudes tell you the probabilities that a given photon will be found to have all its energy along one direction or not.
+The wave equations haven't changed, the photon is still described as a superposition of two oscillating components, each with some phase and amplitude that are often encoded as a single complex number. The difference is that classically, the squares of the amplitudes of each component in this superposition tells you the amount of that wave's energy in each direction. But with quantized light at the minimal nonzero energy level, the squares of those amplitudes tell you the probabilities that a given photon will be found to have all its energy along one direction or not.
 
 $$
 \color{blue}|\psi\rang\color{black}=\alpha\color{red}|\to\rang\color{black}+\beta\color{green}|\uparrow\rang \\\ \\
@@ -369,7 +369,7 @@ Or rather, they let through all photons probabilistically, where the probabiliti
 
 ## Generalizing Quantum Phenomena
 
-Photons are of course just one quantum phenomenon. One where we initially understood it as a wave thanks to Maxwell’s equations, and then it became quantized, hence the name quantum mechanics.
+Photons are of course just one quantum phenomenon. One where we initially understood it as a wave thanks to Maxwell's equations, and then it became quantized, hence the name quantum mechanics.
 
 <Figure image="quanta.png" width="70%" />
 
@@ -385,6 +385,6 @@ As with the photon example, the choice of how to measure these objects can deter
 
 <Figure image="outer_product.png" width="70%" />
 
-It’s funny to think that if the wave nature of electrons and other particles was discovered first, we might instead refer to the whole subject as “harmonic mechanics.” Since the weirdness there is not that things come as discrete units, but that they are governed by wave equations.
+It's funny to think that if the wave nature of electrons and other particles was discovered first, we might instead refer to the whole subject as "harmonic mechanics." Since the weirdness there is not that things come as discrete units, but that they are governed by wave equations.
 
 Light was previously understood to be a classical wave, but that model fails to explain how the resulting waves from a filter appear to either retain all of their energy, or be completely blocked. By treating light as a stream of discrete photons, their probabilistic behavior gives a bit of insight to other quantum systems. For additional physics resources, check out the channel [MinutePhysics](https://www.youtube.com/channel/UCUHW94eEFW7hkUMVaZz4eDg) which collaborated on this project.

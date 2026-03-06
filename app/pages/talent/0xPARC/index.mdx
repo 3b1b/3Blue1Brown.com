@@ -32,7 +32,7 @@ import robPresentation from "./rob-presentation.jpg";
 
 <Image image={robPresentation} className="w-80 shrink-0" />
 
-At 0xPARC, we strive to envision, invent, and improve the digital ecology of the future. Our efforts center around advancing the frontier of combining computing and mathematics, since we believe what makes a computer truly powerful is not just how fast it runs, but what it is capable of doing. It’s easier to describe what we aren’t than what we are, but it may help to think of 0xPARC as a grant-funded research organization and extended community of explorers whose activities include research, prototyping, engineering, and productionization.
+At 0xPARC, we strive to envision, invent, and improve the digital ecology of the future. Our efforts center around advancing the frontier of combining computing and mathematics, since we believe what makes a computer truly powerful is not just how fast it runs, but what it is capable of doing. It's easier to describe what we aren't than what we are, but it may help to think of 0xPARC as a grant-funded research organization and extended community of explorers whose activities include research, prototyping, engineering, and productionization.
 
 </div>
 
@@ -44,13 +44,13 @@ At 0xPARC, we strive to envision, invent, and improve the digital ecology of the
 
 ### Pure Computing
 
-In conventional systems, computing on data requires revealing the data to the party performing the computation. This comes with a permanent epistemic side effect in the form of the irreversible sharing of information. Pure Computing is computing without this side effect, akin to how a pure function executes with no side effects outside of the function’s scope. Fully Homomorphic Encryption (FHE) enables computation over encrypted data, making Pure Computing mathematically possible.
+In conventional systems, computing on data requires revealing the data to the party performing the computation. This comes with a permanent epistemic side effect in the form of the irreversible sharing of information. Pure Computing is computing without this side effect, akin to how a pure function executes with no side effects outside of the function's scope. Fully Homomorphic Encryption (FHE) enables computation over encrypted data, making Pure Computing mathematically possible.
 
 <div className="flex flex-row-reverse items-center gap-8 max-md:flex-col">
 
 <Image image={airQualityMonitor} className="w-80 shrink-0" />
 
-0xPARC is building an encrypted computing platform to bring Pure Computing from a mathematical possibility to being practical and accessible. By designing around for the strengths of modern GPUs, using kernel fusion, harnessing ideas from cryptography research and high performance computing systems, optimizing implementations of cryptographic schemes, and more, we’ve achieved performance orders of magnitude beyond naive implementations. The first real world deployment on top of the encrypted computing platform is an encrypted air quality monitoring network, where each air quality monitor’s sensor data is immediately encrypted on-device, scientific computations run entirely on ciphertext, and raw data is never decrypted.
+0xPARC is building an encrypted computing platform to bring Pure Computing from a mathematical possibility to being practical and accessible. By designing around for the strengths of modern GPUs, using kernel fusion, harnessing ideas from cryptography research and high performance computing systems, optimizing implementations of cryptographic schemes, and more, we've achieved performance orders of magnitude beyond naive implementations. The first real world deployment on top of the encrypted computing platform is an encrypted air quality monitoring network, where each air quality monitor's sensor data is immediately encrypted on-device, scientific computations run entirely on ciphertext, and raw data is never decrypted.
 
 </div>
 
@@ -60,7 +60,7 @@ For more on the air quality monitoring network and how the encrypted computing p
 
 A palimpsest carries its latest words, but also traces of past texts. A quilt made from clothes provides warmth, while also holding hints of the history of the garments it absorbed, and perhaps even the people who once donned them. Physical objects through their mere existence are self-evidently historical, valid, and thus significant. The opposite is true with conventional digital objects, made of strings of bits that are trivially copyable, history-free, and entirely dependent on external systems for meaning.
 
-Recursive zero-knowledge proofs enable logic and history to accrue to a digital packet without requiring it to grow larger – compressing experience and capabilities into the packet, rather than appending it. 0xPARC’s work on Provable Object Data harnesses this capability, along with other computing techniques and concepts, in order to be self-interpreting and self-evidently valid, by carrying their own statements, composition rules, and cryptographic anchors. This is part of our broader efforts and exploration of how independent digital objects can realize a level of significance we take for granted in the physical world, and perhaps more.
+Recursive zero-knowledge proofs enable logic and history to accrue to a digital packet without requiring it to grow larger – compressing experience and capabilities into the packet, rather than appending it. 0xPARC's work on Provable Object Data harnesses this capability, along with other computing techniques and concepts, in order to be self-interpreting and self-evidently valid, by carrying their own statements, composition rules, and cryptographic anchors. This is part of our broader efforts and exploration of how independent digital objects can realize a level of significance we take for granted in the physical world, and perhaps more.
 
 For more on Provable Object Data, see [0xparc.org/about-pod](https://0xparc.org/about-pod)
 
@@ -81,11 +81,11 @@ A lot of pure math problems, often the kind that would arise in a contest math s
 >
 > Figure out my secret list using as few questions as possible.
 
-If you’re interested in learning why this problem has surprising connections to lattice-based cryptography and fully homomorphic encryption, check out [0xparc.org/3b1b#puzzle1](https://0xparc.org/3b1b#puzzle1)
+If you're interested in learning why this problem has surprising connections to lattice-based cryptography and fully homomorphic encryption, check out [0xparc.org/3b1b#puzzle1](https://0xparc.org/3b1b#puzzle1)
 
 ### More Puzzles
 
-Here is a further collection put together by 0xPARC’s Holden Mui, for the 3Blue1Brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
+Here is a further collection put together by 0xPARC's Holden Mui, for the 3Blue1Brown audience. The problems come in pairs. In each pair, the first problem comes from the contest math world, while the second problem comes from work at 0xPARC.
 
 <div className="flex flex-col gap-8">
 
@@ -99,7 +99,7 @@ can duplicate inputs and outputs of the black-box function for free.)
 
 <Collapsible title="Problem 2 (homomorphic FFT).">
 
-The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in ${C}^{32{,}768}$ such that anyone can add encrypted vectors elementwise, multiply encrypted vectors elementwise, or “rotate” ciphertexts $\left(z_1, z_2, \ldots, z_{65536}\right) \mapsto\left(z_i, z_{i+1}, \ldots, z_{i-1}\right)$ by any "offset" $i$. Suppose that:
+The CKKS fully homomorphic encryption scheme gives a way to encrypt vectors in ${C}^{32{,}768}$ such that anyone can add encrypted vectors elementwise, multiply encrypted vectors elementwise, or "rotate" ciphertexts $\left(z_1, z_2, \ldots, z_{65536}\right) \mapsto\left(z_i, z_{i+1}, \ldots, z_{i-1}\right)$ by any "offset" $i$. Suppose that:
 
 - encrypted addition takes 4 microseconds
 - encrypted multiplication takes 5600 microseconds

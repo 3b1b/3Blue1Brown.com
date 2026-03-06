@@ -8,10 +8,13 @@ import {
 } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Collapsible from "~/components/Collapsible";
+import Footer from "~/components/Footer";
+import Header from "~/components/Header";
 import Hilbert from "~/components/Hilbert";
 import Image from "~/components/Image";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
@@ -20,6 +23,10 @@ import manim from "./images/manim.png";
 import { Current, Grant, Past } from "./Team";
 
 <Meta title="About" />
+
+<Header />
+
+<Main>
 
 <section className="bg-theme/10">
 
@@ -329,3 +336,7 @@ Various [other](https://youtu.be/F3Qixy-r_rQ) [videos](https://youtu.be/cDofhN-R
 <Contact />
 
 </section>
+
+</Main>
+
+<Footer />

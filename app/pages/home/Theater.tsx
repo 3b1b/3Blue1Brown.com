@@ -11,7 +11,6 @@ import {
   CaretRightIcon,
   DiceThreeIcon,
   InfoIcon,
-  ShareNetworkIcon,
 } from "@phosphor-icons/react";
 import { atom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
@@ -30,7 +29,7 @@ import {
 import { topics } from "~/pages/lessons/topics";
 import { getAtom, setAtom } from "~/util/atom";
 import { formatDate } from "~/util/string";
-import { mergeSearch, share } from "~/util/url";
+import { mergeSearch } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Explore";
 
 // has user explicitly selected a lesson
@@ -128,10 +127,6 @@ export default function Theater() {
             >
               <InfoIcon />
               Details
-            </Button>
-            <Button size="sm" onClick={share}>
-              <ShareNetworkIcon />
-              Share
             </Button>
           </div>
         </div>

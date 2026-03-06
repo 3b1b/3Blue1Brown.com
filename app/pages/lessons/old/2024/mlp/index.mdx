@@ -9,7 +9,7 @@ credits:
 - Text adaptation by Justin Sun
 ---
 
-If you feed a large language model the phrase “Michael Jordan plays the sport of \_\_\_” and the model correctly predicts _basketball_ as the following word, this would suggest that somewhere inside the model's hundreds of billions of parameters it has stored an association between a specific person and his specific sport.
+If you feed a large language model the phrase "Michael Jordan plays the sport of \_\_\_" and the model correctly predicts _basketball_ as the following word, this would suggest that somewhere inside the model's hundreds of billions of parameters it has stored an association between a specific person and his specific sport.
 
 <Figure image="MotivatingExample.png" width="80%"/>
 
@@ -251,13 +251,13 @@ For example, if the vector flowing in encoded both first name _Michael_ and last
 
 <Figure image="MJBex.png" width="100%"/>
 
-Remember, this is a process happening to every one of those vectors in parallel, not just this one vector. In particular, taking the GPT-3 numbers, the number of neuron activations in one of these blocks is not just 50,000, it’s 50,000 times the number of tokens in the input.
+Remember, this is a process happening to every one of those vectors in parallel, not just this one vector. In particular, taking the GPT-3 numbers, the number of neuron activations in one of these blocks is not just 50,000, it's 50,000 times the number of tokens in the input.
 
 <Figure image="Figure1.png" width="100%"/>
 
 ---
 
-And that’s it! That’s all there is to an MLP: Two matrix products, each with a bias added, and a simple clipping function in between.
+And that's it! That's all there is to an MLP: Two matrix products, each with a bias added, and a simple clipping function in between.
 
 If any of you have watched the earlier videos of the series, you will recognize this structure as the most basic kind of neural network that we studied there. In the previous example, the neural network was trained to recognize handwritten digits. 
 
@@ -273,7 +273,7 @@ But before we conclude the lesson, I do want to step back and reflect on two dif
 
 In the last two chapters, we started counting up the total number of parameters in GPT-3 and seeing exactly where they live, so let's quickly finish it up here. We already mentioned how this up projection matrix, $$W_\uparrow$$, has just under 50,000 rows and that each row matches the size of the embedding space, which for GPT-3 is 12,288. Multiplying those together gives us 604 million parameters just for that matrix. The down projection matrix, $$W_\downarrow$$, has the same number of parameters, just with a transposed shape, giving us another 604 million parameters.
 
-Together, these two matrices contain about 1.2 billion parameters. While the bias vector does also account for a couple more parameters, it's a trivial proportion of the total, so we’ll disregard it.
+Together, these two matrices contain about 1.2 billion parameters. While the bias vector does also account for a couple more parameters, it's a trivial proportion of the total, so we'll disregard it.
 
 <Figure image="Parameter.png" width="100%"/>
 
@@ -318,7 +318,7 @@ I then ran a certain optimization process to iteratively nudge these vectors to 
 
 <Figure image="RandomDis1.png" width="80%"/>
 
-All the angles are between 89 and 91. Amazing! That’s 10,000 vectors, all being crammed to be nearly perpendicular in a space with 100 times fewer dimensions.
+All the angles are between 89 and 91. Amazing! That's 10,000 vectors, all being crammed to be nearly perpendicular in a space with 100 times fewer dimensions.
 
 However, there was a mistake in the code and it looks like what was really happening is that a few pairs get shot out to have dot products near ±1, hiding in the wings of the plot. I was using a bad cost function that didn't appreciably punish those cases. On closer inspection, I think it's not actually possible to get 100,000 vectors in 100 dimensions to be as "nearly orthogonal" as this. 100 dimensions are not enough, at least for the (89°, 91°) range, for the Johnson-Lindenstrauss lemma to really kick in.
 

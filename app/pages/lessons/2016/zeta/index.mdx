@@ -27,7 +27,7 @@ The Riemann zeta function is one of the most important objects in modern math, a
   show="video"
 />
 
-Don’t worry, I’ll explain that animation you just saw further below. A lot of people know about this function because there’s a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the “Riemann hypothesis”.
+Don't worry, I'll explain that animation you just saw further below. A lot of people know about this function because there's a million dollar prize out for anyone who can figure out when it equals 0, an open problem known as the "Riemann hypothesis".
 
 <PiCreature emotion="confused" flip />
 
@@ -40,16 +40,16 @@ $$
 This expression might seem nonsensical, if not obviously wrong.
 Indeed, the symbol "$=$" is being used a bit loosely in this expression, but there is a true fact which it is trying to express which has everything to do with the zeta function.
 
-However, as any casual math enthusiast who’s searched "Riemann zeta function" knows, its definition references a certain idea known as “analytic continuation”. This is a topic concerning complex functions, and can be frustratingly opaque and unintuitive. What I’d like to do here is explain what this idea of analytic continuation is in a visual and intuitive way, in the service of showing very concretely what the zeta function looks like.
+However, as any casual math enthusiast who's searched "Riemann zeta function" knows, its definition references a certain idea known as "analytic continuation". This is a topic concerning complex functions, and can be frustratingly opaque and unintuitive. What I'd like to do here is explain what this idea of analytic continuation is in a visual and intuitive way, in the service of showing very concretely what the zeta function looks like.
 
-I’m assuming you know about complex numbers, and that you're comfortable working with them. And I’m tempted to say you should know calculus, since analytic continuation is all about derivatives, but for the way I plan to present things I think you might be okay without that.
+I'm assuming you know about complex numbers, and that you're comfortable working with them. And I'm tempted to say you should know calculus, since analytic continuation is all about derivatives, but for the way I plan to present things I think you might be okay without that.
 
 </section>
 
 <section>
 ## Define zeta function for real s > 1
 
-First, let’s define what this zeta function is. For a given input s, the zeta function is a sum of $\frac{1}{n^s}$ for all natural numbers $n$.
+First, let's define what this zeta function is. For a given input s, the zeta function is a sum of $\frac{1}{n^s}$ for all natural numbers $n$.
 
 $$
 \zeta (s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \frac{1}{4^s} + ...
@@ -67,7 +67,7 @@ $$
 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + ... = \frac{\pi^2}{6} \approx 1.645
 $$
 
-There’s a nice reason for $\pi$ showing up here, covered in <LessonLink id="basel-problem">another lesson</LessonLink>, but that’s just the tip of the iceberg for why this function is beautiful. You can plug in other values, like 3 or 4 and get some interesting values[^1], and so far it feels pretty reasonable: You’re adding up smaller and smaller amounts, and these sums approach some number.
+There's a nice reason for $\pi$ showing up here, covered in <LessonLink id="basel-problem">another lesson</LessonLink>, but that's just the tip of the iceberg for why this function is beautiful. You can plug in other values, like 3 or 4 and get some interesting values[^1], and so far it feels pretty reasonable: You're adding up smaller and smaller amounts, and these sums approach some number.
 
 <Question 
   question="Which of the following equals $\zeta(3)$?"
@@ -90,11 +90,11 @@ $$
 \zeta (-1) = \sum_{n=1}^{\infty} \frac{1}{n^{-1}} = 1 + 2 + 3 + 4 ...
 $$
 
-By raising each term to $-1$, you get $1+2+3+4..$ which obviously doesn’t approach anything, certainly not $-\frac{1}{12}$, right?
+By raising each term to $-1$, you get $1+2+3+4..$ which obviously doesn't approach anything, certainly not $-\frac{1}{12}$, right?
 
-And as any mercenary looking into the Riemann hypothesis knows, this function is said to have “trivial” zeros at negative even numbers. For example, this would mean $\zeta(-2) = 0$. But plugging in $-2$ gives you $1+4+9+16+...$, which also doesn’t approach anything, much less 0. Right?
+And as any mercenary looking into the Riemann hypothesis knows, this function is said to have "trivial" zeros at negative even numbers. For example, this would mean $\zeta(-2) = 0$. But plugging in $-2$ gives you $1+4+9+16+...$, which also doesn't approach anything, much less 0. Right?
 
-We’ll get to negative values in a few minutes, but right now let’s just say the only thing that seems reasonable: This function only makes sense when s > 1 [^2], which is when this sum converges. So far, it’s simply not defined for other values.
+We'll get to negative values in a few minutes, but right now let's just say the only thing that seems reasonable: This function only makes sense when s > 1 [^2], which is when this sum converges. So far, it's simply not defined for other values.
 
 ## Extend to complex inputs with Re(s) > 1
 
@@ -106,7 +106,7 @@ $$
 \zeta (2 + i) = \sum_{n=1}^{\infty} \frac{1}{n^{2+i}} = 1 + \frac{1}{2^{2+i}} + \frac{1}{3^{2+i}} + \frac{1}{4^{2+i}} + ...
 $$
 
-If you’ve never seen the idea of raising a number to the power of a complex value, it can feel kind of strange at first, because it no longer has anything to do with repeated multiplication. But there’s a very natural way to extend the definition of exponents beyond their familiar territory of real numbers, into the realm of complex values.
+If you've never seen the idea of raising a number to the power of a complex value, it can feel kind of strange at first, because it no longer has anything to do with repeated multiplication. But there's a very natural way to extend the definition of exponents beyond their familiar territory of real numbers, into the realm of complex values.
 
 The basic idea is that when you write something like $\left( \frac{1}{2} \right)$ to the power of a complex number, you can split it up as $\left( \frac{1}{2} \right)$ to the real part, times $\left( \frac{1}{2} \right)$ to the pure imaginary part.
 
@@ -133,7 +133,7 @@ $$
 \left( \frac{1}{2} \right)^{2} \left( \frac{1}{2} \right)^{i},
 $$
 
-that $\left( \frac{1}{2} \right)^{i}$ part has an absolute value of 1, sitting on the unit circle. Therefore multiplying by it doesn’t change the size of the number; the final result will still have a length of $\frac{1}{4}$, it's just rotated in the complex plane.
+that $\left( \frac{1}{2} \right)^{i}$ part has an absolute value of 1, sitting on the unit circle. Therefore multiplying by it doesn't change the size of the number; the final result will still have a length of $\frac{1}{4}$, it's just rotated in the complex plane.
 
 This offers a very beautiful way to think about plugging in $2+i$ into the zeta function. Start by thinking of each term $\frac{1}{1^2}$, $\frac{1}{2^2}$, $\frac{1}{3^2}$, etc., perhaps visualized as little lines whose lengths are the reciprocals of square numbers.
 
@@ -154,7 +154,7 @@ $$
 
 <Figure image="$lesson/czeta_img2.png" />
 
-Importantly, the lengths of those lines won’t change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane which is no longer a real number.
+Importantly, the lengths of those lines won't change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane which is no longer a real number.
 
 <Question 
   question="Given that $e^{i t} = \cos(t) + i \sin(t)$, what does $2^i$ equal to?"
@@ -191,7 +191,7 @@ What this means is that $\zeta(s)$, defined as the infinite sum $\displaystyle \
 
 <Figure image="$lesson/czeta_img4.png" />
 
-Again, this is because it’s the real part of $s$ that determines the size of each term in this sum, and those sizes determine whether the sum converges. Well, that's not exactly true, in principle once rotation enters the game you could get some cancelation. For example the sum
+Again, this is because it's the real part of $s$ that determines the size of each term in this sum, and those sizes determine whether the sum converges. Well, that's not exactly true, in principle once rotation enters the game you could get some cancelation. For example the sum
 
 $$\displaystyle \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} \cdots$$
 
@@ -213,7 +213,7 @@ Let's try visualizing this function. It takes in inputs on this right half of th
   How can we visualize this for all complex inputs?
 </PiCreature>
 
-For example, let’s take a moment to try visualizing something a little easier than the zeta function. Say $f(s) = s^2$. When you plug in $s=2$, you get $4$, so we’ll end up moving the point at $2$ over to $4$. When you plug in $-1$, you get $1$, so the point at $-1$ will end up moving over to 1. When you plug in $i$, by definition its square is $-1$, so it’s going to move to $-1$.
+For example, let's take a moment to try visualizing something a little easier than the zeta function. Say $f(s) = s^2$. When you plug in $s=2$, you get $4$, so we'll end up moving the point at $2$ over to $4$. When you plug in $-1$, you get $1$, so the point at $-1$ will end up moving over to 1. When you plug in $i$, by definition its square is $-1$, so it's going to move to $-1$.
 
 <Figure image="$lesson/s2_img1.png" />
 
@@ -238,11 +238,11 @@ $$
 
 </Question>
 
-Let's add a more colorful grid, since things are about to start moving and it’s nice to have something to distinguish grid lines during this movement.
+Let's add a more colorful grid, since things are about to start moving and it's nice to have something to distinguish grid lines during this movement.
 
 <Figure image="$lesson/s2_img2.png" />
 
-I’ll tell the computer to move every point $s$ on this grid over to its corresponding output under the function $f(s)=s^2$. Here’s what it looks like.
+I'll tell the computer to move every point $s$ on this grid over to its corresponding output under the function $f(s)=s^2$. Here's what it looks like.
 
 <Figure image="$lesson/s2_img3.png" video="$lesson/s2_img3.mp4" show="video" />
 
@@ -250,7 +250,7 @@ Focus on one of the yellow points, and notice how it moves to the blue point cor
 
 <PiCreature emotion="confused" />
 
-It’s a bit complicated to see all points moving all at once, but the reward is that it gives a very rich picture for what a complex function is doing, and it all happens in two-dimensions.
+It's a bit complicated to see all points moving all at once, but the reward is that it gives a very rich picture for what a complex function is doing, and it all happens in two-dimensions.
 
 </section>
 
@@ -275,13 +275,13 @@ Again, I'll tell the computer to move each point of this grid to the appropriate
   show="video"
 />
 
-First of all, can we all take a moment to appreciate how beautiful this is? If this doesn’t make you want to learn more about complex functions, you have no heart! But more pertinently for our final aim today, this transformed grid is just begging to be extended a little bit [^3].
+First of all, can we all take a moment to appreciate how beautiful this is? If this doesn't make you want to learn more about complex functions, you have no heart! But more pertinently for our final aim today, this transformed grid is just begging to be extended a little bit [^3].
 
 <PiCreature emotion="hooray">Damn!</PiCreature>
 
 <Figure image="$lesson/zeta_img3.png" />
 
-For example, let’s highlight two lines representing all complex numbers with imaginary part $i$ or $-i$.
+For example, let's highlight two lines representing all complex numbers with imaginary part $i$ or $-i$.
 
 <Figure image="$lesson/zeta_img4.png" />
 
@@ -289,7 +289,7 @@ After the transformation, these lines make such lovely arcs before they abruptly
 
 <Figure image="$lesson/zeta_img5.png" />
 
-Don’t you just want to, you know, continue those arcs.
+Don't you just want to, you know, continue those arcs.
 
 <Figure image="$lesson/zeta_img6.png" />
 
@@ -299,7 +299,7 @@ In fact, you can imagine how some altered version of the function, with a defini
 
 Well, this is exactly what mathematicians working with complex functions do; they continue the function beyond the original domain where it was defined.
 
-As soon as we start talking about inputs where the real part is less than 1, the infinite sum we saw before doesn’t make sense anymore. You’ll get nonsense like adding $1+2+3+4+...$ But just looking at this transformed version of the right half of the plane, where the sum does make sense, it’s begging us to extend the set of points we’re considering as inputs, even if it means defining the extended function in some way which doesn’t necessarily use that sum.
+As soon as we start talking about inputs where the real part is less than 1, the infinite sum we saw before doesn't make sense anymore. You'll get nonsense like adding $1+2+3+4+...$ But just looking at this transformed version of the right half of the plane, where the sum does make sense, it's begging us to extend the set of points we're considering as inputs, even if it means defining the extended function in some way which doesn't necessarily use that sum.
 
 ### How to extend?
 
@@ -315,9 +315,9 @@ Well...not exactly. I mean yes, you can give any child a marker and have them ex
   What's the derivative of a complex function?
 </PiCreature>
 
-"Derivatives," I hear you ask, "for a complex function?" Luckily, there's a very approachable geometric intuition you can keep in mind for when I say a phrase like “has a derivative everywhere”.
+"Derivatives," I hear you ask, "for a complex function?" Luckily, there's a very approachable geometric intuition you can keep in mind for when I say a phrase like "has a derivative everywhere".
 
-Let’s go back to that $f(s) = s^2$ example. Again, we’ll think of this function as a transformation, moving every point s of the complex plane to the point $s^2$.
+Let's go back to that $f(s) = s^2$ example. Again, we'll think of this function as a transformation, moving every point s of the complex plane to the point $s^2$.
 
 <Figure image="$lesson/s2_img3.png" video="$lesson/s2_img3.mp4" />
 
@@ -325,7 +325,7 @@ For those of you who know calculus, you know you can take the derivative of $s^2
 
 <PiCreature emotion="happy">$f'(s) = 2s$</PiCreature>
 
-But here’s an interesting property of the transformation that turns out to be more or less equivalent to that fact.
+But here's an interesting property of the transformation that turns out to be more or less equivalent to that fact.
 If you look at any two lines in the input space that intersect at a certain angle, and consider what they turn into after the transformation, they will still intersect each other at that same angle.
 
 For instance, consider this pair of lines before transformation. They make an angle of $67^{\circ}$.
@@ -336,15 +336,15 @@ Now, take a look at the same lines and the angle they make after applying the tr
 
 <Figure image="$lesson/aconn_img3.png" />
 
-The lines might get curved, but the important part is that the angle at which they intersect remains unchanged. And this is true for any pair of lines you choose! When I say a function “has a derivative everywhere”, I want you to think about this angle-preserving property: Anytime two lines intersect, the angle between them remains unchanged after the transformation. If you're curious about the lingo, we call functions with this property "conformal mappings".
+The lines might get curved, but the important part is that the angle at which they intersect remains unchanged. And this is true for any pair of lines you choose! When I say a function "has a derivative everywhere", I want you to think about this angle-preserving property: Anytime two lines intersect, the angle between them remains unchanged after the transformation. If you're curious about the lingo, we call functions with this property "conformal mappings".
 
 At a glance, this is easiest to appreciate by noticing how all curves that the grid lines turn into still intersect each other at right angles.
 
 <Figure image="$lesson/aconn_img4.png" video="$lesson/aconn_img4.mp4" />
 
-Functions that have a derivative everywhere are called analytic, so you can think of this word “analytic” as meaning “angle-preserving”.
+Functions that have a derivative everywhere are called analytic, so you can think of this word "analytic" as meaning "angle-preserving".
 
-Admittedly, I’m lying to you a little here, but only a little. A slight caveat, for those of you here who want the full details, is that at inputs where the derivative of a function is 0, instead of angles being preserved, they get multiplied by some integer. Those points are by far the minority, and for almost all inputs to an analytic function, angles are preserved. So if when I say “analytic”, you think “angle-preserving”, but you have this small caveat lurking in the back of your mind, that’s a fine intuition to have.
+Admittedly, I'm lying to you a little here, but only a little. A slight caveat, for those of you here who want the full details, is that at inputs where the derivative of a function is 0, instead of angles being preserved, they get multiplied by some integer. Those points are by far the minority, and for almost all inputs to an analytic function, angles are preserved. So if when I say "analytic", you think "angle-preserving", but you have this small caveat lurking in the back of your mind, that's a fine intuition to have.
 
 Preserving angles like this is incredibly restrictive you think about it. The angle between _any_ pair of intersecting lines has to remain unchanged. And yet, many of the functions you might think to write down, polynomials, $e^x$, $\sin(x)$, etc., are analytic. The field of complex analysis, which Riemann helped to establish in its modern form, is almost entirely about leveraging the highly restrictive properties of analytic functions to understand results and patterns in other fields of math and science.
 
@@ -372,7 +372,7 @@ The surprising fact about complex functions is that if you want to extend an ana
   show="video"
 />
 
-It’s kind of like an infinite continuous jigsaw puzzle, where the requirement of preserving angles like this locks you into one and only one choice for how to extend it. This process of extending an analytic function in the only way possible that’s still analytic is called, as you may have guessed, “analytic continuation”.
+It's kind of like an infinite continuous jigsaw puzzle, where the requirement of preserving angles like this locks you into one and only one choice for how to extend it. This process of extending an analytic function in the only way possible that's still analytic is called, as you may have guessed, "analytic continuation".
 
  </section>
 
@@ -391,7 +391,7 @@ For the rest of the plane, we know that there exists one and only one way to ext
   show="video"
 />
 
-That’s a very implicit definition; it just says to use the solution of this jigsaw puzzle, which through more abstract derivations which I have not discussed we know must exist, but it doesn’t specify exactly how to solve it. Mathematicians have a pretty good grasp on what that extension looks like, but some important parts of it remain a mystery. A million dollar mystery, in fact.
+That's a very implicit definition; it just says to use the solution of this jigsaw puzzle, which through more abstract derivations which I have not discussed we know must exist, but it doesn't specify exactly how to solve it. Mathematicians have a pretty good grasp on what that extension looks like, but some important parts of it remain a mystery. A million dollar mystery, in fact.
 
 </section>
 
@@ -402,7 +402,7 @@ The places where this function equals zero are quite important. That is, which p
 
 <Figure image="$lesson/rhyp_img1.png" />
 
-One thing we know about this extension is that negative even numbers get mapped to zero, and these are called the “trivial zeros” [^4].
+One thing we know about this extension is that negative even numbers get mapped to zero, and these are called the "trivial zeros" [^4].
 
 <Figure image="$lesson/rhyp_img2.png">
   Here, we have -2, -4 and -6 on the number line prior to the transformation.
@@ -412,13 +412,13 @@ One thing we know about this extension is that negative even numbers get mapped 
   Notice how they all map onto 0
 </Figure>
 
-The naming here stems from the longstanding tradition of Mathematicians calling things trivial when they understand it quite well, even if it’s a fact which is not at all obvious from the outset.
+The naming here stems from the longstanding tradition of Mathematicians calling things trivial when they understand it quite well, even if it's a fact which is not at all obvious from the outset.
 
-We also know that the rest of the points that get mapped to zero sit somewhere in this strip where the real part of $s$ sits between $0$ and $1$, called the “critical strip”. The specific placement of those non-trivial zeros encodes a surprising amount of information about prime numbers.
+We also know that the rest of the points that get mapped to zero sit somewhere in this strip where the real part of $s$ sits between $0$ and $1$, called the "critical strip". The specific placement of those non-trivial zeros encodes a surprising amount of information about prime numbers.
 
 <Figure image="$lesson/rhyp_img4.png" />
 
-Why this function carries so much information about primes is pretty interesting [^5], and I might make a follow on video about that later, but for now, I’ll have to leave it unexplained.
+Why this function carries so much information about primes is pretty interesting [^5], and I might make a follow on video about that later, but for now, I'll have to leave it unexplained.
 
 Actually, we know quite a bit about those zeros. A mathematician will be able to look at the picture above and know that it's not right, since the first of these zeros sits around $\frac{1}{2} \pm 14.135i$. Moreover, the zeros must be symmetrically placed around the line $\frac{1}{2} + it$.
 
@@ -446,9 +446,9 @@ Riemann hypothesized that all the remaining zeros lie right in the middle of thi
 
 <Figure image="$lesson/rhyp_img5.png" />
 
-If that’s true, it gives us a remarkably tight grasp on the pattern of prime numbers, and all the many other patterns in math that stem from this.
+If that's true, it gives us a remarkably tight grasp on the pattern of prime numbers, and all the many other patterns in math that stem from this.
 
-So far, when animating what the zeta function looks like, I’ve only shown what it does to the portion of the grid on the screen, which undersells some of its complexity. If I highlight this critical line and apply the transformation, it might not seem to cross the origin at all.
+So far, when animating what the zeta function looks like, I've only shown what it does to the portion of the grid on the screen, which undersells some of its complexity. If I highlight this critical line and apply the transformation, it might not seem to cross the origin at all.
 
 <Figure image="$lesson/rhyp_img6.png">
   Here's the critical line, $\mathrm{Re} (s)=\frac{1}
@@ -466,7 +466,7 @@ However, here's what the transformed version of more of that line looks like... 
   A longer sample of the critical line after the transformation
 </Figure>
 
-If you can prove all non-trivial zeros lie on this line, the Clay Mathematics Institute gives you $1,000,000, and you’d also be proving hundreds if not thousands of modern math results that have been shown contingent on this hypothesis being true.
+If you can prove all non-trivial zeros lie on this line, the Clay Mathematics Institute gives you $1,000,000, and you'd also be proving hundreds if not thousands of modern math results that have been shown contingent on this hypothesis being true.
 
 Here's another way to visualize the zeros of the zeta function. I've graphed the real component and the imaginary component of the zeta function on the $y$-axis, and the $x$-axis is the imaginary component of the input, $s$. I've also highlighted the imaginary components of the first three zeros on the x axis in red.
 

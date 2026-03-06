@@ -55,7 +55,7 @@ $$
 
 ## Composition of Transformations
 
-Oftentimes, you find yourself wanting to describe the effects of applying one linear transformation, then applying another. For example, maybe you want to describe what happens when you rotate the plane $90^\circ$ counterclockwise, then to apply a shear. The overall effect here, from start to finish, is another linear transformation, distinct from the rotation and the shear. This new linear transformation is commonly called the “composition” of the two separate transformations we applied.
+Oftentimes, you find yourself wanting to describe the effects of applying one linear transformation, then applying another. For example, maybe you want to describe what happens when you rotate the plane $90^\circ$ counterclockwise, then to apply a shear. The overall effect here, from start to finish, is another linear transformation, distinct from the rotation and the shear. This new linear transformation is commonly called the "composition" of the two separate transformations we applied.
 
 <Figure
   image="$lesson/rotate_shear_composition.svg"
@@ -74,11 +74,11 @@ In this example, the ultimate landing spot for $\hat i$ after both transformatio
 
 ## Composition is Multiplication
 
-Here’s one way to think about that new matrix. If you were to take some vector and pump it through the rotation then the shear, the long way to compute where it lands by first multiplying on the left by the rotation matrix, then multiplying the result on the left by the shear matrix. This is, numerically speaking, what it _means_ to apply a rotation then a shear to a given vector. But whatever you get should be the same as just multiplying this new composition matrix that we found by the vector, no matter what vector you chose, since this new matrix is supposed to capture the same overall effect as the rotation-then-shear action.
+Here's one way to think about that new matrix. If you were to take some vector and pump it through the rotation then the shear, the long way to compute where it lands by first multiplying on the left by the rotation matrix, then multiplying the result on the left by the shear matrix. This is, numerically speaking, what it _means_ to apply a rotation then a shear to a given vector. But whatever you get should be the same as just multiplying this new composition matrix that we found by the vector, no matter what vector you chose, since this new matrix is supposed to capture the same overall effect as the rotation-then-shear action.
 
 <Figure image="$lesson/rotate_shear_sequence.svg" />
 
-Based on how things are written down here, I think it’s reasonable to call that new matrix the product of the two original matrices, don’t you?
+Based on how things are written down here, I think it's reasonable to call that new matrix the product of the two original matrices, don't you?
 
 $$
 \color{purple}
@@ -98,9 +98,9 @@ $$
 }_{\large \text{Composition}}
 $$
 
-We can think about how to compute that product more generally in just a moment, but it’s easy to get lost in the forest of numbers. Always remember that multiplying two matrices like this has the geometric meaning of applying one transformation after another.
+We can think about how to compute that product more generally in just a moment, but it's easy to get lost in the forest of numbers. Always remember that multiplying two matrices like this has the geometric meaning of applying one transformation after another.
 
-One thing that’s kind of weird is that this has us reading right to left. You first apply the transformation represented by the matrix on the right, then you apply the transformation represented by the matrix on the left. This stems from function notation, since we write functions on the left of the variable, so composition always has to be read right-to-left. Good news for Hebrew readers, bad news for the rest of us.
+One thing that's kind of weird is that this has us reading right to left. You first apply the transformation represented by the matrix on the right, then you apply the transformation represented by the matrix on the left. This stems from function notation, since we write functions on the left of the variable, so composition always has to be read right-to-left. Good news for Hebrew readers, bad news for the rest of us.
 
 $$
 \begin{align*}
@@ -126,17 +126,17 @@ $$
 
 ### Computing the New Matrix
 
-Let’s look at another example. There are two matrices $M_1$ and $M_2$ which perform different transformations:
+Let's look at another example. There are two matrices $M_1$ and $M_2$ which perform different transformations:
 
 <Figure image="$lesson/multiplication_matrices.svg" />
 
-The total effect of applying $M1$, then $M2$ gives a new transformation, so let’s find its matrix.
+The total effect of applying $M1$, then $M2$ gives a new transformation, so let's find its matrix.
 
 <Figure image="$lesson/compound_multiply.svg" />
 
-But let’s see if we can do it without any images, and instead just using the numerical entries in each matrix.
+But let's see if we can do it without any images, and instead just using the numerical entries in each matrix.
 
-First we need to figure out where $\hat i$ goes. After applying $M_1$, the new coordinates of $\hat i$ are given be the first column of $M_1$. To see what happens after applying $M_2$, multiply the matrix for $M_2$ by the first column of $M_1$. Working it out the way I described in the last chapter, you’ll get the vector $\begin{bmatrix}2\\1\end{bmatrix}$.
+First we need to figure out where $\hat i$ goes. After applying $M_1$, the new coordinates of $\hat i$ are given be the first column of $M_1$. To see what happens after applying $M_2$, multiply the matrix for $M_2$ by the first column of $M_1$. Working it out the way I described in the last chapter, you'll get the vector $\begin{bmatrix}2\\1\end{bmatrix}$.
 
 $$
 \begin{align*}
@@ -283,7 +283,7 @@ $$
 \end{bmatrix}
 $$
 
-It’s common to be taught this formula as something to memorize, along with a certain algorithmic process to remember it.
+It's common to be taught this formula as something to memorize, along with a certain algorithmic process to remember it.
 
 $$
 \color{purple}
@@ -357,11 +357,11 @@ $$
 \color{orange}M_1
 $$
 
-Well, let’s think of a simple example like the one from earlier. Take a shear, which fixes $\hat i$ and smooshes $\hat j$ over to the right, and a $90^\circ$ rotation.
+Well, let's think of a simple example like the one from earlier. Take a shear, which fixes $\hat i$ and smooshes $\hat j$ over to the right, and a $90^\circ$ rotation.
 
 <Figure image="$lesson/rotate_shear_swap.svg" />
 
-The overall effect is very different, so it would appear that order totally does matter! By thinking in terms of transformations, that’s the kind of thing you can do in your head by visualizing, no matrix multiplication necessary!
+The overall effect is very different, so it would appear that order totally does matter! By thinking in terms of transformations, that's the kind of thing you can do in your head by visualizing, no matrix multiplication necessary!
 
 <Collapsible title="Numerical Proof">
 
@@ -578,18 +578,18 @@ $$
 
 ## Associativity
 
-I remember when I first took linear algebra, there was a homework problem that asked to prove that matrix multiplication is associative. That means if you have three matrices, A, B and C, and multiply them all, it shouldn’t matter if you first compute A times B, then multiply the result by C, or if you first multiply B times C, then multiply the result by the matrix A on the left. In other words, does it matter where you put the parentheses.
+I remember when I first took linear algebra, there was a homework problem that asked to prove that matrix multiplication is associative. That means if you have three matrices, A, B and C, and multiply them all, it shouldn't matter if you first compute A times B, then multiply the result by C, or if you first multiply B times C, then multiply the result by the matrix A on the left. In other words, does it matter where you put the parentheses.
 
 $$
 (AB)C\stackrel{?}{=}A(BC)
 $$
 
-Now, if you try to work through this numerically, like I did back then, it’s horrible! And unenlightening for that matter. But when you think of matrix multiplication as applying one transformation after another, this property is trivial, can you see why?
+Now, if you try to work through this numerically, like I did back then, it's horrible! And unenlightening for that matter. But when you think of matrix multiplication as applying one transformation after another, this property is trivial, can you see why?
 
-What it’s saying is that if you first apply (C then B), then A, it’s the same as applying C, (then B then A). I mean, there’s nothing to prove! You’re just applying three things one after the other, all in the same order!
+What it's saying is that if you first apply (C then B), then A, it's the same as applying C, (then B then A). I mean, there's nothing to prove! You're just applying three things one after the other, all in the same order!
 
 <Figure video="$lesson/associativity.mp4" />
 
-This might feel like cheating, but it’s not. It’s an honest-to-goodness proof that matrix multiplication is associative. And even better than that, it’s a _good explanation_ for why that property should be true.
+This might feel like cheating, but it's not. It's an honest-to-goodness proof that matrix multiplication is associative. And even better than that, it's a _good explanation_ for why that property should be true.
 
 </section>

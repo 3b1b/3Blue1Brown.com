@@ -14,26 +14,26 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig({
-  optimizeDeps: {
-    exclude: ["better-react-mathjax"],
-  },
   plugins: [
-    replace([
-      {
-        filter: /\.mdx$/,
-        replace(source, path) {
-          // get relevant part of lesson path
-          let lesson =
-            path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
-            "";
-          // prepend bucket location
-          lesson = `${site.bucket}/${lesson}`;
-          // inject lesson variable into source
-          source = source.replace("$lesson", lesson);
-          return source;
+    replace(
+      [
+        {
+          filter: /\.mdx$/,
+          replace(source, path) {
+            // get relevant part of lesson path
+            let lesson =
+              path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
+              "";
+            // prepend bucket location
+            lesson = `${site.bucket}/${lesson}`;
+            // inject lesson variable into source
+            source = source.replaceAll("$lesson", lesson);
+            return source;
+          },
         },
-      },
-    ]),
+      ],
+      { enforce: "pre" },
+    ),
     mdx({
       remarkPlugins: [
         remarkFrontmatter,

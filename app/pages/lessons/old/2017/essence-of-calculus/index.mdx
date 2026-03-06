@@ -52,9 +52,9 @@ Focus on just one of those concentric rings, and let's call its radius $r$, whic
   caption="This figure highlights a band of area formed from dividing the circle into concentric rings. "
 />
 
-In the spirit of using what will come to be standard calculus notations, let's call the thickness of one of these rings “$dr$”, which you can read as meaning “the tiny difference in radius from one ring to the next”. In the drawing above, for example, $dr = 0.1$.
+In the spirit of using what will come to be standard calculus notations, let's call the thickness of one of these rings "$dr$", which you can read as meaning "the tiny difference in radius from one ring to the next". In the drawing above, for example, $dr = 0.1$.
 
-You should know that some people, perhaps even most people, would object to our using the notation $dr$ to represent a specific not-infinitely-small size like this, suggesting instead we use some other notation, like $\Delta r$. Well, it's my house and my rules, and I have my reasons, which we'll get into later.  For now, I want you to think about $dr$ as simply being some number without worrying about what phrases like “infinitely small” would mean.
+You should know that some people, perhaps even most people, would object to our using the notation $dr$ to represent a specific not-infinitely-small size like this, suggesting instead we use some other notation, like $\Delta r$. Well, it's my house and my rules, and I have my reasons, which we'll get into later.  For now, I want you to think about $dr$ as simply being some number without worrying about what phrases like "infinitely small" would mean.
 
 <Question
   question="Which of the following is closest to the area of one of these rings with inner radius $r$ and thickness $dr$?"
@@ -91,7 +91,7 @@ The difference between the true area of the ring and the area of the rectangular
 
 However, and this will be a key idea, *this error becomes tiny compared to the overall area when $dr$ is small*. In other words, approximating the area of each ring as $2 \pi r \cdot dr$ is wrong, but as we chop up the circle into finer and finer rings, it becomes less and less wrong [^4].
 
-[^4]: The astute among you may worry about whether the errors in our approximations accumulate too much. You might say “Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn't remain significant as $dr$ approaches $0$?”
+[^4]: The astute among you may worry about whether the errors in our approximations accumulate too much. You might say "Sure, sure, the difference between the true area of a ring as $2 \pi r \cdot dr$ is only a small percentage of the area of that ring, and it only gets smaller as $dr$ approaches $0$, I get that. But how do we know that the sum of all these errors doesn't remain significant as $dr$ approaches $0$?"
 
     If you wanted to be more precise and rigorous, you would show that the size of this error for each ring is bounded by some constant times $(dr)^2$, while the total number of rings is about $\frac{R}{dr}$, so the total size of the aggregate error is bounded by some constant times $\frac{R}{dr} (dr)^2 = R \cdot dr$. So as $dr$ goes to zero, the full aggregate error will indeed go to zero with it.
 
@@ -242,7 +242,7 @@ video="figure-11.19-11.27.mp4"
 show="video"
 />
 
-In calculus, you might call this function $A(x)$ an “integral” of $x^2$. Well, more precisely we'd say this is the integral of $x^2$ from $0$ up to $x$. Or rather, to disambiguate whether $x$ represents the variable for the function, or if it represents the right endpoint, it would be even better to describe this area as the integral of the function $f(t) = t^2$ between the values $0$ and $x$. In the lingo, you'd see it written like this:
+In calculus, you might call this function $A(x)$ an "integral" of $x^2$. Well, more precisely we'd say this is the integral of $x^2$ from $0$ up to $x$. Or rather, to disambiguate whether $x$ represents the variable for the function, or if it represents the right endpoint, it would be even better to describe this area as the integral of the function $f(t) = t^2$ between the values $0$ and $x$. In the lingo, you'd see it written like this:
 
 $$
 A(x) = \int_0^x t^2 dt
@@ -306,7 +306,7 @@ That doesn't immediately tell us how to find $A(x)$, but it provides a very stro
   caption="This figure illustrates the property of $\frac{dA}{dx}$ for a more general function $f(x)$."
 />
 
-Here we're stumbling onto another big idea from calculus: Derivatives. This ratio $\frac{dA}{dx}$ is called the “derivative of $A$”. Or, more technically, the derivative is whatever value this ratio approaches as $dx$ gets smaller and smaller.
+Here we're stumbling onto another big idea from calculus: Derivatives. This ratio $\frac{dA}{dx}$ is called the "derivative of $A$". Or, more technically, the derivative is whatever value this ratio approaches as $dx$ gets smaller and smaller.
 
 You and I will dive more deeply into the idea of a derivative <LessonLink id="derivatives">next chapter</LessonLink>, but loosely speaking it's a measure of how sensitive a function is to small changes in its input. You'll see as the series goes on that there are many different ways to visualize a derivative, depending on what function you're looking at and how you think about tiny nudges to its output.
 
@@ -327,18 +327,18 @@ All of this is only a high level view. What follows in this series are the detai
 
 Calculus is littered with expressions like $dA$, $dr$, $dx$, etc, which show up in the notation for both derivatives and integrals. Despite their front-and-center role, there is a surprising amount of ambiguity and conflicting instruction on what these terms really mean.
 
-In this chapter I encouraged you to think of $dr$ as the difference in the radius of our circles from one to the next, prompting you to take a very literal interpretation and imagine an actual number, like $dr = 0.01$.  Likewise, I encouraged you to think of $dA$ as an actual number, specifically the amount that the area under a graph changes as we nudge the right endpoint by $dx$, again an actual number.  A more common convention would be to call these changes $\Delta r$, $\Delta A$, and $\Delta x$, reserving the $dx$ notation for changes that are “infinitely small”.
+In this chapter I encouraged you to think of $dr$ as the difference in the radius of our circles from one to the next, prompting you to take a very literal interpretation and imagine an actual number, like $dr = 0.01$.  Likewise, I encouraged you to think of $dA$ as an actual number, specifically the amount that the area under a graph changes as we nudge the right endpoint by $dx$, again an actual number.  A more common convention would be to call these changes $\Delta r$, $\Delta A$, and $\Delta x$, reserving the $dx$ notation for changes that are "infinitely small".
 
 <PiCreature
   emotion="maybe"
   text="Infinitely small?"
 />
 
-The issue with this is that phrases like “infinitely small” and “infinitesimal” run the risk of, well, not actually making any sense.  What is an infinitesimal change?  Is it a number?  If so, which number?  It shouldn't be zero, but it also shouldn't be anything bigger than zero.  If it's not a number then what is it, exactly?
+The issue with this is that phrases like "infinitely small" and "infinitesimal" run the risk of, well, not actually making any sense.  What is an infinitesimal change?  Is it a number?  If so, which number?  It shouldn't be zero, but it also shouldn't be anything bigger than zero.  If it's not a number then what is it, exactly?
 
 In acknowledgment of this conundrum, one common sentiment is to encourage students not to take this notation too seriously. The typical dictum is that derivatives, despite being written as $\frac{df}{dx}$, are not really fractions, and that integrals, written as $\displaystyle \int f(x) dx$, are not really sums, despite the fact that the symbol $\int$ literally derives from the letter "S" for "Sum". Instead, the student is told, each of these constructs has a separate more complicated definition. But! If a student wishes for loose intuition before stepping up their game to a real analysis class, they might find it helpful to think of $dx$ as an infinitely small change in $x$, even if that phrase doesn't _quite_ make sense. It is, after all, only intuition.
 
-To my taste, this sentiment is well-intentioned but ultimately misleading.  The rigorous underpinnings of calculus only ever involve real, finitely sized numbers, often followed by questions of what happens as these values get closer to 0.  The proposal of this series is that when we interpret the notation of calculus, we can do so in a way which maps closely to this rigorous underpinning.  If you're anything like I am, this actually makes calculus much more tangible and understandable than any “intuition” resting on the idea of an infinitesimal.
+To my taste, this sentiment is well-intentioned but ultimately misleading.  The rigorous underpinnings of calculus only ever involve real, finitely sized numbers, often followed by questions of what happens as these values get closer to 0.  The proposal of this series is that when we interpret the notation of calculus, we can do so in a way which maps closely to this rigorous underpinning.  If you're anything like I am, this actually makes calculus much more tangible and understandable than any "intuition" resting on the idea of an infinitesimal.
 
 In a nutshell, here's the philosophy for this series: When you see expressions with terms like $dx$, think of those terms as representing actual small numbers, say $dx = 0.001$. When you do this, the equations you write will become wrong, but they get less wrong as the choice for $dx$ approaches $0$. Think of the circular rings from earlier in this chapter. If you thought of $dr$ as an actual number, say $dr = 0.001$, none of these rings actually had an area of $2\pi r dr$. However, the percent error between the true area and $2\pi r \cdot dr$ gets smaller and smaller as the choice for $dr$ does as well.
 

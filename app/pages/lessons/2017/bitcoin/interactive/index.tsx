@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import styles from "./index.module.scss";
+import { useEffect, useState } from "react";
+import styles from "./index.module.css";
 
 export default function SHA256Interactive() {
   const [message, setMessage] = useState(
-    "A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution."
+    "A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.",
   );
 
   const hash = useHash(message);
@@ -14,8 +14,8 @@ export default function SHA256Interactive() {
         className={styles.input}
         rows={4}
         value={message}
-        onInput={(event) => {
-          setMessage(event.target.value);
+        onInput={(event: React.FormEvent<HTMLTextAreaElement>) => {
+          setMessage(event.currentTarget.value);
         }}
       />
 
@@ -35,7 +35,7 @@ export function ZeroesGame() {
 
   const hash = useHash(message);
 
-  const zeroCount = (hash || "").split("1")[0].length;
+  const zeroCount = (hash || "").split("1")[0]?.length ?? 0;
 
   return (
     <div className={styles.app}>
@@ -47,8 +47,8 @@ export function ZeroesGame() {
           step="1"
           min="0"
           value={nonce}
-          onInput={(event) => {
-            setNonce(event.target.value);
+          onInput={(event: React.FormEvent<HTMLInputElement>) => {
+            setNonce(event.currentTarget.value);
           }}
         />
       </pre>
@@ -72,8 +72,8 @@ export function ZeroesGame() {
   );
 }
 
-function useHash(message) {
-  const [hash, setHash] = useState(null);
+function useHash(message: string): string | null {
+  const [hash, setHash] = useState<string | null>(null);
   useEffect(() => {
     let cancelled = false;
     (async () => {

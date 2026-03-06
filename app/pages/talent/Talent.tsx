@@ -1,4 +1,5 @@
 import Footer from "~/components/Footer";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import Details from "./Contact";
 import Header from "./Header";
@@ -15,11 +16,11 @@ export default function Talent() {
 
       <Header />
 
-      <main id="content">
+      <Main>
         <Intro />
         <Gallery />
         <Details />
-      </main>
+      </Main>
 
       <Footer />
     </>

@@ -13,7 +13,7 @@ export default function Footnote({ href, children }: Props) {
   useEffect(() => {
     // get footnotes section
     const section = document.querySelector<HTMLElement>(
-      "section[data-footnotes='true']",
+      "[data-footnotes='true']",
     );
     if (!section) return;
     // hide footnotes section

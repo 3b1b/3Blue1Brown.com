@@ -89,7 +89,7 @@ If it was also preceded by the word **miniature**, then the vector should be upd
 
 <Figure image="TowerExample.png" width="80%"/>
 
-This transfer of information from the embedding of one token to that of another can occur over potentially large distances and can involve information that’s much richer than just a single word. 
+This transfer of information from the embedding of one token to that of another can occur over potentially large distances and can involve information that's much richer than just a single word. 
 
 <Figure image="shortlong.png" width="80%"/>
 
@@ -111,7 +111,7 @@ It will have to have somehow encoded _all of the information_ from the full cont
 
 ### The Attention Pattern
 
-We’ll begin by describing a **single head of attention**, and later we will see how the attention block consists of many different heads running in parallel. 
+We'll begin by describing a **single head of attention**, and later we will see how the attention block consists of many different heads running in parallel. 
 
 <Figure image="att.png" width="80%"/>
 
@@ -131,7 +131,7 @@ Actually, that's only partly true, as these embeddings also encode the position 
 
 Our goal is to have a series of computations produce a new refined set of embeddings $$\vec{E}'$$, where, in our case, those corresponding to the nouns have ingested the meaning from their corresponding adjectives.
 
-To be clear, this example of adjectives updating nouns is just to illustrate the _type of behavior_ that an attention head could be doing. The true behavior of an attention head is much harder to parse-as is with much of deep learning-as it’s based on the tweaking and tuning of a huge number of parameters to minimize _some cost function_. 
+To be clear, this example of adjectives updating nouns is just to illustrate the _type of behavior_ that an attention head could be doing. The true behavior of an attention head is much harder to parse-as is with much of deep learning-as it's based on the tweaking and tuning of a huge number of parameters to minimize _some cost function_. 
 
 As we explore all of the different matrices filled with parameters involved in this process, having a visual example of what the attention mechanism _might be doing_ will help us keep the concepts much more concrete.
 
@@ -154,7 +154,7 @@ When we place a matrix next to an arrow, like $$W_Q$$ in the image, it's meant t
 
 The entries of the matrix $$W_Q$$ are the parameters of the model, meaning that their true behavior is learned from data. In practice, what this query matrix does in a particular attention head is challenging to parse. 
 
-Keep in mind, our nouns-and-adjectives example is made up. We’re showing one behavior that the relevant matrix operations could plausibly implement. Specifically, we’re imagining that this $$W_Q$$ matrix maps the embeddings of nouns to a certain direction in this smaller query space that (somehow) encodes the notion of looking for adjectives in preceding positions.
+Keep in mind, our nouns-and-adjectives example is made up. We're showing one behavior that the relevant matrix operations could plausibly implement. Specifically, we're imagining that this $$W_Q$$ matrix maps the embeddings of nouns to a certain direction in this smaller query space that (somehow) encodes the notion of looking for adjectives in preceding positions.
 
 <Figure image="QuerySpace.png" width="100%"/>
 
@@ -278,7 +278,7 @@ In order to prevent this, what we want is for all of these spots where later tok
 
 This process is called **masking**.
 
-Now, there are versions of attention mechanisms where masking isn’t always applied. However, in our GPT example, masking will always be used to ensure that later tokens don’t influence earlier ones. This is especially relevant during training, though less so when the model is actually running as a chatbot.
+Now, there are versions of attention mechanisms where masking isn't always applied. However, in our GPT example, masking will always be used to ensure that later tokens don't influence earlier ones. This is especially relevant during training, though less so when the model is actually running as a chatbot.
 
 <Question
   question="The masking process is done to prevent ___ tokens from influencing ___ tokens."
@@ -309,13 +309,13 @@ For example, we would want the embedding of _fluffy_ to somehow cause a change t
 
 <Figure image="Update.png" width="80%"/>
 
-The most straightforward way would be to use a third matrix, what we call the **value matrix**. In true multi-headed attention, this matrix is factored into two parts, but for the moment, it’s easiest to think of as just one operation. We would multiply this value matrix by the embedding of that first word, for example _fluffy_. We'll denote this value matrix as $$W_V$$.
+The most straightforward way would be to use a third matrix, what we call the **value matrix**. In true multi-headed attention, this matrix is factored into two parts, but for the moment, it's easiest to think of as just one operation. We would multiply this value matrix by the embedding of that first word, for example _fluffy_. We'll denote this value matrix as $$W_V$$.
 
 <Figure image="W_V.png" width="80%"/>
 
 The result of this is what we would call a value vector, and this is something that we would add to the embedding of the second word. In our case, this value vector is something we would add to the embedding of _creature_ to move it to a different part of the dimensional embedding space that encodes a _fluffy creature_.
 
-This value vector lives in the same very high-dimensional space as the embeddings, and when the value matrix is multiplied by a word’s embedding, we can think of it effectively answering the question: 
+This value vector lives in the same very high-dimensional space as the embeddings, and when the value matrix is multiplied by a word's embedding, we can think of it effectively answering the question: 
 
 _If this word is relevant to adjusting the meaning of another word, what specific adjustments should be made to the other word's embedding to reflect this relevance accurately?_
 

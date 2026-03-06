@@ -4,10 +4,13 @@ import Carousel from "~/components/Carousel";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
 import Float from "~/components/Float";
+import Footer from "~/components/Footer";
 import FreeResponse from "~/components/FreeResponse";
+import Header from "~/components/Header";
 import Image from "~/components/Image";
 import Link from "~/components/Link";
 import Logo from "~/components/Logo";
+import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import PiCreature, { Demo as PiCreatureDemo } from "~/components/PiCreature";
 import Portrait from "~/components/Portrait";
@@ -25,7 +28,11 @@ import site from "~/data/site.json";
 
 <Meta title="Testbed" />
 
+<Header />
+
 <TableOfContents />
+
+<Main>
 
 <section>
 
@@ -278,3 +285,7 @@ This sentence has `inline code`, useful for making references to variables, pack
 [^2]: Another footnote.
 
 [^3]: A third footnote.
+
+</Main>
+
+<Footer />

@@ -10,7 +10,7 @@ credits:
 - Text adaptation by Kurt Bruns
 ---
 
-> “You know, for a mathematician, he did not have enough imagination. But he has become a poet and now he is fine.” 
+> "You know, for a mathematician, he did not have enough imagination. But he has become a poet and now he is fine." 
 > David Hilbert
 
 After introducing the derivative and its relation to rates of change in the last lesson, the next step is to learn how to compute the derivatives of functions that are explicitly given with some formula.
@@ -39,15 +39,15 @@ Even if you don't need to think through these derivations every time you compute
 
 ### Derivative of $f(x) = x^2$
 
-Let’s start with a function like $f(x) = x^2$. What is its derivative? That is to say, if you look at some value of $x$, like $x = 2$, and compare it to a value slightly bigger, just $dx$ bigger, what’s that corresponding change in the value of the function, $df$? 
+Let's start with a function like $f(x) = x^2$. What is its derivative? That is to say, if you look at some value of $x$, like $x = 2$, and compare it to a value slightly bigger, just $dx$ bigger, what's that corresponding change in the value of the function, $df$? 
 
 <Figure
   image="figures/2.08-alt.svg" 
 />
 
-In particular, what is $df$ divided by $dx$? The *rate* at which this function changes per unit change in $x$? As the first step for intuition, we know you can think of the ratio $\frac{df}{dx}$ as the slope of a tangent line to the graph of $x^2$. From that, we can see that the slope generally increases as $x$ increases. At $0$, the tangent line is flat, so the slope is $0$. At $x = 1$, it’s something steeper, at $x=2$, it’s steeper still.
+In particular, what is $df$ divided by $dx$? The *rate* at which this function changes per unit change in $x$? As the first step for intuition, we know you can think of the ratio $\frac{df}{dx}$ as the slope of a tangent line to the graph of $x^2$. From that, we can see that the slope generally increases as $x$ increases. At $0$, the tangent line is flat, so the slope is $0$. At $x = 1$, it's something steeper, at $x=2$, it's steeper still.
 
-But looking at graphs isn’t generally the best way to understand the *precise* formula for a derivative. For that, it’s best to take a more literal look at what $x^2$ actually means. In this case, let’s picture a square whose side length is $x$.
+But looking at graphs isn't generally the best way to understand the *precise* formula for a derivative. For that, it's best to take a more literal look at what $x^2$ actually means. In this case, let's picture a square whose side length is $x$.
 
 <Figure
   image="figures/2.41.svg" 
@@ -59,7 +59,7 @@ If you increase $x$ by a tiny nudge $dx$, what is the resulting change to the ar
   image="figures/2.46.svg" 
 />
 
-There’s three new bits of area in this diagram, two thin rectangles, and a miniscule square.
+There's three new bits of area in this diagram, two thin rectangles, and a miniscule square.
 The two thin rectangles have side lengths $x$ and $dx$, so together they account for $2 \cdot x \cdot dx$ units of new area. For example, if $x$ was $3$ and $dx$ was $0.01$, the new area from these thin rectangles would be $2 \cdot 3 \cdot 0.01$, which is $0.06$; About $6$ times the size of $dx$.
 
 <Question
@@ -80,7 +80,7 @@ If $x=2$ and $dx$ is $0.01$, the area of the thin rectangles would be $2 \cdot 2
 </Question>
 
 
-That little square has area $dx^2$, but you should think of this as being *really* tiny; negligibly tiny. For example, if $dx$ was $0.01$, it would be $0.0001$. I’m drawing $dx$ with a fair bit of width here, so we can see it, but always remember in principle $dx$ should be thought of as a truly tiny amount.
+That little square has area $dx^2$, but you should think of this as being *really* tiny; negligibly tiny. For example, if $dx$ was $0.01$, it would be $0.0001$. I'm drawing $dx$ with a fair bit of width here, so we can see it, but always remember in principle $dx$ should be thought of as a truly tiny amount.
 
 Phrased more precisely, our final consideration will always be what happens as the size of this $dx$ approaches $0$, and as that happens the proportion of this yellow area $df$ which is accounted for by the tiny $dx^2$ corner will go to $0$.
 
@@ -121,27 +121,27 @@ The rate of change in the area per unit of length added, $\frac{d(x^2)}{dx}$, wo
 
 ### Derivative of $f(x) = x^3$
 
-Let’s try a different simple function, $f(x) = x^3$. This will be the geometric view of what you and I went through algebraically in the last chapter for the function $x^3$. We can think of $x^3$ geometrically as the volume of a cube with side lengths $x$.
+Let's try a different simple function, $f(x) = x^3$. This will be the geometric view of what you and I went through algebraically in the last chapter for the function $x^3$. We can think of $x^3$ geometrically as the volume of a cube with side lengths $x$.
 
 <Figure
   image="figures/4.55.svg" 
 />
 
-When you increase $x$ by a tiny nudge, $dx$, the volume increases as shown in the figure below. That represents all the volume in a cube with side length $x + dx$ that’s not already in the original cube with side length $x$.
+When you increase $x$ by a tiny nudge, $dx$, the volume increases as shown in the figure below. That represents all the volume in a cube with side length $x + dx$ that's not already in the original cube with side length $x$.
 
 <Figure
   image="figures/5.05-5.10.svg" 
   caption="Remember that we are interested in what happens as $dx$ approaches $0$. The length of $dx$ is illustrated so big to demonstrate the change in volume it introduces."
 />
 
-This figure shows the increase in volume of a cube when its side length $x$ is increased by a small nudge $dx$. It’s nice to think of this new volume broken up into multiple components, but almost all of it comes from the three square faces; Or, said a little more precisely, as $dx$ approaches $0$, those three squares comprise a portion closer and closer to 100% of the new volume.
+This figure shows the increase in volume of a cube when its side length $x$ is increased by a small nudge $dx$. It's nice to think of this new volume broken up into multiple components, but almost all of it comes from the three square faces; Or, said a little more precisely, as $dx$ approaches $0$, those three squares comprise a portion closer and closer to 100% of the new volume.
 
 <Figure
   image="figures/5.20-expanded.svg" 
   video="figures/5.20-6.20-trimmed.mp4" 
 />
 
-Each of those thin squares has a volume of $x^2 \cdot dx$; the area of the face times the thickness of $dx$, so in total this gives us $3x^2dx$ of volume change. There are some other slivers of volume along the edges, and in the corner, but their volume will be proportional to $dx^2$, or $dx^3$, so they can be ignored. Again, this is because ultimately they will be divided by $dx$, and if there’s still any $dx$ remaining, these terms won’t survive the process of letting $dx$ approach $0$.
+Each of those thin squares has a volume of $x^2 \cdot dx$; the area of the face times the thickness of $dx$, so in total this gives us $3x^2dx$ of volume change. There are some other slivers of volume along the edges, and in the corner, but their volume will be proportional to $dx^2$, or $dx^3$, so they can be ignored. Again, this is because ultimately they will be divided by $dx$, and if there's still any $dx$ remaining, these terms won't survive the process of letting $dx$ approach $0$.
 
 $$
 (x + dx)^3 = x^3 + \color{#fc6255} 3x^2 \color{black} dx \color{#AAAAAA} + 3xdx^2 + dx^3
@@ -162,7 +162,7 @@ Graphical intuition with slope can tell us why this derivative is high on the le
 
 <!-- TODO: incorporate text into expressions-->
 
-In practice, you wouldn’t necessarily think of the square every time you’re taking a derivative of $x^2$, nor would you necessarily think of the cube when taking a derivative of $x^3$. Instead, thinking like a mathematician, can you generalize this approach to see if a pattern emerges? Can you invent a tool to find the derivative of any polynomial?
+In practice, you wouldn't necessarily think of the square every time you're taking a derivative of $x^2$, nor would you necessarily think of the cube when taking a derivative of $x^3$. Instead, thinking like a mathematician, can you generalize this approach to see if a pattern emerges? Can you invent a tool to find the derivative of any polynomial?
 
 Let's look at the pattern of the first three monomial functions, where I've included the monomial of degree one for completeness. So far, each of these monomial functions has had a nice geometric meaning. Nudging the input $x$ by a small amount $dx$ has allowed us to see how the geometry changes and find the derivative. <!-- TODO: link to footnote that is a portal into radius of convergence --> 
 
@@ -195,7 +195,7 @@ Focusing on the rate in change introduced by the very small nudge, highlighted i
   caption="Power Rule Definition"
 />
 
-Even though in practice you will find yourself performing this derivative quickly and symbolically, imagining that exponent hopping down to the front, every now and then it’s nice to step back and remember why this rule works. Not just because it’s pretty, and not just because it helps to remind us that math actually makes sense and isn’t just a pile of formulas to memorize, but because it flexes that very important muscle of thinking about derivatives in terms of tiny nudges.
+Even though in practice you will find yourself performing this derivative quickly and symbolically, imagining that exponent hopping down to the front, every now and then it's nice to step back and remember why this rule works. Not just because it's pretty, and not just because it helps to remind us that math actually makes sense and isn't just a pile of formulas to memorize, but because it flexes that very important muscle of thinking about derivatives in terms of tiny nudges.
 
 <Question
   question="What is the derivative of the function $f(x)= 3x^2$?"
@@ -231,9 +231,9 @@ In either case, the upshot is that multiplying a function by $3$ also multiplies
 ### Derivative of $f(x) = \frac{1}{x}$
 
 As another example, think of the function $f(x) = \frac{1}{x}$. Now, on the one hand, you could blindly try applying the power rule, since $\frac{1}{x}$ is the same as writing $x^{-1}$. That would involve letting that $-1$ hop down to become a coefficient, leaving behind one less than itself in the exponent, $-2$. 
-But let’s have some fun and see if we can reason this geometrically, rather than just plugging it through a formula.
+But let's have some fun and see if we can reason this geometrically, rather than just plugging it through a formula.
 
-The value $1/x$ is asking “what number multiplied by $x$ equals $1$”, so here’s how I’d visualize it: Imagine a little rectangular puddle of water in two dimensions with area $1$. Let’s say that it’s width is $x$, which means its height must be $1/x$, since the total area is $1$.
+The value $1/x$ is asking "what number multiplied by $x$ equals $1$", so here's how I'd visualize it: Imagine a little rectangular puddle of water in two dimensions with area $1$. Let's say that it's width is $x$, which means its height must be $1/x$, since the total area is $1$.
 
 <Figure
   image="figures/10.51.svg" 
@@ -258,7 +258,7 @@ For the derivative, imagine nudging the input $x$ up by a value $dx$. How must t
   image="figures/11.41.svg" 
 />
 
-You should think of that $d(1/x)$ as being some tiny *negative* value, since it’s *decreasing* the height of this rectangle. And once you work out $d(1/x)/dx$, compare it to what happens if you apply the power rule purely symbolically to $x^{-1}$.
+You should think of that $d(1/x)$ as being some tiny *negative* value, since it's *decreasing* the height of this rectangle. And once you work out $d(1/x)/dx$, compare it to what happens if you apply the power rule purely symbolically to $x^{-1}$.
 
 $$
 \frac{d(1 / x)}{d x}= ? ? ?

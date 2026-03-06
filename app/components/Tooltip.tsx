@@ -59,7 +59,7 @@ export default function Tooltip({
         >
           <Popover.Popup
             className={clsx(
-              "flex max-h-(--available-height) w-max max-w-(--available-width) flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md",
+              "flex max-h-(--available-height) w-max max-w-[min(var(--available-width),--spacing(200))] flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md",
               className,
             )}
           >
