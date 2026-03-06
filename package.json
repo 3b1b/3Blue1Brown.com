@@ -25,7 +25,6 @@
     "@phosphor-icons/react": "^2.1.10",
     "@react-router/node": "7.12.0",
     "@reactuses/core": "^6.1.11",
-    "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "comlink": "^4.4.2",
     "embla-carousel-react": "9.0.0-rc01",

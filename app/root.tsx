@@ -12,6 +12,7 @@ import {
 } from "react-router";
 import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
+import Celebrate from "~/components/Celebrate";
 import { load as loadDarkMode } from "~/components/DarkMode";
 import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
@@ -63,6 +64,7 @@ export default function App() {
           <ViewCorner />
           <Navigate />
           <MathJax />
+          <Celebrate />
           <ScrollRestoration getKey={(location) => location.pathname} />
           <Scripts />
         </body>

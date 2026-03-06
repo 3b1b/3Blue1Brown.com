@@ -18,6 +18,9 @@ type Props = {
   onChange?: (width: number, height: number) => (() => void) | void;
 } & Omit<ComponentProps<"canvas">, "onChange">;
 
+// max dimension of canvas to avoid perf issues
+const maxSize = 2000;
+
 // general canvas component that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref,
@@ -35,8 +38,9 @@ export default function Canvas({
   let height = useDebounce(_height, 100) * scale;
 
   // hard limit size
-  width = clamp(width, 1, 4000);
-  height = clamp(height, 1, 2000);
+  const scaleDown = clamp(Math.max(width / maxSize, height / maxSize), 1, 20);
+  width /= scaleDown;
+  height /= scaleDown;
 
   // is canvas in view
   const inView = useInView(canvas);

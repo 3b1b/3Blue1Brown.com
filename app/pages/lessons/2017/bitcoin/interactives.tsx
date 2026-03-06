@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { ArrowDownIcon, LineVerticalIcon } from "@phosphor-icons/react";
+import { celebrate } from "~/components/Celebrate";
 import Textbox from "~/components/Textbox";
-import { celebrate } from "~/util/dom";
 
 export function Sha() {
   const [message, setMessage] = useState(

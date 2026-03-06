@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useAtomValue } from "jotai";
 import { random } from "lodash-es";
+import { celebrate } from "~/components/Celebrate";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import { getLesson } from "~/pages/lessons/lessons";
-import { celebrate } from "~/util/dom";
 import { sleep } from "~/util/misc";
 import Explore, { lessonAtom } from "./Explore";
 import Follow from "./Follow";
@@ -22,9 +22,9 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const today = new Date();
-      if (!(today.getMonth() === 2 && today.getDate() === 14)) return;
-      for (let bursts = 5; bursts > 0; bursts--) {
-        celebrate(random(true), random(true));
+      if (!(today.getMonth() === 2 && today.getDate() === 6)) return;
+      for (let bursts = 10; bursts > 0; bursts--) {
+        celebrate(true);
         await sleep(random(200, 1000));
       }
     })();

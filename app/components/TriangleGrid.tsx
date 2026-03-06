@@ -27,7 +27,9 @@ export default function TriangleGrid() {
   const [{ dots = [], lines = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
+  // when canvas size changes
   const onChange = useCallback((width: number, height: number) => {
+    // use gsap context to efficiently clean up old animations
     const ctx = gsap.context(() => setObjects(generate(width, height)));
     return () => ctx.revert();
   }, []);

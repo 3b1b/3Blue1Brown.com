@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { deepMap, onlyText } from "react-children-utilities";
-import confetti from "canvas-confetti";
+import { random } from "lodash-es";
 import { frame, waitFor, waitForStable } from "~/util/misc";
 
 // get text content of react node
@@ -123,17 +123,42 @@ export const shake = (element: Element | null | undefined) => {
   );
 };
 
-// confetti animation
-export const celebrate = (x = 0.5, y = 0.5) => {
-  confetti({
-    spread: 360,
-    particleCount: 50,
-    ticks: 200,
-    origin: { x, y },
-    startVelocity: 10,
-    gravity: 0,
-    decay: 0.95,
-    colors: ["#3187ca"],
-    disableForReducedMotion: true,
-  });
+// get random points within svg path
+export const samplePath = (d: string, count: number) => {
+  // make svg element
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", d);
+  svg.append(path);
+  // add svg to dom so that methods like getBBox and isPointInFill work
+  document.body.append(svg);
+
+  // path bbox
+  const { x: left, y: top, width, height } = path.getBBox();
+
+  // create evenly spaced points
+  const points = new Array(count)
+    .fill(null)
+    // random coords in range of path bbox
+    .map(() => ({
+      x: random(left, left + width),
+      y: random(top, top + height),
+    }))
+    // remove points that aren't inside path fill
+    .filter(({ x, y }) => {
+      const point = svg.createSVGPoint();
+      point.x = x;
+      point.y = y;
+      return path.isPointInFill(point);
+    })
+    // map coord to -1 -> 1
+    .map(({ x, y }) => ({
+      x: ((x - left) / width) * 2 - 1,
+      y: ((y - top) / height) * 2 - 1,
+    }));
+
+  // remove svg from dom
+  svg.remove();
+
+  return points;
 };

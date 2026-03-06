@@ -3,11 +3,12 @@ import { useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
+import { celebrate } from "~/components/Celebrate";
 import Form from "~/components/Form";
 import Markdownify from "~/components/Markdownify";
 import PiCreature from "~/components/PiCreature";
 import Radios from "~/components/Radios";
-import { celebrate, shake } from "~/util/dom";
+import { shake } from "~/util/dom";
 import { sleep } from "~/util/misc";
 
 type Props = {
