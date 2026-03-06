@@ -90,7 +90,7 @@ export const celebrate = (randPos = false) => {
     };
 
     // random duration per particle
-    const duration = random(0.75, 1) * length;
+    const duration = random(0.5, 1) * length;
     // animate to end props
     gsap
       .timeline({
@@ -110,7 +110,7 @@ export const celebrate = (randPos = false) => {
         particle,
         {
           size: random(0.5, 1) * size,
-          duration: duration * 0.1,
+          duration: duration * 0.25,
           ease: "linear",
         },
         0,
@@ -119,8 +119,7 @@ export const celebrate = (randPos = false) => {
         particle,
         {
           size: 0,
-          delay: duration * 0.7,
-          duration: duration * 0.2,
+          duration: duration * 0.75,
           ease: "linear",
         },
         ">",

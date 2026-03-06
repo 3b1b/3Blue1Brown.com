@@ -22,7 +22,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const today = new Date();
-      if (!(today.getMonth() === 2 && today.getDate() === 14)) return;
+      if (!(today.getMonth() === 2 && today.getDate() === 6)) return;
       for (let bursts = 10; bursts > 0; bursts--) {
         celebrate(true);
         await sleep(random(200, 1000));
