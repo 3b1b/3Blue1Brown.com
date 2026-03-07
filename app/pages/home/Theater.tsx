@@ -69,6 +69,8 @@ export default function Theater() {
   // next lesson in list
   const next = lesson && getNext(lesson.id ?? "", topicLessons)?.frontmatter;
 
+  console.log(lesson, next);
+
   // last lesson in list
   const last = getLast(topicLessons)?.frontmatter;
 
@@ -162,10 +164,6 @@ export default function Theater() {
             Last
             <CaretDoubleRightIcon />
           </Control>
-
-          <div className="text-gray">
-            ({topic?.title ? <>In {topic.title}</> : <>By date</>})
-          </div>
         </div>
       </div>
     </>
@@ -190,7 +188,7 @@ function Control({ current, target, children, ...props }: ControlProps) {
         search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
       }}
       onClick={userSelected}
-      aria-disabled={current?.id === target?.id}
+      aria-disabled={!target || current?.id === target?.id}
       {...props}
     >
       {children}

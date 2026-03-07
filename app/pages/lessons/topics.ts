@@ -31,7 +31,7 @@ const specialTopics = {
   all: {
     title: "All",
     description: "All lessons, newest to oldest",
-    lessons: byDate.toReversed(),
+    lessons: byDate,
   },
 };
 

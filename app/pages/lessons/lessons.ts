@@ -109,7 +109,7 @@ export const getNext = (id: string, list = byDate) => {
   let index = list.indexOf(id);
   if (index === -1) return;
   // go forwards until we find lesson that exists
-  for (; index < list.length; index++) {
+  for (; index < list.length - 1; index++) {
     const next = list[index + 1];
     if (!next) continue;
     const lesson = getLesson(next);
