@@ -30,30 +30,11 @@ export default function MathJax() {
   return null;
 }
 
-// mathjax has no type defs, so have to define our own
 declare global {
   // eslint-disable-next-line
   interface Window {
-    MathJax: {
-      svg?: {
-        fontCache?: string;
-      };
-      startup?: {
-        typeset?: boolean;
-        promise?: Promise<void>;
-      };
-      loader?: {
-        load?: string[];
-      };
-      tex?: {
-        packages?: Record<string, string[]>;
-      };
-      tex2svg?: (math: string, options: { display: boolean }) => Element;
-      tex2svgPromise?: (
-        math: string,
-        options: { display: boolean },
-      ) => Promise<Element>;
-    };
+    // eslint-disable-next-line
+    MathJax: any;
   }
 }
 
@@ -67,8 +48,24 @@ const init = async () => {
     svg: {
       fontCache: "local",
     },
-    loader: { load: ["[tex]/color"] },
-    tex: { packages: { "[+]": ["color"] } },
+    loader: {
+      load: ["[tex]/color"],
+    },
+    tex: {
+      packages: {
+        "[+]": ["color"],
+        // force undefined macros to throw and render merror dom element
+        "[-]": ["noundefined"],
+      },
+      macros: {
+        degree: "{^\\circ}",
+      },
+      // force parsing errors to throw and render merror dom element
+      formatError: (jax: unknown, error: Error) => {
+        error.name = "MathJaxError";
+        throw error;
+      },
+    },
     startup: {
       typeset: false,
     },
@@ -105,7 +102,7 @@ const render = async () => {
       // try synchronous for responsiveness
       content = window.MathJax.tex2svg?.(math, { display });
     } catch (error) {
-      // fallback to async if things still loading.
+      // fallback to async if things still loading
       content = await window.MathJax.tex2svgPromise?.(math, { display });
     }
     if (!content) continue;

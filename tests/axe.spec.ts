@@ -11,8 +11,8 @@ log();
 // test page with deque axe
 const checkPage = (path: string) =>
   test(`Axe check on page "${path}"`, async ({ browserName, page }) => {
-    // axe tests should be independent of browser, so only run once
-    test.skip(browserName !== "chromium", "Only test Axe on chromium");
+    // test should be independent of browser, so only run one
+    test.skip(browserName !== "chromium", "Only test on chromium");
 
     // test can be slow on ci on very large page (like testbed)
     test.setTimeout(2 * 60 * 1000);
@@ -45,7 +45,6 @@ const checkPage = (path: string) =>
       },
     );
 
-    // annotate test with all
     test.info().annotations.push({
       type: "Axe violations",
       description: stringify(critical),

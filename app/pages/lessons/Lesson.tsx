@@ -15,6 +15,7 @@ import Card from "~/components/Card";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import { H1, H2 } from "~/components/Heading";
+import Image from "~/components/Image";
 import Link from "~/components/Link";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
@@ -50,6 +51,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
       video = "",
       source = "",
       chapter = -1,
+      image = "",
     },
   } = lesson;
 
@@ -109,7 +111,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
           <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
             {/* embed */}
-            {video && <YouTube id={video} />}
+            {video ? <YouTube id={video} /> : <Image image={image} />}
 
             {/* details */}
             <div className="flex flex-col items-start justify-start gap-8">

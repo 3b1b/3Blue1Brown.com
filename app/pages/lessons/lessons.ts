@@ -37,17 +37,20 @@ export const [getLesson, lessons] = importAssets(
       // lookup thumbnail
       image: lesson.frontmatter.video?.trim()
         ? getThumbnail(lesson.frontmatter.video)
-        : lesson.frontmatter.thumbnail,
+        : (lesson.frontmatter.thumbnail ?? ""),
+      // nullify thumbnail field so image field single source of truth
+      thumbnail: undefined,
       // combine credits by role for more compact display
-      combinedCredits: lesson.frontmatter.credits?.reduce(
-        (credits, credit) => {
-          const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
-          credits[role] ??= [];
-          credits[role].push(name);
-          return credits;
-        },
-        {} as Record<string, string[]>,
-      ),
+      combinedCredits:
+        lesson.frontmatter.credits?.reduce(
+          (credits, credit) => {
+            const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
+            credits[role] ??= [];
+            credits[role].push(name);
+            return credits;
+          },
+          {} as Record<string, string[]>,
+        ) ?? {},
     },
   }),
 );

@@ -128,7 +128,7 @@ export default function Question({
 
         {state === "unanswered" && (
           <>
-            <PiCreature emotion="pondering" size="sm" />
+            <PiCreature emotion="pondering" size="sm" flip />
             What could it be...
           </>
         )}

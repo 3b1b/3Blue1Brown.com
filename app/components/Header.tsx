@@ -64,11 +64,11 @@ export default function Header({ children }: Props) {
         <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
           {site.subtitle}
 
-          <div className="flex items-center gap-2">
-            <BellIcon className="icon text-xs" aria-label="Subscribers" />
+          <div className="flex items-center gap-1 text-sm">
+            <BellIcon className="icon scale-75" aria-label="Subscribers" />
             {formatNumber(stats.subscribers)}
             &nbsp;
-            <PlayIcon className="icon text-xs" aria-label="Views" />
+            <PlayIcon className="icon scale-75" aria-label="Views" />
             {formatNumber(stats.views)}
           </div>
         </div>
