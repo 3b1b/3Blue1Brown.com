@@ -23,11 +23,11 @@ export default function Blog() {
             <Card
               key={id}
               to={href("/blog/:id", { id })}
-              className="items-start gap-2 bg-current/5 p-4 text-left"
+              className="items-start gap-2 bg-secondary/5 p-4 text-left"
               title={title}
               description={`${formatDate(date)} — ${description}`}
             >
-              <FeatherIcon className="absolute top-1/2 right-0 size-20 -translate-y-1/2 text-xl text-gray opacity-10" />
+              <FeatherIcon className="absolute top-1/2 right-0 size-20 -translate-y-1/2 text-xl text-secondary opacity-10" />
             </Card>
           );
         })}

@@ -16,7 +16,7 @@ export default function Main({ striped, className, children }: Props) {
     <main
       id="content"
       className={clsx(
-        striped && "[&>section:nth-of-type(odd)]:bg-off-white",
+        striped && "[&>section:nth-of-type(odd)]:bg-alt-white",
         className,
       )}
     >

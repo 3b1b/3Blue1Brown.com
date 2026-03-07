@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PaperPlaneIcon } from "@phosphor-icons/react";
+import { EnvelopeIcon, PaperPlaneIcon } from "@phosphor-icons/react";
 import { useLocalStorage } from "@reactuses/core";
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
@@ -84,6 +84,7 @@ export default function Contact() {
         type="email"
         placeholder="Email"
         required
+        icon={<EnvelopeIcon />}
         value={email ?? ""}
         onChange={setEmail}
       />

@@ -76,7 +76,7 @@ const episodes = [
 
 export default function Podcast() {
   return (
-    <section className="bg-off-white">
+    <section className="bg-alt-white">
       <H2>Podcast</H2>
 
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">

@@ -1,0 +1,5 @@
+[
+  { "name": "Jane Doe", "current": true },
+  { "name": "John Doe", "current": true },
+  { "name": "Anne Chovie", "current": false }
+]

@@ -30,7 +30,7 @@ export default function Card({
     <Link
       arrow={false}
       className={clsx(
-        "group relative isolate flex flex-col items-center justify-start gap-4 text-center text-balance text-black no-underline outline-none hocus:scale-102",
+        "group relative isolate flex flex-col items-center justify-start gap-4 rounded-md text-center text-balance text-black no-underline outline-none hocus:scale-102",
         className,
       )}
       aria-current={active}

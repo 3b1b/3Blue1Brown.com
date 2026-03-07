@@ -102,6 +102,32 @@ export default function Follow() {
           </Button>
         ))}
       </div>
+
+      {/* <Form
+        onSubmit={(data) => {
+          const email = data.get("email") || "";
+          window.open(
+            `https://3blue1brown.substack.com/subscribe?email=${email}`,
+            "_blank",
+          );
+        }}
+        className="flex flex-col gap-4 self-center"
+      >
+        <div className="text-center font-sans font-medium">
+          Newsletter Signup
+        </div>
+        <Textbox
+          name="email"
+          type="email"
+          required
+          placeholder="Your email"
+          icon={<EnvelopeIcon />}
+        />
+        <Button type="submit" size="sm" color="theme">
+          Substack
+          <ArrowRightIcon />
+        </Button>
+      </Form> */}
     </section>
   );
 }

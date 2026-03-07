@@ -105,7 +105,7 @@ export default function Textbox({
         {input}
         <div
           ref={sideRef}
-          className="absolute top-0 right-0 flex items-start text-dark-gray *:grid *:size-[calc(var(--leading-normal)*1em+--spacing(4)+2px)] *:place-items-center *:p-0"
+          className="absolute top-0 right-0 flex items-start text-gray *:grid *:size-[calc(var(--leading-normal)*1em+--spacing(4)+2px)] *:place-items-center *:p-0"
         >
           {side}
         </div>

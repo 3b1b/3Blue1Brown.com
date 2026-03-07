@@ -23,23 +23,23 @@ type Props = {
 // available categories of alerts and associated styles
 export const types = {
   info: {
-    color: "text-theme",
+    color: "text-theme bg-theme/10",
     icon: <InfoIcon />,
   },
   loading: {
-    color: "text-gray",
+    color: "text-gray bg-light-gray",
     icon: <CircleNotchIcon className="icon animate-spin" />,
   },
   success: {
-    color: "text-success",
+    color: "text-success bg-success/10",
     icon: <CheckCircleIcon />,
   },
   warning: {
-    color: "text-warning",
+    color: "text-warning bg-warning/10",
     icon: <WarningCircleIcon />,
   },
   error: {
-    color: "text-error",
+    color: "text-error bg-error/10",
     icon: <WarningDiamondIcon />,
   },
 };
@@ -57,7 +57,7 @@ export default function Alert({
   return (
     <div
       className={clsx(
-        "flex items-center gap-4 rounded-r-md border-l-2 border-current bg-current/5 p-4 leading-loose",
+        "flex items-center gap-4 rounded-r-md border-l-2 border-current p-4 leading-loose",
         className,
         types[type].color,
       )}

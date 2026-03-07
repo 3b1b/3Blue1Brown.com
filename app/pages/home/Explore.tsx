@@ -97,7 +97,7 @@ export function Search() {
       {/* selected topic */}
       {topic && (
         <div className="relative isolate grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1">
-          <div className="absolute inset-y-0 -right-999 -left-999 -z-10 bg-off-white" />
+          <div className="absolute inset-y-0 -right-999 -left-999 -z-10 bg-light-gray" />
           <img
             src={topic.image ?? ""}
             alt=""
@@ -212,7 +212,7 @@ export function Search() {
         </>
       ) : (
         // empty
-        <div className="text-center text-dark-gray">No results</div>
+        <div className="text-center text-gray">No results</div>
       )}
     </>
   );

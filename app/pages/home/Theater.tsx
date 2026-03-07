@@ -69,8 +69,6 @@ export default function Theater() {
   // next lesson in list
   const next = lesson && getNext(lesson.id ?? "", topicLessons)?.frontmatter;
 
-  console.log(lesson, next);
-
   // last lesson in list
   const last = getLast(topicLessons)?.frontmatter;
 

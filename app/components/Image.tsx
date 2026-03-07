@@ -47,9 +47,7 @@ export default function Image({ image, alt = "", children, className }: Props) {
     <figure className={clsx("flex flex-col gap-4", className)}>
       {img}
       {children && (
-        <figcaption className="self-center text-dark-gray">
-          {children}
-        </figcaption>
+        <figcaption className="self-center text-gray">{children}</figcaption>
       )}
     </figure>
   );

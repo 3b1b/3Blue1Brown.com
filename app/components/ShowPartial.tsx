@@ -12,20 +12,32 @@ type Props = {
   children: ReactNode;
 };
 
+const limit = 500;
+
 // show partial content with fade, with button to reveal more
 export default function ShowPartial({ className, children }: Props) {
   const [open, setOpen] = useState(false);
+  const [enabled, setEnabled] = useState(true);
+
+  if (!enabled) return children;
 
   return (
     <div className="flex flex-col items-center gap-8">
       <div
         ref={(element) => {
           if (!element) return;
-          // calculate height to transition to when opening
-          element.style.maxHeight = open ? element.scrollHeight + "px" : "";
+          // height of full content
+          const content = element.scrollHeight;
+          // if content is short enough, just disable component˝
+          if (content <= limit) {
+            setEnabled(false);
+            return;
+          }
+          // limit height
+          element.style.maxHeight = (open ? content : limit) + "px";
         }}
         className={clsx(
-          "flex max-h-50 flex-col gap-8 overflow-hidden transition-all",
+          "flex flex-col gap-8 overflow-hidden transition-all",
           open ? "" : "to-transparent mask-b-from-50%",
           className,
         )}

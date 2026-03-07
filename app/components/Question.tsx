@@ -103,7 +103,7 @@ export default function Question({
         </div>
       )}
 
-      <div className="flex items-center gap-8">
+      <div className="grid grid-cols-[--spacing(40)_--spacing(12)_1fr] items-center gap-8">
         <Button
           type="submit"
           onClick={async (event) => {
@@ -126,9 +126,16 @@ export default function Question({
           {state === "unanswered" && "Check Answer"}
         </Button>
 
-        {state === "wrong" && (
+        {state === "unanswered" && (
           <>
             <PiCreature emotion="pondering" size="sm" />
+            What could it be...
+          </>
+        )}
+
+        {state === "wrong" && (
+          <>
+            <PiCreature emotion="confused" size="sm" />
             Not quite...
           </>
         )}

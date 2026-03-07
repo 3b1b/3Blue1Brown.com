@@ -1,4 +1,5 @@
 import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
+// import previewVideo from "~/assets/clips/clacks.mp4";
 import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
 import Image from "~/components/Image";
@@ -15,7 +16,7 @@ export default function Patreon() {
         <hr />
       </H2>
 
-      <div className="grid w-full grid-cols-2 items-start justify-center justify-items-center gap-x-12 gap-y-8 max-md:grid-cols-1">
+      <div className="grid w-full grid-cols-2 items-center justify-center justify-items-center gap-x-12 gap-y-8 max-md:grid-cols-1">
         <p>
           Textbooks and courses are often expensive. I believe educational
           content is <em>most valuable when it's free</em>. Instead of up-front
@@ -37,6 +38,19 @@ export default function Patreon() {
           Become a Supporter
           <ArrowRightIcon />
         </Button>
+
+        {/* <p className="text-center text-balance">
+          A sneak peek at the next lesson, available to patrons...
+        </p>
+
+        <video
+          src={previewVideo}
+          className="aspect-video w-100"
+          controls
+          autoPlay
+          muted
+          loop
+        /> */}
       </div>
     </section>
   );

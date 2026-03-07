@@ -7,7 +7,7 @@ const email = "talent@3blue1brown.com";
 export default function Details() {
   return (
     <>
-      <section className="bg-off-white">
+      <section className="bg-alt-white">
         <H2>Want to be listed here?</H2>
 
         <p>

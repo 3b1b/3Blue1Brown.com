@@ -100,6 +100,8 @@ Run periodically, manually review, and use discretion.
 - Use Tailwind for styling, and avoid custom CSS and inline styles as much as possible.
 - Use Tailwind's `--spacing()` function in `calc()`s and such, to ensure consistent spacing.
   Avoid hardcoding pixel values.
+- Try to be consistent with the established visual language of the site. E.g., what gap sizes are typically used, how colors and color-alpha values are used on other pages. Keep in mind the general aesthetic of the whole.
+- Use already-bundled lodash utility functions wherever possible to make code more concise.
 - If a component in `/components` is just a single element and some styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
 - Use MDX for pages that are primarily static content, and React components for everything else.
 - Split pages into separate components by "section" to keep them from becoming too monolithic and make them easier to re-order later.
@@ -109,3 +111,5 @@ Run periodically, manually review, and use discretion.
 - Use browser dev tools to become familiar with CSS layout and box model.
 - Try to name files in lower-kebab-case, and components in UpperCamelCase.
 - Generally, put a section break after level 2 headings.
+- Use `console.log` for logging you plan to be temporary, so it can easily be found throughout the codebase. Use `console.debug`/`info` (sparingly) for logging that could be useful to see in production. Use `console.warn`/`error` for all try/catches or where appropriate, as long as they aren't too noisy.
+- Make sure you use the `~/` import prefix, unless the file you're importing is meant to always be co-located with current file.

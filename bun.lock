@@ -54,6 +54,7 @@
         "eslint-plugin-react-hooks": "^7.0.1",
         "glob": "^13.0.5",
         "globals": "^17.3.0",
+        "patreon-api.ts": "^0.18.2",
         "prettier": "^3.8.1",
         "prettier-plugin-tailwindcss": "^0.7.2",
         "remark-frontmatter": "^5.0.0",
@@ -1227,6 +1228,8 @@
     "path-type": ["path-type@4.0.0", "", {}, "sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw=="],
 
     "pathe": ["pathe@1.1.2", "", {}, "sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ=="],
+
+    "patreon-api.ts": ["patreon-api.ts@0.18.2", "", {}, "sha512-Flp44mQc+eT5NXNWW5r5gTQ2h33rrdXko9MItwZgF/gJJpO1tk8Pw+M78wL47wnG3+0KqvGMDl9ehTaECRnJ0Q=="],
 
     "picocolors": ["picocolors@1.1.1", "", {}, "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="],
 

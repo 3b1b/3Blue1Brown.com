@@ -32,7 +32,7 @@ import site from "~/data/site.json";
 
 <TableOfContents />
 
-<Main>
+<Main striped>
 
 <section>
 
@@ -44,13 +44,16 @@ import site from "~/data/site.json";
   <div className="bg-success" />
   <div className="bg-error" />
   <div className="bg-black" />
-  <div className="bg-off-black" />
   <div className="bg-dark-gray" />
   <div className="bg-gray" />
   <div className="bg-light-gray" />
-  <div className="bg-off-white" />
+  <div className="bg-alt-white" />
   <div className="bg-white" />
 </div>
+
+</section>
+
+<section>
 
 <PiCreatureDemo>
 
@@ -150,6 +153,10 @@ The true nature of reality remains a mystery, but physicists suspect it has some
 </Image>
 
 </div>
+
+</section>
+
+<section>
 
 Tempus leo eu <Spoiler>aenean sed diam urna tempor. Pulvinar vivamus</Spoiler>
 fringilla lacus nec metus bibendum.
@@ -265,13 +272,17 @@ popup.innerText =
 
 This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
 
+</section>
+
+<section>
+
 {/* favicon */}
 
-<Logo className="size-100" />
+<Logo className="size-100 self-center" />
 
 {/* share thumbnail */}
 
-<div className="dark relative isolate flex h-160 w-240 flex-col items-center justify-center gap-4 overflow-hidden bg-white font-serif text-lg text-black">
+<div className="dark relative isolate flex h-160 w-240 flex-col items-center justify-center gap-4 self-center overflow-hidden bg-white font-serif text-lg text-black">
   <Logo className="absolute -z-10 scale-250 blur-[100px]" />
   <Logo className="mb-4 size-60" />
   <div className="text-6xl">{site.title}</div>

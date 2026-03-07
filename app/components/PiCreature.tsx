@@ -55,11 +55,11 @@ export default function PiCreature({
     <Creature
       ref={creatureRef}
       className={clsx(
-        "self-center text-[oklch(70%_0.15_240)] [grid-area:creature]",
+        "self-center text-[oklch(70%_0.15_240)]",
         flip && "-scale-x-100",
         size === "sm" && "size-12",
         size === "md" && "size-24",
-        !children && className,
+        children ? "[grid-area:creature]" : className,
       )}
       {...props}
     />

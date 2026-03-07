@@ -13,7 +13,7 @@ export default function Help({ children }: Props) {
     <Tooltip
       trigger={
         <button
-          className="cursor-help rounded-full text-dark-gray"
+          className="cursor-help rounded-full text-gray"
           aria-label="Help"
         >
           <QuestionIcon />

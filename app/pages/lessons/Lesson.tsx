@@ -206,7 +206,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           </section>
         )}
 
-        {/* patrons */}
+        {/* thank you */}
         {!!patrons.length && (
           <section className="bg-secondary/10!">
             <H2>
@@ -220,7 +220,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             </p>
 
             <ShowPartial>
-              <div className="grid grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
+              <div className="grid max-w-max grid-cols-3 gap-4 self-center max-md:grid-cols-2 max-sm:grid-cols-1">
                 {patrons.map((patron, index) => (
                   <div key={index}>{patron}</div>
                 ))}
