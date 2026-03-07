@@ -20,7 +20,6 @@ import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
-import { getThumbnail } from "~/util/youtube";
 
 const limit = 12;
 
@@ -155,7 +154,7 @@ export function Search() {
               .slice(0, all ? Infinity : limit)
               .map(
                 (
-                  { id = "", title = "", description = "", video = "" },
+                  { id = "", title = "", description = "", image = "" },
                   index,
                 ) => (
                   <div key={index} className="flex flex-col gap-2">
@@ -165,7 +164,8 @@ export function Search() {
                         search: mergeSearch(location.search, `lesson=${id}`),
                       }}
                       aria-label={`Play lesson "${title}"`}
-                      image={getThumbnail(video)}
+                      image={image}
+                      title={title}
                       description={description}
                       onClick={userSelected}
                       active={lessonId === id}

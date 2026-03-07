@@ -17,7 +17,7 @@ import { findClosest, firstInView, scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
-const spacing = 50;
+const spacing = 100;
 
 // table of contents on side of screen
 export default function TableOfContents() {

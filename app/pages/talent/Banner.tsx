@@ -33,10 +33,7 @@ export default function Banner({ name, banner, wordmark }: Props) {
 
       <img src={wordmark} alt={name} title={name} className="h-20" />
 
-      <Button
-        to={href("/talent")}
-        className="absolute bottom-4 left-4 self-center"
-      >
+      <Button to={href("/talent")} className="absolute bottom-4 left-4">
         <ArrowLeftIcon />
         More 3b1b Partners
       </Button>

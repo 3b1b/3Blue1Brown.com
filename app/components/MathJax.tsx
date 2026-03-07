@@ -42,6 +42,12 @@ declare global {
         typeset?: boolean;
         promise?: Promise<void>;
       };
+      loader?: {
+        load?: string[];
+      };
+      tex?: {
+        packages?: Record<string, string[]>;
+      };
       tex2svg?: (math: string, options: { display: boolean }) => Element;
       tex2svgPromise?: (
         math: string,
@@ -61,6 +67,8 @@ const init = async () => {
     svg: {
       fontCache: "local",
     },
+    loader: { load: ["[tex]/color"] },
+    tex: { packages: { "[+]": ["color"] } },
     startup: {
       typeset: false,
     },

@@ -5,7 +5,6 @@ import { Fragment } from "react/jsx-runtime";
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
-  BookIcon,
   BracketsCurlyIcon,
   CalendarBlankIcon,
   UserIcon,
@@ -84,76 +83,83 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
       <Main striped>
         {/* lesson header */}
-        <section className="items-center gap-8 bg-theme/10!">
+        <section className="items-center gap-8 bg-theme/10! width-lg">
+          {/* topic */}
+          {topic && (
+            <Button
+              to={{ pathname: "/", search: `?topic=${topic.id}` }}
+              className="top-4 left-4 self-center md:absolute"
+            >
+              <ArrowLeftIcon />
+              {topic.title}
+            </Button>
+          )}
+
+          {/* chapter */}
+          {chapter !== -1 && (
+            <div className="-my-4 flex items-center gap-2 text-lg">
+              Chapter {chapter}
+            </div>
+          )}
+
           {/* title */}
           <H1>
             <StrokeType>{title}</StrokeType>
           </H1>
 
-          <div className="flex items-center gap-8">
-            {topic && (
-              <Button
-                color="light"
-                to={{ pathname: "/", search: `?topic=${topic.id}` }}
-                className="flex items-center gap-2 text-lg"
-              >
-                <ArrowLeftIcon />
-                {topic.title}
-              </Button>
-            )}
+          <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
+            {/* embed */}
+            {video && <YouTube id={video} />}
 
-            {chapter !== -1 && (
-              <div className="flex items-center gap-2 text-lg">
-                <BookIcon />
-                Chapter {chapter}
+            {/* details */}
+            <div className="flex flex-col items-start justify-start gap-8">
+              {description && <p className="text-lg">{description}</p>}
+              <div className="flex flex-col flex-wrap gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray max-md:flex-row">
+                {/* date */}
+                {date && (
+                  <div>
+                    <CalendarBlankIcon />
+                    {formatDate(date)}
+                  </div>
+                )}
+
+                {/* credits */}
+                {Object.entries(combinedCredits).map(([role, names], index) => (
+                  <div key={index}>
+                    <UserIcon />
+                    {role} by{" "}
+                    {names.map((name, index) => (
+                      <Fragment key={index}>
+                        <Link
+                          to={find(team, { name })?.link ?? ""}
+                          arrow={false}
+                        >
+                          {name}
+                        </Link>
+                        {index < names.length - 1 ? " &" : ""}
+                      </Fragment>
+                    ))}
+                  </div>
+                ))}
+
+                {/* source */}
+                {source && (
+                  <div>
+                    <BracketsCurlyIcon />
+                    <Link
+                      to={`https://github.com/3b1b/videos/blob/master/${source}`}
+                      arrow={false}
+                    >
+                      Source
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-
-          {/* embed */}
-          {video && <YouTube id={video} />}
-
-          {/* details */}
-          <div className="flex flex-col items-center gap-8">
-            {description && <p className="text-lg">{description}</p>}
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
-              {Object.entries(combinedCredits).map(([role, names], index) => (
-                <div key={index}>
-                  <UserIcon />
-                  {role} by{" "}
-                  {names.map((name, index) => (
-                    <Fragment key={index}>
-                      <Link to={find(team, { name })?.link ?? ""} arrow={false}>
-                        {name}
-                      </Link>
-                      {index < names.length - 1 ? " &" : ""}
-                    </Fragment>
-                  ))}
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-lg *:flex *:items-center *:gap-2 **:text-gray">
-              {date && (
-                <div>
-                  <CalendarBlankIcon />
-                  {formatDate(date)}
-                </div>
-              )}
-              {source && (
-                <div>
-                  <BracketsCurlyIcon />
-                  <Link
-                    to={`https://github.com/3b1b/videos/blob/master/${source}`}
-                    arrow={false}
-                  >
-                    Source
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </section>
 
+        {/* toc */}
         {hasContent(id) && <TableOfContents />}
 
         {/* lesson content */}
@@ -162,6 +168,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
         {/* nav */}
         {(!!previous || !!next) && (
           <section className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
+            {/* previous */}
             {!!previous ? (
               <Card
                 to={href("/lessons/:id", { id: previous.id })}
@@ -177,7 +184,10 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             ) : (
               <div />
             )}
+
             <div />
+
+            {/* next */}
             {!!next ? (
               <Card
                 to={href("/lessons/:id", { id: next?.id })}

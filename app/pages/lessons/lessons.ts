@@ -14,20 +14,13 @@ export type LessonFrontmatter = {
   source?: string;
   chapter?: number;
   image?: string;
+  thumbnail?: string;
 };
 
 export type Lesson = {
   default: MDXContent;
   frontmatter: LessonFrontmatter;
 };
-
-// import all lesson custom thumbnails
-const [getCustomThumbnail] = importAssets(
-  import.meta.glob<{ default: string }>("./20\\d\\d/**/thumbnail.*.{jpg}", {
-    eager: true,
-  }),
-  "thumbnail",
-);
 
 // import all lessons
 export const [getLesson, lessons] = importAssets(
@@ -42,10 +35,9 @@ export const [getLesson, lessons] = importAssets(
       // parse date
       date: new Date(lesson.frontmatter.date ?? ""),
       // lookup thumbnail
-      image:
-        getThumbnail(lesson.frontmatter.video ?? "") ||
-        getCustomThumbnail(id)?.default ||
-        "",
+      image: lesson.frontmatter.video?.trim()
+        ? getThumbnail(lesson.frontmatter.video)
+        : lesson.frontmatter.thumbnail,
       // combine credits by role for more compact display
       combinedCredits: lesson.frontmatter.credits?.reduce(
         (credits, credit) => {

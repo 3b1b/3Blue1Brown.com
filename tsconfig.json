@@ -12,6 +12,8 @@
     "plugins": [{ "name": "@mdx-js/typescript-plugin" }],
     "target": "ESNext",
     "module": "ESNext",
+    "allowJs": true,
+    "checkJs": false,
 
     // bundling
     "moduleResolution": "bundler",

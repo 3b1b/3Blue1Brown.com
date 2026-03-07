@@ -382,11 +382,6 @@ export default function PyramidPlot() {
 
       let progress = this.interpolator(frameNumber, this.frameLength);
       if (this.draw == undefined) {
-        console.log(
-          "Animation with length " +
-            this.frameLength +
-            " doesn't have an attached draw function!"
-        );
         return true;
       }
 

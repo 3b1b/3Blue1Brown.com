@@ -59,7 +59,7 @@ export default function Header({ children }: Props) {
         />
 
         {/* sub title */}
-        <div className="grow basis-0 text-right text-gray max-xl:hidden">
+        <div className="grow basis-0 text-right text-dark-gray max-xl:hidden">
           {site.subtitle}
         </div>
       </div>
