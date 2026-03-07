@@ -19,7 +19,7 @@ type Props = {
 } & Omit<ComponentProps<"canvas">, "onChange">;
 
 // max dimension of canvas to avoid perf issues
-const maxSize = 2000;
+const maxSize = 4000;
 
 // general canvas component that handles animation loop, resizing, and etc.
 export default function Canvas({
