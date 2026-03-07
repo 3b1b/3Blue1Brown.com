@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { href } from "react-router";
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { BellIcon, ListIcon, PlayIcon, XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Grid from "~/components/Grid";
@@ -9,6 +9,8 @@ import Logo from "~/components/Logo";
 import Nav from "~/components/Nav";
 import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
+import stats from "~/pages/home/stats.json";
+import { formatNumber } from "~/util/string";
 
 type Props = {
   // extra content below header
@@ -59,8 +61,16 @@ export default function Header({ children }: Props) {
         />
 
         {/* sub title */}
-        <div className="grow basis-0 text-right text-dark-gray max-xl:hidden">
+        <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
           {site.subtitle}
+
+          <div className="flex items-center gap-2">
+            <BellIcon className="icon text-xs" aria-label="Subscribers" />
+            {formatNumber(stats.subscribers)}
+            &nbsp;
+            <PlayIcon className="icon text-xs" aria-label="Views" />
+            {formatNumber(stats.views)}
+          </div>
         </div>
       </div>
 

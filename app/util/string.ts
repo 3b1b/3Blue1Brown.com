@@ -1,3 +1,9 @@
+// format number to string
+export const formatNumber = (value?: number, compact = true) =>
+  (value || 0).toLocaleString(undefined, {
+    notation: compact ? "compact" : undefined,
+  });
+
 // make string url-safe
 export const slugify = (value: string) =>
   value

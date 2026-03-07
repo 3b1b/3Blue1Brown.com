@@ -6,7 +6,7 @@ import { PatreonCreatorClient, QueryBuilder } from "patreon-api.ts";
 
 // node/server script to fetch all current and past patreon patrons
 
-//  patreon campaign id
+// patreon campaign id
 const campaignId = "580365";
 
 const {
@@ -16,7 +16,7 @@ const {
   PATREON_CREATOR_REFRESH_TOKEN = "",
 } = process.env;
 
-// setup patreon api client
+// set up patreon api client
 const client = new PatreonCreatorClient({
   oauth: {
     clientId: PATREON_CLIENT_ID,
