@@ -705,6 +705,7 @@ export function InteractiveWindow({ minR, maxR }) {
 
         let zoomAmount = -event.deltaY / 100;
         zoomAmount = normalizeZoomAmount(range, zoomAmount, minR, maxR);
+        if (zoomAmount > 0) zoomAmount /= 3;
         return zoomRange(range, zoomAmount, [x, y]);
       });
 
