@@ -1,11 +1,9 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the Hyperdarts lesson.
  * It uses p5.js to interface with WEBGL and draw a pyramid & cube to a 3D environment.
  */
 
-import Sketch from "~/pages/lessons/Sketch";
+import Sketch from "react-p5";
 
 const WIDTH = 880;
 const HEIGHT = 500;
@@ -15,7 +13,7 @@ let mouseScale = 1;
 const LINE_COLOR = "#FFFFFF";
 const PYMD_COLOR = "#27ed15";
 
-export default function PyramidPlot() {
+export default function Pyramid() {
   const SENSITIVITY = 1.2;
 
   let p5Object;
@@ -89,13 +87,13 @@ export default function PyramidPlot() {
 
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
-    let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
-    scaleString = scaleString?.substring(0, scaleString.length - 1);
-    if (!scaleString?.includes(".")) {
-      scaleString += ".0";
-    }
-    mouseScale = parseFloat(scaleString);
+    // let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    // let scaleString = transform.split("(")[1];
+    // scaleString = scaleString?.substring(0, scaleString.length - 1);
+    // if (!scaleString?.includes(".")) {
+    //   scaleString += ".0";
+    // }
+    // mouseScale = parseFloat(scaleString);
   }
 
   function draw(sketch) {

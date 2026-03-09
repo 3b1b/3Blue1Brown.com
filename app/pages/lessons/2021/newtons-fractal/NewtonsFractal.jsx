@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
+import { ArrowsClockwiseIcon } from "@phosphor-icons/react";
 import GraphWindow, {
   GraphLines,
   GraphPoint,
   GraphShader,
   InteractiveWindow,
-} from "~/components/Graph";
+} from "./Graph";
+import styles from "./NewtonsFractal.module.css";
 
 const colors = [
   [86 / 255, 6 / 255, 102 / 255, 1],
@@ -36,120 +38,119 @@ export default function NewtonsFractal() {
 
   const coefficients = getCoefficients(roots);
 
-  const { width, height } = useWindowSize();
+  let { width, height } = useWindowSize();
+
+  width *= 0.9;
+  height *= 0.9;
 
   return (
-    <div className={styles.container}>
-      <div>
-        <GraphWindow width={width} height={height}>
-          {({ range, resetRange, windowSize }) => (
-            <>
-              <InteractiveWindow minR={0.00001} maxR={100} />
+    <GraphWindow width={width} height={height}>
+      {({ range, resetRange, windowSize }) => (
+        <>
+          <InteractiveWindow minR={0.00001} maxR={100} />
 
-              <GraphShader
-                vertex={vertex}
-                fragment={fragment(rootCount)}
-                uniforms={{
-                  n_steps: ["int", steps],
-                  // MAX_DEGREE: ["int", rootCount],
+          <GraphShader
+            vertex={vertex}
+            fragment={fragment(rootCount)}
+            uniforms={{
+              n_steps: ["int", steps],
+              // MAX_DEGREE: ["int", rootCount],
 
-                  color0: ["vec4", colors[0]],
-                  color1: ["vec4", colors[1]],
-                  color2: ["vec4", colors[2]],
-                  color3: ["vec4", colors[3]],
-                  color4: ["vec4", colors[4]],
+              color0: ["vec4", colors[0]],
+              color1: ["vec4", colors[1]],
+              color2: ["vec4", colors[2]],
+              color3: ["vec4", colors[3]],
+              color4: ["vec4", colors[4]],
 
-                  coef0: ["vec2", coefficients[0] || [0, 0]],
-                  coef1: ["vec2", coefficients[1] || [0, 0]],
-                  coef2: ["vec2", coefficients[2] || [0, 0]],
-                  coef3: ["vec2", coefficients[3] || [0, 0]],
-                  coef4: ["vec2", coefficients[4] || [0, 0]],
-                  coef5: ["vec2", coefficients[5] || [0, 0]],
+              coef0: ["vec2", coefficients[0] || [0, 0]],
+              coef1: ["vec2", coefficients[1] || [0, 0]],
+              coef2: ["vec2", coefficients[2] || [0, 0]],
+              coef3: ["vec2", coefficients[3] || [0, 0]],
+              coef4: ["vec2", coefficients[4] || [0, 0]],
+              coef5: ["vec2", coefficients[5] || [0, 0]],
 
-                  root0: ["vec2", root0],
-                  root1: ["vec2", root1],
-                  root2: ["vec2", root2],
-                  root3: ["vec2", root3],
-                  root4: ["vec2", root4],
+              root0: ["vec2", root0],
+              root1: ["vec2", root1],
+              root2: ["vec2", root2],
+              root3: ["vec2", root3],
+              root4: ["vec2", root4],
 
-                  minX: ["float", range[0][0]],
-                  maxX: ["float", range[0][1]],
-                  minY: ["float", range[1][0]],
-                  maxY: ["float", range[1][1]],
+              minX: ["float", range[0][0]],
+              maxX: ["float", range[0][1]],
+              minY: ["float", range[1][0]],
+              maxY: ["float", range[1][1]],
 
-                  windowWidth: ["float", windowSize.width],
-                  windowHeight: ["float", windowSize.height],
+              windowWidth: ["float", windowSize.width],
+              windowHeight: ["float", windowSize.height],
+            }}
+          />
+          <GraphLines
+            step={0.2}
+            color="rgba(255, 255, 255, 0.2)"
+            labels={false}
+          />
+          <GraphLines
+            step={1}
+            color="rgba(255, 255, 255, 0.5)"
+            labels
+            labelY={(n) => `${n}i`}
+            labelStr={(n, axis) => {
+              let str = new Intl.NumberFormat().format(n);
+              if (axis === "y") str += "i";
+              return str;
+            }}
+            fontSize={24}
+          />
+
+          {roots.map((root, i) => (
+            <GraphPoint
+              key={i}
+              x={root[0]}
+              y={root[1]}
+              onDrag={setRoots[i]}
+              color={toRGBStr(colors[i])}
+            />
+          ))}
+
+          <div className={styles.controls}>
+            <div className={styles.buttons}>
+              <button
+                className={styles.homeButton}
+                onClick={() => resetRange()}
+              >
+                <ArrowsClockwiseIcon />
+              </button>
+              <button
+                className={styles.rootsButton}
+                onClick={() => {
+                  setRootCount((rootCount) => {
+                    if (rootCount >= 5) return 2;
+                    return rootCount + 1;
+                  });
                 }}
-              />
-              <GraphLines
-                step={0.2}
-                color="rgba(255, 255, 255, 0.2)"
-                labels={false}
-              />
-              <GraphLines
-                step={1}
-                color="rgba(255, 255, 255, 0.5)"
-                labels
-                labelY={(n) => `${n}i`}
-                labelStr={(n, axis) => {
-                  let str = new Intl.NumberFormat().format(n);
-                  if (axis === "y") str += "i";
-                  return str;
-                }}
-                fontSize={24}
-              />
-
-              {roots.map((root, i) => (
-                <GraphPoint
-                  key={i}
-                  x={root[0]}
-                  y={root[1]}
-                  onDrag={setRoots[i]}
-                  color={toRGBStr(colors[i])}
-                />
-              ))}
-
-              <div className={styles.controls}>
-                <div className={styles.buttons}>
-                  <button
-                    className={styles.homeButton}
-                    onClick={() => resetRange()}
-                  >
-                    <i className="fas fa-home" />
-                  </button>
-                  <button
-                    className={styles.rootsButton}
-                    onClick={() => {
-                      setRootCount((rootCount) => {
-                        if (rootCount >= 5) return 2;
-                        return rootCount + 1;
-                      });
-                    }}
-                  >
-                    {rootCount} roots
-                  </button>
-                </div>
-                <div className={styles.stepCountBox}>
-                  <div>
-                    {steps} {steps === 1 ? "iteration" : "iterations"}
-                  </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={30}
-                    step={1}
-                    value={steps}
-                    onChange={(event) => {
-                      setSteps(Number(event.target.value));
-                    }}
-                  />
-                </div>
+              >
+                {rootCount} roots
+              </button>
+            </div>
+            <div className={styles.stepCountBox}>
+              <div>
+                {steps} {steps === 1 ? "iteration" : "iterations"}
               </div>
-            </>
-          )}
-        </GraphWindow>
-      </div>
-    </div>
+              <input
+                type="range"
+                min={0}
+                max={30}
+                step={1}
+                value={steps}
+                onChange={(event) => {
+                  setSteps(Number(event.target.value));
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
+    </GraphWindow>
   );
 }
 

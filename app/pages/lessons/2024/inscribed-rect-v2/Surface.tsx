@@ -1,51 +1,83 @@
+import type { Point } from "./SketchPad";
 import { useEffect, useRef, useState } from "react";
-import { events, extend, render, useFrame, useThree } from "@react-three/fiber";
+import {
+  createRoot,
+  events,
+  extend,
+  useFrame,
+  useThree,
+} from "@react-three/fiber";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { defaultSketchpadPoints } from "./data";
-import styles from "./index.module.css";
+import {
+  AmbientLight,
+  Mesh,
+  MeshBasicMaterial,
+  MeshPhysicalMaterial,
+  PlaneGeometry,
+  PointLight,
+  TubeGeometry,
+} from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { ParametricGeometry } from "three/examples/jsm/geometries/ParametricGeometry.js";
+import { defaultPoints } from "./data";
 import SketchPad from "./SketchPad";
 
-extend({ OrbitControls });
+extend({
+  AmbientLight,
+  Mesh,
+  MeshBasicMaterial,
+  MeshPhysicalMaterial,
+  OrbitControls,
+  ParametricGeometry,
+  PlaneGeometry,
+  PointLight,
+  TubeGeometry,
+});
 
-export default function SurfaceInteractive() {
-  const [sketchpadPoints, setSketchpadPoints] = useState(
-    defaultSketchpadPoints,
-  );
+export default function Surface() {
+  const [points, setPoints] = useState(defaultPoints as Point[]);
 
-  const [canvas, setCanvas] = useState();
+  const [canvas, setCanvas] = useState<HTMLCanvasElement | null>(null);
+
+  const rootRef = useRef<ReturnType<typeof createRoot> | null>(null);
+
   useEffect(() => {
     if (!canvas) return;
 
-    // Use render() instead of <Canvas> to prevent scaling
-    // issues inside of <Interactive>
-    render(<SurfaceVisualization points={sketchpadPoints} />, canvas, {
+    // Use a manually managed R3F root instead of <Canvas> to avoid
+    // scaling issues inside <Interactive>.
+    const root = createRoot(canvas);
+    root.configure({
       events,
-      size: { width: 880, height: 500 },
+      size: { width: 880, height: 500, top: 0, left: 0 },
     });
+    rootRef.current = root;
 
-    // return () => { unmountComponentAtNode(canvas); };
-  }, [canvas, sketchpadPoints]);
+    return () => {
+      root.unmount();
+      rootRef.current = null;
+    };
+  }, [canvas]);
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+    rootRef.current.render(<Visualization points={points} />);
+  }, [canvas, points]);
 
   return (
-    <div className={styles.interactive}>
+    <div className="relative">
       <canvas ref={setCanvas} style={{ width: 880, height: 500 }} />
 
-      <SketchPad
-        points={sketchpadPoints}
-        setPoints={setSketchpadPoints}
-        width={250}
-        height={250}
-      />
+      <SketchPad points={points} setPoints={setPoints} />
     </div>
   );
 }
 
-function SurfaceVisualization({ points }) {
-  let lineSegments = [];
+function Visualization({ points }: { points: number[][] }) {
+  const lineSegments: THREE.LineCurve3[] = [];
   for (let i = 0; i < points.length; i++) {
-    const a = points[i];
-    const b = points[(i + 1) % points.length];
+    const a = points[i]!;
+    const b = points[(i + 1) % points.length]!;
 
     lineSegments.push(
       new THREE.LineCurve3(
@@ -55,14 +87,14 @@ function SurfaceVisualization({ points }) {
     );
   }
 
-  const curvePath = new THREE.CurvePath();
+  const curvePath = new THREE.CurvePath<THREE.Vector3>();
   curvePath.autoClose = true;
   curvePath.curves = lineSegments;
 
   return (
     <>
       <CameraControls
-        prepCamera={(camera) => {
+        prepCamera={(camera: THREE.PerspectiveCamera) => {
           camera.fov = 40;
           camera.up.set(0, 0, 1);
           camera.position.set(1.2, 1.2, 1);
@@ -80,7 +112,7 @@ function SurfaceVisualization({ points }) {
         <meshBasicMaterial
           args={[
             {
-              color: new THREE.Color(0xa0a0a0).convertSRGBToLinear(),
+              color: new THREE.Color("white").convertSRGBToLinear(),
               side: THREE.DoubleSide,
             },
           ]}
@@ -95,7 +127,7 @@ function SurfaceVisualization({ points }) {
         <meshBasicMaterial
           args={[
             {
-              color: new THREE.Color(0xffffff).convertSRGBToLinear(),
+              color: new THREE.Color("deepskyblue").convertSRGBToLinear(),
               side: THREE.DoubleSide,
             },
           ]}
@@ -106,7 +138,7 @@ function SurfaceVisualization({ points }) {
         <meshPhysicalMaterial
           args={[
             {
-              color: new THREE.Color(0x6ebf).convertSRGBToLinear(),
+              color: new THREE.Color("deepskyblue"),
               side: THREE.DoubleSide,
               opacity: 0.5,
               transparent: true,
@@ -120,7 +152,7 @@ function SurfaceVisualization({ points }) {
         />
         <parametricGeometry
           args={[
-            (u, v, vec) => {
+            (u: number, v: number, vec: THREE.Vector3) => {
               u = (u + v) % 1;
 
               const point1 = curvePath.getPoint(u);
@@ -138,27 +170,27 @@ function SurfaceVisualization({ points }) {
   );
 }
 
-function CameraControls({ prepCamera }) {
+function CameraControls({
+  prepCamera,
+}: {
+  prepCamera: (camera: THREE.PerspectiveCamera) => void;
+}) {
   const {
     camera,
     gl: { domElement },
   } = useThree();
 
-  const [cameraReady, setCameraReady] = useState(false);
-
   useEffect(() => {
-    prepCamera(camera);
-    setCameraReady(true);
+    prepCamera(camera as THREE.PerspectiveCamera);
   }, [camera, prepCamera]);
 
-  const controls = useRef();
-  useFrame((state) => {
+  const controls = useRef<OrbitControls>(null);
+  useFrame(() => {
     if (controls.current) {
       controls.current.update();
     }
   });
 
-  if (!cameraReady) return null;
   return (
     <orbitControls ref={controls} args={[camera, domElement]} enableDamping />
   );

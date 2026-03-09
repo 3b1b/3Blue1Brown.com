@@ -9,9 +9,10 @@ thumbnail: $lesson/thumbnail.png
 interactive: true
 ---
 
+import { lazy } from "react";
 import Figure from "~/components/Figure";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
-import NeuralNetwork from "../neural-networks/neural-network";
 
 <section>
 
@@ -21,7 +22,10 @@ This entire mini lesson will be all about analyzing the trained neural network t
 
 That's why we're bringing back the digit drawing demo from the very first lesson. But this time, to aid in your experimentation, all the neurons update live as you're drawing, so you can get an immediate sense of how the input pixels affect the hidden layers and eventually the output.
 
-<NeuralNetwork instant />
+<Interactive
+  Component={lazy(() => import("../neural-networks/NeuralNetwork.jsx"))}
+  instant
+/>
 
 Spend a bit of time experimenting, now with a bit more knowledge of how this whole system actually works, and then we'll discuss what's going on.
 
@@ -81,7 +85,10 @@ Frankly, this is old technology, the kind researched in the ‘80s and ‘90s. Y
 
 Let's return to the drawing demo. These 2nd layer weight grids, which aren't really picking up on the edges we hoped for, but instead on some strange blobby shapes, are visible within the demo if you click on any neuron in the 2nd layer.
 
-<NeuralNetwork instant />
+<Interactive
+  Component={lazy(() => import("../neural-networks/NeuralNetwork.jsx"))}
+  instant
+/>
 
 What's even cooler is that if you're looking at the weight grid for a particular neuron while drawing a digit, you can watch the weights be "revealed", which changes the value of the neuron.
 

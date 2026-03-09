@@ -11,16 +11,17 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Collapsible from "~/components/Collapsible";
 import Figure from "~/components/Figure";
 import FreeResponse from "~/components/FreeResponse";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
 import Question from "~/components/Question";
-import NeuralNetwork from "./neural-network";
 
 <section>
 
-<NeuralNetwork />
+<Interactive Component={lazy(() => import("./NeuralNetwork.jsx"))} />
 
 The program above can identify hand-drawn digits 0-9 reasonably accurately. Give it a whirl if you haven't already!
 

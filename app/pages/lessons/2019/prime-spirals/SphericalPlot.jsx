@@ -1,17 +1,15 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the Prime Spirals lesson.
  * It uses p5.js to interface with WEBGL and draw points to a 3D environment.
  */
 
-import Sketch from "~/pages/lessons/Sketch";
+import Sketch from "react-p5";
 
 const WIDTH = 880;
 const HEIGHT = 500;
 
 // Controls how large the points are
-let SCALE = 0.08;
+let SCALE = 0.25;
 
 // Controls how many primes are drawn on screen
 const N = 7000;
@@ -162,7 +160,7 @@ export default function SphericalPlot() {
 
       let p = points[i];
       sketch.translate(p.x, p.y, p.z);
-      sketch.box(3 / SCALE);
+      sketch.box(10 / SCALE);
       sketch.pop();
     }
   }
@@ -174,7 +172,7 @@ export default function SphericalPlot() {
     const DIST = 4500;
 
     sketch.noFill();
-    sketch.stroke(180);
+    sketch.stroke(400);
     sketch.line(-DIST, 0, 0, DIST, 0, 0);
     sketch.line(0, -DIST, 0, 0, DIST, 0);
     sketch.line(0, 0, -DIST, 0, 0, DIST);
@@ -183,6 +181,8 @@ export default function SphericalPlot() {
   }
 
   function draw(sketch) {
+    sketch.perspective(60, sketch.width / sketch.height, 10, 5000);
+
     sketch.background(0);
 
     const mouseInCanvas =

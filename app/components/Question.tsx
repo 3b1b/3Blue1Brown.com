@@ -135,20 +135,20 @@ export default function Question({
 
         {state === "wrong" && (
           <>
-            <PiCreature emotion="confused" size="sm" />
+            <PiCreature emotion="confused" size="sm" flip />
             Not quite...
           </>
         )}
         {state === "right" && (
           <>
-            <PiCreature emotion="hooray" size="sm" />
+            <PiCreature emotion="hooray" size="sm" flip />
             Correct!
           </>
         )}
       </div>
 
       {state === "right" && (
-        <div className="flex flex-col gap-8 rounded-md bg-light-gray p-8">
+        <div className="flex flex-col gap-8 rounded-md bg-off-white p-8">
           {children}
         </div>
       )}

@@ -6,9 +6,17 @@ video: LqbZpur38nw
 source: _2021/holomorphic_dynamics.py
 credits:
   - Lesson by Grant Sanderson
+  - Interactive by Josh Pullen
 interactive: true
 ---
 
-{/* This lesson currently has no text version. But in the meantime, please enjoy this interactive version of the scene at 6:57. */}
+import { lazy } from "react";
+import Interactive from "~/components/Interactive";
 
-{/* <Mandelbrot /> */}
+<section className="width-lg">
+
+This lesson currently has no text version. But in the meantime, please enjoy this interactive version of the scene at 6:57.
+
+<Interactive Component={lazy(() => import("./Mandelbrot.jsx"))} />
+
+</section>

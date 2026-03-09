@@ -15,7 +15,7 @@ export default function Book({ title, author, link, image, children }: Props) {
       <Link
         to={link}
         arrow={false}
-        className="aspect-video w-full overflow-hidden bg-light-gray hocus-ring"
+        className="aspect-video w-full overflow-hidden bg-off-white hocus-ring"
       >
         <img src={image} alt={title} className="size-full object-contain" />
       </Link>

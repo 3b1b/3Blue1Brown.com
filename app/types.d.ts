@@ -5,6 +5,8 @@ namespace React.JSX {
   // eslint-disable-next-line
   interface IntrinsicElements {
     "youtube-video": JSX.HTMLAttributes<HTMLVideoElement>;
+    orbitControls: unknown;
+    parametricGeometry: unknown;
   }
 }
 

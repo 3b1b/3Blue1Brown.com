@@ -56,7 +56,11 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
   } = lesson;
 
   // load patrons
-  const patrons = getPatrons(id)?.default?.split("\n") ?? [];
+  const patrons =
+    getPatrons(id)
+      ?.default?.split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean) ?? [];
 
   // load topic
   const topic = getTopic(id);
@@ -85,7 +89,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
       <Main striped>
         {/* lesson header */}
-        <section className="items-center gap-8 bg-theme/10! width-lg">
+        <section className="items-center bg-theme/10! width-lg">
           {/* topic */}
           {topic && (
             <Button
@@ -109,7 +113,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             <StrokeType>{title}</StrokeType>
           </H1>
 
-          <div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
+          <div className="grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-8">
             {/* embed */}
             {video ? <YouTube id={video} /> : <Image image={image} />}
 
@@ -222,7 +226,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
             </p>
 
             <ShowPartial>
-              <div className="grid max-w-max grid-cols-3 gap-4 self-center max-md:grid-cols-2 max-sm:grid-cols-1">
+              <div className="grid max-w-max grid-cols-4 gap-4 self-center max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
                 {patrons.map((patron, index) => (
                   <div key={index}>{patron}</div>
                 ))}

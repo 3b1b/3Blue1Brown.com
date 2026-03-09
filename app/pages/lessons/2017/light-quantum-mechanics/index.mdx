@@ -11,13 +11,13 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Figure from "~/components/Figure";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
 import PiCreature from "~/components/PiCreature";
 import Question from "~/components/Question";
 import Spoiler from "~/components/Spoiler";
-import Polarizer from "./polarizer";
-import Wave from "./wave";
 
 <section>
 
@@ -135,7 +135,7 @@ By default, cosine only oscillates between the values of $-1$ and $1$, so let's 
 
 The amplitude, frequency, and phase define a wave. Try experimenting with different combinations to see how each component impacts the shape of the wave:
 
-<Wave />
+<Interactive Component={lazy(() => import("./Wave"))} />
 
 <Question
   question="What value of $\phi_x$ would turn the cosine function into the sine function? $$A_x\cos (2\pi f_x t+\phi_x)=A_x\sin (2\pi f_x t)$$"
@@ -470,7 +470,7 @@ $$
 
 To display how the probability changes with the polarization of light and orientation of the filter, there is an interactive applet below. The left slider controls the incoming light's polarization angle and the right slider controls the angle of the filter.
 
-<Polarizer />
+<Interactive Component={lazy(() => import("./Polarizer"))} />
 
 <Question
   question="We know an incoming photon has a 32% chance of passing through a filter. What is the angle between them?"

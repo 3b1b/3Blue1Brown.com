@@ -1,6 +1,3 @@
-// @ts-nocheck
-/* eslint-disable */
-
 /*
   This interactive works, but it isn't exactly a shining example of elegant code.
 

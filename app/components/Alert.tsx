@@ -27,7 +27,7 @@ export const types = {
     icon: <InfoIcon />,
   },
   loading: {
-    color: "text-gray bg-light-gray",
+    color: "text-gray bg-off-white",
     icon: <CircleNotchIcon className="icon animate-spin" />,
   },
   success: {

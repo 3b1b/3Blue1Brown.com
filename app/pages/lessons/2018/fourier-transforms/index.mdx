@@ -11,19 +11,19 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Figure from "~/components/Figure";
 import FreeResponse from "~/components/FreeResponse";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
 import Question from "~/components/Question";
 import Tooltip from "~/components/Tooltip";
-import Advanced from "./advanced";
-import Basic from "./basic";
 
 <section>
 
 What we'll build up to in this post is an understanding of the following (interactive[^1]) diagram. More specifically, the goal is for you to understand how it represents the inner workings of the Fourier transform, an incredibly important tool for math, engineering, and most of science.
 
-<Advanced />
+<Interactive Component={lazy(() => import("./Advanced.jsx"))} />
 
 Once our mind is wrapped around what this diagram represents, we can use it to unpack the formula defining a Fourier transform, which may seem intimidating to the uninitiated, but it's both perfectly digestible and incredibly rich with meaning.
 
@@ -142,7 +142,7 @@ In most cases, the center of mass stays relatively close to the origin, but when
 Different patterns appear as we wind up this graph, but it is clear that the $x$-coordinate for the center of mass is important when the winding frequency is $3$.
 Take a moment to play with the graph below by moving the dot in the lower right graph. Remember, the $x$ axis of the top graph is time, but the $x$-axis of that lower right graph represents the winding frequency, how tightly the upper graph is wound up around a circle. Take a moment to really think about why this graph has a peak around the frequency of $3$.
 
-<Basic />
+<Interactive Component={lazy(() => import("./Basic.jsx"))} />
 
 <Question
   question="What is the winding frequency when the wound up graph has $2$ petals? (Looks like $\infty$)"
@@ -171,7 +171,7 @@ The most interesting aspect of this machine is that it will allow us to decompos
 
 This time, though, we will not offset the graphs upward, so the function oscillates between negative and positive values. In other words, there is no frequency component of 0Hz.
 
-<Advanced />
+<Interactive Component={lazy(() => import("./Advanced.jsx"))} />
 
 Here, we see 2 different frequencies at both 2 and 3 beats per second, which is exactly the same as the two "Almost Fourier transformed" plots added together. Simply put, the sum of the two "Almost Fourier transformed" signals is the same as the "Almost Fourier transform" of the two summed together. Again, this may be cleaner to see and reason about if we center each graph to have an average value of $0$.
 
@@ -181,7 +181,7 @@ The way a mathematician might phrase this is that our "Almost Fourier transform"
 
 This little mathematical machine does exactly what we wanted. It pulls out the constituent frequencies from a provided waveform, essentially unmixing a mixed bucket of paint. Try changing the input frequencies in the interactive below, separated <Tooltip trigger="by commas">Only 5 frequencies between 0Hz and 4.4Hz will be shown.</Tooltip>, for example to "0, 3".
 
-<Advanced />
+<Interactive Component={lazy(() => import("./Advanced.jsx"))} />
 
 What happens when an input frequency of $0$Hz is wound up?
 

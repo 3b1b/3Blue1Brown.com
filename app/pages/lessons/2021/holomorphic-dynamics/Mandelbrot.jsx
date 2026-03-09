@@ -1,12 +1,10 @@
-/* eslint-disable */
-
 import { useCallback, useEffect, useState } from "react";
 import GraphWindow, {
   GraphLines,
   GraphPoint,
   GraphShader,
   InteractiveWindow,
-} from "~/components/Graph";
+} from "../newtons-fractal/Graph";
 
 const MANDELBROT_COLORS = [
   [0 / 255, 6 / 255, 92 / 255],
@@ -24,25 +22,16 @@ export default function Mandelbrot() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div
-        style={{
-          flex: "1 0 0",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ textAlign: "center", color: "white", fontSize: 36 }}>
-          <div>
-            <span style={{ color: "yellow" }}>c</span> ↔{" "}
-            <span style={{ color: "#38b1ce" }}>Pixel</span>
-          </div>
-          <div>
-            z<sub>0</sub> = 0
-          </div>
+    <div className="dark flex bg-white text-black p-8 gap-8 items-center text-xl overflow-x-auto max-w-full">
+      <div className="flex flex-col gap-2 items-center">
+        <div>
+          <span className="text-secondary">c</span> ↔{" "}
+          <span className="text-theme">Pixel</span>
         </div>
-        <GraphWindow width={600} height={600} center={[-0.3, 0]} radius={1}>
+        <div>
+          z<sub>0</sub> = 0
+        </div>
+        <GraphWindow width={400} height={400} center={[-0.3, 0]} radius={1}>
           {({ range }) => (
             <>
               <GraphShader
@@ -92,37 +81,20 @@ export default function Mandelbrot() {
           )}
         </GraphWindow>
       </div>
-      <div
-        style={{
-          textAlign: "center",
-          color: "white",
-          fontSize: 36,
-          margin: "0 16px",
-        }}
-      >
+      <div className="flex flex-col gap-2 items-center">
         <div>Iterate</div>
         <div>
-          z<sup>2</sup> + <span style={{ color: "yellow" }}>c</span>
+          z<sup>2</sup> + <span className="text-secondary">c</span>
         </div>
       </div>
-      <div
-        style={{
-          flex: "1 0 0",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ textAlign: "center", color: "white", fontSize: 36 }}>
-          <div style={{ color: "yellow" }}>
-            c = {Math.round(pos.x * 100) / 100} +{" "}
-            {Math.round(pos.y * 100) / 100}i
-          </div>
-          <div>
-            z<sub>0</sub> ↔ <span style={{ color: "#38b1ce" }}>Pixel</span>
-          </div>
+      <div className="flex flex-col gap-2 items-center">
+        <div className="text-secondary">
+          c = {Math.round(pos.x * 100) / 100} + {Math.round(pos.y * 100) / 100}i
         </div>
-        <GraphWindow width={600} height={600} center={[0, 0]} radius={2}>
+        <div>
+          z<sub>0</sub> ↔ <span className="text-theme">Pixel</span>
+        </div>
+        <GraphWindow width={400} height={400} center={[0, 0]} radius={2}>
           <GraphShader
             vertex={vertex}
             fragment={fragment}

@@ -23,7 +23,7 @@ export default function Collapsible({ title, children, className }: Props) {
     >
       <_Collapsible.Trigger
         className={clsx(
-          "justify-start gap-2 rounded-md bg-light-gray p-2 font-medium hocus:bg-theme/10",
+          "justify-start gap-2 rounded-md bg-off-white p-2 font-medium hocus:bg-theme/10",
           className,
         )}
       >

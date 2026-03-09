@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
-import { ArrowDownIcon, LineVerticalIcon } from "@phosphor-icons/react";
 import { celebrate } from "~/components/Celebrate";
 import Textbox from "~/components/Textbox";
+import { Arrow, Hash, useHash } from "./Common";
 
-export function Sha() {
+export default function Sha() {
   const [message, setMessage] = useState(
     "A purely peer-to-peer version of electronic cash would allow online payments to be sent directly from one party to another without going through a financial institution.",
   );
@@ -12,7 +11,7 @@ export function Sha() {
   const hash = useHash(message);
 
   return (
-    <div className="flex w-84 flex-col gap-2 self-center">
+    <div className="flex w-84 flex-col gap-2 self-center p-8">
       <Textbox
         multi
         placeholder="Message to encode"
@@ -73,48 +72,5 @@ export function Zeroes() {
         <span className="text-gray">{hash.substring(count)}</span>
       </Hash>
     </div>
-  );
-}
-
-const useHash = (message: string) => {
-  const [hash, setHash] = useState("");
-
-  useEffect(() => {
-    let latest = true;
-
-    (async () => {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(message);
-      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashString = hashArray
-        .map((byte) => byte.toString(2).padStart(8, "0"))
-        .join("");
-      if (latest) setHash(hashString);
-    })();
-
-    return () => {
-      latest = false;
-    };
-  }, [message]);
-
-  return hash;
-};
-
-function Arrow() {
-  return (
-    <div className="flex animate-pulse flex-col items-center text-success">
-      <LineVerticalIcon />
-      SHA256
-      <ArrowDownIcon />
-    </div>
-  );
-}
-
-function Hash({ children }: { children: ReactNode }) {
-  return (
-    <pre className="whitespace-normal">
-      <code className="wrap-anywhere">{children}</code>
-    </pre>
   );
 }

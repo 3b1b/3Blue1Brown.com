@@ -7,7 +7,7 @@ export default function Thanks() {
 
   return (
     <ShowPartial>
-      <div className="grid max-w-max grid-cols-3 gap-4 self-center max-md:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid max-w-max grid-cols-4 gap-4 self-center max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {patrons.map(({ name, current }, index) => (
           <div key={index} className={clsx(current ? "" : "text-gray")}>
             {name}

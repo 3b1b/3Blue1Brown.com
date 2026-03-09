@@ -6,9 +6,17 @@ video: -RdOwhmqP5s
 source: _2021/newton_fractal.py
 credits:
   - Lesson by Grant Sanderson
+  - Interactive by Josh Pullen
 interactive: true
 ---
 
-{/* There is no text version of this lesson yet. But in the meantime, enjoy the following interactive version of Newton's fractal. */}
+import { lazy } from "react";
+import Interactive from "~/components/Interactive";
 
-{/* <NetwonsFractal /> */}
+<section>
+
+There is no text version of this lesson yet. But in the meantime, enjoy the following interactive version of Newton's fractal.
+
+<Interactive Component={lazy(() => import("./NewtonsFractal.jsx"))} />
+
+</section>

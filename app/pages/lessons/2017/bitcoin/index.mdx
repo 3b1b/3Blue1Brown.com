@@ -10,11 +10,12 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Collapsible from "~/components/Collapsible";
 import Figure from "~/components/Figure";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
 import PiCreature from "~/components/PiCreature";
-import { Sha, Zeroes } from "./interactive";
 
 <section>
 
@@ -299,7 +300,7 @@ It's not random; it always gives the same output for the same document. But the 
 
 Here's a little playground where you can enter a message and see what its hash looks like using a special hash function known as SHA256, which is what bitcoin uses.
 
-<Sha />
+<Interactive Component={lazy(() => import("./Sha"))} />
 
 Notice how when you change the input text, the hash completely changes. In fact, for SHA256, the way that output changes as you slightly change the input is entirely unpredictable. This property is what makes it a _cryptographic_ hash function.
 
@@ -330,7 +331,7 @@ Consider the following challenge.
 
 In the box below I have a list of transactions, and beneath those transactions is a number. By default the number is zero, but you can change it. Everything in the box is considered one big document, and that document is being hashed using SHA256. Your goal is to change the number in the box so that the resulting hash **starts with at least six zeroes**.
 
-<Zeroes />
+<Interactive Component={lazy(() => import("./Zeroes"))} />
 
 It's definitely possible, but it takes a while to find a solution. And, because the output of the hash function is unpredictable, there really is no better method than guessing and checking.
 

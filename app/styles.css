@@ -30,7 +30,8 @@
   --color-black: oklch(0% 0 240);
   --color-dark-gray: oklch(35% 0 240);
   --color-gray: oklch(60% 0 240);
-  --color-light-gray: oklch(97% 0 240);
+  --color-light-gray: oklch(90% 0 240);
+  --color-off-white: oklch(97% 0 240);
   --color-alt-white: oklch(98.5% 0 240);
   --color-white: oklch(100% 0 240);
 
@@ -49,7 +50,8 @@
   --color-black: oklch(100% 0 240);
   --color-dark-gray: oklch(65% 0 240);
   --color-gray: oklch(45% 0 240);
-  --color-light-gray: oklch(17.5% 0 240);
+  --color-light-gray: oklch(30% 0 240);
+  --color-off-white: oklch(17.5% 0 240);
   --color-alt-white: oklch(15% 0 240);
   --color-white: oklch(0% 0 240);
 
@@ -87,7 +89,7 @@
   h2,
   h3,
   h4 {
-    @apply trim flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal;
+    @apply trim flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal text-balance;
   }
 
   h1 {
@@ -150,7 +152,7 @@
   }
 
   blockquote {
-    @apply border-theme trim bg-light-gray flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
+    @apply border-theme trim bg-off-white flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -166,7 +168,7 @@
   }
 
   thead tr {
-    @apply bg-light-gray;
+    @apply bg-off-white;
   }
 
   tr {
@@ -220,7 +222,11 @@
   }
 
   [aria-disabled="true"] {
-    @apply pointer-events-none opacity-35;
+    @apply pointer-events-none opacity-50 grayscale;
+  }
+
+  mjx-container {
+    @apply max-w-full overflow-x-auto;
   }
 }
 

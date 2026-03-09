@@ -10,12 +10,13 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Figure from "~/components/Figure";
+import Interactive from "~/components/Interactive";
 import LessonLink from "~/components/LessonLink";
 import PiCreature from "~/components/PiCreature";
 import Question from "~/components/Question";
 import Spoiler from "~/components/Spoiler";
-import SphericalPlot from "./spherical-plot";
 
 <section>
 
@@ -369,7 +370,7 @@ $$
 
 If we take the first few thousand prime numbers and plot them as $(p, p, p)$ in spherical coordinates, what pattern emerges?
 
-<SphericalPlot />
+<Interactive Component={lazy(() => import("./SphericalPlot.jsx"))} />
 
 The spiral galaxy we saw on the 2D plane is still visible, but now it looks like some type of infinity spiral where the arms of the galaxy are weaving in and out of each other. The $11\text{th}$ and $33\text{rd}$ classes are still missing on either side of the center. The above image is actually an interactive applet, go ahead and click and drag on it to move it around.
 

@@ -1,11 +1,9 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the light QM lesson.
  * It uses p5.js to interface with JS canvas and create sliders for interacting with a wave.
  */
 
-import Sketch from "~/pages/lessons/Sketch";
+import Sketch from "react-p5";
 
 const WIDTH = 700;
 const HEIGHT = 500;
@@ -22,7 +20,7 @@ const BOBL_COLOR = "#46c797";
 
 let SCALE = 1;
 
-export default function SphericalPlot() {
+export default function Wave() {
   const pos1 = crd(100, 50);
   const pos2 = crd(600, 350);
 
@@ -166,9 +164,9 @@ export default function SphericalPlot() {
   }
 
   function updateScale(sketch) {
-    let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
-    SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
+    // let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    // let scaleString = transform.split("(")[1];
+    // SCALE = parseFloat(scaleString?.substring(1, scaleString.length - 1));
   }
 
   function wave(x) {
@@ -306,7 +304,7 @@ export default function SphericalPlot() {
     updateScale(sketch);
   }
 
-  return <Sketch setup={setup} draw={draw} className="*:aspect-7/5" />;
+  return <Sketch setup={setup} draw={draw} />;
 }
 
 function crd(xCoord, yCoord) {

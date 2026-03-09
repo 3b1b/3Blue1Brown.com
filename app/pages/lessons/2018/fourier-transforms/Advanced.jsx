@@ -1,19 +1,17 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the Visual Fourier Transform lesson.
  * It uses p5.js to interface with JS canvas and create an interactable winding machine.
  * The advanced version has a textbox linked that will change the input wave.
  */
 
+import Sketch from "react-p5";
 import Textbox from "~/components/Textbox";
-import Sketch from "~/pages/lessons/Sketch";
 import {
   calculateFourier,
   drawFourier,
   drawGraph,
   drawWinder,
-} from "../fourier/winding_machine";
+} from "./winding";
 
 const WIDTH = 880;
 const HEIGHT = 550;
@@ -158,8 +156,13 @@ export default function Advanced() {
 
   return (
     <>
-      <Sketch setup={setup} draw={draw} className="touch-none" />
-      <Textbox type="text" onChange={updateFrequencies} defaultValue="2,3" />
+      <Sketch setup={setup} draw={draw} />
+      <Textbox
+        type="text"
+        onChange={updateFrequencies}
+        defaultValue="2,3"
+        className="mb-8"
+      />
     </>
   );
 }

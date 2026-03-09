@@ -138,8 +138,6 @@ export default function Theater() {
           </div>
         )}
 
-        <div />
-
         <div className="flex flex-wrap items-center justify-center gap-4">
           {/* controls */}
           <Control current={lesson} target={random} suppressHydrationWarning>

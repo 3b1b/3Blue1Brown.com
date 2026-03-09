@@ -10,8 +10,10 @@ credits:
 interactive: true
 ---
 
+import { lazy } from "react";
 import Figure from "~/components/Figure";
 import FreeResponse from "~/components/FreeResponse";
+import Interactive from "~/components/Interactive";
 import PiCreature from "~/components/PiCreature";
 import Question from "~/components/Question";
 import Spoiler from "~/components/Spoiler";
@@ -131,7 +133,7 @@ As you do this for many possible pairs of points, you'll effectively be drawing 
 
 Since this surface is defined for _any_ closed curve, we can draw our own custom curves and calculate the corresponding 3D surface. This interactive demo allows you to do just that:
 
-{/* 3d-surface interactive */}
+<Interactive Component={lazy(() => import("./Surface"))} />
 
 While drawing your own curves, it can be helpful to ask questions about why the corresponding surface looks the way it does. For example, you might notice that straight edges on your loop will produce triangular regions on the surface. Can you figure out why?
 

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
-import { href } from "react-router";
+import { href, useLocation } from "react-router";
 import { BellIcon, ListIcon, PlayIcon, XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
@@ -20,6 +20,8 @@ type Props = {
 // header on every page
 export default function Header({ children }: Props) {
   const [open, setOpen] = useState(false);
+
+  const { pathname } = useLocation();
 
   return (
     <header
@@ -61,16 +63,20 @@ export default function Header({ children }: Props) {
         />
 
         {/* sub title */}
-        <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
-          {site.subtitle}
-
-          <div className="flex items-center gap-1 text-sm">
-            <BellIcon className="icon scale-75" aria-label="Subscribers" />
-            {formatNumber(stats.subscribers)}
-            &nbsp;
-            <PlayIcon className="icon scale-75" aria-label="Views" />
-            {formatNumber(stats.views)}
-          </div>
+        <div className="flex grow basis-0 justify-end gap-4 text-right text-dark-gray max-xl:hidden">
+          {pathname === "/" && (
+            <>
+              <div className="flex items-center gap-1">
+                <BellIcon className="icon scale-75" aria-label="Subscribers" />
+                {formatNumber(stats.subscribers)}
+              </div>
+              <div className="flex items-center gap-1">
+                <PlayIcon className="icon scale-75" aria-label="Views" />
+                {formatNumber(stats.views)}
+              </div>
+            </>
+          )}
+          <div>{site.subtitle}</div>
         </div>
       </div>
 

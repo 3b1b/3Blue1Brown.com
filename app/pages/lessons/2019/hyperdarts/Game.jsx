@@ -1,11 +1,9 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the Hyperdarts lesson.
  * It uses p5.js to interface with a canvas to animate the game of darts
  */
 
-import Sketch from "~/pages/lessons/Sketch";
+import Sketch from "react-p5";
 
 const WIDTH = 700;
 const HEIGHT = 700;
@@ -13,12 +11,12 @@ const EDGE = 0.9;
 const ANIM_TIME = 15; // 60ths of a second
 const WAIT_TIME = 5;
 
-export default function PyramidPlot() {
-  const LINE_COLOR = "#FFFFFF";
-  const BULL_COLOR = "#db523d";
-  const BACK_COLOR = "#1c5978";
-  const MISS_COLOR = "#990000";
+const LINE_COLOR = "#FFFFFF";
+const BULL_COLOR = "#db523d";
+const BACK_COLOR = "#1c5978";
+const MISS_COLOR = "#990000";
 
+export default function Game() {
   let canThrow = true;
   let dartX = 0;
   let dartY = 0;
@@ -52,13 +50,13 @@ export default function PyramidPlot() {
 
   function updateScale(sketch) {
     // Get CSS scale transform information from parent of parent element
-    let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
-    scaleString = scaleString?.substring(0, scaleString.length - 1);
-    if (!scaleString?.includes(".")) {
-      scaleString += ".0";
-    }
-    SCALE = parseFloat(scaleString);
+    // let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    // let scaleString = transform.split("(")[1];
+    // scaleString = scaleString?.substring(0, scaleString.length - 1);
+    // if (!scaleString?.includes(".")) {
+    //   scaleString += ".0";
+    // }
+    // SCALE = parseFloat(scaleString);
   }
 
   function throwDart(sketch) {
@@ -345,7 +343,7 @@ export default function PyramidPlot() {
     sketch.circle(0, 0, gameRadius * 2);
     sketch.pop();
 
-    dartThrowAnimation.update(sketch);
+    dartThrowAnimation?.update(sketch);
 
     // Draw score
     sketch.push();

@@ -1,4 +1,4 @@
-export const defaultSketchpadPoints = [
+export const defaultPoints = [
   [0.053, -0.09699999999999999],
   [0.047, -0.09699999999999999],
   [0.047, -0.09699999999999999],

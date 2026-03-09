@@ -1,12 +1,10 @@
-/* eslint-disable */
-
 /**
  * This is an interactive applet created by River Way for the Light QM lesson.
  * It uses p5.js to interface with WEBGL and draw polarizer to a 3D environment.
  * There are also interactable sliders to change the angles.
  */
 
-import Sketch from "~/pages/lessons/Sketch";
+import Sketch from "react-p5";
 
 const BKGD_COLOR = "#000000";
 const AXIS_COLOR = "#555555";
@@ -373,18 +371,8 @@ export default function Polarizer() {
 
   return (
     <>
-      <Sketch
-        key="polarizerSketch1"
-        setup={topSetup}
-        draw={topDraw}
-        className="*:aspect-7/5"
-      />
-      <Sketch
-        key="polarizerSketch2"
-        setup={bottomSetup}
-        draw={bottomDraw}
-        className="*:aspect-7/5"
-      />
+      <Sketch setup={topSetup} draw={topDraw} />
+      <Sketch setup={bottomSetup} draw={bottomDraw} />
     </>
   );
 }
