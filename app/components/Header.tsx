@@ -57,21 +57,21 @@ export default function Header({ children }: Props) {
         {/* nav */}
         <Nav
           className={clsx(
-            "flex-3 max-xl:justify-end max-lg:w-full max-lg:flex-[unset] max-sm:flex-col",
+            "flex-2 max-xl:justify-end max-lg:w-full max-lg:flex-[unset] max-sm:flex-col",
             !open && "max-lg:hidden",
           )}
         />
 
         {/* sub title */}
-        <div className="flex grow basis-0 justify-end gap-4 text-right text-dark-gray max-xl:hidden">
+        <div className="flex grow basis-0 justify-end gap-6 text-right text-dark-gray *:flex *:items-center *:gap-1 max-xl:hidden [&_svg]:scale-75">
           {pathname === "/" && (
             <>
-              <div className="flex items-center gap-1">
-                <BellIcon className="icon scale-75" aria-label="Subscribers" />
+              <div className="text-sm">
+                <BellIcon aria-label="Subscribers" />
                 {formatNumber(stats.subscribers)}
               </div>
-              <div className="flex items-center gap-1">
-                <PlayIcon className="icon scale-75" aria-label="Views" />
+              <div className="text-sm">
+                <PlayIcon aria-label="Views" />
                 {formatNumber(stats.views)}
               </div>
             </>
