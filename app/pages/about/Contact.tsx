@@ -6,7 +6,7 @@ import Button from "~/components/Button";
 import Checkbox from "~/components/Checkbox";
 import Form from "~/components/Form";
 import Select from "~/components/Select";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 
 const formName = "contact-general";
 
@@ -70,7 +70,7 @@ export default function Contact() {
         }
       }}
     >
-      <Textbox
+      <TextBox
         label="Name"
         name="name"
         placeholder="Name"
@@ -78,7 +78,7 @@ export default function Contact() {
         value={name ?? ""}
         onChange={setName}
       />
-      <Textbox
+      <TextBox
         label="Email"
         name="email"
         type="email"
@@ -88,7 +88,7 @@ export default function Contact() {
         value={email ?? ""}
         onChange={setEmail}
       />
-      <Textbox
+      <TextBox
         label="Subject"
         name="subject"
         placeholder="Subject"
@@ -104,7 +104,7 @@ export default function Contact() {
         value={reason ?? ""}
         onChange={setReason}
       />
-      <Textbox
+      <TextBox
         label="Message"
         multi
         name="message"

@@ -11,7 +11,7 @@ import Button from "~/components/Button";
 import Dialog from "~/components/Dialog";
 import Form from "~/components/Form";
 import Link from "~/components/Link";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
 import { useDebug } from "~/util/hooks";
@@ -119,7 +119,7 @@ export default function Feedback() {
         }}
       >
         <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
-          <Textbox
+          <TextBox
             label="Name"
             help="Optional. So we can address you properly."
             placeholder="Your Name"
@@ -127,7 +127,7 @@ export default function Feedback() {
             onChange={setName}
             form={id}
           />
-          <Textbox
+          <TextBox
             label="Username"
             help="Optional. So we can tag you in the issue."
             placeholder="@yourname"
@@ -135,7 +135,7 @@ export default function Feedback() {
             onChange={setUsername}
             form={id}
           />
-          <Textbox
+          <TextBox
             label="Subject"
             placeholder="Subject"
             required
@@ -144,7 +144,7 @@ export default function Feedback() {
             form={id}
             className="col-span-full"
           />
-          <Textbox
+          <TextBox
             label="Feedback"
             placeholder="Corrections, suggestions, bugs, etc."
             required

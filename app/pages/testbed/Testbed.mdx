@@ -12,6 +12,7 @@ import Link from "~/components/Link";
 import Logo from "~/components/Logo";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
+import NumberBox from "~/components/NumberBox.tsx";
 import PiCreature, { Demo as PiCreatureDemo } from "~/components/PiCreature";
 import Portrait from "~/components/Portrait";
 import Question from "~/components/Question";
@@ -22,7 +23,7 @@ import ShowPartial from "~/components/ShowPartial";
 import Spoiler from "~/components/Spoiler";
 import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import YouTube from "~/components/YouTube";
 import site from "~/data/site.json";
 
@@ -74,17 +75,18 @@ Wow, $e^{i \pi}$ is really cool!
 
 <ButtonDemo>Lorem Ipsum</ButtonDemo>
 
-<Textbox
+<TextBox
   label="Lorem ipsum"
   help="Yep, lorem ipsum"
   placeholder="Lorem ipsum dolor sit amet"
 />
-<Textbox
+<TextBox
   multi
   label="Lorem ipsum"
   help="Yep, lorem ipsum"
   placeholder="Lorem ipsum dolor sit amet"
 />
+<NumberBox label="Lorem ipsum" help="Yep, lorem ipsum" min={0} max={11} />
 
 <Collapsible title="Collapsible content">
   Lorem ipsum dolor sit amet consectetur adipiscing elit

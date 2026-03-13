@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 import Button from "~/components/Button";
 import Markdownify from "~/components/Markdownify";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import { useInView } from "~/util/hooks";
 import { sleep } from "~/util/misc";
 
@@ -32,7 +32,7 @@ export default function FreeResponse({ question, children }: Props) {
     <>
       {question && <Markdownify noParagraph>{question}</Markdownify>}
       <div ref={ref} className="flex flex-wrap gap-4">
-        <Textbox
+        <TextBox
           multi
           rows={2}
           placeholder="Pause and ponder for a few moments. Use this box as a notepad for ideas."

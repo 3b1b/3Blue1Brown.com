@@ -5,7 +5,7 @@
  */
 
 import Sketch from "react-p5";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import {
   calculateFourier,
   drawFourier,
@@ -157,7 +157,7 @@ export default function Advanced() {
   return (
     <>
       <Sketch setup={setup} draw={draw} />
-      <Textbox
+      <TextBox
         type="text"
         onChange={updateFrequencies}
         defaultValue="2,3"

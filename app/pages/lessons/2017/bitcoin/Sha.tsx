@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { celebrate } from "~/components/Celebrate";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import { Arrow, Hash, useHash } from "./Common";
 
 export default function Sha() {
@@ -12,7 +12,7 @@ export default function Sha() {
 
   return (
     <div className="flex w-84 flex-col gap-2 self-center p-8">
-      <Textbox
+      <TextBox
         multi
         placeholder="Message to encode"
         rows={3}

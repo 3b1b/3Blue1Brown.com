@@ -116,7 +116,7 @@ export default function Follow() {
         <div className="text-center font-sans font-medium">
           Newsletter Signup
         </div>
-        <Textbox
+        <TextBox
           name="email"
           type="email"
           required

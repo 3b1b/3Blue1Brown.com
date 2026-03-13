@@ -1,11 +1,8 @@
 import type { ComponentType, LazyExoticComponent } from "react";
 import { Suspense, useEffect, useRef, useState } from "react";
-import {
-  CornersInIcon,
-  CornersOutIcon,
-  HandPointingIcon,
-} from "@phosphor-icons/react";
+import { CornersOutIcon, HandPointingIcon } from "@phosphor-icons/react";
 import { useFullscreen } from "@reactuses/core";
+import clsx from "clsx";
 import Button from "~/components/Button";
 
 type Props<ComponentProps extends Record<string, unknown>> = {
@@ -38,7 +35,10 @@ export default function Interactive<
         <div className="absolute -inset-x-999 -inset-y-4 -z-10 max-w-[unset]! bg-secondary/10" />
         <div
           ref={ref}
-          className="relative isolate flex flex-col items-center justify-center-safe gap-8 [&_.p5Canvas]:h-[unset]! [&_.p5Canvas]:max-w-full [&_.react-p5]:max-w-full"
+          className={clsx(
+            "relative isolate flex flex-col items-center justify-center-safe gap-8 [&_.p5Canvas]:h-[unset]! [&_.p5Canvas]:max-w-full [&_.react-p5]:max-w-full",
+            isFullscreen && "bg-white",
+          )}
         >
           <Component {...(props as unknown as ComponentProps)} />
         </div>
@@ -48,7 +48,8 @@ export default function Interactive<
             <HandPointingIcon className="icon -rotate-45" />
           </div>
           <Button onClick={toggleFullscreen} aria-label="Toggle fullscreen">
-            {isFullscreen ? <CornersInIcon /> : <CornersOutIcon />}
+            Fullscreen
+            <CornersOutIcon />
           </Button>
         </div>
       </div>

@@ -31,7 +31,7 @@ type Multi = {
 } & Omit<ComponentPropsWithRef<"textarea">, "onChange">;
 
 // single or multi-line text input box
-export default function Textbox({
+export default function TextBox({
   ref: passedRef,
   label,
   help,
@@ -70,7 +70,7 @@ export default function Textbox({
     <textarea
       ref={mergedRef}
       rows={6}
-      className="grow resize rounded-md border border-gray bg-white p-2 hocus-ring"
+      className="grow resize rounded-md border border-gray bg-white p-2 text-black hocus-ring trim"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -79,7 +79,7 @@ export default function Textbox({
   ) : (
     <input
       ref={mergedRef}
-      className="grow scroll-mt-12 rounded-md border border-gray bg-white p-2 hocus-ring"
+      className="grow scroll-mt-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}

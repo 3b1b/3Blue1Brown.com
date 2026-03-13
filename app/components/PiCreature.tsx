@@ -5,7 +5,7 @@ import SpeechBubble from "~/assets/misc/bubble-speech.svg?react";
 import ThoughtBubble from "~/assets/misc/bubble-thought.svg?react";
 import Checkbox from "~/components/Checkbox";
 import Select from "~/components/Select";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import { useSvgFit } from "~/util/hooks";
 import { importAssets } from "~/util/import";
 
@@ -151,7 +151,7 @@ export function Demo({ children }: { children: ReactNode }) {
             value: size,
           }))}
         />
-        <Textbox
+        <TextBox
           value={content}
           onChange={setContent}
           placeholder="Bubble content. Enter whitespace to see w/o bubble."

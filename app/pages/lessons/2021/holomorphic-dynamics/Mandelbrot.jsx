@@ -4,7 +4,7 @@ import GraphWindow, {
   GraphPoint,
   GraphShader,
   InteractiveWindow,
-} from "../newtons-fractal/Graph";
+} from "./Graph";
 
 const MANDELBROT_COLORS = [
   [0 / 255, 6 / 255, 92 / 255],

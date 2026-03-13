@@ -12,7 +12,7 @@ import { useAtom, useAtomValue } from "jotai";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
-import Textbox from "~/components/Textbox";
+import TextBox from "~/components/TextBox";
 import { userSelected } from "~/pages/home/Theater";
 import { byDate, getLesson, hasContent } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
@@ -84,7 +84,7 @@ export function Search() {
 
   return (
     <>
-      <Textbox
+      <TextBox
         ref={searchBox}
         icon={<MagnifyingGlassIcon />}
         value={search}
