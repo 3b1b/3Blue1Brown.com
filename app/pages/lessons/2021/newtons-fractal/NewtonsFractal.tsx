@@ -15,14 +15,15 @@ import { round } from "~/util/math";
 import shaderSource from "./newtons-fractal.frag?raw";
 
 const defaultPoints = [
-  { x: -1.33, y: 0.0, color: "#560666" },
-  { x: 0.0, y: -1.0, color: "#21aad5" },
-  { x: 0.0, y: 1.0, color: "#509f5a" },
-  { x: 0.66, y: -0.5, color: "#395489" },
-  { x: 0.66, y: 0.5, color: "#19909a" },
-  { x: -0.66, y: -0.5, color: "#d5494e" },
-  { x: -0.66, y: 0.5, color: "#d97c4e" },
-  { x: 1.33, y: 0.0, color: "#d5d54e" },
+  { x: -1.33, y: 0.0, color: "#440154" },
+  { x: 0.0, y: -1.0, color: "#3b528b" },
+  { x: 0.0, y: 1.0, color: "#21908c" },
+  { x: 0.66, y: -0.5, color: "#5dc963" },
+  { x: 0.66, y: 0.5, color: "#29abca" },
+  { x: -0.66, y: -0.5, color: "#d94e6e" },
+  { x: -0.66, y: 0.5, color: "#d9634e" },
+  { x: 1.33, y: 0.0, color: "#d9944e" },
+  { x: 0, y: 0.0, color: "#000000" },
 ];
 
 const defaultCount = 5;
@@ -131,7 +132,7 @@ export default function NewtonsFractal() {
       const newY = yScale.invert(y);
       // update dragged point coords
       setPoints((points) => {
-        const newPoints = [...points];
+        const newPoints = structuredClone(points);
         const point = newPoints[subject.index];
         if (point) {
           point.x = newX;
@@ -272,12 +273,12 @@ export default function NewtonsFractal() {
           value={count}
           onChange={setCount}
           min={1}
-          max={8}
+          max={9}
         />
         <Button
           color="theme"
           onClick={() => {
-            setPoints(defaultPoints);
+            setPoints(structuredClone(defaultPoints));
             setCount(defaultCount);
             setIterations(defaultIterations);
             setTransform(defaultTransform);
