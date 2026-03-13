@@ -1,17 +1,19 @@
 import gsap from "gsap";
 import { atom, useAtomValue } from "jotai";
-import { isEmpty, random, sample, size, uniqueId } from "lodash-es";
+import { debounce, isEmpty, random, sample, size, uniqueId } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { getAtom, setAtom } from "~/util/atom";
 import { samplePath } from "~/util/dom";
 import { Vector } from "~/util/vector";
 
-// number of particles (before excluding those outside of shape)
+// number of particles to generate (before excluding those outside of shape)
 const count = 1000;
+// hard limit number of active particles
+const maxParticles = 2000;
 // color of particles
 const colors = ["#3187ca"];
 // total length of animation, in sec
-const length = 1;
+const length = 1.5;
 // size of shape
 const scale = 120;
 // radius of particles
@@ -40,20 +42,35 @@ type Particle = {
 // list of particles
 const particlesAtom = atom<Record<string, Particle>>({});
 
-// add particle to list
-const addParticle = (particle: Particle) =>
-  setAtom(particlesAtom, (particles) => ({
-    ...particles,
-    [particle.id]: particle,
+// add particles to list in batch
+const addParticles = (particles: Particle[]) =>
+  setAtom(particlesAtom, (old) => ({
+    ...old,
+    ...Object.fromEntries(particles.map((particle) => [particle.id, particle])),
   }));
 
-// remove particle from list
-const removeParticle = (id: string) =>
-  setAtom(particlesAtom, (particles) => {
-    const newParticles = { ...particles };
-    delete newParticles[id];
-    return newParticles;
+// remove particles from list in batch
+const removeParticles = (ids: string[]) =>
+  setAtom(particlesAtom, (old) => {
+    const particles = { ...old };
+    for (const id of ids) delete particles[id];
+    return particles;
   });
+
+// queue of particles to remove
+const toRemove = new Set<string>();
+
+// queue particle to be removed
+const queueRemove = (id: string) => {
+  toRemove.add(id);
+  flushRemove();
+};
+
+// remove particles in queue
+const flushRemove = debounce(() => {
+  removeParticles([...toRemove]);
+  toRemove.clear();
+}, 10);
 
 // fire particles
 export const celebrate = (randPos = false) => {
@@ -76,10 +93,13 @@ export const celebrate = (randPos = false) => {
   // random rotation per burst
   const rotate = random(-25, 25);
 
+  // burst particles
+  const newParticles: Particle[] = [];
+
   // create particle from each point
   for (const translate of points) {
     // hard limit number of particles
-    if (size(getAtom(particlesAtom)) > 500) break;
+    if (size(getAtom(particlesAtom)) > maxParticles) break;
 
     // starting props
     const particle: Particle = {
@@ -92,45 +112,43 @@ export const celebrate = (randPos = false) => {
       color: sample(colors)!,
     };
 
+    newParticles.push(particle);
+
+    // random delay per particle
+    const delay = random(0.1);
     // random duration per particle
     const duration = random(0.5, 1) * length;
+
     // animate to end props
-    gsap
-      .timeline({
-        delay: random(0.1),
-        // delete self on finish
-        onComplete: () => removeParticle(particle.id),
-      })
-      // animate values up
-      .to(particle, {
-        scale,
-        rotate,
-        duration,
-        ease: "circ.out",
-      })
-      // animate values up and down
-      .to(
-        particle,
+    gsap.to(particle, {
+      delay,
+      scale,
+      rotate,
+      duration,
+      ease: "circ.out",
+      // delete self on finish
+      onComplete: () => queueRemove(particle.id),
+    });
+
+    // animate values up and down
+    gsap.to(particle, {
+      delay,
+      keyframes: [
         {
           radius: random(0.5, 1) * radius,
           duration: duration * 0.25,
           ease: "linear",
         },
-        0,
-      )
-      .to(
-        particle,
         {
           radius: 0,
           duration: duration * 0.75,
           ease: "linear",
         },
-        ">",
-      );
-
-    // add self
-    addParticle(particle);
+      ],
+    });
   }
+
+  addParticles(newParticles);
 };
 
 // render particles
