@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
 
+const cdn = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js";
+
 // enable mathjax on page
 export default function MathJax() {
   // parse math on load
@@ -73,7 +75,7 @@ const init = async () => {
 
   // load from node_modules
   const script = document.createElement("script");
-  script.src = (await import("mathjax-full/es5/tex-svg.js?url")).default;
+  script.src = cdn;
   script.type = "text/javascript";
   script.async = true;
   document.head.appendChild(script);
