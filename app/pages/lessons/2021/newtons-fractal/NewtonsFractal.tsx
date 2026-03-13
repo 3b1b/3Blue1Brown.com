@@ -109,7 +109,7 @@ export default function NewtonsFractal() {
   const yAxis = axisRight(yScale)
     .tickValues(yTicks)
     .tickSize(width)
-    .tickFormat((value) => Number(value).toFixed(2) + "i")
+    .tickFormat((value) => (-Number(value)).toFixed(2) + "i")
     .tickPadding(-5);
 
   // zoom/pan behavior

@@ -1,0 +1,21 @@
+@reference "~/styles.css";
+
+mjx-container {
+  @apply max-w-full overflow-x-auto;
+}
+
+mjx-container[display="true"] {
+  @apply self-center;
+}
+
+mjx-container svg {
+  @apply overflow-hidden!;
+}
+
+mjx-help {
+  @apply sr-only;
+}
+
+p:has(mjx-container) {
+  @apply no-trim;
+}

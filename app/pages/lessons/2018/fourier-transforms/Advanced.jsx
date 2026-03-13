@@ -159,6 +159,8 @@ export default function Advanced() {
       <Sketch setup={setup} draw={draw} />
       <TextBox
         type="text"
+        label="Frequencies"
+        placeholder="E.g. 1.5,2,3"
         onChange={updateFrequencies}
         defaultValue="2,3"
         className="mb-8"

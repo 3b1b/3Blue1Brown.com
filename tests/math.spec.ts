@@ -29,6 +29,9 @@ const checkPage = (path: string) =>
     // wait for content to load
     await page.waitForLoadState();
 
+    // wait a bit for mathjax to render
+    await page.waitForTimeout(5000);
+
     test.info().annotations.push({
       type: "MathJax errors",
       description: stringify(errors),

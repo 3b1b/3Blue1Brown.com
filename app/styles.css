@@ -110,10 +110,6 @@
 
   p {
     @apply trim text-justify leading-loose;
-
-    &:has(mjx-container) {
-      @apply no-trim;
-    }
   }
 
   strong,
@@ -123,14 +119,6 @@
 
   svg {
     @apply [display:unset] overflow-visible;
-  }
-
-  mjx-container svg {
-    @apply overflow-hidden!;
-  }
-
-  mjx-container[display="true"] {
-    @apply self-center;
   }
 
   figure,
@@ -223,10 +211,6 @@
 
   [aria-disabled="true"] {
     @apply pointer-events-none opacity-50 grayscale;
-  }
-
-  mjx-container {
-    @apply max-w-full overflow-x-auto;
   }
 }
 

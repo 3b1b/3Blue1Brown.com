@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
+import "./MathJax.css";
 
+// mathjax unfortunately designed to best be loaded from cdn
+// trying to install as package and import causes many issues
 const cdn = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js";
 
 // enable mathjax on page
@@ -13,7 +16,7 @@ export default function MathJax() {
   // parse math on dom changes
   useMutationObserver(
     (entries) => {
-      // only run if a <code class="language-math"> element is added
+      // only run if a math element is added
       for (const { addedNodes } of entries)
         for (const node of addedNodes)
           if (
@@ -108,17 +111,8 @@ const render = async () => {
       content = await window.MathJax.tex2svgPromise?.(math, { display });
     }
     if (!content) continue;
-    // make mjx-assistive-mml sr-only
-    content
-      .querySelectorAll("mjx-assistive-mml")
-      .forEach((element) => element.classList.add("sr-only"));
     // insert content
     if (display) element = parent;
     element.replaceWith(content);
-    // add sr-only text before
-    const srText = document.createElement("span");
-    srText.classList.add("sr-only");
-    srText.textContent = content.getAttribute("aria-label") ?? math;
-    content.before(srText);
   }
 };

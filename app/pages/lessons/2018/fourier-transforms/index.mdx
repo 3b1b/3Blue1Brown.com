@@ -34,6 +34,7 @@ $$
 While this post is aimed at being a friendly introduction, building up to a visual understanding that motivates the potentially-complicated-looking formula, my hope is that even those of you who are already somewhat familiar with Fourier transforms will find it enriching to unpack and visualize what it's really doing.
 
 </section>
+
 <section>
 
 ## Adding Sounds Waves
@@ -84,6 +85,7 @@ A microphone recording any sound just picks up on the air pressure at many diffe
 The general strategy will be to build for ourselves a mathematical machine that treats signals with a given frequency differently from how it treats other signals. Moreover, it should be able to detect the presence of that frequency even if it's been mixed together with others, for example recognizing that the messy waveform above has a pure A440 hiding inside it. Writing down what this machine does as a formula will give us the Fourier transform.
 
 </section>
+
 <section>
 
 ## Decomposing Arbitrary Signals
@@ -192,6 +194,7 @@ It simply forms a circle (or arc of a circle) because the input graph is a const
 </FreeResponse>
 
 </section>
+
 <section>
 
 ## An Example in Sound Editing
@@ -204,6 +207,7 @@ If we remove the spike by smooshing it out on the frequency plot, we will have a
 To go back to the original signal, we need to use another concept known as the inverse Fourier transform, and after applying this operation, we have effectively removed the high-pitched ringing noise from the signal.
 
 </section>
+
 <section>
 
 ## Mathematical Formalism
@@ -283,6 +287,7 @@ For other winding frequencies, though, even ones just barely different from 2, t
 />
 
 </section>
+
 <section>
 
 ## Summary
