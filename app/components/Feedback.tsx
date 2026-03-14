@@ -165,7 +165,7 @@ export default function Feedback() {
                 >
                   GitHub
                 </Link>{" "}
-                with <em>all of the info above</em> and some{" "}
+                with the above and some{" "}
                 <Tooltip trigger="debug info">
                   <dl className="self-center">
                     {Object.entries(details).map(([key, value]) => (

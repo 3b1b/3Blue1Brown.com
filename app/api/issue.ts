@@ -1,7 +1,8 @@
 import { request } from "~/api";
+import site from "~/data/site.json";
 
 // cloud func
-const url = "https://xxx.us-central1.run.app";
+const url = site.issues;
 
 // see /cloud/issue
 type Body = {

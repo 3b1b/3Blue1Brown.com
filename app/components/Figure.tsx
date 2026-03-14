@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { Tabs } from "@base-ui/react";
 import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
@@ -29,16 +30,29 @@ export default function Figure({
   className,
   children,
 }: Props) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   // image to render
   const imageElement = (
-    <Image image={image ?? ""} className={clsx("w-full", className)}>
+    <Image
+      image={image ?? ""}
+      // if not loaded, reserve some space to reduce layout shift
+      className={clsx("w-full", !imageLoaded && "aspect-video", className)}
+      onLoad={() => setImageLoaded(true)}
+    >
       {children}
     </Image>
   );
 
   // video to render
   const videoElement = (
-    <video controls className={className} loop={loop}>
+    <video
+      controls
+      className={clsx(className, !videoLoaded && "aspect-video")}
+      loop={loop}
+      onLoadedData={() => setVideoLoaded(true)}
+    >
       <source src={video ?? ""} type="video/mp4" />
     </video>
   );

@@ -2,7 +2,8 @@ import "~/styles.css";
 import "@fontsource-variable/source-serif-4";
 import "@fontsource-variable/figtree";
 import "@fontsource-variable/sometype-mono";
-import { useEffect } from "react";
+import type { Location } from "react-router";
+import { useEffect, useRef } from "react";
 import {
   Links,
   Outlet,
@@ -18,26 +19,31 @@ import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
 import { scrollTo } from "~/util/dom";
-import { useChanged } from "~/util/hooks";
+import { waitFor } from "~/util/misc";
 
 // app entrypoint
 export default function App() {
-  const { pathname, hash } = useLocation();
+  // current route
+  const location = useLocation();
+  // previous route
+  const previousLocation = useRef<Location>(null);
 
-  const pathChanged = useChanged(pathname);
-  const hashChanged = useChanged(hash);
-
+  // scroll to hash
   useEffect(() => {
-    // if hash defined, scroll to it
-    if (hash)
-      scrollTo(
-        hash,
-        undefined,
-        // if path changed (page load or new page), wait for layout shift
-        // otherwise (e.g. user clicked toc link), scroll immediately
-        pathChanged,
-      );
-  }, [hash, pathChanged, hashChanged]);
+    // if page load or new page
+    if (location.pathname !== previousLocation.current?.pathname)
+      (async () => {
+        // wait for page to finish loading
+        await waitFor(() => document.readyState === "complete");
+        // wait for layout shifts to stabilize
+        scrollTo(location.hash, undefined, true);
+      })();
+    // if just hash changed (e.g. user clicked TOC link), scroll immediately
+    else if (location.hash !== previousLocation.current?.hash)
+      scrollTo(location.hash);
+
+    previousLocation.current = location;
+  }, [location]);
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>
