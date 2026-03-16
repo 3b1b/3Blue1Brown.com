@@ -22,7 +22,8 @@ Key technologies used in this project:
 
 ## Requirements
 
-- [Bun](https://bun.sh/) v1.3+
+- [Bun](https://bun.sh) v1.3+ - as main platform, package manager, script runner, etc.
+- [Node](https://nodejs.org) v22+ - as fallback
 
 ### About Bun
 
@@ -33,7 +34,7 @@ Bun should have the same APIs and functionalities as Node, with only some minor 
 If you see instructions like `npm install some-package` or `npx some-command`, replace them with their Bun equivalents like `bun add` or `bunx some-command`.
 
 Bun is excellent but still not as mature as Node.
-If you encounter an issue, try installing Node and running commands with that instead, and report the issue on this repo.
+If you encounter an issue, try running commands with Node instead, and report the issue on this repo.
 To avoid vendor lock-in, do not use APIs/features that are in Bun but not Node.
 If Bun disappeared tomorrow, going back to Node should be as simple as replacing command names.
 
@@ -60,9 +61,9 @@ If Bun disappeared tomorrow, going back to Node should be as simple as replacing
 | `bun run test:e2e`           | Run integration tests, including Axe              |
 | `bun run test`               | Run all tests                                     |
 | **Checks**\*                 |                                                   |
-| `bun run check-spelling`     | Check for spelling errors                         |
-| `bun run check-unused`       | Check for unused code                             |
-| `bun run check-links`        | Check for broken links                            |
+| `bun run check:spelling`     | Check for spelling errors                         |
+| `bun run check:unused`       | Check for unused code                             |
+| `bun run check:links`        | Check for broken links                            |
 
 \* Scripts that are valuable, but have too many false positives to be tests that fail critically.
 Run periodically, manually review, and use discretion.

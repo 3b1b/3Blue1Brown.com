@@ -14,7 +14,7 @@ import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
 import { userSelected } from "~/pages/home/Theater";
-import { byDate, getLesson, hasContent } from "~/pages/lessons/lessons";
+import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
@@ -155,7 +155,7 @@ export function Search() {
               .slice(0, all ? Infinity : limit)
               .map(
                 (
-                  { id = "", title = "", description = "", image = "" },
+                  { id = "", title = "", description = "", image = "", read },
                   index,
                 ) => (
                   <div key={index} className="flex flex-col gap-2">
@@ -171,7 +171,7 @@ export function Search() {
                       onClick={userSelected}
                       active={lessonId === id}
                     />
-                    {hasContent(id) && (
+                    {read && (
                       <Button
                         size="sm"
                         to={href("/lessons/:id", { id })}

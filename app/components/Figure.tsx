@@ -65,7 +65,7 @@ export default function Figure({
   if (!image && !video) return null;
 
   // tab button
-  const Tab: Tabs.Tab.Props["render"] = (props, state) => (
+  const tab: Tabs.Tab.Props["render"] = (props, state) => (
     <Button {...props} color={state.active ? "light" : undefined} />
   );
 
@@ -73,11 +73,11 @@ export default function Figure({
   return (
     <Tabs.Root className="flex flex-col items-center gap-4" defaultValue={show}>
       <Tabs.List className="flex items-center gap-4">
-        <Tabs.Tab value="image" render={Tab}>
+        <Tabs.Tab value="image" render={tab}>
           <ImageIcon />
           Image
         </Tabs.Tab>
-        <Tabs.Tab value="video" render={Tab}>
+        <Tabs.Tab value="video" render={tab}>
           <VideoIcon />
           Video
         </Tabs.Tab>

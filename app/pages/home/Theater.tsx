@@ -24,7 +24,6 @@ import {
   getNext,
   getPrevious,
   getRandom,
-  hasContent,
 } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { getAtom, setAtom } from "~/util/atom";
@@ -75,9 +74,6 @@ export default function Theater() {
   // link to readable lesson
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
 
-  // does readable lesson exist
-  const readExists = hasContent(lesson?.id ?? "");
-
   // show video details
   const [details, setDetails] = useState(false);
 
@@ -113,7 +109,7 @@ export default function Theater() {
 
           {/* actions */}
           <div className="flex flex-wrap items-center justify-center gap-4">
-            {readExists && (
+            {lesson?.read && (
               <Button size="sm" to={readLink}>
                 <BookOpenTextIcon />
                 Read

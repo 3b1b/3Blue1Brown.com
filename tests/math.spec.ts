@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import routes from "./routes.json" with { type: "json" };
 import { log, stringify } from "./util";
 
-// paths to test, auto-generated any time site is built or dev'd
+// paths to test
 const paths = routes.filter((path) => !path.endsWith(".xml"));
 
 log();

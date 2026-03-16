@@ -1,6 +1,5 @@
 import type { MDXContent } from "mdx/types";
 import { orderBy, sample } from "lodash-es";
-import { renderText } from "~/util/dom";
 import { importAssets } from "~/util/import";
 import { getThumbnail } from "~/util/youtube";
 
@@ -15,6 +14,8 @@ export type LessonFrontmatter = {
   chapter?: number;
   image?: string;
   thumbnail?: string;
+  combinedCredits?: Record<string, string[]>;
+  read?: boolean;
 };
 
 export type Lesson = {
@@ -22,37 +23,42 @@ export type Lesson = {
   frontmatter: LessonFrontmatter;
 };
 
-// import all lessons
+// transform lesson props, derive extras
+export const transformLesson = (lesson: Lesson, id: string) => ({
+  ...lesson,
+  frontmatter: {
+    ...lesson.frontmatter,
+    id,
+    // parse date
+    date: new Date(lesson.frontmatter.date ?? ""),
+    // lookup thumbnail
+    image: lesson.frontmatter.video?.trim()
+      ? getThumbnail(lesson.frontmatter.video)
+      : (lesson.frontmatter.thumbnail ?? ""),
+    // nullify thumbnail field so image field single source of truth
+    thumbnail: undefined,
+    // combine credits by role for more compact display
+    combinedCredits:
+      lesson.frontmatter.credits?.reduce(
+        (credits, credit) => {
+          const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
+          credits[role] ??= [];
+          credits[role].push(name);
+          return credits;
+        },
+        {} as Record<string, string[]>,
+      ) ?? {},
+  },
+});
+
+// import all lessons (frontmatter only)
 export const [getLesson, lessons] = importAssets(
-  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", { eager: true }),
-  "index",
-  // transform and derive lesson props
-  (lesson, id) => ({
-    ...lesson,
-    frontmatter: {
-      ...lesson.frontmatter,
-      id,
-      // parse date
-      date: new Date(lesson.frontmatter.date ?? ""),
-      // lookup thumbnail
-      image: lesson.frontmatter.video?.trim()
-        ? getThumbnail(lesson.frontmatter.video)
-        : (lesson.frontmatter.thumbnail ?? ""),
-      // nullify thumbnail field so image field single source of truth
-      thumbnail: undefined,
-      // combine credits by role for more compact display
-      combinedCredits:
-        lesson.frontmatter.credits?.reduce(
-          (credits, credit) => {
-            const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
-            credits[role] ??= [];
-            credits[role].push(name);
-            return credits;
-          },
-          {} as Record<string, string[]>,
-        ) ?? {},
-    },
+  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", {
+    eager: true,
+    query: "frontmatter-only",
   }),
+  "index",
+  transformLesson,
 );
 
 // import all lesson patrons
@@ -119,7 +125,3 @@ export const getNext = (id: string, list = byDate) => {
     if (lesson) return lesson;
   }
 };
-
-// check if lesson has text content
-export const hasContent = (id: string) =>
-  !!renderText(getLesson(id)?.default?.({}));

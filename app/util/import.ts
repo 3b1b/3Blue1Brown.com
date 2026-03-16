@@ -19,7 +19,7 @@ export const importAssets = <Import, Transformed = Import>(
   ]);
 
   // look up single import by slug-ified name
-  const getOne = (name: string) => {
+  const getOne = (name: string): Transformed | undefined => {
     name = slugify(name);
     const item = map[name];
     if (!item) return;
@@ -34,6 +34,44 @@ export const importAssets = <Import, Transformed = Import>(
   ]);
 
   return [getOne, all] as const;
+};
+
+// wrapper for lazy importing and using bulk assets
+export const importAssetsAsync = <Import, Transformed = Import>(
+  // a passed import.meta.glob<Type>()
+  imports: Record<string, () => Promise<Import>>,
+  // if filename this, use parent folder instead of filename as asset name
+  base = "index",
+  // optional transform to apply to each import before returning
+  transform: (module: Import, name: string, path: string) => Transformed = (
+    module,
+  ) => module as unknown as Transformed,
+) => {
+  // create map of name to import and original path
+  const map = mapEntries(imports, (path, module) => [
+    slugify(nameFromPath(path, base)),
+    { path, module },
+  ]);
+
+  // cache promises so use() receives stable resource per asset
+  // https://react.dev/reference/react/use#caveats
+  const cache: Record<string, Promise<Transformed | undefined>> = {};
+
+  // look up single import by slug-ified name
+  const getOne = (name: string): Promise<Transformed | undefined> => {
+    name = slugify(name);
+
+    cache[name] ??= (async () => {
+      const item = map[name];
+      if (!item) return;
+      const { path, module } = item;
+      return transform(await module(), name, path);
+    })();
+
+    return cache[name]!;
+  };
+
+  return getOne;
 };
 
 // turn full path into name based on file or folder name

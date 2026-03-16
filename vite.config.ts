@@ -8,18 +8,41 @@ import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import { imagetools } from "vite-imagetools";
-import replace from "vite-plugin-filter-replace";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig({
   plugins: [
-    replace(
-      [
-        {
-          filter: /\.mdx$/,
-          replace(source, path) {
+    {
+      // transform source code as raw string
+      name: "text-replace",
+      enforce: "pre",
+      transform(source, path) {
+        // parse path as url
+        const { pathname, searchParams } = new URL(path, import.meta.url);
+
+        // process mdx files
+        if (pathname.includes(".mdx")) {
+          // if frontmatter exists
+          if (source.startsWith("---")) {
+            // split into frontmatter and content
+            const [, frontmatter = "", content = ""] =
+              source.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)/) ?? [];
+
+            // reconstruct source
+            source = [
+              "---",
+              frontmatter,
+              // append extras to frontmatter
+              `read: ${!!content.trim()}`,
+              "---",
+              searchParams.has("frontmatter-only") ? "" : content,
+            ].join("\n");
+          }
+
+          // replace $lesson var
+          if (source.includes("$lesson")) {
             // get relevant part of lesson path
             let lesson =
               path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
@@ -28,12 +51,12 @@ export default defineConfig({
             lesson = `${site.bucket}/${lesson}`;
             // inject lesson variable into source
             source = source.replaceAll("$lesson", lesson);
-            return source;
-          },
-        },
-      ],
-      { enforce: "pre" },
-    ),
+          }
+        }
+
+        return source;
+      },
+    },
     mdx({
       remarkPlugins: [
         remarkFrontmatter,
@@ -61,4 +84,8 @@ export default defineConfig({
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
   },
+  // optimizeDeps: {
+  //   noDiscovery: true,
+  //   include: [],
+  // },
 });

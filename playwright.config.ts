@@ -21,7 +21,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: `react-router dev --port ${port}`,
+    command: "bun run build && bun run preview",
     url,
     reuseExistingServer: true,
   },

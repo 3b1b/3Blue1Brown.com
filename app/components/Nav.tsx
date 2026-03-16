@@ -46,6 +46,7 @@ export default function Nav({ className = "" }) {
           className,
         )}
       >
+        {/* search */}
         <Tooltip
           trigger={
             <Button aria-label="Lesson search" size="sm">

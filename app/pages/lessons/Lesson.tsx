@@ -1,5 +1,7 @@
 import type { Article } from "schema-dts";
+import type { Lesson } from "~/pages/lessons/lessons";
 import type { Route } from "./+types/Lesson";
+import { use } from "react";
 import { href } from "react-router";
 import { Fragment } from "react/jsx-runtime";
 import {
@@ -24,18 +26,27 @@ import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
 import YouTube from "~/components/YouTube";
 import team from "~/data/team.json";
-import { getLesson, getPatrons, hasContent } from "~/pages/lessons/lessons";
+import { getPatrons, transformLesson } from "~/pages/lessons/lessons";
 import {
   getNextByTopic,
   getPreviousByTopic,
   getTopic,
 } from "~/pages/lessons/topics";
 import NotFound from "~/pages/NotFound";
+import { importAssetsAsync } from "~/util/import";
 import { formatDate } from "~/util/string";
+
+// lazy load full lesson (frontmatter + mdx content)
+const getFullLesson = importAssetsAsync(
+  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx"),
+  "index",
+  transformLesson,
+);
 
 // lesson page layout
 export default function Lesson({ params: { id } }: Route.ComponentProps) {
-  const lesson = getLesson(id);
+  const lesson = use(getFullLesson(id));
+
   if (!lesson) return <NotFound />;
 
   const {
@@ -47,11 +58,15 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
       date = new Date(),
       description = "",
       credits = ["Lesson by Grant Sanderson"],
-      combinedCredits = { Lesson: ["Grant Sanderson"] },
+      combinedCredits = { Lesson: ["Grant Sanderson"] } as Record<
+        string,
+        string[]
+      >,
       video = "",
       source = "",
       chapter = -1,
       image = "",
+      read = true,
     },
   } = lesson;
 
@@ -166,7 +181,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
         </section>
 
         {/* toc */}
-        {hasContent(id) && <TableOfContents />}
+        {read && <TableOfContents />}
 
         {/* lesson content */}
         <Component />

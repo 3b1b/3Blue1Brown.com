@@ -13,9 +13,9 @@
     "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e && bun run build",
     "install-playwright": "bunx playwright install chromium --with-deps",
     "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm",
-    "check-spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum",
-    "check-unused": "bunx --bun knip --no-exit-code",
-    "check-links": "bunx linkinator ./build/client/index.html"
+    "check:spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum  2>&1 | grep '.*fix:'",
+    "check:unused": "bunx --bun knip --no-exit-code",
+    "check:links": "cd build/client && bunx linkinator './**/*.html' --recurse --clean-urls ; cd ../.."
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -89,7 +89,6 @@
     "typescript-eslint": "^8.54.0",
     "vite": "^7.1.7",
     "vite-imagetools": "^9.0.3",
-    "vite-plugin-filter-replace": "^0.1.14",
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   }
