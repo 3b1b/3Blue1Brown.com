@@ -1,0 +1,125 @@
+---
+banner: /content/talent/epochai/banner.jpg
+wordmark: /content/talent/epochai/wordmark.svg
+wordmark_height: 180px
+light_banner_overlay: true
+hide_header: true
+logo: /content/talent/epochai/logo.png
+name: Epoch AI
+tagline: Researching the trajectory of AI
+featured_quote: Bounties for unsolved problems
+---
+
+<Section width="narrow">
+
+## About
+
+Epoch AI is a research nonprofit investigating the trajectory and future of artificial intelligence. We are the creators of [FrontierMath](https://epoch.ai/frontiermath/tiers-1-4), a recognized AI benchmark made of research-level math problems.
+
+We are now seeking problem contributors for [FrontierMath: Open Problems](https://epoch.ai/frontiermath/open-problems/about), a new kind of AI benchmark consisting of unsolved math problems that have resisted serious attempts by professional mathematicians. AI solutions would meaningfully advance the state of human mathematical knowledge.
+
+We have already launched the pilot and maintain a [live scoreboard](https://epoch.ai/frontiermath/open-problems) of open problems across fields like Combinatorics, Number Theory, and Topology, including notability ratings and "warm-up" versions for AI testing.
+
+<Center>
+<p style={{textAlign: 'center'}}>
+We think the 3b1b audience will be able to come up with some great problems!
+</p>
+
+<Clickable
+    link="https://docs.google.com/forms/d/e/1FAIpQLSckGHMY4ofgKfvf39Ue8fDZAbXJqN9pTcf5oLP3f3y-chE0Bg/viewform"
+    text="Propose a problem"
+    design="featured"
+/>
+</Center>
+
+## The Challenge
+
+We are commissioning math problems that satisfy the following criteria:
+
+* **Open:** No solution is known.
+* **Hard:** At least two professional mathematicians have tried to solve it.
+* **Interesting:** A solution would be worthy of publication in at least a standard specialty journal and would be at least somewhat likely to generate further new mathematics.
+* **Verifiable:** Solutions can be verified to a high degree of confidence by a typical computer program (not Lean) running on a typical laptop in under an hour.
+* **Solvable:** A verifiable solution should be likely to exist.
+
+### Next Steps
+
+After you propose a problem, next steps typically consist of a brief back-and-forth about problem details, followed by us offering you a compensated contract to produce the full problem package, consisting of the following:
+
+* Write-up explaining the problem's history and significance.
+* Computer program ("the verifier") that evaluates candidate solutions, including supporting documentation and test cases.
+* Precise problem statement ("the prompt") to be given to AI systems.
+* Filling out a brief survey about the problem.
+
+**Compensation** varies depending on how much work the package will be to produce. This is usually driven by the complexity of the verifier.
+
+</Section>
+
+<Section width="narrow">
+
+<Center>
+
+<iframe 
+    width="100%" 
+    style={{aspectRatio: '16/9', borderRadius: '8px', marginBottom: '20px'}}
+    src="https://www.youtube.com/embed/KDzbCHuyRY0" 
+    title="FrontierMath: Open Problems Overview" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+</iframe>
+</Center>
+<p style={{textAlign: 'center'}}>
+Watch Greg Burnham, lead of the project, present FrontierMath: Open Problems and explain why it matters. This was an internal chat held before the pilot was launched.
+</p>
+
+</Section>
+
+<Section width="narrow">
+
+## Solutions can be verified automatically
+
+Evaluating AI solutions to unsolved math problems is a major logistical challenge. Math research typically proceeds via natural-language papers. Evaluating such papers is labor intensive and error-prone even for humans. While AI systems have made progress at evaluating natural-language mathematics, we cannot rely on the accuracy of their evaluations for advanced material (e.g., see here for work on AI systems grading prose proofs.)
+Our approach is to find problems where, even though no solution is currently known, a proposed solution can be checked by a relatively straightforward computer program running on a typical computer. It is not obvious that such verifiable problems exist, but they do:
+
+* Some problems ask for a very concrete mathematical object, where the problem’s meaningfulness stems from the fact that a conceptual approach appears to be required to construct the desired object. [One such case](https://epoch.ai/frontiermath/open-problems/inverse-galois) asks for a polynomial with a certain property (namely, a polynomial whose Galois group is the Mathieu group M23). It is quick to check if a given polynomial has the desired property, but finding one is beyond the reach of any known technique, including highly optimized, large-scale search.
+* In [other cases](https://epoch.ai/frontiermath/open-problems/ramsey-book-graphs), we want a construction that works for all positive integers. We can’t verify this in general, but we can ask for an algorithm that takes an integer and returns a construction for that integer. We can verify the algorithm on a challenge set of integers where no constructions are currently known and where the integers are large enough that search is intractable. Success here gives strong evidence that the algorithm implements a general solution.
+
+
+The downside is that this approach limits what we can ask about, but we have been pleasantly surprised by how readily mathematicians have been able to come up with a diversity of mathematically meaningful problems that satisfy this verifiability constraint.
+Problems in the pilot span a range of notability, estimated time to solve, number of mathematicians who’ve tried to solve, and topic areas:
+
+![Open Problems Composition](/content/talent/epochai/open-problems-composition.svg)
+
+
+</Section>
+
+<Section width="narrow">
+
+## For more context
+
+IEEE Spectrum [recently interviewed project lead Greg Burnham](https://spectrum.ieee.org/ai-math-benchmarks), situating this new benchmark in relation to Epoch’s prior FrontierMath Tiers 1-4, as well as Aletheia and First Proof.
+
+![IEEE Spectrum Interview](/content/talent/epochai/ieeespectrum.png)
+
+For a deeper dive into why this project matters, listen to Greg Burnham and Prof. Daniel Litt discuss the jagged frontier of AI math capabilities, including the value of "expert-level" problems that resist standard optimization:
+
+<Center>
+
+<iframe 
+    width="100%" 
+    style={{aspectRatio: '16/9', borderRadius: '8px', marginBottom: '20px'}}
+    src="https://www.youtube.com/embed/jFJku8sxLWY?start=5128" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+</iframe>
+
+</Center>
+
+
+* Questions: **math@epoch.ai**
+* Submissions: [Problem Proposal Form](https://docs.google.com/forms/d/e/1FAIpQLSckGHMY4ofgKfvf39Ue8fDZAbXJqN9pTcf5oLP3f3y-chE0Bg/viewform)
+
+</Section>
