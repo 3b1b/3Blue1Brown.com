@@ -188,6 +188,14 @@
 
 .accordionOpen {
   max-height: 300px;
+
+  @media (max-width: 768px) {
+    max-height: 600px;
+  }
+
+  @media (max-width: 500px) {
+    max-height: 800px;
+  }
 }
 
 .accordionInner {
