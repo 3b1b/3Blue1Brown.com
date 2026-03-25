@@ -2,7 +2,6 @@ import { href } from "react-router";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
-import DarkMode from "~/components/DarkMode";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
 import { Search } from "~/pages/home/Explore";
@@ -70,8 +69,6 @@ export default function Nav({ className = "" }) {
             {name}
           </Button>
         ))}
-
-        <DarkMode />
       </nav>
     </>
   );

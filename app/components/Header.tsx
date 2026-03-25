@@ -63,20 +63,20 @@ export default function Header({ children }: Props) {
         />
 
         {/* sub title */}
-        <div className="flex grow basis-0 justify-end gap-6 text-right text-dark-gray *:flex *:items-center *:gap-1 max-xl:hidden [&_svg]:scale-75">
+        <div className="flex grow basis-0 justify-end gap-6 text-right text-dark-gray *:flex *:items-center *:gap-2 max-xl:hidden">
+          <div>{site.subtitle}</div>
           {pathname === "/" && (
             <>
-              <div className="text-sm">
-                <BellIcon aria-label="Subscribers" />
+              <div className="lowercase">
                 {formatNumber(stats.subscribers)}
+                <BellIcon aria-label="Subscribers" />
               </div>
-              <div className="text-sm">
-                <PlayIcon aria-label="Views" />
+              <div className="lowercase">
                 {formatNumber(stats.views)}
+                <PlayIcon aria-label="Views" />
               </div>
             </>
           )}
-          <div>{site.subtitle}</div>
         </div>
       </div>
 

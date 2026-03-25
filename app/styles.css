@@ -215,27 +215,19 @@
 }
 
 @utility width-sm {
-  &:is(section) {
-    --width: 100;
-  }
+  --width: 100;
 }
 
 @utility width-md {
-  &:is(section) {
-    --width: 200;
-  }
+  --width: 200;
 }
 
 @utility width-lg {
-  &:is(section) {
-    --width: 300;
-  }
+  --width: 300;
 }
 
 @utility width-full {
-  &:is(section) {
-    --width: 9999;
-  }
+  --width: 9999;
 }
 
 @utility icon {
