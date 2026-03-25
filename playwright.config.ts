@@ -21,7 +21,8 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: "bun run build && bun run preview",
+    // command: "bun run build && bun run preview",
+    command: "bun run dev",
     url,
     reuseExistingServer: true,
   },
