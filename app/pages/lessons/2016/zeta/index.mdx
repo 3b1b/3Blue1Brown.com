@@ -22,7 +22,7 @@ import Question from "~/components/Question";
 The Riemann zeta function is one of the most important objects in modern math, and yet simply explaining what it is can be surprisingly tricky. The goal of this lesson is to do just that.
 
 <Figure
-  image="$lesson/riemann_anim.png"
+  image="$lesson/riemann_anim.jpg"
   video="$lesson/riemann_anim.mp4"
   show="video"
 />
@@ -117,7 +117,7 @@ $$
 The term $\left(\frac{1}{2}\right)^2$ is familiar real number exponentiation, no issues there. But what about raising something to a pure imaginary number? If you want to really understand this, I've made <LessonLink id="eulers-formula-dynamically">several</LessonLink> <LessonLink id="eulers-formula-via-group-theory">other</LessonLink> <LessonLink id="eulers-formula-dynamically">lessons</LessonLink> on this very question.
 The upshot is that when you raise to the power of a purely imaginary number, which is to say $t \cdot i$ for a real value $t$, the result sits on the unit circle in the complex plane.
 
-<Figure image="$lesson/complex_exp.png" video="$lesson/complex_exp.mp4" loop />
+<Figure image="$lesson/complex_exp.jpg" video="$lesson/complex_exp.mp4" loop />
 
 As you let that pure imaginary input walk up and the imaginary line, the resulting output walks around the unit circle. For a base like $\frac{1}{2}$, this output walks around the unit circle somewhat slowly. For a base farther away from $1$, like $\frac{1}{9}$, then as you let the input walk up and down the imaginary axis, the corresponding output would walk around the unit circle more quickly.
 
@@ -137,7 +137,7 @@ that $\left( \frac{1}{2} \right)^{i}$ part has an absolute value of 1, sitting o
 
 This offers a very beautiful way to think about plugging in $2+i$ into the zeta function. Start by thinking of each term $\frac{1}{1^2}$, $\frac{1}{2^2}$, $\frac{1}{3^2}$, etc., perhaps visualized as little lines whose lengths are the reciprocals of square numbers.
 
-<Figure image="$lesson/czeta_img1.png" video="$lesson/czeta_img1.mp4" />
+<Figure image="$lesson/czeta_img1.jpg" video="$lesson/czeta_img1.mp4" />
 
 Once you change the input from 2 to 2+i, each of these lines will get rotated by some amount. The amount that each term $\frac{1}{n^2}$ is rotated depends on $\frac{1}{n}$, and the larger the value of $n$, the more the rotation, which results in a kind of spiral for our new sum.
 
@@ -152,7 +152,7 @@ $$
 \underbrace{\left( \frac{1}{4^{i}} \right)}_{\substack{\text{Rotate} \\ \text{even more}}} + \cdots
 $$
 
-<Figure image="$lesson/czeta_img2.png" />
+<Figure image="$lesson/czeta_img2.jpg" />
 
 Importantly, the lengths of those lines won't change, so this sum still converges, it just does so in a spiral to some specific point on the complex plane which is no longer a real number.
 
@@ -182,14 +182,14 @@ $$
 Let's see what it looks like if we vary the input s, represented with a yellow dot, and follow the effect on the spiral sum converging to some output $\zeta(s)$.
 
 <Figure
-  image="$lesson/czeta_img3.png"
+  image="$lesson/czeta_img3.jpg"
   video="$lesson/czeta_img3.mp4"
   show="video"
 />
 
 What this means is that $\zeta(s)$, defined as the infinite sum $\displaystyle \sum_{n = 1}^\infty \frac{1}{n^s}$, is a perfectly reasonable complex function as long as the real part of the input is greater than 1, meaning the input sits somewhere on this right half of the complex plane.
 
-<Figure image="$lesson/czeta_img4.png" />
+<Figure image="$lesson/czeta_img4.jpg" />
 
 Again, this is because it's the real part of $s$ that determines the size of each term in this sum, and those sizes determine whether the sum converges. Well, that's not exactly true, in principle once rotation enters the game you could get some cancelation. For example the sum
 
@@ -215,7 +215,7 @@ Let's try visualizing this function. It takes in inputs on this right half of th
 
 For example, let's take a moment to try visualizing something a little easier than the zeta function. Say $f(s) = s^2$. When you plug in $s=2$, you get $4$, so we'll end up moving the point at $2$ over to $4$. When you plug in $-1$, you get $1$, so the point at $-1$ will end up moving over to 1. When you plug in $i$, by definition its square is $-1$, so it's going to move to $-1$.
 
-<Figure image="$lesson/s2_img1.png" />
+<Figure image="$lesson/s2_img1.jpg" />
 
 <Question 
   question="If $f(s) = s^2$, what is$f(1+2i)$?"
@@ -240,11 +240,11 @@ $$
 
 Let's add a more colorful grid, since things are about to start moving and it's nice to have something to distinguish grid lines during this movement.
 
-<Figure image="$lesson/s2_img2.png" />
+<Figure image="$lesson/s2_img2.jpg" />
 
 I'll tell the computer to move every point $s$ on this grid over to its corresponding output under the function $f(s)=s^2$. Here's what it looks like.
 
-<Figure image="$lesson/s2_img3.png" video="$lesson/s2_img3.mp4" show="video" />
+<Figure image="$lesson/s2_img3.jpg" video="$lesson/s2_img3.mp4" show="video" />
 
 Focus on one of the yellow points, and notice how it moves to the blue point corresponding to its square.
 
@@ -261,7 +261,7 @@ Back to the zeta function. We have this infinite sum, which is a function of a c
 
 To visualize this, let's begin with a portion of the grid sitting on the right side of the complex plane here, with real part greater than 1, like this:
 
-<Figure image="$lesson/zeta_img1.png" />
+<Figure image="$lesson/zeta_img1.jpg" />
 
 <PiCreature emotion="happy">
   We've added more lines near 1, since it gets stretched out
@@ -270,7 +270,7 @@ To visualize this, let's begin with a portion of the grid sitting on the right s
 Again, I'll tell the computer to move each point of this grid to the appropriate output; the place where this sum converges when you set s equal to the complex number at that point.
 
 <Figure
-  image="$lesson/zeta_img2.png"
+  image="$lesson/zeta_img2.jpg"
   video="$lesson/zeta_img2.mp4"
   show="video"
 />
@@ -279,23 +279,23 @@ First of all, can we all take a moment to appreciate how beautiful this is? If t
 
 <PiCreature emotion="hooray">Damn!</PiCreature>
 
-<Figure image="$lesson/zeta_img3.png" />
+<Figure image="$lesson/zeta_img3.jpg" />
 
 For example, let's highlight two lines representing all complex numbers with imaginary part $i$ or $-i$.
 
-<Figure image="$lesson/zeta_img4.png" />
+<Figure image="$lesson/zeta_img4.jpg" />
 
 After the transformation, these lines make such lovely arcs before they abruptly stop.
 
-<Figure image="$lesson/zeta_img5.png" />
+<Figure image="$lesson/zeta_img5.jpg" />
 
 Don't you just want to, you know, continue those arcs.
 
-<Figure image="$lesson/zeta_img6.png" />
+<Figure image="$lesson/zeta_img6.jpg" />
 
 In fact, you can imagine how some altered version of the function, with a definition extended into the left half of the plane, might be able to complete this picture, which otherwise seems so arbitrarily cut off.
 
-<Figure image="$lesson/zeta_img7.png" />
+<Figure image="$lesson/zeta_img7.jpg" />
 
 Well, this is exactly what mathematicians working with complex functions do; they continue the function beyond the original domain where it was defined.
 
@@ -305,7 +305,7 @@ As soon as we start talking about inputs where the real part is less than 1, the
 
 Of course, the question is then how to define the function on the rest of the plane. You might think you could extend this function in any number of ways. Maybe you define an extension that makes it so that the input point at, say, $s=-1$ land on $-\frac{1}{12}$, but maybe you squiggle some extension that makes it land on any other value.
 
-<Figure image="$lesson/aconn_img1.png" />
+<Figure image="$lesson/aconn_img1.jpg" />
 
 As soon as you open yourself up to the idea of defining the function differently for values outside that domain of convergence, the world is your oyster and you can have any number of extensions...right?
 
@@ -319,7 +319,7 @@ Well...not exactly. I mean yes, you can give any child a marker and have them ex
 
 Let's go back to that $f(s) = s^2$ example. Again, we'll think of this function as a transformation, moving every point s of the complex plane to the point $s^2$.
 
-<Figure image="$lesson/s2_img3.png" video="$lesson/s2_img3.mp4" />
+<Figure image="$lesson/s2_img3.jpg" video="$lesson/s2_img3.mp4" />
 
 For those of you who know calculus, you know you can take the derivative of $s^2$ at any input.
 
@@ -330,17 +330,17 @@ If you look at any two lines in the input space that intersect at a certain angl
 
 For instance, consider this pair of lines before transformation. They make an angle of $67^{\circ}$.
 
-<Figure image="$lesson/aconn_img2.png" />
+<Figure image="$lesson/aconn_img2.jpg" />
 
 Now, take a look at the same lines and the angle they make after applying the transformation $f(s) = s^2$.
 
-<Figure image="$lesson/aconn_img3.png" />
+<Figure image="$lesson/aconn_img3.jpg" />
 
 The lines might get curved, but the important part is that the angle at which they intersect remains unchanged. And this is true for any pair of lines you choose! When I say a function "has a derivative everywhere", I want you to think about this angle-preserving property: Anytime two lines intersect, the angle between them remains unchanged after the transformation. If you're curious about the lingo, we call functions with this property "conformal mappings".
 
 At a glance, this is easiest to appreciate by noticing how all curves that the grid lines turn into still intersect each other at right angles.
 
-<Figure image="$lesson/aconn_img4.png" video="$lesson/aconn_img4.mp4" />
+<Figure image="$lesson/aconn_img4.jpg" video="$lesson/aconn_img4.mp4" />
 
 Functions that have a derivative everywhere are called analytic, so you can think of this word "analytic" as meaning "angle-preserving".
 
@@ -362,12 +362,12 @@ This function has a derivative $e^z$, which is well-defined for all inputs $z$. 
 
 The zeta function, defined by this infinite sum on the right-half of the plane, is an analytic function. Notice how all these curves that the grid lines turned into still intersect at right angles.
 
-<Figure image="$lesson/aconn_img5.png" />
+<Figure image="$lesson/aconn_img5.jpg" />
 
 The surprising fact about complex functions is that if you want to extend an analytic function beyond the domain where it was originally defined, for example extending the zeta function into the left half of the plane, then requiring that the new extended function still be analytic (that it still preserves angles everywhere) forces you into only one possible extension, if one exists at all.
 
 <Figure
-  image="$lesson/aconn_img6.png"
+  image="$lesson/aconn_img6.jpg"
   video="$lesson/aconn_img6.mp4"
   show="video"
 />
@@ -381,12 +381,12 @@ It's kind of like an infinite continuous jigsaw puzzle, where the requirement of
 
 It's worth quickly summing up where we are. For values of s on the right half of the plane, where the real part of s is greater than one, plugging $s$ into $\sum \frac{1}{n^s}$ converges, where a nice way to picture that sum is with a kind of spiral sum, since the imaginary part of the input $s$ causes a rotation in each term.
 
-<Figure image="$lesson/czeta_img3.png" video="$lesson/czeta_img3.mp4" />
+<Figure image="$lesson/czeta_img3.jpg" video="$lesson/czeta_img3.mp4" />
 
 For the rest of the plane, we know that there exists one and only one way to extend this definition so that the function will still be analytic, that will preserve angles at every single point.
 
 <Figure
-  image="$lesson/aconn_img6.png"
+  image="$lesson/aconn_img6.jpg"
   video="$lesson/aconn_img6.mp4"
   show="video"
 />
@@ -400,15 +400,15 @@ That's a very implicit definition; it just says to use the solution of this jigs
 
 The places where this function equals zero are quite important. That is, which points get mapped onto the origin after the transformation.
 
-<Figure image="$lesson/rhyp_img1.png" />
+<Figure image="$lesson/rhyp_img1.jpg" />
 
 One thing we know about this extension is that negative even numbers get mapped to zero, and these are called the "trivial zeros" [^4].
 
-<Figure image="$lesson/rhyp_img2.png">
+<Figure image="$lesson/rhyp_img2.jpg">
   Here, we have -2, -4 and -6 on the number line prior to the transformation.
 </Figure>
 
-<Figure image="$lesson/rhyp_img3.png" video="$lesson/rhyp_img3.mp4">
+<Figure image="$lesson/rhyp_img3.jpg" video="$lesson/rhyp_img3.mp4">
   Notice how they all map onto 0
 </Figure>
 
@@ -416,7 +416,7 @@ The naming here stems from the longstanding tradition of Mathematicians calling 
 
 We also know that the rest of the points that get mapped to zero sit somewhere in this strip where the real part of $s$ sits between $0$ and $1$, called the "critical strip". The specific placement of those non-trivial zeros encodes a surprising amount of information about prime numbers.
 
-<Figure image="$lesson/rhyp_img4.png" />
+<Figure image="$lesson/rhyp_img4.jpg" />
 
 Why this function carries so much information about primes is pretty interesting [^5], and I might make a follow on video about that later, but for now, I'll have to leave it unexplained.
 
@@ -426,7 +426,7 @@ Actually, we know quite a bit about those zeros. A mathematician will be able to
 
 Let's define the prime counting function $\pi(x)$ as the number of primes less than or equal to $x$
 
-<Figure image="$lesson/prime_img1.png" />
+<Figure image="$lesson/prime_img1.jpg" />
 
 Riemann showed that:
 
@@ -444,25 +444,25 @@ As you can see, adding more non-trivial zeros of the zeta function gives us a be
 
 Riemann hypothesized that all the remaining zeros lie right in the middle of this strip, on the line of numbers $s$ whose real part is $\frac{1}{2}$, known as the critical line.
 
-<Figure image="$lesson/rhyp_img5.png" />
+<Figure image="$lesson/rhyp_img5.jpg" />
 
 If that's true, it gives us a remarkably tight grasp on the pattern of prime numbers, and all the many other patterns in math that stem from this.
 
 So far, when animating what the zeta function looks like, I've only shown what it does to the portion of the grid on the screen, which undersells some of its complexity. If I highlight this critical line and apply the transformation, it might not seem to cross the origin at all.
 
-<Figure image="$lesson/rhyp_img6.png">
+<Figure image="$lesson/rhyp_img6.jpg">
   Here's the critical line, $\mathrm{Re} (s)=\frac{1}
   {2}$, before the transformation
 </Figure>
 
-<Figure image="$lesson/rhyp_img7.png" video="$lesson/rhyp_img7.mp4">
+<Figure image="$lesson/rhyp_img7.jpg" video="$lesson/rhyp_img7.mp4">
   Here's the critical line, $\mathrm{Re} (s)=\frac{1}
   {2}$, after the transformation
 </Figure>
 
 However, here's what the transformed version of more of that line looks like... Notice how it passes through 0 multiple times.
 
-<Figure image="$lesson/rhyp_img8.png">
+<Figure image="$lesson/rhyp_img8.jpg">
   A longer sample of the critical line after the transformation
 </Figure>
 
@@ -470,7 +470,7 @@ If you can prove all non-trivial zeros lie on this line, the Clay Mathematics In
 
 Here's another way to visualize the zeros of the zeta function. I've graphed the real component and the imaginary component of the zeta function on the $y$-axis, and the $x$-axis is the imaginary component of the input, $s$. I've also highlighted the imaginary components of the first three zeros on the x axis in red.
 
-<Figure image="$lesson/zetaviz_img1.png" />
+<Figure image="$lesson/zetaviz_img1.jpg" />
 
 Currently, the real component is $\mathrm{Re} (s) = 0.01$. Watch what happens when I vary the real component from $0.01$ to $0.99$.
 
@@ -478,11 +478,11 @@ Currently, the real component is $\mathrm{Re} (s) = 0.01$. Watch what happens wh
 
 Let's go back and stop at $\mathrm{Re}(s) = 0.5$. Notice how the imaginary component and the real component equal $0$ at the red circles.
 
-<Figure image="$lesson/zetaviz_img2.png" />
+<Figure image="$lesson/zetaviz_img2.jpg" />
 
 But if $\mathrm{Re}(s) = 0.75$, the real and imaginary component do not equal $0$ at the same place.
 
-<Figure image="$lesson/zetaviz_img3.png" />
+<Figure image="$lesson/zetaviz_img3.jpg" />
 
 </section>
 

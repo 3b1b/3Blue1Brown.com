@@ -34,7 +34,7 @@ $$
 
 To set things up, imagine you have some object like a piece of metal, and you know how the heat is distributed across it at one moment; what the temperature of every individual point is. You might think of that temperature here as being graphed over the body.
 
-<Figure image="$lesson/setup_1.png" />
+<Figure image="$lesson/setup_1.jpg" />
 
 The question is, how will that distribution change over time, as heat flows from the warmer spots to the cooler ones. The image on the left shows the temperature of an example plate with color, with the graph of that temperature being shown on the right, both changing with time.
 
@@ -42,11 +42,11 @@ The question is, how will that distribution change over time, as heat flows from
 
 To take a concrete 1d example, say you have two rods at different temperatures, where that temperature is uniform on each one.
 
-<Figure image="$lesson/setup_3.png" />
+<Figure image="$lesson/setup_3.jpg" />
 
 You know that when you bring them into contact, the temperature will tend towards being equal throughout the rod, but how exactly? What will the temperature distribution be at each point in time?
 
-<Figure image="$lesson/setup_4.png" video="$lesson/setup_4.mp4" />
+<Figure image="$lesson/setup_4.jpg" video="$lesson/setup_4.mp4" />
 
 As is typical with differential equations, the idea is that it's easier to describe how this setup changes from moment to moment than it is to jump to a description of the full evolution. We write this rule of change in the language of derivatives, though as you'll see we'll need to expand our vocabulary a bit beyond ordinary derivatives.
 
@@ -62,7 +62,7 @@ As is typical with differential equations, the idea is that it's easier to descr
 
 Variations of the heat equation show up in many other parts of math and physics, like brownian motion, the Black-Scholes equations from finance, and all sorts of diffusion, so there are many dividends to be had from a deep understanding of this one setup.
 
-<Figure image="$lesson/context_1.png" />
+<Figure image="$lesson/context_1.jpg" />
 
 In the <LessonLink id="differential-equations">last lesson</LessonLink> we looked at ways of building understanding while acknowledging the truth that most differential equations are difficult to actually solve.
 
@@ -80,17 +80,17 @@ If you've ever heard of Fourier series, you may be interested to know that this 
 
 Let's start building up to the heat equation. First, let's be clear on what _exactly_ the function we're analyzing is. We have a rod in one-dimension, and we're thinking of it as sitting on an $x$-axis, so each point of the rod is labeled with a unique number, $x$. The temperature is some function of that position number, $T(x)$, shown here as a graph above it.
 
-<Figure image="$lesson/represent_1.png" />
+<Figure image="$lesson/represent_1.jpg" />
 
 But really, since this value changes over time, we should think of this function as having one more input, $t$ for time. So really, the function we're analyzing is $T(x, t)$.
 
 You could, if you wanted, think of the input space as a two-dimensional plane, representing space and time, with the temperature being graphed as a surface above it, each slice across time showing you what the distribution looks like at a given moment.
 
-<Figure image="$lesson/represent_2.png" />
+<Figure image="$lesson/represent_2.jpg" />
 
 Or you could simply think of the graph of the temperature changing over time. Both are equivalent.
 
-<Figure image="$lesson/represent_3.png" />
+<Figure image="$lesson/represent_3.jpg" />
 
 This surface is not to be confused with what I was showing [earlier](#distribution), the temperature graph of a two-dimensional body. Be mindful of whether time is being represented with its own axis, or if it's being represented with an animation showing literal changes over time.
 
@@ -98,7 +98,7 @@ This surface is not to be confused with what I was showing [earlier](#distributi
 
 In the <LessonLink id="differential-equations">last chapter</LessonLink>, we looked at some systems where just a handful of numbers changed over time, like the angle and angular velocity of a pendulum, describing that change in the language of derivatives. But when we have an entire function changing with time, the mathematical tools become slightly more intricate. Because we're thinking of this temperature as a function with multiple dimensions to its input space, in this case one for space and one for time, there are multiple different rates of change at play.
 
-<Figure image="$lesson/partial_1.png" />
+<Figure image="$lesson/partial_1.jpg" />
 
 There's the derivative with respect to $x$; how rapidly the temperature changes as you move along the rod. You might think of this as the slope of our surface when you slice it parallel to the $x$-axis; given a tiny step in the $x$-direction, and the tiny change to temperature caused by it, what's the ratio?
 
@@ -107,7 +107,7 @@ There's the derivative with respect to $x$; how rapidly the temperature changes 
   {dx}$
 </PiCreature>
 
-<Figure image="$lesson/partial_2.png" />
+<Figure image="$lesson/partial_2.jpg" />
 
 Then there's the rate of change with time, which you might think of as the slope of this surface when we slice it in a direction parallel to the time axis.
 
@@ -116,7 +116,7 @@ Then there's the rate of change with time, which you might think of as the slope
   {dt}$
 </PiCreature>
 
-<Figure image="$lesson/partial_3.png" />
+<Figure image="$lesson/partial_3.jpg" />
 
 Each one of these derivatives only tells part of the story of how the temperature function changes, so we call them "partial derivatives". To emphasize this point, the notation changes a little, replacing the letter $d$ with $\partial$, sometimes called "del". [^1]
 
@@ -134,13 +134,13 @@ $$
 
 It states that the way the temperature changes with respect to time depends on its second derivative with respect to space. At a high level, the intuition is that at points where the temperature distribution curves, it tends to change in the direction of that curvature.
 
-<Figure image="$lesson/partial_4.png" />
+<Figure image="$lesson/partial_4.jpg" />
 
 Since a rule like this is written with partial derivatives, we call it a **partial differential equation**. This has the funny result that to an outsider, the name sounds like a tamer version of ordinary differential equations, when to the contrary partial differential equations tend to tell a much richer story than ODEs.
 
 The general heat equation applies to bodies in any number of dimensions, which would mean more inputs to our temperature function, but it'll be easiest for us to stay focused on the one-dimensional case of a rod.
 
-<Figure image="$lesson/partial_5.png" />
+<Figure image="$lesson/partial_5.jpg" />
 
 As it is, graphing this in a way which gives time its own axis already pushes the visuals into three-dimensions.
 
@@ -148,7 +148,7 @@ As it is, graphing this in a way which gives time its own axis already pushes th
 
 But where does an equation like this come from? How could you have thought this up yourself? Well, for that, let's simplify things by describing a discrete version of this setup, where you have only finitely many points x in a row. This is sort of like working in a pixelated universe, where instead of having a continuum of temperatures, we have a finite set of separate values.
 
-<Figure image="$lesson/discrete_1.png" />
+<Figure image="$lesson/discrete_1.jpg" />
 
 <Question
   question="Earlier, we discussed that heat equation changes temperatures in the direction of curvature. Given this, consider a discrete version of our earlier heat equation setup. If a point $T_2$'s neighbours are, on average, hotter than $T_2$, how will $T_2$ change?"
@@ -161,25 +161,25 @@ But where does an equation like this come from? How could you have thought this 
 
 The intuition here is simple: For a particular point, if its two neighbors on either side are, on average, hotter than it is, then that particular point will tend toward the average of its neighbours, and thus heat up.
 
-<Figure image="$lesson/discrete_2.png" />
+<Figure image="$lesson/discrete_2.jpg" />
 
 </Question>
 
 If the two neighbours are cooler on average, it will cool down.
 
-<Figure image="$lesson/discrete_3.png" />
+<Figure image="$lesson/discrete_3.jpg" />
 
 Focus on three neighboring points, $x_1, x_2$ and $x_3$, with corresponding temperatures $T_1, T_2,$ and $T_3$. What we want to compare is the average of $T_1$ and $T_3$ with the value of $T_2$.
 
-<Figure image="$lesson/discrete_4.png" />
+<Figure image="$lesson/discrete_4.jpg" />
 
 When this difference is greater than $0$, $T_2$ will tend to heat up. And the bigger the difference, the faster it heats up.
 
-<Figure image="$lesson/discrete_5.png" />
+<Figure image="$lesson/discrete_5.jpg" />
 
 Likewise, if it's negative, $T_2$ will cool down, ak a rate proportional to the difference.
 
-<Figure image="$lesson/discrete_6.png" />
+<Figure image="$lesson/discrete_6.jpg" />
 
 More formally, the derivative of $T_2$, with respect to time, is proportional to this difference between the average value of its neighbors and its own value. Alpha, here, is simply a proportionality constant.
 
@@ -203,15 +203,15 @@ It's the same number, but we're adding a new perspective. Instead of comparing t
 
 If those two differences are the same, then the average of $T_1$ and $T_3$ is the same as $T_2$, so $T_2$ will not tend to change.
 
-<Figure image="$lesson/discrete_7.png" />
+<Figure image="$lesson/discrete_7.jpg" />
 
 If $\Delta T_2 > \Delta T_1$, meaning the difference of the differences is positive, notice how the average of $T_1$ and $T_3$ is bigger than $T_2$, so $T_2$ tends to increase.
 
-<Figure image="$lesson/discrete_8.png" />
+<Figure image="$lesson/discrete_8.jpg" />
 
 Likewise, if the difference of the differences is negative, meaning $\Delta T_2 < \Delta T_1$, it corresponds to the average of these neighbors being less than $T_2$, and so $T_2$ decreases.
 
-<Figure image="$lesson/discrete_9.png" />
+<Figure image="$lesson/discrete_9.jpg" />
 
 If we wanted to be compact, we could write $\Delta T_2-\Delta T_1$ as $\Delta \Delta T_1$ This is known in the lingo as a "second difference". If it feels a little weird to think about, keep in mind that it's essentially a compact way of writing this idea of how much $T_2$ differs from the average of its neighbors, just with an extra factor of $\frac{1}{2}$ is all. That factor doesn't really matter, because either way we're writing our equation in terms of some proportionality constant.
 
@@ -250,17 +250,17 @@ This is written as $\frac{\partial^2 T}{\partial x^2}$, the second partial deriv
 
 At places where the second derivative is positive, it means the rate of rate of change is positive, in other words, the rate of change is increasing. This indicates an upward curve, like the figure below.
 
-<Figure image="$lesson/cont_1.png" />
+<Figure image="$lesson/cont_1.jpg" />
 
 Similarly, that slope decreases at points where the graph curves downward, where the rate of change of the rate of change is negative.
 
-<Figure image="$lesson/cont_2.png" />
+<Figure image="$lesson/cont_2.jpg" />
 
 </Question>
 
 Tuck that away as a meaningful intuition for problems well beyond the heat equation: Second derivatives give a measure of how a value compares to the average of its neighbors.
 
-<Figure image="$lesson/cont_3.png" />
+<Figure image="$lesson/cont_3.jpg" />
 
 Hopefully that gives some satisfying added color to this equation. It's pretty intuitive when reading it as saying curved points tend to flatten out, but I think there's something even more satisfying seeing a partial differential equation arise, almost mechanistically, from thinking of each point as tending towards the average of its neighbors.
 
@@ -268,15 +268,15 @@ Hopefully that gives some satisfying added color to this equation. It's pretty i
 
 Take a moment to compare what this feels like to the case of ordinary differential equations. For example, let's say we have multiple bodies in space, tugging on each other with gravity.
 
-<Figure image="$lesson/compare_1.png" />
+<Figure image="$lesson/compare_1.jpg" />
 
 We have a handful of changing numbers: The coordinates for the position and velocity of each body. The rate of change for any one of these values depends on the values of the other numbers, which we write down as a system of equations. On the left, we have the derivatives of these values with respect to time, and the right is some combination of all these values.
 
-<Figure image="$lesson/compare_2.png" />
+<Figure image="$lesson/compare_2.jpg" />
 
 In our partial differential equation, we have infinitely many values from a continuum, all changing. And again, the way any one of these values changes depends on the other values. But helpfully, each one only depends on its immediate neighbors, in some limiting sense of the word neighbor.
 
-<Figure image="$lesson/compare_3.png" />
+<Figure image="$lesson/compare_3.jpg" />
 
 So here, the relation on the right-hand side is not some sum or product of the other numbers, it's also a kind of derivative, just a derivative with respect to space instead of time. In a sense, this one partial differential equation is like a system of infinitely many equations, one for each point on the rod.
 
@@ -288,7 +288,7 @@ So here, the relation on the right-hand side is not some sum or product of the o
 
 When your object is spread out in more than one dimension, like a plate, or a cube, the equation looks quite similar, but you include the second derivative with respect to the other spatial directions as well.
 
-<Figure image="$lesson/dim_1.png" />
+<Figure image="$lesson/dim_1.jpg" />
 
 Adding all the second spatial second derivatives like this is a common enough operation that it has its own special name, the "Laplacian", often written as an $\nabla^2 T$.
 
@@ -298,7 +298,7 @@ $$
 
 It's essentially a multivariable version of the second derivative, and the intuition for this equation is no different from the 1d case: This Laplacian still can be thought of as measuring how different a point is from the average of its neighbors, but now these neighbors aren't just to the left and right, they're all around.
 
-<Figure image="$lesson/dim_2.png" />
+<Figure image="$lesson/dim_2.jpg" />
 
 I did a [couple of videos](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives#laplacian) during my time at Khan Academy on this operator, if you want to check them out. For our purposes, let's stay focused on one dimension.
 

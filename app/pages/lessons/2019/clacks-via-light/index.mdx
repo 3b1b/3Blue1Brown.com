@@ -19,7 +19,7 @@ import Quote from "~/components/Quote";
 
 You know that feeling when you have two mirrors facing each other, and it gives the illusion of there being an infinite tunnel of rooms? If they're at an angle with each other, it makes you feel like you're part of a strange kaleidoscopic world with many copies of yourself all separated by angled pieces of glass. What many people may not realize is that the idea underlying this illusion can be quite helpful for solving serious problems in math.
 
-<Figure image="$lesson/mirrors-photo.png" />
+<Figure image="$lesson/mirrors-photo.jpg" />
 
 We've already had two lessons describing the block collision problem with its wonderfully surprising answer. Big block comes in from the right, lots of clacks, the total number of clacks looks like $\pi$, and we want to know why.
 
@@ -39,11 +39,11 @@ Last time we used a coordinate plane where each point encodes a pair of **veloci
 
 Specifically, let the $x$-coordinate of a 2D plane represent the distance from the wall to the left edge of the first block, which I'll call $\textcolor{green}{d_1}$. And let the $y$-coordinate represent the distance from the wall to the right edge of the second block, which I'll call $\textcolor{red}{d_2}$.
 
-<Figure image="$lesson/d1-and-d2.png" />
+<Figure image="$lesson/d1-and-d2.jpg" />
 
 That way, the line $x = y$ shows us where the two blocks clack into each other, since that happens whenever $\textcolor{green}{d_1} = \textcolor{red}{d_2}$.
 
-<Figure image="$lesson/x-equals-y.png" video="$lesson/x-equals-y.mp4" />
+<Figure image="$lesson/x-equals-y.jpg" video="$lesson/x-equals-y.mp4" />
 
 Here's what it looks like for our scenario to play out:
 
@@ -55,11 +55,11 @@ You may notice that at the bottom there, it's bounded by the line where $\textco
 
 You might be able to guess where we're going with this: The way this point bounces between these two bounding lines is a bit like light bouncing between two mirrors. The analogy doesn't quite work, though. In the lingo of optics, the angle of incidence doesn't equal the angle of reflection.
 
-<Figure image="$lesson/incidence-not-equal-reflection.png" />
+<Figure image="$lesson/incidence-not-equal-reflection.jpg" />
 
 Just think of that first collision: If the line $x = y$ behaved like a mirror, then a beam of light coming in from the right would bounce off this 45-degree $x = y$ line and end up going straight down, which would mean the first block stops moving entirely.
 
-<Figure image="$lesson/90-degree-reflection.png" />
+<Figure image="$lesson/90-degree-reflection.jpg" />
 
 This _does_ actually happen in the simplest case, where the second block has the same mass as the first and picks up all of the momentum like a croquet ball. But for any other mass ratio, that first block will keep moving a bit, so the trajectory of our point in this configuration space won't be pointed straight down.
 
@@ -74,7 +74,7 @@ Even if it's not immediately clear why this analogy with light would be helpful,
 Just like in the previous lesson, it's helpful to rescale the coordinates. In fact, motivated by what we did then, you might think to rescale the coordinates so that $x = \sqrt{\textcolor{blue}{m_1}} \textcolor{green}{d_1}$. This has the effect of stretching our space horizontally, so changes to our big block's position now result in larger changes to the $x$-coordinate of our point. Likewise, let's write the $y$-coordinate as $y = \sqrt{\textcolor{blue}{m_2}} \textcolor{green}{d_2}$, even though in this particular case that second mass is $1$, so it doesn't matter.
 
 <Figure
-  image="$lesson/rescale-coordinates.png"
+  image="$lesson/rescale-coordinates.jpg"
   video="$lesson/rescale-coordinates.mp4"
   show="video"
 >
@@ -87,7 +87,7 @@ Specifically, the conservation of energy will translate to the fact that our lit
 
 Doesn't that seem bizarre? That the laws of mechanics should translate to laws of optics like this?
 
-<Figure image="$lesson/kinematics-optics.png" />
+<Figure image="$lesson/kinematics-optics.jpg" />
 
 To see why this is true, let's roll up our sleeves and work out the math.
 
@@ -99,19 +99,19 @@ To see why this is true, let's roll up our sleeves and work out the math.
 
 Focus on the velocity vector for our point in the diagram, showing which direction it's moving and how quickly.
 
-<Figure image="$lesson/vector-velocity.png" />
+<Figure image="$lesson/vector-velocity.jpg" />
 
 Note, this is not a _physical_ velocity, like the velocities of the moving blocks; instead it's a more abstract rate of change in the context of our configuration space, whose two dimensions worth of possible directions encode the velocities of both of the blocks.
 
 The $x$-component of this little vector is the rate of change of $x$. Likewise, its $y$-component is the rate of change for $y$.
 
-<Figure image="$lesson/velocity-components.png" />
+<Figure image="$lesson/velocity-components.jpg" />
 
 But what _is_ the rate of change for the x-coordinate? Well, $$x = \sqrt{\textcolor{blue}{m_1}}\textcolor{green}{d_1}$$, and the mass doesn't change, so it depends only on how $\textcolor{green}{d_1}$ changes. And the rate at which $\textcolor{green}{d_1}$ changes is just the velocity of the big block, which I'll call $\textcolor{green}{v_1}$. So $$\frac{dx}{dt} = \sqrt{\textcolor{blue}{m_1}}\textcolor{green}{v_1}$$. Likewise, the rate of change for y is $$\frac{dy}{dt} = \sqrt{\textcolor{blue}{m_2}}\textcolor{red}{v_2}$$.
 
 Now we can calculate the magnitude of this little configuration-space-change-vector. Using the pythagorean theorem…
 
-<Figure image="$lesson/velocity-magnitude.png" />
+<Figure image="$lesson/velocity-magnitude.jpg" />
 
 So the speed of our point in configuration space is based on the kinetic energy of the system. And since that energy is constant, the speed also stays constant throughout the process. Remember, a core assumption here is that no energy is lost to friction or to the collisions.
 
@@ -119,7 +119,7 @@ Alright, that's cool. With these rescaled coordinates our little point always mo
 
 But first, let's understand this line $\textcolor{green}{d_1} = \textcolor{red}{d_2}$ a little bit better. In our new coordinates, it's no longer a nice 45-degree $x = y$ line.
 
-<Figure image="$lesson/new-slope.png" />
+<Figure image="$lesson/new-slope.jpg" />
 
 Instead, after a little rearrangement, we can see that it looks like the line $$\frac{x}{\sqrt{\textcolor{blue}{m_1}}} = \frac{y}{\sqrt{\textcolor{blue}{m_2}}}$$, which is a line with slope $$\frac{\sqrt{\textcolor{blue}{m_2}}}{\sqrt{\textcolor{blue}{m_1}}}$$. That's a nice expression to tuck away in the back of your mind.
 
@@ -129,7 +129,7 @@ Instead, after a little rearrangement, we can see that it looks like the line $$
 
 After the blocks collide, meaning our point hits this line, the way to figure out how they move is to use the conservation of momentum, which says the value $$\textcolor{blue}{m_1}\textcolor{red}{v_1} + \textcolor{blue}{m_2}\textcolor{red}{v_2}$$ remains unchanged after the collision.
 
-<Figure image="$lesson/what-next.png" />
+<Figure image="$lesson/what-next.jpg" />
 
 Notice, this looks like a dot product between two column vectors:
 
@@ -180,15 +180,15 @@ I know this probably seems like a complicated way to talk about a simple momentu
 
 Notice that the vector containing the derivatives is really just the velocity vector for the point in our diagram that we've been looking at.
 
-<Figure image="$lesson/velocity-vector.png" />
+<Figure image="$lesson/velocity-vector.jpg" />
 
 And the other vector, with the square roots of the masses, has a representation in this diagram too. It points in the same direction as our collision line, since we found earlier that the slope of that line is $$\frac{\sqrt{\textcolor{blue}{m_2}}}{\sqrt{\textcolor{blue}{m_1}}}$$.
 
-<Figure image="$lesson/both-vectors.png" />
+<Figure image="$lesson/both-vectors.jpg" />
 
 If you're unfamiliar with the dot product, I do have <LessonLink id="dot-products">another lesson describing it</LessonLink>, but real quick let's review what it means geometrically. The dot product of two vectors equals the length of the first, time the length of the projection of the second one onto that first (considered negative if they point in opposite directions). You often see this written as the product of the lengths of each vector times the cosine of the angle between them.
 
-<Figure image="$lesson/dot-product.png" />
+<Figure image="$lesson/dot-product.jpg" />
 
 Alright, so look back at this conservation of momentum expression, which tells us that this dot product stays constant before and after the collision:
 
@@ -206,11 +206,11 @@ $$
 
 Since we just saw that this rate-of-change vector has a constant magnitude, and the masses never change, the only way for this dot product to stay the same is if the _angle_ it makes with that collision line stays the same.
 
-<Figure image="$lesson/incidence-equals-reflection.png" />
+<Figure image="$lesson/incidence-equals-reflection.jpg" />
 
 Similarly, when the small block bounces off the wall, our little vector gets reflected about the $x$-direction, since only its $y$-coordinate changes. So our configuration point is bouncing off that horizontal line as if it was a mirror.
 
-<Figure image="$lesson/bottom-like-mirror.png" />
+<Figure image="$lesson/bottom-like-mirror.jpg" />
 
 Step back for a moment and think about what this means for our original question of counting block collisions. We can now translate the collision count question into a different question entirely, this time in the world of optics.
 
@@ -237,7 +237,7 @@ Now I can hear some of you complaining: "Haven't we replaced one tricky setup wi
 When the beam of light hits the mirror, instead of thinking of the beam as reflecting about the mirror, think of the beam as going straight while the whole world gets flipped. It's as if the beam is passing through a piece of glass into an illusory "looking glass universe."
 
 <Figure
-  image="$lesson/flip-world-once.png"
+  image="$lesson/flip-world-once.jpg"
   video="$lesson/flip-world-once.mp4"
   show="video"
 >
@@ -247,13 +247,13 @@ When the beam of light hits the mirror, instead of thinking of the beam as refle
 
 Think of actual mirrors here. The wire on the left will represent a laser beam coming into the mirror, while the one on the right will represent its reflection:
 
-<Figure image="$lesson/real-mirror.png" />
+<Figure image="$lesson/real-mirror.jpg" />
 
 The illusion is that the beam goes straight through the mirror, as if passing through a window separating us from another room.
 
 But notice! Crucially! For this illusion to work, the angle of incidence has to equal the angle of reflection. Otherwise the flipped copy of the reflected beam won't line up with the first part.
 
-<Figure image="$lesson/real-mirror-mismatch.png">
+<Figure image="$lesson/real-mirror-mismatch.jpg">
   If the angles of incidence and reflection don't match, then the illusion of
   passing straight through to a flipped world doesn't work.
 </Figure>
@@ -286,19 +286,19 @@ Written as a formula, the answer to our question is the floor of $\pi$ divided b
 
 Let's review! We started by drawing a configuration space for our colliding blocks, where the $x$ and $y$ coordinates represented the two distances from the wall.
 
-<Figure image="$lesson/d1-and-d2.png" />
+<Figure image="$lesson/d1-and-d2.jpg" />
 
 This kind of looked like light bouncing between two mirrors, but to make the analogy work properly, we needed to rescale the coordinates by the square roots of the masses. This made the slope of one line $$\frac{\sqrt{\textcolor{blue}{m_2}}}{\sqrt{\textcolor{blue}{m_1}}}$$.
 
-<Figure image="$lesson/rescale-coordinates.png" />
+<Figure image="$lesson/rescale-coordinates.jpg" />
 
 So the angle between our two bounding lines will be the inverse tangent of the slope, $$\theta = \arctan(\sqrt{\frac{m_2}{m_1}})$$.
 
-<Figure image="$lesson/compute-theta.png" />
+<Figure image="$lesson/compute-theta.jpg" />
 
 To figure out how many bounces there are between two mirrors like this, think of the illusion of the beam continuing straight through a sequence of looking glass universes separated by a semicircular fan of windows.
 
-<Figure image="$lesson/fan.png" />
+<Figure image="$lesson/fan.jpg" />
 
 The answer, then, comes down to how many times the value of $\theta$ fits into $\pi$ radians.
 

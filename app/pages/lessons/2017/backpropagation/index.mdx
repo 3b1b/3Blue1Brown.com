@@ -31,21 +31,21 @@ We've been looking at the classic example of recognizing handwritten digits. I'v
 - Two hidden layers with 16 neurons each
 - An output layer with 10 neurons (indicating the network's choice of digit)
 
-<Figure image="$lesson/neural-network.png">
+<Figure image="$lesson/neural-network.jpg">
   Our basic neural network has four layers: An input layer, an output layer, and
   two hidden layers in between.
 </Figure>
 
 We've also discussed <LessonLink id="gradient-descent">gradient descent</LessonLink>, so you should know that when people describe a network as "learning," they mean finding the weights and biases that minimize a certain cost function.
 
-<Figure image="$lesson/gradient-descent.png">
+<Figure image="$lesson/gradient-descent.jpg">
   We use gradient descent to walk downhill to a local minimum of the cost
   function.
 </Figure>
 
 To calculate the cost of a single training example, you take the output that the network gives, along with the output you wanted it to give, and you add up the squares of the differences between each component:
 
-<Figure image="$lesson/cost-calculation.png">
+<Figure image="$lesson/cost-calculation.jpg">
   The cost for a single training example is the sum of the squares of the
   differences between the actual output and the desired output.
 </Figure>
@@ -70,7 +70,7 @@ So as we talked about in the previous lesson, it's helpful to consider it this w
 
 For example, let's say you compute the negative gradient, using the process I'm about to describe, and the component associated with the weight on one edge comes out to be 3.2, while the component associated with some other edge is 0.1:
 
-<Figure image="$lesson/relative-weight-importance.png">
+<Figure image="$lesson/relative-weight-importance.jpg">
   Suppose the entry of the gradient vector associated with one weight is 32x as
   large as the entry associated with some other weight.
 </Figure>
@@ -86,7 +86,7 @@ The way to read this is that the cost function is 32 times more sensitive to cha
 
 When I first learned backpropagation, the most confusing aspect was just the notation and index chasing of it all.
 
-<Figure image="$lesson/notation.png">
+<Figure image="$lesson/notation.jpg">
   There's a lot of notation here. What does it all mean!?
 </Figure>
 
@@ -96,7 +96,7 @@ Because the full cost function involves averaging a certain cost-per-example for
 
 Right now, though, focus your attention on a single example, this image of a 2:
 
-<Figure image="$lesson/cost-of-one-example.png">
+<Figure image="$lesson/cost-of-one-example.jpg">
   How can we adjust the weights and biases to improve the network's performance
   on this image?
 </Figure>
@@ -107,7 +107,7 @@ Because the network is not yet well trained, the activations in that output laye
 
 But remember, we only have control over the weights and biases of the network. So we will have to nudge those weights and biases in a way that improves the output.
 
-<Figure image="$lesson/output-trash.png">
+<Figure image="$lesson/output-trash.jpg">
   The activations in the output layer are trash, and we need to fix them by
   adjusting the weights and biases.
 </Figure>
@@ -116,17 +116,17 @@ Although we can't _directly_ change the activations, it's helpful to keep track 
 
 Since we want the network to classify this as a 2, we want the digit 2 neuron's value to be nudged up while all the others get nudged down:
 
-<Figure image="$lesson/classify-as-2.png" />
+<Figure image="$lesson/classify-as-2.jpg" />
 
 Moreover, the sizes of these nudges should be proportional to how far off each output value is from the target. Neurons that are way off require big nudges, but neurons that are pretty close to correct only require little nudges.
 
 Zooming in further, let's focus on the one neuron whose activation we wish to increase:
 
-<Figure image="$lesson/focus-on-2-neuron.png" />
+<Figure image="$lesson/focus-on-2-neuron.jpg" />
 
 Remember that its activation value (in this case 0.2) is defined as a weighted sum of all activations from the previous layer, plus a bias, which is then plugged into something like the sigmoid squishification or a ReLU:
 
-<Figure image="$lesson/output-neuron-equation.png" />
+<Figure image="$lesson/output-neuron-equation.jpg" />
 
 So there are three avenues that can team up together to increase this activation:
 
@@ -165,7 +165,7 @@ These changes will give a more accurate prediction with a lower cost for this pa
 
 How should the weights be adjusted? Notice, because they are being multiplied by the activations, the weights have differing levels of influence:
 
-<Figure image="$lesson/output-neuron-equation.png">
+<Figure image="$lesson/output-neuron-equation.jpg">
   Changing the weights associated with large activation values will have a
   stronger effect than changing the weights associated with small activation
   values.
@@ -177,7 +177,7 @@ Remember, when we talk about gradient descent, we don't just care about whether 
 
 ### Changing the Weights
 
-<Figure image="$lesson/weights-proportional-to-activations.png">
+<Figure image="$lesson/weights-proportional-to-activations.jpg">
   To get the most bang for your buck, adjust the weights in proportion to their
   associated activations.
 </Figure>
@@ -186,7 +186,7 @@ This, by the way, is at least somewhat reminiscent of a theory in neuroscience f
 
 In some sense, the neurons that fire while seeing a 2 get more strongly linked to those firing while thinking about a 2.
 
-<Figure image="$lesson/hebbian-theory.png">
+<Figure image="$lesson/hebbian-theory.jpg">
   Connections are strengthened between neurons that should be activated at the
   same time.
 </Figure>
@@ -199,7 +199,7 @@ The third way we can help increase this neuron's activation is by changing all t
 
 Similar to the weight changes, you'll get the most bang for your buck by seeking changes proportional to the size of the corresponding weights:
 
-<Figure image="$lesson/activations-proportional-to-weights.png">
+<Figure image="$lesson/activations-proportional-to-weights.jpg">
   Just like changing weights in proportion to activations, you get the most bang
   for your buck by increasing activations in proportion to their associated
   weights.
@@ -207,21 +207,21 @@ Similar to the weight changes, you'll get the most bang for your buck by seeking
 
 Of course, we cannot directly influence these activations. We only have control over the weights and biases. But just as with the last layer, it's helpful to keep note of the desired changes.
 
-<Figure image="$lesson/no-direct-influence.png">
+<Figure image="$lesson/no-direct-influence.jpg">
   We can't influence the activations in the previous layer directly. But we can
   change the weights and biases that determine their values!
 </Figure>
 
 Remember, this is only what that one digit-2 output neuron wants. We also want all the other neurons in the last layer to become less active, and each of those other output neurons has its own influence on what should happen to the second-to-last layer.
 
-<Figure image="$lesson/other-output-desires.png">
+<Figure image="$lesson/other-output-desires.jpg">
   We want to adjust all these other output neurons too, which means we will have
   many competing requests for changes to activations in the previous layer.
 </Figure>
 
 So the desire of this digit-2 neuron is added together with the desires of all the other nine neurons. Each has its own suggested nudge for that second-to-last layer, again in proportion to the corresponding weights and in proportion to how much each neuron needs to change.
 
-<Figure image="$lesson/propagate-backwards.png">
+<Figure image="$lesson/propagate-backwards.jpg">
   It's impossible to perfectly satisfy all these competing desires for
   activations in the second layer. The best we can do is add up all the desired
   nudges to find the overall desired change.
@@ -237,7 +237,7 @@ Here is where the idea of propagating backward comes in. By adding all these des
 
 Everything we just stepped through only records how a _single_ training example wishes to nudge each of the many, many weights and biases.
 
-<Figure image="$lesson/desires-of-2.png">
+<Figure image="$lesson/desires-of-2.jpg">
   So far we've only identified the nudges to the weights and biases that would
   improve our results for this digit 2. But we also need to account for all the
   other digits!
@@ -247,7 +247,7 @@ If we only listened to what that image of a 2 wanted, the network would ultimate
 
 To zoom out a bit, you also go through this same backpropagation routine for every other training example, recording how each of them would like to change the weights and biases. Then you average together all those desired changes.
 
-<Figure image="$lesson/average-over-all.png">
+<Figure image="$lesson/average-over-all.jpg">
   Each training example has its own desire for how the weights and biases should
   be adjusted, and with what relative strengths. By averaging together the
   desires of all training examples, we get the final result for how a given
@@ -256,7 +256,7 @@ To zoom out a bit, you also go through this same backpropagation routine for eve
 
 The collection of these averaged nudges to each weight and bias is, loosely speaking, the negative gradient of the cost function! Or at least something proportional to it.
 
-<Figure image="$lesson/proportional-to-gradient.png">
+<Figure image="$lesson/proportional-to-gradient.jpg">
   The result of all this backpropagation is that we've found (something
   proportional to) the negative gradient!
 </Figure>
@@ -271,13 +271,13 @@ In practice, it takes computers an extremely long time to add up the influences 
 
 Randomly shuffle your training data and divide it into a bunch of mini-batches, having, say, 100 training examples each.
 
-<Figure image="$lesson/mini-batches.png" />
+<Figure image="$lesson/mini-batches.jpg" />
 
 Then you compute a gradient descent step according to each minibatch rather than the entire set of training examples. It won't give you the _actual_ gradient of the cost function, which depends on all the training data, so it's not the most efficient step downhill. But each mini-batch gives a pretty good approximation, and if there are 100 minibatches, each step takes 1/100th of the total time. And after 100 steps, each piece of training data will have had its chance to influence the final result.
 
 With these mini-batches, which only _approximate_ the gradient, the process of gradient descent looks more like a drunk man stumbling aimlessly down a hill but taking quick steps rather than a carefully calculating man who takes slow, deliberate steps downhill.
 
-<Figure image="$lesson/stochastic-comparison.png">
+<Figure image="$lesson/stochastic-comparison.jpg">
   Using mini-batches means our steps downhill aren't quite as accurate, but
   they're much faster.
 </Figure>
@@ -292,7 +292,7 @@ This is referred to as _Stochastic gradient descent_.
 
 With that, every line of code that would go into implementing backpropagation corresponds to something you have now seen, at least in informal terms. But sometimes, knowing what the math does is only half the battle, and just representing the damn thing is where it gets all muddled and confusing.
 
-<Figure image="$lesson/code.png">
+<Figure image="$lesson/code.jpg">
   You have now seen the intuition behind all the code (like you might find in
   [Nielsen's book](http://neuralnetworksanddeeplearning.com/)) that goes into
   building a simple neural network.

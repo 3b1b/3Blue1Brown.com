@@ -61,7 +61,7 @@ This network is determined by 3 weights (one for each connection) and 3 biases (
 
 For now, let's just focus on the connection between the last two neurons. I'll label the activation of that last neuron with a superscript $$L$$, indicating which layer it's in, so the activation of the previous neuron is $$a^{(L-1)}$$:
 
-<Figure image="$lesson/activation-labels.png">
+<Figure image="$lesson/activation-labels.jpg">
   We label the activations of the neurons based on which layer they're in, where
   $$L$$ is the last layer of the network.
 </Figure>
@@ -70,7 +70,7 @@ To be clear, these are _not_ exponents. They are just ways of indexing what laye
 
 Let's say that for a certain training example, the desired output is $$\textcolor{gold}{y}$$. That means that the cost for this one training example is $$\textcolor{red}{C_0} = (a^{(L)} - \textcolor{gold}{y})^2$$.
 
-<Figure image="$lesson/cost-of-one-example.png">
+<Figure image="$lesson/cost-of-one-example.jpg">
   The cost to the network for this one training example is just the difference
   between the actual output and the desired output squared.
 </Figure>
@@ -92,19 +92,19 @@ $$
 
 A way you might conceptualize this is that the weight, the previous activation, and the bias together let us compute $$\textcolor{green}{z^{(L)}}$$, which in turn lets us compute $$a^{(L)}$$, which in turn, along with the constant $$\textcolor{gold}{y}$$, lets us compute the cost.
 
-<Figure image="$lesson/tree.png">
+<Figure image="$lesson/tree.jpg">
   This tree shows which values depend on which other values in our network.
 </Figure>
 
 And of course, $$a^{(L-1)}$$ is influenced by its own weight and bias, which means our tree actually extends up higher...
 
-<Figure image="$lesson/tree-extended.png" />
+<Figure image="$lesson/tree-extended.jpg" />
 
 ...but we won't focus on that right now.
 
 All of these are just numbers, so it can be nice to think of each variable as having its own little number line.
 
-<Figure image="$lesson/tree-with-number-lines.png">
+<Figure image="$lesson/tree-with-number-lines.jpg">
   Each of these variables has a value that we can place on its own little number
   line.
 </Figure>
@@ -263,7 +263,7 @@ We've now determined how changes to the last weight and last bias in our super-s
 
 All the other weights and biases lie in earlier layers of the network, meaning their influence on the cost is less direct. The way we handle them is to first see how sensitive the cost is to the value of that neuron in the second-to-last layer, $$a^{(L - 1)}$$, and then to see how sensitive _that_ value is to all the preceding weights and biases.
 
-<Figure image="$lesson/tree-activation-highlighted.png">
+<Figure image="$lesson/tree-activation-highlighted.jpg">
   We still need to figure out what to do with the activation of the neuron in
   the previous layer.
 </Figure>
@@ -291,7 +291,7 @@ But we don't really care about what happens when we change the activation direct
 
 The trick here is to remember that the activation in the previous layer is actually determined by its own set of weights and biases. In reality, our tree stretches back farther than we've shown so far:
 
-<Figure image="$lesson/tree-extended.png">
+<Figure image="$lesson/tree-extended.jpg">
   The activation in the second-to-last layer is determined by its own weights
   and biases. The plot thickens.
 </Figure>
@@ -334,22 +334,22 @@ You might think that this is an overly simple example, because each layer has ju
 
 Rather than the activation in a given layer simply being $$a^{(L)}$$, it will also have a subscript indicating which neuron of the layer it is.
 
-<Figure image="$lesson/complicated-activation-labels.png">
+<Figure image="$lesson/complicated-activation-labels.jpg">
   The superscript on each neuron indicates which layer it's on, and the
   subscript indicates which neuron it is.
 </Figure>
 
 Let's use the letter $$k$$ to index the layer $$(L-1)$$, and $$j$$ to index the layer $$(L)$$.
 
-<Figure image="$lesson/index-by-j-k.png" />
+<Figure image="$lesson/index-by-j-k.jpg" />
 
 For the cost, again look at what the desired output is, then add up the squares of the differences between these last layer activations and this desired output. That is, sum over $$(a^{(L)}_j - \textcolor{gold}{y_j})^2$$.
 
-<Figure image="$lesson/complicated-cost.png" />
+<Figure image="$lesson/complicated-cost.jpg" />
 
 Each weight now needs a few more indices to keep track of where it is, so let's call the weight of the edge connecting this $$k$$th neuron to this $$j$$th neuron $$\textcolor{blue}{w^{(L)}_{jk}}$$:
 
-<Figure image="$lesson/complicated-weight-label.png" />
+<Figure image="$lesson/complicated-weight-label.jpg" />
 
 Those indices, $$\textcolor{blue}{jk}$$, might feel backwards at first, but it lines up with how you'd index the weight matrix I talked about in <LessonLink id="neural-networks">part 1 of this series</LessonLink>.
 
@@ -411,7 +411,7 @@ And that's… pretty much it. Once you know how sensitive the cost function is t
 
 So pat yourself on the back! If this all makes sense, you have now looked into the heart of backpropagation, the workhorse behind how neural networks learn.
 
-<Figure image="$lesson/summary.png">
+<Figure image="$lesson/summary.jpg">
   A large portion of the math for calculating the gradient using backpropagation
   is captured in this image.
 </Figure>

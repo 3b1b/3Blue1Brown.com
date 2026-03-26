@@ -228,7 +228,7 @@ So on the one hand the sum of the areas of these slices approaches the area of t
 A lot of other hard problems in math and science can be broken down and approximated as the sum of many small quantities. For example if you want to figure out how far a car has gone based on its velocity at each point in time, you might range through many many points in time, and multiply the velocity at each time $t$ by some tiny change in time $dt$ to get the corresponding bit of distance traveled in the little time.
 
 <Figure
-  image="$lesson/figure-9.08.png"
+  image="$lesson/figure-9.08.jpg"
   video="$lesson/figure-8.49-9.08-trimmed.mp4"
 />
 
@@ -254,14 +254,14 @@ We'll see this idea in more detail later in the series, so don't worry if it's n
 We were lucky in our circle problem that the relevant area turned out to be a triangle, but imagine instead something like a parabola, the graph of the function $x^2$. What's the area under this curve, say between the values of $x=0$ and $x=3$? It's hard to think about, isn't it?
 
 <Figure
-  image="$lesson/figure-10.17.png"
+  image="$lesson/figure-10.17.jpg"
   video="$lesson/figure-10.01-10.09.mp4"
 />
 
 Let me frame that question a different way: Fix that left endpoint in place at $0$, and let that right endpoint vary: Can you find a function, $A(x)$, that gives you the area under this parabola between $0$ and $x$?
 
 <Figure
-  image="$lesson/figure-11.26.png"
+  image="$lesson/figure-11.26.jpg"
   video="$lesson/figure-11.19-11.27.mp4"
   show="video"
 />
@@ -289,7 +289,7 @@ Instead, play around with this idea. Build up some familiarity with the interpla
 In that playful spirit, if you're lucky, here's something you might notice. When you slightly increase $x$ by some tiny nudge, $dx$, look at the resulting change in area, represented by this sliver which I'm going to call $dA$, for a tiny difference in area.
 
 <Figure
-  image="$lesson/figure-12.08.png"
+  image="$lesson/figure-12.08.jpg"
   video="$lesson/figure-11.49-12.19.mp4"
 />
 
@@ -311,7 +311,7 @@ $$
 
 This says the ratio of a tiny change in $A$ to the tiny change in $x$ that caused it equals the height of our graph, $x^2$, at that point. Or rather, this is only approximately true, but it's an approximation that should get better and better for smaller choices of $dx$.
 
-<Figure image="$lesson/figure-13.08.png" />
+<Figure image="$lesson/figure-13.08.jpg" />
 
 For example, think about two nearby inputs, like $3$ and $3.001$. The change to $x$, then, is $dx = 0.001$. The change $dA$ would be the difference between the mystery function evaluated at $3.001$ and evaluated at $3$. Even though we don't know what that mystery function is, we do know something about this change{/* TODO: Reference formula number from above here */}, namely that this change divided by $dx = 0.001$ is approximately $3^2$.
 
@@ -321,11 +321,11 @@ $$
 
 And this relationship between tiny changes to the mystery function and the value of $x^2$ is true at all inputs, not just $3$. For example, we can see the same relationship at the point $x=2$ on the graph of $x^2$.
 
-<Figure image="$lesson/figure-13.41.png" />
+<Figure image="$lesson/figure-13.41.jpg" />
 
 That doesn't immediately tell us how to find $A(x)$, but it provides a very strong clue to work with. And there's nothing special about the graph $x^2$ here. For any function $f(x)$, if we call the area under its graph $A(x)$, then this area function has the property that $dA/dx \approx f(x)$, a slight nudge to the output of $A$ divided by a slight nudge to the input that caused it is about equal to the height of the graph at that point, $f(x)$. Again, that's an approximation that gets better and better for smaller choices of $dx$.
 
-<Figure image="$lesson/figure-14.17.png">
+<Figure image="$lesson/figure-14.17.jpg">
   This figure illustrates the property of $\frac{dA}
   {dx}$ for a more general function $f(x)$.
 </Figure>
@@ -344,7 +344,7 @@ We care about derivatives because they help us solve problems, and in our little
 
 This back and forth between integrals and derivatives, where the derivative of the function for an area under a graph gives you back the function defining the graph itself, is called the _fundamental theorem of calculus_. It ties together the two big ideas of integrals and derivatives, and shows how in some sense, each one is the inverse of the other.
 
-<Figure image="$lesson/figure-14.17.png">
+<Figure image="$lesson/figure-14.17.jpg">
   This figure illustrates the property of $\frac{dA}
   {dx}$ for a more general function $f(x)$.
 </Figure>

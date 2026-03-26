@@ -24,7 +24,7 @@ When I was a kid, since I loved math and sought out mathy things, I would occasi
 
 A common go-to topic to excite our imaginations was topology. We might be shown something like a Möbius strip, maybe building it out of construction paper by twisting a rectangle and gluing its ends. "Look," we'd be told as we were asked to draw a line along the surface, "it's a surface with just one side!"
 
-<Figure image="$lesson/mobius-strip.png" />
+<Figure image="$lesson/mobius-strip.jpg" />
 
 Or we might be told that topologists view a coffee mug and a doughnut as the same thing, since each has one hole.
 
@@ -49,14 +49,14 @@ No one knows the answer to the following question:
 
 This is known as the Toeplitz' conjecture. By "closed curve", we mean you squiggle some line through space in a potentially crazy way and end at the point where you started.
 
-<Figure image="$lesson/inscribed-square.png">
+<Figure image="$lesson/inscribed-square.jpg">
   We can find four points on _this_ closed loop that form a square. But can we
   do the same for _any_ loop?
 </Figure>
 
 If your closed loop is a circle, for example, it's quite easy to find an inscribed square. Infinitely many squares, in fact. If your loop was an ellipse, it's still pretty easy to find an inscribed square.
 
-<Figure image="$lesson/circle-and-ellipse.png">
+<Figure image="$lesson/circle-and-ellipse.jpg">
   Finding inscribed squares in circles and ellipses is easy. But what about
   other, wilder loops?
 </Figure>
@@ -73,17 +73,17 @@ This problem has been solved for some special cases, for example curves which ar
 
 To me it's fascinating that the current tools of math can neither confirm nor deny the existence of a loop that has no inscribed square. But what about a slightly weaker question? Can we prove that any closed continuous curve always has an inscribed _rectangle_?
 
-<Figure image="$lesson/inscribed-rectangle.png" />
+<Figure image="$lesson/inscribed-rectangle.jpg" />
 
 It's still pretty hard, but there is a beautiful solution that might actually be my favorite piece of math. We start with a seemingly trivial shift in perspective. Instead of asking whether we can find four points forming a rectangle, we ask whether it's possible to find two distinct pairs of points which form a rectangle.
 
-<Figure image="$lesson/pairs-of-points.png">
+<Figure image="$lesson/pairs-of-points.jpg">
   Considering the points as diagonal pairs makes the problem easier.
 </Figure>
 
 We'll use the following key fact about rectangles: If you label the vertices of a rectangle $a$, $b$, $c$, and $d$, then the distance between $a$ and $c$ equals the distance between $b$ and $d$, and the midpoint of $a$ and $c$ is the same as the midpoint of $b$ and $d$.
 
-<Figure image="$lesson/rectangle-properties.png">
+<Figure image="$lesson/rectangle-properties.jpg">
   A rectangle with points labeled $a$, $b$, $c$, and $d$.
 </Figure>
 
@@ -97,7 +97,7 @@ Why is this a useful reframing? As you'll see, it lets us phrase the question in
 
 If you were to encode the important information about a pair of points, it would involve three numbers: Two to describe the midpoint, and one more to specify the distance. To a mathematician, if you are describing something with three numbers, it's very enticing to think of it as a single point in 3D space.
 
-<Figure image="$lesson/encode-in-3d.png">
+<Figure image="$lesson/encode-in-3d.jpg">
   We want to encode the three important pieces of information about a pair of
   points as a single point in 3D space.
 </Figure>
@@ -106,7 +106,7 @@ Consider our closed loop to be sitting on the xy-plane in 3D space. For a given 
 
 This defines a function that takes in a pair of points on the loop, and outputs a single point in 3D space. It's kind of like a graph, but be mindful of the difference. We're **not** describing a function that takes in a pair of numbers $(x, y)$ and spits out one number $z$. What we're dealing with is a much richer function which takes in a pair of points on the loop and spits out a triplet $(x, y, z)$.
 
-<Figure image="$lesson/3d-point-example.png">
+<Figure image="$lesson/3d-point-example.jpg">
   For any pair of points on the loop (pink) we have an associated point in 3D
   space (blue).
 </Figure>
@@ -114,7 +114,7 @@ This defines a function that takes in a pair of points on the loop, and outputs 
 As you do this for many possible pairs of points, you'll effectively be drawing through 3D space. When you do it for _all possible_ pairs of points on the loop, you will draw some kind of surface above the plane.
 
 <Figure
-  image="$lesson/drawing-3d-surface.png"
+  image="$lesson/drawing-3d-surface.jpg"
   video="$lesson/drawing-3d-surface.mp4"
 >
   By finding the 3D points associated with every possible pair of two points on
@@ -158,7 +158,7 @@ Also, notice how the 3D surface always ends up perfectly touching the 2D loop. T
 Consider what happens when we choose two points on the loop which are close together. As the pair of points on the loop gets closer and closer, the plotted point gets lower, since its height is by definition equal to the distance between the points. Also, the midpoint gets closer and closer to the loop as the points approach each other.
 
 <Figure
-  image="$lesson/points-approach-x.png"
+  image="$lesson/points-approach-x.jpg"
   video="$lesson/points-approach-x.mp4"
 >
   As the points on the loop (pink) approach a single point $X$, the point in 3D
@@ -187,11 +187,11 @@ Think about how we represent pairs of real numbers using individual points on a 
 
 Now, when I say "pair of points", there are two things I could be talking about: The first is ordered pairs of points, where the pairs $(a, b)$ and $(b, a)$ would be considered distinct; that is, there's some notion of which point is "first".
 
-<Figure image="$lesson/ordered-pairs.png" />
+<Figure image="$lesson/ordered-pairs.jpg" />
 
 The second is unordered pairs of points, where $\{a, b\}$ and $\{b, a\}$ would be considered the same thing. Where all that matters is what the points are, and it doesn't matter which one is first.
 
-<Figure image="$lesson/unordered-pairs.png" />
+<Figure image="$lesson/unordered-pairs.jpg" />
 
 Ultimately we want to understand _unordered_ pairs of points, but to get there we need to start by thinking about ordered pairs.
 
@@ -200,7 +200,7 @@ Ultimately we want to understand _unordered_ pairs of points, but to get there w
 We'll start by straightening out the loop, cutting it at some point and deforming it into an interval. For the sake of having some labels, let's say this is the interval on the number line from $0$ to $1$.
 
 <Figure
-  image="$lesson/deform-loop-to-line.png"
+  image="$lesson/deform-loop-to-line.jpg"
   video="$lesson/deform-loop-to-line.mp4"
   show="video"
 >
@@ -212,14 +212,14 @@ By following where each point ends up, every point on the loop corresponds with 
 
 This mapping allows us to turn any pair of two points on the loop into a pair of two numbers between $0$ and $1$, which is much easier to reason about.
 
-<Figure image="$lesson/point-pair-to-numbers.png">
+<Figure image="$lesson/point-pair-to-numbers.jpg">
   Every point on the loop corresponds to a number between $0$ and $1$. So a pair
   of points on the loop corresponds to a pair of numbers between $0$ and $1$.
 </Figure>
 
 We can place one of the two values on a new y-axis, using a second interval, so that each pair of values between $0$ and $1$ (and thus each pair of points on the loop) is associated with a single point in a $1 \times 1$ square.
 
-<Figure image="$lesson/pair-to-square.png">
+<Figure image="$lesson/pair-to-square.jpg">
   By giving each of the two numbers (corresponding to our original two points on
   the loop) a unique axis to live on, we can represent any pair of points on the
   loop with a single point in a $1 \times 1$ square of 2D space.
@@ -239,7 +239,7 @@ Likewise, the bottom edge needs to be glued to the top edge, since the y-coordin
 
 Let's mark each edge with some arrows to remember how the edges should be lined up:
 
-<Figure image="$lesson/square-alignment-arrows.png">
+<Figure image="$lesson/square-alignment-arrows.jpg">
   Matching points along opposite edges of the square both correspond to the same
   pair of points on the loop. To represent this faithfully, we need to glue
   together the edges of the square as indicated by the arrows.
@@ -247,7 +247,7 @@ Let's mark each edge with some arrows to remember how the edges should be lined 
 
 If you bend this square to perform the gluing, first rolling it into a cylinder to glue the left and right edges, then gluing the ends of the cylinder, which represent the top and bottom edges, we get a torus, the surface of a doughnut.
 
-<Figure image="$lesson/roll-into-torus.png" video="$lesson/roll-into-torus.mp4">
+<Figure image="$lesson/roll-into-torus.jpg" video="$lesson/roll-into-torus.mp4">
   When the square is wrapped up and its edges glued together following the
   arrows, it becomes a torus.
 </Figure>
@@ -256,7 +256,7 @@ By gluing together the corresponding edges, we've solved the problem of duplicat
 
 The torus is to pairs of points on the loop as the xy-plane is to pairs of points on the real number line.
 
-<Figure image="$lesson/torus-and-loop-correspondence.png">
+<Figure image="$lesson/torus-and-loop-correspondence.jpg">
   The torus serves as a 2D surface for encoding pairs of positions on a loop,
   much like how the xy-plane encodes pairs of positions on the number line.
 </Figure>
@@ -285,14 +285,14 @@ Remember, the whole reason we're doing this is to show that two distinct pairs o
 
 To find a surface representing _unordered_ pairs, let's look back at our unit square. We want the coordinates $(0.2, 0.3)$, say, to represent the same pair as $(0.3, 0.2)$. In general the coordinates $(x, y)$ should represent the same thing as $(y, x)$.
 
-<Figure image="$lesson/matching-points.png">
+<Figure image="$lesson/matching-points.jpg">
   Since we're interested in unordered pairs, the points $(x, y)$ and $(y, x)$ on
   the square both represent the same pair of points on the loop.
 </Figure>
 
 Once again, we capture this idea by gluing points together when they're supposed to represent the same pair, which in this case requires folding the square diagonally.
 
-<Figure image="$lesson/fold-square.png" video="$lesson/fold-square.mp4">
+<Figure image="$lesson/fold-square.jpg" video="$lesson/fold-square.mp4">
   Points on opposite sides of the diagonal line both correspond to the same pair
   of points on the loop, so we fold the square in half to prevent duplication.
 </Figure>
@@ -301,7 +301,7 @@ Notice this diagonal line. It represents all pairs that look like $(X, X)$, mean
 
 We now need to glue together this bottom edge with the right edge, but the orientation with which we do this is important. Points towards the left of the bottom edge have to be glued to points towards the bottom of the right edge, and points towards the right of the bottom edge have to be glued to points towards the top of the right edge.
 
-<Figure image="$lesson/pre-mobius-arrows.png">
+<Figure image="$lesson/pre-mobius-arrows.jpg">
   We need to glue the bottom and right edges as indicated by the blue arrows.
 </Figure>
 
@@ -309,7 +309,7 @@ It's weird to think about, right?
 
 Sometimes we must take a step back before we can progress forward. The clever trick here is to make a new diagonal cut, which of course we need to remember to glue back together at some point.
 
-<Figure image="$lesson/cut-triangle.png">
+<Figure image="$lesson/cut-triangle.jpg">
   We cut the triangle in half (yellow) to gain some maneuverability. Don't
   worry; we'll glue it back together soon.
 </Figure>
@@ -317,14 +317,14 @@ Sometimes we must take a step back before we can progress forward. The clever tr
 This frees us up to flip the bottom triangle around to the right and glue the blue edges like so...
 
 <Figure
-  image="$lesson/rotate-and-snap.png"
+  image="$lesson/rotate-and-snap.jpg"
   video="$lesson/rotate-and-snap.mp4"
   show="video"
 />
 
 Now notice the orientation of the yellow arrows here: To glue back what we just cut, we don't simply connect the edges of this rectangle to get a cylinder. We have to make a twist! Doing this in 3D space, the shape we get is a Möbius strip.
 
-<Figure image="$lesson/mobius-strip.png">
+<Figure image="$lesson/mobius-strip.jpg">
   Connecting the yellow edges of the square requires a twist, which gives us a
   Möbius strip!
 </Figure>
@@ -339,7 +339,7 @@ Stepping back, remember that we had defined a special kind of graph in 3D space,
 
 Because of the continuous 1-to-1 association between points on the Möbius strip and pairs of points on the loop, there's a natural map from the Möbius strip to this surface in 3D space: For every point on the Möbius strip, consider the pair of points on the loop it corresponds to. Then plug that pair of points into our special function.
 
-<Figure image="$lesson/mobius-maps-to-surface.png">
+<Figure image="$lesson/mobius-maps-to-surface.jpg">
   Points on the Möbius strip correspond to pairs of points on the loop which
   correspond to points on the 3D surface.
 </Figure>
@@ -378,7 +378,7 @@ Perhaps you make a Möbius strip out of paper. No matter how you flex and bend t
 As it turns out, this fact is actually false! As one counterexample, the illustration below shows a way to embed the Möbius strip into 3d space so that its boundary forms a perfect circle.
 
 <Figure
-  image="$lesson/sudanese-band.png"
+  image="$lesson/sudanese-band.jpg"
   video="$lesson/sudanese-band.mp4"
   show="video"
 >

@@ -75,12 +75,12 @@ This strange process is called "implicit differentiation". Don't worry, I have a
 
 Imagine a $5$ meter long ladder held up against a wall, where the top of the ladder starts off $4$ meters above the ground, which&mdash;by the pythagorean theorem&mdash;means the bottom is $3$ meters away from the wall.
 
-<Figure image="$lesson/figures/ladder-setup.png" />
+<Figure image="$lesson/figures/ladder-setup.jpg" />
 
 And say it's slipping down the wall in such a way that the top of the ladder is dropping at $1$ meter per second. In that initial moment, what is the rate at which the bottom of the ladder is moving away from the wall?
 
 <Figure
-  image="$lesson/figures/ladder-rate-of-change.png"
+  image="$lesson/figures/ladder-rate-of-change.jpg"
   video="$lesson/figures/ladder-rate-of-change.mp4"
   show="video"
 />
@@ -89,17 +89,17 @@ It's interesting, right? That distance from the bottom of the ladder to the wall
 
 First thing's first, it's always nice to give names to the quantities we care about. So label the distance from the top of the ladder to the ground $y(t)$, written as a function of time because it's changing. Likewise, label the distance between the bottom of the ladder and the wall $x(t)$. They key equation that relates these terms is the pythagorean theorem: $x(t)^2 + y(t)^2 = 5^2$. What makes this equation powerful is that it's true at all points in time.
 
-<Figure image="$lesson/figures/ladder-time-variable.png" />
+<Figure image="$lesson/figures/ladder-time-variable.jpg" />
 
 One way to solve this would be to isolate $x(t)$, figure out what what $y(t)$ must be based this $1$ meter/second drop rate, then take a derivative of the resulting function; $dx/dt$, the rate at which $x$ is changing with respect to time.
 
-<Figure image="$lesson/figures/ladder-traditional-derivative.png" />
+<Figure image="$lesson/figures/ladder-traditional-derivative.jpg" />
 
 And that's fine; if you're willing to apply the chain rule a few times, this method will definitely work for you. But I want to show a different way to think about the same problem.
 
 This left-hand side of the equation is a function of time, right? Which just so happens to equal a constant, meaning this value evidently doesn't change while time passes.
 
-<Figure image="$lesson/figures/ladder-function-of-time.png" />
+<Figure image="$lesson/figures/ladder-function-of-time.jpg" />
 
 However, this expression is dependent on time which we can manipulate like any other function with $t$ as an input. In particular, we can take a derivative of the left hand side, which is a way of saying "If I let a little bit of time, $dt$, pass, which causes $y$ to slightly decrease, and $x$ to slightly increase, how much does this expression change?"
 

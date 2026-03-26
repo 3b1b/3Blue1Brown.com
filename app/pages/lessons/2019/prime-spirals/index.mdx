@@ -26,11 +26,11 @@ I've had people ask me before why it is that mathematicians care so much about p
 
 Part of the beauty of mathematics is how two seemingly unrelated concepts can be interconnected through an arbitrary choice. I first saw this pattern in a [question](https://math.stackexchange.com/questions/885879/meaning-of-rays-in-polar-plot-of-prime-numbers/885894) on the Math Stack Exchange. It was asked by a user under the name [dwymark](https://math.stackexchange.com/users/167656/dwymark), and answered by [Greg Martin](https://math.stackexchange.com/users/16078/greg-martin), and it relates to the distribution of prime numbers, as well as rational approximations for $$\pi$$.
 
-<Figure image="$lesson/ppp_writing.png" />
+<Figure image="$lesson/ppp_writing.jpg" />
 
 This user had been playing around with plotting data in polar coordinates. As a quick reminder, this means labeling points in 2D space, not with the usual $xy$-coordinates, but instead with a distance from the origin, commonly called $$r$$ for radius, together with the angle that line makes with the horizontal, commonly called theta, $$\theta$$.
 
-<Figure image="$lesson/polar_coords.png" video="$lesson/polar_coords.mp4" />
+<Figure image="$lesson/polar_coords.jpg" video="$lesson/polar_coords.mp4" />
 
 The angle is typically given in _radians_; that means an angle of $$\pi$$ is halfway around, and $$2\pi$$ gives a full circle. Notice, polar coordinates are not unique, in the sense that adding $$2\pi$$ to the angle doesn't change the location.
 
@@ -52,34 +52,34 @@ $$
 (r,\theta)=(p,p)
 $$
 
-<Figure image="$lesson/plotting_primes.png" />
+<Figure image="$lesson/plotting_primes.jpg" />
 
 There's no practical reason to do this. It's just fun! We're frolicking in the playground of data visualization. Let's get a feel for this with all whole numbers, rather than just primes. The point $$(1, 1)$$ sits a distance 1 away from the origin, with an angle of 1 radian. $$(2, 2)$$ has twice the angle, and twice the distance. Similarly, to get to $$(3, 3)$$, you rotate one more radian, with a total angle now slightly less than $$\pi$$, and you step one unit farther from the origin.
 
-<Figure image="$lesson/integer_plot.png" />
+<Figure image="$lesson/integer_plot.jpg" />
 
 Make sure it's clear what's being plotted, because everything that follows depends on understanding it. Each step forward is like the tip of a clock hand which rotates 1 radian, a little less than $$\frac16$$ of a turn, and grows longer by 1 unit. As you continue, these points spiral outward, forming what's known in the business as an "Archimedean spiral".
 
-<Figure image="$lesson/archimedean_spiral.png" />
+<Figure image="$lesson/archimedean_spiral.jpg" />
 
 If you knock out everything except the prime numbers, it initially looks quite random. After all, primes are famous for their chaotic and difficult-to-predict behavior. But when you zoom out, you see these very clear galactic seeming spirals. What's weird is that some of the arms seem to be missing.
 
 <Figure
-  image="$lesson/galactic_zoomout.png"
+  image="$lesson/galactic_zoomout.jpg"
   video="$lesson/galactic_zoomout.mp4"
 />
 
 Zooming out even farther, those spirals give way to a different pattern: these many different outward rays. Those rays seem to come mostly in clumps of 4, but with an occasional gap here and there, like a comb missing some teeth
 
-<Figure image="$lesson/galactic_comb.png" video="$lesson/galactic_comb.mp4" />
+<Figure image="$lesson/galactic_comb.jpg" video="$lesson/galactic_comb.mp4" />
 
 The question, naturally, is what on _Earth_ is going on here? Where do these spirals come from, and why do we instead get straight lines at a larger scale? You could be more quantitative and count that there are 20 spirals, and up at the larger scale if you patiently went through each ray you'd count a total of 280. But of course, this just raises further questions on where these numbers come from, and why they'd arise from primes.
 
-<Figure image="$lesson/ray_count.png" video="$lesson/ray_count.mp4" />
+<Figure image="$lesson/ray_count.jpg" video="$lesson/ray_count.mp4" />
 
 These patterns are certainly beautiful, but they don't have a hidden, divine message about primes. I should say upfront, the fact the math exchange question jumped right into primes makes the puzzle a bit misleading. If you look at all the whole numbers, not just the primes, you see very similar spirals.
 
-<Figure image="$lesson/integer_rays.png" video="$lesson/integer_rays.mp4" />
+<Figure image="$lesson/integer_rays.jpg" video="$lesson/integer_rays.mp4" />
 
 They're much cleaner, and there are now 44 of them, but it means the question of where the spirals come from is, perhaps disappointingly, completely separate from what happens when we limit our view to primes.
 
@@ -93,23 +93,23 @@ Before you get too disappointed, the question of why we see spirals at all is st
 
 To start, did you notice that at a much smaller scale there were 6 little spirals? This offers a good starting point to explain what's happening in the two larger patterns. Notice how all the multiples of 6 form one of the arms of this spiral. Then the next one is every number one above a multiple of 6, and the one after that includes all numbers two above a multiple of 6, and so on. Why is that?
 
-<Figure image="$lesson/6_spirals.png" video="$lesson/6_spirals.mp4" />
+<Figure image="$lesson/6_spirals.jpg" video="$lesson/6_spirals.mp4" />
 
 Remember, each step forward in the sequence involves a turn of one radian, so when you count up by 6, you've turned a total of 6 radians, which is a little less than $2\pi$, a full turn. So every time you count up 6, you've almost made a full turn, it's just a little less. Another six steps, a slightly smaller angle, six more, smaller still, and so on, with this angle changing gently enough to give the illusion of a single curving line.
 
-<Figure image="$lesson/6_steps.png" video="$lesson/6_steps.mp4" />
+<Figure image="$lesson/6_steps.jpg" video="$lesson/6_steps.mp4" />
 
 If you limit the view to prime numbers, all but two of these spiral arms go away. Think about it… a prime number can't be a multiple of 6. It also can't be 2 above a multiple of 6, unless it's 2, nor can it be 4 above a multiple of 6, since all those are even numbers. It also can't be 3 above a multiple of 6 (unless it's the number 3 itself) since all those numbers are divisible by 3.
 
-<Figure image="$lesson/6_prime_spiral.png" video="$lesson/6_prime_spiral.mp4" />
+<Figure image="$lesson/6_prime_spiral.jpg" video="$lesson/6_prime_spiral.mp4" />
 
 While we're in this simpler context, let me introduce some terminology that mathematicians use. Each of these sequences where you're counting up by 6 is called a "residue class, mod 6". The word "residue" in this context is a fancy way of saying "remainder", and mod means something like "from division by". The label "residue class mod 6" means "a set of remainders from division by 6."
 
-<Figure image="$lesson/residue_class_mod_6.png" />
+<Figure image="$lesson/residue_class_mod_6.jpg" />
 
 For example, 6 goes into 20 three times, with a remainder of 2, so 20 has a "residue of 2 mod 6".
 
-<Figure image="$lesson/6_mod_20.png" />
+<Figure image="$lesson/6_mod_20.jpg" />
 
 Together with all other numbers leaving a remainder of 2 when the thing you divide by is 6, you have a full "residue class". I know that sounds like the world's most pretentious way of saying "everything 2 above a multiple of 6", and it is! But this is the standard jargon, and it is handy to have some words for the idea.
 
@@ -136,21 +136,21 @@ The number 381 has a quotient of 63 and a remainder of 3, so it belongs to the $
 
 With that as a warmup, let's think about the larger scale patterns. In the same way that 6 steps were close to a full turn, taking 44 steps is _very_ close to a whole number of turns.
 
-<Figure image="$lesson/44_spiral.png" />
+<Figure image="$lesson/44_spiral.jpg" />
 
 Since there are $2\pi$ radians per rotation, taking 44 steps gives a total of $\frac{44}{2\pi}$ rotations, which comes out to be just barely above 7 full turns. You could also write this by saying $\frac{44}{7}$ is a close approximation for $2\pi$, which some of you may better recognize as the famous $\frac{22}{7}$ approximation for $\pi$.
 
-<Figure image="$lesson/44_7_approx.png" />
+<Figure image="$lesson/44_7_approx.jpg" />
 
 So if you count by multiples of 44 in the diagram, each point has almost the same angle as the last, just a _little_ bit bigger, so as you continue on with more and more we get this gentle spiral as that angle increases very slowly. All of the numbers 1 above a multiple of 44 make a similar spiral, but rotated one radian counterclockwise. Same for everything 2 above a multiple of 44, and so on.
 
-<Figure image="$lesson/44_residue_arm.png" video="$lesson/44_residue_arm.mp4" />
+<Figure image="$lesson/44_residue_arm.jpg" video="$lesson/44_residue_arm.mp4" />
 
 To phrase it with the fancier language, each of these spiral arms is a residue class mod 44. And maybe now you can tell me what happens when we limit the view to prime numbers.
 
 Prime numbers cannot be a multiple of 44, so that arm won't be visible. Similarly, you won't see primes 2 above a multiple of 44, or 4 above, and so on, since all those residue classes have nothing but even numbers.
 
-<Figure image="$lesson/prime_spiral_numbered_circle.png">
+<Figure image="$lesson/prime_spiral_numbered_circle.jpg">
 
 Of the residual classes mod 44, only 20 arms are visible when filtering for primes.
 
@@ -160,7 +160,7 @@ Likewise, any multiple of 11 can't be prime, except for 11 itself, so the spiral
 
 This is another good chance for a side note on jargon mathematicians use. What we care about here are all the numbers between 0 and 43 that don't share any prime factors with 44, right? The ones which aren't even, and aren't divisible by 11. Two numbers that don't share any factors like this are called "relatively prime", or "coprime".
 
-<Figure image="$lesson/coprime_definition.png" />
+<Figure image="$lesson/coprime_definition.jpg" />
 
 You can count that there are 20 numbers between 1 and 44 coprime to 44, a fact that a number theorist would compactly write as:
 
@@ -176,13 +176,13 @@ Perhaps now you can predict what's going on at a larger scale. Just as 6 radians
 
 Specifically, 710 radians is $\frac{710}{2\pi}$ rotations, which works out to be 113 point _zero zero zero zero zero_ nine. This is the same thing as saying that $\frac{710}{113}$ is a very close rational approximation to $2\pi$, which may be recognizable as the $\frac{355}{113}$ approximation of $\pi$.
 
-<Figure image="$lesson/710_113_approx.png" />
+<Figure image="$lesson/710_113_approx.jpg" />
 
 If you want to understand where rational approximations like this come from, and what it means for something like this one to be "unusually good", take a look at this great [mathologer video](https://www.youtube.com/watch?v=CaasbfdJdJg).
 
 What this means is that if you move forward by steps of 710, the angle of each new point is almost exactly the same as the last, only microscopically bigger. Even very far out, such a sequence appears to be on a straight line. And of course, the other residue classes mod 710 also form nearly-straight lines.
 
-<Figure image="$lesson/710_spiral.png" video="$lesson/710_spiral.mp4">
+<Figure image="$lesson/710_spiral.jpg" video="$lesson/710_spiral.mp4">
 
 710 radians is so close to a whole number of revolutions that the 710k residue class appears to be almost exactly on the x-axis.
 
@@ -204,15 +204,15 @@ $\sin(60\ rad) < 0$ and $\cos(60\ rad) < 0$, placing the start of the curve in t
 
 In reality, with a little further zooming, you can see that there is actually a gentle spiral to these, but the fact that it takes so long to become prominent is a wonderful illustration, maybe the best illustration I've seen, for just how good an approximation $\frac{710}{113}$ is for $2\pi$. [^1]
 
-<Figure image="$lesson/710_galaxy.png" />
+<Figure image="$lesson/710_galaxy.jpg" />
 
 To understand what happens when we filter for primes, it's entirely analogous to what we did before. The factors of 710 are 71, 5 and 2. So if the remainder is divisible by any of those, then so is your number.
 
-<Figure image="$lesson/710_factors.png" />
+<Figure image="$lesson/710_factors.jpg" />
 
 When you pull up all of the residue classes with odd numbers, it looks like every other ray in our crowded picture. Of those which remain, these are the ones divisible by five, which are nice and evenly spaced at every fifth line. Notice, the fact that primes never show up in these is what explains the pattern of these lines coming in clumps of four. And of those remaining, these four residue classes are divisible by 71, so the primes won't show up there. This explains why some of the clumps of four seem to be missing a tooth.
 
-<Figure image="$lesson/filtering_quad.png" video="$lesson/filtering_quad.mp4">
+<Figure image="$lesson/filtering_quad.jpg" video="$lesson/filtering_quad.mp4">
 
 The top left plots all of the residue classes. Each successive plot continues to filter for the prime factors of 710.
 
@@ -220,11 +220,11 @@ The top left plots all of the residue classes. Each successive plot continues to
 
 So if you were wondering where the number 280 came from earlier, it comes from counting how many numbers from 1 to 710 don't share any factors with 710; these are the ones that we can't rule out for including primes based on some obvious divisibility consideration.
 
-<Figure image="$lesson/280_calculation.png" />
+<Figure image="$lesson/280_calculation.jpg" />
 
 This of course doesn't guarantee that any particular one _will_ have prime numbers, but when you look at the picture, it actually seems like the primes are pretty evenly distributed among all these remaining classes, wouldn't you agree?
 
-<Figure image="$lesson/710_rainbow.png">
+<Figure image="$lesson/710_rainbow.jpg">
 
 Every color in the rainbow can be seen, showing that every remaining residue class has about the same density of primes.
 
@@ -238,11 +238,11 @@ Every color in the rainbow can be seen, showing that every remaining residue cla
 
 That last point actually relates to a fairly deep fact, known in number theory as "[Dirichlet's theorem](https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions)". To take a simpler example than residue classes mod 710, think of those mod 10. Because we write numbers in base 10, this is the same thing as grouping numbers together by what their last digit is. So numbers ending with a digit 0 form one residue class, numbers ending with a digit 1 form another, and so on.
 
-<Figure image="$lesson/residue_class_mod_10.png" />
+<Figure image="$lesson/residue_class_mod_10.jpg" />
 
 Other than 2, prime numbers can't have an even number as their last digit, since that means they're even. Similarly any prime bigger than 5 can't end in a 5. There's nothing surprising there, primes bigger than 5 must end in a 1, 3, 7 or 9.
 
-<Figure image="$lesson/primes_mod_10.png" />
+<Figure image="$lesson/primes_mod_10.jpg" />
 
 How are the primes distributed between the residue classes 0 mod 2 and 1 mod 2?
 
@@ -254,7 +254,7 @@ How are the primes distributed between the residue classes 0 mod 2 and 1 mod 2?
 
 A much more nuanced question is how the primes are distributed among the remaining four groups. Let's make a quick histogram, counting through each prime, and showing what proportion of primes we've seen so far have a given last digit. What do you predict will happen as we go through more and more primes?
 
-<Figure image="$lesson/histogram_mod_10.png" video="$lesson/histogram_mod_10.mp4">
+<Figure image="$lesson/histogram_mod_10.jpg" video="$lesson/histogram_mod_10.mp4">
 
 The 2nd and 5th residue class's proportion go to zero as more primes are added to the histogram.
 
@@ -276,7 +276,7 @@ Likewise for all the other allowable residue classes 3 and 7 and 9. And of cours
 
 Consider our old friends the residue classes mod 44. For example, let's make a similar histogram, showing what proportion of the primes show up in each one. Again, as time goes on, we see an even spread between the 20 allowable residue classes, meaning each spiral arm from our diagram has about the same number of primes as the others. Again, perhaps this is what you'd expect, but it's _shockingly_ hard to prove.
 
-<Figure image="$lesson/histogram_mod_44.png" video="$lesson/histogram_mod_44.mp4">
+<Figure image="$lesson/histogram_mod_44.jpg" video="$lesson/histogram_mod_44.mp4">
 
 All of the even classes and 11 + 33 quickly go to zero, just like the missing arms of the spiral.
 
@@ -342,7 +342,7 @@ So how did Dirichlet prove it? Well… it's _way_ more involved than what would 
 
 This isn't just antiquated technology. Understanding the distribution of primes in residue classes like this continues to be relevant in modern research, too.[^2] Some of the recent breakthroughs on small gaps between primes, edging towards that ever-elusive twin prime conjecture, have their basis in understanding how primes split up among these kinds of residue classes.
 
-<Figure image="$lesson/quad_histogram.png" video="$lesson/quad_histogram.mp4" />
+<Figure image="$lesson/quad_histogram.jpg" video="$lesson/quad_histogram.mp4" />
 
 </section>
 
@@ -356,11 +356,11 @@ But on the other hand, this kind of play is _clearly_ worth it if the end result
 
 It's not a coincidence that a fairly random question like this one can lead you to an important and deep fact from math. What it _means_ for a piece of math to be important is that it connects to many other topics. So even arbitrary explorations of numbers, as long as they aren't too arbitrary, have a good chance of stumbling into something meaningful.
 
-<Figure image="$lesson/many_connections.png" />
+<Figure image="$lesson/many_connections.jpg" />
 
 Sure, you'll get a much more concentrated dosage of important facts by going through a textbook or a course, with far fewer uninteresting dead ends. But there's something special about rediscovering these topics on your own. If you effectively reinvent Euler's Totient function before ever seeing it defined, or start wondering about rational approximations before learning about continued fractions, or if you seriously explore how primes are divvied up between residue classes before you've even heard the name Dirichlet, then when you _do_ learn those topics, you'll see them as familiar friends, not as arbitrary definitions.
 
-<Figure image="$lesson/3b1b_spiral.png" />
+<Figure image="$lesson/3b1b_spiral.jpg" />
 
 ### A Challenging Exploration
 

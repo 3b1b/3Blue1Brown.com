@@ -18,7 +18,7 @@ import Quote from "~/components/Quote";
 
 Our goal is for you to come away from this lesson understanding one of the most important formulas in probability, Bayes' theorem.
 
-<Figure image="$lesson/you-soon.png">This is you, soon...</Figure>
+<Figure image="$lesson/you-soon.jpg">This is you, soon...</Figure>
 
 This formula is central to scientific discovery. It's a core tool in machine learning and AI, and it has even been used for treasure hunting! In the 80's a small team led by Tommy Thompson[^1] used Bayesian search tactics to help uncover a ship that had sunk a century and half earlier carrying $700,000,000 worth of gold (in today's terms). So it's a formula worth understanding.
 
@@ -65,7 +65,7 @@ Their objection is not that people hold correct or biased views about the person
 
 In their paper, Kahneman and Tversky said that in the US there are about 20 farmers for every 1 librarian.[^3]
 
-<Figure image="$lesson/20-to-1.png">
+<Figure image="$lesson/20-to-1.jpg">
   There are many more farmers than librarians.
 </Figure>
 
@@ -85,7 +85,7 @@ If you do think to make this estimate, there's a simple way to reason about the 
 
 You might start by picturing a representative sample of farmers and librarians. Say, 200 farmers and 10 librarians.
 
-<Figure image="$lesson/representative-sample.png" />
+<Figure image="$lesson/representative-sample.jpg" />
 
 Then when you hear the meek and tidy soul description, let's say your gut instinct is that 40% of librarians would fit that description and that 10% of farmers would.
 
@@ -103,18 +103,18 @@ Then when you hear the meek and tidy soul description, let's say your gut instin
 
 </Question>
 
-<Figure image="$lesson/who-fits.png">
+<Figure image="$lesson/who-fits.jpg">
   About 40% of librarians fit the description, but only 10% of farmers do. But
   that's still more farmers than librarians!
 </Figure>
 
 So the probability that a random person who fits this description is a librarian is $\frac{4}{24}$, or 16.7%.
 
-<Figure image="$lesson/probability-given-description.png" />
+<Figure image="$lesson/probability-given-description.jpg" />
 
 So even if you think a librarian is 4 times as likely as a farmer to fit this description, that's not enough to overcome the fact that there are way more farmers. The upshot&mdash;and this is the key mantra underlying Bayes' theorem&mdash;is that new evidence should not completely determine your beliefs in a vacuum; it should update prior beliefs.
 
-<Figure image="$lesson/update-prior-beliefs.png">
+<Figure image="$lesson/update-prior-beliefs.jpg">
   Before reading the description of Steve, there was about a 20-to-1 chance that
   he was a farmer rather than a librarian. Reading his description should update
   that belief, but not replace it entirely.
@@ -122,11 +122,11 @@ So even if you think a librarian is 4 times as likely as a farmer to fit this de
 
 If this line of reasoning, where seeing new evidence restricts the space of possibilities, makes sense to you, then congratulations! You understand the heart of Bayes' theorem.
 
-<Figure image="$lesson/key-bayes-concepts.png" />
+<Figure image="$lesson/key-bayes-concepts.jpg" />
 
 Maybe the numbers you'd estimate would be different, but what matters is how you fit the numbers together to update a belief based on evidence. That process of updating beliefs is what Bayes' theorem describes mathematically.
 
-<Figure image="$lesson/write-mathematically.png">
+<Figure image="$lesson/write-mathematically.jpg">
   The heart of Bayes' theorem is this fraction.
 </Figure>
 
@@ -140,15 +140,15 @@ Take a moment to think about how you might generalize what we just did, and writ
 
 Bayes' theorem is relevant in situations where you have some hypothesis (_Steve is a librarian_), and you see some evidence (_Steve is a "meek and tidy soul"_), and you want to know the probability that the hypothesis holds given that the evidence is true.
 
-<Figure image="$lesson/when-to-use.png" />
+<Figure image="$lesson/when-to-use.jpg" />
 
 In the standard notation, this vertical bar means "given that". As in, we're restricting our view only to the possibilities where the evidence holds.
 
-<Figure image="$lesson/given-notation.png" />
+<Figure image="$lesson/given-notation.jpg" />
 
 The first relevant number is the probability that the hypothesis holds before considering the new evidence. In our example, that was $\frac{1}{21}$, which came from considering the ratio of farmers to librarians in the general population. This is known as the "prior".
 
-<Figure image="$lesson/prior.png" />
+<Figure image="$lesson/prior.jpg" />
 
 After that, we needed to consider the proportion of librarians that fit this description.
 
@@ -156,42 +156,42 @@ That proportion is the probability that we would see the evidence, given that th
 
 In the context of Bayes' theorem, this value also has a special name. It's called the "likelihood".
 
-<Figure image="$lesson/likelihood.png" />
+<Figure image="$lesson/likelihood.jpg" />
 
 Similarly, we need to know how much of the other side of our space includes the evidence. That's the probability of seeing the evidence given that our hypothesis _isn't_ true. (In our case, the probability of a non-librarian matching Steve's description.)
 
-<Figure image="$lesson/p-e-given-not-h.png">
+<Figure image="$lesson/p-e-given-not-h.jpg">
   Finally, we calculate $P(E|\neg H)$, the probability of seeing the evidence
   given that the hypothesis is false.
 </Figure>
 
 Now remember what our final answer was.
 
-<Figure image="$lesson/final-answer-graphic.png" />
+<Figure image="$lesson/final-answer-graphic.jpg" />
 
 The probability that our librarian hypothesis is true given the evidence is the total number of librarians fitting the evidence, 4, divided by the total number of people fitting the evidence, 24.
 
 Where does that 4 come from? Well it's the total number of people, times the prior probability of being a librarian, giving us the 10 total librarians, times the probability that one of those fits the evidence.
 
-<Figure image="$lesson/where-did-4-come-from.png" />
+<Figure image="$lesson/where-did-4-come-from.jpg" />
 
 That same number shows up again in the denominator. But we also need to add in the other number, which in our example was 20. That came from the total number of people times the proportion who are not librarians, times the proportion of those who fit the evidence.
 
-<Figure image="$lesson/where-did-20-come-from.png" />
+<Figure image="$lesson/where-did-20-come-from.jpg" />
 
 Once we have these numbers, we can assemble them into the Bayes' theorem fraction:
 
-<Figure image="$lesson/total-cancels.png" />
+<Figure image="$lesson/total-cancels.jpg" />
 
 The total number of people in our example, 210, gets canceled out&mdash;which of course it should, given that it was just an arbitrary choice we made for illustration&mdash;leaving us finally with the more abstract representation purely in terms of probabilities.
 
 This, my friends, is Bayes' theorem.
 
-<Figure image="$lesson/bayes-theorem.png" />
+<Figure image="$lesson/bayes-theorem.jpg" />
 
 You often see that big denominator written more simply as $P(E)$, the total probability of seeing the evidence. In practice, to calculate it, you almost always have to break it down into the case where the hypothesis is true, and the one where it isn't.
 
-<Figure image="$lesson/posterior.png" />
+<Figure image="$lesson/posterior.jpg" />
 
 Piling on one final bit of jargon, this final answer is called the "posterior"; it's your belief about the hypothesis after seeing the evidence.
 
@@ -215,23 +215,23 @@ Also, putting a formula to it becomes all the more important as the examples get
 
 However you end up writing it, I'd actually encourage you _not_ to memorize the formula, but instead to draw out this diagram as needed.
 
-<Figure image="$lesson/remember-this.png" />
+<Figure image="$lesson/remember-this.jpg" />
 
 This is sort of the distilled version of thinking with a representative sample. Here, we think with areas instead of counts, which is more flexible and easier to sketch on the fly. Rather than bringing to mind some specific number of examples, like 210, think of the space of all possibilities as a 1x1 square. Any event occupies some subset of this space, and the probability of that event can be thought about as the area of that subset. For example, I like to think of the hypothesis as filling the left part of this square, with a width of $P(H)$.
 
-<Figure image="$lesson/hypothesis-left.png" />
+<Figure image="$lesson/hypothesis-left.jpg" />
 
 I recognize I'm being a bit repetitive, but it's worth really emphasizing this point: when you see evidence, the space of possibilities gets restricted. Crucially, that restriction may not happen evenly between the left and the right. So the new probability for the hypothesis is the proportion it occupies in this restricted subspace.
 
-<Figure image="$lesson/restricted-space.png" />
+<Figure image="$lesson/restricted-space.jpg" />
 
 If you happen to think a farmer is just as likely to fit the evidence as a librarian, then the proportion doesn't change, which should make sense. Irrelevant evidence doesn't change your belief.
 
-<Figure image="$lesson/equal-likelihoods.png" />
+<Figure image="$lesson/equal-likelihoods.jpg" />
 
 But when these likelihoods are very different, your belief changes a lot.
 
-<Figure image="$lesson/different-likelihoods.png" />
+<Figure image="$lesson/different-likelihoods.jpg" />
 
 </section>
 
@@ -261,39 +261,39 @@ Shockingly, 85% of participants in the study said the latter is more likely, eve
 
 </Question>
 
-<Figure image="$lesson/bank-tellers.png">
+<Figure image="$lesson/bank-tellers.jpg">
   The set of bank tellers active in the femist movement is a subset of the set
   of all bank tellers.
 </Figure>
 
 What's fascinating is that there's a simple way to rephrase the question that dropped this error from 85% to 0%. Rather than being asked which case is more likely, participants are instead told that there are 100 people who fit this description, and are asked to estimate how many of those 100 are bank tellers, and how many are bank tellers who are active in the feminist movement.
 
-<Figure image="$lesson/estimation.png" />
+<Figure image="$lesson/estimation.jpg" />
 
 With this format, no one makes the error. Everyone correctly assigns a higher number to the first option than to the second.
 
 Somehow a phrase like "40 out of 100" kicks our intuition into gear more effectively than "40%", much less "0.4", or abstractly referencing the idea of something being more or less likely.
 
-<Figure image="$lesson/phrases.png" />
+<Figure image="$lesson/phrases.jpg" />
 
 That said, representative samples don't easily capture the continuous nature of probability, so turning to area is a nice alternative, not just because of the continuity, but also because it's way easier to sketch out while you're puzzling over some problem.
 
-<Figure image="$lesson/sample-vs-area.png">
+<Figure image="$lesson/sample-vs-area.jpg">
   Using area to represent probabilities often works better than imagining taking
   a sample.
 </Figure>
 
 You see, people often think of probability as being the study of uncertainty. While that is, of course, how it's applied in science, the actual math of probability is really just the math of proportions, where turning to geometry is exceedingly helpful.
 
-<Figure image="$lesson/proportions-vs-uncertainty.png" />
+<Figure image="$lesson/proportions-vs-uncertainty.jpg" />
 
 I mean, if you look at Bayes' theorem as a statement about proportions&mdash;proportions of people, of areas, whatever&mdash;once you digest what it's saying, it's actually kind of obvious. Both sides tell you to look at all the cases where the evidence is true, and consider the proportion where the hypothesis is also true. That's it. That's all it's saying.
 
-<Figure image="$lesson/bayes-geometric.png" />
+<Figure image="$lesson/bayes-geometric.jpg" />
 
 What's noteworthy is that such a straightforward fact about proportions can become hugely significant for science, AI, and any situation where you want to quantify belief.
 
-<Figure image="$lesson/scientists.png" />
+<Figure image="$lesson/scientists.jpg" />
 
 You'll get a better glimpse of this as we get into more examples in the next lesson.
 
@@ -309,7 +309,7 @@ This assumption determines the prior. I, for one, run into many more librarians 
 
 But for our purposes, understanding the math, I want to emphasize that _any_ questions worth debating can be pictured in the context of the diagram. Questions of context shift around the prior, and questions of personalities and stereotypes shift the relevant likelihoods.
 
-<Figure image="$lesson/possible-shifts.png">
+<Figure image="$lesson/possible-shifts.jpg">
   Even if the incoming values change, our Bayes' theorem diagram remains a
   useful tool for calculating probabilities.
 </Figure>

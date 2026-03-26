@@ -69,7 +69,7 @@ You might start by focusing on this energy equation. Since $\textcolor{red}{v_1}
 On our phase diagram, the graph of the energy equation $$\frac12 \textcolor{blue}{m_1}(\textcolor{red}{v_1})^2 + \frac12 \textcolor{blue}{m_2}(\textcolor{red}{v_2})^2 = \text{const.}$$ forms the shape of an ellipse. Each point on this ellipse gives you a pair of velocities that satisfy the conservation of energy equation, meaning all points of this ellipse correspond to the same total kinetic energy.
 
 <Figure
-  image="$lesson/draw-energy-ellipse.png"
+  image="$lesson/draw-energy-ellipse.jpg"
   video="$lesson/draw-energy-ellipse.mp4"
 >
 
@@ -82,7 +82,7 @@ In fact, let's actually change our coordinates a little to make this a perfect c
 That way, when you look at this conservation of energy equation, it's saying $\frac12(x^2 + y^2) = \text{const.}$, which is the equation for a circle. (The radius of the circle depends on the total kinetic energy.)
 
 <Figure
-  image="$lesson/energy-circle.png"
+  image="$lesson/energy-circle.jpg"
   video="$lesson/energy-circle.mp4"
 >
 
@@ -94,7 +94,7 @@ At the beginning, when the first block is sliding to the left and the second one
 But what about after the first collision? How do we know what happens? Conservation of energy tells us we must jump to some other point on this circle. But which one?
 
 <Figure
-  image="$lesson/where-next.png"
+  image="$lesson/where-next.jpg"
 >
 
 Where in this phase space will the collision take us next?
@@ -106,7 +106,7 @@ Well, use the conservation of momentum! This tells us that before and after a co
 In our rescaled coordinates, we can express the conservation of momentum as the expression $\sqrt{\textcolor{blue}{m_1}}x + \sqrt{\textcolor{blue}{m_2}}y = \text{const.}$, which is the equation for a line with the slope $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$. The position of the line depends on what that constant momentum is. But we know it must pass through our first point, which locks us into place.
 
 <Figure
-  image="$lesson/conservation-of-momentum.png"
+  image="$lesson/conservation-of-momentum.jpg"
 >
 
 This green line represents all the pairs of velocities with the same total momentum as our initial setup.
@@ -118,7 +118,7 @@ Just to be clear what all this is saying: All other pairs of velocities which wo
 So notice, these two constraints narrow our options down to just one other point that we could jump to:
 
 <Figure
-  image="$lesson/one-possible-point.png"
+  image="$lesson/one-possible-point.jpg"
 >
 
 There is only one other point which falls on both the conservation of energy circle and the conservation of momentum line, so that must be the point that represents our velocities after the collision.
@@ -144,7 +144,7 @@ And from here, you can fill in the rest for how block collisions correspond to h
 We keep going like this until we know that the blocks will never touch again. This happens when both velocities are positive (which means the blocks are both moving to the right), and the big block is moving faster than the small one. That corresponds to this triangular region of the diagram:
 
 <Figure
-  image="$lesson/triangular-region.png"
+  image="$lesson/triangular-region.jpg"
 >
 
 Each point within the triangular region represents a pair of block velocities where future collisions are impossible.
@@ -176,7 +176,7 @@ But our question remains. Why is it that when the mass ratio is a power of 100, 
 Well, if you stare at this picture, maybe, just maybe, you might notice that all the arc-lengths between the points of this circle seem to be about the same.
 
 <Figure
-  image="$lesson/equal-arcs.png"
+  image="$lesson/equal-arcs.jpg"
 >
 
 These arc lengths seem to be equal. Are they?
@@ -187,23 +187,23 @@ It's not immediately obvious that this should be true. But if it is, it means th
 
 The key here is to use the ever-helpful inscribed angle theorem, which says that whenever you form an angle using three points on a circle ($P_1$, $P_2$, and $P_3$), it will be exactly half the angle formed by $P_1$, the circle's center, and $P_3$.
 
-<Figure image="$lesson/inscribed-angle-theorem.png" />
+<Figure image="$lesson/inscribed-angle-theorem.jpg" />
 
 $P_2$ can be anywhere on this circle, except in that arc between $P_1$ and $P_3$, and this fact will be true.
 
 So now look at our phase space, and focus specifically on these three points:
 
-<Figure image="$lesson/theta.png" />
+<Figure image="$lesson/theta.jpg" />
 
 Remember, the vertical hop corresponds to the small block bouncing off the wall, and the second hop along a slope of $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$ corresponds to a momentum-conserving block collision.
 
 Let's call the angle between these lines $\theta$. Then using the inscribed angle theorem, the arc length between these bottom two points will be $2\theta$ (measured in radians).
 
-<Figure image="$lesson/2theta.png" />
+<Figure image="$lesson/2theta.jpg" />
 
 Notice, since all the diagonal momentum lines are parallel, the same reasoning means that all of these arcs must also be $2\theta$.
 
-<Figure image="$lesson/placed-arcs.png" video="$lesson/placing-arcs.mp4" />
+<Figure image="$lesson/placed-arcs.jpg" video="$lesson/placing-arcs.mp4" />
 
 So each collision creates a new arc which covers another $2\theta$ radians of the circle.
 
@@ -246,17 +246,17 @@ So the answer would be 314, meaning that if our mass ratio were one such that $\
 
 You know what we need to do now. Let's go ahead and actually compute the value $\theta$, say, when the mass ratio is 100 : 1. Remember that the rise-over-run slope of this constant momentum line is $-\sqrt{\frac{\textcolor{blue}{m_1}}{\textcolor{blue}{m_2}}}$, which in the example image below, where the large block has a mass of 100kg, is a slope of -10.
 
-<Figure image="$lesson/slope.png" />
+<Figure image="$lesson/slope.jpg" />
 
 That would mean the tangent of the angle $\theta$, opposite over adjacent, is the run over the negative rise, which is 1/10 in this example. So $\theta = \arctan(1/10)$.
 
-<Figure image="$lesson/compute-theta.png" />
+<Figure image="$lesson/compute-theta.jpg" />
 
 In general, $$\theta = \arctan(\frac{\sqrt{\textcolor{blue}{m_2}}}{\sqrt{\textcolor{blue}{m_1}}})$$.
 
 If you go and plug these into a calculator, you'll notice that the arctan of each small value is quite close to the value itself.
 
-<Figure image="$lesson/theta-table.png" />
+<Figure image="$lesson/theta-table.jpg" />
 
 For example, $\arctan(1/100)$, corresponding to a big mass of 10,000 kilograms, is extremely close to 1/100.
 
@@ -296,17 +296,17 @@ These are the first four digits of $\pi$, because that is by definition what the
 
 All this relies on the hope that the inverse tangent of a small value is sufficiently close to the value itself, which is another way of saying that the tangent of a small value is approximately that value.
 
-<Figure image="$lesson/tan-arctan.png" />
+<Figure image="$lesson/tan-arctan.jpg" />
 
 Intuitively, there's a nice reason why this is true. Looking at a unit circle, the tangent of any given angle is the height of this little triangle divided by its width.
 
-<Figure image="$lesson/tan-triangle.png" />
+<Figure image="$lesson/tan-triangle.jpg" />
 
 When that angle is really small, the width is basically 1, and the height is basically the same as the arc length along the circle, which by definition is $\theta$.
 
 To be more precise about it, the Taylor series expansion of $\tan(\theta)$ shows that this approximation will only have a cubic error term. So for example, $\tan(1/100)$ differs from $1/100$ by something on the order of 1/1,000,000.
 
-<Figure image="$lesson/tan-taylor.png" />
+<Figure image="$lesson/tan-taylor.jpg" />
 
 So even if we consider 314 steps with this angle, the error between the actual value of $\arctan(1/100)$ and the approximation of 0.01 won't have a chance to accumulate enough to be significant.[^1]
 
@@ -318,13 +318,13 @@ So even if we consider 314 steps with this angle, the error between the actual v
 
 Let's zoom out and sum up: When blocks collide, you can figure out how their velocities change by slicing a line through a circle in a velocity phase diagram, with each curve representing a conservation law.
 
-<Figure image="$lesson/conservation-laws.png" />
+<Figure image="$lesson/conservation-laws.jpg" />
 
 Most notably, the conservation of energy plants the circular seed that ultimately blossoms into the $\pi$ we find in the final count.
 
 Specifically, due to some inscribed angle geometry, the points we hit on this circle are spaced out evenly, separated by the angle we were calling $2\theta$.
 
-<Figure image="$lesson/placed-arcs.png" />
+<Figure image="$lesson/placed-arcs.jpg" />
 
 This lets us rephrase the question of counting collisions as instead asking how many times we must add $2\theta$ to itself before it surpasses $2\pi$.
 
@@ -340,17 +340,17 @@ $$
 
 And $\arctan(x)$ is so well approximated by $x$ for small values that when the mass ratio is some power of 100, $\theta$ is sufficiently close to $\arctan(\theta)$ to give the same final count.
 
-<Figure image="$lesson/x-approximates-arctan.png" />
+<Figure image="$lesson/x-approximates-arctan.jpg" />
 
 I'll emphasize again what this phase space allowed us to do, because this is a lesson useful for all sorts of math, like differential equations, chaos theory, and other flavors of dynamics: By representing the relevant _state_ of your system as a single _point_ in an abstract space, it lets you translate problems of dynamics into problems of geometry.
 
-<Figure image="$lesson/phase-space.png" />
+<Figure image="$lesson/phase-space.jpg" />
 
 I repeat myself because I don't want you to come away just remembering a neat puzzle where $\pi$ shows up unexpectedly; I want you to think of this surprise appearance as a distilled remnant of the deeper relationship at play.
 
 And if this solution leaves you feeling satisfied, it shouldn't. Because there is another perspective, more clever and pretty than this one, due to Galperin in [the original paper](https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf) on this phenomenon, which invites us to draw a striking parallel between the dynamics of these blocks, and that of a beam of light bouncing between two mirrors.
 
-<Figure image="$lesson/mirrors-teaser.png" />
+<Figure image="$lesson/mirrors-teaser.jpg" />
 
 Trust me, I've saved the best for last on this topic, so I hope to see you again in the <LessonLink id="clacks-via-light">next lesson</LessonLink>.
 

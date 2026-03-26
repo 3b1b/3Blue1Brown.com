@@ -5,7 +5,7 @@ chapter: 3
 credits:
   - Lesson by Grant Sanderson
   - Text adaptation by Josh Pullen
-thumbnail: $lesson/thumbnail.png
+thumbnail: $lesson/thumbnail.jpg
 interactive: true
 ---
 
@@ -37,7 +37,7 @@ Spend a bit of time experimenting, now with a bit more knowledge of how this who
 
 The network we've developed, with two hidden layers of 16 neurons each, chosen mostly for aesthetic reasons, is… not bad. It classifies about 96% of new images it sees correctly. And honestly, if you look at some of the examples it messes up on, you feel compelled to cut it a little slack.
 
-<Figure image="$lesson/wrong-answers.png">
+<Figure image="$lesson/wrong-answers.jpg">
   These are some tricky digits! It's not surprising the network struggled here.
 </Figure>
 
@@ -51,7 +51,7 @@ Given how daunting the initial task is, there's something incredible about any n
 
 ## What Are These Layers Doing?
 
-<Figure image="$lesson/layer-hypothesis.png">
+<Figure image="$lesson/layer-hypothesis.jpg">
   This was our prediction for the behavior of the layers. Is this what they
   actually do?
 </Figure>
@@ -60,7 +60,7 @@ Well, for this one at least, not at all! Remember how in the first lesson, I sai
 
 When we look at the weights associated with the transition from the first layer to the next, instead of picking up on isolated little edges here and there, they look, well, almost random. There are some loose patterns, but hardly the ones we might expect.
 
-<Figure image="$lesson/second-layer-weights.png">
+<Figure image="$lesson/second-layer-weights.jpg">
   The neurons in the second layer are looking for very loose patterns, but not
   necessarily the little edges we predicted.
 </Figure>
@@ -69,7 +69,7 @@ It seems that in the unfathomably large 13,002-dimensional space of possible wei
 
 To really drive this point home, watch what happens when you input a random image:
 
-<Figure image="$lesson/random-input.png">
+<Figure image="$lesson/random-input.jpg">
   The neural network confidently predicts that this random noise is a 5.
 </Figure>
 
@@ -98,7 +98,7 @@ As you spend time playing with the network, you'll start to find all kinds of ed
 
 Again, think about what a constrained training environment this network had. Every digit that it saw was of a particular size, centered in the frame. So if you give it something that is too big or too small or not quite in the center, it is bound to get confused.
 
-<Figure image="$lesson/confused-network.png">
+<Figure image="$lesson/confused-network.jpg">
   The network was only trained on centered, properly-sized images. So when it
   sees anything different, it gets confused.
 </Figure>

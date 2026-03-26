@@ -26,14 +26,14 @@ There is a lovely puzzle hidden in the midst of darts, higher dimensional geomet
 We're going to play a game of darts where we lose the game when the dart misses the bullseye.
 But this bullseye is too small, so to begin let's make it the entire size of the dartboard.
 
-<Figure image="$lesson/bullseye.png" video="$lesson/bullseye.mp4" />
+<Figure image="$lesson/bullseye.jpg" video="$lesson/bullseye.mp4" />
 
 Each time we hit the bullseye, it will shrink depending on where the dart lands.
 This makes the rounds get harder and harder as we continue.
 A line will be drawn from the center of the dartboard to the landing point, we'll call this line $h$.
 Then we'll draw the chord perpendicular to $h$, whose length will define the diameter of the new bullseye.
 
-<Figure image="$lesson/chord.png" video="$lesson/chord.mp4" show="video" />
+<Figure image="$lesson/chord.jpg" video="$lesson/chord.mp4" show="video" />
 
 **Where does the dart have to land in order for the circle to remain unchanged?**
 
@@ -46,7 +46,7 @@ Exactly in the center of the circle. Then the line $h$ will have a distance of $
 This game rewards good shots because the length of the chord will be close to the old diameter when the dart lands close to the center.
 When the dart lands near the edge, the new diameter will be dramatically smaller.
 
-<Figure image="$lesson/new_diameter.png" video="$lesson/new_diameter.mp4" />
+<Figure image="$lesson/new_diameter.jpg" video="$lesson/new_diameter.mp4" />
 
 When a dart is thrown and it doesn't land in the bullseye, the game is over.
 The score is the number of darts thrown, so even if the first dart misses, the minimum score is still $1$. Try playing the game for yourself by clicking below.
@@ -63,7 +63,7 @@ Instead of having a human playing this game, we'll create a robot who throws the
 Imagine a square that surrounds the dartboard, this robot's throws will be uniformly distributed on the square.
 This is not exactly a realistic distribution, which would be rotationally symmetric.
 
-<Figure image="$lesson/distributions.png" video="$lesson/distributions.mp4" />
+<Figure image="$lesson/distributions.jpg" video="$lesson/distributions.mp4" />
 
 To make things simpler the dartboard is the unit circle, so each side of the square has a length of $2$.
 The $x$ and $y$ coordinates of the dart's landing are chosen uniformly:
@@ -73,13 +73,13 @@ x\in [-1,1] \\
 y\in [-1,1]
 $$
 
-<Figure image="$lesson/xy_coord.png" video="$lesson/xy_coord.mp4" />
+<Figure image="$lesson/xy_coord.jpg" video="$lesson/xy_coord.mp4" />
 
 The square does not shrink with the bullseye, it always stays with the dartboard.
 The question to be answered is what is the expected score for this robot?
 As the robot plays more and more games, what is the average score?
 
-<Figure image="$lesson/histogram.png" video="$lesson/histogram.mp4" />
+<Figure image="$lesson/histogram.jpg" video="$lesson/histogram.mp4" />
 
 We can calculate the expected score [^1] by adding together all of the scores multiplied by the probability that the game ends on that score.
 
@@ -106,7 +106,7 @@ When faced with a difficult problem, we can try to get a foothold by breaking it
 The first question we might ask is what is the probability of making the first shot?
 The probability $P(S>1)$ can be found by dividing the area of the circle $A=\pi r^2=\pi$ by the area of the square $2\cdot 2=4$.
 
-<Figure image="$lesson/at_least_one.png" video="$lesson/at_least_one.mp4" />
+<Figure image="$lesson/at_least_one.jpg" video="$lesson/at_least_one.mp4" />
 
 The probability of making the first shot is $\frac{\pi}{4}$, so what is the probability of making the second shot?
 This is where things get more interesting because the probability of the second shot depends on where the first shot landed.
@@ -140,13 +140,13 @@ $$
 
 We're asking what is the probability that the sum of squares of four random numbers chosen in the range $[-1,1]$ is less than $1$.
 
-<Figure image="$lesson/prob_four.png" video="$lesson/prob_four.mp4" />
+<Figure image="$lesson/prob_four.jpg" video="$lesson/prob_four.mp4" />
 
 This question is a bit tricky because we could guarantee if all the numbers are less than $0.5$ then the sum of their squares would be less than $1$, but if one was $0.9$ that doesn't necessarily throw it out because the others could be very small.
 We used geometric intuition for the first shot, thinking of it as a point inside or outside of a circle.
 Rather than thinking of the probabilistic event $P(S>2)$ as two separate throws, we can also think about them as a single point in 4D space: $(x_0,y_0,x_1,y_1)\in\mathbb{R}^4$.
 
-<Figure image="$lesson/4D_point.png" video="$lesson/4D_point.mp4" />
+<Figure image="$lesson/4D_point.jpg" video="$lesson/4D_point.mp4" />
 
 Just like how choosing two random numbers and seeing if the sum of their squares is less than $1$ brought us to the area of a circle, doing the same with 4 numbers brings us to the volume of a 4D ball.
 
@@ -166,7 +166,7 @@ For every dart throw, we are picking an additional 2 random numbers (the x and y
 
 The pattern of dividing the volume of higher dimensional balls by the volume of higher dimensional cubes continues when calculating the probability of larger scores.
 
-<Figure image="$lesson/histogram_volume.png" />
+<Figure image="$lesson/histogram_volume.jpg" />
 
 For $P(S>3)$ we can calculate $\frac{\text{Vol}(\text{6D Ball})}{\text{Vol}(\text{6D Cube})}$ because the question is analogous to randomly choosing six numbers and having the sum of their squares be less than $1$.
 
@@ -221,7 +221,7 @@ $$
 However we've been calculating probabilities in the form of greater than $P(S>i)$ instead of equal to $P(S=i)$.
 That is completely fine because $P(S=2)$ is equivalent to $P(S>1)-P(S>2)$.
 
-<Figure image="$lesson/greater_equal_collapse.png" />
+<Figure image="$lesson/greater_equal_collapse.jpg" />
 
 <Question
   question="What is the value of $P(S=2)$?"
@@ -323,7 +323,7 @@ We can rearrange the equation $x_0+x_1<1$ to $x_1<1-x_0$ which highlights the ar
 After bounding the areas inside the square from $(0,0)$ to $(1,1)$, we can see our target area is the lower triangle.
 
 <Figure
-  image="$lesson/triangle_area.png"
+  image="$lesson/triangle_area.jpg"
 >
 
 A point in the green triangle means we continue, we stop playing in the red triangle.

@@ -38,7 +38,7 @@ $\frac{d}{dx} (x^x)$
 
 </PiCreature>
 
-<Figure image="$lesson/partial_2.png">
+<Figure image="$lesson/partial_2.jpg">
 
 A graphical depiction of a partial differential equation.
 
@@ -48,11 +48,11 @@ But if the course ahead of you is anything like my first introduction to calculu
 
 You see, almost of all the visual intuitions for a first year in calculus are based on graphs. The derivative is the slope of a graph, the integral is an area under that graph, etc.
 
-<Figure image="$lesson/intro_1.png" />
+<Figure image="$lesson/intro_1.jpg" />
 
 But as you generalize calculus beyond functions whose inputs and output are simply numbers, it's not always possible to graph the function your analyzing.
 
-<Figure image="$lesson/intro_2.png" />
+<Figure image="$lesson/intro_2.jpg" />
 
 If your intuitions for fundamental ideas like the derivative are rooted too rigidly in graphs, this can make for a very tall and largely unnecessary conceptual hurdle between you and the more "advanced" topics like multivariable calculus, complex analysis, differential geometry, etc.
 
@@ -66,7 +66,7 @@ What I want to share with you is a way of thinking about derivatives, which I'll
 
 First off, let's just make sure we're all on the same page about what the standard visual is. If you graph a function which simply takes real numbers as inputs and outputs, one of the first things you learn in a calculus course is that the derivative gives you the slope of this graph.
 
-<Figure image="$lesson/transform_1.png" video="$lesson/transform_1.mp4" />
+<Figure image="$lesson/transform_1.jpg" video="$lesson/transform_1.mp4" />
 
 What we mean by that is that the derivative of the function is a new function which for every input x, returns this slope.
 
@@ -90,7 +90,7 @@ I'd encourage you not think of this derivative-as-slope idea as being the defini
 The basic idea behind the alternate visual for the derivative is to think of the function as mapping all possible inputs on a number line to their corresponding outputs on a different number line.
 
 <Figure
-  image="$lesson/transform_2.png"
+  image="$lesson/transform_2.jpg"
   video="$lesson/transform_2.mp4"
   show="video"
 />
@@ -98,19 +98,19 @@ The basic idea behind the alternate visual for the derivative is to think of the
 In this case the derivative gives a measure of how much this input space gets stretched or squished in various regions. That is, if you zoom in around some specific input, and look at some evenly spaced points around it, the derivative of the function at that input will tell you how spread out or contracted those points become.
 
 <Figure
-  image="$lesson/transform_3.png"
+  image="$lesson/transform_3.jpg"
   video="$lesson/transform_3.mp4"
   show="video"
 />
 
 A specific example helps. The function $f(x) = x^2$ maps the point at $1$ to $1$, the point at $2$ to $4$, the point at $3$ to $9$, and so on.
 
-<Figure image="$lesson/transform_4.png" />
+<Figure image="$lesson/transform_4.jpg" />
 
 If you were to zoom in on a little cluster of points around $1$, and see where they land around the relevant output, which for this function happens to also be $1$, you'd notice they get stretched out.
 
 <Figure
-  image="$lesson/transform_5.png"
+  image="$lesson/transform_5.jpg"
   video="$lesson/transform_5.mp4"
   show="video"
 />
@@ -120,7 +120,7 @@ In fact, it roughly looks like stretching out by a factor of $2$. And the closer
 If you looked at a neighborhood of points around the input $3$, they would roughly get stretched out by a factor of $6$, which is what it means for the derivative of this function at the input $3$ to be $6$.
 
 <Figure
-  image="$lesson/transform_6.png"
+  image="$lesson/transform_6.jpg"
   video="$lesson/transform_6.mp4"
   show="video"
 />
@@ -136,14 +136,14 @@ If you looked at a neighborhood of points around the input $3$, they would rough
 
 The derivative of $x^2$ at $x=\frac{1}{4}$ is $\frac{1}{2}$, so the surrounding points would stretch out by a factor of $\frac{1}{2}$.
 
-<Figure image="$lesson/transform_7.png" />
+<Figure image="$lesson/transform_7.jpg" />
 
 </Question>
 
 The input zero is interesting: Zooming in by a factor of $10$, it doesn't exactly look like a constant stretching or squishing.
 
 <Figure
-  image="$lesson/transform_8.png"
+  image="$lesson/transform_8.jpg"
   video="$lesson/transform_8.mp4"
   show="video"
 />
@@ -151,7 +151,7 @@ The input zero is interesting: Zooming in by a factor of $10$, it doesn't exactl
 For one thing, all the outputs end up on the right positive side of things. As we zoom in closer, by $100$x, or $1,000$x, it looks more and more like the small neighborhood around zero gets collapsed to a point.
 
 <Figure
-  image="$lesson/transform_9.png"
+  image="$lesson/transform_9.jpg"
   video="$lesson/transform_9.mp4"
   show="video"
 />
@@ -171,7 +171,7 @@ We really only care about local behavior here.
 Notice that the inputs in a little neighborhood around, say, $-2$, don't just get stretch out, they also get flipped around.
 
 <Figure
-  image="$lesson/transform_10.png"
+  image="$lesson/transform_10.jpg"
   video="$lesson/transform_10.mp4"
   show="video"
 />
@@ -221,7 +221,7 @@ $$
 
 You can also think of this as finding a fixed point of the function $f(x) = 1 + \frac{1}{x}$. But here's the thing, there are actually two solutions for $x$; two special number where $1$ plus $1$ over that number gives you back the same number.
 
-<Figure image="$lesson/inf_1.png" />
+<Figure image="$lesson/inf_1.jpg" />
 
 One is the golden ratio $\varphi$, around $1.618...$, and the other is at $-0.618...$, which is $\frac{-1}{\varphi}$. I like to call this other number $\varphi$'s "little brother", since just about any property $\varphi$ has, this number also has. So would it be valid to say that this infinite fraction also equals $\varphi$'s little brother, $-0.618...$?
 
@@ -237,23 +237,23 @@ Maybe you initially say "obviously not!". Everything on the left-hand side is po
 
 One way to think of it, though it's not the only way, is to imagine starting with some constant, like $1$, then repeatedly applying the function $1 + \frac{1}{x}$, and asking about what this approaches as you keep going.
 
-<Figure image="$lesson/inf_2.png" />
+<Figure image="$lesson/inf_2.jpg" />
 
 So in that view, maybe if you start with a negative number, it's not so crazy for the whole expression to end up negative.
 
-<Figure image="$lesson/inf_3.png" />
+<Figure image="$lesson/inf_3.jpg" />
 
 After all, if you start with $\frac{-1}{\varphi}$, then apply the function $1 + \frac{1}{x}$, you get back $\frac{-1}{\varphi}$. So no matter how many times you apply it, you'll stay fixed at that value.
 
-<Figure image="$lesson/inf_4.png" />
+<Figure image="$lesson/inf_4.jpg" />
 
 Well, even then, there is one reason you view $\varphi$ as the favorite brother in this pair. Try this, pull up a calculator of some kind, start with any random number, then plug it into this function $1 + \frac{1}{x}$. Then do it again. And again. And again and again and again.
 
-<Figure image="$lesson/inf_5.png" />
+<Figure image="$lesson/inf_5.jpg" />
 
 No matter what constant you start with, you will eventually end up at $1.618$. Even if you start with a negative number, even one really really close $\varphi$'s little brother, eventually it will shy away from that value and jump back to phi.
 
-<Figure image="$lesson/inf_6.png" />
+<Figure image="$lesson/inf_6.jpg" />
 
 So what's going on here? Why is one of these fixed points favored over the other?
 
@@ -261,23 +261,23 @@ Maybe you can already see how the transformational understanding of derivatives 
 
 If you plug in some random input to this function, the $y$-value tells you the corresponding output.
 
-<Figure image="$lesson/inf_7.png" />
+<Figure image="$lesson/inf_7.jpg" />
 
 To think about plugging that output back into the function, you might first move horizontally until you hit the line $y=x$, which will get you to a position where the $x$-value corresponds to your previous output.
 
-<Figure image="$lesson/inf_8.png" />
+<Figure image="$lesson/inf_8.jpg" />
 
 Then, you can move vertically to see what the output at this new $x$-value is.
 
-<Figure image="$lesson/inf_9.png" />
+<Figure image="$lesson/inf_9.jpg" />
 
 Then repeat: Move horizontally to the line $y=x$ to find a point whose $x$-value is the same as the output you just got, then move vertically to apply the function.
 
-<Figure image="$lesson/inf_10.png" />
+<Figure image="$lesson/inf_10.jpg" />
 
 Personally, I think this is kind of an awkward way to think about repeatedly applying a function, don't you? I mean, it makes sense, but you kind of have to pause to think about it to remember which way to draw the lines. You can, if you want, think through what conditions make this spider-web process narrow in on a fixed point, vs. propagating away from it.
 
-<Figure image="$lesson/inf_11.png" />
+<Figure image="$lesson/inf_11.jpg" />
 
 <b>
   Try thinking about it. In what cases would the result propagate away from the
@@ -292,27 +292,27 @@ When the slope of the graph at the point where it intersects the line $x=y$ is r
 
 But let's turn to how this function acts as a transformation.
 
-<Figure image="$lesson/inf_12.png" />
+<Figure image="$lesson/inf_12.jpg" />
 
 What does it look like to repeatedly apply the $1 + \frac{1}{x}$ in this context? Well, after letting it map all input points to outputs, you consider those as the new inputs and apply that same process again and again.
 
-<Figure image="$lesson/inf_13.png" video="$lesson/inf_13.mp4" show="video" />
+<Figure image="$lesson/inf_13.jpg" video="$lesson/inf_13.mp4" show="video" />
 
 Notice how in animating this with these dots representing some sample points, it doesn't take many iterations at all for most dots to clump in around $1.618$.
 
 Now, we know that $1.618$ and its little brother $-0.618$ stay fixed in place during each iteration of this process, but zoom in on the neighborhood around $1.618$.
 
-<Figure image="$lesson/inf_14.png" video="$lesson/inf_14.mp4" show="video" />
+<Figure image="$lesson/inf_14.jpg" video="$lesson/inf_14.mp4" show="video" />
 
 During the map, points in that region get contracted around $\varphi$, meaning the function $1 + \frac{1}{x}$ has a derivative with magnitude less than 1 at the input $\varphi$. In fact, this derivative works out to be around $-0.38$ at the input $\varphi$. So each repeated application scrunches that neighborhood smaller, like a gravitational pull towards $\varphi$.
 
 So now tell me what you think happens in a neighborhood of $\varphi$'s little brother.
 
-<Figure image="$lesson/inf_15.png" video="$lesson/inf_15.mp4" show="video" />
+<Figure image="$lesson/inf_15.jpg" video="$lesson/inf_15.mp4" show="video" />
 
 There, the derivative has a magnitude larger than $1$, so points near this fixed point are repelled away from it, by more than a factor of $2$ each iteration. Mathematicians would call this right value a "stable" fixed point, while the left one is an "unstable fixed point". Something is considered stable if when you perturb it a little, it tends to come back towards where it started, rather than going away.
 
-<Figure image="$lesson/inf_16.png" />
+<Figure image="$lesson/inf_16.jpg" />
 
 So the stability of a fixed point is determined by whether the magnitude of its derivative is bigger or smaller than $1$, and this explains why $\varphi$ always shows up in the numerical play, and $\varphi$'s little brother does not. As to whether or not you want to consider $\varphi$'s little brother a valid value of our infinite fraction? Well, that's really up to you. Everything we just showed suggests that if you think of this expression as representing a limiting process, only phi makes sense. But maybe you think of it not as a limit, but as a static, purely algebraic object.
 
@@ -328,7 +328,7 @@ My point here not that understanding derivatives as measuring changes in density
 
 But as I mentioned, the real reason I'd recommend you carry this perspective with you as you learn new topics is not so much for how it will strengthen your understanding of single-variable calculus, but for what comes after. There are many topics typically taught in a college math department, which don't exactly have a reputation of being incredibly accessible.
 
-<Figure image="$lesson/inf_17.png" />
+<Figure image="$lesson/inf_17.jpg" />
 
 Understanding the transformation view of derivatives provides a great pathway into topics such as multivariable calculus, complex analysis and differential geometry.
 

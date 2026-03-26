@@ -27,13 +27,13 @@ In the last lesson we explored the structure of a neural network. Now, let's tal
 
 As a reminder, our goal is to recognize handwritten digits. It's a classic example&mdash;the "hello world" of neural networks.
 
-<Figure image="$lesson/three-3s.png">
+<Figure image="$lesson/three-3s.jpg">
   Our goal is to recognize these handwritten digits.
 </Figure>
 
 These digits are rendered onto a 28x28 pixel grid, where each pixel has some grayscale value between 0.0 and 1.0. Those 784 values determine the activations of the neurons in the input layer of the network.
 
-<Figure image="$lesson/pixels-as-input.png">
+<Figure image="$lesson/pixels-as-input.jpg">
   Each pixel value in the image becomes the activation of a particular neuron in
   the first layer of the network.
 </Figure>
@@ -60,7 +60,7 @@ $$
 In this way, values propagate from one layer to the next, entirely determined by the weights and biases. The brightest of the ten neurons in the output layer is the network's choice for which digit the image represents.
 
 <Figure
-  image="$lesson/recap-propagation.png"
+  image="$lesson/recap-propagation.jpg"
   video="$lesson/network-propagation.mp4"
 >
   The input layer of neurons has activations based on the pixel values of an
@@ -72,7 +72,7 @@ In total, given the somewhat arbitrary choice of 2 hidden layers with 16 neurons
 
 Remember, the motivation we had in mind for this layered structure was that maybe the second layer could pick up on edges, the third on patterns like loops and lines, and the last one pieces together those patterns to recognize digits:
 
-<Figure image="$lesson/layer-hypothesis.png">
+<Figure image="$lesson/layer-hypothesis.jpg">
   We hope that the layered structure might allow the problem to be broken into
   smaller steps, from pixels to edges to loops and lines, and finally to digits.
 </Figure>
@@ -87,13 +87,13 @@ What makes machine learning different from other computer science is that you do
 
 The labeled images we feed in are collectively known as the "training data".
 
-<Figure image="$lesson/training-data.png">
+<Figure image="$lesson/training-data.jpg">
   The network learns by looking at examples of correctly identified digits.
 </Figure>
 
 Hopefully, the layered structure will mean that what it learns generalizes to images beyond the training data. To test this, after training the network, we can show it more labeled data that it's never seen before and see how accurately it classifies them.
 
-<Figure image="$lesson/training-vs-testing.png">
+<Figure image="$lesson/training-vs-testing.jpg">
   We use some of the data for training the network and some other data it's
   never seen before for testing it after it's trained.
 </Figure>
@@ -102,7 +102,7 @@ This process requires a _lot_ of data. Fortunately, the good people behind the [
 
 I should point out that although it can be provocative to describe a machine as "learning", once you see how it works, it feels a lot less like some crazy sci-fi premise and a lot more like a calculus exercise. It really just comes down to finding the minimum of a specific function.
 
-<Figure image="$lesson/finding-minima.png">
+<Figure image="$lesson/finding-minima.jpg">
   The process of learning is essentially just finding lower and lower points on
   a specific function.
 </Figure>
@@ -111,7 +111,7 @@ I should point out that although it can be provocative to describe a machine as 
 
 Remember, our network's behavior is determined by all of its weights and biases. The weights represent the strength of connections between each neuron in one layer and each neuron in the next. And each bias is an indication of whether its neuron tends to be active or inactive.
 
-<Figure image="$lesson/weights-and-biases.png">
+<Figure image="$lesson/weights-and-biases.jpg">
   The behavior of the network depends on its weights and biases.
 </Figure>
 
@@ -119,7 +119,7 @@ To start things off, initialize all the weights and biases to be random numbers.
 
 For example, if you feed in this image of a 3, the output layer just looks like a mess:
 
-<Figure image="$lesson/random-trash.png">
+<Figure image="$lesson/random-trash.jpg">
   Initialized with totally random weights and biases, the network is terrible at
   identifying digits.
 </Figure>
@@ -128,20 +128,20 @@ So how do you programmatically identify that the computer is doing a lousy job a
 
 What you do is define a cost function, which is a way of telling the computer, "No, bad computer, that output layer should have activations which are 0 for most neurons, but with a 1 for the third neuron. What you gave me is utter trash!"
 
-<Figure image="$lesson/cost-of-difference.png">
+<Figure image="$lesson/cost-of-difference.jpg">
   We measure how badly the network is doing by comparing its results to the
   correct answer.
 </Figure>
 
 To say that a little more mathematically, add up the squares of the differences between each of these trash output activations and the values you want them to have. We'll call this the "cost" of a single training example.
 
-<Figure image="$lesson/cost-calculation.png">
+<Figure image="$lesson/cost-calculation.jpg">
   {`The "cost" is calculated by adding up the squares of the differences between what we got and what we want.`}
 </Figure>
 
 The cost is small when the network confidently classifies this image correctly but large when it doesn't know what it's doing.
 
-<Figure image="$lesson/cost-ranking-question.png" />
+<Figure image="$lesson/cost-ranking-question.jpg" />
 
 <Question
   question="Suppose the network is shown an image of a 4. Rank the costs associated with each of the possible outputs shown above."
@@ -164,14 +164,14 @@ But we aren't just interested in how the network performs on a _single_ image. T
 
 This is, to put it lightly, a complicated function. Remember how the network itself is a function? It has 784 inputs (the pixel values), 10 outputs, and 13,002 parameters.
 
-<Figure image="$lesson/neural-network-function.png">
+<Figure image="$lesson/neural-network-function.jpg">
   The neural network is a function that takes in images and spits out digit
   predictions based on the weights and biases.
 </Figure>
 
 The cost function is a layer of complexity on top of that. The inputs of the cost function are those 13,002 weights and biases, and it spits out a single number describing how bad those weights and biases are. It's defined in terms of the network's behavior on all the tens of thousands of pieces of labeled training data. In other words, this training data is a massive set of parameters to the cost function.
 
-<Figure image="$lesson/cost-function.png">
+<Figure image="$lesson/cost-function.jpg">
   The cost function takes in the weights and biases of a network and uses the
   training images to compute a "cost," measuring how bad the network is at
   classifying those training images.
@@ -185,7 +185,7 @@ Just telling the computer what a terrible job it's doing isn't very helpful. You
 
 To make it easier, rather than struggling to imagine this cost function with 13,002 inputs, let's imagine a simple function with one number as an input, and one number as an output.
 
-<Figure image="$lesson/single-input-cost.png">
+<Figure image="$lesson/single-input-cost.jpg">
   In this simple example, we'll imagine that the cost function takes just one
   input (although, in reality, ours takes 13,002 inputs). How do we find an
   input that minimizes the cost?
@@ -195,14 +195,14 @@ How do you find an input that minimizes the value of this cost function?
 
 Calculus students will know you can sometimes figure out that minimum explicitly by solving for when the slope is zero. However, that's not always feasible for really complicated functions, and it certainly won't be for our 13,002-input function defined in terms of an ungodly number of parameters.
 
-<Figure image="$lesson/infeasible-minimum.png">
+<Figure image="$lesson/infeasible-minimum.jpg">
   For a complicated cost function, computing the exact minimum directly isn't
   going to work.
 </Figure>
 
 A more flexible tactic is to start at a random input and figure out which direction to step to make the output lower. Specifically, find the slope of the function where you are. If the slope is negative, shift to the right. If the slope is positive, shift to the left.
 
-<Figure image="$lesson/follow-slope.png" video="$lesson/follow-slope.mp4">
+<Figure image="$lesson/follow-slope.jpg" video="$lesson/follow-slope.mp4">
   By following the slope (moving in the downhill direction), we approach a local
   minimum.
 </Figure>
@@ -227,7 +227,7 @@ Also, notice how if you make your step sizes proportional to the slope itself wh
 
 Bumping up the complexity a bit, imagine a function with two inputs and one output. You might think of the input space as the xy-plane, with the cost function graphed as a surface above it.
 
-<Figure image="$lesson/2-input-cost.png">
+<Figure image="$lesson/2-input-cost.jpg">
   We can imagine minimizing a function that takes two inputs (which is still not
   13,002 inputs, but it's one step closer). Starting with a random value, look
   for the downhill direction and repeatedly move that way.
@@ -243,7 +243,7 @@ Those of you familiar with multivariable calculus will know that this vector is 
 
 Naturally enough, taking the negative of that vector gives you the direction to step which _decreases_ the function most quickly. What's more, the length of that gradient vector is an indication for just how steep that steepest slope is.
 
-<Figure image="$lesson/negative-gradient.png">
+<Figure image="$lesson/negative-gradient.jpg">
   The gradient, $\nabla C$, gives the uphill direction, so the negative of the
   gradient, $-\nabla C$, gives the downhill direction.
 </Figure>
@@ -252,7 +252,7 @@ To those of you unfamiliar with multivariable calculus, check out some of [the w
 
 So the algorithm for minimizing this function is to compute this gradient direction, take a step downhill, and repeat that over and over. This process is called "gradient descent."
 
-<Figure image="$lesson/gradient-descent.png">
+<Figure image="$lesson/gradient-descent.jpg">
   Gradient descent just means walking in the downhill direction to minimize the
   cost function.
 </Figure>
@@ -268,7 +268,7 @@ It's the same basic idea for a function with 13,002 inputs instead of two inputs
 Imagine organizing all the weights and biases for the entire network into one big column vector with 13,002 entries. Then the negative gradient of the cost function will also be a vector with 13,002 entries.
 
 <Figure
-  image="$lesson/weights-and-gradient.png"
+  image="$lesson/weights-and-gradient.jpg"
   video="$lesson/gradient-nudge-weights.mp4"
 >
   The vector on the left is a list of all the weights and biases for the entire
@@ -281,11 +281,11 @@ The negative gradient is a vector direction in this insanely huge input space th
 
 Each component of the negative gradient vector tells us two things. The sign, of course, tells us whether the corresponding component of the input vector should be nudged up or down. But importantly, the relative magnitudes of the components in this gradient tells us which of those changes matters more.
 
-<Figure image="$lesson/gradient-explained.png" />
+<Figure image="$lesson/gradient-explained.jpg" />
 
 You see, in our network, an adjustment to one weight might have a greater impact on the cost function than an adjustment to some other weight. Consider the image below, and suppose that the network is supposed to be classifying its input as a "3".
 
-<Figure image="$lesson/weight-importance.png">
+<Figure image="$lesson/weight-importance.jpg">
   Some weights have a larger impact on the cost than others.
 </Figure>
 
@@ -293,7 +293,7 @@ Some of these connections just matter more for our training data than others, an
 
 So if the cost function is a layer of complexity on top of the original neural network function, its gradient is one more layer of complexity still, telling us what nudge to all these weights and biases causes the fastest change to the value of the cost function.
 
-<Figure image="$lesson/nudges-on-network.png">
+<Figure image="$lesson/nudges-on-network.jpg">
   The negative gradient tells us how to change the weights and biases to
   decrease the cost most effectively.
 </Figure>
