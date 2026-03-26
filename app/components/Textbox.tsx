@@ -86,6 +86,7 @@ export default function TextBox({
       {...(props as Single)}
     />
   );
+
   return (
     <label
       className={clsx(
@@ -94,6 +95,7 @@ export default function TextBox({
         className,
       )}
     >
+      {/* label */}
       {(label || help) && (
         <div className="flex items-center gap-2">
           {label}
@@ -101,8 +103,12 @@ export default function TextBox({
           {props.required && <span className="text-error">*</span>}
         </div>
       )}
+
+      {/* container */}
       <div className="relative flex max-w-full items-start">
         {input}
+
+        {/* side elements */}
         <div
           ref={sideRef}
           className="absolute top-0 right-0 flex items-start text-gray *:grid *:size-[calc(var(--leading-normal)*1em+--spacing(4)+2px)] *:place-items-center *:p-0"

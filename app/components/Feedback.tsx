@@ -15,12 +15,12 @@ import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
 import { useDebug } from "~/util/hooks";
-import { shortenUrl } from "~/util/string";
+import { shorten } from "~/util/url";
 
 // form id
 const id = "feedback";
 
-// feedback form on every page
+// feedback form
 export default function Feedback() {
   // form state, saved to local storage
   let [name, setName] = useLocalStorage("feedback-name", "");
@@ -190,7 +190,7 @@ export default function Feedback() {
             {status === "success" && issueLink && (
               <p>
                 Submitted feedback!{" "}
-                <Link to={issueLink}>{shortenUrl(issueLink)}</Link>
+                <Link to={issueLink}>{shorten(issueLink)}</Link>
               </p>
             )}
           </Alert>

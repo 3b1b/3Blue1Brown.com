@@ -12,7 +12,7 @@ import { getVariants } from "~/util/misc";
 type Props = {
   // type of alert, determines styling
   type?: Type;
-  // optionally override custom icon
+  // optionally use custom icon
   icon?: ReactElement;
   // class on root
   className?: string;
@@ -69,6 +69,7 @@ export default function Alert({
   );
 }
 
+// for testbed page
 export function Demo({ children }: { children: ReactNode }) {
   const variants = getVariants({ type: Object.keys(types) as Type[] });
 

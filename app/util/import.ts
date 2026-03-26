@@ -3,9 +3,9 @@ import { slugify } from "~/util/string";
 
 // wrapper for importing and using bulk assets
 export const importAssets = <Import, Transformed = Import>(
-  // a passed import.meta.glob<Type>() w/ eager: true
+  // a passed import.meta.glob<SomeType>() w/ eager: true
   imports: Record<string, Import>,
-  // if filename this, use parent folder instead of filename as asset name
+  // if filename is this, use parent folder name as asset name instead
   base = "index",
   // optional transform to apply to each import before returning
   transform: (module: Import, name: string, path: string) => Transformed = (
@@ -18,7 +18,7 @@ export const importAssets = <Import, Transformed = Import>(
     { path, module },
   ]);
 
-  // look up single import by slug-ified name
+  // look up single import by name
   const getOne = (name: string): Transformed | undefined => {
     name = slugify(name);
     const item = map[name];
@@ -38,7 +38,7 @@ export const importAssets = <Import, Transformed = Import>(
 
 // wrapper for lazy importing and using bulk assets
 export const importAssetsAsync = <Import, Transformed = Import>(
-  // a passed import.meta.glob<Type>()
+  // a passed import.meta.glob<SomeType>()
   imports: Record<string, () => Promise<Import>>,
   // if filename this, use parent folder instead of filename as asset name
   base = "index",
@@ -47,7 +47,7 @@ export const importAssetsAsync = <Import, Transformed = Import>(
     module,
   ) => module as unknown as Transformed,
 ) => {
-  // create map of name to import and original path
+  // map of asset name to import and original path
   const map = mapEntries(imports, (path, module) => [
     slugify(nameFromPath(path, base)),
     { path, module },
@@ -57,7 +57,7 @@ export const importAssetsAsync = <Import, Transformed = Import>(
   // https://react.dev/reference/react/use#caveats
   const cache: Record<string, Promise<Transformed | undefined>> = {};
 
-  // look up single import by slug-ified name
+  // look up single asset by name
   const getOne = (name: string): Promise<Transformed | undefined> => {
     name = slugify(name);
 

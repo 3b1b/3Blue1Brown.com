@@ -1,7 +1,7 @@
 # SETUP
 
-- Create "bot" GitHub account that issues will be posted as
 - Generate GitHub fine-grained personal access token
+  - Use personal account or create "bot" account (issues will be posted as this account)
   - Increase expiration as desired
   - Grant access to relevant repo
   - Grant write permissions for issues

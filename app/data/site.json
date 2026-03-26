@@ -10,6 +10,10 @@
   "bucket": "https://storage.googleapis.com/3blue1brown-website-bucket",
   "issues": "https://three-blue-one-brown-issues-92197834749.us-central1.run.app",
 
+  "contact": {
+    "talent": "talent@3blue1brown.com"
+  },
+
   "socials": {
     "channel": "https://www.youtube.com/@3blue1brown",
     "patreon": "https://www.patreon.com/@3blue1brown",

@@ -14,8 +14,9 @@ import Patreon from "./Patreon";
 import Talent from "./Talent";
 import Theater from "./Theater";
 
+// home page
 export default function Home() {
-  // page title
+  // page title, currently viewed lesson in theater
   const title = getLesson(useAtomValue(lessonAtom) ?? "")?.frontmatter.title;
 
   // pi day!

@@ -28,7 +28,7 @@ export default function Partners() {
           const partner = getPartner(id);
           if (!partner) return null;
           const { name = "", tagline = "", quote = "" } = partner.frontmatter;
-          const image = getLogo(id)?.default ?? "";
+          const image = getLogo(id) ?? "";
           return (
             <Card
               key={id}

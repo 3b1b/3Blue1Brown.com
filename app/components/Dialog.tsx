@@ -6,7 +6,7 @@ import clsx from "clsx";
 import Button from "~/components/Button";
 
 type Props = {
-  // element that triggers dialog to open
+  // button element that triggers dialog to open
   trigger: ReactElement<Record<string, unknown>>;
   // dialog title
   title: ReactNode;

@@ -1,5 +1,6 @@
 import { index, route } from "@react-router/dev/routes";
 
+// route manifest
 export default [
   index("pages/home/Home.tsx"),
   route("lessons/:id", "pages/lessons/Lesson.tsx"),

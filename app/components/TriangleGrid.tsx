@@ -20,6 +20,7 @@ const delayEq = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;
 
 gsap.defaults({ ease: "power1.inOut" });
 
+// triangle grid viz
 export default function TriangleGrid() {
   const ref = useRef<HTMLCanvasElement>(null);
   const percent = useParallax(ref);

@@ -6,7 +6,6 @@ import { atom } from "jotai";
 import { setAtom } from "~/util/atom";
 import { scrollTo } from "~/util/dom";
 import { waitFor } from "~/util/misc";
-import { getThumbnail, getWatch } from "~/util/youtube";
 import "youtube-video-element";
 
 type Props = {
@@ -90,3 +89,10 @@ declare global {
     [stopEvent]: YouTubeStopEvent;
   }
 }
+
+// get watch video from id
+export const getWatch = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+
+// get thumbnail image from video id
+export const getThumbnail = (id: string) =>
+  `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;

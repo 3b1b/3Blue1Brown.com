@@ -40,6 +40,7 @@ export default function Meta<Type extends Thing>({
       <meta property="og:description" content={combinedDescription} />
       <meta property="og:image" content="/share.jpg" />
 
+      {/*  json schema seo metadata */}
       {jsonLd && <JsonLd<Type> item={jsonLd} />}
     </>
   );

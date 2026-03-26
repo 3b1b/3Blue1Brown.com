@@ -266,42 +266,6 @@
   @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
 }
 
-@utility stroke-type {
-  animation: stroke-type 1s linear both;
-  -webkit-text-stroke-width: 0.5px;
-}
-
-@keyframes stroke-type {
-  0% {
-    color: transparent;
-    -webkit-text-stroke-color: transparent;
-  }
-  33%,
-  66% {
-    color: transparent;
-    -webkit-text-stroke-color: var(--color-theme);
-  }
-  100% {
-    color: currentColor;
-    -webkit-text-stroke-color: transparent;
-  }
-}
-
-@utility wipe-in {
-  mask-image: linear-gradient(to right, black 33%, transparent 66%);
-  mask-size: 300% 100%;
-  animation: wipe-in var(--duration, 1s) var(--delay, 0s) linear both;
-}
-
-@keyframes wipe-in {
-  from {
-    mask-position: 100% 0%;
-  }
-  to {
-    mask-position: 0% 0%;
-  }
-}
-
 @utility perspective-rotate {
   animation: perspective-rotate 120s linear both infinite;
 }

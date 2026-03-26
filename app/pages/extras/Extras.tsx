@@ -8,6 +8,7 @@ import Blog from "~/pages/extras/Blog";
 import Other from "~/pages/extras/Other";
 import Podcast from "~/pages/extras/Podcast";
 
+// extras page
 export default function Extras() {
   return (
     <>

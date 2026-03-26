@@ -1,3 +1,4 @@
+// partner gallery page introduction section
 export default function Intro() {
   return (
     <section className="bg-theme/10">

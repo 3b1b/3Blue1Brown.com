@@ -38,10 +38,11 @@ export default function Link({
   const external = typeof to === "string" && to.match(/^(http|mailto)/);
 
   // whether to open link in new tab
-  const target = (newTab ?? external) ? "_blank" : "";
+  newTab ??= !!external;
+  const target = newTab ? "_blank" : "";
 
   // whether to show arrow icon
-  arrow ??= !!target;
+  arrow ??= !!newTab;
 
   // current location
   const from = useLocation();

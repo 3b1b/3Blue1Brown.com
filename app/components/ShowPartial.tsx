@@ -12,6 +12,7 @@ type Props = {
   children: ReactNode;
 };
 
+// height limit, in pixels
 const limit = 500;
 
 // show partial content with fade, with button to reveal more

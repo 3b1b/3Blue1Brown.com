@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { useState } from "react";
 import { href, useLocation } from "react-router";
-import { BellIcon, ListIcon, PlayIcon, XIcon } from "@phosphor-icons/react";
+import { BellIcon, PlayIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Grid from "~/components/Grid";
@@ -19,8 +18,6 @@ type Props = {
 
 // header on every page
 export default function Header({ children }: Props) {
-  const [open, setOpen] = useState(false);
-
   const { pathname } = useLocation();
 
   return (
@@ -42,40 +39,23 @@ export default function Header({ children }: Props) {
           </Button>
         </div>
 
-        {/* toggle */}
-        <Button
-          className="lg:hidden"
-          size="sm"
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-          aria-controls="nav"
-          aria-label={open ? "Collapse menu" : "Expand menu"}
-        >
-          {open ? <XIcon /> : <ListIcon />}
-        </Button>
-
         {/* nav */}
-        <Nav
-          className={clsx(
-            "flex-2 max-xl:justify-end max-lg:w-full max-lg:flex-[unset] max-sm:flex-col",
-            !open && "max-lg:hidden",
-          )}
-        />
+        <Nav />
 
         {/* sub title */}
-        <div className="flex grow basis-0 justify-end gap-6 text-right text-dark-gray *:flex *:items-center *:gap-2 max-xl:hidden">
+        <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
           <div>{site.subtitle}</div>
           {pathname === "/" && (
-            <>
-              <div className="lowercase">
+            <div className="flex items-center gap-2 text-sm">
+              <div className="flex items-center gap-1 lowercase">
                 {formatNumber(stats.subscribers)}
                 <BellIcon aria-label="Subscribers" />
               </div>
-              <div className="lowercase">
+              <div className="flex items-center gap-1 lowercase">
                 {formatNumber(stats.views)}
                 <PlayIcon aria-label="Views" />
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

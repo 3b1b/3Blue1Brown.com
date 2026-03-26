@@ -35,13 +35,16 @@ export default function Markdownify({ noParagraph = false, children }: Props) {
   );
 }
 
-// replace components, in both markdownify runtime component and buildtime mdx rollup plugin
+// replace generated markdown elements with other elements/components
+// used in both markdownify runtime component and buildtime mdx rollup plugin
 // https://mdxjs.com/packages/mdx
 export const useMDXComponents = (noParagraph?: boolean): Components => ({
   // section
   section: (props) => {
-    // turn footnotes section into different element to not interfere with alternating section colors
-    if ("data-footnotes" in props) return <aside {...props} />;
+    // turn footnotes section into different tag to not interfere with alternating section colors
+    if ("data-footnotes" in props)
+      // hide
+      return <aside {...props} className="sr-only" />;
     return <section {...props} />;
   },
 
@@ -63,7 +66,7 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
 
   p: (props) => {
     // render paragraphs as spans to avoid unwanted spacing
-    if (noParagraph) return "span";
+    if (noParagraph) return <span {...props} />;
     return <p {...props} />;
   },
 
@@ -72,6 +75,7 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
     const { href = "", children = <></>, ...rest } = props;
     // replace footnote reference
     if ("data-footnote-ref" in props) return <Footnote {...props} />;
+    // replace with our link component
     return (
       <Link to={href} {...rest}>
         {children}
@@ -82,6 +86,7 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
   // quote
   blockquote: (props) => {
     const { children = <></>, ...rest } = props;
+    // replace with our quote component
     return <Quote {...rest}>{children}</Quote>;
   },
 });

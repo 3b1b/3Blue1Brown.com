@@ -2,7 +2,7 @@ import { CaretUpIcon } from "@phosphor-icons/react";
 import { useWindowScroll } from "@reactuses/core";
 import Button from "~/components/Button";
 
-// jump to top button
+// jump to top of screen
 export default function Jump() {
   const { y } = useWindowScroll();
 

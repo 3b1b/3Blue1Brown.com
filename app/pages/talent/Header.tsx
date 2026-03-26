@@ -6,6 +6,7 @@ import Logo from "~/components/Logo";
 import StrokeType from "~/components/StrokeType";
 import TriangleGrid from "~/components/TriangleGrid";
 
+// partner gallery page header
 export default function Header() {
   return (
     <header className="dark relative isolate flex flex-col items-center gap-8 overflow-hidden bg-white px-8 py-30 text-black">

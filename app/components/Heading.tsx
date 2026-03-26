@@ -27,7 +27,7 @@ type Heading = {
   content: ReactNode;
 };
 
-// global list of headings
+// global list of headings on page
 export const headingsAtom = atom<Heading[]>([]);
 
 // heading element with link and tracking

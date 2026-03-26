@@ -43,13 +43,14 @@ export default {
     const routes = [
       // regular, non-glob routes
       ...getStaticPaths(),
+
       // dynamic routes
       ...lessons,
       ...partners,
       ...posts,
     ];
 
-    // export pre-rendered routes for testing purposes
+    // export pre-rendered route list artifact for testing purposes
     writeFileSync("./tests/routes.json", JSON.stringify(routes, null, 2));
 
     return routes;

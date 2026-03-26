@@ -3,11 +3,11 @@ import { atom, getDefaultStore } from "jotai";
 import { debounce } from "lodash-es";
 import { addListen, navigate, removeListen } from "~/components/Navigate";
 
-// convenient storeless atom getter
+// convenient store-less atom getter
 export const getAtom = <Value>(atom: Atom<Value>) =>
   getDefaultStore().get(atom);
 
-// convenient storeless atom setter
+// convenient store-less atom setter
 export const setAtom = <Value>(
   atom: PrimitiveAtom<Value>,
   update: SetStateAction<Value>,

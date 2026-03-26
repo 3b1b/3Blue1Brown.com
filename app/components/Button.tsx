@@ -7,7 +7,9 @@ import { getVariants } from "~/util/misc";
 type Props = Base & (_Link | _Button);
 
 type Base = {
+  // color style
   color?: "none" | "light" | "theme" | "critical";
+  // size
   size?: "sm" | "md";
 };
 
@@ -49,6 +51,7 @@ export default function Button({
     className,
   );
 
+  // link
   if ("to" in props)
     return (
       <Link
@@ -60,6 +63,7 @@ export default function Button({
         {children}
       </Link>
     );
+  // button
   else {
     const { type = "button", onClick, ...rest } = props;
     return (
@@ -79,6 +83,7 @@ export default function Button({
   }
 }
 
+// for testbed page
 export function Demo({ children }: { children: ReactNode }) {
   const variants = getVariants({
     color: ["none", "light", "theme", "critical"] as const,

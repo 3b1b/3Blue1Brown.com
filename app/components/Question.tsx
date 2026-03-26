@@ -22,7 +22,7 @@ type Props = {
   choice4?: ReactNode;
   choice5?: ReactNode;
   choice6?: ReactNode;
-  // index of correct answer
+  // number of correct answer
   answer: number;
   // explanation of answer after reveal
   children?: ReactNode;

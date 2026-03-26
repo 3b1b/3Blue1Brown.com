@@ -17,8 +17,11 @@ export default function Interactive<
   ComponentProps extends Record<string, unknown>,
 >({ Component, ...props }: Props<ComponentProps>) {
   const ref = useRef<HTMLDivElement>(null);
+
+  // are we on client or ssr'ing
   const [isClient, setIsClient] = useState(false);
 
+  // fullscreen control
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);
 
   useEffect(() => {

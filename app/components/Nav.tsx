@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { href } from "react-router";
-import { MagnifyingGlassIcon } from "@phosphor-icons/react";
+import { ListIcon, MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Tooltip from "~/components/Tooltip";
@@ -35,14 +36,29 @@ const links = [
 ];
 
 // main site navigation
-export default function Nav({ className = "" }) {
+export default function Nav() {
+  // expand/collapse state (for smaller/mobile views)
+  const [open, setOpen] = useState(false);
+
   return (
     <>
+      {/* toggle */}
+      <Button
+        className="lg:hidden"
+        size="sm"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls="nav"
+        aria-label={open ? "Collapse menu" : "Expand menu"}
+      >
+        {open ? <XIcon /> : <ListIcon />}
+      </Button>
+
       <nav
         id="nav"
         className={clsx(
-          `flex flex-wrap items-center justify-center gap-4 font-sans text-lg`,
-          className,
+          "flex flex-2 flex-wrap items-center justify-center gap-4 font-sans text-lg max-xl:justify-end max-lg:w-full max-lg:flex-[unset] max-sm:flex-col",
+          !open && "max-lg:hidden",
         )}
       >
         {/* search */}

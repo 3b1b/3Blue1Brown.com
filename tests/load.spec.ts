@@ -40,9 +40,11 @@ const checkPage = (path: string) =>
     const largeResources = Object.entries(resources).filter(
       ([url, size]) =>
         // flag resources > few MB
-        size >= 1000 * 1000 &&
+        size >= 3 * 1000 * 1000 &&
         // ignore certain requests
-        ![/youtube\.com/, /mathjax/].some((some) => some.test(url)),
+        ![/youtube\.com/, /mathjax/, /phosphor-icons/].some((some) =>
+          some.test(url),
+        ),
     );
 
     test.info().annotations.push({

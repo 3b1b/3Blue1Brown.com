@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg">
+  <!-- put a glowing, blurred version of element behind itself -->
   <filter
     id="filter"
     color-interpolation-filters="sRGB"

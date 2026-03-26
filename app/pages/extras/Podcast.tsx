@@ -1,14 +1,17 @@
 import Card from "~/components/Card";
 import { H2, H3 } from "~/components/Heading";
 import Link from "~/components/Link";
+import { getThumbnail, getWatch } from "~/components/YouTube";
 import podcast from "~/pages/podcast/images/3b1b-podcast.svg";
 import { importAssets } from "~/util/import";
-import { getThumbnail, getWatch } from "~/util/youtube";
 
+// import platform logos
 const [getLogo] = importAssets(
   import.meta.glob<{ default: string }>("~/pages/podcast/images/*.png", {
     eager: true,
   }),
+  undefined,
+  (module) => module.default,
 );
 
 const platforms = [
@@ -38,7 +41,7 @@ const platforms = [
   },
 ].map((platform) => ({
   ...platform,
-  image: getLogo(platform.name)?.default ?? "",
+  image: getLogo(platform.name) ?? "",
 }));
 
 const episodes = [

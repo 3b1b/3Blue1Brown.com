@@ -76,6 +76,7 @@ type Props = {
   className?: string;
 };
 
+// hilbert curve viz
 export default function Hilbert({ className }: Props) {
   return (
     <div className={clsx("absolute inset-0 -z-10 overflow-hidden", className)}>

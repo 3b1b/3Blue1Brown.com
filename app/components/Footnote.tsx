@@ -11,13 +11,6 @@ export default function Footnote({ href, children }: Props) {
 
   // on page load
   useEffect(() => {
-    // get footnotes section
-    const section = document.querySelector<HTMLElement>(
-      "[data-footnotes='true']",
-    );
-    if (!section) return;
-    // hide footnotes section
-    section.classList.add("sr-only");
     if (!href) return;
     // get footnote content element
     const target = document.querySelector(href);

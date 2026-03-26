@@ -14,8 +14,8 @@ import site from "./app/data/site.json";
 
 export default defineConfig({
   plugins: [
+    // custom plugin, transform source code as raw string
     {
-      // transform source code as raw string
       name: "text-replace",
       enforce: "pre",
       transform(source, path) {
@@ -84,8 +84,4 @@ export default defineConfig({
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
   },
-  // optimizeDeps: {
-  //   noDiscovery: true,
-  //   include: [],
-  // },
 });

@@ -28,18 +28,21 @@ export const [getPartner, partners] = importAssets(
 export const [getLogo, logos] = importAssets(
   import.meta.glob<{ default: string }>("./**/*.{svg,png}", { eager: true }),
   "logo",
+  (module) => module.default,
 );
 
 // import all banners
 export const [getBanner, banners] = importAssets(
   import.meta.glob<{ default: string }>("./**/*.jpg", { eager: true }),
   "banner",
+  (module) => module.default,
 );
 
 // import all wordmarks
 export const [getWordmark, wordmarks] = importAssets(
   import.meta.glob<{ default: string }>("./**/*.svg", { eager: true }),
   "wordmark",
+  (module) => module.default,
 );
 
 // partner page layout
@@ -62,7 +65,7 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
     <>
       <Meta title={name} />
 
-      <Banner name={name} banner={banner.default} wordmark={wordmark.default} />
+      <Banner name={name} banner={banner} wordmark={wordmark} />
 
       <Main striped>
         <H1 className="sr-only">{name}</H1>

@@ -1,7 +1,7 @@
 import type { MDXContent } from "mdx/types";
 import { orderBy, sample } from "lodash-es";
+import { getThumbnail } from "~/components/YouTube";
 import { importAssets } from "~/util/import";
-import { getThumbnail } from "~/util/youtube";
 
 export type LessonFrontmatter = {
   id?: string;
@@ -61,13 +61,18 @@ export const [getLesson, lessons] = importAssets(
   transformLesson,
 );
 
-// import all lesson patrons
-export const [getPatrons, patrons] = importAssets(
+// import lesson patrons
+export const [getPatrons] = importAssets(
   import.meta.glob<{ default: string }>("./20\\d\\d/**/patrons.txt", {
     eager: true,
     query: "raw",
   }),
   "patrons",
+  (module) =>
+    module.default
+      ?.split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean),
 );
 
 // get lessons ordered by date, most recent first

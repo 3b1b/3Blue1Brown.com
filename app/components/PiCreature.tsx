@@ -17,10 +17,12 @@ export const [, emotions] = importAssets(
     eager: true,
     query: "react",
   }),
+  undefined,
+  (module) => module.default,
 );
 
 type Props = {
-  // expression or variation
+  // expression/variation
   emotion: string;
   // whether bubble is thought bubble instead of speech
   thought?: boolean;
@@ -43,10 +45,12 @@ export default function PiCreature({
   ...props
 }: Props) {
   const creatureRef = useRef<SVGSVGElement | null>(null);
+
+  // fit svg view box to content
   useSvgFit(creatureRef);
 
   // lookup emotion component
-  const Creature = emotions[emotion]?.default ?? emotions.plain?.default;
+  const Creature = emotions[emotion] ?? emotions.plain;
 
   if (!Creature) return null;
 

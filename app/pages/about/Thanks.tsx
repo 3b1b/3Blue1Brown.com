@@ -2,6 +2,7 @@ import clsx from "clsx";
 import ShowPartial from "~/components/ShowPartial";
 import patrons from "./patrons.json";
 
+// list of all patrons
 export default function Thanks() {
   if (patrons.length === 0) return null;
 

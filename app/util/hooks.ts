@@ -113,7 +113,7 @@ export const useInView = (
 
 // fit svg view box to content
 export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
-  // fit svg view box to content
+  // run fit
   const fit = useCallback(() => {
     if (!ref.current) return;
     // get bbox of contents

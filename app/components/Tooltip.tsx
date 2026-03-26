@@ -14,6 +14,7 @@ type Props = {
   children: ReactNode;
 };
 
+/** popup of content on hover or click */
 export default function Tooltip({
   trigger,
   children,

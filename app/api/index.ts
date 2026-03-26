@@ -1,4 +1,4 @@
-// general request func with added conveniences
+// general request func with conveniences
 export async function request<Response>(
   url: string | URL,
   options: RequestInit,

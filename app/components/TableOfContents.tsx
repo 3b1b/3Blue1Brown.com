@@ -27,11 +27,12 @@ export default function TableOfContents() {
   const previousRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
-  // full heading details
+  // full list of headings on page
   const headings = useAtomValue(headingsAtom);
 
   // get associated elements
   useEffect(() => {
+    // section or header right before where component placed on page
     previousRef.current = ref.current
       ? (findClosest(ref.current, "section, header") as HTMLElement)
       : null;
@@ -39,7 +40,7 @@ export default function TableOfContents() {
     sectionRef.current = document.querySelector("section");
   }, []);
 
-  // is screen down far enough for toc to not overlap header or other top content
+  // is screen down far enough for toc to not overlap header/section
   const downEnough = useElementBounding(previousRef).bottom < 0;
 
   // measure widths

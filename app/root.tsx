@@ -50,11 +50,14 @@ export default function App() {
       <html lang="en" suppressHydrationWarning>
         <head>
           <Analytics />
+
           <script dangerouslySetInnerHTML={{ __html: loadDarkMode }} />
+
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <Links />
         </head>
+
         <body>
           <nav aria-label="jump">
             {/* jump button for accessibility */}
@@ -66,6 +69,7 @@ export default function App() {
               Jump to main content
             </a>
           </nav>
+
           <Outlet />
           <ViewCorner />
           <Navigate />

@@ -10,6 +10,8 @@ const [getImage] = importAssets(
     // limit size, compress
     query: "w=600&format=webp",
   }),
+  undefined,
+  (module) => module.default,
 );
 
 type Member = (typeof team)[number];
@@ -22,7 +24,7 @@ const mapMember = ({
 }: Partial<Member>) => ({
   name,
   description,
-  image: getImage(name)?.default ?? "",
+  image: getImage(name) ?? "",
   link,
 });
 

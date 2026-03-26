@@ -51,6 +51,7 @@ type Props = {
   className?: string;
 };
 
+// simple cartesian grid viz
 export default function Grid({ className }: Props) {
   return (
     <div className={clsx("absolute inset-0 -z-10 overflow-hidden", className)}>

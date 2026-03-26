@@ -1,3 +1,5 @@
+import classes from "./StrokeType.module.css";
+
 type Props = {
   // delay, in sec
   delay?: number;
@@ -23,7 +25,7 @@ export default function StrokeType({
       {chars.map((char, index) => (
         <span
           key={index}
-          className="stroke-type"
+          className={classes["stroke-type"]}
           style={{
             animationDelay: `${delay + index * (duration / chars.length)}s`,
           }}

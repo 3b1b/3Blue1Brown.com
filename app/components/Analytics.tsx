@@ -37,7 +37,7 @@ export default function Analytics() {
   return <script src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />;
 }
 
-// track custom event
+// trigger custom event
 export const event = (name: string, params?: Record<string, unknown>) =>
   window.gtag("event", name, params);
 

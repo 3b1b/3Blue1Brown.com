@@ -22,6 +22,7 @@ export default function LessonLink({ id, className, children }: Props) {
 
   if (!lesson) return children;
 
+  // get lesson details
   const { title = "", description = "" } = lesson;
 
   // if just text, wrap in button to ensure accessibility

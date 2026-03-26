@@ -23,6 +23,7 @@ const reasonOptions = [
   { value: "[other]", label: "Other" },
 ] as const;
 
+// contact form
 export default function Contact() {
   // form state, persisted in local storage
   const [name, setName] = useLocalStorage("contact-name", "");

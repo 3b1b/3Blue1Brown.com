@@ -153,8 +153,10 @@ export const celebrate = (randPos = false) => {
 
 // render particles
 export default function Celebrate() {
+  // get current particles
   const particles = useAtomValue(particlesAtom);
 
+  // render nothing if idle
   if (isEmpty(particles)) return null;
 
   return (

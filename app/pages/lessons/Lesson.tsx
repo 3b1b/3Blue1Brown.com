@@ -71,11 +71,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
   } = lesson;
 
   // load patrons
-  const patrons =
-    getPatrons(id)
-      ?.default?.split("\n")
-      .map((line) => line.trim())
-      .filter(Boolean) ?? [];
+  const patrons = getPatrons(id) ?? [];
 
   // load topic
   const topic = getTopic(id);

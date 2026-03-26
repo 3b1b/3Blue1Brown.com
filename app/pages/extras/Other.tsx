@@ -9,6 +9,8 @@ const [getImage] = importAssets(
     // limit size, compress
     query: "w=600&format=webp",
   }),
+  undefined,
+  (module) => module.default,
 );
 
 const entries = [
@@ -55,9 +57,10 @@ const entries = [
   },
 ].map((entry) => ({
   ...entry,
-  image: getImage(entry.name)?.default ?? "",
+  image: getImage(entry.name) ?? "",
 }));
 
+// misc links
 export default function Other() {
   return (
     <section>

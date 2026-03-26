@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
 import "./MathJax.css";
 
-// mathjax unfortunately designed to best be loaded from cdn
-// trying to install as package and import causes many issues
+// mathjax unfortunately designed to be loaded from cdn
+// trying to install as package and import causes many issues, impractical to fix
 const cdn = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js";
 
 // enable mathjax on page

@@ -6,6 +6,8 @@ import { importAssets } from "~/util/import";
 // get topic image
 const [getImage] = importAssets(
   import.meta.glob<{ default: string }>("./topics/*.svg", { eager: true }),
+  undefined,
+  (module) => module.default,
 );
 
 // extra/special "topics"
@@ -40,7 +42,7 @@ export const topics = mapValues(
   { ...specialTopics, ...omit(_topics, "miscellaneous") },
   (topic, id) => ({
     id,
-    image: getImage(id)?.default ?? "",
+    image: getImage(id) ?? "",
     ...topic,
   }),
 );

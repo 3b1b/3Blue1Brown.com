@@ -82,35 +82,42 @@ Run periodically, manually review, and use discretion.
     Page-specific content files (e.g. MDX), components (e.g. `<Book>` for book recs), assets (e.g. images), and data (e.g. team member list).
   - `/util` - Broadly useful, generic functions, i.e. ones you'd find yourself frequently copying between different projects.
 - `/public` - Assets to be copied to build output as-is.
-  Prefer `import`ing assets whenever possible to take advantage of bundler optimizations.
+  Should almost never be used.
+  `import` whenever possible to take advantage of bundler optimizations.
 - `/tests` - Integration tests.
 - `react-router.config.ts` - Configuration for React Router, including which routes are generated when the site is built.
 
 ## Notes
 
-- MDX files can only be type-checked in the editor, and not with the the `test:types` script. This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
+- MDX files can only be type-checked in the editor, and not with the the `test:types` script.
+  This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
 - Place code in the appropriate places as described in the repo structure.
   The structure tries to collocate by domain rather than by type, i.e. `/blog/images` and `/blog/components` rather than `/images/blog` and `/components/blog`.
 - Before using a third-party package's component, or even a native HTML element, check if we have a custom component for it.
   E.g., we have a custom `<Link>` component that wraps React Router's `<Link>`, adding consistent styling and behavior.
 - See the `/testbed` page for an overview of what formatting/elements/components/etc. you can use and how.
-- Be careful with auto-imports, e.g. importing `<Button>` from `react-aria-components` instead of `/components/Button`, or `<Link>` from `react-router` instead of `components/Link`.
+- Be careful with auto-imports, e.g. importing `<Link>` from `react-router` instead of `components/Link`.
 - Avoid un-safe TypeScript, e.g. type-disabling (`any` instead of `unknown`), casting (`someValue as string`), non-null assertion (`someValue!`), etc.
 - Avoid using the `!` important modifier in Tailwind.
   Explicit specificity can usually be achieved with `@layer`s or conditionally applying classes in components.
 - Use Tailwind for styling, and avoid custom CSS and inline styles as much as possible.
 - Use Tailwind's `--spacing()` function in `calc()`s and such, to ensure consistent spacing.
   Avoid hardcoding pixel values.
-- Try to be consistent with the established visual language of the site. E.g., what gap sizes are typically used, how colors and color-alpha values are used on other pages. Keep in mind the general aesthetic of the whole.
+- Try to be consistent with the established visual language of the site, e.g. what gap sizes are typically used, how colors and color-alpha values are used on other pages.
+  Keep in mind the general aesthetic of the whole.
 - Use already-bundled lodash utility functions wherever possible to make code more concise.
 - If a component in `/components` is just a single element and some styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
+  If a component is only used in one place, it may not need to be a component at all.
 - Use MDX for pages that are primarily static content, and React components for everything else.
-- Split pages into separate components by "section" to keep them from becoming too monolithic and make them easier to re-order later.
+- Split pages into separate files/components by "section" to keep them from becoming too monolithic and make them easier to re-order later or comment out for testing.
 - Put things that might be commonly edited at the top of files, e.g. an array of member info for a team gallery, or some tweak-able parameters for a visualization.
 - Prefer using CSS [flex](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) and [grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) layout over the traditional [flow](https://www.joshwcomeau.com/css/understanding-layout-algorithms/) layout.
   This generally keeps alignment and spacing consistent with what the eye expects, and makes responsive design easier.
 - Use browser dev tools to become familiar with CSS layout and box model.
 - Try to name files in lower-kebab-case, and components in UpperCamelCase.
+  Utility import functions enforce normalizing names to this for consistency.
 - Generally, put a section break after level 2 headings.
-- Use `console.log` for logging you plan to be temporary, so it can easily be found throughout the codebase. Use `console.debug`/`info` (sparingly) for logging that could be useful to see in production. Use `console.warn`/`error` for all try/catches or where appropriate, as long as they aren't too noisy.
+- Use `console.log` for logging you plan to be temporary, so it can easily be found throughout the codebase.
+  Use `console.debug`/`info` (sparingly) for logging that could be useful to see in production.
+  Use `console.warn`/`error` for all try/catches or where appropriate, as long as they aren't too noisy.
 - Make sure you use the `~/` import prefix, unless the file you're importing is meant to always be co-located with current file.

@@ -12,7 +12,7 @@ import { useInView } from "~/util/hooks";
 type Props = {
   // pixel density
   scale?: number;
-  // render one frame
+  // render frame
   render: (ctx: CanvasRenderingContext2D) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
@@ -21,7 +21,7 @@ type Props = {
 // max dimension of canvas to avoid perf issues
 const maxSize = 4000;
 
-// general canvas component that handles animation loop, resizing, and etc.
+// generic canvas that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref,
   scale = 2,
@@ -77,6 +77,7 @@ export default function Canvas({
     return cleanup;
   }, [width, height, inView]);
 
+  // combine local and passed refs
   const refs = useMergedRefs(canvas, ref);
 
   return <canvas ref={refs} aria-hidden="true" {...props} />;

@@ -1,9 +1,11 @@
 import { href } from "react-router";
 import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
+import site from "~/data/site.json";
 
-const email = "talent@3blue1brown.com";
+const email = site.contact.talent;
 
+// details section on partner gallery page
 export default function Details() {
   return (
     <>

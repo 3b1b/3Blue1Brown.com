@@ -26,3 +26,13 @@ export const share = async () => {
     window.alert("Link copied to clipboard!");
   }
 };
+
+// shorten url text
+export const shorten = (value: string) => {
+  try {
+    const url = new URL(value);
+    return (url.hostname + url.pathname).replace(/\/+$/, "");
+  } catch (error) {
+    return value;
+  }
+};

@@ -36,7 +36,7 @@ export default function Card({
       aria-current={active}
       {...props}
     >
-      {/* do bg as inner el w/ expansion, so other els line up with surroundings */}
+      {/* do bg as inner el w/ expansion, so following els line up with surroundings */}
       <div className="absolute -inset-2 -z-10 rounded-md group-hocus-ring transition group-hocus:bg-theme/10" />
 
       {image && (

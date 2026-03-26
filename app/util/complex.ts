@@ -1,3 +1,5 @@
+// basic complex number operations
+
 export class Complex {
   r: number;
   i: number;
@@ -31,7 +33,7 @@ export class Complex {
   }
 }
 
-// calculate coefficients of monic polynomial from complex roots
+// calculate coefficients of expanded polynomial from complex roots
 // https://stackoverflow.com/questions/33594384
 // https://stackoverflow.com/questions/21236788
 export const getCoefficients = (roots: Complex[]) => {
