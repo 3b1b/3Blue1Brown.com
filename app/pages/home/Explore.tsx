@@ -158,7 +158,7 @@ export function Search() {
                   { id = "", title = "", description = "", image = "", read },
                   index,
                 ) => (
-                  <div key={index} className="flex flex-col gap-2">
+                  <div key={index} className="flex flex-col gap-4">
                     <Card
                       to={{
                         pathname: "/",

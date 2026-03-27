@@ -1,7 +1,8 @@
 import { useLayoutEffect, useMemo, useRef } from "react";
+import { color } from "d3-color";
 import { Canvas } from "glsl-canvas-js";
 
-type Props = {
+export type Props = {
   source: string;
   constants: Record<string, string | number>;
   uniforms: Record<string, NonNullable<unknown>>;
@@ -56,8 +57,10 @@ export default function Shader({
   // update uniform vars in shader
   useLayoutEffect(() => {
     for (const [name, value] of Object.entries(uniforms)) {
+      // array values
       if (Array.isArray(value)) shader.current?.setUniform(name, ...value);
-      else shader.current?.setUniform(name, String(value));
+      // other values
+      else shader.current?.setUniform(name, value);
     }
   });
 
@@ -66,6 +69,13 @@ export default function Shader({
 
 // inject constant variable into glsl shader source code
 const replaceConstant = (source: string, name: string, value: string) => {
+  // const someType NAME = VALUE;
   const regex = new RegExp(String.raw`const (.+) ${name} = (.+);`, "g");
   return source.replaceAll(regex, `const $1 ${name} = ${value};`);
+};
+
+// flexibly parse color string into vec4 rgba
+export const normalizeColor = (str: string) => {
+  const { r = 0, g = 0, b = 0 } = color(str)?.rgb() ?? {};
+  return [r / 255, g / 255, b / 255, 1];
 };

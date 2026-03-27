@@ -2,20 +2,19 @@
 
 precision mediump float;
 
-out vec4 outputColor;
+out vec4 output_color;
 
+// size of canvas, in pixels
 uniform vec2 u_resolution;
-uniform float u_time;
-
 // boundaries of viz, [left, top, right, bottom]
 uniform vec4 bounds;
 
+// degree of polynomial (and number of roots)
+const int DEGREE = 5;
 // stop newton's method if beyond this many steps
 const int ITERATIONS = 20;
 // stop newton's method if step size is smaller than this
 const float THRESHOLD = 0.0001f;
-// degree of polynomial (and number of roots)
-const int DEGREE = 5;
 
 // roots of polynomial
 uniform vec2 roots[DEGREE];
@@ -84,13 +83,14 @@ void main() {
     // debug: show roots
     // for(int degree = 0; degree < DEGREE; degree++) {
     //     if(distance(uv, roots[degree]) < 0.1f) {
-    //         outputColor = vec4(1.0f);
+    //         output_color = vec4(1.0f);
     //         return;
     //     }
     // }
     // find root that pixel converges to using newton's method
     vec2 root = find_root(uv);
-    outputColor = vec4(0.0f);
+    // default bg color
+    output_color = vec4(0.0f);
     // find closest input root to found root
     float closest = 1e10f;
     for(int degree = 0; degree < DEGREE; degree++) {
@@ -98,7 +98,7 @@ void main() {
         if(dist < closest) {
             closest = dist;
             // color pixel accordingly
-            outputColor = colors[degree];
+            output_color = colors[degree];
         }
     }
 }

@@ -35,7 +35,7 @@ export default function Interactive<
   return (
     <Suspense fallback="Browser-only interactive">
       <div className="relative isolate flex flex-col gap-4">
-        <div className="absolute -inset-x-999 -inset-y-4 -z-10 max-w-[unset]! bg-secondary/10" />
+        <div className="absolute -inset-x-999 -inset-y-8 -z-10 max-w-[unset]! bg-secondary/10" />
         <div
           ref={ref}
           className={clsx(
@@ -47,8 +47,8 @@ export default function Interactive<
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-gray">
-            Interactive
             <HandPointingIcon className="icon -rotate-45" />
+            Interactive
           </div>
           <Button onClick={toggleFullscreen} aria-label="Toggle fullscreen">
             Fullscreen
