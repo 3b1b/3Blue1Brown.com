@@ -1,15 +1,12 @@
 import { expect, test } from "@playwright/test";
-import routes from "./routes.json" with { type: "json" };
+import routes from "./routes";
 import { log, stringify } from "./util";
-
-// paths to test
-const paths = routes.filter((path) => !path.endsWith(".xml"));
 
 log();
 
 // test page load size and times
-const checkPage = (path: string) =>
-  test(`Size check on page "${path}"`, async ({ browserName, page }) => {
+const checkPage = (route: string) =>
+  test(`Size check on page "${route}"`, async ({ browserName, page }) => {
     // test should be independent of browser, so only run one
     test.skip(browserName !== "chromium", "Only test on chromium");
 
@@ -31,7 +28,7 @@ const checkPage = (path: string) =>
     });
 
     // navigate to page
-    await page.goto(path);
+    await page.goto(route);
 
     // wait for all responses to finish
     await Promise.allSettled(responses);
@@ -56,4 +53,4 @@ const checkPage = (path: string) =>
   });
 
 // check all pages
-await Promise.all(paths.map(checkPage));
+await Promise.all(routes.map(checkPage));
