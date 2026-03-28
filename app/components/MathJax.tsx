@@ -93,7 +93,7 @@ const init = async () => {
 const render = async () => {
   // get output from remark-math, which processes $ math blocks into <code> elements
   const elements = document.querySelectorAll("code.language-math");
-  for (let element of elements) {
+  for (const element of elements) {
     // math tex content
     const math = element.textContent ?? "";
     // parent container
@@ -101,6 +101,7 @@ const render = async () => {
     if (!parent) continue;
     // block vs inline math
     const display = parent.matches("pre");
+    if (display) parent.classList.add("sr-only");
     // convert to svg content
     let content: Element | undefined = undefined;
     try {
@@ -112,7 +113,6 @@ const render = async () => {
     }
     if (!content) continue;
     // insert content
-    if (display) element = parent;
     element.replaceWith(content);
   }
 };

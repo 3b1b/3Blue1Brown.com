@@ -256,13 +256,12 @@ export function Chart({
       {/* svg overlay */}
       <svg
         viewBox={[0, 0, width, height].join(" ")}
-        className="absolute inset-0 size-full stroke-[0.25] text-white"
-        pointerEvents="none"
+        className="absolute inset-0 size-full text-white"
       >
         {/* grid lines */}
         <g
           pointerEvents="all"
-          className="cursor-grab"
+          className="cursor-grab stroke-[0.25]"
           ref={(element) => {
             gridRef.current = element;
             if (!element) return;
@@ -305,27 +304,28 @@ export function Chart({
         </g>
 
         {/* points */}
-        <g pointerEvents="all">
-          {points.map(({ x, y, color }, index) => (
-            <circle
-              key={index}
-              ref={(element) => {
-                if (!element) return;
-                const selection = select(element);
-                // attach extra info to datum to access in events
-                selection.datum({ index, color });
-                dragBehavior(selection);
-              }}
-              cx={xScale(x)}
-              cy={yScale(y)}
-              r={radius}
-              fill={color}
-              stroke="white"
-              strokeWidth={radius / 5}
-              className="cursor-crosshair"
-            />
-          ))}
-        </g>
+        {points.map(({ x, y, color }, index) => (
+          <circle
+            key={index}
+            ref={(element) => {
+              if (!element) return;
+              const selection = select(element);
+              // attach extra info to datum to access in events
+              selection.datum({ index, color });
+              dragBehavior(selection);
+            }}
+            onTouchMove={(event) => {
+              event.preventDefault();
+            }}
+            cx={xScale(x)}
+            cy={yScale(y)}
+            r={radius}
+            fill={color}
+            stroke="white"
+            strokeWidth={radius / 5}
+            className="cursor-crosshair"
+          />
+        ))}
       </svg>
     </div>
   );

@@ -15,7 +15,7 @@ export default function NotFound() {
       <Header />
 
       <Main>
-        <section className="bg-theme/10">
+        <section className="bg-theme/15">
           <H1>
             <StrokeType>Not Found</StrokeType>
           </H1>

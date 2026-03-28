@@ -23,16 +23,19 @@ import { mergeSearch } from "~/util/url";
 
 const limit = 12;
 
+// global selected topic
 export const topicAtom = atomWithQuery("topic");
+// global search query
 export const searchAtom = atomWithQuery("search", 1000);
+// global selected lesson
 export const lessonAtom = atomWithQuery("lesson");
 
-export default function Explore() {
+export default function Lessons() {
   return (
     <section className="@container">
       <H2>
         <hr />
-        Explore
+        Lessons
         <hr />
       </H2>
 
@@ -41,7 +44,7 @@ export default function Explore() {
   );
 }
 
-export function Search() {
+export function Search({ close = () => {} }) {
   const searchBox = useRef<HTMLInputElement>(null);
 
   // current topic
@@ -97,7 +100,7 @@ export function Search() {
       {/* selected topic */}
       {topic && (
         <div className="relative isolate grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1">
-          <div className="absolute -inset-x-999 -inset-y-4 -z-10 bg-secondary/10" />
+          <div className="absolute -inset-x-999 inset-y-0 -z-10 bg-secondary/10" />
           <img
             src={topic.image ?? ""}
             alt=""
@@ -168,7 +171,10 @@ export function Search() {
                       image={image}
                       title={title}
                       description={description}
-                      onClick={userSelected}
+                      onClick={() => {
+                        userSelected();
+                        close();
+                      }}
                       active={lessonId === id}
                     />
                     {read && (
@@ -176,6 +182,7 @@ export function Search() {
                         size="sm"
                         to={href("/lessons/:id", { id })}
                         className="mt-auto self-center"
+                        onClick={close}
                       >
                         <BookOpenTextIcon />
                         Read

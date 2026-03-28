@@ -1,7 +1,6 @@
 import { href } from "react-router";
 import { ArrowLeftIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import DarkMode from "~/components/DarkMode";
 import Logo from "~/components/Logo";
 
 type Props = {
@@ -28,8 +27,6 @@ export default function Banner({ name, banner, wordmark }: Props) {
       >
         <Logo className="size-12" />
       </Button>
-
-      <DarkMode className="absolute top-4 right-4" />
 
       <img src={wordmark} alt={name} title={name} className="h-20" />
 

@@ -17,7 +17,7 @@ import { findClosest, firstInView, scrollTo } from "~/util/dom";
 import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
-const spacing = 100;
+const spacing = 60;
 
 // table of contents on side of screen
 export default function TableOfContents() {
@@ -36,8 +36,10 @@ export default function TableOfContents() {
     previousRef.current = ref.current
       ? (findClosest(ref.current, "section, header") as HTMLElement)
       : null;
-    // assume all sections on page same width, so just find first one
-    sectionRef.current = document.querySelector("section");
+    // find first section after this component
+    sectionRef.current = ref.current
+      ? (findClosest(ref.current, "section", "next") as HTMLElement)
+      : null;
   }, []);
 
   // is screen down far enough for toc to not overlap header/section
@@ -47,6 +49,7 @@ export default function TableOfContents() {
   const { width: windowWidth } = useWindowSize();
   const [tocWidth] = useElementSize(ref);
   const [sectionWidth] = useElementSize(sectionRef);
+  console.log(sectionWidth);
 
   // available width in margins
   const availableWidth = (windowWidth - sectionWidth) / 2;
@@ -96,13 +99,13 @@ export default function TableOfContents() {
     <aside
       ref={ref}
       className={clsx(
-        "fixed inset-y-0 z-40 flex max-w-80 flex-col bg-white font-sans shadow-md transition",
+        "fixed inset-y-0 z-20 flex max-w-[min(--spacing(80),75dvw)] flex-col bg-white font-sans shadow-md transition",
         hide ? "pointer-events-none opacity-0" : "opacity-100",
         open ? "" : "-translate-x-full",
       )}
       aria-label="Table of contents"
     >
-      <div className="mb-4 flex items-center gap-4">
+      <div className="flex items-center gap-4">
         {/* top text */}
         <span className="grow p-2 pl-4 font-medium">Table of Contents</span>
         {/* toggle button */}

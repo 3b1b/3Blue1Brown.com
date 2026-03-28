@@ -37,7 +37,7 @@ export default function Card({
       {...props}
     >
       {/* do bg as inner el w/ expansion, so following els line up with surroundings */}
-      <div className="absolute -inset-2 -z-10 rounded-md group-hocus-ring transition group-hocus:bg-theme/10" />
+      <div className="absolute -inset-2 -z-10 rounded-md group-hocus-ring transition group-hocus:bg-theme/15" />
 
       {image && (
         <img src={image} alt="" className={clsx(active && "opacity-50")} />

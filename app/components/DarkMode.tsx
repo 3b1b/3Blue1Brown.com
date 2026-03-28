@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
-import { useLocalStorage } from "@reactuses/core";
+import { useAtom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import Button from "~/components/Button";
+
+const darkModeAtom = atomWithStorage("dark-mode", false);
 
 // dark/light mode toggle
 export default function DarkMode({ className = "" }) {
   // state
-  const [darkMode, setDarkMode] = useLocalStorage("dark-mode", false);
+  const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
   // update flag on document
   useEffect(() => {

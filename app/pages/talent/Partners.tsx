@@ -28,7 +28,7 @@ export default function Partners() {
           const partner = getPartner(id);
           if (!partner) return null;
           const { name = "", tagline = "", quote = "" } = partner.frontmatter;
-          const image = getLogo(id) ?? "";
+          const logo = getLogo(id) ?? "";
           return (
             <Card
               key={id}
@@ -36,7 +36,11 @@ export default function Partners() {
               className="group relative"
             >
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
-                <img src={image} alt="" className="w-40" />
+                <img
+                  src={logo}
+                  alt=""
+                  className="w-40 filter-[drop-shadow(0_0_10px_white)]"
+                />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
                   <div className="text-xl font-bold">{name}</div>
                   <div className="text-lg">{tagline}</div>

@@ -41,6 +41,7 @@ export default function Dialog({
     onChange?.(false);
   };
 
+  // if content is a function, call it with open/close callbacks to get content, otherwise just return content
   const content = (content: Content) =>
     typeof content === "function" ? content(close, open) : content;
 
@@ -54,11 +55,11 @@ export default function Dialog({
     >
       <_Dialog.Trigger render={trigger} />
       <_Dialog.Portal>
-        <_Dialog.Backdrop className="fixed inset-0 z-50 bg-black/50" />
-        <_Dialog.Popup className="pointer-events-none fixed inset-0 z-50 grid place-items-center p-8">
+        <_Dialog.Backdrop className="fixed inset-0 z-30 bg-black/50 transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0" />
+        <_Dialog.Popup className="pointer-events-none fixed inset-0 z-30 grid place-items-center p-8 transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0 max-md:p-4">
           <div
             className={clsx(
-              "pointer-events-auto flex max-h-full min-h-0 max-w-300 min-w-[min(100%,--spacing(100))] flex-col rounded-md bg-white",
+              "pointer-events-auto flex max-h-full min-h-0 w-full max-w-200 flex-col rounded-md bg-white",
               className,
             )}
           >
@@ -73,7 +74,7 @@ export default function Dialog({
             </div>
 
             {/* middle, main content */}
-            <div className="flex flex-col gap-8 overflow-y-auto p-8">
+            <div className="flex flex-col gap-8 overflow-x-hidden overflow-y-auto p-8 max-md:p-4">
               {content(children)}
             </div>
 

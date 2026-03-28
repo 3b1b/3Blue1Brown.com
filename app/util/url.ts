@@ -16,8 +16,9 @@ export const mergeSearch = (from = "", to = "") => {
 export const share = async () => {
   try {
     await window.navigator.share({
-      url: window.location.href,
+      title: document.title,
       text: document.title,
+      url: window.location.href,
     });
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") return;

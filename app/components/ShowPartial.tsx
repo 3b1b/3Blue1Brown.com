@@ -4,6 +4,7 @@ import { CaretDoubleDownIcon, CaretDoubleUpIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import { preserveScroll } from "~/util/dom";
+import { autoHeight } from "~/util/hooks";
 
 type Props = {
   // class on content
@@ -13,7 +14,7 @@ type Props = {
 };
 
 // height limit, in pixels
-const limit = 500;
+const limit = 300;
 
 // show partial content with fade, with button to reveal more
 export default function ShowPartial({ className, children }: Props) {
@@ -34,8 +35,7 @@ export default function ShowPartial({ className, children }: Props) {
             setEnabled(false);
             return;
           }
-          // limit height
-          element.style.maxHeight = (open ? content : limit) + "px";
+          autoHeight(element, open);
         }}
         className={clsx(
           "flex flex-col gap-8 overflow-hidden transition-all",

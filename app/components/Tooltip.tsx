@@ -6,8 +6,6 @@ import clsx from "clsx";
 type Props = {
   // trigger element that opens tooltip
   trigger: ReactNode;
-  // whether to open with click instead of hover
-  click?: boolean;
   // class on popup box
   className?: string;
   // tooltip content
@@ -15,12 +13,7 @@ type Props = {
 };
 
 /** popup of content on hover or click */
-export default function Tooltip({
-  trigger,
-  children,
-  click,
-  className,
-}: Props) {
+export default function Tooltip({ trigger, children, className }: Props) {
   // prevent if trigger disabled
   if (
     isValidElement(trigger) &&
@@ -34,7 +27,7 @@ export default function Tooltip({
   return (
     <Popover.Root>
       <Popover.Trigger
-        openOnHover={!click}
+        openOnHover
         delay={100}
         render={
           isValidElement(trigger) ? (
@@ -51,7 +44,7 @@ export default function Tooltip({
           side="top"
           sideOffset={10}
           collisionPadding={20}
-          className="z-50"
+          className="z-30"
           collisionAvoidance={{
             side: "flip",
             align: "shift",
@@ -60,7 +53,8 @@ export default function Tooltip({
         >
           <Popover.Popup
             className={clsx(
-              "flex max-h-(--available-height) w-max max-w-[min(var(--available-width),--spacing(200))] flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md",
+              "flex max-h-(--available-height) w-max max-w-[min(var(--available-width),--spacing(200))] flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0",
+
               className,
             )}
           >

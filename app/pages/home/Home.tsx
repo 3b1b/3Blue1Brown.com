@@ -8,8 +8,9 @@ import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import { getLesson } from "~/pages/lessons/lessons";
 import { sleep } from "~/util/misc";
-import Explore, { lessonAtom } from "./Explore";
 import Follow from "./Follow";
+import Hero from "./Hero";
+import Lessons, { lessonAtom } from "./Lessons";
 import Patreon from "./Patreon";
 import Talent from "./Talent";
 import Theater from "./Theater";
@@ -40,7 +41,8 @@ export default function Home() {
       </Header>
 
       <Main>
-        <Explore />
+        <Hero />
+        <Lessons />
         <Patreon />
         <Talent />
         <Follow />

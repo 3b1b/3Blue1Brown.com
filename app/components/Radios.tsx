@@ -54,7 +54,7 @@ export default function Radios<O extends Option>({
           <label
             key={index}
             className={clsx(
-              "rounded-md p-2 focus-within-ring hocus:bg-theme/10",
+              "rounded-md p-2 focus-within-ring hocus:bg-theme/15",
               className,
             )}
           >

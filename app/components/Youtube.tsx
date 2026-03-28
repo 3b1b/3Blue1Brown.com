@@ -18,7 +18,7 @@ export default function YouTube({ id, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   className = clsx(
-    `grid aspect-video w-full place-items-center font-sans text-xl`,
+    `grid aspect-video w-full min-w-0 place-items-center font-sans text-xl`,
     className,
   );
 

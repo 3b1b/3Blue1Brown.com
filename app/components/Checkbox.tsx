@@ -29,7 +29,7 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex flex-row items-center gap-2 rounded-md p-2 focus-within-ring hocus:bg-theme/10",
+        "group flex flex-row items-center gap-2 rounded-md p-2 focus-within-ring hocus:bg-theme/15",
         className,
       )}
     >

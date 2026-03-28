@@ -17,7 +17,7 @@ export default function Extras() {
       <Header />
 
       <Main>
-        <section className="bg-theme/10">
+        <section className="bg-theme/15">
           <H1>
             <StrokeType>Extras</StrokeType>
           </H1>

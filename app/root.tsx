@@ -40,7 +40,7 @@ export default function App() {
       })();
     // if just hash changed (e.g. user clicked TOC link), scroll immediately
     else if (location.hash !== previousLocation.current?.hash)
-      scrollTo(location.hash);
+      scrollTo(location.hash, { behavior: "smooth", block: "start" });
 
     previousLocation.current = location;
   }, [location]);

@@ -16,6 +16,7 @@ import { wrap } from "comlink";
 import { isEqual, mapValues } from "lodash-es";
 import { UAParser } from "ua-parser-js";
 import FuzzyWorker from "~/util/fuzzy?worker";
+import { sleep } from "~/util/misc";
 
 // check if value changed from previous render
 export const useChanged = <Value>(
@@ -87,21 +88,18 @@ export const useParallax = (ref: RefObject<HTMLElement | null>) => {
 };
 
 // is element in viewport
-export const useInView = (
-  ref: RefObject<HTMLElement | null>,
-  fallback = false,
-) => {
+export const useInView = (ref: RefObject<HTMLElement | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
 
-  // if on server or otherwise don't have sizes, use fallback
+  // if on server or otherwise don't have sizes
   if (
     !windowSize.height ||
     !windowSize.width ||
     !elementBbox.width ||
     !elementBbox.height
   )
-    return fallback;
+    return false;
 
   return (
     elementBbox.bottom > 0 &&
@@ -159,4 +157,36 @@ export const useDebug = () => {
   );
 
   return { userAgent, isFirefox, isSafari, isDesktop };
+};
+
+// are we on client or ssr'ing
+export const useClient = () => {
+  const [client, setClient] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    setClient(true);
+  }, []);
+
+  return client;
+};
+
+// control expanding/collapsing height of element with transition
+export const autoHeight = (element: HTMLElement | null, open: boolean) => {
+  if (!element) return;
+  if (open) {
+    // set height to content height
+    element.style.maxHeight = element.scrollHeight + "px";
+    // remove after transition so content can size naturally
+    element.addEventListener(
+      "transitionend",
+      () => (element.style.maxHeight = ""),
+      { once: true },
+    );
+  } else {
+    // set starting height
+    element.style.maxHeight = element.scrollHeight + "px";
+    // collapse
+    sleep().then(() => (element.style.maxHeight = 0 + "px"));
+  }
 };

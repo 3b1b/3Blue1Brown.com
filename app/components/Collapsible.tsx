@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Collapsible as _Collapsible } from "@base-ui/react";
 import { CaretRightIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { autoHeight } from "~/util/hooks";
 
 type Props = {
   // button content
@@ -23,7 +24,7 @@ export default function Collapsible({ title, children, className }: Props) {
     >
       <_Collapsible.Trigger
         className={clsx(
-          "justify-start gap-2 rounded-md bg-off-white p-2 font-medium hocus:bg-theme/10",
+          "justify-start gap-2 rounded-md bg-off-white p-2 text-left font-medium hocus:bg-theme/15",
           className,
         )}
       >
@@ -33,14 +34,10 @@ export default function Collapsible({ title, children, className }: Props) {
         {title}
       </_Collapsible.Trigger>
       <_Collapsible.Panel
-        ref={(element) => {
-          if (!element) return;
-          // calculate height to transition to when opening
-          element.style.maxHeight = open ? element.scrollHeight + "px" : "";
-        }}
+        ref={(element) => autoHeight(element, open)}
         hiddenUntilFound
         className={clsx(
-          "flex max-h-0 shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-all",
+          "flex shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-all",
           open ? "" : "pointer-events-none -mb-12 opacity-0",
         )}
       >

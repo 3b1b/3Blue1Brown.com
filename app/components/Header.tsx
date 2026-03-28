@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { href, useLocation } from "react-router";
-import { BellIcon, PlayIcon } from "@phosphor-icons/react";
+import { href } from "react-router";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Grid from "~/components/Grid";
@@ -8,8 +7,6 @@ import Logo from "~/components/Logo";
 import Nav from "~/components/Nav";
 import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
-import stats from "~/pages/home/stats.json";
-import { formatNumber } from "~/util/string";
 
 type Props = {
   // extra content below header
@@ -18,12 +15,10 @@ type Props = {
 
 // header on every page
 export default function Header({ children }: Props) {
-  const { pathname } = useLocation();
-
   return (
     <header
       className={clsx(
-        "dark relative isolate flex flex-col gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4",
+        "dark relative isolate z-20 flex flex-col gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4",
       )}
     >
       <Grid className="max-h-200 mask-b-from-0% mask-b-to-100% opacity-25" />
@@ -32,8 +27,8 @@ export default function Header({ children }: Props) {
         {/* title */}
         <div className="flex grow basis-0 items-center">
           <Button to={href("/")} size="sm" aria-label="Home">
-            <Logo className="size-12" />
-            <StrokeType className="ml-1 w-fit font-serif text-3xl">
+            <Logo className="size-12 max-md:size-8" />
+            <StrokeType className="ml-1 w-fit font-serif text-3xl max-md:text-2xl">
               {site.title}
             </StrokeType>
           </Button>
@@ -45,18 +40,6 @@ export default function Header({ children }: Props) {
         {/* sub title */}
         <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
           <div>{site.subtitle}</div>
-          {pathname === "/" && (
-            <div className="flex items-center gap-2 text-sm">
-              <div className="flex items-center gap-1 lowercase">
-                {formatNumber(stats.subscribers)}
-                <BellIcon aria-label="Subscribers" />
-              </div>
-              <div className="flex items-center gap-1 lowercase">
-                {formatNumber(stats.views)}
-                <PlayIcon aria-label="Views" />
-              </div>
-            </div>
-          )}
         </div>
       </div>
 

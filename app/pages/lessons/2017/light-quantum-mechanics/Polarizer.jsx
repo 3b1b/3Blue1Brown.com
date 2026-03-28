@@ -364,9 +364,9 @@ export default function Polarizer() {
   }
 
   function updateScale(sketch) {
-    let transform = sketch.canvas.parentElement.parentElement.style.transform;
-    let scaleString = transform.split("(")[1];
-    SCALE = parseFloat(scaleString.substring(1, scaleString.length - 1));
+    // let transform = sketch.canvas.parentElement.parentElement.style.transform;
+    // let scaleString = transform.split("(")[1];
+    // SCALE = parseFloat(scaleString?.substring(1, scaleString.length - 1));
   }
 
   return (

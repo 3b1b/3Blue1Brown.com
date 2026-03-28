@@ -100,7 +100,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
       <Main striped>
         {/* lesson header */}
-        <section className="items-center bg-theme/10! width-lg">
+        <section className="items-center bg-theme/15! width-lg">
           {/* topic */}
           {topic && (
             <Button
@@ -144,18 +144,20 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 {Object.entries(combinedCredits).map(([role, names], index) => (
                   <div key={index}>
                     <UserIcon />
-                    {role} by{" "}
-                    {names.map((name, index) => (
-                      <Fragment key={index}>
-                        <Link
-                          to={find(team, { name })?.link ?? ""}
-                          arrow={false}
-                        >
-                          {name}
-                        </Link>
-                        {index < names.length - 1 ? " &" : ""}
-                      </Fragment>
-                    ))}
+                    <span>
+                      {role} by{" "}
+                      {names.map((name, index) => (
+                        <Fragment key={index}>
+                          <Link
+                            to={find(team, { name })?.link ?? ""}
+                            arrow={false}
+                          >
+                            {name}
+                          </Link>
+                          {index < names.length - 1 ? " & " : ""}
+                        </Fragment>
+                      ))}
+                    </span>
                   </div>
                 ))}
 

@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
+import { useTimeoutFn } from "@reactuses/core";
 import Button from "~/components/Button";
 import Markdownify from "~/components/Markdownify";
 import TextBox from "~/components/TextBox";
 import { useInView } from "~/util/hooks";
-import { sleep } from "~/util/misc";
 
 type Props = {
   // question content
@@ -25,13 +25,13 @@ export default function FreeResponse({ question, children }: Props) {
   const inView = useInView(ref);
 
   // when question in view, wait a few secs before allowing reveal
-  if (inView && state === "disabled")
-    sleep(1000 * 5).then(() => setState("unrevealed"));
+  const [, reveal] = useTimeoutFn(() => setState("unrevealed"), 1000 * 5);
+  if (inView && state === "disabled") reveal();
 
   return (
     <>
       {question && <Markdownify noParagraph>{question}</Markdownify>}
-      <div ref={ref} className="flex flex-wrap gap-4">
+      <div ref={ref} className="flex flex-col gap-4">
         <TextBox
           multi
           rows={2}
@@ -41,6 +41,7 @@ export default function FreeResponse({ question, children }: Props) {
         <Button
           color="light"
           size="sm"
+          className="w-40"
           onClick={() =>
             setState(state === "revealed" ? "unrevealed" : "revealed")
           }

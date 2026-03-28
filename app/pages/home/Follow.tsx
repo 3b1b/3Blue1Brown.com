@@ -79,6 +79,7 @@ const links = [
   },
 ];
 
+// home page follow section
 export default function Follow() {
   return (
     <section className="bg-secondary/10">

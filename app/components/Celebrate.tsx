@@ -161,7 +161,7 @@ export default function Celebrate() {
 
   return (
     <Canvas
-      className="pointer-events-none fixed inset-0 z-100 size-full select-none"
+      className="pointer-events-none fixed inset-0 z-20 size-full select-none"
       render={(ctx) => {
         // draw each particle
         for (const {

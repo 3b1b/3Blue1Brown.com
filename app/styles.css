@@ -21,7 +21,6 @@
   --shadow-sm: 0 0 5px var(--color-shadow), 0 0 2px var(--color-shadow);
   --shadow-md: 0 0 10px var(--color-shadow), 0 0 2px var(--color-shadow);
   --shadow-lg: 0 0 20px var(--color-shadow), 0 0 2px var(--color-shadow);
-  --shadow-overlay: 0 0 0 9999px var(--color-shadow);
 
   --color-*: initial;
   --color-theme: oklch(60% 0.15 240);
@@ -93,7 +92,7 @@
   }
 
   h1 {
-    @apply justify-center text-center text-4xl tracking-widest uppercase;
+    @apply justify-center text-center text-3xl tracking-widest uppercase;
   }
 
   h2 {

@@ -12,6 +12,7 @@ import {
   DiceThreeIcon,
   InfoIcon,
 } from "@phosphor-icons/react";
+import clsx from "clsx";
 import { atom, useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
@@ -27,15 +28,17 @@ import {
 } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { getAtom, setAtom } from "~/util/atom";
+import { autoHeight } from "~/util/hooks";
 import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
-import { lessonAtom, topicAtom } from "./Explore";
+import { lessonAtom, topicAtom } from "./Lessons";
 
 // has user explicitly selected a lesson
 export const selectedAtom = atom(false);
 // mark that user explicitly selected a lesson
 export const userSelected = () => setAtom(selectedAtom, true);
 
+// home page theater section
 export default function Theater() {
   // current lesson
   const lessonId = useAtomValue(lessonAtom);
@@ -108,7 +111,7 @@ export default function Theater() {
           </div>
 
           {/* actions */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 max-md:gap-2">
             {lesson?.read && (
               <Button size="sm" to={readLink}>
                 <BookOpenTextIcon />
@@ -127,14 +130,18 @@ export default function Theater() {
           </div>
         </div>
 
-        {details && (
-          <div id="theater-details" className="flex flex-col gap-4">
-            <p>{formatDate(lesson?.date)}</p>
-            <p>{lesson?.description}</p>
-          </div>
-        )}
+        <div
+          ref={(element) => autoHeight(element, details)}
+          className={clsx(
+            "flex flex-col gap-4 overflow-hidden transition-all",
+            !details && "-mb-4",
+          )}
+        >
+          <p>{formatDate(lesson?.date)}</p>
+          <p>{lesson?.description}</p>
+        </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 max-sm:gap-2">
           {/* controls */}
           <Control current={lesson} target={random} suppressHydrationWarning>
             <DiceThreeIcon />

@@ -1,6 +1,5 @@
 import { href } from "react-router";
 import Button from "~/components/Button";
-import DarkMode from "~/components/DarkMode";
 import { H1 } from "~/components/Heading";
 import Logo from "~/components/Logo";
 import StrokeType from "~/components/StrokeType";
@@ -21,13 +20,11 @@ export default function Header() {
         <Logo className="size-12" />
       </Button>
 
-      <DarkMode className="absolute top-4 right-4" />
-
       <hgroup className="contents">
-        <H1 className="text-4xl font-bold">
+        <H1 className="text-5xl">
           <StrokeType>3b1b Talent</StrokeType>
         </H1>
-        <div className="text-center text-lg text-balance">
+        <div className="text-center font-sans text-xl text-balance">
           Connecting curious minds with exceptional teams
         </div>
       </hgroup>

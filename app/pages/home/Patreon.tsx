@@ -6,9 +6,10 @@ import Image from "~/components/Image";
 import site from "~/data/site.json";
 import support from "./images/support.png";
 
+// home page patreon section
 export default function Patreon() {
   return (
-    <section className="items-center bg-theme/10">
+    <section className="items-center bg-theme/15">
       <H2>
         <hr />
         <PatreonLogoIcon />

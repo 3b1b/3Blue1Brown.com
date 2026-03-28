@@ -43,12 +43,12 @@ export default function Mandelbrot() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+      <div className="grid w-full grid-cols-2 gap-4 max-md:grid-cols-1">
         <Chart
           source={source}
           constants={{
             MANDELBROT: "true",
-            ITERATIONS: 300,
+            ITERATIONS: 100,
             COLORS: Object.keys(colors).length,
           }}
           uniforms={{

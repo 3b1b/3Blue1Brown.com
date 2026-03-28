@@ -23,7 +23,7 @@ type Props = {
 // available categories of alerts and associated styles
 export const types = {
   info: {
-    color: "text-theme bg-theme/10",
+    color: "text-theme bg-theme/15",
     icon: <InfoIcon />,
   },
   loading: {
