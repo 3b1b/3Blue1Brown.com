@@ -100,6 +100,7 @@
       "sphere-area",
       "inscribed-rect-v2",
       "hairy-ball",
+      "spheres-talk",
       "dandelin-spheres",
       "quaternions",
       "quaternions-and-3d-rotation",
@@ -135,7 +136,8 @@
       "convolutions",
       "winding-numbers",
       "inventing-math",
-      "music-and-measure-theory"
+      "music-and-measure-theory",
+      "print-gallery"
     ]
   },
   "physics": {

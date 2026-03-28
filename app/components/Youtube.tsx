@@ -11,10 +11,12 @@ import "youtube-video-element";
 type Props = {
   // youtube video id
   id?: string;
+  // start time
+  time?: number;
 } & ComponentProps<"video">;
 
 // youtube player embed
-export default function YouTube({ id, className, ...props }: Props) {
+export default function YouTube({ id, time, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
   className = clsx(
@@ -50,7 +52,7 @@ export default function YouTube({ id, className, ...props }: Props) {
     <youtube-video
       ref={ref}
       className={className}
-      src={getWatch(id)}
+      src={getWatch(id, time)}
       poster={getThumbnail(id)}
       controls
       autoPlay={false}
@@ -91,7 +93,8 @@ declare global {
 }
 
 // get watch video from id
-export const getWatch = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+export const getWatch = (id: string, t = 0) =>
+  `https://www.youtube.com/watch?v=${id}&t=${t}s`;
 
 // get thumbnail image from video id
 export const getThumbnail = (id: string) =>

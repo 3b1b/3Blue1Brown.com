@@ -14,7 +14,7 @@ const order = [
   "0xPARC",
   "patreon",
   "prime_academics",
-  "3blue1brown",
+  "epochai",
 ];
 
 // gallery of partners

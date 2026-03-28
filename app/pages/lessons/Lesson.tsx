@@ -114,7 +114,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
           {/* chapter */}
           {chapter !== -1 && (
-            <div className="-my-4 flex items-center gap-2 text-lg">
+            <div className="-my-4 flex items-center gap-2 font-sans text-xl text-dark-gray">
               Chapter {chapter}
             </div>
           )}
