@@ -47,8 +47,8 @@
   --color-secondary: oklch(80% 0.15 60);
 
   --color-black: oklch(100% 0 240);
-  --color-dark-gray: oklch(65% 0 240);
-  --color-gray: oklch(45% 0 240);
+  --color-dark-gray: oklch(70% 0 240);
+  --color-gray: oklch(50% 0 240);
   --color-light-gray: oklch(30% 0 240);
   --color-off-white: oklch(17.5% 0 240);
   --color-alt-white: oklch(15% 0 240);

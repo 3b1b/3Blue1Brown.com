@@ -58,6 +58,12 @@ export default function Dialog({
         <_Dialog.Backdrop className="fixed inset-0 z-30 bg-black/50 transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0" />
         <_Dialog.Popup className="pointer-events-none fixed inset-0 z-30 grid place-items-center p-8 transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0 max-md:p-4">
           <div
+            ref={(element) => {
+              if (!element) return;
+              element
+                .querySelector<HTMLInputElement>("input, textarea")
+                ?.focus();
+            }}
             className={clsx(
               "pointer-events-auto flex max-h-full min-h-0 w-full max-w-200 flex-col rounded-md bg-white",
               className,
