@@ -2,8 +2,17 @@
 command = "bun run build"
 publish = "build/client"
 
+  [build.environment]
+  NODE_VERSION = "22"
+
 [dev]
 command = "bun run dev"
 
-[build.environment]
-  NODE_VERSION = "22"
+[[redirects]]
+from = "/*"
+to = "/404"
+status = 404
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+enabled = false

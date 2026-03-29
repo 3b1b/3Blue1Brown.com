@@ -48,6 +48,9 @@ export default {
       ...lessons,
       ...partners,
       ...posts,
+
+      // not found
+      "/404",
     ];
 
     // export pre-rendered route list artifact for testing purposes
