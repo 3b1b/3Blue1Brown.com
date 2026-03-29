@@ -44,7 +44,7 @@ export default function Hero() {
         >
           {entries.map(({ Icon, value, label }, index) => (
             <div key={index} className="flex flex-col items-center gap-2">
-              <Icon className="mb-2 h-12 text-gray" weight="thin" />
+              <Icon className="mb-2 h-12 text-gray" weight="light" />
               <div className="font-sans text-xl text-transparent tabular-nums">
                 {formatNumber(percent * value)}
               </div>
@@ -62,7 +62,7 @@ export default function Hero() {
             <YoutubeLogoIcon />
             Channel
           </Button>
-          <p>Explore animated math</p>
+          <p>Explore, learn, and be curious</p>
         </div>
       </div>
     </section>

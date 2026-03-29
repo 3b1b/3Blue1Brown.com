@@ -10,37 +10,20 @@ const [getImage] = importAssets(
   (module) => module.default,
 );
 
-// extra/special "topics"
-const specialTopics = {
-  "best-of": {
-    title: "Best Of",
-    description: "A few hand-picked favorites",
-    lessons: [
-      "newtons-fractal",
-      "shadows",
-      "fractal-dimension",
-      "cosmic-distance-1",
-      "zeta",
-      "windmills",
-      "prime-spirals",
-      "essence-of-calculus",
-      "wordle",
-      "colliding-blocks-v2",
-      "hardest-problem",
-      "fourier-series",
-      "print-gallery",
-    ],
-  },
-  all: {
-    title: "All",
-    description: "All lessons, newest to oldest",
-    lessons: byDate,
-  },
-};
+// topics that don't count as "real" topics e.g. for prev/next nav
+const specialTopics = ["all", "best-of"];
 
-// combine special topics with regular topics
+// list of topics
 export const topics = mapValues(
-  { ...specialTopics, ...omit(_topics, "miscellaneous") },
+  {
+    all: {
+      title: "All",
+      description: "All lessons, newest to oldest",
+      lessons: byDate,
+    },
+    ...omit(_topics, "miscellaneous"),
+  },
+  // derive extras
   (topic, id) => ({
     id,
     image: getImage(id) ?? "",
@@ -53,7 +36,8 @@ export type TopicId = keyof typeof topics;
 // get topic that lesson is in
 export const getTopic = (id: string) => {
   for (const [topicId, topic] of Object.entries(topics))
-    if (!(topicId in specialTopics) && topic.lessons.includes(id)) return topic;
+    if (!specialTopics.includes(topicId) && topic.lessons.includes(id))
+      return topic;
 };
 
 // get previous lesson relative to this one by topic

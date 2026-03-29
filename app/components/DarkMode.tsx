@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
+import { useEventListener } from "@reactuses/core";
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import Button from "~/components/Button";
@@ -16,6 +17,11 @@ export default function DarkMode({ className = "" }) {
     const root = document.documentElement;
     root.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
+
+  // for debugging
+  useEventListener("keydown", ({ key, ctrlKey }) => {
+    if (key === "d" && ctrlKey) setDarkMode((darkMode) => !darkMode);
+  });
 
   return (
     <Button

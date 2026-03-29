@@ -27,10 +27,9 @@
   --color-secondary: oklch(60% 0.15 60);
 
   --color-black: oklch(0% 0 240);
-  --color-dark-gray: oklch(35% 0 240);
+  --color-dark-gray: oklch(30% 0 240);
   --color-gray: oklch(60% 0 240);
-  --color-light-gray: oklch(90% 0 240);
-  --color-off-white: oklch(97% 0 240);
+  --color-light-gray: oklch(95% 0 240);
   --color-alt-white: oklch(98.5% 0 240);
   --color-white: oklch(100% 0 240);
 
@@ -47,10 +46,9 @@
   --color-secondary: oklch(80% 0.15 60);
 
   --color-black: oklch(100% 0 240);
-  --color-dark-gray: oklch(70% 0 240);
+  --color-dark-gray: oklch(80% 0 240);
   --color-gray: oklch(50% 0 240);
-  --color-light-gray: oklch(30% 0 240);
-  --color-off-white: oklch(17.5% 0 240);
+  --color-light-gray: oklch(20% 0 240);
   --color-alt-white: oklch(15% 0 240);
   --color-white: oklch(0% 0 240);
 
@@ -139,7 +137,7 @@
   }
 
   blockquote {
-    @apply border-theme trim bg-off-white flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
+    @apply border-theme trim bg-light-gray flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
   }
 
   pre {
@@ -155,7 +153,7 @@
   }
 
   thead tr {
-    @apply bg-off-white;
+    @apply bg-light-gray;
   }
 
   tr {

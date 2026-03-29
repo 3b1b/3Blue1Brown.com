@@ -38,16 +38,18 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   // debounce to avoid excessive work
   const search = useDebounce(_search.trim(), 300);
 
+  const client = useClient();
+
   // create web worker thread
   const worker = useMemo(
     () =>
-      typeof Worker !== "undefined"
+      client
         ? wrap<{
             searchList: typeof searchList<Entry>;
             setList: typeof setList<Entry>;
           }>(new FuzzyWorker())
         : undefined,
-    [],
+    [client],
   );
 
   const [matches, setMatches] = useState<Entry[]>([]);
@@ -172,7 +174,11 @@ export const useClient = () => {
 };
 
 // control expanding/collapsing height of element with transition
-export const autoHeight = (element: HTMLElement | null, open: boolean) => {
+export const autoHeight = (
+  element: HTMLElement | null,
+  open: boolean,
+  closed = 0,
+) => {
   if (!element) return;
   if (open) {
     // set height to content height
@@ -187,6 +193,6 @@ export const autoHeight = (element: HTMLElement | null, open: boolean) => {
     // set starting height
     element.style.maxHeight = element.scrollHeight + "px";
     // collapse
-    sleep().then(() => (element.style.maxHeight = 0 + "px"));
+    sleep().then(() => (element.style.maxHeight = closed + "px"));
   }
 };

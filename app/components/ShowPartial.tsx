@@ -14,7 +14,7 @@ type Props = {
 };
 
 // height limit, in pixels
-const limit = 300;
+const limit = 200;
 
 // show partial content with fade, with button to reveal more
 export default function ShowPartial({ className, children }: Props) {
@@ -35,7 +35,7 @@ export default function ShowPartial({ className, children }: Props) {
             setEnabled(false);
             return;
           }
-          autoHeight(element, open);
+          autoHeight(element, open, limit);
         }}
         className={clsx(
           "flex flex-col gap-8 overflow-hidden transition-all",

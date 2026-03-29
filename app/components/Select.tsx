@@ -40,7 +40,7 @@ export default function Select<O extends Option>({
       </div>
       <div
         className={clsx(
-          "relative flex grow rounded-md bg-off-white font-medium hocus:bg-theme/15",
+          "relative flex grow rounded-md bg-light-gray font-medium hocus:bg-theme/15",
           className,
         )}
       >
