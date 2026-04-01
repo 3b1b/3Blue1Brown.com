@@ -53,7 +53,7 @@ export default function Tooltip({ trigger, children, className }: Props) {
         >
           <Popover.Popup
             className={clsx(
-              "flex max-h-(--available-height) w-max max-w-[min(var(--available-width),--spacing(200))] flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0",
+              "flex max-h-(--available-height) w-max max-w-[min(var(--available-width),--spacing(100))] flex-col gap-2 overflow-y-auto overscroll-none rounded-md bg-white p-4 shadow-md transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0",
 
               className,
             )}

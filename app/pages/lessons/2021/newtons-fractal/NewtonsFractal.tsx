@@ -239,7 +239,7 @@ export function Chart({
   return (
     <div
       ref={ref}
-      className={clsx("relative size-full overflow-hidden border", className)}
+      className={clsx("relative size-full overflow-clip border", className)}
     >
       {/* shader underlay */}
       <Shader

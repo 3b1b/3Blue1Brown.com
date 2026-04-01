@@ -29,7 +29,7 @@ export default function Carousel({ children }: Props) {
 
   return (
     <div className="relative isolate flex flex-col items-center gap-4">
-      <div className="overflow-x-hidden border" ref={ref}>
+      <div className="overflow-x-clip border" ref={ref}>
         <div className="flex [touch-action:pan-y_pinch-zoom]">
           {Children.map(children, (child, index) => (
             <div

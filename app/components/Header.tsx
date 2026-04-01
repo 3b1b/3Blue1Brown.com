@@ -18,7 +18,7 @@ export default function Header({ children }: Props) {
   return (
     <header
       className={clsx(
-        "dark relative isolate z-20 flex flex-col gap-8 overflow-hidden bg-white p-8 text-black max-md:gap-4 max-md:p-4",
+        "dark relative isolate z-20 flex flex-col gap-8 overflow-clip bg-white p-8 text-black max-md:gap-4 max-md:p-4 print:hidden",
       )}
     >
       <Grid className="max-h-200 mask-b-from-0% mask-b-to-100% opacity-25" />

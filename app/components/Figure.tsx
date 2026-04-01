@@ -5,6 +5,7 @@ import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Image from "~/components/Image";
+import { usePrinting } from "~/util/hooks";
 
 type Props = {
   // image source
@@ -56,6 +57,8 @@ export default function Figure({
       <source src={video ?? ""} type="video/mp4" />
     </video>
   );
+
+  if (usePrinting()) return imageElement;
 
   // if only one or the other, just show that one
   if (image && !video) return imageElement;

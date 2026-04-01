@@ -32,7 +32,7 @@ export default function Image({ image, alt = "", children, className }: Props) {
       }}
       aria-label={isFullscreen ? "Exit fullscreen" : "View image in fullscreen"}
       className={clsx(
-        "max-h-dvh cursor-pointer",
+        "max-h-dvh cursor-pointer break-inside-avoid",
         isFullscreen && "object-contain!",
         !children && className,
       )}

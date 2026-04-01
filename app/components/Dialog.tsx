@@ -80,7 +80,7 @@ export default function Dialog({
             </div>
 
             {/* middle, main content */}
-            <div className="flex flex-col gap-8 overflow-x-hidden overflow-y-auto p-8 max-md:p-4">
+            <div className="flex flex-col gap-8 overflow-x-clip overflow-y-auto p-8 max-md:p-4">
               {content(children)}
             </div>
 

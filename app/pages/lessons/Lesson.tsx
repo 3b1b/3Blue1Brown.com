@@ -105,28 +105,32 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           {topic && (
             <Button
               to={{ pathname: "/", search: `?topic=${topic.id}` }}
-              className="top-4 left-4 self-center md:absolute"
+              className="top-4 left-4 self-center md:absolute print:hidden"
             >
               <ArrowLeftIcon />
               {topic.title}
             </Button>
           )}
 
-          {/* chapter */}
-          {chapter !== -1 && (
-            <div className="-my-4 flex items-center gap-2 font-sans text-xl text-dark-gray">
-              Chapter {chapter}
-            </div>
-          )}
-
           {/* title */}
-          <H1>
-            <StrokeType>{title}</StrokeType>
-          </H1>
+          <hgroup className="flex flex-col items-center gap-4 font-sans">
+            {/* chapter */}
+            {chapter !== -1 && (
+              <div className="text-xl text-dark-gray">Chapter {chapter}</div>
+            )}
+
+            <H1>
+              <StrokeType>{title}</StrokeType>
+            </H1>
+          </hgroup>
 
           <div className="grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-8">
             {/* embed */}
-            {video ? <YouTube id={video} /> : <Image image={image} />}
+            {video ? (
+              <YouTube id={video} className="print:hidden" />
+            ) : (
+              <Image image={image} className="print:hidden" />
+            )}
 
             {/* details */}
             <div className="flex flex-col items-start justify-start gap-8">
@@ -186,7 +190,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
         {/* nav */}
         {(!!previous || !!next) && (
-          <section className="grid grid-cols-3 gap-8 max-sm:grid-cols-1">
+          <section className="grid grid-cols-3 gap-8 max-sm:grid-cols-1 print:hidden">
             {/* previous */}
             {!!previous ? (
               <Card
@@ -227,7 +231,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
         {/* thank you */}
         {!!patrons.length && (
-          <section className="bg-secondary/10!">
+          <section className="bg-secondary/10! print:hidden">
             <H2>
               <hr />
               Thanks

@@ -79,7 +79,7 @@ type Props = {
 // hilbert curve viz
 export default function Hilbert({ className }: Props) {
   return (
-    <div className={clsx("absolute inset-0 -z-10 overflow-hidden", className)}>
+    <div className={clsx("absolute inset-0 -z-10 overflow-clip", className)}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={[left, top, width, height].join(" ")}

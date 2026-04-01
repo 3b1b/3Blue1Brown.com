@@ -7,9 +7,11 @@ import {
   useMemo,
   useState,
 } from "react";
+import { flushSync } from "react-dom";
 import {
   useDebounce,
   useElementBounding,
+  useEventListener,
   useWindowSize,
 } from "@reactuses/core";
 import { wrap } from "comlink";
@@ -195,4 +197,13 @@ export const autoHeight = (
     // collapse
     sleep().then(() => (element.style.maxHeight = closed + "px"));
   }
+};
+
+// use printing state
+export const usePrinting = () => {
+  const [printing, setPrinting] = useState(false);
+  // set printing state and synchronously render
+  useEventListener("beforeprint", () => flushSync(() => setPrinting(true)));
+  useEventListener("afterprint", () => flushSync(() => setPrinting(false)));
+  return printing;
 };

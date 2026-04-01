@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Collapsible as _Collapsible } from "@base-ui/react";
 import { CaretRightIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { autoHeight } from "~/util/hooks";
+import { autoHeight, usePrinting } from "~/util/hooks";
 
 type Props = {
   // button content
@@ -14,7 +14,9 @@ type Props = {
 
 // aka disclosure, accordion, etc.
 export default function Collapsible({ title, children, className }: Props) {
-  const [open, setOpen] = useState(false);
+  let [open, setOpen] = useState(false);
+
+  if (usePrinting()) open = true;
 
   return (
     <_Collapsible.Root
@@ -37,7 +39,7 @@ export default function Collapsible({ title, children, className }: Props) {
         ref={(element) => autoHeight(element, open)}
         hiddenUntilFound
         className={clsx(
-          "flex shrink-0 flex-col gap-8 overflow-hidden px-8 py-2 transition-all",
+          "flex shrink-0 flex-col gap-8 overflow-y-clip px-8 py-2 transition-all",
           open ? "" : "pointer-events-none -mb-12 opacity-0",
         )}
       >

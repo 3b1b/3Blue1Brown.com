@@ -49,7 +49,6 @@ export default function TableOfContents() {
   const { width: windowWidth } = useWindowSize();
   const [tocWidth] = useElementSize(ref);
   const [sectionWidth] = useElementSize(sectionRef);
-  console.log(sectionWidth);
 
   // available width in margins
   const availableWidth = (windowWidth - sectionWidth) / 2;
@@ -99,7 +98,7 @@ export default function TableOfContents() {
     <aside
       ref={ref}
       className={clsx(
-        "fixed inset-y-0 z-20 flex max-w-[min(--spacing(80),75dvw)] flex-col bg-white font-sans shadow-md transition",
+        "fixed inset-y-0 z-20 flex max-w-[min(--spacing(80),75dvw)] flex-col bg-white font-sans shadow-md transition print:hidden",
         hide ? "pointer-events-none opacity-0" : "opacity-100",
         open ? "" : "-translate-x-full",
       )}

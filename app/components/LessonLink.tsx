@@ -23,7 +23,7 @@ export default function LessonLink({ id, className, children }: Props) {
   if (!lesson) return children;
 
   // get lesson details
-  const { title = "", description = "" } = lesson;
+  const { title = "", description = "", read } = lesson;
 
   // if just text, wrap in button to ensure accessibility
   if (!isValidElement(children))
@@ -36,25 +36,29 @@ export default function LessonLink({ id, className, children }: Props) {
   return (
     <>
       <Tooltip trigger={children}>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <strong>{title}</strong>
-          <div className="text-gray">{description}</div>
+          <p className="text-gray">{description}</p>
 
-          <Button
-            to={{
-              pathname: href("/"),
-              search: `?lesson=${id}`,
-            }}
-            color="light"
-            size="sm"
-          >
-            <PlayIcon />
-            Watch
-          </Button>
-          <Button to={href("/lessons/:id", { id })} color="light" size="sm">
-            <BookOpenTextIcon />
-            Read
-          </Button>
+          <div className="flex items-center gap-4 *:flex-1">
+            <Button
+              to={{
+                pathname: href("/"),
+                search: `?lesson=${id}`,
+              }}
+              color="light"
+              size="sm"
+            >
+              <PlayIcon />
+              Watch
+            </Button>
+            {read && (
+              <Button to={href("/lessons/:id", { id })} color="light" size="sm">
+                <BookOpenTextIcon />
+                Read
+              </Button>
+            )}
+          </div>
         </div>
       </Tooltip>
     </>

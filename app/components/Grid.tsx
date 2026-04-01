@@ -54,7 +54,7 @@ type Props = {
 // simple cartesian grid viz
 export default function Grid({ className }: Props) {
   return (
-    <div className={clsx("absolute inset-0 -z-10 overflow-hidden", className)}>
+    <div className={clsx("absolute inset-0 -z-10 overflow-clip", className)}>
       <svg
         viewBox={[-radius, -radius, radius * 2, radius * 2].join(" ")}
         className="absolute top-1/2 -translate-y-1/2 perspective-rotate"

@@ -133,7 +133,7 @@ export default function Theater() {
         <div
           ref={(element) => autoHeight(element, details)}
           className={clsx(
-            "flex flex-col gap-4 overflow-hidden transition-all",
+            "flex flex-col gap-4 overflow-y-clip transition-all",
             !details && "-mb-4",
           )}
         >

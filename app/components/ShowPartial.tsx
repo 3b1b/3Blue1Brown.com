@@ -38,7 +38,7 @@ export default function ShowPartial({ className, children }: Props) {
           autoHeight(element, open, limit);
         }}
         className={clsx(
-          "flex flex-col gap-8 overflow-hidden transition-all",
+          "flex flex-col gap-8 overflow-y-clip transition-all",
           open ? "" : "to-transparent mask-b-from-50%",
           className,
         )}

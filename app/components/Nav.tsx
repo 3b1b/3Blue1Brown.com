@@ -75,7 +75,7 @@ export default function Nav() {
           createPortal(
             <div
               className={clsx(
-                "dark fixed inset-0 z-20 flex justify-end transition lg:hidden",
+                "dark fixed inset-0 z-20 flex justify-end transition lg:hidden print:hidden",
                 open
                   ? "pointer-events-auto bg-black/25"
                   : "pointer-events-none bg-transparent",
