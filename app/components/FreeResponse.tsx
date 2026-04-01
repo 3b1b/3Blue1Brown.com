@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
-import { useTimeoutFn } from "@reactuses/core";
+import { useDebounceFn } from "@reactuses/core";
 import Button from "~/components/Button";
 import Markdownify from "~/components/Markdownify";
 import TextBox from "~/components/TextBox";
@@ -25,8 +25,8 @@ export default function FreeResponse({ question, children }: Props) {
   const inView = useInView(ref);
 
   // when question in view, wait a few secs before allowing reveal
-  const [, reveal] = useTimeoutFn(() => setState("unrevealed"), 1000 * 5);
-  if (inView && state === "disabled") reveal();
+  const reveal = useDebounceFn(() => setState("unrevealed"), 1000 * 5);
+  if (inView && state === "disabled") reveal.run();
 
   return (
     <>
