@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { interpolateViridis } from "d3";
 import { range } from "d3-array";
 import { axisBottom, axisRight } from "d3-axis";
-import { drag } from "d3-drag";
 import { scaleLinear } from "d3-scale";
 import { select } from "d3-selection";
 import { zoom, zoomIdentity } from "d3-zoom";
@@ -14,6 +13,7 @@ import Button from "~/components/Button";
 import NumberBox from "~/components/NumberBox";
 import Shader, { normalizeColor } from "~/components/Shader";
 import { Complex, getCoefficients } from "~/util/complex";
+import { useUA } from "~/util/hooks";
 import { round } from "~/util/math";
 import source from "./newtons-fractal.frag?raw";
 
@@ -125,8 +125,6 @@ type Point = {
 type ChartProps = {
   // base zoom level (view extent starts at -/+ this)
   scale?: number;
-  // radius of points, roughly as % of view size
-  pointSize?: number;
   // list of points
   points?: Point[];
   // update points
@@ -139,7 +137,6 @@ export function Chart({
   constants = {},
   uniforms = {},
   scale = 2,
-  pointSize = 0.05,
   points = [],
   setPoints = () => {},
   className = "",
@@ -216,22 +213,9 @@ export function Chart({
   // reset zoom/pan on resize
   useResizeObserver(ref, resetZoom);
 
-  // point drag behavior
-  const dragBehavior = drag<SVGCircleElement, unknown, { index: number }>().on(
-    "drag",
-    ({ x, y, subject }) =>
-      // update dragged point coords
-      setPoints((points) => {
-        const newPoints = structuredClone(points);
-        const point = newPoints[subject.index];
-        if (point) {
-          // screen coords to input coords
-          point.x = xScale.invert(x);
-          point.y = yScale.invert(y);
-        }
-        return newPoints;
-      }),
-  );
+  // radius of points, roughly as % of view size
+  let pointSize = 0.05;
+  if (!useUA().isDesktop) pointSize = 0.1;
 
   // radius of points, scaled to constant size in screen coords
   const radius = (scale * (xScale(pointSize) - xScale(0))) / transform.k;
@@ -239,7 +223,10 @@ export function Chart({
   return (
     <div
       ref={ref}
-      className={clsx("relative size-full overflow-clip border", className)}
+      className={clsx(
+        "relative size-full touch-none overflow-clip border select-none",
+        className,
+      )}
     >
       {/* shader underlay */}
       <Shader
@@ -307,23 +294,46 @@ export function Chart({
         {points.map(({ x, y, color }, index) => (
           <circle
             key={index}
-            ref={(element) => {
-              if (!element) return;
-              const selection = select(element);
-              // attach extra info to datum to access in events
-              selection.datum({ index, color });
-              dragBehavior(selection);
+            onPointerDown={(event) => {
+              // mark this element as one being dragged
+              event.currentTarget.setPointerCapture(event.pointerId);
+              // stop zoom/pan from also triggering
+              event.stopPropagation();
             }}
-            onTouchMove={(event) => {
+            onPointerMove={(event) => {
+              // if this element not one being dragged, ignore
+              if (!event.currentTarget.hasPointerCapture(event.pointerId))
+                return;
               event.preventDefault();
+              const svg = event.currentTarget.ownerSVGElement;
+              if (!svg) return;
+              // convert page coords to svg coords
+              let point = svg.createSVGPoint();
+              point.x = event.clientX;
+              point.y = event.clientY;
+              point = point.matrixTransform(svg.getScreenCTM()?.inverse());
+              // update point
+              setPoints((points) => {
+                const newPoints = structuredClone(points);
+                const newPoint = newPoints[index];
+                if (newPoint) {
+                  newPoint.x = xScale.invert(point.x);
+                  newPoint.y = yScale.invert(point.y);
+                }
+                return newPoints;
+              });
             }}
+            onPointerUp={(event) =>
+              // clear this element as one being dragged
+              event.currentTarget.releasePointerCapture(event.pointerId)
+            }
             cx={xScale(x)}
             cy={yScale(y)}
             r={radius}
             fill={color}
             stroke="white"
             strokeWidth={radius / 5}
-            className="cursor-crosshair"
+            className="cursor-crosshair touch-none"
           />
         ))}
       </svg>

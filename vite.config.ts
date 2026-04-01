@@ -12,7 +12,12 @@ import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // https://github.com/vitejs/vite/discussions/14801
+  // optimizeDeps: {
+  //   noDiscovery: command === "serve",
+  //   include: [],
+  // },
   plugins: [
     // custom plugin, transform source code as raw string
     {
@@ -84,4 +89,4 @@ export default defineConfig({
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
   },
-});
+}));

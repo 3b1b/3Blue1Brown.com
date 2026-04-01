@@ -132,8 +132,8 @@ export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
   return fit;
 };
 
-// use debug info
-export const useDebug = () => {
+// use user agent info
+export const useUA = () => {
   const [ua, setUA] = useState<UAParser.IResult>();
 
   const isFirefox = ua?.browser.name?.toLowerCase().includes("firefox");

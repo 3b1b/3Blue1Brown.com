@@ -14,7 +14,7 @@ import Link from "~/components/Link";
 import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
-import { useDebug } from "~/util/hooks";
+import { useUA } from "~/util/hooks";
 import { shorten } from "~/util/url";
 
 // form id
@@ -38,7 +38,7 @@ export default function Feedback() {
   if (username && username.length > 0)
     username = username.replaceAll(/^@*/g, "@");
 
-  const { userAgent } = useDebug();
+  const { userAgent } = useUA();
 
   // extra details to include in report
   const { pathname, search, hash } = useLocation();
