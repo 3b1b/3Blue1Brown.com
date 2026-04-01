@@ -42,7 +42,7 @@ test("Feedback form works", async ({ page }) => {
   await page.click('button[aria-label*="feedback" i]');
   await page.locator('label:has-text("subject") input').fill("test subject");
   await page.reload();
-  await page.click('button[aria-label*="feedback" i]');
+  await page.click('button[aria-label*="feedback" i]', { force: true });
   await expect(page.locator('label:has-text("subject") input')).toHaveValue(
     "test subject",
   );

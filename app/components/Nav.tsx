@@ -73,26 +73,22 @@ export default function Nav() {
         <Toggle />
         {client &&
           createPortal(
-            <div
-              className={clsx(
-                "dark fixed inset-0 z-20 flex justify-end transition lg:hidden print:hidden",
-                open
-                  ? "pointer-events-auto bg-black/25"
-                  : "pointer-events-none bg-transparent",
-              )}
-              onClick={(event) => {
-                // close if clicked backdrop directly (not a nav link)
-                if (event.target === event.currentTarget) setOpen(false);
-              }}
-            >
+            <>
+              <div
+                className={clsx(
+                  "dark fixed inset-0 z-20 size-full bg-black/25 transition transition-discrete starting:opacity-0",
+                  open ? "opacity-100" : "pointer-events-none hidden opacity-0",
+                )}
+                onClick={() => setOpen(false)}
+              />
               <Links
                 ref={ref}
                 className={clsx(
-                  "flex flex-col justify-start overflow-y-auto bg-white p-8 text-right transition lg:hidden",
+                  "dark fixed right-0 z-20 flex h-full flex-col justify-start overflow-y-auto bg-white p-8 text-right transition lg:hidden",
                   open ? "translate-x-0" : "translate-x-full",
                 )}
               />
-            </div>,
+            </>,
             document.body,
           )}
       </>

@@ -14,10 +14,10 @@ import site from "./app/data/site.json";
 
 export default defineConfig(({ command }) => ({
   // https://github.com/vitejs/vite/discussions/14801
-  // optimizeDeps: {
-  //   noDiscovery: command === "serve",
-  //   include: [],
-  // },
+  optimizeDeps: {
+    noDiscovery: command === "serve",
+    include: [],
+  },
   plugins: [
     // custom plugin, transform source code as raw string
     {
