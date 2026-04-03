@@ -17,8 +17,8 @@ import { sleep } from "~/util/misc";
 // site navigation links
 const links = [
   {
-    name: "Channel",
-    to: site.socials.channel,
+    name: "Home",
+    to: "/",
   },
   {
     name: "Talent",
@@ -146,7 +146,7 @@ function Links({ ref, className = "" }: LinksProps) {
           to={to}
           arrow={false}
           size="sm"
-          className={index === 0 ? "border" : undefined}
+          className="aria-[current='page']:opacity-50"
         >
           {name}
         </Button>

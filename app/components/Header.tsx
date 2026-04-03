@@ -38,9 +38,7 @@ export default function Header({ children }: Props) {
         <Nav />
 
         {/* sub title */}
-        <div className="flex grow basis-0 flex-col items-end gap-2 text-right text-dark-gray max-xl:hidden">
-          <div>{site.subtitle}</div>
-        </div>
+        <div className="flex grow basis-0 max-xl:hidden"></div>
       </div>
 
       {children}

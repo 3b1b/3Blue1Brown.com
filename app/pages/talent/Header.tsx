@@ -8,7 +8,7 @@ import TriangleGrid from "~/components/TriangleGrid";
 // partner gallery page header
 export default function Header() {
   return (
-    <header className="dark relative isolate flex flex-col items-center gap-8 overflow-clip bg-white px-8 py-30 text-black">
+    <header className="dark relative isolate flex flex-col items-center gap-8 overflow-clip bg-white px-8 py-20 text-black">
       <TriangleGrid />
 
       <Button
@@ -21,7 +21,7 @@ export default function Header() {
       </Button>
 
       <hgroup className="contents">
-        <H1 className="text-5xl">
+        <H1 className="font-serif text-5xl">
           <StrokeType>3b1b Talent</StrokeType>
         </H1>
         <div className="text-center font-sans text-xl text-balance">

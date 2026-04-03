@@ -89,6 +89,7 @@ Run periodically, manually review, and use discretion.
 
 ## Notes
 
+- If you're annoyed by frequent reloading in dev mode, it's a known issue and see https://github.com/vitejs/vite/discussions/14801
 - MDX files can only be type-checked in the editor, and not with the the `test:types` script.
   This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
 - Place code in the appropriate places as described in the repo structure.
@@ -103,8 +104,9 @@ Run periodically, manually review, and use discretion.
 - Use Tailwind for styling, and avoid custom CSS and inline styles as much as possible.
 - Use Tailwind's `--spacing()` function in `calc()`s and such, to ensure consistent spacing.
   Avoid hardcoding pixel values.
-- Try to be consistent with the established visual language of the site, e.g. what gap sizes are typically used, how colors and color-alpha values are used on other pages.
+- Try to be consistent with the established visual language of the site, e.g. what gap sizes are typically used, how colors and color-alpha values are used on other pages, what fonts are used when, etc.
   Keep in mind the general aesthetic of the whole.
+  In other words, stick to a design system.
 - Use already-bundled lodash utility functions wherever possible to make code more concise.
 - If a component in `/components` is just a single element and some styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
   If a component is only used in one place, it may not need to be a component at all.

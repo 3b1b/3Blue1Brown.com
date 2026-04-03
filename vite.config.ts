@@ -12,12 +12,12 @@ import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
-export default defineConfig(({ command }) => ({
+export default defineConfig(() => ({
   // https://github.com/vitejs/vite/discussions/14801
-  optimizeDeps: {
-    noDiscovery: command === "serve",
-    include: [],
-  },
+  // optimizeDeps: {
+  //   noDiscovery: command === "serve",
+  //   include: [],
+  // },
   plugins: [
     // custom plugin, transform source code as raw string
     {

@@ -75,7 +75,7 @@ export const [getPatrons] = importAssets(
       .filter(Boolean),
 );
 
-// get lessons ordered by date, most recent first
+// get lessons ordered by date
 export const byDate = orderBy(
   Object.entries(lessons),
   ([, lesson]) => lesson?.frontmatter?.date,

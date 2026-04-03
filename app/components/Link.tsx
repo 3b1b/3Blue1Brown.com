@@ -76,7 +76,12 @@ export default function Link({
   // internal link, active
   if (active || !to)
     return (
-      <span className={clsx("pointer-events-none", className)}>{children}</span>
+      <span
+        aria-current="page"
+        className={clsx("pointer-events-none", className)}
+      >
+        {children}
+      </span>
     );
 
   // other internal link

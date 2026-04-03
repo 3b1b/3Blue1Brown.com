@@ -6,8 +6,10 @@ import {
   CaretDownIcon,
   CaretUpIcon,
   MagnifyingGlassIcon,
+  PlayIcon,
   XIcon,
 } from "@phosphor-icons/react";
+import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
@@ -70,7 +72,10 @@ export function Search({ close = () => {} }) {
   const [search, setSearch] = useAtom(searchAtom);
 
   // search results
-  const results = useFuzzySearch(lessons, search);
+  let results = useFuzzySearch(lessons, search);
+
+  // display newest to oldest for certain topics
+  if (["all", "best-of"].includes(topicId)) results = results.toReversed();
 
   // show all or truncate results
   const [all, setAll] = useState(false);
@@ -106,7 +111,7 @@ export function Search({ close = () => {} }) {
             alt=""
             className="size-full object-cover"
           />
-          <div className="flex grow items-center gap-4 p-4 @md:col-span-2">
+          <div className="flex grow items-center gap-4 @md:col-span-2">
             <div className="flex grow flex-col gap-2">
               <div className="w-max shrink-0 font-sans text-lg font-medium">
                 {topic.title}
@@ -149,39 +154,44 @@ export function Search({ close = () => {} }) {
       ) : results.length ? (
         <>
           {/* search result cards */}
-          <div
-            id="results"
-            className="grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1"
-          >
+          <div id="results" className="grid grid-cols-1 gap-8">
             {results
-              .toReversed()
               .slice(0, all ? Infinity : limit)
               .map(
                 (
                   { id = "", title = "", description = "", image = "", read },
                   index,
                 ) => (
-                  <div key={index} className="flex flex-col gap-4">
+                  <div key={index} className="relative max-lg:contents">
                     <Card
                       to={{
                         pathname: "/",
                         search: mergeSearch(location.search, `lesson=${id}`),
                       }}
-                      aria-label={`Play lesson "${title}"`}
+                      direction="row"
                       image={image}
                       title={title}
                       description={description}
+                      className={clsx(lessonId === id && "opacity-50")}
                       onClick={() => {
                         userSelected();
                         close();
                       }}
-                      active={lessonId === id}
-                    />
+                      aria-label={`Play lesson "${title}"`}
+                      aria-current={lessonId === id}
+                    >
+                      {lessonId === id && (
+                        <div className="absolute -top-4 -left-4 grid size-8 place-items-center rounded-full bg-theme text-white">
+                          <PlayIcon />
+                        </div>
+                      )}
+                    </Card>
                     {read && (
                       <Button
                         size="sm"
+                        color="light"
                         to={href("/lessons/:id", { id })}
-                        className="mt-auto self-center"
+                        className="right-full bottom-1/2 justify-self-start lg:absolute lg:-translate-x-1/2 lg:translate-y-1/2"
                         onClick={close}
                       >
                         <BookOpenTextIcon />

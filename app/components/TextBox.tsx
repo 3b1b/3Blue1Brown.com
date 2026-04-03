@@ -1,10 +1,5 @@
-import type {
-  ChangeEvent,
-  ComponentPropsWithRef,
-  ReactElement,
-  ReactNode,
-} from "react";
-import { useRef, useState } from "react";
+import type { ComponentPropsWithRef, ReactElement, ReactNode } from "react";
+import { useRef } from "react";
 import { XIcon } from "@phosphor-icons/react";
 import { useElementBounding, useMergedRefs } from "@reactuses/core";
 import clsx from "clsx";
@@ -28,12 +23,12 @@ type Base = {
 type Single = {
   // single line
   multi?: false;
-} & Omit<ComponentPropsWithRef<"input">, "onChange">;
+} & Omit<ComponentPropsWithRef<"input">, "value" | "onChange">;
 
 type Multi = {
   // multi-line
   multi: true;
-} & Omit<ComponentPropsWithRef<"textarea">, "onChange">;
+} & Omit<ComponentPropsWithRef<"textarea">, "value" | "onChange">;
 
 // single or multi-line text input box
 export default function TextBox({
@@ -51,26 +46,14 @@ export default function TextBox({
   const mergedRef = useMergedRefs(inputRef, passedRef);
   const sideRef = useRef<HTMLDivElement>(null);
 
-  // whether to show clear button
-  const [showClear, setShowClear] = useState(false);
-
-  // internal onChange handler
-  const _onChange = (
-    event?: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const value = (event?.target as HTMLInputElement)?.value || "";
-    setShowClear(!!value);
-    onChange?.(value);
-  };
-
   // side elements
   let side: ReactNode = "";
-  if (showClear)
+  if (!!value)
     side = (
       <button
         onClick={() => {
           if (inputRef.current) inputRef.current.value = "";
-          _onChange();
+          onChange?.("");
         }}
         aria-label="Clear text"
       >
@@ -90,7 +73,7 @@ export default function TextBox({
       className="grow resize rounded-md border border-gray bg-white p-2 text-black hocus-ring trim"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
-      onChange={_onChange}
+      onChange={(event) => onChange?.(event.target.value)}
       {...(props as Multi)}
     />
   ) : (
@@ -99,7 +82,7 @@ export default function TextBox({
       className="grow scroll-mt-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
-      onChange={_onChange}
+      onChange={(event) => onChange?.(event.target.value)}
       {...(props as Single)}
     />
   );

@@ -75,7 +75,7 @@
   }
 
   section {
-    @apply width-md relative isolate flex break-before-page flex-col gap-(--pad) overflow-x-clip bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--pad:--spacing(16)] last:grow max-md:[--pad:--spacing(8)] print:bg-transparent! print:p-0;
+    @apply width-md relative isolate flex break-before-page flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:bg-transparent! print:p-0;
   }
 
   hr {

@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { YoutubeLogoIcon } from "@phosphor-icons/react";
 import { useEventListener } from "@reactuses/core";
 import clsx from "clsx";
 import { atom } from "jotai";
@@ -19,12 +20,15 @@ type Props = {
 export default function YouTube({ id, time, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
+  const [enabled, setEnabled] = useState(false);
+
   className = clsx(
     `grid aspect-video w-full min-w-0 place-items-center font-sans text-xl`,
     className,
   );
 
   const play = async () => {
+    setEnabled(true);
     scrollTo(ref.current, { behavior: "smooth", block: "center" });
     await waitFor(() => ref.current?.readyState === 4);
     await ref.current?.play();
@@ -48,6 +52,23 @@ export default function YouTube({ id, time, className, ...props }: Props) {
 
   if (!id) return <div className={className}>No video</div>;
 
+  if (!enabled)
+    return (
+      <button
+        onClick={play}
+        aria-label="Play video"
+        className={clsx(className, "group")}
+      >
+        <img src={getThumbnail(id)} alt="" className="size-full object-cover" />
+        <div className="absolute grid size-20 place-items-center rounded-full bg-white">
+          <YoutubeLogoIcon
+            className="size-12 transition group-hover:text-theme"
+            weight="fill"
+          />
+        </div>
+      </button>
+    );
+
   return (
     <youtube-video
       ref={ref}
@@ -55,7 +76,6 @@ export default function YouTube({ id, time, className, ...props }: Props) {
       src={getWatch(id, time)}
       poster={getThumbnail(id)}
       controls
-      autoPlay={false}
       role="region"
       aria-label="YouTube video"
       {...props}
