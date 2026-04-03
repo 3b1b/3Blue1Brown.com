@@ -37,6 +37,10 @@ export default function Figure({
   // image to render
   const imageElement = (
     <Image
+      ref={(element) => {
+        // if loaded from browser cache
+        if (element?.complete) setImageLoaded(true);
+      }}
       image={image ?? ""}
       // if not loaded, reserve some space to reduce layout shift
       className={clsx("w-full", !imageLoaded && "aspect-video", className)}
@@ -49,6 +53,10 @@ export default function Figure({
   // video to render
   const videoElement = (
     <video
+      ref={(element) => {
+        // if loaded from browser cache
+        if ((element?.readyState ?? 0) > 0) setVideoLoaded(true);
+      }}
       controls
       className={clsx(className, !videoLoaded && "aspect-video")}
       loop={loop}

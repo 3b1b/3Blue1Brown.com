@@ -2,12 +2,12 @@ import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
 import {
+  ArrowLeftIcon,
   BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
   MagnifyingGlassIcon,
   PlayIcon,
-  XIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
@@ -15,7 +15,7 @@ import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
-import { userSelected } from "~/pages/home/Theater";
+import { userSelect } from "~/pages/home/Theater";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
@@ -32,6 +32,7 @@ export const searchAtom = atomWithQuery("search", 1000);
 // global selected lesson
 export const lessonAtom = atomWithQuery("lesson");
 
+// lesson search section of home page
 export default function Lessons() {
   return (
     <section className="@container">
@@ -46,6 +47,7 @@ export default function Lessons() {
   );
 }
 
+// lesson search sub section
 export function Search({ close = () => {} }) {
   const searchBox = useRef<HTMLInputElement>(null);
 
@@ -104,27 +106,23 @@ export function Search({ close = () => {} }) {
 
       {/* selected topic */}
       {topic && (
-        <div className="relative isolate grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1">
+        <div className="relative isolate flex flex-col items-center gap-8 py-4">
           <div className="absolute -inset-x-999 inset-y-0 -z-10 bg-secondary/10" />
-          <img
-            src={topic.image ?? ""}
-            alt=""
-            className="size-full object-cover"
-          />
-          <div className="flex grow items-center gap-4 @md:col-span-2">
-            <div className="flex grow flex-col gap-2">
-              <div className="w-max shrink-0 font-sans text-lg font-medium">
-                {topic.title}
-              </div>
-              <div>{topic.description}</div>
-            </div>
+
+          <div className="grid w-full grid-cols-3 gap-8 @max-sm:grid-cols-1">
             <Button
               to={{ search: mergeSearch(location.search, `topic=`) }}
-              onClick={userSelected}
-              aria-label="Clear topic"
+              className="self-center justify-self-start @max-md:justify-self-center"
+              onClick={userSelect}
+              aria-label="Back to all topics"
             >
-              <XIcon />
+              <ArrowLeftIcon />
+              Topics
             </Button>
+            <div className="col-span-2 flex flex-col gap-2">
+              <div className="font-sans text-lg font-medium">{topic.title}</div>
+              <div>{topic.description}</div>
+            </div>
           </div>
         </div>
       )}
@@ -142,10 +140,12 @@ export function Search({ close = () => {} }) {
               image={image}
               title={title}
               onClick={(event) => {
-                // only if not in header search popup
-                if (event.currentTarget?.closest("section"))
-                  // scroll up to search box
-                  scrollTo(searchBox.current, { behavior: "instant" });
+                // if in header search popup
+                if (!event.currentTarget?.closest("section")) return;
+                // don't conflict with selected lesson scroll
+                if (lessonId) return;
+                // scroll up to search box
+                scrollTo(searchBox.current, { behavior: "instant" });
               }}
               aria-label={`Explore topic "${title}"`}
             />
@@ -174,7 +174,7 @@ export function Search({ close = () => {} }) {
                       description={description}
                       className={clsx(lessonId === id && "opacity-50")}
                       onClick={() => {
-                        userSelected();
+                        userSelect();
                         close();
                       }}
                       aria-label={`Play lesson "${title}"`}
@@ -189,9 +189,8 @@ export function Search({ close = () => {} }) {
                     {read && (
                       <Button
                         size="sm"
-                        color="light"
                         to={href("/lessons/:id", { id })}
-                        className="right-full bottom-1/2 justify-self-start lg:absolute lg:-translate-x-1/2 lg:translate-y-1/2"
+                        className="bottom-1/2 left-full justify-self-start @lg:absolute @lg:translate-1/2"
                         onClick={close}
                       >
                         <BookOpenTextIcon />

@@ -13,7 +13,7 @@ import {
   InfoIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { atom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
@@ -27,16 +27,15 @@ import {
   getRandom,
 } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
-import { getAtom, setAtom } from "~/util/atom";
 import { autoHeight } from "~/util/hooks";
 import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Lessons";
 
 // has user explicitly selected a lesson
-export const selectedAtom = atom(false);
+let userSelected = false;
 // mark that user explicitly selected a lesson
-export const userSelected = () => setAtom(selectedAtom, true);
+export const userSelect = () => (userSelected = true);
 
 // home page theater section
 export default function Theater() {
@@ -62,7 +61,11 @@ export default function Theater() {
   const random = getRandom(lessonId, topicLessons)?.frontmatter;
 
   // first lesson in list
-  const first = getFirst(topicLessons)?.frontmatter;
+  const first =
+    // handle rare case where selected lesson not in selected topic
+    topicLessons?.includes(lessonId)
+      ? getFirst(topicLessons)?.frontmatter
+      : undefined;
 
   // previous lesson in list
   const previous =
@@ -72,7 +75,11 @@ export default function Theater() {
   const next = lesson && getNext(lesson.id ?? "", topicLessons)?.frontmatter;
 
   // last lesson in list
-  const last = getLast(topicLessons)?.frontmatter;
+  const last =
+    // handle rare case where selected lesson not in selected topic
+    topicLessons?.includes(lessonId)
+      ? getLast(topicLessons)?.frontmatter
+      : undefined;
 
   // link to readable lesson
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
@@ -86,7 +93,7 @@ export default function Theater() {
   // when lesson changes, start playing
   useEffect(() => {
     // only auto-play if user explicitly selected
-    if (getAtom(selectedAtom)) play();
+    if (userSelected) play();
   }, [lessonId]);
 
   return (
@@ -186,7 +193,7 @@ function Control({ current, target, children, ...props }: ControlProps) {
       to={{
         search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
       }}
-      onClick={userSelected}
+      onClick={userSelect}
       aria-disabled={!target || current?.id === target?.id}
       {...props}
     >

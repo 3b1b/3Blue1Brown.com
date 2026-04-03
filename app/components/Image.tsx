@@ -10,10 +10,16 @@ type Props = {
   alt?: string;
   // caption content
   children?: ReactNode;
-} & ComponentProps<"figure">;
+} & ComponentProps<"img">;
 
 // plain image or figure with caption
-export default function Image({ image, alt = "", children, className }: Props) {
+export default function Image({
+  image,
+  alt = "",
+  children,
+  className,
+  ...props
+}: Props) {
   const ref = useRef<HTMLImageElement>(null);
 
   // fullscreen control
@@ -36,6 +42,7 @@ export default function Image({ image, alt = "", children, className }: Props) {
         isFullscreen && "object-contain!",
         !children && className,
       )}
+      {...props}
     />
   );
 

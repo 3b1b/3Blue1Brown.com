@@ -20,7 +20,7 @@ test("Topic buttons work", async ({ page }) => {
   await expect(
     page.locator('a:has-text("read")[href*="inscribed-rect" i]'),
   ).toBeVisible();
-  await page.click('a[aria-label*="clear topic" i]');
+  await page.click('a[aria-label*="back to" i]');
   await page.locator("a:has-text('physics')").click();
   await expect(page.locator('a:has-text("brachistochrone")')).toBeVisible();
 });
