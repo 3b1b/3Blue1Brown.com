@@ -47,10 +47,6 @@ export default function YouTube({ id, time, className, ...props }: Props) {
   // listen for stop event
   useEventListener(stopEvent, stop);
 
-  // listen for play/pause events to set playing state
-  useEventListener("play", () => setAtom(playingAtom, true), ref);
-  useEventListener("pause", () => setAtom(playingAtom, false), ref);
-
   if (!id) return <div className={className}>No video</div>;
 
   if (!enabled)
@@ -79,6 +75,8 @@ export default function YouTube({ id, time, className, ...props }: Props) {
       controls
       role="region"
       aria-label="YouTube video"
+      onpause={() => setAtom(playingAtom, false)}
+      onplay={() => setAtom(playingAtom, true)}
       {...props}
     />
   );

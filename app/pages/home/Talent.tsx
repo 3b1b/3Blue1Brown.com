@@ -7,7 +7,7 @@ import TriangleGrid from "~/components/TriangleGrid";
 export default function Talent() {
   return (
     <section className="dark items-center width-sm">
-      <TriangleGrid />
+      <TriangleGrid className="mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%" />
 
       <H2>3b1b Talent</H2>
 

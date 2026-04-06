@@ -9,19 +9,30 @@ import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
 
 type Props = {
+  // background for header
+  background?: ReactNode;
   // extra content below header
   children?: ReactNode;
 };
 
+const defaultBackground = (
+  <Grid
+    className={clsx("max-h-200 mask-b-from-0% mask-b-to-100% opacity-35")}
+  />
+);
+
 // header on every page
-export default function Header({ children }: Props) {
+export default function Header({
+  background = defaultBackground,
+  children,
+}: Props) {
   return (
     <header
       className={clsx(
         "dark relative isolate z-20 flex flex-col gap-8 overflow-clip bg-white p-8 text-black max-md:gap-4 max-md:p-4 print:hidden",
       )}
     >
-      <Grid className="max-h-200 mask-b-from-0% mask-b-to-100% opacity-25" />
+      {background}
 
       <div className="flex flex-wrap items-center gap-4">
         {/* title */}

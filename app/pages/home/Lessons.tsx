@@ -6,8 +6,10 @@ import {
   BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
+  HandPointingIcon,
   MagnifyingGlassIcon,
   PlayIcon,
+  VideoCameraSlashIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
@@ -23,7 +25,7 @@ import { preserveScroll, scrollTo } from "~/util/dom";
 import { useFuzzySearch } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
 
-const limit = 12;
+const limit = 20;
 
 // global selected topic
 export const topicAtom = atomWithQuery("topic");
@@ -35,7 +37,7 @@ export const lessonAtom = atomWithQuery("lesson");
 // lesson search section of home page
 export default function Lessons() {
   return (
-    <section className="@container">
+    <section>
       <H2>
         <hr />
         Lessons
@@ -48,7 +50,7 @@ export default function Lessons() {
 }
 
 // lesson search sub section
-export function Search({ close = () => {} }) {
+export function Search({ dialog = false, close = () => {} }) {
   const searchBox = useRef<HTMLInputElement>(null);
 
   // current topic
@@ -109,11 +111,15 @@ export function Search({ close = () => {} }) {
         <div className="relative isolate flex flex-col items-center gap-8 py-4">
           <div className="absolute -inset-x-999 inset-y-0 -z-10 bg-secondary/10" />
 
-          <div className="grid w-full grid-cols-3 gap-8 @max-sm:grid-cols-1">
+          <div className="grid w-full grid-cols-3 gap-8 max-sm:grid-cols-1">
             <Button
-              to={{ search: mergeSearch(location.search, `topic=`) }}
-              className="self-center justify-self-start @max-md:justify-self-center"
-              onClick={userSelect}
+              // forget search so user doesn't forget they're filtering by search
+              to={{ search: mergeSearch(location.search, `topic=&search=`) }}
+              className="self-center justify-self-start max-md:justify-self-center"
+              onClick={() => {
+                setSearch("");
+                userSelect();
+              }}
               aria-label="Back to all topics"
             >
               <ArrowLeftIcon />
@@ -131,7 +137,7 @@ export function Search({ close = () => {} }) {
       {!topicId?.trim() && !search.trim() ? (
         <div
           id="results"
-          className="grid grid-cols-3 gap-8 @max-md:grid-cols-2 @max-sm:grid-cols-1"
+          className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
           {Object.entries(topics).map(([id, { title, image }], index) => (
             <Card
@@ -140,6 +146,8 @@ export function Search({ close = () => {} }) {
               image={image}
               title={title}
               onClick={(event) => {
+                // so user doesn't forget they're filtering by search
+                setSearch("");
                 // if in header search popup
                 if (!event.currentTarget?.closest("section")) return;
                 // don't conflict with selected lesson scroll
@@ -154,51 +162,87 @@ export function Search({ close = () => {} }) {
       ) : results.length ? (
         <>
           {/* search result cards */}
-          <div id="results" className="grid grid-cols-1 gap-8">
+          <div id="results" className="flex flex-col items-start gap-8">
             {results
               .slice(0, all ? Infinity : limit)
               .map(
                 (
-                  { id = "", title = "", description = "", image = "", read },
+                  {
+                    id = "",
+                    title = "",
+                    description = "",
+                    image = "",
+                    read,
+                    interactive,
+                  },
                   index,
-                ) => (
-                  <div key={index} className="relative max-lg:contents">
-                    <Card
-                      to={{
-                        pathname: "/",
-                        search: mergeSearch(location.search, `lesson=${id}`),
-                      }}
-                      direction="row"
-                      image={image}
-                      title={title}
-                      description={description}
-                      className={clsx(lessonId === id && "opacity-50")}
-                      onClick={() => {
-                        userSelect();
-                        close();
-                      }}
-                      aria-label={`Play lesson "${title}"`}
-                      aria-current={lessonId === id}
+                ) => {
+                  // has video
+                  const video = getLesson(id)?.frontmatter.video;
+
+                  return (
+                    <div
+                      key={index}
+                      className="relative flex flex-col items-start gap-4"
                     >
-                      {lessonId === id && (
-                        <div className="absolute -top-4 -left-4 grid size-8 place-items-center rounded-full bg-theme text-white">
-                          <PlayIcon />
+                      <Card
+                        to={
+                          video
+                            ? {
+                                pathname: "/",
+                                search: mergeSearch(
+                                  location.search,
+                                  `lesson=${id}`,
+                                ),
+                              }
+                            : ""
+                        }
+                        direction="row"
+                        image={image}
+                        title={title}
+                        description={description}
+                        className={clsx(lessonId === id && "opacity-50")}
+                        onClick={() => {
+                          userSelect();
+                          close();
+                        }}
+                        aria-label={`Play lesson "${title}"`}
+                        aria-current={lessonId === id}
+                      >
+                        {!video && (
+                          <div className="flex items-center gap-2 text-sm text-gray">
+                            <VideoCameraSlashIcon />
+                            Text only
+                          </div>
+                        )}
+                        {lessonId === id && (
+                          <div className="absolute -top-4 -left-4 grid size-8 place-items-center rounded-full bg-theme text-white">
+                            <PlayIcon />
+                          </div>
+                        )}
+                      </Card>
+                      {read && (
+                        <div
+                          className={clsx(
+                            "absolute bottom-1/2 left-full translate-x-8 translate-y-1/2 max-lg:contents",
+                            dialog && "contents",
+                          )}
+                        >
+                          <Button
+                            size="sm"
+                            to={href("/lessons/:id", { id })}
+                            className="justify-self-start"
+                            onClick={close}
+                          >
+                            <BookOpenTextIcon />
+                            Read
+                            {interactive && <HandPointingIcon />}
+                          </Button>
                         </div>
                       )}
-                    </Card>
-                    {read && (
-                      <Button
-                        size="sm"
-                        to={href("/lessons/:id", { id })}
-                        className="bottom-1/2 left-full justify-self-start @lg:absolute @lg:translate-1/2"
-                        onClick={close}
-                      >
-                        <BookOpenTextIcon />
-                        Read
-                      </Button>
-                    )}
-                  </div>
-                ),
+                    </div>
+                  );
+                },
               )}
           </div>
 

@@ -6,6 +6,8 @@ import clsx from "clsx";
 type Props = {
   // whether to flip to right side instead of left
   flip?: boolean;
+  // class on root
+  className?: string;
   // content to float
   children: ReactNode;
 };
@@ -14,7 +16,7 @@ type Props = {
 const spacing = 40;
 
 // "float" a piece of content left/right outside of a section
-export default function Float({ flip, children }: Props) {
+export default function Float({ flip, children, className }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   // child element
   const childRef = useRef<Element>(null);
@@ -40,14 +42,11 @@ export default function Float({ flip, children }: Props) {
 
   return (
     <div
-      className={
-        inline
-          ? "contents"
-          : clsx(
-              "-my-8 flex h-0 w-full",
-              flip ? "justify-end" : "justify-start",
-            )
-      }
+      className={clsx(
+        inline ? "contents" : "-my-8 flex h-0 w-full",
+        flip ? "justify-end" : "justify-start",
+        className,
+      )}
     >
       <div
         ref={ref}

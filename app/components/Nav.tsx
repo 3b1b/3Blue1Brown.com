@@ -135,9 +135,8 @@ function Links({ ref, className = "" }: LinksProps) {
             <MagnifyingGlassIcon />
           </Button>
         }
-        className="@container"
       >
-        {(close) => <Search close={close} />}
+        {(close) => <Search dialog close={close} />}
       </Dialog>
 
       {links.map(({ name, to }, index) => (

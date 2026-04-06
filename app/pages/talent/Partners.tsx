@@ -33,14 +33,10 @@ export default function Partners() {
             <Card
               key={id}
               to={href("/talent/:id", { id })}
-              className="group relative"
+              className="group relative bg-[white]! text-[black]!"
             >
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
-                <img
-                  src={logo}
-                  alt=""
-                  className="w-40 filter-[drop-shadow(0_0_10px_white)]"
-                />
+                <img src={logo} alt="" className="w-40" />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
                   <div className="text-xl font-bold">{name}</div>
                   <div className="text-lg">{tagline}</div>

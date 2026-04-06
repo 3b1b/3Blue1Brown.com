@@ -12,6 +12,7 @@ import {
   DiceThreeIcon,
   InfoIcon,
 } from "@phosphor-icons/react";
+import { useUnmount } from "@reactuses/core";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import backlight from "~/components/backlight.svg?inline";
@@ -49,13 +50,15 @@ export default function Theater() {
   const lesson = getLesson(lessonId)?.frontmatter ?? latest;
 
   // current topic id
-  const topicId = useAtomValue(topicAtom);
+  const topicId = useAtomValue(topicAtom) || "all";
 
   // current topic details
   const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
 
   // current topic lesson list
-  const topicLessons = topic?.lessons ?? undefined;
+  const topicLessons = topic?.lessons
+    ? topic.lessons.filter((id) => getLesson(id)?.frontmatter.video)
+    : undefined;
 
   // random lesson in list
   const random = getRandom(lessonId, topicLessons)?.frontmatter;
@@ -95,6 +98,12 @@ export default function Theater() {
     // only auto-play if user explicitly selected
     if (userSelected) play();
   }, [lessonId]);
+
+  useUnmount(() => {
+    // reset user selection on page exit
+    console.log("hi");
+    userSelected = false;
+  });
 
   return (
     <>

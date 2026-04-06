@@ -1,11 +1,14 @@
 import { useEffect } from "react";
+import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import { random } from "lodash-es";
 import { celebrate } from "~/components/Celebrate";
 import Footer from "~/components/Footer";
+import Grid from "~/components/Grid";
 import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
+import { playingAtom } from "~/components/YouTube";
 import { getLesson } from "~/pages/lessons/lessons";
 import { sleep } from "~/util/misc";
 import Follow from "./Follow";
@@ -32,11 +35,23 @@ export default function Home() {
     })();
   }, []);
 
+  // is video playing
+  const playing = useAtomValue(playingAtom);
+
   return (
     <>
       <Meta title={title} />
 
-      <Header>
+      <Header
+        background={
+          <Grid
+            className={clsx(
+              "mask-b-from-0% mask-b-to-100% transition",
+              playing ? "opacity-0" : "opacity-50",
+            )}
+          />
+        }
+      >
         <Theater />
       </Header>
 

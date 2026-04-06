@@ -51,7 +51,7 @@ export default function Interactive<
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-gray">
-            <HandPointingIcon className="icon -rotate-45" />
+            <HandPointingIcon />
             Interactive
           </div>
           <Button onClick={toggleFullscreen} aria-label="Toggle fullscreen">

@@ -1,6 +1,6 @@
 import { mapValues, omit } from "lodash-es";
 import _topics from "~/data/topics.json";
-import { byDate, getNext, getPrevious } from "~/pages/lessons/lessons";
+import { byDate } from "~/pages/lessons/lessons";
 import { importAssets } from "~/util/import";
 
 // get topic image
@@ -38,18 +38,4 @@ export const getTopic = (id: string) => {
   for (const [topicId, topic] of Object.entries(topics))
     if (!specialTopics.includes(topicId) && topic.lessons.includes(id))
       return topic;
-};
-
-// get previous lesson relative to this one by topic
-export const getPreviousByTopic = (id: string) => {
-  const topic = getTopic(id);
-  if (!topic) return;
-  return getPrevious(id, topic.lessons);
-};
-
-// get next lesson relative to this one by topic
-export const getNextByTopic = (id: string) => {
-  const topic = getTopic(id);
-  if (!topic) return;
-  return getNext(id, topic.lessons);
 };

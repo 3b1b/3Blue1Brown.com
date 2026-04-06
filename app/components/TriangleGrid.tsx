@@ -1,9 +1,9 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
+import clsx from "clsx";
 import gsap from "gsap";
 import { sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import glow from "~/components/glow.svg?inline";
-import { useParallax } from "~/util/hooks";
 import { Vector } from "~/util/vector";
 
 // params
@@ -21,10 +21,7 @@ const delayEq = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;
 gsap.defaults({ ease: "power1.inOut" });
 
 // triangle grid viz
-export default function TriangleGrid() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  const percent = useParallax(ref);
-
+export default function TriangleGrid({ className = "" }) {
   const [{ dots = [], lines = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
@@ -37,11 +34,8 @@ export default function TriangleGrid() {
 
   return (
     <Canvas
-      ref={ref}
-      className="absolute inset-0 -z-10 size-full mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100% [section:has(&)]:overflow-y-clip"
+      className={clsx("absolute inset-0 -z-10 size-full", className)}
       style={{
-        translate: `0 ${-percent * 25}%`,
-        scale: 1.25,
         filter: `url("${glow}#filter")`,
       }}
       render={(ctx) => {

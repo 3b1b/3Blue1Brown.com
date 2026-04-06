@@ -26,12 +26,13 @@ import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
 import YouTube from "~/components/YouTube";
 import team from "~/data/team.json";
-import { getPatrons, transformLesson } from "~/pages/lessons/lessons";
 import {
-  getNextByTopic,
-  getPreviousByTopic,
-  getTopic,
-} from "~/pages/lessons/topics";
+  getNext,
+  getPatrons,
+  getPrevious,
+  transformLesson,
+} from "~/pages/lessons/lessons";
+import { getTopic } from "~/pages/lessons/topics";
 import NotFound from "~/pages/NotFound";
 import { importAssetsAsync } from "~/util/import";
 import { formatDate } from "~/util/string";
@@ -76,9 +77,14 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
   // load topic
   const topic = getTopic(id);
 
-  // load previous/next lessons in topic
-  const previous = getPreviousByTopic(id)?.frontmatter;
-  const next = getNextByTopic(id)?.frontmatter;
+  // current topic lesson list
+  const topicLessons = topic?.lessons ?? undefined;
+
+  // previous lesson in list
+  const previous = lesson && getPrevious(id, topicLessons)?.frontmatter;
+
+  // next lesson in list
+  const next = lesson && getNext(id, topicLessons)?.frontmatter;
 
   return (
     <>

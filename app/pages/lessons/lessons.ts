@@ -16,6 +16,7 @@ export type LessonFrontmatter = {
   thumbnail?: string;
   combinedCredits?: Record<string, string[]>;
   read?: boolean;
+  interactive?: boolean;
 };
 
 export type Lesson = {
