@@ -40,6 +40,7 @@ echo "Generated .s3cfg for key $ACCESS_KEY"
 echo '**/*.jpg' > "$HOME/sync-patterns"
 echo '**/*.jpeg' >> "$HOME/sync-patterns"
 echo '**/*.png' >> "$HOME/sync-patterns"
+echo '**/*.webp' >> "$HOME/sync-patterns"
 echo '**/*.mp4' >> "$HOME/sync-patterns"
 echo '**/*.mov' >> "$HOME/sync-patterns"
 
