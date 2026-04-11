@@ -33,7 +33,7 @@ export function ContactForm() {
           { value: "[talent-inquiry]", label: "Inquiry about 3b1b Talent" },
           { value: "[share-something]", label: "Want to share something" },
           { value: "[merchandise-question]", label: "Merchandise question" },
-          { value: "[thanks]", label: "Jut saying thanks" },
+          { value: "[thanks]", label: "Just saying thanks" },
           { value: "[other]", label: "Other" },
         ]}
       />
