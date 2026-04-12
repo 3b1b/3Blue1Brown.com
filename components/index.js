@@ -28,6 +28,7 @@ import TalentCard from "./TalentCard";
 import TalentIntro from "./TalentIntro";
 import TestimonialCard from "./TestimonialCard";
 import TriangleBackground from "./TriangleBackground";
+import ChallengeAnswer from "./ChallengeAnswer";
 import FreeResponse from "./FreeResponse";
 import HomepageFeaturedContent, {
   HomepageFeaturedItem,
@@ -69,6 +70,7 @@ const components = {
   Book,
   Carousel,
   Center,
+  ChallengeAnswer,
   Clickable,
   ContactForm,
   ContactFormReceivedMessage,
