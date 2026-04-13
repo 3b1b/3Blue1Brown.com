@@ -57,6 +57,7 @@ import Teaser from "./Teaser";
 import Tooltip from "./Tooltip";
 import Twitter from "./Twitter";
 import VimeoEmbed from "./VimeoEmbed";
+import VideoShowcase from "./VideoShowcase";
 import YouTubeEmbed from "./YouTubeEmbed";
 
 // components to automatically import into all .mdx files
@@ -115,6 +116,7 @@ const components = {
   TranslationForm,
   TriangleBackground,
   Twitter,
+  VideoShowcase,
   VimeoEmbed,
   YouTubeEmbed,
 };
