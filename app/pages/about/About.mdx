@@ -43,12 +43,10 @@ import Thanks from "./Thanks";
 
 <div className="flex flex-col gap-12">
 
-**3Blue1Brown** (3b1b) is primarily a <Link to={site.socials.channel}>YouTube channel</Link> about discovery and creativity in math, with an emphasis on visualizations.
+3Blue1Brown (3b1b) is primarily a <Link to={site.socials.channel}>YouTube channel</Link> about discovery and creativity in math, with an emphasis on visualizations. **The mission is to make more people love math**, based on a philosophy that any such love begins with deep understanding.
 
-The mission is to make more people love math, based on a philosophy that this love requires a feeling of deep understanding.
-
-Some lessons cover commonly-sought topics like linear algebra, calculus, neural networks, quantum computing, motivating math by its usefulness.
-Other lessons are more _playful explorations of puzzles and problems_ — ones that seem challenging but become doable and even beautiful with a shift in perspective — motivating math as an art form.
+Some lessons cover commonly-sought topics, such as linear algebra, calculus, neural networks, Fourier transforms, quantum computing, and many more.
+Other lessons are more playful explorations of puzzles and problems, especially those that seem challenging but become doable and even beautiful with a clever shift in perspective.
 
 Much 3b1b content exists outside of the channel as well.
 On this site you'll find written versions of some videos, often with interactive elements sprinkled in.
@@ -73,11 +71,11 @@ On other platforms and elsewhere on the web, you'll find talks, collaborations, 
 <div className="flex flex-col gap-12">
 
 My name is Grant Sanderson.
-These videos — and [Manim, the animation engine behind them](https://github.com/3b1b/manim) — began as side projects as I was wrapping up my time studying math and computer science at Stanford.
+These videos, together with and [Manim, the animation engine behind them](https://github.com/3b1b/manim), began as side projects as I was wrapping up my time studying math and computer science at Stanford.
 After graduating, I worked for Khan Academy producing videos, articles and exercises, primarily focussed on multivariable calculus.
 Since the end of 2016, my primary focus has been on 3Blue1Brown and its associated projects.
 
-In those years, I've also had the pleasure of contributing to a number of different outlets for math exposition, including spending a semester lecturing for an MIT course on computational thinking, contributing a Netflix documentary about infinity, writing for Quanta, and collaborating with many other educational YouTube channels.
+In those years, I've also had the pleasure of contributing to a number of different outlets for math exposition, including spending a semester lecturing for an MIT course on computational thinking, contributing visuals to the Netflix "Trip to Infinity" (which went on to win an Emmy for its graphics), writing for Quanta, and collaborating with many other educational YouTube channels.
 
 </div>
 
@@ -134,25 +132,21 @@ In those years, I've also had the pleasure of contributing to a number of differ
 Almost all animations are made using a custom open-source Python library I've written called **Manim**.
 
 It began as a scrappy playground of code for my own uses cases back when I started the channel, not intended to be a public-facing, professionally maintained tool.
-Luckily, [some folks got together](https://www.manim.community/) to make an [alternate fork](https://github.com/ManimCommunity/manim/) that aims to be more stable, documented, and tested.
+Luckily, some folks got together to make an [alternate fork](https://github.com/ManimCommunity/manim/) that aims to be more stable, documented, and tested.
 Anyone looking to get started with Manim should probably start with this **Community Edition**.
-The original version is basically a testing ground where I try to quickly put new things together while developing videos.
+The version I use and have continued to develop is probably best viewed as a testing ground where I try to quickly put new things together while developing videos.
 
-If you want to make your own animated math videos, you should also take a look at the full landscape of tools available, like Desmos, Geogebra and Mathematica.
-The main difference between Manim and other math-visualizing tools is that it's structured to build potentially long scenes and hopefully look smoother and prettier than, say, matplotlib.
+If you're curious to explore making visualizations with manim, here are a few things to keep mind.
 
-Keep in mind that plenty of professional animation tools like Blender and After Effects can be made programmatic too.
-Also, be sure to ask yourself if what you're doing benefits from being programmatic at all.
-If all you need is simple moving/fading animations, using something like Keynote or PowerPoint might take you farther than you'd expect.
+- A good litmus test for whether it's the right tool is whether the idea of writing code to create visuals feels inhibiting or liberating. If you enjoy coding, espcially in python, and the visuals you have in mind benefit from precision, loops and abstraction, that's a good sign. If you want a GUI, or a lower friction to getting started, I'd recommend confirming that Desmos, Geogebra or other similar tools don't already serve your needs.
 
-It's wonderful to see others using Manim, especially if it helps them explain math in ways that otherwise would have been hard.
-But sometimes I see folks using it to just animate simple movements or manipulate LaTeX.
-In those cases, I can't help wonder if another tool would've been easier.
-I worry when I hear people ask things like "How do I sync up narration into manim?".
-This is just a tool for making individual clips to be edited together later.
-You should certainly use traditional video-editing software for as much as you can.
+- Contrasted with other programatic means of creating visuals, such as Mathematica, matplotlib, processing, shadertoy, etc., the main difference with manim is that it is designed with an intent of creating longer scenes in an object-oriented environment, with an eye towards making smoothness and cleanliness of style the default.
 
-Where programmatic animations work best is where the code directly reflects the math you're trying to explain, or where iteration/abstraction/conditionals/etc. can make an illustration that would've been impractical to make manually.
+- Keep in mind that plenty of professional animation tools like Blender and After Effects can be made programmatic too. If your creative goals would also benefit from lots of non-mathematical animations, it may be worth exploring these other tools and workflows before diving in.
+
+- I worry when I hear people ask things like "How do I sync up narration into manim?".
+  This is just a tool for making individual clips to be edited together later.
+  You should certainly use traditional video-editing software for as much as you can.
 
 </Collapsible>
 
