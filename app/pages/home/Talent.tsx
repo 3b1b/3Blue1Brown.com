@@ -12,7 +12,7 @@ export default function Talent() {
       <H2>3b1b Talent</H2>
 
       <p>
-        Think of it like a <strong>virtual career fair!</strong> We partner with
+        Think of it as a <strong>virtual career fair.</strong> We partner with
         organizations interested in hiring the kinds of technically curious
         people who watch 3Blue1Brown.
       </p>
