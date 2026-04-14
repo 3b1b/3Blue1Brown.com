@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import {
   BellIcon,
   EyeIcon,
+  NewspaperIcon,
   VideoIcon,
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
@@ -62,7 +63,15 @@ export default function Hero() {
             <YoutubeLogoIcon />
             Channel
           </Button>
-          <p>Explore, learn, and be curious</p>
+          <Button
+            to={site.socials.newsletter}
+            color="theme"
+            className="w-50 self-center"
+          >
+            <NewspaperIcon />
+            Mailing list
+          </Button>
+          {/*<p>Explore, learn, and be curious</p>*/}
         </div>
       </div>
     </section>
