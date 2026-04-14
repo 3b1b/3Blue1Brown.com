@@ -23,7 +23,7 @@ const maxSize = 4000;
 
 // generic canvas that handles animation loop, resizing, and etc.
 export default function Canvas({
-  ref,
+  ref: passedRef,
   scale = 2,
   render,
   onChange = () => {},
@@ -78,7 +78,7 @@ export default function Canvas({
   }, [width, height, inView]);
 
   // combine local and passed refs
-  const refs = useMergedRefs(canvas, ref);
+  const mergedRef = useMergedRefs(canvas, passedRef);
 
-  return <canvas ref={refs} aria-hidden="true" {...props} />;
+  return <canvas ref={mergedRef} aria-hidden="true" {...props} />;
 }

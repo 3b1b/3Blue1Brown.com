@@ -1,12 +1,11 @@
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
 import { ListBulletsIcon, XIcon } from "@phosphor-icons/react";
 import {
-  useClickOutside,
   useElementBounding,
   useElementSize,
   useEventListener,
+  useLocalStorage,
   useWindowSize,
 } from "@reactuses/core";
 import clsx from "clsx";
@@ -14,7 +13,6 @@ import { useAtomValue } from "jotai";
 import { headingsAtom } from "~/components/Heading";
 import Link from "~/components/Link";
 import { findClosest, firstInView, scrollTo } from "~/util/dom";
-import { useChanged } from "~/util/hooks";
 
 // spacing between toc and section content
 const spacing = 60;
@@ -60,22 +58,22 @@ export default function TableOfContents() {
   const hide = !downEnough;
 
   // expanded/collapsed state
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useLocalStorage("toc-open", wideEnough);
 
   // when hide changes, change open
-  if (useChanged(hide) && wideEnough) setOpen(!hide);
+  // if (useChanged(hide) && wideEnough) setOpen(!hide);
 
   // when wideEnough changes, change open
-  if (useChanged(wideEnough)) setOpen(wideEnough);
+  // if (useChanged(wideEnough)) setOpen(wideEnough);
 
   // when path changes, change open
-  const { pathname } = useLocation();
-  if (useChanged(pathname, false)) setOpen(false);
+  // const { pathname } = useLocation();
+  // if (useChanged(pathname, false)) setOpen(false);
 
   // on click off, change open
-  useClickOutside(ref, () => {
-    if (!wideEnough) setOpen(false);
-  });
+  // useClickOutside(ref, () => {
+  //   if (!wideEnough) setOpen(false);
+  // });
 
   // active index
   const [active, setActive] = useState(0);
@@ -114,7 +112,7 @@ export default function TableOfContents() {
             "size-10 gap-2 p-2 transition hocus:text-theme",
             open ? "" : "translate-x-full bg-white shadow-md",
           )}
-          aria-expanded={open}
+          aria-expanded={!!open}
           aria-label={open ? "Close" : "Table of contents"}
         >
           {open ? <XIcon /> : <ListBulletsIcon />}

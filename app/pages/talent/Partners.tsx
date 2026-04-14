@@ -8,12 +8,14 @@ import { getLogo, getPartner } from "./Partner";
 // list partners in specific order
 const order = [
   "janestreet",
-  "stripe",
-  "metr",
   "cognition",
+  "doppel",
+  "metr",
+  "kiso",
+  "shopify",
+  "transluce",
   "0xPARC",
-  "patreon",
-  "prime_academics",
+  "beam",
   "epochai",
 ];
 

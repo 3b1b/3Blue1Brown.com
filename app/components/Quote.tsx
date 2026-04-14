@@ -18,7 +18,7 @@ export default function Quote({ bg = true, name, className, children }: Props) {
   return (
     <blockquote
       className={clsx(
-        "relative flex flex-col justify-center gap-4 **:text-center **:text-balance",
+        "relative flex flex-col justify-center gap-4 rounded-r-md border-l-2 border-theme bg-light-gray p-8 **:text-center **:text-balance",
         bg ? "p-8" : "border-0 bg-transparent p-4",
         className,
       )}

@@ -101,7 +101,6 @@ export default function Theater() {
 
   useUnmount(() => {
     // reset user selection on page exit
-    console.log("hi");
     userSelected = false;
   });
 

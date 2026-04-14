@@ -11,14 +11,28 @@ import Image from "~/components/Image";
 import Portrait from "~/components/Portrait";
 import Vimeo from "~/components/Vimeo";
 import airQualityMonitor from "./air-quality-monitor.jpg";
+import banner from "./banner.jpg";
 import robPresentation from "./rob-presentation.jpg";
+import wordmark from "./wordmark.svg";
 
-<section>
+<section className="dark">
+
+<Image
+  image={banner}
+  interactive={false}
+  className="absolute inset-0 -z-10 size-full object-cover opacity-10"
+/>
+
+<Image image={wordmark} interactive={false} className="h-20 self-center" />
 
 <Vimeo id="1158109614" hash="c6f71a8907" />
 
-<Button to="https://0xparc.org/3b1b" color="theme">
-  Learn More and Apply
+<Button
+  to="https://0xparc.org/3b1b"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
   <ArrowUpRightIcon />
 </Button>
 
@@ -65,7 +79,7 @@ Recursive zero-knowledge proofs enable logic and history to accrue to a digital 
 For more on Provable Object Data, see [0xparc.org/about-pod](https://0xparc.org/about-pod)
 
 <Button to="https://0xparc.org/about-pod" color="theme" className="self-center">
-  Learn more about Provable Object Data
+  More on Provable Object Data
   <ArrowUpRightIcon />
 </Button>
 

@@ -1,6 +1,6 @@
 import type { ComponentProps, ReactNode } from "react";
 import { useRef } from "react";
-import { useFullscreen } from "@reactuses/core";
+import { useFullscreen, useMergedRefs } from "@reactuses/core";
 import clsx from "clsx";
 
 type Props = {
@@ -10,35 +10,45 @@ type Props = {
   alt?: string;
   // caption content
   children?: ReactNode;
+  // whether or not to allow interaction
+  interactive?: boolean;
 } & ComponentProps<"img">;
 
 // plain image or figure with caption
 export default function Image({
+  ref: passedRef,
   image,
   alt = "",
   children,
   className,
+  interactive = true,
   ...props
 }: Props) {
-  const ref = useRef<HTMLImageElement>(null);
+  const localRef = useRef<HTMLImageElement>(null);
+  const mergedRef = useMergedRefs(localRef, passedRef);
 
   // fullscreen control
-  const [isFullscreen, { toggleFullscreen }] = useFullscreen(ref);
+  const [isFullscreen, { toggleFullscreen }] = useFullscreen(localRef);
 
   // image element
   const img = (
     <img
-      ref={ref}
+      ref={mergedRef}
       src={image}
       alt={alt || "Image"}
       tabIndex={0}
-      onClick={toggleFullscreen}
-      onKeyDown={({ key }) => {
-        if (key === "Enter" || key === " ") toggleFullscreen();
-      }}
+      onClick={interactive ? toggleFullscreen : undefined}
+      onKeyDown={
+        interactive
+          ? ({ key }) => {
+              if (key === "Enter" || key === " ") toggleFullscreen();
+            }
+          : undefined
+      }
       aria-label={isFullscreen ? "Exit fullscreen" : "View image in fullscreen"}
       className={clsx(
-        "max-h-dvh cursor-pointer break-inside-avoid",
+        "break-inside-avoid",
+        interactive && "cursor-pointer",
         isFullscreen && "object-contain!",
         !children && className,
       )}
@@ -51,7 +61,7 @@ export default function Image({
 
   // if caption, figure and figcaption
   return (
-    <figure className={clsx("flex flex-col gap-4", className)}>
+    <figure className={clsx("flex flex-col items-center gap-4", className)}>
       {img}
       {children && (
         <figcaption className="self-center text-gray">{children}</figcaption>

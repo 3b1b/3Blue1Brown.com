@@ -8,11 +8,25 @@ import { LightbulbIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Image from "~/components/Image";
 import YouTube from "~/components/YouTube";
+import banner from "./banner.jpg";
 import ieeeSpectrum from "./ieee-spectrum.png";
 import openProblemsComposition from "./open-problems-composition.svg";
 import problemsSolvedScoreboard from "./problems-solved-scoreboard.png";
+import wordmark from "./wordmark.svg";
 
-<section >
+<section className="dark py-24">
+
+<Image
+  image={banner}
+  interactive={false}
+  className="absolute inset-0 -z-10 size-full object-cover opacity-10"
+/>
+
+<Image image={wordmark} interactive={false} className="h-20 self-center" />
+
+</section>
+
+<section>
 
 ## About
 
@@ -32,6 +46,10 @@ We think the 3b1b audience will be able to come up with some great problems!
   Propose a problem
   <LightbulbIcon />
 </Button>
+
+</section>
+
+<section>
 
 ## The Challenge
 
@@ -56,7 +74,7 @@ After you propose a problem, next steps typically consist of a brief back-and-fo
 
 </section>
 
-<section >
+<section>
 
 <YouTube id="KDzbCHuyRY0" />
 
@@ -66,7 +84,7 @@ was launched.
 
 </section>
 
-<section >
+<section>
 
 ## Solutions can be verified automatically
 
@@ -83,7 +101,7 @@ Problems in the pilot span a range of notability, estimated time to solve, numbe
 
 </section>
 
-<section >
+<section>
 
 ## For more context
 

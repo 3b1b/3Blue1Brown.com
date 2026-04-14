@@ -112,8 +112,8 @@ declare global {
 }
 
 // get watch video from id
-export const getWatch = (id: string, t = 0) =>
-  `https://www.youtube.com/watch?v=${id}&t=${t}s`;
+export const getWatch = (id: string, time = 0) =>
+  `https://www.youtube.com/watch?v=${id}&t=${time}s`;
 
 // get thumbnail image from video id
 export const getThumbnail = (id: string) =>

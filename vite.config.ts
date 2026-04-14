@@ -13,11 +13,15 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig(() => ({
+  // build: { assetsDir: "refresh" },
+
+  // uncomment if cold-start refresh gets annoying
   // https://github.com/vitejs/vite/discussions/14801
   // optimizeDeps: {
   //   noDiscovery: command === "serve",
   //   include: [],
   // },
+
   plugins: [
     // custom plugin, transform source code as raw string
     {
@@ -84,6 +88,7 @@ export default defineConfig(() => ({
         },
       },
     }),
+    // in an effort to keep repo size small, don't overuse this
     imagetools(),
   ],
   resolve: {

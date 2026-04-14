@@ -58,7 +58,7 @@ If Bun disappeared tomorrow, going back to Node should be as simple as replacing
 | `bun run test:types`         | Test types                                        |
 | `bun run test:lint`          | Test linting                                      |
 | `bun run test:format`        | Test formatting                                   |
-| `bun run test:e2e`           | Run integration tests, including Axe              |
+| `bun run test:e2e`           | Run integration tests                             |
 | `bun run test`               | Run all tests                                     |
 | **Checks**\*                 |                                                   |
 | `bun run check:spelling`     | Check for spelling errors                         |
@@ -67,6 +67,13 @@ If Bun disappeared tomorrow, going back to Node should be as simple as replacing
 
 \* Scripts that are valuable, but have too many false positives to be tests that fail critically.
 Run periodically, manually review, and use discretion.
+
+### Integration tests
+
+- `bun run test:e2e` - Run all tests on a sub-set of critical routes
+- `bun run test:e2e some-test.spec` - Run specific test file
+- `ROUTE= bun run test:e2e` - Run all tests on all routes
+- `ROUTE=/some/route bun run test:e2e` - Run all tests on routes matching regex
 
 ## Repo Structure
 

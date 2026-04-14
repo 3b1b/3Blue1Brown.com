@@ -2,12 +2,15 @@
 name: Jane Street
 tagline: Quantitative trading and technology
 quote: Everybody here is a math nerd. If you go up to someone and start explaining a math puzzle, they'll stop you before you can tell them how to solve it because they want to try it on their own.
+test: <>five</>
 ---
 
-import { GraduationCapIcon, RocketLaunchIcon } from "@phosphor-icons/react";
+import { ArrowUpRightIcon, GraduationCapIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
+import Vimeo from "~/components/Vimeo";
+import banner from "./banner.jpg";
 import knightMovesDesktop from "./knight-moves-desktop.jpg";
 import knightMovesMobile from "./knight-moves-mobile.jpg";
 import office1 from "./office-1.jpg";
@@ -15,6 +18,30 @@ import office2 from "./office-2.jpg";
 import office3 from "./office-3.jpg";
 import polyhedralDesktop from "./polyhedral-desktop.jpg";
 import polyhedralMobile from "./polyhedral-mobile.jpg";
+import wordmark from "./wordmark.svg";
+
+<section className="dark">
+
+<Image
+  image={banner}
+  interactive={false}
+  className="absolute inset-0 -z-10 size-full object-cover opacity-25"
+/>
+
+<Image image={wordmark} interactive={false} className="h-20 self-center" />
+
+<Vimeo id="1178945904" hash="c6f71a8907" />
+
+<Button
+  to="https://www.janestreet.com/join-jane-street/overview/"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
 
 <section>
 
@@ -45,7 +72,7 @@ What do you want to be when you grow up? At Jane Street, you don't have to choos
 
 If you've never thought about a career in finance, you're in good company. Many of us were in the same position before working here. If you have a curious mind and a passion for solving interesting problems, you'll fit right in.
 
-<div className="grid grid-cols-3 gap-8 *:size-full *:max-h-50 *:object-cover max-md:grid-cols-2 max-sm:grid-cols-1">
+<div className="grid grid-cols-3 gap-4 *:size-full *:max-h-50 *:object-cover max-md:grid-cols-2 max-sm:grid-cols-1">
 
 <Image image={office1} />
 <Image image={office2} />
@@ -64,16 +91,16 @@ Traders wear a lot of hats: they build machine learning models, analyze market d
 <div className="flex flex-wrap items-center justify-center gap-8">
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads&department=trading-research-and-machine-learning"
-    color="theme"
+    color="light"
   >
     <GraduationCapIcon />
     Students and New Grads
   </Button>
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates&department=trading-research-and-machine-learning"
-    color="theme"
+    color="light"
   >
-    <RocketLaunchIcon />
+    <ArrowUpRightIcon />
     Experienced Candidates
   </Button>
 </div>
@@ -85,16 +112,16 @@ Jane Street's Technology team creates the infrastructure that keeps us growing: 
 <div className="flex flex-wrap items-center justify-center gap-8">
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads&department=technology"
-    color="theme"
+    color="light"
   >
     <GraduationCapIcon />
     Students and New Grads
   </Button>
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates&department=technology"
-    color="theme"
+    color="light"
   >
-    <RocketLaunchIcon />
+    <ArrowUpRightIcon />
     Experienced Candidates
   </Button>
 </div>
@@ -106,16 +133,16 @@ Learn more about who we are, where we're hiring, what it's like to work here, an
 <div className="flex flex-wrap items-center justify-center gap-8">
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads"
-    color="theme"
+    color="light"
   >
     <GraduationCapIcon />
     Students and New Grads
   </Button>
   <Button
     to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates"
-    color="theme"
+    color="light"
   >
-    <RocketLaunchIcon />
+    <ArrowUpRightIcon />
     Experienced Candidates
   </Button>
 </div>
@@ -126,7 +153,7 @@ Learn more about who we are, where we're hiring, what it's like to work here, an
 
 ## Testimonials
 
-<div className="grid grid-cols-2 gap-8 max-md:grid-cols-1">
+<div className="grid grid-cols-2 gap-8 *:self-stretch max-md:grid-cols-1">
   <Quote name="Fan Pu, Machine Learning">
     There's nothing in the open literature that is close to what we are doing.
     When you do find things that work, you really do feel that you're actually

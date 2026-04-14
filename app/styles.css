@@ -137,7 +137,7 @@
   }
 
   blockquote {
-    @apply border-theme trim bg-light-gray flex flex-col gap-4 self-center rounded-r-md border-l-2 p-8 leading-loose;
+    @apply trim leading-loose;
   }
 
   pre {
@@ -274,4 +274,8 @@
   100% {
     transform: perspective(2000px) rotateX(65deg) rotateZ(360deg);
   }
+}
+
+@utility vignette {
+  @apply mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%;
 }
