@@ -10,7 +10,7 @@ import { formatDate } from "~/util/string";
 export default function Blog() {
   return (
     <section className="bg-secondary/10">
-      <H2>Blog</H2>
+      <H2>Written posts</H2>
 
       <div className="grid grid-cols-2 gap-8 max-sm:grid-cols-1">
         {orderBy(
