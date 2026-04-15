@@ -13,7 +13,7 @@
   },
   {
     "name": "Ashley Hamer Pritchard",
-    "description": "Head of Operations",
+    "description": "Operations",
     "link": "https://www.linkedin.com/in/ashley-hamer",
     "group": "current"
   },
@@ -21,6 +21,24 @@
     "name": "Vincent Rubinetti",
     "description": "Music, Web Dev",
     "link": "https://vincentrubinetti.com",
+    "group": "current"
+  },
+  {
+    "name": "Aaron Gostein",
+    "description": "Animation",
+    "link": "https://www.youtube.com/@PurpleMindCreations",
+    "group": "current"
+  },
+  {
+    "name": "Nishad Deulkar",
+    "description": "Animation",
+    "link": "https://www.youtube.com/@Polyamathematics",
+    "group": "current"
+  },
+  {
+    "name": "Mitchell Zemil",
+    "description": "Illustration and Animation",
+    "link": "https://mitchellzemil.com/",
     "group": "current"
   },
   {
