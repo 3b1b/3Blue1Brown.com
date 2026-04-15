@@ -62,19 +62,21 @@ At Doppel, every decision comes down to reasoning about p(y) — the probability
 
 ---
 
-**Setup.** You're a cracked security team defending your users against a known phisher. Each day, the two of you are locked in a cat-and-mouse fight.
+**Setup.** You're a cracked security team defending your users against a known phisher. Each day, the two of you are locked in a cat-and-mouse fight. The attacker sends a phishing campaign and chooses how often to use each of $n$ persuasive phrases in their messages — things like "urgent", "verify account", "free gift", "security alert", "payroll".
 
-The attacker sends a phishing campaign and chooses how often to use each of _n_ persuasive phrases in their messages — things like "urgent", "verify account", "free gift", "security alert", "payroll". The attacker selects a distribution **p** = (p₁, p₂, ..., pₙ) over phrases T = \{t₁, t₂, ..., tₙ}, where pᵢ = P(attacker uses tᵢ).
+The attacker selects a distribution $\mathbf{p} = (p_1, p_2, \ldots, p_n)$ over phrases $T = \{t_1, t_2, \ldots, t_n\}$, where $p_i = P(\text{attacker uses } t_i)$.
 
-Each phrase tᵢ has an intrinsic social-engineering payoff sᵢ: if a message using tᵢ reaches a user unflagged, it succeeds with probability sᵢ. If the message is flagged or fails to convince, payoff = 0.
+Each phrase $t_i$ has an intrinsic social-engineering payoff $s_i$: if a message using $t_i$ reaches a user unflagged, it succeeds with probability $s_i$. If the message is flagged or fails to convince, payoff $= 0$.
 
-**Your detector.** You don't have the bandwidth to inspect every message perfectly — these phrases appear innocently in normal traffic too. Instead, you run a lightweight detector that monitors phrase frequencies. Given a baseline distribution **q** = (q₁, q₂, ..., qₙ) representing natural phrase frequencies, you raise an alarm when:
+**Your detector.** You don't have the bandwidth to inspect every message perfectly — these phrases appear innocently in normal traffic too. Instead, you run a lightweight detector that monitors phrase frequencies. Given a baseline distribution $\mathbf{q} = (q_1, q_2, \ldots, q_n)$ representing natural phrase frequencies, you raise an alarm when:
 
+<center>
 $$\displaystyle \sum_i p_i \log\!\left(\frac{p_i}{q_i}\right) > C$$
+</center>
 
-for some constant C. (You might recognize this quantity.)
+for some constant $C$. (You might recognize this quantity.)
 
-**The question.** What distribution **p** should the attacker choose to maximize their expected payoff?
+**The question.** What distribution $\mathbf{p}$ should the attacker choose to maximize their expected payoff?
 
 _Hint: the optimal strategy isn't deterministic._
 
@@ -87,7 +89,7 @@ _Hint: the optimal strategy isn't deterministic._
       </p>
       <strong>Answer to 3b1b talent page phishing puzzle: {input}</strong>
       <Button
-        to="https://www.doppel.com/jobs?utm_source=V1nq048RYr"
+        to="https://www.doppel.com/jobs?utm_source=wJQBOpREkk"
         color="theme"
         className="self-center"
       >

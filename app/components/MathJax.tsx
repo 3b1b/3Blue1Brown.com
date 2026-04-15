@@ -112,7 +112,9 @@ const render = async () => {
       content = await window.MathJax.tex2svgPromise?.(math, { display });
     }
     if (!content) continue;
-    // insert content
-    element.replaceWith(content);
+    // insert content — for display math, insert after the <pre> (which is now sr-only);
+    // for inline math, replace the <code> in place
+    if (display) parent.insertAdjacentElement("afterend", content);
+    else element.replaceWith(content);
   }
 };

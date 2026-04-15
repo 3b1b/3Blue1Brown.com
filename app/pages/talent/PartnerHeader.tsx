@@ -18,7 +18,7 @@ export default function PartnerHeader() {
       <div>
         <Link
           to={href("/talent")}
-          className="flex-1 text-3xl text-black uppercase no-underline"
+          className="flex-1 text-3xl text-black no-underline"
         >
           <StrokeType>3b1b Talent</StrokeType>
         </Link>
