@@ -9,7 +9,9 @@ import { ArrowUpRightIcon, GraduationCapIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
+import Tabs, { Panel } from "~/components/Tabs";
 import Vimeo from "~/components/Vimeo";
+import YouTube from "~/components/YouTube";
 import banner from "./banner.jpg";
 import knightMovesDesktop from "./knight-moves-desktop.jpg";
 import knightMovesMobile from "./knight-moves-mobile.jpg";
@@ -30,7 +32,7 @@ import wordmark from "./wordmark.svg";
 
 <Image image={wordmark} interactive={false} className="h-20 self-center" />
 
-<Vimeo id="1178945904" hash="c6f71a8907" />
+<YouTube id="TJWtIDYVY8o" />
 
 <Button
   to="https://www.janestreet.com/join-jane-street/overview/"
@@ -57,10 +59,16 @@ We're building a truly AI-driven trading firm, rooted in frontier research and d
 
 At Jane Street, puzzles aren't just a pastime. We find puzzles to solve in everything we do, from building models for machine learning to analyzing complex trading scenarios. Of course, we do puzzles for fun too! Here are a few examples of the kinds of problems we love, and you can find more on our [puzzles page](https://www.janestreet.com/puzzles/).
 
-<Image image={knightMovesDesktop} className="max-lg:hidden" />
-<Image image={knightMovesMobile} className="lg:hidden" />
-<Image image={polyhedralDesktop} className="max-lg:hidden" />
-<Image image={polyhedralMobile} className="lg:hidden" />
+<Tabs tabs={["Knight Moves", "A Polyhedral Puzzle"]}>
+  <Panel>
+    <Image image={knightMovesDesktop} className="max-lg:hidden" />
+    <Image image={knightMovesMobile} className="lg:hidden" />
+  </Panel>
+  <Panel>
+    <Image image={polyhedralDesktop} className="max-lg:hidden" />
+    <Image image={polyhedralMobile} className="lg:hidden" />
+  </Panel>
+</Tabs>
 
 </section>
 
@@ -88,64 +96,13 @@ Our ML researchers and engineers work across a range of timescales and problem t
 
 Traders wear a lot of hats: they build machine learning models, analyze market dynamics and risk, seek out new businesses, identify what to optimize or automate next. Most of Jane Street's trading is fully automated, though some opportunities still call for rapid human decision-making.
 
-<div className="flex flex-wrap items-center justify-center gap-8">
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads&department=trading-research-and-machine-learning"
-    color="light"
-  >
-    <GraduationCapIcon />
-    Students and New Grads
-  </Button>
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates&department=trading-research-and-machine-learning"
-    color="light"
-  >
-    <ArrowUpRightIcon />
-    Experienced Candidates
-  </Button>
-</div>
-
 ### Technology
 
 Jane Street's Technology team creates the infrastructure that keeps us growing: our globe-spanning data network and compute environment, the platforms that power trading, the systems that manage our billions of trades per day. The team draws people with backgrounds in machine learning, programmable hardware, systems administration, network engineering, compiler design, and beyond.
 
-<div className="flex flex-wrap items-center justify-center gap-8">
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads&department=technology"
-    color="light"
-  >
-    <GraduationCapIcon />
-    Students and New Grads
-  </Button>
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates&department=technology"
-    color="light"
-  >
-    <ArrowUpRightIcon />
-    Experienced Candidates
-  </Button>
-</div>
-
 ### We look for smart people with curious minds from any background
 
 Learn more about who we are, where we're hiring, what it's like to work here, and what we offer our employees. When you're ready, take a look at our open roles.
-
-<div className="flex flex-wrap items-center justify-center gap-8">
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=students-and-new-grads"
-    color="light"
-  >
-    <GraduationCapIcon />
-    Students and New Grads
-  </Button>
-  <Button
-    to="https://www.janestreet.com/join-jane-street/open-roles/?type=experienced-candidates"
-    color="light"
-  >
-    <ArrowUpRightIcon />
-    Experienced Candidates
-  </Button>
-</div>
 
 </section>
 
