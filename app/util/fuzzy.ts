@@ -2,7 +2,8 @@ import { expose } from "comlink";
 import Fuse from "fuse.js";
 
 // fuzzy search instance
-let searcher = new Fuse<unknown>([]);
+// eslint-disable-next-line
+let searcher = new Fuse<any>([]);
 
 // set list to search through
 export const setList = <Entry extends Record<string, unknown>>(
@@ -17,6 +18,6 @@ export const setList = <Entry extends Record<string, unknown>>(
 // execute search
 export const searchList = <Entry extends Record<string, unknown>>(
   search: string,
-) => searcher.search<Entry>(search).map(({ item }) => item);
+) => (searcher as Fuse<Entry>).search(search).map(({ item }) => item);
 
 expose({ setList, searchList });

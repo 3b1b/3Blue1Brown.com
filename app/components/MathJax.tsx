@@ -101,7 +101,7 @@ const render = async () => {
     if (!parent) continue;
     // block vs inline math
     const display = parent.matches("pre");
-    if (display) parent.classList.add("sr-only");
+    if (display) parent.classList.add("contents");
     // convert to svg content
     let content: Element | undefined = undefined;
     try {
@@ -112,9 +112,7 @@ const render = async () => {
       content = await window.MathJax.tex2svgPromise?.(math, { display });
     }
     if (!content) continue;
-    // insert content — for display math, insert after the <pre> (which is now sr-only);
-    // for inline math, replace the <code> in place
-    if (display) parent.insertAdjacentElement("afterend", content);
-    else element.replaceWith(content);
+    // insert content
+    element.replaceWith(content);
   }
 };
