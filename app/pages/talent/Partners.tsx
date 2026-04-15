@@ -16,7 +16,6 @@ const order = [
   "transluce",
   "0xPARC",
   "beam",
-  "epochai",
 ];
 
 // gallery of partners
