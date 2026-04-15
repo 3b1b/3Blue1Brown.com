@@ -71,7 +71,6 @@ export default function Hero() {
             <NewspaperIcon />
             Mailing list
           </Button>
-          {/*<p>Explore, learn, and be curious</p>*/}
         </div>
       </div>
     </section>
