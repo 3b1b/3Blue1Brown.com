@@ -1,5 +1,4 @@
 import { href } from "react-router";
-import Alert from "~/components/Alert";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import Quote from "~/components/Quote";
@@ -37,7 +36,7 @@ export default function Partners() {
               className="group relative bg-[white]! text-[black]!"
             >
               <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
-                <img src={logo} alt="" className="w-40" />
+                <img src={logo} alt="" className="w-28" />
                 <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
                   <div className="text-xl font-bold">{name}</div>
                   <div className="text-lg">{tagline}</div>
@@ -53,12 +52,6 @@ export default function Partners() {
           );
         })}
       </div>
-
-      <Alert>
-        The organizations we partner with are selectively chosen and carefully
-        vetted, but we still encourage you to research them yourself before
-        applying.
-      </Alert>
     </section>
   );
 }
