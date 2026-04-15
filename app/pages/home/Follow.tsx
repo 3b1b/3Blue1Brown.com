@@ -18,24 +18,14 @@ import site from "~/data/site.json";
 
 const links = [
   {
-    icon: <YoutubeLogoIcon />,
-    label: "2nd Channel",
-    link: site.socials.second_channel,
+    icon: <InstagramLogoIcon />,
+    label: "Instagram",
+    link: site.socials.instagram,
   },
   {
     icon: <NewspaperIcon />,
     label: "Newsletter",
     link: site.socials.newsletter,
-  },
-  {
-    icon: <RssIcon />,
-    label: "RSS",
-    link: site.socials.rss,
-  },
-  {
-    icon: <InstagramLogoIcon />,
-    label: "Instagram",
-    link: site.socials.instagram,
   },
   {
     icon: <XLogoIcon />,
@@ -53,6 +43,16 @@ const links = [
     link: site.socials.tiktok,
   },
   {
+    icon: <RedditLogoIcon />,
+    label: "Reddit",
+    link: site.socials.reddit,
+  },
+  {
+    icon: <YoutubeLogoIcon />,
+    label: "2nd Channel",
+    link: site.socials.second_channel,
+  },
+  {
     icon: <FacebookLogoIcon />,
     label: "Facebook",
     link: site.socials.facebook,
@@ -63,11 +63,6 @@ const links = [
     link: site.socials.spotify,
   },
   {
-    icon: <RedditLogoIcon />,
-    label: "Reddit",
-    link: site.socials.reddit,
-  },
-  {
     icon: <GithubLogoIcon />,
     label: "GitHub",
     link: site.socials.github,
@@ -76,6 +71,11 @@ const links = [
     icon: <TelevisionIcon />,
     label: "Bilibili",
     link: site.socials.bilibili,
+  },
+  {
+    icon: <RssIcon />,
+    label: "RSS",
+    link: site.socials.rss,
   },
 ];
 
