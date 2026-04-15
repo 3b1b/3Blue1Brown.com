@@ -25,6 +25,8 @@ jobs:
 
       - name: Run script
         run: bun ./get-stats.ts
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
       - name: Commit files
         uses: stefanzweifel/git-auto-commit-action@v7
