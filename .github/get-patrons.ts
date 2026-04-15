@@ -5,6 +5,7 @@ import { orderBy } from "lodash-es";
 import { PatreonCreatorClient, QueryBuilder } from "patreon-api.ts";
 
 // node/server script to fetch all current and past patreon patrons
+// UNTESTED
 
 // patreon campaign id
 const campaignId = "580365";

@@ -24,7 +24,7 @@ const links = [
   },
   {
     icon: <NewspaperIcon />,
-    label: "Newsletter",
+    label: "Mailing List",
     link: site.socials.newsletter,
   },
   {

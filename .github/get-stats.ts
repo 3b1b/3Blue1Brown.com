@@ -23,13 +23,19 @@ const statistics = response.data.items?.[0]?.statistics;
 
 // keep relevant fields
 const stats = {
-  subscribers: statistics?.subscriberCount ?? 0,
-  views: statistics?.viewCount ?? 0,
-  videos: statistics?.videoCount ?? 0,
+  subscribers: Number(statistics?.subscriberCount) || 0,
+  views: Number(statistics?.viewCount) || 0,
+  videos: Number(statistics?.videoCount) || 0,
 };
 
-// save data next to this file
-writeFileSync(
-  join(dirname(fileURLToPath(import.meta.url)), "stats.json"),
-  JSON.stringify(stats, null, 2),
+// save data in appropriate place
+const path = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "app",
+  "pages",
+  "home",
+  "stats.json",
 );
+const data = JSON.stringify(stats, null, 2);
+writeFileSync(path, data);

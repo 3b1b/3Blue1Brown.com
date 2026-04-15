@@ -54,20 +54,12 @@ export default function Hero() {
           ))}
         </div>
 
-        <div className="flex flex-col items-center gap-4">
-          <Button
-            to={site.socials.channel}
-            color="theme"
-            className="w-50 self-center"
-          >
+        <div className="flex w-50 flex-col gap-4">
+          <Button to={site.socials.channel} color="theme">
             <YoutubeLogoIcon />
             Channel
           </Button>
-          <Button
-            to={site.socials.newsletter}
-            color="theme"
-            className="w-50 self-center"
-          >
+          <Button to={site.socials.newsletter} color="theme">
             <NewspaperIcon />
             Mailing list
           </Button>

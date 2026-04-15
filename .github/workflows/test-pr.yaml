@@ -1,4 +1,4 @@
-name: Test Frontend
+name: Test pull request
 
 on:
   pull_request:
