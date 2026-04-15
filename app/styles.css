@@ -90,11 +90,11 @@
   }
 
   h1 {
-    @apply justify-center text-center text-3xl tracking-widest uppercase;
+    @apply justify-center text-center text-3xl tracking-widest;
   }
 
   h2 {
-    @apply justify-center text-center text-2xl tracking-wider uppercase;
+    @apply justify-center text-center text-2xl tracking-wider;
   }
 
   h3 {
@@ -106,7 +106,7 @@
   }
 
   p {
-    @apply trim text-justify leading-loose;
+    @apply trim leading-loose;
   }
 
   strong,

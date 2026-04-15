@@ -43,15 +43,11 @@ import Thanks from "./Thanks";
 
 <div className="flex flex-col gap-12">
 
-**3Blue1Brown** (3b1b) is primarily a <Link to={site.socials.channel}>YouTube channel</Link> about
-discovery and creativity in math, with an emphasis on visualizations.
+3Blue1Brown (3b1b) is primarily a <Link to={site.socials.channel}>YouTube channel</Link> focused on explaining math through visuals.
 
-Some lessons cover _standard, commonly-sought topics_ — like linear algebra, calculus, neural networks, quantum computing — motivating math by its usefulness.
-Other lessons are more _playful explorations of puzzles and problems_ — ones that seem challenging but become doable and even beautiful with a shift in perspective — motivating math as an art form.
+Some lessons cover foundational topics, especially those a STEM undergraduate would need to learn. Others are playful explorations of puzzles and problems. In all cases, **my goal is to make more people love math**, whether for its utility or its beauty, following a philosophy that any such love begins with deep understanding.
 
-Much 3b1b content exists outside of the channel as well.
-On this site you'll find written versions of some videos, often with interactive elements sprinkled in.
-On other platforms and elsewhere on the web, you'll find talks, collaborations, projects, and a variety of other content.
+On this site, you'll find written and interactive versions of many videos, along with other projects closely tied to the channel.
 
 </div>
 
@@ -72,11 +68,11 @@ On other platforms and elsewhere on the web, you'll find talks, collaborations, 
 <div className="flex flex-col gap-12">
 
 My name is Grant Sanderson.
-These videos — and [Manim, the animation engine behind them](https://github.com/3b1b/manim) — began as side projects as I was wrapping up my time studying math and computer science at Stanford.
+These videos, together with and [Manim](https://github.com/3b1b/manim), the animation engine behind them, began as side projects as I was wrapping up my time studying math and computer science at Stanford.
 After graduating, I worked for Khan Academy producing videos, articles and exercises, primarily focussed on multivariable calculus.
 Since the end of 2016, my primary focus has been on 3Blue1Brown and its associated projects.
 
-In those years, I've also had the pleasure of contributing to a number of different outlets for math exposition, including spending a semester lecturing for an MIT course on computational thinking, contributing a Netflix documentary about infinity, writing for Quanta, and collaborating with many other educational YouTube channels.
+In those years, I've also had the pleasure of contributing to a number of different outlets for math exposition, including spending a semester lecturing for MIT, contributing visuals to the documentary "A Trip to Infinity" which went on to win an Emmy for graphic design and art direction, collaborating with many of my favorite educational YouTube channels, and numerous others.
 
 </div>
 
@@ -133,25 +129,21 @@ In those years, I've also had the pleasure of contributing to a number of differ
 Almost all animations are made using a custom open-source Python library I've written called **Manim**.
 
 It began as a scrappy playground of code for my own uses cases back when I started the channel, not intended to be a public-facing, professionally maintained tool.
-Luckily, [some folks got together](https://www.manim.community/) to make an [alternate fork](https://github.com/ManimCommunity/manim/) that aims to be more stable, documented, and tested.
+Luckily, some folks got together to make an [alternate fork](https://github.com/ManimCommunity/manim/) that aims to be more stable, documented, and tested.
 Anyone looking to get started with Manim should probably start with this **Community Edition**.
-The original version is basically a testing ground where I try to quickly put new things together while developing videos.
+The version I use and have continued to develop is probably best viewed as a testing ground where I try to quickly put new things together while developing videos.
 
-If you want to make your own animated math videos, you should also take a look at the full landscape of tools available, like Desmos, Geogebra and Mathematica.
-The main difference between Manim and other math-visualizing tools is that it's structured to build potentially long scenes and hopefully look smoother and prettier than, say, matplotlib.
+If you're curious to explore making visualizations with manim, here are a few things to keep mind.
 
-Keep in mind that plenty of professional animation tools like Blender and After Effects can be made programmatic too.
-Also, be sure to ask yourself if what you're doing benefits from being programmatic at all.
-If all you need is simple moving/fading animations, using something like Keynote or PowerPoint might take you farther than you'd expect.
+- A good litmus test for whether it's the right tool is whether the idea of writing code to create visuals feels inhibiting or liberating. If you enjoy coding, espcially in python, and the visuals you have in mind benefit from precision, loops and abstraction, that's a good sign. If you want a GUI, or a lower friction to getting started, I'd recommend confirming that Desmos, Geogebra or other similar tools don't already serve your needs.
 
-It's wonderful to see others using Manim, especially if it helps them explain math in ways that otherwise would have been hard.
-But sometimes I see folks using it to just animate simple movements or manipulate LaTeX.
-In those cases, I can't help wonder if another tool would've been easier.
-I worry when I hear people ask things like "How do I sync up narration into manim?".
-This is just a tool for making individual clips to be edited together later.
-You should certainly use traditional video-editing software for as much as you can.
+- Contrasted with other programatic means of creating visuals, such as Mathematica, matplotlib, processing, shadertoy, etc., the main difference with manim is that it is designed with an intent of creating longer scenes in an object-oriented environment, with an eye towards making smoothness and cleanliness of style the default.
 
-Where programmatic animations work best is where the code directly reflects the math you're trying to explain, or where iteration/abstraction/conditionals/etc. can make an illustration that would've been impractical to make manually.
+- Keep in mind that plenty of professional animation tools like Blender and After Effects can be made programmatic too. If your creative goals would also benefit from lots of non-mathematical animations, it may be worth exploring these other tools and workflows before diving in.
+
+- I worry when I hear people ask things like "How do I sync up narration into manim?".
+  This is just a tool for making individual clips to be edited together later.
+  You should certainly use traditional video-editing software for as much as you can.
 
 </Collapsible>
 
@@ -161,7 +153,7 @@ Where programmatic animations work best is where the code directly reflects the 
 
 <div className="flex flex-col items-center gap-8">
 
-For general topic requests — e.g. "Please make an explainer on X" — use this form:
+For general topic requests, e.g. "Please make an explainer on X", use this form:
 
 <Button to={site.forms.topic_suggestion} color="theme" size="sm">
   <TableIcon />
@@ -172,7 +164,7 @@ For general topic requests — e.g. "Please make an explainer on X" — use this
 
 <div className="flex flex-col items-center gap-8">
 
-For video pitches — i.e you have a vision for _how_ a given topic ought to be covered — use this form:
+If you have a vision for _how_ a given topic ought to be covered, use this form:
 
 <Button to={site.forms.video_pitch} color="theme" size="sm">
   <TableIcon />
@@ -198,7 +190,7 @@ In my case, it looks **3/4 blue and 1/4 brown**.
 
 In the same way that many channels are named after their authors, a younger me thought that a unique genetic signature might be neat.
 Plus, the channel is all about seeing math in certain ways, so it felt fitting.
-The name is just a reference to the logo, plus a desire for something deliberately weird-sounding and unique.
+At that time I was into the idea of something deliberately weird-sounding and unique, and the name is simply a direct reference to the logo.
 
 </div>
 
@@ -224,13 +216,12 @@ For **subtitles**, my friend Ben Eater built [**Criblate**](https://criblate.com
 You can review, edit, and add your own translations.
 Once approved, your contributions are added as the official subtitles for that language on YouTube with attribution to you.
 
-For **dubs**, we already have translators working on that for Spanish, French, Hindi, Portuguese, Russian and Japanese.
-There is currently [an application](https://forms.gle/rKZ9zeyh8NFVGyn66) up to hire translators for Arabic, Korean and Vietnamese.
+For **dubs**, we already have translators working on that for Spanish, French, Hindi, Portuguese, Russian, Japanese, Arabic and Korean. Our approach is to hire independent contractors who are conversant in math, and know how to narrate effectively.
+
+If you're passionate about contributing for another language, and you have experience with both math and narration, we're open to hearing a sample audio track if you'd like to reach out via the contact form below.
 
 Since YouTube is not available in China, there is a small team of volunteers that make them available on [Bilibili](https://space.bilibili.com/88461692/#/) with Chinese translations.
 See that page if you want to help out.
-
-If you feel passionately about contributing in another language, and have experience with narration and voice-overs, feel free to contact us, but keep in mind there is a finite budget, so we may not be able to accommodate.
 
 **You may not re-upload the content on your own channel, and such re-uploaded content will be taken down as a copyright violation**.
 I know that might seem harsh, and that many re-uploaded dubbed videos are done in good faith trying to spread math around the world.
@@ -247,7 +238,7 @@ You may use still images or clips from 3b1b videos as long as you **follow all o
 1. There is clear on-screen attribution to 3Blue1Brown.
 1. You provide links where applicable so someone can easily find the original content.
 
-For any other use case, please reach out via the contact form with a licensing inquiry.
+For any other use case, including uploading full lessons to an alternate educational platform, please reach out via the contact form with a licensing inquiry.
 
 </Collapsible>
 
@@ -277,7 +268,7 @@ For usage and licensing questions, see [this form](https://vincerubinetti.github
 
 <Collapsible title="What books/resources do you recommend for learning math?">
 
-See [this blog post for general recommendations](/blog/recommendations) on how to learn math.
+See [this post for general recommendations](/blog/recommendations) on how to learn math.
 
 See [this post for specific book recommendations](/blog/book-recommendations).
 
@@ -310,20 +301,18 @@ Unfortunately, no. There are two important things to note here:
 When we kicked off the Summer of Math Exposition in 2021, I made [a video centered around this question](https://youtu.be/ojjzXyQCzso).
 Here are the main points I made there:
 
-- Just get started.
-  Begin iterating and receiving feedback before overthinking it.
-- When explaining new topics, try putting concrete and specific ideas before general and abstract frameworks.
-  This runs contrary to how most of us start explaining things that we already understand well.
-- Topic choice matters way more than production quality.
+- **Just start**. Begin iterating and receiving feedback before overthinking it.
+- **Concrete before abstract**. Give examples before general frameworks. Open with the key exercise; don't put it at the end. Note, this is typically backwards to how we think about things once we understand them, where we have general frameworks and then apply them to specific cases. For new students, you have to build up the general framework from somewhere, and the best way is by populating the student's mind with examples.
+- **Topic choice matters way more than production quality.**
   That said, get a good microphone and learn how to use it (an embarrassing number of 3Blue1Brown videos have terrible audio.)
-- Embrace niche topics, especially when getting started, rather than trying to cast the widest net you can.
-- Know your genre, and be wary of pattern matching from creators outside your genre.
-  Some educational creators play the role of student documenting their own learning, others play the role of an expert conveying what they've spent years learning, others are teachers targeting students in school, others are journalists trying to summarize recent breakthroughs.
+- **Be niche**. Especially when getting started, rather than trying to cast the widest net you can, embrace something ultra-specific to what you care about. There are two reasons: 1) This will make your earlier viewers grateful to you, since you will be providing something no one else is, and 2) Given the size of the internet, even extremely niche ideas have a wider audience than you might expect.
+- **Know your genre** Be wary of pattern matching from creators outside your genre.
+  Some educational creators play the role of student documenting their own learning, others play the role of an expert conveying what they've spent years learning, others are teachers targeting students in school, and others are journalists trying to summarize recent breakthroughs.
   All these (and more) have value, but they have different implications for pacing and style, so what works for one may not work for another.
-- In math especially, topic definitions should not be seen as a starting point, but an ending point.
-- Always ask what picture or visual you could use to elucidate a topic.
+- **Never start with definitions**. In math especially, topic definitions should not be seen as a starting point, but an ending point. This is part of an even broader principle: the best pedagogical order of ideas is often very different from the correct logical order of ideas.
+- **Be visual**. Always ask what picture or visual you could use to elucidate a topic.
   It doesn't have to be fancy, and sometimes topics don't lend themselves to a visual, but it's always worth asking.
-- Using math animation software (like Manim) can be useful when the topic at hand lends itself to a programmatic description, but I've seen many people overuse and abuse it, e.g. by just displaying a series of equations or text which are unnecessarily animated.
+- **Avoid pointless animations**. Using math animation software (like Manim) can be useful when the topic at hand lends itself to a programmatic description, but I've seen many people overuse and abuse it, e.g., by just displaying a series of equations or text that are unnecessarily moving around. Every movement on the screen should be deliberate, with an identifiable purpose. Moreover, each visual and movement should communicate the same point that the narration is, so that they reinforce one another, rather than competing for the viewer's attention.
 
 Various [other](https://youtu.be/F3Qixy-r_rQ) [videos](https://youtu.be/cDofhN-RJqg) I've made associated with the Summer of Math Exposition also implicitly convey thoughts I have about the matter.
 
@@ -349,7 +338,7 @@ Various [other](https://youtu.be/F3Qixy-r_rQ) [videos](https://youtu.be/cDofhN-R
 {
 
   <p className="self-center text-center text-balance">
-    A deep thank you to all of the current and past supporters of this channel.
+    I'd like to say a deep thank you to all of the current and past supporters of this channel, with an especially emphasized thanks to these supporters.
   </p>
 }
 

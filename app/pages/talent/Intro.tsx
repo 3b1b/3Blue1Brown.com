@@ -4,11 +4,10 @@ export default function Intro() {
     <section className="bg-theme/15">
       <p>
         Think of this as a <strong>virtual career fair</strong>. These
-        organizations are interested in hiring the kinds of{" "}
-        <strong>technically curious</strong> people who watch 3Blue1Brown. Each
-        featured page is like a <strong>booth at this fair</strong>, where the
-        partner has chosen to share something they believe this audience will
-        enjoy and which reflects their culture.
+        organizations are interested in hiring the kinds of technically curious
+        people who watch 3Blue1Brown. On the pages below, you'll find interviews
+        between Grant and the teams, technical challenges specifically for this
+        audience, and featured work we believe you'll enjoy.
       </p>
     </section>
   );
