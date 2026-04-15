@@ -73,6 +73,23 @@ export default defineConfig(() => ({
         remarkMath,
         remarkGfm,
       ],
+      // convert remark-math nodes to <code class="language-math"> so MathJax can find them
+      remarkRehypeOptions: {
+        handlers: {
+          math: (_state, node) => ({
+            type: "element",
+            tagName: "pre",
+            properties: {},
+            children: [{ type: "element", tagName: "code", properties: { className: ["language-math"] }, children: [{ type: "text", value: node.value }] }],
+          }),
+          inlineMath: (_state, node) => ({
+            type: "element",
+            tagName: "code",
+            properties: { className: ["language-math"] },
+            children: [{ type: "text", value: node.value }],
+          }),
+        },
+      },
       // https://mdxjs.com/packages/mdx
       providerImportSource: "~/components/Markdownify",
     }),
