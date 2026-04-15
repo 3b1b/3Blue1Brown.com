@@ -11,13 +11,13 @@ export default function Details() {
   return (
     <>
       <section className="bg-secondary/10">
-        <H2>Want to be listed here?</H2>
+        <H2>Want to be featured here?</H2>
 
         <p>
-          If your organization would like to be featured here, please send an
-          inquiry to <Link to={`mailto:${email}`}>{email}</Link> and we can
-          explore whether it's a good fit. The main thing we care about is
-          whether members of your technical team genuinely love working there.
+          If your organization would like to partner with us, please send an
+          inquiry to {site.contact.talent} and we can explore whether it's a
+          good fit. The main thing we care about is whether members of your
+          technical team genuinely love working there.
         </p>
       </section>
 
