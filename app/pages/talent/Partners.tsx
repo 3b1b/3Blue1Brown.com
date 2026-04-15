@@ -1,7 +1,6 @@
 import { href } from "react-router";
-import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
-import Quote from "~/components/Quote";
+import Link from "~/components/Link";
 import { getLogo, getPartner } from "./Partner";
 
 // list partners in specific order
@@ -23,32 +22,25 @@ export default function Partners() {
     <section className="width-lg">
       <H2>Partners</H2>
 
-      <div className="grid max-w-max grid-cols-2 gap-8 self-center max-lg:grid-cols-1">
+      <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1 max-w-4xl mx-auto">
         {order.map((id) => {
           const partner = getPartner(id);
           if (!partner) return null;
-          const { name = "", tagline = "", quote = "" } = partner.frontmatter;
+          const { name = "", tagline = "" } = partner.frontmatter;
           const logo = getLogo(id) ?? "";
           return (
-            <Card
+            <Link
               key={id}
               to={href("/talent/:id", { id })}
-              className="group relative bg-[white]! text-[black]!"
+              arrow={false}
+              className="group flex flex-col items-center gap-2 rounded-md p-4 text-black no-underline hocus:bg-theme/15"
             >
-              <div className="flex size-full items-center gap-12 p-4 transition group-hocus:opacity-0 max-md:flex-col">
-                <img src={logo} alt="" className="w-28" />
-                <div className="flex flex-col gap-4 text-left font-sans max-md:items-center max-md:text-center">
-                  <div className="text-xl font-bold">{name}</div>
-                  <div className="text-lg">{tagline}</div>
-                </div>
+              <img src={logo} alt="" className="h-32 w-full object-contain" />
+              <div className="mt-2 font-sans text-2xl font-bold">{name}</div>
+              <div className="text-center text-sm text-gray opacity-0 transition group-hocus:opacity-100">
+                {tagline}
               </div>
-              <Quote
-                bg={false}
-                className="absolute! inset-0 size-full opacity-0 transition group-hocus:opacity-100"
-              >
-                {quote}
-              </Quote>
-            </Card>
+            </Link>
           );
         })}
       </div>
