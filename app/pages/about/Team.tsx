@@ -5,11 +5,7 @@ import { importAssets } from "~/util/import";
 
 // get member portrait image
 const [getImage] = importAssets(
-  import.meta.glob<{ default: string }>("./portraits/*.jpg", {
-    eager: true,
-    // limit size, compress
-    query: "w=600&format=webp",
-  }),
+  import.meta.glob<{ default: string }>("./portraits/*.jpg", { eager: true }),
   undefined,
   (module) => module.default,
 );

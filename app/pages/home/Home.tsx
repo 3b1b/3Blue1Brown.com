@@ -46,7 +46,7 @@ export default function Home() {
         background={
           <Grid
             className={clsx(
-              "mask-b-from-0% mask-b-to-100% transition",
+              "max-h-200 mask-b-from-0% mask-b-to-100% transition",
               playing ? "opacity-0" : "opacity-50",
             )}
           />

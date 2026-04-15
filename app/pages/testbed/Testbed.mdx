@@ -3,6 +3,7 @@ import { Demo as ButtonDemo } from "~/components/Button";
 import Carousel from "~/components/Carousel";
 import Checkbox from "~/components/Checkbox";
 import Collapsible from "~/components/Collapsible";
+import Figure from "~/components/Figure";
 import Float from "~/components/Float";
 import Footer from "~/components/Footer";
 import FreeResponse from "~/components/FreeResponse";
@@ -23,6 +24,7 @@ import ShowPartial from "~/components/ShowPartial";
 import Spoiler from "~/components/Spoiler";
 import StrokeType from "~/components/StrokeType";
 import TableOfContents from "~/components/TableOfContents";
+import Tabs, { Panel } from "~/components/Tabs";
 import TextBox from "~/components/TextBox";
 import YouTube from "~/components/YouTube";
 import site from "~/data/site.json";
@@ -61,6 +63,29 @@ import site from "~/data/site.json";
 Wow, $e^{i \pi}$ is really cool!
 
 </PiCreatureDemo>
+
+<Tabs tabs={[<>Two Cities</>, <>Paul Clifford</>]}>
+  <Panel>
+    It was the best of times it was the worst of times. It was the age of
+    wisdom, it was the age of foolishness. It was the spring of hope, it was the
+    winter of despair.
+  </Panel>
+  <Panel>
+    It was a dark and stormy night. The rain fell in torrents, except at
+    occasional intervals, when it was checked by a violent gust of wind which
+    swept up the streets (for it is in London that our scene lies), rattling
+    along the housetops, and fiercely agitating the scanty flame of the lamps
+    that struggled against the darkness.
+  </Panel>
+</Tabs>
+
+<Figure
+  image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
+  video="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  show="video"
+>
+  This is a figure caption. It can be a string or arbitrary JSX content.
+</Figure>
 
 <Carousel>
   <Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg" />

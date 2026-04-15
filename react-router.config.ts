@@ -6,6 +6,8 @@ const capture = (string: string, pattern: string) =>
   string.match(new RegExp(pattern))?.[1] ?? "";
 
 export default {
+  // basename: "/refresh",
+
   // no server
   ssr: false,
 

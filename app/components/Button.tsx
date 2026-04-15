@@ -2,6 +2,7 @@ import type { ComponentPropsWithRef, ReactNode, Ref } from "react";
 import { deepMap } from "react-children-utilities";
 import clsx from "clsx";
 import Link from "~/components/Link";
+import { removeParagraph } from "~/components/Markdownify";
 import { getVariants } from "~/util/misc";
 
 type Props = Base & (_Link | _Button);
@@ -26,19 +27,11 @@ export default function Button({
   children,
   ...props
 }: Props) {
-  // wrap text children in spans to allow text box trimming
-  children = deepMap(children, (child: ReactNode, index?: number) => {
-    if (child && typeof child === "string")
-      return (
-        <span key={index} className="trim">
-          {child}
-        </span>
-      );
-    return child;
-  });
+  children = wrapText(children);
+  children = removeParagraph(children);
 
   className = clsx(
-    "inline-flex items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
+    "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hocus:bg-theme/15 hocus:text-theme",
     color === "light" &&
       "bg-theme/15 text-theme hocus:bg-theme hocus:text-white",
@@ -100,3 +93,16 @@ export function Demo({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+// wrap text children in spans to allow text box trimming
+const wrapText = (children: ReactNode) =>
+  deepMap(children, (child, index) => {
+    if (child && typeof child === "string")
+      return (
+        <span key={index} className="trim">
+          {child}
+        </span>
+      );
+
+    return child;
+  });

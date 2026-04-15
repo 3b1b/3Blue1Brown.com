@@ -1,0 +1,77 @@
+---
+name: BEAM
+tagline: Pathways to STEM Excellence
+quote: Helping students from low-income communities study advanced mathematics and thrive in STEM
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import Vimeo from "~/components/Vimeo";
+import amc8Growth from "./amc8-growth.webp";
+import banner from "./banner.jpg";
+import classroom from "./classroom.jpg";
+import staffSunset from "./staff-sunset.jpg";
+import staffTeam from "./staff-team.jpg";
+import whiteboard from "./whiteboard.jpg";
+import wordmark from "./wordmark.png";
+
+<section className="dark">
+
+<Image
+  image={banner}
+  interactive={false}
+  className="absolute inset-0 -z-10 size-full object-cover opacity-10"
+/>
+
+<Image image={wordmark} interactive={false} className="h-20 self-center" />
+
+<Vimeo id="154919239" />
+
+<Button
+  to="https://www.beammath.org/work-at-beam"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Bridge to Enter Advanced Mathematics (BEAM) creates pathways for students historically excluded from STEM opportunities to become scientists, engineers, mathematicians, and innovators. Through rigorous math enrichment, mentorship, and long-term support, BEAM helps students access advanced academic programs, thrive in top high schools and colleges, and pursue STEM careers.
+
+Our approach is holistic, combining deep mathematical learning with advising, community, and sustained guidance from middle school through college. By investing early and consistently, we ensure students not only gain access, but also the tools and confidence to succeed. BEAM is committed to making high-quality STEM education accessible regardless of financial circumstances.
+
+<div className="grid grid-cols-2 gap-4 *:size-full *:object-cover max-md:grid-cols-1">
+
+<Image image={staffTeam} />
+
+<Image image={staffSunset} />
+
+<Image image={classroom} />
+
+<Image image={whiteboard} />
+
+</div>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Problem-Solving Growth during 3 weeks at BEAM Summer Away
+
+<Figure image={amc8Growth}>
+  In 2025, the median student grew 19% in national ranking on the AMC 8, which
+  is used to assess growth in problem solving. The AMC 8 is a national math
+  competition taken by mostly advanced mathematical students.
+</Figure>
+
+</section>

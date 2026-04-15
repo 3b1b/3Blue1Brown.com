@@ -77,14 +77,14 @@ export default function Question({
       <Radios
         label={
           <strong>
-            <Markdownify noParagraph>{question}</Markdownify>
+            <Markdownify>{question}</Markdownify>
           </strong>
         }
         options={choices.map((choice, index) => ({
           value: String(index + 1),
           label: (
             <>
-              <Markdownify noParagraph>{choice}</Markdownify>
+              <Markdownify>{choice}</Markdownify>
               {isRight(index) && (
                 <CheckIcon className="ml-auto icon text-success" />
               )}
@@ -123,7 +123,7 @@ export default function Question({
         >
           {state === "right" && "Reset"}
           {state === "wrong" && "Try Again"}
-          {state === "unanswered" && "Check Answer"}
+          {state === "unanswered" && "Check"}
         </Button>
 
         {state === "unanswered" && (

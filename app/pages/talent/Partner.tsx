@@ -4,7 +4,7 @@ import Footer from "~/components/Footer";
 import { H1 } from "~/components/Heading";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
-import Banner from "~/pages/talent/Banner";
+import PartnerHeader from "~/pages/talent/PartnerHeader";
 import { importAssets } from "~/util/import";
 
 type PartnerFrontmatter = {
@@ -31,28 +31,11 @@ export const [getLogo, logos] = importAssets(
   (module) => module.default,
 );
 
-// import all banners
-export const [getBanner, banners] = importAssets(
-  import.meta.glob<{ default: string }>("./**/*.jpg", { eager: true }),
-  "banner",
-  (module) => module.default,
-);
-
-// import all wordmarks
-export const [getWordmark, wordmarks] = importAssets(
-  import.meta.glob<{ default: string }>("./**/*.svg", { eager: true }),
-  "wordmark",
-  (module) => module.default,
-);
-
 // partner page layout
 export default function Partner({ params: { id } }: Route.ComponentProps) {
   const partner = getPartner(id);
-  const logo = getLogo(id);
-  const banner = getBanner(id);
-  const wordmark = getWordmark(id);
 
-  if (!partner || !logo || !banner || !wordmark) return null;
+  if (!partner) return null;
 
   const {
     // get component to render
@@ -65,10 +48,10 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
     <>
       <Meta title={name} />
 
-      <Banner name={name} banner={banner} wordmark={wordmark} />
+      <PartnerHeader />
 
       <Main striped>
-        <H1 className="sr-only">{name}</H1>
+        <H1 className="sr-only">Jane Street</H1>
         <Component />
       </Main>
 

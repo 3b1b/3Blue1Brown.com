@@ -1,0 +1,136 @@
+---
+name: Transluce
+tagline: Open & scalable technology for understanding AI systems
+quote: An independent research lab working toward responsible development and deployment in the public interest
+---
+
+import {
+  ArrowUpRightIcon,
+  BookIcon,
+  ChatIcon,
+  StepsIcon,
+} from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import banner from "./banner.png";
+import kayaking from "./kayaking.jpg";
+import office from "./office.jpg";
+import pathologicalBehaviors from "./pathological-behaviors.png";
+import pcd from "./pcd.jpg";
+import table from "./table.jpg";
+import terminalBench from "./terminal-bench.png";
+import wordmark from "./wordmark.png";
+
+<section className="py-24">
+
+<Image
+  image={banner}
+  interactive={false}
+  className="absolute inset-0 -z-10 size-full object-cover opacity-25"
+/>
+
+<Image image={wordmark} interactive={false} className="h-20 self-center" />
+
+<Button
+  to="https://jobs.gem.com/transluce"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Transluce is a fast-moving research lab building the public tech stack for understanding and overseeing AI systems. We build world-class, AI-backed analysis tools and use these to set industry standards for evaluation. We are a non-profit with a mission to steer the development of AI for the public good. Learn more about us at [https://transluce.org](https://transluce.org).
+
+<div className="grid grid-cols-3 gap-4 *:size-full *:object-cover">
+
+<Image image={kayaking} />
+<Image image={table} />
+<Image image={office} />
+
+</div>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Surfacing Pathological Behaviors in Language Models
+
+Many language model behaviors occur rarely and are difficult to detect in pre-deployment evaluations. As part of our ongoing efforts to surface and measure them, we propose a way to lower bound how often and how much a model's responses satisfy specific criteria expressed in natural language — which we call the PRopensity BOund (PRBO).
+
+We train reinforcement learning agents to craft realistic natural-language prompts that elicit specified behaviors in frontier open-weight models (Llama 3.1/4, Qwen 2.5, and DeepSeek-V3), using the PRBO to guide the search. These agents automatically discover previously unknown behaviors of concern, including models encouraging self-harm in response to ordinary-seeming prompts.
+
+_Note: the image below contains graphic content related to self-harm._
+
+<Figure image={pathologicalBehaviors}>
+  An example elicited behavior discovered by our RL agents.
+</Figure>
+
+<Button
+  to="https://transluce.org/pathological-behaviors"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the Full Paper
+</Button>
+
+### Diagnosing a performance regression on Terminal-Bench with Docent
+
+GPT-5.1 Codex underperforms GPT-5 Codex by 6.5 percentage points on Terminal-Bench, even with the same scaffold. What explains the regression? Using Docent, our AI-backed analysis tool, we find that the regression stems from time-out errors — not performance. GPT-5.1 Codex times out at nearly twice the rate of GPT-5 Codex (49% vs. 29%), despite Terminal-Bench's system prompt never mentioning the time constraint.
+
+<Figure image={terminalBench}>
+  Codex regresses on Terminal-Bench 2.0. Docent surfaces the root cause.
+</Figure>
+
+<Button
+  to="https://transluce.org/docent/blog/terminal-bench"
+  color="light"
+  className="self-center"
+>
+  <StepsIcon />
+  Replicate our analysis
+</Button>
+
+### Predictive Concept Decoders (PCDs)
+
+We train interpretability assistants to look inside AI models and accurately answer questions about their behavior. These assistants — Predictive Concept Decoders — learn to translate a model's internal states into short, human-readable concept lists, then use those concepts to answer questions about the model's behavior.
+
+PCDs become both more accurate and more interpretable as we scale up training, and they can surface information that models hide or fail to report, including jailbreaks, secret hints, and implanted concepts.
+
+<Figure image={pcd}>
+  A jailbreak example surfaced by a PCD on Llama-3.1-8B-Instruct.
+</Figure>
+
+<div className="flex items-center justify-center gap-4">
+
+<Button
+  to="https://decoder.transluce.org"
+  color="light"
+  className="self-center"
+>
+  <ChatIcon />
+  Chat With Our PCD
+</Button>
+
+<Button
+  to="https://arxiv.org/abs/2512.15712"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Full Report on arXiv
+</Button>
+
+</div>
+
+</section>

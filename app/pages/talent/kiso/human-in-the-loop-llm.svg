@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 714.3 309.4">
+  <!-- Generator: Adobe Illustrator 30.2.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #7dbd72;
+      }
+
+      .st0, .st1, .st2, .st3, .st4, .st5 {
+        font-size: 12px;
+      }
+
+      .st0, .st1, .st2, .st5 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .st6 {
+        fill: #b7c2d6;
+      }
+
+      .st7 {
+        fill: #8585bc;
+      }
+
+      .st1, .st4 {
+        fill: #434343;
+      }
+
+      .st2, .st8, .st9 {
+        fill: #fff;
+      }
+
+      .st3 {
+        fill: #303082;
+      }
+
+      .st3, .st4 {
+        font-family: ArialMT, Arial;
+      }
+
+      .st9 {
+        stroke: #434343;
+        stroke-dasharray: 4;
+        stroke-miterlimit: 10;
+      }
+
+      .st5 {
+        fill: #cf6e78;
+      }
+    </style>
+  </defs>
+  <g id="Layer_3">
+    <polygon class="st6" points="714.2 104.9 172.8 104.9 158.4 119.3 0 119.3 0 27.6 158.4 27.6 172.8 13.2 714.2 13.2 714.2 104.9"/>
+    <polygon class="st6" points="714.2 127.9 337 127.9 322.6 155.2 172.8 155.2 158.4 142.3 0 142.3 0 119.3 158.4 119.3 172.8 132.1 322.6 132.1 337 104.9 714.2 104.9 714.2 127.9"/>
+    <polygon class="st6" points="714.3 136.6 538.7 136.6 524.2 188.4 337 188.4 322.6 162.5 172.8 162.5 158.4 149.6 0 149.6 0 142.3 158.4 142.3 172.8 155.2 322.6 155.2 337 181.1 524.2 181.1 538.6 127.9 714.2 127.9 714.3 136.6"/>
+    <polygon class="st6" points="699.9 281.1 714.3 281.1 714.3 284 697.1 284 684.1 230.1 538.6 230.1 524.2 195.5 337 195.5 322.6 169.6 172.8 169.6 158.4 156.7 0 156.7 0 149.4 158.4 149.4 172.8 162.3 322.6 162.3 337 188.2 524.2 188.2 538.6 222.8 684.1 222.8 698.5 136.6 714.3 136.6 714.3 140 699.9 140 685.5 226.4 699.9 281.1"/>
+    <polygon class="st6" points="714.3 292.6 538.7 292.6 524.2 202.8 337 202.8 322.6 176.9 172.8 176.9 158.4 164 0 164 0 156.7 158.4 156.7 172.8 169.6 322.6 169.6 337 195.5 524.2 195.5 538.7 284 714.3 284 714.3 292.6"/>
+  </g>
+  <g id="Layer_2">
+    <rect class="st9" x="67.7" y="16.1" width="83.5" height="157.1" rx="6.9" ry="6.9"/>
+    <rect class="st9" x="211.7" y="111.2" width="103.7" height="157.1" rx="6.9" ry="6.9"/>
+    <rect class="st9" x="393.1" y="135.5" width="123.8" height="157.1" rx="6.9" ry="6.9"/>
+    <rect class="st9" x="605.2" y="186" width="71.7" height="81.8" rx="6.9" ry="6.9"/>
+  </g>
+  <g id="Layer_1">
+    <g>
+      <path class="st7" d="M107.2,160.9c-16.2,0-32.9-4.3-32.9-11.6v-38.7l.2.3c1.8-6.5,17.5-10.4,32.8-10.4s31,3.8,32.8,10.4l.2-.3v38.7c0,7.3-16.7,11.6-32.9,11.6Z"/>
+      <path class="st8" d="M107.2,101.5c17.6,0,31.9,4.8,31.9,10.6s-14.3,10.6-31.9,10.6-31.9-4.8-31.9-10.6,14.3-10.6,31.9-10.6M139.1,114.4v34.9c0,5.9-14.3,10.6-31.9,10.6s-31.9-4.8-31.9-10.6v-34.9c3,5.3,16.1,9.2,31.9,9.2s28.9-4,31.9-9.2M107.2,99.5c-8.7,0-17,1.1-23.2,3.2-5.5,1.8-8.3,4-9.6,6l-1.1-1.9v42.5c0,2.7,1.9,6.5,10.7,9.4,6.2,2.1,14.5,3.2,23.2,3.2s17-1.1,23.2-3.2c8.9-2.9,10.7-6.7,10.7-9.4v-42.5l-1.1,1.9c-1.3-2-4.1-4.2-9.6-6-6.2-2.1-14.5-3.2-23.2-3.2h0Z"/>
+    </g>
+    <text class="st1" transform="translate(85.9 36.7)"><tspan x="0" y="0">Stage 1</tspan></text>
+    <text class="st4" transform="translate(10.1 96.8)"><tspan x="0" y="0">Content</tspan></text>
+    <text class="st2" transform="translate(80.6 145.4)"><tspan x="0" y="0">LLM ~3B</tspan></text>
+    <text class="st4" transform="translate(82.3 67.8)"><tspan x="0" y="0">optimized</tspan><tspan x="4" y="14.4">prompts</tspan><tspan x="22.2" y="28.8">+</tspan></text>
+    <text class="st3" transform="translate(174.2 193.4)"><tspan x="0" y="0">Flag</tspan></text>
+    <g>
+      <path class="st7" d="M263.6,255.9c-20.7,0-42.7-4.1-42.7-11.6v-37.9h0c1.3-7,22.6-10.8,42.6-10.8s41.3,3.8,42.6,10.9h0c0,0,0,37.8,0,37.8,0,7.5-22,11.6-42.7,11.6Z"/>
+      <path class="st8" d="M263.6,196.6c23,0,41.7,4.8,41.7,10.6s-18.7,10.6-41.7,10.6-41.7-4.8-41.7-10.6,18.7-10.6,41.7-10.6M305.3,209.5v34.9c0,5.9-18.7,10.6-41.7,10.6s-41.7-4.8-41.7-10.6v-34.9c3.9,5.3,21.1,9.2,41.7,9.2s37.8-4,41.7-9.2M263.6,194.6c-11.3,0-21.9,1.1-30,3.2-6.9,1.8-11.2,4-12.9,6.7l-.8-1.1v41c0,3.9,4.6,7.1,13.7,9.4,8,2,18.7,3.2,30,3.2s21.9-1.1,30-3.2c9.1-2.3,13.7-5.5,13.7-9.4v-41l-.8,1.1c-1.7-2.7-6-5-12.9-6.7-8-2-18.7-3.2-30-3.2h0Z"/>
+    </g>
+    <text class="st1" transform="translate(242.9 131.7)"><tspan x="0" y="0">Stage 2</tspan></text>
+    <text class="st2" transform="translate(234.2 240.5)"><tspan x="0" y="0">LLM ~70B</tspan></text>
+    <text class="st4" transform="translate(239.2 162.8)"><tspan x="0" y="0">optimized</tspan><tspan x="4" y="14.4">prompts</tspan><tspan x="22.2" y="28.8">+</tspan></text>
+    <text class="st3" transform="translate(338.4 215.3)"><tspan x="0" y="0">Flag with</tspan><tspan x="0" y="14.4">Reasons</tspan></text>
+    <g>
+      <path class="st7" d="M455.1,280.2c-27.3,0-56.3-4.1-56.3-11.6v-37.3h0c.5-7.4,29.2-11.4,56.3-11.4s55.8,4,56.3,11.4h0s0,37.3,0,37.3c0,7.5-29,11.6-56.3,11.6Z"/>
+      <path class="st8" d="M455.1,220.9c30.5,0,55.3,4.8,55.3,10.6s-24.7,10.6-55.3,10.6-55.3-4.8-55.3-10.6,24.7-10.6,55.3-10.6M510.4,233.8v34.9c0,5.9-24.7,10.6-55.3,10.6s-55.3-4.8-55.3-10.6v-34.9c5.1,5.3,27.9,9.2,55.3,9.2s50.1-4,55.3-9.2M455.1,218.9c-14.9,0-28.9,1.1-39.5,3.1-5.2,1-9.4,2.2-12.3,3.5-1.1.5-3.8,1.7-5,3.9l-.5-.6v39.8c0,3.4,4.2,5.3,5.5,6,2.9,1.3,7.1,2.5,12.3,3.5,10.6,2,24.6,3.1,39.5,3.1s28.9-1.1,39.5-3.1c5.2-1,9.4-2.2,12.3-3.5,1.4-.6,5.5-2.5,5.5-6v-39.8l-.5.6c-1.2-2.1-3.9-3.4-5-3.9-2.9-1.3-7.1-2.5-12.3-3.5-10.6-2-24.6-3.1-39.5-3.1h0Z"/>
+    </g>
+    <text class="st1" transform="translate(433.7 156)"><tspan x="0" y="0">Stage 3</tspan></text>
+    <text class="st2" transform="translate(421.7 264.8)"><tspan x="0" y="0">LLM &gt;100B</tspan></text>
+    <text class="st4" transform="translate(430 187.1)"><tspan x="0" y="0">optimized</tspan><tspan x="4" y="14.4">prompts</tspan><tspan x="22.2" y="28.8">+</tspan></text>
+    <text class="st0" transform="translate(177.1 10.3)"><tspan x="0" y="0">Allow</tspan></text>
+    <text class="st3" transform="translate(538.7 244)"><tspan x="0" y="0">Rec’dations</tspan><tspan x="0" y="14.4">&amp; Citations</tspan></text>
+    <text class="st1" transform="translate(619.5 206.6)"><tspan x="0" y="0">Manual</tspan></text>
+    <text class="st4" transform="translate(630.2 223.5)"><tspan x="0" y="0">with</tspan><tspan x="-20.3" y="14.4">explanatory</tspan><tspan x="1" y="28.8">tool</tspan></text>
+    <text class="st5" transform="translate(555.9 304.9)"><tspan x="0" y="0">Block</tspan></text>
+  </g>
+</svg>
