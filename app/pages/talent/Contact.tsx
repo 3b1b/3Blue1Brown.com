@@ -1,4 +1,5 @@
 import { href } from "react-router";
+import Alert from "~/components/Alert";
 import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 import site from "~/data/site.json";
@@ -9,7 +10,7 @@ const email = site.contact.talent;
 export default function Details() {
   return (
     <>
-      <section className="bg-alt-white">
+      <section className="bg-secondary/10">
         <H2>Want to be listed here?</H2>
 
         <p>
@@ -20,7 +21,7 @@ export default function Details() {
         </p>
       </section>
 
-      <section className="bg-secondary/10">
+      <section className="bg-alt-white">
         <H2>Find a job here?</H2>
 
         <p className="text-center text-balance">
@@ -29,6 +30,11 @@ export default function Details() {
           Let us know via the general{" "}
           <Link to={`${href("/about")}#contact`}>contact form</Link>.
         </p>
+        <Alert>
+          The organizations we partner with are selectively chosen and carefully
+          vetted, but we still encourage you to research them yourself before
+          applying.
+        </Alert>
       </section>
     </>
   );
