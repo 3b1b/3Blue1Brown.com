@@ -1,10 +1,10 @@
 import { href } from "react-router";
 import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
+import { seededRandom, shuffle } from "~/util/math";
 import { getLogo, getPartner } from "./Partner";
 
-// list partners in specific order
-const order = [
+const partners = [
   "janestreet",
   "cognition",
   "doppel",
@@ -15,6 +15,11 @@ const order = [
   "0xPARC",
   "beam",
 ];
+
+// re-shuffle once per hour, janestreet always first
+const hourSeed = Math.floor(Date.now() / (1000 * 60 * 60));
+var order = shuffle(partners, seededRandom(hourSeed));
+order = ["janestreet", ...order.filter((p) => p !== "janestreet")];
 
 // gallery of partners
 export default function Partners() {
