@@ -9,19 +9,48 @@ import PiCreature from "~/components/PiCreature";
 import StrokeType from "~/components/StrokeType";
 
 // redirects
+const redirects: Record<string, string> = {
+  "/faq": "/about#faqs",
+  "/faqs": "/about#faqs",
+  "/contact": "/about#contact",
+  "/blog": "/extras#blog",
+  "/podcast": "/extras#podcast",
+  "/home": "/",
+  "/lessons": "/",
+  "/lessons/": "/",
+  "/video": "/",
+  "/live": "/",
+  "/store": "https://store.dftba.com/collections/3blue1brown",
+  "/plushie": "/store",
+  "/thanks": "/about#thanks",
+  "/recommendations": "/blog/recommendations",
+  "/some1-results": "/blog/some1-results",
+  "/poems": "/blog/poems",
+  "/videos": "https://www.youtube.com/3blue1brown",
+  "/support": "https://www.patreon.com/3blue1brown",
+  "/early-attention": "https://www.patreon.com/3blue1brown",
+  "/subscribe": "https://www.youtube.com/c/3blue1brown?sub_confirmation=1",
+  "/brilliant": "https://brilliant.org/3b1b",
+  "/quaternion-explorable": "https://eater.net/quaternions",
+  "/mail": "https://3blue1brown.substack.com/",
+  "/some": "https://some.3b1b.co",
+  "/some1": "https://some.3b1b.co",
+  "/recommended": "/?topic=best-of",
+  "/eola": "/?topic=linear-algebra",
+  "/neural-networks": "/?topic=neural-networks",
+  "/nn": "/?topic=neural-networks",
+  "/calculus": "/?topic=calculus",
+  "/eoc": "/?topic=calculus",
+};
+
 export const clientLoader = async ({ request }: Route.LoaderArgs) => {
   const { pathname } = new URL(request.url);
 
-  // old links
-  if (pathname === "/faqs") throw redirect("/about");
-  if (pathname === "/blog") throw redirect("/extras#blog");
-  if (pathname === "/podcast") throw redirect("/extras#podcast");
-  if (pathname === "/contact") throw redirect("/about#contact");
-  if (pathname === "/support") throw redirect("/about#contact");
+  const dest = redirects[pathname];
+  if (dest) throw redirect(dest);
 
-  // lessons, topics
-  if (pathname === "/lessons") throw redirect("/");
-  const topic = pathname.match(new RegExp(`/topics/(.+)$`))?.[1];
+  // topic paths like /topics/linear-algebra
+  const topic = pathname.match(/^\/topics\/(.+)$/)?.[1];
   if (topic) throw redirect(`/?topic=${topic}`);
 };
 
