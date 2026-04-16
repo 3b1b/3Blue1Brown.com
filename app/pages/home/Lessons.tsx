@@ -139,9 +139,9 @@ export function Search({ dialog = false, close = () => {} }) {
           id="results"
           className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
-          {Object.entries(topics).map(([id, { title, image }], index) => (
+          {Object.entries(topics).map(([id, { title, image }]) => (
             <Card
-              key={index}
+              key={id}
               to={{ search: mergeSearch(location.search, `topic=${id}`) }}
               image={image}
               title={title}
@@ -166,23 +166,20 @@ export function Search({ dialog = false, close = () => {} }) {
             {results
               .slice(0, all ? Infinity : limit)
               .map(
-                (
-                  {
-                    id = "",
-                    title = "",
-                    description = "",
-                    image = "",
-                    read,
-                    interactive,
-                  },
-                  index,
-                ) => {
+                ({
+                  id = "",
+                  title = "",
+                  description = "",
+                  image = "",
+                  read,
+                  interactive,
+                }) => {
                   // has video
                   const video = getLesson(id)?.frontmatter.video;
 
                   return (
                     <div
-                      key={index}
+                      key={id}
                       className="relative flex flex-col items-start gap-4"
                     >
                       <Card

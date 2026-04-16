@@ -123,7 +123,7 @@ export default function TableOfContents() {
       <div ref={listRef} className="flex flex-col overflow-y-auto py-2">
         {headings.map(({ id, level, content }, index) => (
           <Link
-            key={index}
+            key={id}
             ref={active === index ? activeRef : undefined}
             style={{ "--level": level + 1 } as CSSProperties}
             className={clsx(
