@@ -12,13 +12,16 @@ const checkPage = (route: string) =>
     test.skip(browserName !== "chromium", "Only test on chromium");
 
     // test can be slow on ci on very large page (like testbed)
-    test.setTimeout(2 * 60 * 1000);
+    test.setTimeout(60 * 1000);
 
     // navigate to page
     await page.goto(route);
 
-    // wait for content to load
+    // wait for load event
     await page.waitForLoadState();
+
+    // wait for some content to appear
+    await page.waitForSelector("footer");
 
     // builder
     const builder = new AxeBuilder({ page });

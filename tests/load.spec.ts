@@ -11,7 +11,7 @@ const checkPage = (route: string) =>
     test.skip(browserName !== "chromium", "Only test on chromium");
 
     // test can be slow on ci on very large page
-    test.setTimeout(1 * 60 * 1000);
+    test.setTimeout(60 * 1000);
 
     const resources: Record<string, number> = {};
     const responses: Promise<void>[] = [];
