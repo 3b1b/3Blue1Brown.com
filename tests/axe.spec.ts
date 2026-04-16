@@ -1,5 +1,6 @@
 import { AxeBuilder } from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { groupBy } from "lodash-es";
 import routes from "./routes";
 import { log, stringify } from "./util";
 
@@ -49,16 +50,13 @@ const checkPage = (route: string) =>
     const { violations } = await builder.analyze();
 
     // split up critical/non-critical
-    const { critical = [], warning = [] } = Object.groupBy(
-      violations,
-      ({ id }) => {
-        // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
-        if (id === "color-contrast") return "warning";
-        // https://github.com/dequelabs/axe-core/issues/4566
-        if (id === "scrollable-region-focusable") return "warning";
-        return "critical";
-      },
-    );
+    const { critical = [], warning = [] } = groupBy(violations, ({ id }) => {
+      // https://github.com/dequelabs/axe-core/issues/3325#issuecomment-2383832705
+      if (id === "color-contrast") return "warning";
+      // https://github.com/dequelabs/axe-core/issues/4566
+      if (id === "scrollable-region-focusable") return "warning";
+      return "critical";
+    });
 
     test.info().annotations.push({
       type: "Axe violations",
