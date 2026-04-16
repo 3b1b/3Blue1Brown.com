@@ -76,7 +76,7 @@ export default function Hero() {
             <YoutubeLogoIcon />
             Channel
           </Button>
-          <Button to={site.socials.newsletter} color="theme">
+          <Button to={site.socials.newsletter} color="light">
             <NewspaperIcon />
             Mailing list
           </Button>
