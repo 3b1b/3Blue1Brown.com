@@ -60,6 +60,13 @@ export default function Feedback() {
     .flat()
     .join("\n");
 
+  // fallback link
+  const fallback = new URL(
+    `https://github.com/${site.github_org}/${site.github_repo}/issues/new`,
+  );
+  fallback.searchParams.set("title", title);
+  fallback.searchParams.set("body", body);
+
   const [status, setStatus] = useState<AlertType>("info");
   const [issueLink, setIssueLink] = useState("");
 
@@ -123,6 +130,7 @@ export default function Feedback() {
           Give us feedback on <b>this site/page</b>. For anything else, see{" "}
           <Link to={`${href("/about")}#faqs`}>the FAQs</Link> and{" "}
           <Link to={`${href("/about")}#contact`}>contact form</Link>.
+          <Link to={fallback.toString()}>test</Link>
         </p>
         <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
           <TextBox
@@ -195,8 +203,11 @@ export default function Feedback() {
             {status === "loading" && "Submitting feedback"}
             {status === "error" && (
               <p>
-                Error submitting feedback.{" "}
-                <Link to={href("/about")}>Please contact us directly</Link>.
+                Error submitting feedback. Please try{" "}
+                <Link to={fallback.toString()}>
+                  submitting directly on GitHub
+                </Link>
+                .
               </p>
             )}
             {status === "success" && issueLink && (

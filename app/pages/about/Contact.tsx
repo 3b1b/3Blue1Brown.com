@@ -56,6 +56,7 @@ export default function Contact() {
         try {
           setStatus("loading");
           // send form data to netlify
+          // https://docs.netlify.com/manage/forms/setup/#submit-javascript-rendered-forms-with-ajax
           const response = await window.fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
