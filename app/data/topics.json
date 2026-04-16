@@ -3,19 +3,20 @@
     "title": "Best Of",
     "description": "A few hand-picked favorites",
     "lessons": [
-      "newtons-fractal",
-      "shadows",
       "fractal-dimension",
-      "cosmic-distance-1",
       "zeta",
-      "windmills",
+      "newtons-fractal",
       "prime-spirals",
       "essence-of-calculus",
       "wordle",
-      "colliding-blocks-v2",
-      "hardest-problem",
+      "shadows",
+      "inscribed-rect-v2",
       "fourier-series",
-      "print-gallery"
+      "hardest-problem",
+      "cosmic-distance-1",
+      "print-gallery",
+      "holograms",
+      "colliding-blocks-v2"
     ]
   },
   "neural-networks": {
