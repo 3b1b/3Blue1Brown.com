@@ -15,8 +15,8 @@ export default function Intro() {
       <PiCreature
         emotion="well"
         size="md"
-        className="absolute left-10 self-center max-xl:hidden"
-      ></PiCreature>
+        className="absolute bottom-10 left-10 max-xl:hidden"
+      />
     </section>
   );
 }

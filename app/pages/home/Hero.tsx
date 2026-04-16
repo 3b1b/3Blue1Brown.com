@@ -7,6 +7,7 @@ import {
   YoutubeLogoIcon,
 } from "@phosphor-icons/react";
 import { useInterval } from "@reactuses/core";
+import clsx from "clsx";
 import Button from "~/components/Button";
 import site from "~/data/site.json";
 import { useInView } from "~/util/hooks";
@@ -15,9 +16,25 @@ import stats from "./stats.json";
 
 // stat entries
 const entries = [
-  { Icon: VideoIcon, value: stats.videos, label: "videos" },
-  { Icon: BellIcon, value: stats.subscribers, label: "subscribers" },
-  { Icon: EyeIcon, value: stats.views, label: "views" },
+  {
+    Icon: VideoIcon,
+    value: stats.videos,
+    label: "videos",
+    className: "text-theme",
+  },
+  {
+    Icon: BellIcon,
+    value: stats.subscribers,
+    label: "subscribers",
+    className:
+      "text-[color-mix(in_oklch,var(--color-theme)_50%,var(--color-success))]",
+  },
+  {
+    Icon: EyeIcon,
+    value: stats.views,
+    label: "views",
+    className: "text-success",
+  },
 ];
 
 // home page hero section
@@ -40,13 +57,16 @@ export default function Hero() {
     <section className="bg-theme/10">
       <div className="grid grid-cols-2 place-items-center gap-12 max-md:grid-cols-1">
         <div ref={ref} className="grid grid-cols-3 gap-12 self-center">
-          {entries.map(({ Icon, value, label }, index) => (
-            <div key={index} className="flex flex-col items-center gap-2">
-              <Icon className="mb-2 h-12" weight="light" />
+          {entries.map(({ Icon, value, label, className }, index) => (
+            <div
+              key={index}
+              className={clsx("flex flex-col items-center", className)}
+            >
+              <Icon className="mb-4 h-12" weight="light" />
               <div className="font-sans text-xl tabular-nums">
                 {formatNumber(percent * value)}
               </div>
-              <div>{label}</div>
+              <div className="font-sans">{label}</div>
             </div>
           ))}
         </div>
