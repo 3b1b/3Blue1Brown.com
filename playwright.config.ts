@@ -7,7 +7,7 @@ export default defineConfig({
   testDir: "./tests",
   retries: 2,
   fullyParallel: true,
-  workers: "25%",
+  workers: "75%",
   reporter: [["html", { open: process.env.CI ? "never" : "on-failure" }]],
 
   use: {
