@@ -1,0 +1,13 @@
+<!--
+  Hidden static forms for Netlify form detection.
+  Netlify's build bot can't render JavaScript, so it needs a static HTML version
+  of each form to register it. The actual submissions are done via fetch() in JS.
+-->
+<form name="contact-general" netlify hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <input type="text" name="subject" />
+  <select name="reason"></select>
+  <textarea name="message"></textarea>
+  <input type="checkbox" name="read-faqs" />
+</form>
