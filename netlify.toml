@@ -1,9 +1,14 @@
 [build]
-  publish = ".next"
-  command = "yarn build"
+command = "bun run build"
+publish = "build/client"
 
-[context.production.environment]
-  GIT_LFS_ENABLED = "true"
+  [build.environment]
+  NODE_VERSION = "22"
 
-[context.deploy-preview]
-  command = "yarn build"
+[dev]
+command = "bun run dev"
+
+[[redirects]]
+from = "/*"
+to = "/404"
+status = 404

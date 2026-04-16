@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-68 -50 136 100">
+  <defs>
+    <filter id="invert">
+      <feComponentTransfer>
+        <feFuncR type="table" tableValues="1 0" />
+        <feFuncG type="table" tableValues="1 0" />
+        <feFuncB type="table" tableValues="1 0" />
+      </feComponentTransfer>
+    </filter>
+    <g id="thought-bubble" stroke-width="1" vector-effect="non-scaling-stroke">
+      <path
+        d="
+          M 0 -45
+          A 20 20 0 0 0 -30 -39
+          A 17.5 17.5 0 0 0 -54 -24
+          A 15 15 0 0 0 -64 0
+          A 15 15 0 0 0 -54 24
+          A 17.5 17.5 0 0 0 -30 39
+          A 20 20 0 0 0 0 45
+          A 20 20 0 0 0 30 39
+          A 17.5 17.5 0 0 0 54 24
+          A 15 15 0 0 0 64 0
+          A 15 15 0 0 0 54 -24
+          A 17.5 17.5 0 0 0 30 -39
+          A 20 20 0 0 0 0 -45
+          z
+        "
+      />
+      <circle cx="-49" cy="49" r="6" />
+      <circle cx="-58" cy="58" r="2" />
+    </g>
+  </defs>
+
+  <use href="#thought-bubble" fill="currentColor" filter="url(#invert)" />
+  <use href="#thought-bubble" fill="none" stroke="currentColor" />
+</svg>

@@ -1,200 +1,132 @@
-# 3Blue1Brown Website
+# 3Blue1Brown.com
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Source code for official 3Blue1Brown website.
 
-## Build the site locally
+---
 
-1. [Install Node](https://nodejs.org/en/download/)
-2. [Install Yarn](https://classic.yarnpkg.com/en/docs/install)
-3. [Install Git LFS](https://git-lfs.github.com/)
-4. Install an [MDX syntax highlighting plugin for your code editor](https://marketplace.visualstudio.com/items?itemName=silvenon.mdx)
-5. If installing Git LFS for the first time on your user account, run `git lfs install`
-6. Run `yarn dev`
-7. Open [http://localhost:3000](http://localhost:3000) to see the site
+# Development
 
-## Background Knowledge
+Key technologies used in this project:
 
-<!-- TO DO: add basic descriptions? e.g. https://github.com/greenelab/lab-website-template/wiki/Background-Knowledge -->
+- Bun, as package manager and platform (with Node as fallback)
+- React 19
+- React Router v7, as a framework for routing and pre-rendering
+- Vite as bundler
+- TypeScript, for static type checking
+- MDX, for easier authoring of large static content
+- Tailwind CSS, for styling
+- ESLint, for code quality
+- Prettier, for code formatting
+- Playwright, for integration testing
+- Deque Axe, for accessibility testing
 
-### Basic
+## Requirements
 
-What you need to know if you're just authoring lessons or otherwise editing `.mdx` files:
+- [Bun](https://bun.sh) v1.3+ - as main platform, package manager, script runner, etc.
+- [Node](https://nodejs.org) v22+ - as fallback
 
-- **[Git](https://try.github.io/)**
-- **[GitHub](https://github.com/)**
-- **[Markdown](https://www.markdownguide.org/)**
-- **[MDX](https://mdxjs.com/)**
-- **[YAML](https://en.wikipedia.org/wiki/YAML)**
+### About Bun
 
-### Advanced
+Bun **aims** to be a more fast, efficient, and feature-rich **drop-in** replacement for [Node](https://nodejs.org/) and [npm](https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager).
+[Anecdotally](https://github.com/oven-sh/setup-bun/issues/14), its package manager is orders of magnitude faster than `npm` or `yarn` (and less buggy).
 
-What you also need to know if you're editing the website more in depth:
+Bun should have the same APIs and functionalities as Node, with only some minor command name differences.
+If you see instructions like `npm install some-package` or `npx some-command`, replace them with their Bun equivalents like `bun add` or `bunx some-command`.
 
-- **[HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)**
-- **[CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)**
-- **[Sass](https://sass-lang.com/)**
-- **[JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript)**
-- **[React](https://reactjs.org/)**
-- **[JSX](https://reactjs.org/docs/introducing-jsx.html)**
-- **[Next.js](https://nextjs.org/)**
-- **[create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)**
-- **[Yarn](https://yarnpkg.com/)**
-- **[Node](https://nodejs.org/en/)**
-- **[GitHub Actions](https://github.com/features/actions)**
-- **[webpack](https://webpack.js.org/)**
+Bun is excellent but still not as mature as Node.
+If you encounter an issue, try running commands with Node instead, and report the issue on this repo.
+To avoid vendor lock-in, do not use APIs/features that are in Bun but not Node.
+If Bun disappeared tomorrow, going back to Node should be as simple as replacing command names.
 
-## Guidelines
+## Commands
 
-Guidelines to ensure consistency and quality of contributions are listed in `.github/pull_request_template.md`.
-Some items may refer back to this readme for longer lists or documentation.
+| Command                      | Description                                       |
+| ---------------------------- | ------------------------------------------------- |
+| **Setup**                    |                                                   |
+| `bun install`                | Install packages                                  |
+| `bun run install-playwright` | Install browsers for integration tests            |
+| `bun run clean`              | "Hard uninstall", to be followed with re-install  |
+| **Basic**                    |                                                   |
+| `bun run some-script`        | Runs `some-script` defined in `package.json`      |
+| `bun run dev`                | Start local dev server with hot-reloading         |
+| `bun run build`              | Build production version of app                   |
+| `bun run preview`            | Serve built version of app (must run build first) |
+| **Fix**                      |                                                   |
+| `bun run lint`               | Fix linting                                       |
+| `bun run format`             | Fix formatting                                    |
+| **Test**                     |                                                   |
+| `bun run test:types`         | Test types                                        |
+| `bun run test:lint`          | Test linting                                      |
+| `bun run test:format`        | Test formatting                                   |
+| `bun run test:e2e`           | Run integration tests                             |
+| `bun run test`               | Run all tests                                     |
+| **Checks**\*                 |                                                   |
+| `bun run check:spelling`     | Check for spelling errors                         |
+| `bun run check:unused`       | Check for unused code                             |
+| `bun run check:links`        | Check for broken links                            |
 
-## Components
+\* Scripts that are valuable, but have too many false positives to be tests that fail critically.
+Run periodically, manually review, and use discretion.
 
-Components (or "widgets") are building blocks for visual and interactive elements that go beyond basic Markdown.
-You can use components in your `.mdx` files and pass them options/parameters called "props".
+### Integration tests
 
-The basic syntax is:
+- `bun run test:e2e` - Run all tests on a sub-set of critical routes
+- `bun run test:e2e some-test.spec` - Run specific test file
+- `ROUTE= bun run test:e2e` - Run all tests on all routes
+- `ROUTE=/some/route bun run test:e2e` - Run all tests on routes matching regex
 
-```jsx
-<SomeComponent someString="some string" someNumber={42} someFlag={true} />
-```
+## Repo Structure
 
-Or for some components that may need longer-form inputs:
+- `/app` - Main content of site.
+  - `root.tsx` - Entrypoint of site, and root layout for every page.
+  - `routes.ts` - A mapping of paths (local component/MDX files) to routes (URLs).
+  - `styles.css` - Theme variable definitions (including dark/light-mode colors), global styles that affect native HTML elements, and reuseable utility classes.
+  - `/api` - For client-side requests.
+  - `/assets` - General purpose assets like images.
+  - `/components` - Low-level building blocks like buttons, inputs, etc., or higher-level ones that are used across the site, e.g. header.
+  - `/data` - Top-level site data.
+  - `/pages` - Hierarchy of the site's pages.
+    Page-specific content files (e.g. MDX), components (e.g. `<Book>` for book recs), assets (e.g. images), and data (e.g. team member list).
+  - `/util` - Broadly useful, generic functions, i.e. ones you'd find yourself frequently copying between different projects.
+- `/public` - Assets to be copied to build output as-is.
+  Should almost never be used.
+  `import` whenever possible to take advantage of bundler optimizations.
+- `/tests` - Integration tests.
+- `react-router.config.ts` - Configuration for React Router, including which routes are generated when the site is built.
 
-```jsx
-<SomeComponent>Lorem ipsum dolor</SomeComponent>
-```
+## Notes
 
-The inner contents are referred to as the `children` prop below.
-
-This section only covers the components and props meant to be used in lessons.
-For documentation of other components and props, look in the components folder.
-
-- 📚 = prop accepts markdown and math
-- 🚨 = prop is required for component to render
-
-### Accordion
-
-An expandable/collapsible section.
-
-- `title` 🚨 - Text to show in clickable button that expands/collapses more content beneath.
-- `children` 🚨📚 - Content to show under title button when expanded.
-
-### Center
-
-Centers a group of arbitrary elements.
-You shouldn't need to use this in lessons much, if ever.
-Most components align themselves as stylistically appropriate.
-
-- `children` 🚨 - Arbitrary content.
-
-### Clickable
-
-A button is an element that does something on the current page.
-A link is an element that goes somewhere.
-This component is a big clickable that combines the two for stylistic consistency, hence the generic name "clickable".
-
-Normal in-text links can still be made with regular Markdown syntax.
-This component is used outside of lessons, but in lessons you should only use this component for important links you want to emphasize.
-
-- `link` 🚨 - Location to go to when link is clicked.
-- `icon` - Font Awesome class of icon to show next to text.
-- `text` - Text to show.
-- `design` - Style of the clickable.
-  `rounded` for rounded.
-  Default `""` for square.
-
-Also required: `icon` or `text`
-
-### Figure
-
-A component to show image and/or video and caption, with controls to switch between them.
-
-- `id` - A page-unique identifier like `some-figure` to attach to the figure so you can link to it like `[Some Figure](#some-figure)`.
-- `image` 🚨 - Path to image file.
-- `video` 🚨 - Path to video file.
-- `show` - Whether to show image or video by default.
-  One of `"image"` or `"video"`.
-- `caption` 📚 - Caption for both image and video.
-- `imageCaption` 📚 - Caption just for image.
-- `videoCaption` 📚 - Caption just for video.
-- `width` - Manually set width like `300px`.
-  Displayed width will never go beyond screen.
-- `height` - Manually set height like `300px`.
-- `loop ` - Whether to loop video, `true` or `false`.
-
-For `image` and `video`, if you provide a relative url, links to that path in the Linode bucket.
-Omit `width` and `height` whenever possible to let the figure auto-size based on the aspect ratio of the image/video.
-
-### Interactive
-
-Dynamically imports another react component and displays it in a frame.
-
-- `filename` 🚨 - Name of a `.js` file (without the extension) in the same folder as the lesson.
-- `children` - A function that takes the component loaded from `filename` and returns what to render (allows passing props to the loaded component).
-- `aspectRatio` - A number representing the width / height of the box in which the interactive lives. (Default: 16 / 9)
-- `allowFullscreen` - A boolean indicating whether to show a full screen button in the top right (defaults to `false`)
-
-Example of `children`: `<Interactive>{(MyComponent) => <MyComponent someProp="some value" />}</Interactive>`.
-
-### Lesson Link
-
-An in-text link to another lesson that shows a preview of the lesson in a tooltip on hover/focus.
-
-- `id` 🚨 - Identifier slug for lesson, like `quick-eigen`.
-- `children` - Link text.
-
-### Pi Creature
-
-A pi creature with a chosen emotion and optional speech/thought bubble text.
-
-- `emotion` - Filename of emotion in /pi-creatures folder.
-  Default `hooray`.
-- `text` 📚 - Text to show in bubble.
-  Omit to not show any bubble.
-- `thought` - Whether bubble is thought (`true`) or speech (`false`).
-  Default `false`.
-- `placement` - How to place the pi.
-  `side` puts the pi to the right of the main page column (with its bottom aligned with the bottom of the previous element, which can be a paragraph, figure, etc.), and hides the pi completely when the screen isn't wide enough.
-  `inline` puts inside the main page column as if it were its own paragraph.
-  `auto` puts the pi to the side when the screen is wide enough, and inline when it isn't.
-  Default `auto`.
-- `flip` - If `true`, puts the pi to the left instead of the right.
-
-### Question
-
-Interactive multiple-choice question with explanation.
-
-- `question` 🚨📚 - Text of the question
-- `choice1` through `choice6` 🚨📚 - Possible choices.
-- `answer` - Which choice number is the correct one, e.g. `answer={3}`.
-- `explanation` 📚 - Explanation of answer once reader gets it correct.
-
-### Section
-
-Sections are the alternating white/off-white backgrounds that span the entire width of the page.
-Use these sparingly to divide your lesson into big groups.
-
-- `children` 📚 - Arbitrary content.
-
-Example:
-
-```markdown
-... previous section of content
-
-</Section><Section>
-
-... next section of content
-```
-
-### Spoiler
-
-"Redacted" text that reveals itself on hover/focus, similar to spoilers on Reddit and other forums.
-
-- `children` 📚 - Arbitrary content.
-
-### Twitter
-
-Component to embed a tweet (and possibly other Twitter things in the future?).
-
-`tweet` 🚨 - Id of tweet.
+- If you're annoyed by frequent reloading in dev mode, it's a known issue and see https://github.com/vitejs/vite/discussions/14801
+- MDX files can only be type-checked in the editor, and not with the the `test:types` script.
+  This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
+- Place code in the appropriate places as described in the repo structure.
+  The structure tries to collocate by domain rather than by type, i.e. `/blog/images` and `/blog/components` rather than `/images/blog` and `/components/blog`.
+- Before using a third-party package's component, or even a native HTML element, check if we have a custom component for it.
+  E.g., we have a custom `<Link>` component that wraps React Router's `<Link>`, adding consistent styling and behavior.
+- See the `/testbed` page for an overview of what formatting/elements/components/etc. you can use and how.
+- Be careful with auto-imports, e.g. importing `<Link>` from `react-router` instead of `components/Link`.
+- Avoid un-safe TypeScript, e.g. type-disabling (`any` instead of `unknown`), casting (`someValue as string`), non-null assertion (`someValue!`), etc.
+- Avoid using the `!` important modifier in Tailwind.
+  Explicit specificity can usually be achieved with `@layer`s or conditionally applying classes in components.
+- Use Tailwind for styling, and avoid custom CSS and inline styles as much as possible.
+- Use Tailwind's `--spacing()` function in `calc()`s and such, to ensure consistent spacing.
+  Avoid hardcoding pixel values.
+- Try to be consistent with the established visual language of the site, e.g. what gap sizes are typically used, how colors and color-alpha values are used on other pages, what fonts are used when, etc.
+  Keep in mind the general aesthetic of the whole.
+  In other words, stick to a design system.
+- Use already-bundled lodash utility functions wherever possible to make code more concise.
+- If a component in `/components` is just a single element and some styles, with no custom behavior or markup, it may be more appropriate as a Tailwind utility class.
+  If a component is only used in one place, it may not need to be a component at all.
+- Use MDX for pages that are primarily static content, and React components for everything else.
+- Split pages into separate files/components by "section" to keep them from becoming too monolithic and make them easier to re-order later or comment out for testing.
+- Put things that might be commonly edited at the top of files, e.g. an array of member info for a team gallery, or some tweak-able parameters for a visualization.
+- Prefer using CSS [flex](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/) and [grid](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) layout over the traditional [flow](https://www.joshwcomeau.com/css/understanding-layout-algorithms/) layout.
+  This generally keeps alignment and spacing consistent with what the eye expects, and makes responsive design easier.
+- Use browser dev tools to become familiar with CSS layout and box model.
+- Try to name files in lower-kebab-case, and components in UpperCamelCase.
+  Utility import functions enforce normalizing names to this for consistency.
+- Generally, put a section break after level 2 headings.
+- Use `console.log` for logging you plan to be temporary, so it can easily be found throughout the codebase.
+  Use `console.debug`/`info` (sparingly) for logging that could be useful to see in production.
+  Use `console.warn`/`error` for all try/catches or where appropriate, as long as they aren't too noisy.
+- Make sure you use the `~/` import prefix, unless the file you're importing is meant to always be co-located with current file.

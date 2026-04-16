@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- put a glowing, blurred version of element behind itself -->
+  <filter
+    id="filter"
+    color-interpolation-filters="sRGB"
+    filterUnits="objectBoundingBox"
+    primitiveUnits="userSpaceOnUse"
+    x="-50%"
+    y="-50%"
+    width="200%"
+    height="200%"
+  >
+    <feGaussianBlur in="SourceAlpha" stdDeviation="50" result="alpha-blur" />
+    <feGaussianBlur in="SourceGraphic" stdDeviation="100" result="image-blur" />
+    <feComponentTransfer in="image-blur" result="image-brighten">
+      <feFuncR type="linear" slope="1.75" />
+      <feFuncG type="linear" slope="1.75" />
+      <feFuncB type="linear" slope="1.75" />
+      <feFuncA type="linear" slope="1.75" />
+    </feComponentTransfer>
+    <feComposite
+      in="image-brighten"
+      in2="alpha-blur"
+      operator="in"
+      result="composite"
+    />
+    <feComposite in="SourceGraphic" in2="composite" operator="over" />
+  </filter>
+</svg>

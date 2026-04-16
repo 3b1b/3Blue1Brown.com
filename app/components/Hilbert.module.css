@@ -1,0 +1,13 @@
+.stroke {
+  animation: stroke 60s linear both infinite;
+  stroke-dasharray: 3 1 2 2;
+}
+
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: 8;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

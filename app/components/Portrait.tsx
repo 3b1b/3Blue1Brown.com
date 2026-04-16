@@ -1,0 +1,46 @@
+import clsx from "clsx";
+import Link from "~/components/Link";
+
+type Props = {
+  // image source
+  image?: string;
+  // image link
+  link?: string;
+  // name
+  name?: string;
+  // description/role
+  description?: string;
+  // class on root
+  className?: string;
+};
+
+// image, name, description, link. usually for a person.
+export default function Portrait({
+  image,
+  link = "",
+  name,
+  description,
+  className,
+}: Props) {
+  return (
+    <div
+      className={clsx(
+        "group flex max-w-full shrink-0 flex-col items-center gap-2 text-center",
+        className,
+      )}
+    >
+      <Link
+        to={link}
+        className="aspect-square w-full overflow-hidden rounded-full static-ring"
+      >
+        <img
+          src={image}
+          alt={name}
+          className="size-full object-cover transition group-hocus:grayscale hocus:scale-105"
+        />
+      </Link>
+      {name && <div className="mt-4 font-sans font-medium">{name}</div>}
+      {description && <div>{description}</div>}
+    </div>
+  );
+}

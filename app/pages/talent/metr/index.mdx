@@ -1,0 +1,107 @@
+---
+name: METR
+tagline: Evaluating Advanced AI
+quote: It's kind of a blend between a PhD Lab and a start up, in the best possible way
+---
+
+import { ArrowUpRightIcon, LightbulbFilamentIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Image from "~/components/Image";
+import Tabs, { Panel } from "~/components/Tabs";
+import Vimeo from "~/components/Vimeo";
+import YouTube from "~/components/YouTube";
+import banner from "./banner.jpg";
+import bethGivingTalk from "./beth-giving-talk.jpg";
+import joelMischaRae from "./joel-mischa-rae.jpg";
+import lengthOfTasksLog from "./length-of-tasks-log.jpg";
+import samiKitKrisRae from "./sami-kit-kris-rae.jpg";
+import upliftDiagram from "./uplift-diagram.jpg";
+import wordmark from "./wordmark.svg";
+
+<section className="dark">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover opacity-10"
+/>
+
+<img src={wordmark} alt="" className="h-20 self-center" />
+
+<Tabs tabs={["Meet Our Team", "Meet our Founder"]}>
+  <Panel>
+    <Vimeo id="1158946636" hash="c6f71a8907" />
+  </Panel>
+  <Panel>
+    <YouTube id="jXtk68Kzmms" />
+  </Panel>
+</Tabs>
+
+<Button
+  to="https://jobs.lever.co/metr"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+METR (pronounced ‘meter') is a nonprofit that evaluates frontier AI models to help companies and wider society understand AI capabilities and what risks they pose. To better understand what we do, take a look at these examples of our research.
+
+- [Measuring AI Ability to Complete Long Tasks](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)
+- [Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
+- [MALT: A Dataset of Natural and Prompted Behaviors That Threaten Eval Integrity](https://metr.org/blog/2025-10-14-malt-dataset-of-natural-and-prompted-behaviors/)
+- [CoT May Be Highly Informative Despite “Unfaithfulness”](https://metr.org/blog/2025-08-08-cot-may-be-highly-informative-despite-unfaithfulness/)
+
+<div className="grid grid-cols-3 gap-4 *:size-full *:max-h-50 *:object-cover max-md:grid-cols-2 max-sm:grid-cols-1">
+
+<Image image={joelMischaRae} />
+<Image image={samiKitKrisRae} />
+<Image image={bethGivingTalk} />
+
+</div>
+
+</section>
+
+<section>
+
+## A Technical Challenge for the 3blue1brown audience
+
+Optimize a GPU kernel—or try to "reward hack" your way to a high score. Just don't get caught by the AI reviewer.
+
+<Button to="https://mlpuzzles.com/" color="light" className="self-center">
+  <LightbulbFilamentIcon />
+  The Kernel Optimization Challenge
+</Button>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Uplift Study
+
+We conducted a randomized controlled trial (RCT) measuring how early-2025 AI tools affected the productivity of 16 experienced open-source developers working on large, mature codebases (avg. 5 years xp w/ repo). Developers completed 246 real issues, which were randomly assigned to either allow or disallow AI usage. Surprisingly, we found that when developers used AI tools, they took 19% longer—AI slowed them down. This contrasted sharply with both the developers' own expectations and expert forecasts (24% and 38-39% shorter time to complete tasks when allowed to use AI, respectively).
+
+<Image image={upliftDiagram}>
+  Read the [full
+  result](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
+</Image>
+
+### Time Horizon Study
+
+We propose measuring AI performance in terms of the length of tasks AI agents can complete. We show that this metric has been consistently exponentially increasing over the past 6 years, with a doubling time of around 7 months. Extrapolating this trend predicts that, in under a decade, we will see AI agents that can independently complete a large fraction of software tasks that currently take humans days or weeks.
+
+<Image image={lengthOfTasksLog}>
+  Read the [full
+  result](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)
+</Image>
+
+</section>

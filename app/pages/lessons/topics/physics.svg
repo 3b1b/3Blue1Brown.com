@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 240 135">
+  <rect width="240" height="135" fill="black" />
+  <g transform="translate(0 -10)">
+    <mask
+      id="clip"
+      width="167"
+      height="91"
+      x="36"
+      y="32"
+      mask-type="alpha"
+      maskUnits="userSpaceOnUse"
+    >
+      <ellipse
+        cx="119.227"
+        cy="77.239"
+        fill="black"
+        rx="87.489"
+        ry="36"
+        transform="rotate(19.919 119.227 77.239)"
+      />
+    </mask>
+    <g mask="url(#clip)" stroke="black">
+      <path
+        fill="palevioletred"
+        transform="translate(150,90) rotate(110)"
+        d="M0 0 L -10 140 L 10 140 z"
+      />
+      <path
+        fill="mediumaquamarine"
+        transform="translate(150,90) rotate(118)"
+        d="M0 0 L -10 140 L 10 140 z"
+      />
+      <path
+        fill="deepskyblue"
+        transform="translate(150,90) rotate(126)"
+        d="M0 0 L -10 140 L 10 140 z"
+      />
+    </g>
+    <path
+      stroke="white"
+      d="m153.956 84.999 1.452-2.097m1.467 7.05 2.795-.598m-3.724 6.17 2.138 1.654m-7.015 1.485.428 2.49m-5.959-4.073-1.301 1.583m-2.088-6.367-2.875.84m9.331-9.243-.547-2.394"
+    />
+    <ellipse
+      cx="119.227"
+      cy="77.239"
+      stroke="white"
+      rx="87.489"
+      ry="36"
+      transform="rotate(19.919 119.227 77.239)"
+    />
+    <circle cx="149.735" cy="91.12" r="4" fill="white" />
+  </g>
+</svg>

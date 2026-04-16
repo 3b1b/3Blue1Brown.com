@@ -1,11 +1,14 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
-  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
-
   "recommendations": [
+    "yoavbls.pretty-ts-errors",
     "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
     "esbenp.prettier-vscode",
-    "silvenon.mdx"
-  ],
-  "unwantedRecommendations": []
+    "unifiedjs.vscode-mdx"
+    // "christian-kohler.path-intellisense",
+    // "bennycode.sort-everything",
+    // "tyriar.sort-lines",
+    // "zachhardesty.jsdoc-comment-toggler",
+    // "nmsmith89.incrementor",
+  ]
 }

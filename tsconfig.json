@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    // basic
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": [
+      "node",
+      "vite/client",
+      "mdx",
+      "@modyfi/vite-plugin-yaml/modules",
+      "vite-plugin-svgr/client"
+    ],
+    "plugins": [{ "name": "@mdx-js/typescript-plugin" }],
+    "target": "ESNext",
+    "module": "ESNext",
+    "allowJs": true,
+    "checkJs": false,
+
+    // bundling
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+
+    // linting
+    "strict": true,
+    "resolveJsonModule": true,
+    "erasableSyntaxOnly": true,
+    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
+
+    // paths
+    "rootDirs": [".", "./.react-router/types"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    }
+  },
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*"
+  ],
+
+  // check mdx in editor
+  "mdx": {
+    "checkMdx": true,
+    "plugins": ["remark-math"]
+  }
+}

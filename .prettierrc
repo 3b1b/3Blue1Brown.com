@@ -1,0 +1,33 @@
+{
+  "overrides": [
+    {
+      "files": "*.css",
+      "options": {
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+    },
+    {
+      "files": "*.!(css|json)",
+      "options": {
+        "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+        "importOrder": [
+          "<TYPES>^react",
+          "<TYPES>^[^~/.]",
+          "<TYPES>^~/",
+          "<TYPES>^/",
+          "<TYPES>^./",
+          "<TYPES>^../",
+          "<TYPES>",
+          "^react",
+          "^[^~/.]",
+          "^~/",
+          "^/",
+          "^./",
+          "^../"
+        ],
+        "importOrderParserPlugins": ["typescript", "jsx", "importAssertions"],
+        "htmlWhitespaceSensitivity": "strict"
+      }
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+---
+name: Doppel
+tagline: AI defense against digital threats
+quote: AI gives scammers an asymmetric advantage — millions of sophisticated attacks at nearly zero cost. This is a moment in time where the defense needs to catch up. And that's incumbent on us.
+---
+
+import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import FreeResponse from "~/components/FreeResponse";
+import Image from "~/components/Image";
+import allhands from "./allhands.jpg";
+import banner from "./banner.png";
+import modalDiagram from "./modal-diagram.webp";
+import rsaconf from "./rsaconf.jpg";
+import threatWorkflow from "./threat-workflow.webp";
+import wordmark from "./wordmark.svg";
+
+<section className="py-24">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover opacity-75"
+/>
+
+<img src={wordmark} alt="" className="h-20 self-center" />
+
+<Button
+  to="https://www.doppel.com/jobs?utm_source=V1nq048RYr"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Doppel is an AI-native platform focused on detecting and disrupting social engineering attacks. We build systems that identify AI-powered impersonation, phishing, and fraud across the internet, link them into real-time threat graphs, and actively dismantle attacker infrastructure.
+
+Our work combines LLM-driven detection, large-scale threat intelligence, and autonomous response systems with training and simulation to strengthen human defenses. Our mission is to protect the world from social engineering attacks every day.
+
+<div className="grid grid-cols-2 gap-4 *:size-full *:object-cover">
+
+<Image image={rsaconf} />
+<Image image={allhands} />
+
+</div>
+
+</section>
+
+<section>
+
+### A challenge for the 3Blue1Brown Audience
+
+At Doppel, every decision comes down to reasoning about p(y) — the probability that a message is malicious given what we observe. Here's a puzzle that captures the core of that challenge.
+
+---
+
+**Setup.** You're a cracked security team defending your users against a known phisher. Each day, the two of you are locked in a cat-and-mouse fight. The attacker sends a phishing campaign and chooses how often to use each of $n$ persuasive phrases in their messages — things like "urgent", "verify account", "free gift", "security alert", "payroll".
+
+The attacker selects a distribution $\mathbf{p} = (p_1, p_2, \ldots, p_n)$ over phrases $T = \{t_1, t_2, \ldots, t_n\}$, where $p_i = P(\text{attacker uses } t_i)$.
+
+Each phrase $t_i$ has an intrinsic social-engineering payoff $s_i$: if a message using $t_i$ reaches a user unflagged, it succeeds with probability $s_i$. If the message is flagged or fails to convince, payoff $= 0$.
+
+**Your detector.** You don't have the bandwidth to inspect every message perfectly — these phrases appear innocently in normal traffic too. Instead, you run a lightweight detector that monitors phrase frequencies. Given a baseline distribution $\mathbf{q} = (q_1, q_2, \ldots, q_n)$ representing natural phrase frequencies, you raise an alarm when:
+
+<center>
+$$\displaystyle \sum_i p_i \log\!\left(\frac{p_i}{q_i}\right) > C$$
+</center>
+
+for some constant $C$. (You might recognize this quantity.)
+
+**The question.** What distribution $\mathbf{p}$ should the attacker choose to maximize their expected payoff?
+
+_Hint: the optimal strategy isn't deterministic._
+
+<FreeResponse placeholder="Your solution">
+  {(input) => (
+    <>
+      <p>
+        Feel confident about this answer? When you submit an application, at the
+        bottom of your resume, include this line:
+      </p>
+      <strong>Answer to 3b1b talent page phishing puzzle: {input}</strong>
+      <Button
+        to="https://www.doppel.com/jobs?utm_source=wJQBOpREkk"
+        color="theme"
+        className="self-center"
+      >
+        Apply Now
+        <ArrowUpRightIcon />
+      </Button>
+    </>
+  )}
+</FreeResponse>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Threat Classification with OpenAI RFT
+
+Doppel's threat classification system uses OpenAI's GPT-5 and Reinforcement Fine-Tuning (RFT) to make real-time decisions on whether a detected signal is malicious, benign, or ambiguous. Each signal passes through multiple LLM prompts purpose-built for different threat types — assessing impersonation risk, brand misuse, and social engineering patterns.
+
+The system learns continuously: human analysts review and correct classifications, those corrections fine-tune models via OpenAI's RFT platform, and improved models are redeployed to production. The result is a tightening feedback loop that cut analyst workloads by 80% and reduced threat mitigation from hours to minutes.
+
+<Button
+  to="https://openai.com/index/doppel"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read Full Case Study
+</Button>
+
+<Figure image={threatWorkflow}>
+  Doppel's threat classification workflow, powered by OpenAI's RFT training
+  framework.
+</Figure>
+
+### Eliminating ML Infrastructure Tax with Modal
+
+Running ML at scale used to mean managing a maze of Docker builds, Cloud Run services, IAM auth layers, and cold starts — overhead that crowded out the actual modeling work. Doppel replaced that stack with Modal's function-based inference, collapsing multi-step service pipelines into direct function calls.
+
+The result: warm builds dropped from 10–30 minutes to under a minute, the team gained automatic scaling for traffic spikes, and engineers shifted their attention from infrastructure management to model development.
+
+<Button
+  to="https://modal.com/blog/how-doppel-eliminated-ml-infrastructure-tax-with-modal"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read Full Write-up
+</Button>
+
+<Figure image={modalDiagram}>
+  Before and after: service-oriented inference on GCP vs. function-based
+  inference on Modal.
+</Figure>
+
+</section>

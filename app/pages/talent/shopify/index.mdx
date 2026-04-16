@@ -1,0 +1,109 @@
+---
+name: Shopify
+tagline: E-commerce platform powering millions of businesses worldwide
+quote: "Shopify's mission is to make commerce better for everyone."
+---
+
+import {
+  ArrowUpRightIcon,
+  BookIcon,
+  GithubLogoIcon,
+} from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import banner from "./banner.jpg";
+import laptops from "./laptops.webp";
+import office from "./office.jpg";
+import rooftop from "./rooftop.jpg";
+import simgym from "./simgym.png";
+import ucp from "./ucp.jpg";
+import wordmark from "./wordmark.svg";
+
+<section className="dark py-24">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover object-[50%_65%] opacity-10"
+/>
+
+<img src={wordmark} alt="" className="h-20 self-center" />
+
+<Button
+  to="https://www.shopify.com/careers?utm_source=3b1b"
+  color="critical"
+  className="w-100 self-center"
+>
+  Explore Open Roles
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Shopify puts independence within reach for anyone with a dream to start a business. We propel entrepreneurs and enterprises to scale the heights of their potential.
+
+Everyone at Shopify works on product. Our merchant obsession is built into every layer of our technology, marrying highly resilient infrastructure with cutting-edge methods.
+
+Since 2006, we've grown to over ~8,000 employees and generated over $1 trillion in sales for millions of merchants in 175 countries.
+
+<div className="grid grid-cols-2 gap-4 *:size-full *:object-cover">
+
+<Image image={laptops} className="col-span-full" />
+<Image image={rooftop} />
+<Image image={office} />
+
+</div>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Universal Commerce Protocol (UCP)
+
+Launched in 2026 in partnership with Google, UCP is an open standard that lets AI agents connect and transact with any merchant. It defines a common language across platforms, agents, and businesses — spanning capabilities like catalog, cart, checkout, and identity linking, with support for REST, MCP, and Agent2Agent transports.
+
+<Figure image={ucp}>
+  Read more at [shopify.com/ucp](https://shopify.com/ucp)
+</Figure>
+
+### SimGym: A/B Testing with AI Shoppers
+
+Traditional A/B testing requires weeks of real traffic to reach statistical significance — a major obstacle for merchants without massive visitor volume. SimGym solves this by deploying hundreds of AI-controlled synthetic shoppers to test store variants in parallel, returning results in minutes.
+
+Each robot shopper receives a persona, budget, and shopping intent, then navigates the real storefront interface — no simulated DOM. The system runs up to 400,000 shopping sessions a day, powered by Shopify's inference cluster and open-source language models on NVIDIA Blackwell GPUs.
+
+<Figure image={simgym} />
+
+<Button
+  to="https://shopify.engineering/simgym"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read Full Write-up
+</Button>
+
+### Open Source
+
+Shopify benefits greatly from open-source software, so we make a point to give back. Here are some highlights from our public repositories:
+
+- **[Draggable](https://github.com/Shopify/draggable)** ★18k — A JavaScript drag-and-drop library that handles the hard parts so you don't have to
+- **[Flash List](https://github.com/Shopify/flash-list)** ★7k — A high-performance drop-in replacement for React Native's FlatList
+- **[Dawn](https://github.com/Shopify/dawn)** ★3k — Shopify's reference theme showcasing Online Store 2.0 capabilities
+- **[EJSON](https://github.com/Shopify/ejson)** ★1.5k — Encrypted secrets management using asymmetric encryption
+- **[Ghostferry](https://github.com/Shopify/ghostferry)** ★843 — Live data migrations with minimal downtime, the Swiss Army knife of database tools
+- **[ERB Lint](https://github.com/Shopify/erb-lint)** ★742 — A lint tool for ERB and HTML files
+
+<Button to="https://shopify.github.io/" color="light" className="self-center">
+  <GithubLogoIcon />
+  All Open Source Projects
+</Button>
+
+</section>

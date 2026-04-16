@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- make glow around element -->
+  <filter
+    id="filter"
+    color-interpolation-filters="sRGB"
+    filterUnits="objectBoundingBox"
+    primitiveUnits="userSpaceOnUse"
+    x="-50%"
+    y="-50%"
+    width="200%"
+    height="200%"
+  >
+    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+    <feComponentTransfer in="blur" result="brighten">
+      <feFuncA type="linear" slope="1.5" intercept="0" />
+    </feComponentTransfer>
+    <feBlend in="SourceGraphic" in2="brighten" mode="screen" />
+  </filter>
+</svg>

@@ -1,0 +1,12 @@
+.dilate {
+  animation: dilate 2s ease-in-out both;
+}
+
+@keyframes dilate {
+  0% {
+    scale: 0.5;
+  }
+  100% {
+    scale: 1;
+  }
+}

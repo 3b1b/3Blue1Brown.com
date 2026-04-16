@@ -1,0 +1,285 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 55rem;
+  --breakpoint-lg: 70rem;
+  --breakpoint-xl: 85rem;
+
+  --font-serif: "Source Serif 4 Variable", serif;
+  --font-sans: "Figtree Variable", sans-serif;
+  --font-mono: "Sometype Mono Variable", monospace;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 350;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  --radius-*: initial;
+  --radius-md: 10px;
+
+  --shadow-sm: 0 0 5px var(--color-shadow), 0 0 2px var(--color-shadow);
+  --shadow-md: 0 0 10px var(--color-shadow), 0 0 2px var(--color-shadow);
+  --shadow-lg: 0 0 20px var(--color-shadow), 0 0 2px var(--color-shadow);
+
+  --color-*: initial;
+  --color-theme: oklch(55% 0.15 240);
+  --color-secondary: oklch(55% 0.15 60);
+
+  --color-black: oklch(0% 0 240);
+  --color-dark-gray: oklch(30% 0 240);
+  --color-gray: oklch(60% 0 240);
+  --color-light-gray: oklch(95% 0 240);
+  --color-alt-white: oklch(98.5% 0 240);
+  --color-white: oklch(100% 0 240);
+
+  --color-success: oklch(60% 0.15 180);
+  --color-warning: oklch(60% 0.15 50);
+  --color-error: oklch(60% 0.15 10);
+  --color-shadow: #00000020;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-theme: oklch(80% 0.15 240);
+  --color-secondary: oklch(80% 0.15 60);
+
+  --color-black: oklch(100% 0 240);
+  --color-dark-gray: oklch(80% 0 240);
+  --color-gray: oklch(50% 0 240);
+  --color-light-gray: oklch(20% 0 240);
+  --color-alt-white: oklch(15% 0 240);
+  --color-white: oklch(0% 0 240);
+
+  --color-success: oklch(80% 0.15 180);
+  --color-warning: oklch(80% 0.15 50);
+  --color-error: oklch(80% 0.15 10);
+  --color-shadow: #ffffff40;
+}
+
+@custom-variant hocus (&:is(:hover, :focus));
+
+@layer base {
+  html {
+    @apply bg-white font-serif leading-normal font-normal text-black underline-offset-2;
+    font-size: 105%;
+  }
+
+  body {
+    @apply flex min-h-dvh flex-col;
+  }
+
+  main {
+    @apply flex grow flex-col;
+  }
+
+  section {
+    @apply width-md relative isolate flex break-before-page flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%---spacing(1)*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:bg-transparent! print:p-0;
+  }
+
+  hr {
+    @apply h-px grow border-0 bg-current/10;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply trim flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal text-balance;
+  }
+
+  h1 {
+    @apply justify-center text-center text-3xl tracking-widest;
+  }
+
+  h2 {
+    @apply justify-center text-center text-2xl tracking-wider;
+  }
+
+  h3 {
+    @apply justify-center text-center text-xl font-medium tracking-wide;
+  }
+
+  h4 {
+    @apply justify-center text-center text-lg font-medium tracking-wide;
+  }
+
+  p {
+    @apply trim leading-loose;
+  }
+
+  strong,
+  b {
+    @apply font-bold;
+  }
+
+  svg {
+    @apply [display:unset] overflow-visible;
+  }
+
+  figure,
+  img {
+    @apply max-h-full max-w-full;
+  }
+
+  ul,
+  ol {
+    @apply flex list-[revert] flex-col gap-4 pl-6 leading-loose;
+  }
+
+  li {
+    @apply trim pl-2;
+  }
+
+  li:has(ul, ol) {
+    @apply list-none;
+  }
+
+  blockquote {
+    @apply trim leading-loose;
+  }
+
+  pre {
+    @apply bg-dark-gray max-w-full overflow-x-auto rounded-md p-4 text-white;
+  }
+
+  :not(pre) > code {
+    @apply bg-dark-gray px-0.5 py-px text-white;
+  }
+
+  table {
+    @apply border-collapse rounded-md;
+  }
+
+  thead tr {
+    @apply bg-light-gray;
+  }
+
+  tr {
+    @apply even:bg-alt-white bg-white;
+  }
+
+  th {
+    @apply font-medium;
+  }
+
+  th,
+  td {
+    @apply not-last:border-gray p-2 not-last:border-r;
+  }
+
+  a {
+    @apply text-theme hocus:text-current trim underline transition;
+  }
+
+  button {
+    @apply trim inline-flex cursor-pointer items-center justify-center font-sans transition;
+  }
+
+  label {
+    @apply trim cursor-pointer transition;
+  }
+
+  input,
+  textarea {
+    @apply min-w-0 font-sans transition;
+  }
+
+  select {
+    @apply min-w-0 cursor-pointer font-sans transition;
+  }
+
+  dl {
+    @apply grid max-w-max grid-cols-[repeat(var(--cols),auto)] gap-x-6 gap-y-4 [--cols:2];
+  }
+
+  dt {
+    @apply text-gray font-sans;
+  }
+
+  dd:empty {
+    @apply before:text-gray before:content-['-'];
+  }
+
+  :focus-visible {
+    @apply static-ring;
+  }
+
+  [aria-disabled="true"] {
+    @apply pointer-events-none opacity-50 grayscale;
+  }
+}
+
+@utility width-sm {
+  --width: 100;
+}
+
+@utility width-md {
+  --width: 175;
+}
+
+@utility width-lg {
+  --width: 250;
+}
+
+@utility width-xl {
+  --width: 325;
+}
+
+@utility width-full {
+  --width: 9999;
+}
+
+@utility icon {
+  @apply inline-block h-[1.25em] w-[unset];
+}
+
+@utility trim {
+  text-box: trim-both text;
+}
+
+@utility no-trim {
+  text-box: initial;
+}
+
+@utility static-ring {
+  @apply outline-theme outline-2 outline-offset-2;
+}
+
+@utility change-ring {
+  @apply outline-2 outline-offset-2 outline-transparent;
+}
+
+@utility hocus-ring {
+  @apply hocus:outline-theme change-ring;
+}
+
+@utility group-hocus-ring {
+  @apply group-hocus:outline-theme change-ring;
+}
+
+@utility focus-within-ring {
+  @apply focus-within:outline-theme change-ring;
+}
+
+@utility badge {
+  @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
+}
+
+@utility perspective-rotate {
+  animation: perspective-rotate 120s linear both infinite;
+}
+
+@keyframes perspective-rotate {
+  0% {
+    transform: perspective(2000px) rotateX(65deg) rotateZ(0deg);
+  }
+  100% {
+    transform: perspective(2000px) rotateX(65deg) rotateZ(360deg);
+  }
+}
+
+@utility vignette {
+  @apply mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%;
+}

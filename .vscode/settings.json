@@ -1,3 +1,12 @@
 {
-    "editor.wordWrap": "on"
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "mdx"
+  ],
+  "[mdx]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

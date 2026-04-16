@@ -1,0 +1,328 @@
+import { Demo as AlertDemo } from "~/components/Alert";
+import { Demo as ButtonDemo } from "~/components/Button";
+import Carousel from "~/components/Carousel";
+import Checkbox from "~/components/Checkbox";
+import Collapsible from "~/components/Collapsible";
+import Figure from "~/components/Figure";
+import Float from "~/components/Float";
+import Footer from "~/components/Footer";
+import FreeResponse from "~/components/FreeResponse";
+import Header from "~/components/Header";
+import Image from "~/components/Image";
+import Link from "~/components/Link";
+import Logo from "~/components/Logo";
+import Main from "~/components/Main";
+import Meta from "~/components/Meta";
+import NumberBox from "~/components/NumberBox.tsx";
+import PiCreature, { Demo as PiCreatureDemo } from "~/components/PiCreature";
+import Portrait from "~/components/Portrait";
+import Question from "~/components/Question";
+import Quote from "~/components/Quote";
+import Radios from "~/components/Radios";
+import Select from "~/components/Select";
+import ShowPartial from "~/components/ShowPartial";
+import Spoiler from "~/components/Spoiler";
+import StrokeType from "~/components/StrokeType";
+import TableOfContents from "~/components/TableOfContents";
+import Tabs, { Panel } from "~/components/Tabs";
+import TextBox from "~/components/TextBox";
+import YouTube from "~/components/YouTube";
+import site from "~/data/site.json";
+
+<Meta title="Testbed" />
+
+<Header />
+
+<TableOfContents />
+
+<Main striped>
+
+<section>
+
+# <StrokeType>Testbed</StrokeType>
+
+<div className="flex flex-wrap gap-4 *:size-10">
+  <div className="bg-theme" />
+  <div className="bg-secondary" />
+  <div className="bg-success" />
+  <div className="bg-error" />
+  <div className="bg-black" />
+  <div className="bg-dark-gray" />
+  <div className="bg-gray" />
+  <div className="bg-light-gray" />
+  <div className="bg-alt-white" />
+  <div className="bg-white" />
+</div>
+
+</section>
+
+<section>
+
+<PiCreatureDemo>
+
+Wow, $e^{i \pi}$ is really cool!
+
+</PiCreatureDemo>
+
+<Tabs tabs={[<>Two Cities</>, <>Paul Clifford</>]}>
+  <Panel>
+    It was the best of times it was the worst of times. It was the age of
+    wisdom, it was the age of foolishness. It was the spring of hope, it was the
+    winter of despair.
+  </Panel>
+  <Panel>
+    It was a dark and stormy night. The rain fell in torrents, except at
+    occasional intervals, when it was checked by a violent gust of wind which
+    swept up the streets (for it is in London that our scene lies), rattling
+    along the housetops, and fiercely agitating the scanty flame of the lamps
+    that struggled against the darkness.
+  </Panel>
+</Tabs>
+
+<Figure
+  image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
+  video="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  show="video"
+>
+  This is a figure caption. It can be a string or arbitrary JSX content.
+</Figure>
+
+<Carousel>
+  <Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg" />
+  
+  <div className="bg-theme/15 p-8">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+  </div>
+
+  <YouTube id="dQw4w9WgXcQ" />
+</Carousel>
+
+<ButtonDemo>Lorem Ipsum</ButtonDemo>
+
+<TextBox
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  placeholder="Lorem ipsum dolor sit amet"
+/>
+<TextBox
+  multi
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  placeholder="Lorem ipsum dolor sit amet"
+/>
+<NumberBox label="Lorem ipsum" help="Yep, lorem ipsum" min={0} max={11} />
+
+<Collapsible title="Collapsible content">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit
+</Collapsible>
+
+<Select
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ]}
+/>
+
+<Checkbox help="Yep, lorem ipsum">Lorem ipsum dolor sit amet</Checkbox>
+
+<Radios
+  label="Lorem ipsum"
+  help="Yep, lorem ipsum"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ]}
+/>
+
+<Question
+  question="Why did the chicken cross the road?"
+  choice1="To get to the other side"
+  choice2="For a bit of $f(x) = e^{i pi} \times sin(x)$ and some haggis"
+  choice3="Cannot be determined"
+  choice4="A superposition of all the answers above"
+  choice5="$i$"
+  answer={4}
+>
+
+$e^{i \pi}$ is pretty neat :)
+
+</Question>
+
+<FreeResponse question="What is the nature of reality? (Hint: $E = mc^2$)">
+
+The true nature of reality remains a mystery, but physicists suspect it has something to do with [ducks](https://shop-us.kurzgesagt.org/collections/all-kurzgesagt-products/products/baby-duck-plushie).
+
+</FreeResponse>
+
+<Quote name="Charles Dickens">
+  It was the best of times it was the worst of times. It was the age of wisdom,
+  it was the age of foolishness. It was the spring of hope, it was the winter of
+  despair.
+</Quote>
+
+<AlertDemo>Lorem ipsum dolor sit amet consectetur adipiscing elit.</AlertDemo>
+
+<div className="grid grid-cols-2 place-items-center gap-4 max-md:grid-cols-1">
+
+<Portrait
+  image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg"
+  name="Lorem ipsum"
+  description="Lorem ipsum dolor sit amet consectetur adipiscing elit"
+  className="w-50"
+/>
+
+<Image image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Oryctolagus_cuniculus_Rcdo.jpg/500px-Oryctolagus_cuniculus_Rcdo.jpg">
+  Lorem ipsum dolor sit amet consectetur adipiscing elit
+</Image>
+
+</div>
+
+</section>
+
+<section>
+
+Tempus leo eu <Spoiler>aenean sed diam urna tempor. Pulvinar vivamus</Spoiler>
+fringilla lacus nec metus bibendum.
+
+Lorem ipsum [^1]. Dolor sit amet [^2]. Consectetur adipiscing elit [^3].
+
+An example of inline math $f(x) = e^{i \pi} + sin(x)$ in the middle of a sentence.
+
+An example a block of math:
+
+$$
+\underbrace{\frac{1}{t_2-t_1}\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Center of mass}}
+\qquad\rightarrow\qquad
+\underbrace{\int_{t_1}^{t_2} g(t)e^{-2 \pi i f t}dt}_{\text{Scaled center of mass}}
+$$
+
+## <hr />Secondary heading<hr />
+
+<Float>
+
+<PiCreature emotion="happy">I'm floating in space :)</PiCreature>
+
+</Float>
+
+<span>
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+### Very specific heading
+
+<Float flip>
+
+<PiCreature flip emotion="sad">
+  I'm floating in space :(
+</PiCreature>
+
+</Float>
+
+<span className="font-sans">
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+#### Even more $e^{i \pi}$ specific heading
+
+<span className="font-mono">
+  0123456789 **Lorem ipsum** dolor sit _amet consectetur_ adipiscing ~~elit~~.
+  Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi
+  pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor.
+  Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
+  nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+  aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+  himenaeos.
+</span>
+
+<ShowPartial>
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
+sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis
+convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
+fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada
+lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
+sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex
+sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis
+convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus
+fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada
+lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
+sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+</ShowPartial>
+
+<div className="flex justify-center gap-4">
+  <Link to="/">Internal link</Link>
+  <Link to="https://google.com">External link</Link>
+</div>
+
+- List item 1
+- List item 2
+- 1.  Nested list item 3a
+  2.  Nested list item 3b
+  3.  Nested list item 3c
+
+| TABLE | Game 1 | Game 2 | Game 3 | Total |
+| :---- | :----: | :----: | :----: | ----: |
+| Anna  |  144   |  123   |  218   |   485 |
+| Bill  |   90   |  175   |  120   |   385 |
+| Cara  |  102   |  214   |  233   |   549 |
+
+> It was the best of times it was the worst of times.
+> It was the age of wisdom, it was the age of foolishness.
+> It was the spring of hope, it was the winter of despair.
+
+```javascript
+// a comment
+const popup = document.querySelector("#popup");
+popup.style.width = "100%";
+popup.innerText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+```
+
+This sentence has `inline code`, useful for making references to variables, packages, versions, etc. within a sentence.
+
+</section>
+
+<section>
+
+{/* favicon */}
+
+<Logo className="size-100 self-center" />
+
+{/* share thumbnail */}
+
+<div className="dark relative isolate flex h-160 w-240 flex-col items-center justify-center gap-4 self-center overflow-hidden bg-white font-serif text-lg text-black">
+  <Logo className="absolute -z-10 scale-250 blur-[100px]" />
+  <Logo className="mb-4 size-60" />
+  <div className="text-6xl">{site.title}</div>
+  <div className="text-3xl opacity-50"></div>
+</div>
+
+</section>
+
+[^1]: This is a footnote with math $f(x) = e^{i \pi} \times \sin(x)$.
+
+[^2]: Another footnote.
+
+[^3]: A third footnote.
+
+</Main>
+
+<Footer />

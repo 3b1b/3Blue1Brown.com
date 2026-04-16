@@ -1,0 +1,35 @@
+name: Update stats
+
+on:
+  schedule:
+    - cron: "0 12 * * 0"
+
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: SSH debug
+        if: runner.debug == '1'
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Run script
+        run: bun ./get-stats.ts
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+
+      - name: Commit files
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: Update stats
+          commit_author: "Bot <>"

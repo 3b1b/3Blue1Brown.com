@@ -1,0 +1,17 @@
+.stroke {
+  animation: stroke 15s ease-in-out both infinite;
+  stroke-dasharray: 1;
+}
+
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: 3;
+  }
+  25%,
+  75% {
+    stroke-dashoffset: 2;
+  }
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
