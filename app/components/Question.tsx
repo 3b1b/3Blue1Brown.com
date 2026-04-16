@@ -128,20 +128,20 @@ export default function Question({
 
         {state === "unanswered" && (
           <>
-            <PiCreature emotion="pondering" size="sm" flip />
+            <PiCreature emotion="pondering" size="xs" flip />
             What could it be...
           </>
         )}
 
         {state === "wrong" && (
           <>
-            <PiCreature emotion="confused" size="sm" flip />
+            <PiCreature emotion="confused" size="xs" flip />
             Not quite...
           </>
         )}
         {state === "right" && (
           <>
-            <PiCreature emotion="hooray" size="sm" flip />
+            <PiCreature emotion="hooray" size="xs" flip />
             Correct!
           </>
         )}

@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useEventListener } from "@reactuses/core";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import Button from "~/components/Button";
 
 const darkModeAtom = atomWithStorage("dark-mode", false);
+
+export const useDarkMode = () => useAtomValue(darkModeAtom);
 
 // dark/light mode toggle
 export default function DarkMode({ className = "" }) {
@@ -20,8 +22,9 @@ export default function DarkMode({ className = "" }) {
   }, [darkMode]);
 
   // for debugging
-  useEventListener("keydown", ({ key, ctrlKey }) => {
-    if (key === "d" && ctrlKey) setDarkMode((darkMode) => !darkMode);
+  useEventListener("keydown", ({ key, ctrlKey, altKey, shiftKey, metaKey }) => {
+    if (key.match(/d/i) && (ctrlKey || altKey || shiftKey || metaKey))
+      setDarkMode((darkMode) => !darkMode);
   });
 
   return (

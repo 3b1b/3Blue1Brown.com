@@ -15,6 +15,7 @@ type Body = {
 
 // create issue in repo
 export const createIssue = async (body: Body) => {
+  if (import.meta.env.DEV) return { link: "https://fake-dev-link.com" };
   // https://docs.github.com/en/rest/issues/issues#create-an-issue
   const created = await request<{ html_url: string }>(url, {
     method: "POST",

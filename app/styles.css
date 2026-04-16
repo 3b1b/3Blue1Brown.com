@@ -23,8 +23,8 @@
   --shadow-lg: 0 0 20px var(--color-shadow), 0 0 2px var(--color-shadow);
 
   --color-*: initial;
-  --color-theme: oklch(60% 0.15 240);
-  --color-secondary: oklch(60% 0.15 60);
+  --color-theme: oklch(55% 0.15 240);
+  --color-secondary: oklch(55% 0.15 60);
 
   --color-black: oklch(0% 0 240);
   --color-dark-gray: oklch(30% 0 240);
@@ -220,7 +220,11 @@
 }
 
 @utility width-lg {
-  --width: 300;
+  --width: 250;
+}
+
+@utility width-xl {
+  --width: 325;
 }
 
 @utility width-full {

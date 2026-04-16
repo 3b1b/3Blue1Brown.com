@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { href } from "react-router";
+import clsx from "clsx";
+import { useDarkMode } from "~/components/DarkMode";
 import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
 import { seededShuffle } from "~/util/math";
@@ -21,6 +23,8 @@ const partners = [
 export default function Partners() {
   const [order, setOrder] = useState(partners);
 
+  const darkMode = useDarkMode();
+
   // randomize on client
   useEffect(
     () =>
@@ -40,24 +44,33 @@ export default function Partners() {
     <section className="width-lg">
       <H2>Partners</H2>
 
-      <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid grid-cols-3 gap-8 self-center max-lg:grid-cols-2 max-sm:grid-cols-1">
         {order.map((id) => {
           const partner = getPartner(id);
           if (!partner) return null;
           const { name = "", tagline = "" } = partner.frontmatter;
           const logo = getLogo(id) ?? "";
-          const logoDark = getLogoDark(id);
+          const logoDark = getLogoDark(id) ?? "";
           return (
             <Link
               key={id}
               to={href("/talent/:id", { id })}
-              arrow={false}
-              className="group flex flex-col items-center gap-2 rounded-md p-4 text-black no-underline hocus:bg-theme/15"
+              className="group flex flex-col items-center gap-4 rounded-md p-4 text-black no-underline hocus:bg-theme/15"
             >
-              <img src={logo} alt="" className={`h-32 w-full object-contain${logoDark ? " dark:hidden" : ""}`} />
-              {logoDark && <img src={logoDark} alt="" className="hidden h-32 w-full object-contain dark:block" />}
-              <div className="mt-2 font-sans text-2xl font-bold">{name}</div>
-              <div className="text-center text-gray opacity-0 transition group-hocus:opacity-100">
+              <div
+                className={clsx(
+                  "aspect-square max-h-32",
+                  darkMode && !logoDark && "bg-[white]",
+                )}
+              >
+                <img
+                  src={darkMode ? logoDark || logo : logo}
+                  alt=""
+                  className="size-full object-contain"
+                />
+              </div>
+              <div className="mt-4 font-sans text-2xl font-medium">{name}</div>
+              <div className="text-center text-balance text-gray">
                 {tagline}
               </div>
             </Link>

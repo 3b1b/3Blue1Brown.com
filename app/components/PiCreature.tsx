@@ -27,7 +27,7 @@ type Props = {
   // whether bubble is thought bubble instead of speech
   thought?: boolean;
   // size of creature and bubble
-  size?: "sm" | "md";
+  size?: "xs" | "sm" | "md";
   // whether to face creature left instead of right
   flip?: boolean;
   // bubble content. leave empty for no bubble.
@@ -61,7 +61,8 @@ export default function PiCreature({
       className={clsx(
         "self-center text-[oklch(70%_0.15_240)]",
         flip && "-scale-x-100",
-        size === "sm" && "size-12",
+        size === "xs" && "size-12",
+        size === "sm" && "size-18",
         size === "md" && "size-24",
         children ? "[grid-area:creature]" : className,
       )}
@@ -151,7 +152,7 @@ export function Demo({ children }: { children: ReactNode }) {
           label="Size"
           value={size}
           onChange={setSize}
-          options={(["sm", "md"] as const).map((size) => ({
+          options={(["xs", "sm", "md"] as const).map((size) => ({
             value: size,
           }))}
         />

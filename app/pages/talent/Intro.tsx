@@ -1,3 +1,5 @@
+import PiCreature from "~/components/PiCreature";
+
 // partner gallery page introduction section
 export default function Intro() {
   return (
@@ -9,6 +11,14 @@ export default function Intro() {
         between Grant and the teams, technical challenges specifically for this
         audience, and featured work we believe you'll enjoy.
       </p>
+
+      <PiCreature
+        emotion="hooray"
+        size="sm"
+        className="absolute left-10 self-center max-xl:hidden"
+      >
+        It's a virtual career fair!
+      </PiCreature>
     </section>
   );
 }

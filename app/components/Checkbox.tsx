@@ -14,7 +14,7 @@ type Props = {
   // label content
   children: ReactNode;
 } & Pick<ComponentProps<"label">, "className"> &
-  Pick<ComponentProps<"input">, "required" | "name">;
+  Pick<ComponentProps<"input">, "required" | "name" | "form">;
 
 export default function Checkbox({
   help,

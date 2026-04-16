@@ -10,8 +10,6 @@ type Props = {
   alt?: string;
   // caption content
   children?: ReactNode;
-  // whether or not to allow interaction
-  interactive?: boolean;
 } & ComponentProps<"img">;
 
 // plain image or figure with caption
@@ -21,7 +19,6 @@ export default function Image({
   alt = "",
   children,
   className,
-  interactive = true,
   ...props
 }: Props) {
   const localRef = useRef<HTMLImageElement>(null);
@@ -37,18 +34,13 @@ export default function Image({
       src={image}
       alt={alt || "Image"}
       tabIndex={0}
-      onClick={interactive ? toggleFullscreen : undefined}
-      onKeyDown={
-        interactive
-          ? ({ key }) => {
-              if (key === "Enter" || key === " ") toggleFullscreen();
-            }
-          : undefined
-      }
+      onClick={toggleFullscreen}
+      onKeyDown={({ key }) => {
+        if (key === "Enter" || key === " ") toggleFullscreen();
+      }}
       aria-label={isFullscreen ? "Exit fullscreen" : "View image in fullscreen"}
       className={clsx(
-        "break-inside-avoid",
-        interactive && "cursor-pointer",
+        "cursor-pointer break-inside-avoid",
         isFullscreen && "object-contain!",
         !children && className,
       )}
