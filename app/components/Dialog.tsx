@@ -54,8 +54,8 @@ export default function Dialog({
   }, [isOpen]);
 
   // close on page navigation
-  const location = useLocation();
-  if (useChanged(location)) close();
+  const { pathname } = useLocation();
+  if (useChanged(pathname)) close();
 
   // if content is a function, call it with open/close callbacks to get content, otherwise just return content
   const content = (content: Content) =>
