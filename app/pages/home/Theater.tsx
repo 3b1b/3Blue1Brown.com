@@ -201,7 +201,6 @@ function Control({ current, target, children, ...props }: ControlProps) {
       to={{
         search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
       }}
-      onClick={userSelect}
       aria-disabled={!target || current?.id === target?.id}
       {...props}
     >
