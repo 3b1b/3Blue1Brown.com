@@ -1,11 +1,9 @@
 import type { ReactElement, ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router";
 import { Dialog as _Dialog } from "@base-ui/react";
 import { XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
-import { useChanged } from "~/util/hooks";
 import { waitFor } from "~/util/misc";
 
 type Props = {
@@ -52,10 +50,6 @@ export default function Dialog({
         ref.current?.querySelector<HTMLInputElement>("input, textarea"),
       ).then((input) => input?.focus());
   }, [isOpen]);
-
-  // close on page navigation
-  const { pathname } = useLocation();
-  if (useChanged(pathname)) close();
 
   // if content is a function, call it with open/close callbacks to get content, otherwise just return content
   const content = (content: Content) =>

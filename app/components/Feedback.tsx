@@ -126,97 +126,107 @@ export default function Feedback() {
           }
         }}
       >
-        <p>
-          Give us feedback on <b>this site/page</b>. For anything else, see{" "}
-          <Link to={`${href("/about")}#faqs`}>the FAQs</Link> and{" "}
-          <Link to={`${href("/about")}#contact`}>contact form</Link>.
-        </p>
-        <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
-          <TextBox
-            label="Name"
-            help="Optional. So we can address you properly."
-            placeholder="Your Name"
-            value={name}
-            onChange={setName}
-            form={id}
-          />
-          <TextBox
-            label="Username"
-            help="Optional. So we can tag you in the issue."
-            placeholder="@yourname"
-            value={username}
-            onChange={setUsername}
-            form={id}
-          />
-          <TextBox
-            label="Subject"
-            placeholder="Subject"
-            required
-            value={subject}
-            onChange={setSubject}
-            form={id}
-            className="col-span-full"
-          />
-          <TextBox
-            label="Message"
-            placeholder="Corrections/suggestions/bugs/etc."
-            required
-            multi
-            rows={5}
-            value={message}
-            onChange={setMessage}
-            form={id}
-            className="col-span-full"
-          />
+        {(close) => (
+          <>
+            <p>
+              Give us feedback on <b>this site/page</b>. For anything else, see{" "}
+              <Link to={`${href("/about")}#faqs`} onClick={close}>
+                the FAQs
+              </Link>{" "}
+              and{" "}
+              <Link to={`${href("/about")}#contact`} onClick={close}>
+                contact form
+              </Link>
+              .
+            </p>
+            <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+              <TextBox
+                label="Name"
+                help="Optional. So we can address you properly."
+                placeholder="Your Name"
+                value={name}
+                onChange={setName}
+                form={id}
+              />
+              <TextBox
+                label="Username"
+                help="Optional. So we can tag you in the issue."
+                placeholder="@yourname"
+                value={username}
+                onChange={setUsername}
+                form={id}
+              />
+              <TextBox
+                label="Subject"
+                placeholder="Subject"
+                required
+                value={subject}
+                onChange={setSubject}
+                form={id}
+                className="col-span-full"
+              />
+              <TextBox
+                label="Message"
+                placeholder="Corrections/suggestions/bugs/etc."
+                required
+                multi
+                rows={5}
+                value={message}
+                onChange={setMessage}
+                form={id}
+                className="col-span-full"
+              />
 
-          <Checkbox required form={id} className="col-span-full">
-            <span>
-              My message is about <b>this site/page</b>
-            </span>
-          </Checkbox>
+              <Checkbox required form={id} className="col-span-full">
+                <span>
+                  My message is about <b>this site/page</b>
+                </span>
+              </Checkbox>
 
-          <Alert type={status} className="col-span-full">
-            {status === "info" && (
-              <p>
-                This will start a <strong>public</strong> issue on{" "}
-                <Link
-                  to={`https://github.com/${site.github_org}/${site.github_repo}/issues`}
-                >
-                  GitHub
-                </Link>{" "}
-                with the above and some{" "}
-                <Tooltip trigger="debug info">
-                  <dl className="self-center">
-                    {Object.entries(details).map(([key, value]) => (
-                      <Fragment key={key}>
-                        <dt>{key}</dt>
-                        <dd>{value}</dd>
-                      </Fragment>
-                    ))}
-                  </dl>
-                </Tooltip>
-                . You'll get a link to it once it's created, where you can
-                attach screenshots or more details.
-              </p>
-            )}
-            {status === "loading" && "Submitting feedback"}
-            {status === "error" && (
-              <p>
-                Error submitting feedback. Please try{" "}
-                <Link to={fallback.toString()}>
-                  submitting directly on GitHub
-                </Link>
-                .
-              </p>
-            )}
-            {status === "success" && issueLink && (
-              <p>
-                Submitted feedback!{" "}
-                <Link to={issueLink}>{shorten(issueLink)}</Link>
-              </p>
-            )}
-          </Alert>
-        </div>
+              <Alert type={status} className="col-span-full">
+                {status === "info" && (
+                  <p>
+                    This will start a <strong>public</strong> issue on{" "}
+                    <Link
+                      to={`https://github.com/${site.github_org}/${site.github_repo}/issues`}
+                    >
+                      GitHub
+                    </Link>{" "}
+                    with the above and some{" "}
+                    <Tooltip trigger="debug info">
+                      <dl className="self-center">
+                        {Object.entries(details).map(([key, value]) => (
+                          <Fragment key={key}>
+                            <dt>{key}</dt>
+                            <dd>{value}</dd>
+                          </Fragment>
+                        ))}
+                      </dl>
+                    </Tooltip>
+                    . You'll get a link to it once it's created, where you can
+                    attach screenshots or more details.
+                  </p>
+                )}
+                {status === "loading" && "Submitting feedback"}
+                {status === "error" && (
+                  <p>
+                    Error submitting feedback. Please try{" "}
+                    <Link to={fallback.toString()}>
+                      submitting directly on GitHub
+                    </Link>
+                    .
+                  </p>
+                )}
+                {status === "success" && issueLink && (
+                  <p>
+                    Submitted feedback!{" "}
+                    <Link to={issueLink}>{shorten(issueLink)}</Link>
+                  </p>
+                )}
+              </Alert>
+            </div>
+          </>
+        )}
       </Dialog>
     </Form>
   );
