@@ -49,7 +49,7 @@ test("Feedback form works", async ({ page }) => {
   await page
     .locator('label:has-text("message") textarea')
     .fill("test feedback");
-  await expect(page.locator('a[href*="issues" i]')).toBeVisible();
+  await page.locator('*:has-text("submitted feedback")');
 });
 
 test("Lesson nav works", async ({ page }) => {

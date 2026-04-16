@@ -130,7 +130,6 @@ export default function Feedback() {
           Give us feedback on <b>this site/page</b>. For anything else, see{" "}
           <Link to={`${href("/about")}#faqs`}>the FAQs</Link> and{" "}
           <Link to={`${href("/about")}#contact`}>contact form</Link>.
-          <Link to={fallback.toString()}>test</Link>
         </p>
         <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
           <TextBox
