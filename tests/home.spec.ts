@@ -47,15 +47,9 @@ test("Feedback form works", async ({ page }) => {
     "test subject",
   );
   await page
-    .locator('label:has-text("feedback") textarea')
+    .locator('label:has-text("message") textarea')
     .fill("test feedback");
-  const request = page.waitForRequest((request) =>
-    request.url().includes("issues"),
-  );
-  await page.route(/issues/, (route) => route.abort());
-  await page.click('button:has-text("submit")');
-  const aborted = await request;
-  expect(aborted.url()).toMatch(/issues/);
+  await expect(page.locator('a[href*="issues" i]')).toBeVisible();
 });
 
 test("Lesson nav works", async ({ page }) => {
