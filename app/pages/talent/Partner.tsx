@@ -31,6 +31,13 @@ export const [getLogo, logos] = importAssets(
   (module) => module.default,
 );
 
+// import all dark logos (for dark mode)
+export const [getLogoDark] = importAssets(
+  import.meta.glob<{ default: string }>("./**/*.{svg,png}", { eager: true }),
+  "logo-dark",
+  (module) => module.default,
+);
+
 // partner page layout
 export default function Partner({ params: { id } }: Route.ComponentProps) {
   const partner = getPartner(id);
