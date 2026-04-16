@@ -1,4 +1,4 @@
-name: Test pull request
+name: Deep test
 
 on:
   schedule:
