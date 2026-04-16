@@ -48,6 +48,7 @@ export default function Contact() {
       onSubmit={async (data) => {
         // collect form data as url string params (netlify only supports this format)
         const params = new URLSearchParams();
+        params.append("form-name", formName);
         for (const [key, value] of data.entries()) {
           if (typeof value !== "string") continue;
           params.append(key, value);
