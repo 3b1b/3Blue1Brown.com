@@ -23,7 +23,7 @@ export default function Details() {
         <H2>Find a job here?</H2>
 
         <p className="text-center text-balance">
-          Did you find a job through this page? We'd love to hear your story!
+          If you find a job through this page, we'd love to hear your story!
           <br />
           Let us know via the general{" "}
           <Link to={`${href("/about")}#contact`}>contact form</Link>.
