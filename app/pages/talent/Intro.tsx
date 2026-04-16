@@ -13,12 +13,10 @@ export default function Intro() {
       </p>
 
       <PiCreature
-        emotion="hooray"
-        size="sm"
+        emotion="well"
+        size="md"
         className="absolute left-10 self-center max-xl:hidden"
-      >
-        It's a virtual career fair!
-      </PiCreature>
+      ></PiCreature>
     </section>
   );
 }
