@@ -2,7 +2,7 @@ import type { ComponentProps, ReactNode } from "react";
 import type { LessonFrontmatter } from "~/pages/lessons/lessons";
 import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useState } from "react";
-import { href, useLocation } from "react-router";
+import { href, useLocation, useNavigate } from "react-router";
 import {
   BookOpenTextIcon,
   CaretDoubleLeftIcon,
@@ -40,13 +40,15 @@ export const userSelect = () => (userSelected = true);
 
 // home page theater section
 export default function Theater() {
-  // current lesson
+  const navigate = useNavigate();
+
+  // selected lesson id
   const lessonId = useAtomValue(lessonAtom);
 
   // latest lesson by date
   const latest = getLast()?.frontmatter;
 
-  // current lesson details
+  // current lesson (or latest if none selected) details
   const lesson = getLesson(lessonId)?.frontmatter ?? latest;
 
   // current topic id
@@ -60,13 +62,10 @@ export default function Theater() {
     ? topic.lessons.filter((id) => getLesson(id)?.frontmatter.video)
     : undefined;
 
-  // random lesson in list
-  const random = getRandom(lessonId, topicLessons)?.frontmatter;
-
   // first lesson in list
   const first =
     // handle rare case where selected lesson not in selected topic
-    topicLessons?.includes(lessonId)
+    topicLessons?.includes(lesson?.id ?? "")
       ? getFirst(topicLessons)?.frontmatter
       : undefined;
 
@@ -80,7 +79,7 @@ export default function Theater() {
   // last lesson in list
   const last =
     // handle rare case where selected lesson not in selected topic
-    topicLessons?.includes(lessonId)
+    topicLessons?.includes(lesson?.id ?? "")
       ? getLast(topicLessons)?.frontmatter
       : undefined;
 
@@ -97,7 +96,7 @@ export default function Theater() {
   useEffect(() => {
     // only auto-play if user explicitly selected
     if (userSelected) play();
-  }, [lessonId]);
+  }, [lesson?.id]);
 
   useUnmount(() => {
     // reset user selection on page exit
@@ -158,26 +157,33 @@ export default function Theater() {
 
         <div className="flex flex-wrap items-center justify-center gap-4 max-sm:gap-2">
           {/* controls */}
-          <Control current={lesson} target={random} suppressHydrationWarning>
+          <Button
+            size="sm"
+            onClick={() => {
+              const random = getRandom(lesson?.id, topicLessons)?.frontmatter;
+              const to = "?lesson=" + (random?.id ?? "");
+              navigate(to);
+            }}
+          >
             <DiceThreeIcon />
             Random
-          </Control>
-          <Control current={lesson} target={first}>
+          </Button>
+          <Nav current={lesson} target={first}>
             <CaretDoubleLeftIcon />
             First
-          </Control>
-          <Control current={lesson} target={previous}>
+          </Nav>
+          <Nav current={lesson} target={previous}>
             <CaretLeftIcon />
             Previous
-          </Control>
-          <Control current={lesson} target={next}>
+          </Nav>
+          <Nav current={lesson} target={next}>
             Next
             <CaretRightIcon />
-          </Control>
-          <Control current={lesson} target={last}>
+          </Nav>
+          <Nav current={lesson} target={last}>
             Last
             <CaretDoubleRightIcon />
-          </Control>
+          </Nav>
         </div>
       </div>
     </>
@@ -190,8 +196,8 @@ type ControlProps = {
   children: ReactNode;
 } & ComponentProps<typeof Button>;
 
-// control button under player
-function Control({ current, target, children, ...props }: ControlProps) {
+// nav control button under player
+function Nav({ current, target, children, ...props }: ControlProps) {
   // current route
   const location = useLocation();
 

@@ -39,17 +39,14 @@ export default function Hero() {
   return (
     <section className="bg-theme/10">
       <div className="grid grid-cols-2 place-items-center gap-12 max-md:grid-cols-1">
-        <div
-          ref={ref}
-          className="grid grid-cols-3 gap-12 self-center bg-linear-to-r from-theme to-success bg-clip-text"
-        >
+        <div ref={ref} className="grid grid-cols-3 gap-12 self-center">
           {entries.map(({ Icon, value, label }, index) => (
             <div key={index} className="flex flex-col items-center gap-2">
-              <Icon className="mb-2 h-12 text-gray" weight="light" />
-              <div className="font-sans text-xl text-transparent tabular-nums">
+              <Icon className="mb-2 h-12" weight="light" />
+              <div className="font-sans text-xl tabular-nums">
                 {formatNumber(percent * value)}
               </div>
-              <div className="text-transparent">{label}</div>
+              <div>{label}</div>
             </div>
           ))}
         </div>

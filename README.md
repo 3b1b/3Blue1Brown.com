@@ -96,6 +96,7 @@ Run periodically, manually review, and use discretion.
 
 ## Notes
 
+- This is a static, fully pre-rendered site with client side-hydration for interactive elements.
 - If you're annoyed by frequent reloading in dev mode, it's a known issue and see https://github.com/vitejs/vite/discussions/14801
 - MDX files can only be type-checked in the editor, and not with the the `test:types` script.
   This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).
@@ -130,3 +131,4 @@ Run periodically, manually review, and use discretion.
   Use `console.debug`/`info` (sparingly) for logging that could be useful to see in production.
   Use `console.warn`/`error` for all try/catches or where appropriate, as long as they aren't too noisy.
 - Make sure you use the `~/` import prefix, unless the file you're importing is meant to always be co-located with current file.
+- For stylistic consistency, use standard `function () {}` notation for React components, and arrow functions `() => {}` for everything else.
