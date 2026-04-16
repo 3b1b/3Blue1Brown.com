@@ -1,7 +1,7 @@
 @reference "~/styles.css";
 
 mjx-container {
-  @apply max-w-full overflow-x-auto;
+  @apply max-w-full overflow-x-auto text-black;
 }
 
 mjx-container[display="true"] {
