@@ -16,5 +16,8 @@ export const slugify = (value: string) =>
 // format date
 export const formatDate = (date?: string | number | Date | null) => {
   if (!date) return "-";
-  return new Date(date).toLocaleDateString(undefined, { dateStyle: "medium" });
+  date = new Date(date);
+  // ignore timezone for consistent formatting
+  date.setHours(0, 0, 0, 0);
+  return date.toLocaleDateString(undefined, { dateStyle: "medium" });
 };
