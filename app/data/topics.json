@@ -93,8 +93,7 @@
       "laplace-for-odes",
       "eulers-formula-dynamically",
       "matrix-exponents",
-      "exponential-and-epidemics",
-      "diffusion-equation"
+      "exponential-and-epidemics"
     ]
   },
   "puzzles": {
@@ -103,12 +102,11 @@
     "lessons": [
       "hardest-problem",
       "windmills",
+      "shadows",
       "one-more-dim",
       "subsets-puzzle",
       "moser-reboot",
       "chessboard-puzzle",
-      "shadows",
-      "hyperdarts",
       "three-utilities",
       "eulers-characteristic-formula"
     ]
@@ -118,17 +116,17 @@
     "description": "An assortment of topics related to geometry and higher dimensions",
     "lessons": [
       "sphere-area",
-      "inscribed-rect-v2",
-      "hairy-ball",
-      "spheres-talk",
       "dandelin-spheres",
+      "spheres-talk",
       "quaternions",
       "quaternions-and-3d-rotation",
-      "borsuk-ulam",
-      "higher-dimensions",
-      "alpha-geometry",
-      "euclid"
+      "higher-dimensions"
     ]
+  },
+  "topology": {
+    "title": "Topology",
+    "description": "Delightful proofs that showcase the true spirit of topology",
+    "lessons": ["inscribed-rect-v2", "hairy-ball", "borsuk-ulam"]
   },
   "why-pi": {
     "title": "Why Pi",
@@ -149,6 +147,7 @@
     "description": "Topics about functions, either complex or real valued",
     "lessons": [
       "zeta",
+      "print-gallery",
       "fourier-transforms",
       "uncertainty-principle",
       "fourier-series",
@@ -156,8 +155,7 @@
       "convolutions",
       "winding-numbers",
       "inventing-math",
-      "music-and-measure-theory",
-      "print-gallery"
+      "music-and-measure-theory"
     ]
   },
   "physics": {
@@ -176,8 +174,7 @@
       "feynmans-lost-lecture",
       "turbulence",
       "brachistochrone",
-      "snells-law",
-      "phase-change"
+      "snells-law"
     ]
   },
   "computer-science": {
@@ -193,10 +190,7 @@
       "hamming-codes-2",
       "grover",
       "grover-clarification",
-      "hanoi-and-sierpinski",
-      "image-convolution",
-      "seam-carving",
-      "discrete-fourier-transform"
+      "hanoi-and-sierpinski"
     ]
   },
   "fractals": {
@@ -215,7 +209,6 @@
     "lessons": [
       "bayes-theorem",
       "clt",
-      "bertrands-paradox",
       "gaussian-integral",
       "convolutions2",
       "gaussian-convolution",
@@ -228,21 +221,12 @@
   "group-theory": {
     "title": "Group Theory",
     "description": "The study of symmetry",
-    "lessons": [
-      "groups-and-monsters",
-      "eulers-formula-via-group-theory",
-      "incomplete-cubes"
-    ]
+    "lessons": ["groups-and-monsters", "eulers-formula-via-group-theory"]
   },
   "number-theory": {
     "title": "Number Theory",
     "description": "Topics related to integer patterns and primes",
-    "lessons": [
-      "prime-spirals",
-      "pythagorean-triples",
-      "leibniz-formula",
-      "prime-number-race"
-    ]
+    "lessons": ["prime-spirals", "pythagorean-triples", "leibniz-formula"]
   },
   "lockdown-math": {
     "title": "Lockdown Math",
@@ -261,6 +245,17 @@
       "ldm-tips-to-problem-solving"
     ]
   },
+  "guest-videos": {
+    "title": "Guest Videos",
+    "description": "During some leave I took in 2025, I invited a few friends to post guest videos to the channel which I thought this audience would enjoy",
+    "lessons": [
+      "diffusion-models",
+      "incomplete-cubes",
+      "phase-change",
+      "alpha-geometry",
+      "euclid"
+    ]
+  },
   "talks": {
     "title": "Talks",
     "description": "Various talks",
@@ -270,6 +265,20 @@
       "transformers-talk",
       "pedagogical-curse",
       "ego-and-math"
+    ]
+  },
+  "videos-elsewhere": {
+    "title": "On other channels",
+    "description": "Videos I've made for other channels",
+    "lessons": [
+      "bertrands-paradox",
+      "hyperdarts",
+      "prime-number-race",
+      "feynmans-lost-lecture",
+      "image-convolution",
+      "seam-carving",
+      "discrete-fourier-transform",
+      "diffusion-equation"
     ]
   },
   "miscellaneous": {
