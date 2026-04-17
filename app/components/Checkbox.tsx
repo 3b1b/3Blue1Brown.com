@@ -26,6 +26,8 @@ export default function Checkbox({
 }: Props) {
   const [localValue, setLocalValue] = useState(value ?? false);
 
+  const Icon = localValue ? CheckIcon : SquareIcon;
+
   return (
     <label
       className={clsx(
@@ -45,11 +47,7 @@ export default function Checkbox({
           }}
           {...props}
         />
-        {localValue ? (
-          <CheckIcon className="text-theme" />
-        ) : (
-          <SquareIcon className="text-theme" />
-        )}
+        <Icon className="shrink-0 text-theme" />
       </div>
       {children}
       {help && <Help>{help}</Help>}

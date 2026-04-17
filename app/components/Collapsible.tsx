@@ -40,7 +40,7 @@ export default function Collapsible({ title, children, className }: Props) {
         hiddenUntilFound
         className={clsx(
           "flex shrink-0 flex-col gap-8 overflow-y-clip px-8 py-2 transition-all",
-          open ? "" : "pointer-events-none -mb-12 opacity-0",
+          open ? "" : "pointer-events-none -mb-12",
         )}
       >
         {children}

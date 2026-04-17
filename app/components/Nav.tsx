@@ -73,7 +73,8 @@ export default function Nav() {
         <Toggle />
         {client &&
           createPortal(
-            <>
+            <div className="contents lg:hidden">
+              {/* overlay */}
               <div
                 className={clsx(
                   "dark fixed inset-0 z-20 size-full bg-black/25 transition transition-discrete starting:opacity-0",
@@ -81,14 +82,15 @@ export default function Nav() {
                 )}
                 onClick={() => setOpen(false)}
               />
+              {/* links */}
               <Links
                 ref={ref}
                 className={clsx(
-                  "dark fixed right-0 z-20 flex h-full flex-col justify-start overflow-y-auto bg-white p-8 text-right transition lg:hidden",
+                  "dark fixed right-0 z-20 flex h-full flex-col justify-start overflow-y-auto bg-white p-8 text-right transition",
                   open ? "translate-x-0" : "translate-x-full",
                 )}
               />
-            </>,
+            </div>,
             document.body,
           )}
       </>

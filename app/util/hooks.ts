@@ -15,10 +15,12 @@ import {
   useWindowSize,
 } from "@reactuses/core";
 import { wrap } from "comlink";
-import { isEqual, mapValues } from "lodash-es";
+import { isEqual, mapValues, random } from "lodash-es";
 import { UAParser } from "ua-parser-js";
+import { celebrate } from "~/components/Celebrate";
 import FuzzyWorker from "~/util/fuzzy?worker";
 import { sleep } from "~/util/misc";
+import { Vector } from "~/util/vector";
 
 // check if value changed from previous render
 export const useChanged = <Value>(
@@ -206,4 +208,28 @@ export const usePrinting = () => {
   useEventListener("beforeprint", () => flushSync(() => setPrinting(true)));
   useEventListener("afterprint", () => flushSync(() => setPrinting(false)));
   return printing;
+};
+
+// ???
+export const useEgg = () => {
+  useEffect(() => {
+    (async () => {
+      const today = new Date();
+      let shape = "";
+      // pi day!
+      if (today.getMonth() === 2 && today.getDate() === 14) shape = "pi";
+      // tau day!
+      if (today.getMonth() === 5 && today.getDate() === 28) shape = "tau";
+      // shape = "pi";
+      if (!shape) return;
+      const w = window.innerWidth / 2;
+      const h = window.innerHeight / 2;
+      for (let bursts = 20; bursts > 0; bursts--) {
+        celebrate(shape, new Vector(random(-w, w), random(-h, h)));
+        await sleep(250);
+      }
+      await sleep(500);
+      celebrate(shape, new Vector(0, 0), 3);
+    })();
+  }, []);
 };

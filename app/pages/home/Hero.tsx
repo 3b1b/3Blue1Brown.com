@@ -62,7 +62,7 @@ export default function Hero() {
               key={index}
               className={clsx("flex flex-col items-center", className)}
             >
-              <Icon className="mb-4 h-12" weight="light" />
+              <Icon className="mb-4 h-10" weight="light" />
               <div className="font-sans text-xl tabular-nums">
                 {formatNumber(percent * value)}
               </div>

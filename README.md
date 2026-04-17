@@ -23,7 +23,7 @@ Key technologies used in this project:
 ## Requirements
 
 - [Bun](https://bun.sh) v1.3+ - as main platform, package manager, script runner, etc.
-- [Node](https://nodejs.org) v22+ - as fallback
+- [Node](https://nodejs.org) v24+ - as fallback
 
 ### About Bun
 

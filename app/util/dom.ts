@@ -62,7 +62,12 @@ export const scrollTo = async (
   if (!element) return;
 
   // wait for layout shifts to stabilize
-  if (waitForLayoutShift) await waitForStable(() => getDocBbox(element).top);
+  if (waitForLayoutShift)
+    await waitForStable(
+      () => getDocBbox(element).top,
+      // wait proportionally to doc size
+      document.body.scrollHeight / 30,
+    );
 
   // scroll to element
   element.scrollIntoView(options);

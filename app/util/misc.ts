@@ -28,15 +28,15 @@ export const waitFor = async <Return>(
 export const waitForStable = async <Return>(
   func: () => Return,
   // wait until func returns same value for at least this long
-  wait = 1000,
+  wait = 200,
   // check value every this many ms
   interval = 10,
-  // hard limit on number of checks
-  tries = 100,
+  // hard time limit
+  max = 10000,
 ): Promise<Return | undefined> => {
   let lastChanged = now();
   let prevResult: Return | undefined;
-  for (; tries > 0; tries--) {
+  for (let tries = max / interval; tries > 0; tries--) {
     const result = func();
     if (result !== prevResult) lastChanged = now();
     prevResult = result;

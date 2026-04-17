@@ -43,6 +43,7 @@ export default function YouTube({ id, time, className, ...props }: Props) {
   };
 
   const stop = async () => {
+    // pause video
     await ref.current?.pause();
     // update reactive playing state
     setAtom(playingAtom, false);

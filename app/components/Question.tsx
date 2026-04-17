@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { CheckIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
+import { throttle } from "lodash-es";
 import Button from "~/components/Button";
 import { celebrate } from "~/components/Celebrate";
 import Form from "~/components/Form";
@@ -27,6 +28,9 @@ type Props = {
   // explanation of answer after reveal
   children?: ReactNode;
 };
+
+// prevent spam slow down
+const throttledCelebrate = throttle(celebrate, 250);
 
 // multiple choice question
 export default function Question({
@@ -63,7 +67,7 @@ export default function Question({
         if (state === "right") setState("unanswered");
         else if (value === String(answer)) {
           setState("right");
-          celebrate();
+          throttledCelebrate();
         } else if (state === "wrong") {
           // give indication of another submit
           shake(submitter);
