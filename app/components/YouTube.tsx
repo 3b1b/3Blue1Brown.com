@@ -20,24 +20,31 @@ type Props = {
 export default function YouTube({ id, time, className, ...props }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
 
+  // whether to show real embed or static thumbnail
   const [enabled, setEnabled] = useState(false);
 
   className = clsx(
-    `grid aspect-video w-full min-w-0 place-items-center font-sans text-xl`,
+    "relative grid aspect-video w-full min-w-0 place-items-center font-sans text-xl",
     className,
   );
 
   const play = async () => {
     setEnabled(true);
+    // wait for element to render
     const element = await waitFor(() => ref.current);
+    // start scroll
     scrollTo(element, { behavior: "smooth", block: "center" });
+    // wait for video to be ready
     await waitFor(() => element?.readyState === 4);
+    // play video
     await element?.play();
+    // update reactive playing state
     setAtom(playingAtom, true);
   };
 
   const stop = async () => {
     await ref.current?.pause();
+    // update reactive playing state
     setAtom(playingAtom, false);
   };
 
@@ -49,6 +56,7 @@ export default function YouTube({ id, time, className, ...props }: Props) {
 
   if (!id) return <div className={className}>No video</div>;
 
+  // static thumbnail play button
   if (!enabled)
     return (
       <button
@@ -66,6 +74,7 @@ export default function YouTube({ id, time, className, ...props }: Props) {
       </button>
     );
 
+  // video embed
   return (
     <youtube-video
       ref={ref}
