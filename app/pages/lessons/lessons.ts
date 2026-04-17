@@ -2,11 +2,13 @@ import type { MDXContent } from "mdx/types";
 import { orderBy, sample } from "lodash-es";
 import { getThumbnail } from "~/components/YouTube";
 import { importAssets } from "~/util/import";
+import { parseDate } from "~/util/string";
 
-export type LessonFrontmatter = {
+// frontmatter of lesson import (before any transformation)
+export type RawLessonFrontmatter = {
   id?: string;
   title?: string;
-  date?: Date;
+  date?: string;
   description?: string;
   credits?: string[];
   video?: string;
@@ -19,19 +21,20 @@ export type LessonFrontmatter = {
   interactive?: boolean;
 };
 
-export type Lesson = {
+// lesson import (before any transformation)
+export type RawLesson = {
   default: MDXContent;
-  frontmatter: LessonFrontmatter;
+  frontmatter: RawLessonFrontmatter;
 };
 
 // transform lesson props, derive extras
-export const transformLesson = (lesson: Lesson, id: string) => ({
+export const transformLesson = (lesson: RawLesson, id: string) => ({
   ...lesson,
   frontmatter: {
     ...lesson.frontmatter,
     id,
     // parse date
-    date: new Date(lesson.frontmatter.date ?? ""),
+    date: parseDate(lesson.frontmatter.date ?? ""),
     // lookup thumbnail
     image: lesson.frontmatter.video?.trim()
       ? getThumbnail(lesson.frontmatter.video)
@@ -52,9 +55,12 @@ export const transformLesson = (lesson: Lesson, id: string) => ({
   },
 });
 
+// lesson import (after transformation)
+export type Lesson = ReturnType<typeof transformLesson>;
+
 // import all lessons (frontmatter only)
 export const [getLesson, lessons] = importAssets(
-  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx", {
+  import.meta.glob<RawLesson>("./20\\d\\d/**/index.mdx", {
     eager: true,
     query: "frontmatter-only",
   }),

@@ -18,7 +18,11 @@ export default function Blog() {
           ([, post]) => post.frontmatter.date,
           "desc",
         ).map(([id, post]) => {
-          const { title = "", description = "", date = "" } = post.frontmatter;
+          const {
+            title = "",
+            description = "",
+            date = new Date(),
+          } = post.frontmatter;
           return (
             <Card
               key={id}

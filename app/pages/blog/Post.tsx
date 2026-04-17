@@ -10,9 +10,10 @@ import StrokeType from "~/components/StrokeType";
 import YouTube from "~/components/YouTube";
 import NotFound from "~/pages/NotFound";
 import { importAssets } from "~/util/import";
-import { formatDate } from "~/util/string";
+import { formatDate, parseDate } from "~/util/string";
 
-type PostFrontmatter = {
+// frontmatter of post import (before any transformation)
+type RawPostFrontmatter = {
   title?: string;
   date?: string;
   description?: string;
@@ -20,21 +21,22 @@ type PostFrontmatter = {
   video?: string;
 };
 
-type Post = {
+// post import (before any transformation)
+type RawPost = {
   default: MDXContent;
-  frontmatter: PostFrontmatter;
+  frontmatter: RawPostFrontmatter;
 };
 
 // import all posts
 export const [getPost, posts] = importAssets(
-  import.meta.glob<Post>("./**/index.mdx", { eager: true }),
+  import.meta.glob<RawPost>("./**/index.mdx", { eager: true }),
   undefined,
   // transform post props
   (post) => ({
     ...post,
     frontmatter: {
       ...post.frontmatter,
-      date: new Date(post.frontmatter.date ?? ""),
+      date: parseDate(post.frontmatter.date ?? ""),
     },
   }),
 );

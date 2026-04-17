@@ -1,5 +1,5 @@
 import type { ComponentProps, ReactNode } from "react";
-import type { LessonFrontmatter } from "~/pages/lessons/lessons";
+import type { Lesson } from "~/pages/lessons/lessons";
 import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useState } from "react";
 import { href, useLocation, useNavigate } from "react-router";
@@ -191,8 +191,8 @@ export default function Theater() {
 }
 
 type ControlProps = {
-  current?: LessonFrontmatter;
-  target?: LessonFrontmatter;
+  current?: Lesson["frontmatter"];
+  target?: Lesson["frontmatter"];
   children: ReactNode;
 } & ComponentProps<typeof Button>;
 

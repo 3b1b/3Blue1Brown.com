@@ -1,5 +1,5 @@
 import type { Article } from "schema-dts";
-import type { Lesson } from "~/pages/lessons/lessons";
+import type { Lesson, RawLesson } from "~/pages/lessons/lessons";
 import type { Route } from "./+types/Lesson";
 import { use } from "react";
 import { href } from "react-router";
@@ -39,7 +39,7 @@ import { formatDate } from "~/util/string";
 
 // lazy load full lesson (frontmatter + mdx content)
 const getFullLesson = importAssetsAsync(
-  import.meta.glob<Lesson>("./20\\d\\d/**/index.mdx"),
+  import.meta.glob<RawLesson>("./20\\d\\d/**/index.mdx"),
   "index",
   transformLesson,
 );

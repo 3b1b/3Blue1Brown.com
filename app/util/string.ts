@@ -13,11 +13,13 @@ export const slugify = (value: string) =>
     .trim()
     .replaceAll(" ", "-");
 
-// format date
-export const formatDate = (date?: string | number | Date | null) => {
-  if (!date) return "-";
-  date = new Date(date);
-  // ignore timezone for consistent formatting
-  date.setHours(0, 0, 0, 0);
-  return date.toLocaleDateString(undefined, { dateStyle: "medium" });
+// parse date
+export const parseDate = (string: string) => {
+  const date = new Date(string + "T00:00:00");
+  if (isNaN(date.getTime())) return undefined;
+  return date;
 };
+
+// format date
+export const formatDate = (date: Date | undefined) =>
+  date ? date.toLocaleDateString(undefined, { dateStyle: "medium" }) : "-";

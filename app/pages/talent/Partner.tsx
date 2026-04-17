@@ -7,21 +7,23 @@ import Meta from "~/components/Meta";
 import PartnerHeader from "~/pages/talent/PartnerHeader";
 import { importAssets } from "~/util/import";
 
-type PartnerFrontmatter = {
+// frontmatter of partner import (before any transformation)
+type RawPartnerFrontmatter = {
   name?: string;
   tagline?: string;
   quote?: string;
   color?: string;
 };
 
-type Partner = {
+// partner import (before any transformation)
+type RawPartner = {
   default: MDXContent;
-  frontmatter: PartnerFrontmatter;
+  frontmatter: RawPartnerFrontmatter;
 };
 
 // import all partners
 export const [getPartner, partners] = importAssets(
-  import.meta.glob<Partner>("./**/index.mdx", { eager: true }),
+  import.meta.glob<RawPartner>("./**/index.mdx", { eager: true }),
 );
 
 // import all logos
