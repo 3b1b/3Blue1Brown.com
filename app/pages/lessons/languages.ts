@@ -1,13 +1,13 @@
 import { mapValues } from "lodash-es";
 import _languages from "~/data/languages.json";
-import _indexJson from "~/pages/lessons/language-index.json";
+import _index from "~/pages/lessons/language-index.json";
 
-const _index = _indexJson as Partial<Record<string, string[]>>;
+const index = _index as Record<string, string[]>;
 
-export const languages = mapValues(_languages, (lang, code) => ({
+export const languages = mapValues(_languages, ({ title }, code) => ({
   code,
-  title: lang.title,
-  lessons: _index[code] ?? ([] as string[]),
+  title,
+  lessons: index[code] ?? [],
 }));
 
 export type LanguageCode = keyof typeof languages;

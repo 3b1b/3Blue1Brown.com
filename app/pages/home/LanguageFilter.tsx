@@ -2,8 +2,8 @@ import type { LanguageCode } from "~/pages/lessons/languages";
 import { useState } from "react";
 import { Popover } from "@base-ui/react";
 import { TranslateIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
 import { useAtom } from "jotai";
+import Button from "~/components/Button";
 import { languages } from "~/pages/lessons/languages";
 import { atomWithQuery } from "~/util/atom";
 
@@ -17,20 +17,17 @@ export default function LanguageFilter() {
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
         render={
-          <button
+          <Button
             aria-label="Filter by language"
-            className={clsx(
-              "rounded-md p-3 text-lg hocus:bg-theme/15 hocus:text-theme",
-              language && "bg-theme/15 text-theme",
-            )}
+            color={language ? "light" : "none"}
           >
             <TranslateIcon />
             {language && (
-              <span className="font-sans text-base">
+              <span className="text-base">
                 {languages[language as LanguageCode]?.title}
               </span>
             )}
-          </button>
+          </Button>
         }
       />
       <Popover.Portal>
@@ -43,19 +40,17 @@ export default function LanguageFilter() {
         >
           <Popover.Popup className="flex flex-col overflow-hidden rounded-md bg-white shadow-md transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0">
             {Object.values(languages).map(({ code, title }) => (
-              <button
+              <Button
                 key={code}
-                className={clsx(
-                  "px-5 py-3 text-left font-sans hocus:bg-theme/15 hocus:text-theme",
-                  language === code && "bg-theme/15 font-medium text-theme",
-                )}
+                color={language === code ? "light" : "none"}
+                className="w-full justify-start"
                 onClick={() => {
                   setLanguage(language === code ? "" : code);
                   setOpen(false);
                 }}
               >
                 {title}
-              </button>
+              </Button>
             ))}
           </Popover.Popup>
         </Popover.Positioner>
@@ -63,6 +58,3 @@ export default function LanguageFilter() {
     </Popover.Root>
   );
 }
-
-export const getLanguage = (code: string) =>
-  code ? languages[code as LanguageCode] : undefined;
