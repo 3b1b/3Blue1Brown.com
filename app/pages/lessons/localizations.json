@@ -1,1 +1,1788 @@
-{}
+{
+  "spheres-talk": {
+    "hi": {
+      "title": "सबसे सुंदर formula जिसे पर्याप्त लोग नहीं समझते",
+      "description": "On the volumes of higher-dimensional spheres"
+    },
+    "en": {
+      "title": "The most beautiful formula not enough people understand",
+      "description": "On the volumes of higher-dimensional spheres"
+    }
+  },
+  "hairy-ball": {
+    "en": {
+      "title": "The Hairy Ball Theorem",
+      "description": "Unexpected applications and a beautiful proof."
+    },
+    "hi": {
+      "title": "The Hairy Ball Theorem",
+      "description": ""
+    },
+    "fr": {
+      "title": "Théorème de la Boule Chevelue",
+      "description": "Applications inattendues et une belle démonstration."
+    },
+    "es": {
+      "title": "Teorema de la Bola Peluda",
+      "description": "Aplicaciones inesperadas y una demostración hermosa."
+    }
+  },
+  "laplace-for-odes": {
+    "es": {
+      "title": "Cómo las transformaciones de Laplace resuelven ecuaciones diferenciales",
+      "description": "Cómo se pueden utilizar las Transformadas de Laplace para estudiar la dinámica y resolver las EDOs. "
+    },
+    "hi": {
+      "title": "लाप्लास ट्रांसफॉर्म्स differential equations को कैसे हल करते हैं",
+      "description": "How Laplace Transforms can be used to study dynamics and solve ODEs."
+    },
+    "en": {
+      "title": "Why Laplace transforms are so useful",
+      "description": "Studying the forced harmonic oscillator by taking a Laplace transform and studying its poles."
+    }
+  },
+  "laplace-transform": {
+    "fr": {
+      "title": "Mais, c'est quoi une transformation de Laplace ?",
+      "description": "Décortiquer comment les transformationss de Laplace exposent les termes exponentielles d'une fonction. "
+    },
+    "en": {
+      "title": "But what is a Laplace Transform?",
+      "description": "Visualizing the most important tool for differential equations."
+    },
+    "es": {
+      "title": "Pero, ¿Qué es una Transformada de Laplace?",
+      "description": "Desembalando cómo las Transformadas de Laplace exponen trozos exponenciales de una función. "
+    },
+    "hi": {
+      "title": "लेकिन Laplace Transform होता क्या है?",
+      "description": "Unpacking how Laplace Transforms expose exponential pieces of a function."
+    },
+    "pt-BR": {
+      "title": "Mas o que é uma transformada de Laplace?",
+      "description": "Descobrindo como as Transformadas de Laplace expõem as partes exponenciais de uma função."
+    }
+  },
+  "incomplete-cubes": {
+    "en": {
+      "title": "Exploration & Epiphany | Guest video by Paul Dancstep",
+      "description": "Sol LeWitt's \"Incomplete Open Cubes\" and rediscovering Burnside's lemma in group theory"
+    },
+    "fr": {
+      "title": "Exploration & épiphanie",
+      "description": "« Cubes Ouverts Incomplets » de Sol Lewitt, théorie des groupes et lemme de Burnside"
+    },
+    "es": {
+      "title": "Exploración y Epifanía",
+      "description": "Los \"Cubos abiertos incompletos\" de Sol Lewitt, la teoría de grupos y el lema de Burnside"
+    },
+    "hi": {
+      "title": "Exploration & Epiphany",
+      "description": "Sol Lewitt's \"Incomplete Open Cubes\", Group theory, and Burnside's lemma"
+    },
+    "pt-BR": {
+      "title": "Exploração e Epifania",
+      "description": "Os \"Cubos Abertos Incompletos\" de Sol LeWitt, Teoria de Grupos e o Lema de Burnside."
+    }
+  },
+  "phase-change": {
+    "hi": {
+      "title": "Phase Change को Simulate करना | Guest video by Vilas Winstein",
+      "description": ""
+    },
+    "en": {
+      "title": "Simulating and understanding phase change | Guest video by Vilas Winstein",
+      "description": "Deriving the Boltzmann formula, defining temperature, and simulating liquid/vapor."
+    },
+    "fr": {
+      "title": "Simuler un changement de phase | Vidéo \"guest\" par Vilas Winstein",
+      "description": "Dérivation de la formule de Boltzmann, définition de la température et simulation liquide/vapeur."
+    }
+  },
+  "alpha-geometry": {
+    "uk": {
+      "title": "Штучтний інтелект, який розв'язав задачі з геометрії IMO | Гостьове відео від @Aleph0",
+      "description": "Як AlphaGeometry поєднує логіку та інтуїцію. Поділіться історіями про ШІ в математичних дослідженнях для майбутнього відео: https://forms.gle/gr9aZVdUrW5T3yDg9 Замість спонсорської реклами ці уроки фінансуються безпосередньо глядачами: https://3b1b.co/support Не менш цінна форма підтримки - просто поділитися відео. Головна сторінка: https://www.3blue1brown.com Анонс AlphaGeometry: https://deepmind.google/discover/blog/alphageometry-an-olympiad-level-ai-system-for-geometry/ Схожа модель з відкритим вихідним кодом, Newclid, від Harmonic: https://harmonic.fun/news#blog-post-geometry Хронометраж: 0:00 - Що дивує 1:33 - Розв'язання без ШІ 7:10 - Де з'являється ШІ 12:48 - Коментарі Гранта ------------------ Ці анімації значною мірою створені за допомогою спеціальної бібліотеки Python, manim.  Дивіться відповіді на поширені запитання тут: https://3b1b.co/faq#manim Музика Вінсента Рубінетті. https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown https://open.spotify.com/album/1dVyjwS8FBqXhRunaG5W5u ------------------ 3blue1brown - це канал про анімацію математики, у всіх сенсах слова \"анімація\". Якщо ви читаєте нижню частину опису відео, я припускаю, що ви зацікавлені в уроках більше, ніж середньостатистичний глядач. Для мене було б дуже важливо, якби ви захотіли бути в курсі нових уроків, підписавшись на канал на YouTube або іншим чином слідкуючи за ним на будь-якій платформі, яку ви регулярно перевіряєте. Список розсилки: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Bluesky: https://bsky.app/profile/3blue1brown.com Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Веб-сайт: https://www.3blue1brown.com"
+    },
+    "fr": {
+      "title": "L'IA qui a résolu les problèmes de géométrie des Olympiades de Math | Vidéo Guest par @Aleph0",
+      "description": "Comment AlphaGeometry combine logique et intuition."
+    },
+    "en": {
+      "title": "The AI that solved IMO Geometry Problems | Guest video by @Aleph0",
+      "description": "How AlphaGeometry combines logic and intuition."
+    },
+    "hi": {
+      "title": "IMO की जियोमेट्री समस्याएँ हल करने वाला AI | @Aleph0 का Guest video",
+      "description": "How AlphaGeometry combines logic and intuition."
+    }
+  },
+  "diffusion-models": {
+    "en": {
+      "title": "But how do AI images and videos actually work? | Guest video by Welch Labs",
+      "description": "Diffusion models, CLIP, and the math of turning text into images"
+    },
+    "hi": {
+      "title": "लेकिन AI images / videos वास्तव में काम कैसे करते हैं? | @WelchLabsVideo द्वारा guest video",
+      "description": "Diffusion models, CLIP, and the math of turning text into images"
+    },
+    "fr": {
+      "title": "Les images/vidéos avec l'IA: comment ça marche ? | Vidéo \"guest\" par @WelchLabsVideo",
+      "description": "Modèles de diffusion, CLIP et les mathématiques qui permettent de transformer du texte en images"
+    },
+    "es": {
+      "title": "Pero, ¿cómo funcionan realmente las imágenes/vídeos de IA? | Invitado: @WelchLabsVideo",
+      "description": "Modelos de difusión, CLIP y las matemáticas de convertir texto en imágenes "
+    }
+  },
+  "grover-clarification": {
+    "fr": {
+      "title": "Là où mon explication de l'algorithme de Grover a échoué",
+      "description": "Réponses aux questions des viewers concernant la dernière vidéo."
+    },
+    "en": {
+      "title": "Where my explanation of Grover’s algorithm failed",
+      "description": "Addressing viewer questions from the last video: https://youtu.be/RQWpF2Gb-gU"
+    },
+    "hi": {
+      "title": "जहां मेरी Grover के algorithm की व्याख्या असफल हुई।",
+      "description": "Addressing viewer questions from the last video."
+    },
+    "pt-BR": {
+      "title": "Onde minha explicação do algoritmo de Grover falhou",
+      "description": "Respondendo perguntas de espectadores sobre o último vídeo."
+    },
+    "es": {
+      "title": "Donde falló mi explicación del algoritmo de Grover",
+      "description": "En lugar de anuncios patrocinados, estas lecciones son financiadas directamente por los espectadores: https://3b1b.co/support Una forma de apoyo igualmente valiosa es simplemente compartir los vídeos. ------------------ Estas animaciones se realizan en gran parte utilizando una biblioteca Python personalizada, manim.  Consulta los comentarios de las preguntas frecuentes aquí: https://3b1b.co/faq#manim https://github.com/3b1b/manim https://github.com/ManimCommunity/manim/ Todo el código de los vídeos específicos se puede ver aquí: https://github.com/3b1b/videos/ La música es de Vincent Rubinetti. https://www.vincentrubinetti.com https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown https://open.spotify.com/album/1dVyjwS8FBqXhRunaG5W5u ------------------ 3blue1brown es un canal sobre animar matemáticas, en todos los sentidos de la palabra animar. Si estás leyendo la parte inferior de la descripción de un vídeo, supongo que estás más interesado que el espectador medio en las lecciones de aquí. Significaría mucho para mí que te mantuvieras al día de las nuevas, ya sea suscribiéndote aquí en YouTube o siguiéndome en la plataforma que consultes con más regularidad. Lista de correo: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Sitio web: https://www.3blue1brown.com"
+    }
+  },
+  "grover": {
+    "es": {
+      "title": "Pero, ¿qué es la computación cuántica?  (Algoritmo de Grover)",
+      "description": "Qubits, vectores de estado y el algoritmo de Grover para la búsqueda. En lugar de anuncios patrocinados, estas lecciones están financiadas directamente por los espectadores: https://3b1b.co/support Una forma de apoyo igualmente valiosa es simplemente compartir los vídeos. El artículo de Adam Brown sobre la conexión entre el Algoritmo de Grover y las colisiones de bloques: https://arxiv.org/pdf/1912.02207 Si quieres aprender la mecánica cuántica subyacente relevante, un recurso muy amigable es el curso que Mithuna, de Looking Glass Universe, está preparando actualmente. Véase, por ejemplo, esta explicación de un qubit: https://youtu.be/kgSVkVNxXyU Si quieres aprender más sobre los fundamentos de la computación cuántica, mis amigos Michael Nielsen y Andy Matuschak han elaborado este maravilloso recurso, destinado a garantizar una memoria a largo plazo de los conceptos básicos: https://quantum.country/ Teorema BBBV: https://www.scottaaronson.com/qclec/23.pdf Marcas de tiempo: 0:00 - Conceptos erróneos 6:03 - El vector de estado 12:00 - Qubits 15:52 - La vibración de los algoritmos cuánticos 18:38 - Algoritmo de Grover 29:30 - Paso de soporte 30:11 - Valores complejos 31:27 - ¿Por qué raíz cuadrada? 34:01 - Conexión con las colisiones de bloques 35:08 - Recursos adicionales ------------------ Estas animaciones se han realizado en gran parte utilizando una biblioteca personalizada de Python, manim.  Consulta los comentarios de las preguntas frecuentes aquí: https://3b1b.co/faq#manim https://github.com/3b1b/manim https://github.com/ManimCommunity/manim/ Todo el código de los vídeos específicos se puede ver aquí: https://github.com/3b1b/videos/ La música es de Vincent Rubinetti. https://www.vincentrubinetti.com https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown https://open.spotify.com/album/1dVyjwS8FBqXhRunaG5W5u ------------------ 3blue1brown es un canal sobre animar matemáticas, en todos los sentidos de la palabra animar. Si estás leyendo la parte inferior de la descripción de un vídeo, supongo que estás más interesado que el espectador medio en las lecciones de aquí. Significaría mucho para mí que te mantuvieras al día de las nuevas, ya sea suscribiéndote aquí en YouTube o siguiéndome en la plataforma que consultes con más regularidad. Lista de correo: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Sitio web: https://www.3blue1brown.com"
+    },
+    "hi": {
+      "title": "लेकिन Quantum Computing क्या है?  (Grover का Algorithm)",
+      "description": "Qubits, state vectors, and Grover's algorithm for search."
+    },
+    "pt-BR": {
+      "title": "Mas o que é computação quântica?  (Algoritmo de Grover)",
+      "description": "Qubits, vetores de estado e o algoritmo de Grover para procura. "
+    },
+    "fr": {
+      "title": "Mais c'est quoi l'informatique quantique ? (Algorithme de Grover)",
+      "description": "Qubits, vecteurs d'état et recherche avec l'algorithme de Grover."
+    },
+    "en": {
+      "title": "But what is quantum computing?  (Grover's Algorithm)",
+      "description": "Qubits, state vectors, and Grover's algorithm for search."
+    }
+  },
+  "colliding-blocks-v2": {
+    "fr": {
+      "title": "Un bonus sur le calul de π avec ces collisions de blocs",
+      "description": "Deux blocs qui s'entrechoquen, ça donne π, mais pourquoi ?"
+    },
+    "hi": {
+      "title": "वो टकराते हुए blocks pi की calculation से भी ज्यादा कुछ कर रहे हैं।",
+      "description": ""
+    },
+    "en": {
+      "title": "Why colliding blocks compute pi",
+      "description": "The physics behind one of the most surprising occurrences of pi"
+    },
+    "es": {
+      "title": "Hay más sobre esos bloques que chocan y calculan pi",
+      "description": "Dos bloques que chocan calculan pi, pero, ¿por qué?"
+    }
+  },
+  "cosmic-distance-2": {
+    "es": {
+      "title": "La Escalera de Distancias Cósmicas con Terence Tao, Parte 2",
+      "description": "Cómo conocemos las distancias a los planetas, las estrellas y las galaxias lejanas. "
+    },
+    "pt-BR": {
+      "title": "A Escala de Distâncias Cóstimas com Terence Tao, Parte 2",
+      "description": "Em vez de leituras de anúncios patrocinados, essas lições são financiadas diretamente pelos espectadores: https://3b1b.co/support Perguntas frequentes com detalhes adicionais e correções: https://terrytao.wordpress.com/2025/02/13/cosmic-distance-ladder-video-with-grant-sanderson-3blue1brown-commentary-and-corrections/ Uma forma igualmente valiosa de apoio é simplesmente compartilhar os vídeos. Terry e sua colaboradora Tanya têm um Instagram sobre a escada de distância cósmica: https://www.instagram.com/cosmic_distance_ladder/ Obra de arte de Guillaume Le Gentil por Kurt Bruns Obra de arte de Antonia Maury e Henrietta Leavitt por Talia Gershon: https://bit.ly/taliagershonart Timestamps: "
+    },
+    "hi": {
+      "title": "ब्रह्मांडीय दूरी की सीढ़ी, टेरेंस टाओ के साथ , part 2",
+      "description": ""
+    },
+    "en": {
+      "title": "Terence Tao continuing history’s cleverest cosmological measurements",
+      "description": "How we know the distances to the planets, stars, and faraway galaxies."
+    },
+    "fr": {
+      "title": "L'échelle des distances cosmiques avec Terence Tao, partie 2",
+      "description": "Comment connaissons-nous les distances qui nous séparent des planètes, des étoiles et des galaxies lointaines ?"
+    }
+  },
+  "cosmic-distance-1": {
+    "en": {
+      "title": "Terence Tao on the cosmic distance ladder",
+      "description": "The Cosmic Distance Ladder: How we learned distances in the heavens."
+    },
+    "fr": {
+      "title": "Terence Tao sur comment nous mesurons le cosmos | Partie 1",
+      "description": "L'échelle cosmique des distances, comment on a appris à mesurer les distances dans le ciel."
+    },
+    "pt-BR": {
+      "title": "Terence Tao fala  sobre como medimos o cosmos | Parte 1",
+      "description": "A Escala de Distância Cósmica, como aprendemos as distâncias nos céus. "
+    },
+    "hi": {
+      "title": "टेरेंस टाओ बताते हैं की कैसे ब्रह्माण्ड को मापते हैं | Part 1",
+      "description": ""
+    },
+    "es": {
+      "title": "Terence Tao sobre cómo medimos el cosmos | Parte 1",
+      "description": "La Escalera Cósmica de Distancias, cómo aprendimos las distancias en los cielos. Lista de correo electrónico: https://3b1b.co/mail Los seguidores de Patreon pueden ver los nuevos vídeos antes de tiempo: https://www.patreon.com/3blue1brown Material gráfico de Kurt Bruns Gracias a Paul Dancstep por varias animaciones, como las potencias de 10 del zoom out y las simulaciones de sombras en la Luna. Gracias a Tanya Klowden por sus útiles conversaciones sobre la historia de la escalera de distancias. Argumento de por qué si toda sombra de una forma convexa es un círculo, debe ser una esfera: https://mathoverflow.net/questions/39127/is-the-sphere-the-only-surface-with-circular-projections-or-can-we-deduce-a-sp Marcas de tiempo: "
+    }
+  },
+  "inscribed-rect-v2": {
+    "es": {
+      "title": "Este problema abierto me enseñó lo que es la topología",
+      "description": "El problema del cuadrado/rectángulo inscrito, resuelto mediante tiras de Möbius y botellas de Klein."
+    },
+    "hi": {
+      "title": "This open problem taught me what topology is",
+      "description": ""
+    },
+    "en": {
+      "title": "This open problem taught me what topology is",
+      "description": "The inscribed square/rectangle problem, solved using Möbius strips and Klein bottles."
+    },
+    "fr": {
+      "title": "Ce problème ouvert m'a appris ce qu'est la topologie",
+      "description": "Le problème du carré/rectangle inscrit, résolu à l'aide de rubans de Möbius et de bouteilles de Klein."
+    }
+  },
+  "mini-llm": {
+    "ko": {
+      "title": "한 눈에 보는 대규모 언어 모델",
+      "description": "대규모 언어 모델, 챗봇, 사전 훈련과 트랜스포머에 대한 간단한 소개입니다. "
+    },
+    "th": {
+      "title": "สรุป Large Language Model อย่างย่อ",
+      "description": "ดูต่อแบบเจาะลึก: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+    },
+    "ru": {
+      "title": "Краткое объяснение больших языковых моделей",
+      "description": "Разобраться глубже можно здесь: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi "
+    },
+    "en": {
+      "title": "Large Language Models explained briefly",
+      "description": "A light intro to LLMs, chatbots, pretraining, and transformers."
+    },
+    "de": {
+      "title": "Große Sprachmodelle kurz erklärt",
+      "description": "Mehr dazu hier: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+    },
+    "fr": {
+      "title": "Les modèles de langage en bref",
+      "description": "Approfondissez ici : https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi Détails techniques sous forme d'exposé : https://youtu.be/KJtZARuO3JY Réalisé pour une exposition au Musée de l'histoire de l'informatique : https://computerhistory.org/ Au lieu de lire des publicités sponsorisées, ces leçons sont financées directement par les spectateurs : https://3b1b.co/support"
+    },
+    "es": {
+      "title": "Breve explicación de los modelos extensos de lenguaje (LLM)",
+      "description": "Profundiza aquí: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi "
+    },
+    "uk": {
+      "title": "Коротко про Великі Мовні Моделі",
+      "description": "Копайте глибше тут: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi Технічні деталі у вигляді доповіді: https://youtu.be/KJtZARuO3JY Зроблено для виставки в Музеї комп'ютерної історії: https://computerhistory.org/ Замість спонсорських рекламних читань, ці уроки фінансуються безпосередньо глядачами: https://3b1b.co/support Для цього влогу немає таємного влогу в кінці екрану, вся нерухомість в кінці екрану була заповнена! ------------------ Ці анімації значною мірою зроблені з використанням спеціальної бібліотеки Python, manim.  Дивіться коментарі до поширених запитань тут: https://3b1b.co/faq#manim https://github.com/3b1b/manim https://github.com/ManimCommunity/manim/ Весь код для конкретних відео можна побачити тут: https://github.com/3b1b/videos/ Музика Вінсента Рубінетті. https://www.vincentrubinetti.com https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown https://open.spotify.com/album/1dVyjwS8FBqXhRunaG5W5u ------------------ 3blue1brown - це канал про анімацію математики, у всіх сенсах слова \"анімація\". Якщо ви читаєте нижню частину опису відео, я припускаю, що ви зацікавлені в уроках більше, ніж пересічний глядач. Я буду дуже вдячний, якщо ви підпишетеся на нові відео, або підпишетеся тут на YouTube, або підпишетеся на будь-яку з наведених нижче платформ, які ви регулярно відвідуєте. Список розсилки: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Веб-сайт: https://www.3blue1brown.com"
+    },
+    "pt-BR": {
+      "title": "Modelos de Linguagem de Grande Escala explicados resumidamente",
+      "description": "Aprofunde-se aqui: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+    },
+    "hi": {
+      "title": "Large Language Models को briefly समझाया गया",
+      "description": "Dig deeper here: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+    },
+    "fi": {
+      "title": "Suuret kielimallit lyhyesti selitettynä",
+      "description": "Lisää kielimalleista (englanniksi): "
+    },
+    "ar": {
+      "title": "شرح وجيز للنماذج اللغوية الكبيرة",
+      "description": "ابحث بشكل أعمق هنا: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi"
+    }
+  },
+  "one-more-dim": {
+    "hi": {
+      "title": "4D geometry मुझे उदास क्यों करती है?",
+      "description": ""
+    },
+    "en": {
+      "title": "Five puzzles for thinking outside the box",
+      "description": "Geometry puzzles that benefit from shifting the dimension."
+    },
+    "es": {
+      "title": "¿Por qué la geometría 4d me entristece?",
+      "description": "Una serie de puzzles de geometría gratificantes con puzzles extra:https://www.patreon.com/posts/115570453 "
+    }
+  },
+  "holograms": {
+    "es": {
+      "title": "¿Cómo son posibles los hologramas? | Acertijos de óptica 5",
+      "description": "Escenas en película 2D, y una lección de difracción en el camino.  "
+    },
+    "hi": {
+      "title": "Holograms कैसे मुमकिन हैं? Optics Puzzle 5",
+      "description": ""
+    },
+    "en": {
+      "title": "How are holograms possible?",
+      "description": "3d scenes on 2d film, and a diffraction lesson along the way."
+    },
+    "fr": {
+      "title": "Comment les hologrammes sont-ils possibles ? | Enigmes d'optique 5",
+      "description": "Des scènes 3D sur un film 2D, et une leçon sur la diffraction pour la route."
+    }
+  },
+  "mlp": {
+    "fr": {
+      "title": "Comment les LLM stockent-ils les faits ? Chapitre 7, Apprentissage profond",
+      "description": "Décortiquer les perceptrons multicouches dans un transformer, et comment ils peuvent stocker des faits"
+    },
+    "en": {
+      "title": "How might LLMs store facts | Deep Learning Chapter 7",
+      "description": "Unpacking the multilayer perceptrons in a transformer, and how they may store facts"
+    },
+    "pt-BR": {
+      "title": "Como os LLMs provavelmente armazenam fatos | Capítulo 7, Aprendizado profundo",
+      "description": "Descompactando os perceptrons multicamadas em um transformador e como eles podem armazenar fatos Em vez de leituras de anúncios patrocinados, essas lições são financiadas diretamente pelos espectadores: https://3b1b.co/support Uma forma igualmente valiosa de apoio é compartilhar os vídeos. Publicação no fórum AI Alignment dos pesquisadores do Deepmind mencionada no início do vídeo: https://www.alignmentforum.org/posts/iGuwZTHWb6DFY3sKB/fact-finding-attempting-to-reverse-engineer-factual-recall Publicações antrópicas sobre superposição mencionadas perto do final: https://transformer-circuits.pub/2022/toy_model/index.html https://transformer-circuits.pub/2023/monosemantic-features Alguns recursos adicionais para os interessados em saber mais sobre interpretabilidade mecanicista, oferecidos por Neel Nanda Lista de leitura de artigos sobre interpretabilidade mecanicista https://www.alignmentforum.org/posts/NfFST5Mio7BCAQHPA/an-extremely-opinionated-annotated-list-of-my-favourite Introdução à interpretabilidade mecanicista https://www.neelnanda.io/mechanistic-interpretability/getting-started Uma i  Veja os comentários das perguntas frequentes aqui: https://3b1b.co/faq#manim https://github.com/3b1b/manim https://github.com/ManimCommunity/manim/ Todos os códigos de vídeos específicos estão visíveis aqui: https://github.com/3b1b/videos/ A música é de Vincent Rubinetti. https://www.vincentrubinetti.com https://vincerubinetti.bandcamp.com/album/the-music-of-3blue1brown https://open.spotify.com/album/1dVyjwS8FBqXhRunaG5W5u ------------------ 3blue1brown é um canal sobre animação de matemática, em todos os sentidos da palavra animar. Se você está lendo a parte inferior da descrição de um vídeo, imagino que esteja mais interessado do que o espectador médio nas lições aqui. Seria muito importante para mim se você optasse por se manter atualizado sobre as novas lições, seja inscrevendo-se aqui no YouTube ou seguindo-o em qualquer plataforma abaixo que você verifique com mais regularidade. Lista de e-mails: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Site: https://www.3blue1brown.com"
+    },
+    "hi": {
+      "title": "LLMs तथ्यों को कैसे स्टोर कर सकते हैं | DL7",
+      "description": "Unpacking the multilayer perceptrons in a transformer, and how they may store facts"
+    },
+    "ru": {
+      "title": "Как LLM могут хранить факты | Глава 7, Глубокое обучение",
+      "description": "Многослойные перцептроны в трансформере. Как они могут хранить факты ."
+    },
+    "es": {
+      "title": "¿Cómo podrían los LLM almacenar hechos? | Capítulo 7, Aprendizaje profundo",
+      "description": "Descompresión de los perceptrones multicapa en un transformer, y cómo pueden almacenar hechos "
+    }
+  },
+  "attention": {
+    "es": {
+      "title": "Atención en los Transformers explicado visualmente | Capítulo 6, Aprendizaje profundo",
+      "description": "Desmitificando la atención, el mecanismo clave dentro de los transformers y LLMs."
+    },
+    "ru": {
+      "title": "Визуализация внимания, сердце трансформера | Глава 6, Глубокое обучение",
+      "description": "Демистификация внимания - ключевого механизма внутри трансформеров и больших языковых моделей (LLM)."
+    },
+    "hi": {
+      "title": "दष्टान्तिक रूप से ट्रांसफार्मर्स में अटेंशन की समज | अध्याय ६ डीप लर्निंग",
+      "description": "अटेंशन को स्पष्ट करते हुए, ट्रांसफार्मर और एलएलएम के "
+    },
+    "pt-BR": {
+      "title": "Atenção em transformadores, explicada visualmente | Capítulo 6, Aprendizado Profundo",
+      "description": "Desmistificando a autoatenção, múltiplas cabeças e atenção cruzada."
+    },
+    "fr": {
+      "title": "L'attention dans les transformers, expliquée visuellement | Chapitre 6, Apprentissage profond",
+      "description": "Note pour la version française :"
+    },
+    "en": {
+      "title": "Attention in transformers, step-by-step | Deep Learning Chapter 6",
+      "description": "Demystifying attention, the key mechanism inside transformers and LLMs."
+    },
+    "ar": {
+      "title": "تصور الاهتمام، قلب المحولات | الفصل السادس، التعلم العميق",
+      "description": "إزالة الغموض عن الاهتمام الذاتي، والرؤوس المتعددة، والانتباه المتبادل."
+    }
+  },
+  "gpt": {
+    "pt-BR": {
+      "title": "Mas o que é um GPT? Introdução visual aos Transformadores | Aprendizagem profunda, capítulo 5",
+      "description": "Uma introdução aos transformadores e seus pré-requisitos"
+    },
+    "hi": {
+      "title": "लेकिन GPT क्या है? ट्रांसफॉर्मर्स का विज़ुअल परिचय | डीप लर्निंग, अध्याय 5",
+      "description": "ट्रांसफार्मर और उनकी पूर्व-आवश्यकताओं का परिचय"
+    },
+    "ru": {
+      "title": "LLM и GPT - как работают большие языковые модели? Визуальное введение в трансформеры",
+      "description": "Как большие языковые модели работают под капотом."
+    },
+    "es": {
+      "title": "Pero, ¿qué es un GPT?  Introducción visual a los Transformers | Capítulo 5, Aprendizaje profundo",
+      "description": "Desempaquetando cómo los grandes modelos del lenguaje funcionan detrás de las cámaras"
+    },
+    "ar": {
+      "title": "ولكن ما هو الـGPT؟ مقدمة مرئية للمحوّلات | التعلم العميق، الفصل الخامس",
+      "description": "مقدمة عن المحولات ومتطلباتها"
+    },
+    "en": {
+      "title": "Transformers, the tech behind LLMs | Deep Learning Chapter 5",
+      "description": "Breaking down how Large Language Models work, visualizing how data flows through."
+    },
+    "fr": {
+      "title": "Mais c'est quoi, un GPT ?  Introduction visuelle aux Transformers | Deep learning, chapitre 5",
+      "description": "Décortiquer le fonctionnement des grands modèles de langage, sous le capot"
+    }
+  },
+  "refractive-index-questions": {
+    "hi": {
+      "title": "अपवर्तनांक के बारे में 4 प्रश्न | प्रकाशिकी पहेलियाँ 4",
+      "description": "Why bending, how can light go \"faster\" than light, and more"
+    },
+    "en": {
+      "title": "Answering viewer questions about refraction",
+      "description": "Why bending, how can light go \"faster\" than light, and more"
+    },
+    "es": {
+      "title": "4 preguntas sobre el índice de refracción | Rompecabezas de óptica 4",
+      "description": "¿Por qué se dobla?, ¿Cómo puede la luz ir “más rápido” que la luz?, y más."
+    }
+  },
+  "prism": {
+    "es": {
+      "title": "Pero, ¿por qué se \"ralentizaría\" la luz? | Visualizando la conferencia de Feynman",
+      "description": "Cómo surge el índice de refracción y por qué depende del color (como se ve con un prisma) Cuadernos de citas: https://3b1b.co/store Estas lecciones se financian principalmente de forma directa por los espectadores: https://3b1b.co/support "
+    },
+    "en": {
+      "title": "But why would light \"slow down\"? | Visualizing Feynman's lecture on the refractive index",
+      "description": "How the index of refraction arises, and why it depends on color (as seen with a prism)"
+    },
+    "ru": {
+      "title": "Преломление и «замедление» света | По мотивам лекции Ричарда Фейнмана",
+      "description": "Как возникает показатель преломления и почему он зависит от цвета."
+    },
+    "hi": {
+      "title": "लेकिन light ‘slow down’ क्यों होती है? | Refractive Index पर Feynman के lecture को visualize करना",
+      "description": "How the index of refraction arises, and why it depends on color (as seen with a prism)"
+    }
+  },
+  "barber-pole-2": {
+    "hi": {
+      "title": "Light की उत्पत्ति से Barber pole effect को समझना | Optics puzzles 2",
+      "description": "Explaining the barber pole effect from the last video: https://youtu.be/QCX62YJCmGk"
+    },
+    "en": {
+      "title": "How wiggling charges give rise to light",
+      "description": "Explaining the barber pole effect from the last video: https://youtu.be/QCX62YJCmGk"
+    }
+  },
+  "barber-pole-1": {
+    "en": {
+      "title": "This tests your understanding of light | The barber pole effect",
+      "description": "The barber pole effect of shining polarized light into sugar water."
+    },
+    "hi": {
+      "title": "चीनी के पानी में Polarized light | Optics puzzles 1",
+      "description": "Shining polarized light into sugar water reveals diagonal stripes of color. Why?"
+    }
+  },
+  "moser-reboot": {
+    "hi": {
+      "title": "यह पैटर्न टूटता है, लेकिन एक अच्छे कारण से | मोजर सर्कल समस्या",
+      "description": "An apparent pattern that breaks, and the reason behind it."
+    },
+    "en": {
+      "title": "This pattern breaks, but for a good reason | Moser's circle problem",
+      "description": "An apparent pattern that breaks, and the reason behind it."
+    },
+    "pt-BR": {
+      "title": "Esse padrão é quebrado, mas por um bom motivo | Problema do círculo de Moser",
+      "description": "Um padrão aparente que quebra e a razão por trás disso."
+    },
+    "es": {
+      "title": "Este patrón se rompe, pero por una buena razón | El problema del círculo de Moser",
+      "description": "Un patrón aparente que se rompe, y el motivo detrás de ello."
+    }
+  },
+  "gaussian-integral": {
+    "en": {
+      "title": "Why π is in the normal distribution (beyond integral tricks)",
+      "description": "Where's the circle? And how does it relate to where e^(-x^2) comes from?Help fund future projects: https://www.patreon.com/3blue1brown"
+    },
+    "hi": {
+      "title": "π normal distribution में क्यों है (integral tricks से परे)",
+      "description": ""
+    },
+    "es": {
+      "title": "¿Por qué π está en la distribución normal (más allá de trucos con integrales)",
+      "description": "¿Dónde está el círculo? ¿Y cómo se relaciona con el origen de e^(-x^2)?"
+    },
+    "ko": {
+      "title": "π가 정규 분포에 있는 이유(적분 트릭을 넘어)",
+      "description": "원은 어디에 있나요? 그리고 e^(-x^2)가 어디에서 왔는지와 어떤 관련이 있나요?"
+    }
+  },
+  "clt": {
+    "en": {
+      "title": "But what is the Central Limit Theorem?",
+      "description": "A visual introduction to probability's most important theorem"
+    },
+    "hi": {
+      "title": "लेकिन Central Limit Theorem क्या है?",
+      "description": "A visual introduction to probability's most important theorem"
+    },
+    "es": {
+      "title": "Pero ¿Qué es el teorema central del límite?",
+      "description": "Una introducción visual al teorema más importante de la probabilidad."
+    }
+  },
+  "convolutions": {
+    "en": {
+      "title": "But what is a convolution?",
+      "description": "Discrete convolutions, from probability to image processing and FFTs."
+    },
+    "hi": {
+      "title": "लेकिन convolution क्या है?",
+      "description": "Discrete convolutions, from probability to image processing and FFTs."
+    }
+  },
+  "borwein": {
+    "es": {
+      "title": "Los investigadores pensaron que esto era un bug (integrales de Borwein)",
+      "description": "Un patrón de integrales en las que todas son iguales a pi... hasta que dejan de serlo."
+    },
+    "en": {
+      "title": "Researchers thought this was a bug (Borwein integrals)",
+      "description": "A pattern of integrals that all equal pi...until they don't."
+    },
+    "hi": {
+      "title": "Researchers ने सोचा कि यह एक bug था (Borwein integrals)",
+      "description": "A pattern of integrals that all equal pi...until they don't."
+    }
+  },
+  "visual-proofs": {
+    "es": {
+      "title": "¿Cómo mentir usando demostraciones visuales?",
+      "description": "Tres demostraciones falsas y qué lecciones enseñan."
+    },
+    "hi": {
+      "title": "visual proofs का use करके झूठ कैसे बोला जाए",
+      "description": "Three false proofs, and what lessons they teach."
+    },
+    "en": {
+      "title": "How to lie using visual proofs",
+      "description": "Three false proofs, and what lessons they teach."
+    },
+    "uk": {
+      "title": "Як брехати, використовуючи наочні докази",
+      "description": "Три помилкові докази і чому вони можуть навчити нас. "
+    }
+  },
+  "subsets-puzzle": {
+    "en": {
+      "title": "Olympiad level counting  (Generating functions)",
+      "description": "A lesson on generating functions, and clever uses of complex numbers for counting"
+    },
+    "hi": {
+      "title": "Olympiad स्तर की गिनती (Generating functions)",
+      "description": ""
+    }
+  },
+  "shadows": {
+    "es": {
+      "title": "Una historia de dos solucionadores de problemas (promedio de las sombras de un cubo)",
+      "description": "¿Cuál es el área promedio de la sombra de un cubo?"
+    },
+    "hi": {
+      "title": "Do Problem Solvers की कहानी (Average Cube Shadows)",
+      "description": "What's the average area of a cube's shadow?"
+    },
+    "en": {
+      "title": "A tale of two problem solvers | Average cube shadow area",
+      "description": "What's the average area of a cube's shadow?"
+    }
+  },
+  "quick-eigen": {
+    "fr": {
+      "title": "Une astuce pour calculer rapidement les valeurs propres | Chapitre 15, Essence de l'algèbre linéaire",
+      "description": "Comment écrire les valeurs propres d'une matrice 2x2 simplement en la regardant."
+    },
+    "en": {
+      "title": "A quick trick for computing eigenvalues | Chapter 15, Essence of linear algebra",
+      "description": "How to write the eigenvalues of a 2x2 matrix just by looking at it."
+    },
+    "hi": {
+      "title": "eigenvalues की गणना के लिए एक quick trick | अध्याय 15, रैखिक बीजगणित का सार",
+      "description": ""
+    },
+    "ru": {
+      "title": "Быстрый трюк для вычисления собственных значений | Глава 15. Сущность линейной алгебры",
+      "description": "Как записать собственные значения матрицы 2x2, просто взглянув на нее."
+    },
+    "es": {
+      "title": "Un truco rápido para calcular autovalores | Capítulo 15, Esencia del álgebra lineal.",
+      "description": "Cómo escribir los valores propios de una matriz de 2x2 con solo mirarla."
+    }
+  },
+  "pdfs": {
+    "hi": {
+      "title": "\"0 probability\" का अर्थ \"असंभव\" क्यों नहीं है | Probabilities of probabilities, भाग 2",
+      "description": "An introduction to probability density functions"
+    },
+    "en": {
+      "title": "Why “probability of 0” does not mean “impossible” | Probabilities of probabilities, part 2",
+      "description": "An introduction to probability density functions"
+    },
+    "ru": {
+      "title": "Почему \"вероятность 0\" не означает \"невозможно\"",
+      "description": ""
+    }
+  },
+  "bayes-theorem": {
+    "es": {
+      "title": "Teorema de Bayes, la geometría del cambio de creencias",
+      "description": "Quizás la fórmula más importante en probabilidad."
+    },
+    "hi": {
+      "title": "बेयस theorem, बदलती मान्यताओं की geometry",
+      "description": ""
+    },
+    "ru": {
+      "title": "Теорема Байеса, геометрия изменения убеждений",
+      "description": "Возможно, самая важная формула вероятности."
+    },
+    "en": {
+      "title": "Bayes theorem, the geometry of changing beliefs",
+      "description": "Perhaps the most important formula in probability."
+    }
+  },
+  "prime-spirals": {
+    "es": {
+      "title": "¿Por qué los números primos forman estas espirales? | El teorema de Dirichlet y aproximaciones de π",
+      "description": "Un patrón curioso, aproximaciones para pi y distribuciones de primos."
+    },
+    "hi": {
+      "title": "Prime numbers ये सर्पिल आकृतियाँ क्यों बनाती हैं? | Dirichlet's theorem और pi के approximations",
+      "description": "एक जिज्ञासु पैटर्न, पाई के लिए सन्निकटन और अभाज्य वितरण।"
+    },
+    "ru": {
+      "title": "Почему простые числа образуют эти спирали? | Теорема Дирихле и пи-аппроксимации",
+      "description": "A curious pattern, approximations for pi, and prime distributions."
+    },
+    "en": {
+      "title": "Why do prime numbers make these spirals? | Dirichlet’s theorem and pi approximations",
+      "description": "A curious pattern, approximations for pi, and prime distributions."
+    },
+    "fr": {
+      "title": "Pourquoi les nombres premiers font-ils ces spirales?",
+      "description": "Un motif curieux, des approximations de pi et des distributions de nombres premiers."
+    }
+  },
+  "windmills": {
+    "hi": {
+      "title": "2011 IMO ka windmill question(Q2), jo unexpected तरीके से काफी tough निकला",
+      "description": "The famous (infamous?) \"windmill\" problem on the 2011 IMO"
+    },
+    "en": {
+      "title": "The unexpectedly hard windmill question (2011 IMO, Q2)",
+      "description": "The famous (infamous?) \"windmill\" problem on the 2011 IMO"
+    },
+    "es": {
+      "title": "La pregunta inesperadamente difícil del molino de viento (OMI de 2011, segundo trimestre)",
+      "description": "El famoso (¿infame?) problema del \"molino de viento\" en la OMI de 2011"
+    }
+  },
+  "eulers-formula-dynamically": {
+    "de": {
+      "title": "e^(iπ) in 3,14 Minuten als Dynamik | DE5",
+      "description": "Eulers Formel über e zum i pi, erklärt mit Geschwindigkeiten zu Orten."
+    },
+    "fr": {
+      "title": "e^(iπ) en 3,14 minutes, en utilisant la dynamique | DE5",
+      "description": "Formule d'Euler à propos de e puissance i pi, expliquée en termes de vitesses et de positions."
+    },
+    "en": {
+      "title": "e^(iπ) in 3.14 minutes, using dynamics | DE5",
+      "description": "Euler's formula about e to the i pi, explained with velocities to positions."
+    },
+    "hi": {
+      "title": "e^(iπ) 3.14 मिनट में, dynamics का उपयोग करते हुए | DE5",
+      "description": "वेलोसिटी और पोजीशन के द्वारा समझाया गया यूलर का फार्मूला- e to the i pi "
+    },
+    "pt-BR": {
+      "title": "e^(iπ) em 3,14 minutos, usando dinâmica | DE5",
+      "description": "A fórmula de Euler sobre e elevado a i pi, explicada com velocidades para posições."
+    },
+    "es": {
+      "title": "e^(iπ) en 3,14 minutos, usando dinámica | DE5",
+      "description": "Fórmula de Euler sobre e elevado a i pi, explicada con velocidades a posiciones."
+    }
+  },
+  "fourier-series": {
+    "de": {
+      "title": "Aber was ist eine Fourier-Reihe? Vom Wärmefluss zu Kreiszeichnungen | DE4",
+      "description": "Fourier-Reihe aus den Epizyklen der Wärmegleichung."
+    },
+    "fr": {
+      "title": "Mais c'est quoi, une série de Fourier ? Du flux thermique au dessin avec des cercles | DE4",
+      "description": "Série de Fourier, à partir des épicycles de l'équation de la chaleur."
+    },
+    "en": {
+      "title": "But what is a Fourier series?  From heat flow to drawing with circles | DE4",
+      "description": "Fourier series, from the heat equation epicycles."
+    },
+    "es-419": {
+      "title": "¿Qué es una Serie de Fourier? Del Flujo de Calor al Arte con Círculos  | ED 4",
+      "description": "Series de Fourier, desde la ecuación del calor hasta epiciclos"
+    },
+    "hi": {
+      "title": "लेकिन fourier series क्या है? Heat flow से लेकर circles से drawing तक | DE4",
+      "description": "फूरियर श्रृंखला, ऊष्मा समीकरण महाकाव्य से।"
+    }
+  },
+  "heat-equation": {
+    "hi": {
+      "title": "Heat equation  को हल करना | DE3",
+      "description": ""
+    },
+    "en": {
+      "title": "Solving the heat equation | DE3",
+      "description": "Boundary conditions, and set up for how Fourier series are useful."
+    },
+    "de": {
+      "title": "Lösung der Wärmeleitungsgleichung | DE3",
+      "description": "Randbedingungen und Einrichtung, wie Fourier-Reihen nützlich sind."
+    }
+  },
+  "differential-equations": {
+    "es": {
+      "title": "Los Fundamentos de Ecuaciones Diferenciales que Nadie te Explica",
+      "description": "Una visión general de lo que son las EDO"
+    },
+    "hi": {
+      "title": "Differential equations, एक tourist's guide | DE1",
+      "description": "An overview of what ODEs are all about"
+    },
+    "en": {
+      "title": "Differential equations, a tourist's guide | DE1",
+      "description": "An overview of what ODEs are all about"
+    },
+    "de": {
+      "title": "Differentialgleichungen: ein Reiseführer | DE1",
+      "description": "Ein Überblick darüber, worum es bei ODEs geht"
+    }
+  },
+  "cramers-rule": {
+    "es": {
+      "title": "La regla de Cramer, explicada geométricamente | Capítulo 12, Esencia del álgebra lineal.",
+      "description": "Esta regla parece aleatoria para muchos estudiantes, pero tiene una hermosa razón para ser cierta."
+    },
+    "en": {
+      "title": "Cramer's rule, explained geometrically | Chapter 12, Essence of linear algebra",
+      "description": "This rule seems random to many students, but it has a beautiful reason for being true."
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #12. Правило Крамера",
+      "description": "This rule seems random to many students, but it has a beautiful reason for being true."
+    }
+  },
+  "clacks": {
+    "es": {
+      "title": "La respuesta más inesperada a un rompecabezas de contar.",
+      "description": "Solución: https://youtu.be/jsYwFizhncE"
+    },
+    "en": {
+      "title": "The most unexpected answer to a counting puzzle",
+      "description": "Solution: https://youtu.be/6dTyOl1fmDo"
+    },
+    "de": {
+      "title": "Die unerwartetste Antwort auf ein Zählrätsel",
+      "description": "Lösung: https://youtu.be/jsYwFizhncE"
+    },
+    "hi": {
+      "title": "गिनती की पहेली का सबसे unexpected answer",
+      "description": "Solution: https://youtu.be/jsYwFizhncE"
+    }
+  },
+  "sphere-area": {
+    "de": {
+      "title": "Aber warum ist die Oberfläche einer Kugel viermal so groß wie ihr Schatten?",
+      "description": "Die Formel ist kein schlichter Zufall."
+    },
+    "fr": {
+      "title": "Mais pourquoi l'aire d'une sphère est égale à 4 fois son ombre ?",
+      "description": "La formule n’est pas une simple coïncidence."
+    },
+    "en": {
+      "title": "But why is a sphere's surface area four times its shadow?",
+      "description": "The formula is no mere coincidence."
+    },
+    "uk": {
+      "title": "Чому площа поверхні сфери в чотири рази більше її тіні?",
+      "description": "Формула не є простою випадковістю."
+    },
+    "ru": {
+      "title": "Но почему площадь поверхности сферы в четыре раза больше ее тени?",
+      "description": "Эта формула не является простым совпадением."
+    },
+    "hi": {
+      "title": "Akhir kyun ek sphere ka surface area uske shadow ka chaar guna hota hai?",
+      "description": "Ye formula sirf ek coincidence nahi hai."
+    },
+    "es": {
+      "title": "Pero ¿por qué la superficie de una esfera es cuatro veces su sombra?",
+      "description": "La fórmula no es una mera coincidencia."
+    }
+  },
+  "quaternions": {
+    "es": {
+      "title": "Visualización de cuaterniones (números 4d) con proyección estereográfica",
+      "description": "Cómo pensar en este sistema numérico 4d en nuestro espacio 3d."
+    },
+    "hi": {
+      "title": "Quaternions (4D numbers) को Stereographic Projection से कैसे Visualize करें?",
+      "description": ""
+    },
+    "en": {
+      "title": "Visualizing the 4d numbers Quaternions",
+      "description": "How to think about this 4d number system in our 3d space."
+    }
+  },
+  "divergence-and-curl": {
+    "es": {
+      "title": "Divergencia y curvatura: el lenguaje de las ecuaciones de Maxwell, flujo de fluidos y más.",
+      "description": "Visualizando dos operaciones clave en cálculo. (Corrección de pequeño error abajo)  "
+    },
+    "hi": {
+      "title": "Divergence और Curl: मैक्सवेल की equations की भाषा, fluid flow, और बहुत कुछ",
+      "description": "कैलकुलस में दो मुख्य परिचालनों की कल्पना करना। (नीचे छोटी त्रुटि सुधार) "
+    },
+    "en": {
+      "title": "Divergence and curl:  The language of Maxwell's equations, fluid flow, and more",
+      "description": "Visualizing two core operations in calculus.  (Small error correction below) "
+    }
+  },
+  "derivatives-and-transforms": {
+    "es": {
+      "title": "La otra forma de visualizar los derivados | Capítulo 12, Esencia del cálculo.",
+      "description": "Una visualización de las derivadas que se generaliza mejor a temas más allá del cálculo."
+    },
+    "hi": {
+      "title": "Derivative की कल्पना करने का दूसरा तरीका | अध्याय 12, Calculus का सार",
+      "description": "डेरिवेटिव के लिए एक दृश्य जो कैलकुलस से परे विषयों को अधिक अच्छी तरह से सामान्यीकृत करता है।"
+    },
+    "en": {
+      "title": "The other way to visualize derivatives | Chapter 12, Essence of calculus",
+      "description": "A visual for derivatives that generalizes more nicely to topics beyond calculus."
+    }
+  },
+  "pi-was-628": {
+    "hi": {
+      "title": "पाई लगभग 6.283185 कैसे थी...",
+      "description": "In some of his notes, Euler used π to represent 6.28...  So why did we adopt 3.14...?"
+    },
+    "en": {
+      "title": "How pi was almost 6.283185...",
+      "description": "In some of his notes, Euler used π to represent 6.28...  So why did we adopt 3.14...?"
+    },
+    "ru": {
+      "title": "Как число Пи было почти 6,283185...",
+      "description": ""
+    }
+  },
+  "basel-problem": {
+    "fr": {
+      "title": "Qu’est‑ce que π vient faire ici ? Et pourquoi au carré ? Une réponse géométrique au problème de Bâle",
+      "description": "Une très belle preuve du problème de Bâle, avec de la lumière."
+    },
+    "en": {
+      "title": "Why is pi here?  And why is it squared?  A geometric answer to the Basel problem",
+      "description": "A most beautiful proof of the Basel problem, using light."
+    },
+    "ru": {
+      "title": "Почему здесь число Пи? И почему оно квадратное? Геометрический ответ на Базельскую задачу",
+      "description": "Красивейшее доказательство Базельской проблемы с использованием света."
+    },
+    "hi": {
+      "title": "Pi yahaan क्यों है? Aur ये squared क्यों है? Ek geometric जवाब to the Basel problem",
+      "description": "A most beautiful proof of the Basel problem, using light."
+    },
+    "es": {
+      "title": "¿Por qué está pi aquí? ¿Y por qué está al cuadrado?",
+      "description": "Una respuesta geométrica al problema de Basel, usando la luz."
+    }
+  },
+  "fourier-transforms": {
+    "hi": {
+      "title": "लेकिन Fourier Transform क्या है? एक visual introduction.",
+      "description": "फूरियर ट्रांसफॉर्म का एक एनिमेटेड परिचय।"
+    },
+    "fr": {
+      "title": "Mais, c'est quoi la transformation de Fourier ? Une introduction visuelle.",
+      "description": "Une introduction animée à la transformée de Fourier."
+    },
+    "en": {
+      "title": "But what is the Fourier Transform?  A visual introduction.",
+      "description": "An animated introduction to the Fourier Transform."
+    },
+    "es": {
+      "title": "Pero, ¿qué es la transformada de Fourier? Una introducción visual.",
+      "description": "Una introducción animada a la Transformada de Fourier."
+    }
+  },
+  "hardest-problem": {
+    "es": {
+      "title": "El problema más difícil en la prueba más difícil.",
+      "description": "Una pregunta difícil de Putnam con una solución elegante."
+    },
+    "hi": {
+      "title": "सबसे कठिन परीक्षा में सबसे कठिन समस्या",
+      "description": "A difficult Putnam question with an elegant solution."
+    },
+    "ru": {
+      "title": "Самая сложная задача на самом сложном тесте",
+      "description": "Сложный вопрос Патнэма с элегантным решением."
+    },
+    "de": {
+      "title": "Das schwerste Problem des schwersten Tests",
+      "description": "Eine schwierige Putnam-Frage mit einer eleganten Lösung."
+    },
+    "en": {
+      "title": "The hardest problem on the hardest test",
+      "description": "A difficult Putnam question with an elegant solution."
+    }
+  },
+  "backpropagation-calculus": {
+    "fr": {
+      "title": "Les calculs derrière la rétropropagation | Chapitre 4, Apprentissage profond",
+      "description": "Aidez à financer les projets futurs : https://www.patreon.com/3blue1brown"
+    },
+    "ru": {
+      "title": "Формулы для обратного распространения ошибки | Глава 4. Глубокое обучение",
+      "description": "Помогите финансировать будущие проекты: https://www.patreon.com/3blue1brown"
+    },
+    "th": {
+      "title": "Backpropagation ฉบับแคลคูลัส | บทที่ 4 Deep Learning",
+      "description": "สนับสนุนโครงการในอนาคต: https://www.patreon.com/3blue1brown"
+    },
+    "en": {
+      "title": "Backpropagation calculus | Deep Learning Chapter 4",
+      "description": "Help fund future projects: https://www.patreon.com/3blue1brown"
+    },
+    "de": {
+      "title": "Die Mathematik hinter Backpropagation | Kapitel 4, Deep Learning",
+      "description": "Hilf mit, zukünftige Projekte zu finanzieren: https://www.patreon.com/3blue1brown"
+    },
+    "es": {
+      "title": "Cálculo de retropropagación | Capítulo 4, Aprendizaje profundo",
+      "description": "Ayuda a financiar futuros proyectos: https://www.patreon.com/3blue1brown "
+    },
+    "pt-BR": {
+      "title": "Cálculo na retropropagação | Capítulo 4, Aprendizado profundo",
+      "description": "Ajude a financiar projetos futuros: https://www.patreon.com/3blue1brown"
+    },
+    "hi": {
+      "title": "बैकप्रोपोगेशन कैलकुलस। डीप लर्निंग 4 (Backpropogation Calculus | DL4)",
+      "description": "भविष्य के प्रोजेक्ट्स को फंड करने में मदद करें: / 3blue1brown  "
+    }
+  },
+  "backpropagation": {
+    "de": {
+      "title": "Backpropagation, intuitiv | DL3",
+      "description": "Was passiert eigentlich mit einem neuronalen Netzwerk, während es lernt?"
+    },
+    "fr": {
+      "title": "Que fait réellement la rétropropagation ? | Chapitre 3, Apprentissage profond",
+      "description": "Que se passe-t-il réellement dans un réseau neuronal lorsqu'il apprend ?"
+    },
+    "ru": {
+      "title": "Что происходит с нейросетью во время обучения?",
+      "description": "Помогите поддержать будущие проекты: https://www.patreon.com/3blue1brown"
+    },
+    "es": {
+      "title": "¿Que está haciendo realmente la retropropagación? | Capítulo 3, Aprendizaje profundo",
+      "description": "¿Qué le ocurre realmente a una red neuronal mientras aprende? "
+    },
+    "pt-BR": {
+      "title": "O que a retropropagação realmente está fazendo? | Capítulo 3, Aprendizado profundo",
+      "description": "O que realmente está acontecendo com uma rede neural enquanto ela aprende?"
+    },
+    "ar": {
+      "title": "الانتشار الخلفي، كل خطوة على حدة | الفصل الثالث، التعلم العميق",
+      "description": "ما الذي يحدث بالفعل للشبكة العصبية أثناء تعلمها؟"
+    },
+    "en": {
+      "title": "Backpropagation, intuitively | Deep Learning Chapter 3",
+      "description": "What's actually happening to a neural network as it learns?"
+    },
+    "th": {
+      "title": "Backpropagation ฉบับเข้าใจง่าย | บทที่ 3 Deep Learning",
+      "description": "ข้างในการเรียนรู้ของ neural network มันเกิดอะไรขึ้นกันแน่?"
+    },
+    "hi": {
+      "title": "बैकप्रोपोगेशन, कदम दर कदम। डीप लर्निंग 3 (Backpropagation, step by step | DL3)",
+      "description": "एक न्यूरल नेटवर्क के सीखने के दौरान वास्तव में क्या हो रहा है?"
+    }
+  },
+  "gradient-descent": {
+    "ru": {
+      "title": "Градиентный спуск, как обучаются нейросети | Глава 2, Глубинное обучение",
+      "description": "Нравятся эти видео? Поделитесь одним или двумя!"
+    },
+    "fr": {
+      "title": "Descente de gradient, comment les réseaux de neurones apprennent | Chapitre 2, Apprentissage profond",
+      "description": "Ces vidéos vous plaisent ?  Pensez à en partager une ou deux."
+    },
+    "en": {
+      "title": "Gradient descent, how neural networks learn | Deep Learning Chapter 2",
+      "description": "Cost functions and training for neural networks."
+    },
+    "th": {
+      "title": "Gradient descent กับการเรียนรู้ของ Neural network | ตอนที่ 2 Deep learning",
+      "description": "ชอบวิดีโอชุดนี้ไหม? ลองแชร์ให้เพื่อนดูสักอันสองอันนะครับ"
+    },
+    "de": {
+      "title": "Gradientenverfahren, wie neuronale Netze lernen | DL2",
+      "description": "Gefallen dir diese Videos?  Dann teil doch ein oder zwei davon."
+    },
+    "ar": {
+      "title": "الانحدار المتدرّج، كيف تتعلم الشبكات العصبية | الفصل الثاني، التعلم العميق",
+      "description": "استمتعت بهذه الفيديوهات؟ فكر في مشاركة واحدة أو اثنتين."
+    },
+    "es": {
+      "title": "Descenso de gradiente, cómo aprenden las redes neuronales | DL2",
+      "description": "¿Disfrutas de estos vídeos? Considere compartir uno o dos."
+    },
+    "hi": {
+      "title": "ग्रेडिएंट डिसेंट, न्यूरल नेटवर्क का सीखने का तरीका | डीप लर्निंग 2",
+      "description": "*इन वीडियो को पसंद करते हैं?*  "
+    }
+  },
+  "neural-networks": {
+    "hi": {
+      "title": "लेकिन एक न्यूरल नेटवर्क क्या है?। डीप लर्निंग अध्याय 1",
+      "description": "न्यूरॉन्स क्या होते हैं, परतें क्यों होती हैं, और इसके पीछे का गणित क्या है?  "
+    },
+    "es": {
+      "title": "Pero ¿qué es una red neuronal? | Capítulo 1, Aprendizaje profundo",
+      "description": "¿Qué son las neuronas, por qué hay capas y cuál es la matemática subyacente?"
+    },
+    "ar": {
+      "title": "ولكن ما هي الشبكة العصبية؟ | الفصل الأول، التعلم العميق",
+      "description": "ما هي الخلايا العصبية، ولماذا توجد طبقات، وما هي الرياضيات التي تقوم عليها؟"
+    },
+    "de": {
+      "title": "Aber was ist ein neuronales Netz? | Kapitel 1, Deep Learning",
+      "description": "Was sind die Neuronen, warum gibt es Schichten und welche Mathematik liegt ihnen zugrunde?"
+    },
+    "th": {
+      "title": "อะไรคือ Neural network? | ตอนที่ 1 Deep learning",
+      "description": "อะไรคือนิวรอน? ทำไมถึงต้องมีหลาย layer? เบื้องหลังการคำนวณจริงๆคืออะไร?"
+    },
+    "en": {
+      "title": "But what is a neural network? | Deep learning chapter 1",
+      "description": "What are the neurons, why are there layers, and what is the math underlying it?"
+    },
+    "fr": {
+      "title": "Mais, c'est quoi un réseau de neurones ? | Chapitre 1, Apprentissage profond",
+      "description": "Que sont les neurones, pourquoi y a-t-il des couches et quelles sont les mathématiques qui les sous-tendent ?"
+    },
+    "ru": {
+      "title": "Но что такое нейронная сеть? | Глава 1. Глубокое обучение",
+      "description": "Что такое нейроны, зачем нужны слои и какая математика лежит в их основе?"
+    }
+  },
+  "256-bit-security": {
+    "fr": {
+      "title": "La sécurité 256 bits, c'est vraiment sécurisé ?",
+      "description": "Avec quelle difficulté peut-on trouver un hash de 256 bits, juste en devinant et en testant ?"
+    },
+    "ru": {
+      "title": "Насколько безопасна 256-битная безопасность?",
+      "description": "Насколько сложно найти 256-битный хэш, просто угадав и проверив?"
+    },
+    "en": {
+      "title": "How secure is 256 bit security?",
+      "description": "How hard is it to find a 256-bit hash just by guessing and checking?"
+    }
+  },
+  "bitcoin": {
+    "en": {
+      "title": "But how does bitcoin actually work?",
+      "description": "The math behind cryptocurrencies."
+    },
+    "hi": {
+      "title": "लेकिन Bitcoin वास्तव में कैसे काम करता है?",
+      "description": "क्रिप्टोकरेंसी के पीछे का गणित."
+    },
+    "es": {
+      "title": "Pero, ¿cómo funciona realmente el bitcoin?",
+      "description": "Las matemáticas detrás de las criptomonedas."
+    },
+    "fr": {
+      "title": "Mais comment ça fonctionne, le Bitcoin ?",
+      "description": "Les mathématiques derrière les crypto-monnaies."
+    }
+  },
+  "taylor-series": {
+    "fr": {
+      "title": "Les séries de Taylor | Chapitre 11, Essence de l'analyse",
+      "description": "Les polynômes de Taylor sont incroyablement puissants pour les approximations et les analyses."
+    },
+    "es": {
+      "title": "Series de Taylor | Capítulo 11, Esencia del cálculo.",
+      "description": "Los polinomios de Taylor son increíblemente poderosos para aproximaciones y análisis.  "
+    },
+    "en": {
+      "title": "Taylor series | Chapter 11, Essence of calculus",
+      "description": "Taylor polynomials are incredibly powerful for approximations and analysis."
+    },
+    "hi": {
+      "title": "टेलर series | अध्याय 11, Calculus का सार",
+      "description": "टेलर बहुपद सन्निकटन और विश्लेषण के लिए अविश्वसनीय रूप से शक्तिशाली हैं।"
+    }
+  },
+  "higher-order-derivatives": {
+    "es": {
+      "title": "Derivadas de orden superior | Capítulo 10, Esencia del cálculo.",
+      "description": "Una introducción muy rápida sobre la segunda derivada, tercera derivada, etc."
+    },
+    "fr": {
+      "title": "Dérivés d'ordre supérieur | Chapitre 10, Essence de l'analyse",
+      "description": "Une introduction très rapide à la dérivée seconde, la dérivée troisième, etc."
+    },
+    "en": {
+      "title": "Higher order derivatives | Chapter 10, Essence of calculus",
+      "description": "A very quick primer on the second derivative, third derivative, etc."
+    },
+    "hi": {
+      "title": "ऊंचे क्रम के Derivatives | अध्याय 10, Calculus का सार",
+      "description": "दूसरे डेरीवेटिव, तीसरे डेरीवेटिव, आदि पर एक बहुत ही त्वरित प्राइमर।"
+    }
+  },
+  "area-and-slope": {
+    "en": {
+      "title": "What does area have to do with slope? | Chapter 9, Essence of calculus",
+      "description": "One view on why integrals and derivatives are inverses."
+    },
+    "hi": {
+      "title": "Area का Slope से क्या संबंध है? | अध्याय 9, Calculus का सार",
+      "description": "इस पर एक दृष्टिकोण कि इंटीग्रल और डेरीवेटिव व्युत्क्रम क्यों हैं।"
+    },
+    "es": {
+      "title": "¿Qué tiene que ver el área con la pendiente? | Capítulo 9, Esencia del cálculo.",
+      "description": "Una perspectiva sobre por qué los integrales y las derivadas son inversos."
+    },
+    "fr": {
+      "title": "C'est quoi le rapport entre l'aire et la pente ? | Chapitre 9, Essence de l'analyse",
+      "description": "Un point de vue sur pourquoi les intégrales et les dérivées sont des opérations inverses."
+    }
+  },
+  "integration": {
+    "fr": {
+      "title": "Intégration et théorème fondamental de l'analyse | Chapitre 8, Essence de l'analyse",
+      "description": "L'intuition des intégrales et pourquoi elles sont l'inverse des dérivées."
+    },
+    "es": {
+      "title": "¿Qué es el teorema fundamental del cálculo? Integración | Capítulo 8, Esencia del cálculo.",
+      "description": "Intuición para las integrales y por qué son inversas de las derivadas."
+    },
+    "en": {
+      "title": "Integration and the fundamental theorem of calculus | Chapter 8, Essence of calculus",
+      "description": "Intuition for integrals, and why they are inverses of derivatives."
+    },
+    "hi": {
+      "title": "Integration और Calculus का मौलिक प्रमेय या theorem| अध्याय 8, Calculus का सार",
+      "description": "इंटीग्रल के लिए अंतर्ज्ञान, और वे डेरीवेटिव के उलटे क्यों हैं।"
+    }
+  },
+  "limits": {
+    "en": {
+      "title": "Limits, L'Hôpital's rule, and epsilon delta definitions | Chapter 7, Essence of calculus",
+      "description": "Formal derivatives, the epsilon-delta definition, and why L'Hôpital's rule works."
+    },
+    "hi": {
+      "title": "Limits, L'Hôpital का नियम, और Epsilon Delta की परिभाषाएँ | अध्याय 7, Calculus का सार",
+      "description": "औपचारिक डेरीवेटिव, एप्सिलॉन-डेल्टा परिभाषा, और एल'हॉपिटल का नियम क्यों काम करता है।"
+    },
+    "es": {
+      "title": "Todo sobre Límites, regla de L'Hôpital y épsilon-delta | Capítulo 7, Esencia del cálculo.",
+      "description": ""
+    },
+    "fr": {
+      "title": "Limites, règle de L'Hôpital et définitions ε‑δ | Chapitre 7, Essence de l'analyse",
+      "description": "Dérivées formelles, définition epsilon-delta et pourquoi la règle de L'Hôpital fonctionne."
+    }
+  },
+  "implicit-differentiation": {
+    "fr": {
+      "title": "Différenciation implicite, qu'est ce qui se passe par ici ? | Chapitre 6, Essence de l'analyse",
+      "description": "La différenciation implicite peut sembler étrange, mais si on y réfléchit bien, elle est tout à fait logique."
+    },
+    "es": {
+      "title": "Diferenciación implícita, ¿qué está pasando aquí? | Capítulo 6, Esencia del cálculo.",
+      "description": "La diferenciación implícita puede parecer extraña, pero pensada de la manera correcta tiene mucho sentido."
+    },
+    "hi": {
+      "title": "Implicit या अंतर्निहित differentiation | अध्याय 6, Calculus का सार",
+      "description": "अंतर्निहित डिफ्रेंसिएशन अजीब लग सकता है, लेकिन सही तरीके से सोचा जाए तो यह बहुत मायने रखता है।"
+    },
+    "en": {
+      "title": "Implicit differentiation, what's going on here? | Chapter 6, Essence of calculus",
+      "description": "Implicit differentiation can feel strange, but thought of the right way it makes a lot of sense."
+    }
+  },
+  "eulers-number": {
+    "hi": {
+      "title": "Euler के नंबर e में ऐसा क्या खास है? | अध्याय 5, Calculus का सार",
+      "description": "ई क्या है? और घातांक अपने स्वयं के डेरीवेटिव के अनुरूप क्यों होते हैं?"
+    },
+    "en": {
+      "title": "What's so special about Euler's number e? | Chapter 5, Essence of calculus",
+      "description": "What is e?  And why are exponentials proportional to their own derivatives?"
+    },
+    "es": {
+      "title": "¿Qué tiene de especial el número e de Euler? | Capítulo 5, Esencia del cálculo.",
+      "description": "¿Qué es e? ¿Y por qué las exponenciales son proporcionales a sus propias derivadas?"
+    },
+    "fr": {
+      "title": "Qu'y a-t-il de si spécial avec e, le nombre d'Euler ? | Chapitre 5, Essence de l'analyse",
+      "description": "Mais, c'est quoi \"e\" ?  Et pourquoi les exponentielles sont-elles proportionnelles à leurs propres dérivées ?"
+    }
+  },
+  "chain-rule-and-product-rule": {
+    "fr": {
+      "title": "Visualiser la dérivation des fonctions composées et la règle du produit | Ch 4, Essence de l'analyse",
+      "description": "Une explication visuelle de ce que sont la règle de dérivation en chaîne et la règle de dérivation par produit, et pourquoi elles sont vraies."
+    },
+    "es": {
+      "title": "Visualizando la regla de la cadena y la regla del producto | Capítulo 4, Esencia del cálculo.",
+      "description": "Una explicación visual de qué son la regla de la cadena y la regla del producto, y por qué son verdaderas."
+    },
+    "hi": {
+      "title": "Chain Rule और Product Rule को देख के समझना | अध्याय 4, Calculus का सार",
+      "description": "चेन नियम और प्रोडक्ट नियम क्या हैं, और वे सत्य क्यों हैं, इसकी एक दृश्य व्याख्या।"
+    },
+    "en": {
+      "title": "Visualizing the chain rule and product rule | Chapter 4, Essence of calculus",
+      "description": "A visual explanation of what the chain rule and product rule are, and why they are true."
+    }
+  },
+  "derivatives-power-rule": {
+    "fr": {
+      "title": "Formules de dérivées avec de la géométrie | Chapitre 3, Essence de l'analyse",
+      "description": "Quelques formules dérivées courantes expliquées à l'aide d'intuitions géométriques."
+    },
+    "es": {
+      "title": "Fórmulas de derivadas un enfoque geométrico | Capítulo 3, Esencia del cálculo.",
+      "description": "Algunas fórmulas comunes de derivadas explicadas con intuición geométrica.  "
+    },
+    "hi": {
+      "title": "Geometry के माध्यम से Derivative Formulas | अध्याय 3, Calculus का सार",
+      "description": "कुछ डेरीवेटिव फार्मूला को ज्योमेट्री के अंतर्ज्ञान के साथ समझाया गया।"
+    },
+    "en": {
+      "title": "Derivative formulas through geometry | Chapter 3, Essence of calculus",
+      "description": "Some common derivative formulas explained with geometric intuition."
+    }
+  },
+  "derivatives": {
+    "es": {
+      "title": "La paradoja de la derivada | Capítulo 2, Esencia del cálculo.",
+      "description": "¿Qué es una \"tasa de cambio instantánea\" cuando el cambio ocurre a lo largo del tiempo?"
+    },
+    "pt-BR": {
+      "title": "O paradoxo da derivada | Capítulo , Essência do cálculo",
+      "description": "O que é uma \"taxa de variação instantânea, quando a variação acontece ao longo do tempo?"
+    },
+    "hi": {
+      "title": "Derivative की उलझनें (paradox) | अध्याय 2 | Calculus का सार",
+      "description": "जब किसी चीज़ में समय के साथ बदलाव होता है, तो 'तुरंत  बदलाव की दर' क्या होती है?"
+    },
+    "fr": {
+      "title": "Le paradoxe de la dérivée | Chapitre 2, Essence de l'analyse",
+      "description": "Qu'est-ce qu'un « taux de variation instantané » lorsque le changement se produit dans le temps ?"
+    },
+    "en": {
+      "title": "The paradox of the derivative | Chapter 2, Essence of calculus",
+      "description": "What is an \"instantaneous rate of change\" when change happens across time?"
+    }
+  },
+  "essence-of-calculus": {
+    "hi": {
+      "title": "Calculus का सार",
+      "description": "कैलकुलस का आविष्कार करना कैसा लग सकता है?"
+    },
+    "es": {
+      "title": "La esencia del cálculo",
+      "description": "¿Cómo se sentiría inventar el cálculo?"
+    },
+    "pt-BR": {
+      "title": "A essência do cálculo",
+      "description": "Qual seria a sensação de inventar o cálculo?"
+    },
+    "en": {
+      "title": "The essence of calculus",
+      "description": "What might it feel like to invent calculus?"
+    },
+    "fr": {
+      "title": "L'essence de l'analyse",
+      "description": "Que ressentirait-on en inventant l'analyse ?"
+    }
+  },
+  "abstract-vector-spaces": {
+    "en": {
+      "title": "Abstract vector spaces | Chapter 16, Essence of linear algebra",
+      "description": "This is really the reason linear algebra is so powerful."
+    },
+    "hi": {
+      "title": "सार वेक्टर रिक्त स्थान | अध्याय 16, रैखिक बीजगणित का सार",
+      "description": "वास्तव में यही कारण है कि रैखिक बीजगणित इतना शक्तिशाली है।"
+    },
+    "ru": {
+      "title": "Абстрактные векторные пространства | Глава 16. Сущность линейной алгебры",
+      "description": "Это настоящая причина того, что линейная алгебра так сильна."
+    },
+    "es": {
+      "title": "Espacios vectoriales abstractos | Capítulo 16, Esencia del álgebra lineal.",
+      "description": "Ésta es realmente la razón por la que el álgebra lineal es tan poderosa."
+    }
+  },
+  "eigenvalues": {
+    "ru": {
+      "title": "Собственные векторы и собственные значения | Глава 14. Сущность линейной алгебры",
+      "description": "Визуальное понимание собственных векторов, собственных значений и полезности собственного базиса."
+    },
+    "es": {
+      "title": "Autovectores (Vectores propios) y Autovalores | Capítulo 14, Esencia del álgebra lineal.",
+      "description": "Una comprensión visual de los vectores propios, los valores propios y la utilidad de una base propia."
+    },
+    "en": {
+      "title": "Eigenvectors and eigenvalues | Chapter 14, Essence of linear algebra",
+      "description": "A visual understanding of eigenvectors, eigenvalues, and the usefulness of an eigenbasis."
+    }
+  },
+  "change-of-basis": {
+    "en": {
+      "title": "Change of basis | Chapter 13, Essence of linear algebra",
+      "description": "How do you translate back and forth between coordinate systems that use different basis vectors?"
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #13. Смена базиса [3Blue1Brown]",
+      "description": "How do you translate back and forth between coordinate systems that use different basis vectors?"
+    },
+    "es": {
+      "title": "Cambio de base | Capítulo 13, Esencia del álgebra lineal.",
+      "description": "¿Cómo se traduce de un lado a otro entre sistemas de coordenadas que utilizan diferentes vectores de base?"
+    }
+  },
+  "cross-products": {
+    "ru": {
+      "title": "Перекрестные произведения | Глава 10. Сущность линейной алгебры",
+      "description": "Это охватывает основную геометрическую интуицию, лежащую в основе 2d и 3d векторных произведений."
+    },
+    "en": {
+      "title": "Cross products | Chapter 10, Essence of linear algebra",
+      "description": "This covers the main geometric intuition behind the 2d and 3d cross products."
+    },
+    "pt-BR": {
+      "title": "Produtos vetoriais | Capítulo 10, Essência da álgebra linear",
+      "description": "Aqui abordamos a principal intuição geométrica por trás dos produtos vetoriais 2D e 3D."
+    },
+    "es": {
+      "title": "Producto cruz | Capítulo 10, Esencia del álgebra lineal.",
+      "description": "Esta es la intuición geométrica principal detrás del producto cruz 2D y 3D."
+    },
+    "hi": {
+      "title": "Cross Products | अध्याय 10, Linear Algebra का सार",
+      "description": "ये 2D और 3D cross products के पीछे की मुख्य geometric intuition को cover करता है।"
+    }
+  },
+  "cross-products-extended": {
+    "ru": {
+      "title": "Векторные произведения с учетом линейных преобразований | Глава 11. Сущность линейной алгебры",
+      "description": "Почему формула векторного произведения соответствует геометрической интуиции."
+    },
+    "es": {
+      "title": "Producto cruz  a la luz las de transformaciones lineales | Capítulo 11, Esencia del álgebra lineal.",
+      "description": "Por qué la fórmula del producto cruz coincide con la intuición geométrica."
+    },
+    "en": {
+      "title": "Cross products in the light of linear transformations | Chapter 11, Essence of linear algebra",
+      "description": "Why the formula for cross products matches the geometric intuition."
+    },
+    "hi": {
+      "title": "Linear transformations की रोशनी में cross products | अध्याय 11, Linear Algebra का सार",
+      "description": "क्यों cross products का formula उसकी geometric intuition से मेल खाता है।"
+    }
+  },
+  "dot-products": {
+    "es": {
+      "title": "Productos escalares y dualidad | Capítulo 9, Esencia del álgebra lineal.",
+      "description": "Por qué la fórmula de los productos escalares coincide con su intuición geométrica."
+    },
+    "ru": {
+      "title": "Скалярное произведение и двойственность | Глава 9. Сущность линейной алгебры",
+      "description": "Почему формула скалярного произведения соответствует их геометрической интуиции."
+    },
+    "hi": {
+      "title": "Dot products और duality | अध्याय 9, Linear Algebra का सार",
+      "description": "Dot products का formula उसके geometric intuition से क्यों मेल खाता है?"
+    },
+    "en": {
+      "title": "Dot products and duality | Chapter 9, Essence of linear algebra",
+      "description": "Why the formula for dot products matches their geometric intuition."
+    }
+  },
+  "nonsquare-matrices": {
+    "es": {
+      "title": "Matrices no cuadradas como transformaciones | Capítulo 8, Esencia del álgebra lineal.",
+      "description": "Una breve nota a pie de página sobre la interpretación geométrica de matrices no cuadradas."
+    },
+    "pt-BR": {
+      "title": "Matrizes não quadradas como transformações interdimensionais | Capítulo 8, álgebra linear",
+      "description": "Uma breve nota de rodapé sobre a interpretação geométrica de matrizes não quadradas."
+    },
+    "hi": {
+      "title": "Dimensions के बीच transformations के रूप में nonsquare matrices | अध्याय 8, Linear Algebra का सार",
+      "description": "Non-square matrices के geometric interpretation पर एक छोटा footnote"
+    },
+    "fr": {
+      "title": "Matrices non carrées: des transformations entre dimensions | Chapitre 8, Essence d'algèbre linéaire",
+      "description": "Une petite parenthèse sur l'interprétation géométrique des matrices non carrées."
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #8. Неквадратные матрицы",
+      "description": "A brief footnote on the geometric interpretation of non-square matrices."
+    },
+    "en": {
+      "title": "Nonsquare matrices as transformations between dimensions | Chapter 8, Essence of linear algebra",
+      "description": "A brief footnote on the geometric interpretation of non-square matrices."
+    }
+  },
+  "inverse-matrices": {
+    "en": {
+      "title": "Inverse matrices, column space and null space | Chapter 7, Essence of linear algebra",
+      "description": "How to think about linear systems of equations geometrically."
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #7. Обратные матрицы, пространство столбцов и нуль-пространство",
+      "description": "How to think about linear systems of equations geometrically."
+    },
+    "hi": {
+      "title": "Inverse matrices, column space और null space | अध्याय 7, Linear Algebra का सार",
+      "description": "Linear Systems of Equations के बारे में geometrically कैसे सोचें"
+    },
+    "es": {
+      "title": "Matrices inversas, espacio columna y espacio nulo | Capítulo 7, Esencia del álgebra lineal.",
+      "description": "Cómo pensar geométricamente en sistemas lineales de ecuaciones."
+    },
+    "pt-BR": {
+      "title": "Matrizes inversas, espaço coluna e núcleo | Capítulo 7, Essência da álgebra linear",
+      "description": "Como pensar em sistemas de equações lineares geometricamente."
+    }
+  },
+  "determinant": {
+    "pt-BR": {
+      "title": "O determinante | Capítulo 6, Essência da álgebra linear",
+      "description": "O determinante mede o tanto que volumes mudam durante uma transformação."
+    },
+    "es": {
+      "title": "El determinante | Capítulo 6, Esencia del álgebra lineal.",
+      "description": "El determinante mide cuánto cambian los volúmenes durante una transformación."
+    },
+    "hi": {
+      "title": "Determinant | अध्याय 6, Linear Algebra का सार",
+      "description": "Determinant यह मापता है कि एक transformation के दौरान volume कितना बदलता है"
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #6. Определитель",
+      "description": "The determinant measures how much volumes change during a transformation."
+    },
+    "en": {
+      "title": "The determinant | Chapter 6, Essence of linear algebra",
+      "description": "The determinant measures how much volumes change during a transformation."
+    }
+  },
+  "3d-transformations": {
+    "hi": {
+      "title": "तीन dimension वाले linear transformations | अध्याय 5, Linear Algebra का सार",
+      "description": "3D linear transformations कैसे दिखते हैं?"
+    },
+    "es": {
+      "title": "Transformaciones lineales tridimensionales | Capítulo 5, Esencia del álgebra lineal.",
+      "description": "¿Cómo se ven las transformaciones lineales 3D?"
+    },
+    "pt-BR": {
+      "title": "Transformações lineares tridimensionais | Capítulo 5, Essência da álgebra linear",
+      "description": "Com o que se parece uma transformação linear 3D?"
+    },
+    "ar": {
+      "title": "التحولات الخطية ثلاثية الأبعاد | الفصل الخامس، جوهر الجبر الخطي",
+      "description": "كيف تبدو التحولات الخطية ثلاثية الأبعاد؟"
+    },
+    "en": {
+      "title": "Three-dimensional linear transformations | Chapter 5, Essence of linear algebra",
+      "description": "What do 3d linear transformations look like?"
+    },
+    "ru": {
+      "title": "Трехмерные линейные преобразования | Глава 5. Сущность линейной алгебры",
+      "description": "Как выглядят линейные 3D-преобразования?"
+    }
+  },
+  "matrix-multiplication": {
+    "pt-BR": {
+      "title": "Multiplicação de matrizes como composição | Capítulo 4, Essência da álgebra linear",
+      "description": "Multiplicar duas matrizes representa aplicar uma transformação após a outra."
+    },
+    "es": {
+      "title": "Multiplicación de matrices como composición | Capítulo 4, Esencia del álgebra lineal.",
+      "description": "Multiplicar dos matrices representa aplicar una transformación tras otra."
+    },
+    "hi": {
+      "title": "Matrix Multiplication एक composition की तरह | अध्याय 4, Linear Algebra  का सार",
+      "description": "दो matrices को multiply करने का मतलब होता है एक transformation के बाद दूसरे को लगाना"
+    },
+    "ru": {
+      "title": "Умножение матриц как композиция | Глава 4. Сущность линейной алгебры",
+      "description": "Умножение двух матриц представляет собой применение одного преобразования за другим."
+    },
+    "en": {
+      "title": "Matrix multiplication as composition | Chapter 4, Essence of linear algebra",
+      "description": "Multiplying two matrices represents applying one transformation after another."
+    },
+    "ar": {
+      "title": "ضرب المصفوفة كتركيب | الجزء الرابع، اساسات الجبر الخطي",
+      "description": "ضرب مصفوفتين يمثل تطبيق تحويل تلو الآخر."
+    }
+  },
+  "linear-transformations": {
+    "pt-BR": {
+      "title": "Transformações lineares e matrizes | Capítulo 3, Essência da álgebra linear",
+      "description": "Possivelmente a ideia mais importante para entender a álgebra linear."
+    },
+    "es": {
+      "title": "Transformaciones lineales y matrices | Capítulo 3, Esencia del álgebra lineal.",
+      "description": "Posiblemente la idea más importante para comprender el álgebra lineal."
+    },
+    "hi": {
+      "title": "Linear transformations और matrices | अध्याय 3, Linear Algebra  का सार",
+      "description": "Linear Algebra को समझने के लिए संभवतः सबसे महत्वपूर्ण विचार।"
+    },
+    "ru": {
+      "title": "Линейные преобразования и матрицы | #3 Суть линейной алгебры",
+      "description": "Quite possibly the most important idea for understanding linear algebra."
+    },
+    "en": {
+      "title": "Linear transformations and matrices | Chapter 3, Essence of linear algebra",
+      "description": "Quite possibly the most important idea for understanding linear algebra."
+    },
+    "ar": {
+      "title": "التحويلات الخطية والمصفوفات | الجزء 3، أساسات الجبر الخطي",
+      "description": "ربما تكون الفكرة الأكثر أهمية لفهم الجبر الخطي."
+    }
+  },
+  "span": {
+    "pt-BR": {
+      "title": "Combinações lineares, espaço gerado e vetores de base | Capítulo 2, Essência da álgebra linear",
+      "description": "Os conceitos fundamentais de espaço gerado, combinação linear, dependencia linear e base."
+    },
+    "es": {
+      "title": "Combinaciones lineales, espacio generado y vectores base | Capítulo 2, Esencia del álgebra lineal.",
+      "description": "Los conceptos fundamentales de espacio generado, combinaciones lineales, dependencia lineal, y bases."
+    },
+    "hi": {
+      "title": "Linear combinations, span, और basis vectors | अध्याय 2, Linear Algebra का सार",
+      "description": "Span, linear combinations, linear dependence, और bases के fundamental concepts"
+    },
+    "ru": {
+      "title": "Линейная комбинация, линейная оболочка и базисные векторы | #2 Суть линейной алгебры",
+      "description": "The fundamental concepts of span, linear combinations, linear dependence, and bases."
+    },
+    "en": {
+      "title": "Linear combinations, span, and basis vectors | Chapter 2, Essence of linear algebra",
+      "description": "The fundamental concepts of span, linear combinations, linear dependence, and bases."
+    },
+    "de": {
+      "title": "Linearkombinationen, Spannen und Basisvektoren | Kapitel 2, Essenz der linearen Algebra",
+      "description": "Die grundlegenden Konzepte von Spanne, linearen Kombinationen, linearer Abhängigkeit und Basen."
+    },
+    "th": {
+      "title": "ผลบวกเชิงเส้น Span และ Basis | ตอนที่ 2 แก่นแท้ Linear algebra",
+      "description": "พื้นฐานเรื่อง basis span ผลบวกเชิงเส้น (linear combination) และ ความเป็นอิสระเชิงเส้น (linearly independent)"
+    },
+    "ar": {
+      "title": "Linear combinations, span, और basis vectors | अध्याय 2, Linear Algebra का सार",
+      "description": "Span, linear combinations, linear dependence, और bases के fundamental concepts"
+    }
+  },
+  "vectors": {
+    "tr": {
+      "title": "vektörler | Bölüm 1, Lineer Cebirin Özü",
+      "description": "Doğrusal cebir serisine temel bilgilerle başlamak."
+    },
+    "de": {
+      "title": "Vektoren | Kapitel 1, Essenz der linearen Algebra",
+      "description": "Beginnen Sie die Serie zur linearen Algebra mit den Grundlagen."
+    },
+    "id": {
+      "title": "Apa itu Vektor? | Intisari Aljabar Linier, Bagian 1",
+      "description": "Memulai aljabar linier dengan materi dasar."
+    },
+    "ru": {
+      "title": "Суть линейной алгебры: #1. Векторы",
+      "description": "Beginning the linear algebra series with the basics."
+    },
+    "es": {
+      "title": "Vectores | Capítulo 1, Esencia del álgebra lineal.",
+      "description": "Comenzando la serie de álgebra lineal con lo básico."
+    },
+    "pt-BR": {
+      "title": "Vetores | Capítulo 1, Essência da álgebra linear",
+      "description": "Começando a série de álgebra linear com o básico."
+    },
+    "ar": {
+      "title": "المتجهات | الجزء الأول، أساسات الجبر الخطي",
+      "description": "بدء سلسلة الجبر الخطي بالأساسيات."
+    },
+    "en": {
+      "title": "Vectors | Chapter 1, Essence of linear algebra",
+      "description": "Beginning the linear algebra series with the basics."
+    },
+    "th": {
+      "title": "เวกเตอร์ คืออะไร? | ตอนที่ 1 แก่นแท้ Linear algebra",
+      "description": "นี่คือตอนแรกของซีรีส์ linear algebra!"
+    },
+    "hi": {
+      "title": "Vectors | अध्याय 1, Linear Algebra का सार",
+      "description": "Basics के साथ linear algebra के series की शुरुवात"
+    }
+  },
+  "euclid": {
+    "es": {
+      "title": "¿Por qué regla y compás? | Vídeo invitado de @bensyversen",
+      "description": "¿Para qué servían realmente las construcciones de reglas y compases? Entrevista con el autor de este vídeo: https://youtu.be/VohYM99j8e0 3Blue1Brown cuenta con el apoyo de los espectadores: https://3b1b.co/support Este vídeo invitado ha sido escrito, producido, editado y animado por Ben Syversen Edición adicional: Jack Saxon Modelo 3d Blender: Jan-Hendrik Müller Ayuda adicional de Blender: Thibaut Modrzyk (@Deepia) Ilustraciones: Alex Zepherin/DonDada Studio Batería: Jeremy Gustin Música adicional de Epidemic Sound Agradecimientos especiales a Viktor Blåsjö: https://intellectualmathematics.com/opinionated-history-of-mathematics/ Referencias/Lecturas recomendadas: Los Elementos de Euclides: Edición visual del Libro 1: https://intellectualmathematics.com/dl/Elements.pdf Los Elementos de Euclides al completo: https://farside.ph.utexas.edu/books/Euclid/Elements.pdf Los Trece Libros de Los Elementos, traducido con introducción y comentario por Sir Thomas L. Heath Comentarios y trabajos académicos: A Commentary on the First Book of Euclid's Elements, Proclus, traducido por Glenn R. Morrow Operationalism: An Interpretation of the Philosophy of Ancient Greek Geometry, Viktor Blåsjö: https://link.springer.com/article/10.1007/s10699-021-09791-4 The Euclidean Diagram, Kenneth Manders A New Look at Euclid's Second Proposition, Godfried Toussaint https://www-cgrl.cs.mcgill.ca/~godfried/teaching/dm-reading-assignments/Euclid-Second-Proposition-Math-Intell.pdf Logic of Ruler and Compass Constructions, M. Beeson https://www.michaelbeeson.com/research/papers/Cambridge.pdf El cuarto postulado de Euclides, Vincenzo De Risi https://www.cambridge.org/core/journals/science-in-context/article/abs/euclids-fourth-postulate-its-authenticity-and-significance-for-the-foundations-of-greek-mathematics/DD7EB8AFEDD350A0A8B0BE714D74D2EE Algunos libros relacionados: Euclid's Window: La historia de la geometría desde las líneas paralelas hasta el hiperespacio, Leonard Mlodinow La geometría de René Descartes, René Descartes ------------------ 3blue1brown es un canal sobre la animación de las matemáticas, en todos los sentidos de la palabra animar. Si estás leyendo la parte inferior de la descripción de un vídeo, supongo que estás más interesado que el espectador medio en las lecciones que aquí se imparten. Significaría mucho para mí que te mantuvieras al día de las nuevas, ya sea suscribiéndote aquí en YouTube o siguiéndome en la plataforma que consultes con más regularidad. Lista de correo: https://3blue1brown.substack.com Twitter: https://twitter.com/3blue1brown Bluesky: https://bsky.app/profile/3blue1brown.com Instagram: https://www.instagram.com/3blue1brown Reddit: https://www.reddit.com/r/3blue1brown Facebook: https://www.facebook.com/3blue1brown Patreon: https://patreon.com/3blue1brown Sitio web: https://www.3blue1brown.com"
+    },
+    "fr": {
+      "title": "Que faisait vraiment Euclide ? | Vidéo invitée par Ben Syversen",
+      "description": "What role were ruler and compass constructions really serving?"
+    },
+    "en": {
+      "title": "What was Euclid really doing? | Guest video by Ben Syversen",
+      "description": "What role were ruler and compass constructions really serving?"
+    }
+  },
+  "pdes": {
+    "hi": {
+      "title": "लेकिन partial differential equation क्या है? | DE2",
+      "description": ""
+    },
+    "de": {
+      "title": "Aber was ist eine partielle Differentialgleichung? | DE2",
+      "description": "Die Wärmeleitungsgleichung als einführende PDE."
+    },
+    "en": {
+      "title": "But what is a partial differential equation?  | DE2",
+      "description": "The heat equation, as an introductory PDE."
+    },
+    "es": {
+      "title": "¿Qué es una ecuación diferencial parcial? | ED 2",
+      "description": "Introducción a la ecuación del calor y a las ecuaciones diferenciales parciales (PDEs)"
+    }
+  },
+  "matrix-exponents": {
+    "es": {
+      "title": "¿Cómo (y por qué) elevar e a la potencia de una matriz? | ED 6",
+      "description": "\"🎬 Video adaptado al español por A Toledo (Ingesaurio). Sígueme para más videos cortos de ciencia e ingeniería en mis redes: https://beacons.ai/ingesaurio"
+    },
+    "en": {
+      "title": "How (and why) to raise e to the power of a matrix | DE6",
+      "description": "General exponentials, love, Schrödinger, and more."
+    }
+  },
+  "dandelin-spheres": {
+    "en": {
+      "title": "Why slicing a cone gives an ellipse (beautiful proof)",
+      "description": "Dandelin spheres, conic sections, and a view of genius in math."
+    },
+    "es": {
+      "title": "Por qué cortar un cono da una elipse (demostración hermosa)",
+      "description": "Esferas de Dandelin, secciones cónicas y una visión genial de las matemáticas."
+    }
+  },
+  "uncertainty-principle": {
+    "es": {
+      "title": "El principio de incertidumbre más general, sobre transformadas de Fourier",
+      "description": "El significado del principio de incertidumbre en el contexto de las transformadas de Fourier."
+    },
+    "en": {
+      "title": "The more general uncertainty principle, regarding Fourier transforms",
+      "description": "The meaning of the uncertainty principle in the context of Fourier transforms"
+    }
+  },
+  "groups-and-monsters": {
+    "es": {
+      "title": "Teoría de grupos, abstracción y el monstruo de 196.883 dimensiones",
+      "description": "Una introducción a la teoría de grupos (correcciones de errores menores a continuación)"
+    },
+    "en": {
+      "title": "Group theory, abstraction, and the 196,883-dimensional monster",
+      "description": "An introduction to group theory (Minor error corrections below)"
+    }
+  },
+  "hamming-codes-2": {
+    "es": {
+      "title": "Códigos Hamming parte 2: la implementación de una línea",
+      "description": "Una perspectiva más clara de los códigos de corrección de errores de Hamming"
+    },
+    "en": {
+      "title": "Hamming codes part 2: The one-line implementation",
+      "description": "A cleaner perspective on Hamming error correction codes"
+    }
+  },
+  "hamming-codes": {
+    "en": {
+      "title": "But what are Hamming codes? The origin of error correction",
+      "description": "A discovery-oriented introduction to error correction codes."
+    },
+    "es": {
+      "title": "Pero ¿qué son los códigos Hamming? El origen de la corrección de errores",
+      "description": "Una introducción orientada al descubrimiento de códigos de corrección de errores."
+    }
+  },
+  "gaussian-convolution": {
+    "en": {
+      "title": "A pretty reason why Gaussian + Gaussian = Gaussian",
+      "description": "A visual trick to compute the sum of two normally distributed variables."
+    }
+  },
+  "convolutions2": {
+    "en": {
+      "title": "Convolutions | Why X+Y in probability is a beautiful mess",
+      "description": "Adding random variables, with connections to the central limit theorem."
+    },
+    "es": {
+      "title": "Convoluciones | Por qué X+Y en probabilidad es un hermoso desastre",
+      "description": "Sumando variables aleatorias, con conexiones al teorema del límite central."
+    }
+  },
+  "harvey-mudd-speech": {
+    "en": {
+      "title": "What \"Follow Your Dreams\" Misses | Harvey Mudd Commencement Speech 2024",
+      "description": "I had the pleasure of being invited to give Harvey Mudd's commencement speech this year."
+    }
+  },
+  "binomial-distributions": {
+    "ru": {
+      "title": "Биномиальные распределения | Вероятности вероятностей, часть 1",
+      "description": ""
+    },
+    "en": {
+      "title": "Binomial distributions | Probabilities of probabilities, part 1",
+      "description": "Part 2: https://youtu.be/ZA4JkHKZM50"
+    }
+  },
+  "inventing-math": {
+    "en": {
+      "title": "What does it feel like to invent math?",
+      "description": "An exploration of infinite sums, from convergent to divergent, including a brief introduction to the 2-adic metric, all themed on that cycle between discovery and invention in math."
+    },
+    "ru": {
+      "title": "Каково это — изобретать математику?",
+      "description": ""
+    }
+  }
+}
