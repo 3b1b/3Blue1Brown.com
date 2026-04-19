@@ -35,6 +35,13 @@ import { mergeSearch } from "~/util/url";
 import { languageAtom } from "./LanguageFilter";
 import { lessonAtom, topicAtom } from "./Lessons";
 
+const audioCallouts: Record<string, string> = {
+  hi: "हिन्दी ऑडियो ट्रैक सुनने के लिए, वीडियो सेटिंग्स (गियर आइकन) → ऑडियो ट्रैक → हिन्दी पर जाएं",
+  fr: "Pour écouter la piste audio en français, allez dans les paramètres vidéo (icône d'engrenage) → Piste audio → Français",
+  es: "Para escuchar la pista de audio en español, ve a configuración del video (icono de engranaje) → Pista de audio → Español",
+  ru: "Чтобы услышать звуковую дорожку на русском, перейдите в настройки видео (значок шестерёнки) → Звуковая дорожка → Русский",
+};
+
 // has user explicitly selected a lesson
 let userSelected = false;
 // mark that user explicitly selected a lesson
@@ -149,6 +156,10 @@ export default function Theater() {
             </Button>
           </div>
         </div>
+
+        {languageCode && lesson?.video && audioCallouts[languageCode] && (
+          <p className="text-sm text-gray">{audioCallouts[languageCode]}</p>
+        )}
 
         <div
           ref={(element) => autoHeight(element, details)}
