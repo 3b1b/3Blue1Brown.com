@@ -27,10 +27,12 @@ import {
   getPrevious,
   getRandom,
 } from "~/pages/lessons/lessons";
+import { getLocalization } from "~/pages/lessons/localizations";
 import { topics } from "~/pages/lessons/topics";
 import { autoHeight } from "~/util/hooks";
 import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
+import { languageAtom } from "./LanguageFilter";
 import { lessonAtom, topicAtom } from "./Lessons";
 
 // has user explicitly selected a lesson
@@ -86,6 +88,10 @@ export default function Theater() {
   // link to readable lesson
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
 
+  // localized title/description when language filter is active
+  const languageCode = useAtomValue(languageAtom);
+  const loc = getLocalization(lesson?.id ?? "", languageCode);
+
   // show video details
   const [details, setDetails] = useState(false);
 
@@ -120,7 +126,7 @@ export default function Theater() {
         <div className="flex items-center justify-center gap-4 max-md:flex-col max-md:text-center">
           {/* title */}
           <div className="grow font-sans text-lg">
-            {lesson?.title}
+            {loc?.title ?? lesson?.title}
             {lesson?.id === latest?.id && <sup className="badge">New</sup>}
           </div>
 
@@ -152,7 +158,7 @@ export default function Theater() {
           )}
         >
           <p>{formatDate(lesson?.date)}</p>
-          <p>{lesson?.description}</p>
+          <p>{loc?.description ?? lesson?.description}</p>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 max-sm:gap-2">

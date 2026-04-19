@@ -58,7 +58,7 @@ export function Search({ dialog = false, close = () => {} }) {
   const searchBox = useRef<HTMLInputElement>(null);
 
   // current topic
-  const topicId = useAtomValue(topicAtom);
+  const [topicId, setTopicId] = useAtom(topicAtom);
 
   // current topic details
   const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
@@ -125,7 +125,7 @@ export function Search({ dialog = false, close = () => {} }) {
             aria-controls="results"
           />
         </div>
-        <LanguageFilter />
+        <LanguageFilter onSelect={() => setTopicId("all")} />
       </div>
 
       {/* selected topic */}

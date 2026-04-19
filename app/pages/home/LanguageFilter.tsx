@@ -9,7 +9,9 @@ import { atomWithQuery } from "~/util/atom";
 
 export const languageAtom = atomWithQuery("language");
 
-export default function LanguageFilter() {
+type Props = { onSelect?: () => void };
+
+export default function LanguageFilter({ onSelect }: Props) {
   const [open, setOpen] = useState(false);
   const [language, setLanguage] = useAtom(languageAtom);
 
@@ -39,13 +41,25 @@ export default function LanguageFilter() {
           className="z-30"
         >
           <Popover.Popup className="flex flex-col overflow-hidden rounded-md bg-white shadow-md transition data-closed:opacity-0 data-ending-style:opacity-0 data-open:opacity-100 data-starting-style:opacity-0">
+            <Button
+              color={!language ? "light" : "none"}
+              className="w-full justify-start"
+              onClick={() => {
+                setLanguage("");
+                setOpen(false);
+              }}
+            >
+              English
+            </Button>
             {Object.values(languages).map(({ code, title }) => (
               <Button
                 key={code}
                 color={language === code ? "light" : "none"}
                 className="w-full justify-start"
                 onClick={() => {
-                  setLanguage(language === code ? "" : code);
+                  const next = language === code ? "" : code;
+                  setLanguage(next);
+                  if (next) onSelect?.();
                   setOpen(false);
                 }}
               >
