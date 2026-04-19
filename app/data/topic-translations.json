@@ -1,0 +1,298 @@
+{
+  "hi": {
+    "all": {
+      "title": "सभी",
+      "description": "हिन्दी ऑडियो ट्रैक के साथ उपलब्ध सभी वीडियो"
+    },
+    "best-of": {
+      "title": "सर्वश्रेष्ठ",
+      "description": "कुछ हाथ से चुने गए पसंदीदा"
+    },
+    "neural-networks": {
+      "title": "न्यूरल नेटवर्क",
+      "description": "न्यूरल नेटवर्क की मूल बातें और उनके सीखने के पीछे का गणित"
+    },
+    "linear-algebra": {
+      "title": "रैखिक बीजगणित",
+      "description": "मैट्रिसेज़ वास्तव में क्या करते हैं, इसे दृश्य रूप से समझने का परिचय"
+    },
+    "calculus": {
+      "title": "कलन",
+      "description": "अवकल, समाकल, सीमाओं और अन्य मूल विचारों का दृश्य परिचय"
+    },
+    "differential-equations": {
+      "title": "अवकल समीकरण",
+      "description": "गतिशील प्रणालियों के अध्ययन की सुंदर विधियों का परिचय"
+    },
+    "puzzles": {
+      "title": "पहेलियाँ",
+      "description": "चुनौतीपूर्ण प्रश्न जिनके समाधान में रोचक मोड़ और व्यापक सबक हैं"
+    },
+    "geometry": {
+      "title": "ज्यामिति",
+      "description": "ज्यामिति और उच्च आयामों से संबंधित विभिन्न विषय"
+    },
+    "why-pi": {
+      "title": "पाई क्यों",
+      "description": "पाई इतनी अप्रत्याशित जगहों पर क्यों प्रकट होता है?"
+    },
+    "analysis": {
+      "title": "गणितीय विश्लेषण",
+      "description": "फलनों के बारे में विषय, चाहे सम्मिश्र हों या वास्तविक"
+    },
+    "physics": {
+      "title": "भौतिकी",
+      "description": "भौतिकी के विभिन्न विषय"
+    },
+    "computer-science": {
+      "title": "कंप्यूटर विज्ञान",
+      "description": "एल्गोरिदम से संबंधित विभिन्न विषय"
+    },
+    "fractals": {
+      "title": "भग्न",
+      "description": "भग्न और अव्यवस्थित गतिकी"
+    },
+    "probability": {
+      "title": "प्रायिकता",
+      "description": "प्रायिकता में प्रारंभिक विचारों का परिचय"
+    },
+    "group-theory": {
+      "title": "समूह सिद्धांत",
+      "description": "समरूपता का अध्ययन"
+    },
+    "number-theory": {
+      "title": "संख्या सिद्धांत",
+      "description": "पूर्णांक पैटर्न और अभाज्य संख्याओं से संबंधित विषय"
+    },
+    "lockdown-math": {
+      "title": "लॉकडाउन गणित",
+      "description": "हाई स्कूल गणित के मूलभूत विचारों से शुरू होने वाले लाइव व्याख्यानों की श्रृंखला"
+    },
+    "talks": {
+      "title": "वार्ताएँ",
+      "description": "विभिन्न वार्ताएँ"
+    }
+  },
+  "fr": {
+    "all": {
+      "title": "Tout",
+      "description": "Toutes les vidéos avec une piste audio en Français disponibles"
+    },
+    "best-of": {
+      "title": "Les Meilleurs",
+      "description": "Quelques favoris sélectionnés à la main"
+    },
+    "neural-networks": {
+      "title": "Réseaux de Neurones",
+      "description": "Les bases des réseaux de neurones et les mathématiques de leur apprentissage"
+    },
+    "linear-algebra": {
+      "title": "Algèbre Linéaire",
+      "description": "Une introduction visuelle à ce que font réellement les matrices"
+    },
+    "calculus": {
+      "title": "Analyse",
+      "description": "Introductions visuelles aux idées fondamentales des dérivées, intégrales, limites et plus"
+    },
+    "differential-equations": {
+      "title": "Équations Différentielles",
+      "description": "Un tour à travers les méthodes les plus élégantes pour étudier les systèmes dynamiques"
+    },
+    "puzzles": {
+      "title": "Énigmes",
+      "description": "Des questions stimulantes dont les solutions ont des rebondissements intéressants"
+    },
+    "geometry": {
+      "title": "Géométrie",
+      "description": "Un assortiment de sujets liés à la géométrie et aux dimensions supérieures"
+    },
+    "why-pi": {
+      "title": "Pourquoi Pi",
+      "description": "Pourquoi pi apparaît-il dans tant d'endroits inattendus ?"
+    },
+    "analysis": {
+      "title": "Analyse Complexe",
+      "description": "Des sujets sur les fonctions, à valeurs complexes ou réelles"
+    },
+    "physics": {
+      "title": "Physique",
+      "description": "Un assortiment de sujets de physique"
+    },
+    "computer-science": {
+      "title": "Informatique",
+      "description": "Un assortiment de sujets liés aux algorithmes"
+    },
+    "fractals": {
+      "title": "Fractales",
+      "description": "Fractales et dynamiques chaotiques"
+    },
+    "probability": {
+      "title": "Probabilités",
+      "description": "Un assortiment d'idées introductives en probabilités"
+    },
+    "group-theory": {
+      "title": "Théorie des Groupes",
+      "description": "L'étude de la symétrie"
+    },
+    "number-theory": {
+      "title": "Théorie des Nombres",
+      "description": "Sujets liés aux motifs entiers et aux nombres premiers"
+    },
+    "lockdown-math": {
+      "title": "Maths en Confinement",
+      "description": "Une série de conférences en direct partant des idées fondamentales des maths du lycée"
+    },
+    "talks": {
+      "title": "Conférences",
+      "description": "Diverses conférences"
+    }
+  },
+  "es": {
+    "all": {
+      "title": "Todos",
+      "description": "Todos los videos con pista de audio en Español disponibles"
+    },
+    "best-of": {
+      "title": "Lo Mejor",
+      "description": "Algunos favoritos seleccionados a mano"
+    },
+    "neural-networks": {
+      "title": "Redes Neuronales",
+      "description": "Los fundamentos de las redes neuronales y las matemáticas detrás de cómo aprenden"
+    },
+    "linear-algebra": {
+      "title": "Álgebra Lineal",
+      "description": "Una introducción visual a lo que las matrices realmente hacen"
+    },
+    "calculus": {
+      "title": "Cálculo",
+      "description": "Introducciones visuales a las ideas fundamentales de derivadas, integrales, límites y más"
+    },
+    "differential-equations": {
+      "title": "Ecuaciones Diferenciales",
+      "description": "Un recorrido por algunos de los métodos más hermosos para estudiar sistemas dinámicos"
+    },
+    "puzzles": {
+      "title": "Acertijos",
+      "description": "Preguntas desafiantes cuyas soluciones tienen giros interesantes y lecciones más amplias"
+    },
+    "geometry": {
+      "title": "Geometría",
+      "description": "Una variedad de temas relacionados con la geometría y las dimensiones superiores"
+    },
+    "why-pi": {
+      "title": "Por Qué Pi",
+      "description": "¿Por qué aparece pi en tantos lugares inesperados?"
+    },
+    "analysis": {
+      "title": "Análisis",
+      "description": "Temas sobre funciones, ya sean de valor complejo o real"
+    },
+    "physics": {
+      "title": "Física",
+      "description": "Una variedad de temas de física"
+    },
+    "computer-science": {
+      "title": "Ciencias de la Computación",
+      "description": "Una variedad de temas relacionados con los algoritmos"
+    },
+    "fractals": {
+      "title": "Fractales",
+      "description": "Fractales y dinámica caótica"
+    },
+    "probability": {
+      "title": "Probabilidad",
+      "description": "Una variedad de ideas introductorias en probabilidad"
+    },
+    "group-theory": {
+      "title": "Teoría de Grupos",
+      "description": "El estudio de la simetría"
+    },
+    "number-theory": {
+      "title": "Teoría de Números",
+      "description": "Temas relacionados con patrones enteros y números primos"
+    },
+    "lockdown-math": {
+      "title": "Matemáticas en Cuarentena",
+      "description": "Una serie de conferencias en vivo que comienza con ideas fundamentales de matemáticas de bachillerato"
+    },
+    "talks": {
+      "title": "Charlas",
+      "description": "Varias charlas"
+    }
+  },
+  "ru": {
+    "all": {
+      "title": "Все",
+      "description": "Все видео с доступной аудиодорожкой на Русском языке"
+    },
+    "best-of": {
+      "title": "Лучшее",
+      "description": "Несколько избранных фаворитов"
+    },
+    "neural-networks": {
+      "title": "Нейронные Сети",
+      "description": "Основы нейронных сетей и математика того, как они обучаются"
+    },
+    "linear-algebra": {
+      "title": "Линейная Алгебра",
+      "description": "Введение в визуализацию того, что на самом деле делают матрицы"
+    },
+    "calculus": {
+      "title": "Математический Анализ",
+      "description": "Наглядное введение в основные идеи производных, интегралов, пределов и многого другого"
+    },
+    "differential-equations": {
+      "title": "Дифференциальные Уравнения",
+      "description": "Экскурс по некоторым из самых красивых методов изучения динамических систем"
+    },
+    "puzzles": {
+      "title": "Задачи",
+      "description": "Сложные вопросы, решения которых содержат интересные повороты и более широкие уроки"
+    },
+    "geometry": {
+      "title": "Геометрия",
+      "description": "Подборка тем, связанных с геометрией и высшими измерениями"
+    },
+    "why-pi": {
+      "title": "Почему Пи",
+      "description": "Почему пи появляется в таких неожиданных местах?"
+    },
+    "analysis": {
+      "title": "Анализ",
+      "description": "Темы о функциях — комплексных или вещественнозначных"
+    },
+    "physics": {
+      "title": "Физика",
+      "description": "Подборка тем из физики"
+    },
+    "computer-science": {
+      "title": "Информатика",
+      "description": "Подборка тем, связанных с алгоритмами"
+    },
+    "fractals": {
+      "title": "Фракталы",
+      "description": "Фракталы и хаотическая динамика"
+    },
+    "probability": {
+      "title": "Теория Вероятностей",
+      "description": "Подборка вводных идей из теории вероятностей"
+    },
+    "group-theory": {
+      "title": "Теория Групп",
+      "description": "Изучение симметрии"
+    },
+    "number-theory": {
+      "title": "Теория Чисел",
+      "description": "Темы, связанные с паттернами целых чисел и простыми числами"
+    },
+    "lockdown-math": {
+      "title": "Математика на Карантине",
+      "description": "Серия прямых трансляций, начинающихся с основополагающих идей школьной математики"
+    },
+    "talks": {
+      "title": "Лекции",
+      "description": "Различные лекции"
+    }
+  }
+}

@@ -18,6 +18,7 @@ import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
+import _topicTranslations from "~/data/topic-translations.json";
 import LanguageFilter, { languageAtom } from "~/pages/home/LanguageFilter";
 import { userSelect } from "~/pages/home/Theater";
 import { languages } from "~/pages/lessons/languages";
@@ -31,6 +32,13 @@ import { mergeSearch } from "~/util/url";
 
 const limit = 20;
 
+const uiTranslations: Record<string, { lessons: string; topics: string }> = {
+  hi: { lessons: "पाठ", topics: "विषय" },
+  fr: { lessons: "Leçons", topics: "Sujets" },
+  es: { lessons: "Lecciones", topics: "Temas" },
+  ru: { lessons: "Уроки", topics: "Темы" },
+};
+
 // global selected topic
 export const topicAtom = atomWithQuery("topic");
 // global search query
@@ -40,11 +48,14 @@ export const lessonAtom = atomWithQuery("lesson");
 
 // lesson search section of home page
 export default function Lessons() {
+  const languageCode = useAtomValue(languageAtom);
+  const ui = uiTranslations[languageCode];
+
   return (
     <section>
       <H2>
         <hr />
-        Lessons
+        {ui?.lessons ?? "Lessons"}
         <hr />
       </H2>
 
@@ -68,6 +79,17 @@ export function Search({ dialog = false, close = () => {} }) {
 
   // current language filter
   const languageCode = useAtomValue(languageAtom);
+
+  // translated topic title/description for active language
+  const topicTranslations = _topicTranslations as Record<
+    string,
+    Record<string, { title: string; description: string }>
+  >;
+  const getTopicTrans = (id: string) =>
+    languageCode ? topicTranslations[languageCode]?.[id] : undefined;
+
+  const ui = uiTranslations[languageCode];
+
   const languageLessons = useMemo(
     () =>
       languageCode
@@ -145,11 +167,15 @@ export function Search({ dialog = false, close = () => {} }) {
               aria-label="Back to all topics"
             >
               <ArrowLeftIcon />
-              Topics
+              {ui?.topics ?? "Topics"}
             </Button>
             <div className="col-span-2 flex flex-col gap-2">
-              <div className="font-sans text-lg font-medium">{topic.title}</div>
-              <div>{topic.description}</div>
+              <div className="font-sans text-lg font-medium">
+                {getTopicTrans(topicId)?.title ?? topic.title}
+              </div>
+              <div>
+                {getTopicTrans(topicId)?.description ?? topic.description}
+              </div>
             </div>
           </div>
         </div>
@@ -172,7 +198,7 @@ export function Search({ dialog = false, close = () => {} }) {
                 key={id}
                 to={{ search: mergeSearch(location.search, `topic=${id}`) }}
                 image={image}
-                title={title}
+                title={getTopicTrans(id)?.title ?? title}
                 onClick={(event) => {
                   // so user doesn't forget they're filtering by search
                   setSearch("");
