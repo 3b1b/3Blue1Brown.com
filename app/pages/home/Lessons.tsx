@@ -1,3 +1,4 @@
+import type { LanguageCode } from "~/pages/lessons/languages";
 import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
@@ -17,8 +18,11 @@ import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
+import LanguageFilter, { languageAtom } from "~/pages/home/LanguageFilter";
 import { userSelect } from "~/pages/home/Theater";
+import { languages } from "~/pages/lessons/languages";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
+import { getLocalization } from "~/pages/lessons/localizations";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
@@ -62,14 +66,27 @@ export function Search({ dialog = false, close = () => {} }) {
   // current lesson
   const lessonId = useAtomValue(lessonAtom);
 
-  // current topic lesson details
+  // current language filter
+  const languageCode = useAtomValue(languageAtom);
+  const languageLessons = useMemo(
+    () =>
+      languageCode
+        ? new Set(languages[languageCode as LanguageCode]?.lessons)
+        : null,
+    [languageCode],
+  );
+
+  // current topic lesson details, pre-filtered by language
   const lessons = useMemo(
     // make stable reference
     () =>
       (topic?.lessons ?? byDate)
         ?.map((id) => getLesson(id)?.frontmatter)
-        .filter((lesson) => !!lesson),
-    [topic],
+        .filter((lesson) => !!lesson)
+        .filter(
+          (lesson) => !languageLessons || languageLessons.has(lesson.id ?? ""),
+        ),
+    [topic, languageLessons],
   );
 
   // current search
@@ -96,15 +113,20 @@ export function Search({ dialog = false, close = () => {} }) {
 
   return (
     <>
-      <TextBox
-        ref={searchBox}
-        icon={<MagnifyingGlassIcon />}
-        value={search}
-        onChange={setSearch}
-        className="text-lg"
-        placeholder="Search..."
-        aria-controls="results"
-      />
+      <div className="flex items-center gap-2">
+        <div className="flex-1">
+          <TextBox
+            ref={searchBox}
+            icon={<MagnifyingGlassIcon />}
+            value={search}
+            onChange={setSearch}
+            className="text-lg"
+            placeholder="Search..."
+            aria-controls="results"
+          />
+        </div>
+        <LanguageFilter />
+      </div>
 
       {/* selected topic */}
       {topic && (
@@ -139,25 +161,31 @@ export function Search({ dialog = false, close = () => {} }) {
           id="results"
           className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
         >
-          {Object.entries(topics).map(([id, { title, image }]) => (
-            <Card
-              key={id}
-              to={{ search: mergeSearch(location.search, `topic=${id}`) }}
-              image={image}
-              title={title}
-              onClick={(event) => {
-                // so user doesn't forget they're filtering by search
-                setSearch("");
-                // if in header search popup
-                if (!event.currentTarget?.closest("section")) return;
-                // don't conflict with selected lesson scroll
-                if (lessonId) return;
-                // scroll up to search box
-                scrollTo(searchBox.current, { behavior: "instant" });
-              }}
-              aria-label={`Explore topic "${title}"`}
-            />
-          ))}
+          {Object.entries(topics)
+            .filter(
+              ([, { lessons: topicLessons }]) =>
+                !languageLessons ||
+                topicLessons.some((id) => languageLessons.has(id)),
+            )
+            .map(([id, { title, image }]) => (
+              <Card
+                key={id}
+                to={{ search: mergeSearch(location.search, `topic=${id}`) }}
+                image={image}
+                title={title}
+                onClick={(event) => {
+                  // so user doesn't forget they're filtering by search
+                  setSearch("");
+                  // if in header search popup
+                  if (!event.currentTarget?.closest("section")) return;
+                  // don't conflict with selected lesson scroll
+                  if (lessonId) return;
+                  // scroll up to search box
+                  scrollTo(searchBox.current, { behavior: "instant" });
+                }}
+                aria-label={`Explore topic "${title}"`}
+              />
+            ))}
         </div>
       ) : results.length ? (
         <>
@@ -176,6 +204,9 @@ export function Search({ dialog = false, close = () => {} }) {
                 }) => {
                   // has video
                   const video = getLesson(id)?.frontmatter.video;
+
+                  // localized title/description when language filter is active
+                  const loc = getLocalization(id, languageCode);
 
                   return (
                     <div
@@ -196,8 +227,8 @@ export function Search({ dialog = false, close = () => {} }) {
                         }
                         direction="row"
                         image={image}
-                        title={title}
-                        description={description}
+                        title={loc?.title ?? title}
+                        description={loc?.description ?? description}
                         className={clsx(lessonId === id && "opacity-50")}
                         onClick={() => {
                           userSelect();

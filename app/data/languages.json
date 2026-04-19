@@ -1,0 +1,12 @@
+{
+  "hi": { "title": "हिन्दी", "playlist": "PLZHQObOWTQDNwUA5K8jpc5GSl335bX2vD" },
+  "fr": {
+    "title": "Français",
+    "playlist": "PLZHQObOWTQDNYUN7N_DSrqPELmuAjp-xx"
+  },
+  "es": {
+    "title": "Español",
+    "playlist": "PLZHQObOWTQDM4HpiIzNVFtvy9BZQd8fH9"
+  },
+  "ru": { "title": "Русский", "playlist": "PLZHQObOWTQDM4E-dwvbnQTiyKDO-y9T2t" }
+}
