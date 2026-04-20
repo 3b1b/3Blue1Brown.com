@@ -38,9 +38,15 @@ export const useChanged = <Value>(
 export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   list: Entry[],
   _search: string,
+  onSearch?: (search: string) => void,
 ) => {
   // debounce to avoid excessive work
   const search = useDebounce(_search.trim(), 300);
+
+  // callback
+  useEffect(() => {
+    onSearch?.(search);
+  }, [search, onSearch]);
 
   const client = useClient();
 
