@@ -1,8 +1,8 @@
 import type { JSX, ReactNode } from "react";
 import { Children, isValidElement, useEffect, useRef } from "react";
+import { onlyText } from "react-children-utilities";
 import { atom, useSetAtom } from "jotai";
 import Link from "~/components/Link";
-import { renderText } from "~/util/dom";
 import { slugify } from "~/util/string";
 
 type Props = {
@@ -65,6 +65,8 @@ function Heading({ level, id, className, children }: Props) {
           content: getContent(children),
         };
 
+        console.log(heading);
+
         // insert at correct position
         headings.splice(position, 0, heading);
 
@@ -107,13 +109,13 @@ export function H4(props: HeadingLevel) {
 }
 
 // get id from content
-const getId = (content: ReactNode) => slugify(renderText(content));
+const getId = (content: ReactNode) => slugify(onlyText(content));
 
 // get simplified content for table of contents
 const getContent = (content: ReactNode) =>
   Children.map(content, (node) => {
     if (isMathElement(node)) return node;
-    return renderText(node);
+    return onlyText(node);
   });
 
 // is node a root math element node
