@@ -139,35 +139,27 @@ We envision a future where engineers collaborate with a fleet of AI teammates th
 
 ## Featured Work
 
-[SWE 1.5](https://cognition.ai/blog/swe-1-5) captures how we think about building at Cognition. AI systems are capable of executing meaningful engineering work, but only if they're embedded in the right workflows. That reality shapes both our technical decisions and our culture.
+[SWE 1.6](https://cognition.ai/blog/swe-1-6) reflects how we think about building AI that actually works in practice - not just on benchmarks, but in the moment-to-moment experience of using it.
 
 <Image image={sweBenchmark} />
 
-In SWE 1.5, engineers don't hand off vague prompts and hope for the best. Instead, work is structured around intent, constraints, and feedback. Humans define the problem and evaluate outcomes; agents handle execution, iteration, and local debugging. The loop is tight, continuous, and collaborative.
+SWE 1.6 was post-trained from scratch to eliminate inefficiencies - bloated trajectories, sequential tool calls, and unnecessary terminal reliance. A length penalty in training was key: it discourages overthinking without sacrificing capability, pushing the model toward parallel tool use and faster context retrieval. The result: solve rates hold steady while assistant turns stay flat. Less friction, same intelligence. 
 
-This way of working demands different tooling:
-
-- Agents must operate in real environments - actual repos, tests, CI, and tooling.
-- Their behavior must be inspectable and steerable, not opaque.
-- Systems must support partial progress, revision, and course correction instead of all-or-nothing outputs.
-
-That's why much of our work focuses on long-horizon task execution, failure recovery, and keeping agents grounded in an evolving context. SWE 1.5 isn't about replacing engineers - it's about letting them operate at a higher level of abstraction while staying firmly in control.
-
-Internally, this translates into a culture that values:
+That kind of disciplined tradeoff doesn't happen by accident. Internally, this translates into a culture that values:
 
 - systems thinking over surface-level hacks,
 - fast iteration paired with technical rigor,
 - and building tools we ourselves rely on every day.
 
-**SWE 1.5 proves you don't have to choose between speed and intelligence, and that belief shapes how we build.**
+**SWE 1.6 proves you don't have to choose between speed or craft - and that belief shapes how we build.**
 
 <Button
-  to="https://cognition.ai/blog/swe-1-5"
+  to="https://cognition.ai/blog/swe-1-6"
   color="light"
   className="self-center"
 >
   <BookIcon />
-  Read More About SWE 1.5
+  Read More About SWE 1.6
 </Button>
 
 </section>
