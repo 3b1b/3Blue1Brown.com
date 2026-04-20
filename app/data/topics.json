@@ -96,52 +96,6 @@
       "exponential-and-epidemics"
     ]
   },
-  "puzzles": {
-    "title": "Puzzles",
-    "description": "Challenging questions whose solutions have interesting twists and broader lessons",
-    "lessons": [
-      "hardest-problem",
-      "windmills",
-      "shadows",
-      "one-more-dim",
-      "subsets-puzzle",
-      "moser-reboot",
-      "chessboard-puzzle",
-      "three-utilities",
-      "eulers-characteristic-formula"
-    ]
-  },
-  "geometry": {
-    "title": "Geometry",
-    "description": "An assortment of topics related to geometry and higher dimensions",
-    "lessons": [
-      "sphere-area",
-      "dandelin-spheres",
-      "spheres-talk",
-      "quaternions",
-      "quaternions-and-3d-rotation",
-      "higher-dimensions"
-    ]
-  },
-  "topology": {
-    "title": "Topology",
-    "description": "Delightful proofs that showcase the true spirit of topology",
-    "lessons": ["inscribed-rect-v2", "hairy-ball", "borsuk-ulam"]
-  },
-  "why-pi": {
-    "title": "Why Pi",
-    "description": "Why does pi show up in so many unexpected places?",
-    "lessons": [
-      "clacks",
-      "colliding-blocks-v2",
-      "clacks-via-light",
-      "basel-problem",
-      "leibniz-formula",
-      "gaussian-integral",
-      "wallis-product",
-      "pi-was-628"
-    ]
-  },
   "analysis": {
     "title": "Analysis",
     "description": "Topics about functions, either complex or real valued",
@@ -192,6 +146,52 @@
       "grover-clarification",
       "hanoi-and-sierpinski"
     ]
+  },
+  "why-pi": {
+    "title": "Why Pi",
+    "description": "Why does pi show up in so many unexpected places?",
+    "lessons": [
+      "clacks",
+      "colliding-blocks-v2",
+      "clacks-via-light",
+      "basel-problem",
+      "leibniz-formula",
+      "gaussian-integral",
+      "wallis-product",
+      "pi-was-628"
+    ]
+  },
+  "puzzles": {
+    "title": "Puzzles",
+    "description": "Challenging questions whose solutions have interesting twists and broader lessons",
+    "lessons": [
+      "hardest-problem",
+      "windmills",
+      "shadows",
+      "moser-reboot",
+      "one-more-dim",
+      "subsets-puzzle",
+      "chessboard-puzzle",
+      "three-utilities",
+      "eulers-characteristic-formula"
+    ]
+  },
+  "geometry": {
+    "title": "Geometry",
+    "description": "An assortment of topics related to geometry and higher dimensions",
+    "lessons": [
+      "sphere-area",
+      "dandelin-spheres",
+      "spheres-talk",
+      "quaternions",
+      "quaternions-and-3d-rotation",
+      "higher-dimensions"
+    ]
+  },
+  "topology": {
+    "title": "Topology",
+    "description": "Delightful proofs that showcase the true spirit of topology",
+    "lessons": ["inscribed-rect-v2", "hairy-ball", "borsuk-ulam"]
   },
   "fractals": {
     "title": "Fractals",
