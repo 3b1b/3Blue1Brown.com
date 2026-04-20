@@ -15,9 +15,11 @@ import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
 import Celebrate from "~/components/Celebrate";
 import { load as loadDarkMode } from "~/components/DarkMode";
+import Link from "~/components/Link";
 import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
+import site from "~/data/site.json";
 import { scrollTo } from "~/util/dom";
 import { waitFor } from "~/util/misc";
 
@@ -80,5 +82,30 @@ export default function App() {
         </body>
       </html>
     </IconContext.Provider>
+  );
+}
+
+// app-wide error fallback
+export function ErrorBoundary({ error }: { error: Error }) {
+  // keep this simple to avoid errors in error boundary itself
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+
+      <body>
+        <main className="flex flex-col items-center justify-center-safe gap-8 p-12">
+          <h1>Error</h1>
+          <p>
+            We're sorry, something went wrong. Please{" "}
+            <Link to={site.github_issues}>let us know about it.</Link>
+          </p>
+          <p className="text-error">{error.stack}</p>
+          <p>Open your browser's developer console for more details.</p>
+        </main>
+      </body>
+    </html>
   );
 }

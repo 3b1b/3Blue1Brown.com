@@ -65,8 +65,6 @@ function Heading({ level, id, className, children }: Props) {
           content: getContent(children),
         };
 
-        console.log(heading);
-
         // insert at correct position
         headings.splice(position, 0, heading);
 
