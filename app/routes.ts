@@ -6,6 +6,7 @@ export default [
   route("lessons/:id", "pages/lessons/Lesson.tsx"),
   route("about", "pages/about/About.mdx"),
   route("extras", "pages/extras/Extras.tsx"),
+  route("translations", "pages/translations/Translations.tsx"),
   route("talent", "pages/talent/Talent.tsx"),
   route("talent/:id", "pages/talent/Partner.tsx"),
   route("blog/:id", "pages/blog/Post.tsx"),
