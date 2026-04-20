@@ -149,7 +149,7 @@ export default function Feedback() {
                 form={id}
               />
               <TextBox
-                label="Username"
+                label="GitHub Username"
                 help="Optional. So we can tag you in the issue."
                 placeholder="@yourname"
                 value={username}
