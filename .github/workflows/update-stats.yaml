@@ -24,7 +24,7 @@ jobs:
         uses: mxschmitt/action-tmate@v3
 
       - name: Run script
-        run: bun ./get-stats.ts
+        run: bun ./.github/get-stats.ts
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
