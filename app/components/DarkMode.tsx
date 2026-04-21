@@ -30,7 +30,7 @@ export default function DarkMode({ className = "" }) {
 
   // for debugging
   useEventListener("keydown", ({ key, ctrlKey, altKey, shiftKey, metaKey }) => {
-    if (key.match(/d/i) && (ctrlKey || altKey || shiftKey || metaKey))
+    if (key.toLowerCase() === "d" && (ctrlKey || altKey || shiftKey || metaKey))
       setDarkMode((darkMode) => !darkMode);
   });
 
