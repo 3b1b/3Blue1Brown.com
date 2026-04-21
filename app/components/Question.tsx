@@ -102,8 +102,8 @@ export default function Question({
 
       {state !== "unanswered" && (
         <div className="sr-only" role="alert" aria-atomic="true">
-          {state === "right" && "Correct"}
-          {state === "wrong" && "Incorrect"}
+          {state === "right" && <span>Correct</span>}
+          {state === "wrong" && <span>Incorrect</span>}
         </div>
       )}
 
@@ -125,28 +125,29 @@ export default function Question({
           size="sm"
           aria-disabled={!value}
         >
-          {state === "right" && "Reset"}
-          {state === "wrong" && "Try Again"}
-          {state === "unanswered" && "Check"}
+          {state === "right" && <span>Reset</span>}
+          {state === "wrong" && <span>Try Again</span>}
+          {state === "unanswered" && <span>Check</span>}
         </Button>
 
         {state === "unanswered" && (
           <>
             <PiCreature emotion="pondering" size="xs" flip />
-            What could it be...
+            {/* https://github.com/3b1b/3Blue1Brown.com/issues/577 */}
+            <span>What could it be...</span>
           </>
         )}
 
         {state === "wrong" && (
           <>
             <PiCreature emotion="confused" size="xs" flip />
-            Not quite...
+            <span>Not quite...</span>
           </>
         )}
         {state === "right" && (
           <>
             <PiCreature emotion="hooray" size="xs" flip />
-            Correct!
+            <span>Correct!</span>
           </>
         )}
       </div>

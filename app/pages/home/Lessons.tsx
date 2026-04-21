@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
+import { event as analyticsEvent } from "~/components/Analytics";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
@@ -76,7 +77,12 @@ export function Search({ dialog = false, close = () => {} }) {
   const [search, setSearch] = useAtom(searchAtom);
 
   // search results
-  let results = useFuzzySearch(lessons, search);
+  let results = useFuzzySearch(
+    lessons,
+    search,
+    // track analytics event
+    (search) => analyticsEvent("lesson_search", { search }),
+  );
 
   // display newest to oldest for certain topics
   if (["all", "best-of"].includes(topicId)) results = results.toReversed();
@@ -113,10 +119,10 @@ export function Search({ dialog = false, close = () => {} }) {
 
           <div className="grid w-full grid-cols-3 gap-8 max-sm:grid-cols-1">
             <Button
-              // forget search so user doesn't forget they're filtering by search
               to={{ search: mergeSearch(location.search, `topic=&search=`) }}
               className="self-center justify-self-start max-md:justify-self-center"
               onClick={() => {
+                // clear search so user doesn't forget they're filtering by search
                 setSearch("");
                 userSelect();
               }}
@@ -154,6 +160,8 @@ export function Search({ dialog = false, close = () => {} }) {
                 if (lessonId) return;
                 // scroll up to search box
                 scrollTo(searchBox.current, { behavior: "instant" });
+                // track analytics event
+                analyticsEvent("select_topic", { id });
               }}
               aria-label={`Explore topic "${title}"`}
             />

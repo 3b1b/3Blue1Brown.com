@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { ListBulletsIcon, XIcon } from "@phosphor-icons/react";
 import {
+  useClickOutside,
   useElementBounding,
   useElementSize,
   useEventListener,
@@ -71,9 +72,9 @@ export default function TableOfContents() {
   // if (useChanged(pathname, false)) setOpen(false);
 
   // on click off, change open
-  // useClickOutside(ref, () => {
-  //   if (!wideEnough) setOpen(false);
-  // });
+  useClickOutside(ref, () => {
+    if (!wideEnough) setOpen(false);
+  });
 
   // active index
   const [active, setActive] = useState(0);
@@ -127,7 +128,7 @@ export default function TableOfContents() {
             ref={active === index ? activeRef : undefined}
             style={{ "--level": level + 1 } as CSSProperties}
             className={clsx(
-              `flex items-center gap-2 py-2 pr-4 pl-[calc(var(--level)*--spacing(2))] text-black no-underline hocus:bg-light-gray hocus:text-theme`,
+              "flex items-center gap-2 py-2 pr-4 pl-[calc(var(--level)*--spacing(2))] text-black no-underline hocus:bg-light-gray hocus:text-theme",
               active === index && "bg-light-gray text-theme",
             )}
             to={{ hash: "#" + id }}

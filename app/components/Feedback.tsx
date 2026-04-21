@@ -149,7 +149,7 @@ export default function Feedback() {
                 form={id}
               />
               <TextBox
-                label="Username"
+                label="GitHub Username"
                 help="Optional. So we can tag you in the issue."
                 placeholder="@yourname"
                 value={username}
@@ -187,12 +187,8 @@ export default function Feedback() {
                 {status === "info" && (
                   <p>
                     This will start a <strong>public</strong> issue on{" "}
-                    <Link
-                      to={`https://github.com/${site.github_org}/${site.github_repo}/issues`}
-                    >
-                      GitHub
-                    </Link>{" "}
-                    with the above and some{" "}
+                    <Link to={site.github_issues}>GitHub</Link> with the above
+                    and some{" "}
                     <Tooltip trigger="debug info">
                       <dl className="self-center">
                         {Object.entries(details).map(([key, value]) => (
