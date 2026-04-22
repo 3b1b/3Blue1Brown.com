@@ -5,6 +5,7 @@
 
   "github_org": "3b1b",
   "github_repo": "3blue1brown.com",
+  "github_issues": "https://github.com/3b1b/3blue1brown.com/issues",
 
   "bucket": "https://storage.googleapis.com/3blue1brown-website-bucket",
   "issues": "https://three-blue-one-brown-issues-92197834749.us-central1.run.app",

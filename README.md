@@ -10,7 +10,7 @@ Key technologies used in this project:
 
 - Bun, as package manager and platform (with Node as fallback)
 - React 19
-- React Router v7, as a framework for routing and pre-rendering
+- React Router v7 ("framework mode"), for routing and pre-rendering
 - Vite as bundler
 - TypeScript, for static type checking
 - MDX, for easier authoring of large static content
@@ -96,7 +96,7 @@ Run periodically, manually review, and use discretion.
 
 ## Notes
 
-- This is a static, fully pre-rendered site with client side-hydration for interactive elements.
+- This is a React Router v7 app in "framework mode". All routes are fully pre-rendered static pages, with client side-hydration for interactive elements.
 - If you're annoyed by frequent reloading in dev mode, it's a known issue and see https://github.com/vitejs/vite/discussions/14801
 - MDX files can only be type-checked in the editor, and not with the the `test:types` script.
   This is because TypeScript only supports plugins for its language service (for IDEs) and not for its compiler (for CLI).

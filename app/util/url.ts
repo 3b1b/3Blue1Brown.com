@@ -1,3 +1,5 @@
+import { event as analyticsEvent } from "~/components/Analytics";
+
 // string to signify that param should be removed from url search
 export const deleteParam = "";
 
@@ -14,6 +16,8 @@ export const mergeSearch = (from = "", to = "") => {
 
 // share current page
 export const share = async () => {
+  // track analytics event
+  analyticsEvent("share", { url: window.location.href });
   try {
     await window.navigator.share({
       title: document.title,
