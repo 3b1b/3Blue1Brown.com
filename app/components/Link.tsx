@@ -1,13 +1,13 @@
-import type { value ComponentProps, value ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import {
-  value Link as RouterLink,
-  value useLocation,
-  value useMatch,
-  value useResolvedPath,
+  Link as RouterLink,
+  useLocation,
+  useMatch,
+  useResolvedPath,
 } from "react-router";
-import { value ArrowSquareOutIcon } from "@phosphor-icons/react";
+import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { value removeParagraph } from "~/components/Markdownify";
+import { removeParagraph } from "~/components/Markdownify";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -22,13 +22,19 @@ type Base = {
   children: ReactNode;
 };
 
-type _Anchor = ComponentProps & { to: string };
-type _Router = ComponentProps;
+type _Anchor = ComponentProps<"a"> & { to: string };
+type _Router = ComponentProps<typeof RouterLink>;
 
 // link to internal route or external url
-export default function Link(
-  { ref, to, newTab, arrow, className, children, ...props }: Props
-) {
+export default function Link({
+  ref,
+  to,
+  newTab,
+  arrow,
+  className,
+  children,
+  ...props
+}: Props) {
   children = removeParagraph(children);
 
   // whether link is external (some other site) or internal (within router)

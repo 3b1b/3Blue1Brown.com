@@ -3,7 +3,7 @@ export async function request<Response>(
   url: string | URL,
   options: RequestInit,
   parse: "json" | "text" = "json",
-): Promise {
+): Promise<Response> {
   // construct request
   const request = new Request(url, options);
   // make request

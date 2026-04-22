@@ -1,5 +1,5 @@
-import type { value ReactNode } from "react";
-import { value QuestionIcon } from "@phosphor-icons/react";
+import type { ReactNode } from "react";
+import { QuestionIcon } from "@phosphor-icons/react";
 import Tooltip from "~/components/Tooltip";
 
 type Props = {

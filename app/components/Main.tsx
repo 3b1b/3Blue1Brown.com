@@ -1,4 +1,4 @@
-import type { value ReactNode } from "react";
+import type { ReactNode } from "react";
 import clsx from "clsx";
 
 type Props = {
@@ -17,7 +17,7 @@ export default function Main({ striped, className, children }: Props) {
       id="content"
       className={clsx(
         striped && "[&>section:nth-of-type(odd)]:bg-alt-white",
-        className
+        className,
       )}
     >
       {children}

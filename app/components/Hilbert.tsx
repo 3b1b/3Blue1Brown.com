@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { value max, value min } from "lodash-es";
-import { value Vector } from "~/util/vector";
+import { max, min } from "lodash-es";
+import { Vector } from "~/util/vector";
 import classes from "./Hilbert.module.css";
 
 // order of hilbert curve

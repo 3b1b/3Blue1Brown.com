@@ -1,5 +1,5 @@
-import { value useEffect } from "react";
-import { value useLocation } from "react-router";
+import { useEffect } from "react";
+import { useLocation } from "react-router";
 
 // reference https://github.com/keiko-app/react-google-analytics
 
@@ -38,7 +38,7 @@ export default function Analytics() {
 }
 
 // trigger custom event
-export const event = (name: string, params?: Record) => {
+export const event = (name: string, params?: Record<string, unknown>) => {
   if (import.meta.env.DEV) {
     console.debug("Analytics event", { name, params });
     return;

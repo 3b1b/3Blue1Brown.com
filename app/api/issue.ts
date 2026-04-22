@@ -1,4 +1,4 @@
-import { value request } from "~/api";
+import { request } from "~/api";
 import site from "~/data/site.json";
 
 // cloud func url

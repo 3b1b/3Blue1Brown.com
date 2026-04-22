@@ -1,25 +1,23 @@
-import type { value ComponentType, value LazyExoticComponent } from "react";
-import { value Suspense, value useRef } from "react";
-import { value useLocation } from "react-router";
-import {
-  value CornersOutIcon,
-  value HandPointingIcon,
-} from "@phosphor-icons/react";
-import { value useFullscreen } from "@reactuses/core";
+import type { ComponentType, LazyExoticComponent } from "react";
+import { Suspense, useRef } from "react";
+import { useLocation } from "react-router";
+import { CornersOutIcon, HandPointingIcon } from "@phosphor-icons/react";
+import { useFullscreen } from "@reactuses/core";
 import clsx from "clsx";
 import Button from "~/components/Button";
-import { value useClient } from "~/util/hooks";
+import { useClient } from "~/util/hooks";
 
-type Props<ComponentProps extends Record> = {
+type Props<ComponentProps extends Record<string, unknown>> = {
   // lazy-loaded component
-  Component: LazyExoticComponent;
-} & // rest of props get passed to lazy component
-ComponentProps;
+  Component: LazyExoticComponent<ComponentType<ComponentProps>>;
+} &
+  // rest of props get passed to lazy component
+  ComponentProps;
 
 // interactive component for lessons
-export default function Interactive<ComponentProps extends Record>(
-  { Component, ...props }: Props
-) {
+export default function Interactive<
+  ComponentProps extends Record<string, unknown>,
+>({ Component, ...props }: Props<ComponentProps>) {
   const ref = useRef<HTMLDivElement>(null);
 
   // fullscreen control
@@ -46,7 +44,7 @@ export default function Interactive<ComponentProps extends Record>(
           ref={ref}
           className={clsx(
             "relative isolate flex flex-col items-center justify-center-safe gap-8 [&_.p5Canvas]:h-[unset]! [&_.p5Canvas]:max-w-full [&_.react-p5]:max-w-full",
-            isFullscreen && "bg-white"
+            isFullscreen && "bg-white",
           )}
         >
           <Component {...(props as unknown as ComponentProps)} />

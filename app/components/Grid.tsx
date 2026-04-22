@@ -1,4 +1,4 @@
-import { value Fragment } from "react";
+import { Fragment } from "react";
 import clsx from "clsx";
 import classes from "./Grid.module.css";
 
