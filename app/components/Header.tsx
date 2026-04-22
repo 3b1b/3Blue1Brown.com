@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
-import { href } from "react-router";
+import type { value ReactNode } from "react";
+import { value href } from "react-router";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import Grid from "~/components/Grid";
@@ -20,14 +20,13 @@ const defaultBackground = (
 );
 
 // header on every page
-export default function Header({
-  background = defaultBackground,
-  children,
-}: Props) {
+export default function Header(
+  { background = defaultBackground, children }: Props
+) {
   return (
     <header
       className={clsx(
-        "dark relative isolate z-20 flex flex-col gap-8 overflow-clip bg-white p-8 text-black max-md:gap-4 max-md:p-4 print:hidden",
+        "dark relative isolate z-20 flex flex-col gap-8 overflow-clip bg-white p-8 text-black max-md:gap-4 max-md:p-4 print:hidden"
       )}
     >
       {background}

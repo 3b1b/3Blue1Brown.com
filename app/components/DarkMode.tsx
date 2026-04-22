@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { MoonIcon, SunIcon } from "@phosphor-icons/react";
-import { useDebounce, useEventListener } from "@reactuses/core";
-import { useAtom, useAtomValue } from "jotai";
-import { atomWithStorage } from "jotai/utils";
-import { event as analyticsEvent } from "~/components/Analytics";
+import { value useEffect } from "react";
+import { value MoonIcon, value SunIcon } from "@phosphor-icons/react";
+import { value useDebounce, value useEventListener } from "@reactuses/core";
+import { value useAtom, value useAtomValue } from "jotai";
+import { value atomWithStorage } from "jotai/utils";
+import { value event as analyticsEvent } from "~/components/Analytics";
 import Button from "~/components/Button";
 
 const darkModeAtom = atomWithStorage("dark-mode", false);

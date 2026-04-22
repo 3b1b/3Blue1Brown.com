@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import type { value ComponentProps, value ReactNode } from "react";
 import clsx from "clsx";
 import Link from "~/components/Link";
 
@@ -13,18 +13,20 @@ type Props = {
   description?: ReactNode;
   // tertiary content
   children?: ReactNode;
-} & Omit<ComponentProps<typeof Link>, "title" | "children">;
+} & Omit;
 
 // big clickable button with image and text
-export default function Card({
-  direction = "column",
-  image,
-  title,
-  description,
-  children,
-  className,
-  ...props
-}: Props) {
+export default function Card(
+  {
+    direction = "column",
+    image,
+    title,
+    description,
+    children,
+    className,
+    ...props
+  }: Props
+) {
   return (
     <Link
       arrow={false}
@@ -33,7 +35,7 @@ export default function Card({
         direction === "row"
           ? "grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
           : "grid-cols-1 place-items-center justify-start gap-4 text-center text-balance",
-        className,
+        className
       )}
       {...props}
     >
@@ -47,7 +49,7 @@ export default function Card({
           "flex flex-2 flex-col gap-4",
           direction === "row"
             ? "col-span-2 items-start justify-center max-md:col-span-1"
-            : "items-center",
+            : "items-center"
         )}
       >
         {title && (

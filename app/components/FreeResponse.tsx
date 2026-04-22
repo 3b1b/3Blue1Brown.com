@@ -1,10 +1,10 @@
-import type { ReactNode } from "react";
-import { useRef, useState } from "react";
-import { useDebounceFn } from "@reactuses/core";
+import type { value ReactNode } from "react";
+import { value useRef, value useState } from "react";
+import { value useDebounceFn } from "@reactuses/core";
 import Button from "~/components/Button";
 import Markdownify from "~/components/Markdownify";
 import TextBox from "~/components/TextBox";
-import { useInView } from "~/util/hooks";
+import { value useInView } from "~/util/hooks";
 
 type Props = {
   // question content
@@ -16,17 +16,19 @@ type Props = {
 };
 
 // pause and ponder
-export default function FreeResponse({
-  question,
-  placeholder = "Pause and ponder for a few moments. Use this box as a notepad for ideas.",
-  children,
-}: Props) {
+export default function FreeResponse(
+  {
+    question,
+    placeholder = "Pause and ponder for a few moments. Use this box as a notepad for ideas.",
+    children,
+  }: Props
+) {
   const ref = useRef<HTMLDivElement>(null);
 
   const [input, setInput] = useState("");
 
   const [state, setState] = useState<"disabled" | "unrevealed" | "revealed">(
-    "disabled",
+    "disabled"
   );
 
   // is element in view

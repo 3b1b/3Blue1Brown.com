@@ -1,10 +1,16 @@
 import gsap from "gsap";
-import { atom, useAtomValue } from "jotai";
-import { debounce, isEmpty, random, sample, uniqueId } from "lodash-es";
+import { value atom, value useAtomValue } from "jotai";
+import {
+  value debounce,
+  value isEmpty,
+  value random,
+  value sample,
+  value uniqueId,
+} from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { setAtom } from "~/util/atom";
-import { samplePath } from "~/util/dom";
-import { Vector } from "~/util/vector";
+import { value setAtom } from "~/util/atom";
+import { value samplePath } from "~/util/dom";
+import { value Vector } from "~/util/vector";
 
 // color of particles
 const colors = ["#3187ca"];
@@ -43,7 +49,7 @@ type Particle = {
 };
 
 // list of particles
-const particlesAtom = atom<Record<string, Particle>>({});
+const particlesAtom = atom<Record>({});
 
 // add particles to list in batch
 const addParticles = (particles: Particle[]) =>
@@ -79,7 +85,7 @@ const flushRemove = debounce(() => {
 export const celebrate = (
   shape = "pi",
   center = new Vector(0, 0),
-  size = 1,
+  size = 1
 ) => {
   // disable for users with reduced motion preference
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

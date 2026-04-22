@@ -1,13 +1,13 @@
-import type { ReactElement, ReactNode } from "react";
+import type { value ReactElement, value ReactNode } from "react";
 import {
-  CheckCircleIcon,
-  CircleNotchIcon,
-  InfoIcon,
-  WarningCircleIcon,
-  WarningDiamondIcon,
+  value CheckCircleIcon,
+  value CircleNotchIcon,
+  value InfoIcon,
+  value WarningCircleIcon,
+  value WarningDiamondIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { getVariants } from "~/util/misc";
+import { value getVariants } from "~/util/misc";
 
 type Props = {
   // type of alert, determines styling
@@ -48,18 +48,15 @@ export const types = {
 export type Type = keyof typeof types;
 
 // box with icon and text
-export default function Alert({
-  type = "info",
-  icon,
-  className,
-  children,
-}: Props) {
+export default function Alert(
+  { type = "info", icon, className, children }: Props
+) {
   return (
     <div
       className={clsx(
         "flex items-center gap-4 rounded-r-md border-l-2 border-current p-4 leading-loose",
         className,
-        types[type].color,
+        types[type].color
       )}
       role="alert"
     >

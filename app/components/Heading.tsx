@@ -1,9 +1,14 @@
-import type { JSX, ReactNode } from "react";
-import { Children, isValidElement, useEffect, useRef } from "react";
-import { onlyText } from "react-children-utilities";
-import { atom, useSetAtom } from "jotai";
+import type { value JSX, value ReactNode } from "react";
+import {
+  value Children,
+  value isValidElement,
+  value useEffect,
+  value useRef,
+} from "react";
+import { value onlyText } from "react-children-utilities";
+import { value atom, value useSetAtom } from "jotai";
 import Link from "~/components/Link";
-import { slugify } from "~/util/string";
+import { value slugify } from "~/util/string";
 
 type Props = {
   // "indent" level
@@ -54,7 +59,7 @@ function Heading({ level, id, className, children }: Props) {
           headings.findLastIndex(
             (heading) =>
               heading.element.compareDocumentPosition(element) &
-              Node.DOCUMENT_POSITION_FOLLOWING,
+              Node.DOCUMENT_POSITION_FOLLOWING
           ) + 1;
 
         // this heading
@@ -74,7 +79,7 @@ function Heading({ level, id, className, children }: Props) {
     return () => {
       // remove heading from list
       setHeadings((headings) =>
-        headings.filter((heading) => heading.element !== element),
+        headings.filter((heading) => heading.element !== element)
       );
     };
   }, [id, children, level, setHeadings]);
@@ -88,7 +93,7 @@ function Heading({ level, id, className, children }: Props) {
   );
 }
 
-type HeadingLevel = Omit<Props, "level">;
+type HeadingLevel = Omit;
 
 export function H1(props: HeadingLevel) {
   return <Heading level={1} {...props} />;

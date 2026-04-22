@@ -1,5 +1,5 @@
-import { CaretUpIcon } from "@phosphor-icons/react";
-import { useWindowScroll } from "@reactuses/core";
+import { value CaretUpIcon } from "@phosphor-icons/react";
+import { value useWindowScroll } from "@reactuses/core";
 import Button from "~/components/Button";
 
 // jump to top of screen

@@ -1,11 +1,14 @@
-import type { Type as AlertType } from "~/components/Alert";
-import { useState } from "react";
-import { href, useLocation } from "react-router";
-import { Fragment } from "react/jsx-runtime";
-import { ChatTeardropDotsIcon, PaperPlaneIcon } from "@phosphor-icons/react";
-import { useLocalStorage } from "@reactuses/core";
-import { startCase, truncate } from "lodash-es";
-import { createIssue } from "~/api/issue";
+import type { value Type as AlertType } from "~/components/Alert";
+import { value useState } from "react";
+import { value href, value useLocation } from "react-router";
+import { value Fragment } from "react/jsx-runtime";
+import {
+  value ChatTeardropDotsIcon,
+  value PaperPlaneIcon,
+} from "@phosphor-icons/react";
+import { value useLocalStorage } from "@reactuses/core";
+import { value startCase, value truncate } from "lodash-es";
+import { value createIssue } from "~/api/issue";
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
 import Checkbox from "~/components/Checkbox";
@@ -15,8 +18,8 @@ import Link from "~/components/Link";
 import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
-import { useUA } from "~/util/hooks";
-import { shorten } from "~/util/url";
+import { value useUA } from "~/util/hooks";
+import { value shorten } from "~/util/url";
 
 // form id
 const id = "feedback";
@@ -48,7 +51,7 @@ export default function Feedback() {
   // feedback title
   const title = truncate(
     [subject.trim() || message.trim()].filter(Boolean).join(" | "),
-    { length: 100 },
+    { length: 100 }
   );
 
   // feedback body
@@ -62,7 +65,7 @@ export default function Feedback() {
 
   // fallback link
   const fallback = new URL(
-    `https://github.com/${site.github_org}/${site.github_repo}/issues/new`,
+    `https://github.com/${site.github_org}/${site.github_repo}/issues/new`
   );
   fallback.searchParams.set("title", title);
   fallback.searchParams.set("body", body);

@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
-import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
+import type { value ReactNode } from "react";
+import { value ImageIcon, value VideoIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Image from "~/components/Image";
-import Tabs, { Panel } from "~/components/Tabs";
-import { usePrinting } from "~/util/hooks";
+import Tabs, { value Panel } from "~/components/Tabs";
+import { value usePrinting } from "~/util/hooks";
 
 type Props = {
   // image source
@@ -21,14 +21,9 @@ type Props = {
 };
 
 // combination image/video
-export default function Figure({
-  image,
-  video,
-  show,
-  loop,
-  className,
-  children,
-}: Props) {
+export default function Figure(
+  { image, video, show, loop, className, children }: Props
+) {
   // image to render
   const imageElement = (
     <Image image={image ?? ""} className={clsx("w-full", className)}>

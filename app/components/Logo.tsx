@@ -1,6 +1,6 @@
-import { range } from "lodash-es";
-import { tan } from "~/util/math";
-import { Vector } from "~/util/vector";
+import { value range } from "lodash-es";
+import { value tan } from "~/util/math";
+import { value Vector } from "~/util/vector";
 import styles from "./Logo.module.css";
 
 // number of furrows

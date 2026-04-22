@@ -1,6 +1,6 @@
-import type { ComponentProps, ReactNode } from "react";
-import { useRef } from "react";
-import { useFullscreen, useMergedRefs } from "@reactuses/core";
+import type { value ComponentProps, value ReactNode } from "react";
+import { value useRef } from "react";
+import { value useFullscreen, value useMergedRefs } from "@reactuses/core";
 import clsx from "clsx";
 
 type Props = {
@@ -10,17 +10,12 @@ type Props = {
   alt?: string;
   // caption content
   children?: ReactNode;
-} & ComponentProps<"img">;
+} & ComponentProps;
 
 // plain image or figure with caption
-export default function Image({
-  ref: passedRef,
-  image,
-  alt = "",
-  children,
-  className,
-  ...props
-}: Props) {
+export default function Image(
+  { ref: passedRef, image, alt = "", children, className, ...props }: Props
+) {
   const localRef = useRef<HTMLImageElement>(null);
   const mergedRef = useMergedRefs(localRef, passedRef);
 
@@ -42,7 +37,7 @@ export default function Image({
       className={clsx(
         "cursor-pointer break-inside-avoid",
         isFullscreen && "object-contain!",
-        !children && className,
+        !children && className
       )}
       {...props}
     />

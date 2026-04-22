@@ -1,11 +1,11 @@
-import type { ReactNode } from "react";
-import type { Components } from "react-markdown";
-import { isValidElement } from "react";
-import { deepMap, getElementName } from "react-children-utilities";
+import type { value ReactNode } from "react";
+import type { value Components } from "react-markdown";
+import { value isValidElement } from "react";
+import { value deepMap, value getElementName } from "react-children-utilities";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import Footnote from "~/components/Footnote";
-import { H1, H2, H3, H4 } from "~/components/Heading";
+import { value H1, value H2, value H3, value H4 } from "~/components/Heading";
 import Link from "~/components/Link";
 import Quote from "~/components/Quote";
 
