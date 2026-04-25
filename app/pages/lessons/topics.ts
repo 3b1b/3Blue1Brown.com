@@ -5,7 +5,7 @@ import { importAssets } from "~/util/import";
 
 // get topic image
 const [getImage] = importAssets(
-  import.meta.glob<{ default: string }>("./topics/*.svg", { eager: true }),
+  import.meta.glob<{ default: string }>("./topics/*.webp", { eager: true }),
   undefined,
   (module) => module.default,
 );
