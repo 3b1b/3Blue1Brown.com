@@ -17,7 +17,7 @@ import throughTheInternet from "./through-the-internet.jpg";
 
 <section>
 
-<Image image={throughTheInternet} className="max-w-100 self-center" />
+<Image image={throughTheInternet} className="w-100 self-center" />
 
 Many schools around the world are still planning to run their classes and lectures remotely this fall, or at least to operate under a mix of distance and in-person classes. So all the usual balls that teachers and professors need to juggle, keeping students engaged, being responsive to their misconceptions, hitting all the points of a dense lesson plan, etc., are now supposed to be handled with all the awkwardness and impersonality of a video call.
 
@@ -64,7 +64,7 @@ In OBS you can set up keyboard shortcuts, so I set up a few to associate certain
 
 The tool used for the live quiz is part of [Itempool](https://itempool.com/), put together by two former coworkers of mine from Khan Academy. The way it worked is that I'd queue up a question on the screen, and students could go to a certain link (e.g. from their phones) to follow along with the quiz and answer questions. The statistics of how everyone was answering would show up in real time on the stream, where viewers would see bars showing the relative proportions for each answer. But until I flipped a switch to reveal, it was a mystery which answers corresponded to which bars.
 
-<Image image={itempool} className="max-w-100 self-center" />
+<Image image={itempool} className="w-100 self-center" />
 
 To get the bars overlaid on the stream, we set up a webpage that displays the real-time updated bars and a title on a transparent background. That way, making that webpage an input source to OBS and creating a scene that combines the face camera with that page gave the effect we wanted.
 
