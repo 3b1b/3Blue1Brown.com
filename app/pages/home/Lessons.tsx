@@ -37,7 +37,7 @@ export const lessonAtom = atomWithQuery("lesson");
 // lesson search section of home page
 export default function Lessons() {
   return (
-    <section>
+    <section className="bg-alt-white">
       <H2>
         <hr />
         Lessons
