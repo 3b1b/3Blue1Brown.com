@@ -49,6 +49,7 @@ export default function App() {
 
   return (
     <IconContext.Provider value={{ className: "icon" }}>
+      {/* base layout for every page */}
       <html lang="en" suppressHydrationWarning>
         <head>
           <Analytics />
