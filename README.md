@@ -1,6 +1,6 @@
 # 3Blue1Brown.com
 
-Source code for official 3Blue1Brown website.
+Source code for the official 3Blue1Brown website.
 
 ---
 
