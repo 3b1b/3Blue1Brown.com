@@ -1,8 +1,9 @@
-import type { Article } from "schema-dts";
+import type { Article, VideoObject } from "schema-dts";
 import type { Lesson, RawLesson } from "~/pages/lessons/lessons";
 import type { Route } from "./+types/Lesson";
 import { use } from "react";
 import { href } from "react-router";
+import { JsonLd } from "react-schemaorg";
 import { Fragment } from "react/jsx-runtime";
 import {
   ArrowLeftIcon,
@@ -101,6 +102,20 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
           articleSection: chapter !== -1 ? `Chapter ${chapter}` : undefined,
         }}
       />
+
+      {video && (
+        <JsonLd<VideoObject>
+          item={{
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: title,
+            description,
+            thumbnailUrl: image,
+            uploadDate: date.toISOString(),
+            embedUrl: `https://www.youtube.com/embed/${video}`,
+          }}
+        />
+      )}
 
       <Header />
 
