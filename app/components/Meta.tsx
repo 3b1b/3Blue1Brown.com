@@ -1,4 +1,5 @@
 import type { Thing, WithContext } from "schema-dts";
+import { useLocation } from "react-router";
 import { JsonLd } from "react-schemaorg";
 import { truncate } from "lodash-es";
 import site from "~/data/site.json";
@@ -18,6 +19,9 @@ export default function Meta<Type extends Thing>({
   description,
   jsonLd,
 }: Props<Type>) {
+  const { pathname } = useLocation();
+  const canonicalUrl = new URL(pathname, site.url).href;
+
   const combinedTitle = [title, site.title]
     .flat()
     .filter(Boolean)
@@ -30,12 +34,13 @@ export default function Meta<Type extends Thing>({
     <>
       <title>{combinedTitle}</title>
 
+      <link rel="canonical" href={canonicalUrl} />
       <meta name="title" content={combinedTitle} />
       <meta name="description" content={combinedDescription} />
       <link rel="icon" type="image/svg" href="/icon.svg" />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={site.url} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={combinedTitle} />
       <meta property="og:description" content={combinedDescription} />
       <meta property="og:image" content="/share.jpg" />
