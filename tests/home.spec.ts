@@ -15,10 +15,10 @@ test("Topic buttons work", async ({ page }) => {
   await page.goto("/");
   await page.click('a:has-text("geometry")');
   await expect(
-    page.locator('a:has-text("what was euclid really doing")'),
+    page.locator('a:has-text("why slicing a cone gives an ellipse")'),
   ).toBeVisible();
   await expect(
-    page.locator('a:has-text("read")[href*="inscribed-rect" i]'),
+    page.locator('a:has-text("read")[href*="sphere-area" i]'),
   ).toBeVisible();
   await page.click('a[aria-label*="back to" i]');
   await page.locator("a:has-text('physics')").click();
