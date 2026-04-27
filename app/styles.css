@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* theme definitions, e.g. dark/light-mode colors */
+
 @theme {
   --breakpoint-sm: 30rem;
   --breakpoint-md: 55rem;
@@ -59,6 +61,8 @@
 }
 
 @custom-variant hocus (&:is(:hover, :focus));
+
+/* global styles for native HTML elements */
 
 @layer base {
   html {
@@ -210,6 +214,8 @@
     @apply pointer-events-none opacity-50 grayscale;
   }
 }
+
+/* utility classes */
 
 @utility width-sm {
   --width: 100;

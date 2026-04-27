@@ -1,5 +1,7 @@
 import { index, route } from "@react-router/dev/routes";
 
+// map of paths (local component/MDX files) to routes (URLs)
+
 // route manifest
 export default [
   index("pages/home/Home.tsx"),
