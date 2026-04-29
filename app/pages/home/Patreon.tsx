@@ -1,5 +1,4 @@
 import { ArrowRightIcon, PatreonLogoIcon } from "@phosphor-icons/react";
-// import previewVideo from "~/assets/clips/clacks.mp4";
 import Button from "~/components/Button";
 import { H2 } from "~/components/Heading";
 import Image from "~/components/Image";
@@ -31,23 +30,19 @@ export default function Patreon() {
 
         <Image image={support} alt="" className="w-50" />
 
-        <Button to={site.socials.patreon} color="theme" className="self-center">
-          Become a Supporter
-          <ArrowRightIcon />
-        </Button>
-
-        {/* <p className="text-center text-balance">
-          A sneak peek at the next lesson, available to patrons...
-        </p>
-
-        <video
-          src={previewVideo}
-          className="aspect-video w-100"
-          controls
-          autoPlay
-          muted
-          loop
-        /> */}
+        <div className="flex flex-col items-center gap-3 self-center">
+          <Button to={site.socials.patreon} color="theme">
+            Become a Supporter
+            <ArrowRightIcon />
+          </Button>
+          <Button
+            to="https://members.3blue1brown.com/posts/solution-to-sum-156593740"
+            color="light"
+          >
+            New video (early access)
+            <ArrowRightIcon />
+          </Button>
+        </div>
       </div>
     </section>
   );
