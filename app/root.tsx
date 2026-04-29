@@ -110,3 +110,11 @@ export function ErrorBoundary({ error }: { error: Error }) {
     </html>
   );
 }
+
+// https://vite.dev/guide/build#load-error-handling
+if (typeof window !== "undefined")
+  window.addEventListener("vite:preloadError", (event) => {
+    console.debug(event);
+    // force refresh to get new assets
+    window.location.reload();
+  });
