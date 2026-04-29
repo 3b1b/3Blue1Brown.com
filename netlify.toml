@@ -2,11 +2,21 @@
 command = "bun run build"
 publish = "build/client"
 
-  [build.environment]
-  NODE_VERSION = "22"
+[build.environment]
+NODE_VERSION = "24"
 
 [dev]
 command = "bun run dev"
+
+[[headers]]
+for = "/*"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
 from = "https://3b1b.co/*"
