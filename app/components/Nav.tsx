@@ -2,7 +2,12 @@ import type { Ref } from "react";
 import { useRef } from "react";
 import { createPortal } from "react-dom";
 import { href, useLocation } from "react-router";
-import { ListIcon, MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
+import {
+  ListIcon,
+  MagnifyingGlassIcon,
+  TranslateIcon,
+  XIcon,
+} from "@phosphor-icons/react";
 import { useEventListener } from "@reactuses/core";
 import clsx from "clsx";
 import { atom, useAtom } from "jotai";
@@ -39,6 +44,10 @@ const links = [
   {
     name: "About",
     to: href("/about"),
+  },
+  {
+    name: <TranslateIcon />,
+    to: href("/translations"),
   },
 ];
 
