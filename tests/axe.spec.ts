@@ -22,7 +22,7 @@ const checkPage = (route: string) =>
     await page.waitForLoadState();
 
     // wait for some content to appear
-    await page.waitForSelector("footer");
+    await expect(page.locator("footer")).toBeVisible();
 
     // builder
     const builder = new AxeBuilder({ page });
