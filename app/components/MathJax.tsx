@@ -26,10 +26,7 @@ export default function MathJax() {
             return render();
     },
     () => document.body,
-    {
-      subtree: true,
-      childList: true,
-    },
+    { subtree: true, childList: true },
   );
 
   return null;
@@ -40,79 +37,98 @@ declare global {
   interface Window {
     // eslint-disable-next-line
     MathJax: any;
+    MathJaxState?: boolean;
   }
 }
 
 // initialize mathjax
 const init = async () => {
-  // ensure only one load
-  if (window.MathJax) return;
+  console.debug("MathJax init start");
+  try {
+    // ensure only one load
+    if (window.MathJax) {
+      console.debug("MathJax init skip");
+      return;
+    }
 
-  // configure
-  window.MathJax = {
-    svg: {
-      fontCache: "local",
-    },
-    loader: {
-      load: ["[tex]/color"],
-    },
-    tex: {
-      packages: {
-        "[+]": ["color"],
-        // force undefined macros to throw and render merror dom element
-        "[-]": ["noundefined"],
+    // configure
+    window.MathJax = {
+      svg: {
+        fontCache: "local",
       },
-      macros: {
-        degree: "{^\\circ}",
+      loader: {
+        load: ["[tex]/color"],
       },
-      // force parsing errors to throw and render merror dom element
-      formatError: (jax: unknown, error: Error) => {
-        error.name = "MathJaxError";
-        throw error;
+      tex: {
+        packages: {
+          "[+]": ["color"],
+          // force undefined macros to throw and render merror dom element
+          "[-]": ["noundefined"],
+        },
+        macros: {
+          degree: "{^\\circ}",
+        },
+        // force parsing errors to throw and render <merror> dom element
+        formatError: (jax: unknown, error: Error) => {
+          error.name = "MathJaxError";
+          throw error;
+        },
       },
-    },
-    startup: {
-      typeset: false,
-    },
-  };
+      startup: {
+        typeset: false,
+      },
+    };
 
-  // load from node_modules
-  const script = document.createElement("script");
-  script.src = cdn;
-  script.type = "text/javascript";
-  script.async = true;
-  document.head.appendChild(script);
-  await new Promise((resolve, reject) => {
-    script.onload = resolve;
-    script.onerror = reject;
-  });
-  // wait for mathjax to start up
-  await window.MathJax.startup?.promise;
+    // load from node_modules
+    const script = document.createElement("script");
+    script.src = cdn;
+    script.type = "text/javascript";
+    script.async = true;
+    document.head.appendChild(script);
+    await new Promise((resolve, reject) => {
+      script.onload = resolve;
+      script.onerror = reject;
+    });
+    console.debug("MathJax startup start");
+    // wait for mathjax to start up
+    await window.MathJax.startup?.promise;
+  } catch (error) {
+    console.error("MathJax init error", error);
+  }
+  console.debug("MathJax init finish");
 };
 
 const render = async () => {
-  // get output from remark-math, which processes $ math blocks into <code> elements
-  const elements = document.querySelectorAll("code.language-math");
-  for (const element of elements) {
-    // math tex content
-    const math = element.textContent ?? "";
-    // parent container
-    const parent = element.parentElement;
-    if (!parent) continue;
-    // block vs inline math
-    const display = parent.matches("pre");
-    if (display) parent.classList.add("contents");
-    // convert to svg content
-    let content: Element | undefined = undefined;
-    try {
-      // try synchronous for responsiveness
-      content = window.MathJax.tex2svg?.(math, { display });
-    } catch (error) {
-      // fallback to async if things still loading
-      content = await window.MathJax.tex2svgPromise?.(math, { display });
+  console.debug("MathJax render start");
+  try {
+    // get output from remark-math, which processes $ math blocks into <code> elements
+    const elements = document.querySelectorAll("code.language-math");
+    console.debug(`MathJax render ${elements.length} elements`);
+    for (const element of elements) {
+      // math tex content
+      const math = element.textContent ?? "";
+      // parent container
+      const parent = element.parentElement;
+      if (!parent) continue;
+      // block vs inline math
+      const display = parent.matches("pre");
+      if (display) parent.classList.add("contents");
+      // convert to svg content
+      let content: Element | undefined = undefined;
+      try {
+        // try synchronous for responsiveness
+        content = window.MathJax.tex2svg?.(math, { display });
+      } catch (error) {
+        // fallback to async if things still loading
+        content = await window.MathJax.tex2svgPromise?.(math, { display });
+      }
+      if (!content) continue;
+      // insert content
+      element.replaceWith(content);
     }
-    if (!content) continue;
-    // insert content
-    element.replaceWith(content);
+    console.debug("MathJax render finish");
+  } catch (error) {
+    console.error("MathJax render error", error);
   }
+  window.MathJaxState = true;
 };

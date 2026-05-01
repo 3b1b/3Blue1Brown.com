@@ -36,6 +36,9 @@ const checkPage = (route: string) =>
     // https://docs.mathjax.org/en/v4.0/options/accessibility.html
     builder.exclude("mjx-container");
 
+    // wait for mathjax to finish first render
+    await page.waitForFunction(() => window.MathJaxState === true);
+
     // axe throws error if e.g. radio button only has math content
     // mjx-container has no typical accessible text attr e.g. aria-label
     // but by inspection, screen readers can still find and announce its content
