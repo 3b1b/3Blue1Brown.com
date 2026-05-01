@@ -24,7 +24,7 @@ const checkPage = (route: string) =>
     // navigate to page
     await page.goto(route, { waitUntil: "domcontentloaded" });
 
-    // wait for some content to appear
+    // wait for some content to render
     await expect(page.locator("footer")).toBeVisible();
 
     // builder
@@ -36,6 +36,7 @@ const checkPage = (route: string) =>
 
     // get page violations
     const { violations } = await test.step("analyze", () => builder.analyze(), {
+      // can take a while, especially on large pages e.g. testbed
       timeout: 30 * 1000,
     });
 

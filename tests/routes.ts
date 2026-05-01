@@ -24,6 +24,9 @@ const filter =
               "/hilbert-curve",
               // no text
               "/laplace-transform",
+              // some posts
+              "/recommendations",
+              "/book-recommendations",
             ].some((p) => path.endsWith(p))
           )
             return true;
