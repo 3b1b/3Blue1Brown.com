@@ -10,7 +10,7 @@ import { formatDate } from "~/util/string";
 export default function Blog() {
   return (
     <section className="bg-secondary/10">
-      <H2>Written Posts</H2>
+      <H2>Posts</H2>
 
       <div className="grid grid-cols-2 gap-8 max-sm:grid-cols-1">
         {orderBy(
@@ -27,10 +27,13 @@ export default function Blog() {
             <Card
               key={id}
               to={href("/blog/:id", { id })}
-              className="items-start gap-2 bg-secondary/5 p-4 text-left"
-              title={title}
-              description={`${formatDate(date)} — ${description}`}
+              className="justify-items-start bg-secondary/5 p-4"
             >
+              <div className="w-full text-left font-sans">{title}</div>
+              <div className="w-full text-left text-gray">
+                {formatDate(date)}
+              </div>
+              <div className="w-full text-left">{description}</div>
               <FeatherIcon className="absolute top-1/2 right-0 size-20 -translate-y-1/2 text-xl text-secondary opacity-10" />
             </Card>
           );
