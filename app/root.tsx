@@ -15,7 +15,6 @@ import { IconContext } from "@phosphor-icons/react";
 import Analytics from "~/components/Analytics";
 import Celebrate from "~/components/Celebrate";
 import { load as loadDarkMode } from "~/components/DarkMode";
-import Link from "~/components/Link";
 import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
@@ -88,7 +87,8 @@ export default function App() {
 
 // app-wide error fallback
 export function ErrorBoundary({ error }: { error: Error }) {
-  // keep this simple to avoid errors in error boundary itself
+  console.error(error);
+  // keep this as simple as possible to avoid errors in error boundary itself
   return (
     <html lang="en">
       <head>
@@ -101,7 +101,9 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <h1>Error</h1>
           <p>
             We're sorry, something went wrong. Please{" "}
-            <Link to={site.github_issues}>let us know about it.</Link>
+            <a href={site.github_issues} target="_blank">
+              let us know about it.
+            </a>
           </p>
           <p className="text-error">{error.stack}</p>
           <p>Open your browser's developer console for more details.</p>

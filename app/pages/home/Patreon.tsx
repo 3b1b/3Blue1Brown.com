@@ -39,7 +39,7 @@ export default function Patreon() {
             to="https://members.3blue1brown.com/posts/solution-to-sum-156593740"
             color="light"
           >
-            New video (early access)
+            New Video (Early Access)
             <ArrowRightIcon />
           </Button>
         </div>
