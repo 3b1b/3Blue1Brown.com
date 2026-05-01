@@ -23,11 +23,16 @@ const checkPage = (route: string) =>
     // navigate to page
     await page.goto(route);
 
-    // wait for content to load
-    await page.waitForLoadState();
+    // wait for some content to appear
+    await expect(page.locator("footer")).toBeVisible();
 
-    // wait a bit for mathjax to render
-    await page.waitForTimeout(5000);
+    // wait for mathjax to finish first load
+    await expect
+      // poll on node-side to avoid browser-side timer/raf throttling w/ waitForFunction
+      .poll(async () => page.evaluate(() => window.MathJaxState === true), {
+        timeout: 30 * 1000,
+      })
+      .toBe(true);
 
     test.info().annotations.push({
       type: "MathJax errors",
@@ -39,4 +44,4 @@ const checkPage = (route: string) =>
   });
 
 // check all pages
-await Promise.all(routes.map(checkPage));
+routes.map(checkPage);

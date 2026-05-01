@@ -53,4 +53,4 @@ const checkPage = (route: string) =>
   });
 
 // check all pages
-await Promise.all(routes.map(checkPage));
+routes.map(checkPage);
