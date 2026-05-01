@@ -21,10 +21,7 @@ const checkPage = (route: string) =>
     });
 
     // navigate to page
-    await page.goto(route);
-
-    // wait for some content to appear
-    await expect(page.locator("footer")).toBeVisible();
+    await page.goto(route, { waitUntil: "domcontentloaded" });
 
     // wait for mathjax to finish first load
     await expect

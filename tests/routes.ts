@@ -15,7 +15,9 @@ const filter =
             [
               // large, popular, complex, math-only controls
               "/essence-of-calculus",
+              "/zeta",
               // large, interactive
+              "/bitcoin",
               // interactive
               "/newtons-fractal",
               // no text, viz bg
