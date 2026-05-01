@@ -6,13 +6,13 @@ const url = `http://localhost:${port}`;
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  workers: 1,
+  workers: process.env.CI ? 1 : "75%",
   reporter: [["html", { open: process.env.CI ? "never" : "on-failure" }]],
 
   use: {
     baseURL: url,
     // headless: !!process.env.CI,
-    trace: "on",
+    trace: "retain-on-failure",
   },
 
   projects: [
