@@ -6,7 +6,6 @@ const url = `http://localhost:${port}`;
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  workers: process.env.CI ? 1 : "75%",
   reporter: [["html", { open: process.env.CI ? "never" : "on-failure" }]],
 
   use: {
