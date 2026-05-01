@@ -108,6 +108,6 @@ jobs:
         with:
           name: reports
           path: |
-            ./frontend/playwright-report
-            ./frontend/lighthouse-report
+            ./playwright-report
+            ./lighthouse-report
           retention-days: 30
