@@ -24,6 +24,9 @@ const checkPage = (route: string) =>
     // navigate to page
     await page.goto(route, { waitUntil: "domcontentloaded" });
 
+    // wait for some content to appear
+    await expect(page.locator("footer")).toBeVisible();
+
     // builder
     const builder = new AxeBuilder({ page });
 
