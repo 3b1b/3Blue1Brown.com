@@ -12,17 +12,20 @@ const checkPage = (route: string) =>
     // test should be independent of browser, so only run one
     test.skip(browserName !== "chromium", "Only test on chromium");
 
-    // test can be slow on ci on very large page (like testbed)
-    test.setTimeout(60 * 1000);
+    // disable mathjax entirely just for this test
+    // trust that it handles accessibility well
+    // by inspection it does, screen readers announce its content
+    // https://docs.mathjax.org/en/v4.0/options/accessibility.html
+    await page.route(
+      (url) => !!url.href.match(/jsdelivr.*mathjax.*\.js/),
+      (route) => route.abort(),
+    );
 
     // navigate to page
-    await page.goto(route);
+    await page.goto(route, { waitUntil: "domcontentloaded" });
 
-    // wait for load event
-    await page.waitForLoadState();
-
-    // wait for some content to appear
-    await page.waitForSelector("footer");
+    // wait for some content to render
+    await expect(page.locator("footer")).toBeVisible();
 
     // builder
     const builder = new AxeBuilder({ page });
@@ -31,23 +34,11 @@ const checkPage = (route: string) =>
     builder.exclude("iframe");
     builder.exclude("youtube-video");
 
-    // exclude mathjax, trust that it handles accessibility well
-    // by inspection it does, screen readers announce its content
-    // https://docs.mathjax.org/en/v4.0/options/accessibility.html
-    builder.exclude("mjx-container");
-
-    // axe throws error if e.g. radio button only has math content
-    // mjx-container has no typical accessible text attr e.g. aria-label
-    // but by inspection, screen readers can still find and announce its content
-    // so, add fake accessible label to satisfy axe
-    await page.evaluate(() =>
-      document
-        .querySelectorAll("mjx-container")
-        .forEach((element) => element.setAttribute("aria-label", "fake label")),
-    );
-
     // get page violations
-    const { violations } = await builder.analyze();
+    const { violations } = await test.step("analyze", () => builder.analyze(), {
+      // can take a while, especially on large pages e.g. testbed
+      timeout: 30 * 1000,
+    });
 
     // split up critical/non-critical
     const { critical = [], warning = [] } = groupBy(violations, ({ id }) => {
@@ -73,4 +64,4 @@ const checkPage = (route: string) =>
   });
 
 // check all pages
-await Promise.all(routes.map(checkPage));
+routes.map(checkPage);

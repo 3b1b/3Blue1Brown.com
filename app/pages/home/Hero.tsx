@@ -78,7 +78,7 @@ export default function Hero() {
           </Button>
           <Button to={site.socials.newsletter} color="light">
             <NewspaperIcon />
-            Mailing list
+            Mailing List
           </Button>
         </div>
       </div>

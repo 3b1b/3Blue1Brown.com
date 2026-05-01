@@ -28,7 +28,7 @@ const checkPage = (route: string) =>
     });
 
     // navigate to page
-    await page.goto(route);
+    await page.goto(route, { waitUntil: "domcontentloaded" });
 
     // wait for all responses to finish
     await Promise.allSettled(responses);
@@ -53,4 +53,4 @@ const checkPage = (route: string) =>
   });
 
 // check all pages
-await Promise.all(routes.map(checkPage));
+routes.map(checkPage);

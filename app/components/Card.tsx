@@ -29,7 +29,7 @@ export default function Card({
     <Link
       arrow={false}
       className={clsx(
-        "group relative isolate grid rounded-md text-black no-underline outline-none hocus:scale-102",
+        "group relative isolate grid rounded-md text-black no-underline outline-none hocus:scale-101",
         direction === "row"
           ? "grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
           : "grid-cols-1 place-items-center justify-start gap-4 text-center text-balance",
@@ -44,7 +44,7 @@ export default function Card({
 
       <div
         className={clsx(
-          "flex flex-2 flex-col gap-4",
+          "flex flex-col gap-2",
           direction === "row"
             ? "col-span-2 items-start justify-center max-md:col-span-1"
             : "items-center",

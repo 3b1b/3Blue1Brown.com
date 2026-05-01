@@ -13,8 +13,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig(() => ({
-  // build: { assetsDir: "refresh" },
-
   // uncomment if cold-start refresh gets annoying
   // https://github.com/vitejs/vite/discussions/14801
   // optimizeDeps: {
