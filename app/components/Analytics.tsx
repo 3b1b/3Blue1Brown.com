@@ -12,7 +12,7 @@ export default function Analytics() {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag() {
       // eslint-disable-next-line
-      window.dataLayer.push(arguments);
+      window.dataLayer?.push(arguments);
     };
     window.gtag("js", new Date());
     window.gtag("config", id, { send_page_view: false });
@@ -22,13 +22,13 @@ export default function Analytics() {
 
   // track page view on route change
   useEffect(() => {
-    window.gtag("config", id, {
+    window.gtag?.("config", id, {
       send_page_view: false,
       page_referrer: document.referrer,
       page_location: window.location.href,
       update: true,
     });
-    window.gtag("event", "page_view", {
+    window.gtag?.("event", "page_view", {
       page_location: window.location.href,
       page_title: document.title,
     });
@@ -43,13 +43,13 @@ export const event = (name: string, params?: Record<string, unknown>) => {
     console.debug("Analytics event", { name, params });
     return;
   }
-  window.gtag("event", name, params);
+  window.gtag?.("event", name, params);
 };
 
 declare global {
   // eslint-disable-next-line
   interface Window {
-    dataLayer: unknown[];
-    gtag: (command: string, ...args: unknown[]) => void;
+    dataLayer?: unknown[];
+    gtag?: (command: string, ...args: unknown[]) => void;
   }
 }

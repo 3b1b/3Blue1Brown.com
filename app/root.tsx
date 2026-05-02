@@ -100,10 +100,12 @@ export function ErrorBoundary({ error }: { error: Error }) {
         <main className="flex flex-col items-center justify-center-safe gap-8 p-12">
           <h1>Error</h1>
           <p>
-            We're sorry, something went wrong. Please{" "}
+            We're sorry, something went wrong. Please try refreshing the page.
+            If the problem persists, please{" "}
             <a href={site.github_issues} target="_blank">
-              let us know about it.
+              let us know about it
             </a>
+            .
           </p>
           <p className="text-error">{error.stack}</p>
           <p>Open your browser's developer console for more details.</p>
@@ -116,7 +118,12 @@ export function ErrorBoundary({ error }: { error: Error }) {
 // https://vite.dev/guide/build#load-error-handling
 if (typeof window !== "undefined")
   window.addEventListener("vite:preloadError", (event) => {
+    const url = window.location.href;
     console.debug(event);
     // force refresh to get new assets
-    window.location.reload();
+    if (!window.sessionStorage.getItem(url)) {
+      console.debug("Reloading");
+      window.sessionStorage.setItem(url, "true");
+      window.location.reload();
+    }
   });
