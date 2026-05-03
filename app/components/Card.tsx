@@ -32,7 +32,7 @@ export default function Card({
         "group relative isolate grid rounded-md text-black no-underline outline-none hocus:scale-101",
         direction === "row"
           ? "grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1"
-          : "grid-cols-1 place-items-center justify-start gap-4 text-center text-balance",
+          : "grid-cols-1 content-start gap-4 text-center text-balance",
         className,
       )}
       {...props}

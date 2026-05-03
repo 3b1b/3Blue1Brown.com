@@ -143,7 +143,7 @@ export function Search({ dialog = false, close = () => {} }) {
       {!topicId?.trim() && !search.trim() ? (
         <div
           id="results"
-          className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-2"
+          className="grid grid-cols-3 gap-8 max-sm:grid-cols-2 max-sm:gap-4"
         >
           {Object.entries(topics).map(([id, { title, image }]) => (
             <Card
