@@ -142,7 +142,12 @@ export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
 
 // use user agent info
 export const useUA = () => {
-  const [ua, setUA] = useState<UAParser.IResult>();
+  // parse user agent string
+  const ua =
+    typeof window === "undefined"
+      ? undefined
+      : // (if on client)
+        new UAParser(window.navigator.userAgent).getResult();
 
   const isFirefox = ua?.browser.name?.toLowerCase().includes("firefox");
 
@@ -150,11 +155,6 @@ export const useUA = () => {
 
   // https://github.com/faisalman/ua-parser-js/issues/182
   const isDesktop = !ua?.device.type;
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    setUA(new UAParser(window.navigator.userAgent).getResult());
-  }, []);
 
   // combine user agent info into convenient list
   const userAgent = mapValues(
@@ -176,7 +176,7 @@ export const useClient = () => {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line -- https://github.com/facebook/react/issues/34045#issuecomment-3801067128
     setClient(true);
   }, []);
 

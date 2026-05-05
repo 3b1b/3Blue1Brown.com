@@ -54,7 +54,7 @@ export default defineConfig(() => ({
               path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
               "";
             // prepend bucket location
-            lesson = `${site.bucket}/${lesson}`;
+            lesson = `${site.gcp.bucket}/${lesson}`;
             // inject lesson variable into source
             source = source.replaceAll("$lesson", lesson);
           }

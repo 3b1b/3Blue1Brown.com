@@ -35,9 +35,10 @@ export default function MathJax() {
 }
 
 declare global {
-  // eslint-disable-next-line
+  // eslint-disable-next-line -- for declaration merging
   interface Window {
-    // eslint-disable-next-line
+    // https://github.com/mathjax/MathJax/issues/2385
+    // eslint-disable-next-line -- no public types available, too onerous and notworth it to manually type
     MathJax: any;
     MathJaxState?: boolean;
   }

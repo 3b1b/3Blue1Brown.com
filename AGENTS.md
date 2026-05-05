@@ -84,26 +84,29 @@ bun run check:links                 # Broken links
 
 ---
 
+- If necessary or appropriate to break guidelines, discuss why in adjacent comments
+
 ## Minimalism
 
 - Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide
 - Avoid adding something only slightly different from an existing one (e.g. slightly lighter blue to only use in one place)
 - Always check for an existing component before using a third-party or native HTML element (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
-- Use React idioms where possible, but don't be afraid to break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
+- Use React idioms where possible, but break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
 
 ## Safety
 
 - Avoid unsafe TypeScript: `any` (use `unknown` instead), casting (`as SomeType`), non-null assertions (`value!`)
 - Be forward-looking, but only use features with 1+ years of stable Chrome/Firefox/Safari support
 - Use explicit build-time imports for type-safety and bundler optimizations, avoid `/public`
+- Avoid disabling ESLint
 
 ## Styling
 
 - Use Tailwind classes for styling (custom CSS as last resort)
 - Use inline CSS only for dynamic values
-- Avoid Tailwind `!` important modifier, achieve specificity via `@layer` or conditional classes
+- Try not to use Tailwind `!` important modifier, achieve specificity via `@layer` or conditional classes
 - Use Tailwind `--spacing()` function inside `calc()` expressions
-- Stick to site's existing visual design language: gap sizes, color usage, color-alpha patterns, font choices, component usage, etc.
+- Stay consistent with site's existing design language: gap sizes, color usage, color alphas, font choices, component usage, etc.
 
 ## Organization
 

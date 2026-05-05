@@ -117,7 +117,7 @@ type YouTubeStopEvent = CustomEvent;
 
 // define custom events on window
 declare global {
-  // eslint-disable-next-line
+  // eslint-disable-next-line -- for declaration merging
   interface WindowEventMap {
     [playEvent]: YouTubePlayEvent;
     [stopEvent]: YouTubeStopEvent;

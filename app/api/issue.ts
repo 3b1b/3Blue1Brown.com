@@ -2,7 +2,7 @@ import { request } from "~/api";
 import site from "~/data/site.json";
 
 // cloud func url
-const url = site.issues;
+const url = site.gcp.create_issue;
 
 // see /cloud/issue
 type Body = {

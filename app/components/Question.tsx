@@ -133,7 +133,7 @@ export default function Question({
         {state === "unanswered" && (
           <>
             <PiCreature emotion="pondering" size="xs" flip />
-            {/* https://github.com/3b1b/3Blue1Brown.com/issues/577 */}
+            {/* span wrapper necessary https://github.com/3b1b/3Blue1Brown.com/issues/577 */}
             <span>What could it be...</span>
           </>
         )}

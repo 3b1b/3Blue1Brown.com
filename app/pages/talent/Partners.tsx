@@ -3,6 +3,7 @@ import { href } from "react-router";
 import Card from "~/components/Card";
 import { useDarkMode } from "~/components/DarkMode";
 import { H2 } from "~/components/Heading";
+import { useClient } from "~/util/hooks";
 import { seededShuffle } from "~/util/math";
 import { getLogo, getLogoDark, getPartner } from "./Partner";
 
@@ -25,10 +26,11 @@ export default function Partners() {
   const darkMode = useDarkMode();
 
   // randomize on client
+  if (useClient()) {
+  }
   useEffect(
     () =>
-      // https://github.com/facebook/react/issues/34045#issuecomment-3801067128
-      // eslint-disable-next-line
+      // eslint-disable-next-line -- https://github.com/facebook/react/issues/34045#issuecomment-3801067128
       setOrder((order) => {
         // always keep first first
         let [first, ...rest] = order;

@@ -16,17 +16,15 @@ type Props = {
   children: ReactNode;
 };
 
-// plain string to markdown.
-// avoid using if possible. instead use children prop which automatically
-// gets converted via build plugins.
+// render markdown string to html elements. avoid using if possible, instead use
+// children prop which automatically gets converted via build plugins.
 export default function Markdownify({ noParagraph = true, children }: Props) {
   if (typeof children !== "string") return children;
 
   return (
     <ReactMarkdown
       components={
-        // not actually a react hook despite starting with "use"
-        // eslint-disable-next-line
+        // eslint-disable-next-line -- not actually react hook despite starting with "use"
         useMDXComponents(noParagraph)
       }
       remarkPlugins={[remarkMath]}
@@ -36,7 +34,7 @@ export default function Markdownify({ noParagraph = true, children }: Props) {
   );
 }
 
-// replace generated markdown elements with other elements/components
+// replace markdown elements with other elements/components
 // used in both markdownify runtime component and buildtime mdx rollup plugin
 // https://mdxjs.com/packages/mdx
 export const useMDXComponents = (noParagraph?: boolean): Components => ({
