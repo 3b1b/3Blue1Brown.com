@@ -40,7 +40,7 @@ import { formatDate } from "~/util/string";
 
 // lazy load full lesson (frontmatter + mdx content)
 const getFullLesson = importAssetsAsync(
-  import.meta.glob<RawLesson>("./20\\d\\d/**/index.mdx"),
+  import.meta.glob<RawLesson>("./20[0-9][0-9]/**/index.mdx"),
   "index",
   transformLesson,
 );

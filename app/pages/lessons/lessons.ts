@@ -60,7 +60,7 @@ export type Lesson = ReturnType<typeof transformLesson>;
 
 // import all lessons (frontmatter only)
 export const [getLesson, lessons] = importAssets(
-  import.meta.glob<RawLesson>("./20\\d\\d/**/index.mdx", {
+  import.meta.glob<RawLesson>("./20[0-9][0-9]/**/index.mdx", {
     eager: true,
     query: "frontmatter-only",
   }),
@@ -68,9 +68,11 @@ export const [getLesson, lessons] = importAssets(
   transformLesson,
 );
 
+console.log(lessons);
+
 // import lesson patrons
 export const [getPatrons] = importAssets(
-  import.meta.glob<{ default: string }>("./20\\d\\d/**/patrons.txt", {
+  import.meta.glob<{ default: string }>("./20[0-9][0-9]/**/patrons.txt", {
     eager: true,
     query: "raw",
   }),
