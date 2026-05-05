@@ -1,8 +1,9 @@
 import type { JSX, ReactNode } from "react";
-import { Children, isValidElement, useEffect, useRef } from "react";
+import { Children, useEffect, useRef } from "react";
 import { onlyText } from "react-children-utilities";
 import { atom, useSetAtom } from "jotai";
 import Link from "~/components/Link";
+import { isMathElement } from "~/components/MathJax";
 import { slugify } from "~/util/string";
 
 type Props = {
@@ -115,12 +116,3 @@ const getContent = (content: ReactNode) =>
     if (isMathElement(node)) return node;
     return onlyText(node);
   });
-
-// is node a root math element node
-const isMathElement = (node: ReactNode) =>
-  isValidElement(node) &&
-  typeof node.props === "object" &&
-  node.props !== null &&
-  "className" in node.props &&
-  typeof node.props.className === "string" &&
-  node.props.className.includes("language-math");

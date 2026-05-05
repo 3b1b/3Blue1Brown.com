@@ -1,6 +1,11 @@
-import { useEffect } from "react";
+import type { ReactNode } from "react";
+import { isValidElement, useEffect } from "react";
 import { useMutationObserver } from "@reactuses/core";
 import "./MathJax.css";
+
+// how raw tex converted to dom elements by remark
+const mathClass = "language-math";
+const mathSelector = `code.${mathClass}`;
 
 // mathjax unfortunately designed to be loaded from cdn
 // trying to install as package and import causes many issues, impractical to fix
@@ -19,10 +24,7 @@ export default function MathJax() {
       // only run if a math element is added
       for (const { addedNodes } of entries)
         for (const node of addedNodes)
-          if (
-            node instanceof HTMLElement &&
-            node.querySelector("code.language-math")
-          )
+          if (node instanceof HTMLElement && node.querySelector(mathSelector))
             return render();
     },
     () => document.body,
@@ -102,7 +104,7 @@ const render = async () => {
   console.debug("MathJax render start");
   try {
     // get output from remark-math, which processes $ math blocks into <code> elements
-    const elements = document.querySelectorAll("code.language-math");
+    const elements = document.querySelectorAll(mathSelector);
     console.debug(`MathJax render ${elements.length} elements`);
     for (const element of elements) {
       // math tex content
@@ -132,3 +134,12 @@ const render = async () => {
   }
   window.MathJaxState = true;
 };
+
+// is node a root math element node
+export const isMathElement = (node: ReactNode) =>
+  isValidElement(node) &&
+  typeof node.props === "object" &&
+  node.props !== null &&
+  "className" in node.props &&
+  typeof node.props.className === "string" &&
+  node.props.className.includes(mathClass);

@@ -7,7 +7,6 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
-import { imagetools } from "vite-imagetools";
 import svgr from "vite-plugin-svgr";
 import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
@@ -86,8 +85,6 @@ export default defineConfig(() => ({
         },
       },
     }),
-    // in an effort to keep repo size small, don't overuse this
-    imagetools(),
   ],
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },

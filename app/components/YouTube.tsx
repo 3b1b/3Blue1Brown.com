@@ -9,6 +9,9 @@ import { scrollTo } from "~/util/dom";
 import { waitFor } from "~/util/misc";
 import "youtube-video-element";
 
+// https://www.npmjs.com/package/youtube-video-element
+// mirrors native <video> element api
+
 type Props = {
   // youtube video id
   id?: string;
