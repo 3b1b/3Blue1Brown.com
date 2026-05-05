@@ -8,7 +8,6 @@ import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
-import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig(() => ({
@@ -75,7 +74,6 @@ export default defineConfig(() => ({
     }),
     tailwindcss(),
     reactRouter(),
-    tsconfigPaths(),
     svgr({
       svgrOptions: {
         // https://github.com/gregberge/svgr/discussions/770
@@ -88,5 +86,6 @@ export default defineConfig(() => ({
   ],
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
+    tsconfigPaths: true,
   },
 }));
