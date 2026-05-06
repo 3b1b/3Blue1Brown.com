@@ -17,9 +17,7 @@ export default function DarkMode({ className = "" }) {
 
   // update flag on document
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList[darkMode ? "add" : "remove"]("dark");
-    root.classList[darkMode ? "remove" : "add"]("light");
+    document.documentElement.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
 
   // for debugging

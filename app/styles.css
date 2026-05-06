@@ -43,6 +43,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@custom-variant playing (&:where(.playing *));
+
 .dark {
   --color-theme: oklch(80% 0.15 240);
   --color-secondary: oklch(80% 0.15 60);
@@ -275,6 +277,10 @@
 
 @utility badge {
   @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
+}
+
+@utility playing-fade {
+  @apply playing:opacity-0! transition-opacity duration-1000;
 }
 
 @utility perspective-rotate {

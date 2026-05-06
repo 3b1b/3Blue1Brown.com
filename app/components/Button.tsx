@@ -34,7 +34,7 @@ export default function Button({
     "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hocus:bg-theme/15 hocus:text-theme",
     color === "light" &&
-      "bg-theme/15 text-theme hocus:bg-theme hocus:text-white",
+      "bg-theme/15 text-black hocus:bg-theme hocus:text-white",
     color === "theme" &&
       "bg-theme text-white hocus-ring hocus:bg-black hocus:outline-black",
     color === "critical" &&

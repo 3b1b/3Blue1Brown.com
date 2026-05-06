@@ -90,14 +90,14 @@ bun run check:links                 # Broken links
 
 - Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide
 - Avoid adding something only slightly different from an existing one (e.g. slightly lighter blue to only use in one place)
-- Always check for an existing component before using a third-party or native HTML element (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
+- Always check for an existing component/util before using a third-party or native HTML element/func (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
 - Use React idioms where possible, but break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
 
 ## Safety
 
 - Avoid unsafe TypeScript: `any` (use `unknown` instead), casting (`as SomeType`), non-null assertions (`value!`)
 - Be forward-looking, but only use features with 1+ years of stable Chrome/Firefox/Safari support
-- Use explicit build-time imports for type-safety and bundler optimizations, avoid `/public`
+- Use explicit imports for type-safety and bundler optimizations, avoid `/public`
 - Avoid disabling ESLint
 
 ## Styling
@@ -118,6 +118,8 @@ bun run check:links                 # Broken links
 ## Syntax
 
 - Use `~/` prefix for all imports (except when files meant to always be colocated)
+- Don't use implicit React namespace, i.e. `React.useState()`
+- Use named imports when available
 - JS/TS in `lowerCamelCase`, components and types in `UpperCamelCase`, files and CSS classes in `lower-kebab-case`
 - Avoid single letter var names e.g. `i` or `<T>`
 - Use `function () {}` notation for React components, `() => {}` (arrow) notation for everything else

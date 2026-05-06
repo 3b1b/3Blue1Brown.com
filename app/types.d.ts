@@ -5,6 +5,8 @@ namespace React.JSX {
   interface IntrinsicElements {
     // youtube-video-element
     "youtube-video": JSX.HTMLAttributes<HTMLVideoElement>;
+    // vimeo-video-element
+    "vimeo-video": JSX.HTMLAttributes<HTMLIFrameElement>;
     // react three fiber
     orbitControls: unknown;
     parametricGeometry: unknown;

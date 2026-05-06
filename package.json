@@ -45,6 +45,7 @@
     "react-schemaorg": "^2.0.1",
     "three": "0.184.0",
     "ua-parser-js": "^2.0.9",
+    "vimeo-video-element": "^1.7.1",
     "youtube-video-element": "^1.9.0"
   },
   "devDependencies": {

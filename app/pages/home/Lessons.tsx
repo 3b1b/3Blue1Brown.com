@@ -18,7 +18,7 @@ import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
-import { userSelect } from "~/pages/home/Theater";
+import { setAutoplay } from "~/pages/home/Theater";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
@@ -124,7 +124,6 @@ export function Search({ dialog = false, close = () => {} }) {
               onClick={() => {
                 // clear search so user doesn't forget they're filtering by search
                 setSearch("");
-                userSelect();
               }}
               aria-label="Back to all topics"
             >
@@ -208,8 +207,8 @@ export function Search({ dialog = false, close = () => {} }) {
                         description={description}
                         className={clsx(lessonId === id && "opacity-50")}
                         onClick={() => {
-                          userSelect();
                           close();
+                          setAutoplay(true);
                         }}
                         aria-label={`Play lesson "${title}"`}
                         aria-current={lessonId === id}

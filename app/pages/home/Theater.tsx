@@ -7,18 +7,18 @@ import {
   BookOpenTextIcon,
   CaretDoubleLeftIcon,
   CaretDoubleRightIcon,
+  CaretDownIcon,
   CaretLeftIcon,
   CaretRightIcon,
+  CaretUpIcon,
   DiceThreeIcon,
-  InfoIcon,
 } from "@phosphor-icons/react";
-import { useUnmount } from "@reactuses/core";
 import clsx from "clsx";
 import { useAtomValue } from "jotai";
-import backlight from "~/components/backlight.svg?inline";
 import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
-import YouTube, { play, playingAtom } from "~/components/YouTube";
+import { play, stop, videoPlayingAtom } from "~/components/video";
+import YouTube from "~/components/YouTube";
 import {
   getFirst,
   getLast,
@@ -28,15 +28,16 @@ import {
   getRandom,
 } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
+import { getAtom } from "~/util/atom";
 import { autoHeight } from "~/util/hooks";
 import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Lessons";
 
-// has user explicitly selected a lesson
-let userSelected = false;
-// mark that user explicitly selected a lesson
-export const userSelect = () => (userSelected = true);
+// flag for whether to autoplay on next video load
+let autoplay: boolean | undefined = undefined;
+// set autoplay flag
+export const setAutoplay = (value: typeof autoplay) => (autoplay = value);
 
 // home page theater section
 export default function Theater() {
@@ -89,19 +90,13 @@ export default function Theater() {
   // show video details
   const [details, setDetails] = useState(false);
 
-  // is video playing
-  const playing = useAtomValue(playingAtom);
-
-  // when lesson changes, start playing
+  // when current lesson changes (after nav)
   useEffect(() => {
-    // only auto-play if user explicitly selected
-    if (userSelected) play();
+    if (autoplay === true) play();
+    if (autoplay === false) stop();
+    // reset after use
+    setAutoplay(undefined);
   }, [lesson?.id]);
-
-  useUnmount(() => {
-    // reset user selection on page exit
-    userSelected = false;
-  });
 
   return (
     <>
@@ -112,33 +107,32 @@ export default function Theater() {
         <YouTube
           id={lesson?.video ?? ""}
           className="self-center border border-black"
-          style={{
-            filter: playing ? `url("${backlight}#filter")` : undefined,
-          }}
+          backlight
         />
 
-        <div className="flex items-center justify-center gap-4 max-md:flex-col max-md:text-center">
+        <div className="flex items-center justify-center gap-8 max-md:flex-col max-md:text-center">
           {/* title */}
-          <div className="grow font-sans text-lg">
+          <div className="font-sans text-lg">
             {lesson?.title}
             {lesson?.id === latest?.id && <sup className="badge">New</sup>}
           </div>
 
           {/* actions */}
-          <div className="flex flex-wrap items-center justify-center gap-4 max-md:gap-2">
+          <div className="flex flex-wrap gap-4">
             {lesson?.read && (
               <Button size="sm" to={readLink}>
                 <BookOpenTextIcon />
                 Read
               </Button>
             )}
+
             <Button
               size="sm"
               onClick={() => setDetails(!details)}
               aria-expanded={details}
               aria-controls="theater-details"
             >
-              <InfoIcon />
+              {details ? <CaretUpIcon /> : <CaretDownIcon />}
               Details
             </Button>
           </div>
@@ -147,11 +141,11 @@ export default function Theater() {
         <div
           ref={(element) => autoHeight(element, details)}
           className={clsx(
-            "flex flex-col gap-4 overflow-y-clip transition-all",
-            !details && "-mb-4",
+            "flex flex-col gap-4 overflow-y-clip rounded-md bg-theme/15 p-4 transition-all",
+            details ? "" : "pointer-events-none -mb-2 py-0",
           )}
         >
-          <p>{formatDate(lesson?.date)}</p>
+          <strong>{formatDate(lesson?.date)}</strong>
           <p>{lesson?.description}</p>
         </div>
 
@@ -163,27 +157,34 @@ export default function Theater() {
               const random = getRandom(lesson?.id, topicLessons)?.frontmatter;
               const to = "?lesson=" + (random?.id ?? "");
               navigate(to);
+              setAutoplay(getAtom(videoPlayingAtom));
             }}
+            aria-label="Random lesson in topic"
           >
             <DiceThreeIcon />
-            Random
           </Button>
-          <Nav current={lesson} target={first}>
+          <Nav
+            current={lesson}
+            target={first}
+            aria-label="First lesson in topic"
+          >
             <CaretDoubleLeftIcon />
-            First
           </Nav>
-          <Nav current={lesson} target={previous}>
+          <Nav
+            current={lesson}
+            target={previous}
+            aria-label="Previous lesson in topic"
+          >
             <CaretLeftIcon />
-            Previous
           </Nav>
-          <Nav current={lesson} target={next}>
-            Next
+          <Nav current={lesson} target={next} aria-label="Next lesson in topic">
             <CaretRightIcon />
           </Nav>
-          <Nav current={lesson} target={last}>
-            Last
+          <Nav current={lesson} target={last} aria-label="Last lesson in topic">
             <CaretDoubleRightIcon />
           </Nav>
+
+          {/* <div className="badge bg-gray">{topic?.title}</div> */}
         </div>
       </div>
     </>
@@ -207,6 +208,7 @@ function Nav({ current, target, children, ...props }: ControlProps) {
       to={{
         search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
       }}
+      onClick={() => setAutoplay(getAtom(videoPlayingAtom))}
       aria-disabled={!target || current?.id === target?.id}
       {...props}
     >
