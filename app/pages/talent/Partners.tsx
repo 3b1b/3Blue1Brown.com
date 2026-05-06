@@ -7,7 +7,7 @@ import { useClient } from "~/util/hooks";
 import { seededShuffle } from "~/util/math";
 import { getLogo, getLogoDark, getPartner } from "./Partner";
 
-const partners = [
+const partners: [string, ...string[]] = [
   "janestreet",
   "cognition",
   "doppel",
@@ -32,11 +32,13 @@ export default function Partners() {
     () =>
       // eslint-disable-next-line -- https://github.com/facebook/react/issues/34045#issuecomment-3801067128
       setOrder((order) => {
-        // always keep first first
-        let [first, ...rest] = order;
-        // shuffle rest every so often
-        rest = seededShuffle(rest!, Math.floor(Date.now() / (1000 * 60 * 60)));
-        return [first!, ...rest];
+        const [first, ...rest] = order;
+        return [
+          // always keep first first
+          first,
+          // shuffle rest every so often
+          ...seededShuffle(rest, Math.floor(Date.now() / (1000 * 60 * 60))),
+        ];
       }),
     [],
   );

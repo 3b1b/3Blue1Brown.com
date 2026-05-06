@@ -23,8 +23,8 @@ export default function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLAnchorElement>(null);
-  const previousRef = useRef<HTMLElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
+  const previousRef = useRef<Element>(null);
+  const sectionRef = useRef<Element>(null);
 
   // full list of headings on page
   const headings = useAtomValue(headingsAtom);
@@ -33,11 +33,11 @@ export default function TableOfContents() {
   useEffect(() => {
     // section or header right before where component placed on page
     previousRef.current = ref.current
-      ? (findClosest(ref.current, "section, header") as HTMLElement)
+      ? (findClosest(ref.current, "section, header") ?? null)
       : null;
     // find first section after this component
     sectionRef.current = ref.current
-      ? (findClosest(ref.current, "section", "next") as HTMLElement)
+      ? (findClosest(ref.current, "section", "next") ?? null)
       : null;
   }, []);
 

@@ -14,7 +14,7 @@ export async function request<Response>(
   try {
     if (parse === "text") return (await response.text()) as Response;
     else return (await response.json()) as Response;
-  } catch (e) {
+  } catch {
     throw Error(`Couldn't parse response as ${parse}`);
   }
 }

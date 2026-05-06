@@ -76,6 +76,10 @@
 
   main {
     @apply flex grow flex-col;
+
+    &.striped > section:nth-of-type(odd) {
+      @apply bg-alt-white;
+    }
   }
 
   section {

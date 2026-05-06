@@ -59,7 +59,7 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
 
       <PartnerHeader />
 
-      <Main striped>
+      <Main className="striped">
         <H1 className="sr-only">Jane Street</H1>
         <Component />
       </Main>

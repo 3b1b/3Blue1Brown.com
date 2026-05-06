@@ -91,7 +91,7 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
 };
 
 // scroll "progress" of element down viewport, -1 to 1
-export const useParallax = (ref: RefObject<HTMLElement | null>) => {
+export const useParallax = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
   const percent =
@@ -100,7 +100,7 @@ export const useParallax = (ref: RefObject<HTMLElement | null>) => {
 };
 
 // is element in viewport
-export const useInView = (ref: RefObject<HTMLElement | null>) => {
+export const useInView = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
 
@@ -228,10 +228,13 @@ export const useEgg = () => {
       if (today.getMonth() === 5 && today.getDate() === 28) shape = "tau";
       // shape = "pi";
       if (!shape) return;
-      const w = window.innerWidth / 2;
-      const h = window.innerHeight / 2;
+      const width = window.innerWidth / 2;
+      const height = window.innerHeight / 2;
       for (let bursts = 20; bursts > 0; bursts--) {
-        celebrate(shape, new Vector(random(-w, w), random(-h, h)));
+        celebrate(
+          shape,
+          new Vector(random(-width, width), random(-height, height)),
+        );
         await sleep(250);
       }
       await sleep(500);

@@ -62,7 +62,7 @@ export default function Radios<O extends Option>({
               value={value}
               render={(props, { checked }) => (
                 <span
-                  className="flex flex-row items-center gap-4 outline-none!"
+                  className="flex flex-row items-center gap-4 outline-none"
                   {...props}
                 >
                   {checked ? (

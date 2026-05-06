@@ -44,13 +44,13 @@ export const transformLesson = (lesson: RawLesson, id: string) => ({
     // combine credits by role for more compact display
     combinedCredits:
       lesson.frontmatter.credits?.reduce(
-        (credits, credit) => {
+        (credits, credit): Record<string, string[]> => {
           const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
           credits[role] ??= [];
           credits[role].push(name);
           return credits;
         },
-        {} as Record<string, string[]>,
+        {},
       ) ?? {},
   },
 });
@@ -67,8 +67,6 @@ export const [getLesson, lessons] = importAssets(
   "index",
   transformLesson,
 );
-
-console.log(lessons);
 
 // import lesson patrons
 export const [getPatrons] = importAssets(

@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
+    "@eslint/js": "^10.0.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@mdx-js/rollup": "^3.1.1",
     "@modyfi/vite-plugin-yaml": "^1.1.1",
@@ -84,6 +85,6 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.10",
-    "vite-plugin-svgr": "^5.2.0"  
+    "vite-plugin-svgr": "^5.2.0"
   }
 }

@@ -52,12 +52,12 @@ const furrows = radii.slice(1).map((radius, radiusIndex) => ({
   arcs: [
     // blue arc
     {
-      color: blues[radiusIndex]!,
+      color: blues[radiusIndex],
       steps: _range(0, blueSteps, radiusIndex === 2 ? 0.5 : 0),
     },
     // brown arc
     {
-      color: browns[radiusIndex]!,
+      color: browns[radiusIndex],
       steps: _range(blueSteps, brownSteps, radiusIndex === 2 ? 0.5 : 0),
     },
   ].map(({ steps, color }) => ({

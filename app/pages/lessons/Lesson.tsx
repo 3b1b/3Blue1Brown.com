@@ -119,9 +119,9 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
       <Header />
 
-      <Main striped>
+      <Main className="striped">
         {/* lesson header */}
-        <section className="items-center bg-theme/15! width-lg">
+        <section className="items-center bg-theme/15 width-lg">
           {/* topic */}
           {topic && (
             <Button
@@ -252,7 +252,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
         {/* thank you */}
         {!!patrons.length && (
-          <section className="bg-secondary/10! print:hidden">
+          <section className="bg-secondary/10 print:hidden">
             <H2>
               <hr />
               Thanks

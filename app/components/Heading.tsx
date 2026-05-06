@@ -82,7 +82,7 @@ function Heading({ level, id, className, children }: Props) {
 
   return (
     <Tag id={id} ref={ref} className={className}>
-      <Link to={"#" + id} className="contents! text-current no-underline">
+      <Link to={"#" + id} className="contents text-current no-underline">
         {children}
       </Link>
     </Tag>

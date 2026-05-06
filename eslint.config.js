@@ -67,7 +67,10 @@ export default defineConfig([
           printWidth: 0,
         },
       ],
-      "better-tailwindcss/no-unknown-classes": ["warn", { ignore: ["dark"] }],
+      "better-tailwindcss/no-unknown-classes": [
+        "warn",
+        { ignore: ["dark", "striped"] },
+      ],
     },
     settings: {
       "better-tailwindcss": { entryPoint: "app/styles.css" },

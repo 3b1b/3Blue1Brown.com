@@ -104,7 +104,7 @@ bun run check:links                 # Broken links
 
 - Use Tailwind classes for styling (custom CSS as last resort)
 - Use inline CSS only for dynamic values
-- Try not to use Tailwind `!` important modifier, achieve specificity via `@layer` or conditional classes
+- Try not to use Tailwind `!` important modifier, prefer conditional classes or `@layer` specificity
 - Use Tailwind `--spacing()` function inside `calc()` expressions
 - Stay consistent with site's existing design language: gap sizes, color usage, color alphas, font choices, component usage, etc.
 

@@ -14,7 +14,7 @@ export default function Footnote({ href, children }: Props) {
           const target = document.querySelector(href);
           if (!target) return;
           // clone footnote content
-          const clone = target.cloneNode(true) as HTMLElement;
+          const clone = target.cloneNode(true) as Element;
           clone.querySelector("[data-footnote-backref]")?.remove();
           div.innerHTML = clone.innerHTML;
         }}
