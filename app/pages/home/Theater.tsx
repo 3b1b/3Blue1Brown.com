@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import type { Lesson } from "~/pages/lessons/lessons";
 import type { TopicId } from "~/pages/lessons/topics";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { href, useLocation, useNavigate } from "react-router";
 import {
   BookOpenTextIcon,
@@ -29,7 +29,7 @@ import {
 } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { getAtom } from "~/util/atom";
-import { autoHeight } from "~/util/hooks";
+import { useAutoHeight } from "~/util/hooks";
 import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Lessons";
@@ -41,6 +41,8 @@ export const setAutoplay = (value: typeof autoplay) => (autoplay = value);
 
 // home page theater section
 export default function Theater() {
+  const detailsRef = useRef<HTMLDivElement>(null);
+
   const navigate = useNavigate();
 
   // selected lesson id
@@ -98,6 +100,9 @@ export default function Theater() {
     setAutoplay(undefined);
   }, [lesson?.id]);
 
+  // animate height on open/close
+  useAutoHeight(detailsRef, details);
+
   return (
     <>
       <H1 className="sr-only">Home</H1>
@@ -139,7 +144,7 @@ export default function Theater() {
         </div>
 
         <div
-          ref={(element) => autoHeight(element, details)}
+          ref={detailsRef}
           className={clsx(
             "flex flex-col gap-4 overflow-y-clip rounded-md bg-theme/15 p-4 transition-all",
             details ? "" : "pointer-events-none -mb-2 py-0",

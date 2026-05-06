@@ -19,7 +19,7 @@ import { isEqual, mapValues, random } from "lodash-es";
 import { UAParser } from "ua-parser-js";
 import { celebrate } from "~/components/Celebrate";
 import FuzzyWorker from "~/util/fuzzy?worker";
-import { sleep } from "~/util/misc";
+import { frame, sleep } from "~/util/misc";
 import { Vector } from "~/util/vector";
 
 // check if value changed from previous render
@@ -184,27 +184,38 @@ export const useClient = () => {
 };
 
 // control expanding/collapsing height of element with transition
-export const autoHeight = (
-  element: HTMLElement | null,
+export const useAutoHeight = (
+  ref: RefObject<HTMLElement | null>,
+  // is open
   open: boolean,
+  // closed height
   closed = 0,
 ) => {
-  if (!element) return;
-  if (open) {
-    // set height to content height
-    element.style.maxHeight = element.scrollHeight + "px";
-    // remove after transition so content can size naturally
-    element.addEventListener(
-      "transitionend",
-      () => (element.style.maxHeight = ""),
-      { once: true },
-    );
-  } else {
-    // set starting height
-    element.style.maxHeight = element.scrollHeight + "px";
-    // collapse
-    sleep().then(() => (element.style.maxHeight = closed + "px"));
-  }
+  useLayoutEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // reset height so content can size naturally
+    const reset = () => (element.style.maxHeight = "");
+
+    if (open) {
+      // set height to content height
+      element.style.maxHeight = element.scrollHeight + "px";
+      // reset after transition
+      element.addEventListener("transitionend", reset, { once: true });
+    } else {
+      // set starting height
+      element.style.maxHeight = element.scrollHeight + "px";
+      frame().then(() => {
+        // collapse
+        element.style.maxHeight = closed + "px";
+      });
+    }
+
+    return () => {
+      element.removeEventListener("transitionend", reset);
+    };
+  }, [ref, open, closed]);
 };
 
 // use printing state

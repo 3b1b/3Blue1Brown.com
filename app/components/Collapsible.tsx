@@ -1,9 +1,9 @@
 import type { ComponentProps, ReactNode } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Collapsible as _Collapsible } from "@base-ui/react";
 import { CaretRightIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { autoHeight, usePrinting } from "~/util/hooks";
+import { useAutoHeight, usePrinting } from "~/util/hooks";
 
 type Props = {
   // button content
@@ -14,7 +14,13 @@ type Props = {
 
 // aka disclosure, accordion, etc.
 export default function Collapsible({ title, children, className }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // state
   let [open, setOpen] = useState(false);
+
+  // animate height on open/close
+  useAutoHeight(ref, open);
 
   if (usePrinting()) open = true;
 
@@ -36,7 +42,7 @@ export default function Collapsible({ title, children, className }: Props) {
         {title}
       </_Collapsible.Trigger>
       <_Collapsible.Panel
-        ref={(element) => autoHeight(element, open)}
+        ref={ref}
         hiddenUntilFound
         className={clsx(
           "flex shrink-0 flex-col gap-8 overflow-y-clip px-8 py-2 transition-all",
