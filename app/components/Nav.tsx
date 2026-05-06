@@ -66,7 +66,7 @@ export default function Nav() {
   return (
     <>
       {/* desktop */}
-      <Links className="max-xl:justify-end max-lg:hidden" />
+      <Links className="max-lg:hidden" />
       {/* mobile */}
       <>
         {/* toggle */}
