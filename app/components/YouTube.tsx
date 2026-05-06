@@ -68,8 +68,6 @@ export default function YouTube({
       onplay={onPlay}
       onpause={onStop}
       controls
-      role="region"
-      aria-label="YouTube video"
       style={{
         filter:
           backlight && playing ? `url("${backlightFilter}#filter")` : undefined,
@@ -79,10 +77,10 @@ export default function YouTube({
   );
 }
 
-// get watch video from id
+// get video watch url
 export const getWatch = (id: string, time = 0) =>
   `https://www.youtube.com/watch?v=${id}&t=${time}s`;
 
-// get thumbnail image from video id
+// get thumbnail image url
 export const getThumbnail = (id: string) =>
   `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;

@@ -1,7 +1,7 @@
 // general request func with conveniences
 export async function request<Response>(
   url: string | URL,
-  options: RequestInit,
+  options: RequestInit = {},
   parse: "json" | "text" = "json",
 ): Promise<Response> {
   // construct request
