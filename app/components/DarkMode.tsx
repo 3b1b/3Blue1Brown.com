@@ -1,22 +1,12 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useEventListener } from "@reactuses/core";
-import { getDefaultStore, useAtom, useAtomValue } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { debounce } from "lodash-es";
 import { event as analyticsEvent } from "~/components/Analytics";
 import Button from "~/components/Button";
 
 const darkModeAtom = atomWithStorage("dark-mode", false);
-
-// trigger analytics event when dark mode changes
-const store = getDefaultStore();
-store.sub(
-  darkModeAtom,
-  debounce(() => {
-    analyticsEvent("dark_mode", { value: store.get(darkModeAtom) });
-  }, 1000),
-);
 
 export const useDarkMode = () => useAtomValue(darkModeAtom);
 
@@ -41,7 +31,11 @@ export default function DarkMode({ className = "" }) {
 
   return (
     <Button
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={() => {
+        setDarkMode(!darkMode);
+        // track analytics event
+        analyticsEvent("dark_mode", { value: !darkMode });
+      }}
       size="sm"
       role="switch"
       aria-checked={!!darkMode}
