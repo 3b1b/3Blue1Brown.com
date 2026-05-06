@@ -1,5 +1,5 @@
 import type { TopicId } from "~/pages/lessons/topics";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
 import {
   ArrowLeftIcon,
@@ -81,7 +81,7 @@ export function Search({ dialog = false, close = () => {} }) {
     lessons,
     search,
     // track analytics event
-    (search) => analyticsEvent("lesson_search", { search }),
+    useCallback((search) => analyticsEvent("lesson_search", { search }), []),
   );
 
   // display newest to oldest for certain topics
