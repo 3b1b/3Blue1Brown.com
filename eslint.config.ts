@@ -1,12 +1,12 @@
-import eslintJs from "@eslint/js";
-import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
-import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
-import * as eslintPluginMdx from "eslint-plugin-mdx";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
-import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import js from "@eslint/js";
+import tailwind from "eslint-plugin-better-tailwindcss";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import * as mdx from "eslint-plugin-mdx";
+import prettier from "eslint-plugin-prettier/recommended";
+import reactHooks from "eslint-plugin-react-hooks";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
-import typescriptEslint from "typescript-eslint";
+import tslint from "typescript-eslint";
 
 export default defineConfig([
   globalIgnores([
@@ -20,7 +20,7 @@ export default defineConfig([
   // https://github.com/mdx-js/eslint-mdx/issues/92
   {
     name: "TypeScript",
-    extends: typescriptEslint.configs.recommended,
+    ...tslint.configs.recommended,
     ignores: ["**/*.mdx"],
     rules: {
       "@typescript-eslint/no-unused-vars": ["warn", { caughtErrors: "none" }],
@@ -30,34 +30,36 @@ export default defineConfig([
   },
   {
     name: "JavaScript",
-    ...eslintJs.configs.recommended,
+    ...js.configs.recommended,
     rules: {
       "prefer-const": ["error", { destructuring: "all" }],
     },
   },
   {
     name: "React Hooks",
-    ...eslintPluginReactHooks.configs.flat.recommended,
+    ...reactHooks.configs.flat.recommended,
   },
   {
     name: "JSX Accessibility",
-    ...eslintPluginJsxA11y.flatConfigs.recommended,
+    ...jsxA11y.flatConfigs.recommended,
     rules: {
       // https://github.com/dequelabs/axe-core/issues/4566
       "jsx-a11y/no-noninteractive-tabindex": ["off"],
     },
   },
+
   {
     name: "Prettier",
-    ...eslintPluginPrettierRecommended,
+    ...prettier,
     ignores: ["**/*.mdx"],
     rules: {
       "prettier/prettier": "warn",
     },
   },
+
   {
     name: "Tailwind",
-    extends: [eslintPluginBetterTailwindcss.configs.recommended],
+    ...tailwind.configs.recommended,
     rules: {
       "better-tailwindcss/enforce-consistent-line-wrapping": [
         "warn",
@@ -76,13 +78,15 @@ export default defineConfig([
       "better-tailwindcss": { entryPoint: "app/styles.css" },
     },
   },
+
   {
     name: "MDX",
-    ...eslintPluginMdx.flat,
+    ...mdx.flat,
     rules: {
       "@typescript-eslint/consistent-type-imports": "off",
     },
   },
+
   {
     languageOptions: {
       globals: globals.browser,
