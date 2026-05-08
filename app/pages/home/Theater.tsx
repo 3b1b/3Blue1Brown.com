@@ -34,7 +34,7 @@ import { formatDate } from "~/util/string";
 import { mergeSearch } from "~/util/url";
 import { lessonAtom, topicAtom } from "./Lessons";
 
-// flag for whether to autoplay on next video load
+// flag for whether to play/stop on next nav
 let autoplay: boolean | undefined = undefined;
 // set autoplay flag
 export const setAutoplay = (value: typeof autoplay) => (autoplay = value);
