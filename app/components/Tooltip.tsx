@@ -43,7 +43,7 @@ export default function Tooltip({ trigger, children, className }: Props) {
         <Popover.Positioner
           side="top"
           sideOffset={10}
-          collisionPadding={20}
+          collisionPadding={10}
           className="z-30"
           collisionAvoidance={{
             side: "flip",
@@ -59,7 +59,7 @@ export default function Tooltip({ trigger, children, className }: Props) {
             )}
           >
             <Popover.Arrow className="[clip-path:polygon(-100%_-10%,201%_-10%,100%_100%,0_100%)] data-[side=bottom]:bottom-full data-[side=bottom]:rotate-180 data-[side=left]:left-full data-[side=left]:-rotate-90 data-[side=right]:right-full data-[side=right]:rotate-90 data-[side=top]:top-full">
-              <div className="size-3 -translate-y-1/2 rotate-45 bg-white shadow-sm" />
+              <div className="size-2 -translate-y-1/2 rotate-45 bg-white shadow-sm" />
             </Popover.Arrow>
             {children}
           </Popover.Popup>
