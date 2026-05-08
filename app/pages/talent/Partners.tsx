@@ -25,9 +25,6 @@ export default function Partners() {
 
   const darkMode = useDarkMode();
 
-  // randomize on client
-  if (useClient()) {
-  }
   useEffect(
     () =>
       // eslint-disable-next-line -- https://github.com/facebook/react/issues/34045#issuecomment-3801067128
