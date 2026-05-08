@@ -20,7 +20,7 @@ export default defineConfig([
   // https://github.com/mdx-js/eslint-mdx/issues/92
   {
     name: "TypeScript",
-    ...tslint.configs.recommended,
+    extends: tslint.configs.recommended,
     ignores: ["**/*.mdx"],
     rules: {
       "@typescript-eslint/no-unused-vars": ["warn", { caughtErrors: "none" }],
@@ -28,6 +28,7 @@ export default defineConfig([
       "@typescript-eslint/consistent-type-imports": "error",
     },
   },
+
   {
     name: "JavaScript",
     ...js.configs.recommended,
@@ -35,13 +36,15 @@ export default defineConfig([
       "prefer-const": ["error", { destructuring: "all" }],
     },
   },
+
   {
     name: "React Hooks",
-    ...reactHooks.configs.flat.recommended,
+    extends: [reactHooks.configs.flat.recommended],
   },
+
   {
     name: "JSX Accessibility",
-    ...jsxA11y.flatConfigs.recommended,
+    extends: [jsxA11y.flatConfigs.recommended],
     rules: {
       // https://github.com/dequelabs/axe-core/issues/4566
       "jsx-a11y/no-noninteractive-tabindex": ["off"],
@@ -50,7 +53,7 @@ export default defineConfig([
 
   {
     name: "Prettier",
-    ...prettier,
+    extends: [prettier],
     ignores: ["**/*.mdx"],
     rules: {
       "prettier/prettier": "warn",
@@ -59,7 +62,7 @@ export default defineConfig([
 
   {
     name: "Tailwind",
-    ...tailwind.configs.recommended,
+    extends: [tailwind.configs.recommended],
     rules: {
       "better-tailwindcss/enforce-consistent-line-wrapping": [
         "warn",
