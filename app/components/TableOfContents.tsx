@@ -96,12 +96,12 @@ export default function TableOfContents() {
   return (
     <aside
       ref={ref}
+      aria-label="Table of contents"
       className={clsx(
         "fixed inset-y-0 z-20 flex max-w-[min(--spacing(80),75dvw)] flex-col bg-white font-sans shadow-md transition print:hidden",
         hide ? "pointer-events-none opacity-0" : "opacity-100",
         open ? "" : "-translate-x-full",
       )}
-      aria-label="Table of contents"
     >
       <div className="flex items-center gap-4">
         {/* top text */}

@@ -42,8 +42,8 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
   section: (props) => {
     // turn footnotes section into different tag to not interfere with alternating section colors
     if ("data-footnotes" in props)
-      // hide
-      return <aside {...props} className="sr-only" />;
+      // visually hide
+      return <aside {...props} className="sr-only" aria-label="Footnotes" />;
     return <section {...props} />;
   },
 

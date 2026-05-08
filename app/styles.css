@@ -62,7 +62,7 @@
   --color-shadow: #ffffff40;
 }
 
-@custom-variant hocus (&:is(:hover, :focus));
+@custom-variant hocus (&:is(:hover, :focus-visible));
 
 /* global styles for native HTML elements */
 

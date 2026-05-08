@@ -84,8 +84,8 @@ export function Search({ dialog = false, close = () => {} }) {
     useCallback((search) => analyticsEvent("lesson_search", { search }), []),
   );
 
-  // display newest to oldest for certain topics
-  if (["all", "best-of"].includes(topicId)) results = results.toReversed();
+  // display certain topics in reverse order
+  if (topicId === "all") results = results.toReversed();
 
   // show all or truncate results
   const [all, setAll] = useState(false);

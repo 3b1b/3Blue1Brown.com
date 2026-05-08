@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { Lesson } from "~/pages/lessons/lessons";
 import type { TopicId } from "~/pages/lessons/topics";
 import { useEffect, useRef, useState } from "react";
@@ -17,6 +17,7 @@ import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import Button from "~/components/Button";
 import { H1, H2 } from "~/components/Heading";
+import Tooltip from "~/components/Tooltip";
 import { play, stop, videoPlayingAtom } from "~/components/video";
 import YouTube from "~/components/YouTube";
 import {
@@ -59,6 +60,9 @@ export default function Theater() {
 
   // current topic details
   const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
+
+  // current topic name
+  const topicName = topic?.title || "All";
 
   // current topic lesson list
   const topicLessons = topic?.lessons
@@ -156,40 +160,45 @@ export default function Theater() {
 
         <div className="flex flex-wrap items-center justify-center gap-4 max-sm:gap-2">
           {/* controls */}
-          <Button
-            size="sm"
+          <Nav
             onClick={() => {
-              const random = getRandom(lesson?.id, topicLessons)?.frontmatter;
+              const random = getRandom(lesson?.id)?.frontmatter;
               const to = "?lesson=" + (random?.id ?? "");
               navigate(to);
               setAutoplay(getAtom(videoPlayingAtom));
             }}
-            aria-label="Random lesson in topic"
+            label="Random lesson"
           >
             <DiceThreeIcon />
-          </Button>
+          </Nav>
           <Nav
             current={lesson}
             target={first}
-            aria-label="First lesson in topic"
+            label={`First lesson in "${topicName}"`}
           >
             <CaretDoubleLeftIcon />
           </Nav>
           <Nav
             current={lesson}
             target={previous}
-            aria-label="Previous lesson in topic"
+            label={`Previous lesson in "${topicName}"`}
           >
             <CaretLeftIcon />
           </Nav>
-          <Nav current={lesson} target={next} aria-label="Next lesson in topic">
+          <Nav
+            current={lesson}
+            target={next}
+            label={`Next lesson in "${topicName}"`}
+          >
             <CaretRightIcon />
           </Nav>
-          <Nav current={lesson} target={last} aria-label="Last lesson in topic">
+          <Nav
+            current={lesson}
+            target={last}
+            label={`Last lesson in "${topicName}"`}
+          >
             <CaretDoubleRightIcon />
           </Nav>
-
-          {/* <div className="badge bg-gray">{topic?.title}</div> */}
         </div>
       </div>
     </>
@@ -197,27 +206,40 @@ export default function Theater() {
 }
 
 type ControlProps = {
+  label: string;
   current?: Lesson["frontmatter"];
   target?: Lesson["frontmatter"];
+  onClick?: () => void;
   children: ReactNode;
-} & ComponentProps<typeof Button>;
+};
 
 // nav control button under player
-function Nav({ current, target, children, ...props }: ControlProps) {
+function Nav({ label, current, target, onClick, children }: ControlProps) {
   // current route
   const location = useLocation();
 
+  // props to pass to button
+  const props = onClick
+    ? // button
+      { onClick }
+    : // link
+      {
+        to: {
+          search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
+        },
+        onClick: () => setAutoplay(getAtom(videoPlayingAtom)),
+        ["aria-disabled"]: !target || current?.id === target?.id,
+      };
+
   return (
-    <Button
-      size="sm"
-      to={{
-        search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
-      }}
-      onClick={() => setAutoplay(getAtom(videoPlayingAtom))}
-      aria-disabled={!target || current?.id === target?.id}
-      {...props}
+    <Tooltip
+      trigger={
+        <Button size="sm" aria-label={label} {...props}>
+          {children}
+        </Button>
+      }
     >
-      {children}
-    </Button>
+      {label}
+    </Tooltip>
   );
 }

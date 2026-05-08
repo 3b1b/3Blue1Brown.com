@@ -10,9 +10,6 @@ const [getImage] = importAssets(
   (module) => module.default,
 );
 
-// topics that don't count as "real" topics e.g. for prev/next nav
-const specialTopics = ["all", "best-of"];
-
 // list of topics
 export const topics = mapValues(
   {
@@ -36,6 +33,6 @@ export type TopicId = keyof typeof topics;
 // get topic that lesson is in
 export const getTopic = (id: string) => {
   for (const [topicId, topic] of Object.entries(topics))
-    if (!specialTopics.includes(topicId) && topic.lessons.includes(id))
+    if (!["all", "best-of"].includes(topicId) && topic.lessons.includes(id))
       return topic;
 };

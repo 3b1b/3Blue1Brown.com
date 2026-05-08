@@ -29,6 +29,7 @@ export default function Tooltip({ trigger, children, className }: Props) {
       <Popover.Trigger
         openOnHover
         delay={100}
+        nativeButton={false}
         render={
           isValidElement(trigger) ? (
             // if element, render element
