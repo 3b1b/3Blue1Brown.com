@@ -3,7 +3,6 @@ import { href } from "react-router";
 import Card from "~/components/Card";
 import { useDarkMode } from "~/components/DarkMode";
 import { H2 } from "~/components/Heading";
-import { useClient } from "~/util/hooks";
 import { seededShuffle } from "~/util/math";
 import { getLogo, getLogoDark, getPartner } from "./Partner";
 
