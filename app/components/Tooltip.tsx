@@ -6,6 +6,8 @@ import clsx from "clsx";
 type Props = {
   // trigger element that opens tooltip
   trigger: ReactNode;
+  // whether trigger renders button element
+  button?: boolean;
   // class on popup box
   className?: string;
   // tooltip content
@@ -13,7 +15,12 @@ type Props = {
 };
 
 /** popup of content on hover or click */
-export default function Tooltip({ trigger, children, className }: Props) {
+export default function Tooltip({
+  trigger,
+  button = true,
+  children,
+  className,
+}: Props) {
   // prevent if trigger disabled
   if (
     isValidElement(trigger) &&
@@ -29,7 +36,7 @@ export default function Tooltip({ trigger, children, className }: Props) {
       <Popover.Trigger
         openOnHover
         delay={100}
-        nativeButton={false}
+        nativeButton={button}
         render={
           isValidElement(trigger) ? (
             // if element, render element

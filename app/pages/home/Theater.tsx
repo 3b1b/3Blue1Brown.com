@@ -10,7 +10,6 @@ import {
   CaretDownIcon,
   CaretLeftIcon,
   CaretRightIcon,
-  CaretUpIcon,
   DiceThreeIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
@@ -69,26 +68,26 @@ export default function Theater() {
     ? topic.lessons.filter((id) => getLesson(id)?.frontmatter.video)
     : undefined;
 
+  // handle (rare?) case where selected lesson not in selected topic
+  const lessonInTopic = topicLessons?.includes(lesson?.id ?? "");
+
   // first lesson in list
-  const first =
-    // handle rare case where selected lesson not in selected topic
-    topicLessons?.includes(lesson?.id ?? "")
-      ? getFirst(topicLessons)?.frontmatter
-      : undefined;
+  const first = lessonInTopic ? getFirst(topicLessons)?.frontmatter : undefined;
 
   // previous lesson in list
   const previous =
-    lesson && getPrevious(lesson.id ?? "", topicLessons)?.frontmatter;
+    lesson && lessonInTopic
+      ? getPrevious(lesson.id, topicLessons)?.frontmatter
+      : undefined;
 
   // next lesson in list
-  const next = lesson && getNext(lesson.id ?? "", topicLessons)?.frontmatter;
+  const next =
+    lesson && lessonInTopic
+      ? getNext(lesson.id, topicLessons)?.frontmatter
+      : undefined;
 
   // last lesson in list
-  const last =
-    // handle rare case where selected lesson not in selected topic
-    topicLessons?.includes(lesson?.id ?? "")
-      ? getLast(topicLessons)?.frontmatter
-      : undefined;
+  const last = lessonInTopic ? getLast(topicLessons)?.frontmatter : undefined;
 
   // link to readable lesson
   const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
@@ -141,7 +140,9 @@ export default function Theater() {
               aria-expanded={details}
               aria-controls="theater-details"
             >
-              {details ? <CaretUpIcon /> : <CaretDownIcon />}
+              <CaretDownIcon
+                className={clsx("icon transition", details ? "rotate-180" : "")}
+              />
               Details
             </Button>
           </div>
@@ -151,7 +152,7 @@ export default function Theater() {
           ref={detailsRef}
           className={clsx(
             "flex flex-col gap-4 overflow-y-clip rounded-md bg-theme/15 p-4 transition-all",
-            details ? "" : "pointer-events-none -mb-2 py-0",
+            details ? "" : "pointer-events-none -mb-12 opacity-0 select-none",
           )}
         >
           <strong>{formatDate(lesson?.date)}</strong>
@@ -238,6 +239,7 @@ function Nav({ label, current, target, onClick, children }: ControlProps) {
           {children}
         </Button>
       }
+      button={!!onClick}
     >
       {label}
     </Tooltip>

@@ -35,7 +35,7 @@ export default function ShowPartial({ className, children }: Props) {
         ref={(element) => {
           ref.current = element;
           // if content is short enough, just disable component
-          if ((element?.scrollHeight ?? 0) <= limit) setEnabled(false);
+          setEnabled((element?.scrollHeight ?? 0) > limit);
         }}
         className={clsx(
           "flex flex-col gap-8 overflow-y-clip transition-all",
