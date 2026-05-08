@@ -11,6 +11,7 @@ export const videoPlayingAtom = atom(false);
 
 // update flag on document
 getDefaultStore().sub(videoPlayingAtom, () => {
+  // allow convenient styling based on play state
   document.documentElement.classList[
     getAtom(videoPlayingAtom) ? "add" : "remove"
   ]("playing");
