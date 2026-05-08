@@ -166,7 +166,6 @@ export default function Theater() {
               const random = getRandom(lesson?.id)?.frontmatter;
               const to = "?lesson=" + (random?.id ?? "");
               navigate(to);
-              setAutoplay(getAtom(videoPlayingAtom));
             }}
             label="Random lesson"
           >
@@ -219,23 +218,34 @@ function Nav({ label, current, target, onClick, children }: ControlProps) {
   // current route
   const location = useLocation();
 
-  // props to pass to button
-  const props = onClick
-    ? // button
-      { onClick }
-    : // link
-      {
-        to: {
-          search: mergeSearch(location.search, "?lesson=" + (target?.id ?? "")),
-        },
-        onClick: () => setAutoplay(getAtom(videoPlayingAtom)),
-        ["aria-disabled"]: !target || current?.id === target?.id,
-      };
+  // is <button> vs <a>
+  const button = !!onClick;
 
   return (
     <Tooltip
       trigger={
-        <Button size="sm" aria-label={label} {...props}>
+        <Button
+          size="sm"
+          aria-label={label}
+          {...(button
+            ? {}
+            : // link
+              {
+                to: {
+                  search: mergeSearch(
+                    location.search,
+                    "?lesson=" + (target?.id ?? ""),
+                  ),
+                },
+                "aria-disabled": !target || current?.id === target?.id,
+              })}
+          onClick={() => {
+            // if playing, play after nav. if stopped, stay stopped.
+            setAutoplay(getAtom(videoPlayingAtom));
+            // normal click behavior
+            onClick?.();
+          }}
+        >
           {children}
         </Button>
       }
