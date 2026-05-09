@@ -61,9 +61,7 @@ export default function Feedback() {
     .join("\n");
 
   // fallback link
-  const fallback = new URL(
-    `https://github.com/${site.github_org}/${site.github_repo}/issues/new`,
-  );
+  const fallback = new URL(`${site.github.site_issues}/new`);
   fallback.searchParams.set("title", title);
   fallback.searchParams.set("body", body);
 
@@ -76,8 +74,8 @@ export default function Feedback() {
 
     try {
       const { link } = await createIssue({
-        owner: site.github_org,
-        repo: site.github_repo,
+        owner: site.github.org,
+        repo: site.github.site_repo,
         title,
         body,
         labels: ["feedback"],
@@ -94,7 +92,7 @@ export default function Feedback() {
       <Dialog
         title="Feedback"
         trigger={
-          <Button aria-label="Give us feedback">
+          <Button aria-label="Site feedback">
             <ChatTeardropDotsIcon />
           </Button>
         }
@@ -187,8 +185,8 @@ export default function Feedback() {
                 {status === "info" && (
                   <p>
                     This will start a <strong>public</strong> issue on{" "}
-                    <Link to={site.github_issues}>GitHub</Link> with the above
-                    and some{" "}
+                    <Link to={site.github.site_issues}>GitHub</Link> with the
+                    above and some{" "}
                     <Tooltip trigger="debug info">
                       <dl className="self-center">
                         {Object.entries(details).map(([key, value]) => (

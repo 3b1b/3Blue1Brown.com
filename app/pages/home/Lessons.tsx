@@ -1,5 +1,5 @@
 import type { TopicId } from "~/pages/lessons/topics";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
 import {
   ArrowLeftIcon,
@@ -18,7 +18,7 @@ import Button from "~/components/Button";
 import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
-import { userSelect } from "~/pages/home/Theater";
+import { setAutoplay } from "~/pages/home/Theater";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
@@ -81,11 +81,11 @@ export function Search({ dialog = false, close = () => {} }) {
     lessons,
     search,
     // track analytics event
-    (search) => analyticsEvent("lesson_search", { search }),
+    useCallback((search) => analyticsEvent("lesson_search", { search }), []),
   );
 
-  // display newest to oldest for certain topics
-  if (["all", "best-of"].includes(topicId)) results = results.toReversed();
+  // display certain topics in reverse order
+  if (topicId === "all") results = results.toReversed();
 
   // show all or truncate results
   const [all, setAll] = useState(false);
@@ -124,7 +124,6 @@ export function Search({ dialog = false, close = () => {} }) {
               onClick={() => {
                 // clear search so user doesn't forget they're filtering by search
                 setSearch("");
-                userSelect();
               }}
               aria-label="Back to all topics"
             >
@@ -141,10 +140,7 @@ export function Search({ dialog = false, close = () => {} }) {
 
       {/* topic cards */}
       {!topicId?.trim() && !search.trim() ? (
-        <div
-          id="results"
-          className="grid grid-cols-3 gap-8 max-sm:grid-cols-2 max-sm:gap-4"
-        >
+        <div id="results" className="grid grid-cols-3 gap-8 max-sm:grid-cols-2">
           {Object.entries(topics).map(([id, { title, image }]) => (
             <Card
               key={id}
@@ -208,8 +204,8 @@ export function Search({ dialog = false, close = () => {} }) {
                         description={description}
                         className={clsx(lessonId === id && "opacity-50")}
                         onClick={() => {
-                          userSelect();
                           close();
+                          setAutoplay(true);
                         }}
                         aria-label={`Play lesson "${title}"`}
                         aria-current={lessonId === id}

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
-import { useDebounce, useEventListener } from "@reactuses/core";
+import { useEventListener } from "@reactuses/core";
 import { useAtom, useAtomValue } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { event as analyticsEvent } from "~/components/Analytics";
@@ -15,17 +15,9 @@ export default function DarkMode({ className = "" }) {
   // state
   const [darkMode, setDarkMode] = useAtom(darkModeAtom);
 
-  // trigger analytics event
-  const debouncedDarkMode = useDebounce(darkMode, 1000);
-  useEffect(() => {
-    analyticsEvent("dark_mode", { value: debouncedDarkMode });
-  }, [debouncedDarkMode]);
-
   // update flag on document
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList[darkMode ? "add" : "remove"]("dark");
-    root.classList[darkMode ? "remove" : "add"]("light");
+    document.documentElement.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
 
   // for debugging
@@ -37,7 +29,11 @@ export default function DarkMode({ className = "" }) {
 
   return (
     <Button
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={() => {
+        setDarkMode(!darkMode);
+        // track analytics event
+        analyticsEvent("dark_mode", { value: !darkMode });
+      }}
       size="sm"
       role="switch"
       aria-checked={!!darkMode}

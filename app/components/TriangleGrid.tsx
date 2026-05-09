@@ -3,7 +3,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import glow from "~/components/glow.svg?inline";
+import glowFilter from "~/components/glow.svg?inline";
 import { Vector } from "~/util/vector";
 
 // params
@@ -36,7 +36,7 @@ export default function TriangleGrid({ className = "" }) {
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
       style={{
-        filter: `url("${glow}#filter")`,
+        filter: `url("${glowFilter}#filter")`,
       }}
       render={(ctx) => {
         for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {

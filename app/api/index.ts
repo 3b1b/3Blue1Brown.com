@@ -1,7 +1,7 @@
 // general request func with conveniences
 export async function request<Response>(
   url: string | URL,
-  options: RequestInit,
+  options: RequestInit = {},
   parse: "json" | "text" = "json",
 ): Promise<Response> {
   // construct request
@@ -14,7 +14,7 @@ export async function request<Response>(
   try {
     if (parse === "text") return (await response.text()) as Response;
     else return (await response.json()) as Response;
-  } catch (e) {
+  } catch {
     throw Error(`Couldn't parse response as ${parse}`);
   }
 }

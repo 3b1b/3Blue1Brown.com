@@ -18,7 +18,7 @@ const validSelector = (selector: unknown) => {
   try {
     document.querySelector(selector);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };
@@ -73,20 +73,34 @@ export const firstInView = (elements: Element[]) => {
 
 // find next/previous node that matches condition, in dom order
 export const findClosest = (
-  element: HTMLElement,
-  condition: string | ((element: HTMLElement) => boolean),
+  element: Element,
+  condition: string | ((element: Element) => boolean),
   direction: "next" | "previous" = "previous",
 ) => {
+  // normalize condition to function
+  if (typeof condition === "string") {
+    const selector = condition;
+    condition = (element: Element) => element.matches(selector);
+  }
+  // create walker
   const walker = document.createTreeWalker(
     document.body,
     NodeFilter.SHOW_ELEMENT,
   );
+  // start at element
   walker.currentNode = element;
-  while (direction === "next" ? walker.nextNode() : walker.previousNode()) {
-    const current = walker.currentNode as HTMLElement;
-    if (typeof condition === "string" && current.matches(condition))
-      return current;
-    if (typeof condition === "function" && condition(current)) return current;
+  // current node walker pointing to (don't use walker.currentNode b/c doesn't change to null when next/prevNode returns null)
+  let current: Node | null;
+  while (
+    // walk to next/previous node in dom order
+    (current = direction === "next" ? walker.nextNode() : walker.previousNode())
+  ) {
+    // if no more nodes, stop
+    if (current === null) break;
+    // if text/comment/etc node, skip
+    if (!(current instanceof Element)) continue;
+    // if node matches condition, return it
+    if (condition(current)) return current;
   }
 };
 

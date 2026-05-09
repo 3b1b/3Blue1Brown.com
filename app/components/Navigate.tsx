@@ -52,7 +52,7 @@ type LocationEvent = CustomEvent<Location>;
 
 // define custom events on window
 declare global {
-  // eslint-disable-next-line
+  // eslint-disable-next-line -- for declaration merging
   interface WindowEventMap {
     [locationEvent]: LocationEvent;
     [navigateEvent]: NavigateEvent;

@@ -39,7 +39,7 @@ export default function Interactive<
       key={location.key}
     >
       <div className="relative isolate flex flex-col gap-4">
-        <div className="absolute -inset-x-999 -inset-y-8 -z-10 max-w-[unset]! bg-secondary/10" />
+        <div className="absolute -inset-x-999 -inset-y-8 -z-10 bg-secondary/10" />
         <div
           ref={ref}
           className={clsx(

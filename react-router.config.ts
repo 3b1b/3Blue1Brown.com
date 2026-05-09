@@ -15,7 +15,7 @@ export default {
   prerender: async ({ getStaticPaths }) => {
     // get all lesson routes to prerender
     const lessons = Object.keys(
-      import.meta.glob("./app/pages/lessons/20\\d\\d/**/index.mdx", {
+      import.meta.glob("./app/pages/lessons/20[0-9][0-9]/**/index.mdx", {
         eager: true,
       }),
     ).map(

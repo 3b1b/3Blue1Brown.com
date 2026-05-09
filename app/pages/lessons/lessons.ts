@@ -44,13 +44,13 @@ export const transformLesson = (lesson: RawLesson, id: string) => ({
     // combine credits by role for more compact display
     combinedCredits:
       lesson.frontmatter.credits?.reduce(
-        (credits, credit) => {
+        (credits, credit): Record<string, string[]> => {
           const [, role = "", name = ""] = credit.match(/(.*) by (.*)/) ?? [];
           credits[role] ??= [];
           credits[role].push(name);
           return credits;
         },
-        {} as Record<string, string[]>,
+        {},
       ) ?? {},
   },
 });
@@ -60,7 +60,7 @@ export type Lesson = ReturnType<typeof transformLesson>;
 
 // import all lessons (frontmatter only)
 export const [getLesson, lessons] = importAssets(
-  import.meta.glob<RawLesson>("./20\\d\\d/**/index.mdx", {
+  import.meta.glob<RawLesson>("./20[0-9][0-9]/**/index.mdx", {
     eager: true,
     query: "frontmatter-only",
   }),
@@ -70,7 +70,7 @@ export const [getLesson, lessons] = importAssets(
 
 // import lesson patrons
 export const [getPatrons] = importAssets(
-  import.meta.glob<{ default: string }>("./20\\d\\d/**/patrons.txt", {
+  import.meta.glob<{ default: string }>("./20[0-9][0-9]/**/patrons.txt", {
     eager: true,
     query: "raw",
   }),

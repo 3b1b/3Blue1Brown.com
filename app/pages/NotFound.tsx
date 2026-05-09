@@ -1,4 +1,4 @@
-import type { Route } from ".react-router/types/app/pages/+types/NotFound";
+import type { Route } from "./+types/NotFound";
 import { redirect } from "react-router";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";

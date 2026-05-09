@@ -19,7 +19,7 @@ import { isEqual, mapValues, random } from "lodash-es";
 import { UAParser } from "ua-parser-js";
 import { celebrate } from "~/components/Celebrate";
 import FuzzyWorker from "~/util/fuzzy?worker";
-import { sleep } from "~/util/misc";
+import { frame, sleep } from "~/util/misc";
 import { Vector } from "~/util/vector";
 
 // check if value changed from previous render
@@ -91,7 +91,7 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
 };
 
 // scroll "progress" of element down viewport, -1 to 1
-export const useParallax = (ref: RefObject<HTMLElement | null>) => {
+export const useParallax = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
   const percent =
@@ -100,7 +100,7 @@ export const useParallax = (ref: RefObject<HTMLElement | null>) => {
 };
 
 // is element in viewport
-export const useInView = (ref: RefObject<HTMLElement | null>) => {
+export const useInView = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
   const windowSize = useWindowSize();
 
@@ -142,7 +142,12 @@ export const useSvgFit = (ref: RefObject<SVGSVGElement | null>) => {
 
 // use user agent info
 export const useUA = () => {
-  const [ua, setUA] = useState<UAParser.IResult>();
+  // parse user agent string
+  const ua =
+    typeof window === "undefined"
+      ? undefined
+      : // (if on client)
+        new UAParser(window.navigator.userAgent).getResult();
 
   const isFirefox = ua?.browser.name?.toLowerCase().includes("firefox");
 
@@ -150,11 +155,6 @@ export const useUA = () => {
 
   // https://github.com/faisalman/ua-parser-js/issues/182
   const isDesktop = !ua?.device.type;
-
-  useEffect(() => {
-    // eslint-disable-next-line
-    setUA(new UAParser(window.navigator.userAgent).getResult());
-  }, []);
 
   // combine user agent info into convenient list
   const userAgent = mapValues(
@@ -176,7 +176,7 @@ export const useClient = () => {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line -- https://github.com/facebook/react/issues/34045#issuecomment-3801067128
     setClient(true);
   }, []);
 
@@ -184,27 +184,38 @@ export const useClient = () => {
 };
 
 // control expanding/collapsing height of element with transition
-export const autoHeight = (
-  element: HTMLElement | null,
+export const useAutoHeight = (
+  ref: RefObject<HTMLElement | null>,
+  // is open
   open: boolean,
+  // closed height
   closed = 0,
 ) => {
-  if (!element) return;
-  if (open) {
-    // set height to content height
-    element.style.maxHeight = element.scrollHeight + "px";
-    // remove after transition so content can size naturally
-    element.addEventListener(
-      "transitionend",
-      () => (element.style.maxHeight = ""),
-      { once: true },
-    );
-  } else {
-    // set starting height
-    element.style.maxHeight = element.scrollHeight + "px";
-    // collapse
-    sleep().then(() => (element.style.maxHeight = closed + "px"));
-  }
+  useLayoutEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    // reset height so content can size naturally
+    const reset = () => (element.style.maxHeight = "");
+
+    if (open) {
+      // set height to content height
+      element.style.maxHeight = element.scrollHeight + "px";
+      // reset after transition
+      element.addEventListener("transitionend", reset, { once: true });
+    } else {
+      // set starting height
+      element.style.maxHeight = element.scrollHeight + "px";
+      frame().then(() => {
+        // collapse
+        element.style.maxHeight = closed + "px";
+      });
+    }
+
+    return () => {
+      element.removeEventListener("transitionend", reset);
+    };
+  }, [ref, open, closed]);
 };
 
 // use printing state
@@ -223,15 +234,18 @@ export const useEgg = () => {
       const today = new Date();
       let shape = "";
       // pi day!
-      if (today.getMonth() === 2 && today.getDate() === 14) shape = "pi";
+      if (today.getMonth() + 1 === 3 && today.getDate() === 14) shape = "pi";
       // tau day!
-      if (today.getMonth() === 5 && today.getDate() === 28) shape = "tau";
+      if (today.getMonth() + 1 === 6 && today.getDate() === 28) shape = "tau";
       // shape = "pi";
       if (!shape) return;
-      const w = window.innerWidth / 2;
-      const h = window.innerHeight / 2;
+      const width = window.innerWidth / 2;
+      const height = window.innerHeight / 2;
       for (let bursts = 20; bursts > 0; bursts--) {
-        celebrate(shape, new Vector(random(-w, w), random(-h, h)));
+        celebrate(
+          shape,
+          new Vector(random(-width, width), random(-height, height)),
+        );
         await sleep(250);
       }
       await sleep(500);

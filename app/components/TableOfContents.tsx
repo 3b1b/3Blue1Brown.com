@@ -23,8 +23,8 @@ export default function TableOfContents() {
   const ref = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLAnchorElement>(null);
-  const previousRef = useRef<HTMLElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
+  const previousRef = useRef<Element>(null);
+  const sectionRef = useRef<Element>(null);
 
   // full list of headings on page
   const headings = useAtomValue(headingsAtom);
@@ -33,11 +33,11 @@ export default function TableOfContents() {
   useEffect(() => {
     // section or header right before where component placed on page
     previousRef.current = ref.current
-      ? (findClosest(ref.current, "section, header") as HTMLElement)
+      ? (findClosest(ref.current, "section, header") ?? null)
       : null;
     // find first section after this component
     sectionRef.current = ref.current
-      ? (findClosest(ref.current, "section", "next") as HTMLElement)
+      ? (findClosest(ref.current, "section", "next") ?? null)
       : null;
   }, []);
 
@@ -96,12 +96,12 @@ export default function TableOfContents() {
   return (
     <aside
       ref={ref}
+      aria-label="Table of contents"
       className={clsx(
         "fixed inset-y-0 z-20 flex max-w-[min(--spacing(80),75dvw)] flex-col bg-white font-sans shadow-md transition print:hidden",
         hide ? "pointer-events-none opacity-0" : "opacity-100",
         open ? "" : "-translate-x-full",
       )}
-      aria-label="Table of contents"
     >
       <div className="flex items-center gap-4">
         {/* top text */}

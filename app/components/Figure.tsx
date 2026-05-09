@@ -39,6 +39,7 @@ export default function Figure({
   // video to render
   const videoElement = (
     <video controls className={className} loop={loop}>
+      <track kind="captions" label="No captions available" />
       <source src={video ?? ""} type="video/mp4" />
     </video>
   );

@@ -11,7 +11,7 @@ export default function Analytics() {
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
     window.gtag = function gtag() {
-      // eslint-disable-next-line
+      // eslint-disable-next-line -- don't validate google's choices
       window.dataLayer?.push(arguments);
     };
     window.gtag("js", new Date());
@@ -47,7 +47,7 @@ export const event = (name: string, params?: Record<string, unknown>) => {
 };
 
 declare global {
-  // eslint-disable-next-line
+  // eslint-disable-next-line -- for declaration merging
   interface Window {
     dataLayer?: unknown[];
     gtag?: (command: string, ...args: unknown[]) => void;

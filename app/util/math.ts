@@ -19,6 +19,7 @@ export const seededRandom = (seed: number) => () => {
 export const seededShuffle = <Type>(array: Type[], seed: number) => {
   const rng = seededRandom(seed);
   const result = [...array];
+  // fishers-yates
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [result[i], result[j]] = [result[j]!, result[i]!];
