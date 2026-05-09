@@ -1,4 +1,4 @@
-// wait ms
+// async wait
 export const sleep = async (ms = 0) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -53,9 +53,7 @@ type Permutations<Type extends Variations> = {
 };
 
 // get all combinations of props
-export const getVariants = <Type extends Variations>(
-  props: Type,
-): Permutations<Type>[] =>
+export const getVariants = <Type extends Variations>(props: Type) =>
   Object.keys(props).reduce<Partial<Permutations<Type>>[]>(
     (combinations, key) =>
       combinations.flatMap(

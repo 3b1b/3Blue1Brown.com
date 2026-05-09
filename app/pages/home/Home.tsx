@@ -1,11 +1,9 @@
-import clsx from "clsx";
 import { useAtomValue } from "jotai";
 import Footer from "~/components/Footer";
 import Grid from "~/components/Grid";
 import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
-import { playingAtom } from "~/components/YouTube";
 import { getLesson } from "~/pages/lessons/lessons";
 import { useEgg } from "~/util/hooks";
 import Follow from "./Follow";
@@ -20,9 +18,6 @@ export default function Home() {
   // page title, currently viewed lesson in theater
   const title = getLesson(useAtomValue(lessonAtom) ?? "")?.frontmatter.title;
 
-  // is video playing
-  const playing = useAtomValue(playingAtom);
-
   useEgg();
 
   return (
@@ -31,12 +26,7 @@ export default function Home() {
 
       <Header
         background={
-          <Grid
-            className={clsx(
-              "max-h-200 mask-b-from-0% mask-b-to-100% transition",
-              playing ? "opacity-0" : "opacity-50",
-            )}
-          />
+          <Grid className="max-h-200 mask-b-from-0% mask-b-to-100% opacity-50 transition-opacity duration-1000 playing:opacity-0" />
         }
       >
         <Theater />

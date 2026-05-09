@@ -66,7 +66,7 @@ export default function Nav() {
   return (
     <>
       {/* desktop */}
-      <Links className="max-xl:justify-end max-lg:hidden" />
+      <Links className="max-lg:hidden" />
       {/* mobile */}
       <>
         {/* toggle */}
@@ -75,6 +75,7 @@ export default function Nav() {
           createPortal(
             <div className="contents lg:hidden">
               {/* overlay */}
+              {/* eslint-disable-next-line -- keyboard events handled above on window */}
               <div
                 className={clsx(
                   "dark fixed inset-0 z-20 size-full bg-black/25 transition transition-discrete starting:opacity-0",

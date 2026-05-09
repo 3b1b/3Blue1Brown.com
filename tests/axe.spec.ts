@@ -33,6 +33,7 @@ const checkPage = (route: string) =>
     // exclude embeds from third parties
     builder.exclude("iframe");
     builder.exclude("youtube-video");
+    builder.exclude("vimeo-video");
 
     // get page violations
     const { violations } = await test.step("analyze", () => builder.analyze(), {

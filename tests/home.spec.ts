@@ -54,11 +54,11 @@ test("Feedback form works", async ({ page }) => {
 
 test("Lesson nav works", async ({ page }) => {
   await page.goto("?topic=linear-algebra&lesson=quick-eigen");
-  await expect(page.locator("a:has-text('next')")).toHaveAttribute(
+  await expect(page.locator("a[aria-label*='next' i]")).toHaveAttribute(
     "href",
     /lesson=abstract-vector-spaces/,
   );
-  await expect(page.locator("a:has-text('prev')")).toHaveAttribute(
+  await expect(page.locator("a[aria-label*='prev' i]")).toHaveAttribute(
     "href",
     /lesson=eigenvalues/,
   );

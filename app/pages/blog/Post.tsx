@@ -76,8 +76,8 @@ export default function Post({ params: { id } }: Route.ComponentProps) {
 
       <Header />
 
-      <Main striped>
-        <section className="items-center gap-8 bg-theme/15!">
+      <Main className="striped">
+        <section className="items-center gap-8 bg-theme/15">
           <H1>
             <StrokeType>{title}</StrokeType>
           </H1>

@@ -7,9 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 import { defineConfig } from "vite";
-import { imagetools } from "vite-imagetools";
 import svgr from "vite-plugin-svgr";
-import tsconfigPaths from "vite-tsconfig-paths";
 import site from "./app/data/site.json";
 
 export default defineConfig(() => ({
@@ -55,7 +53,7 @@ export default defineConfig(() => ({
               path.match(new RegExp("(lessons/20\\d\\d/.*)/index.mdx"))?.[1] ??
               "";
             // prepend bucket location
-            lesson = `${site.bucket}/${lesson}`;
+            lesson = `${site.gcp.bucket}/${lesson}`;
             // inject lesson variable into source
             source = source.replaceAll("$lesson", lesson);
           }
@@ -76,7 +74,6 @@ export default defineConfig(() => ({
     }),
     tailwindcss(),
     reactRouter(),
-    tsconfigPaths(),
     svgr({
       svgrOptions: {
         // https://github.com/gregberge/svgr/discussions/770
@@ -86,10 +83,9 @@ export default defineConfig(() => ({
         },
       },
     }),
-    // in an effort to keep repo size small, don't overuse this
-    imagetools(),
   ],
   resolve: {
     alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
+    tsconfigPaths: true,
   },
 }));

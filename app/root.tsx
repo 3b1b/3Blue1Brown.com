@@ -102,7 +102,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
           <p>
             We're sorry, something went wrong. Please try refreshing the page.
             If the problem persists, please{" "}
-            <a href={site.github_issues} target="_blank">
+            <a href={site.github.site_issues} target="_blank">
               let us know about it
             </a>
             .

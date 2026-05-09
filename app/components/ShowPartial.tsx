@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { CaretDoubleDownIcon, CaretDoubleUpIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
 import { preserveScroll } from "~/util/dom";
-import { autoHeight } from "~/util/hooks";
+import { useAutoHeight } from "~/util/hooks";
 
 type Props = {
   // class on content
@@ -18,8 +18,14 @@ const limit = 200;
 
 // show partial content with fade, with button to reveal more
 export default function ShowPartial({ className, children }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // state
   const [open, setOpen] = useState(false);
   const [enabled, setEnabled] = useState(true);
+
+  // animate height on open/close
+  useAutoHeight(ref, open, limit);
 
   if (!enabled) return children;
 
@@ -27,15 +33,9 @@ export default function ShowPartial({ className, children }: Props) {
     <div className="flex flex-col items-center gap-8">
       <div
         ref={(element) => {
-          if (!element) return;
-          // height of full content
-          const content = element.scrollHeight;
-          // if content is short enough, just disable component˝
-          if (content <= limit) {
-            setEnabled(false);
-            return;
-          }
-          autoHeight(element, open, limit);
+          ref.current = element;
+          // if content is short enough, just disable component
+          setEnabled((element?.scrollHeight ?? 0) > limit);
         }}
         className={clsx(
           "flex flex-col gap-8 overflow-y-clip transition-all",
