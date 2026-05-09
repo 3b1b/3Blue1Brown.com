@@ -78,14 +78,12 @@ export const useVideo = (ref: RefObject<HTMLVideoElement | null>) => {
   const onPlay = useCallback(() => setAtom(videoPlayingAtom, true), []);
   const onStop = useCallback(() => setAtom(videoPlayingAtom, false), []);
 
-  useUnmount(() => {
-    // stop video on unmount
-    stop();
-  });
-
   // respond to site-wide play/stop events
   useEventListener(playEvent, play);
   useEventListener(stopEvent, stop);
+
+  // mark stopped on unmount
+  useUnmount(onStop);
 
   return { enabled, playing, play, stop, onPlay, onStop };
 };
