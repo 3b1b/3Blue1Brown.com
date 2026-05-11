@@ -47,7 +47,7 @@ export default function Checkbox({
           }}
           {...props}
         />
-        <Icon className="shrink-0 text-theme" />
+        <Icon className="text-theme" />
       </div>
       {children}
       {help && <Help>{help}</Help>}

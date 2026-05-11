@@ -31,7 +31,7 @@ export default function Button({
   children = removeParagraph(children);
 
   className = clsx(
-    "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans no-underline [&_p]:contents [&_p]:leading-normal",
+    "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans text-balance no-underline [&_p]:contents [&_p]:leading-normal",
     color === "none" && "text-black hocus:bg-theme/15 hocus:text-theme",
     color === "light" &&
       "bg-theme/15 text-black hocus:bg-theme hocus:text-white",

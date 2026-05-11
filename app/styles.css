@@ -244,7 +244,7 @@
 }
 
 @utility icon {
-  @apply inline-block h-[1.25em] w-[unset];
+  @apply inline-block h-[1.25em] w-[unset] shrink-0;
 }
 
 @utility trim {
@@ -298,4 +298,10 @@
 
 @utility vignette {
   @apply mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%;
+}
+
+@utility text-stroke-* {
+  -webkit-text-stroke-width: calc(--value(number) * 2px);
+  -webkit-text-stroke-color: --value(--color-*);
+  paint-order: stroke;
 }

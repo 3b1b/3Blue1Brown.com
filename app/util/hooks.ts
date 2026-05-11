@@ -233,9 +233,7 @@ export const useEgg = () => {
     (async () => {
       const today = new Date();
       let shape = "";
-      // pi day!
       if (today.getMonth() + 1 === 3 && today.getDate() === 14) shape = "pi";
-      // tau day!
       if (today.getMonth() + 1 === 6 && today.getDate() === 28) shape = "tau";
       // shape = "pi";
       if (!shape) return;
