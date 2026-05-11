@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section className="bg-theme/10">
       <div className="grid grid-cols-2 place-items-center gap-12 max-md:grid-cols-1">
-        <div ref={ref} className="grid grid-cols-3 gap-12 self-center">
+        <div ref={ref} className="grid grid-cols-3 gap-8 self-center">
           {entries.map(({ Icon, value, label, className }, index) => (
             <div
               key={index}

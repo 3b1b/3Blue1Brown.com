@@ -92,7 +92,7 @@ export default function Feedback() {
       <Dialog
         title="Feedback"
         trigger={
-          <Button aria-label="Site feedback">
+          <Button className="p-2!" aria-label="Site feedback">
             <ChatTeardropDotsIcon />
           </Button>
         }

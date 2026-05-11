@@ -118,7 +118,7 @@ export default function Theater() {
           backlight
         />
 
-        <div className="flex items-center justify-center gap-8 max-md:flex-col max-md:text-center">
+        <div className="flex items-center justify-center gap-x-8 gap-y-4 max-md:flex-col max-md:text-center">
           {/* title */}
           <div className="font-sans text-lg">
             {lesson?.title}

@@ -107,7 +107,7 @@ export default function Question({
         </div>
       )}
 
-      <div className="grid grid-cols-[--spacing(40)_--spacing(12)_1fr] items-center gap-8">
+      <div className="flex flex-wrap items-center gap-8">
         <Button
           type="submit"
           onClick={async (event) => {
@@ -123,6 +123,7 @@ export default function Question({
           }}
           color="light"
           size="sm"
+          className="w-32"
           aria-disabled={!value}
         >
           {state === "right" && <span>Reset</span>}

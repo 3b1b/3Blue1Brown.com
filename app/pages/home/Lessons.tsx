@@ -110,6 +110,7 @@ export function Search({ dialog = false, close = () => {} }) {
         className="text-lg"
         placeholder="Search..."
         aria-controls="results"
+        autoComplete="off"
       />
 
       {/* selected topic */}

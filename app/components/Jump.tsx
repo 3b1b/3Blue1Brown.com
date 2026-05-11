@@ -10,6 +10,7 @@ export default function Jump() {
 
   return (
     <Button
+      className="p-2!"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Jump to top"
     >

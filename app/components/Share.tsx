@@ -5,7 +5,7 @@ import { share } from "~/util/url";
 // share current page
 export default function Share() {
   return (
-    <Button onClick={share} aria-label="Share this page">
+    <Button className="p-2!" onClick={share} aria-label="Share this page">
       <ShareNetworkIcon />
     </Button>
   );
