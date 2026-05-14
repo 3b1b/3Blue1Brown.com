@@ -57,7 +57,9 @@ export default function Image({
     <figure className={clsx("flex flex-col items-center gap-4", className)}>
       {img}
       {children && (
-        <figcaption className="self-center text-gray">{children}</figcaption>
+        <figcaption className="self-center text-dark-gray">
+          {children}
+        </figcaption>
       )}
     </figure>
   );

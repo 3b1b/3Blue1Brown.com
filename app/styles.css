@@ -155,7 +155,7 @@
   }
 
   :not(pre) > code {
-    @apply bg-dark-gray px-0.5 py-px text-white;
+    @apply bg-light-gray px-0.5 py-px;
   }
 
   table {
