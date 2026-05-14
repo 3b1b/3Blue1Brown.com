@@ -402,7 +402,10 @@ Conceptually, we should still think about the overall linear map, one with input
 
 The matrix on the right, the one with 12,288 columns, has the smaller number of rows, typically the same size as the key-query space, which in our case is 128. We can think of this as mapping the large embedding vectors down to a much smaller space. We'll call this the $$Value_\downarrow$$ matrix for now, though note that it isn't the conventional name.
 
-<Figure image="$lesson/vdown.jpg" />
+<Figure image="$lesson/vdown.jpg">
+  [Correction](https://github.com/3b1b/3Blue1Brown.com/issues/481): `d_output =
+  128`
+</Figure>
 
 The second matrix maps from this smaller space back up to the embedding space, producing the vectors that you use to make the actual updates. We're going to refer to this matrix as the $$Value_\uparrow$$ matrix, which again isn't the conventional name.
 

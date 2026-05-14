@@ -26,11 +26,13 @@ export default function Feedback() {
   // form state, saved to local storage
   let [name, setName] = useLocalStorage("feedback-name", "");
   let [username, setUsername] = useLocalStorage("feedback-username", "");
+  let [contact, setContact] = useLocalStorage("feedback-contact", "");
   let [subject, setSubject] = useLocalStorage("feedback-subject", "");
   let [message, setMessage] = useLocalStorage("feedback-message", "");
 
   // set fallbacks
   name ||= "";
+  contact ||= "";
   username ||= "";
   subject ||= "";
   message ||= "";
@@ -52,7 +54,7 @@ export default function Feedback() {
   );
 
   // feedback body
-  const body = Object.entries({ name, username, ...details, message })
+  const body = Object.entries({ name, username, contact, ...details, message })
     .map(([key, value]) => [
       `**${startCase(key)}**`,
       value.trim() ? value.trim() : "\\-",
@@ -137,7 +139,7 @@ export default function Feedback() {
               </Link>
               .
             </p>
-            <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+            <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
               <TextBox
                 label="Name"
                 help="Optional. So we can address you properly."
@@ -146,12 +148,21 @@ export default function Feedback() {
                 onChange={setName}
                 form={id}
               />
+
               <TextBox
                 label="GitHub Username"
                 help="Optional. So we can tag you in the issue."
                 placeholder="@yourname"
                 value={username}
                 onChange={setUsername}
+                form={id}
+              />
+              <TextBox
+                label="Contact Info"
+                help="Optional. So we can follow up with you."
+                placeholder="Email/phone/anything"
+                value={contact}
+                onChange={setContact}
                 form={id}
               />
               <TextBox
@@ -185,8 +196,8 @@ export default function Feedback() {
                 {status === "info" && (
                   <p>
                     This will start a <strong>public</strong> issue on{" "}
-                    <Link to={site.github.site_issues}>GitHub</Link> with the
-                    above and some{" "}
+                    <Link to={site.github.site_issues}>GitHub</Link> with{" "}
+                    <strong>all of the above</strong> and some{" "}
                     <Tooltip trigger="debug info">
                       <dl className="self-center">
                         {Object.entries(details).map(([key, value]) => (

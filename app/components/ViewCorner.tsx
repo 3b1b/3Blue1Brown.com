@@ -13,7 +13,7 @@ export default function ViewCorner() {
   return (
     <aside
       aria-label="Page controls"
-      className="fixed right-2 bottom-2 z-20 flex flex-col items-end gap-2 mix-blend-difference **:text-white print:hidden"
+      className="fixed right-2 bottom-2 z-20 flex flex-col items-end gap-2 mix-blend-difference **:text-[white] print:hidden"
     >
       {buttons.map(([label, button], index) => (
         <div key={index} className="group flex items-center gap-2 text-right">
