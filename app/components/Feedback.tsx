@@ -54,7 +54,7 @@ export default function Feedback() {
   );
 
   // feedback body
-  const body = Object.entries({ name, username, ...details, message })
+  const body = Object.entries({ name, username, contact, ...details, message })
     .map(([key, value]) => [
       `**${startCase(key)}**`,
       value.trim() ? value.trim() : "\\-",
