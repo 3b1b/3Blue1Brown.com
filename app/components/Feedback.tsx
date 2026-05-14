@@ -159,7 +159,7 @@ export default function Feedback() {
               />
               <TextBox
                 label="Contact Info"
-                help="Optional. So we can ask you ."
+                help="Optional. So we can follow up with you."
                 placeholder="Email/phone/anything"
                 value={contact}
                 onChange={setContact}
