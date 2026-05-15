@@ -139,6 +139,7 @@ export default function Feedback() {
               </Link>
               .
             </p>
+
             <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
               <TextBox
                 label="Name"
@@ -148,7 +149,6 @@ export default function Feedback() {
                 onChange={setName}
                 form={id}
               />
-
               <TextBox
                 label="GitHub Username"
                 help="Optional. So we can tag you in the issue."
@@ -174,6 +174,7 @@ export default function Feedback() {
                 form={id}
                 className="col-span-full"
               />
+
               <TextBox
                 label="Message"
                 placeholder="Corrections/suggestions/bugs/etc."

@@ -283,25 +283,6 @@
   @apply playing:opacity-0! transition-opacity duration-1000;
 }
 
-@utility perspective-rotate {
-  animation: perspective-rotate 120s linear both infinite;
-}
-
-@keyframes perspective-rotate {
-  0% {
-    transform: perspective(2000px) rotateX(65deg) rotateZ(0deg);
-  }
-  100% {
-    transform: perspective(2000px) rotateX(65deg) rotateZ(360deg);
-  }
-}
-
 @utility vignette {
   @apply mask-radial-from-transparent mask-radial-from-0% mask-radial-to-white mask-radial-to-100%;
-}
-
-@utility text-stroke-* {
-  -webkit-text-stroke-width: calc(--value(number) * 2px);
-  -webkit-text-stroke-color: --value(--color-*);
-  paint-order: stroke;
 }

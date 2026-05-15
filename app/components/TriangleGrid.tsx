@@ -3,22 +3,27 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import glowFilter from "~/components/glow.svg?inline";
 import { Vector } from "~/util/vector";
 
-// params
-const radius = 6;
-const thickness = 3;
-const spacing = 100;
-const density = 1.5;
+// size of dots, in px
+const radius = 3;
+// thickness of lines, in px
+const thickness = 1.5;
+// spacing of dots, in px
+const spacing = 50;
+// proportional density of dots
+const density = 0.75;
+// delete nodes with fewer than this many connections
 const minConnections = 2;
+// max dots
 const limit = 1000;
+// baseline duration of animations, in sec
 const duration = 4;
+// colors
 const colorA = "#0088ff";
 const colorB = "#ff88ff";
-const delayEq = (x = 0, y = 0) => (Math.sin(9 * x) + Math.sin(12 * y)) / 2;
-
-gsap.defaults({ ease: "power1.inOut" });
+// how much to delay animation of object based on position
+const delayEq = (x = 0, y = 0) => (Math.sin(4.5 * x) + Math.sin(6 * y)) / 2;
 
 // triangle grid viz
 export default function TriangleGrid({ className = "" }) {
@@ -35,9 +40,6 @@ export default function TriangleGrid({ className = "" }) {
   return (
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
-      style={{
-        filter: `url("${glowFilter}#filter")`,
-      }}
       render={(ctx) => {
         for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {
           ctx.strokeStyle = color;
@@ -82,6 +84,9 @@ const makeGraph = <Type,>() => {
 const tri = Math.sqrt(3) / 2;
 
 const generate = (width: number, height: number) => {
+  // set animation defaults
+  gsap.defaults({ ease: "power1.inOut" });
+
   const { graph, getNodes, addNode, addEdge, removeNode } = makeGraph<Vector>();
 
   // boundaries
@@ -90,7 +95,7 @@ const generate = (width: number, height: number) => {
   const top = -height / 2;
   const bottom = height / 2;
 
-  // generate triangular grid of points
+  // generate triangular grid of dots
   let offset = false;
   let xStart = left;
   xStart += (width % (spacing * tri)) / 2;
@@ -103,14 +108,14 @@ const generate = (width: number, height: number) => {
     for (let y = yStart; y <= bottom; y += spacing) addNode(new Vector(x, y));
   }
 
-  // remove some points at random
+  // remove some dots at random
   for (const node of graph.keys()) {
     const dist = node.divide(width, height).length() * 2;
-    // favor removing points near center
+    // favor removing dots near center
     if (Math.random() > dist * density) removeNode(node);
   }
 
-  // link adjacent points
+  // link adjacent dots
   for (const node of getNodes())
     for (const neighbor of getNodes())
       if (node !== neighbor)
@@ -126,7 +131,7 @@ const generate = (width: number, height: number) => {
     removeNode(isolated);
   }
 
-  // hard limit points for performance
+  // hard limit dots for performance
   for (let tries = 0; tries < 10000; tries++) {
     if (graph.size < limit) break;
     const node = sample(getNodes());

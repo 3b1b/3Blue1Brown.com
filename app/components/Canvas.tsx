@@ -9,22 +9,26 @@ import {
 import { clamp } from "lodash-es";
 import { useInView } from "~/util/hooks";
 
+// max canvas width/height, in px
+const maxSize = 4000;
+
 type Props = {
-  // pixel density
-  scale?: number;
+  // how many canvas buffer pixels to draw per css pixel, i.e. devicePixelRatio
+  oversample?: number;
   // render frame
-  render: (ctx: CanvasRenderingContext2D) => void;
+  render: (
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+  ) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
 } & Omit<ComponentProps<"canvas">, "onChange">;
 
-// max dimension of canvas to avoid perf issues
-const maxSize = 4000;
-
 // generic canvas that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref: passedRef,
-  scale = 2,
+  oversample = 1,
   render,
   onChange = () => {},
   ...props
@@ -34,13 +38,8 @@ export default function Canvas({
 
   // size of canvas in dom
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
-  let width = useDebounce(_width, 100) * scale;
-  let height = useDebounce(_height, 100) * scale;
-
-  // hard limit size
-  const scaleDown = clamp(Math.max(width / maxSize, height / maxSize), 1, 20);
-  width /= scaleDown;
-  height /= scaleDown;
+  const width = useDebounce(_width, 100);
+  const height = useDebounce(_height, 100);
 
   // is canvas in view
   const inView = useInView(canvas);
@@ -59,7 +58,7 @@ export default function Canvas({
       canvas.current.width,
       canvas.current.height,
     );
-    render(ctx.current);
+    render(ctx.current, width, height);
   });
 
   // prevent onChange from being dep of useEffect
@@ -69,13 +68,16 @@ export default function Canvas({
   useEffect(() => {
     if (!canvas.current || !ctx.current) return;
     if (!inView) return;
-    const cleanup = _onChange?.(width * 2, height * 2);
-    canvas.current.width = width;
-    canvas.current.height = height;
+    // set canvas buffer size, hard clamp to prevent perf issues
+    canvas.current.width = clamp(width * oversample, 0, maxSize);
+    canvas.current.height = clamp(height * oversample, 0, maxSize);
     ctx.current.resetTransform();
-    ctx.current.translate(width / 2, height / 2);
-    return cleanup;
-  }, [width, height, inView]);
+    // center (0,0)
+    ctx.current.translate((width * oversample) / 2, (height * oversample) / 2);
+    // scale for oversampling
+    ctx.current.scale(oversample, oversample);
+    _onChange?.(width, height);
+  }, [width, height, inView, oversample]);
 
   // combine local and passed refs
   const mergedRef = useMergedRefs(canvas, passedRef);

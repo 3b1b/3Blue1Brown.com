@@ -1,5 +1,6 @@
 // https://gist.github.com/vincerubinetti/52ec86385ef42f1cd205ad4783a87d5d
 
+// 2d vector
 export class Vector {
   x: number;
   y: number;

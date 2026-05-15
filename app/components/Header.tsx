@@ -16,7 +16,7 @@ type Props = {
 };
 
 const defaultBackground = (
-  <Grid className={clsx("mask-b-from-0% mask-b-to-100% opacity-35")} />
+  <Grid className={clsx("mask-b-from-0% mask-b-to-100% opacity-50")} />
 );
 
 // header on every page

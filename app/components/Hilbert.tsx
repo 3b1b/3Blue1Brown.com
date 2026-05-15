@@ -1,26 +1,57 @@
+import { useCallback, useState } from "react";
 import clsx from "clsx";
+import gsap from "gsap";
 import { max, min } from "lodash-es";
+import Canvas from "~/components/Canvas";
 import { Vector } from "~/util/vector";
-import classes from "./Hilbert.module.css";
 
 // order of hilbert curve
 const order = 5;
 // angle of turns in hilbert curve
 const angle = 90;
-// length of each segment in svg units
-const length = 20;
-// thickness of line in svg units
+// thickness of line, in px
 const thickness = 1;
+// colors
+const color = "oklch(55% 0.15 240)";
 
-// generate points of hilbert curve
-const hilbert = (order: number, angle: number) => {
+// hilbert curve grid
+export default function Hilbert({ className = "" }) {
+  const [{ points = [] } = {}, setObjects] =
+    useState<ReturnType<typeof generate>>();
+
+  // when canvas size changes
+  const onChange = useCallback((width: number, height: number) => {
+    // use gsap context to efficiently clean up old animations
+    const ctx = gsap.context(() => setObjects(generate(width, height)));
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <Canvas
+      className={clsx("absolute inset-0 -z-10 size-full", className)}
+      render={(ctx) => {
+        ctx.lineWidth = thickness;
+        ctx.strokeStyle = color;
+        ctx.beginPath();
+        for (const { x, y } of points) ctx.lineTo(x, y);
+        ctx.stroke();
+      }}
+      onChange={onChange}
+    />
+  );
+}
+
+const generate = (_width: number, _height: number) => {
+  // set animation defaults
+  gsap.defaults({ ease: "sine.inOut" });
+
   // current point
   let point = new Vector(0, 0);
   // step direction/length
-  let step = new Vector(length, 0);
+  let step = new Vector(1, 0);
 
   // list of points
-  const points: Vector[] = [point];
+  let points: Vector[] = [point];
 
   // generate one level of curve recursively
   const level = (depth: number, angle: number) => {
@@ -66,34 +97,13 @@ const hilbert = (order: number, angle: number) => {
   const width = right - left;
   const height = bottom - top;
 
-  return { points, left, top, width, height };
-};
+  // scale to fit canvas
+  const scale = Math.min(_width / width, _height / height);
 
-// generate hilbert
-const { points, left, top, width, height } = hilbert(order, angle);
-
-type Props = {
-  className?: string;
-};
-
-// hilbert curve viz
-export default function Hilbert({ className }: Props) {
-  return (
-    <div className={clsx("absolute inset-0 -z-10 overflow-clip", className)}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={[left, top, width, height].join(" ")}
-        className="absolute top-1/2 -translate-y-1/2 perspective-rotate"
-      >
-        <polyline
-          className={classes.stroke}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={thickness}
-          points={points.map((point) => point.toString()).join(" ")}
-          pathLength={8 * 4}
-        />
-      </svg>
-    </div>
+  // center and scale points
+  points = points.map((point) =>
+    point.translate(-width / 2, -height / 2).scale(scale),
   );
-}
+
+  return { points };
+};
