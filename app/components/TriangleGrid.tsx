@@ -41,20 +41,29 @@ export default function TriangleGrid({ className = "" }) {
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
       render={(ctx) => {
+        // parallax effect
+        const { top, height } = ctx.canvas.getBoundingClientRect();
+        let offset =
+          -1 + (2 * (window.innerHeight - top)) / (window.innerHeight + height);
+        offset *= 2 * spacing;
+
+        // draw lines
         for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {
           ctx.strokeStyle = color;
           ctx.globalAlpha = opacity;
           ctx.lineWidth = thickness;
           ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(x2, y2);
+          ctx.moveTo(x1, y1 + offset);
+          ctx.lineTo(x2, y2 + offset);
           ctx.stroke();
         }
+
+        // draw dots
         for (const { x, y, opacity, radius, color } of dots) {
           ctx.fillStyle = color;
           ctx.globalAlpha = opacity;
           ctx.beginPath();
-          ctx.arc(x, y, radius, 0, Math.PI * 2);
+          ctx.arc(x, y + offset, radius, 0, Math.PI * 2);
           ctx.fill();
         }
       }}
@@ -84,16 +93,13 @@ const makeGraph = <Type,>() => {
 const tri = Math.sqrt(3) / 2;
 
 const generate = (width: number, height: number) => {
-  // set animation defaults
-  gsap.defaults({ ease: "power1.inOut" });
-
-  const { graph, getNodes, addNode, addEdge, removeNode } = makeGraph<Vector>();
-
   // boundaries
   const left = -width / 2;
   const right = width / 2;
   const top = -height / 2;
   const bottom = height / 2;
+
+  const { graph, getNodes, addNode, addEdge, removeNode } = makeGraph<Vector>();
 
   // generate triangular grid of dots
   let offset = false;
@@ -176,7 +182,10 @@ const generate = (width: number, height: number) => {
     )
     .flat();
 
-  // animate
+  // set animation defaults
+  gsap.defaults({ ease: "power1.inOut" });
+
+  // animate dots
   for (const dot of dots) {
     const delay = delayEq(dot.normX, dot.normY) * duration;
     gsap
@@ -186,6 +195,8 @@ const generate = (width: number, height: number) => {
       .timeline({ repeat: -1, delay })
       .to(dot, { color: colorB, duration: duration * 2 });
   }
+
+  // animate lines
   for (const line of lines) {
     const delay = delayEq(line.normX, line.normY) * duration;
     gsap

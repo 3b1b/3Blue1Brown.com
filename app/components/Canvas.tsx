@@ -7,7 +7,7 @@ import {
   useRafFn,
 } from "@reactuses/core";
 import { clamp } from "lodash-es";
-import { useInView } from "~/util/hooks";
+import { useBeenInView, useInView } from "~/util/hooks";
 
 // max canvas width/height, in px
 const maxSize = 4000;
@@ -28,7 +28,7 @@ type Props = {
 // generic canvas that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref: passedRef,
-  oversample = 1,
+  oversample = 2,
   render,
   onChange = () => {},
   ...props
@@ -43,6 +43,7 @@ export default function Canvas({
 
   // is canvas in view
   const inView = useInView(canvas);
+  const beenInView = useBeenInView(canvas);
 
   // init context
   useEffect(() => {
@@ -52,6 +53,7 @@ export default function Canvas({
   // render frame
   useRafFn(() => {
     if (!canvas.current || !ctx.current) return;
+    if (!inView) return;
     ctx.current.clearRect(
       -width / 2,
       -height / 2,
@@ -67,7 +69,7 @@ export default function Canvas({
   // re-init canvas
   useEffect(() => {
     if (!canvas.current || !ctx.current) return;
-    if (!inView) return;
+    if (!beenInView) return;
     // set canvas buffer size, hard clamp to prevent perf issues
     canvas.current.width = clamp(width * oversample, 0, maxSize);
     canvas.current.height = clamp(height * oversample, 0, maxSize);
@@ -77,7 +79,7 @@ export default function Canvas({
     // scale for oversampling
     ctx.current.scale(oversample, oversample);
     _onChange?.(width, height);
-  }, [width, height, inView, oversample]);
+  }, [width, height, beenInView, oversample]);
 
   // combine local and passed refs
   const mergedRef = useMergedRefs(canvas, passedRef);

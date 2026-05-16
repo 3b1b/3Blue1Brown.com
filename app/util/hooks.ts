@@ -90,15 +90,6 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   return matches;
 };
 
-// scroll "progress" of element down viewport, -1 to 1
-export const useParallax = (ref: RefObject<Element | null>) => {
-  const elementBbox = useElementBounding(ref);
-  const windowSize = useWindowSize();
-  const percent =
-    (elementBbox.top + elementBbox.height / 2) / windowSize.height;
-  return -1 + 2 * percent || 0;
-};
-
 // is element in viewport
 export const useInView = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
@@ -119,6 +110,14 @@ export const useInView = (ref: RefObject<Element | null>) => {
     elementBbox.right > 0 &&
     elementBbox.left < windowSize.width
   );
+};
+
+// has element ever been in viewport
+export const useBeenInView = (ref: RefObject<Element | null>) => {
+  const inView = useInView(ref);
+  const [value, setValue] = useState(inView);
+  if (inView && !value) setValue(true);
+  return value;
 };
 
 // fit svg view box to content

@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { cloneDeep, range } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { project, rotateX, rotateZ } from "~/util/3d";
+import { Vector } from "~/util/vector";
 
 // thickness of lines, in px
 const thickness = 1;
@@ -40,17 +41,18 @@ export default function Grid({ className = "" }) {
       className={clsx("absolute inset-0 -z-10 size-full", className)}
       render={(ctx) => {
         if (!transform) return;
+
         // draw minor lines
         ctx.strokeStyle = colorMinor;
         ctx.lineWidth = thickness;
         for (const { horizontal, vertical } of minorLines) {
           ctx.beginPath();
-          ctx.moveTo(...transform(horizontal.x1, horizontal.y1));
-          ctx.lineTo(...transform(horizontal.x2, horizontal.y2));
+          ctx.moveTo(...transform(horizontal.from));
+          ctx.lineTo(...transform(horizontal.to));
           ctx.stroke();
           ctx.beginPath();
-          ctx.moveTo(...transform(vertical.x1, vertical.y1));
-          ctx.lineTo(...transform(vertical.x2, vertical.y2));
+          ctx.moveTo(...transform(vertical.from));
+          ctx.lineTo(...transform(vertical.to));
           ctx.stroke();
         }
 
@@ -59,12 +61,12 @@ export default function Grid({ className = "" }) {
         ctx.lineWidth = 2 * thickness;
         for (const { horizontal, vertical } of majorLines) {
           ctx.beginPath();
-          ctx.moveTo(...transform(horizontal.x1, horizontal.y1));
-          ctx.lineTo(...transform(horizontal.x2, horizontal.y2));
+          ctx.moveTo(...transform(horizontal.from));
+          ctx.lineTo(...transform(horizontal.to));
           ctx.stroke();
           ctx.beginPath();
-          ctx.moveTo(...transform(vertical.x1, vertical.y1));
-          ctx.lineTo(...transform(vertical.x2, vertical.y2));
+          ctx.moveTo(...transform(vertical.from));
+          ctx.lineTo(...transform(vertical.to));
           ctx.stroke();
         }
       }}
@@ -74,16 +76,21 @@ export default function Grid({ className = "" }) {
 }
 
 const generate = (width: number, height: number) => {
-  // set animation defaults
-  gsap.defaults({ ease: "sine.inOut" });
+  // canvas size, cover
+  const size = Math.max(width, height) / 2;
 
   // intervals in each direction
-  const intervals = range(-cells, cells + 1).map((index) => index / cells);
+  const intervals = range(-cells, cells + 1).map(
+    (index) => (index / cells) * size,
+  );
 
   // minor lines
   const minorLines = intervals.map((point, index) => ({
-    horizontal: { x1: -1, x2: -1, y1: point, y2: point },
-    vertical: { x1: point, x2: point, y1: -1, y2: -1 },
+    horizontal: {
+      from: new Vector(-size, point),
+      to: new Vector(-size, point),
+    },
+    vertical: { from: new Vector(point, -size), to: new Vector(point, -size) },
     index,
   }));
 
@@ -92,28 +99,31 @@ const generate = (width: number, height: number) => {
     (_, index) => index % major === 0,
   );
 
+  // set animation defaults
+  gsap.defaults({ ease: "sine.inOut" });
+
   // animate minor lines
   for (const { horizontal, vertical, index } of minorLines) {
     gsap
       .timeline({ repeat: -1, delay: index * stagger + 1 })
-      .to(horizontal, { x2: 1, duration: draw })
-      .to(horizontal, { x1: 1, duration: draw, delay: draw / 2 });
+      .to(horizontal.from, { x: size, duration: draw })
+      .to(horizontal.to, { x: size, duration: draw, delay: draw / 2 });
     gsap
       .timeline({ repeat: -1, delay: index * stagger + 1 })
-      .to(vertical, { y2: 1, duration: draw })
-      .to(vertical, { y1: 1, duration: draw, delay: draw / 2 });
+      .to(vertical.from, { y: size, duration: draw })
+      .to(vertical.to, { y: size, duration: draw, delay: draw / 2 });
   }
 
   // animate major lines
   for (const { horizontal, vertical, index } of majorLines) {
     gsap
       .timeline({ repeat: -1, delay: index * stagger })
-      .to(horizontal, { x2: 1, duration: draw })
-      .to(horizontal, { x1: 1, duration: draw, delay: draw / 2 });
+      .to(horizontal.from, { x: size, duration: draw })
+      .to(horizontal.to, { x: size, duration: draw, delay: draw / 2 });
     gsap
       .timeline({ repeat: -1, delay: index * stagger })
-      .to(vertical, { y2: 1, duration: draw })
-      .to(vertical, { y1: 1, duration: draw, delay: draw / 2 });
+      .to(vertical.from, { y: size, duration: draw })
+      .to(vertical.to, { y: size, duration: draw, delay: draw / 2 });
   }
 
   // rotation
@@ -124,13 +134,9 @@ const generate = (width: number, height: number) => {
     .timeline({ repeat: -1 })
     .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
 
-  // canvas size
-  const size = Math.max(width, height);
-  const half = size / 2;
-
   // project 2d point to 3d
-  const transform = (x: number, y: number) => {
-    let point = { x: x * half, y: y * half, z: 0 };
+  const transform = (p: Vector) => {
+    let point = { ...p, z: 0 };
     point = rotateZ(point, rotate.z);
     point = rotateX(point, rotate.x);
     const projected = project(point, size * perspective);
