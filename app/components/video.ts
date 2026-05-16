@@ -2,9 +2,9 @@ import type { RefObject } from "react";
 import { useCallback, useState } from "react";
 import { useEventListener, useUnmount } from "@reactuses/core";
 import { atom, getDefaultStore, useAtomValue } from "jotai";
+import { waitFor } from "~/util/async";
 import { getAtom, setAtom } from "~/util/atom";
 import { scrollTo } from "~/util/dom";
-import { waitFor } from "~/util/misc";
 
 // is any video on site playing
 export const videoPlayingAtom = atom(false);

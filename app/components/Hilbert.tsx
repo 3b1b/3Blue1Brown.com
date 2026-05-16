@@ -1,9 +1,10 @@
 import { useCallback, useState } from "react";
 import clsx from "clsx";
+import { pairs } from "d3";
 import gsap from "gsap";
 import { max, min } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { project, rotateX, rotateZ } from "~/util/3d";
+import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
 // order of hilbert curve
@@ -11,15 +12,19 @@ const order = 5;
 // angle of turns in hilbert curve
 const angle = 90;
 // thickness of line, in px
-const thickness = 0.5;
+const thickness = 1;
 // perspective
 const perspective = 4;
-// how long to complete 1 full spin, in sec
+// one full spin, in sec
 const spin = 120;
+// fade duration
+const fade = 10;
+// how much to stagger fade
+const stagger = 100;
 
 // hilbert curve grid
-export default function Hilbert({ color = "white", className = "" }) {
-  const [{ points = [], transform } = {}, setObjects] =
+export default function Hilbert({ color = "", className = "" }) {
+  const [{ segments = [], transform } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
   // when canvas size changes
@@ -37,13 +42,14 @@ export default function Hilbert({ color = "white", className = "" }) {
 
         // draw multi-segment line
         ctx.lineWidth = thickness;
-        ctx.strokeStyle = color;
-        ctx.beginPath();
-        const [first, ...rest] = points;
-        if (!first) return;
-        ctx.moveTo(...transform(first));
-        for (const point of rest) ctx.lineTo(...transform(point));
-        ctx.stroke();
+        for (const { from, to, alpha, hue } of segments) {
+          ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          ctx.moveTo(...transform(from));
+          ctx.lineTo(...transform(to));
+          ctx.stroke();
+        }
       }}
       onChange={onChange}
     />
@@ -115,16 +121,44 @@ const generate = (width: number, height: number) => {
       .scale(size),
   );
 
+  // split into segments
+  const segments = pairs(points).map(([from, to], index) => ({
+    from,
+    to,
+    alpha: 1,
+    hue: 0,
+    brightness: 0,
+    index,
+  }));
+
   // rotation
   const rotate = { x: -65, y: 0, z: 45 };
 
   // set animation defaults
-  gsap.defaults({ ease: "sine.inOut" });
+  gsap.defaults({ ease: "linear" });
 
   // animate rotation
   gsap
     .timeline({ repeat: -1 })
-    .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
+    .to(rotate, { z: rotate.z + 360, duration: spin });
+
+  for (const segment of segments) {
+    const delay = -(segment.index / segments.length) * stagger;
+    // animate fades
+    gsap
+      .timeline({ repeat: -1, delay })
+      .to(segment, {
+        alpha: 0,
+        duration: fade / 3,
+        delay: fade / 3,
+        ease: "expo.inOut",
+      })
+      .to(segment, { alpha: 1, duration: fade / 3, ease: "expo.inOut" });
+    // animate hue
+    gsap
+      .timeline({ repeat: -1, delay })
+      .to(segment, { hue: 360, duration: fade });
+  }
 
   // project 2d point to 3d
   const transform = (p: Vector) => {
@@ -135,5 +169,5 @@ const generate = (width: number, height: number) => {
     return [projected.x, projected.y] as const;
   };
 
-  return { points, transform };
+  return { segments, transform };
 };

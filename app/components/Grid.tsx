@@ -3,7 +3,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { cloneDeep, range } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { project, rotateX, rotateZ } from "~/util/3d";
+import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
 // thickness of lines, in px
@@ -14,11 +14,11 @@ const cells = 3 * 4;
 const major = 4;
 // perspective
 const perspective = 4;
-// how long to complete 1 full spin, in sec
+// one full spin, in sec
 const spin = 120;
-// how long to complete 1 full dash draw, in sec
+// line draw duration
 const draw = 5;
-// how much to stagger each line animation, in sec
+// how much to stagger draw
 const stagger = 0.25;
 // colors
 const colorMinor = "oklch(60% 0 240)";

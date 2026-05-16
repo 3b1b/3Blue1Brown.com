@@ -9,8 +9,8 @@ import Form from "~/components/Form";
 import Markdownify from "~/components/Markdownify";
 import PiCreature from "~/components/PiCreature";
 import Radios from "~/components/Radios";
+import { sleep } from "~/util/async";
 import { shake } from "~/util/dom";
-import { sleep } from "~/util/misc";
 
 type Props = {
   // question content

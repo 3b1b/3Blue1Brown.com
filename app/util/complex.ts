@@ -1,5 +1,4 @@
 // basic complex number operations
-
 export class Complex {
   r: number;
   i: number;

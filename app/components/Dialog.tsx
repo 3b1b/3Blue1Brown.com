@@ -4,7 +4,7 @@ import { Dialog as _Dialog } from "@base-ui/react";
 import { XIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Button from "~/components/Button";
-import { waitFor } from "~/util/misc";
+import { waitFor } from "~/util/async";
 
 type Props = {
   // button element that triggers dialog to open

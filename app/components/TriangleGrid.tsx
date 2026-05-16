@@ -183,7 +183,7 @@ const generate = (width: number, height: number) => {
     .flat();
 
   // set animation defaults
-  gsap.defaults({ ease: "power1.inOut" });
+  gsap.defaults({ ease: "sine.inOut" });
 
   // animate dots
   for (const dot of dots) {
