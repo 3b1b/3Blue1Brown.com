@@ -236,13 +236,8 @@ export const useEgg = () => {
       if (today.getMonth() + 1 === 6 && today.getDate() === 28) shape = "tau";
       // shape = "pi";
       if (!shape) return;
-      const width = window.innerWidth / 2;
-      const height = window.innerHeight / 2;
       for (let bursts = 20; bursts > 0; bursts--) {
-        celebrate(
-          shape,
-          new Vector(random(-width, width), random(-height, height)),
-        );
+        celebrate(shape, new Vector(random(-1, 1, true), random(-1, 1, true)));
         await sleep(250);
       }
       await sleep(500);

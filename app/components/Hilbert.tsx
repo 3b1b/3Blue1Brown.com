@@ -57,7 +57,7 @@ export default function Hilbert({ color = "", className = "" }) {
 }
 
 const generate = (width: number, height: number) => {
-  // canvas size, contain
+  // canvas size, cover
   const size = Math.min(width, height);
 
   // current point
