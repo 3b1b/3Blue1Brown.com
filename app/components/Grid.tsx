@@ -6,13 +6,13 @@ import Canvas from "~/components/Canvas";
 import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
-// thickness of lines, in px
-const thickness = 1;
+// thickness of lines, as % of canvas size
+const thickness = 0.001;
 // number of cells in each direction
 const cells = 3 * 4;
 // every nth line is major
 const major = 4;
-// perspective
+// perspective factor
 const perspective = 4;
 // one full spin, in sec
 const spin = 120;
@@ -39,12 +39,15 @@ export default function Grid({ className = "" }) {
   return (
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
-      render={(ctx) => {
+      render={(ctx, width, height) => {
         if (!transform) return;
+
+        // canvas size, cover
+        const size = Math.max(width, height) / 2;
 
         // draw minor lines
         ctx.strokeStyle = colorMinor;
-        ctx.lineWidth = thickness;
+        ctx.lineWidth = thickness * size;
         for (const { horizontal, vertical } of minorLines) {
           ctx.beginPath();
           ctx.moveTo(...transform(horizontal.from));
@@ -58,7 +61,7 @@ export default function Grid({ className = "" }) {
 
         // draw major lines
         ctx.strokeStyle = colorMajor;
-        ctx.lineWidth = 2 * thickness;
+        ctx.lineWidth = 3 * thickness * size;
         for (const { horizontal, vertical } of majorLines) {
           ctx.beginPath();
           ctx.moveTo(...transform(horizontal.from));

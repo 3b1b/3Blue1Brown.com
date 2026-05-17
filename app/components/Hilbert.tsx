@@ -11,9 +11,9 @@ import { Vector } from "~/util/vector";
 const order = 5;
 // angle of turns in hilbert curve
 const angle = 90;
-// thickness of line, in px
-const thickness = 1;
-// perspective
+// thickness of lines, as % of canvas size
+const thickness = 0.001;
+// perspective factor
 const perspective = 4;
 // one full spin, in sec
 const spin = 120;
@@ -37,11 +37,14 @@ export default function Hilbert({ color = "", className = "" }) {
   return (
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
-      render={(ctx) => {
+      render={(ctx, width, height) => {
         if (!transform) return;
 
+        // canvas size, cover
+        const size = Math.max(width, height);
+
         // draw multi-segment line
-        ctx.lineWidth = thickness;
+        ctx.lineWidth = thickness * size;
         for (const { from, to, alpha, hue } of segments) {
           ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
           ctx.globalAlpha = alpha;

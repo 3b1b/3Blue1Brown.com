@@ -9,11 +9,9 @@ import { Vector } from "~/util/vector";
 // color of particles
 const colors = ["#3187ca"];
 // base number of particles to generate (before excluding those outside of shape)
-const count = 1000;
-// base scale of shape, in view port %
-const scale = 0.2;
-// base radius of particles, in view port %
-const radius = 0.0075;
+const count = 5000;
+// base radius of particles, as % of canvas size
+const radius = 0.02;
 // total length of animation, in sec
 const length = 1.5;
 // phosphor icons pi bold path
@@ -77,7 +75,8 @@ const flushRemove = debounce(() => {
 export const celebrate = (
   shape = "pi",
   center = new Vector(0, 0),
-  size = 1,
+  // size of shape, as % of canvas size
+  size = 0.2,
 ) => {
   // disable for users with reduced motion preference
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -116,7 +115,7 @@ export const celebrate = (
     // animate to end props
     gsap.to(particle, {
       delay,
-      scale: scale * size,
+      scale: size,
       rotate,
       duration,
       ease: "circ.out",
