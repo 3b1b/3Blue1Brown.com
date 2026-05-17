@@ -1,5 +1,5 @@
 import { random } from "lodash-es";
-import { frame, waitFor, waitForStable } from "~/util/misc";
+import { frame, waitFor, waitForStable } from "~/util/async";
 
 // get coordinates of element relative to document
 export const getDocBbox = (element: Element) => {

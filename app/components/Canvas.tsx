@@ -7,24 +7,29 @@ import {
   useRafFn,
 } from "@reactuses/core";
 import { clamp } from "lodash-es";
-import { useInView } from "~/util/hooks";
+import { useBeenInView, useInView } from "~/util/hooks";
+
+// max canvas buffer width/height, in px, to avoid memory crashes
+const maxWidth = 4000;
+const maxHeight = 2000;
 
 type Props = {
-  // pixel density
-  scale?: number;
+  // how many canvas buffer pixels to draw per css/dom pixel, i.e. devicePixelRatio
+  oversample?: number;
   // render frame
-  render: (ctx: CanvasRenderingContext2D) => void;
+  render: (
+    ctx: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+  ) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
 } & Omit<ComponentProps<"canvas">, "onChange">;
 
-// max dimension of canvas to avoid perf issues
-const maxSize = 4000;
-
 // generic canvas that handles animation loop, resizing, and etc.
 export default function Canvas({
   ref: passedRef,
-  scale = 2,
+  oversample = 2,
   render,
   onChange = () => {},
   ...props
@@ -32,18 +37,14 @@ export default function Canvas({
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
 
-  // size of canvas in dom
+  // size of canvas, in css/dom px, debounced
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
-  let width = useDebounce(_width, 100) * scale;
-  let height = useDebounce(_height, 100) * scale;
-
-  // hard limit size
-  const scaleDown = clamp(Math.max(width / maxSize, height / maxSize), 1, 20);
-  width /= scaleDown;
-  height /= scaleDown;
+  const clientWidth = useDebounce(clamp(_width, 0, maxWidth), 100);
+  const clientHeight = useDebounce(clamp(_height, 0, maxHeight), 100);
 
   // is canvas in view
   const inView = useInView(canvas);
+  const beenInView = useBeenInView(canvas);
 
   // init context
   useEffect(() => {
@@ -53,13 +54,14 @@ export default function Canvas({
   // render frame
   useRafFn(() => {
     if (!canvas.current || !ctx.current) return;
+    if (!inView) return;
     ctx.current.clearRect(
-      -width / 2,
-      -height / 2,
+      -canvas.current.width / 2,
+      -canvas.current.height / 2,
       canvas.current.width,
       canvas.current.height,
     );
-    render(ctx.current);
+    render(ctx.current, clientWidth, clientHeight);
   });
 
   // prevent onChange from being dep of useEffect
@@ -68,14 +70,22 @@ export default function Canvas({
   // re-init canvas
   useEffect(() => {
     if (!canvas.current || !ctx.current) return;
-    if (!inView) return;
-    const cleanup = _onChange?.(width * 2, height * 2);
-    canvas.current.width = width;
-    canvas.current.height = height;
+    if (!beenInView) return;
+    // canvas buffer size, in px
+    const bufferWidth = clientWidth * oversample;
+    const bufferHeight = clientHeight * oversample;
+    // set canvas buffer size
+    canvas.current.width = bufferWidth;
+    canvas.current.height = bufferHeight;
+    // start new transform
     ctx.current.resetTransform();
-    ctx.current.translate(width / 2, height / 2);
-    return cleanup;
-  }, [width, height, inView]);
+    // center (0,0)
+    ctx.current.translate(bufferWidth / 2, bufferHeight / 2);
+    // scale for oversampling
+    ctx.current.scale(oversample, oversample);
+    // notify parent of new size
+    _onChange?.(clientWidth, clientHeight);
+  }, [clientWidth, clientHeight, beenInView, oversample]);
 
   // combine local and passed refs
   const mergedRef = useMergedRefs(canvas, passedRef);

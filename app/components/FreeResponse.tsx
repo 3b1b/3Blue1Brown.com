@@ -29,7 +29,7 @@ export default function FreeResponse({
     "disabled",
   );
 
-  // is element in view
+  // is component in view
   const inView = useInView(ref);
 
   // when question in view, wait a few secs before allowing reveal

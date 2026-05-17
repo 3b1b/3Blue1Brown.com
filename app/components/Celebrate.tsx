@@ -9,11 +9,9 @@ import { Vector } from "~/util/vector";
 // color of particles
 const colors = ["#3187ca"];
 // base number of particles to generate (before excluding those outside of shape)
-const count = 1000;
-// base scale of shape
-const scale = 150;
-// base radius of particles
-const radius = 5;
+const count = 5000;
+// base radius of particles, as % of canvas size
+const radius = 0.02;
 // total length of animation, in sec
 const length = 1.5;
 // phosphor icons pi bold path
@@ -26,7 +24,7 @@ const shapes: Record<string, string> = {
 type Particle = {
   // unique id
   id: string;
-  // center of burst, anchor point for particle
+  // center of burst, in [-1,1]
   center: Vector;
   // particle translate from center
   translate: Vector;
@@ -77,7 +75,8 @@ const flushRemove = debounce(() => {
 export const celebrate = (
   shape = "pi",
   center = new Vector(0, 0),
-  size = 1,
+  // size of shape, as % of canvas size
+  size = 0.2,
 ) => {
   // disable for users with reduced motion preference
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -116,7 +115,7 @@ export const celebrate = (
     // animate to end props
     gsap.to(particle, {
       delay,
-      scale: scale * size,
+      scale: size,
       rotate,
       duration,
       ease: "circ.out",
@@ -156,7 +155,10 @@ export default function Celebrate() {
   return (
     <Canvas
       className="pointer-events-none fixed inset-0 z-20 size-full select-none"
-      render={(ctx) => {
+      render={(ctx, width, height) => {
+        // canvas size, cover
+        const size = Math.min(width, height) / 2;
+
         // draw each particle
         for (const {
           center,
@@ -166,10 +168,12 @@ export default function Celebrate() {
           radius,
           color,
         } of Object.values(particles)) {
-          const { x, y } = center.add(translate.rotate(rotate).scale(scale));
+          const { x, y } = center
+            .scale(size)
+            .add(translate.rotate(rotate).scale(scale * size));
           ctx.fillStyle = color;
           ctx.beginPath();
-          ctx.arc(x, y, radius, 0, 2 * Math.PI);
+          ctx.arc(x, y, radius * size, 0, 2 * Math.PI);
           ctx.fill();
         }
       }}

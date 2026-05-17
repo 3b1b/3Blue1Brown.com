@@ -18,8 +18,8 @@ import { wrap } from "comlink";
 import { isEqual, mapValues, random } from "lodash-es";
 import { UAParser } from "ua-parser-js";
 import { celebrate } from "~/components/Celebrate";
+import { frame, sleep } from "~/util/async";
 import FuzzyWorker from "~/util/fuzzy?worker";
-import { frame, sleep } from "~/util/misc";
 import { Vector } from "~/util/vector";
 
 // check if value changed from previous render
@@ -90,15 +90,6 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   return matches;
 };
 
-// scroll "progress" of element down viewport, -1 to 1
-export const useParallax = (ref: RefObject<Element | null>) => {
-  const elementBbox = useElementBounding(ref);
-  const windowSize = useWindowSize();
-  const percent =
-    (elementBbox.top + elementBbox.height / 2) / windowSize.height;
-  return -1 + 2 * percent || 0;
-};
-
 // is element in viewport
 export const useInView = (ref: RefObject<Element | null>) => {
   const elementBbox = useElementBounding(ref);
@@ -119,6 +110,14 @@ export const useInView = (ref: RefObject<Element | null>) => {
     elementBbox.right > 0 &&
     elementBbox.left < windowSize.width
   );
+};
+
+// has element ever been in viewport
+export const useBeenInView = (ref: RefObject<Element | null>) => {
+  const inView = useInView(ref);
+  const [value, setValue] = useState(inView);
+  if (inView && !value) setValue(true);
+  return value;
 };
 
 // fit svg view box to content
@@ -237,13 +236,8 @@ export const useEgg = () => {
       if (today.getMonth() + 1 === 6 && today.getDate() === 28) shape = "tau";
       // shape = "pi";
       if (!shape) return;
-      const width = window.innerWidth / 2;
-      const height = window.innerHeight / 2;
       for (let bursts = 20; bursts > 0; bursts--) {
-        celebrate(
-          shape,
-          new Vector(random(-width, width), random(-height, height)),
-        );
+        celebrate(shape, new Vector(random(-1, 1, true), random(-1, 1, true)));
         await sleep(250);
       }
       await sleep(500);

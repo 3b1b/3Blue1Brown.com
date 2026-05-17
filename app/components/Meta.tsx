@@ -14,6 +14,7 @@ type Props<Type extends Thing> = {
 };
 
 // conveniently set page meta
+// must come before all elements on page to avoid weird react hydration issue with hoisted <head> tags
 export default function Meta<Type extends Thing>({
   title,
   description,

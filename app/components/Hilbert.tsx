@@ -1,26 +1,75 @@
+import { useCallback, useState } from "react";
 import clsx from "clsx";
+import { pairs } from "d3";
+import gsap from "gsap";
 import { max, min } from "lodash-es";
+import Canvas from "~/components/Canvas";
+import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
-import classes from "./Hilbert.module.css";
 
 // order of hilbert curve
 const order = 5;
 // angle of turns in hilbert curve
 const angle = 90;
-// length of each segment in svg units
-const length = 20;
-// thickness of line in svg units
-const thickness = 1;
+// thickness of lines, as % of canvas size
+const thickness = 0.001;
+// perspective factor
+const perspective = 4;
+// one full spin, in sec
+const spin = 120;
+// fade duration
+const fade = 10;
+// how much to stagger fade
+const stagger = 100;
 
-// generate points of hilbert curve
-const hilbert = (order: number, angle: number) => {
+// hilbert curve grid
+export default function Hilbert({ color = "", className = "" }) {
+  const [{ segments = [], transform } = {}, setObjects] =
+    useState<ReturnType<typeof generate>>();
+
+  // when canvas size changes
+  const onChange = useCallback((width: number, height: number) => {
+    // use gsap context to efficiently clean up old animations
+    const ctx = gsap.context(() => setObjects(generate(width, height)));
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <Canvas
+      className={clsx("absolute inset-0 -z-10 size-full", className)}
+      render={(ctx, width, height) => {
+        if (!transform) return;
+
+        // canvas size, cover
+        const size = Math.max(width, height);
+
+        // draw multi-segment line
+        ctx.lineWidth = thickness * size;
+        for (const { from, to, alpha, hue } of segments) {
+          ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
+          ctx.globalAlpha = alpha;
+          ctx.beginPath();
+          ctx.moveTo(...transform(from));
+          ctx.lineTo(...transform(to));
+          ctx.stroke();
+        }
+      }}
+      onChange={onChange}
+    />
+  );
+}
+
+const generate = (width: number, height: number) => {
+  // canvas size, cover
+  const size = Math.min(width, height);
+
   // current point
   let point = new Vector(0, 0);
   // step direction/length
-  let step = new Vector(length, 0);
+  let step = new Vector(1, 0);
 
   // list of points
-  const points: Vector[] = [point];
+  let points: Vector[] = [point];
 
   // generate one level of curve recursively
   const level = (depth: number, angle: number) => {
@@ -63,37 +112,65 @@ const hilbert = (order: number, angle: number) => {
   const right = max(xs) ?? 0;
   const top = min(ys) ?? 0;
   const bottom = max(ys) ?? 0;
-  const width = right - left;
-  const height = bottom - top;
 
-  return { points, left, top, width, height };
-};
-
-// generate hilbert
-const { points, left, top, width, height } = hilbert(order, angle);
-
-type Props = {
-  className?: string;
-};
-
-// hilbert curve viz
-export default function Hilbert({ className }: Props) {
-  return (
-    <div className={clsx("absolute inset-0 -z-10 overflow-clip", className)}>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox={[left, top, width, height].join(" ")}
-        className="absolute top-1/2 -translate-y-1/2 perspective-rotate"
-      >
-        <polyline
-          className={classes.stroke}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={thickness}
-          points={points.map((point) => point.toString()).join(" ")}
-          pathLength={8 * 4}
-        />
-      </svg>
-    </div>
+  // transform points
+  points = points.map((point) =>
+    point
+      // center
+      .translate(-(left + right) / 2, -(top + bottom) / 2)
+      // normalize to [-1,1]
+      .divide((right - left) / 2, (bottom - top) / 2)
+      // scale to fit canvas
+      .scale(size),
   );
-}
+
+  // split into segments
+  const segments = pairs(points).map(([from, to], index) => ({
+    from,
+    to,
+    alpha: 1,
+    hue: 0,
+    brightness: 0,
+    index,
+  }));
+
+  // rotation
+  const rotate = { x: -65, y: 0, z: 45 };
+
+  // set animation defaults
+  gsap.defaults({ ease: "linear" });
+
+  // animate rotation
+  gsap
+    .timeline({ repeat: -1 })
+    .to(rotate, { z: rotate.z + 360, duration: spin });
+
+  for (const segment of segments) {
+    const delay = -(segment.index / segments.length) * stagger;
+    // animate fades
+    gsap
+      .timeline({ repeat: -1, delay })
+      .to(segment, {
+        alpha: 0,
+        duration: fade / 3,
+        delay: fade / 3,
+        ease: "expo.inOut",
+      })
+      .to(segment, { alpha: 1, duration: fade / 3, ease: "expo.inOut" });
+    // animate hue
+    gsap
+      .timeline({ repeat: -1, delay })
+      .to(segment, { hue: 360, duration: fade });
+  }
+
+  // project 2d point to 3d
+  const transform = (p: Vector) => {
+    let point = { ...p, z: 0 };
+    point = rotateZ(point, rotate.z);
+    point = rotateX(point, rotate.x);
+    const projected = project(point, size * perspective);
+    return [projected.x, projected.y] as const;
+  };
+
+  return { segments, transform };
+};

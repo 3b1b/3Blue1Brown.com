@@ -17,9 +17,7 @@ export default function Talent() {
       />
 
       <Header
-        background={
-          <TriangleGrid className="mask-b-from-0% mask-b-to-100% opacity-65" />
-        }
+        background={<TriangleGrid className="mask-b-from-0% mask-b-to-100%" />}
       >
         <PartnersHeader />
       </Header>

@@ -41,6 +41,7 @@ const entries = [
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
 
+  // is section in view
   const inView = useInView(ref);
 
   // stat value animation percent

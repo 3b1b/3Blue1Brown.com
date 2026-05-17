@@ -19,8 +19,8 @@ import MathJax from "~/components/MathJax";
 import Navigate from "~/components/Navigate";
 import ViewCorner from "~/components/ViewCorner";
 import site from "~/data/site.json";
+import { waitFor } from "~/util/async";
 import { scrollTo } from "~/util/dom";
-import { waitFor } from "~/util/misc";
 
 // app entrypoint
 export default function App() {

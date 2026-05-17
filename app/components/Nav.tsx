@@ -11,8 +11,8 @@ import DarkMode from "~/components/DarkMode";
 import Dialog from "~/components/Dialog";
 import site from "~/data/site.json";
 import { Search } from "~/pages/home/Lessons";
+import { sleep } from "~/util/async";
 import { useChanged, useClient } from "~/util/hooks";
-import { sleep } from "~/util/misc";
 
 // site navigation links
 const links = [
