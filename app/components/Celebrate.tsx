@@ -156,7 +156,7 @@ export default function Celebrate() {
     <Canvas
       className="pointer-events-none fixed inset-0 z-20 size-full select-none"
       render={(ctx, width, height) => {
-        // canvas size, cover
+        // canvas size, contain
         const size = Math.min(width, height) / 2;
 
         // draw each particle

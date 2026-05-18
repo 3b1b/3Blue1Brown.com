@@ -241,7 +241,7 @@ export const useEgg = () => {
         await sleep(250);
       }
       await sleep(500);
-      celebrate(shape, new Vector(0, 0), 3);
+      celebrate(shape, new Vector(0, 0), 1);
     })();
   }, []);
 };

@@ -56,10 +56,10 @@ export default function Canvas({
     if (!canvas.current || !ctx.current) return;
     if (!inView) return;
     ctx.current.clearRect(
-      -canvas.current.width / 2,
-      -canvas.current.height / 2,
-      canvas.current.width,
-      canvas.current.height,
+      -clientWidth / 2,
+      -clientHeight / 2,
+      clientWidth,
+      clientHeight,
     );
     render(ctx.current, clientWidth, clientHeight);
   });
