@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { pairs } from "d3";
 import gsap from "gsap";
@@ -7,20 +7,20 @@ import Canvas from "~/components/Canvas";
 import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
+// thickness of lines, as % of canvas size
+const thickness = 0.001;
+// perspective factor
+const perspective = 10;
 // order of hilbert curve
 const order = 5;
 // angle of turns in hilbert curve
 const angle = 90;
-// thickness of lines, as % of canvas size
-const thickness = 0.001;
-// perspective factor
-const perspective = 4;
 // one full spin, in sec
 const spin = 120;
 // fade duration
 const fade = 10;
 // how much to stagger fade
-const stagger = 100;
+const stagger = 0.1;
 
 // hilbert curve grid
 export default function Hilbert({ color = "", className = "" }) {
@@ -28,9 +28,9 @@ export default function Hilbert({ color = "", className = "" }) {
     useState<ReturnType<typeof generate>>();
 
   // when canvas size changes
-  const onChange = useCallback((width: number, height: number) => {
+  useEffect(() => {
     // use gsap context to efficiently clean up old animations
-    const ctx = gsap.context(() => setObjects(generate(width, height)));
+    const ctx = gsap.context(() => setObjects(generate()));
     return () => ctx.revert();
   }, []);
 
@@ -41,7 +41,7 @@ export default function Hilbert({ color = "", className = "" }) {
         if (!transform) return;
 
         // canvas size, cover
-        const size = Math.max(width, height);
+        const size = Math.max(width, height) / 2;
 
         // draw multi-segment line
         ctx.lineWidth = thickness * size;
@@ -49,20 +49,16 @@ export default function Hilbert({ color = "", className = "" }) {
           ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
           ctx.globalAlpha = alpha;
           ctx.beginPath();
-          ctx.moveTo(...transform(from));
-          ctx.lineTo(...transform(to));
+          ctx.moveTo(...transform(from, size));
+          ctx.lineTo(...transform(to, size));
           ctx.stroke();
         }
       }}
-      onChange={onChange}
     />
   );
 }
 
-const generate = (width: number, height: number) => {
-  // canvas size, cover
-  const size = Math.min(width, height);
-
+const generate = () => {
   // current point
   let point = new Vector(0, 0);
   // step direction/length
@@ -119,9 +115,7 @@ const generate = (width: number, height: number) => {
       // center
       .translate(-(left + right) / 2, -(top + bottom) / 2)
       // normalize to [-1,1]
-      .divide((right - left) / 2, (bottom - top) / 2)
-      // scale to fit canvas
-      .scale(size),
+      .divide((right - left) / 2, (bottom - top) / 2),
   );
 
   // split into segments
@@ -146,7 +140,7 @@ const generate = (width: number, height: number) => {
     .to(rotate, { z: rotate.z + 360, duration: spin });
 
   for (const segment of segments) {
-    const delay = -(segment.index / segments.length) * stagger;
+    const delay = -segment.index * stagger;
     // animate fades
     gsap
       .timeline({ repeat: -1, delay })
@@ -164,12 +158,12 @@ const generate = (width: number, height: number) => {
   }
 
   // project 2d point to 3d
-  const transform = (p: Vector) => {
+  const transform = (p: Vector, size: number) => {
     let point = { ...p, z: 0 };
     point = rotateZ(point, rotate.z);
     point = rotateX(point, rotate.x);
-    const projected = project(point, size * perspective);
-    return [projected.x, projected.y] as const;
+    const projected = project(point, perspective);
+    return [projected.x * size, projected.y * size] as const;
   };
 
   return { segments, transform };
