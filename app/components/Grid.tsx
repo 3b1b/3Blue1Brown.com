@@ -82,10 +82,7 @@ const generate = () => {
 
   // minor lines
   const minorLines = intervals.map((point, index) => ({
-    horizontal: {
-      from: new Vector(-1, point),
-      to: new Vector(-1, point),
-    },
+    horizontal: { from: new Vector(-1, point), to: new Vector(-1, point) },
     vertical: { from: new Vector(point, -1), to: new Vector(point, -1) },
     index,
   }));

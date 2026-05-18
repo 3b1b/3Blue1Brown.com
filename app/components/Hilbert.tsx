@@ -131,30 +131,22 @@ const generate = () => {
   // rotation
   const rotate = { x: -65, y: 0, z: 45 };
 
-  // set animation defaults
-  gsap.defaults({ ease: "linear" });
-
   // animate rotation
   gsap
     .timeline({ repeat: -1 })
-    .to(rotate, { z: rotate.z + 360, duration: spin });
+    .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
 
   for (const segment of segments) {
     const delay = -segment.index * stagger;
     // animate fades
     gsap
-      .timeline({ repeat: -1, delay })
-      .to(segment, {
-        alpha: 0,
-        duration: fade / 3,
-        delay: fade / 3,
-        ease: "expo.inOut",
-      })
-      .to(segment, { alpha: 1, duration: fade / 3, ease: "expo.inOut" });
+      .timeline({ repeat: -1, delay, defaults: { ease: "expo.inOut" } })
+      .to(segment, { alpha: 0, duration: fade / 3, delay: fade / 3 })
+      .to(segment, { alpha: 1, duration: fade / 3 });
     // animate hue
     gsap
       .timeline({ repeat: -1, delay })
-      .to(segment, { hue: 360, duration: fade });
+      .to(segment, { hue: 360, duration: fade, ease: "linear" });
   }
 
   // project 2d point to 3d
