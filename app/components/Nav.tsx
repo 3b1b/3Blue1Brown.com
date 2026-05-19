@@ -1,5 +1,5 @@
 import type { Ref } from "react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { href, useLocation } from "react-router";
 import { ListIcon, MagnifyingGlassIcon, XIcon } from "@phosphor-icons/react";
@@ -12,7 +12,7 @@ import Dialog from "~/components/Dialog";
 import site from "~/data/site.json";
 import { Search } from "~/pages/home/Lessons";
 import { sleep } from "~/util/async";
-import { useChanged, useClient } from "~/util/hooks";
+import { useClient } from "~/util/hooks";
 
 // site navigation links
 const links = [
@@ -61,7 +61,10 @@ export default function Nav() {
   });
 
   // close on route change
-  if (useChanged(useLocation().pathname)) sleep().then(() => setOpen(false));
+  const path = useLocation().pathname;
+  useEffect(() => {
+    sleep().then(() => setOpen(false));
+  }, [path, setOpen]);
 
   return (
     <>

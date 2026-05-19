@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { pairs } from "d3";
 import gsap from "gsap";
-import { max, min } from "lodash-es";
+import { clamp, max, min } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
-// thickness of lines, as % of canvas size
-const thickness = 0.001;
+// thickness of lines
+const thickness = (size: number) => clamp(0.002 * size, 0.35, 0.65);
 // perspective factor
 const perspective = 10;
 // order of hilbert curve
@@ -44,7 +44,7 @@ export default function Hilbert({ color = "", className = "" }) {
         const size = Math.max(width, height) / 2;
 
         // draw multi-segment line
-        ctx.lineWidth = thickness * size;
+        ctx.lineWidth = thickness(size);
         for (const { from, to, alpha, hue } of segments) {
           ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
           ctx.globalAlpha = alpha;
