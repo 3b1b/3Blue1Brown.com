@@ -34,10 +34,13 @@ export default function Dialog({
   const ref = useRef<HTMLDivElement>(null);
   const [isOpen, setOpen] = useState(false);
 
+  // on open
   const open = useCallback(() => {
     setOpen(true);
     onChange?.(true);
   }, [onChange]);
+
+  // on close
   const close = useCallback(() => {
     setOpen(false);
     onChange?.(false);

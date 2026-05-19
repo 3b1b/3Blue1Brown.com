@@ -28,6 +28,7 @@ export default function Feedback() {
   let [username, setUsername] = useLocalStorage("feedback-username", "");
   let [contact, setContact] = useLocalStorage("feedback-contact", "");
   let [subject, setSubject] = useLocalStorage("feedback-subject", "");
+  let [page, setPage] = useState("");
   let [message, setMessage] = useLocalStorage("feedback-message", "");
 
   // set fallbacks
@@ -35,17 +36,19 @@ export default function Feedback() {
   contact ||= "";
   username ||= "";
   subject ||= "";
+  page ||= "";
   message ||= "";
 
   // validate username
   if (username && username.length > 0)
     username = username.replaceAll(/^@*/g, "@");
 
-  const { userAgent } = useUA();
-
-  // extra details to include in report
+  // current page
   const { pathname, search, hash } = useLocation();
-  const details = { Page: pathname + search + hash, ...userAgent };
+  const path = pathname + search + hash;
+
+  // debug info
+  const { userAgent: debug } = useUA();
 
   // feedback title
   const title = truncate(
@@ -54,13 +57,25 @@ export default function Feedback() {
   );
 
   // feedback body
-  const body = Object.entries({ name, username, contact, ...details, message })
-    .map(([key, value]) => [
+  const empty = "\\-";
+  const body = [
+    ["<details><summary>User</summary>"],
+    ["**Name**", name.trim() || empty],
+    ["**Username**", username.trim() || empty],
+    ["**Contact**", contact.trim() || empty],
+    ["</details>"],
+    ["<details><summary>Debug</summary>"],
+    ...Object.entries(debug).map(([key, value]) => [
       `**${startCase(key)}**`,
-      value.trim() ? value.trim() : "\\-",
-    ])
-    .flat()
-    .join("\n");
+      value.trim() || empty,
+    ]),
+    ["</details>"],
+    ["**Page**", page.trim() || empty],
+    ["**Subject**", subject.trim() || empty],
+    ["**Message**", message.trim() || empty],
+  ]
+    .map((row) => row.join("\n"))
+    .join("\n\n");
 
   // fallback link
   const fallback = new URL(`${site.github.site_issues}/new`);
@@ -75,6 +90,8 @@ export default function Feedback() {
     setStatus("loading");
 
     try {
+      console.log({ title, body });
+      return;
       const { link } = await createIssue({
         owner: site.github.org,
         repo: site.github.site_repo,
@@ -92,7 +109,7 @@ export default function Feedback() {
   return (
     <Form id={id} onSubmit={onSubmit}>
       <Dialog
-        title="Feedback"
+        title="Site Feedback"
         trigger={
           <Button className="p-2!" aria-label="Site feedback">
             <ChatTeardropDotsIcon />
@@ -123,24 +140,27 @@ export default function Feedback() {
             if (status === "error")
               // reset status and allow retry
               setStatus("info");
+          } else {
+            // if opening
+            setPage(path);
           }
         }}
       >
         {(close) => (
           <>
             <p>
-              Give us feedback on <b>this site/page</b>. For anything else, see{" "}
+              Please see{" "}
               <Link to={`${href("/about")}#faqs`} onClick={close}>
                 the FAQs
               </Link>{" "}
               and{" "}
               <Link to={`${href("/about")}#contact`} onClick={close}>
                 contact form
-              </Link>
-              .
+              </Link>{" "}
+              first, then give us feedback about <b>this site</b>.
             </p>
 
-            <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
+            <div className="grid grid-flow-row-dense grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
               <TextBox
                 label="Name"
                 help="Optional. So we can address you properly."
@@ -172,12 +192,19 @@ export default function Feedback() {
                 value={subject}
                 onChange={setSubject}
                 form={id}
-                className="col-span-full"
+                className="col-span-2 max-sm:col-span-1"
+              />
+              <TextBox
+                label="Page"
+                placeholder="Page"
+                value={page}
+                onChange={setPage}
+                form={id}
               />
 
               <TextBox
                 label="Message"
-                placeholder="Corrections/suggestions/bugs/etc."
+                placeholder="Bugs/corrections/suggestions/etc. about this site"
                 required
                 multi
                 rows={5}
@@ -189,7 +216,7 @@ export default function Feedback() {
 
               <Checkbox required form={id} className="col-span-full">
                 <span>
-                  My message is about <b>this site/page</b>
+                  My message is about this site and is not addressed by the FAQs
                 </span>
               </Checkbox>
 
@@ -198,10 +225,10 @@ export default function Feedback() {
                   <p>
                     This will start a <strong>public</strong> issue on{" "}
                     <Link to={site.github.site_issues}>GitHub</Link> with{" "}
-                    <strong>all of the above</strong> and some{" "}
+                    <strong>everything above</strong> and some{" "}
                     <Tooltip trigger="debug info">
                       <dl className="self-center">
-                        {Object.entries(details).map(([key, value]) => (
+                        {Object.entries(debug).map(([key, value]) => (
                           <Fragment key={key}>
                             <dt>{key}</dt>
                             <dd>{value}</dd>
@@ -210,7 +237,7 @@ export default function Feedback() {
                       </dl>
                     </Tooltip>
                     . You'll get a link to it once it's created, where you can
-                    attach screenshots or more details.
+                    attach more details.
                   </p>
                 )}
                 {status === "loading" && "Submitting feedback"}

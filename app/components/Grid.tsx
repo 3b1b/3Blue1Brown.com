@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import gsap from "gsap";
-import { cloneDeep, range } from "lodash-es";
+import { clamp, cloneDeep, range } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
-// thickness of lines, as % of canvas size
-const thickness = 0.001;
+// thickness of lines
+const thickness = (size: number) => clamp(0.002 * size, 0.35, 0.65);
 // perspective factor
 const perspective = 10;
 // number of cells in each direction
@@ -43,10 +43,11 @@ export default function Grid({ className = "" }) {
 
         // canvas size, cover
         const size = Math.max(width, height) / 2;
+        const lineWidth = thickness(size);
 
         // draw minor lines
         ctx.strokeStyle = colorMinor;
-        ctx.lineWidth = thickness * size;
+        ctx.lineWidth = lineWidth;
         for (const { horizontal, vertical } of minorLines) {
           ctx.beginPath();
           ctx.moveTo(...transform(horizontal.from, size));
@@ -60,7 +61,7 @@ export default function Grid({ className = "" }) {
 
         // draw major lines
         ctx.strokeStyle = colorMajor;
-        ctx.lineWidth = 3 * thickness * size;
+        ctx.lineWidth = 3 * lineWidth;
         for (const { horizontal, vertical } of majorLines) {
           ctx.beginPath();
           ctx.moveTo(...transform(horizontal.from, size));
