@@ -90,8 +90,6 @@ export default function Feedback() {
     setStatus("loading");
 
     try {
-      console.log({ title, body });
-      return;
       const { link } = await createIssue({
         owner: site.github.org,
         repo: site.github.site_repo,
