@@ -109,6 +109,6 @@ const wrapText = (children: ReactNode): ReactNode =>
       (typeof child === "string" || typeof child === "number") &&
       String(child).trim()
     )
-      return <span className="border trim">{child}</span>;
+      return <span className="trim">{child}</span>;
     return child;
   });

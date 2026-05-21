@@ -1,3 +1,4 @@
+import { PiIcon } from "@phosphor-icons/react";
 import { Demo as AlertDemo } from "~/components/Alert";
 import { Demo as ButtonDemo } from "~/components/Button";
 import Carousel from "~/components/Carousel";
@@ -66,7 +67,15 @@ Wow, $e^{i \pi}$ is really cool!
 
 </PiCreatureDemo>
 
-<Tabs tabs={[<>Two Cities</>, <>Paul Clifford</>]}>
+<Tabs
+  tabs={[
+    "A tale of",
+    <>
+      <PiIcon /> Cities
+    </>,
+    <>Paul Clifford</>,
+  ]}
+>
   <Panel>
     It was the best of times it was the worst of times. It was the age of
     wisdom, it was the age of foolishness. It was the spring of hope, it was the
