@@ -21,7 +21,7 @@ export default {
     ).map(
       (path) =>
         // get route name from path
-        "/lessons/" + capture(path, "lessons/20\\d\\d/(.*)/index.mdx"),
+        "/lessons/" + capture(path, "lessons/20[0-9][0-9]/(.*)/index.mdx"),
     );
 
     // get all partner routes to prerender

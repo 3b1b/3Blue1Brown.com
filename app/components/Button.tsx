@@ -2,7 +2,6 @@ import type { ComponentPropsWithRef, ReactNode, Ref } from "react";
 import { deepMap } from "react-children-utilities";
 import clsx from "clsx";
 import Link from "~/components/Link";
-import { removeParagraph } from "~/components/Markdownify";
 import { getVariants } from "~/util/misc";
 
 type Props = Base & (_Link | _Button);
@@ -28,7 +27,6 @@ export default function Button({
   ...props
 }: Props) {
   children = wrapText(children);
-  children = removeParagraph(children);
 
   className = clsx(
     "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans text-balance no-underline [&_p]:contents [&_p]:leading-normal",
