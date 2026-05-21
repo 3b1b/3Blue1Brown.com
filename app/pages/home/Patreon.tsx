@@ -36,7 +36,7 @@ export default function Patreon() {
             <ArrowRightIcon />
           </Button>
           <Button
-            to="https://members.3blue1brown.com/posts/solution-to-sum-156593740"
+            to="https://members.3blue1brown.com/posts/158885046"
             color="light"
           >
             New Video (Early Access)
