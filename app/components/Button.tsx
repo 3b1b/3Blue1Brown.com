@@ -1,5 +1,6 @@
 import type { ComponentPropsWithRef, ReactNode, Ref } from "react";
-import { deepMap } from "react-children-utilities";
+import { Children, cloneElement, isValidElement } from "react";
+import { getElementName } from "react-children-utilities";
 import clsx from "clsx";
 import Link from "~/components/Link";
 import { getVariants } from "~/util/misc";
@@ -93,14 +94,21 @@ export function Demo({ children }: { children: ReactNode }) {
 }
 
 // wrap text children in spans to allow text box trimming
-const wrapText = (children: ReactNode) =>
-  deepMap(children, (child, index) => {
-    if (child && typeof child === "string")
-      return (
-        <span key={index} className="trim">
-          {child}
-        </span>
-      );
-
+const wrapText = (children: ReactNode): ReactNode =>
+  Children.map(children, (child) => {
+    // if react element with children, recurse
+    if (
+      // assume that children prop will always be valid ReactNode
+      isValidElement<{ children?: ReactNode }>(child) &&
+      // if fragment or custom component, recurse. if native tag, break.
+      !getElementName(child)
+    )
+      return cloneElement(child, {}, wrapText(child.props.children));
+    // if primitive and has content, wrap
+    if (
+      (typeof child === "string" || typeof child === "number") &&
+      String(child).trim()
+    )
+      return <span className="border trim">{child}</span>;
     return child;
   });
