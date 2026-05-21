@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import clsx from "clsx";
 import SpeechBubble from "~/assets/misc/bubble-speech.svg?react";
 import ThoughtBubble from "~/assets/misc/bubble-thought.svg?react";
-import Checkbox from "~/components/Checkbox";
+import CheckBox from "~/components/CheckBox";
 import Select from "~/components/Select";
 import TextBox from "~/components/TextBox";
 import { useSvgFit } from "~/util/hooks";
@@ -162,12 +162,12 @@ export function Demo({ children }: { children: ReactNode }) {
           placeholder="Bubble content. Enter whitespace to see w/o bubble."
           className="col-span-full"
         />
-        <Checkbox value={flip} onChange={setFlip}>
+        <CheckBox value={flip} onChange={setFlip}>
           Flip
-        </Checkbox>
-        <Checkbox value={thought} onChange={setThought}>
+        </CheckBox>
+        <CheckBox value={thought} onChange={setThought}>
           Thought
-        </Checkbox>
+        </CheckBox>
       </div>
     </>
   );

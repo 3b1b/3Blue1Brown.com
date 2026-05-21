@@ -50,7 +50,6 @@ export default function ShowPartial({ className, children }: Props) {
           setOpen(!open);
           if (open) preserveScroll(event.currentTarget);
         }}
-        size="sm"
         color="light"
       >
         {open ? <CaretDoubleUpIcon /> : <CaretDoubleDownIcon />}

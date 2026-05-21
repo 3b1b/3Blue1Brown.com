@@ -3,7 +3,7 @@ import { EnvelopeIcon, PaperPlaneIcon } from "@phosphor-icons/react";
 import { useLocalStorage } from "@reactuses/core";
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
-import Checkbox from "~/components/Checkbox";
+import CheckBox from "~/components/CheckBox";
 import Form from "~/components/Form";
 import Select from "~/components/Select";
 import TextBox from "~/components/TextBox";
@@ -117,13 +117,13 @@ export default function Contact() {
         onChange={setMessage}
         className="col-span-full"
       />
-      <Checkbox
+      <CheckBox
         name="read-faqs"
         required
         className="col-span-full justify-self-center"
       >
         My message is not addressed by any of the FAQs
-      </Checkbox>
+      </CheckBox>
 
       {!status && (
         <Button

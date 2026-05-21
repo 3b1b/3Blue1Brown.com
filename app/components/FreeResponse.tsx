@@ -53,8 +53,7 @@ export default function FreeResponse({
         />
         <Button
           color="light"
-          size="sm"
-          className="w-40"
+          className="w-32"
           onClick={() =>
             setState(state === "revealed" ? "unrevealed" : "revealed")
           }

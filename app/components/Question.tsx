@@ -122,13 +122,12 @@ export default function Question({
             }
           }}
           color="light"
-          size="sm"
           className="w-32"
           aria-disabled={!value}
         >
-          {state === "right" && <span>Reset</span>}
-          {state === "wrong" && <span>Try Again</span>}
-          {state === "unanswered" && <span>Check</span>}
+          {state === "right" && "Reset"}
+          {state === "wrong" && "Try Again"}
+          {state === "unanswered" && "Check"}
         </Button>
 
         {state === "unanswered" && (

@@ -70,7 +70,7 @@ export default function TextBox({
     <textarea
       ref={mergedRef}
       rows={6}
-      className="grow resize rounded-md border border-gray bg-white p-2 text-black hocus-ring trim"
+      className="min-h-12 grow resize rounded-md border border-gray bg-white p-3 text-black hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -79,7 +79,7 @@ export default function TextBox({
   ) : (
     <input
       ref={mergedRef}
-      className="grow scroll-mt-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
+      className="h-12 grow scroll-mt-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -111,7 +111,7 @@ export default function TextBox({
         {/* side elements */}
         <div
           ref={sideRef}
-          className="absolute top-0 right-0 flex items-start text-gray *:grid *:size-[calc(var(--leading-normal)*1em+--spacing(4)+2px)] *:place-items-center *:p-0"
+          className="absolute top-0 right-0 flex items-start text-gray *:grid *:size-12 *:place-items-center"
         >
           {side}
         </div>

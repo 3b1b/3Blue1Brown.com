@@ -40,7 +40,7 @@ export default function Button({
     color === "critical" &&
       "bg-black text-white hocus-ring hocus:bg-theme hocus:outline-theme",
     size === "sm" && "p-2",
-    size === "md" && "p-3 text-lg",
+    size === "md" && "min-h-12 min-w-12 p-3 text-lg",
     className,
   );
 

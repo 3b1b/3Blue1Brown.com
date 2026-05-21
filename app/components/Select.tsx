@@ -45,7 +45,7 @@ export default function Select<O extends Option>({
         )}
       >
         <select
-          className="size-full appearance-none rounded-md p-2 pr-8"
+          className="size-full h-12 appearance-none rounded-md p-3 pr-8"
           value={value}
           onChange={(event) => onChange?.(event.currentTarget.value)}
           {...props}

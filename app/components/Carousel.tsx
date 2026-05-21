@@ -48,6 +48,7 @@ export default function Carousel({ children }: Props) {
         {range(Children.count(children)).map((index) => (
           <Button
             key={index}
+            size="sm"
             onClick={() => goTo(index)}
             className={clsx(index !== active && "opacity-25")}
             aria-label={`Go to slide ${index + 1}`}
