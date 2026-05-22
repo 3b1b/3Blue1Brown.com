@@ -4,7 +4,6 @@ import { pairs } from "d3";
 import gsap from "gsap";
 import { clamp, max, min } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
 // thickness of lines
@@ -75,19 +74,19 @@ const generate = () => {
     // side 1
     step = step.rotate(angle);
     level(depth - 1, -angle);
-    point = point.translate(step);
+    point = point.add(step);
     points.push(point);
 
     // side 2
     step = step.rotate(-angle);
     level(depth - 1, angle);
-    point = point.translate(step);
+    point = point.add(step);
     points.push(point);
 
     // side 3
     level(depth - 1, angle);
     step = step.rotate(-angle);
-    point = point.translate(step);
+    point = point.add(step);
     points.push(point);
 
     // link
@@ -115,7 +114,7 @@ const generate = () => {
       // center
       .translate(-(left + right) / 2, -(top + bottom) / 2)
       // normalize to [-1,1]
-      .divide((right - left) / 2, (bottom - top) / 2),
+      .scale(2 / (right - left), 2 / (bottom - top)),
   );
 
   // split into segments
@@ -150,13 +149,13 @@ const generate = () => {
   }
 
   // project 2d point to 3d
-  const transform = (p: Vector, size: number) => {
-    let point = { ...p, z: 0 };
-    point = rotateZ(point, rotate.z);
-    point = rotateX(point, rotate.x);
-    const projected = project(point, perspective);
-    return [projected.x * size, projected.y * size] as const;
-  };
+  const transform = (point: Vector, size: number) =>
+    point
+      .rotateZ(rotate.z)
+      .rotateX(rotate.x)
+      .perspective(perspective)
+      .scale(size)
+      .toArray(2);
 
   return { segments, transform };
 };

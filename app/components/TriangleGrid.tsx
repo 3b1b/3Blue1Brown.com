@@ -116,7 +116,7 @@ const generate = (width: number, height: number) => {
 
   // remove some dots at random
   for (const node of graph.keys()) {
-    const dist = node.divide(width, height).length() * 2;
+    const dist = node.scale(1 / width, 1 / height).length() * 2;
     // favor removing dots near center
     if (Math.random() > dist * density) removeNode(node);
   }
@@ -125,7 +125,7 @@ const generate = (width: number, height: number) => {
   for (const node of getNodes())
     for (const neighbor of getNodes())
       if (node !== neighbor)
-        if (node.distanceTo(neighbor) < (1.1 * spacing) / tri)
+        if (node.distance(neighbor) < (1.1 * spacing) / tri)
           addEdge(node, neighbor);
 
   // remove isolated nodes

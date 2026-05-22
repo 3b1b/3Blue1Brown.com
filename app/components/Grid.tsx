@@ -3,7 +3,6 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { clamp, cloneDeep, range } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
 // thickness of lines
@@ -129,13 +128,13 @@ const generate = () => {
     .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
 
   // project 2d point to 3d
-  const transform = (p: Vector, size: number) => {
-    let point = { ...p, z: 0 };
-    point = rotateZ(point, rotate.z);
-    point = rotateX(point, rotate.x);
-    const projected = project(point, perspective);
-    return [projected.x * size, projected.y * size] as const;
-  };
+  const transform = (point: Vector, size: number) =>
+    point
+      .rotateZ(rotate.z)
+      .rotateX(rotate.x)
+      .perspective(perspective)
+      .scale(size)
+      .toArray(2);
 
   return { minorLines, majorLines, transform };
 };
