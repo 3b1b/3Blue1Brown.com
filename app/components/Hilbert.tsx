@@ -9,29 +9,28 @@ import { Vector } from "~/util/vector";
 // thickness of lines
 const thickness = (size: number) => clamp(0.002 * size, 0.35, 0.65);
 // perspective factor
-const perspective = 10;
-// order of hilbert curve
-const order = 5;
-// angle of turns in hilbert curve
-const angle = 90;
+const perspective = 4;
 // one full spin, in sec
 const spin = 120;
 // fade duration
 const fade = 10;
-// how much to stagger fade
-const stagger = 0.1;
 
 // hilbert curve grid
-export default function Hilbert({ color = "", className = "" }) {
-  const [{ segments = [], transform } = {}, setObjects] =
+export default function Hilbert({
+  color = "",
+  order = 5,
+  angle = 90,
+  breaks = 4,
+  className = "",
+}) {
+  const [{ segments = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
-  // when canvas size changes
   useEffect(() => {
     // use gsap context to efficiently clean up old animations
-    const ctx = gsap.context(() => setObjects(generate()));
+    const ctx = gsap.context(() => setObjects(generate(order, angle, breaks)));
     return () => ctx.revert();
-  }, []);
+  }, [order, angle, breaks]);
 
   return (
     <Canvas
@@ -57,7 +56,7 @@ export default function Hilbert({ color = "", className = "" }) {
   );
 }
 
-const generate = () => {
+const generate = (order = 5, angle = 90, breaks = 4) => {
   // current point
   let point = new Vector(0, 0);
   // step direction/length
@@ -122,40 +121,37 @@ const generate = () => {
     from,
     to,
     alpha: 1,
-    hue: 0,
+    hue: 360 * (index / points.length),
     brightness: 0,
     index,
   }));
 
-  // rotation
-  const rotate = { x: -65, y: 0, z: 45 };
-
-  // animate rotation
-  gsap
-    .timeline({ repeat: -1 })
-    .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
-
   for (const segment of segments) {
-    const delay = -segment.index * stagger;
+    if (!breaks) break;
+    const delay = -breaks * fade * (segment.index / segments.length);
     // animate fades
     gsap
       .timeline({ repeat: -1, delay, defaults: { ease: "expo.inOut" } })
       .to(segment, { alpha: 0, duration: fade / 3, delay: fade / 3 })
       .to(segment, { alpha: 1, duration: fade / 3 });
-    // animate hue
-    gsap
-      .timeline({ repeat: -1, delay })
-      .to(segment, { hue: 360, duration: fade, ease: "linear" });
   }
 
-  // project 2d point to 3d
-  const transform = (point: Vector, size: number) =>
-    point
-      .rotateZ(rotate.z)
-      .rotateX(rotate.x)
-      .perspective(perspective)
-      .scale(size)
-      .toArray(2);
-
-  return { segments, transform };
+  return { segments };
 };
+
+// rotation
+const rotate = { x: -65, y: 0, z: 45 };
+
+// animate rotation
+gsap
+  .timeline({ repeat: -1 })
+  .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
+
+// project 2d point to 3d
+const transform = (point: Vector, size: number) =>
+  point
+    .rotateZ(rotate.z)
+    .rotateX(rotate.x)
+    .perspective(perspective)
+    .scale(size)
+    .toArray(2);

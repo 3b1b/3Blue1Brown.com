@@ -8,7 +8,7 @@ import { Vector } from "~/util/vector";
 // thickness of lines
 const thickness = (size: number) => clamp(0.002 * size, 0.35, 0.65);
 // perspective factor
-const perspective = 10;
+const perspective = 4;
 // number of cells in each direction
 const cells = 3 * 4;
 // every nth line is major
@@ -25,7 +25,7 @@ const colorMajor = "oklch(55% 0.15 240)";
 
 // simple cartesian grid viz
 export default function Grid({ className = "" }) {
-  const [{ transform, minorLines = [], majorLines = [] } = {}, setObjects] =
+  const [{ minorLines = [], majorLines = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
   useEffect(() => {
@@ -119,22 +119,22 @@ const generate = () => {
       .to(vertical.to, { y: 1, duration: draw, delay: draw / 2 });
   }
 
-  // rotation
-  const rotate = { x: -65, y: 0, z: 15 };
-
-  // animate rotation
-  gsap
-    .timeline({ repeat: -1 })
-    .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
-
-  // project 2d point to 3d
-  const transform = (point: Vector, size: number) =>
-    point
-      .rotateZ(rotate.z)
-      .rotateX(rotate.x)
-      .perspective(perspective)
-      .scale(size)
-      .toArray(2);
-
-  return { minorLines, majorLines, transform };
+  return { minorLines, majorLines };
 };
+
+// rotation
+const rotate = { x: -65, y: 0, z: 15 };
+
+// animate rotation
+gsap
+  .timeline({ repeat: -1 })
+  .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
+
+// project 2d point to 3d
+const transform = (point: Vector, size: number) =>
+  point
+    .rotateZ(rotate.z)
+    .rotateX(rotate.x)
+    .perspective(perspective)
+    .scale(size)
+    .toArray(2);

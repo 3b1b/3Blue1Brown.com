@@ -254,7 +254,9 @@ export class Vector {
 
   /** perspective projection */
   perspective(focalLength = 1, axis = new Vector(0, 0, 1)) {
-    return this.project(axis).scale(focalLength / (focalLength + this.z));
+    return this.project(axis).scale(
+      focalLength / Math.max(focalLength + this.z, 0),
+    );
   }
 
   // ---------------------------------------------------------------------------
