@@ -19,6 +19,21 @@ export class Vector {
     this.z = z;
   }
 
+  /** set x component */
+  setX(x: number) {
+    return new Vector(x, this.y, this.z);
+  }
+
+  /** set y component */
+  setY(y: number) {
+    return new Vector(this.x, y, this.z);
+  }
+
+  /** set z component */
+  setZ(z: number) {
+    return new Vector(this.x, this.y, z);
+  }
+
   /** create vector from object format */
   static fromObject(object: { x: number; y: number; z?: number }) {
     return new Vector(object.x, object.y, object.z ?? 0);

@@ -18,7 +18,7 @@ const fade = 10;
 // hilbert curve grid
 export default function Hilbert({
   color = "",
-  order = 5,
+  depth = 5,
   angle = 90,
   breaks = 4,
   className = "",
@@ -28,9 +28,9 @@ export default function Hilbert({
 
   useEffect(() => {
     // use gsap context to efficiently clean up old animations
-    const ctx = gsap.context(() => setObjects(generate(order, angle, breaks)));
+    const ctx = gsap.context(() => setObjects(generate(depth, angle, breaks)));
     return () => ctx.revert();
-  }, [order, angle, breaks]);
+  }, [depth, angle, breaks]);
 
   return (
     <Canvas
@@ -56,50 +56,46 @@ export default function Hilbert({
   );
 }
 
-const generate = (order = 5, angle = 90, breaks = 4) => {
+// https://www.geeksforgeeks.org/python/python-hilbert-curve-using-turtle/
+// https://craftofcoding.wordpress.com/2024/02/20/recursive-patterns-the-hilbert-curve/
+const generate = (depth = 5, angle = 90, breaks = 4) => {
   // current point
   let point = new Vector(0, 0);
   // step direction/length
-  let step = new Vector(1, 0);
+  let step = new Vector(0, 1);
 
   // list of points
-  let points: Vector[] = [point];
+  let points: Vector[] = [new Vector()];
+
+  // add point to list
+  const add = () => {
+    point = point.add(step);
+    points.push(point);
+  };
 
   // generate one level of curve recursively
   const level = (depth: number, angle: number) => {
-    // stop
     if (depth <= 0) return;
-
-    // side 1
-    step = step.rotate(angle);
+    step = step.rotateZ(angle);
     level(depth - 1, -angle);
-    point = point.add(step);
-    points.push(point);
-
-    // side 2
-    step = step.rotate(-angle);
+    add();
+    step = step.rotateZ(-angle);
     level(depth - 1, angle);
-    point = point.add(step);
-    points.push(point);
-
-    // side 3
+    add();
     level(depth - 1, angle);
-    step = step.rotate(-angle);
-    point = point.add(step);
-    points.push(point);
-
-    // link
+    step = step.rotateZ(-angle);
+    add();
     level(depth - 1, -angle);
-    step = step.rotate(angle);
+    step = step.rotateZ(angle);
   };
 
   // start recursion
-  level(order, angle);
+  level(depth, angle);
 
   // x coords
-  const xs = points.map((p) => p.x);
+  const xs = points.map((point) => point.x);
   // y coords
-  const ys = points.map((p) => p.y);
+  const ys = points.map((point) => point.y);
 
   // bounding box
   const left = min(xs) ?? 0;
@@ -128,7 +124,8 @@ const generate = (order = 5, angle = 90, breaks = 4) => {
 
   for (const segment of segments) {
     if (!breaks) break;
-    const delay = -breaks * fade * (segment.index / segments.length);
+    const delay =
+      -(2 ** (breaks - 1)) * fade * (segment.index / segments.length);
     // animate fades
     gsap
       .timeline({ repeat: -1, delay, defaults: { ease: "expo.inOut" } })
