@@ -17,7 +17,7 @@ const redirects: Record<string, string> = {
   "/podcast": "/extras#podcast",
   "/home": "/",
   "/lessons": "/",
-  "/lessons/": "/",
+  "/topics/(.+)": "/?topic=$1",
   "/video": "/",
   "/live": "/",
   "/store": "https://store.dftba.com/collections/3blue1brown",
@@ -46,12 +46,20 @@ const redirects: Record<string, string> = {
 export const clientLoader = async ({ request }: Route.LoaderArgs) => {
   const { pathname } = new URL(request.url);
 
-  const dest = redirects[pathname];
-  if (dest) throw redirect(dest);
-
-  // topic paths like /topics/linear-algebra
-  const topic = pathname.match(/^\/topics\/(.+)$/)?.[1];
-  if (topic) throw redirect(`/?topic=${topic}`);
+  // client-side redirect
+  for (let [pattern, destination] of Object.entries(redirects)) {
+    const regex = new RegExp(`^${pattern}/?$`);
+    // matching redirect
+    const match = pathname.match(regex);
+    if (!match) continue;
+    // replace $1, $2, etc. with regex capture groups
+    destination = destination.replace(
+      /\$(\d+)/g,
+      (_, index) => match[Number(index)] ?? "",
+    );
+    // redirect to destination
+    throw redirect(destination);
+  }
 };
 
 // 404 not found page

@@ -97,7 +97,7 @@ export const findClosest = (
   ) {
     // if no more nodes, stop
     if (current === null) break;
-    // if text/comment/etc node, skip
+    // if text/comment/etc. node, skip
     if (!(current instanceof Element)) continue;
     // if node matches condition, return it
     if (condition(current)) return current;
