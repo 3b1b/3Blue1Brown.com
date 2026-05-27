@@ -90,26 +90,27 @@ export const useFuzzySearch = <Entry extends Record<string, unknown>>(
   return matches;
 };
 
-// is element in viewport
-export const useInView = (ref: RefObject<Element | null>) => {
-  const elementBbox = useElementBounding(ref);
-  const windowSize = useWindowSize();
+// how much element is in view, in [-1,1]
+export const useHowMuchInView = (ref: RefObject<Element | null>) => {
+  const element = useElementBounding(ref);
+  const window = useWindowSize();
 
   // if on server or otherwise don't have sizes
-  if (
-    !windowSize.height ||
-    !windowSize.width ||
-    !elementBbox.width ||
-    !elementBbox.height
-  )
-    return false;
+  if (!window.height || !window.width || !element.width || !element.height)
+    return [0, 0] as const;
 
-  return (
-    elementBbox.bottom > 0 &&
-    elementBbox.top < windowSize.height &&
-    elementBbox.right > 0 &&
-    elementBbox.left < windowSize.width
-  );
+  // how much element is in view, in [-1,1]
+  // -1 when top of element @ bottom of view, 1 when bottom of element @ top of view
+  return [
+    -1 + (2 * (window.width - element.left)) / (window.width + element.width),
+    -1 + (2 * (window.height - element.top)) / (window.height + element.height),
+  ] as const;
+};
+
+// is element in viewport at all
+export const useInView = (ref: RefObject<Element | null>) => {
+  const [x, y] = useHowMuchInView(ref);
+  return Math.abs(x) < 1 && Math.abs(y) < 1;
 };
 
 // has element ever been in viewport
