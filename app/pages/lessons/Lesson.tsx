@@ -169,20 +169,19 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 {Object.entries(combinedCredits).map(([role, names], index) => (
                   <div key={index}>
                     <UserIcon />
-                    <span>
-                      {role} by{" "}
-                      {names.map((name, index) => (
-                        <Fragment key={index}>
-                          <Link
-                            to={find(team, { name })?.link ?? ""}
-                            arrow={false}
-                          >
-                            {name}
-                          </Link>
-                          <span>{index < names.length - 1 ? " & " : ""}</span>
-                        </Fragment>
-                      ))}
-                    </span>
+                    {role} by{" "}
+                    {names.map((name, index) => (
+                      <Fragment key={index}>
+                        <Link
+                          to={find(team, { name })?.link ?? ""}
+                          arrow={false}
+                        >
+                          {name}
+                        </Link>
+                        {/* span for google translate react errors */}
+                        <span>{index < names.length - 1 ? " & " : ""}</span>
+                      </Fragment>
+                    ))}
                   </div>
                 ))}
 

@@ -44,7 +44,7 @@ export default function Hilbert({
         // draw multi-segment line
         ctx.lineWidth = thickness(size);
         for (const { from, to, alpha, hue } of segments) {
-          ctx.strokeStyle = color || `oklch(75% 0.2 ${hue})`;
+          ctx.strokeStyle = color || `oklch(75% 0.1 ${hue})`;
           ctx.globalAlpha = alpha;
           ctx.beginPath();
           ctx.moveTo(...transform(from, size));
