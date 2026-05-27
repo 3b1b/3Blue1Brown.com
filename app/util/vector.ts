@@ -1,55 +1,55 @@
 // https://gist.github.com/vincerubinetti/52ec86385ef42f1cd205ad4783a87d5d
 
 export class Vector {
-  /** x-component */
+  // x-component
   x: number;
-  /** y-component */
+  // y-component
   y: number;
-  /** z-component */
+  // z-component
   z: number;
 
   // ---------------------------------------------------------------------------
   // create from
   // ---------------------------------------------------------------------------
 
-  /** new vector */
+  // new vector
   constructor(x = 0, y = 0, z = 0) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
 
-  /** set x component */
+  // set x component
   setX(x: number) {
     return new Vector(x, this.y, this.z);
   }
 
-  /** set y component */
+  // set y component
   setY(y: number) {
     return new Vector(this.x, y, this.z);
   }
 
-  /** set z component */
+  // set z component
   setZ(z: number) {
     return new Vector(this.x, this.y, z);
   }
 
-  /** create vector from object format */
+  // create vector from object format
   static fromObject(object: { x: number; y: number; z?: number }) {
     return new Vector(object.x, object.y, object.z ?? 0);
   }
 
-  /** create vector from array format */
+  // create vector from array format
   static fromArray(array: [number, number] | [number, number, number]) {
     return new Vector(...array);
   }
 
-  /** run function for each component to create vector */
+  // run function for each component to create vector
   static fromMap(func: (key: "x" | "y" | "z", index: 0 | 1 | 2) => number) {
     return new Vector(func("x", 0), func("y", 1), func("z", 2));
   }
 
-  /** create vector with random components */
+  // create vector with random components
   static fromRandom(min = -1, max = 1) {
     return Vector.fromMap(() => Math.random() * (max - min) + min);
   }
@@ -58,24 +58,24 @@ export class Vector {
   // export to
   // ---------------------------------------------------------------------------
 
-  /** convert vector to object format */
+  // convert vector to object format
   toObject() {
     return { x: this.x, y: this.y, z: this.z };
   }
 
-  /** convert vector to array format */
+  // convert vector to array format
   toArray(dimension: 2): [number, number];
   toArray(dimension?: 3): [number, number, number];
   toArray(dimension = 3) {
     return [this.x, this.y, this.z].slice(0, dimension);
   }
 
-  /** convert vector to string */
+  // convert vector to string
   toString(
     dimension: Parameters<Vector["toArray"]>[0] = 3,
-    /** number of decimal places */
+    // number of decimal places
     precision = 3,
-    /** component joiner */
+    // component joiner
     separator = ",",
   ) {
     return this.toArray(dimension)
@@ -87,37 +87,37 @@ export class Vector {
   // component-wise operations with other vector
   // ---------------------------------------------------------------------------
 
-  /** does this vector equal other vector */
+  // does this vector equal other vector
   equals(other: Vector) {
     return this.x == other.x && this.y == other.y && this.z == other.z;
   }
 
-  /** add this vector to other vector */
+  // add this vector to other vector
   add(other: Vector) {
     return new Vector(this.x + other.x, this.y + other.y, this.z + other.z);
   }
 
-  /** subtract other vector from this vector */
+  // subtract other vector from this vector
   subtract(other: Vector) {
     return new Vector(this.x - other.x, this.y - other.y, this.z - other.z);
   }
 
-  /** multiply this vector by other vector */
+  // multiply this vector by other vector
   multiply(other: Vector) {
     return new Vector(this.x * other.x, this.y * other.y, this.z * other.z);
   }
 
-  /** divide this vector by other vector */
+  // divide this vector by other vector
   divide(other: Vector) {
     return new Vector(this.x / other.x, this.y / other.y, this.z / other.z);
   }
 
-  /** get smaller of this vector and other vector */
+  // get smaller of this vector and other vector
   min(other: Vector) {
     return Vector.min([this, other]);
   }
 
-  /** get larger of this vector and other vector */
+  // get larger of this vector and other vector
   max(other: Vector) {
     return Vector.max([this, other]);
   }
@@ -126,36 +126,36 @@ export class Vector {
   // get/set lengths/angles
   // ---------------------------------------------------------------------------
 
-  /** get length of this vector */
+  // get length of this vector
   length(): number;
-  /** set length of this vector */
+  // set length of this vector
   length(length: number): Vector;
   length(length?: number) {
     if (length === undefined) return Math.hypot(this.x, this.y, this.z);
     else return this.normalize().scale(length);
   }
 
-  /** normalize this vector to length 1 */
+  // normalize this vector to length 1
   normalize() {
     return this.scale(1 / (this.length() || Infinity));
   }
 
-  /** add to or subtract from this vector's length */
+  // add to or subtract from this vector's length
   extend(length: number) {
     return this.length(this.length() + length);
   }
 
-  /** limit length of this vector between min/max */
+  // limit length of this vector between min/max
   clip(min: number, max: number) {
     return this.length(Vector.clamp(this.length(), min, max));
   }
 
-  /** distance from this vector to other vector */
+  // distance from this vector to other vector
   distance(other: Vector) {
     return other.subtract(this).length();
   }
 
-  /** angle from this vector to other vector */
+  // angle from this vector to other vector
   angle(other: Vector) {
     return Vector.acos(this.dot(other) / (this.length() * other.length()));
   }
@@ -164,47 +164,47 @@ export class Vector {
   // transform operations
   // ---------------------------------------------------------------------------
 
-  /** add to or subtract scalar from this vector's x/y/z component(s) */
+  // add to or subtract scalar from this vector's x/y/z component(s)
   translate(x: number, y = 0, z = 0) {
     return this.add(new Vector(x, y, z));
   }
 
-  /** add to or subtract scalar from this vector's x component */
+  // add to or subtract scalar from this vector's x component
   translateX(x: number) {
     return this.add(new Vector(x, 0, 0));
   }
 
-  /** add to or subtract scalar from this vector's y component */
+  // add to or subtract scalar from this vector's y component
   translateY(y: number) {
     return this.add(new Vector(0, y, 0));
   }
 
-  /** add to or subtract scalar from this vector's z component */
+  // add to or subtract scalar from this vector's z component
   translateZ(z: number) {
     return this.add(new Vector(0, 0, z));
   }
 
-  /** multiply this vector's x/y/z component(s) by scalar(s) */
+  // multiply this vector's x/y/z component(s) by scalar(s)
   scale(x: number, y = x, z = x) {
     return this.multiply(new Vector(x, y, z));
   }
 
-  /** multiply this vector's x component by scalar */
+  // multiply this vector's x component by scalar
   scaleX(x: number) {
     return this.multiply(new Vector(x, 1, 1));
   }
 
-  /** multiply this vector's y component by scalar */
+  // multiply this vector's y component by scalar
   scaleY(y: number) {
     return this.multiply(new Vector(1, y, 1));
   }
 
-  /** multiply this vector's z component by scalar */
+  // multiply this vector's z component by scalar
   scaleZ(z: number) {
     return this.multiply(new Vector(1, 1, z));
   }
 
-  /** rotate this vector around arbitrary axis by scalar */
+  // rotate this vector around arbitrary axis by scalar
   rotate(angle: number, axis = new Vector(0, 0, 1)) {
     axis = axis.normalize();
     // rodrigues' formula
@@ -213,17 +213,17 @@ export class Vector {
       .add(axis.scale(axis.dot(this) * (1 - Vector.cos(angle))));
   }
 
-  /** rotate this vector around x axis by scalar */
+  // rotate this vector around x axis by scalar
   rotateX(angle: number) {
     return this.rotate(angle, new Vector(1, 0, 0));
   }
 
-  /** rotate this vector around y axis by scalar */
+  // rotate this vector around y axis by scalar
   rotateY(angle: number) {
     return this.rotate(angle, new Vector(0, 1, 0));
   }
 
-  /** rotate this vector around z axis by scalar */
+  // rotate this vector around z axis by scalar
   rotateZ(angle: number) {
     return this.rotate(angle, new Vector(0, 0, 1));
   }
@@ -232,12 +232,12 @@ export class Vector {
   // common vector/geometric operations
   // ---------------------------------------------------------------------------
 
-  /** dot product of this vector with other vector */
+  // dot product of this vector with other vector
   dot(other: Vector) {
     return this.x * other.x + this.y * other.y + this.z * other.z;
   }
 
-  /** cross product of this vector with other vector */
+  // cross product of this vector with other vector
   cross(other: Vector, dimension: 2): number;
   cross(other: Vector, dimension?: 3): Vector;
   cross(other: Vector, dimension = 3) {
@@ -250,24 +250,24 @@ export class Vector {
     else return this.x * other.y - this.y * other.x;
   }
 
-  /** hadamard product of this vector with other vector */
+  // hadamard product of this vector with other vector
   hadamard(other: Vector) {
     return new Vector(this.x * other.x, this.y * other.y, this.z * other.z);
   }
 
-  /** reflect this vector across plane defined by axis normal */
+  // reflect this vector across plane defined by axis normal
   reflect(axis = new Vector(0, 0, 1)) {
     axis = axis.normalize();
     return this.subtract(axis.scale(2 * this.dot(axis)));
   }
 
-  /** project this vector onto plane defined by axis normal */
+  // project this vector onto plane defined by axis normal
   project(axis = new Vector(0, 0, 1)) {
     axis = axis.normalize();
     return this.subtract(axis.scale(this.dot(axis)));
   }
 
-  /** perspective projection */
+  // perspective projection
   perspective(focalLength = 1, axis = new Vector(0, 0, 1)) {
     return this.project(axis).scale(
       focalLength / Math.max(focalLength + this.z, 0),
@@ -278,37 +278,37 @@ export class Vector {
   // common component-wise math operations
   // ---------------------------------------------------------------------------
 
-  /** apply floor to each component of this vector */
+  // apply floor to each component of this vector
   floor() {
     return this.map(Math.floor);
   }
 
-  /** apply ceil to each component of this vector */
+  // apply ceil to each component of this vector
   ceil() {
     return this.map(Math.ceil);
   }
 
-  /** apply round to each component of this vector */
+  // apply round to each component of this vector
   round() {
     return this.map(Math.round);
   }
 
-  /** apply abs to each component of this vector */
+  // apply abs to each component of this vector
   abs() {
     return this.map(Math.abs);
   }
 
-  /** raise each component of this vector to power */
+  // raise each component of this vector to power
   power(power = 2) {
     return new Vector(this.x ** power, this.y ** power, this.z ** power);
   }
 
-  /** raise base to power of each component of this vector */
+  // raise base to power of each component of this vector
   exp(base = Math.E) {
     return new Vector(base ** this.x, base ** this.y, base ** this.z);
   }
 
-  /** linear-interpolate this vector with other vector by amount [0,1] */
+  // linear-interpolate this vector with other vector by amount [0,1]
   mix(other: Vector, percent = 0.5) {
     return new Vector(
       this.x + percent * (other.x - this.x),
@@ -317,7 +317,7 @@ export class Vector {
     );
   }
 
-  /** limit each component of this vector between corresponding components of min/max vectors */
+  // limit each component of this vector between corresponding components of min/mvectors */
   clamp(min: Vector, max: Vector) {
     return new Vector(
       Vector.clamp(this.x, min.x, max.x),
@@ -326,7 +326,7 @@ export class Vector {
     );
   }
 
-  /** apply function to each component of this vector */
+  // apply function to each component of this vector
   map(func: (value: number, key: "x" | "y" | "z", index: 0 | 1 | 2) => number) {
     return new Vector(
       func(this.x, "x", 0),
@@ -339,7 +339,7 @@ export class Vector {
   // multi-vector operations
   // ---------------------------------------------------------------------------
 
-  /** smallest x/y/z of list of vectors */
+  // smallest x/y/z of list of vectors
   static min(vectors: Vector[]) {
     let x = Infinity;
     let y = Infinity;
@@ -353,7 +353,7 @@ export class Vector {
     return new Vector(x, y, z);
   }
 
-  /** largest x/y/z of list of vectors */
+  // largest x/y/z of list of vectors
   static max(vectors: Vector[]) {
     let x = -Infinity;
     let y = -Infinity;
@@ -371,34 +371,34 @@ export class Vector {
   // utility
   // ---------------------------------------------------------------------------
 
-  /** angle unit option */
+  // angle unit option
   static angleUnit: "radians" | "degrees" = "degrees";
 
-  /** convert radians to degrees */
+  // convert radians to degrees
   static toDeg = (angle: number) => angle * (180 / Math.PI);
-  /** convert degrees to radians */
+  // convert degrees to radians
   static toRad = (angle: number) => angle * (Math.PI / 180);
 
-  /** sine of angle */
+  // sine of angle
   static sin(angle: number) {
     if (Vector.angleUnit === "degrees") angle = Vector.toRad(angle);
     return Math.sin(angle);
   }
 
-  /** cosine of angle */
+  // cosine of angle
   static cos(angle: number) {
     if (Vector.angleUnit === "degrees") angle = Vector.toRad(angle);
     return Math.cos(angle);
   }
 
-  /** arccosine of value */
+  // arccosine of value
   static acos(value: number) {
     let angle = Math.acos(value);
     if (Vector.angleUnit === "degrees") angle = Vector.toDeg(angle);
     return angle;
   }
 
-  /** keep value between min and max */
+  // keep value between min and max
   static clamp(value: number, min: number, max: number) {
     return Math.max(min, Math.min(max, value));
   }
