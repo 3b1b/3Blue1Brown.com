@@ -100,7 +100,7 @@
   }
 
   h1 {
-    @apply justify-center text-center text-3xl tracking-widest;
+    @apply justify-center text-center text-3xl tracking-wider;
   }
 
   h2 {
