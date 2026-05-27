@@ -157,7 +157,9 @@ export class Vector {
 
   // angle from this vector to other vector
   angle(other: Vector) {
-    return Vector.acos(this.dot(other) / (this.length() * other.length()));
+    return Vector.acos(
+      this.dot(other) / (this.length() * other.length() || Infinity),
+    );
   }
 
   // ---------------------------------------------------------------------------
@@ -269,8 +271,9 @@ export class Vector {
 
   // perspective projection
   perspective(focalLength = 1, axis = new Vector(0, 0, 1)) {
+    axis = axis.normalize();
     return this.project(axis).scale(
-      focalLength / Math.max(focalLength + this.z, 0),
+      focalLength / Math.max(focalLength + this.dot(axis), 0),
     );
   }
 
