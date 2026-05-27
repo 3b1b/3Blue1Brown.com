@@ -76,17 +76,17 @@ const generate = (depth = 5, angle = 90, breaks = 4) => {
   // generate one level of curve recursively
   const level = (depth: number, angle: number) => {
     if (depth <= 0) return;
-    step = step.rotateZ(angle);
+    step = step.rotate(angle);
     level(depth - 1, -angle);
     add();
-    step = step.rotateZ(-angle);
+    step = step.rotate(-angle);
     level(depth - 1, angle);
     add();
     level(depth - 1, angle);
-    step = step.rotateZ(-angle);
+    step = step.rotate(-angle);
     add();
     level(depth - 1, -angle);
-    step = step.rotateZ(angle);
+    step = step.rotate(angle);
   };
 
   // start recursion
