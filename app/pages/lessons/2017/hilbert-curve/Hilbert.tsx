@@ -31,7 +31,7 @@ export default function Hilbert() {
           value={breaks}
           onChange={setBreaks}
           min={0}
-          max={10}
+          max={24}
         />
       </div>
     </>

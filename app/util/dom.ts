@@ -158,3 +158,24 @@ export const samplePath = (d: string, count: number) => {
 
   return points;
 };
+
+// debug log (but don't stop) google translate react interaction errors
+// https://github.com/facebook/react/issues/11538#issuecomment-417504600
+// https://martijnhols.nl/blog/everything-about-google-translate-crashing-react
+// https://github.com/vercel/next.js/issues/58055
+if (typeof Node === "function" && Node.prototype) {
+  const oldRemove = Node.prototype.removeChild;
+  // @ts-expect-error hack
+  Node.prototype.removeChild = function (child: Node) {
+    if (child.parentNode !== this)
+      console.error("Removed child from wrong parent", this, child);
+    return oldRemove.call(this, child);
+  };
+  const oldInsert = Node.prototype.insertBefore;
+  // @ts-expect-error hack
+  Node.prototype.insertBefore = function (_new: Node, reference: Node) {
+    if (reference && reference.parentNode !== this)
+      console.error("Inserted before wrong parent", this, _new, reference);
+    return oldInsert.call(this, _new, reference);
+  };
+}

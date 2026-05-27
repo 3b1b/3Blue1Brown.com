@@ -179,7 +179,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                           >
                             {name}
                           </Link>
-                          {index < names.length - 1 ? " & " : ""}
+                          <span>{index < names.length - 1 ? " & " : ""}</span>
                         </Fragment>
                       ))}
                     </span>
@@ -220,7 +220,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 title={
                   <>
                     <ArrowLeftIcon />
-                    Previous Lesson
+                    <span>Previous Lesson</span>
                   </>
                 }
                 description={previous.title}
@@ -238,7 +238,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 image={next.image}
                 title={
                   <>
-                    Next Lesson
+                    <span>Next Lesson</span>
                     <ArrowRightIcon />
                   </>
                 }
