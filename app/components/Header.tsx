@@ -37,7 +37,10 @@ export default function Header({
         <div className="flex grow basis-0 items-center">
           <Button to={href("/")} size="sm" aria-label="Home">
             <Logo className="size-12 max-md:size-8" />
-            <StrokeType className="ml-1 w-fit font-serif text-3xl max-md:text-2xl">
+            <StrokeType
+              className="ml-1 w-fit font-serif text-3xl max-md:text-2xl"
+              translate="no"
+            >
               {site.title}
             </StrokeType>
           </Button>

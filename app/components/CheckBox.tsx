@@ -16,7 +16,7 @@ type Props = {
 } & Pick<ComponentProps<"label">, "className"> &
   Pick<ComponentProps<"input">, "required" | "name" | "form">;
 
-export default function Checkbox({
+export default function CheckBox({
   help,
   value,
   onChange,
@@ -31,7 +31,7 @@ export default function Checkbox({
   return (
     <label
       className={clsx(
-        "group flex flex-row items-center gap-2 rounded-md p-2 focus-within-ring hocus:bg-theme/15",
+        "group flex min-h-12 flex-row items-center gap-2 rounded-md p-3 focus-within-ring hocus:bg-theme/15",
         className,
       )}
     >

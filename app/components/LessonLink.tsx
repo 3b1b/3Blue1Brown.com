@@ -42,10 +42,7 @@ export default function LessonLink({ id, className, children }: Props) {
 
           <div className="flex items-center gap-4 *:flex-1">
             <Button
-              to={{
-                pathname: href("/"),
-                search: `?lesson=${id}`,
-              }}
+              to={{ pathname: href("/"), search: `?lesson=${id}` }}
               color="light"
               size="sm"
             >

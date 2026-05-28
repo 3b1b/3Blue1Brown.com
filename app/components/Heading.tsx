@@ -112,7 +112,7 @@ const getId = (content: ReactNode) => slugify(onlyText(content));
 
 // get simplified content for table of contents
 const getContent = (content: ReactNode) =>
-  Children.map(content, (node) => {
-    if (isMathElement(node)) return node;
-    return onlyText(node);
+  Children.map(content, (child) => {
+    if (isMathElement(child)) return child;
+    return onlyText(child);
   });

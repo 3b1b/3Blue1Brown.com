@@ -169,20 +169,19 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 {Object.entries(combinedCredits).map(([role, names], index) => (
                   <div key={index}>
                     <UserIcon />
-                    <span>
-                      {role} by{" "}
-                      {names.map((name, index) => (
-                        <Fragment key={index}>
-                          <Link
-                            to={find(team, { name })?.link ?? ""}
-                            arrow={false}
-                          >
-                            {name}
-                          </Link>
-                          {index < names.length - 1 ? " & " : ""}
-                        </Fragment>
-                      ))}
-                    </span>
+                    {role} by{" "}
+                    {names.map((name, index) => (
+                      <Fragment key={index}>
+                        <Link
+                          to={find(team, { name })?.link ?? ""}
+                          arrow={false}
+                        >
+                          {name}
+                        </Link>
+                        {/* span for google translate react errors */}
+                        <span>{index < names.length - 1 ? " & " : ""}</span>
+                      </Fragment>
+                    ))}
                   </div>
                 ))}
 
@@ -220,7 +219,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 title={
                   <>
                     <ArrowLeftIcon />
-                    Previous Lesson
+                    <span>Previous Lesson</span>
                   </>
                 }
                 description={previous.title}
@@ -238,7 +237,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 image={next.image}
                 title={
                   <>
-                    Next Lesson
+                    <span>Next Lesson</span>
                     <ArrowRightIcon />
                   </>
                 }

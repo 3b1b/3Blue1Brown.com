@@ -1,7 +1,8 @@
+import { PiIcon } from "@phosphor-icons/react";
 import { Demo as AlertDemo } from "~/components/Alert";
 import { Demo as ButtonDemo } from "~/components/Button";
 import Carousel from "~/components/Carousel";
-import Checkbox from "~/components/Checkbox";
+import CheckBox from "~/components/CheckBox";
 import Collapsible from "~/components/Collapsible";
 import Figure from "~/components/Figure";
 import Float from "~/components/Float";
@@ -66,7 +67,15 @@ Wow, $e^{i \pi}$ is really cool!
 
 </PiCreatureDemo>
 
-<Tabs tabs={[<>Two Cities</>, <>Paul Clifford</>]}>
+<Tabs
+  tabs={[
+    "A tale of",
+    <>
+      <PiIcon /> Cities
+    </>,
+    <>Paul Clifford</>,
+  ]}
+>
   <Panel>
     It was the best of times it was the worst of times. It was the age of
     wisdom, it was the age of foolishness. It was the spring of hope, it was the
@@ -128,7 +137,7 @@ Wow, $e^{i \pi}$ is really cool!
   ]}
 />
 
-<Checkbox help="Yep, lorem ipsum">Lorem ipsum dolor sit amet</Checkbox>
+<CheckBox help="Yep, lorem ipsum">Lorem ipsum dolor sit amet</CheckBox>
 
 <Radios
   label="Lorem ipsum"

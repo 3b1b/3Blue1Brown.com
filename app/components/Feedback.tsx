@@ -8,7 +8,7 @@ import { startCase, truncate } from "lodash-es";
 import { createIssue } from "~/api/issue";
 import Alert from "~/components/Alert";
 import Button from "~/components/Button";
-import Checkbox from "~/components/Checkbox";
+import CheckBox from "~/components/CheckBox";
 import Dialog from "~/components/Dialog";
 import Form from "~/components/Form";
 import Link from "~/components/Link";
@@ -212,11 +212,11 @@ export default function Feedback() {
                 className="col-span-full"
               />
 
-              <Checkbox required form={id} className="col-span-full">
+              <CheckBox required form={id} className="col-span-full">
                 <span>
                   My message is about this site and is not addressed by the FAQs
                 </span>
-              </Checkbox>
+              </CheckBox>
 
               <Alert type={status} className="col-span-full">
                 {status === "info" && (
@@ -224,16 +224,19 @@ export default function Feedback() {
                     This will start a <strong>public</strong> issue on{" "}
                     <Link to={site.github.site_issues}>GitHub</Link> with{" "}
                     <strong>everything above</strong> and some{" "}
-                    <Tooltip trigger="debug info">
-                      <dl className="self-center">
-                        {Object.entries(debug).map(([key, value]) => (
-                          <Fragment key={key}>
-                            <dt>{key}</dt>
-                            <dd>{value}</dd>
-                          </Fragment>
-                        ))}
-                      </dl>
-                    </Tooltip>
+                    {/* span for google translate react errors */}
+                    <span>
+                      <Tooltip trigger="debug info">
+                        <dl className="self-center">
+                          {Object.entries(debug).map(([key, value]) => (
+                            <Fragment key={key}>
+                              <dt>{key}</dt>
+                              <dd>{value}</dd>
+                            </Fragment>
+                          ))}
+                        </dl>
+                      </Tooltip>
+                    </span>
                     . You'll get a link to it once it's created, where you can
                     attach more details.
                   </p>

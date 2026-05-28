@@ -14,23 +14,13 @@ type Props = {
   children: ReactNode;
 };
 
-/** popup of content on hover or click */
+// popup of content on hover or click
 export default function Tooltip({
   trigger,
   button = true,
   children,
   className,
 }: Props) {
-  // prevent if trigger disabled
-  if (
-    isValidElement(trigger) &&
-    typeof trigger.props === "object" &&
-    trigger.props !== null &&
-    "aria-disabled" in trigger.props &&
-    trigger.props["aria-disabled"]
-  )
-    return trigger;
-
   return (
     <Popover.Root>
       <Popover.Trigger

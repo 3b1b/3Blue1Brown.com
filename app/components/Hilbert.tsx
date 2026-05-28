@@ -4,35 +4,33 @@ import { pairs } from "d3";
 import gsap from "gsap";
 import { clamp, max, min } from "lodash-es";
 import Canvas from "~/components/Canvas";
-import { project, rotateX, rotateZ } from "~/util/math";
 import { Vector } from "~/util/vector";
 
 // thickness of lines
 const thickness = (size: number) => clamp(0.002 * size, 0.35, 0.65);
 // perspective factor
-const perspective = 10;
-// order of hilbert curve
-const order = 5;
-// angle of turns in hilbert curve
-const angle = 90;
+const perspective = 4;
 // one full spin, in sec
 const spin = 120;
 // fade duration
 const fade = 10;
-// how much to stagger fade
-const stagger = 0.1;
 
 // hilbert curve grid
-export default function Hilbert({ color = "", className = "" }) {
-  const [{ segments = [], transform } = {}, setObjects] =
+export default function Hilbert({
+  color = "",
+  depth = 5,
+  angle = 90,
+  breaks = 4,
+  className = "",
+}) {
+  const [{ segments = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
-  // when canvas size changes
   useEffect(() => {
     // use gsap context to efficiently clean up old animations
-    const ctx = gsap.context(() => setObjects(generate()));
+    const ctx = gsap.context(() => setObjects(generate(depth, angle, breaks)));
     return () => ctx.revert();
-  }, []);
+  }, [depth, angle, breaks]);
 
   return (
     <Canvas
@@ -58,50 +56,46 @@ export default function Hilbert({ color = "", className = "" }) {
   );
 }
 
-const generate = () => {
+// https://www.geeksforgeeks.org/python/python-hilbert-curve-using-turtle/
+// https://craftofcoding.wordpress.com/2024/02/20/recursive-patterns-the-hilbert-curve/
+const generate = (depth = 5, angle = 90, breaks = 4) => {
   // current point
   let point = new Vector(0, 0);
   // step direction/length
-  let step = new Vector(1, 0);
+  let step = new Vector(0, 1);
 
   // list of points
-  let points: Vector[] = [point];
+  let points: Vector[] = [new Vector()];
+
+  // add point to list
+  const add = () => {
+    point = point.add(step);
+    points.push(point);
+  };
 
   // generate one level of curve recursively
   const level = (depth: number, angle: number) => {
-    // stop
     if (depth <= 0) return;
-
-    // side 1
     step = step.rotate(angle);
     level(depth - 1, -angle);
-    point = point.translate(step);
-    points.push(point);
-
-    // side 2
+    add();
     step = step.rotate(-angle);
     level(depth - 1, angle);
-    point = point.translate(step);
-    points.push(point);
-
-    // side 3
+    add();
     level(depth - 1, angle);
     step = step.rotate(-angle);
-    point = point.translate(step);
-    points.push(point);
-
-    // link
+    add();
     level(depth - 1, -angle);
     step = step.rotate(angle);
   };
 
   // start recursion
-  level(order, angle);
+  level(depth, angle);
 
   // x coords
-  const xs = points.map((p) => p.x);
+  const xs = points.map((point) => point.x);
   // y coords
-  const ys = points.map((p) => p.y);
+  const ys = points.map((point) => point.y);
 
   // bounding box
   const left = min(xs) ?? 0;
@@ -115,7 +109,7 @@ const generate = () => {
       // center
       .translate(-(left + right) / 2, -(top + bottom) / 2)
       // normalize to [-1,1]
-      .divide((right - left) / 2, (bottom - top) / 2),
+      .scale(2 / (right - left), 2 / (bottom - top)),
   );
 
   // split into segments
@@ -123,40 +117,38 @@ const generate = () => {
     from,
     to,
     alpha: 1,
-    hue: 0,
+    hue: 360 * (index / points.length),
     brightness: 0,
     index,
   }));
 
-  // rotation
-  const rotate = { x: -65, y: 0, z: 45 };
-
-  // animate rotation
-  gsap
-    .timeline({ repeat: -1 })
-    .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
-
   for (const segment of segments) {
-    const delay = -segment.index * stagger;
+    if (!breaks) break;
+    const delay =
+      -(2 ** (breaks - 1)) * fade * (segment.index / segments.length);
     // animate fades
     gsap
       .timeline({ repeat: -1, delay, defaults: { ease: "expo.inOut" } })
       .to(segment, { alpha: 0, duration: fade / 3, delay: fade / 3 })
       .to(segment, { alpha: 1, duration: fade / 3 });
-    // animate hue
-    gsap
-      .timeline({ repeat: -1, delay })
-      .to(segment, { hue: 360, duration: fade, ease: "linear" });
   }
 
-  // project 2d point to 3d
-  const transform = (p: Vector, size: number) => {
-    let point = { ...p, z: 0 };
-    point = rotateZ(point, rotate.z);
-    point = rotateX(point, rotate.x);
-    const projected = project(point, perspective);
-    return [projected.x * size, projected.y * size] as const;
-  };
-
-  return { segments, transform };
+  return { segments };
 };
+
+// rotation
+const rotate = { x: -65, y: 0, z: 45 };
+
+// animate rotation
+gsap
+  .timeline({ repeat: -1 })
+  .to(rotate, { z: rotate.z + 360, duration: spin, ease: "linear" });
+
+// project 2d point to 3d
+const transform = (point: Vector, size: number) =>
+  point
+    .rotateZ(rotate.z)
+    .rotateX(rotate.x)
+    .perspective(perspective)
+    .scale(size)
+    .toArray(2);

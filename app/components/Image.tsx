@@ -29,7 +29,7 @@ export default function Image({
 
   // image element
   const img = (
-    // eslint-disable-next-line -- wrapping in <button> makes styling difficult
+    // eslint-disable-next-line -- wrapping in <button> makes styling prohibitively difficult
     <img
       ref={mergedRef}
       src={image}

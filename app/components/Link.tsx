@@ -7,7 +7,6 @@ import {
 } from "react-router";
 import { ArrowSquareOutIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
-import { removeParagraph } from "~/components/Markdownify";
 
 type Props = Base & (_Anchor | _Router);
 
@@ -35,8 +34,6 @@ export default function Link({
   children,
   ...props
 }: Props) {
-  children = removeParagraph(children);
-
   // whether link is external (some other site) or internal (within router)
   const external = typeof to === "string" && to.match(/^(http|mailto)/);
 

@@ -1,8 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import clsx from "clsx";
 import gsap from "gsap";
 import { sample } from "lodash-es";
 import Canvas from "~/components/Canvas";
+import { useHowMuchInView } from "~/util/hooks";
 import { Vector } from "~/util/vector";
 
 // size of dots, in px
@@ -23,10 +24,12 @@ const duration = 4;
 const colorA = "#0088ff";
 const colorB = "#ff88ff";
 // how much to delay animation of object based on position
-const delayEq = (x = 0, y = 0) => (Math.sin(4.5 * x) + Math.sin(6 * y)) / 2;
+const delayEq = (p: Vector) => (Math.sin(4.5 * p.x) + Math.sin(6 * p.y)) / 2;
 
 // triangle grid viz
 export default function TriangleGrid({ className = "" }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+
   const [{ dots = [], lines = [] } = {}, setObjects] =
     useState<ReturnType<typeof generate>>();
 
@@ -37,33 +40,33 @@ export default function TriangleGrid({ className = "" }) {
     return () => ctx.revert();
   }, []);
 
+  const [, yInView] = useHowMuchInView(ref);
+
   return (
     <Canvas
+      ref={ref}
       className={clsx("absolute inset-0 -z-10 size-full", className)}
       render={(ctx) => {
         // parallax effect
-        const { top, height } = ctx.canvas.getBoundingClientRect();
-        let offset =
-          -1 + (2 * (window.innerHeight - top)) / (window.innerHeight + height);
-        offset *= 2 * spacing;
+        const offset = yInView * spacing;
 
         // draw lines
-        for (const { x1, y1, x2, y2, opacity, thickness, color } of lines) {
+        for (const { from, to, opacity, thickness, color } of lines) {
           ctx.strokeStyle = color;
           ctx.globalAlpha = opacity;
           ctx.lineWidth = thickness;
           ctx.beginPath();
-          ctx.moveTo(x1, y1 + offset);
-          ctx.lineTo(x2, y2 + offset);
+          ctx.moveTo(from.x, from.y + offset);
+          ctx.lineTo(to.x, to.y + offset);
           ctx.stroke();
         }
 
         // draw dots
-        for (const { x, y, opacity, radius, color } of dots) {
+        for (const { position, opacity, radius, color } of dots) {
           ctx.fillStyle = color;
           ctx.globalAlpha = opacity;
           ctx.beginPath();
-          ctx.arc(x, y + offset, radius, 0, Math.PI * 2);
+          ctx.arc(position.x, position.y + offset, radius, 0, Math.PI * 2);
           ctx.fill();
         }
       }}
@@ -116,7 +119,7 @@ const generate = (width: number, height: number) => {
 
   // remove some dots at random
   for (const node of graph.keys()) {
-    const dist = node.divide(width, height).length() * 2;
+    const dist = node.scale(1 / width, 1 / height).length() * 2;
     // favor removing dots near center
     if (Math.random() > dist * density) removeNode(node);
   }
@@ -125,7 +128,7 @@ const generate = (width: number, height: number) => {
   for (const node of getNodes())
     for (const neighbor of getNodes())
       if (node !== neighbor)
-        if (node.distanceTo(neighbor) < (1.1 * spacing) / tri)
+        if (node.distance(neighbor) < (1.1 * spacing) / tri)
           addEdge(node, neighbor);
 
   // remove isolated nodes
@@ -153,12 +156,10 @@ const generate = (width: number, height: number) => {
           graph.get(neighbor)?.delete(node);
 
   // flatten graph for rendering
-  const dots = getNodes().map(({ x, y }) => ({
-    x,
-    y,
+  const dots = getNodes().map((node) => ({
+    position: node,
     // normalize to [-1,1]
-    normX: x / (width / 2),
-    normY: y / (height / 2),
+    normalized: node.scale(2 / width, 2 / height),
     // animatable properties
     opacity: 0,
     radius: 0,
@@ -167,13 +168,10 @@ const generate = (width: number, height: number) => {
   const lines = getNodes()
     .map((node) =>
       [...(graph.get(node)?.values() ?? [])].map((neighbor) => ({
-        x1: node.x,
-        y1: node.y,
-        x2: neighbor.x,
-        y2: neighbor.y,
+        from: node,
+        to: neighbor,
         // midpoint, normalize to [-1,1]
-        normX: (node.x + neighbor.x) / 2 / (width / 2),
-        normY: (node.y + neighbor.y) / 2 / (height / 2),
+        normalized: node.add(neighbor).scale(1 / width, 1 / height),
         // animatable properties
         opacity: 0,
         thickness: 0,
@@ -187,7 +185,7 @@ const generate = (width: number, height: number) => {
 
   // animate dots
   for (const dot of dots) {
-    const delay = delayEq(dot.normX, dot.normY) * duration;
+    const delay = delayEq(dot.normalized) * duration;
     gsap
       .timeline({ repeat: -1, yoyo: true, delay })
       .to(dot, { opacity: 1, radius, duration });
@@ -198,7 +196,7 @@ const generate = (width: number, height: number) => {
 
   // animate lines
   for (const line of lines) {
-    const delay = delayEq(line.normX, line.normY) * duration;
+    const delay = delayEq(line.normalized) * duration;
     gsap
       .timeline({ repeat: -1, yoyo: true, delay })
       .to(line, { opacity: 1, thickness, duration });

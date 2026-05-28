@@ -122,19 +122,18 @@ export default function Question({
             }
           }}
           color="light"
-          size="sm"
           className="w-32"
           aria-disabled={!value}
         >
-          {state === "right" && <span>Reset</span>}
-          {state === "wrong" && <span>Try Again</span>}
-          {state === "unanswered" && <span>Check</span>}
+          {state === "right" && "Reset"}
+          {state === "wrong" && "Try Again"}
+          {state === "unanswered" && "Check"}
         </Button>
 
         {state === "unanswered" && (
           <>
             <PiCreature emotion="pondering" size="xs" flip />
-            {/* span wrapper necessary https://github.com/3b1b/3Blue1Brown.com/issues/577 */}
+            {/* span for google translate react errors */}
             <span>What could it be...</span>
           </>
         )}

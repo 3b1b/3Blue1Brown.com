@@ -1,8 +1,8 @@
 import type { ComponentPropsWithRef, ReactNode, Ref } from "react";
-import { deepMap } from "react-children-utilities";
+import { Children, cloneElement, isValidElement } from "react";
+import { getElementName } from "react-children-utilities";
 import clsx from "clsx";
 import Link from "~/components/Link";
-import { removeParagraph } from "~/components/Markdownify";
 import { getVariants } from "~/util/misc";
 
 type Props = Base & (_Link | _Button);
@@ -28,7 +28,6 @@ export default function Button({
   ...props
 }: Props) {
   children = wrapText(children);
-  children = removeParagraph(children);
 
   className = clsx(
     "inline-flex max-w-full items-center justify-center gap-2 rounded-md font-sans text-balance no-underline [&_p]:contents [&_p]:leading-normal",
@@ -40,7 +39,7 @@ export default function Button({
     color === "critical" &&
       "bg-black text-white hocus-ring hocus:bg-theme hocus:outline-theme",
     size === "sm" && "p-2",
-    size === "md" && "p-3 text-lg",
+    size === "md" && "min-h-12 min-w-12 p-3 text-lg",
     className,
   );
 
@@ -95,14 +94,21 @@ export function Demo({ children }: { children: ReactNode }) {
 }
 
 // wrap text children in spans to allow text box trimming
-const wrapText = (children: ReactNode) =>
-  deepMap(children, (child, index) => {
-    if (child && typeof child === "string")
-      return (
-        <span key={index} className="trim">
-          {child}
-        </span>
-      );
-
+const wrapText = (children: ReactNode): ReactNode =>
+  Children.map(children, (child) => {
+    // if react element with children, recurse
+    if (
+      // assume that children prop will always be valid ReactNode
+      isValidElement<{ children?: ReactNode }>(child) &&
+      // if fragment or custom component, recurse. if native tag, break.
+      !getElementName(child)
+    )
+      return cloneElement(child, {}, wrapText(child.props.children));
+    // if primitive and has content, wrap
+    if (
+      (typeof child === "string" || typeof child === "number") &&
+      String(child).trim()
+    )
+      return <span className="trim">{child}</span>;
     return child;
   });
