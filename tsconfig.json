@@ -6,7 +6,6 @@
       "node",
       "vite/client",
       "mdx",
-      "@modyfi/vite-plugin-yaml/modules",
       "vite-plugin-svgr/client"
     ],
     "plugins": [{ "name": "@mdx-js/typescript-plugin" }],

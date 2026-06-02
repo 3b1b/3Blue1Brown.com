@@ -167,7 +167,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
 
                 {/* credits */}
                 {Object.entries(combinedCredits).map(([role, names], index) => (
-                  <div key={index}>
+                  <div key={index} className="flex-wrap">
                     <UserIcon />
                     {role} by{" "}
                     {names.map((name, index) => (

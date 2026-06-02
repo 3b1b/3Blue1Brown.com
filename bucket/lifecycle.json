@@ -1,0 +1,24 @@
+{
+  "rule": [
+    {
+      "action": {
+        "type": "SetStorageClass",
+        "storageClass": "COLDLINE"
+      },
+      "condition": {
+        "isLive": false,
+        "daysSinceNoncurrentTime": 7
+      }
+    },
+    {
+      "action": {
+        "type": "SetStorageClass",
+        "storageClass": "ARCHIVE"
+      },
+      "condition": {
+        "isLive": false,
+        "daysSinceNoncurrentTime": 30
+      }
+    }
+  ]
+}
