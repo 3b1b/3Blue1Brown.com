@@ -11,6 +11,9 @@ credits:
 import { lazy } from "react";
 import Interactive from "~/components/Interactive";
 
-<section>
-  <Interactive Component={lazy(() => import("./Fourier"))} />
+<section className="dark aspect-video">
+  <Interactive
+    Component={lazy(() => import("./Fourier.tsx"))}
+    controls={false}
+  />
 </section>

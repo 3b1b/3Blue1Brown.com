@@ -151,10 +151,15 @@ export class Vector {
   }
 
   // angle from this vector to other vector
-  angle(other = new Vector(1, 0, 0)) {
-    return Vector.acos(
-      this.dot(other) / (this.length() * other.length() || Infinity),
-    );
+  angle(other?: Vector) {
+    // 3d angle between vectors, < 180 degrees
+    if (other)
+      return Vector.acos(
+        this.dot(other) / (this.length() * other.length() || Infinity),
+      );
+    else
+      // 2d angle wrt x-axis, 0 to 360 degrees
+      return Vector.atan2(this.y, this.x);
   }
 
   // ---------------------------------------------------------------------------
@@ -402,6 +407,13 @@ export class Vector {
   // arccosine of value
   private static acos(value: number) {
     let angle = Math.acos(value);
+    if (Vector.angleUnit === "degrees") angle = Vector.toDeg(angle);
+    return angle;
+  }
+
+  // arctangent 2 of value
+  private static atan2(y: number, x: number) {
+    let angle = Math.atan2(y, x);
     if (Vector.angleUnit === "degrees") angle = Vector.toDeg(angle);
     return angle;
   }
