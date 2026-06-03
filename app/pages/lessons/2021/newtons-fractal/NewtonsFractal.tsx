@@ -12,7 +12,7 @@ import { zoom, zoomIdentity } from "d3-zoom";
 import Button from "~/components/Button";
 import NumberBox from "~/components/NumberBox";
 import Shader, { normalizeColor } from "~/components/Shader";
-import { Complex, getCoefficients } from "~/util/complex";
+import { Complex } from "~/util/complex";
 import { useUA } from "~/util/hooks";
 import { round } from "~/util/math";
 import source from "./newtons-fractal.frag?raw";
@@ -340,3 +340,19 @@ export function Chart({
     </div>
   );
 }
+
+// calculate coefficients of expanded polynomial from complex roots
+// https://stackoverflow.com/questions/33594384
+// https://stackoverflow.com/questions/21236788
+const getCoefficients = (roots: Complex[]) => {
+  const coefficients: Complex[] = Array(roots.length + 1)
+    .fill(null)
+    .map(() => new Complex(0, 0));
+  coefficients[0] = new Complex(1, 0);
+  for (let root = 0; root < roots.length; root++)
+    for (let degree = root; degree >= 0; degree--)
+      coefficients[degree + 1] = coefficients[degree + 1]!.subtract(
+        coefficients[degree]!.multiply(roots[root]!),
+      );
+  return coefficients;
+};

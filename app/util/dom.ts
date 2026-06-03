@@ -1,5 +1,6 @@
-import { random } from "lodash-es";
+import { random, range } from "lodash-es";
 import { frame, waitFor, waitForStable } from "~/util/async";
+import { Vector } from "~/util/vector";
 
 // get coordinates of element relative to document
 export const getDocBbox = (element: Element) => {
@@ -133,30 +134,39 @@ export const samplePath = (d: string, count: number) => {
   const { x: left, y: top, width, height } = path.getBBox();
 
   // create evenly spaced points
-  const points = new Array(count)
-    .fill(null)
-    // random coords in range of path bbox
-    .map(() => ({
-      x: random(left, left + width),
-      y: random(top, top + height),
-    }))
-    // remove points that aren't inside path fill
-    .filter(({ x, y }) => {
-      const point = svg.createSVGPoint();
-      point.x = x;
-      point.y = y;
-      return path.isPointInFill(point);
-    })
-    // map coord to -1 -> 1
-    .map(({ x, y }) => ({
-      x: ((x - left) / width) * 2 - 1,
-      y: ((y - top) / height) * 2 - 1,
-    }));
+  const points = Vector.fit(
+    new Array(count)
+      .fill(null)
+      // random coords in range of path bbox
+      .map(
+        () =>
+          new Vector(random(left, left + width), random(top, top + height), 1),
+      )
+      // remove points that aren't inside path fill
+      .filter(({ x, y }) => {
+        const point = svg.createSVGPoint();
+        point.x = x;
+        point.y = y;
+        return path.isPointInFill(point);
+      }),
+  );
 
   // remove svg from dom
   svg.remove();
 
   return points;
+};
+
+// convert svg path to list of points
+export const pathToPoints = (d: string, count: number) => {
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", d);
+  const length = path.getTotalLength();
+  return Vector.fit(
+    range(count).map((index) =>
+      Vector.fromObject(path.getPointAtLength(length * (index / count))),
+    ),
+  );
 };
 
 // debug log (but don't stop) google translate react interaction errors

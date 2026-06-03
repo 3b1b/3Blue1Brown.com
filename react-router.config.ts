@@ -56,7 +56,10 @@ export default {
     ];
 
     // export pre-rendered route list artifact for testing purposes
-    writeFileSync("./tests/routes.json", JSON.stringify(routes, null, 2));
+    writeFileSync(
+      "./tests/routes.json",
+      JSON.stringify(routes, null, 2) + "\n",
+    );
 
     return routes;
   },

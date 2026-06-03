@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { pairs } from "d3";
 import gsap from "gsap";
-import { clamp, max, min } from "lodash-es";
+import { clamp } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { Vector } from "~/util/vector";
 
@@ -92,25 +92,8 @@ const generate = (depth = 5, angle = 90, breaks = 4) => {
   // start recursion
   level(depth, angle);
 
-  // x coords
-  const xs = points.map((point) => point.x);
-  // y coords
-  const ys = points.map((point) => point.y);
-
-  // bounding box
-  const left = min(xs) ?? 0;
-  const right = max(xs) ?? 0;
-  const top = min(ys) ?? 0;
-  const bottom = max(ys) ?? 0;
-
-  // transform points
-  points = points.map((point) =>
-    point
-      // center
-      .translate(-(left + right) / 2, -(top + bottom) / 2)
-      // normalize to [-1,1]
-      .scale(2 / (right - left), 2 / (bottom - top)),
-  );
+  // fit points to [-1,1]
+  points = Vector.fit(points);
 
   // split into segments
   const segments = pairs(points).map(([from, to], index) => ({
