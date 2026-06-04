@@ -35,9 +35,9 @@ export default function Button({
     color === "light" &&
       "bg-theme/15 text-black hocus:bg-theme hocus:text-white",
     color === "theme" &&
-      "bg-theme text-white hocus-ring hocus:bg-black hocus:outline-black",
+      "bg-theme text-white change-ring hocus:bg-black hocus:outline-black",
     color === "critical" &&
-      "bg-black text-white hocus-ring hocus:bg-theme hocus:outline-theme",
+      "bg-black text-white change-ring hocus:bg-theme hocus:outline-theme",
     size === "sm" && "p-2",
     size === "md" && "min-h-12 min-w-12 p-3 text-lg",
     className,

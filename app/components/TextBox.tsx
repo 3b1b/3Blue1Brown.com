@@ -65,12 +65,15 @@ export default function TextBox({
   // extra padding needed for side element
   const sidePadding = useElementBounding(sideRef).width;
 
+  const _class =
+    "grow rounded-md border border-gray bg-white p-3 text-black change-ring hocus:outline-theme";
+
   // input field
   const input = multi ? (
     <textarea
       ref={mergedRef}
       rows={6}
-      className="min-h-12 grow resize rounded-md border border-gray bg-white p-3 text-black hocus-ring"
+      className={clsx(_class, "min-h-12 grow resize")}
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
@@ -79,7 +82,7 @@ export default function TextBox({
   ) : (
     <input
       ref={mergedRef}
-      className="h-12 grow scroll-mt-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
+      className={clsx(_class, "h-12")}
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}

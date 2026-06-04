@@ -2,6 +2,7 @@ import type { ComponentProps } from "react";
 import { useEffect, useEffectEvent, useRef } from "react";
 import {
   useDebounce,
+  useDocumentVisibility,
   useElementSize,
   useMergedRefs,
   useRafFn,
@@ -53,6 +54,9 @@ export default function Canvas({
   const inView = useInView(canvas);
   const beenInView = useBeenInView(canvas);
 
+  // is document visible
+  const visible = useDocumentVisibility() === "visible";
+
   // init context
   useEffect(() => {
     ctx.current ??= canvas.current?.getContext("2d") ?? null;
@@ -60,9 +64,8 @@ export default function Canvas({
 
   // render frame
   useRafFn(() => {
-    if (!canvas.current || !ctx.current || !inView) {
+    if (!canvas.current || !ctx.current || !inView || !visible) {
       last.current = 0;
-      deltas.current = [];
       return;
     }
 

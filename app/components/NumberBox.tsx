@@ -38,7 +38,7 @@ export default function NumberBox({
         </div>
       )}
       <input
-        className="h-12 rounded-md border border-gray bg-white p-3 leading-none text-black hocus-ring"
+        className="h-12 rounded-md border border-gray bg-white p-3 leading-none text-black change-ring hocus:outline-theme"
         type="number"
         value={value}
         onChange={(event) => {

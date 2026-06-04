@@ -263,18 +263,6 @@
   @apply outline-2 outline-offset-2 outline-transparent;
 }
 
-@utility hocus-ring {
-  @apply hocus:outline-theme change-ring;
-}
-
-@utility group-hocus-ring {
-  @apply group-hocus:outline-theme change-ring;
-}
-
-@utility focus-within-ring {
-  @apply focus-within:outline-theme change-ring;
-}
-
 @utility badge {
   @apply bg-theme mx-1 rounded-full px-1 font-sans text-white;
 }

@@ -36,13 +36,18 @@ export function ColorSelect({
           {props.required && <span className="text-error">*</span>}
         </div>
       )}
-      <input
-        type="color"
-        value={value}
-        onChange={(event) => onChange?.(event.target.value)}
-        className="size-8 cursor-pointer"
-        {...props}
-      />
+      <div
+        className="size-8 rounded-full border change-ring transition focus-within:outline-theme hover:outline-theme"
+        style={{ backgroundColor: value }}
+      >
+        <input
+          type="color"
+          value={value}
+          onChange={(event) => onChange?.(event.target.value)}
+          {...props}
+          className="cursor-pointer opacity-0"
+        />
+      </div>
     </label>
   );
 }
