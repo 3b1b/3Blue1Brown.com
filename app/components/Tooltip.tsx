@@ -8,6 +8,8 @@ type Props = {
   trigger: ReactNode;
   // whether trigger renders button element
   button?: boolean;
+  // whether to open on hover instead of click
+  hover?: boolean;
   // class on popup box
   className?: string;
   // tooltip content
@@ -18,13 +20,14 @@ type Props = {
 export default function Tooltip({
   trigger,
   button = true,
+  hover = true,
   children,
   className,
 }: Props) {
   return (
     <Popover.Root>
       <Popover.Trigger
-        openOnHover
+        openOnHover={hover}
         delay={100}
         nativeButton={button}
         render={

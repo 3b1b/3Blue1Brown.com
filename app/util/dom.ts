@@ -1,6 +1,4 @@
-import { random, range } from "lodash-es";
 import { frame, waitFor, waitForStable } from "~/util/async";
-import { Vector } from "~/util/vector";
 
 // get coordinates of element relative to document
 export const getDocBbox = (element: Element) => {
@@ -117,55 +115,6 @@ export const shake = (element: Element | null | undefined) => {
       { translate: "0 0" },
     ],
     { duration: 500, easing: "linear" },
-  );
-};
-
-// get random points within svg path
-export const samplePath = (d: string, count: number) => {
-  // make svg element
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", d);
-  svg.append(path);
-  // add svg to dom so that methods like getBBox and isPointInFill work
-  document.body.append(svg);
-
-  // path bbox
-  const { x: left, y: top, width, height } = path.getBBox();
-
-  // create evenly spaced points
-  const points = Vector.fit(
-    new Array(count)
-      .fill(null)
-      // random coords in range of path bbox
-      .map(
-        () =>
-          new Vector(random(left, left + width), random(top, top + height), 1),
-      )
-      // remove points that aren't inside path fill
-      .filter(({ x, y }) => {
-        const point = svg.createSVGPoint();
-        point.x = x;
-        point.y = y;
-        return path.isPointInFill(point);
-      }),
-  );
-
-  // remove svg from dom
-  svg.remove();
-
-  return points;
-};
-
-// convert svg path to list of points
-export const pathToPoints = (d: string, count: number) => {
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", d);
-  const length = path.getTotalLength();
-  return Vector.fit(
-    range(count).map((index) =>
-      Vector.fromObject(path.getPointAtLength(length * (index / count))),
-    ),
   );
 };
 

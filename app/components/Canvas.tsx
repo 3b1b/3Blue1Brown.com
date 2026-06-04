@@ -7,6 +7,7 @@ import {
   useRafFn,
 } from "@reactuses/core";
 import { clamp } from "lodash-es";
+import { now } from "~/util/async";
 import { useBeenInView, useInView } from "~/util/hooks";
 
 // max canvas buffer width/height, in px, to avoid memory crashes
@@ -21,6 +22,7 @@ type Props = {
     ctx: CanvasRenderingContext2D,
     width: number,
     height: number,
+    delta: number,
   ) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
@@ -36,6 +38,9 @@ export default function Canvas({
 }: Props) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
+
+  // timestamp
+  const time = useRef(0);
 
   // size of canvas, in css/dom px, debounced
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
@@ -53,15 +58,25 @@ export default function Canvas({
 
   // render frame
   useRafFn(() => {
-    if (!canvas.current || !ctx.current) return;
-    if (!inView) return;
+    if (!canvas.current || !ctx.current || !inView) {
+      time.current = 0;
+      return;
+    }
+
+    // clear canvas
     ctx.current.clearRect(
       -clientWidth / 2,
       -clientHeight / 2,
       clientWidth,
       clientHeight,
     );
-    render(ctx.current, clientWidth, clientHeight);
+
+    // track time delta
+    const delta = time.current ? now() - time.current : 0;
+    time.current = now();
+
+    // call render func
+    render(ctx.current, clientWidth, clientHeight, delta);
   });
 
   // prevent onChange from being dep of useEffect

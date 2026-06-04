@@ -3,7 +3,6 @@ import { atom, useAtomValue } from "jotai";
 import { debounce, isEmpty, random, sample, uniqueId } from "lodash-es";
 import Canvas from "~/components/Canvas";
 import { setAtom } from "~/util/atom";
-import { samplePath } from "~/util/dom";
 import { Vector } from "~/util/vector";
 
 // color of particles
@@ -180,3 +179,40 @@ export default function Celebrate() {
     />
   );
 }
+
+// get random points within svg path
+export const samplePath = (d: string, count: number) => {
+  // make svg element
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", d);
+  svg.append(path);
+  // add svg to dom so that methods like getBBox and isPointInFill work
+  document.body.append(svg);
+
+  // path bbox
+  const { x: left, y: top, width, height } = path.getBBox();
+
+  // create evenly spaced points
+  const points = Vector.fit(
+    new Array(count)
+      .fill(null)
+      // random coords in range of path bbox
+      .map(
+        () =>
+          new Vector(random(left, left + width), random(top, top + height), 1),
+      )
+      // remove points that aren't inside path fill
+      .filter(({ x, y }) => {
+        const point = svg.createSVGPoint();
+        point.x = x;
+        point.y = y;
+        return path.isPointInFill(point);
+      }),
+  );
+
+  // remove svg from dom
+  svg.remove();
+
+  return points;
+};

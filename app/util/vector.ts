@@ -150,16 +150,13 @@ export class Vector {
     return other.subtract(this).length();
   }
 
-  // angle from this vector to other vector
+  // angle from this vector to other vector (3d) or from x-axis (2d)
   angle(other?: Vector) {
-    // 3d angle between vectors, < 180 degrees
     if (other)
       return Vector.acos(
         this.dot(other) / (this.length() * other.length() || Infinity),
       );
-    else
-      // 2d angle wrt x-axis, 0 to 360 degrees
-      return Vector.atan2(this.y, this.x);
+    else return Vector.atan2(this.y, this.x);
   }
 
   // ---------------------------------------------------------------------------
