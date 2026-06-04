@@ -6,12 +6,14 @@ video: "-qgreAUpPwM"
 source: _2019/diffyq/fourier_montage_scenes.py
 credits:
   - Lesson by Grant Sanderson
+  - Interactive by Vincent Rubinetti
+interactive: true
 ---
 
 import { lazy } from "react";
 import Interactive from "~/components/Interactive";
 
-<section className="dark aspect-video">
+<section className="dark h-screen">
   <Interactive
     Component={lazy(() => import("./Fourier.tsx"))}
     controls={false}

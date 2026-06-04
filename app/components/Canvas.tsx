@@ -6,6 +6,7 @@ import {
   useMergedRefs,
   useRafFn,
 } from "@reactuses/core";
+import { mean } from "d3";
 import { clamp } from "lodash-es";
 import { now } from "~/util/async";
 import { useBeenInView, useInView } from "~/util/hooks";
@@ -39,8 +40,9 @@ export default function Canvas({
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
 
-  // timestamp
-  const time = useRef(0);
+  // time tracking
+  const last = useRef(0);
+  const deltas = useRef<number[]>([]);
 
   // size of canvas, in css/dom px, debounced
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
@@ -59,7 +61,8 @@ export default function Canvas({
   // render frame
   useRafFn(() => {
     if (!canvas.current || !ctx.current || !inView) {
-      time.current = 0;
+      last.current = 0;
+      deltas.current = [];
       return;
     }
 
@@ -71,12 +74,15 @@ export default function Canvas({
       clientHeight,
     );
 
-    // track time delta
-    const delta = time.current ? now() - time.current : 0;
-    time.current = now();
+    // calculate time delta
+    const delta = last.current ? now() - last.current : 0;
+    last.current = now();
+    deltas.current.unshift(delta);
+    deltas.current.splice(100);
+    const smoothedDelta = mean(deltas.current) ?? 0;
 
     // call render func
-    render(ctx.current, clientWidth, clientHeight, delta);
+    render(ctx.current, clientWidth, clientHeight, smoothedDelta);
   });
 
   // prevent onChange from being dep of useEffect
