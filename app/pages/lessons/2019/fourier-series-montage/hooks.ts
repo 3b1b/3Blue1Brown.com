@@ -1,12 +1,11 @@
-import type { Vector } from "~/util/vector";
 import type * as ComputationAPI from "./computation";
-import type { Epicycle } from "./computation";
 import { useEffect, useMemo, useState } from "react";
 import { wrap } from "comlink";
 import { useClient } from "~/util/hooks";
+import { Vector } from "~/util/vector";
 import ComputationWorker from "./computation?worker";
 
-export const useComputation = (points: Vector[], count: number) => {
+export const useComputation = (list: string, count: number, basic = false) => {
   const client = useClient();
 
   // create web worker thread
@@ -17,7 +16,9 @@ export const useComputation = (points: Vector[], count: number) => {
   );
 
   // result
-  const [epicycles, setEpicycles] = useState<Epicycle[]>([]);
+  const [result, setResult] = useState<
+    ReturnType<typeof ComputationAPI.compute>
+  >({ points: [], epicycles: [] });
 
   // re-search when search changes
   useEffect(() => {
@@ -25,15 +26,20 @@ export const useComputation = (points: Vector[], count: number) => {
     let latest = true;
 
     (async () => {
-      const epicycles = await worker.getEpicycles(points, count);
+      const { points, epicycles } = await worker.compute(list, count, basic);
       if (!latest) return;
-      setEpicycles(epicycles);
+      setResult({
+        points:
+          // convert back to vector (class cannot be serialized across web worker boundary)
+          points.map(Vector.fromObject),
+        epicycles,
+      });
     })();
 
     return () => {
       latest = false;
     };
-  }, [worker, points, count]);
+  }, [worker, list, count, basic]);
 
-  return epicycles;
+  return result;
 };

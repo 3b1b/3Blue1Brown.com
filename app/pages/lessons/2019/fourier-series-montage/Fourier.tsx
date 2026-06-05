@@ -1,34 +1,58 @@
-import { useMemo, useRef, useState } from "react";
-import { CompassToolIcon, PaintBrushIcon } from "@phosphor-icons/react";
+import { useEffect, useRef, useState } from "react";
+import {
+  CompassToolIcon,
+  PaintBrushIcon,
+  PencilIcon,
+  TriangleIcon,
+} from "@phosphor-icons/react";
+import { useEventListener } from "@reactuses/core";
+import clsx from "clsx";
 import { pairs } from "d3";
-import { startCase } from "lodash-es";
+import { clamp, startCase } from "lodash-es";
 import Button from "~/components/Button";
 import Canvas from "~/components/Canvas";
 import { ColorSelect } from "~/components/ColorSelect";
 import NumberBox from "~/components/NumberBox";
 import Select from "~/components/Select";
+import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
+import Upload from "~/components/Upload";
 import { importAssets } from "~/util/import";
 import { smoothstep } from "~/util/math";
 import { Vector } from "~/util/vector";
+import {
+  joinList,
+  resamplePoints,
+  samplePath,
+  smoothPoints,
+  splitList,
+} from "./computation";
 import { useComputation } from "./hooks";
 
 // import all shapes
 const [getShape, shapes] = importAssets(
-  import.meta.glob<string>("./*.txt", { eager: true, as: "raw" }),
+  import.meta.glob<{ default: string }>("./*.txt", {
+    eager: true,
+    query: "raw",
+  }),
+  undefined,
+  (module) => module.default,
 );
 
 export default function Fourier() {
-  // shape to draw
-  const [shape, setShape] = useState("pi");
+  // text list of coordinates in shape
+  const [list, setList] = useState(getShape("pi") ?? "");
   // how many epicycles to use
-  const [epicycleCount, setEpicycleCount] = useState(500);
+  const [epicycleCount, setEpicycleCount] = useState(1000);
   // trace length
   const [traceLength, setTraceLength] = useState(500);
   // animation speed
   const [speed, setSpeed] = useState(100);
   // zoom into tip
-  const [zoom, setZoom] = useState(0);
+  const [_zoom, setZoom] = useState(0);
+
+  // drawing mode
+  const [drawing, setDrawing] = useState(false);
 
   // colors
   const [shapeColor, setShapeColor] = useState("#fa8072");
@@ -40,39 +64,77 @@ export default function Fourier() {
   const [epicycleThickness, setEpicycleThickness] = useState(1);
   const [traceThickness, setTraceThickness] = useState(4);
 
-  // points sampled from shape
-  const points = useMemo(() => {
-    return (
-      getShape(shape)
-        ?.split("\n")
-        .map((line) => {
-          const [x, y] = line.split("\t");
-          if (!x || !y) return;
-          return new Vector(Number(x), Number(y));
-        })
-        ?.filter((point) => !!point) ?? []
-    );
-  }, [shape]);
-
-  // compute epicycles
-  const epicycles = useComputation(points, epicycleCount);
+  // compute points and epicycles from list
+  const { points, epicycles } = useComputation(list, epicycleCount, drawing);
 
   // trail of points left by tip of epicycles
   const trace = useRef<Vector[]>([]);
 
+  // reset trace under certain conditions
+  useEffect(() => {
+    trace.current = [];
+  }, [epicycles]);
+
   // animation time
   const _time = useRef(0);
+
+  // power zoom
+  const zoom = 2 ** _zoom;
+
+  // stop drawing and process drawn points
+  const stopDrawing = () => {
+    if (!drawing) return;
+    setDrawing(false);
+    let points = splitList(list);
+    points = smoothPoints(points, 5);
+    points = resamplePoints(points, 2000);
+    setList(joinList(points));
+  };
+
+  // stop drawing on key
+  useEventListener("keydown", ({ key }) => {
+    if (["Escape", "Enter", " "].includes(key)) stopDrawing();
+  });
 
   return (
     <>
       <Canvas
-        className="absolute inset-0 -z-10 size-full"
-        render={(ctx, width, height, delta) => {
-          // advance time
-          const time = (_time.current += (delta / 1000) * (speed / 1000));
-
+        className={clsx(
+          "absolute inset-0 -z-10 size-full",
+          drawing && "cursor-crosshair",
+        )}
+        render={(ctx, { width, height }, delta, { position, pressed }) => {
           // canvas size, contain
-          const size = Math.min(width, height) / 4;
+          const size = Math.min(width, height) / 3;
+
+          // drawing mode
+          if (drawing) {
+            if (pressed)
+              setList((list) => (list + "\n" + joinList([position])).trim());
+
+            // draw shape
+            if (shapeThickness) {
+              ctx.strokeStyle = shapeColor;
+              ctx.lineWidth = shapeThickness;
+              ctx.lineCap = "butt";
+              ctx.globalAlpha = 0.5;
+              const [first, ...rest] = points;
+              if (first && rest.length) {
+                ctx.beginPath();
+                ctx.moveTo(...transform(first).toArray(2));
+                for (const point of rest)
+                  ctx.lineTo(...transform(point).toArray(2));
+                ctx.closePath();
+                ctx.stroke();
+              }
+            }
+
+            return;
+          }
+
+          // advance time
+          const time = (_time.current +=
+            ((delta / 1000) * (speed / 1000)) / zoom ** 0.5);
 
           // get epicycle segments
           let from = new Vector();
@@ -94,7 +156,12 @@ export default function Fourier() {
           trace.current.splice(traceLength);
 
           // zoom center
-          const center = trace.current[0] ?? new Vector();
+          const translate = (trace.current[0] ?? new Vector()).scale(
+            smoothstep(zoom - 1),
+          );
+
+          // zoom scale
+          const scale = size * zoom;
 
           // draw shape
           if (shapeThickness) {
@@ -103,29 +170,35 @@ export default function Fourier() {
             ctx.lineCap = "butt";
             ctx.globalAlpha = 0.5;
             const [first, ...rest] = points;
-            ctx.beginPath();
-            ctx.moveTo(...transform(first!, size, center, zoom).toArray(2));
-            for (const point of rest)
-              ctx.lineTo(...transform(point, size, center, zoom).toArray(2));
-            ctx.closePath();
-            ctx.stroke();
+            if (first && rest.length) {
+              ctx.beginPath();
+              ctx.moveTo(...transform(first, translate, scale).toArray(2));
+              for (const point of rest)
+                ctx.lineTo(...transform(point, translate, scale).toArray(2));
+              ctx.closePath();
+              ctx.stroke();
+            }
           }
 
           // draw epicycles
           if (epicycleThickness) {
             ctx.strokeStyle = epicycleColor;
             ctx.lineWidth = epicycleThickness;
-            ctx.lineCap = "butt";
+            ctx.lineCap = "round";
             for (const { from, to } of segments) {
-              const _from = transform(from, size, center, zoom);
-              const _to = transform(to, size, center, zoom);
+              const _from = transform(from, translate, scale);
+              const _to = transform(to, translate, scale);
               const _dist = _to.subtract(_from).length();
-              ctx.globalAlpha = 0.75;
+              // don't draw beyond diminishing returns
+              if (_dist < 1) break;
+              ctx.globalAlpha = 1;
+              // stick
               ctx.beginPath();
               ctx.moveTo(..._from.toArray(2));
               ctx.lineTo(..._to.toArray(2));
               ctx.stroke();
               ctx.globalAlpha = 0.25;
+              // circle
               ctx.beginPath();
               ctx.arc(..._from.toArray(2), _dist, 0, 2 * Math.PI);
               ctx.stroke();
@@ -141,8 +214,8 @@ export default function Fourier() {
               ctx.lineWidth =
                 traceThickness * (1 - index / trace.current.length);
               ctx.beginPath();
-              ctx.moveTo(...transform(from, size, center, zoom).toArray(2));
-              ctx.lineTo(...transform(to, size, center, zoom).toArray(2));
+              ctx.moveTo(...transform(from, translate, scale).toArray(2));
+              ctx.lineTo(...transform(to, translate, scale).toArray(2));
               ctx.stroke();
             });
           }
@@ -151,6 +224,92 @@ export default function Fourier() {
 
       {/* controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col items-start gap-4">
+        {/* points */}
+        <Tooltip
+          hover={false}
+          trigger={
+            <Button>
+              <TriangleIcon />
+              Shape
+            </Button>
+          }
+        >
+          <div className="flex w-80 flex-col gap-4 p-4">
+            <Select
+              label="Shape"
+              value={
+                Object.keys(shapes).find((key) => shapes[key] === list) ??
+                "custom"
+              }
+              onChange={(value) => {
+                setList(getShape(value) ?? "");
+              }}
+              options={Object.keys(shapes)
+                .map((key) => ({ value: key, label: startCase(key) }))
+                .concat({ value: "custom", label: "Custom..." })}
+            />
+            <TextBox
+              label="Points"
+              multi
+              value={list}
+              onChange={setList}
+              rows={10}
+            />
+            <div className="grid grid-cols-2 gap-4">
+              <Upload
+                color="light"
+                accept={[
+                  ".txt",
+                  "text/plain",
+                  ".svg",
+                  "image/svg+xml",
+                  ".csv",
+                  "text/csv",
+                  ".tsv",
+                  "text/tab-separated-values",
+                ]}
+                onUpload={async (file) => {
+                  const text = await file.text();
+                  // text file
+                  if (file.type === "text/plain") setList(text);
+
+                  // svg
+                  if (file.type === "image/svg+xml") {
+                    const answer = window.prompt("Sample points", "1000");
+                    if (!answer) return;
+                    const count = clamp(Number(answer), 1, 10000);
+                    const parser = new DOMParser();
+                    const svg = parser.parseFromString(text, "image/svg+xml");
+                    const path = svg.querySelector("path");
+                    if (!path) return;
+                    const points = samplePath(
+                      path.getAttribute("d") ?? "",
+                      count,
+                    );
+                    setList(joinList(points));
+                  }
+                }}
+              >
+                Upload
+              </Upload>
+              <Button
+                color="light"
+                onClick={() => {
+                  if (drawing) stopDrawing();
+                  else {
+                    setList("");
+                    setDrawing(true);
+                  }
+                }}
+              >
+                <PencilIcon />
+                {drawing ? "Stop" : "Draw"}
+              </Button>
+            </div>
+          </div>
+        </Tooltip>
+
+        {/* params */}
         <Tooltip
           hover={false}
           trigger={
@@ -161,21 +320,12 @@ export default function Fourier() {
           }
         >
           <div className="grid grid-cols-[max-content_auto] items-center gap-x-8 gap-y-4 p-4 [&_label]:contents">
-            <Select
-              label="Shape"
-              value={shape}
-              onChange={setShape}
-              options={Object.keys(shapes).map((key) => ({
-                value: key,
-                label: startCase(key),
-              }))}
-            />
             <NumberBox
               label="Epicycles"
               value={epicycleCount}
               onChange={setEpicycleCount}
               min={1}
-              max={1000}
+              max={2000}
               step={1}
             />
             <NumberBox
@@ -190,13 +340,13 @@ export default function Fourier() {
               label="Speed"
               value={speed}
               onChange={setSpeed}
-              min={0}
+              min={-1000}
               max={1000}
               step={1}
             />
             <NumberBox
               label="Zoom"
-              value={zoom}
+              value={_zoom}
               onChange={setZoom}
               min={0}
               max={20}
@@ -205,6 +355,7 @@ export default function Fourier() {
           </div>
         </Tooltip>
 
+        {/* styles */}
         <Tooltip
           hover={false}
           trigger={
@@ -214,7 +365,7 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="grid grid-cols-[max-content_auto] items-center gap-x-8 gap-y-4 p-4 [&_label]:contents">
+          <div className="grid grid-cols-[auto_auto] items-center gap-x-8 gap-y-4 p-4">
             <NumberBox
               label="Shape Thickness"
               value={shapeThickness}
@@ -262,12 +413,5 @@ export default function Fourier() {
 }
 
 // transform point
-const transform = (
-  point: Vector,
-  size: number,
-  center: Vector,
-  zoom: number,
-) => {
-  zoom = 2 ** zoom;
-  return point.subtract(center.scale(smoothstep(zoom - 1))).scale(size * zoom);
-};
+const transform = (point: Vector, translate = new Vector(), scale = 1) =>
+  point.subtract(translate).scale(scale);
