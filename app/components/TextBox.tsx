@@ -51,6 +51,7 @@ export default function TextBox({
   if (!!value)
     side = (
       <button
+        className="hover:text-theme"
         onClick={() => {
           if (inputRef.current) inputRef.current.value = "";
           onChange?.("");

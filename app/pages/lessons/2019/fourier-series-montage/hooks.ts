@@ -1,45 +1,61 @@
 import type * as ComputationAPI from "./computation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { wrap } from "comlink";
 import { useClient } from "~/util/hooks";
 import { Vector } from "~/util/vector";
 import ComputationWorker from "./computation?worker";
 
 export const useComputation = (list: string, count: number, basic = false) => {
-  const client = useClient();
+  // status
+  const [computing, setComputing] = useState(false);
 
-  // create web worker thread
-  const worker = useMemo(
-    () =>
-      client ? wrap<typeof ComputationAPI>(new ComputationWorker()) : undefined,
-    [client],
-  );
+  const client = useClient();
 
   // result
   const [result, setResult] = useState<
-    ReturnType<typeof ComputationAPI.compute>
+    Awaited<ReturnType<typeof ComputationAPI.compute>>
   >({ points: [], epicycles: [] });
 
   // re-search when search changes
   useEffect(() => {
-    if (!worker) return;
+    if (!client) return;
+    // is this computation latest
     let latest = true;
 
+    // create new worker thread
+    const worker = new ComputationWorker();
+    const thread = wrap<typeof ComputationAPI>(worker);
+
     (async () => {
-      const { points, epicycles } = await worker.compute(list, count, basic);
-      if (!latest) return;
-      setResult({
-        points:
-          // convert back to vector (class cannot be serialized across web worker boundary)
-          points.map(Vector.fromObject),
-        epicycles,
-      });
+      // in progress
+      setComputing(true);
+
+      try {
+        const { points, epicycles } = await thread.compute(list, count, basic);
+        // if this computation stale, ignore
+        if (!latest) return;
+        // set results
+        setResult({
+          points:
+            // convert back to vector (class cannot be serialized across web worker boundary)
+            points.map(Vector.fromObject),
+          epicycles,
+        });
+        // done
+        setComputing(false);
+      } catch (error) {
+        console.error(error);
+      }
     })();
 
+    // clean-up
     return () => {
+      // mark local computation as stale
       latest = false;
+      // abort any pending work
+      worker.terminate();
     };
-  }, [worker, list, count, basic]);
+  }, [client, list, count, basic]);
 
-  return result;
+  return { ...result, computing };
 };

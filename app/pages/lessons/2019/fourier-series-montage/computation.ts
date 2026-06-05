@@ -3,7 +3,7 @@ import { pairs } from "d3";
 import { orderBy, range } from "lodash-es";
 import { Vector } from "~/util/vector";
 
-export const compute = (list: string, cycleCount: number, basic = false) => {
+export const compute = (list: string, epicycleCount: number, basic = false) => {
   if (basic) return { points: splitList(list), epicycles: [] };
 
   // get points
@@ -16,12 +16,10 @@ export const compute = (list: string, cycleCount: number, basic = false) => {
   epicycles = orderBy(epicycles, (point) => point.amplitude, "desc");
 
   // only use first, most impactful epicycles
-  epicycles = epicycles.slice(0, cycleCount);
+  epicycles = epicycles.slice(0, epicycleCount);
 
   return { points, epicycles };
 };
-
-expose({ compute });
 
 // convert svg path to list of evenly spaced points
 export const samplePath = (d: string, count: number) => {
@@ -152,3 +150,5 @@ export const resamplePoints = (points: Vector[], count: number): Vector[] => {
     return new Vector();
   });
 };
+
+expose({ compute });

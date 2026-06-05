@@ -44,12 +44,12 @@ export default function Fourier() {
   const [list, setList] = useState(getShape("pi") ?? "");
   // how many epicycles to use
   const [epicycleCount, setEpicycleCount] = useState(1000);
-  // trace length
-  const [traceLength, setTraceLength] = useState(500);
-  // animation speed
-  const [speed, setSpeed] = useState(100);
   // zoom into tip
   const [_zoom, setZoom] = useState(0);
+  // animation speed
+  const [speed, setSpeed] = useState(100);
+  // trace length
+  const [traceLength, setTraceLength] = useState(500);
 
   // drawing mode
   const [drawing, setDrawing] = useState(false);
@@ -65,7 +65,11 @@ export default function Fourier() {
   const [traceThickness, setTraceThickness] = useState(4);
 
   // compute points and epicycles from list
-  const { points, epicycles } = useComputation(list, epicycleCount, drawing);
+  const { points, epicycles, computing } = useComputation(
+    list,
+    epicycleCount,
+    drawing,
+  );
 
   // trail of points left by tip of epicycles
   const trace = useRef<Vector[]>([]);
@@ -98,6 +102,11 @@ export default function Fourier() {
 
   return (
     <>
+      {computing && (
+        <div className="absolute inset-0 grid place-items-center text-2xl">
+          Computing...
+        </div>
+      )}
       <Canvas
         className={clsx(
           "absolute inset-0 -z-10 size-full",
@@ -156,9 +165,7 @@ export default function Fourier() {
           trace.current.splice(traceLength);
 
           // zoom center
-          const translate = (trace.current[0] ?? new Vector()).scale(
-            smoothstep(zoom - 1),
-          );
+          const translate = from.scale(smoothstep(zoom - 1));
 
           // zoom scale
           const scale = size * zoom;
@@ -182,25 +189,36 @@ export default function Fourier() {
 
           // draw epicycles
           if (epicycleThickness) {
+            ctx.fillStyle = epicycleColor;
             ctx.strokeStyle = epicycleColor;
             ctx.lineWidth = epicycleThickness;
             ctx.lineCap = "round";
-            for (const { from, to } of segments) {
-              const _from = transform(from, translate, scale);
-              const _to = transform(to, translate, scale);
-              const _dist = _to.subtract(_from).length();
+            for (const segment of segments) {
+              const from = transform(segment.from, translate, scale);
+              const to = transform(segment.to, translate, scale);
+              const length = to.subtract(from).length();
+              const arrowSize = from.subtract(to).length(epicycleThickness * 8);
+              const arrowLeft = to.add(arrowSize.rotate(20));
+              const arrowRight = to.add(arrowSize.rotate(-20));
               // don't draw beyond diminishing returns
-              if (_dist < 1) break;
-              ctx.globalAlpha = 1;
+              if (length < 1) break;
               // stick
+              ctx.globalAlpha = 1;
               ctx.beginPath();
-              ctx.moveTo(..._from.toArray(2));
-              ctx.lineTo(..._to.toArray(2));
+              ctx.moveTo(...from.toArray(2));
+              ctx.lineTo(...to.toArray(2));
               ctx.stroke();
-              ctx.globalAlpha = 0.25;
-              // circle
+              // arrow
+              ctx.globalAlpha = 1;
               ctx.beginPath();
-              ctx.arc(..._from.toArray(2), _dist, 0, 2 * Math.PI);
+              ctx.moveTo(...arrowLeft.toArray(2));
+              ctx.lineTo(...to.toArray(2));
+              ctx.lineTo(...arrowRight.toArray(2));
+              ctx.fill();
+              // circle
+              ctx.globalAlpha = 0.25;
+              ctx.beginPath();
+              ctx.arc(...from.toArray(2), length, 0, 2 * Math.PI);
               ctx.stroke();
             }
           }
@@ -253,7 +271,7 @@ export default function Fourier() {
               multi
               value={list}
               onChange={setList}
-              rows={10}
+              rows={5}
             />
             <div className="grid grid-cols-2 gap-4">
               <Upload
@@ -319,22 +337,22 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="grid grid-cols-[max-content_auto] items-center gap-x-8 gap-y-4 p-4 [&_label]:contents">
+          <div className="grid grid-cols-[max-content_auto] items-center gap-4 p-4 [&_label]:contents">
             <NumberBox
               label="Epicycles"
               value={epicycleCount}
               onChange={setEpicycleCount}
               min={1}
-              max={2000}
+              max={1000}
               step={1}
             />
             <NumberBox
-              label="Trace"
-              value={traceLength}
-              onChange={setTraceLength}
+              label="Zoom"
+              value={_zoom}
+              onChange={setZoom}
               min={0}
-              max={10000}
-              step={100}
+              max={20}
+              step={0.1}
             />
             <NumberBox
               label="Speed"
@@ -345,12 +363,12 @@ export default function Fourier() {
               step={1}
             />
             <NumberBox
-              label="Zoom"
-              value={_zoom}
-              onChange={setZoom}
+              label="Trace"
+              value={traceLength}
+              onChange={setTraceLength}
               min={0}
-              max={20}
-              step={0.25}
+              max={10000}
+              step={10}
             />
           </div>
         </Tooltip>
@@ -365,19 +383,14 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="grid grid-cols-[auto_auto] items-center gap-x-8 gap-y-4 p-4">
+          <div className="grid grid-flow-col grid-rows-[repeat(6,auto)] items-center gap-x-8 gap-y-4 p-4 [&_label]:contents">
             <NumberBox
               label="Shape Thickness"
               value={shapeThickness}
               onChange={setShapeThickness}
               min={0}
               max={10}
-              step={0.5}
-            />
-            <ColorSelect
-              label="Shape Color"
-              value={shapeColor}
-              onChange={setShapeColor}
+              step={0.1}
             />
             <NumberBox
               label="Epicycle Thickness"
@@ -385,12 +398,7 @@ export default function Fourier() {
               onChange={setEpicycleThickness}
               min={0}
               max={10}
-              step={0.5}
-            />
-            <ColorSelect
-              label="Epicycle Color"
-              value={epicycleColor}
-              onChange={setEpicycleColor}
+              step={0.1}
             />
             <NumberBox
               label="Trace Thickness"
@@ -398,7 +406,18 @@ export default function Fourier() {
               onChange={setTraceThickness}
               min={0}
               max={10}
-              step={0.5}
+              step={0.1}
+            />
+
+            <ColorSelect
+              label="Shape Color"
+              value={shapeColor}
+              onChange={setShapeColor}
+            />
+            <ColorSelect
+              label="Epicycle Color"
+              value={epicycleColor}
+              onChange={setEpicycleColor}
             />
             <ColorSelect
               label="Trace Color"
