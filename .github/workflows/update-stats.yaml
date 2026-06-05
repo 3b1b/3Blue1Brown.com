@@ -28,8 +28,8 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      - name: Commit files
-        uses: stefanzweifel/git-auto-commit-action@v7
+      - name: Open pull request with updated stats
+        uses: peter-evans/create-pull-request@v8
         with:
-          commit_message: Update stats
-          commit_author: "Bot <>"
+          branch: stats-update
+          title: Periodic stats update
