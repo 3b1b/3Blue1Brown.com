@@ -49,7 +49,7 @@ This is just one of the many examples of how directions in this high-dimensional
 
 The aim of a transformer is to progressively adjust these embeddings so that they don't merely encode data of an individual word, but rather a much richer contextual meaning.
 
-<Figure image="$lesson/RicherContext.jpg" />
+<Figure image="$lesson/richerContext.jpg" />
 
 <Question
   question="Recap Question: What do we call the high-dimensional vector each token is associated with in the first step in a transformer?"
@@ -471,7 +471,7 @@ What this means is that for each token, or position in the context, every one of
 
 This entire sum would be one _slice_ of what's outputted from this multi-headed attention block; a single one of those refined embeddings that pops out the other end of it.
 
-<Figure image="$lesson/Slice.jpg" />
+<Figure image="$lesson/slice.jpg" />
 
 Again, this is a lot to think about, so don't worry at all if it takes some time to sink in. The overall idea is that by running many distinct heads in parallel, the model is given the capacity to learn many distinct ways that context changes meaning.
 

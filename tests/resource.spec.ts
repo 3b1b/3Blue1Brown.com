@@ -10,6 +10,7 @@ const ignore = [
   /mathjax/,
   /phosphor-icons/,
   /google-analytics/,
+  /\/2019\/prime-spirals\/filtering_quad\.jpg/,
 ];
 
 // test page resources
