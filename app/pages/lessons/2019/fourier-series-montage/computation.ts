@@ -3,11 +3,9 @@ import { pairs } from "d3";
 import { orderBy, range } from "lodash-es";
 import { Vector } from "~/util/vector";
 
-export const compute = (list: string, epicycleCount: number, basic = false) => {
-  if (basic) return { points: splitList(list), epicycles: [] };
-
-  // get points
-  const points = fitPoints(splitList(list));
+export const compute = (points: Vector[], epicycleCount: number) => {
+  // data gets serialized when passed to/from worker, so convert back to actual vector class
+  points = points.map(Vector.fromObject);
 
   // get epicycles
   let epicycles = getEpicycles(points);
@@ -18,7 +16,7 @@ export const compute = (list: string, epicycleCount: number, basic = false) => {
   // only use first, most impactful epicycles
   epicycles = epicycles.slice(0, epicycleCount);
 
-  return { points, epicycles };
+  return epicycles;
 };
 
 // convert svg path to list of evenly spaced points
@@ -54,7 +52,7 @@ export const splitList = (list: string) =>
     // remove invalids
     ?.filter((point) => !!point)
     // convert to points
-    .map((point) => new Vector(point.x, point.y)) ?? [];
+    .map(Vector.fromObject) ?? [];
 
 // join vectors into list of coordinates
 export const joinList = (points: Vector[]) =>
@@ -63,7 +61,7 @@ export const joinList = (points: Vector[]) =>
     .join("\n");
 
 // fit points to [-1,1]
-const fitPoints = (
+export const fitPoints = (
   points: Vector[],
   scale: "contain" | "cover" | "stretch" = "contain",
 ) => {

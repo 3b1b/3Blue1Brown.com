@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   CompassToolIcon,
   PaintBrushIcon,
   PencilIcon,
   TriangleIcon,
 } from "@phosphor-icons/react";
-import { useEventListener } from "@reactuses/core";
 import clsx from "clsx";
 import { pairs } from "d3";
 import { clamp, startCase } from "lodash-es";
@@ -21,6 +20,7 @@ import { importAssets } from "~/util/import";
 import { smoothstep } from "~/util/math";
 import { Vector } from "~/util/vector";
 import {
+  fitPoints,
   joinList,
   resamplePoints,
   samplePath,
@@ -64,12 +64,13 @@ export default function Fourier() {
   const [epicycleThickness, setEpicycleThickness] = useState(1);
   const [traceThickness, setTraceThickness] = useState(4);
 
-  // compute points and epicycles from list
-  const { points, epicycles, computing } = useComputation(
-    list,
-    epicycleCount,
-    drawing,
-  );
+  // convert list to points
+  const rawPoints = useMemo(() => splitList(list), [list]);
+  // fit points to [-1,1]
+  const points = useMemo(() => fitPoints(rawPoints), [rawPoints]);
+
+  // compute epicycles
+  const { epicycles, computing } = useComputation(points, epicycleCount);
 
   // trail of points left by tip of epicycles
   const trace = useRef<Vector[]>([]);
@@ -95,14 +96,9 @@ export default function Fourier() {
     setList(joinList(points));
   };
 
-  // stop drawing on key
-  useEventListener("keydown", ({ key }) => {
-    if (["Escape", "Enter", " "].includes(key)) stopDrawing();
-  });
-
   return (
     <>
-      {computing && (
+      {computing && !drawing && (
         <div className="absolute inset-0 grid place-items-center text-2xl">
           Computing...
         </div>
@@ -112,6 +108,7 @@ export default function Fourier() {
           "absolute inset-0 -z-10 size-full",
           drawing && "cursor-crosshair",
         )}
+        onPointerUp={stopDrawing}
         render={(ctx, { width, height }, delta, { position, pressed }) => {
           // canvas size, contain
           const size = Math.min(width, height) / 3;
@@ -127,7 +124,7 @@ export default function Fourier() {
               ctx.lineWidth = shapeThickness;
               ctx.lineCap = "butt";
               ctx.globalAlpha = 0.5;
-              const [first, ...rest] = points;
+              const [first, ...rest] = rawPoints;
               if (first && rest.length) {
                 ctx.beginPath();
                 ctx.moveTo(...transform(first).toArray(2));

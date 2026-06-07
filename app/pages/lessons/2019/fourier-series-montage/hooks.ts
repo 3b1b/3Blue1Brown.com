@@ -1,20 +1,20 @@
+import type { Vector } from "~/util/vector";
 import type * as ComputationAPI from "./computation";
 import { useEffect, useState } from "react";
 import { wrap } from "comlink";
 import { useClient } from "~/util/hooks";
-import { Vector } from "~/util/vector";
 import ComputationWorker from "./computation?worker";
 
-export const useComputation = (list: string, count: number, basic = false) => {
+export const useComputation = (points: Vector[], count: number) => {
   // status
   const [computing, setComputing] = useState(false);
 
   const client = useClient();
 
   // result
-  const [result, setResult] = useState<
+  const [epicycles, setEpicycles] = useState<
     Awaited<ReturnType<typeof ComputationAPI.compute>>
-  >({ points: [], epicycles: [] });
+  >([]);
 
   // re-search when search changes
   useEffect(() => {
@@ -31,17 +31,11 @@ export const useComputation = (list: string, count: number, basic = false) => {
       setComputing(true);
 
       try {
-        const { points, epicycles } = await thread.compute(list, count, basic);
+        const epicycles = await thread.compute(points, count);
         // if this computation stale, ignore
         if (!latest) return;
         // set results
-        setResult({
-          points:
-            // convert back to vector (class cannot be serialized across web worker boundary)
-            points.map(Vector.fromObject),
-          epicycles,
-        });
-        // done
+        setEpicycles(epicycles);
         setComputing(false);
       } catch (error) {
         console.error(error);
@@ -55,7 +49,7 @@ export const useComputation = (list: string, count: number, basic = false) => {
       // abort any pending work
       worker.terminate();
     };
-  }, [client, list, count, basic]);
+  }, [client, points, count]);
 
-  return { ...result, computing };
+  return { epicycles, computing };
 };
