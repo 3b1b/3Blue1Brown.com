@@ -69,7 +69,7 @@ export default function Fourier() {
   const [traceColor, setTraceColor] = useState("#51c9ff");
 
   // line widths
-  const [shapeThickness, setShapeThickness] = useState(4);
+  const [shapeThickness, setShapeThickness] = useState(2);
   const [epicycleThickness, setEpicycleThickness] = useState(1);
   const [traceThickness, setTraceThickness] = useState(4);
 
@@ -153,22 +153,29 @@ export default function Fourier() {
 
           // get epicycle segments
           let from = new Vector();
-          const segments = epicycles.map(({ frequency, amplitude, phase }) => {
-            // go out one tip
-            const to = from.add(
-              new Vector(amplitude, 0).rotate(
-                phase + frequency * time * points.length,
-              ),
-            );
-            const segment = { from, to };
-            from = to;
-            return segment;
-          });
+          const segments = computing
+            ? []
+            : epicycles.map(({ frequency, amplitude, phase }) => {
+                // go out one tip
+                const to = from.add(
+                  new Vector(amplitude, 0).rotate(
+                    phase + frequency * time * points.length,
+                  ),
+                );
+                const segment = { from, to };
+                from = to;
+                return segment;
+              });
 
-          // add last point to trace
-          trace.current.unshift(from);
-          // limit trace length
-          trace.current.splice(traceLength);
+          if (computing)
+            // clear trace
+            trace.current = [];
+          else {
+            // add last point to trace
+            trace.current.unshift(from);
+            // limit trace length
+            trace.current.splice(traceLength);
+          }
 
           // zoom center
           const translate = from.scale(smoothstep(zoom - 1));
@@ -194,7 +201,7 @@ export default function Fourier() {
           }
 
           // draw epicycles
-          if (epicycleThickness) {
+          if (epicycleThickness && !computing) {
             ctx.fillStyle = epicycleColor;
             ctx.strokeStyle = epicycleColor;
             ctx.lineWidth = epicycleThickness;
@@ -230,7 +237,7 @@ export default function Fourier() {
           }
 
           // draw trace
-          if (traceThickness) {
+          if (traceThickness && !computing) {
             ctx.strokeStyle = traceColor;
             ctx.lineCap = "round";
             ctx.globalAlpha = 1;
