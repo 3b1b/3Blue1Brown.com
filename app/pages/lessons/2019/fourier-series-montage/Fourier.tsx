@@ -349,7 +349,7 @@ export default function Fourier() {
               value={epicycleCount}
               onChange={setEpicycleCount}
               min={1}
-              max={1000}
+              max={10000}
               step={1}
             />
             <NumberBox
@@ -357,7 +357,7 @@ export default function Fourier() {
               value={_zoom}
               onChange={setZoom}
               min={0}
-              max={20}
+              max={50}
               step={0.1}
             />
             <NumberBox
@@ -395,7 +395,7 @@ export default function Fourier() {
               value={shapeThickness}
               onChange={setShapeThickness}
               min={0}
-              max={10}
+              max={20}
               step={0.1}
             />
             <NumberBox
@@ -403,7 +403,7 @@ export default function Fourier() {
               value={epicycleThickness}
               onChange={setEpicycleThickness}
               min={0}
-              max={10}
+              max={20}
               step={0.1}
             />
             <NumberBox
@@ -411,7 +411,7 @@ export default function Fourier() {
               value={traceThickness}
               onChange={setTraceThickness}
               min={0}
-              max={10}
+              max={20}
               step={0.1}
             />
 
