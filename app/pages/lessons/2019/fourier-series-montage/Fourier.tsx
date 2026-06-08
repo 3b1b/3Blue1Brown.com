@@ -11,6 +11,7 @@ import { clamp, startCase } from "lodash-es";
 import Button from "~/components/Button";
 import Canvas from "~/components/Canvas";
 import { ColorSelect } from "~/components/ColorSelect";
+import Link from "~/components/Link";
 import NumberBox from "~/components/NumberBox";
 import Select from "~/components/Select";
 import TextBox from "~/components/TextBox";
@@ -31,7 +32,7 @@ import { useComputation } from "./hooks";
 
 // import all shapes
 const [getShape, shapes] = importAssets(
-  import.meta.glob<{ default: string }>("./*.txt", {
+  import.meta.glob<{ default: string }>("./shapes/*.txt", {
     eager: true,
     query: "raw",
   }),
@@ -51,6 +52,14 @@ export default function Fourier() {
   // trace length
   const [traceLength, setTraceLength] = useState(500);
 
+  // parse out attribution from list text
+  const attribution = useMemo(
+    () => list.match(/^[\p{L} \-,]+$/mu)?.[0] ?? "",
+    [list],
+  );
+  // parse out link from list text
+  const link = useMemo(() => list.match(/^http.*$/m)?.[0] ?? "", [list]);
+
   // drawing mode
   const [drawing, setDrawing] = useState(false);
 
@@ -60,7 +69,7 @@ export default function Fourier() {
   const [traceColor, setTraceColor] = useState("#51c9ff");
 
   // line widths
-  const [shapeThickness, setShapeThickness] = useState(1);
+  const [shapeThickness, setShapeThickness] = useState(4);
   const [epicycleThickness, setEpicycleThickness] = useState(1);
   const [traceThickness, setTraceThickness] = useState(4);
 
@@ -424,6 +433,19 @@ export default function Fourier() {
           </div>
         </Tooltip>
       </div>
+
+      {/* attribution */}
+      {(attribution || link) && (
+        <div className="absolute top-4 right-4 z-10">
+          {attribution ? (
+            <>
+              Credit: <Link to={link}>{attribution}</Link>
+            </>
+          ) : (
+            <Link to={link}>Credit</Link>
+          )}
+        </div>
+      )}
     </>
   );
 }

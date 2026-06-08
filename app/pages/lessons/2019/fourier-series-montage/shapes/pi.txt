@@ -998,3 +998,5 @@
 14.54125	167.20152
 13.20632	170.48529
 11.85892	173.76398
+Wikimedia, public domain
+https://commons.wikimedia.org/wiki/File:Pi-symbol.svg
