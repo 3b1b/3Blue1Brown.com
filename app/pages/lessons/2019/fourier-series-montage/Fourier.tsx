@@ -136,9 +136,8 @@ export default function Fourier() {
               const [first, ...rest] = rawPoints;
               if (first && rest.length) {
                 ctx.beginPath();
-                ctx.moveTo(...transform(first).toArray(2));
-                for (const point of rest)
-                  ctx.lineTo(...transform(point).toArray(2));
+                ctx.moveTo(...first.toArray(2));
+                for (const point of rest) ctx.lineTo(...point.toArray(2));
                 ctx.closePath();
                 ctx.stroke();
               }
@@ -183,6 +182,10 @@ export default function Fourier() {
           // zoom scale
           const scale = size * zoom;
 
+          // transform point
+          const transform = (point: Vector) =>
+            point.subtract(translate).scale(scale);
+
           // draw shape
           if (shapeThickness) {
             ctx.strokeStyle = shapeColor;
@@ -192,9 +195,9 @@ export default function Fourier() {
             const [first, ...rest] = points;
             if (first && rest.length) {
               ctx.beginPath();
-              ctx.moveTo(...transform(first, translate, scale).toArray(2));
+              ctx.moveTo(...transform(first).toArray(2));
               for (const point of rest)
-                ctx.lineTo(...transform(point, translate, scale).toArray(2));
+                ctx.lineTo(...transform(point).toArray(2));
               ctx.closePath();
               ctx.stroke();
             }
@@ -207,8 +210,8 @@ export default function Fourier() {
             ctx.lineWidth = epicycleThickness;
             ctx.lineCap = "round";
             for (const segment of segments) {
-              const from = transform(segment.from, translate, scale);
-              const to = transform(segment.to, translate, scale);
+              const from = transform(segment.from);
+              const to = transform(segment.to);
               const length = to.subtract(from).length();
               const arrowSize = from.subtract(to).length(epicycleThickness * 8);
               const arrowLeft = to.add(arrowSize.rotate(20));
@@ -245,8 +248,8 @@ export default function Fourier() {
               ctx.lineWidth =
                 traceThickness * (1 - index / trace.current.length);
               ctx.beginPath();
-              ctx.moveTo(...transform(from, translate, scale).toArray(2));
-              ctx.lineTo(...transform(to, translate, scale).toArray(2));
+              ctx.moveTo(...transform(from).toArray(2));
+              ctx.lineTo(...transform(to).toArray(2));
               ctx.stroke();
             });
           }
@@ -456,7 +459,3 @@ export default function Fourier() {
     </>
   );
 }
-
-// transform point
-const transform = (point: Vector, translate = new Vector(), scale = 1) =>
-  point.subtract(translate).scale(scale);
