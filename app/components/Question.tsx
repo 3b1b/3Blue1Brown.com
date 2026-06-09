@@ -152,7 +152,7 @@ export default function Question({
         )}
       </div>
 
-      {state === "right" && (
+      {state === "right" && children && (
         <div className="flex flex-col gap-8 rounded-md bg-light-gray p-8">
           {children}
         </div>

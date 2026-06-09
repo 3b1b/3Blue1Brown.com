@@ -9,8 +9,7 @@ export const stringify = (object: unknown) => JSON.stringify(object, null, 2);
 
 // pass browser console logs to cli logs
 export const log = () => {
-  // https://docs.github.com/en/actions/reference/workflows-and-actions/variables
-  if (process.env.RUNNER_DEBUG)
+  if (process.env.DEBUG)
     test.beforeEach(({ page }) =>
       page.on("console", (msg) => console.info(msg.text())),
     );

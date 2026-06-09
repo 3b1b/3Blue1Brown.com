@@ -40,10 +40,11 @@ export default function Analytics() {
 // trigger custom event
 export const event = (name: string, params?: Record<string, unknown>) => {
   if (import.meta.env.DEV) {
+    console.debug("Analytics event (dev, not sent)", { name, params });
+  } else {
     console.debug("Analytics event", { name, params });
-    return;
+    window.gtag?.("event", name, params);
   }
-  window.gtag?.("event", name, params);
 };
 
 declare global {
