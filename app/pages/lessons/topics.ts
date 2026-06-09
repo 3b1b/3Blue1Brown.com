@@ -3,7 +3,7 @@ import _topics from "~/data/topics.json";
 import { byDate } from "~/pages/lessons/lessons";
 import { importAssets } from "~/util/import";
 
-// get topic image
+// import topic images
 const [getImage] = importAssets(
   import.meta.glob<{ default: string }>("./topics/*.webp", { eager: true }),
   undefined,

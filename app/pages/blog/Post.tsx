@@ -27,7 +27,7 @@ type RawPost = {
   frontmatter: RawPostFrontmatter;
 };
 
-// import all posts
+// import blog posts
 export const [getPost, posts] = importAssets(
   import.meta.glob<RawPost>("./**/index.mdx", { eager: true }),
   undefined,

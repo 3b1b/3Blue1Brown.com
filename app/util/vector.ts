@@ -45,13 +45,8 @@ export class Vector {
   }
 
   // run function for each component to create vector
-  static fromMap(func: (key: "x" | "y" | "z", index: 0 | 1 | 2) => number) {
-    return new Vector(func("x", 0), func("y", 1), func("z", 2));
-  }
-
-  // create vector with random components
-  static fromRandom(min = -1, max = 1) {
-    return Vector.fromMap(() => Math.random() * (max - min) + min);
+  static fromMap(func: () => number) {
+    return new Vector(func(), func(), func());
   }
 
   // ---------------------------------------------------------------------------
@@ -102,12 +97,12 @@ export class Vector {
     return new Vector(this.x - other.x, this.y - other.y, this.z - other.z);
   }
 
-  // multiply this vector by other vector
+  // multiply this vector by other vector (hadamard product)
   multiply(other: Vector) {
     return new Vector(this.x * other.x, this.y * other.y, this.z * other.z);
   }
 
-  // divide this vector by other vector
+  // divide this vector by other vector (hadamard division)
   divide(other: Vector) {
     return new Vector(this.x / other.x, this.y / other.y, this.z / other.z);
   }
@@ -155,11 +150,13 @@ export class Vector {
     return other.subtract(this).length();
   }
 
-  // angle from this vector to other vector
-  angle(other: Vector) {
-    return Vector.acos(
-      this.dot(other) / (this.length() * other.length() || Infinity),
-    );
+  // angle from this vector to other vector (3d) or from x-axis (2d)
+  angle(other?: Vector) {
+    if (other)
+      return Vector.acos(
+        this.dot(other) / (this.length() * other.length() || Infinity),
+      );
+    else return Vector.atan2(this.y, this.x);
   }
 
   // ---------------------------------------------------------------------------
@@ -252,11 +249,6 @@ export class Vector {
     else return this.x * other.y - this.y * other.x;
   }
 
-  // hadamard product of this vector with other vector
-  hadamard(other: Vector) {
-    return new Vector(this.x * other.x, this.y * other.y, this.z * other.z);
-  }
-
   // reflect this vector across plane defined by axis normal
   reflect(axis = new Vector(0, 0, 1)) {
     axis = axis.normalize();
@@ -303,24 +295,24 @@ export class Vector {
 
   // raise each component of this vector to power
   power(power = 2) {
-    return new Vector(this.x ** power, this.y ** power, this.z ** power);
+    return this.map((value) => value ** power);
   }
 
   // raise base to power of each component of this vector
   exp(base = Math.E) {
-    return new Vector(base ** this.x, base ** this.y, base ** this.z);
+    return this.map((value) => base ** value);
   }
 
-  // linear-interpolate this vector with other vector by amount [0,1]
-  mix(other: Vector, percent = 0.5) {
-    return new Vector(
-      this.x + percent * (other.x - this.x),
-      this.y + percent * (other.y - this.y),
-      this.z + percent * (other.z - this.z),
-    );
+  // linear-interpolate this vector with other vector by percent [0,1] or component-wise percent
+  mix(other: Vector, percent: number): Vector;
+  mix(other: Vector, percent: Vector): Vector;
+  mix(other: Vector, percent: number | Vector = 0.5) {
+    if (typeof percent === "number")
+      percent = new Vector(percent, percent, percent);
+    return this.add(other.subtract(this).multiply(percent));
   }
 
-  // limit each component of this vector between corresponding components of min/mvectors */
+  // limit each component of this vector between corresponding components of min/max vectors
   clamp(min: Vector, max: Vector) {
     return new Vector(
       Vector.clamp(this.x, min.x, max.x),
@@ -330,12 +322,8 @@ export class Vector {
   }
 
   // apply function to each component of this vector
-  map(func: (value: number, key: "x" | "y" | "z", index: 0 | 1 | 2) => number) {
-    return new Vector(
-      func(this.x, "x", 0),
-      func(this.y, "y", 1),
-      func(this.z, "z", 2),
-    );
+  map(func: (value: number) => number) {
+    return new Vector(func(this.x), func(this.y), func(this.z));
   }
 
   // ---------------------------------------------------------------------------
@@ -370,39 +358,65 @@ export class Vector {
     return new Vector(x, y, z);
   }
 
+  // scale list of vectors together to fit between min/max
+  static fit(
+    vectors: Vector[],
+    min = new Vector(-1, -1, -1),
+    max = new Vector(1, 1, 1),
+  ) {
+    const currentMin = Vector.min(vectors);
+    const currentMax = Vector.max(vectors);
+    const domain = currentMax.subtract(currentMin);
+    const range = max.subtract(min);
+    const percents = vectors.map((vector) =>
+      vector
+        .subtract(currentMin)
+        .divide(domain)
+        .map((value) => (Number.isFinite(value) ? value : 0.5)),
+    );
+    return percents.map((percent) => min.add(percent.multiply(range)));
+  }
+
   // ---------------------------------------------------------------------------
   // utility
   // ---------------------------------------------------------------------------
 
   // angle unit option
-  static angleUnit: "radians" | "degrees" = "degrees";
+  private static angleUnit: "radians" | "degrees" = "degrees";
 
   // convert radians to degrees
-  static toDeg = (angle: number) => angle * (180 / Math.PI);
+  private static toDeg = (angle: number) => angle * (180 / Math.PI);
   // convert degrees to radians
-  static toRad = (angle: number) => angle * (Math.PI / 180);
+  private static toRad = (angle: number) => angle * (Math.PI / 180);
 
   // sine of angle
-  static sin(angle: number) {
+  private static sin(angle: number) {
     if (Vector.angleUnit === "degrees") angle = Vector.toRad(angle);
     return Math.sin(angle);
   }
 
   // cosine of angle
-  static cos(angle: number) {
+  private static cos(angle: number) {
     if (Vector.angleUnit === "degrees") angle = Vector.toRad(angle);
     return Math.cos(angle);
   }
 
   // arccosine of value
-  static acos(value: number) {
+  private static acos(value: number) {
     let angle = Math.acos(value);
     if (Vector.angleUnit === "degrees") angle = Vector.toDeg(angle);
     return angle;
   }
 
+  // arctangent 2 of value
+  private static atan2(y: number, x: number) {
+    let angle = Math.atan2(y, x);
+    if (Vector.angleUnit === "degrees") angle = Vector.toDeg(angle);
+    return angle;
+  }
+
   // keep value between min and max
-  static clamp(value: number, min: number, max: number) {
+  private static clamp(value: number, min: number, max: number) {
     return Math.max(min, Math.min(max, value));
   }
 }

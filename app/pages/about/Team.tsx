@@ -3,7 +3,7 @@ import Portrait from "~/components/Portrait";
 import team from "~/data/team.json";
 import { importAssets } from "~/util/import";
 
-// get member portrait image
+// import member portrait images
 const [getImage] = importAssets(
   import.meta.glob<{ default: string }>("./portraits/*.jpg", { eager: true }),
   undefined,

@@ -73,6 +73,7 @@ export default function PiCreature({
   // if no bubble content, just render creature
   if (!children) return creature;
 
+  // classes on bubble element
   const bubbleClass = clsx(
     "absolute inset-0 -z-10 size-full",
     flip && "-scale-x-100",

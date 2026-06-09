@@ -135,6 +135,7 @@
     "title": "Computer Science",
     "description": "An assortment of topics related to algorithms",
     "lessons": [
+      "entropy",
       "wordle",
       "wordle-2",
       "bitcoin",

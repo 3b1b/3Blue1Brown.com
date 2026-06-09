@@ -14,12 +14,14 @@ export const importAssets = <Import, Transformed = Import>(
 ) => {
   // create map of name to import and original path
   const map = mapEntries(imports, (path, module) => [
+    // enforce lower-dash-case filenames
     slugify(nameFromPath(path, base)),
     { path, module },
   ]);
 
   // look up single import by name
   const getOne = (name: string): Transformed | undefined => {
+    // enforce lower-dash-case filenames
     name = slugify(name);
     const item = map[name];
     if (!item) return;
@@ -49,6 +51,7 @@ export const importAssetsAsync = <Import, Transformed = Import>(
 ) => {
   // map of asset name to import and original path
   const map = mapEntries(imports, (path, module) => [
+    // enforce lower-dash-case filenames
     slugify(nameFromPath(path, base)),
     { path, module },
   ]);
@@ -59,6 +62,7 @@ export const importAssetsAsync = <Import, Transformed = Import>(
 
   // look up single asset by name
   const getOne = (name: string): Promise<Transformed | undefined> => {
+    // enforce lower-dash-case filenames
     name = slugify(name);
 
     cache[name] ??= (async () => {
