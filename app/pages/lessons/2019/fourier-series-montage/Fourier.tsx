@@ -30,6 +30,13 @@ import {
 } from "./computation";
 import { useComputation } from "./hooks";
 
+// origin line lengths
+const originSize = 10;
+// height of arrow head relative to line thickness
+const arrowSize = 6;
+// arrow head flare angle
+const arrowAngle = 20;
+
 // import all shapes
 const [getShape, shapes] = importAssets(
   import.meta.glob<{ default: string }>("./shapes/*.txt", {
@@ -152,29 +159,22 @@ export default function Fourier() {
 
           // get epicycle segments
           let from = new Vector();
-          const segments = computing
-            ? []
-            : epicycles.map(({ frequency, amplitude, phase }) => {
-                // go out one tip
-                const to = from.add(
-                  new Vector(amplitude, 0).rotate(
-                    phase + frequency * time * points.length,
-                  ),
-                );
-                const segment = { from, to };
-                from = to;
-                return segment;
-              });
+          const segments = epicycles.map(({ frequency, amplitude, phase }) => {
+            // go out one tip
+            const to = from.add(
+              new Vector(amplitude, 0).rotate(
+                phase + frequency * time * points.length,
+              ),
+            );
+            const segment = { from, to };
+            from = to;
+            return segment;
+          });
 
-          if (computing)
-            // clear trace
-            trace.current = [];
-          else {
-            // add last point to trace
-            trace.current.unshift(from);
-            // limit trace length
-            trace.current.splice(traceLength);
-          }
+          // add last point to trace
+          trace.current.unshift(from);
+          // limit trace length
+          trace.current.splice(traceLength);
 
           // zoom center
           const translate = from.scale(smoothstep(zoom - 1));
@@ -204,32 +204,52 @@ export default function Fourier() {
           }
 
           // draw epicycles
-          if (epicycleThickness && !computing) {
+          if (epicycleThickness) {
             ctx.fillStyle = epicycleColor;
             ctx.strokeStyle = epicycleColor;
             ctx.lineWidth = epicycleThickness;
-            ctx.lineCap = "round";
+            ctx.lineCap = "butt";
+
+            // origin
+            {
+              const leg = originSize / scale;
+              ctx.beginPath();
+              ctx.moveTo(...transform(new Vector(leg, 0)).toArray(2));
+              ctx.lineTo(...transform(new Vector(-leg, 0)).toArray(2));
+              ctx.moveTo(...transform(new Vector(0, leg)).toArray(2));
+              ctx.lineTo(...transform(new Vector(0, -leg)).toArray(2));
+              ctx.stroke();
+            }
+
             for (const segment of segments) {
               const from = transform(segment.from);
               const to = transform(segment.to);
-              const length = to.subtract(from).length();
-              const arrowSize = from.subtract(to).length(epicycleThickness * 8);
-              const arrowLeft = to.add(arrowSize.rotate(20));
-              const arrowRight = to.add(arrowSize.rotate(-20));
+              const fromTo = to.subtract(from);
+              const length = fromTo.length();
               // don't draw beyond diminishing returns
               if (length < 1) break;
+              // arrow head
+              const head = fromTo.length(arrowSize * epicycleThickness);
+              // head flares
+              const left = to.add(head.rotate(180 + arrowAngle));
+              const right = to.add(head.rotate(180 - arrowAngle));
+              // bottom center of head
+              const base = from.add(
+                // pull back a bit so shaft doesn't overflow out of arrow tip
+                fromTo.extend(-(arrowSize * epicycleThickness) / 2),
+              );
               // stick
               ctx.globalAlpha = 1;
               ctx.beginPath();
               ctx.moveTo(...from.toArray(2));
-              ctx.lineTo(...to.toArray(2));
+              ctx.lineTo(...base.toArray(2));
               ctx.stroke();
               // arrow
               ctx.globalAlpha = 1;
               ctx.beginPath();
-              ctx.moveTo(...arrowLeft.toArray(2));
+              ctx.moveTo(...left.toArray(2));
               ctx.lineTo(...to.toArray(2));
-              ctx.lineTo(...arrowRight.toArray(2));
+              ctx.lineTo(...right.toArray(2));
               ctx.fill();
               // circle
               ctx.globalAlpha = 0.25;
@@ -240,7 +260,7 @@ export default function Fourier() {
           }
 
           // draw trace
-          if (traceThickness && !computing) {
+          if (traceThickness) {
             ctx.strokeStyle = traceColor;
             ctx.lineCap = "round";
             ctx.globalAlpha = 1;

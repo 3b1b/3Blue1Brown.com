@@ -12,7 +12,6 @@ import { zoom, zoomIdentity } from "d3-zoom";
 import Button from "~/components/Button";
 import NumberBox from "~/components/NumberBox";
 import Shader, { normalizeColor } from "~/components/Shader";
-import { Complex } from "~/util/complex";
 import { useUA } from "~/util/hooks";
 import { round } from "~/util/math";
 import source from "./newtons-fractal.frag?raw";
@@ -356,3 +355,37 @@ const getCoefficients = (roots: Complex[]) => {
       );
   return coefficients;
 };
+
+// basic complex number operations
+class Complex {
+  r: number;
+  i: number;
+
+  constructor(r: number, i: number) {
+    this.r = r;
+    this.i = i;
+  }
+
+  add(other: Complex) {
+    return new Complex(this.r + other.r, this.i + other.i);
+  }
+
+  subtract(other: Complex) {
+    return new Complex(this.r - other.r, this.i - other.i);
+  }
+
+  multiply(other: Complex) {
+    return new Complex(
+      this.r * other.r - this.i * other.i,
+      this.r * other.i + this.i * other.r,
+    );
+  }
+
+  divide(other: Complex) {
+    const denominator = other.r * other.r + other.i * other.i;
+    return new Complex(
+      (this.r * other.r + this.i * other.i) / denominator,
+      (this.i * other.r - this.r * other.i) / denominator,
+    );
+  }
+}

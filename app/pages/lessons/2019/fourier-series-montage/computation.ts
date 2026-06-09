@@ -82,29 +82,68 @@ export const fitPoints = (
   return Vector.fit(points).map((point) => point.multiply(multiply));
 };
 
-// get epicycles that reconstruct points with discrete fourier transform
-// https://www.jezzamon.com/fourier/
-// https://dsp.stackexchange.com/questions/59068/how-to-get-fourier-coefficients-to-draw-any-shape-using-dft
+// get epicycles that reconstruct points with fft
 const getEpicycles = (points: Vector[]) =>
-  range(0, points.length)
-    .map(
-      (frequency) =>
-        // map to degrees
-        360 *
-        // percent
-        (frequency / points.length -
-          // handle nyquist
-          (frequency > points.length / 2 ? 1 : 0)),
-    )
-    .map((frequency) => {
-      let result = new Vector();
-      points.forEach(
-        (point, index) =>
-          (result = result.add(point.rotate(-frequency * index))),
-      );
-      result = result.scale(1 / points.length);
-      return { frequency, amplitude: result.length(), phase: result.angle() };
-    });
+  fft(points).map((point, index, array) => {
+    const percent = index / array.length;
+    return {
+      frequency: 360 * (percent < 0.5 ? percent : percent - 1),
+      amplitude: point.length(),
+      phase: point.angle(),
+    };
+  });
+
+// fast fourier transform
+const fft = (points: Vector[]): Vector[] => {
+  const count = points.length;
+  // nearest upward power of 2
+  const size = 2 ** Math.ceil(Math.log2(count));
+
+  // resample points to fit power of 2
+  points = range(size).map((index) => {
+    const position = (index / size) * count;
+    const lowerIndex = Math.floor(position) % count;
+    const upperIndex = Math.ceil(position) % count;
+    const percent = position - lowerIndex;
+    const lower = points[lowerIndex] ?? new Vector();
+    const upper = points[upperIndex] ?? new Vector();
+    return lower.scale(1 - percent).add(upper.scale(percent));
+  });
+
+  // multiply complex numbers via vectors
+  const multiply = (a: Vector, b: Vector) =>
+    a.rotate(b.angle()).scale(b.length());
+
+  // complex exponential as vector rotation
+  const rotate = (angle: number) => new Vector(1, 0).rotate(angle);
+
+  // one level of recursion for each factor of 2
+  const recurse = (points: Vector[]) => {
+    const count = points.length;
+    if (count <= 1) return points;
+
+    // split even and odd frequencies, recursively solve smaller problems
+    const evens = recurse(points.filter((_, index) => index % 2 === 0));
+    const odds = recurse(points.filter((_, index) => index % 2 === 1));
+
+    const result: Vector[] = [];
+
+    // combine even and odd solutions
+    for (const frequency of range(count / 2)) {
+      const even = evens[frequency] ?? new Vector();
+      const odd = odds[frequency] ?? new Vector();
+      const angle = -360 * (frequency / count);
+      const term = multiply(rotate(angle), odd);
+      result[frequency] = even.add(term);
+      result[frequency + count / 2] = even.subtract(term);
+    }
+
+    return result;
+  };
+
+  // normalize by size of input
+  return recurse(points).map((point) => point.scale(1 / size));
+};
 
 // chaikin smoothing
 export const smoothPoints = (points: Vector[], level: number): Vector[] => {
