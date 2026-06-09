@@ -1,26 +1,14 @@
 import type { RefObject } from "react";
-import type { searchList, setList } from "~/util/fuzzy";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import {
-  useDebounce,
   useElementBounding,
   useEventListener,
   useWindowSize,
 } from "@reactuses/core";
-import { wrap } from "comlink";
-import { isEqual, mapValues, random } from "lodash-es";
+import { isEqual, mapValues } from "lodash-es";
 import { UAParser } from "ua-parser-js";
-import { celebrate } from "~/components/Celebrate";
-import { frame, sleep } from "~/util/async";
-import FuzzyWorker from "~/util/fuzzy?worker";
-import { Vector } from "~/util/vector";
+import { frame } from "~/util/async";
 
 // check if value changed from previous render
 export const useChanged = <Value>(
@@ -32,62 +20,6 @@ export const useChanged = <Value>(
   const changed = !isEqual(prev, value);
   if (changed) setPrev(value);
   return changed && (countUndefined || prev !== undefined);
-};
-
-// use search results with instant exact matches and async fuzzy matches
-export const useFuzzySearch = <Entry extends Record<string, unknown>>(
-  list: Entry[],
-  _search: string,
-  onSearch?: (search: string) => void,
-) => {
-  // debounce to avoid excessive work
-  const search = useDebounce(_search.trim(), 300);
-
-  // callback
-  useEffect(() => {
-    onSearch?.(search);
-  }, [search, onSearch]);
-
-  const client = useClient();
-
-  // create web worker thread
-  const worker = useMemo(
-    () =>
-      client
-        ? wrap<{
-            searchList: typeof searchList<Entry>;
-            setList: typeof setList<Entry>;
-          }>(new FuzzyWorker())
-        : undefined,
-    [client],
-  );
-
-  const [matches, setMatches] = useState<Entry[]>([]);
-
-  // set search list when input list changes
-  useEffect(() => {
-    if (!worker) return;
-    worker.setList(list);
-  }, [worker, list]);
-
-  // re-search when search changes
-  useEffect(() => {
-    if (!worker) return;
-    let latest = true;
-
-    (async () => {
-      if (!search) return setMatches(list);
-      const matches = await worker.searchList(search);
-      if (!latest) return;
-      setMatches(matches);
-    })();
-
-    return () => {
-      latest = false;
-    };
-  }, [worker, search, list]);
-
-  return matches;
 };
 
 // how much element is in view, in [-1,1]
@@ -225,24 +157,4 @@ export const usePrinting = () => {
   useEventListener("beforeprint", () => flushSync(() => setPrinting(true)));
   useEventListener("afterprint", () => flushSync(() => setPrinting(false)));
   return printing;
-};
-
-// ???
-export const useEgg = () => {
-  useEffect(() => {
-    (async () => {
-      const today = new Date();
-      let shape = "";
-      if (today.getMonth() + 1 === 3 && today.getDate() === 14) shape = "pi";
-      if (today.getMonth() + 1 === 6 && today.getDate() === 28) shape = "tau";
-      // shape = "pi";
-      if (!shape) return;
-      for (let bursts = 20; bursts > 0; bursts--) {
-        celebrate(shape, new Vector(random(-1, 1, true), random(-1, 1, true)));
-        await sleep(250);
-      }
-      await sleep(500);
-      celebrate(shape, new Vector(0, 0), 1);
-    })();
-  }, []);
 };

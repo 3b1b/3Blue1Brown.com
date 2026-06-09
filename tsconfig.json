@@ -2,12 +2,7 @@
   "compilerOptions": {
     // basic
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": [
-      "node",
-      "vite/client",
-      "mdx",
-      "vite-plugin-svgr/client"
-    ],
+    "types": ["node", "vite/client", "mdx", "vite-plugin-svgr/client"],
     "plugins": [{ "name": "@mdx-js/typescript-plugin" }],
     "target": "ESNext",
     "module": "ESNext",

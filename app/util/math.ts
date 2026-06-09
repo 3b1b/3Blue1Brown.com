@@ -1,3 +1,5 @@
+import { clamp } from "lodash-es";
+
 // 2 pi
 export const tau = 2 * Math.PI;
 
@@ -33,3 +35,9 @@ export const round = (
   multiple = 1,
   method: "round" | "floor" | "ceil" = "round",
 ) => Math[method](value / multiple) * multiple;
+
+// smooth interpolation between [0,1]
+export const smoothstep = (x: number) => {
+  x = clamp(x, 0, 1);
+  return 3 * x ** 2 - 2 * x ** 3;
+};

@@ -93,6 +93,9 @@ export default function TableOfContents() {
       scrollTo(activeRef.current, { behavior: "instant", block: "center" });
   });
 
+  // if only h1, no point in showing toc
+  if (headings.length < 2) return null;
+
   return (
     <aside
       ref={ref}

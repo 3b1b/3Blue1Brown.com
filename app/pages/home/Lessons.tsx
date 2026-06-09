@@ -23,8 +23,8 @@ import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
-import { useFuzzySearch } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
+import { useFuzzySearch } from "./hooks";
 
 const limit = 20;
 

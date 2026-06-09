@@ -11,7 +11,7 @@ export default function Hilbert() {
     <>
       <_Hilbert depth={depth} angle={angle} breaks={breaks} />
 
-      <div className="absolute top-0 left-0 flex items-end gap-4 p-4 text-black">
+      <div className="absolute top-0 left-0 flex items-end gap-4 p-4">
         <NumberBox
           label="Depth"
           value={depth}

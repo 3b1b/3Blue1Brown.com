@@ -2,7 +2,7 @@ import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import { importAssets } from "~/util/import";
 
-// get work image
+// import images
 const [getImage] = importAssets(
   import.meta.glob<{ default: string }>("./images/*.jpg", { eager: true }),
   undefined,

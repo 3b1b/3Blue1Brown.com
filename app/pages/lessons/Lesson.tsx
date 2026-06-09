@@ -68,7 +68,6 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
       source = "",
       chapter = -1,
       image = "",
-      read = true,
     },
   } = lesson;
 
@@ -203,7 +202,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
         </section>
 
         {/* toc */}
-        {read && <TableOfContents />}
+        <TableOfContents />
 
         {/* lesson content */}
         <Component />

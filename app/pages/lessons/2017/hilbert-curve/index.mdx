@@ -6,10 +6,16 @@ video: 3s7h2MHQtxc
 source: _2016/hilbert
 credits:
   - Lesson by Grant Sanderson
+  - Interactive by Vincent Rubinetti
+interactive: true
 ---
 
-import Hilbert from "./Hilbert.tsx";
+import { lazy } from "react";
+import Interactive from "~/components/Interactive";
 
-<section className="dark aspect-video bg-white text-white">
-  <Hilbert />
+<section className="dark h-screen">
+  <Interactive
+    Component={lazy(() => import("./Hilbert.tsx"))}
+    controls={false}
+  />
 </section>

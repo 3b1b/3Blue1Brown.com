@@ -2,12 +2,18 @@ import type { ComponentProps } from "react";
 import { useEffect, useEffectEvent, useRef } from "react";
 import {
   useDebounce,
+  useDocumentVisibility,
   useElementSize,
   useMergedRefs,
+  useMouse,
+  useMousePressed,
   useRafFn,
 } from "@reactuses/core";
+import { mean } from "d3";
 import { clamp } from "lodash-es";
+import { now } from "~/util/async";
 import { useBeenInView, useInView } from "~/util/hooks";
+import { Vector } from "~/util/vector";
 
 // max canvas buffer width/height, in px, to avoid memory crashes
 const maxWidth = 4000;
@@ -19,8 +25,9 @@ type Props = {
   // render frame
   render: (
     ctx: CanvasRenderingContext2D,
-    width: number,
-    height: number,
+    size: { width: number; height: number },
+    delta: number,
+    mouse: { position: Vector; pressed: boolean },
   ) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
@@ -37,14 +44,25 @@ export default function Canvas({
   const canvas = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D>(null);
 
+  // time tracking
+  const last = useRef(0);
+  const deltas = useRef<number[]>([]);
+
   // size of canvas, in css/dom px, debounced
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
   const clientWidth = useDebounce(clamp(_width, 0, maxWidth), 100);
   const clientHeight = useDebounce(clamp(_height, 0, maxHeight), 100);
 
+  // mouse props relative to canvas
+  const mousePosition = useMouse(canvas);
+  const mousePressed = useMousePressed(canvas);
+
   // is canvas in view
   const inView = useInView(canvas);
   const beenInView = useBeenInView(canvas);
+
+  // is document visible
+  const documentVisible = useDocumentVisibility("hidden") === "visible";
 
   // init context
   useEffect(() => {
@@ -52,17 +70,53 @@ export default function Canvas({
   }, []);
 
   // render frame
-  useRafFn(() => {
+  const [stop, start] = useRafFn(() => {
     if (!canvas.current || !ctx.current) return;
-    if (!inView) return;
+
+    // clear canvas
     ctx.current.clearRect(
       -clientWidth / 2,
       -clientHeight / 2,
       clientWidth,
       clientHeight,
     );
-    render(ctx.current, clientWidth, clientHeight);
+
+    // canvas size
+    const size = { width: clientWidth, height: clientHeight };
+
+    // time since last frame
+    const delta = last.current ? now() - last.current : 0;
+    last.current = now();
+    // treat long gaps (tabbed away, prompt, etc) as pause
+    if (delta > 250)
+      // reset smoothing to avoid huge jump
+      deltas.current = [];
+    else {
+      // record delta
+      deltas.current.unshift(delta);
+      // smoothing window
+      deltas.current.splice(100);
+    }
+    const smoothedDelta = mean(deltas.current) ?? 0;
+
+    // mouse props relative to center of canvas
+    const mouse = {
+      position: new Vector(
+        -clientWidth / 2 + mousePosition.elementX || 0,
+        -clientHeight / 2 + mousePosition.elementY || 0,
+      ),
+      pressed: mousePressed[0],
+    };
+
+    // call render func
+    render(ctx.current, size, smoothedDelta, mouse);
   });
+
+  // start/stop animation based on visibility
+  useEffect(() => {
+    if (documentVisible && inView) start();
+    else stop();
+  }, [start, stop, documentVisible, inView]);
 
   // prevent onChange from being dep of useEffect
   const _onChange = useEffectEvent(onChange);

@@ -37,7 +37,7 @@ export default function Grid({ className = "" }) {
   return (
     <Canvas
       className={clsx("absolute inset-0 -z-10 size-full", className)}
-      render={(ctx, width, height) => {
+      render={(ctx, { width, height }) => {
         if (!transform) return;
 
         // canvas size, cover
