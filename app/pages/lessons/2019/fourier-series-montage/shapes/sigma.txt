@@ -3998,5 +3998,3 @@
 97.44664	40.44551
 97.44609	40.08101
 97.44555	39.71650
-Wikimedia, public domain
-https://commons.wikimedia.org/wiki/File:Greek_uc_sigma.svg

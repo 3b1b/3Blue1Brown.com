@@ -3998,5 +3998,3 @@
 11.52015	174.58345
 11.18061	175.40196
 10.84015	176.22018
-Wikimedia, public domain
-https://commons.wikimedia.org/wiki/File:Pi-symbol.svg
