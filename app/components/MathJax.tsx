@@ -38,7 +38,7 @@ declare global {
   // eslint-disable-next-line -- for declaration merging
   interface Window {
     // https://github.com/mathjax/MathJax/issues/2385
-    // eslint-disable-next-line -- no public types available, too onerous and notworth it to manually type
+    // eslint-disable-next-line -- no public types available, too onerous and not worth it to manually type
     MathJax: any;
     MathJaxState?: boolean;
   }

@@ -1,4 +1,5 @@
 import type { RefObject } from "react";
+import type { Remote } from "comlink";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import {
@@ -6,6 +7,7 @@ import {
   useEventListener,
   useWindowSize,
 } from "@reactuses/core";
+import { wrap } from "comlink";
 import { isEqual, mapValues } from "lodash-es";
 import { UAParser } from "ua-parser-js";
 import { frame } from "~/util/async";
@@ -157,4 +159,51 @@ export const usePrinting = () => {
   useEventListener("beforeprint", () => flushSync(() => setPrinting(true)));
   useEventListener("afterprint", () => flushSync(() => setPrinting(false)));
   return printing;
+};
+
+// run async operation in worker, with status, error handling, de-dupe, etc.
+export const useWorker = <API, Data>(
+  Worker: new () => Worker,
+  func: (worker: Remote<API>) => Promise<Data>,
+) => {
+  const [data, setData] = useState<Data>();
+  const [status, setStatus] = useState<"loading" | "error" | "">("");
+
+  // run async operation
+  useEffect(() => {
+    // mark this run as latest
+    let latest = true;
+
+    // create new worker thread
+    const worker = new Worker();
+    const wrapper = wrap<API>(worker);
+
+    (async () => {
+      try {
+        setStatus("loading");
+
+        // run async operation in worker thread
+        const data = await func(wrapper);
+
+        // if this is still the latest run
+        if (latest) {
+          // success
+          setData(data);
+          setStatus("");
+        }
+      } catch (error) {
+        if (latest) setStatus("error");
+      }
+    })();
+
+    // cleanup func
+    return () => {
+      // mark this run as stale
+      latest = false;
+      // abort any pending work
+      worker.terminate();
+    };
+  }, [Worker, func]);
+
+  return [data, status] as const;
 };

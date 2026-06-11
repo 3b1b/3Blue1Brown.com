@@ -1,26 +1,21 @@
 import { expose } from "comlink";
 import Fuse from "fuse.js";
 
-// fuzzy search instance
-let searcher = new Fuse<unknown>([]);
-
-// set list to search through
-export const setList = <Entry extends Record<string, unknown>>(
+// fuzzy search list of entries
+export const search = <Entry extends Record<string, unknown>>(
   list: Entry[],
+  search: string,
 ) => {
   // search all top level keys
   const keys = [...new Set(list.flatMap((entry) => Object.keys(entry)))];
-  // re-init searcher
-  searcher = new Fuse<unknown>(list, {
+  // init searcher
+  const searcher = new Fuse<unknown>(list, {
     keys,
     threshold: 0.2,
     ignoreLocation: true,
   });
+  // return search results
+  return searcher.search(search).map(({ item }) => item);
 };
 
-// execute search
-export const searchList = <Entry extends Record<string, unknown>>(
-  search: string,
-) => (searcher as Fuse<Entry>).search(search).map(({ item }) => item);
-
-expose({ setList, searchList });
+expose({ search });

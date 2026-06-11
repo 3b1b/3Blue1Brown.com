@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import type { Remote } from "comlink";
+import type * as ComputationAPI from "./computation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CompassToolIcon,
   PaintBrushIcon,
@@ -17,6 +19,7 @@ import Select from "~/components/Select";
 import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import Upload from "~/components/Upload";
+import { useWorker } from "~/util/hooks";
 import { importAssets } from "~/util/import";
 import { smoothstep } from "~/util/math";
 import { Vector } from "~/util/vector";
@@ -28,7 +31,7 @@ import {
   smoothPoints,
   splitList,
 } from "./computation";
-import { useComputation } from "./hooks";
+import ComputationWorker from "./computation?worker";
 
 // origin line lengths
 const originSize = 10;
@@ -86,7 +89,14 @@ export default function Fourier() {
   const points = useMemo(() => fitPoints(rawPoints), [rawPoints]);
 
   // compute epicycles
-  const { epicycles, computing } = useComputation(points, epicycleCount);
+  const [epicycles = [], computing] = useWorker(
+    ComputationWorker,
+    useCallback(
+      (worker: Remote<typeof ComputationAPI>) =>
+        worker.compute(points, epicycleCount),
+      [points, epicycleCount],
+    ),
+  );
 
   // trail of points left by tip of epicycles
   const trace = useRef<Vector[]>([]);

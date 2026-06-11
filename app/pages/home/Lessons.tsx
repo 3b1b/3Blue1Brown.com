@@ -1,4 +1,6 @@
+import type { Remote } from "comlink";
 import type { TopicId } from "~/pages/lessons/topics";
+import type * as FuzzyAPI from "./fuzzy";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
 import {
@@ -11,6 +13,7 @@ import {
   PlayIcon,
   VideoCameraSlashIcon,
 } from "@phosphor-icons/react";
+import { useDebounce } from "@reactuses/core";
 import clsx from "clsx";
 import { useAtom, useAtomValue } from "jotai";
 import { event as analyticsEvent } from "~/components/Analytics";
@@ -23,8 +26,9 @@ import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
+import { useWorker } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
-import { useFuzzySearch } from "./hooks";
+import FuzzyWorker from "./fuzzy?worker";
 
 const limit = 20;
 
@@ -75,13 +79,22 @@ export function Search({ dialog = false, close = () => {} }) {
 
   // current search
   const [search, setSearch] = useAtom(searchAtom);
+  const debouncedSearch = useDebounce(search.trim(), 300);
 
   // search results
-  let results = useFuzzySearch(
-    lessons,
-    search,
-    // track analytics event
-    useCallback((search) => analyticsEvent("lesson_search", { search }), []),
+  let [results = []] = useWorker(
+    FuzzyWorker,
+    useCallback(
+      async (worker: Remote<typeof FuzzyAPI>) => {
+        // track analytics event
+        analyticsEvent("lesson_search", { search: debouncedSearch });
+        return (await worker.search(
+          lessons,
+          debouncedSearch,
+        )) as typeof lessons;
+      },
+      [lessons, debouncedSearch],
+    ),
   );
 
   // display certain topics in reverse order
