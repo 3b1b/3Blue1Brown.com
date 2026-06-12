@@ -1,16 +1,16 @@
-import type { ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { NumberField } from "@base-ui/react";
 import { CaretUpDownIcon, MinusIcon, PlusIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Help from "~/components/Help";
 
 type Props = {
-  // label
-  label: string;
-  // required
-  required?: boolean;
+  // label, optional if aria-label present
+  label?: ReactNode;
   // help content
   help?: ReactNode;
+  // required for form submission
+  required?: boolean;
   // min value
   min?: number;
   // max value
@@ -21,38 +21,41 @@ type Props = {
   value?: number;
   // on number state change
   onChange?: (value: number) => void;
-  // class on root
-  className?: string;
-};
+} & Omit<ComponentProps<"label">, "onChange">;
 
 // number input box
 export default function NumberBox({
   label,
-  required,
   help,
+  required,
   min,
   max,
   step,
   value,
   onChange,
   className,
+  ...props
 }: Props) {
   return (
     <NumberField.Root
       min={min}
       max={max}
       step={step}
+      smallStep={(step ?? 1) / 10}
+      largeStep={(step ?? 1) * 10}
       value={value}
       onValueChange={(value) => value !== null && onChange?.(value)}
       className={clsx("flex flex-col gap-2", className)}
       // eslint-disable-next-line -- control will be rendered as child of label
-      render={(props) => <label {...props} />}
+      render={(attrs) => <label {...attrs} {...props} />}
     >
-      <div className="flex items-center gap-2">
-        {label}
-        {help && <Help>{help}</Help>}
-        {required && <span className="text-error">*</span>}
-      </div>
+      {(label || help || required) && (
+        <div className="flex items-center gap-2">
+          {label}
+          {help && <Help>{help}</Help>}
+          {required && <span className="text-error">*</span>}
+        </div>
+      )}
       <NumberField.Group className="flex min-w-0 gap-2 rounded-md border border-gray bg-white p-3 leading-none text-black change-ring focus-within:outline-theme hover:outline-theme">
         <NumberField.Input className="w-12 grow outline-none" />
         <NumberField.Decrement className="text-xs hover:text-theme">

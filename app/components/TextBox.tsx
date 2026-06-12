@@ -8,10 +8,12 @@ import Help from "~/components/Help";
 type Props = Base & (Single | Multi);
 
 type Base = {
-  // label, optional if placeholder present
-  label?: string;
+  // label, optional if placeholder or aria-label present
+  label?: ReactNode;
   // help content
   help?: ReactNode;
+  // required for form submission
+  required?: boolean;
   // hint icon to show on side
   icon?: ReactElement;
   // text state
@@ -40,6 +42,7 @@ export default function TextBox({
   value,
   onChange,
   className,
+  required,
   ...props
 }: Props) {
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
@@ -93,27 +96,18 @@ export default function TextBox({
   );
 
   return (
-    <label
-      className={clsx(
-        "flex max-w-full flex-col gap-2",
-        !label && "contents",
-        className,
-      )}
-    >
-      {/* label */}
-      {(label || help) && (
+    <label className={clsx("flex max-w-full flex-col gap-2", className)}>
+      {(label || help || required) && (
         <div className="flex items-center gap-2">
           {label}
           {help && <Help>{help}</Help>}
-          {props.required && <span className="text-error">*</span>}
+          {required && <span className="text-error">*</span>}
         </div>
       )}
 
-      {/* container */}
       <div className="relative flex max-w-full items-start">
         {input}
 
-        {/* side elements */}
         <div
           ref={sideRef}
           className="absolute top-0 right-0 flex items-start text-gray *:grid *:size-12 *:place-items-center"

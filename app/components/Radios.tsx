@@ -9,14 +9,14 @@ type Props<O extends Option> = {
   label: ReactNode;
   // help content
   help?: ReactNode;
+  // required for form submission
+  required?: boolean;
   // pass with "as const"
   options: readonly O[];
   // selected option state
   value?: O["value"];
   // on selected option state change
   onChange?: (value: O["value"]) => void;
-  // required
-  required?: boolean;
 };
 
 type Option<Value = string> = {
@@ -29,10 +29,10 @@ type Option<Value = string> = {
 export default function Radios<O extends Option>({
   label,
   help,
+  required,
   options,
   value,
   onChange,
-  required,
 }: Props<O>) {
   return (
     <RadioGroup
