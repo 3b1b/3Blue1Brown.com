@@ -11,13 +11,14 @@ type Props = {
   value?: boolean;
   // on checked state change
   onChange?: (value: boolean) => void;
-  // label content
-  children: ReactNode;
+  // label content, optional if aria-label present
+  children?: ReactNode;
 } & Pick<ComponentProps<"label">, "className"> &
   Pick<ComponentProps<"input">, "required" | "name" | "form">;
 
 export default function CheckBox({
   help,
+  required,
   value,
   onChange,
   className,
@@ -51,7 +52,7 @@ export default function CheckBox({
       </div>
       {children}
       {help && <Help>{help}</Help>}
-      {props.required && <span className="text-error">*</span>}
+      {required && <span className="text-error">*</span>}
     </label>
   );
 }

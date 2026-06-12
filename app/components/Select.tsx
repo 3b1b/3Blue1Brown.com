@@ -1,13 +1,15 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, ReactNode } from "react";
 import { CaretDownIcon } from "@phosphor-icons/react";
 import clsx from "clsx";
 import Help from "~/components/Help";
 
 type Props<O extends Option> = {
-  // label content
-  label: string;
+  // label content, optional if aria-label present
+  label?: ReactNode;
   // help content
-  help?: string;
+  help?: ReactNode;
+  // required for form submission
+  required?: boolean;
   // pass with "as const"
   options: readonly O[];
   // selected option state
@@ -25,6 +27,7 @@ type Option<Value = string> = {
 export default function Select<O extends Option>({
   label,
   help,
+  required,
   value,
   onChange,
   options,
@@ -33,11 +36,13 @@ export default function Select<O extends Option>({
 }: Props<O>) {
   return (
     <label className="flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        {label}
-        {help && <Help>{help}</Help>}
-        {props.required && <span className="text-error">*</span>}
-      </div>
+      {(label || help || required) && (
+        <div className="flex items-center gap-2">
+          {label}
+          {help && <Help>{help}</Help>}
+          {required && <span className="text-error">*</span>}
+        </div>
+      )}
       <div
         className={clsx(
           "relative flex grow rounded-md bg-light-gray font-medium transition hocus:bg-theme/15",
@@ -48,7 +53,6 @@ export default function Select<O extends Option>({
           className="size-full h-12 appearance-none rounded-md p-3 pr-8"
           value={value}
           onChange={(event) => onChange?.(event.currentTarget.value)}
-          {...props}
           onKeyDown={(event) => {
             const element = event.currentTarget;
 
@@ -66,6 +70,7 @@ export default function Select<O extends Option>({
               onChange?.(options[element.selectedIndex]!.value);
             }
           }}
+          {...props}
         >
           {options.map((option, index) => (
             <option key={index} value={option.value}>

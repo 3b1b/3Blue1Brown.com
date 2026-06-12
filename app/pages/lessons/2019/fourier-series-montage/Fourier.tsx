@@ -33,13 +33,6 @@ import {
 } from "./computation";
 import ComputationWorker from "./computation?worker";
 
-// origin line lengths
-const originSize = 10;
-// height of arrow head relative to line thickness
-const arrowSize = 6;
-// arrow head flare angle
-const arrowAngle = 20;
-
 // import all shapes
 const [getShape, shapes] = importAssets(
   import.meta.glob<{ default: string }>("./shapes/*.txt", {
@@ -54,13 +47,15 @@ export default function Fourier() {
   // text list of coordinates in shape
   const [list, setList] = useState(getShape("pi") ?? "");
   // how many epicycles to use
-  const [epicycleCount, setEpicycleCount] = useState(1000);
+  const [epicycleCount, setEpicycleCount] = useState(100);
   // zoom into tip
-  const [_zoom, setZoom] = useState(0);
+  const [zoom, setZoom] = useState(0);
   // animation speed
   const [speed, setSpeed] = useState(100);
   // trace length
   const [traceLength, setTraceLength] = useState(500);
+  // which epicycle to follow with zoom and highlight
+  const [highlight, setHighlight] = useState(-1);
 
   // parse out attribution from list text
   const attribution = useMemo(
@@ -77,11 +72,13 @@ export default function Fourier() {
   const [shapeColor, setShapeColor] = useState("#fa8072");
   const [epicycleColor, setEpicycleColor] = useState("#ffffff");
   const [traceColor, setTraceColor] = useState("#51c9ff");
+  const [highlightColor, setHighlightColor] = useState("#ffea00");
 
   // line widths
   const [shapeThickness, setShapeThickness] = useState(2);
   const [epicycleThickness, setEpicycleThickness] = useState(1);
   const [traceThickness, setTraceThickness] = useState(4);
+  const [highlightThickness, setHighlightThickness] = useState(2);
 
   // convert list to points
   const rawPoints = useMemo(() => splitList(list), [list]);
@@ -109,9 +106,6 @@ export default function Fourier() {
   // animation time
   const _time = useRef(0);
 
-  // power zoom
-  const zoom = 2 ** _zoom;
-
   // stop drawing and process drawn points
   const stopDrawing = () => {
     if (!drawing) return;
@@ -121,6 +115,12 @@ export default function Fourier() {
     points = resamplePoints(points, 2000);
     setList(joinList(points));
   };
+
+  // highlighted epicycle
+  const highlighted =
+    highlight !== -1 && highlight !== epicycles.length
+      ? epicycles.at(highlight)
+      : null;
 
   return (
     <>
@@ -136,9 +136,8 @@ export default function Fourier() {
         )}
         onPointerUp={stopDrawing}
         render={(ctx, { width, height }, delta, { position, pressed }) => {
-          // return;
           // canvas size, contain
-          const size = Math.min(width, height) / 3;
+          const size = Math.min(width, height) / 2 - 100;
 
           // drawing mode
           if (drawing) {
@@ -147,10 +146,13 @@ export default function Fourier() {
 
             // draw shape
             if (shapeThickness) {
+              // styles
+              ctx.globalAlpha = 0.5;
+              ctx.fillStyle = shapeColor;
               ctx.strokeStyle = shapeColor;
               ctx.lineWidth = shapeThickness;
-              ctx.lineCap = "butt";
-              ctx.globalAlpha = 0.5;
+
+              // path
               const [first, ...rest] = rawPoints;
               if (first && rest.length) {
                 ctx.beginPath();
@@ -165,33 +167,36 @@ export default function Fourier() {
           }
 
           // advance time
-          const time = (_time.current +=
-            ((delta / 1000) * (speed / 1000)) / zoom ** 0.5);
+          const time = (_time.current += (delta / 1000) * (speed / 1000));
 
           // get epicycle segments
-          let from = new Vector();
+          let tip = new Vector();
           const segments = epicycles.map(({ frequency, amplitude, phase }) => {
             // go out one tip
-            const to = from.add(
+            const to = tip.add(
               new Vector(amplitude, 0).rotate(
                 phase + frequency * time * points.length,
               ),
             );
-            const segment = { from, to };
-            from = to;
+            const segment = { from: tip, to };
+            tip = to;
             return segment;
           });
 
           // add last point to trace
-          trace.current.unshift(from);
+          trace.current.unshift(tip);
           // limit trace length
           trace.current.splice(traceLength);
 
           // zoom center
-          const translate = from.scale(smoothstep(zoom - 1));
+          const center = segments.at(highlight)?.from ?? tip;
+
+          // zoom translate
+          const translate =
+            center.scale(smoothstep(2 ** zoom - 1)) ?? new Vector();
 
           // zoom scale
-          const scale = size * zoom;
+          const scale = size * 2 ** zoom;
 
           // transform point
           const transform = (point: Vector) =>
@@ -199,10 +204,13 @@ export default function Fourier() {
 
           // draw shape
           if (shapeThickness) {
+            // styles
+            ctx.globalAlpha = 0.5;
+            ctx.fillStyle = shapeColor;
             ctx.strokeStyle = shapeColor;
             ctx.lineWidth = shapeThickness;
-            ctx.lineCap = "butt";
-            ctx.globalAlpha = 0.5;
+
+            // path
             const [first, ...rest] = points;
             if (first && rest.length) {
               ctx.beginPath();
@@ -216,45 +224,70 @@ export default function Fourier() {
 
           // draw epicycles
           if (epicycleThickness) {
-            ctx.fillStyle = epicycleColor;
-            ctx.strokeStyle = epicycleColor;
-            ctx.lineWidth = epicycleThickness;
-            ctx.lineCap = "butt";
-
             // origin
             {
-              const leg = originSize / scale;
+              // styles
+              ctx.globalAlpha = 0.1;
+              ctx.fillStyle = epicycleColor;
+              ctx.strokeStyle = epicycleColor;
+              ctx.lineWidth = epicycleThickness;
+
+              // lines
               ctx.beginPath();
-              ctx.moveTo(...transform(new Vector(leg, 0)).toArray(2));
-              ctx.lineTo(...transform(new Vector(-leg, 0)).toArray(2));
-              ctx.moveTo(...transform(new Vector(0, leg)).toArray(2));
-              ctx.lineTo(...transform(new Vector(0, -leg)).toArray(2));
+              ctx.moveTo(...transform(new Vector(1, 0)).toArray(2));
+              ctx.lineTo(...transform(new Vector(-1, 0)).toArray(2));
+              ctx.moveTo(...transform(new Vector(0, 1)).toArray(2));
+              ctx.lineTo(...transform(new Vector(0, -1)).toArray(2));
               ctx.stroke();
             }
 
-            for (const segment of segments) {
+            // put highlighted segment at end so it's drawn on top
+            segments.push(...segments.splice(highlight, 1));
+
+            // height of arrow head relative to line thickness
+            const arrowSize = 10;
+            // arrow head flare angle
+            const arrowAngle = 20;
+
+            for (const [index, segment] of Object.entries(segments)) {
+              // last segment highlighted
+              const highlighted = Number(index) === segments.length - 1;
+
+              // styles
+              const color = highlighted ? highlightColor : epicycleColor;
+              const thickness = highlighted
+                ? highlightThickness
+                : epicycleThickness;
+              ctx.fillStyle = color;
+              ctx.strokeStyle = color;
+              ctx.lineWidth = thickness;
+
+              // get points
               const from = transform(segment.from);
               const to = transform(segment.to);
               const fromTo = to.subtract(from);
               const length = fromTo.length();
+
               // don't draw beyond diminishing returns
-              if (length < 1) break;
+              if (length < 1) continue;
               // arrow head
-              const head = fromTo.length(arrowSize * epicycleThickness);
+              const head = fromTo.length(arrowSize * thickness);
               // head flares
               const left = to.add(head.rotate(180 + arrowAngle));
               const right = to.add(head.rotate(180 - arrowAngle));
               // bottom center of head
               const base = from.add(
                 // pull back a bit so shaft doesn't overflow out of arrow tip
-                fromTo.extend(-(arrowSize * epicycleThickness) / 2),
+                fromTo.extend(-(arrowSize * thickness) / 2),
               );
+
               // stick
               ctx.globalAlpha = 1;
               ctx.beginPath();
               ctx.moveTo(...from.toArray(2));
               ctx.lineTo(...base.toArray(2));
               ctx.stroke();
+
               // arrow
               ctx.globalAlpha = 1;
               ctx.beginPath();
@@ -262,8 +295,9 @@ export default function Fourier() {
               ctx.lineTo(...to.toArray(2));
               ctx.lineTo(...right.toArray(2));
               ctx.fill();
+
               // circle
-              ctx.globalAlpha = 0.25;
+              ctx.globalAlpha = highlighted ? 1 : 0.25;
               ctx.beginPath();
               ctx.arc(...from.toArray(2), length, 0, 2 * Math.PI);
               ctx.stroke();
@@ -272,9 +306,14 @@ export default function Fourier() {
 
           // draw trace
           if (traceThickness) {
-            ctx.strokeStyle = traceColor;
-            ctx.lineCap = "round";
+            // styles
             ctx.globalAlpha = 1;
+            ctx.fillStyle = traceColor;
+            ctx.strokeStyle = traceColor;
+            ctx.lineWidth = traceThickness;
+            ctx.lineCap = "round";
+
+            // path
             pairs(trace.current).forEach(([from, to], index) => {
               ctx.lineWidth =
                 traceThickness * (1 - index / trace.current.length);
@@ -283,6 +322,9 @@ export default function Fourier() {
               ctx.lineTo(...transform(to).toArray(2));
               ctx.stroke();
             });
+
+            // unset styles
+            ctx.lineCap = "butt";
           }
         }}
       />
@@ -299,7 +341,7 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="flex w-80 flex-col gap-4 p-4">
+          <div className="flex w-80 flex-col gap-4">
             <Select
               label="Shape"
               value={
@@ -377,7 +419,7 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="grid grid-cols-[max-content_auto] items-center gap-4 p-4 [&_label]:contents">
+          <div className="grid w-full grid-cols-[auto_1fr] items-center gap-4 *:contents">
             <NumberBox
               label="Epicycles"
               value={epicycleCount}
@@ -388,10 +430,14 @@ export default function Fourier() {
             />
             <NumberBox
               label="Zoom"
-              value={_zoom}
-              onChange={setZoom}
+              value={zoom}
+              onChange={(zoom) => {
+                setZoom(zoom);
+                // link speed to zoom
+                setSpeed(100 / (2 ** zoom) ** 0.5);
+              }}
               min={0}
-              max={50}
+              max={20}
               step={0.1}
             />
             <NumberBox
@@ -410,7 +456,40 @@ export default function Fourier() {
               max={10000}
               step={10}
             />
+            <NumberBox
+              label="Highlight"
+              value={highlight}
+              onChange={(value) => {
+                setHighlight(value);
+                if (zoom === 0) setZoom(1);
+              }}
+              min={-epicycles.length}
+              max={epicycles.length}
+              step={1}
+            />
           </div>
+
+          <div />
+
+          {highlighted && (
+            <div className="grid grid-cols-[auto_auto] items-center gap-4">
+              <strong className="col-span-full">
+                Epicycle{" "}
+                {highlight >= 0 ? highlight : epicycles.length + highlight}
+              </strong>
+              <span>Frequency</span>
+              <span>{highlighted.frequency.toFixed(2)} Hz</span>
+              <span>Amplitude</span>
+              <span>
+                {(highlighted.amplitude * 100).toFixed(
+                  Math.floor(5 / (100 * highlighted.amplitude + 1)),
+                )}
+                %
+              </span>
+              <span>Phase</span>
+              <span>{highlighted.phase.toFixed(0)}°</span>
+            </div>
+          )}
         </Tooltip>
 
         {/* styles */}
@@ -423,46 +502,69 @@ export default function Fourier() {
             </Button>
           }
         >
-          <div className="grid grid-flow-col grid-rows-[repeat(6,auto)] items-center gap-x-8 gap-y-4 p-4 [&_label]:contents">
+          <div className="grid grid-cols-[auto_auto_auto] items-center gap-4">
+            <div />
+            <div>Thickness</div>
+            <div>Color</div>
+
+            <div>Shape</div>
             <NumberBox
-              label="Shape Thickness"
+              aria-label="Shape Thickness"
               value={shapeThickness}
               onChange={setShapeThickness}
               min={0}
-              max={20}
-              step={0.1}
+              max={10}
             />
-            <NumberBox
-              label="Epicycle Thickness"
-              value={epicycleThickness}
-              onChange={setEpicycleThickness}
-              min={0}
-              max={20}
-              step={0.1}
-            />
-            <NumberBox
-              label="Trace Thickness"
-              value={traceThickness}
-              onChange={setTraceThickness}
-              min={0}
-              max={20}
-              step={0.1}
-            />
-
             <ColorSelect
-              label="Shape Color"
+              className="justify-self-center"
+              aria-label="Shape Color"
               value={shapeColor}
               onChange={setShapeColor}
             />
+
+            <div>Epicycles</div>
+            <NumberBox
+              aria-label="Epicycle Thickness"
+              value={epicycleThickness}
+              onChange={setEpicycleThickness}
+              min={0}
+              max={10}
+            />
             <ColorSelect
-              label="Epicycle Color"
+              className="justify-self-center"
+              aria-label="Epicycle Color"
               value={epicycleColor}
               onChange={setEpicycleColor}
             />
+
+            <div>Trace</div>
+            <NumberBox
+              aria-label="Trace Thickness"
+              value={traceThickness}
+              onChange={setTraceThickness}
+              min={0}
+              max={10}
+            />
             <ColorSelect
-              label="Trace Color"
+              className="justify-self-center"
+              aria-label="Trace Color"
               value={traceColor}
               onChange={setTraceColor}
+            />
+
+            <div>Highlight</div>
+            <NumberBox
+              aria-label="Highlight Thickness"
+              value={highlightThickness}
+              onChange={setHighlightThickness}
+              min={0}
+              max={10}
+            />
+            <ColorSelect
+              className="justify-self-center"
+              aria-label="Highlight Color"
+              value={highlightColor}
+              onChange={setHighlightColor}
             />
           </div>
         </Tooltip>
