@@ -5,15 +5,12 @@ import {
   useDocumentVisibility,
   useElementSize,
   useMergedRefs,
-  useMouse,
-  useMousePressed,
   useRafFn,
 } from "@reactuses/core";
 import { mean } from "d3";
 import { clamp } from "lodash-es";
 import { now } from "~/util/async";
 import { useBeenInView, useInView } from "~/util/hooks";
-import { Vector } from "~/util/vector";
 
 // max canvas buffer width/height, in px, to avoid memory crashes
 const maxWidth = 4000;
@@ -27,7 +24,6 @@ type Props = {
     ctx: CanvasRenderingContext2D,
     size: { width: number; height: number },
     delta: number,
-    mouse: { position: Vector; pressed: boolean },
   ) => void;
   // called when canvas size changes, return cleanup function if needed
   onChange?: (width: number, height: number) => (() => void) | void;
@@ -52,10 +48,6 @@ export default function Canvas({
   const [_width, _height] = useElementSize(canvas, { box: "border-box" });
   const clientWidth = useDebounce(clamp(_width, 0, maxWidth), 100);
   const clientHeight = useDebounce(clamp(_height, 0, maxHeight), 100);
-
-  // mouse props relative to canvas
-  const mousePosition = useMouse(canvas);
-  const mousePressed = useMousePressed(canvas);
 
   // is canvas in view
   const inView = useInView(canvas);
@@ -99,17 +91,8 @@ export default function Canvas({
     }
     const smoothedDelta = mean(deltas.current) ?? 0;
 
-    // mouse props relative to center of canvas
-    const mouse = {
-      position: new Vector(
-        -clientWidth / 2 + mousePosition.elementX || 0,
-        -clientHeight / 2 + mousePosition.elementY || 0,
-      ),
-      pressed: mousePressed[0],
-    };
-
     // call render func
-    render(ctx.current, size, smoothedDelta, mouse);
+    render(ctx.current, size, smoothedDelta);
   });
 
   // start/stop animation based on visibility

@@ -1,7 +1,6 @@
 import { expose } from "comlink";
 import { pairs } from "d3";
 import { orderBy, range } from "lodash-es";
-import { downloadTxt } from "~/util/download";
 import { Vector } from "~/util/vector";
 
 export const compute = (points: Vector[], epicycleCount: number) => {
@@ -105,11 +104,15 @@ const getEpicycles = (points: Vector[]) =>
     };
   });
 
+// round up to nearest power of 2
+export const nearestPowerOfTwo = (value: number) =>
+  2 ** Math.ceil(Math.log2(value));
+
 // fast fourier transform
 const fft = (points: Vector[]): Vector[] => {
   const count = points.length;
   // nearest upward power of 2
-  const size = 2 ** Math.ceil(Math.log2(count));
+  const size = nearestPowerOfTwo(count);
 
   // resample points to fit power of 2
   points = resamplePoints(points, size);
@@ -168,12 +171,16 @@ export const resamplePoints = (points: Vector[], count: number): Vector[] => {
   // calculate cumulative distances between each pair of points
   let start = 0;
   let end = 0;
-  const segments = pairs(points).map(([from, to]) => {
-    end += from.distance(to);
-    const segment = { from, start, to, end };
-    start = end;
-    return segment;
-  });
+  const segments = pairs(points)
+    .map(([from, to]) => {
+      const distance = from.distance(to);
+      end += distance;
+      if (!distance) return;
+      const segment = { from, start, to, end };
+      start = end;
+      return segment;
+    })
+    .filter((segment) => !!segment);
   const total = end;
 
   // for each input point
@@ -190,24 +197,22 @@ export const resamplePoints = (points: Vector[], count: number): Vector[] => {
   });
 };
 
-// dev tool
-if (import.meta.env.DEV)
-  // convert all svgs to points
-  addEventListener("keydown", (event) => {
-    if (event.key !== "c") return;
-    const svgs = import.meta.glob<{ default: string }>("./svgs/*.svg", {
-      eager: true,
-      query: "raw",
-    });
-    const counts: Record<string, number> = {
-      hilbert: 10000,
-      portrait: 10000,
-    };
-    for (const [key, source] of Object.entries(svgs)) {
-      const [, name = ""] = key.match(/svgs\/(.*)\.svg/) ?? [];
-      if (!name) continue;
-      const count = counts[name] ?? 4000;
-      const list = parseSvg(source.default, count);
-      downloadTxt(list, name);
-    }
-  });
+// convert all svgs to points (dev tool)
+// addEventListener("keydown", (event) => {
+//   if (event.key !== "c") return;
+//   const svgs = import.meta.glob<{ default: string }>("./svgs/*.svg", {
+//     eager: true,
+//     query: "raw",
+//   });
+//   const counts: Record<string, number> = {
+//     hilbert: 10000,
+//     portrait: 10000,
+//   };
+//   for (const [key, source] of Object.entries(svgs)) {
+//     const [, name = ""] = key.match(/svgs\/(.*)\.svg/) ?? [];
+//     if (!name) continue;
+//     const count = counts[name] ?? 4000;
+//     const list = parseSvg(source.default, count);
+//     downloadTxt(list, name);
+//   }
+// });
