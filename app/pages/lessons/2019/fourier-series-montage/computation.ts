@@ -98,6 +98,7 @@ const getEpicycles = (points: Vector[]) =>
   fft(points).map((point, index, array) => {
     const percent = index / array.length;
     return {
+      // wrap above nyquist frequency
       frequency: 360 * (percent < 0.5 ? percent : percent - 1),
       amplitude: point.length(),
       phase: point.angle(),

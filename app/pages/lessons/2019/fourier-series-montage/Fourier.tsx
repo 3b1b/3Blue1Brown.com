@@ -50,14 +50,14 @@ export default function Fourier() {
   const [list, setList] = useState(getShape("pi") ?? "");
   // how many epicycles to use
   const [epicycleCount, setEpicycleCount] = useState(100);
-  // zoom into tip
+  // which epicycle to follow with zoom and highlight
+  const [highlight, setHighlight] = useState(-1);
+  // zoom into highlighted epicycle
   const [zoom, setZoom] = useState(0);
   // animation speed
   const [speed, setSpeed] = useState(1);
   // trace decay time
   const [traceDecay, setTraceDecay] = useState(5);
-  // which epicycle to follow with zoom and highlight
-  const [highlight, setHighlight] = useState(-1);
 
   // parse out attribution from list text
   const attribution = useMemo(
@@ -174,16 +174,14 @@ export default function Fourier() {
           }
 
           // advance time
-          time.current += (delta / 1000) * (speed / 10);
+          time.current += points.length * (delta / 1000) * (speed / 10);
 
           // get epicycle segments
           let tip = new Vector();
           const segments = epicycles.map(({ frequency, amplitude, phase }) => {
             // go out one tip
             const to = tip.add(
-              new Vector(amplitude, 0).rotate(
-                phase + frequency * time.current * points.length,
-              ),
+              new Vector(amplitude, 0).rotate(phase + frequency * time.current),
             );
             const segment = { from: tip, to };
             tip = to;
@@ -424,6 +422,14 @@ export default function Fourier() {
               step={1}
             />
             <NumberBox
+              label="Highlight"
+              value={highlight}
+              onChange={setHighlight}
+              min={-epicycles.length}
+              max={epicycles.length}
+              step={1}
+            />
+            <NumberBox
               label="Zoom"
               value={zoom}
               onChange={(zoom) => {
@@ -451,14 +457,6 @@ export default function Fourier() {
               max={0}
               step={0.1}
             />
-            <NumberBox
-              label="Highlight"
-              value={highlight}
-              onChange={setHighlight}
-              min={-epicycles.length}
-              max={epicycles.length}
-              step={1}
-            />
           </div>
 
           <div />
@@ -470,7 +468,7 @@ export default function Fourier() {
                 {highlight >= 0 ? highlight : epicycles.length + highlight}
               </strong>
               <span>Frequency</span>
-              <span>{highlighted.frequency.toFixed(2)} Hz</span>
+              <span>{((100 * highlighted.frequency) / 180).toFixed(2)}%</span>
               <span>Amplitude</span>
               <span>
                 {(highlighted.amplitude * 100).toFixed(
