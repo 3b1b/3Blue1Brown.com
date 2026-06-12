@@ -1,6 +1,7 @@
 import { expose } from "comlink";
 import { pairs } from "d3";
 import { orderBy, range } from "lodash-es";
+import { downloadTxt } from "~/util/download";
 import { Vector } from "~/util/vector";
 
 export const compute = (points: Vector[], epicycleCount: number) => {
@@ -19,19 +20,30 @@ export const compute = (points: Vector[], epicycleCount: number) => {
   return epicycles;
 };
 
-// convert svg path to list of evenly spaced points
-export const samplePath = (d: string, count: number) => {
-  // make svg element
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", d);
+expose({ compute });
 
-  // sample points along path
+// parse svg source
+export const parseSvg = (source: string, count: number) => {
+  // parse svg
+  const parser = new DOMParser();
+  const svg = parser.parseFromString(source, "image/svg+xml");
+  const path = svg.querySelector("path");
+  if (!path) return "";
+
+  // get path points
   const length = path.getTotalLength();
   const points = range(count).map((index) =>
     Vector.fromObject(path.getPointAtLength(length * (index / count))),
   );
+  let list = joinList(points);
 
-  return points;
+  // parse metadata
+  for (const tag of ["title", "desc"]) {
+    const meta = svg.querySelector(tag)?.textContent?.trim();
+    if (meta) list = list.concat("\n", meta);
+  }
+
+  return list;
 };
 
 // split list of coordinates into vectors
@@ -100,15 +112,7 @@ const fft = (points: Vector[]): Vector[] => {
   const size = 2 ** Math.ceil(Math.log2(count));
 
   // resample points to fit power of 2
-  points = range(size).map((index) => {
-    const position = (index / size) * count;
-    const lowerIndex = Math.floor(position) % count;
-    const upperIndex = Math.ceil(position) % count;
-    const percent = position - lowerIndex;
-    const lower = points[lowerIndex] ?? new Vector();
-    const upper = points[upperIndex] ?? new Vector();
-    return lower.scale(1 - percent).add(upper.scale(percent));
-  });
+  points = resamplePoints(points, size);
 
   // multiply complex numbers via vectors
   const multiply = (a: Vector, b: Vector) =>
@@ -157,35 +161,53 @@ export const smoothPoints = (points: Vector[], level: number): Vector[] => {
   return level === 1 ? smoothed : smoothPoints(smoothed, level - 1);
 };
 
-// arc-length parameterization to get evenly spaced points
+// arc-length parameterization to get certain amount of evenly spaced points
 export const resamplePoints = (points: Vector[], count: number): Vector[] => {
   if (points.length < 2) return points;
 
-  // cumulative arc-lengths
-  let total = 0;
-  const lengths = pairs(points).map(
-    ([from, to]) => (total += from.distance(to)),
-  );
+  // calculate cumulative distances between each pair of points
+  let start = 0;
+  let end = 0;
+  const segments = pairs(points).map(([from, to]) => {
+    end += from.distance(to);
+    const segment = { from, start, to, end };
+    start = end;
+    return segment;
+  });
+  const total = end;
 
+  // for each input point
   return range(count).map((index) => {
     // target length along path
     const target = (index / count) * total;
-    for (let index = 1; index < lengths.length; index++) {
-      // find first segment that surpasses target length
-      if ((lengths[index] ?? 0) >= target) {
-        const lowerLength = lengths[index - 1];
-        const upperLength = lengths[index];
-        if (!lowerLength || !upperLength) continue;
-        const lowerPoint = points[index - 1];
-        const upperPoint = points[index];
-        if (!lowerPoint || !upperPoint) continue;
-        // interpolate along segment
-        const percent = (target - lowerLength) / (upperLength - lowerLength);
-        return lowerPoint.mix(upperPoint, percent);
-      }
-    }
-    return new Vector();
+    // find segment that target falls between
+    const segment = segments.find(({ end }) => target <= end);
+    if (!segment) return new Vector();
+    const { from, start, to, end } = segment;
+    // mix between those points based on where target falls between their lengths
+    const mix = (target - start) / (end - start);
+    return from.mix(to, mix);
   });
 };
 
-expose({ compute });
+// dev tool
+if (import.meta.env.DEV)
+  // convert all svgs to points
+  addEventListener("keydown", (event) => {
+    if (event.key !== "c") return;
+    const svgs = import.meta.glob<{ default: string }>("./svgs/*.svg", {
+      eager: true,
+      query: "raw",
+    });
+    const counts: Record<string, number> = {
+      hilbert: 10000,
+      portrait: 10000,
+    };
+    for (const [key, source] of Object.entries(svgs)) {
+      const [, name = ""] = key.match(/svgs\/(.*)\.svg/) ?? [];
+      if (!name) continue;
+      const count = counts[name] ?? 4000;
+      const list = parseSvg(source.default, count);
+      downloadTxt(list, name);
+    }
+  });

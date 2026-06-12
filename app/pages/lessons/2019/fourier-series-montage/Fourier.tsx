@@ -26,8 +26,8 @@ import { Vector } from "~/util/vector";
 import {
   fitPoints,
   joinList,
+  parseSvg,
   resamplePoints,
-  samplePath,
   smoothPoints,
   splitList,
 } from "./computation";
@@ -136,6 +136,7 @@ export default function Fourier() {
         )}
         onPointerUp={stopDrawing}
         render={(ctx, { width, height }, delta, { position, pressed }) => {
+          // return;
           // canvas size, contain
           const size = Math.min(width, height) / 3;
 
@@ -341,16 +342,9 @@ export default function Fourier() {
                   if (file.type === "image/svg+xml") {
                     const answer = window.prompt("Sample points", "1000");
                     if (!answer) return;
-                    const count = clamp(Number(answer), 1, 10000);
-                    const parser = new DOMParser();
-                    const svg = parser.parseFromString(text, "image/svg+xml");
-                    const path = svg.querySelector("path");
-                    if (!path) return;
-                    const points = samplePath(
-                      path.getAttribute("d") ?? "",
-                      count,
-                    );
-                    setList(joinList(points));
+                    const count = clamp(Number(answer), 1, 50000);
+                    const list = parseSvg(text, count) ?? "";
+                    setList(list);
                   }
                 }}
               >
