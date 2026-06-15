@@ -37,5 +37,5 @@ const path = join(
   "home",
   "stats.json",
 );
-const data = JSON.stringify(stats, null, 2);
-writeFileSync(path, data);
+
+writeFileSync(path, JSON.stringify(data, null, 2) + "\n");
