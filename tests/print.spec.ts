@@ -1,6 +1,6 @@
 import test from "@playwright/test";
 import routes from "./routes";
-import { waitForMath } from "./util";
+import { waitForImages, waitForMath } from "./util";
 
 // not actually a "test", but run as one to produce printed pdfs as a side effect
 // more convenient than writing standalone script b/c we can use existing test infra
@@ -30,8 +30,8 @@ const printPage = (route: string) =>
     // wait for math to render
     await waitForMath(page);
 
-    // wait a bit extra for page to settle
-    await page.waitForTimeout(10000);
+    // wait for images to load
+    await waitForImages(page);
 
     // print pdf
     await page.pdf({

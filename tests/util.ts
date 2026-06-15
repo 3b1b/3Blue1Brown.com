@@ -24,3 +24,18 @@ export const waitForMath = (page: Page) =>
       timeout: 30 * 1000,
     })
     .toBe(true);
+
+// wait for images to fully load
+export const waitForImages = (page: Page) =>
+  test.expect
+    // poll on node-side to avoid browser-side timer/raf throttling w/ waitForFunction
+    .poll(
+      async () =>
+        page.evaluate(() =>
+          Array.from(document.querySelectorAll("img")).every(
+            (img) => img.complete,
+          ),
+        ),
+      { timeout: 30 * 1000 },
+    )
+    .toBe(true);
