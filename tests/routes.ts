@@ -45,3 +45,5 @@ const routes = allRoutes
   .filter((path) => !path.endsWith(".xml"));
 
 export default routes;
+
+export { allRoutes };

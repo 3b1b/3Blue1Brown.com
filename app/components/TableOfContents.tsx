@@ -14,6 +14,7 @@ import { useAtomValue } from "jotai";
 import { headingsAtom } from "~/components/Heading";
 import Link from "~/components/Link";
 import { findClosest, firstInView, scrollTo } from "~/util/dom";
+import { usePrinting } from "~/util/hooks";
 
 // spacing between toc and section content
 const spacing = 60;
@@ -92,6 +93,8 @@ export default function TableOfContents() {
       // scroll active toc item into view
       scrollTo(activeRef.current, { behavior: "instant", block: "center" });
   });
+
+  if (usePrinting()) return null;
 
   // if only h1, no point in showing toc
   if (headings.length < 2) return null;

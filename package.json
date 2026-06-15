@@ -15,7 +15,8 @@
     "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm",
     "check:spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum  2>&1 | grep '.*fix:'",
     "check:unused": "bunx --bun knip --no-exit-code",
-    "check:links": "cd build/client && bunx linkinator './**/*.html' --recurse --clean-urls ; cd ../.."
+    "check:links": "cd build/client && bunx linkinator './**/*.html' --recurse --clean-urls ; cd ../..",
+    "print": "ROUTE=/3d bun run test:e2e print"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
