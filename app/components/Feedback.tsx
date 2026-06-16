@@ -214,7 +214,8 @@ export default function Feedback() {
 
               <CheckBox required form={id} className="col-span-full">
                 <span>
-                  My message is about this site and is not addressed by the FAQs
+                  My message is about this site and is not addressed by any of
+                  the FAQs
                 </span>
               </CheckBox>
 
