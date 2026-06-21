@@ -57,7 +57,7 @@ export default function Fourier() {
   // animation speed
   const [speed, setSpeed] = useState(1);
   // trace decay time
-  const [traceDecay, setTraceDecay] = useState(5);
+  const [decay, setDecay] = useState(5);
 
   // parse out attribution from list text
   const attribution = useMemo(
@@ -191,7 +191,7 @@ export default function Fourier() {
           // add last point to trace
           trace.current.unshift(tip);
           // limit trace length by time
-          if (delta) trace.current.splice(traceDecay * (1000 / delta));
+          if (delta) trace.current.splice(decay * (1000 / delta));
 
           // zoom center
           const center = segments.at(highlight)?.from ?? tip;
@@ -450,12 +450,12 @@ export default function Fourier() {
               step={0.25}
             />
             <NumberBox
-              label="Trace"
-              value={traceDecay}
-              onChange={setTraceDecay}
+              label="Decay"
+              value={decay}
+              onChange={setDecay}
               min={0}
-              max={0}
-              step={0.1}
+              max={60}
+              step={0.5}
             />
           </div>
 
