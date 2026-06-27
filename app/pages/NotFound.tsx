@@ -41,6 +41,7 @@ const redirects: Record<string, string> = {
   "/nn": "/?topic=neural-networks",
   "/calculus": "/?topic=calculus",
   "/eoc": "/?topic=calculus",
+  "/janestreet": "/talent/janestreet",
 };
 
 export const clientLoader = async ({ request }: Route.LoaderArgs) => {
