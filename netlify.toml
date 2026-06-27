@@ -31,18 +31,6 @@ status = 301
 force = true
 
 [[redirects]]
-from = "https://3b1b.com/*"
-to = "https://www.3blue1brown.com/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://www.3b1b.com/*"
-to = "https://www.3blue1brown.com/:splat"
-status = 301
-force = true
-
-[[redirects]]
 from = "https://3blue1brown.com/*"
 to = "https://www.3blue1brown.com/:splat"
 status = 301
