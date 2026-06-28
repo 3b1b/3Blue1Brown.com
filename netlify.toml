@@ -31,22 +31,173 @@ status = 301
 force = true
 
 [[redirects]]
-from = "https://3b1b.com/*"
-to = "https://www.3blue1brown.com/:splat"
-status = 301
-force = true
-
-[[redirects]]
-from = "https://www.3b1b.com/*"
-to = "https://www.3blue1brown.com/:splat"
-status = 301
-force = true
-
-[[redirects]]
 from = "https://3blue1brown.com/*"
 to = "https://www.3blue1brown.com/:splat"
 status = 301
 force = true
+
+# path redirects (vanity URLs, moved pages, external destinations)
+# note: regex-with-capture redirects (e.g. /topics/:topic) stay in app/pages/NotFound.tsx
+
+[[redirects]]
+from = "/faq"
+to = "/about#faqs"
+status = 301
+
+[[redirects]]
+from = "/faqs"
+to = "/about#faqs"
+status = 301
+
+[[redirects]]
+from = "/contact"
+to = "/about#contact"
+status = 301
+
+[[redirects]]
+from = "/blog"
+to = "/extras#blog"
+status = 301
+
+[[redirects]]
+from = "/podcast"
+to = "/extras#podcast"
+status = 301
+
+[[redirects]]
+from = "/home"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/lessons"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/video"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/live"
+to = "/"
+status = 301
+
+[[redirects]]
+from = "/store"
+to = "https://store.dftba.com/collections/3blue1brown"
+status = 301
+
+[[redirects]]
+from = "/plushie"
+to = "/store"
+status = 301
+
+[[redirects]]
+from = "/thanks"
+to = "/about#thanks"
+status = 301
+
+[[redirects]]
+from = "/recommendations"
+to = "/blog/recommendations"
+status = 301
+
+[[redirects]]
+from = "/some1-results"
+to = "/blog/some1-results"
+status = 301
+
+[[redirects]]
+from = "/poems"
+to = "/blog/poems"
+status = 301
+
+[[redirects]]
+from = "/videos"
+to = "https://www.youtube.com/3blue1brown"
+status = 301
+
+[[redirects]]
+from = "/support"
+to = "https://www.patreon.com/3blue1brown"
+status = 301
+
+[[redirects]]
+from = "/early-attention"
+to = "https://www.patreon.com/3blue1brown"
+status = 301
+
+[[redirects]]
+from = "/subscribe"
+to = "https://www.youtube.com/c/3blue1brown?sub_confirmation=1"
+status = 301
+
+[[redirects]]
+from = "/brilliant"
+to = "https://brilliant.org/3b1b"
+status = 301
+
+[[redirects]]
+from = "/quaternion-explorable"
+to = "https://eater.net/quaternions"
+status = 301
+
+[[redirects]]
+from = "/mail"
+to = "https://3blue1brown.substack.com/"
+status = 301
+
+[[redirects]]
+from = "/some"
+to = "https://some.3b1b.co"
+status = 301
+
+[[redirects]]
+from = "/some1"
+to = "https://some.3b1b.co"
+status = 301
+
+[[redirects]]
+from = "/recommended"
+to = "/?topic=best-of"
+status = 301
+
+[[redirects]]
+from = "/eola"
+to = "/?topic=linear-algebra"
+status = 301
+
+[[redirects]]
+from = "/neural-networks"
+to = "/?topic=neural-networks"
+status = 301
+
+[[redirects]]
+from = "/nn"
+to = "/?topic=neural-networks"
+status = 301
+
+[[redirects]]
+from = "/calculus"
+to = "/?topic=calculus"
+status = 301
+
+[[redirects]]
+from = "/eoc"
+to = "/?topic=calculus"
+status = 301
+
+[[redirects]]
+from = "/janestreet"
+to = "/talent/janestreet"
+status = 301
+
+[[redirects]]
+from = "/topics/*"
+to = "/?topic=:splat"
+status = 301
 
 [[redirects]]
 from = "/*"
