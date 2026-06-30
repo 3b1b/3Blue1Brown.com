@@ -9,13 +9,14 @@
     "test:types": "react-router typegen && tsc",
     "test:lint": "eslint .",
     "test:format": "prettier --check .",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --grep-invert print",
     "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e && bun run build",
     "install-playwright": "bunx playwright install chromium --with-deps",
     "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm",
     "check:spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum  2>&1 | grep '.*fix:'",
     "check:unused": "bunx --bun knip --no-exit-code",
-    "check:links": "cd build/client && bunx linkinator './**/*.html' --recurse --clean-urls ; cd ../.."
+    "check:links": "cd build/client && bunx linkinator './**/*.html' --recurse --clean-urls ; cd ../..",
+    "print": "ROUTE=/lessons playwright test print"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

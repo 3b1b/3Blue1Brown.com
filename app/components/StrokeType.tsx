@@ -1,4 +1,5 @@
 import type { ComponentProps } from "react";
+import { usePrinting } from "~/util/hooks";
 import classes from "./StrokeType.module.css";
 
 type Props = {
@@ -17,6 +18,8 @@ export default function StrokeType({
   children,
   ...props
 }: Props) {
+  if (usePrinting()) return children;
+
   const chars = children.split("");
 
   return (
