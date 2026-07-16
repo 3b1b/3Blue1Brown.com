@@ -32,6 +32,7 @@
       "gpt",
       "attention",
       "mlp",
+      "cross-entropy",
       "diffusion-models"
     ]
   },
@@ -136,6 +137,7 @@
     "description": "An assortment of topics related to algorithms",
     "lessons": [
       "entropy",
+      "cross-entropy",
       "wordle",
       "wordle-2",
       "bitcoin",
