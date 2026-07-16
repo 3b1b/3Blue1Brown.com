@@ -7,6 +7,7 @@ quote: The decision everybody made independently was that the time we're in righ
 import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Collapsible from "~/components/Collapsible";
+import FreeResponse from "~/components/FreeResponse";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
 import Tabs, { Panel } from "~/components/Tabs";
@@ -84,6 +85,45 @@ We're still in the early innings - our hardest challenges lie ahead. If you're e
 <Image image={office3} />
 
 </div>
+
+</section>
+
+<section>
+
+### A challenge for the 3Blue1Brown Audience
+
+The hardest problems in AI often live at the intersection of deep theory and real systems — ideas that are simple to use but genuinely hard to _understand_. TurboQuant is one of them.
+
+TurboQuant is a recent vector-quantization algorithm that compresses the key–value cache behind large language models down to roughly 3 bits per value, with almost no loss in downstream quality and provably near-optimal distortion. It works by randomly rotating each vector to tame its geometry, quantizing coordinate-by-coordinate, and then spending a single extra bit to cancel the leftover bias. It's the kind of result that sounds like magic until you see exactly _why_ it works.
+
+---
+
+**The challenge.** Research how TurboQuant works, then create a visual — an animation, diagram, or interactive — that explains what you see as the _core insight_ that makes it effective. There's no single right answer. We want to see what you choose to emphasize, how you reason about a hard idea, and how clearly you can make it land.
+
+A few starting points:
+
+- [TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate](https://arxiv.org/abs/2504.19874) — the original paper
+- [TurboQuant: Redefining AI efficiency with extreme compression](https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/) — a more accessible overview
+
+<FreeResponse placeholder="Link to your visual (a tweet, video, blog post, notebook, etc.)">
+  {(input) => (
+    <>
+      <p>
+        Ready to share it? When you submit an application, at the bottom of your
+        resume, include this line:
+      </p>
+      <strong>My 3b1b × Cognition TurboQuant visual: {input}</strong>
+      <Button
+        to="https://jobs.ashbyhq.com/cognition?utm_source=Kevg6jyyEB"
+        color="theme"
+        className="self-center"
+      >
+        Apply Now
+        <ArrowUpRightIcon />
+      </Button>
+    </>
+  )}
+</FreeResponse>
 
 </section>
 
