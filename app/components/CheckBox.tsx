@@ -36,7 +36,7 @@ export default function CheckBox({
         className,
       )}
     >
-      <div className="relative size-6 *:absolute *:inset-0">
+      <div className="relative size-6 shrink-0 *:absolute *:inset-0">
         <input
           type="checkbox"
           className="opacity-0"
