@@ -125,7 +125,7 @@ export default function Contact() {
         My message is not addressed by any of the FAQs
       </CheckBox>
 
-      <noscript className="text-center col-span-full">
+      <noscript className="col-span-full text-center">
         This form requires JavaScript to be enabled in your browser.
       </noscript>
 
