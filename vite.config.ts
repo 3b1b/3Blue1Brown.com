@@ -1,4 +1,3 @@
-import { fileURLToPath } from "url";
 import type { Root } from "mdast";
 import type { Plugin } from "vite";
 import mdx from "@mdx-js/rollup";
@@ -29,8 +28,10 @@ export default defineConfig(() => ({
     svgrPlugin,
   ],
   resolve: {
-    alias: { "~": fileURLToPath(new URL("./app", import.meta.url)) },
     tsconfigPaths: true,
+    alias: {
+      "~/": new URL("./app/", import.meta.url).pathname,
+    },
   },
 }));
 
