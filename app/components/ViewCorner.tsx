@@ -1,9 +1,12 @@
 import Feedback from "~/components/Feedback";
 import Jump from "~/components/Jump";
 import Share from "~/components/Share";
+import { usePrinting } from "~/util/hooks";
 
 // small controls that hover in corner of screen
 export default function ViewCorner() {
+  if (usePrinting()) return null;
+
   const buttons = [
     ["Jump to top", <Jump />],
     ["Share page", <Share />],

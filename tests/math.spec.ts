@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import routes from "./routes";
-import { log, stringify } from "./util";
+import { log, stringify, waitForMath } from "./util";
 
 log();
 
@@ -23,13 +23,8 @@ const checkPage = (route: string) =>
     // navigate to page
     await page.goto(route, { waitUntil: "domcontentloaded" });
 
-    // wait for mathjax to finish first load
-    await expect
-      // poll on node-side to avoid browser-side timer/raf throttling w/ waitForFunction
-      .poll(async () => page.evaluate(() => window.MathJaxState === true), {
-        timeout: 30 * 1000,
-      })
-      .toBe(true);
+    // wait for math to render
+    await waitForMath(page);
 
     test.info().annotations.push({
       type: "MathJax errors",

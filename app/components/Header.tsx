@@ -7,6 +7,7 @@ import Logo from "~/components/Logo";
 import Nav from "~/components/Nav";
 import StrokeType from "~/components/StrokeType";
 import site from "~/data/site.json";
+import { usePrinting } from "~/util/hooks";
 
 type Props = {
   // background for header
@@ -24,6 +25,8 @@ export default function Header({
   background = defaultBackground,
   children,
 }: Props) {
+  if (usePrinting()) return null;
+
   return (
     <header
       className={clsx(

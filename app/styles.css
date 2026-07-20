@@ -73,11 +73,11 @@
   }
 
   body {
-    @apply flex min-h-dvh flex-col;
+    @apply flex min-h-dvh flex-col print:block;
   }
 
   main {
-    @apply flex grow flex-col;
+    @apply flex grow flex-col print:block;
 
     &.striped > section:nth-of-type(odd) {
       @apply bg-alt-white;
@@ -85,7 +85,7 @@
   }
 
   section {
-    @apply width-md relative isolate flex break-before-page flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%-(--spacing(1))*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:bg-transparent! print:p-0;
+    @apply width-md relative isolate flex flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%-(--spacing(1))*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] not-first-of-type:break-before-page last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:isolation-auto print:block print:overflow-visible print:bg-transparent! print:p-0 print:*:my-8;
   }
 
   hr {
