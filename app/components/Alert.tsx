@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 import {
   CheckCircleIcon,
   CircleNotchIcon,
+  HighlighterIcon,
   InfoIcon,
   WarningCircleIcon,
   WarningDiamondIcon,
@@ -23,16 +24,20 @@ type Props = {
 // available categories of alerts and associated styles
 export const types = {
   info: {
-    color: "text-theme bg-theme/15",
+    color: "text-theme bg-theme/10",
     icon: <InfoIcon />,
   },
   loading: {
-    color: "text-gray bg-light-gray",
+    color: "text-gray bg-gray/10",
     icon: <CircleNotchIcon className="icon animate-spin" />,
   },
   success: {
     color: "text-success bg-success/10",
     icon: <CheckCircleIcon />,
+  },
+  highlight: {
+    color: "text-warning bg-warning/10",
+    icon: <HighlighterIcon />,
   },
   warning: {
     color: "text-warning bg-warning/10",

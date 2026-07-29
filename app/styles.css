@@ -36,8 +36,8 @@
   --color-white: oklch(100% 0 240);
 
   --color-success: oklch(60% 0.15 180);
-  --color-warning: oklch(60% 0.15 50);
-  --color-error: oklch(60% 0.15 10);
+  --color-warning: oklch(60% 0.15 60);
+  --color-error: oklch(60% 0.15 0);
   --color-shadow: #00000020;
 }
 
@@ -57,8 +57,8 @@
   --color-white: oklch(0% 0 240);
 
   --color-success: oklch(80% 0.15 180);
-  --color-warning: oklch(80% 0.15 50);
-  --color-error: oklch(80% 0.15 10);
+  --color-warning: oklch(80% 0.15 60);
+  --color-error: oklch(80% 0.15 0);
   --color-shadow: #ffffff40;
 }
 
