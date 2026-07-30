@@ -41,7 +41,6 @@
 
   // check mdx in editor
   "mdx": {
-    "checkMdx": true,
-    "plugins": ["remark-math"]
+    "plugins": ["remark-frontmatter", "remark-mdx-frontmatter", "remark-math"]
   }
 }

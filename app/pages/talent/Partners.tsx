@@ -5,6 +5,7 @@ import { useDarkMode } from "~/components/DarkMode";
 import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
 import { getLogo, getLogoDark, getPartner } from "./Partner";
+import Tags from "./Tags";
 
 const partners: [string, ...string[]] = [
   "janestreet",
@@ -47,7 +48,7 @@ export default function Partners() {
         {order.map((id) => {
           const partner = getPartner(id);
           if (!partner) return null;
-          const { name = "", tagline = "" } = partner.frontmatter;
+          const { name = "", tagline = "", tags = [] } = partner.frontmatter;
           const logo = getLogo(id) ?? "";
           const logoDark = getLogoDark(id) ?? "";
           return (
@@ -63,6 +64,7 @@ export default function Partners() {
               <div className="text-center text-balance text-gray">
                 {tagline}
               </div>
+              <Tags tags={tags} className="mt-2 text-sm" />
             </Card>
           );
         })}
