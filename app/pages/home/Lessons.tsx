@@ -87,10 +87,13 @@ export function Search({ dialog = false, close = () => {} }) {
       async (worker: Remote<typeof FuzzyAPI>) => {
         // track analytics event
         analyticsEvent("lesson_search", { search: debouncedSearch });
-        return (await worker.search(
-          lessons,
-          debouncedSearch,
-        )) as typeof lessons;
+        return (await worker.search(lessons, debouncedSearch, [
+          "id",
+          "title",
+          "description",
+          "year",
+          "tags",
+        ])) as typeof lessons;
       },
       [lessons, debouncedSearch],
     ),
@@ -133,7 +136,7 @@ export function Search({ dialog = false, close = () => {} }) {
           <div className="grid w-full grid-cols-3 gap-8 max-sm:grid-cols-1">
             <Button
               to={{ search: mergeSearch(location.search, `topic=&search=`) }}
-              className="self-center justify-self-start max-md:justify-self-center"
+              className="self-center max-md:justify-self-center"
               onClick={() => {
                 // clear search so user doesn't forget they're filtering by search
                 setSearch("");
@@ -188,8 +191,8 @@ export function Search({ dialog = false, close = () => {} }) {
                   title = "",
                   description = "",
                   image = "",
-                  read,
-                  interactive,
+                  read = false,
+                  tags = [],
                 }) => {
                   // has video
                   const video = getLesson(id)?.frontmatter.video;
@@ -250,8 +253,8 @@ export function Search({ dialog = false, close = () => {} }) {
                           >
                             <BookOpenTextIcon />
                             Read
-                            {interactive && (
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 text-xs text-theme">
+                            {tags.includes("interactive") && (
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 text-xs text-secondary">
                                 Interactive!
                               </div>
                             )}
