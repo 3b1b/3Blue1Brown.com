@@ -23,7 +23,7 @@ export default function LessonLink({ id, className, children }: Props) {
   if (!lesson) return children;
 
   // get lesson details
-  const { title = "", description = "", read } = lesson;
+  const { title = "", description = "", readable } = lesson;
 
   // if just text, wrap in button to ensure accessibility
   if (!isValidElement(children))
@@ -49,7 +49,7 @@ export default function LessonLink({ id, className, children }: Props) {
               <PlayIcon />
               Watch
             </Button>
-            {read && (
+            {readable && (
               <Button to={href("/lessons/:id", { id })} color="light" size="sm">
                 <BookOpenTextIcon />
                 Read

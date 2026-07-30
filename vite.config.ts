@@ -55,8 +55,9 @@ const textReplacePlugin: Plugin = {
         source = [
           "---",
           frontmatter,
-          // append extras to frontmatter
-          `read: ${!!content.trim()}`,
+          // append extra derived props to frontmatter
+          `readable: ${content.trim().length > 500}`,
+          `interactive: ${content.includes("<Interactive")}`,
           "---",
           searchParams.has("frontmatter-only") ? "" : content,
         ].join("\n");

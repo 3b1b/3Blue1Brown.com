@@ -17,7 +17,7 @@ export type RawLessonFrontmatter = {
   image?: string;
   thumbnail?: string;
   combinedCredits?: Record<string, string[]>;
-  read?: boolean;
+  readable?: boolean;
   interactive?: boolean;
 };
 
@@ -35,6 +35,8 @@ export const transformLesson = (lesson: RawLesson, id: string) => ({
     id,
     // parse date
     date: parseDate(lesson.frontmatter.date ?? ""),
+    // just year
+    year: parseDate(lesson.frontmatter.date ?? "")?.getFullYear(),
     // lookup thumbnail
     image: lesson.frontmatter.video?.trim()
       ? getThumbnail(lesson.frontmatter.video)
