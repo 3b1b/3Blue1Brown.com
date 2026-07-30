@@ -283,26 +283,5 @@
       "discrete-fourier-transform",
       "diffusion-equation"
     ]
-  },
-  "miscellaneous": {
-    "title": "Miscellaneous",
-    "description": "Odd videos that defy categorization elsewhere",
-    "lessons": [
-      "manim-demo",
-      "qa1",
-      "qa2",
-      "qa3",
-      "some1",
-      "some1-results",
-      "some2",
-      "some2-results",
-      "some3-results",
-      "dp3t",
-      "tattoos-on-math",
-      "triangle-of-power",
-      "binary-counting",
-      "eulers-formula-old",
-      "eulers-formula-poem"
-    ]
   }
 }
