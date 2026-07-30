@@ -36,3 +36,6 @@ export const getTopic = (id: string) => {
     if (!["all", "best-of"].includes(topicId) && topic.lessons.includes(id))
       return topic;
 };
+
+// list of lessons not in any topic
+export const miscellaneous = byDate.filter((id) => !getTopic(id)).sort();

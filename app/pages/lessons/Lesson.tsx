@@ -78,13 +78,13 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
   const topic = getTopic(id);
 
   // current topic lesson list
-  const topicLessons = topic?.lessons ?? undefined;
+  const topicLessons = topic?.lessons;
 
   // previous lesson in list
-  const previous = lesson && getPrevious(id, topicLessons)?.frontmatter;
+  const previous = topicLessons && getPrevious(id, topicLessons)?.frontmatter;
 
   // next lesson in list
-  const next = lesson && getNext(id, topicLessons)?.frontmatter;
+  const next = topicLessons && getNext(id, topicLessons)?.frontmatter;
 
   return (
     <>
