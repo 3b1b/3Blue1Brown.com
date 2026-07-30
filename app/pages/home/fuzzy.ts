@@ -10,7 +10,14 @@ export const search = <Entry extends Record<string, unknown>>(
   const keys = [...new Set(list.flatMap((entry) => Object.keys(entry)))];
   // init searcher
   const searcher = new Fuse<unknown>(list, {
-    keys,
+    keys: [
+      ...keys,
+      // also let search match key names (e.g. "interactive")
+      {
+        name: "keys",
+        getFn: (entry) => Object.keys(entry as Entry).join(" "),
+      },
+    ],
     threshold: 0.2,
     ignoreLocation: true,
   });
