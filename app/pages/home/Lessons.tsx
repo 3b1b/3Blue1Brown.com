@@ -294,7 +294,7 @@ export function Search({ dialog = false, close = () => {} }) {
                           <Button
                             size="sm"
                             to={href("/lessons/:id", { id })}
-                            className="relative justify-self-start"
+                            className="justify-self-start"
                             onClick={close}
                           >
                             {readable ? (
