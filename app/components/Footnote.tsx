@@ -6,7 +6,13 @@ type Props = ComponentProps<"a">;
 // custom footnote component to replace markdown footnote links
 export default function Footnote({ href, children }: Props) {
   return (
-    <Tooltip trigger={<button className="badge size-4">{children}</button>}>
+    <Tooltip
+      trigger={
+        <button className="size-4 rounded-full bg-theme text-white">
+          {children}
+        </button>
+      }
+    >
       <div
         ref={(element) => {
           if (!element || !href) return;

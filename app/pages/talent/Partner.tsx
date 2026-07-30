@@ -13,6 +13,7 @@ type RawPartnerFrontmatter = {
   tagline?: string;
   quote?: string;
   color?: string;
+  tags?: string[];
 };
 
 // partner import (before any transformation)
@@ -60,7 +61,7 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
       <PartnerHeader />
 
       <Main className="striped">
-        <H1 className="sr-only">Jane Street</H1>
+        <H1 className="sr-only">{name}</H1>
         <Component />
       </Main>
 

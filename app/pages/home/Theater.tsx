@@ -122,7 +122,11 @@ export default function Theater() {
           {/* title */}
           <div className="font-sans text-lg">
             {lesson?.title}
-            {lesson?.id === latest?.id && <sup className="badge">New</sup>}
+            {lesson?.id === latest?.id && (
+              <sup className="ml-1 rounded-full bg-theme/25 px-1 text-theme">
+                New
+              </sup>
+            )}
           </div>
 
           {/* actions */}
