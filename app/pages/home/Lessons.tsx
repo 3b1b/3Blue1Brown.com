@@ -8,7 +8,6 @@ import {
   BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
-  HandPointingIcon,
   MagnifyingGlassIcon,
   PlayIcon,
   VideoCameraSlashIcon,
@@ -246,12 +245,16 @@ export function Search({ dialog = false, close = () => {} }) {
                           <Button
                             size="sm"
                             to={href("/lessons/:id", { id })}
-                            className="justify-self-start"
+                            className="relative justify-self-start"
                             onClick={close}
                           >
                             <BookOpenTextIcon />
                             Read
-                            {interactive && <HandPointingIcon />}
+                            {interactive && (
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 text-xs text-theme">
+                                Interactive!
+                              </div>
+                            )}
                           </Button>
                         </div>
                       )}
