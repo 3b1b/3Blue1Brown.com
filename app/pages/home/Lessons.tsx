@@ -8,6 +8,8 @@ import {
   BookOpenTextIcon,
   CaretDownIcon,
   CaretUpIcon,
+  FunnelIcon,
+  HandPointingIcon,
   MagnifyingGlassIcon,
   PlayIcon,
   VideoCameraSlashIcon,
@@ -18,12 +20,14 @@ import { useAtom, useAtomValue } from "jotai";
 import { event as analyticsEvent } from "~/components/Analytics";
 import Button from "~/components/Button";
 import Card from "~/components/Card";
+import CheckBox from "~/components/CheckBox";
 import { H2 } from "~/components/Heading";
 import TextBox from "~/components/TextBox";
+import Tooltip from "~/components/Tooltip";
 import { setAutoplay } from "~/pages/home/Theater";
 import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
-import { atomWithQuery, getAtom } from "~/util/atom";
+import { atomWithQuery, getAtom, setAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
 import { useWorker } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
@@ -63,6 +67,11 @@ export function Search({ dialog = false, close = () => {} }) {
   // current topic details
   const topic = topicId in topics ? topics[topicId as TopicId] : undefined;
 
+  // fallback to topic
+  const fallbackTopic = () => {
+    if (!topic) setAtom(topicAtom, "all");
+  };
+
   // current lesson
   const lessonId = useAtomValue(lessonAtom);
 
@@ -80,6 +89,10 @@ export function Search({ dialog = false, close = () => {} }) {
   const [search, setSearch] = useAtom(searchAtom);
   const debouncedSearch = useDebounce(search.trim(), 300);
 
+  // other filters
+  const [interactive, setInteractive] = useState(false);
+  const [readable, setReadable] = useState(false);
+
   // search results
   let [results = []] = useWorker(
     FuzzyWorker,
@@ -87,15 +100,19 @@ export function Search({ dialog = false, close = () => {} }) {
       async (worker: Remote<typeof FuzzyAPI>) => {
         // track analytics event
         analyticsEvent("lesson_search", { search: debouncedSearch });
-        return (await worker.search(lessons, debouncedSearch, [
+        // filter by free text search
+        let results = (await worker.search(lessons, debouncedSearch, [
           "id",
           "title",
           "description",
-          "year",
-          "tags",
         ])) as typeof lessons;
+        // filter by other filters
+        if (readable) results = results.filter((lesson) => lesson.readable);
+        if (interactive)
+          results = results.filter((lesson) => lesson.interactive);
+        return results;
       },
-      [lessons, debouncedSearch],
+      [lessons, debouncedSearch, interactive, readable],
     ),
   );
 
@@ -117,21 +134,50 @@ export function Search({ dialog = false, close = () => {} }) {
 
   return (
     <>
-      <TextBox
-        ref={searchBox}
-        icon={<MagnifyingGlassIcon />}
-        value={search}
-        onChange={setSearch}
-        className="text-lg"
-        placeholder="Search..."
-        aria-controls="results"
-        autoComplete="off"
-      />
+      <div className="flex gap-4">
+        <TextBox
+          ref={searchBox}
+          icon={<MagnifyingGlassIcon />}
+          value={search}
+          onChange={setSearch}
+          className="grow text-lg"
+          placeholder="Search lessons..."
+          aria-controls="results"
+          autoComplete="off"
+        />
+        <Tooltip
+          hover={false}
+          trigger={
+            <Button aria-label="More lesson filters">
+              <FunnelIcon />
+            </Button>
+          }
+        >
+          <CheckBox
+            value={readable}
+            onChange={(value) => {
+              setReadable(value);
+              fallbackTopic();
+            }}
+          >
+            Readable
+          </CheckBox>
+          <CheckBox
+            value={interactive}
+            onChange={(value) => {
+              setInteractive(value);
+              fallbackTopic();
+            }}
+          >
+            Interactive
+          </CheckBox>
+        </Tooltip>
+      </div>
 
       {/* selected topic */}
       {topic && (
-        <div className="relative isolate flex flex-col items-center gap-8 py-4">
-          <div className="absolute -inset-x-999 inset-y-0 -z-10 bg-secondary/10" />
+        <div className="relative isolate flex flex-col items-center py-4">
+          <div className="absolute top-0 -z-10 h-full w-screen self-center bg-secondary/10" />
 
           <div className="grid w-full grid-cols-3 gap-8 max-sm:grid-cols-1">
             <Button
@@ -191,8 +237,8 @@ export function Search({ dialog = false, close = () => {} }) {
                   title = "",
                   description = "",
                   image = "",
-                  read = false,
-                  tags = [],
+                  readable,
+                  interactive,
                 }) => {
                   // has video
                   const video = getLesson(id)?.frontmatter.video;
@@ -238,26 +284,34 @@ export function Search({ dialog = false, close = () => {} }) {
                           </div>
                         )}
                       </Card>
-                      {read && (
+                      {(readable || interactive) && (
                         <div
                           className={clsx(
-                            "absolute bottom-1/2 left-full translate-x-8 translate-y-1/2 max-lg:contents",
+                            "absolute bottom-1/2 left-full w-max translate-x-8 translate-y-1/2 max-lg:contents",
                             dialog && "contents",
                           )}
                         >
                           <Button
                             size="sm"
                             to={href("/lessons/:id", { id })}
-                            className="relative justify-self-start"
+                            className="justify-self-start"
                             onClick={close}
                           >
-                            <BookOpenTextIcon />
-                            Read
-                            {tags.includes("interactive") && (
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 text-xs text-secondary">
-                                Interactive!
-                              </div>
-                            )}
+                            {readable ? (
+                              <BookOpenTextIcon />
+                            ) : interactive ? (
+                              <HandPointingIcon />
+                            ) : null}
+                            <div
+                              className={clsx(
+                                "whitespace-nowrap",
+                                readable && interactive && "text-sm",
+                              )}
+                            >
+                              {[readable && "Read", interactive && "Interact"]
+                                .filter(Boolean)
+                                .join(" + ")}
+                            </div>
                           </Button>
                         </div>
                       )}

@@ -1,7 +1,7 @@
 import type { ComponentType, LazyExoticComponent } from "react";
 import { Suspense, useRef } from "react";
 import { useLocation } from "react-router";
-import { CornersOutIcon, HandPointingIcon } from "@phosphor-icons/react";
+import { CornersOutIcon } from "@phosphor-icons/react";
 import { useFullscreen } from "@reactuses/core";
 import clsx from "clsx";
 import Button from "~/components/Button";
@@ -36,8 +36,16 @@ export default function Interactive<
   // wrap with controls
   if (controls)
     children = (
-      <div className="relative isolate flex flex-col gap-4">
-        <div className="absolute -inset-x-999 -inset-y-8 -z-10 bg-secondary/10" />
+      <div className="relative isolate flex flex-col gap-4 py-8">
+        <div className="absolute top-0 -z-10 h-full w-screen self-center bg-secondary/10">
+          <Button
+            className="absolute bottom-0 left-0"
+            onClick={toggleFullscreen}
+            aria-label="Toggle fullscreen"
+          >
+            <CornersOutIcon />
+          </Button>
+        </div>
         <div
           ref={ref}
           className={clsx(
@@ -46,16 +54,6 @@ export default function Interactive<
           )}
         >
           {children}
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-gray">
-            <HandPointingIcon />
-            Interactive
-          </div>
-          <Button onClick={toggleFullscreen} aria-label="Toggle fullscreen">
-            Fullscreen
-            <CornersOutIcon />
-          </Button>
         </div>
       </div>
     );

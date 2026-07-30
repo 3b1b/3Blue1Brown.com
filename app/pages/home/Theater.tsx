@@ -89,9 +89,6 @@ export default function Theater() {
   // last lesson in list
   const last = lessonInTopic ? getLast(topicLessons)?.frontmatter : undefined;
 
-  // link to readable lesson
-  const readLink = lesson?.id ? href(`/lessons/:id`, { id: lesson?.id }) : "";
-
   // show video details
   const [details, setDetails] = useState(false);
 
@@ -131,8 +128,8 @@ export default function Theater() {
 
           {/* actions */}
           <div className="flex flex-wrap gap-4">
-            {lesson?.read && (
-              <Button size="sm" to={readLink}>
+            {lesson?.readable && lesson?.id && (
+              <Button size="sm" to={href(`/lessons/:id`, { id: lesson?.id })}>
                 <BookOpenTextIcon />
                 Read
               </Button>

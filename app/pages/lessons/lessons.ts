@@ -17,8 +17,8 @@ export type RawLessonFrontmatter = {
   image?: string;
   thumbnail?: string;
   combinedCredits?: Record<string, string[]>;
-  read?: boolean;
-  tags?: string[];
+  readable?: boolean;
+  interactive?: boolean;
 };
 
 // lesson import (before any transformation)
