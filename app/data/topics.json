@@ -3,20 +3,20 @@
     "title": "Best Of",
     "description": "A few hand-picked favorites",
     "lessons": [
-      "fractal-dimension",
-      "zeta",
-      "newtons-fractal",
-      "prime-spirals",
-      "essence-of-calculus",
-      "wordle",
-      "shadows",
-      "inscribed-rect-v2",
-      "fourier-series",
-      "hardest-problem",
-      "cosmic-distance-1",
+      "colliding-blocks-v2",
       "print-gallery",
       "holograms",
-      "colliding-blocks-v2"
+      "cosmic-distance-1",
+      "hardest-problem",
+      "fourier-series",
+      "inscribed-rect-v2",
+      "shadows",
+      "wordle",
+      "essence-of-calculus",
+      "prime-spirals",
+      "newtons-fractal",
+      "zeta",
+      "fractal-dimension"
     ]
   },
   "neural-networks": {
