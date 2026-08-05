@@ -1,9 +1,22 @@
+import clsx from "clsx";
 import PiCreature from "~/components/PiCreature";
 
+// id of this section, so the header's toggle can reference it
+export const introId = "talent-intro";
+
+type Props = {
+  // whether to hide the section (stays mounted, so the toggle can reference it)
+  hidden?: boolean;
+};
+
 // partner gallery page introduction section
-export default function Intro() {
+export default function Intro({ hidden }: Props) {
   return (
-    <section className="bg-theme/15">
+    <section
+      id={introId}
+      // not the hidden attribute, which the base section styles would override
+      className={clsx("bg-theme/15", hidden && "hidden")}
+    >
       <p>
         Think of this as a <strong>virtual career fair</strong>. These
         organizations are interested in hiring the kinds of technically curious
