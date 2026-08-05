@@ -1,7 +1,12 @@
 ---
 name: Kiso
 tagline: Applied AI, engineered for impact
+# TODO: confirm location
+location: San Francisco + remote
+apply: https://jobs.ashbyhq.com/kiso-technology/46eec779-aa7f-490d-9c0b-9b51b25efec3
+youtube: TmaCDP02ryk
 quote: Deploying the world's best team of applied technical talent
+wordmarkScale: 0.95
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -27,7 +32,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id="TmaCDP02ryk" />
+<YouTube id={frontmatter.youtube} />
 
 <Button
   to="https://jobs.ashbyhq.com/kiso-technology/46eec779-aa7f-490d-9c0b-9b51b25efec3"

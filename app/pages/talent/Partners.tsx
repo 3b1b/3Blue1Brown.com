@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
-import { href } from "react-router";
-import Card from "~/components/Card";
-import { useDarkMode } from "~/components/DarkMode";
 import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
-import { getLogo, getLogoDark, getPartner } from "./Partner";
-import Tags from "./Tags";
+import PartnerRow from "./PartnerRow";
 
 const partners: [string, ...string[]] = [
   "janestreet",
@@ -22,8 +18,6 @@ const partners: [string, ...string[]] = [
 // gallery of partners
 export default function Partners() {
   const [order, setOrder] = useState(partners);
-
-  const darkMode = useDarkMode();
 
   useEffect(
     () =>
@@ -44,30 +38,13 @@ export default function Partners() {
     <section className="width-lg">
       <H2>Partners</H2>
 
-      <div className="grid grid-cols-3 gap-12 self-center max-lg:grid-cols-2 max-sm:grid-cols-1">
-        {order.map((id) => {
-          const partner = getPartner(id);
-          if (!partner) return null;
-          const { name = "", tagline = "", tags = [] } = partner.frontmatter;
-          const logo = getLogo(id) ?? "";
-          const logoDark = getLogoDark(id) ?? "";
-          return (
-            <Card key={id} to={href("/talent/:id", { id })}>
-              <div className="aspect-square max-h-32">
-                <img
-                  src={darkMode ? logoDark || logo : logo}
-                  alt=""
-                  className="size-full object-contain"
-                />
-              </div>
-              <div className="mt-4 font-sans text-2xl font-medium">{name}</div>
-              <div className="text-center text-balance text-gray">
-                {tagline}
-              </div>
-              <Tags tags={tags} className="mt-2 text-sm" />
-            </Card>
-          );
-        })}
+      {/* dividers match the site's hr, which is also bg-current/10 */}
+      <div className="flex w-full flex-col divide-y divide-current/10">
+        {order.map((id) => (
+          <div key={id} className="py-10 first:pt-0 last:pb-0">
+            <PartnerRow id={id} />
+          </div>
+        ))}
       </div>
     </section>
   );

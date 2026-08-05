@@ -1,0 +1,10 @@
+You're a security team defending users against a known phisher. Each day they
+send a campaign, choosing a distribution $\mathbf{p}$ over $n$ persuasive
+phrases — "urgent", "verify account", "free gift". Each phrase $t_i$ has a
+payoff $s_i$ if it reaches a user unflagged.
+
+Your lightweight detector watches phrase frequencies against a baseline
+$\mathbf{q}$, raising an alarm when $\sum_i p_i \log(p_i / q_i) > C$. You might
+recognize that quantity.
+
+What distribution should the attacker choose to maximize expected payoff?

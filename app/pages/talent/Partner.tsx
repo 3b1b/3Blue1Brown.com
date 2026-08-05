@@ -12,9 +12,18 @@ import { importAssets } from "~/util/import";
 type RawPartnerFrontmatter = {
   name?: string;
   tagline?: string;
+  // free-form line about where they work, e.g. "San Francisco + remote"
+  location?: string;
+  // link to partner's open roles
+  apply?: string;
   quote?: string;
   color?: string;
-  tags?: string[];
+  // multiplier on wordmark height, to even out optically big/small lockups
+  wordmarkScale?: number;
+  // interview video, previewed on gallery. youtube id, or vimeo id (+ hash if private)
+  youtube?: string;
+  vimeo?: string;
+  vimeoHash?: string;
 };
 
 // partner import (before any transformation)
@@ -24,7 +33,7 @@ type RawPartner = {
 };
 
 // import all partners
-export const [getPartner, partners] = importAssets(
+export const [getPartner] = importAssets(
   import.meta.glob<RawPartner>("./**/index.mdx", { eager: true }),
 );
 
@@ -36,17 +45,31 @@ export const [getMessage] = importAssets(
   "message",
 );
 
-// import all logos
-export const [getLogo, logos] = importAssets(
-  import.meta.glob<{ default: string }>("./**/*.{svg,png}", { eager: true }),
-  "logo",
+// import all challenge teasers, previewed on gallery
+export const [getChallenge] = importAssets(
+  import.meta.glob<{ default: MDXContent }>("./**/challenge.mdx", {
+    eager: true,
+  }),
+  "challenge",
+);
+
+// every partner's wordmark, in both variants. globbed once, keyed twice below
+const wordmarks = import.meta.glob<{ default: string }>(
+  "./**/wordmark*.{svg,png}",
+  { eager: true },
+);
+
+// import all wordmarks
+export const [getWordmark] = importAssets(
+  wordmarks,
+  "wordmark",
   (module) => module.default,
 );
 
-// import all dark logos (for dark mode)
-export const [getLogoDark] = importAssets(
-  import.meta.glob<{ default: string }>("./**/*.{svg,png}", { eager: true }),
-  "logo-dark",
+// import all light-on-dark wordmarks (for dark mode, and dark partner sections)
+export const [getWordmarkDark] = importAssets(
+  wordmarks,
+  "wordmark-dark",
   (module) => module.default,
 );
 

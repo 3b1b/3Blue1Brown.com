@@ -1,7 +1,12 @@
 ---
 name: BEAM
 tagline: Pathways to STEM Excellence
+# TODO: confirm location
+location: New York and Los Angeles
+apply: https://www.beammath.org/work-at-beam
+youtube: dwdMjl8HFvU
 quote: Helping students from low-income communities study advanced mathematics and thrive in STEM
+wordmarkScale: 1.2
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -31,7 +36,7 @@ import wordmark from "./wordmark-dark.png";
 
 <Tabs tabs={["Meet Our Team", "Learn about BEAM"]}>
   <Panel>
-    <YouTube id="dwdMjl8HFvU" />
+    <YouTube id={frontmatter.youtube} />
   </Panel>
   <Panel>
     <Vimeo id="154919239" />
