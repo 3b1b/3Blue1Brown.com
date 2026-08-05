@@ -32,8 +32,10 @@ export default function PartnerTabs({ id }: Props) {
 
   const tabs: { label: string; content: ReactNode }[] = [];
 
+  const hasVideo = !!(youtube || vimeo);
+
   // interview with the team, same video featured at top of partner's page
-  if (youtube || vimeo)
+  if (hasVideo)
     tabs.push({
       label: "Meet the Team",
       content: youtube ? (
@@ -50,7 +52,9 @@ export default function PartnerTabs({ id }: Props) {
       content: (
         // ShowPartial owns the fade, toggle, and its own block spacing
         <div className="w-full">
-          <ShowPartial>
+          {/* clicking onto this tab is already intent to read, so skip the fade.
+              only clamp it when it leads, and the reader has not asked yet. */}
+          <ShowPartial defaultOpen={hasVideo}>
             <Message />
           </ShowPartial>
         </div>

@@ -30,9 +30,9 @@ export default function PartnerRow({ id }: Props) {
   const to = href("/talent/:id", { id });
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] items-center gap-x-12 gap-y-6 max-md:grid-cols-1">
-      {/* identity */}
-      <div className="flex flex-col items-center gap-4 text-center">
+    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] items-start gap-x-12 gap-y-6 max-md:grid-cols-1">
+      {/* identity. centers against a video-height panel, but stays put beside a tall one */}
+      <div className="flex flex-col items-center gap-4 text-center md:max-h-80 md:justify-center md:self-stretch">
         <Link
           to={to}
           arrow={false}

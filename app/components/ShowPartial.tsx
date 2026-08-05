@@ -7,6 +7,8 @@ import { preserveScroll } from "~/util/dom";
 import { useAutoHeight } from "~/util/hooks";
 
 type Props = {
+  // start revealed, for when the reader has already asked to see this
+  defaultOpen?: boolean;
   // class on content
   className?: string;
   // content to show partially
@@ -17,11 +19,15 @@ type Props = {
 const limit = 200;
 
 // show partial content with fade, with button to reveal more
-export default function ShowPartial({ className, children }: Props) {
+export default function ShowPartial({
+  defaultOpen = false,
+  className,
+  children,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
   // state
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const [enabled, setEnabled] = useState(true);
 
   // animate height on open/close
