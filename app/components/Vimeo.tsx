@@ -57,7 +57,14 @@ export default function Vimeo({
         aria-label="Play video"
         className={clsx(className, "group")}
       >
-        <img src={thumbnail} alt="" className="size-full object-cover" />
+        <img
+          src={thumbnail}
+          alt=""
+          // pages can stack many of these, so only fetch the ones on screen
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover"
+        />
         <div className="absolute grid size-20 place-items-center rounded-full bg-white">
           <PlayIcon
             className="size-12 transition group-hover:text-theme"
