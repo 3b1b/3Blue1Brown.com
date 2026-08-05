@@ -18,13 +18,12 @@ export default function Intro({ hidden }: Props) {
       className={clsx("bg-theme/15", hidden && "hidden")}
     >
       <p>
-        Think of this as a <strong>virtual career fair</strong>. These
-        organizations are interested in hiring the kinds of technically curious
-        people who watch 3Blue1Brown. On the pages below, you'll find interviews
-        between Grant and the teams, technical challenges specifically for this
-        audience, and featured work we believe you'll enjoy.
+        These organizations are partners with 3blue1brown seeking to hire
+        technically curious people like you. If this channel were a university,
+        think of this as the campus career fair where you can find aligned
+        opportunities. Explore the pages below to learn what makes each team
+        unique.
       </p>
-
       <PiCreature
         emotion="well"
         size="md"
