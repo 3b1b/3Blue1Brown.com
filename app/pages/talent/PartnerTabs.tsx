@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-import { href } from "react-router";
-import Link from "~/components/Link";
 import ShowPartial from "~/components/ShowPartial";
 import Tabs, { Panel } from "~/components/Tabs";
 import Vimeo from "~/components/Vimeo";
@@ -68,17 +66,13 @@ export default function PartnerTabs({ id }: Props) {
       ),
     });
 
-  // technical challenge or puzzle, for partners that wrote one
+  // technical challenge or puzzle, for partners that set one
   if (Challenge)
     tabs.push({
       label: "Challenge",
       content: (
         <div className={prose}>
           <Challenge />
-
-          <Link to={href("/talent/:id", { id })} className="self-center">
-            See the full challenge
-          </Link>
         </div>
       ),
     });

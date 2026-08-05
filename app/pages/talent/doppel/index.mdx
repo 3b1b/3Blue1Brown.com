@@ -11,12 +11,12 @@ quote: AI gives scammers an asymmetric advantage — millions of sophisticated a
 import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Figure from "~/components/Figure";
-import FreeResponse from "~/components/FreeResponse";
 import Image from "~/components/Image";
 import Tabs, { Panel } from "~/components/Tabs";
 import YouTube from "~/components/YouTube";
 import allhands from "./allhands.jpg";
 import banner from "./banner.png";
+import Challenge from "./challenge.mdx";
 import modalDiagram from "./modal-diagram.webp";
 import rsaconf from "./rsaconf.jpg";
 import threatWorkflow from "./threat-workflow.webp";
@@ -73,47 +73,7 @@ Our work combines LLM-driven detection, large-scale threat intelligence, and aut
 
 ### A challenge for the 3Blue1Brown Audience
 
-At Doppel, every decision comes down to reasoning about p(y) — the probability that a message is malicious given what we observe. Here's a puzzle that captures the core of that challenge.
-
----
-
-**Setup.** You're a cracked security team defending your users against a known phisher. Each day, the two of you are locked in a cat-and-mouse fight. The attacker sends a phishing campaign and chooses how often to use each of $n$ persuasive phrases in their messages — things like "urgent", "verify account", "free gift", "security alert", "payroll".
-
-The attacker selects a distribution $\mathbf{p} = (p_1, p_2, \ldots, p_n)$ over phrases $T = \{t_1, t_2, \ldots, t_n\}$, where $p_i = P(\text{attacker uses } t_i)$.
-
-Each phrase $t_i$ has an intrinsic social-engineering payoff $s_i$: if a message using $t_i$ reaches a user unflagged, it succeeds with probability $s_i$. If the message is flagged or fails to convince, payoff $= 0$.
-
-**Your detector.** You don't have the bandwidth to inspect every message perfectly — these phrases appear innocently in normal traffic too. Instead, you run a lightweight detector that monitors phrase frequencies. Given a baseline distribution $\mathbf{q} = (q_1, q_2, \ldots, q_n)$ representing natural phrase frequencies, you raise an alarm when:
-
-<center>
-$$\displaystyle \sum_i p_i \log\!\left(\frac{p_i}{q_i}\right) > C$$
-</center>
-
-for some constant $C$. (You might recognize this quantity.)
-
-**The question.** What distribution $\mathbf{p}$ should the attacker choose to maximize their expected payoff?
-
-_Hint: the optimal strategy isn't deterministic._
-
-<FreeResponse placeholder="Your solution">
-  {(input) => (
-    <>
-      <p>
-        Feel confident about this answer? When you submit an application, at the
-        bottom of your resume, include this line:
-      </p>
-      <strong>Answer to 3b1b talent page phishing puzzle: {input}</strong>
-      <Button
-        to="https://www.doppel.com/jobs?utm_source=wJQBOpREkk"
-        color="theme"
-        className="self-center"
-      >
-        Apply Now
-        <ArrowUpRightIcon />
-      </Button>
-    </>
-  )}
-</FreeResponse>
+<Challenge />
 
 </section>
 
