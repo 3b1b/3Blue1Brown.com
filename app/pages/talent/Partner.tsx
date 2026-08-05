@@ -4,6 +4,7 @@ import Footer from "~/components/Footer";
 import { H1 } from "~/components/Heading";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
+import Message from "~/pages/talent/Message";
 import PartnerHeader from "~/pages/talent/PartnerHeader";
 import { importAssets } from "~/util/import";
 
@@ -25,6 +26,14 @@ type RawPartner = {
 // import all partners
 export const [getPartner, partners] = importAssets(
   import.meta.glob<RawPartner>("./**/index.mdx", { eager: true }),
+);
+
+// import all "message from grant" files, rendered on page and previewed on gallery
+export const [getMessage] = importAssets(
+  import.meta.glob<{ default: MDXContent }>("./**/message.mdx", {
+    eager: true,
+  }),
+  "message",
 );
 
 // import all logos
@@ -63,6 +72,7 @@ export default function Partner({ params: { id } }: Route.ComponentProps) {
       <Main className="striped">
         <H1 className="sr-only">{name}</H1>
         <Component />
+        <Message id={id} />
       </Main>
 
       <Footer />
