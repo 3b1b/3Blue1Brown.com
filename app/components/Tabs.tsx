@@ -17,7 +17,6 @@ type Props = {
 export default function Tabs({ tabs, children, className }: Props) {
   return (
     <_Tabs.Root className={clsx("flex flex-col items-center gap-4", className)}>
-      {/* no wrapping, so tabs always read as one row. long labels wrap in place */}
       <_Tabs.List className="relative flex items-center justify-center gap-4">
         {tabs.map((tab, index) => (
           <_Tabs.Tab

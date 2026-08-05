@@ -38,13 +38,12 @@ export default function PartnerRow({ id }: Props) {
   const to = href("/talent/:id", { id });
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] items-start gap-x-12 gap-y-6 max-md:grid-cols-1">
+    <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] items-center gap-x-12 gap-y-6 max-md:grid-cols-1">
       {/* identity */}
       <div className="flex flex-col items-center gap-4 text-center">
         <Link
           to={to}
           arrow={false}
-          // reserve the tallest wordmark's height, so taglines line up across rows
           style={{ minHeight: `${wordmarkHeight * maxWordmarkScale}rem` }}
           className="flex items-center rounded-md text-black no-underline change-ring hocus:outline-theme"
         >
@@ -52,7 +51,6 @@ export default function PartnerRow({ id }: Props) {
             <img
               src={wordmark}
               alt={name}
-              // explicit height, since some wordmark svgs only have a viewBox
               style={{ height: `${wordmarkHeight * wordmarkScale}rem` }}
               className="w-auto object-contain"
             />
@@ -76,10 +74,10 @@ export default function PartnerRow({ id }: Props) {
           )}
         </div>
 
-        <div className="font-sans text-sm text-gray">{location}</div>
+        <div className="font-sans text-gray">{location}</div>
       </div>
 
-      {/* message from grant, interview, challenge */}
+      {/* interview, message from grant, challenge */}
       <PartnerTabs id={id} />
     </div>
   );

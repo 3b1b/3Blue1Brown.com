@@ -5,20 +5,16 @@ import PiCreature from "~/components/PiCreature";
 export const introId = "talent-intro";
 
 type Props = {
-  // whether to hide the section (stays mounted, so the toggle can reference it)
+  // hide the section, but keep it mounted for the header's toggle to reference
   hidden?: boolean;
 };
 
 // partner gallery page introduction section
 export default function Intro({ hidden }: Props) {
   return (
-    <section
-      id={introId}
-      // not the hidden attribute, which the base section styles would override
-      className={clsx("bg-theme/15", hidden && "hidden")}
-    >
+    <section id={introId} className={clsx("bg-theme/15", hidden && "hidden")}>
       <p>
-        These organizations are partners with 3blue1brown seeking to hire
+        These organizations are partners with 3Blue1Brown seeking to hire
         technically curious people like you. If this channel were a university,
         think of this as the campus career fair where you can find aligned
         opportunities. Explore the pages below to learn what makes each team

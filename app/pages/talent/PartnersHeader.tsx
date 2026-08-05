@@ -15,7 +15,6 @@ type Props = {
 // partner gallery page header
 export default function PartnersHeader({ showIntro, onToggleIntro }: Props) {
   return (
-    // toggle sits well clear of the title, and close to the section it opens
     <div className="flex flex-col gap-12 max-md:gap-8">
       <hgroup className="flex flex-col gap-4">
         <H1 className="font-serif text-5xl">
@@ -31,7 +30,7 @@ export default function PartnersHeader({ showIntro, onToggleIntro }: Props) {
         onClick={onToggleIntro}
         aria-expanded={showIntro}
         aria-controls={introId}
-        className="self-center text-sm text-gray"
+        className="self-center text-gray"
       >
         What is this?
         <CaretDownIcon
