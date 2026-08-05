@@ -18,8 +18,6 @@ type RawPartnerFrontmatter = {
   apply?: string;
   quote?: string;
   color?: string;
-  // multiplier on wordmark height, to even out optically big/small lockups
-  wordmarkScale?: number;
   // interview video, previewed on gallery. youtube id, or vimeo id (+ hash if private)
   youtube?: string;
   vimeo?: string;

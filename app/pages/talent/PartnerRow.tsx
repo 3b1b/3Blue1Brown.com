@@ -6,13 +6,6 @@ import Link from "~/components/Link";
 import { getPartner, getWordmark, getWordmarkDark } from "./Partner";
 import PartnerTabs from "./PartnerTabs";
 
-// base wordmark height, before per-partner wordmarkScale (rem)
-const wordmarkHeight = 3.25;
-
-// largest wordmarkScale any partner uses. raise alongside it, or the tallest
-// wordmark outgrows the reserved row below and taglines stop lining up
-const maxWordmarkScale = 1.2;
-
 type Props = {
   // partner id (folder name)
   id: string;
@@ -31,7 +24,6 @@ export default function PartnerRow({ id }: Props) {
     tagline = "",
     location = "",
     apply = "",
-    wordmarkScale = 1,
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
@@ -44,15 +36,13 @@ export default function PartnerRow({ id }: Props) {
         <Link
           to={to}
           arrow={false}
-          style={{ minHeight: `${wordmarkHeight * maxWordmarkScale}rem` }}
-          className="flex items-center rounded-md text-black no-underline change-ring hocus:outline-theme"
+          className="flex rounded-md text-black no-underline change-ring hocus:outline-theme"
         >
           {wordmark ? (
             <img
               src={wordmark}
               alt={name}
-              style={{ height: `${wordmarkHeight * wordmarkScale}rem` }}
-              className="w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
           ) : (
             <span className="font-sans text-2xl font-medium">{name}</span>
