@@ -13,8 +13,9 @@ type Props = {
   onChange?: (value: boolean) => void;
   // label content, optional if aria-label present
   children?: ReactNode;
-} & Pick<ComponentProps<"label">, "className"> &
-  Pick<ComponentProps<"input">, "required" | "name" | "form">;
+  // class on root
+  className?: string;
+} & Pick<ComponentProps<"input">, "required" | "name" | "form">;
 
 export default function CheckBox({
   help,
@@ -46,6 +47,7 @@ export default function CheckBox({
             setLocalValue(value);
             onChange?.(value);
           }}
+          required={required}
           {...props}
         />
         <Icon className="text-theme" />
