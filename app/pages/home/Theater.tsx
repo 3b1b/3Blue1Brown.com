@@ -150,6 +150,7 @@ export default function Theater() {
         </div>
 
         <div
+          id="theater-details"
           ref={detailsRef}
           className={clsx(
             "flex flex-col gap-4 overflow-y-clip rounded-md bg-theme/15 p-4 transition-all",
