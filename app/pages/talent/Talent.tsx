@@ -3,9 +3,9 @@ import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import TriangleGrid from "~/components/TriangleGrid";
-import Details from "./Contact";
 import Gallery from "./Partners";
 import PartnersHeader from "./PartnersHeader";
+import Questions from "./Questions";
 
 export default function Talent() {
   return (
@@ -23,7 +23,7 @@ export default function Talent() {
 
       <Main>
         <Gallery />
-        <Details />
+        <Questions />
       </Main>
 
       <Footer />
