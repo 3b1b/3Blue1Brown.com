@@ -58,7 +58,7 @@ export default function Vimeo({
         className={clsx(className, "group")}
       >
         <img
-          src={thumbnail}
+          src={thumbnail || undefined}
           alt=""
           loading="lazy"
           decoding="async"
