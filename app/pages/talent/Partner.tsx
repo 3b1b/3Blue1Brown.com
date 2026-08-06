@@ -16,7 +16,7 @@ type RawPartnerFrontmatter = {
   location?: string;
   // link to open roles
   apply?: string;
-  quote?: string;
+  about?: string;
   color?: string;
   // interview videos
   youtube?: string;

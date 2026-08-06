@@ -20,7 +20,7 @@ export default function PartnerTabs({ id, className }: Props) {
 
   const {
     name = "",
-    quote = "",
+    about = "",
     youtube = "",
     vimeo = "",
     vimeoHash,
@@ -52,10 +52,10 @@ export default function PartnerTabs({ id, className }: Props) {
         </ShowPartial>
       ),
     });
-  else if (quote)
+  else if (about)
     tabs.push({
       label: `About ${name}`,
-      content: <p>{quote}</p>,
+      content: <p>{about}</p>,
     });
 
   // technical challenge or puzzle
