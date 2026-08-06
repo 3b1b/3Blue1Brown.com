@@ -1,42 +1,24 @@
-import { CaretDownIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
-import Button from "~/components/Button";
 import { H1 } from "~/components/Heading";
+import Help from "~/components/Help";
 import StrokeType from "~/components/StrokeType";
-import { introId } from "./Intro";
-
-type Props = {
-  // whether the intro section below the header is showing
-  showIntro: boolean;
-  // show/hide the intro section
-  onToggleIntro: () => void;
-};
 
 // partner gallery page header
-export default function PartnersHeader({ showIntro, onToggleIntro }: Props) {
+export default function PartnersHeader() {
   return (
-    <div className="flex flex-col gap-12 max-md:gap-8">
-      <hgroup className="flex flex-col gap-4">
-        <H1 className="font-serif text-5xl">
-          <StrokeType>3b1b Talent</StrokeType>
-        </H1>
-        <div className="text-center font-sans text-2xl text-balance">
-          A virtual career fair
-        </div>
-      </hgroup>
-
-      <Button
-        size="sm"
-        onClick={onToggleIntro}
-        aria-expanded={showIntro}
-        aria-controls={introId}
-        className="self-center text-gray"
-      >
-        What is this?
-        <CaretDownIcon
-          className={clsx("icon transition", showIntro && "rotate-180")}
-        />
-      </Button>
-    </div>
+    <hgroup className="mb-8 flex flex-col gap-4">
+      <H1 className="font-serif text-5xl">
+        <StrokeType>3b1b Talent</StrokeType>
+      </H1>
+      <div className="flex items-center justify-center gap-2 text-center font-sans text-xl text-balance">
+        A virtual career fair
+        <Help>
+          These organizations are partners with 3Blue1Brown seeking to hire
+          technically curious people like you. If this channel were a
+          university, think of this as the campus career fair where you can find
+          aligned opportunities. Explore the pages below to learn what makes
+          each team unique.
+        </Help>
+      </div>
+    </hgroup>
   );
 }
