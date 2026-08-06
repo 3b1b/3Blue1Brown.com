@@ -38,7 +38,6 @@ export default function Partners() {
     <section className="width-lg">
       <H2>Partners</H2>
 
-      {/* dividers match the site's hr, which is also bg-current/10 */}
       <div className="flex w-full flex-col divide-y divide-current/10">
         {order.map((id) => (
           <div key={id} className="py-10 first:pt-0 last:pb-0">

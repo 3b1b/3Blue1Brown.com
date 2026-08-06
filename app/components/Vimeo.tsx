@@ -60,7 +60,6 @@ export default function Vimeo({
         <img
           src={thumbnail}
           alt=""
-          // pages can stack many of these, so only fetch the ones on screen
           loading="lazy"
           decoding="async"
           className="size-full object-cover"

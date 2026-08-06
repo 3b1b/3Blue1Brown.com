@@ -7,11 +7,11 @@ import { getPartner, getWordmark, getWordmarkDark } from "./Partner";
 import PartnerTabs from "./PartnerTabs";
 
 type Props = {
-  // partner id (folder name)
+  // partner id
   id: string;
 };
 
-// single partner in gallery: identity on left, tabbed detail on right
+// single partner in gallery
 export default function PartnerRow({ id }: Props) {
   const darkMode = useDarkMode();
 
@@ -31,7 +31,7 @@ export default function PartnerRow({ id }: Props) {
 
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] items-center gap-x-12 gap-y-6 max-md:grid-cols-1">
-      {/* identity */}
+      {/* identity, high level details */}
       <div className="flex flex-col items-center gap-4 text-center">
         <Link
           to={to}
@@ -67,7 +67,7 @@ export default function PartnerRow({ id }: Props) {
         <div className="font-sans text-gray">{location}</div>
       </div>
 
-      {/* interview, message from grant, challenge */}
+      {/* rich content, more details */}
       <PartnerTabs id={id} />
     </div>
   );

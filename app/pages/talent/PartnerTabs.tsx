@@ -5,15 +5,14 @@ import Vimeo from "~/components/Vimeo";
 import YouTube from "~/components/YouTube";
 import { getChallenge, getMessage, getPartner } from "./Partner";
 
-// mdx blocks stack with gaps, like the sections they'd sit in on a partner page
 const prose = "flex w-full flex-col gap-4";
 
 type Props = {
-  // partner id (folder name)
+  // partner id
   id: string;
 };
 
-// tabbed detail for a partner, filled with whatever content that partner has
+// partner detail tabs
 export default function PartnerTabs({ id }: Props) {
   const partner = getPartner(id);
 
@@ -32,7 +31,7 @@ export default function PartnerTabs({ id }: Props) {
 
   const tabs: { label: string; content: ReactNode }[] = [];
 
-  // interview with the team, same video featured at top of partner's page
+  // interview with team or other video
   if (youtube || vimeo)
     tabs.push({
       label: "Meet the Team",
@@ -43,12 +42,11 @@ export default function PartnerTabs({ id }: Props) {
       ),
     });
 
-  // grant's message, if written yet, else fall back to partner's own words
+  // message from grant
   if (Message)
     tabs.push({
       label: "Message from Grant",
       content: (
-        // ShowPartial owns the fade, toggle, and its own block spacing
         <div className="w-full">
           <ShowPartial>
             <Message />
@@ -66,7 +64,7 @@ export default function PartnerTabs({ id }: Props) {
       ),
     });
 
-  // technical challenge or puzzle, for partners that set one
+  // technical challenge or puzzle
   if (Challenge)
     tabs.push({
       label: "Challenge",

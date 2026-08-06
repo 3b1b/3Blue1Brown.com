@@ -12,13 +12,13 @@ import { importAssets } from "~/util/import";
 type RawPartnerFrontmatter = {
   name?: string;
   tagline?: string;
-  // free-form line about where they work, e.g. "San Francisco + remote"
+  // place of work, e.g. "San Francisco + remote"
   location?: string;
-  // link to partner's open roles
+  // link to open roles
   apply?: string;
   quote?: string;
   color?: string;
-  // interview video, previewed on gallery. youtube id, or vimeo id (+ hash if private)
+  // interview videos
   youtube?: string;
   vimeo?: string;
   vimeoHash?: string;
@@ -35,7 +35,7 @@ export const [getPartner] = importAssets(
   import.meta.glob<RawPartner>("./**/index.mdx", { eager: true }),
 );
 
-// import all "message from grant" files, rendered on page and previewed on gallery
+// import all "messages from grant"
 export const [getMessage] = importAssets(
   import.meta.glob<{ default: MDXContent }>("./**/message.mdx", {
     eager: true,
@@ -43,7 +43,7 @@ export const [getMessage] = importAssets(
   "message",
 );
 
-// import all challenge teasers, previewed on gallery
+// import all challenge teasers
 export const [getChallenge] = importAssets(
   import.meta.glob<{ default: MDXContent }>("./**/challenge.mdx", {
     eager: true,
@@ -51,20 +51,20 @@ export const [getChallenge] = importAssets(
   "challenge",
 );
 
-// every partner's wordmark, in both variants. globbed once, keyed twice below
+// import all wordmarks, light/dark
 const wordmarks = import.meta.glob<{ default: string }>(
   "./**/wordmark*.{svg,png}",
   { eager: true },
 );
 
-// import all wordmarks
+// wordmarks
 export const [getWordmark] = importAssets(
   wordmarks,
   "wordmark",
   (module) => module.default,
 );
 
-// import all light-on-dark wordmarks (for dark mode, and dark partner sections)
+// dark mode wordmarks
 export const [getWordmarkDark] = importAssets(
   wordmarks,
   "wordmark-dark",
