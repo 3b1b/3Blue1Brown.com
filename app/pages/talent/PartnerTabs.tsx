@@ -5,15 +5,15 @@ import Vimeo from "~/components/Vimeo";
 import YouTube from "~/components/YouTube";
 import { getChallenge, getMessage, getPartner } from "./Partner";
 
-const prose = "flex w-full flex-col gap-4";
-
 type Props = {
   // partner id
   id: string;
+  // class on root
+  className?: string;
 };
 
 // partner detail tabs
-export default function PartnerTabs({ id }: Props) {
+export default function PartnerTabs({ id, className }: Props) {
   const partner = getPartner(id);
 
   if (!partner) return null;
@@ -58,7 +58,7 @@ export default function PartnerTabs({ id }: Props) {
     tabs.push({
       label: `About ${name}`,
       content: (
-        <div className={prose}>
+        <div className="flex w-full flex-col gap-4">
           <p>{quote}</p>
         </div>
       ),
@@ -69,7 +69,7 @@ export default function PartnerTabs({ id }: Props) {
     tabs.push({
       label: "Challenge",
       content: (
-        <div className={prose}>
+        <div className="flex w-full flex-col gap-4">
           <Challenge />
         </div>
       ),
@@ -78,7 +78,7 @@ export default function PartnerTabs({ id }: Props) {
   if (!tabs.length) return null;
 
   return (
-    <Tabs tabs={tabs.map((tab) => tab.label)} className="w-full">
+    <Tabs tabs={tabs.map((tab) => tab.label)} className={className}>
       {tabs.map((tab, index) => (
         <Panel key={index}>{tab.content}</Panel>
       ))}
