@@ -4,8 +4,8 @@ import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import TriangleGrid from "~/components/TriangleGrid";
 import Gallery from "./Partners";
-import PartnersHeader from "./PartnersHeader";
 import Questions from "./Questions";
+import TalentHeader from "./TalentHeader";
 
 export default function Talent() {
   return (
@@ -18,7 +18,7 @@ export default function Talent() {
       <Header
         background={<TriangleGrid className="mask-b-from-0% mask-b-to-100%" />}
       >
-        <PartnersHeader />
+        <TalentHeader />
       </Header>
 
       <Main>
