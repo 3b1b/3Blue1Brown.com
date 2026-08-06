@@ -5,23 +5,22 @@ import Vimeo from "~/components/Vimeo";
 import YouTube from "~/components/YouTube";
 import { getChallenge, getMessage, getPartner } from "./Partner";
 
-// mdx blocks stack with gaps, like the sections they'd sit in on a partner page
-const prose = "flex w-full flex-col gap-4";
-
 type Props = {
-  // partner id (folder name)
+  // partner id
   id: string;
+  // class on root
+  className?: string;
 };
 
-// tabbed detail for a partner, filled with whatever content that partner has
-export default function PartnerTabs({ id }: Props) {
+// partner detail tabs
+export default function PartnerTabs({ id, className }: Props) {
   const partner = getPartner(id);
 
   if (!partner) return null;
 
   const {
     name = "",
-    quote = "",
+    about = "",
     youtube = "",
     vimeo = "",
     vimeoHash,
@@ -32,10 +31,8 @@ export default function PartnerTabs({ id }: Props) {
 
   const tabs: { label: string; content: ReactNode }[] = [];
 
-  const hasVideo = !!(youtube || vimeo);
-
-  // interview with the team, same video featured at top of partner's page
-  if (hasVideo)
+  // interview with team or other video
+  if (youtube || vimeo)
     tabs.push({
       label: "Meet the Team",
       content: youtube ? (
@@ -45,37 +42,28 @@ export default function PartnerTabs({ id }: Props) {
       ),
     });
 
-  // grant's message, if written yet, else fall back to partner's own words
+  // message from grant
   if (Message)
     tabs.push({
       label: "Message from Grant",
       content: (
-        // ShowPartial owns the fade, toggle, and its own block spacing
-        <div className="w-full">
-          {/* clicking onto this tab is already intent to read, so skip the fade.
-              only clamp it when it leads, and the reader has not asked yet. */}
-          <ShowPartial defaultOpen={hasVideo}>
-            <Message />
-          </ShowPartial>
-        </div>
+        <ShowPartial>
+          <Message />
+        </ShowPartial>
       ),
     });
-  else if (quote)
+  else if (about)
     tabs.push({
       label: `About ${name}`,
-      content: (
-        <div className={prose}>
-          <p>{quote}</p>
-        </div>
-      ),
+      content: <p>{about}</p>,
     });
 
-  // technical challenge or puzzle, for partners that set one
+  // technical challenge or puzzle
   if (Challenge)
     tabs.push({
       label: "Challenge",
       content: (
-        <div className={prose}>
+        <div className="flex flex-col gap-8">
           <Challenge />
         </div>
       ),
@@ -84,7 +72,7 @@ export default function PartnerTabs({ id }: Props) {
   if (!tabs.length) return null;
 
   return (
-    <Tabs tabs={tabs.map((tab) => tab.label)} className="w-full">
+    <Tabs tabs={tabs.map((tab) => tab.label)} className={className}>
       {tabs.map((tab, index) => (
         <Panel key={index}>{tab.content}</Panel>
       ))}

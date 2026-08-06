@@ -58,9 +58,8 @@ export default function Vimeo({
         className={clsx(className, "group")}
       >
         <img
-          src={thumbnail}
+          src={thumbnail || undefined}
           alt=""
-          // pages can stack many of these, so only fetch the ones on screen
           loading="lazy"
           decoding="async"
           className="size-full object-cover"

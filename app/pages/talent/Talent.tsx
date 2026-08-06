@@ -1,18 +1,13 @@
-import { useState } from "react";
 import Footer from "~/components/Footer";
 import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import TriangleGrid from "~/components/TriangleGrid";
-import Details from "./Contact";
-import Intro from "./Intro";
 import Gallery from "./Partners";
-import PartnersHeader from "./PartnersHeader";
+import Questions from "./Questions";
+import TalentHeader from "./TalentHeader";
 
 export default function Talent() {
-  // intro starts hidden, revealed by the header's "what is this?" toggle
-  const [showIntro, setShowIntro] = useState(false);
-
   return (
     <>
       <Meta
@@ -23,16 +18,12 @@ export default function Talent() {
       <Header
         background={<TriangleGrid className="mask-b-from-0% mask-b-to-100%" />}
       >
-        <PartnersHeader
-          showIntro={showIntro}
-          onToggleIntro={() => setShowIntro(!showIntro)}
-        />
+        <TalentHeader />
       </Header>
 
       <Main>
-        <Intro hidden={!showIntro} />
         <Gallery />
-        <Details />
+        <Questions />
       </Main>
 
       <Footer />

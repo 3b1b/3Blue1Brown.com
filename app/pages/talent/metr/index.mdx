@@ -5,7 +5,7 @@ location: Berkeley
 apply: https://jobs.lever.co/metr
 vimeo: "1158946636"
 vimeoHash: c6f71a8907
-quote: It's kind of a blend between a PhD Lab and a start up, in the best possible way
+about: It's kind of a blend between a PhD Lab and a start up, in the best possible way
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -42,12 +42,8 @@ import wordmark from "./wordmark-dark.svg";
   </Panel>
 </Tabs>
 
-<Button
-  to="https://jobs.lever.co/metr"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 

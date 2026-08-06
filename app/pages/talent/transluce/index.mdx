@@ -4,7 +4,7 @@ tagline: Open & scalable technology for understanding AI systems
 location: San Francisco
 apply: https://jobs.gem.com/transluce
 youtube: I9gtNoyWw-M
-quote: An independent research lab working toward responsible development and deployment in the public interest
+about: An independent research lab working toward responsible development and deployment in the public interest
 ---
 
 import {
@@ -38,12 +38,8 @@ import wordmark from "./wordmark-dark.png";
 
 <YouTube id={frontmatter.youtube} />
 
-<Button
-  to="https://jobs.gem.com/transluce"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 

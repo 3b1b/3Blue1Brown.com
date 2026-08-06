@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import clsx from "clsx";
 import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
 import PartnerRow from "./PartnerRow";
@@ -38,14 +39,15 @@ export default function Partners() {
     <section className="width-lg">
       <H2>Partners</H2>
 
-      {/* dividers match the site's hr, which is also bg-current/10 */}
-      <div className="flex w-full flex-col divide-y divide-current/10">
-        {order.map((id) => (
-          <div key={id} className="py-10 first:pt-0 last:pb-0">
-            <PartnerRow id={id} />
-          </div>
-        ))}
-      </div>
+      {order.map((id, index) => (
+        <Fragment key={index}>
+          <PartnerRow
+            id={id}
+            className={clsx(index % 2 === 1 && "flex-row-reverse")}
+          />
+          {index < order.length - 1 && <hr />}
+        </Fragment>
+      ))}
     </section>
   );
 }

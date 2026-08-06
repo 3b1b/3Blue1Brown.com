@@ -2,7 +2,7 @@ import { H2 } from "~/components/Heading";
 import { getMessage } from "./Partner";
 
 type Props = {
-  // partner id (folder name)
+  // partner id
   id: string;
 };
 
