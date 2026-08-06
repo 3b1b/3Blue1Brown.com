@@ -1,6 +1,5 @@
 import { href } from "react-router";
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
 import Button from "~/components/Button";
 import { useDarkMode } from "~/components/DarkMode";
 import Link from "~/components/Link";
@@ -10,12 +9,10 @@ import PartnerTabs from "./PartnerTabs";
 type Props = {
   // partner id
   id: string;
-  // class on root
-  className?: string;
 };
 
 // single partner in gallery
-export default function PartnerRow({ id, className }: Props) {
+export default function PartnerRow({ id }: Props) {
   const darkMode = useDarkMode();
 
   const partner = getPartner(id);
@@ -34,11 +31,10 @@ export default function PartnerRow({ id, className }: Props) {
   const page = href("/talent/:id", { id });
 
   return (
-    <div
-      className={clsx("flex items-center gap-12 max-md:flex-col", className)}
-    >
+    <div className="flex items-center gap-12 max-md:flex-col">
       {/* identity, high level details */}
-      <div className="flex flex-2 flex-col items-center gap-6 text-center">
+      {/* centers against a video-height panel, but stays put beside a tall one */}
+      <div className="flex flex-2 flex-col items-center gap-6 text-center md:max-h-88 md:justify-center md:self-stretch">
         <Link
           to={page}
           className="flex rounded-md text-black no-underline change-ring hocus:outline-theme"

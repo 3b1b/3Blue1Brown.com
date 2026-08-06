@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import clsx from "clsx";
 import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
 import PartnerRow from "./PartnerRow";
@@ -41,10 +40,7 @@ export default function Partners() {
 
       {order.map((id, index) => (
         <Fragment key={index}>
-          <PartnerRow
-            id={id}
-            className={clsx(index % 2 === 1 && "flex-row-reverse")}
-          />
+          <PartnerRow id={id} />
           {index < order.length - 1 && <hr />}
         </Fragment>
       ))}

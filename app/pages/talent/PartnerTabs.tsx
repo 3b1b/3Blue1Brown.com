@@ -31,8 +31,10 @@ export default function PartnerTabs({ id, className }: Props) {
 
   const tabs: { label: string; content: ReactNode }[] = [];
 
+  const hasVideo = !!(youtube || vimeo);
+
   // interview with team or other video
-  if (youtube || vimeo)
+  if (hasVideo)
     tabs.push({
       label: "Meet the Team",
       content: youtube ? (
@@ -47,7 +49,8 @@ export default function PartnerTabs({ id, className }: Props) {
     tabs.push({
       label: "Message from Grant",
       content: (
-        <ShowPartial>
+        // clicking over to this tab is already intent to read it
+        <ShowPartial defaultOpen={hasVideo}>
           <Message />
         </ShowPartial>
       ),
