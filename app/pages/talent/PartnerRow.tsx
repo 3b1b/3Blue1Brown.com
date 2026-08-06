@@ -38,7 +38,7 @@ export default function PartnerRow({ id, className }: Props) {
       className={clsx("flex items-center gap-12 max-md:flex-col", className)}
     >
       {/* identity, high level details */}
-      <div className="flex flex-2 flex-col items-center gap-4 text-center">
+      <div className="flex flex-2 flex-col items-center gap-6 text-center">
         <Link
           to={page}
           className="flex rounded-md text-black no-underline change-ring hocus:outline-theme"
@@ -47,7 +47,7 @@ export default function PartnerRow({ id, className }: Props) {
             <img
               src={wordmark}
               alt={name}
-              className="h-14 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
           ) : (
             <span className="font-sans text-2xl font-medium">{name}</span>
