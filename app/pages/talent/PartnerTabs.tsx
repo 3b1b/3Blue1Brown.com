@@ -47,21 +47,15 @@ export default function PartnerTabs({ id, className }: Props) {
     tabs.push({
       label: "Message from Grant",
       content: (
-        <div className="w-full">
-          <ShowPartial>
-            <Message />
-          </ShowPartial>
-        </div>
+        <ShowPartial>
+          <Message />
+        </ShowPartial>
       ),
     });
   else if (quote)
     tabs.push({
       label: `About ${name}`,
-      content: (
-        <div className="flex w-full flex-col gap-4">
-          <p>{quote}</p>
-        </div>
-      ),
+      content: <p>{quote}</p>,
     });
 
   // technical challenge or puzzle
@@ -69,7 +63,7 @@ export default function PartnerTabs({ id, className }: Props) {
     tabs.push({
       label: "Challenge",
       content: (
-        <div className="flex w-full flex-col gap-4">
+        <div className="flex flex-col gap-8">
           <Challenge />
         </div>
       ),
