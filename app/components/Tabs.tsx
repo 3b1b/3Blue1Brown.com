@@ -17,7 +17,7 @@ type Props = {
 export default function Tabs({ tabs, children, className }: Props) {
   return (
     <_Tabs.Root className={clsx("flex flex-col items-center gap-4", className)}>
-      <_Tabs.List className="relative flex flex-wrap items-center justify-center gap-x-4">
+      <_Tabs.List className="relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
         {tabs.map((tab, index) => (
           <_Tabs.Tab
             key={index}
