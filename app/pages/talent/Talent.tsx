@@ -3,7 +3,7 @@ import Header from "~/components/Header";
 import Main from "~/components/Main";
 import Meta from "~/components/Meta";
 import TriangleGrid from "~/components/TriangleGrid";
-import Gallery from "./Partners";
+import Gallery from "./Gallery";
 import Questions from "./Questions";
 import TalentHeader from "./TalentHeader";
 
