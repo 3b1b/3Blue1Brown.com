@@ -1,7 +1,10 @@
 ---
 name: Shopify
 tagline: E-commerce platform powering millions of businesses worldwide
-quote: "Shopify's mission is to make commerce better for everyone."
+location: Remote across the Americas
+apply: https://www.shopify.com/careers?utm_source=3b1b
+youtube: _VqBW7h5BYg
+about: "Shopify's mission is to make commerce better for everyone."
 ---
 
 import {
@@ -20,7 +23,7 @@ import office from "./office.jpg";
 import rooftop from "./rooftop.jpg";
 import simgym from "./simgym.png";
 import ucp from "./ucp.jpg";
-import wordmark from "./wordmark.svg";
+import wordmark from "./wordmark-dark.svg";
 
 <section className="dark width-lg">
 
@@ -32,14 +35,10 @@ import wordmark from "./wordmark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id="_VqBW7h5BYg" />
+<YouTube id={frontmatter.youtube} />
 
-<Button
-  to="https://www.shopify.com/careers?utm_source=3b1b"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 

@@ -1,7 +1,10 @@
 ---
 name: Kiso
 tagline: Applied AI, engineered for impact
-quote: Deploying the world's best team of applied technical talent
+location: San Francisco
+apply: https://jobs.ashbyhq.com/kiso-technology/46eec779-aa7f-490d-9c0b-9b51b25efec3
+youtube: TmaCDP02ryk
+about: Deploying the world's best team of applied technical talent
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -15,7 +18,7 @@ import banner from "./banner.png";
 import humanInTheLoopLLM from "./human-in-the-loop-llm.svg";
 import networkOptimization from "./network-optimization.svg";
 import personalizedRecommendations from "./personalized-recommendations.svg";
-import wordmark from "./wordmark.svg";
+import wordmark from "./wordmark-dark.svg";
 
 <section className="dark width-lg">
 
@@ -27,14 +30,10 @@ import wordmark from "./wordmark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id="TmaCDP02ryk" />
+<YouTube id={frontmatter.youtube} />
 
-<Button
-  to="https://jobs.ashbyhq.com/kiso-technology/46eec779-aa7f-490d-9c0b-9b51b25efec3"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 

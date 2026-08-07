@@ -1,23 +1,26 @@
 ---
 name: Cognition
 tagline: Building the future of software engineering
-quote: The decision everybody made independently was that the time we're in right now is too unique to pass up. Let's knock this one out of the park because it is the highest delta you could possibly have in the world of technology right now.
+location: San Francisco, New York, London, plus many more around the globe
+apply: https://jobs.ashbyhq.com/cognition?utm_source=Kevg6jyyEB
+youtube: UjOepF3m9S8
+about: The decision everybody made independently was that the time we're in right now is too unique to pass up. Let's knock this one out of the park because it is the highest delta you could possibly have in the world of technology right now.
 ---
 
 import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Collapsible from "~/components/Collapsible";
-import FreeResponse from "~/components/FreeResponse";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
 import Tabs, { Panel } from "~/components/Tabs";
 import YouTube from "~/components/YouTube";
 import banner from "./banner.jpeg";
+import Challenge from "./challenge.mdx";
 import office1 from "./office-1.jpg";
 import office2 from "./office-2.jpg";
 import office3 from "./office-3.jpg";
 import sweBenchmark from "./swe-benchmark.jpg";
-import wordmark from "./wordmark.svg";
+import wordmark from "./wordmark-dark.svg";
 
 <section className="dark width-lg">
 
@@ -31,7 +34,7 @@ import wordmark from "./wordmark.svg";
 
 <Tabs tabs={["Meet Our Team", "Meet Our Leadership", "How People Use Devin"]}>
   <Panel>
-    <YouTube id="UjOepF3m9S8" />
+    <YouTube id={frontmatter.youtube} />
   </Panel>
   <Panel>
     <YouTube id="-pZ3vD0r8a0" />
@@ -41,12 +44,8 @@ import wordmark from "./wordmark.svg";
   </Panel>
 </Tabs>
 
-<Button
-  to="https://jobs.ashbyhq.com/cognition?utm_source=Kevg6jyyEB"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 
@@ -92,26 +91,13 @@ We're still in the early innings - our hardest challenges lie ahead. If you're e
 
 ## A challenge for the 3blue1brown audience
 
-At Cognition, we value people who not only solve hard problems but who can also identify key insights and explain them clearly to others.
-
-For this challenge, start by reading [our SWE-1.7 post](https://cognition.com/blog/swe-1-7), which covers how we trained our latest coding model. Pick one of these two mechanisms and create a brief visual explanation of the core insight that makes it work:
-
-**Entropy collapse and top-p sampling**: Why does penalizing a single low-probability token during RL end up sharpening the entire distribution, not just suppressing that token?
-**Compressed weight-delta broadcasting**: How do we keep globally distributed inference clusters in sync with a training cluster without re-sending the full model each time?
-
-Your visual explanation could be an animation, a diagram, or an interactive, together with a concise and clear written description. When you apply, in the section asking you to share specific achievements and experiences, include a line saying "My answer to the 3b1b Talent challenge" with a link to your result.
+<Challenge />
 
 </section>
 
 <section>
 
-## Message from Grant
-
-I visited the nascent Cognition team not too long after it was founded, and it immediately left an impression. For context, I knew about them because a college friend of mine, Russell Kaplan, is now president there. Throughout the last decade, more than anyone else I know, Russell has had an uncanny ability to predict the major trends in AI a few years before they become mainstream. He's also one of the most savvy and ambitious people I know, so when he pointed his attention towards this new company, naturally, I was intrigued.
-
-In that first visit, what struck me is how the sheer concentration of both talent and hustle is leagues above what you see in most companies, even start ups. It's something like the software engineering equivalent of a close-knit team of athletes training for the Olympics.
-
-I visited again more recently in the context of this partnership with 3b1b, and though the days of everyone working from one house are now long gone, I was pleased to see that through their growth, the talent concentration remains as dense as ever.
+## From the Founders
 
 <div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
 

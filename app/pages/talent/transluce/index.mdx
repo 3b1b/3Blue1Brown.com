@@ -1,7 +1,10 @@
 ---
 name: Transluce
 tagline: Open & scalable technology for understanding AI systems
-quote: An independent research lab working toward responsible development and deployment in the public interest
+location: San Francisco
+apply: https://jobs.gem.com/transluce
+youtube: I9gtNoyWw-M
+about: An independent research lab working toward responsible development and deployment in the public interest
 ---
 
 import {
@@ -21,7 +24,7 @@ import pathologicalBehaviors from "./pathological-behaviors.png";
 import pcd from "./pcd.jpg";
 import table from "./table.jpg";
 import terminalBench from "./terminal-bench.png";
-import wordmark from "./wordmark.png";
+import wordmark from "./wordmark-dark.png";
 
 <section className="dark width-lg">
 
@@ -33,14 +36,10 @@ import wordmark from "./wordmark.png";
 
 <img src={wordmark} alt="" className="max-h-20 self-center p-4" />
 
-<YouTube id="I9gtNoyWw-M" />
+<YouTube id={frontmatter.youtube} />
 
-<Button
-  to="https://jobs.gem.com/transluce"
-  color="critical"
-  className="w-100 self-center"
->
-  Explore Open Roles
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
   <ArrowUpRightIcon />
 </Button>
 
