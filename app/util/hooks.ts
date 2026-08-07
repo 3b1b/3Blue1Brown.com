@@ -1,6 +1,12 @@
 import type { RefObject } from "react";
 import type { Remote } from "comlink";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { flushSync } from "react-dom";
 import {
   useElementBounding,
@@ -10,7 +16,7 @@ import {
 import { wrap } from "comlink";
 import { isEqual, mapValues } from "lodash-es";
 import { UAParser } from "ua-parser-js";
-import { frame } from "~/util/async";
+import { frame, sleep } from "~/util/async";
 
 // check if value changed from previous render
 export const useChanged = <Value>(
@@ -125,12 +131,21 @@ export const useAutoHeight = (
   // closed height
   closed = 0,
 ) => {
+  const first = useRef(true);
+
   useLayoutEffect(() => {
     const element = ref.current;
     if (!element) return;
 
     // reset height so content can size naturally
     const reset = () => (element.style.maxHeight = "");
+
+    // don't transition on first render
+    if (first.current) {
+      element.style.transition = "none";
+      sleep().then(() => (element.style.transition = ""));
+      first.current = false;
+    }
 
     if (open) {
       // set height to content height
@@ -149,7 +164,7 @@ export const useAutoHeight = (
     return () => {
       element.removeEventListener("transitionend", reset);
     };
-  }, [ref, open, closed]);
+  }, [ref, open, closed, first]);
 };
 
 // use printing state
