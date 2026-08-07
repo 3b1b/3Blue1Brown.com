@@ -70,10 +70,11 @@ export default function Select<O extends Option>({
               onChange?.(options[element.selectedIndex]!.value);
             }
           }}
+          required={required}
           {...props}
         >
           {options.map((option, index) => (
-            <option key={index} value={option.value}>
+            <option key={index} value={option.value} className="bg-light-gray">
               {option.label ?? option.value}
             </option>
           ))}
