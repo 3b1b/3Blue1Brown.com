@@ -32,11 +32,11 @@ import wordmark from "./wordmark-dark.png";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<Tabs tabs={["Meet Our Team", "Learn about BEAM"]}>
-  <Panel>
+<Tabs>
+  <Panel title="Meet Our Team">
     <YouTube id={frontmatter.youtube} />
   </Panel>
-  <Panel>
+  <Panel title="Learn about BEAM">
     <Vimeo id="1177426720" />
   </Panel>
 </Tabs>
