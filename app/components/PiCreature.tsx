@@ -13,7 +13,7 @@ type Component = FunctionComponent<ComponentProps<"svg">>;
 
 // import all pi creature emotions
 export const [, emotions] = importAssets(
-  import.meta.glob<{ default: Component }>("~/assets/pi-creatures/*.svg", {
+  import.meta.glob<{ default: Component }>("../assets/pi-creatures/*.svg", {
     eager: true,
     query: "react",
   }),

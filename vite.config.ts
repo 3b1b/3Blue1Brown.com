@@ -1,5 +1,6 @@
 import type { Root } from "mdast";
 import type { Plugin } from "vite";
+import { fileURLToPath } from "url";
 import mdx from "@mdx-js/rollup";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -30,7 +31,13 @@ export default defineConfig(() => ({
   resolve: {
     tsconfigPaths: true,
     alias: {
-      "~/": new URL("./app/", import.meta.url).pathname,
+      // fileURLToPath avoids the leading slash that .pathname gives on Windows
+      // (which doubles the drive letter: C:\C:\...). replaceAll normalizes
+      // backslashes to forward slashes so Vite's SSR module runner can resolve them.
+      "~/": fileURLToPath(new URL("./app/", import.meta.url)).replaceAll(
+        "\\",
+        "/",
+      ),
     },
   },
 }));
@@ -104,7 +111,10 @@ const mdxPlugin = mdx({
     editMDX,
   ],
   // https://mdxjs.com/packages/mdx
-  providerImportSource: "~/components/Markdownify",
+  // MDX resolves providerImportSource before Vite aliases, so use an absolute path
+  providerImportSource: fileURLToPath(
+    new URL("./app/components/Markdownify", import.meta.url),
+  ),
 });
 
 // allow importing and inlining svgs as react components

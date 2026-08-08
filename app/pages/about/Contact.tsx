@@ -11,7 +11,7 @@ import TextBox from "~/components/TextBox";
 const formName = "contact-general";
 
 const reasonOptions = [
-  { value: "", label: "" },
+  { value: "", label: "Select a Reason" },
   { value: "[speaking-request]", label: "Speaking request" },
   { value: "[licensing-request]", label: "Licensing request" },
   { value: "[video-correction]", label: "Video Correction" },
@@ -129,16 +129,15 @@ export default function Contact() {
         This form requires JavaScript to be enabled in your browser.
       </noscript>
 
-      {!status && (
-        <Button
-          type="submit"
-          color="critical"
-          className="col-span-full w-50 justify-self-center"
-        >
-          <PaperPlaneIcon />
-          Send
-        </Button>
-      )}
+      <Button
+        type="submit"
+        color="critical"
+        className="col-span-full w-50 justify-self-center"
+        disabled={status === "loading" || status === "success"}
+      >
+        <PaperPlaneIcon />
+        Send
+      </Button>
 
       {status === "loading" && (
         <Alert type="loading" className="col-span-full">

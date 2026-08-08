@@ -7,7 +7,7 @@ import { importAssets } from "~/util/import";
 
 // import platform logos
 const [getLogo] = importAssets(
-  import.meta.glob<{ default: string }>("~/pages/podcast/images/*.png", {
+  import.meta.glob<{ default: string }>("../podcast/images/*.png", {
     eager: true,
   }),
   undefined,
