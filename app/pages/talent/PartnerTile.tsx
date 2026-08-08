@@ -49,7 +49,7 @@ export default function PartnerTile({ id }: Props) {
   return (
     <div className="flex gap-12 max-md:flex-col">
       {/* identity, high level details */}
-      <div className="flex flex-2 flex-col items-center justify-center gap-6 text-center md:h-92">
+      <div className="flex flex-2 flex-col items-center gap-6 text-center md:mt-16">
         <Link
           to={page}
           className="flex rounded-md text-black no-underline change-ring hocus:outline-theme"
