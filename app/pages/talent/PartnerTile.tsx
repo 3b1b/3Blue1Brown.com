@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { href } from "react-router";
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
@@ -47,42 +46,6 @@ export default function PartnerTile({ id }: Props) {
 
   const hasVideo = !!(youtube || vimeo);
 
-  const tabs: { label: string; content: ReactNode }[] = [];
-
-  // interview with team or other video
-  if (hasVideo)
-    tabs.push({
-      label: "Meet the Team",
-      content: youtube ? (
-        <YouTube id={youtube} />
-      ) : (
-        <Vimeo id={vimeo} hash={vimeoHash} />
-      ),
-    });
-
-  // message from grant
-  if (Message)
-    tabs.push({
-      label: "Message from Grant",
-      content: <Message />,
-    });
-  else if (about)
-    tabs.push({
-      label: `About ${name}`,
-      content: <p>{about}</p>,
-    });
-
-  // technical challenge or puzzle
-  if (Challenge)
-    tabs.push({
-      label: "Challenge",
-      content: (
-        <div className="flex flex-col gap-8">
-          <Challenge />
-        </div>
-      ),
-    });
-
   return (
     <div className="flex gap-12 max-md:flex-col">
       {/* identity, high level details */}
@@ -121,10 +84,35 @@ export default function PartnerTile({ id }: Props) {
       </div>
 
       {/* rich content, more details */}
-      <Tabs tabs={tabs.map((tab) => tab.label)} className="flex-3 self-start">
-        {tabs.map((tab, index) => (
-          <Panel key={index}>{tab.content}</Panel>
-        ))}
+      <Tabs className="flex-3 self-start">
+        {hasVideo && (
+          <Panel title="Meet the Team">
+            {youtube ? (
+              <YouTube id={youtube} />
+            ) : (
+              <Vimeo id={vimeo} hash={vimeoHash} />
+            )}
+          </Panel>
+        )}
+
+        {Message && (
+          <Panel title="Message from Grant">
+            <Message />
+          </Panel>
+        )}
+        {!Message && about && (
+          <Panel title={`About ${name}`}>
+            <p>{about}</p>
+          </Panel>
+        )}
+
+        {Challenge && (
+          <Panel title="Challenge">
+            <div className="flex flex-col gap-8">
+              <Challenge />
+            </div>
+          </Panel>
+        )}
       </Tabs>
     </div>
   );

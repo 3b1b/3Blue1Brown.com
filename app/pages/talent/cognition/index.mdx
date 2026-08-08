@@ -32,14 +32,14 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<Tabs tabs={["Meet Our Team", "Meet Our Leadership", "How People Use Devin"]}>
-  <Panel>
+<Tabs>
+  <Panel title="Meet Our Team">
     <YouTube id={frontmatter.youtube} />
   </Panel>
-  <Panel>
+  <Panel title="Meet Our Leadership">
     <YouTube id="-pZ3vD0r8a0" />
   </Panel>
-  <Panel>
+  <Panel title="How People Use Devin">
     <YouTube id="AHJ-_uPuJqs" />
   </Panel>
 </Tabs>
