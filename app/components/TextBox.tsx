@@ -86,6 +86,7 @@ export default function TextBox({
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       onChange={(event) => onChange?.(event.target.value)}
+      required={required}
       {...(props as Multi)}
     />
   ) : (

@@ -48,7 +48,13 @@ export default function YouTube({
         aria-label="Play video"
         className={clsx(className, "group")}
       >
-        <img src={getThumbnail(id)} alt="" className="size-full object-cover" />
+        <img
+          src={getThumbnail(id)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover"
+        />
         <div className="absolute grid size-20 place-items-center rounded-full bg-white">
           <PlayIcon
             className="size-12 transition group-hover:text-theme"

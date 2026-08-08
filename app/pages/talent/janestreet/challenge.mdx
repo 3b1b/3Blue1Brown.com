@@ -1,0 +1,23 @@
+import Image from "~/components/Image";
+import Tabs, { Panel } from "~/components/Tabs";
+import knightMovesDesktop from "./knight-moves-desktop.jpg";
+import knightMovesMobile from "./knight-moves-mobile.jpg";
+import polyhedralDesktop from "./polyhedral-desktop.jpg";
+import polyhedralMobile from "./polyhedral-mobile.jpg";
+
+At Jane Street, puzzles aren't just a pastime. We find puzzles to solve in
+everything we do, from building models for machine learning to analyzing complex
+trading scenarios. Of course, we do puzzles for fun too! Here are a few examples
+of the kinds of problems we love, and you can find more on our
+[puzzles page](https://www.janestreet.com/puzzles/).
+
+<Tabs tabs={["Knight Moves", "A Polyhedral Puzzle"]}>
+  <Panel>
+    <Image image={knightMovesDesktop} className="max-lg:hidden" />
+    <Image image={knightMovesMobile} className="lg:hidden" />
+  </Panel>
+  <Panel>
+    <Image image={polyhedralDesktop} className="max-lg:hidden" />
+    <Image image={polyhedralMobile} className="lg:hidden" />
+  </Panel>
+</Tabs>
