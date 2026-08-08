@@ -1,4 +1,4 @@
-@reference "../styles.css";
+@reference "~/styles.css";
 
 mjx-container {
   @apply max-w-full overflow-x-auto text-black;

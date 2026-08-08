@@ -32,8 +32,7 @@ type Multi = {
   multi: true;
 } & Omit<ComponentPropsWithRef<"textarea">, "value" | "onChange">;
 
-const EMAIL_PATTERN =
-  "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+";
+const EMAIL_PATTERN = "[^@]+@[^@]+\\.[^@]+";
 
 // single or multi-line text input box
 export default function TextBox({
@@ -52,7 +51,7 @@ export default function TextBox({
   const mergedRef = useMergedRefs(inputRef, passedRef);
   const sideRef = useRef<HTMLDivElement>(null);
 
-  const isEmail = !multi && (props as Single).type === "email";
+  const isEmail = !multi && "type" in props && props.type === "email";
 
   // side elements
   let side: ReactNode = "";
@@ -96,12 +95,20 @@ export default function TextBox({
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
       pattern={isEmail ? EMAIL_PATTERN : undefined}
-      title={
-        isEmail
-          ? "Please enter a valid email address (e.g. name@example.com)"
-          : undefined
-      }
-      onChange={(event) => onChange?.(event.target.value)}
+      onChange={(event) => {
+        if (isEmail) {
+          event.target.setCustomValidity("");
+        }
+        onChange?.(event.target.value);
+      }}
+      onInvalid={(event) => {
+        const target = event.target as HTMLInputElement;
+        if (isEmail && target.validity.patternMismatch) {
+          target.setCustomValidity(
+            "Please enter a valid email address (e.g. name@example.com)",
+          );
+        }
+      }}
       {...(props as Single)}
     />
   );

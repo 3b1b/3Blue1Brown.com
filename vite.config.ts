@@ -1,6 +1,6 @@
+import { fileURLToPath } from "url";
 import type { Root } from "mdast";
 import type { Plugin } from "vite";
-import { fileURLToPath } from "url";
 import mdx from "@mdx-js/rollup";
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
