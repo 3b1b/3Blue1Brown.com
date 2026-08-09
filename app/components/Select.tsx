@@ -77,7 +77,16 @@ export default function Select<O extends Option>({
           {...props}
         >
           {options.map((option, index) => (
-            <option key={index} value={option.value} className="bg-light-gray">
+            <option
+              key={index}
+              value={option.value}
+              className={clsx(
+                "bg-light-gray",
+                option.value === ""
+                  ? "text-gray italic"
+                  : "text-black not-italic",
+              )}
+            >
               {(option.label ?? option.value) || "- Select an option -"}
             </option>
           ))}
