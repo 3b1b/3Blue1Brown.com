@@ -32,8 +32,6 @@ type Multi = {
   multi: true;
 } & Omit<ComponentPropsWithRef<"textarea">, "value" | "onChange">;
 
-const EMAIL_PATTERN = "[^@]+@[^@]+\\.[^@]+";
-
 // single or multi-line text input box
 export default function TextBox({
   ref: passedRef,
@@ -52,6 +50,7 @@ export default function TextBox({
   const sideRef = useRef<HTMLDivElement>(null);
 
   const isEmail = !multi && "type" in props && props.type === "email";
+  const emailPattern = /[^@]+@[^@]+\.[^@]+/;
 
   // side elements
   let side: ReactNode = "";
@@ -95,7 +94,7 @@ export default function TextBox({
       className={clsx(inputClass, "h-12")}
       style={{ paddingRight: sidePadding ? sidePadding : "" }}
       value={value}
-      pattern={isEmail ? EMAIL_PATTERN : undefined}
+      pattern={isEmail ? emailPattern.source : undefined}
       onChange={(event) => {
         if (isEmail) event.target.setCustomValidity("");
         onChange?.(event.target.value);
