@@ -6,6 +6,8 @@ import { omit } from "lodash-es";
 import Button from "~/components/Button";
 
 type Props = {
+  // default selected tab index
+  defaultIndex?: number;
   // tabs (titles and content)
   children?: ReactNode;
   // class on root
@@ -13,7 +15,12 @@ type Props = {
 } & Omit<_Tabs.Root.Props, "children">;
 
 // tabs
-export default function Tabs({ children, className, ...props }: Props) {
+export default function Tabs({
+  defaultIndex,
+  children,
+  className,
+  ...props
+}: Props) {
   /** filter out conditional or invalid elements */
   const panels = Children.toArray(children).filter(
     (child): child is ReactElement<PanelProps> =>
@@ -23,6 +30,7 @@ export default function Tabs({ children, className, ...props }: Props) {
   return (
     <_Tabs.Root
       className={clsx("flex flex-col items-center gap-4", className)}
+      defaultValue={defaultIndex}
       {...props}
     >
       {/* buttons */}

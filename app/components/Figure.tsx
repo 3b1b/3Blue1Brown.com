@@ -55,7 +55,7 @@ export default function Figure({
 
   // if both, show tabs
   return (
-    <Tabs defaultValue={show}>
+    <Tabs defaultIndex={show === "video" ? 1 : 0}>
       <Panel
         title={
           <>
