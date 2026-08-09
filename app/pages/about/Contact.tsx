@@ -129,16 +129,17 @@ export default function Contact() {
         This form requires JavaScript to be enabled in your browser.
       </noscript>
 
-      {!status && (
-        <Button
-          type="submit"
-          color="critical"
-          className="col-span-full w-50 justify-self-center"
-        >
-          <PaperPlaneIcon />
-          Send
-        </Button>
-      )}
+      <Button
+        type="submit"
+        color="critical"
+        className="col-span-full w-50 justify-self-center"
+        aria-disabled={
+          status === "loading" || status === "success" || status === "error"
+        }
+      >
+        <PaperPlaneIcon />
+        Send
+      </Button>
 
       {status === "loading" && (
         <Alert type="loading" className="col-span-full">

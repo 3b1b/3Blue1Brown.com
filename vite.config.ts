@@ -1,3 +1,4 @@
+import { fileURLToPath } from "url";
 import type { Root } from "mdast";
 import type { Plugin } from "vite";
 import mdx from "@mdx-js/rollup";
@@ -30,7 +31,7 @@ export default defineConfig(() => ({
   resolve: {
     tsconfigPaths: true,
     alias: {
-      "~/": new URL("./app/", import.meta.url).pathname,
+      "~/": fileURLToPath(new URL("./app/", import.meta.url)),
     },
   },
 }));
