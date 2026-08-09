@@ -3,8 +3,16 @@ import { ArrowUpRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import { useDarkMode } from "~/components/DarkMode";
 import Link from "~/components/Link";
-import { getPartner, getWordmark, getWordmarkDark } from "./Partner";
-import PartnerTabs from "./PartnerTabs";
+import Tabs, { Panel } from "~/components/Tabs";
+import Vimeo from "~/components/Vimeo";
+import YouTube from "~/components/YouTube";
+import {
+  getChallenge,
+  getMessage,
+  getPartner,
+  getWordmark,
+  getWordmarkDark,
+} from "./Partner";
 
 type Props = {
   // partner id
@@ -12,7 +20,7 @@ type Props = {
 };
 
 // single partner in gallery
-export default function PartnerRow({ id }: Props) {
+export default function PartnerTile({ id }: Props) {
   const darkMode = useDarkMode();
 
   const partner = getPartner(id);
@@ -24,17 +32,24 @@ export default function PartnerRow({ id }: Props) {
     tagline = "",
     location = "",
     apply = "",
+    about = "",
+    youtube = "",
+    vimeo = "",
+    vimeoHash,
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
+  const { default: Message } = getMessage(id) ?? {};
+  const { default: Challenge } = getChallenge(id) ?? {};
 
   const page = href("/talent/:id", { id });
 
+  const hasVideo = !!(youtube || vimeo);
+
   return (
-    <div className="flex items-center gap-12 max-md:flex-col">
+    <div className="flex gap-12 max-md:flex-col">
       {/* identity, high level details */}
-      {/* centers against a video-height panel, but stays put beside a tall one */}
-      <div className="flex flex-2 flex-col items-center gap-6 text-center md:max-h-88 md:justify-center md:self-stretch">
+      <div className="flex flex-2 flex-col items-center gap-6 text-center md:mt-16">
         <Link
           to={page}
           className="flex rounded-md text-black no-underline change-ring hocus:outline-theme"
@@ -69,7 +84,36 @@ export default function PartnerRow({ id }: Props) {
       </div>
 
       {/* rich content, more details */}
-      <PartnerTabs id={id} className="flex-3 self-start" />
+      <Tabs className="flex-3 self-start">
+        {hasVideo && (
+          <Panel title="Meet the Team">
+            {youtube ? (
+              <YouTube id={youtube} />
+            ) : (
+              <Vimeo id={vimeo} hash={vimeoHash} />
+            )}
+          </Panel>
+        )}
+
+        {Message && (
+          <Panel title="Message from Grant">
+            <Message />
+          </Panel>
+        )}
+        {!Message && about && (
+          <Panel title={`About ${name}`}>
+            <p>{about}</p>
+          </Panel>
+        )}
+
+        {Challenge && (
+          <Panel title="Challenge">
+            <div className="flex flex-col gap-8">
+              <Challenge />
+            </div>
+          </Panel>
+        )}
+      </Tabs>
     </div>
   );
 }

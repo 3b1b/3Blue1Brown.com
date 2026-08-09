@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
-import PartnerRow from "./PartnerRow";
+import PartnerTile from "./PartnerTile";
 
 const partners: [string, ...string[]] = [
   "janestreet",
@@ -16,7 +16,7 @@ const partners: [string, ...string[]] = [
 ];
 
 // gallery of partners
-export default function Partners() {
+export default function Gallery() {
   const [order, setOrder] = useState(partners);
 
   useEffect(
@@ -40,7 +40,7 @@ export default function Partners() {
 
       {order.map((id, index) => (
         <Fragment key={index}>
-          <PartnerRow id={id} />
+          <PartnerTile id={id} />
           {index < order.length - 1 && <hr />}
         </Fragment>
       ))}

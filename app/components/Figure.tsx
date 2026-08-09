@@ -55,21 +55,27 @@ export default function Figure({
 
   // if both, show tabs
   return (
-    <Tabs
-      tabs={[
-        <>
-          <ImageIcon />
-          Image
-        </>,
-        <>
-          <VideoIcon />
-          Video
-        </>,
-      ]}
-      defaultValue={show}
-    >
-      <Panel>{imageElement}</Panel>
-      <Panel>{videoElement}</Panel>
+    <Tabs defaultIndex={show === "video" ? 1 : 0}>
+      <Panel
+        title={
+          <>
+            <ImageIcon />
+            Image
+          </>
+        }
+      >
+        {imageElement}
+      </Panel>
+      <Panel
+        title={
+          <>
+            <VideoIcon />
+            Video
+          </>
+        }
+      >
+        {videoElement}
+      </Panel>
     </Tabs>
   );
 }
