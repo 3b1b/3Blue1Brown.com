@@ -97,19 +97,15 @@ export default function TextBox({
       value={value}
       pattern={isEmail ? EMAIL_PATTERN : undefined}
       onChange={(event) => {
-        if (isEmail) {
-          event.target.setCustomValidity("");
-        }
+        if (isEmail) event.target.setCustomValidity("");
         onChange?.(event.target.value);
       }}
       onInvalid={(event) => {
         const target = event.target as HTMLInputElement;
-        if (isEmail && target.validity.patternMismatch) {
-          target.setCustomValidity(
-            "Please enter a valid email address (e.g. name@example.com)",
-          );
-        }
+        if (isEmail && target.validity.patternMismatch)
+          target.setCustomValidity("Please enter a valid email address");
       }}
+      required={required}
       {...(props as Single)}
     />
   );
