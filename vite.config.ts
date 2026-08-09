@@ -31,13 +31,7 @@ export default defineConfig(() => ({
   resolve: {
     tsconfigPaths: true,
     alias: {
-      // fileURLToPath avoids the leading slash that .pathname gives on Windows
-      // (which doubles the drive letter: C:\C:\...). replaceAll normalizes
-      // backslashes to forward slashes so Vite's SSR module runner can resolve them.
-      "~/": fileURLToPath(new URL("./app/", import.meta.url)).replaceAll(
-        "\\",
-        "/",
-      ),
+      "~/": fileURLToPath(new URL("./app/", import.meta.url)),
     },
   },
 }));
@@ -111,10 +105,7 @@ const mdxPlugin = mdx({
     editMDX,
   ],
   // https://mdxjs.com/packages/mdx
-  // MDX resolves providerImportSource before Vite aliases, so use an absolute path
-  providerImportSource: fileURLToPath(
-    new URL("./app/components/Markdownify", import.meta.url),
-  ),
+  providerImportSource: "~/components/Markdownify",
 });
 
 // allow importing and inlining svgs as react components

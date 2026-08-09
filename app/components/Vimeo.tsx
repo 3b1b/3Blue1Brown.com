@@ -1,4 +1,3 @@
-import "vimeo-video-element";
 import type { ComponentProps } from "react";
 import { useEffect, useRef, useState } from "react";
 import { PlayIcon } from "@phosphor-icons/react";
@@ -31,6 +30,7 @@ export default function Vimeo({
   const ref = useRef<HTMLVideoElement>(null);
 
   const [thumbnail, setThumbnail] = useState("");
+  const [libLoaded, setLibLoaded] = useState(false);
 
   const { enabled, play, playing, onPlay, onStop } = useVideo(ref);
 
@@ -39,7 +39,23 @@ export default function Vimeo({
     className,
   );
 
-  // fetch thumbnail
+  // load vimeo player library on client only
+  useEffect(() => {
+    let cancelled = false;
+
+    import("vimeo-video-element")
+      .then(() => {
+        if (!cancelled) setLibLoaded(true);
+      })
+      .catch(() => {
+        if (!cancelled) setLibLoaded(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []); // fetch thumbnail
+
   useEffect(() => {
     getThumbnail(id, hash).then(setThumbnail);
   }, [id, hash]);
@@ -72,6 +88,8 @@ export default function Vimeo({
         </div>
       </button>
     );
+
+  if (!libLoaded) return <div className={className} />;
 
   // video embed
   return (
