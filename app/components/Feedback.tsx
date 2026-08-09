@@ -119,7 +119,9 @@ export default function Feedback() {
             type="submit"
             form={id}
             className="self-center"
-            aria-disabled={status === "loading" || status === "success"}
+            aria-disabled={
+              status === "loading" || status === "success" || status === "error"
+            }
           >
             Submit
             <PaperPlaneIcon />

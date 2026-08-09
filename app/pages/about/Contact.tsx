@@ -133,7 +133,9 @@ export default function Contact() {
         type="submit"
         color="critical"
         className="col-span-full w-50 justify-self-center"
-        aria-disabled={status === "loading" || status === "success"}
+        aria-disabled={
+          status === "loading" || status === "success" || status === "error"
+        }
       >
         <PaperPlaneIcon />
         Send
