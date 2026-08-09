@@ -50,7 +50,10 @@ export default function Select<O extends Option>({
         )}
       >
         <select
-          className="size-full h-12 appearance-none rounded-md p-3 pr-8"
+          className={clsx(
+            "size-full h-12 appearance-none rounded-md p-3 pr-8",
+            value === "" ? "text-gray italic" : "",
+          )}
           value={value}
           onChange={(event) => onChange?.(event.currentTarget.value)}
           onKeyDown={(event) => {
@@ -75,7 +78,7 @@ export default function Select<O extends Option>({
         >
           {options.map((option, index) => (
             <option key={index} value={option.value} className="bg-light-gray">
-              {option.label ?? option.value}
+              {(option.label ?? option.value) || "- Select an option -"}
             </option>
           ))}
         </select>
