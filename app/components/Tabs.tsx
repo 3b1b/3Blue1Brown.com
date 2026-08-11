@@ -33,14 +33,14 @@ export default function Tabs({
       {...props}
     >
       {/* buttons */}
-      <_Tabs.List className="relative isolate flex w-full flex-wrap justify-center gap-x-4 gap-y-2 border-b-2 border-light-gray">
+      <_Tabs.List className="relative isolate flex flex-wrap justify-center gap-x-4 gap-y-2 border-b-2 border-light-gray">
         <_Tabs.Indicator className="absolute top-(--active-tab-top) right-(--active-tab-right) left-(--active-tab-left) -z-10 h-(--active-tab-height) translate-y-0.5 border-b-2 border-theme transition-[left,right]" />
         {panels.map((panel, index) => (
           <_Tabs.Tab
             key={index}
             value={index}
             render={(props) => (
-              <Button {...props} color="none" className="rounded-b-none!" />
+              <Button {...props} color="none" className="rounded-b-none" />
             )}
           >
             {panel.props.title}
