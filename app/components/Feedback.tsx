@@ -12,6 +12,7 @@ import CheckBox from "~/components/CheckBox";
 import Dialog from "~/components/Dialog";
 import Form from "~/components/Form";
 import Link from "~/components/Link";
+import Select from "~/components/Select";
 import TextBox from "~/components/TextBox";
 import Tooltip from "~/components/Tooltip";
 import site from "~/data/site.json";
@@ -21,8 +22,33 @@ import { shorten } from "~/util/url";
 // form id
 const id = "feedback";
 
+const reasonOptions = [
+  { value: "", label: "" },
+  {
+    value: "content",
+    label: "Suggest changes to text or figures on this website",
+  },
+  {
+    value: "bug",
+    label: "Report a bug on this website",
+  },
+  {
+    value: "function",
+    label: "Suggest different functionality on this website",
+  },
+  {
+    value: "other",
+    label: "Something else",
+  },
+] as const;
+
 // feedback form
 export default function Feedback() {
+  // reason user is giving feedback
+  const [reason, setReason] = useState<(typeof reasonOptions)[number]["value"]>(
+    reasonOptions[0].value,
+  );
+
   // form state, saved to local storage
   let [name, setName] = useLocalStorage("feedback-name", "");
   let [username, setUsername] = useLocalStorage("feedback-username", "");
@@ -95,7 +121,7 @@ export default function Feedback() {
         repo: site.github.site_repo,
         title,
         body,
-        labels: ["feedback"],
+        labels: ["feedback", ...(reason === "content" ? ["content"] : [])],
       });
       setStatus("success");
       setIssueLink(link);
@@ -107,25 +133,30 @@ export default function Feedback() {
   return (
     <Form id={id} onSubmit={onSubmit}>
       <Dialog
-        title="Site Feedback"
+        title="Website Feedback"
         trigger={
-          <Button className="p-2!" aria-label="Site feedback">
+          <Button className="p-2!" aria-label="Website feedback">
             <ChatTeardropDotsIcon />
           </Button>
         }
         bottomContent={
-          <Button
-            color="critical"
-            type="submit"
-            form={id}
-            className="self-center"
-            aria-disabled={
-              status === "loading" || status === "success" || status === "error"
-            }
-          >
-            Submit
-            <PaperPlaneIcon />
-          </Button>
+          !!reason &&
+          reason !== "other" && (
+            <Button
+              color="critical"
+              type="submit"
+              form={id}
+              className="self-center"
+              aria-disabled={
+                status === "loading" ||
+                status === "success" ||
+                status === "error"
+              }
+            >
+              Submit
+              <PaperPlaneIcon />
+            </Button>
+          )
         }
         onChange={(open) => {
           // if closing
@@ -148,117 +179,127 @@ export default function Feedback() {
       >
         {(close) => (
           <>
-            <p>
-              Please see{" "}
-              <Link to={`${href("/about")}#faqs`} onClick={close}>
-                the FAQs
-              </Link>{" "}
-              and{" "}
-              <Link to={`${href("/about")}#contact`} onClick={close}>
-                contact form
-              </Link>{" "}
-              first, then give us feedback about <b>this site</b>.
-            </p>
+            <Select
+              label="I want to..."
+              options={reasonOptions}
+              value={reason}
+              onChange={setReason}
+            />
+            {reason === "other" && (
+              <p>
+                Please see{" "}
+                <Link to={`${href("/about")}#faqs`} onClick={close}>
+                  the FAQs
+                </Link>{" "}
+                and{" "}
+                <Link to={`${href("/about")}#contact`} onClick={close}>
+                  contact form
+                </Link>{" "}
+                instead.
+              </p>
+            )}
 
-            <div className="grid grid-flow-row-dense grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
-              <TextBox
-                label="Name"
-                help="Optional. So we can address you properly."
-                placeholder="Your Name"
-                value={name}
-                onChange={setName}
-                form={id}
-              />
-              <TextBox
-                label="GitHub Username"
-                help="Optional. So we can tag you in the issue."
-                placeholder="@yourname"
-                value={username}
-                onChange={setUsername}
-                form={id}
-              />
-              <TextBox
-                label="Contact Info"
-                help="Optional. So we can follow up with you."
-                placeholder="Email/phone/anything"
-                value={contact}
-                onChange={setContact}
-                form={id}
-              />
-              <TextBox
-                label="Subject"
-                placeholder="Subject"
-                required
-                value={subject}
-                onChange={setSubject}
-                form={id}
-                className="col-span-2 max-sm:col-span-1"
-              />
-              <TextBox
-                label="Page"
-                placeholder="Page"
-                value={page}
-                onChange={setPage}
-                form={id}
-              />
+            {!!reason && reason !== "other" && (
+              <div className="grid grid-flow-row-dense grid-cols-3 gap-4 max-md:grid-cols-2 max-sm:grid-cols-1">
+                <TextBox
+                  label="Name"
+                  help="Optional. So we can address you properly."
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={setName}
+                  form={id}
+                />
+                <TextBox
+                  label="GitHub Username"
+                  help="Optional. So we can tag you in the issue."
+                  placeholder="@yourname"
+                  value={username}
+                  onChange={setUsername}
+                  form={id}
+                />
+                <TextBox
+                  label="Contact Info"
+                  help="Optional. So we can follow up with you."
+                  placeholder="Email/phone/anything"
+                  value={contact}
+                  onChange={setContact}
+                  form={id}
+                />
+                <TextBox
+                  label="Subject"
+                  placeholder="Subject"
+                  required
+                  value={subject}
+                  onChange={setSubject}
+                  form={id}
+                  className="col-span-2 max-sm:col-span-1"
+                />
+                <TextBox
+                  label="Page"
+                  placeholder="Page"
+                  value={page}
+                  onChange={setPage}
+                  form={id}
+                />
 
-              <TextBox
-                label="Message"
-                placeholder="Bugs/corrections/suggestions/etc. about this site"
-                required
-                multi
-                rows={5}
-                value={message}
-                onChange={setMessage}
-                form={id}
-                className="col-span-full"
-              />
+                <TextBox
+                  label="Message"
+                  required
+                  multi
+                  rows={5}
+                  value={message}
+                  onChange={setMessage}
+                  form={id}
+                  className="col-span-full"
+                />
 
-              <CheckBox required form={id} className="col-span-full">
-                My message is about this site and is not addressed by the FAQs
-              </CheckBox>
+                <CheckBox required form={id} className="col-span-full">
+                  My message is about <b>this website</b> and is not addressed
+                  by the FAQs
+                </CheckBox>
 
-              <Alert type={status} className="col-span-full">
-                {status === "info" && (
-                  <p>
-                    This will start a <strong>public</strong> issue on{" "}
-                    <Link to={site.github.site_issues}>GitHub</Link> with{" "}
-                    <strong>everything above</strong> and some{" "}
-                    {/* span for google translate react errors */}
-                    <span>
-                      <Tooltip trigger="debug info">
-                        <dl className="self-center">
-                          {Object.entries(debug).map(([key, value]) => (
-                            <Fragment key={key}>
-                              <dt>{key}</dt>
-                              <dd>{value}</dd>
-                            </Fragment>
-                          ))}
-                        </dl>
-                      </Tooltip>
-                    </span>
-                    . You'll get a link to it once it's created, where you can
-                    attach more details.
-                  </p>
-                )}
-                {status === "loading" && "Submitting feedback"}
-                {status === "error" && (
-                  <p>
-                    Error submitting feedback. Please try{" "}
-                    <Link to={fallback.toString()}>
-                      submitting directly on GitHub
-                    </Link>
-                    .
-                  </p>
-                )}
-                {status === "success" && issueLink && (
-                  <p>
-                    Submitted feedback!{" "}
-                    <Link to={issueLink}>{shorten(issueLink)}</Link>
-                  </p>
-                )}
-              </Alert>
-            </div>
+                <Alert type={status} className="col-span-full">
+                  {status === "info" && (
+                    <p>
+                      This will start a <strong>public</strong> issue on{" "}
+                      <Link to={site.github.site_issues}>GitHub</Link> with{" "}
+                      <strong>everything above</strong> and some{" "}
+                      {/* span for google translate react errors */}
+                      <span>
+                        <Tooltip trigger="debug info">
+                          <dl className="self-center">
+                            {Object.entries(debug).map(([key, value]) => (
+                              <Fragment key={key}>
+                                <dt>{key}</dt>
+                                <dd>{value}</dd>
+                              </Fragment>
+                            ))}
+                          </dl>
+                        </Tooltip>
+                      </span>
+                      . You'll get a link to it once it's created, where you can
+                      attach more details.
+                    </p>
+                  )}
+                  {status === "loading" && "Submitting feedback"}
+                  {status === "error" && (
+                    <p>
+                      Error submitting feedback. Please try{" "}
+                      <Link to={fallback.toString()}>
+                        submitting directly on GitHub
+                      </Link>
+                      .
+                    </p>
+                  )}
+                  {status === "success" && issueLink && (
+                    <p>
+                      Submitted feedback!{" "}
+                      <Link to={issueLink}>{shorten(issueLink)}</Link>
+                    </p>
+                  )}
+                </Alert>
+              </div>
+            )}
           </>
         )}
       </Dialog>
