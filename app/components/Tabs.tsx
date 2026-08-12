@@ -21,10 +21,9 @@ export default function Tabs({
   className,
   ...props
 }: Props) {
-  /** filter out conditional or invalid elements */
+  /** filter out conditional elements */
   const panels = Children.toArray(children).filter(
-    (child): child is ReactElement<PanelProps> =>
-      isValidElement(child) && child.type === Panel,
+    (child): child is ReactElement<PanelProps> => isValidElement(child),
   );
 
   return (
@@ -34,7 +33,8 @@ export default function Tabs({
       {...props}
     >
       {/* buttons */}
-      <_Tabs.List className="relative flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+      <_Tabs.List className="relative isolate flex flex-wrap justify-center gap-x-4 gap-y-2 border-b-2 border-light-gray">
+        <_Tabs.Indicator className="absolute top-(--active-tab-top) right-(--active-tab-right) left-(--active-tab-left) -z-10 h-(--active-tab-height) translate-y-0.5 border-b-2 border-theme transition-[left,right]" />
         {panels.map((panel, index) => (
           <_Tabs.Tab
             key={index}
@@ -46,7 +46,6 @@ export default function Tabs({
             {panel.props.title}
           </_Tabs.Tab>
         ))}
-        <_Tabs.Indicator className="absolute right-(--active-tab-right) bottom-(--active-tab-bottom) left-(--active-tab-left) h-0.5 rounded-md bg-theme transition-all" />
       </_Tabs.List>
 
       {/* panels */}
@@ -63,8 +62,12 @@ type PanelProps = {
 } & Omit<Partial<_Tabs.Panel.Props>, "title" | "index">;
 
 // tab panel content
-export function Panel({ index, ...props }: PanelProps) {
+export function Panel({ index, className, ...props }: PanelProps) {
   return (
-    <_Tabs.Panel className="contents" {...omit(props, "title")} value={index} />
+    <_Tabs.Panel
+      className={clsx("flex flex-col gap-8", className)}
+      {...omit(props, "title")}
+      value={index}
+    />
   );
 }

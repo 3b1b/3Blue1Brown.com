@@ -89,7 +89,7 @@
   }
 
   hr {
-    @apply h-px grow border-0 bg-current/10;
+    @apply h-0.5 grow border-0 bg-current/10;
   }
 
   h1,

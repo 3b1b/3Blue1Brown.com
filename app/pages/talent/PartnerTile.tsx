@@ -97,10 +97,7 @@ export default function PartnerTile({ id }: Props) {
 
         {Message && (
           <Panel title="Message from Grant">
-            {/* panel is display:contents, so wrap to space paragraphs */}
-            <div className="flex flex-col gap-8">
-              <Message />
-            </div>
+            <Message />
           </Panel>
         )}
         {!Message && about && (

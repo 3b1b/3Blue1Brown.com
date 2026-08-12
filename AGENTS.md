@@ -92,6 +92,7 @@ bun run check:links                 # Broken links
 - Avoid adding something only slightly different from an existing one (e.g. slightly lighter blue to only use in one place)
 - Always check for an existing component/util before using a third-party or native HTML element/func (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
 - Use React idioms where possible, but break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
+- When commenting, assume reader has standard web-dev knowledge and don't over-explain, especially for basic/ubiquitous/self-documenting things, e.g. "// add `flex-wrap` to break items to new line"
 
 ## Safety
 
