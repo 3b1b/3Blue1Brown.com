@@ -9,6 +9,8 @@ type Props<Type extends Thing> = {
   title?: string | string[];
   // page description
   description?: string;
+  // social preview image, ideally 1200x630
+  image?: string;
   // structured data
   jsonLd?: WithContext<Type>;
 };
@@ -18,10 +20,13 @@ type Props<Type extends Thing> = {
 export default function Meta<Type extends Thing>({
   title,
   description,
+  image = "/share.jpg",
   jsonLd,
 }: Props<Type>) {
   const { pathname } = useLocation();
   const canonicalUrl = new URL(pathname, site.url).href;
+  // crawlers require absolute url
+  const imageUrl = new URL(image, site.url).href;
 
   const combinedTitle = [title, site.title]
     .flat()
@@ -44,7 +49,11 @@ export default function Meta<Type extends Thing>({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:title" content={combinedTitle} />
       <meta property="og:description" content={combinedDescription} />
-      <meta property="og:image" content="/share.jpg" />
+      <meta property="og:image" content={imageUrl} />
+
+      {/* show large image instead of small thumbnail on x/twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={imageUrl} />
 
       {/*  json schema seo metadata */}
       {jsonLd && <JsonLd<Type> item={jsonLd} />}
