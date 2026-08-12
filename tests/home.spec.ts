@@ -40,9 +40,12 @@ test("Search works", async ({ page }) => {
 test("Feedback form works", async ({ page }) => {
   await page.goto("/");
   await page.click('button[aria-label*="feedback" i]');
+  const select = 'select:has(option:has-text("report a bug"))';
+  await page.locator(select).selectOption("bug");
   await page.locator('label:has-text("subject") input').fill("test subject");
   await page.reload();
   await page.click('button[aria-label*="feedback" i]', { force: true });
+  await page.locator(select).selectOption("bug");
   await expect(page.locator('label:has-text("subject") input')).toHaveValue(
     "test subject",
   );
