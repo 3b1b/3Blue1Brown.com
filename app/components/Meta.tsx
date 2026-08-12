@@ -24,9 +24,9 @@ export default function Meta<Type extends Thing>({
   jsonLd,
 }: Props<Type>) {
   const { pathname } = useLocation();
-  const canonicalUrl = new URL(pathname, site.url).href;
+  const canonicalUrl = new URL(pathname, __SITE_URL__).href;
   // crawlers require absolute url
-  const imageUrl = new URL(image, site.url).href;
+  const imageUrl = new URL(image, __SITE_URL__).href;
 
   const combinedTitle = [title, site.title]
     .flat()
@@ -51,7 +51,6 @@ export default function Meta<Type extends Thing>({
       <meta property="og:description" content={combinedDescription} />
       <meta property="og:image" content={imageUrl} />
 
-      {/* show large image instead of small thumbnail on x/twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={imageUrl} />
 

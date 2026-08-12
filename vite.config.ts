@@ -13,6 +13,12 @@ import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import site from "./app/data/site.json";
 
+// base url for absolute meta tags, pointing deploy previews at themselves so their assets resolve
+const deployUrl =
+  process.env.CONTEXT && process.env.CONTEXT !== "production"
+    ? (process.env.DEPLOY_PRIME_URL ?? site.url)
+    : site.url;
+
 export default defineConfig(() => ({
   // uncomment if cold-start refresh gets annoying
   // https://github.com/vitejs/vite/discussions/14801
@@ -20,6 +26,10 @@ export default defineConfig(() => ({
   //   noDiscovery: command === "serve",
   //   include: [],
   // },
+
+  define: {
+    __SITE_URL__: JSON.stringify(deployUrl),
+  },
 
   plugins: [
     textReplacePlugin,
