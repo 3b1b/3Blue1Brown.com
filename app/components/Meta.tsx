@@ -9,7 +9,7 @@ type Props<Type extends Thing> = {
   title?: string | string[];
   // page description
   description?: string;
-  // social preview image, ideally 1200x630
+  // social preview image
   image?: string;
   // structured data
   jsonLd?: WithContext<Type>;
@@ -51,7 +51,6 @@ export default function Meta<Type extends Thing>({
       <meta property="og:description" content={combinedDescription} />
       <meta property="og:image" content={imageUrl} />
 
-      {/* show large image instead of small thumbnail on x/twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={imageUrl} />
 
