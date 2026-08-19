@@ -86,21 +86,27 @@ export default function Feedback() {
   const empty = "\\-";
   const body = [
     ["<details><summary>User</summary>"],
-    ["**Name**", name.trim() || empty],
-    ["**Username**", username.trim() || empty],
-    ["**Contact**", contact.trim() || empty],
+    [
+      "**Reason**",
+      reasonOptions.find((option) => option.value === reason)?.label,
+    ],
+    ["**Name**", name],
+    ["**Username**", username],
+    ["**Contact**", contact],
     ["</details>"],
+
     ["<details><summary>Debug</summary>"],
     ...Object.entries(debug).map(([key, value]) => [
       `**${startCase(key)}**`,
-      value.trim() || empty,
+      value,
     ]),
+    ["**Page**", page],
     ["</details>"],
-    ["**Page**", page.trim() || empty],
-    ["**Subject**", subject.trim() || empty],
-    ["**Message**", message.trim() || empty],
+
+    ["**Subject**", subject],
+    ["**Message**", message],
   ]
-    .map((row) => row.join("\n"))
+    .map((row) => row.map((entry) => entry?.trim() || empty).join("\n"))
     .join("\n\n");
 
   // fallback link
@@ -254,8 +260,8 @@ export default function Feedback() {
                 />
 
                 <CheckBox required form={id} className="col-span-full">
-                  My message is about <b>this website</b> and is not addressed
-                  by the FAQs
+                  My message is about this website and is not addressed by the
+                  FAQs
                 </CheckBox>
 
                 <Alert type={status} className="col-span-full">
