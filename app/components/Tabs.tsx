@@ -65,7 +65,7 @@ type PanelProps = {
 export function Panel({ index, className, ...props }: PanelProps) {
   return (
     <_Tabs.Panel
-      className={clsx("flex flex-col gap-8", className)}
+      className={clsx("flex w-full flex-col gap-8", className)}
       {...omit(props, "title")}
       value={index}
     />
