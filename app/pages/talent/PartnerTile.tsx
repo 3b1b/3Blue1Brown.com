@@ -93,16 +93,6 @@ export default function PartnerTile({ id }: Props) {
 
       {/* rich content, more details */}
       <Tabs className="flex-3 self-start">
-        {hasVideo && (
-          <Panel title="Meet the Team">
-            {youtube ? (
-              <YouTube id={youtube} thumbnail={thumbnail} />
-            ) : (
-              <Vimeo id={vimeo} hash={vimeoHash} thumbnail={thumbnail} />
-            )}
-          </Panel>
-        )}
-
         {hasExtraVideo && (
           <Panel title={extraTitle}>
             <figure className="flex flex-col items-center gap-4">
@@ -117,6 +107,16 @@ export default function PartnerTile({ id }: Props) {
                 </figcaption>
               )}
             </figure>
+          </Panel>
+        )}
+
+        {hasVideo && (
+          <Panel title="Meet the Team">
+            {youtube ? (
+              <YouTube id={youtube} thumbnail={thumbnail} />
+            ) : (
+              <Vimeo id={vimeo} hash={vimeoHash} thumbnail={thumbnail} />
+            )}
           </Panel>
         )}
 
