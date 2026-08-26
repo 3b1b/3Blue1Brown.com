@@ -15,6 +15,8 @@ type Props = {
   id: string;
   // vimeo video hash for private videos
   hash?: string;
+  // custom thumbnail, overriding vimeo's
+  thumbnail?: string;
   // backlight effect
   backlight?: boolean;
 } & ComponentProps<"iframe">;
@@ -23,6 +25,7 @@ type Props = {
 export default function Vimeo({
   id,
   hash,
+  thumbnail: customThumbnail,
   backlight = false,
   className,
   ...props
@@ -57,8 +60,9 @@ export default function Vimeo({
   }, []); // fetch thumbnail
 
   useEffect(() => {
+    if (customThumbnail) return;
     getThumbnail(id, hash).then(setThumbnail);
-  }, [id, hash]);
+  }, [id, hash, customThumbnail]);
 
   // needed for on play/pause to work properly
   if (!useClient()) return <div className={className} />;
@@ -74,7 +78,7 @@ export default function Vimeo({
         className={clsx(className, "group")}
       >
         <img
-          src={thumbnail || undefined}
+          src={customThumbnail || thumbnail || undefined}
           alt=""
           loading="lazy"
           decoding="async"

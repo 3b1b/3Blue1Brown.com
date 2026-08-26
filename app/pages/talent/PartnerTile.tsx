@@ -10,6 +10,7 @@ import {
   getChallenge,
   getMessage,
   getPartner,
+  getThumbnail,
   getWordmark,
   getWordmarkDark,
 } from "./Partner";
@@ -43,6 +44,7 @@ export default function PartnerTile({ id }: Props) {
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
+  const thumbnail = getThumbnail(id);
   const { default: Message } = getMessage(id) ?? {};
   const { default: Challenge } = getChallenge(id) ?? {};
 
@@ -93,9 +95,9 @@ export default function PartnerTile({ id }: Props) {
         {hasVideo && (
           <Panel title="Meet the Team">
             {youtube ? (
-              <YouTube id={youtube} />
+              <YouTube id={youtube} thumbnail={thumbnail} />
             ) : (
-              <Vimeo id={vimeo} hash={vimeoHash} />
+              <Vimeo id={vimeo} hash={vimeoHash} thumbnail={thumbnail} />
             )}
           </Panel>
         )}

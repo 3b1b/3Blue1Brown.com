@@ -56,6 +56,15 @@ export const [getChallenge] = importAssets(
   "challenge",
 );
 
+// import all custom video thumbnails
+export const [getThumbnail] = importAssets(
+  import.meta.glob<{ default: string }>("./**/thumbnail.{jpg,png}", {
+    eager: true,
+  }),
+  "thumbnail",
+  (module) => module.default,
+);
+
 // import all wordmarks, light/dark
 const wordmarks = import.meta.glob<{ default: string }>(
   "./**/wordmark*.{svg,png}",

@@ -20,6 +20,7 @@ import Challenge from "./challenge.mdx";
 import office1 from "./office-1.jpg";
 import office2 from "./office-2.jpg";
 import office3 from "./office-3.jpg";
+import thumbnail from "./thumbnail.jpg";
 import whiteboardWide from "./whiteboard-wide.jpg";
 import wordmark from "./wordmark-dark.svg";
 
@@ -33,7 +34,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.youtube} thumbnail={thumbnail} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply
