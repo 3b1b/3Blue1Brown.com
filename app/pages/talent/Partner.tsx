@@ -8,6 +8,18 @@ import Message from "~/pages/talent/Message";
 import PartnerHeader from "~/pages/talent/PartnerHeader";
 import { importAssets } from "~/util/import";
 
+// one of a partner's videos
+export type PartnerVideo = {
+  // youtube/vimeo video id
+  video?: string;
+  type?: "youtube" | "vimeo";
+  // vimeo hash for private videos
+  hash?: string;
+  // tab title
+  title?: string;
+  caption?: string;
+};
+
 // frontmatter of partner import (before any transformation)
 type RawPartnerFrontmatter = {
   name?: string;
@@ -18,16 +30,10 @@ type RawPartnerFrontmatter = {
   apply?: string;
   about?: string;
   color?: string;
-  // interview videos
-  youtube?: string;
-  vimeo?: string;
-  vimeoHash?: string;
+  // interview with the team
+  interview?: PartnerVideo;
   // extra video, e.g. a whiteboard session
-  extraTitle?: string;
-  extraCaption?: string;
-  extraYoutube?: string;
-  extraVimeo?: string;
-  extraVimeoHash?: string;
+  extra?: PartnerVideo;
 };
 
 // partner import (before any transformation)

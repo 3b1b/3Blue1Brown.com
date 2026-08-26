@@ -4,8 +4,7 @@ import Button from "~/components/Button";
 import { useDarkMode } from "~/components/DarkMode";
 import Link from "~/components/Link";
 import Tabs, { Panel } from "~/components/Tabs";
-import Vimeo from "~/components/Vimeo";
-import YouTube from "~/components/YouTube";
+import PartnerVideo from "~/pages/talent/PartnerVideo";
 import {
   getChallenge,
   getMessage,
@@ -34,14 +33,8 @@ export default function PartnerTile({ id }: Props) {
     location = "",
     apply = "",
     about = "",
-    youtube = "",
-    vimeo = "",
-    vimeoHash,
-    extraTitle = "",
-    extraCaption = "",
-    extraYoutube = "",
-    extraVimeo = "",
-    extraVimeoHash,
+    interview,
+    extra,
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
@@ -50,9 +43,6 @@ export default function PartnerTile({ id }: Props) {
   const { default: Challenge } = getChallenge(id) ?? {};
 
   const page = href("/talent/:id", { id });
-
-  const hasVideo = !!(youtube || vimeo);
-  const hasExtraVideo = !!(extraYoutube || extraVimeo);
 
   return (
     <div className="flex gap-12 max-md:flex-col">
@@ -93,30 +83,15 @@ export default function PartnerTile({ id }: Props) {
 
       {/* rich content, more details */}
       <Tabs className="flex-3 self-start">
-        {hasExtraVideo && (
-          <Panel title={extraTitle}>
-            <figure className="flex flex-col items-center gap-4">
-              {extraYoutube ? (
-                <YouTube id={extraYoutube} />
-              ) : (
-                <Vimeo id={extraVimeo} hash={extraVimeoHash} />
-              )}
-              {extraCaption && (
-                <figcaption className="text-dark-gray">
-                  {extraCaption}
-                </figcaption>
-              )}
-            </figure>
+        {extra?.video && (
+          <Panel title={extra.title ?? ""}>
+            <PartnerVideo video={extra} />
           </Panel>
         )}
 
-        {hasVideo && (
-          <Panel title="Meet the Team">
-            {youtube ? (
-              <YouTube id={youtube} thumbnail={thumbnail} />
-            ) : (
-              <Vimeo id={vimeo} hash={vimeoHash} thumbnail={thumbnail} />
-            )}
+        {interview?.video && (
+          <Panel title={interview.title || "Meet the Team"}>
+            <PartnerVideo video={interview} thumbnail={thumbnail} />
           </Panel>
         )}
 

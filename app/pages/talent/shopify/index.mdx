@@ -3,7 +3,9 @@ name: Shopify
 tagline: E-commerce platform powering millions of businesses worldwide
 location: Remote across the Americas
 apply: https://www.shopify.com/careers?utm_source=3b1b
-youtube: _VqBW7h5BYg
+interview:
+  video: _VqBW7h5BYg
+  type: youtube
 about: "Shopify's mission is to make commerce better for everyone."
 ---
 
@@ -35,7 +37,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.interview.video} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply

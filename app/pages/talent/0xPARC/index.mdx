@@ -3,7 +3,9 @@ name: 0xPARC
 tagline: Expanding what computers are capable of
 location: San Francisco
 apply: https://fieldextension.org/3b1b/
-youtube: G35ybr0PZhM
+interview:
+  video: G35ybr0PZhM
+  type: youtube
 about: The correlation between a background in contest math and being able to work with the stuff that we're doing is extraordinarily high
 ---
 
@@ -28,7 +30,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center p-4" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.interview.video} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply
