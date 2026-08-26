@@ -24,6 +24,7 @@ type RawPartnerFrontmatter = {
   vimeoHash?: string;
   // extra video, e.g. a whiteboard session
   extraTitle?: string;
+  extraCaption?: string;
   extraYoutube?: string;
   extraVimeo?: string;
   extraVimeoHash?: string;

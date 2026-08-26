@@ -38,6 +38,7 @@ export default function PartnerTile({ id }: Props) {
     vimeo = "",
     vimeoHash,
     extraTitle = "",
+    extraCaption = "",
     extraYoutube = "",
     extraVimeo = "",
     extraVimeoHash,
@@ -104,16 +105,23 @@ export default function PartnerTile({ id }: Props) {
 
         {hasExtraVideo && (
           <Panel title={extraTitle}>
-            {extraYoutube ? (
-              <YouTube id={extraYoutube} />
-            ) : (
-              <Vimeo id={extraVimeo} hash={extraVimeoHash} />
-            )}
+            <figure className="flex flex-col items-center gap-4">
+              {extraYoutube ? (
+                <YouTube id={extraYoutube} />
+              ) : (
+                <Vimeo id={extraVimeo} hash={extraVimeoHash} />
+              )}
+              {extraCaption && (
+                <figcaption className="text-dark-gray">
+                  {extraCaption}
+                </figcaption>
+              )}
+            </figure>
           </Panel>
         )}
 
         {Message && (
-          <Panel title="Message from Grant">
+          <Panel title="From Grant">
             <Message />
           </Panel>
         )}
