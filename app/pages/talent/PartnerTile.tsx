@@ -4,12 +4,12 @@ import Button from "~/components/Button";
 import { useDarkMode } from "~/components/DarkMode";
 import Link from "~/components/Link";
 import Tabs, { Panel } from "~/components/Tabs";
-import Vimeo from "~/components/Vimeo";
-import YouTube from "~/components/YouTube";
+import PartnerVideo from "~/pages/talent/PartnerVideo";
 import {
   getChallenge,
   getMessage,
   getPartner,
+  getThumbnail,
   getWordmark,
   getWordmarkDark,
 } from "./Partner";
@@ -33,18 +33,16 @@ export default function PartnerTile({ id }: Props) {
     location = "",
     apply = "",
     about = "",
-    youtube = "",
-    vimeo = "",
-    vimeoHash,
+    interview,
+    extra,
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
+  const thumbnail = getThumbnail(id);
   const { default: Message } = getMessage(id) ?? {};
   const { default: Challenge } = getChallenge(id) ?? {};
 
   const page = href("/talent/:id", { id });
-
-  const hasVideo = !!(youtube || vimeo);
 
   return (
     <div className="flex gap-12 max-md:flex-col">
@@ -85,18 +83,20 @@ export default function PartnerTile({ id }: Props) {
 
       {/* rich content, more details */}
       <Tabs className="flex-3 self-start">
-        {hasVideo && (
-          <Panel title="Meet the Team">
-            {youtube ? (
-              <YouTube id={youtube} />
-            ) : (
-              <Vimeo id={vimeo} hash={vimeoHash} />
-            )}
+        {extra?.video && (
+          <Panel title={extra.title ?? ""}>
+            <PartnerVideo video={extra} />
+          </Panel>
+        )}
+
+        {interview?.video && (
+          <Panel title={interview.title || "Meet the Team"}>
+            <PartnerVideo video={interview} thumbnail={thumbnail} />
           </Panel>
         )}
 
         {Message && (
-          <Panel title="Message from Grant">
+          <Panel title="From Grant">
             <Message />
           </Panel>
         )}

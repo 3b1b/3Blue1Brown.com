@@ -3,7 +3,9 @@ name: BEAM
 tagline: Pathways to STEM Excellence
 location: New York and Los Angeles
 apply: https://www.beammath.org/work-at-beam
-youtube: dwdMjl8HFvU
+interview:
+  video: dwdMjl8HFvU
+  type: youtube
 about: Helping students from low-income communities study advanced mathematics and thrive in STEM
 ---
 
@@ -34,7 +36,7 @@ import wordmark from "./wordmark-dark.png";
 
 <Tabs>
   <Panel title="Meet Our Team">
-    <YouTube id={frontmatter.youtube} />
+    <YouTube id={frontmatter.interview.video} />
   </Panel>
   <Panel title="Learn about BEAM">
     <Vimeo id="1177426720" />

@@ -3,7 +3,9 @@ name: Kiso
 tagline: Applied AI, engineered for impact
 location: San Francisco
 apply: https://jobs.ashbyhq.com/kiso-technology/46eec779-aa7f-490d-9c0b-9b51b25efec3
-youtube: TmaCDP02ryk
+interview:
+  video: TmaCDP02ryk
+  type: youtube
 about: Deploying the world's best team of applied technical talent
 ---
 
@@ -30,7 +32,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.interview.video} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply

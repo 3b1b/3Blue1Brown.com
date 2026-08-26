@@ -15,6 +15,8 @@ type Props = {
   id?: string;
   // start time
   time?: number;
+  // custom thumbnail, overriding youtube's
+  thumbnail?: string;
   // backlight effect
   backlight?: boolean;
 } & ComponentProps<"video">;
@@ -23,6 +25,7 @@ type Props = {
 export default function YouTube({
   id,
   time,
+  thumbnail,
   backlight = false,
   className,
   ...props
@@ -49,7 +52,7 @@ export default function YouTube({
         className={clsx(className, "group")}
       >
         <img
-          src={getThumbnail(id)}
+          src={thumbnail ?? getThumbnail(id)}
           alt=""
           loading="lazy"
           decoding="async"
@@ -70,7 +73,7 @@ export default function YouTube({
       ref={ref}
       className={className}
       src={getWatch(id, time)}
-      poster={getThumbnail(id)}
+      poster={thumbnail ?? getThumbnail(id)}
       onplay={onPlay}
       onpause={onStop}
       controls

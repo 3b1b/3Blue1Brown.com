@@ -3,8 +3,10 @@ name: METR
 tagline: Evaluating Advanced AI
 location: Berkeley
 apply: https://jobs.lever.co/metr
-vimeo: "1158946636"
-vimeoHash: c6f71a8907
+interview:
+  video: "1158946636"
+  type: vimeo
+  hash: c6f71a8907
 about: It's kind of a blend between a PhD Lab and a start up, in the best possible way
 ---
 
@@ -35,7 +37,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <Tabs>
   <Panel title="Meet Our Team">
-    <Vimeo id={frontmatter.vimeo} hash={frontmatter.vimeoHash} />
+    <Vimeo id={frontmatter.interview.video} hash={frontmatter.interview.hash} />
   </Panel>
   <Panel title="Meet our Founder">
     <YouTube id="jXtk68Kzmms" />

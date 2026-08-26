@@ -3,7 +3,14 @@ name: Jane Street
 tagline: Quantitative trading and technology
 location: Hong Kong, London, New York, and Singapore
 apply: https://www.janestreet.com/join-jane-street/overview/
-youtube: TJWtIDYVY8o
+interview:
+  video: zPLc3jjHbnU
+  type: youtube
+extra:
+  title: Math Chat
+  video: k86eUj4hgdc
+  type: youtube
+  caption: Positional Encodings and Group Theory
 about: Everybody here is a math nerd. If you go up to someone and start explaining a math puzzle, they'll stop you before you can tell them how to solve it because they want to try it on their own.
 ---
 
@@ -18,6 +25,7 @@ import Challenge from "./challenge.mdx";
 import office1 from "./office-1.jpg";
 import office2 from "./office-2.jpg";
 import office3 from "./office-3.jpg";
+import thumbnail from "./thumbnail.jpg";
 import whiteboardWide from "./whiteboard-wide.jpg";
 import wordmark from "./wordmark-dark.svg";
 
@@ -31,7 +39,7 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.interview.video} thumbnail={thumbnail} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply

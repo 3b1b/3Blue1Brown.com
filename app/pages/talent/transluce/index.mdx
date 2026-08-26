@@ -3,7 +3,9 @@ name: Transluce
 tagline: Open & scalable technology for understanding AI systems
 location: San Francisco
 apply: https://jobs.gem.com/transluce
-youtube: I9gtNoyWw-M
+interview:
+  video: I9gtNoyWw-M
+  type: youtube
 about: An independent research lab working toward responsible development and deployment in the public interest
 ---
 
@@ -36,7 +38,7 @@ import wordmark from "./wordmark-dark.png";
 
 <img src={wordmark} alt="" className="max-h-20 self-center p-4" />
 
-<YouTube id={frontmatter.youtube} />
+<YouTube id={frontmatter.interview.video} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply
