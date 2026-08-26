@@ -22,6 +22,11 @@ type RawPartnerFrontmatter = {
   youtube?: string;
   vimeo?: string;
   vimeoHash?: string;
+  // extra video, e.g. a whiteboard session
+  extraTitle?: string;
+  extraYoutube?: string;
+  extraVimeo?: string;
+  extraVimeoHash?: string;
 };
 
 // partner import (before any transformation)

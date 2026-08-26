@@ -36,6 +36,10 @@ export default function PartnerTile({ id }: Props) {
     youtube = "",
     vimeo = "",
     vimeoHash,
+    extraTitle = "",
+    extraYoutube = "",
+    extraVimeo = "",
+    extraVimeoHash,
   } = partner.frontmatter;
 
   const wordmark = darkMode ? getWordmarkDark(id) : getWordmark(id);
@@ -45,6 +49,7 @@ export default function PartnerTile({ id }: Props) {
   const page = href("/talent/:id", { id });
 
   const hasVideo = !!(youtube || vimeo);
+  const hasExtraVideo = !!(extraYoutube || extraVimeo);
 
   return (
     <div className="flex gap-12 max-md:flex-col">
@@ -91,6 +96,16 @@ export default function PartnerTile({ id }: Props) {
               <YouTube id={youtube} />
             ) : (
               <Vimeo id={vimeo} hash={vimeoHash} />
+            )}
+          </Panel>
+        )}
+
+        {hasExtraVideo && (
+          <Panel title={extraTitle}>
+            {extraYoutube ? (
+              <YouTube id={extraYoutube} />
+            ) : (
+              <Vimeo id={extraVimeo} hash={extraVimeoHash} />
             )}
           </Panel>
         )}
