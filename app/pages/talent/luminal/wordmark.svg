@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 592.35 127.37">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #5aaa5a;
+      }
+
+      .cls-3 {
+        fill: #1d2e1b;
+      }
+
+      .cls-2 {
+        font-family: GeistMono-Regular, 'Geist Mono';
+        font-size: 100px;
+        font-variation-settings: 'wght' 400;
+      }
+    </style>
+  </defs>
+  <circle class="cls-3" cx="54" cy="54" r="54"/>
+  <circle class="cls-1" cx="54" cy="54" r="30.3"/>
+  <text class="cls-2" transform="translate(172.35 87.97)"><tspan x="0" y="0">LUMINAL</tspan></text>
+</svg>

@@ -1,0 +1,75 @@
+---
+name: Luminal AI
+tagline: Inference at the speed of light.
+location: San Francisco
+apply: https://www.luminal.com/careers
+about: Luminal builds an AI inference compiler that optimizes models for GPUs and ASICs, delivering the fastest, highest-throughput inference by treating compilation as a search problem.
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import { BookIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import founders from "./founders.webp";
+import megakernels from "./megakernels.jpg";
+import perfectToken from "./perfect-token.png";
+import wordmark from "./wordmark.svg";
+
+<section className="dark width-lg">
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Luminal builds an AI inference compiler that optimizes models for GPUs and ASICs, delivering the fastest, highest-throughput inference by treating compilation as a search problem.
+
+<Figure image={founders}>
+  Luminal co-founders Matthew Gunton, Joe Fioti and Jake Stevens
+</Figure>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Producing the perfect token
+
+Inference clouds compete almost entirely on cost per token, but the quality of those tokens can vary dramatically between providers running identical models. Luminal's compiler tracks numerical precision at the operator level, applying mixed-precision strategies automatically to ensure that optimizations for speed never come at the cost of trustworthy outputs.
+
+<Figure image={perfectToken} />
+
+<Button
+  to="https://blog.luminal.com/p/producing-the-perfect-token"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+### Compiling models to megakernels
+
+Standard GPU inference wastes time on kernel launch overhead, uneven work distribution, and memory access delays between operations. Luminal's compiler fuses entire neural network models into single GPU kernels — megakernels — using a dynamic global instruction queue that schedules work across streaming multiprocessors at runtime, eliminating the gaps that conventional approaches leave behind.
+
+<Figure image={megakernels} />
+
+<Button
+  to="https://blog.luminal.com/p/compiling-models-to-megakernels"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+</section>

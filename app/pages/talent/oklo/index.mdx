@@ -1,0 +1,140 @@
+---
+name: Oklo
+tagline: Power | Fuel | Isotopes
+apply: https://oklo.com/careers/default.aspx
+about: Developing advanced fission power plants to power a complete nuclear energy lifecycle—reactor design, fuel fabrication, recycling, and isotope production.
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import Quote from "~/components/Quote";
+import auroraInl from "./aurora-inl.jpg";
+import banner from "./banner.png";
+import criticalRadius from "./critical-radius.svg";
+import engineering from "./engineering.jpg";
+import fuelCenter from "./fuel-center.jpg";
+import groves from "./groves.jpg";
+import presentation from "./presentation.jpg";
+import team from "./team.jpg";
+import wordmark from "./wordmark-dark.svg";
+
+<section className="dark width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover object-right playing-fade"
+/>
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Oklo is developing fast fission power plants and the technologies needed to support a complete nuclear energy lifecycle including reactor design, fuel fabrication, recycling technologies, and isotope production. Its first powerhouse project, Aurora-INL, is being developed at Idaho National Laboratory using fuel supplied by the U.S. Department of Energy. Oklo brings together nuclear engineering, advanced manufacturing, and operational expertise to build scalable energy systems.
+
+<div className="flex flex-col gap-4">
+
+<Image image={presentation} className="w-full object-cover" />
+
+<div className="grid grid-cols-2 gap-4 *:size-full *:object-cover max-md:grid-cols-1">
+
+<Image image={team} />
+<Image image={engineering} />
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+## Featured work
+
+### Groves Isotope Test Reactor
+
+<Figure image={groves} />
+
+Groves, part of Oklo Isotopes' broader effort to build domestic isotope production capabilities for healthcare, industry, research, space, and national security applications, has generated practical experience in project engineering, construction, procurement, reactor operations, startup procedures, safety readiness, training, qualification work, and deployment execution that can inform future isotope production facilities.
+
+<Button
+  to="https://oklo.com/isotopes/texas/default.aspx"
+  color="light"
+  className="self-center"
+>
+  Learn more
+  <ArrowUpRightIcon />
+</Button>
+
+### Aurora-INL
+
+<Figure image={auroraInl} />
+
+The Aurora powerhouse under construction at Idaho National Laboratory (INL) is a sodium-cooled fast reactor designed to deliver up to 75 MWe and use metal fuel while building on the design and operating heritage of the Experimental Breeder Reactor-II, which ran in Idaho from 1964 to 1994.
+
+<Button
+  to="https://oklo.com/energy/default.aspx"
+  color="light"
+  className="self-center"
+>
+  Learn more
+  <ArrowUpRightIcon />
+</Button>
+
+### Advanced Fuel Center
+
+<Figure image={fuelCenter} />
+
+Oklo is developing its Advanced Fuel Center in Oak Ridge, Tennessee, to advance domestic capabilities in nuclear fuel fabrication and used nuclear fuel recycling and will support the development of next-generation fuel technologies.
+
+<Button
+  to="https://oklo.com/fuel-recycling/tennessee/default.aspx"
+  color="light"
+  className="self-center"
+>
+  Learn more
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+### A challenge for the 3Blue1Brown audience
+
+<Figure image={criticalRadius} />
+
+</section>
+
+<section>
+
+## What our team says
+
+<Quote name="Isaac Dabkowski, Core Design">
+Working on designing and deploying a first-of-a-kind advanced nuclear power plant is incredibly rewarding. Our team is mission-driven and extremely motivated, and I love that I get to work alongside smart engineers to transform spent nuclear fuel into carbon-free power. There has never been a more exciting time to work in the space, and that excitement permeates down into the entire Oklo engineering organization!
+</Quote>
+
+<Quote name="Paul Day, Media Team">
+Working at Oklo, you have a clear sense that you are part of an ambitious but achievable effort to build the future of energy. The company is bringing together nuclear power, fuel, and isotope capabilities while applying modern technology to some of the biggest challenges in the nuclear industry. What stands out about Oklo's culture is the combination of technical depth and collaboration. People are focused on delivering their work, but they are always willing to jump in and help solve problems across teams.
+</Quote>
+
+<Quote name="Allison Kubo, Fuel Performance Engineer">
+I came to Oklo because I want to see new reactors built in the U.S. It's an incredible experience to feel the pace of progress firsthand and see our contributions make a real impact. The work itself is exciting and meaningful, but what really makes Oklo special is the people. I get to work alongside passionate, brilliant coworkers who care deeply about what they do, from software to fabrication to operation.
+</Quote>
+
+<Quote name="Christina Leggett, Fuel Recycling">
+I joined Oklo because I absolutely love its strategic mission to harness the immense energy in existing used nuclear fuel in the most optimal way possible to provide clean, reliable, abundant energy while simultaneously reducing the amount of highly radioactive waste requiring permanent disposal. The fact that everyone here at Oklo similarly believes in (and is excited about) Oklo's mission and enthusiastically works to achieve it simply fuels my passion to make this a reality.
+</Quote>
+
+</section>

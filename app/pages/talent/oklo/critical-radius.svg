@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="background" cx="58%" cy="46%" r="78%">
+      <stop offset="0" stop-color="#0b1d2d"/>
+      <stop offset="0.62" stop-color="#07131f"/>
+      <stop offset="1" stop-color="#030811"/>
+    </radialGradient>
+    <radialGradient id="sphere-fill" cx="34%" cy="28%" r="78%">
+      <stop offset="0" stop-color="#1b4657"/>
+      <stop offset="0.48" stop-color="#102f40"/>
+      <stop offset="0.82" stop-color="#081d2b"/>
+      <stop offset="1" stop-color="#04111c"/>
+    </radialGradient>
+    <radialGradient id="sphere-vignette" cx="34%" cy="28%" r="76%">
+      <stop offset="0.48" stop-color="#020812" stop-opacity="0"/>
+      <stop offset="0.84" stop-color="#020812" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#020812" stop-opacity="0.68"/>
+    </radialGradient>
+    <radialGradient id="highlight" cx="42%" cy="42%" r="62%">
+      <stop offset="0" stop-color="#baf5f6" stop-opacity="0.17"/>
+      <stop offset="1" stop-color="#baf5f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8fcf8"/>
+      <stop offset="0.43" stop-color="#70dbe7"/>
+      <stop offset="1" stop-color="#2d718b"/>
+    </linearGradient>
+    <linearGradient id="fade-top" gradientUnits="userSpaceOnUse" x1="820" y1="147" x2="754" y2="82">
+      <stop offset="0" stop-color="#f4ca5f" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#f4ca5f" stop-opacity="0.14"/>
+    </linearGradient>
+    <linearGradient id="fade-right" gradientUnits="userSpaceOnUse" x1="1124" y1="310" x2="1194" y2="252">
+      <stop offset="0" stop-color="#f4ca5f" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#f4ca5f" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="fade-bottom" gradientUnits="userSpaceOnUse" x1="910" y1="658" x2="968" y2="760">
+      <stop offset="0" stop-color="#f4ca5f" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#f4ca5f" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="fade-left" gradientUnits="userSpaceOnUse" x1="639" y1="497" x2="536" y2="568">
+      <stop offset="0" stop-color="#f4ca5f" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#f4ca5f" stop-opacity="0.12"/>
+    </linearGradient>
+    <clipPath id="sphere-clip">
+      <circle cx="880" cy="400" r="259"/>
+    </clipPath>
+    <marker id="arrow-gold" viewBox="0 -4 9 8" refX="8" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0-4L9 0L0 4Z" fill="#f4ca5f"/>
+    </marker>
+    <marker id="arrow-mint" viewBox="0 -4 9 8" refX="8" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0-4L9 0L0 4Z" fill="#5de0ae"/>
+    </marker>
+    <g id="particle">
+      <circle r="9" fill="currentColor" opacity="0.13"/>
+      <circle r="4" fill="#fff9e8" stroke="currentColor" stroke-width="1.5"/>
+    </g>
+    <g id="collision">
+      <circle r="3.2" fill="#fff8df" stroke="currentColor" stroke-width="1.2"/>
+    </g>
+    <g id="branch-node">
+      <circle r="10" fill="currentColor" opacity="0.14"/>
+      <circle r="5" fill="#fff9e8" stroke="currentColor" stroke-width="2"/>
+    </g>
+    <g id="absorption">
+      <circle r="8" fill="#f4ca5f" opacity="0.1"/>
+      <circle r="6" fill="none" stroke="#f4ca5f" stroke-width="1.4" opacity="0.8"/>
+      <path d="M-3.5-3.5L3.5 3.5M3.5-3.5L-3.5 3.5" fill="none" stroke="#fff4cd" stroke-width="1.4"/>
+    </g>
+  </defs>
+
+  <g id="background-layer">
+    <rect width="1200" height="800" fill="url(#background)"/>
+  </g>
+
+  <g id="problem-copy" fill="#e8f5f3" font-family="Inter, Avenir Next, Avenir, Helvetica, Arial, sans-serif">
+    <text id="problem-title" x="70" y="78" font-size="34" font-weight="600" letter-spacing="0.8">Critical Spheres</text>
+    <line x1="70" y1="105" x2="505" y2="105" stroke="#73d9e4" stroke-width="1" opacity="0.38"/>
+    <g id="model-rules" font-size="16.2" opacity="0.88">
+      <g id="rule-1">
+        <circle cx="80" cy="139" r="3.2" fill="#f1ca67"/>
+        <text x="98" y="144">
+          <tspan x="98" dy="0">Particles diffuse independently inside a sphere of radius R,</tspan>
+          <tspan x="98" dy="23">with diffusion coefficient D.</tspan>
+        </text>
+      </g>
+      <g id="rule-2">
+        <circle cx="80" cy="194" r="3.2" fill="#f1ca67"/>
+        <text x="98" y="199">
+          <tspan x="98" dy="0">Particles interact with nuclei in the sphere's material, but do not</tspan>
+          <tspan x="98" dy="23">interact with one another.</tspan>
+        </text>
+      </g>
+      <g id="rule-3">
+        <circle cx="80" cy="249" r="3.2" fill="#f1ca67"/>
+        <text x="98" y="254">An interaction has one of three outcomes:</text>
+        <g id="interaction-outcomes" font-size="15.4">
+          <circle cx="110" cy="276" r="2.1" fill="none" stroke="#f1ca67" stroke-width="1.2"/>
+          <text x="124" y="281">scattering at rate γ, which changes the particle's direction;</text>
+          <circle cx="110" cy="301" r="2.1" fill="none" stroke="#f1ca67" stroke-width="1.2"/>
+          <text x="124" y="306">absorption at rate α;</text>
+          <circle cx="110" cy="326" r="2.1" fill="none" stroke="#f1ca67" stroke-width="1.2"/>
+          <text x="124" y="331">
+            <tspan x="124" dy="0">branching at rate β, replacing it with a mean of</tspan>
+            <tspan x="124" dy="21" font-family="STIX Two Math, Cambria Math, Times New Roman, serif" font-size="16.7">𝜈</tspan><tspan dx="4">new particles.</tspan>
+          </text>
+        </g>
+      </g>
+      <g id="rule-4">
+        <circle cx="80" cy="379" r="3.2" fill="#f1ca67"/>
+        <text x="98" y="384">
+          <tspan x="98" dy="0">A particle reaching the surface escapes and is removed</tspan>
+          <tspan x="98" dy="23">permanently.</tspan>
+        </text>
+      </g>
+    </g>
+    <text id="challenge" x="70" y="442" font-size="22.5" font-weight="600">
+      <tspan x="70" dy="0">Determine the critical radius R</tspan><tspan baseline-shift="sub" font-size="15">c</tspan><tspan baseline-shift="baseline" font-size="22.5"> at which</tspan>
+      <tspan x="70" dy="30">the expected population of particles</tspan>
+      <tspan x="70" dy="30">is constant.</tspan>
+    </text>
+    <g id="bonus">
+      <rect x="58" y="525" width="458" height="170" rx="8" fill="#0d2635" fill-opacity="0.72" stroke="#e0b850" stroke-width="1" stroke-opacity="0.42"/>
+      <text x="78" y="555" font-size="15.5" font-weight="700" letter-spacing="1.8" fill="#f1ca67">BONUS</text>
+      <text id="bonus-copy" x="78" y="585" font-size="14.3" opacity="0.88">
+        <tspan x="78" dy="0">Assume the material is very expensive, and you can</tspan>
+        <tspan x="78" dy="21.5">procure enough to form only a sphere of radius κ R</tspan><tspan baseline-shift="sub" font-size="10.5">c</tspan><tspan baseline-shift="baseline" font-size="14.3">,</tspan>
+        <tspan x="78" dy="21.5">where 0 &lt; κ &lt; 1 and R</tspan><tspan baseline-shift="sub" font-size="10.5">c</tspan><tspan baseline-shift="baseline" font-size="14.3"> is the critical radius</tspan>
+        <tspan x="78" dy="21.5">found above. How could you modify the system to</tspan>
+        <tspan x="78" dy="21.5">achieve criticality?</tspan>
+      </text>
+    </g>
+    <text id="units-heading" x="70" y="723" font-size="13.5" font-weight="700" fill="#f1ca67" letter-spacing="0.7">Physical units:</text>
+    <text id="units" x="70" y="748" font-size="15.5" fill="#9ee6e8" letter-spacing="0.2">
+      <tspan x="70" dy="0">[D] = length²/time,</tspan>
+      <tspan x="70" dy="23">[α] = [β] = [γ] = time⁻¹,   [</tspan><tspan font-family="STIX Two Math, Cambria Math, Times New Roman, serif">𝜈</tspan><tspan>] = dimensionless.</tspan>
+    </text>
+  </g>
+
+  <g id="sphere-layer">
+    <circle cx="880" cy="400" r="268" fill="none" stroke="#6ee5ed" stroke-width="1" opacity="0.07"/>
+    <circle cx="880" cy="400" r="260" fill="url(#sphere-fill)"/>
+    <g clip-path="url(#sphere-clip)">
+      <ellipse cx="800" cy="310" rx="178" ry="122" transform="rotate(-24 800 310)" fill="url(#highlight)"/>
+      <circle cx="880" cy="400" r="260" fill="url(#sphere-vignette)"/>
+      <g id="contours" fill="none" stroke="#8ee8ed">
+        <ellipse id="equator" cx="880" cy="400" rx="259" ry="70" stroke-width="1.2" opacity="0.19"/>
+        <ellipse id="meridian" cx="880" cy="400" rx="82" ry="259" transform="rotate(-14 880 400)" stroke-width="1.1" opacity="0.14"/>
+      </g>
+    </g>
+  </g>
+
+  <g id="radius-layer" stroke="#d8f8f6" fill="none">
+    <line x1="880" y1="400" x2="1061" y2="214" stroke-width="1.4" stroke-dasharray="5 8" opacity="0.58"/>
+    <circle cx="880" cy="400" r="2.5" fill="#d8f8f6" stroke="none" opacity="0.8"/>
+    <line x1="1053" y1="206" x2="1069" y2="222" stroke-width="1.5" opacity="0.72"/>
+  </g>
+
+  <g id="trajectory-layer" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g id="gold-trajectories" stroke="#f4ca5f" stroke-width="3">
+      <polyline id="absorption-flight" points="760,315 785,333 770,356 792,378 760,396 742,382"/>
+      <polyline id="branch-one-parent" points="700,474 735,452 758,465 786,438 820,410"/>
+      <polyline id="branch-two-parent" points="890,545 915,516 902,489 932,468 960,445"/>
+      <polyline id="escape-top-inner" points="870,300 848,272 860,242 834,210 842,178 820,147"/>
+      <polyline id="escape-right-inner" points="940,306 974,324 1005,306 1032,326 1070,298 1124,310"/>
+      <polyline id="escape-bottom-inner" points="865,472 842,505 866,535 855,570 884,611 910,658"/>
+      <polyline id="escape-left-inner" points="750,520 720,499 692,515 666,491 639,497"/>
+    </g>
+    <g id="branch-descendants" stroke="#5de0ae" stroke-width="3">
+      <polyline points="820,410 844,378 866,386 892,350"/>
+      <polyline points="820,410 850,425 878,412 907,432"/>
+      <polyline points="960,445 985,419 1010,430 1034,402"/>
+      <polyline points="960,445 986,455 1003,482 1032,471"/>
+      <polyline points="960,445 965,415 949,389 974,363"/>
+    </g>
+    <g id="escape-extensions" stroke-width="3">
+      <polyline points="820,147 754,82" stroke="url(#fade-top)"/>
+      <polyline points="1124,310 1194,252" stroke="url(#fade-right)"/>
+      <polyline points="910,658 968,760" stroke="url(#fade-bottom)"/>
+      <polyline points="639,497 536,568" stroke="url(#fade-left)"/>
+    </g>
+  </g>
+
+  <g id="direction-arrows" fill="none" stroke-linecap="round" stroke-width="2.2">
+    <g id="gold-arrows" stroke="#f4ca5f" marker-end="url(#arrow-gold)">
+      <line x1="758" y1="394" x2="748" y2="386"/>
+      <line x1="794" y1="431" x2="808" y2="420"/>
+      <line x1="936" y1="464" x2="950" y2="453"/>
+      <line x1="793" y1="120" x2="775" y2="102"/>
+      <line x1="1146" y1="292" x2="1164" y2="277"/>
+      <line x1="929" y1="691" x2="941" y2="712"/>
+      <line x1="600" y1="524" x2="580" y2="538"/>
+    </g>
+    <g id="mint-arrows" stroke="#5de0ae" marker-end="url(#arrow-mint)">
+      <line x1="875" y1="374" x2="884" y2="362"/>
+      <line x1="888" y1="419" x2="899" y2="427"/>
+      <line x1="1018" y1="421" x2="1027" y2="411"/>
+      <line x1="1012" y1="479" x2="1023" y2="475"/>
+      <line x1="958" y1="380" x2="967" y2="371"/>
+    </g>
+  </g>
+
+  <g id="collision-layer" color="#f4ca5f">
+    <use href="#collision" x="785" y="333"/><use href="#collision" x="770" y="356"/>
+    <use href="#collision" x="792" y="378"/><use href="#collision" x="760" y="396"/>
+    <use href="#collision" x="735" y="452"/><use href="#collision" x="758" y="465"/>
+    <use href="#collision" x="786" y="438"/><use href="#collision" x="915" y="516"/>
+    <use href="#collision" x="902" y="489"/><use href="#collision" x="932" y="468"/>
+    <use href="#collision" x="848" y="272"/><use href="#collision" x="860" y="242"/>
+    <use href="#collision" x="834" y="210"/><use href="#collision" x="842" y="178"/>
+    <use href="#collision" x="974" y="324"/><use href="#collision" x="1005" y="306"/>
+    <use href="#collision" x="1032" y="326"/><use href="#collision" x="1070" y="298"/>
+    <use href="#collision" x="842" y="505"/><use href="#collision" x="866" y="535"/>
+    <use href="#collision" x="855" y="570"/><use href="#collision" x="884" y="611"/>
+    <use href="#collision" x="720" y="499"/><use href="#collision" x="692" y="515"/>
+    <use href="#collision" x="666" y="491"/>
+    <g color="#5de0ae">
+      <use href="#collision" x="844" y="378"/><use href="#collision" x="866" y="386"/>
+      <use href="#collision" x="850" y="425"/><use href="#collision" x="878" y="412"/>
+      <use href="#collision" x="985" y="419"/><use href="#collision" x="1010" y="430"/>
+      <use href="#collision" x="986" y="455"/><use href="#collision" x="1003" y="482"/>
+      <use href="#collision" x="965" y="415"/><use href="#collision" x="949" y="389"/>
+    </g>
+  </g>
+
+  <g id="particle-layer">
+    <g color="#f4ca5f">
+      <use href="#particle" x="870" y="300"/><use href="#particle" x="940" y="306"/>
+      <use href="#particle" x="865" y="472"/><use href="#particle" x="750" y="520"/>
+    </g>
+    <g color="#5de0ae">
+      <use href="#particle" x="892" y="350"/><use href="#particle" x="907" y="432"/>
+      <use href="#particle" x="1034" y="402"/><use href="#particle" x="1032" y="471"/>
+      <use href="#particle" x="974" y="363"/>
+    </g>
+    <g color="#f7f0d4">
+      <use href="#branch-node" x="820" y="410"/><use href="#branch-node" x="960" y="445"/>
+    </g>
+    <use href="#absorption" x="742" y="382"/>
+    <g fill="#fff9e8">
+      <circle cx="820" cy="147" r="4"/><circle cx="1124" cy="310" r="4"/>
+      <circle cx="910" cy="658" r="4"/><circle cx="639" cy="497" r="4"/>
+    </g>
+    <g fill="#f4ca5f" opacity="0.18">
+      <circle cx="754" cy="82" r="3.5"/><circle cx="1194" cy="252" r="3.5"/>
+      <circle cx="968" cy="760" r="3.5"/><circle cx="536" cy="568" r="3.5"/>
+    </g>
+  </g>
+
+  <g id="boundary-layer" fill="none">
+    <circle cx="880" cy="400" r="260" stroke="url(#rim)" stroke-width="2.4"/>
+  </g>
+
+  <g id="event-notation" fill="#ddf8f5" font-family="Inter, Avenir Next, Avenir, Helvetica, Arial, sans-serif" font-style="italic">
+    <text x="970" y="288" font-size="24">R</text>
+    <text x="735" y="341" font-size="20" opacity="0.84">D</text>
+    <text x="803" y="351" font-size="19" fill="#f5d77d">γ</text>
+    <text x="714" y="409" font-size="20" fill="#f5d77d">α</text>
+    <text x="799" y="394" font-size="19" fill="#aaf2d2">β</text>
+    <text x="940" y="432" font-size="19" fill="#aaf2d2">β</text>
+  </g>
+</svg>
