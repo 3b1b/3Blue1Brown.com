@@ -1,20 +1,28 @@
 ---
 name: Luminal AI
-tagline: Inference at the speed of light.
+tagline: AI Inference Compilers
 location: San Francisco
 apply: https://www.luminal.com/careers
-about: Luminal builds an AI inference compiler that optimizes models for GPUs and ASICs, delivering the fastest, highest-throughput inference by treating compilation as a search problem.
+about: Luminal makes an inference compiler targeting datacenter accelerator directly from PyTorch models. By using large-scale kernel search, our compiler discovers deep optimizations automatically across heterogeneous hardware architectures. We run a first-party inference cloud on ASIC hardware and license our stack to neoclouds and foundation model labs.
 ---
 
 import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import Figure from "~/components/Figure";
-import founders from "./founders.webp";
+import hardwareArbitrage from "./hardware-arbitrage.png";
 import megakernels from "./megakernels.jpg";
-import perfectToken from "./perfect-token.png";
+import office from "./office.png";
+import qwen3Throughput from "./qwen3-throughput.png";
+import banner from "./banner.jpg";
 import wordmark from "./wordmark.svg";
 
 <section className="dark width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover object-right playing-fade"
+/>
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
@@ -31,9 +39,7 @@ import wordmark from "./wordmark.svg";
 
 Luminal builds an AI inference compiler that optimizes models for GPUs and ASICs, delivering the fastest, highest-throughput inference by treating compilation as a search problem.
 
-<Figure image={founders}>
-  Luminal co-founders Matthew Gunton, Joe Fioti and Jake Stevens
-</Figure>
+<Figure image={office} />
 
 </section>
 
@@ -41,14 +47,14 @@ Luminal builds an AI inference compiler that optimizes models for GPUs and ASICs
 
 ## Featured work
 
-### Producing the perfect token
+### Compiling models to megakernels
 
-Inference clouds compete almost entirely on cost per token, but the quality of those tokens can vary dramatically between providers running identical models. Luminal's compiler tracks numerical precision at the operator level, applying mixed-precision strategies automatically to ensure that optimizations for speed never come at the cost of trustworthy outputs.
+Standard GPU inference wastes time on kernel launch overhead, uneven work distribution, and memory access delays between operations. Luminal's compiler fuses entire neural network models into single GPU kernels — megakernels — using a dynamic global instruction queue that schedules work across streaming multiprocessors at runtime, eliminating the gaps that conventional approaches leave behind.
 
-<Figure image={perfectToken} />
+<Figure image={qwen3Throughput} />
 
 <Button
-  to="https://blog.luminal.com/p/producing-the-perfect-token"
+  to="https://blog.luminal.com/p/compiling-models-to-megakernels"
   color="light"
   className="self-center"
 >
@@ -56,14 +62,14 @@ Inference clouds compete almost entirely on cost per token, but the quality of t
   Read the post
 </Button>
 
-### Compiling models to megakernels
+### Hardware arbitrage with Luminal and Positron AI
 
-Standard GPU inference wastes time on kernel launch overhead, uneven work distribution, and memory access delays between operations. Luminal's compiler fuses entire neural network models into single GPU kernels — megakernels — using a dynamic global instruction queue that schedules work across streaming multiprocessors at runtime, eliminating the gaps that conventional approaches leave behind.
+Different inference workloads have fundamentally different hardware needs: prefill is compute-bound while decode is bandwidth-bound. Luminal's compiler automatically routes each phase to the hardware it's best suited for — GPUs for prefill, Positron Atlas systolic arrays for decode — transferring KV cache between systems to squeeze out the maximum performance from heterogeneous infrastructure.
 
-<Figure image={megakernels} />
+<Figure image={hardwareArbitrage} />
 
 <Button
-  to="https://blog.luminal.com/p/compiling-models-to-megakernels"
+  to="https://blog.luminal.com/p/hardware-arbitrage-with-luminal-and"
   color="light"
   className="self-center"
 >
