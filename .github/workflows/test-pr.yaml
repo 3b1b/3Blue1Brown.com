@@ -82,6 +82,8 @@ jobs:
 
   test-e2e:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -102,6 +104,46 @@ jobs:
       - name: Run test
         run: bun run test:e2e
 
+      - name: Parse results
+        if: failure()
+        id: parse-results
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require("fs");
+            const reportPath = "playwright-report/json/results.json";
+            if (!fs.existsSync(reportPath)) return;
+            const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+            const specs = report.suites?.flatMap((suite) => suite.specs ?? []) ?? [];
+            const details = (title, body) =>
+              `<details><summary>${title}</summary>\n\n${body}\n\n</details>`;
+            const sections = specs.flatMap(({ file, title, tests }) =>
+              tests
+                .filter(({ status }) => status === "unexpected")
+                .map(({ annotations }) =>
+                  details(
+                    `\`${file}\` - ${title}`,
+                    annotations
+                      .map(({ type, description = "" }) =>
+                        details(type, `\`\`\`json\n${description}\n\`\`\``),
+                      )
+                      .join("\n\n"),
+                  ),
+                ),
+            );
+            if (!sections.length) return;
+            core.setOutput(
+              "body",
+              ["**End-to-end test failures**", ...sections].join("\n\n"),
+            );
+
+      - name: Post comment
+        if: success() || steps.parse-results.outputs.body
+        uses: marocchino/sticky-pull-request-comment@v3
+        with:
+          message: ${{ steps.parse-results.outputs.body }}
+          delete: ${{ success() }}
+
       - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v6
@@ -109,5 +151,4 @@ jobs:
           name: reports
           path: |
             ./playwright-report
-            ./lighthouse-report
           retention-days: 30
