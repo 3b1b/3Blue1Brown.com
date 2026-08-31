@@ -33,7 +33,6 @@ export default function Home() {
       </Header>
 
       <Main>
-        <img src="/images/egg.png" />
         <Hero />
         <Lessons />
         <Patreon />
