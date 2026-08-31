@@ -2,11 +2,21 @@ import { defineConfig, devices } from "@playwright/test";
 
 const port = 31415;
 const url = `http://localhost:${port}`;
+const { CI } = process.env;
 
 export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
-  reporter: [["html", { open: process.env.CI ? "never" : "on-failure" }]],
+  reporter: [
+    ["json", { outputFile: "playwright-report/json/results.json" }],
+    [
+      "html",
+      {
+        outputFolder: "playwright-report/html",
+        open: CI ? "never" : "on-failure",
+      },
+    ],
+  ],
 
   use: {
     baseURL: url,
