@@ -143,7 +143,9 @@ jobs:
             core.setOutput("body", body);
 
       - name: Post comment
-        if: steps.test.outcome == 'success' || steps.parse-results.outputs.body
+        if: >-
+          !cancelled() &&
+          (steps.test.outcome == 'success' || steps.parse-results.outputs.body)
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           message: ${{ steps.parse-results.outputs.body }}
