@@ -123,7 +123,7 @@ jobs:
                 .filter(({ status }) => status === "unexpected")
                 .map(({ annotations }) =>
                   details(
-                    `\`${file}\` - ${title}`,
+                    `<code>${file}</code> - ${title}`,
                     annotations
                       .map(({ type, description = "" }) =>
                         details(type, `\`\`\`json\n${description}\n\`\`\``),
