@@ -102,6 +102,7 @@ jobs:
         run: bun run install-playwright
 
       - name: Run test
+        id: test
         run: bun run test:e2e
 
       - name: Parse results
@@ -138,11 +139,11 @@ jobs:
             );
 
       - name: Post comment
-        if: success() || steps.parse-results.outputs.body
+        if: steps.test.outcome == 'success' || steps.parse-results.outputs.body
         uses: marocchino/sticky-pull-request-comment@v3
         with:
           message: ${{ steps.parse-results.outputs.body }}
-          delete: ${{ success() }}
+          delete: ${{ steps.test.outcome == 'success' }}
 
       - name: Upload test reports
         if: always()
