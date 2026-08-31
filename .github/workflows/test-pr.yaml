@@ -113,13 +113,9 @@ jobs:
           script: |
             const fs = require("fs");
             const reportPath = "playwright-report/json/results.json";
-            if (!fs.existsSync(reportPath)) {
-              console.log(`No report found at ${reportPath}`);
-              return;
-            }
+            if (!fs.existsSync(reportPath)) return;
             const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
             const specs = report.suites?.flatMap((suite) => suite.specs ?? []) ?? [];
-            console.log(`Found ${specs.length} specs`);
             const details = (title, body) =>
               `<details><summary>${title}</summary>\n\n${body}\n\n</details>`;
             const sections = specs.flatMap(({ file, title, tests }) =>
@@ -136,11 +132,11 @@ jobs:
                   ),
                 ),
             );
-            console.log(`Found ${sections.length} unexpected test sections`);
             if (!sections.length) return;
-            const body = ["**End-to-end test failures**", ...sections].join("\n\n");
-            console.log(`Body length: ${body.length}`);
-            core.setOutput("body", body);
+            core.setOutput(
+              "body",
+              ["**End-to-end test failures**", ...sections].join("\n\n"),
+            );
 
       - name: Post comment
         if: >-
