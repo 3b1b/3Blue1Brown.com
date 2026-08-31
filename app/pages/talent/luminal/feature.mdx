@@ -1,0 +1,19 @@
+import { BookIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import qwen3Throughput from "./qwen3-throughput.png";
+
+### Compiling models to megakernels
+
+Standard GPU inference wastes time on kernel launch overhead, uneven work distribution, and memory access delays between operations. Luminal's compiler fuses entire neural network models into single GPU kernels — megakernels — using a dynamic global instruction queue that schedules work across streaming multiprocessors at runtime, eliminating the gaps that conventional approaches leave behind.
+
+<Figure image={qwen3Throughput} />
+
+<Button
+  to="https://blog.luminal.com/p/compiling-models-to-megakernels"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>

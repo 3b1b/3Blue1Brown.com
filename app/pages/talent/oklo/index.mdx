@@ -1,8 +1,13 @@
 ---
 name: Oklo
 tagline: Power | Fuel | Isotopes
+location: Santa Clara, CA, Idaho Falls, ID, and Remote
 apply: https://oklo.com/careers/default.aspx
 about: Developing advanced fission power plants to power a complete nuclear energy lifecycle—reactor design, fuel fabrication, recycling, and isotope production.
+interview:
+  video: 5NbOxf4SZ1I
+  type: youtube
+  title: Inside Groves' First Chain Reaction
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -10,6 +15,7 @@ import Button from "~/components/Button";
 import Figure from "~/components/Figure";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
+import YouTube from "~/components/YouTube";
 import auroraInl from "./aurora-inl.jpg";
 import banner from "./banner.png";
 import criticalRadius from "./critical-radius.svg";
@@ -29,6 +35,8 @@ import wordmark from "./wordmark-dark.svg";
 />
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<YouTube id={frontmatter.interview.video} />
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply

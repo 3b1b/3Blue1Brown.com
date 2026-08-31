@@ -5,14 +5,12 @@ import PartnerTile from "./PartnerTile";
 
 const partners: [string, ...string[]] = [
   "janestreet",
-  "cognition",
-  "doppel",
-  "metr",
-  "kiso",
-  "shopify",
-  "transluce",
   "0xPARC",
+  "luminal",
+  "matx",
+  "doppel",
   "beam",
+  "oklo",
 ];
 
 // gallery of partners
