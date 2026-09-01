@@ -11,7 +11,7 @@
     "test:format": "prettier --check .",
     "test:e2e": "playwright test --grep-invert print",
     "test": "bun run test:types && bun run test:lint && bun run test:format && bun run test:e2e && bun run build",
-    "install-playwright": "bunx playwright install chromium --with-deps",
+    "install-playwright": "bunx playwright install chromium webkit --with-deps",
     "clean": "rm -rf node_modules dist bun.lock && bun pm cache rm",
     "check:spelling": "bunx cspell '**/*.{ts,tsx,mdx,md}' --dictionary lorem-ipsum  2>&1 | grep '.*fix:'",
     "check:unused": "bunx --bun knip --no-exit-code",

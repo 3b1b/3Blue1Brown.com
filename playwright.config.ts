@@ -39,7 +39,8 @@ export default defineConfig({
       },
     },
     // { name: "firefox", use: { ...devices["Desktop Firefox"] } },
-    // { name: "webkit", use: { ...devices["Desktop Safari"] } },
+    // safari has layout quirks that other engines don't
+    { name: "webkit", use: { ...devices["Desktop Safari"] } },
   ],
 
   webServer: {
