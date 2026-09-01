@@ -30,10 +30,18 @@ export default function Figure({
   children,
 }: Props) {
   // image to render
-  const imageElement = (
+  const imageElement = children ? (
     <Image image={image ?? ""} className={clsx("w-full", className)}>
       {children}
     </Image>
+  ) : (
+    // wrapper keeps img out of parent flex layout, where Safari loses its aspect ratio
+    <div className="w-full">
+      <Image
+        image={image ?? ""}
+        className={clsx("block h-auto w-full", className)}
+      />
+    </div>
   );
 
   // video to render
