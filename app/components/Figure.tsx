@@ -30,10 +30,20 @@ export default function Figure({
   children,
 }: Props) {
   // image to render
-  const imageElement = (
+  //
+  // when there's no caption, Image renders a bare <img>, which (as a direct
+  // flex item of the surrounding section) hits a Safari bug where percentage
+  // width + auto height loses the intrinsic aspect ratio once the section's
+  // width is clamped. wrapping in a block-level div keeps the img out of the
+  // flex layout and sidesteps it.
+  const imageElement = children ? (
     <Image image={image ?? ""} className={clsx("w-full", className)}>
       {children}
     </Image>
+  ) : (
+    <div className={clsx("w-full", className)}>
+      <Image image={image ?? ""} className="block h-auto w-full" />
+    </div>
   );
 
   // video to render
