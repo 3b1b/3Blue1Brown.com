@@ -16,7 +16,7 @@ export default defineConfig({
 
   projects: [
     {
-      name: "chromium",
+      name: "Chrome",
       use: {
         ...devices["Desktop Chrome"],
         launchOptions: {
@@ -28,8 +28,8 @@ export default defineConfig({
         },
       },
     },
-    // { name: "firefox", use: { ...devices["Desktop Firefox"] } },
-    // { name: "webkit", use: { ...devices["Desktop Safari"] } },
+    // { name: "Firefox", use: { ...devices["Desktop Firefox"] } },
+    // { name: "Safari", use: { ...devices["Desktop Safari"] } },
   ],
 
   webServer: {
