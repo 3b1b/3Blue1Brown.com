@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
 import Image from "~/components/Image";
 import Tabs, { Panel } from "~/components/Tabs";
 import { usePrinting } from "~/util/hooks";
@@ -30,18 +29,10 @@ export default function Figure({
   children,
 }: Props) {
   // image to render
-  const imageElement = children ? (
-    <Image image={image ?? ""} className={clsx("w-full", className)}>
+  const imageElement = (
+    <Image image={image ?? ""} className={className}>
       {children}
     </Image>
-  ) : (
-    // wrapper keeps img out of parent flex layout, where Safari loses its aspect ratio
-    <div className="w-full">
-      <Image
-        image={image ?? ""}
-        className={clsx("block h-auto w-full", className)}
-      />
-    </div>
   );
 
   // video to render
