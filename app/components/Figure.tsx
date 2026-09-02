@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { ImageIcon, VideoIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
 import Image from "~/components/Image";
 import Tabs, { Panel } from "~/components/Tabs";
 import { usePrinting } from "~/util/hooks";
@@ -31,7 +30,7 @@ export default function Figure({
 }: Props) {
   // image to render
   const imageElement = (
-    <Image image={image ?? ""} className={clsx("w-full", className)}>
+    <Image image={image ?? ""} className={className}>
       {children}
     </Image>
   );
