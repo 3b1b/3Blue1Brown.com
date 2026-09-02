@@ -72,7 +72,7 @@ const checkPage = (route: string) =>
 
           // ignore if intentionally stretched/cropped/etc
           const style = window.getComputedStyle(asset);
-          if (style.objectFit !== "") return [];
+          if (style.objectFit !== "fill") return [];
 
           // if aspect ratio is off by more than a few %
           if (Math.abs(naturalWidth / naturalHeight - width / height) > 0.05)

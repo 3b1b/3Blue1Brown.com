@@ -30,7 +30,7 @@ export default function Figure({
 }: Props) {
   // image to render
   const imageElement = (
-    <Image image={image ?? ""} className={className}>
+    <Image image={image ?? ""} className={`w-full ${className}`}>
       {children}
     </Image>
   );
