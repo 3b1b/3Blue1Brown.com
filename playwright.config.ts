@@ -26,7 +26,7 @@ export default defineConfig({
 
   projects: [
     {
-      name: "chromium",
+      name: "Chrome",
       use: {
         ...devices["Desktop Chrome"],
         launchOptions: {
@@ -38,9 +38,16 @@ export default defineConfig({
         },
       },
     },
-    // { name: "firefox", use: { ...devices["Desktop Firefox"] } },
-    // safari has layout quirks that other engines don't
-    { name: "webkit", use: { ...devices["Desktop Safari"] } },
+    // {
+    //   name: "Firefox",
+    //   use: { ...devices["Desktop Firefox"] },
+    //   grep: /@firefox/,
+    // },
+    {
+      name: "Safari",
+      use: { ...devices["Desktop Safari"] },
+      grep: /@safari/,
+    },
   ],
 
   webServer: {

@@ -85,9 +85,6 @@ const checkPage = (route: string) =>
     // navigate to page
     await page.goto(route);
 
-    // wait a bit extra
-    await page.waitForLoadState("networkidle");
-
     // wait for all responses to finish
     await Promise.allSettled(responses);
 
