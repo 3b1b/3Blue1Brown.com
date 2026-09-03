@@ -1,0 +1,62 @@
+---
+name: MatX
+tagline: High-throughput chips for LLMs
+location: SF Bay Area
+apply: https://matx.com/jobs
+about: Building custom accelerator chips designed from the ground up to maximize throughput for large language model inference.
+interview:
+  video: gm3parYIMqA
+  type: youtube
+  title: Silicon designed for LLMs
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import YouTube from "~/components/YouTube";
+import leakyQuantization from "./leaky-quantization.svg";
+import wordmark from "./wordmark-dark.svg";
+
+<section className="dark width-lg">
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<YouTube id={frontmatter.interview.video} />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+MatX designs optimized chips and systems for training and inference of large language models, with a focus on maximizing low-precision compute performance for frontier AI labs.
+
+</section>
+
+<section>
+
+## Featured work
+
+### Future Leakage in Block-Quantized Attention
+
+Block quantization is essential for high-throughput LLM inference — grouping matrix elements into blocks that share a scale factor enables efficient low-precision compute on modern accelerators. But when those blocks span multiple token positions in the attention mechanism, a subtle problem emerges: later tokens can leak information back to earlier ones during training, creating a mismatch between how the model learns and how it runs at inference.
+
+<Figure image={leakyQuantization} />
+
+MatX researchers identified this future leakage problem in MXFP4-quantized attention, showed it causes measurable divergence between training and inference loss, and proposed a targeted fix: keep block-diagonal tiles unquantized where leakage occurs while quantizing everywhere else. Validating on 1B-parameter models trained on C4, the corrected approach maintained consistent performance — a key step toward quantized attention that matches float baselines while delivering real end-to-end speedups.
+
+<Button
+  to="https://matx.com/research/leaky_quantization"
+  color="light"
+  className="self-center"
+>
+  Read the post
+  <ArrowUpRightIcon />
+</Button>
+
+</section>

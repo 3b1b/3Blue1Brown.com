@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 500">
+  <!-- Define patterns -->
+  <defs>
+    <pattern id="safe-past" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect width="4" height="4" fill="#e8f5e9"/>
+    </pattern>
+    <pattern id="masked" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect width="4" height="4" fill="#fafafa"/>
+    </pattern>
+    <pattern id="leaky" patternUnits="userSpaceOnUse" width="6" height="6">
+      <rect width="6" height="6" fill="#ffebee"/>
+      <path d="M 0 6 L 6 0" stroke="#ef9a9a" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- White background -->
+  <rect width="550" height="500" fill="white"/>
+
+  <!-- Axes labels -->
+  <text x="50" y="230" text-anchor="middle" font-family="Georgia, serif" font-size="13" transform="rotate(-90 50 230)">
+    Query position (<tspan font-style="italic">i</tspan>)
+  </text>
+  <text x="320" y="450" text-anchor="middle" font-family="Georgia, serif" font-size="13">
+    Value position (<tspan font-style="italic">j</tspan>)
+  </text>
+
+  <!-- Matrix visualization (400x400) -->
+  <g transform="translate(100, 10)">
+    <!-- Background - upper triangle (masked by causal mask) -->
+    <path d="M 0 0 L 400 0 L 400 400 Z" fill="url(#masked)"/>
+
+    <!-- Lower triangle (valid attention region) -->
+    <path d="M 0 0 L 0 400 L 400 400 Z" fill="url(#safe-past)"/>
+
+    <!-- Block diagonal (leaky region) - draw 4 blocks with numbers -->
+    <rect x="0" y="0" width="100" height="100" fill="url(#leaky)" stroke="#c62828" stroke-width="2"/>
+    <text x="50" y="55" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#c62828">0</text>
+
+    <rect x="100" y="100" width="100" height="100" fill="url(#leaky)" stroke="#c62828" stroke-width="2"/>
+    <text x="150" y="155" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#c62828">1</text>
+
+    <rect x="200" y="200" width="100" height="100" fill="url(#leaky)" stroke="#c62828" stroke-width="2"/>
+    <text x="250" y="255" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#c62828">2</text>
+
+    <rect x="300" y="300" width="100" height="100" fill="url(#leaky)" stroke="#c62828" stroke-width="2"/>
+    <text x="350" y="355" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#c62828">3</text>
+
+    <!-- Grid lines for blocks -->
+    <line x1="100" y1="0" x2="100" y2="400" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <line x1="200" y1="0" x2="200" y2="400" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <line x1="300" y1="0" x2="300" y2="400" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+
+    <line x1="0" y1="100" x2="400" y2="100" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <line x1="0" y1="200" x2="400" y2="200" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <line x1="0" y1="300" x2="400" y2="300" stroke="#999" stroke-width="0.5" stroke-dasharray="2,2"/>
+
+    <!-- Border -->
+    <rect x="0" y="0" width="400" height="400" fill="none" stroke="#333" stroke-width="2"/>
+
+    <!-- Tick marks and labels -->
+    <text x="-5" y="5" text-anchor="end" font-family="Georgia, serif" font-size="11">0</text>
+    <text x="-5" y="105" text-anchor="end" font-family="Georgia, serif" font-size="11">32</text>
+    <text x="-5" y="205" text-anchor="end" font-family="Georgia, serif" font-size="11">64</text>
+    <text x="-5" y="305" text-anchor="end" font-family="Georgia, serif" font-size="11">96</text>
+    <text x="-5" y="405" text-anchor="end" font-family="Georgia, serif" font-size="11">128</text>
+
+    <text x="0" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="11">0</text>
+    <text x="100" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="11">32</text>
+    <text x="200" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="11">64</text>
+    <text x="300" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="11">96</text>
+    <text x="400" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="11">128</text>
+  </g>
+
+  <!-- Simple legend -->
+  <g transform="translate(100, 460)">
+    <rect x="0" y="0" width="20" height="15" fill="url(#leaky)" stroke="#c62828" stroke-width="1"/>
+    <text x="25" y="12" font-family="Georgia, serif" font-size="12">Leaky (<tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> </tspan>= <tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">j</tspan><tspan dy="-3">)</tspan></text>
+
+    <rect x="180" y="0" width="20" height="15" fill="url(#safe-past)" stroke="#333" stroke-width="0.5"/>
+    <text x="205" y="12" font-family="Georgia, serif" font-size="12">Safe (<tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> </tspan>&gt; <tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">j</tspan><tspan dy="-3">)</tspan></text>
+
+    <rect x="320" y="0" width="20" height="15" fill="url(#masked)" stroke="#333" stroke-width="0.5"/>
+    <text x="345" y="12" font-family="Georgia, serif" font-size="12">Masked (<tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">i</tspan><tspan dy="-3"> </tspan>&lt; <tspan font-style="italic">b</tspan><tspan dy="3" font-size="9">j</tspan><tspan dy="-3">)</tspan></text>
+  </g>
+</svg>

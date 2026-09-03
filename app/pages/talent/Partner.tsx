@@ -63,6 +63,14 @@ export const [getChallenge] = importAssets(
   "challenge",
 );
 
+// import all featured work teasers
+export const [getFeature] = importAssets(
+  import.meta.glob<{ default: MDXContent }>("./**/feature.mdx", {
+    eager: true,
+  }),
+  "feature",
+);
+
 // import all custom video thumbnails
 export const [getThumbnail] = importAssets(
   import.meta.glob<{ default: string }>("./**/thumbnail.{jpg,png}", {

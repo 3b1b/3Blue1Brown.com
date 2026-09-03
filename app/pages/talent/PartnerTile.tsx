@@ -7,6 +7,7 @@ import Tabs, { Panel } from "~/components/Tabs";
 import PartnerVideo from "~/pages/talent/PartnerVideo";
 import {
   getChallenge,
+  getFeature,
   getMessage,
   getPartner,
   getThumbnail,
@@ -41,6 +42,7 @@ export default function PartnerTile({ id }: Props) {
   const thumbnail = getThumbnail(id);
   const { default: Message } = getMessage(id) ?? {};
   const { default: Challenge } = getChallenge(id) ?? {};
+  const { default: Feature } = getFeature(id) ?? {};
 
   const page = href("/talent/:id", { id });
 
@@ -92,6 +94,14 @@ export default function PartnerTile({ id }: Props) {
         {interview?.video && (
           <Panel title={interview.title || "Meet the Team"}>
             <PartnerVideo video={interview} thumbnail={thumbnail} />
+          </Panel>
+        )}
+
+        {Feature && (
+          <Panel title="Featured Work">
+            <div className="flex flex-col gap-8">
+              <Feature />
+            </div>
           </Panel>
         )}
 
