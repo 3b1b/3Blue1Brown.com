@@ -6,9 +6,8 @@ import PartnerTile from "./PartnerTile";
 const partners: [string, ...string[]] = [
   "janestreet",
   "0xPARC",
-  "luminal",
-  "matx",
   "doppel",
+  "luminal",
   "beam",
   "oklo",
 ];
