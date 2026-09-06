@@ -1,12 +1,11 @@
 import { Readable } from "stream";
-import type { Route } from "./+types/sitemap.xml";
 import { SitemapStream, streamToPromise } from "sitemap";
+import site from "~/data/site.json";
 
 // generate sitemap.xml from prerendered routes
-export const loader = async ({ request }: Route.LoaderArgs) => {
+export const loader = async () => {
   const { prerender } = await import("virtual:react-router/server-build");
-  const { origin } = new URL(request.url);
-  const stream = new SitemapStream({ hostname: origin });
+  const stream = new SitemapStream({ hostname: site.url });
   const locations = prerender.map((path) => ({ url: path }));
   const sitemap = await (
     await streamToPromise(Readable.from(locations).pipe(stream))
