@@ -37,19 +37,26 @@
   },
   {
     "name": "Mitchell Zemil",
-    "description": "Illustration and Animation",
+    "description": "Illustration, Animation",
     "link": "https://mitchellzemil.com/",
     "group": "current"
   },
   {
+    "name": "Claire Vermillion",
+    "description": "Illustration, Animation",
+    "link": "https://clairevermillion.com/",
+    "group": "current"
+  },
+
+  {
     "name": "James Schloss",
-    "description": "Running the Summers of Math Exposition",
+    "description": "Running Summers of Math Exposition",
     "link": "https://github.com/leios",
     "group": "past"
   },
   {
     "name": "Quinn Brodsky",
-    "description": "Filming and research for the Barber pole videos",
+    "description": "Filming & research for Barber pole videos",
     "link": "https://wescarroll.com/quinn",
     "group": "past"
   },
@@ -61,37 +68,37 @@
   },
   {
     "name": "Kurt Bruns",
-    "description": "Video artwork, written adaptation of the Calculus series, site management",
+    "description": "Video art, calculus written lessons",
     "link": "https://kurtbruns.com",
     "group": "past"
   },
   {
     "name": "Josh Pullen",
-    "description": "2021 Intern, written and interactive adaptations of videos",
+    "description": "Written & interactive lessons",
     "link": "https://www.joshuapullen.com",
     "group": "past"
   },
   {
     "name": "River Way",
-    "description": "2021 Intern, written and interactive adaptations of videos",
+    "description": "Written & interactive lessons",
     "link": "/about",
     "group": "past"
   },
   {
     "name": "Vivek Verma",
-    "description": "2021 Intern, written and interactive adaptations of videos",
+    "description": "Written & interactive lessons",
     "link": "/about",
     "group": "past"
   },
   {
     "name": "Sridhar Ramesh",
-    "description": "Writing and visuals for the winding number and Wallis product videos",
+    "description": "Writing & visuals for winding number & Wallis product videos",
     "link": "/about",
     "group": "past"
   },
   {
     "name": "Ben Hambrecht",
-    "description": "Writing and visuals for the Basel problem and pi day 2018",
+    "description": "Writing & visuals for Basel problem & pi day 2018",
     "link": "https://www.hambrecht.ch",
     "group": "past"
   }
