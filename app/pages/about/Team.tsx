@@ -52,7 +52,7 @@ export function Current() {
 // grid of past contributors
 export function Past() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(30)))] justify-center gap-8 p-2">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(auto,--spacing(38)))] justify-center gap-8 p-2">
       {past.map((member, index) => (
         <Portrait key={index} {...member} className="text-sm" />
       ))}
