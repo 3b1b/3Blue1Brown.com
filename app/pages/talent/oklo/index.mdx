@@ -5,9 +5,8 @@ location: Santa Clara, CA, Idaho Falls, ID, and Remote
 apply: https://oklo.com/careers/default.aspx
 about: Developing advanced fission power plants to power a complete nuclear energy lifecycle—reactor design, fuel fabrication, recycling, and isotope production.
 interview:
-  video: 5NbOxf4SZ1I
+  video: 2f5u0ol7f2E
   type: youtube
-  title: Inside Groves' First Chain Reaction
 ---
 
 import { ArrowUpRightIcon } from "@phosphor-icons/react";
@@ -15,6 +14,7 @@ import Button from "~/components/Button";
 import Figure from "~/components/Figure";
 import Image from "~/components/Image";
 import Quote from "~/components/Quote";
+import Tabs, { Panel } from "~/components/Tabs";
 import YouTube from "~/components/YouTube";
 import auroraInl from "./aurora-inl.jpg";
 import banner from "./banner.png";
@@ -36,7 +36,14 @@ import wordmark from "./wordmark-dark.svg";
 
 <img src={wordmark} alt="" className="max-h-20 self-center" />
 
-<YouTube id={frontmatter.interview.video} />
+<Tabs>
+  <Panel title="Meet the Team">
+    <YouTube id={frontmatter.interview.video} />
+  </Panel>
+  <Panel title="Inside Groves' First Chain Reaction">
+    <YouTube id="5NbOxf4SZ1I" />
+  </Panel>
+</Tabs>
 
 <Button to={frontmatter.apply} color="critical" className="w-100 self-center">
   Apply
