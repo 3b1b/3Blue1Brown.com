@@ -16,6 +16,6 @@ I have checked (if applicable):
 - [ ] image/video quality
 - [ ] broken links
 - [ ] all downstream usages of changes
-- [ ] Chrome, Safari (desktop & iOS), and Firefox
+- [ ] Chrome, Safari (MacOS & iOS), and Firefox
 - [ ] all screen sizes and orientations
 - [ ] dark/light mode
