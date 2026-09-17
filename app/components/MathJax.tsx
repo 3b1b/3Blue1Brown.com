@@ -11,6 +11,20 @@ const mathSelector = `code.${mathClass}`;
 // trying to install as package and import causes many issues, impractical to fix
 const cdn = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js";
 
+// rainbow palette with equal perceived brightness
+const colorOverrides = Object.entries({
+  red: "oklch(65% 0.15 30)",
+  orange: "oklch(65% 0.15 60)",
+  green: "oklch(65% 0.15 150)",
+  blue: "oklch(65% 0.15 250)",
+  purple: "oklch(65% 0.15 300)",
+  pink: "oklch(65% 0.15 330)",
+  gray: "oklch(65% 0 0)",
+})
+  // command to define custom color
+  .map(([name, value]) => `\\definecolor{${name}}{}{${value}}`)
+  .join("");
+
 // enable mathjax on page
 export default function MathJax() {
   // parse math on load
@@ -95,6 +109,8 @@ const init = async () => {
     console.debug("MathJax startup start");
     // wait for mathjax to start up
     await window.MathJax.startup?.promise;
+    // redefine named colors on page with throwaway render
+    window.MathJax.tex2svg?.(colorOverrides);
   } catch (error) {
     console.error("MathJax init error", error);
   }
