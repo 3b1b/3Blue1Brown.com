@@ -8,7 +8,8 @@ Lorem ipsum
 
 ### Checks
 
-- [ ] I have followed the guidelines in `agents.md`.
+- [ ] I have followed the guidelines in `agents.md`
+- [ ] I have reviewed and justified my changes thoroughly
 
 I have checked (if applicable):
 
