@@ -144,7 +144,7 @@ This figure shows the increase in volume of a cube when its side length $x$ is i
 Each of those thin squares has a volume of $x^2 \cdot dx$; the area of the face times the thickness of $dx$, so in total this gives us $3x^2dx$ of volume change. There are some other slivers of volume along the edges, and in the corner, but their volume will be proportional to $dx^2$, or $dx^3$, so they can be ignored. Again, this is because ultimately they will be divided by $dx$, and if there's still any $dx$ remaining, these terms won't survive the process of letting $dx$ approach $0$.
 
 $$
-(x + dx)^3 = x^3 + \color{#fc6255} 3x^2 \color{currentColor} dx \color{#AAAAAA} + 3xdx^2 + dx^3
+(x + dx)^3 = x^3 + \color{orange} 3x^2 \color{currentColor} dx \color{gray} + 3xdx^2 + dx^3
 $$
 
 So the derivative of $x^3$, the rate at which $x^3$ changes per unit of change in $x$, is $3x^2$. Looking at the graph, this means the slope of the graph of $x^3$ at each point $x$ is exactly $3x^2$.
@@ -175,13 +175,13 @@ However, from a geometric perspective, we have hit a roadblock. How do we visual
 
 | Polynomial   | Expansion                                                                                                          |
 | ------------ | ------------------------------------------------------------------------------------------------------------------ |
-| $f(x) = x^1$ | $(x + dx)^1 = x + \color{#fc6255}{1} \color{currentColor} dx$                                                             |
-| $f(x) = x^2$ | $(x + dx)^2 = x^2 + \color{#fc6255} 2x \color{currentColor} dx \color{#AAAAAA} + dx^2$                                    |
-| $f(x) = x^3$ | $(x + dx)^3 = x^3 + \color{#fc6255} 3x^2 \color{currentColor} dx \color{#AAAAAA} + 3xdx^2 + dx^3$                         |
-| $f(x) = x^4$ | $(x + dx)^4 = x^4 + \color{#fc6255} 4x^3 \color{currentColor} dx \color{#AAAAAA} + 6x^2dx^2 + 4xdx^3 + dx^4$              |
-| $f(x) = x^5$ | $(x + dx)^5 = x^5 + \color{#fc6255} 5x^4 \color{currentColor} dx \color{#AAAAAA} + 10x^3dx^2 + 10x^2dx^3 + 5xdx^4 + dx^5$ |
+| $f(x) = x^1$ | $(x + dx)^1 = x + \color{orange}{1} \color{currentColor} dx$                                                             |
+| $f(x) = x^2$ | $(x + dx)^2 = x^2 + \color{orange} 2x \color{currentColor} dx \color{gray} + dx^2$                                    |
+| $f(x) = x^3$ | $(x + dx)^3 = x^3 + \color{orange} 3x^2 \color{currentColor} dx \color{gray} + 3xdx^2 + dx^3$                         |
+| $f(x) = x^4$ | $(x + dx)^4 = x^4 + \color{orange} 4x^3 \color{currentColor} dx \color{gray} + 6x^2dx^2 + 4xdx^3 + dx^4$              |
+| $f(x) = x^5$ | $(x + dx)^5 = x^5 + \color{orange} 5x^4 \color{currentColor} dx \color{gray} + 10x^3dx^2 + 10x^2dx^3 + 5xdx^4 + dx^5$ |
 
-{/* | $f(x) = x^6$ | $(x + dx)^6 = x^6 + \color{#fc6255} 6x^5 \color{currentColor} dx \color{#AAAAAA} + 15x^4dx^2 + 20x^3dx^3 + 15x^2dx^4 + 6xdx^5 + dx^6$ | */}
+{/* | $f(x) = x^6$ | $(x + dx)^6 = x^6 + \color{orange} 6x^5 \color{currentColor} dx \color{gray} + 15x^4dx^2 + 20x^3dx^3 + 15x^2dx^4 + 6xdx^5 + dx^6$ | */}
 
 {/* TODO: link to binomial expansion */}
 

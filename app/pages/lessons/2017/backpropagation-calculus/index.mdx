@@ -68,7 +68,7 @@ For now, let's just focus on the connection between the last two neurons. I'll l
 
 To be clear, these are _not_ exponents. They are just ways of indexing what layer we're talking about, since we want to save subscripts for different indices later on.
 
-Let's say that for a certain training example, the desired output is $$\textcolor{gold}{y}$$. That means that the cost for this one training example is $$\textcolor{red}{C_0} = (a^{(L)} - \textcolor{gold}{y})^2$$.
+Let's say that for a certain training example, the desired output is $$\textcolor{orange}{y}$$. That means that the cost for this one training example is $$\textcolor{red}{C_0} = (a^{(L)} - \textcolor{orange}{y})^2$$.
 
 <Figure image="$lesson/cost-of-one-example.jpg">
   The cost to the network for this one training example is just the difference
@@ -90,7 +90,7 @@ a^{(L)} &= \sigma\left(\textcolor{green}{z^{(L)}}\right)
 \end{align*}
 $$
 
-A way you might conceptualize this is that the weight, the previous activation, and the bias together let us compute $$\textcolor{green}{z^{(L)}}$$, which in turn lets us compute $$a^{(L)}$$, which in turn, along with the constant $$\textcolor{gold}{y}$$, lets us compute the cost.
+A way you might conceptualize this is that the weight, the previous activation, and the bias together let us compute $$\textcolor{green}{z^{(L)}}$$, which in turn lets us compute $$a^{(L)}$$, which in turn, along with the constant $$\textcolor{orange}{y}$$, lets us compute the cost.
 
 <Figure image="$lesson/tree.jpg">
   This tree shows which values depend on which other values in our network.
@@ -148,9 +148,9 @@ a^{(L)} &= \sigma\left(\textcolor{green}{z^{(L)}}\right)
 \quad &\longrightarrow \quad
 \frac{\partial a^{(L)}}{\textcolor{green}{\partial z^{(L)}}} &= \sigma^{\prime}\left(\textcolor{green}{z^{(L)}}\right) \\ \\
 
-\textcolor{red}{C_0} &= \left(a^{(L)} - \textcolor{gold}{y}\right)^{2}
+\textcolor{red}{C_0} &= \left(a^{(L)} - \textcolor{orange}{y}\right)^{2}
 \quad &\longrightarrow \quad
-\frac{\textcolor{red}{\partial C_0}}{\partial a^{(L)}} &= 2\left(a^{(L)} - \textcolor{gold}{y}\right)
+\frac{\textcolor{red}{\partial C_0}}{\partial a^{(L)}} &= 2\left(a^{(L)} - \textcolor{orange}{y}\right)
 
 \end{align*}
 $$
@@ -176,7 +176,7 @@ Putting this together with our constituent derivatives, we get:
 
 $$
 \frac{\textcolor{red}{\partial C_{0}}}{\textcolor{blue}{\partial w^{(L)}}} =
-a^{(L-1)} \sigma^{\prime}\left(\textcolor{green}{z^{(L)}}\right) 2\left(a^{(L)} - \textcolor{gold}{y}\right)
+a^{(L-1)} \sigma^{\prime}\left(\textcolor{green}{z^{(L)}}\right) 2\left(a^{(L)} - \textcolor{orange}{y}\right)
 $$
 
 This formula tells us how a nudge to that _one particular weight_ in the last layer will affect the cost for that _one particular training example_. This is just one very specific piece of information, and we'll need to calculate a lot more to get the entire gradient vector.
@@ -343,7 +343,7 @@ Let's use the letter $$k$$ to index the layer $$(L-1)$$, and $$j$$ to index the 
 
 <Figure image="$lesson/index-by-j-k.jpg" />
 
-For the cost, again look at what the desired output is, then add up the squares of the differences between these last layer activations and this desired output. That is, sum over $$(a^{(L)}_j - \textcolor{gold}{y_j})^2$$.
+For the cost, again look at what the desired output is, then add up the squares of the differences between these last layer activations and this desired output. That is, sum over $$(a^{(L)}_j - \textcolor{orange}{y_j})^2$$.
 
 <Figure image="$lesson/complicated-cost.jpg" />
 
