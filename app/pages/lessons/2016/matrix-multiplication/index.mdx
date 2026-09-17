@@ -44,8 +44,8 @@ x\begin{bmatrix}\color{green}a\\ \color{green}c\end{bmatrix}
 +y\begin{bmatrix}\color{red}b\\ \color{red}d\end{bmatrix}
 =
 \begin{bmatrix}
-\color{green}a\color{black}x+\color{red}b\color{black}y \\
-\color{green}c\color{black}x+\color{red}d\color{black}y
+\color{green}a\color{currentColor}x+\color{red}b\color{currentColor}y \\
+\color{green}c\color{currentColor}x+\color{red}d\color{currentColor}y
 \end{bmatrix}
 $$
 
@@ -90,7 +90,7 @@ $$
 \underbrace{
 \begin{bmatrix}0&-1\\1&0\end{bmatrix}
 }_{\large \text{Rotation}}
-\color{black}
+\color{currentColor}
 =
 \color{red}
 \underbrace{
@@ -115,7 +115,7 @@ $$
 \underbrace{
 \begin{bmatrix}0&-1\\1&0\end{bmatrix}
 }_{\large\text{Rotation}}
-\color{black}
+\color{currentColor}
 =
 \color{red}
 \underbrace{
@@ -146,16 +146,16 @@ M_2(M_1(\hat i))&=
 \begin{bmatrix}0&2\\1&0\end{bmatrix}
 \color{orange}
 \begin{bmatrix}1&-2\\1&0\end{bmatrix}
-\color{black}
+\color{currentColor}
 \begin{bmatrix}1\\0\end{bmatrix}
 \\ &= \color{orange} 1
 \color{purple}
 \begin{bmatrix}0\\1\end{bmatrix}
-\color{black} +
+\color{currentColor} +
 \color{orange} 1
 \color{purple}
 \begin{bmatrix}2\\0\end{bmatrix}
-\\ &= \color{black}
+\\ &= \color{currentColor}
 \begin{bmatrix}2\\1\end{bmatrix}
 \end{align*}
 $$
@@ -169,16 +169,16 @@ M_2(M_1(\hat j))&=
 \begin{bmatrix}0&2\\1&0\end{bmatrix}
 \color{orange}
 \begin{bmatrix}1&-2\\1&0\end{bmatrix}
-\color{black}
+\color{currentColor}
 \begin{bmatrix}0\\1\end{bmatrix}
 \\ &= \color{orange} -2
 \color{purple}
 \begin{bmatrix}0\\1\end{bmatrix}
-\color{black} +
+\color{currentColor} +
 \color{orange} 0
 \color{purple}
 \begin{bmatrix}2\\0\end{bmatrix}
-\\ &= \color{black}
+\\ &= \color{currentColor}
 \begin{bmatrix}0\\-2\end{bmatrix}
 \end{align*}
 $$
@@ -209,7 +209,7 @@ $$
 \underbrace{
 \begin{bmatrix}e&f\\g&h\end{bmatrix}
 }_{\large M_1}
-\color{black}
+\color{currentColor}
 =
 \color{red}
 \underbrace{
@@ -224,27 +224,27 @@ $$
 \begin{bmatrix}a&b\\c&d\end{bmatrix}
 \color{orange}
 \begin{bmatrix}e\\g\end{bmatrix}
-\color{black}
+\color{currentColor}
 =
 \color{orange} e
 \color{purple}
 \begin{bmatrix}a\\c\end{bmatrix}
-\color{black} +
+\color{currentColor} +
 \color{orange} g
 \color{purple}
 \begin{bmatrix}b\\d\end{bmatrix}
-\color{black}
+\color{currentColor}
 =
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} g
 \\
 \color{purple} c
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} g
 \end{bmatrix}
@@ -257,27 +257,27 @@ $$
 \begin{bmatrix}a&b\\c&d\end{bmatrix}
 \color{orange}
 \begin{bmatrix}f\\h\end{bmatrix}
-\color{black}
+\color{currentColor}
 =
 \color{orange} f
 \color{purple}
 \begin{bmatrix}a\\c\end{bmatrix}
-\color{black} +
+\color{currentColor} +
 \color{orange} h
 \color{purple}
 \begin{bmatrix}b\\d\end{bmatrix}
-\color{black}
+\color{currentColor}
 =
 \begin{bmatrix}
 \color{purple} a
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} h
 \\
 \color{purple} c
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}
@@ -295,32 +295,32 @@ $$
 \underbrace{
 \begin{bmatrix}e&f\\g&h\end{bmatrix}
 }_{\large M_1}
-\color{black}
+\color{currentColor}
 =
 \color{red}
 \underbrace{
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} g
 &
 \color{purple} a
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} h
 \\
 \color{purple} c
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} g
 &
 \color{purple} c
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}
@@ -352,7 +352,7 @@ Here is an important question: Does it matter what order we put the two matrices
 $$
 \color{orange}M_1
 \color{purple}M_2
-\color{black}\stackrel{???}{=}
+\color{currentColor}\stackrel{???}{=}
 \color{purple}M_2
 \color{orange}M_1
 $$
@@ -378,32 +378,32 @@ $$
 \underbrace{
 \begin{bmatrix}e&f\\g&h\end{bmatrix}
 }_{\large M_1}
-\color{black}
+\color{currentColor}
 &=
 \color{red}
 \underbrace{
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} g
 &
 \color{purple} a
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} h
 \\
 \color{purple} c
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} g
 &
 \color{purple} c
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}
@@ -418,32 +418,32 @@ $$
 \underbrace{
 \begin{bmatrix}a&b\\c&d\end{bmatrix}
 }_{\large M_2}
-\color{black}
+\color{currentColor}
 &=
 \color{red}
 \underbrace{
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} c
 \color{orange} f
 &
 \color{purple} b
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} f
 \\
 \color{purple} a
 \color{orange} g
-\color{black} +
+\color{currentColor} +
 \color{purple} c
 \color{orange} h
 &
 \color{purple} b
 \color{orange} g
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}
@@ -454,55 +454,55 @@ $$
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} g
 &
 \color{purple} a
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} b
 \color{orange} h
 \\
 \color{purple} c
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} g
 &
 \color{purple} c
 \color{orange} f
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}
 }_{\large M_2M_1}
-\color{black}
+\color{currentColor}
 &\neq
 \color{red}
 \underbrace{
 \begin{bmatrix}
 \color{purple} a
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} c
 \color{orange} f
 &
 \color{purple} b
 \color{orange} e
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} f
 \\
 \color{purple} a
 \color{orange} g
-\color{black} +
+\color{currentColor} +
 \color{purple} c
 \color{orange} h
 &
 \color{purple} b
 \color{orange} g
-\color{black} +
+\color{currentColor} +
 \color{purple} d
 \color{orange} h
 \end{bmatrix}

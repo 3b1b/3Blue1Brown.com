@@ -44,9 +44,9 @@ $$
 }_{\large \text{Unknown variables}}
 &
 \begin{matrix}
-\color{black}6\color{green}x\color{black}-3\color{red}y\color{black}+2\color{blue}z\color{black}=7 \\
-\color{green}x\color{black}+2\color{red}y\color{black}+5\color{blue}z\color{black}=0 \\
-\underbrace{\color{black}2\color{green}x\color{black}-8\color{red}y\color{black}-\color{blue}z\color{black}=-2}
+\color{currentColor}6\color{green}x\color{currentColor}-3\color{red}y\color{currentColor}+2\color{blue}z\color{currentColor}=7 \\
+\color{green}x\color{currentColor}+2\color{red}y\color{currentColor}+5\color{blue}z\color{currentColor}=0 \\
+\underbrace{\color{currentColor}2\color{green}x\color{currentColor}-8\color{red}y\color{currentColor}-\color{blue}z\color{currentColor}=-2}
 _{\large\text{Equations}}
 \end{matrix}
 \end{matrix}
@@ -68,9 +68,9 @@ But if you're lucky, they might take a certain special form. Within each equatio
 
 $$
 \begin{align*}
-\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
-\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
-\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\color{currentColor}2\color{green}x\color{currentColor}+5\color{red}y\color{currentColor}+3\color{blue}z\color{currentColor}&=-3 \\
+\color{currentColor}4\color{green}x\color{currentColor}+0\color{red}y\color{currentColor}+8\color{blue}z\color{currentColor}&=0 \\
+\color{currentColor}1\color{green}x\color{currentColor}+3\color{red}y\color{currentColor}+0\color{blue}z\color{currentColor}&=2
 \end{align*}
 $$
 
@@ -80,9 +80,9 @@ You might notice that this looks a lot like matrix-vector multiplication. In fac
 
 $$
 \begin{align*}
-\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
-\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
-\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\color{currentColor}2\color{green}x\color{currentColor}+5\color{red}y\color{currentColor}+3\color{blue}z\color{currentColor}&=-3 \\
+\color{currentColor}4\color{green}x\color{currentColor}+0\color{red}y\color{currentColor}+8\color{blue}z\color{currentColor}&=0 \\
+\color{currentColor}1\color{green}x\color{currentColor}+3\color{red}y\color{currentColor}+0\color{blue}z\color{currentColor}&=2
 \end{align*}
 \to
 
@@ -93,7 +93,7 @@ $$
 4&0&8\\
 1&3&0
 \end{bmatrix}
-}_{\large\color{white}\hat{\color{black} A}}
+}_{\large A\vphantom{\hat{A}}}
 }^{\large\text{Coefficients}}
 
 \overbrace{
@@ -142,8 +142,8 @@ To start simply, let's say you have a system with two equations and two unknowns
 
 $$
 \begin{align*}
-\color{black}2\color{green}x\color{black}+2\color{red}y\color{black}&=-4 \\
-\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}&=-1
+\color{currentColor}2\color{green}x\color{currentColor}+2\color{red}y\color{currentColor}&=-4 \\
+\color{currentColor}1\color{green}x\color{currentColor}+3\color{red}y\color{currentColor}&=-1
 \end{align*}
 \to
 
@@ -152,7 +152,7 @@ $$
 2&2\\
 1&3
 \end{bmatrix}
-}_{\large\color{white}\hat{\color{black} A}}
+}_{\large A\vphantom{\hat{A}}}
 
 \underbrace{
 \begin{bmatrix}
@@ -227,14 +227,14 @@ There are computational methods to compute this inverse matrix. In the case of t
 $$
 \begin{align*}
 \color{green}A^{-1}
-\color{black}A
+\color{currentColor}A
 \color{purple}\overrightarrow{\mathbf{x}}
-\color{black}&=
+\color{currentColor}&=
 \color{green}A^{-1}
 \color{orange}\overrightarrow{\mathbf{v}}
 \\
 \color{purple}\overrightarrow{\mathbf{x}}
-\color{black}&=
+\color{currentColor}&=
 \color{green}A^{-1}
 \color{orange}\overrightarrow{\mathbf{v}}
 \end{align*}
@@ -245,8 +245,8 @@ This nonzero determinant case corresponds with the idea that if you have two unk
 $$
 \overbrace{
 \begin{matrix}
-\color{black}a\color{green}x\color{black}+c\color{red}y\color{black}=e \\
-\color{black}b\color{green}x\color{black}+d\color{red}y\color{black}=f
+\color{currentColor}a\color{green}x\color{currentColor}+c\color{red}y\color{currentColor}=e \\
+\color{currentColor}b\color{green}x\color{currentColor}+d\color{red}y\color{currentColor}=f
 \end{matrix}
 }^{\large\text{One unique solution... probably}}
 $$
@@ -257,13 +257,13 @@ This idea also makes sense in higher dimensions when the number of equations equ
 
 $$
 \color{purple}\overrightarrow{\mathbf{x}}
-\color{black}=\color{orange}\overrightarrow{\mathbf{v}}
+\color{currentColor}=\color{orange}\overrightarrow{\mathbf{v}}
 \\
-\color{black}
+\color{currentColor}
 \begin{aligned}
-\color{black}2\color{green}x\color{black}+5\color{red}y\color{black}+3\color{blue}z\color{black}&=-3 \\
-\color{black}4\color{green}x\color{black}+0\color{red}y\color{black}+8\color{blue}z\color{black}&=0 \\
-\color{black}1\color{green}x\color{black}+3\color{red}y\color{black}+0\color{blue}z\color{black}&=2
+\color{currentColor}2\color{green}x\color{currentColor}+5\color{red}y\color{currentColor}+3\color{blue}z\color{currentColor}&=-3 \\
+\color{currentColor}4\color{green}x\color{currentColor}+0\color{red}y\color{currentColor}+8\color{blue}z\color{currentColor}&=0 \\
+\color{currentColor}1\color{green}x\color{currentColor}+3\color{red}y\color{currentColor}+0\color{blue}z\color{currentColor}&=2
 \end{aligned}
 \to
 
@@ -273,7 +273,7 @@ $$
 4&0&8\\
 1&3&0
 \end{bmatrix}
-}_{\large\color{white}\hat{\color{black} A}}
+}_{\large A\vphantom{\hat{A}}}
 
 \underbrace{
 \begin{bmatrix}

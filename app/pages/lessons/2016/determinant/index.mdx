@@ -249,19 +249,19 @@ $$
 \right)
 =
 \color{green}a\color{red}d
-\color{black}-
+\color{currentColor}-
 \color{red}b\color{green}c
 $$
 
-Here's part of an intuition for this formula. Let's say the terms $\color{red}b$ and $\color{green}c$ were zero. Then the term $\color{green}a$ tells you how much $\hat i$ is stretched in the $x$-direction, and the term $\color{red}d$ tells you how much $\hat j$ is stretched in the $y$-direction. So if the other terms were zero, it should make sense that $\color{green}a\color{black}\cdot\color{red}d$ gives the area of the rectangle that our favorite unit square turns into, like the $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ example from earlier.
+Here's part of an intuition for this formula. Let's say the terms $\color{red}b$ and $\color{green}c$ were zero. Then the term $\color{green}a$ tells you how much $\hat i$ is stretched in the $x$-direction, and the term $\color{red}d$ tells you how much $\hat j$ is stretched in the $y$-direction. So if the other terms were zero, it should make sense that $\color{green}a\color{currentColor}\cdot\color{red}d$ gives the area of the rectangle that our favorite unit square turns into, like the $\begin{bmatrix}3&0\\0&2\end{bmatrix}$ example from earlier.
 
 <Figure image="$lesson/figures/scale_determinant.svg" />
 
-Even if only one of $b$ or $c$ are zero, you'll have a parallelogram with base $a$ and height $d$, so the area will still be $\color{green}a\color{black}\cdot\color{red}d$.
+Even if only one of $b$ or $c$ are zero, you'll have a parallelogram with base $a$ and height $d$, so the area will still be $\color{green}a\color{currentColor}\cdot\color{red}d$.
 
 <Figure image="$lesson/figures/shear_determinant.svg" />
 
-Loosely speaking, if both $b$ and $c$ are nonzero, the term $\color{red}b\color{black}\cdot\color{green}c$ tells you how much this rectangle is stretched or squished in the diagonal direction. It shows how much $\hat i$ is changed in the $y$-direction, and how much $\hat j$ is changed in the $x$-direction. Here is a more precise justification of this term $\color{red}b\color{black}\cdot\color{green}c$ shown as a helpful diagram.
+Loosely speaking, if both $b$ and $c$ are nonzero, the term $\color{red}b\color{currentColor}\cdot\color{green}c$ tells you how much this rectangle is stretched or squished in the diagonal direction. It shows how much $\hat i$ is changed in the $y$-direction, and how much $\hat j$ is changed in the $x$-direction. Here is a more precise justification of this term $\color{red}b\color{currentColor}\cdot\color{green}c$ shown as a helpful diagram.
 
 <Figure image="$lesson/figures/determinant_diagram.svg" />
 
@@ -282,23 +282,23 @@ $$
 \right)
 &=
 \color{green}a
-\color{black}\det\left(
+\color{currentColor}\det\left(
 \begin{bmatrix}
 \color{red}e&\color{blue}f \\
 \color{red}h&\color{blue}i
 \end{bmatrix}
 \right)
-\\ \color{black}&-
+\\ \color{currentColor}&-
 \color{red}b
-\color{black}\det\left(
+\color{currentColor}\det\left(
 \begin{bmatrix}
 \color{green}d&\color{blue}f \\
 \color{green}g&\color{blue}i
 \end{bmatrix}
 \right)
-\\ \color{black}&+
+\\ \color{currentColor}&+
 \color{blue}c
-\color{black}\det\left(
+\color{currentColor}\det\left(
 \begin{bmatrix}
 \color{green}d&\color{red}e \\
 \color{green}g&\color{red}h
@@ -320,11 +320,11 @@ $$
 \det(
 \color{blue}M_1
 \color{purple}M_2
-\color{black})=\det(
+\color{currentColor})=\det(
 \color{blue}M_1
-\color{black})\det(
+\color{currentColor})\det(
 \color{purple}M_2
-\color{black})
+\color{currentColor})
 $$
 
 If you tried to justify this numerically, it would be a horrible mess. **But can you explain why in just one sentence?**
