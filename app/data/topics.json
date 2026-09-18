@@ -168,6 +168,7 @@
     "title": "Puzzles",
     "description": "Challenging questions whose solutions have interesting twists and broader lessons",
     "lessons": [
+      "2025-p6",
       "hardest-problem",
       "windmills",
       "shadows",
