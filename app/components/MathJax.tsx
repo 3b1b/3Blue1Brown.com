@@ -96,7 +96,7 @@ const init = async () => {
       },
     };
 
-    // load from node_modules
+    // load mathjax from cdn
     const script = document.createElement("script");
     script.src = cdn;
     script.type = "text/javascript";
