@@ -53,7 +53,7 @@ export default function Radios<O extends Option>({
             key={index}
             value={value}
             render={(props, { checked }) => (
-              <label
+              <div
                 className={clsx(
                   "flex flex-row items-center gap-4 rounded-md p-2 change-ring outline-none focus-within:outline-theme hocus:bg-theme/15",
                   className,
@@ -66,7 +66,7 @@ export default function Radios<O extends Option>({
                   <CircleIcon className="icon text-gray" />
                 )}
                 {label ?? value}
-              </label>
+              </div>
             )}
           />
         ))}
