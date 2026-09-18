@@ -41,41 +41,34 @@ export default function Radios<O extends Option>({
       onValueChange={onChange}
       required={required}
     >
-      <label>
-        <p className="flex items-center gap-2">
-          {label}
-          {help && <Help>{help}</Help>}
-          {required && <span className="text-error">*</span>}
-        </p>
+      <label className="flex items-center gap-2">
+        {label}
+        {help && <Help>{help}</Help>}
+        {required && <span className="text-error">*</span>}
       </label>
 
       <div className="flex flex-col gap-2">
         {options.map(({ value, label, className }, index) => (
-          // eslint-disable-next-line -- children are control and accessible text
-          <label
+          <Radio.Root
             key={index}
-            className={clsx(
-              "rounded-md p-2 change-ring focus-within:outline-theme hocus:bg-theme/15",
-              className,
+            value={value}
+            render={(props, { checked }) => (
+              <label
+                className={clsx(
+                  "flex flex-row items-center gap-4 rounded-md p-2 change-ring outline-none focus-within:outline-theme hocus:bg-theme/15",
+                  className,
+                )}
+                {...props}
+              >
+                {checked ? (
+                  <RadioButtonIcon className="icon text-theme" />
+                ) : (
+                  <CircleIcon className="icon text-gray" />
+                )}
+                {label ?? value}
+              </label>
             )}
-          >
-            <Radio.Root
-              value={value}
-              render={(props, { checked }) => (
-                <div
-                  className="flex flex-row items-center gap-4 outline-none"
-                  {...props}
-                >
-                  {checked ? (
-                    <RadioButtonIcon className="icon text-theme" />
-                  ) : (
-                    <CircleIcon className="icon text-gray" />
-                  )}
-                  {label ?? value}
-                </div>
-              )}
-            />
-          </label>
+          />
         ))}
       </div>
     </RadioGroup>

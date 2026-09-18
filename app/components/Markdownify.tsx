@@ -69,7 +69,7 @@ export const useMDXComponents = (noParagraph?: boolean): Components => ({
   h4: (props) => <H4 {...omit(props, "node")} />,
 
   p: (props) => {
-    // render paragraphs as spans to avoid unwanted spacing
+    // don't render paragraph to avoid unwanted spacing
     if (noParagraph) return <span {...omit(props, "node")} />;
     return <p {...omit(props, "node")} />;
   },
