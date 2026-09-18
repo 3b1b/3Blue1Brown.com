@@ -62,7 +62,7 @@ export default function Radios<O extends Option>({
             <Radio.Root
               value={value}
               render={(props, { checked }) => (
-                <span
+                <div
                   className="flex flex-row items-center gap-4 outline-none"
                   {...props}
                 >
@@ -72,7 +72,7 @@ export default function Radios<O extends Option>({
                     <CircleIcon className="icon text-gray" />
                   )}
                   {label ?? value}
-                </span>
+                </div>
               )}
             />
           </label>

@@ -111,7 +111,7 @@ export default function TableOfContents() {
     >
       <div className="flex items-center gap-4">
         {/* top text */}
-        <span className="grow p-2 pl-4 font-medium">Table of Contents</span>
+        <div className="grow p-2 pl-4 font-medium">Table of Contents</div>
         {/* toggle button */}
         <button
           onClick={() => setOpen(!open)}

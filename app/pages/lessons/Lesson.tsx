@@ -218,7 +218,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 title={
                   <>
                     <ArrowLeftIcon />
-                    <span>Previous Lesson</span>
+                    Previous Lesson
                   </>
                 }
                 description={previous.title}
@@ -236,7 +236,7 @@ export default function Lesson({ params: { id } }: Route.ComponentProps) {
                 image={next.image}
                 title={
                   <>
-                    <span>Next Lesson</span>
+                    Next Lesson
                     <ArrowRightIcon />
                   </>
                 }
