@@ -88,7 +88,8 @@ bun run check:links                 # Broken links
 
 ## Minimalism
 
-- Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide
+- Consider not making a change at all if it adds complexity and maintenance burden.
+- Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide.
 - Avoid adding something only slightly different from an existing one (e.g. slightly lighter blue to only use in one place)
 - Always check for an existing component/util before using a third-party or native HTML element/func (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
 - Use React idioms where possible, but break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
