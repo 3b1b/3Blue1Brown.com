@@ -20,11 +20,10 @@ export default function DarkMode({ className = "" }) {
     document.documentElement.classList[darkMode ? "add" : "remove"]("dark");
   }, [darkMode]);
 
-  // for debugging
-  useEventListener("keydown", ({ key, ctrlKey, altKey, shiftKey, metaKey }) => {
-    if (!import.meta.env.DEV) return;
-    if (key.toLowerCase() === "d" && (ctrlKey || altKey || shiftKey || metaKey))
-      setDarkMode((darkMode) => !darkMode);
+  // keyboard shortcut
+  useEventListener("keydown", ({ key }) => {
+    if (key.toLowerCase() === "d" && document.activeElement === document.body)
+      setDarkMode(!darkMode);
   });
 
   return (
