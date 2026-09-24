@@ -85,7 +85,7 @@
   }
 
   section {
-    @apply width-md relative isolate flex flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%-(--spacing(1))*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] not-first-of-type:break-before-page last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:isolation-auto print:block print:overflow-visible print:bg-transparent! print:p-0 print:*:my-8;
+    @apply relative isolate flex flex-col gap-(--gap) overflow-x-clip bg-white px-[max(var(--pad),(100%-(--spacing(1))*var(--width))/2)] py-(--pad) text-black [--gap:--spacing(12)] [--pad:--spacing(16)] width-md not-first-of-type:break-before-page last:grow max-md:[--gap:--spacing(8)] max-md:[--pad:--spacing(8)] print:isolation-auto print:block print:overflow-visible print:bg-transparent! print:p-0 print:*:my-8;
   }
 
   hr {
@@ -96,7 +96,7 @@
   h2,
   h3,
   h4 {
-    @apply trim flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal text-balance;
+    @apply flex w-full scroll-mt-12 items-center gap-4 font-sans leading-normal text-balance trim;
   }
 
   h1 {
@@ -116,7 +116,7 @@
   }
 
   p {
-    @apply trim leading-loose;
+    @apply leading-loose trim;
   }
 
   strong,
@@ -139,7 +139,7 @@
   }
 
   li {
-    @apply trim pl-2;
+    @apply pl-2 trim;
   }
 
   li:has(ul, ol) {
@@ -147,11 +147,11 @@
   }
 
   blockquote {
-    @apply trim leading-loose;
+    @apply leading-loose trim;
   }
 
   pre {
-    @apply bg-dark-gray max-w-full overflow-x-auto rounded-md p-4 text-white;
+    @apply max-w-full overflow-x-auto rounded-md bg-dark-gray p-4 text-white;
   }
 
   :not(pre) > code {
@@ -167,7 +167,7 @@
   }
 
   tr {
-    @apply even:bg-alt-white bg-white;
+    @apply bg-white even:bg-alt-white;
   }
 
   th {
@@ -176,19 +176,19 @@
 
   th,
   td {
-    @apply not-last:border-gray p-2 not-last:border-r;
+    @apply p-2 not-last:border-r not-last:border-gray;
   }
 
   a {
-    @apply text-theme hocus:text-current trim underline transition;
+    @apply text-theme underline transition trim hocus:text-current;
   }
 
   button {
-    @apply trim inline-flex cursor-pointer items-center justify-center font-sans transition;
+    @apply inline-flex cursor-pointer items-center justify-center font-sans transition trim;
   }
 
   label {
-    @apply trim cursor-pointer transition;
+    @apply cursor-pointer transition trim;
   }
 
   input,
@@ -205,7 +205,7 @@
   }
 
   dt {
-    @apply text-gray font-sans;
+    @apply font-sans text-gray;
   }
 
   dd:empty {
@@ -256,7 +256,7 @@
 }
 
 @utility static-ring {
-  @apply outline-theme outline-2 outline-offset-2;
+  @apply outline-2 outline-offset-2 outline-theme;
 }
 
 @utility change-ring {
@@ -264,7 +264,7 @@
 }
 
 @utility playing-fade {
-  @apply playing:opacity-0! transition-opacity duration-1000;
+  @apply transition-opacity duration-1000 playing:opacity-0!;
 }
 
 @utility vignette {

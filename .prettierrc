@@ -3,11 +3,13 @@
     {
       "files": "*.css",
       "options": {
-        "plugins": ["prettier-plugin-tailwindcss"]
+        "plugins": ["prettier-plugin-tailwindcss"],
+        "tailwindStylesheet": "./app/styles.css"
       }
     },
     {
-      "files": "*.!(css|json)",
+      "files": "*",
+      "excludeFiles": ["*.css", "*.json"],
       "options": {
         "plugins": ["@ianvs/prettier-plugin-sort-imports"],
         "importOrder": [
