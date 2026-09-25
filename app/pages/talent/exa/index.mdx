@@ -1,0 +1,146 @@
+---
+name: Exa
+tagline: Attention over all the world's information
+location: San Francisco and Singapore
+apply: https://exa.ai/careers?utm_id=utm_20260917002250305_kq0ewz&utm_source=3b1b&utm_medium=partnership&utm_campaign=ads-3b1b-talent-board&utm_content=paid-acquisition-utm_20260917002250305_kq0ewz
+about: Exa builds massive-scale web crawling infrastructure, frontier language models, and high-performance vector databases to power search for AI agents.
+---
+
+import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import Quote from "~/components/Quote";
+import banner from "./banner.jpg";
+import Challenge from "./challenge.mdx";
+import codeE2ePipeline from "./code-e2e-pipeline.png";
+import dynamicHighlights from "./dynamic-highlights.gif";
+import rlSearch from "./rl-search.png";
+import subwayAd from "./subway-ad.jpg";
+import teamOutdoors from "./team-outdoors.jpg";
+import teamOuting from "./team-outing.jpg";
+import teamPhoto from "./team-photo.jpg";
+import wordmark from "./wordmark-dark.svg";
+import workspace from "./workspace.jpg";
+
+<section className="dark width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover playing-fade opacity-75"
+/>
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+Exa's research vision is "Attention Over Everything." How do we attend over the world's 100 trillion tokens, at sub-200ms speed, to find the right information?
+
+To start, we build massive-scale infra to crawl the entire web, train state-of-the-art language models to process it, and design super high performant vector databases to retrieve over it. We're building a search engine unlike the world has ever seen, and power search for Cursor, Cognition, HubSpot, and over 400,000 developers.
+
+Our team is small, talent-dense, and driven by the mission of responsible and complete information infrastructure for humanity. If we can achieve perfect search so that every AI has the highest quality information, then every human will too.
+
+<div className="flex flex-col gap-4">
+
+<div className="w-full">
+  <Image image={teamPhoto} className="block h-auto w-full object-cover" />
+</div>
+
+<div className="grid grid-cols-2 gap-4 *:aspect-video *:size-full *:object-cover max-md:grid-cols-1">
+
+<Image image={teamOuting} />
+<Image image={subwayAd} />
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+## A technical challenge for the 3blue1brown audience
+
+<Challenge />
+
+</section>
+
+<section>
+
+## Featured work
+
+### Better RL agents with Exa as their search backend
+
+Agents trained with Exa as the search backend during reinforcement learning reach higher performance with less training compute.
+
+<Figure image={rlSearch} />
+
+<Button
+  to="https://exa.ai/blog/rl-search-outcomes"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+### Dynamic Highlights: 95% fewer tokens
+
+Given a search query and a set of URLs, Exa's Dynamic Highlights model retrieves the tokens that matter and reduces token usage by 95%.
+
+<Figure image={dynamicHighlights} />
+
+<Button
+  to="https://exa.ai/blog/dynamic-highlights"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+### WebCode: evals for coding agents
+
+Exa built WebCode, an open-source eval to measure web search quality for coding agents.
+
+<Figure image={codeE2ePipeline} />
+
+<Button to="https://exa.ai/blog/webcode" color="light" className="self-center">
+  <BookIcon />
+  Read the post
+</Button>
+
+</section>
+
+<section>
+
+<div className="grid grid-cols-2 gap-4 *:size-full *:object-cover max-md:grid-cols-1">
+
+<Image image={workspace} />
+<Image image={teamOutdoors} />
+
+</div>
+
+</section>
+
+<section>
+
+## What our team says
+
+<Quote name="Miguel Brandão, Engineer">
+
+What you do at Exa is only constrained by your appetite. There is an infinite backlog of interesting problems to work on and an amazing team to tackle those problems with. And I've always really enjoyed software engineering from a very young age. So it's a really nice place for someone like that.
+
+</Quote>
+
+</section>
