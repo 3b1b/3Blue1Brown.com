@@ -1,7 +1,7 @@
 ---
 name: Exa
 tagline: Attention over all the world's information
-location: San Francisco, New York, Singapore, London, and Sydney
+location: San Francisco and Singapore
 apply: https://exa.ai/careers?utm_id=utm_20260917002250305_kq0ewz&utm_source=3b1b&utm_medium=partnership&utm_campaign=ads-3b1b-talent-board&utm_content=paid-acquisition-utm_20260917002250305_kq0ewz
 about: Exa builds massive-scale web crawling infrastructure, frontier language models, and high-performance vector databases to power search for AI agents.
 ---
@@ -14,7 +14,7 @@ import Quote from "~/components/Quote";
 import banner from "./banner.jpg";
 import Challenge from "./challenge.mdx";
 import codeE2ePipeline from "./code-e2e-pipeline.png";
-import dynamicHighlights from "./dynamic-highlights.mp4";
+import dynamicHighlights from "./dynamic-highlights.gif";
 import rlSearch from "./rl-search.png";
 import subwayAd from "./subway-ad.jpg";
 import teamOutdoors from "./team-outdoors.jpg";
@@ -58,7 +58,7 @@ Our team is small, talent-dense, and driven by the mission of responsible and co
 
 <div className="grid grid-cols-2 gap-4 *:aspect-video *:size-full *:object-cover max-md:grid-cols-1">
 
-<Image image={teamOutdoors} />
+<Image image={teamOuting} />
 <Image image={subwayAd} />
 
 </div>
@@ -98,7 +98,7 @@ Agents trained with Exa as the search backend during reinforcement learning reac
 
 Given a search query and a set of URLs, Exa's Dynamic Highlights model retrieves the tokens that matter and reduces token usage by 95%.
 
-<Figure video={dynamicHighlights} loop />
+<Figure image={dynamicHighlights} />
 
 <Button
   to="https://exa.ai/blog/dynamic-highlights"
@@ -127,7 +127,7 @@ Exa built WebCode, an open-source eval to measure web search quality for coding 
 <div className="grid grid-cols-2 gap-4 *:size-full *:object-cover max-md:grid-cols-1">
 
 <Image image={workspace} />
-<Image image={teamOuting} />
+<Image image={teamOutdoors} />
 
 </div>
 
@@ -138,8 +138,6 @@ Exa built WebCode, an open-source eval to measure web search quality for coding 
 ## What our team says
 
 <Quote name="Miguel Brandão, Engineer">
-
-Next-generation search only happens with big models. That means training on lots of data, frontier-lab style. Exa is on the frontier of that. You can't find that anywhere else at a company this small where you as an individual matter.
 
 What you do at Exa is only constrained by your appetite. There is an infinite backlog of interesting problems to work on and an amazing team to tackle those problems with. And I've always really enjoyed software engineering from a very young age. So it's a really nice place for someone like that.
 
