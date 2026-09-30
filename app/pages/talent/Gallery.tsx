@@ -7,7 +7,7 @@ const partners: [string, ...string[]] = [
   "janestreet",
   "0xPARC",
   "doppel",
-  "luminal",
+  "matx",
   "beam",
   "oklo",
   "exa",
