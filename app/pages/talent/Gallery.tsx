@@ -8,9 +8,9 @@ const partners: [string, ...string[]] = [
   "0xPARC",
   "doppel",
   "matx",
-  "beam",
-  "oklo",
   "exa",
+  "oklo",
+  "beam",
 ];
 
 // gallery of partners
