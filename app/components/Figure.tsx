@@ -13,6 +13,8 @@ type Props = {
   show?: "image" | "video";
   // whether to loop video
   loop?: boolean;
+  // play automatically, muted, with no controls, like a gif
+  autoPlay?: boolean;
   // class on image/video element
   className?: string;
   // caption content
@@ -25,6 +27,7 @@ export default function Figure({
   video,
   show,
   loop,
+  autoPlay,
   className,
   children,
 }: Props) {
@@ -37,7 +40,14 @@ export default function Figure({
 
   // video to render
   const videoElement = (
-    <video controls className={className} loop={loop}>
+    <video
+      controls={!autoPlay}
+      autoPlay={autoPlay}
+      muted={autoPlay}
+      playsInline={autoPlay}
+      className={className}
+      loop={loop}
+    >
       <track kind="captions" label="No captions available" />
       <source src={video ?? ""} type="video/mp4" />
     </video>
