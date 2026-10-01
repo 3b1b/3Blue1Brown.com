@@ -8,6 +8,7 @@ const partners: [string, ...string[]] = [
   "0xPARC",
   "doppel",
   "matx",
+  "luminal",
   "beam",
   "oklo",
   "exa",
