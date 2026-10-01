@@ -7,9 +7,11 @@ const partners: [string, ...string[]] = [
   "janestreet",
   "0xPARC",
   "doppel",
+  "matx",
   "luminal",
   "beam",
   "oklo",
+  "exa",
 ];
 
 // gallery of partners
