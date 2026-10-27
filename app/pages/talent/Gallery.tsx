@@ -12,6 +12,7 @@ const partners: [string, ...string[]] = [
   "beam",
   "oklo",
   "exa",
+  "aops",
 ];
 
 // gallery of partners
