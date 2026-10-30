@@ -34,6 +34,7 @@ export default function PartnerTile({ id }: Props) {
     location = "",
     apply = "",
     about = "",
+    wordmarkHeight = 80,
     interview,
     extra,
   } = partner.frontmatter;
@@ -58,7 +59,8 @@ export default function PartnerTile({ id }: Props) {
             <img
               src={wordmark}
               alt={name}
-              className="h-20 w-auto object-contain"
+              style={{ height: wordmarkHeight }}
+              className="w-auto object-contain"
             />
           ) : (
             <span className="font-sans text-2xl font-medium">{name}</span>

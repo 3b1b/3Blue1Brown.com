@@ -30,6 +30,8 @@ type RawPartnerFrontmatter = {
   apply?: string;
   about?: string;
   color?: string;
+  // override default wordmark tile height (px), for logos with unusual aspect ratios
+  wordmarkHeight?: number;
   // interview with the team
   interview?: PartnerVideo;
   // extra video, e.g. a whiteboard session

@@ -1,0 +1,49 @@
+---
+name: AoPS Institute
+tagline: A first-of-its-kind pathway for young mathematicians
+location: Virtual
+apply: https://aops-institute.breezy.hr/
+about: AoPS Institute is a new nonprofit building a first-of-its-kind pathway for the most mathematically advanced students in the country.
+wordmarkHeight: 110
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import banner from "./banner.webp";
+import wordmark from "./wordmark-dark.svg";
+
+<section className="dark width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover playing-fade opacity-75"
+/>
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+AoPS Institute is a new nonprofit building a first-of-its-kind pathway for the most mathematically advanced students in the country. Students who are ready for college-level mathematics years before college take a multi-year sequence of rigorous math and computer science courses delivered by Art of Problem Solving, surrounded by research, competition, and applied programs, and by a community of exceptional peers.
+
+We're virtual-first and need-blind, and we launch in the 2027–28 school year. We're building this as AI changes what mathematicians and scientists do, which makes our hardest question a live one: what should a student who is years ahead spend the rest of high school doing? Our first cohort will finish college around 2035, and we want them to arrive at the frontier with the judgment to decide what's worth proving, building, or asking.
+
+<Button
+  to="https://www.aopsinstitute.org/"
+  color="light"
+  className="self-center"
+>
+  Visit website
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
