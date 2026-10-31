@@ -1,0 +1,45 @@
+import Image from "~/components/Image";
+import slitherlinkBonus from "./slitherlink-bonus.png";
+import slitherlinkChallenge1 from "./slitherlink-challenge1.png";
+import slitherlinkChallenge2 from "./slitherlink-challenge2.png";
+import slitherlinkExample from "./slitherlink-example.png";
+
+Puzzles are a bit of an obsession around here. Whether it's a logic grid, an algorithmic problem, or a stubborn bug in production, we can't leave a good one alone. Our colleague Johan de Ruiter takes it further: he designs puzzles as a hobby, and he made a few for you. Have fun, and let us know how you solved them!
+
+## Super Slitherlink
+
+In Super Slitherlink, your goal is to draw a single closed loop by connecting neighboring dots with horizontal and vertical segments. The loop may not cross or touch itself.
+
+Each clue covers a rectangular area of the grid and hides the dots inside it, so the loop can't pass through them. The number tells you how many segments along that rectangle's border are part of the loop.
+
+### Example
+
+Here is a solved example with four clues:
+
+<Image image={slitherlinkExample} />
+
+### Challenge 1
+
+Can you solve this puzzle? Its clues are the first 18 digits of π.
+
+<Image image={slitherlinkChallenge1} />
+
+### Challenge 2
+
+Each of the nine clues below covers a 2×3 rectangle, so it counts how many of the ten segments along its border belong to the loop. Every clue starts out as an 8, drawn like the digits on a digital clock. Choose a digit from 0 to 9 for each clue by erasing lines from its 8, so that the resulting Super Slitherlink puzzle has exactly one solution.
+
+<Image image={slitherlinkChallenge2} />
+
+There are many ways to do this, but only one of them spells a nine-letter English word when you turn the puzzle upside down and read the clues as letters, calculator-style (an upside-down 3 reads as E, a 7 as L, and so on), left to right and top to bottom.
+
+**What is that word?**
+
+### Bonus challenge
+
+This puzzle combines Slitherlink with a Latin square. Every clue covers a single cell and tells you how many sides of that cell are part of the loop. The sixteen clues are digits from 0 to 3, and every row and every column of clues contains each digit exactly once, but only one clue is shown.
+
+<Image image={slitherlinkBonus} />
+
+Can you find the digits and the loop?
+
+Have an answer you feel proud of? When you apply, include a line at the bottom of your resume saying "Answer to 3b1b talent page Slitherlink puzzle" with a link to a short write-up of your solution.
