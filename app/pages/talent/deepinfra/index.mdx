@@ -20,7 +20,7 @@ import presentation from "./presentation.jpg";
 import veraBenchmark from "./vera-benchmark.jpg";
 import wordmark from "./wordmark-dark.svg";
 
-<section className="dark width-lg">
+<section className="dark py-24 width-lg">
 
 <img
   src={banner}
@@ -43,10 +43,10 @@ import wordmark from "./wordmark-dark.svg";
 
 At DeepInfra, we're building high-performance AI infrastructure that makes running the world's best AI models fast, reliable, and accessible. We operate across the entire inference stack — from GPUs all the way to the API — and we care deeply about performance, efficiency, and solving hard engineering problems.
 
-<div className="grid grid-cols-2 gap-4 *:aspect-video *:size-full *:object-cover max-md:grid-cols-1">
+<div className="flex flex-col gap-4">
 
-<Image image={presentation} />
-<Image image={booth} />
+<Image image={presentation} className="block h-auto w-full object-cover" />
+<Image image={booth} className="block h-auto w-full object-cover" />
 
 </div>
 
