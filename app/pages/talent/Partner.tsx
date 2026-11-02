@@ -32,6 +32,8 @@ type RawPartnerFrontmatter = {
   color?: string;
   // override default wordmark tile height (px), for logos with unusual aspect ratios
   wordmarkHeight?: number;
+  // if set, "Learn more" on the main board links here instead of to the subpage (e.g. when the subpage has little beyond what's already shown on the board)
+  learnMore?: string;
   // interview with the team
   interview?: PartnerVideo;
   // extra video, e.g. a whiteboard session

@@ -35,6 +35,7 @@ export default function PartnerTile({ id }: Props) {
     apply = "",
     about = "",
     wordmarkHeight = 80,
+    learnMore = "",
     interview,
     extra,
   } = partner.frontmatter;
@@ -70,7 +71,12 @@ export default function PartnerTile({ id }: Props) {
         <div className="font-sans text-lg text-balance">{tagline}</div>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Button to={page} size="sm" color="light" className="w-30">
+          <Button
+            to={learnMore || page}
+            size="sm"
+            color="light"
+            className="w-30"
+          >
             Learn more
           </Button>
 
