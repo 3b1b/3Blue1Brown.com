@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="nvidiaGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#76B900;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A8F00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="deepBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="550" fill="#0A0A0A"/>
+
+  <!-- Title -->
+  <text x="450" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" text-anchor="middle">The DeepInfra Optimization Stack</text>
+
+  <!-- Layer 1: Hardware (Bottom) -->
+  <rect x="100" y="400" width="700" height="100" rx="12" fill="url(#nvidiaGreen)" filter="url(#shadow)"/>
+  <text x="450" y="440" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">NVIDIA Blackwell Platform</text>
+  <text x="200" y="475" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">B200 / B300</text>
+  <text x="450" y="475" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">NVFP4 Tensor Cores</text>
+  <text x="700" y="475" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">NVLink Interconnect</text>
+
+  <!-- Layer 2: Models (Middle) -->
+  <rect x="100" y="260" width="700" height="100" rx="12" fill="url(#purple)" filter="url(#shadow)"/>
+  <text x="450" y="300" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Open-Weight Models</text>
+  <text x="200" y="335" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">MoE Architectures</text>
+  <text x="450" y="335" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">MTP-Enabled Models</text>
+  <text x="700" y="335" font-family="Arial, sans-serif" font-size="13" fill="#FFFFFF" text-anchor="middle">Quantization-Ready</text>
+
+  <!-- Layer 3: Optimizations (Top) -->
+  <rect x="100" y="120" width="700" height="100" rx="12" fill="url(#deepBlue)" filter="url(#shadow)"/>
+  <text x="450" y="160" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#FFFFFF" text-anchor="middle">DeepInfra Inference Optimizations</text>
+  <text x="200" y="195" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Speculative</text>
+  <text x="200" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Decoding</text>
+  <text x="366" y="195" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">KV-Cache</text>
+  <text x="366" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Routing</text>
+  <text x="533" y="195" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Adaptive</text>
+  <text x="533" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Parallelism</text>
+  <text x="700" y="195" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Off-GPU</text>
+  <text x="700" y="210" font-family="Arial, sans-serif" font-size="12" fill="#FFFFFF" text-anchor="middle">Offloading</text>
+
+  <!-- Plus signs between layers -->
+  <circle cx="450" cy="235" r="16" fill="#0A0A0A" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="450" y="241" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+</text>
+  <circle cx="450" cy="375" r="16" fill="#0A0A0A" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="450" y="381" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" text-anchor="middle">+</text>
+
+</svg>

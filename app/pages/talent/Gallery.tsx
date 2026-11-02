@@ -13,6 +13,7 @@ const partners: [string, ...string[]] = [
   "oklo",
   "exa",
   "aops",
+  "deepinfra",
 ];
 
 // gallery of partners
