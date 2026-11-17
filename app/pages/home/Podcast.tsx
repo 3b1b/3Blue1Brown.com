@@ -1,14 +1,9 @@
 import { href } from "react-router";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
-import Card from "~/components/Card";
 import { H2 } from "~/components/Heading";
 import Link from "~/components/Link";
-import { getThumbnail, getWatch } from "~/components/YouTube";
-import { episodes, logo, platforms } from "~/pages/podcast/podcast";
-
-// most recent episode
-const [latest] = episodes;
+import { logo, platforms } from "~/pages/podcast/podcast";
 
 // home page podcast section
 export default function Podcast() {
@@ -20,7 +15,7 @@ export default function Podcast() {
         <hr />
       </H2>
 
-      <img src={logo} alt="The 3Blue1Brown Podcast" className="w-50" />
+      <img src={logo} alt="The 3Blue1Brown Podcast" className="w-75" />
 
       <div className="flex flex-wrap items-center justify-center gap-4 *:size-8">
         {platforms.map(({ name, link, image }) => (
@@ -37,19 +32,8 @@ export default function Podcast() {
         ))}
       </div>
 
-      {latest && (
-        <Card
-          direction="row"
-          to={getWatch(latest.video)}
-          image={getThumbnail(latest.video)}
-          title={latest.title}
-          description={latest.description}
-          className="w-full"
-        />
-      )}
-
       <Button to={href("/extras")} color="light">
-        More Episodes
+        All Episodes
         <ArrowRightIcon />
       </Button>
     </section>
