@@ -138,6 +138,7 @@
     "lessons": [
       "entropy",
       "cross-entropy",
+      "arithmetic-codes",
       "wordle",
       "wordle-2",
       "bitcoin",

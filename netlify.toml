@@ -90,6 +90,11 @@ to = "https://store.dftba.com/collections/3blue1brown"
 status = 301
 
 [[redirects]]
+from = "/plush-easter"
+to = "https://youtu.be/hoX3IiKXT-M"
+status = 301
+
+[[redirects]]
 from = "/plushie"
 to = "/store"
 status = 301
