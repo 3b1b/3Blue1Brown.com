@@ -77,10 +77,15 @@ const episodes = [
   },
 ];
 
+// home page podcast section
 export default function Podcast() {
   return (
     <section className="bg-alt-white">
-      <H2>Podcast</H2>
+      <H2>
+        <hr />
+        Podcast
+        <hr />
+      </H2>
 
       <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         <img

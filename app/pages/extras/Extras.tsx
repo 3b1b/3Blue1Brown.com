@@ -6,7 +6,6 @@ import Meta from "~/components/Meta";
 import StrokeType from "~/components/StrokeType";
 import Blog from "~/pages/extras/Blog";
 import Other from "~/pages/extras/Other";
-import Podcast from "~/pages/extras/Podcast";
 
 // extras page
 export default function Extras() {
@@ -24,7 +23,6 @@ export default function Extras() {
         </section>
 
         <Other />
-        <Podcast />
         <Blog />
       </Main>
 
