@@ -46,6 +46,12 @@ const platforms = [
 
 const episodes = [
   {
+    title: "Steven Strogatz: The humanity of math",
+    description:
+      "Steven Strogatz returns to discuss what AI means for the future of mathematics, and why human understanding still matters.",
+    video: "xUSznTR2cwc",
+  },
+  {
     title: "Tai-Danae Bradley: Where math meets language",
     description:
       "Tai-Danae Bradley does research applying tools from physics to understanding language models, all under the broader umbrella of category theory.",
@@ -98,10 +104,11 @@ export default function Podcast() {
           <p>
             During the summer of 2021, I experimented with a little podcast,
             centered around interviewing mathematicians and online educational
-            creators. As it stands, only five episodes have been published, and
-            the project is dormant. Pending demand, I may spin it up again in
-            the future, but for the time being please enjoy these five extended
-            conversations.
+            creators. After five episodes, I set it aside to focus on videos.
+            Five years later, with the math world reflecting hard on what AI
+            means for the field, there turned out to be no shortage of
+            conversations worth having, so the podcast is back, with new
+            episodes added periodically.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 *:size-8">
