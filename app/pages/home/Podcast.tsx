@@ -15,6 +15,11 @@ export default function Podcast() {
         <hr />
       </H2>
 
+      <p>
+        Conversations about mathematics, AI, and the future of human
+        understanding.
+      </p>
+
       <img src={logo} alt="The 3Blue1Brown Podcast" className="w-75" />
 
       <div className="flex flex-wrap items-center justify-center gap-4 *:size-8">
