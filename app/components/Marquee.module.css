@@ -10,18 +10,3 @@
     transform: translateX(-50%);
   }
 }
-
-.wrapper:hover .track,
-.wrapper:focus-within .track {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
-  }
-
-  .duplicate {
-    display: none;
-  }
-}

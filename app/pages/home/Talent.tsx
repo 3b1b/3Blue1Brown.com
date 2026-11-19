@@ -29,7 +29,7 @@ export default function Talent() {
         <ArrowRightIcon />
       </Button>
 
-      <Marquee className="w-screen self-center">
+      <Marquee className="z-100 mt-8 w-screen self-center opacity-50 brightness-200 grayscale">
         {partners.map((id) => {
           const wordmark = getWordmarkDark(id) ?? getWordmark(id);
           const name = getPartner(id)?.frontmatter.name ?? id;

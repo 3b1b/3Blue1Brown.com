@@ -3,35 +3,31 @@ import clsx from "clsx";
 import classes from "./Marquee.module.css";
 
 type Props = {
-  // seconds for one full, seamless scroll cycle
+  // seconds for full scroll cycle
   duration?: number;
-  // items to scroll, repeated to fill the loop
+  // items to scroll
   children: ReactNode;
   className?: string;
 };
 
-// horizontally auto-scrolling strip of content, looping seamlessly
+// horizontally scrolling strip of items
 export default function Marquee({ duration = 30, children, className }: Props) {
   return (
     <div
       className={clsx(
-        "overflow-hidden mask-x-from-90% mask-x-to-100%",
-        classes.wrapper,
+        "group overflow-hidden mask-x-from-90% mask-x-to-100%",
         className,
       )}
     >
       <div
-        className={clsx("flex w-max items-center gap-16", classes.track)}
+        className={clsx(
+          "flex w-max items-center *:flex *:shrink-0 *:items-center group-hover:[animation-play-state:paused]! motion-reduce:animate-none!",
+          classes.track,
+        )}
         style={{ animationDuration: `${duration}s` }}
       >
-        <div className="flex shrink-0 items-center gap-16">{children}</div>
-        <div
-          aria-hidden
-          className={clsx(
-            "flex shrink-0 items-center gap-16",
-            classes.duplicate,
-          )}
-        >
+        <div className="*:mr-16">{children}</div>
+        <div aria-hidden className="*:mr-16 motion-reduce:hidden">
           {children}
         </div>
       </div>
