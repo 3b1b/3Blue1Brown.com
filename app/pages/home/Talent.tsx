@@ -30,16 +30,11 @@ export default function Talent() {
       </Button>
 
       <Marquee className="z-100 mt-8 w-screen self-center opacity-50 brightness-200 grayscale">
-        {partners.map((id) => {
+        {partners.map((id, index) => {
           const wordmark = getWordmarkDark(id) ?? getWordmark(id);
           const name = getPartner(id)?.frontmatter.name ?? id;
           return wordmark ? (
-            <img
-              key={id}
-              src={wordmark}
-              alt={name}
-              className="h-10 w-auto object-contain"
-            />
+            <img key={index} src={wordmark} alt={name} className="h-10" />
           ) : (
             <span key={id} className="font-sans text-lg font-medium">
               {name}
