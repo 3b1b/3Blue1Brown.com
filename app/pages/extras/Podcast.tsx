@@ -10,14 +10,16 @@ export default function Podcast() {
     <section className="bg-alt-white">
       <H2>Podcast</H2>
 
-      <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
-        <img
-          src={logo}
-          alt="The 3Blue1Brown Podcast"
-          className="max-md:col-span-full max-md:max-h-50 max-md:justify-self-center"
-        />
+      <div className="flex items-center gap-8 max-md:flex-col">
+        <div className="flex w-40 shrink-0 flex-col gap-8">
+          <img src={logo} alt="The 3Blue1Brown Podcast" />
 
-        <div className="col-span-2 flex flex-col gap-8 max-md:col-span-full">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Platforms />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-8">
           <p>
             AI has upended the world of mathematics, and the changes are
             happening at a rapid pace. It's making many people step back and
@@ -31,25 +33,12 @@ export default function Podcast() {
             about where they see themselves in a world where AI is only getting
             better.
           </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 *:size-8">
-            {platforms.map(({ name, link, image }) => (
-              <Link
-                to={link}
-                key={name}
-                arrow={false}
-                className="transition hocus:grayscale"
-                title={`Listen via ${name}`}
-                aria-label={`Listen via ${name}`}
-              >
-                <img src={image} alt="" />
-              </Link>
-            ))}
-          </div>
         </div>
+      </div>
 
-        <H3 className="sr-only">Episodes</H3>
+      <H3>Episodes</H3>
 
+      <div className="grid grid-cols-3 gap-8 max-md:grid-cols-2 max-sm:grid-cols-1">
         {episodes.map(({ title, video }, index) => (
           <Card
             key={index}
@@ -61,4 +50,19 @@ export default function Podcast() {
       </div>
     </section>
   );
+}
+
+export function Platforms() {
+  return platforms.map(({ name, link, image }) => (
+    <Link
+      to={link}
+      key={name}
+      arrow={false}
+      className="size-8 transition hocus:grayscale"
+      title={`Listen via ${name}`}
+      aria-label={`Listen via ${name}`}
+    >
+      <img src={image} alt="" />
+    </Link>
+  ));
 }

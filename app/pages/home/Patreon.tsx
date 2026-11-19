@@ -30,7 +30,7 @@ export default function Patreon() {
 
         <Image image={support} alt="" className="w-50" />
 
-        <div className="flex flex-col items-center gap-3 self-center">
+        <div className="flex flex-col gap-4 self-center">
           <Button to={site.socials.patreon} color="theme">
             Become a Supporter
             <ArrowRightIcon />
