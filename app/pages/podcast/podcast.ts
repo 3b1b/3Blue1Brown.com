@@ -44,6 +44,12 @@ export const platforms = [
 // episodes, most recent first
 export const episodes = [
   {
+    title: "Jordan Ellenberg: Being Dispensable",
+    description:
+      "Jordan Ellenberg joins the podcast for a conversation about what AI-generated proofs mean for the people who do mathematics.",
+    video: "s_lGhOD8uN4",
+  },
+  {
     title: "Steven Strogatz: The humanity of math",
     description:
       "Steven Strogatz returns to discuss what AI means for the future of mathematics, and why human understanding still matters.",
