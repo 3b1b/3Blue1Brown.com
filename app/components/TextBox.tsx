@@ -74,7 +74,7 @@ export default function TextBox({
 
   // classes on input
   const inputClass =
-    "grow rounded-md border border-gray bg-white p-3 text-black change-ring hocus:outline-theme";
+    "grow rounded-md border border-gray bg-white p-3 text-black change-ring hocus:outline-theme w-full";
 
   // input field
   const input = multi ? (
