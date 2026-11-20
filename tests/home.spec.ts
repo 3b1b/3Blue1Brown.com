@@ -21,7 +21,7 @@ test("Topic buttons work", async ({ page }) => {
     page.locator('a:has-text("read")[href*="sphere-area" i]'),
   ).toBeVisible();
   await page.click('a[aria-label*="back to" i]');
-  await page.locator("a:has-text('physics')").click();
+  await page.locator('a[aria-label*="physics" i]').click();
   await expect(page.locator('a:has-text("brachistochrone")')).toBeVisible();
 });
 

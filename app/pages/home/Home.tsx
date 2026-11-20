@@ -10,6 +10,7 @@ import Hero from "./Hero";
 import { useEgg } from "./hooks";
 import Lessons, { lessonAtom } from "./Lessons";
 import Patreon from "./Patreon";
+import Podcast from "./Podcast";
 import Talent from "./Talent";
 import Theater from "./Theater";
 
@@ -37,6 +38,7 @@ export default function Home() {
         <Lessons />
         <Patreon />
         <Talent />
+        <Podcast />
         <Follow />
       </Main>
 
