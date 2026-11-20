@@ -1,8 +1,7 @@
 name: Update stats
 
 on:
-  schedule:
-    - cron: "0 0 1 * *"
+  pull_request:
 
   workflow_dispatch:
 
@@ -28,8 +27,7 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      - name: Open pull request with updated stats
-        uses: peter-evans/create-pull-request@v8
+      - name: Commit updated stats
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          branch: stats-update
-          title: Periodic stats update
+          commit_message: "Stats update"
