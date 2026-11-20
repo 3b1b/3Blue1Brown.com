@@ -77,19 +77,20 @@ bun run check:links                 # Broken links
 - `/app`
   - `/api` - Client-side requests
   - `/assets` - General images/videos/etc
-  - `/components` - Low-level and widely-used components (buttons, header, etc.)
+  - `/components` - Low-level and widely-used components (buttons, header, etc)
   - `/data` - Top-level site data
-  - `/pages` - Hierarchy of site's pages and content/components/assets/data/etc. specific to each of them
+  - `/pages` - Hierarchy of site's pages and content/components/assets/data/etc specific to each of them
   - `/util` - Generic, broadly reusable functions
 
 ---
 
 - If necessary or appropriate to break guidelines, discuss why in adjacent comments
+- If in doubt, follow patterns in existing site
 
 ## Minimalism
 
-- Consider not making a change at all if it adds complexity and maintenance burden.
-- Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide.
+- Consider not making a change at all if it adds complexity and maintenance burden
+- Don't re-invent utils that installed packages (e.g. Lodash or React hooks) or existing components can provide
 - Avoid adding something only slightly different from an existing one (e.g. slightly lighter blue to only use in one place)
 - Always check for an existing component/util before using a third-party or native HTML element/func (e.g. use our `<Link>` instead of React Router's `<Link>`) for consistent styling and behavior
 - Use React idioms where possible, but break when appropriate (e.g. `useState` for local state vs. Jotai for simple shared state)
@@ -108,7 +109,7 @@ bun run check:links                 # Broken links
 - Use inline CSS only for dynamic values
 - Try not to use Tailwind `!` important modifier, prefer conditional classes or `@layer` specificity
 - Use Tailwind `--spacing()` function inside `calc()` expressions
-- Stay consistent with site's existing design language: gap sizes, color usage, color alphas, font choices, component usage, etc.
+- Stay consistent with site's existing design language: gap sizes, color usage, color alphas, font choices, component usage, etc
 
 ## Organization
 
@@ -122,7 +123,8 @@ bun run check:links                 # Broken links
 - Use `~/` prefix for all imports (except when files meant to always be colocated)
 - Don't use implicit React namespace, i.e. `React.useState()`
 - Use named imports when available
-- JS/TS in `lowerCamelCase`, components and types in `UpperCamelCase`, files and CSS classes in `lower-kebab-case`
+- JS/TS funcs in `lowerCamelCase`, components and types in `UpperCamelCase`
+- Component filenames in `UpperCamelCase`, other files in `lower-kebab-case`
 - Avoid single letter var names e.g. `i` or `<T>`
 - Use `function () {}` notation for React components, `() => {}` (arrow) notation for everything else
 - Use `clsx` for `className` conditionals

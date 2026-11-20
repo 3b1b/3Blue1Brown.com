@@ -1,0 +1,145 @@
+---
+name: FEI
+tagline: Wondering what math is capable of
+location: San Francisco
+apply: https://fieldextension.org/3b1b/
+interview:
+  video: G35ybr0PZhM
+  type: youtube
+about: The correlation between a background in contest math and being able to work with the stuff that we're doing is extraordinarily high
+wordmarkHeight: 220
+---
+
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Image from "~/components/Image";
+import Link from "~/components/Link";
+import Portrait from "~/components/Portrait";
+import YouTube from "~/components/YouTube";
+import banner from "./banner.jpg";
+import Challenge from "./challenge.mdx";
+import circuitGame from "./circuit-game.jpg";
+import connectFour from "./connect-four.jpg";
+import fheNotes0 from "./fhe-notes-0-ring-theory.pdf";
+import fheNotes1 from "./fhe-notes-1-ckks.pdf";
+import fheNotes2 from "./fhe-notes-2-operations.pdf";
+import fheNotes3 from "./fhe-notes-3-bootstrapping.pdf";
+import fheNotes4 from "./fhe-notes-4-multiparty.pdf";
+import fheNotes5 from "./fhe-notes-5-polynomial-arithmetic.pdf";
+import fogOfWarChess from "./fog-of-war-chess.jpg";
+import groupJam from "./group-jam.jpg";
+import multipartyLupi from "./multiparty-lupi.jpg";
+import wordmark from "./wordmark-dark.png";
+
+<section className="dark width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover playing-fade opacity-25"
+/>
+
+<img src={wordmark} alt="" className="max-h-60 self-center p-4" />
+
+<YouTube id={frontmatter.interview.video} />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+<div className="flex flex-col gap-8">
+
+<Image image={groupJam} className="block h-auto w-full object-cover" />
+
+At FEI, we wonder what math is capable of. And we do stuff to find out.
+
+Math keeps surprising us. These surprises motivate us to learn more math, and improve how we think about and harness it. Fully homomorphic encryption is one recent example — how to make it work better, and how to think about its true potential. What happens in a world where insight generation no longer requires information sharing?
+
+We're still finding out what else is possible with math — and what might be possible with a place like FEI.
+
+</div>
+
+</section>
+
+<section>
+
+## Challenges for the 3blue1brown audience
+
+<Challenge />
+
+</section>
+
+<section>
+
+## Select Examples of Our Work
+
+Fully homomorphic encryption (FHE) lets programs run on encrypted data without ever decrypting the inputs or intermediate values. Using just polynomial arithmetic (with a dash of circuit engineering cleverness), we can solve surprisingly complex problems without knowing anything about the input. Combining this with a carefully designed software system optimized for parallel computing, we've built things from Fog of War chess to a Connect Four engine and more — all fast enough that you can barely tell anything different is happening under the hood.
+
+### Fog of War Chess
+
+Fog of War chess is a chess variant in which each player sees only the squares their pieces can move to. Normally that takes a central server that knows both players' pieces and calculates what each side can see. Under FHE, clever board and piece encodings enable each side's vision to be computed entirely on encrypted data. No one sees the full board until the game ends, and in some implementations no server is needed at all, as the encrypted calculations can run in a player's browser.
+
+<YouTube id="SoC6RaiTgvs" thumbnail={fogOfWarChess} />
+
+### Connect Four
+
+In Connect Four, the first player can always force a win, but the winning strategies involve a lot of branching, which is hard under FHE because every operation must be data-oblivious. Instead, the engine precomputes a set of early-game moves and selects among them with an encrypted one-hot board state until the board reaches a steady state. From there it tracks that state and plays by a small set of rules instead of memorized moves.
+
+<YouTube id="HhCliaKedZs" thumbnail={connectFour} />
+
+### Multiparty LUPI
+
+In LUPI (Lowest Unique Positive Integer), everyone picks a number, and the lowest number nobody else picked wins. This demo runs it on multiparty FHE, so there is no trusted party at all. Before play, the keyholders run distributed key generation in their browsers, and the group key they end up with has no single owner — 5 of the 6 keyholders must combine their shares of the decryption key to reveal a result, and the server never holds any share of it. At one demo, 27 players on various devices all played over the same network.
+
+<YouTube id="3NnU6uc6dtk" thumbnail={multipartyLupi} />
+
+### The FHE Circuit Game
+
+A large part of building any of the demos above is designing the circuit that performs the computation, then optimizing it. Stripped of everything around it, that work turned out to be fun enough to be a game.
+
+<YouTube id="OygHCAWegoQ" thumbnail={circuitGame} />
+
+<Button
+  to="https://fhe-circuit-game.vercel.app"
+  color="theme"
+  className="self-center"
+>
+  Play the Circuit Game
+  <ArrowUpRightIcon />
+</Button>
+
+### The Math Behind FHE
+
+These lecture notes explain how the CKKS scheme uses ring theory to construct fully homomorphic encryption. The security of CKKS relies on the ring learning with errors (RLWE) assumption: roughly, that adding a small amount of noise to an equation of ring elements makes it hard to solve. CKKS encrypts data by representing batches of complex numbers in terms of ring elements and adding a small amount of noise, making it possible to do approximate arithmetic on encrypted data in a single-instruction multiple-data format.
+
+<div className="flex flex-col items-center gap-2">
+
+<Link to={fheNotes0} newTab>
+  Part 0: Ring theory
+</Link>
+<Link to={fheNotes1} newTab>
+  Part 1: CKKS
+</Link>
+<Link to={fheNotes2} newTab>
+  Part 2: Operations
+</Link>
+<Link to={fheNotes3} newTab>
+  Part 3: Bootstrapping
+</Link>
+<Link to={fheNotes4} newTab>
+  Part 4: Multiparty
+</Link>
+<Link to={fheNotes5} newTab>
+  Part 5: Polynomial arithmetic
+</Link>
+
+</div>
+
+</section>

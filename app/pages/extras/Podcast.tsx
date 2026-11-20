@@ -100,10 +100,10 @@ export default function Podcast() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 *:size-8">
-            {platforms.map(({ name, link, image }) => (
+            {platforms.map(({ name, link, image }, index) => (
               <Link
+                key={index}
                 to={link}
-                key={name}
                 arrow={false}
                 className="transition hocus:grayscale"
                 title={`Listen via ${name}`}

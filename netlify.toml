@@ -90,6 +90,11 @@ to = "https://store.dftba.com/collections/3blue1brown"
 status = 301
 
 [[redirects]]
+from = "/plush-easter"
+to = "https://youtu.be/hoX3IiKXT-M"
+status = 301
+
+[[redirects]]
 from = "/plushie"
 to = "/store"
 status = 301
@@ -192,6 +197,11 @@ status = 301
 [[redirects]]
 from = "/janestreet"
 to = "/talent/janestreet"
+status = 301
+
+[[redirects]]
+from = "/talent/0xPARC"
+to = "/talent/FEI"
 status = 301
 
 [[redirects]]

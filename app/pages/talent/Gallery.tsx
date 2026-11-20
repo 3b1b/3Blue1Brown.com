@@ -3,14 +3,16 @@ import { H2 } from "~/components/Heading";
 import { seededShuffle } from "~/util/math";
 import PartnerTile from "./PartnerTile";
 
-const partners: [string, ...string[]] = [
+export const partners: [string, ...string[]] = [
   "janestreet",
-  "0xPARC",
+  "FEI",
   "doppel",
   "matx",
   "beam",
   "oklo",
   "exa",
+  "aops",
+  "deepinfra",
 ];
 
 // gallery of partners

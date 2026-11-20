@@ -1,0 +1,135 @@
+---
+name: DeepInfra
+tagline: AI Inference Cloud
+location: Palo Alto, Sofia, and remote
+apply: https://jobs.gem.com/deep-infra
+about: DeepInfra builds high-performance AI infrastructure that makes running the world's best AI models fast, reliable, and accessible, operating across the entire inference stack from GPUs to the API.
+---
+
+import { ArrowUpRightIcon, BookIcon } from "@phosphor-icons/react";
+import Button from "~/components/Button";
+import Figure from "~/components/Figure";
+import Image from "~/components/Image";
+import Quote from "~/components/Quote";
+import banner from "./banner.jpg";
+import blackwellCost from "./blackwell-cost.svg";
+import booth from "./booth.jpg";
+import Challenge from "./challenge.mdx";
+import optimizationStack from "./optimization-stack.svg";
+import presentation from "./presentation.jpg";
+import veraBenchmark from "./vera-benchmark.jpg";
+import wordmark from "./wordmark-dark.svg";
+
+<section className="dark py-24 width-lg">
+
+<img
+  src={banner}
+  alt=""
+  className="absolute inset-0 -z-10 size-full object-cover object-[center_45%] playing-fade opacity-75"
+/>
+
+<img src={wordmark} alt="" className="max-h-20 self-center" />
+
+<Button to={frontmatter.apply} color="critical" className="w-100 self-center">
+  Apply
+  <ArrowUpRightIcon />
+</Button>
+
+</section>
+
+<section>
+
+## About
+
+At DeepInfra, we're building high-performance AI infrastructure that makes running the world's best AI models fast, reliable, and accessible. We operate across the entire inference stack — from GPUs all the way to the API — and we care deeply about performance, efficiency, and solving hard engineering problems.
+
+<Image image={booth} className="block h-auto w-full object-cover" />
+
+</section>
+
+<section>
+
+## A technical challenge for the 3blue1brown audience
+
+<Challenge />
+
+</section>
+
+<section>
+
+## Featured work
+
+### Cutting inference cost by up to 20x
+
+We paired Mixture-of-Experts models with Blackwell-specific optimizations: NVFP4 quantization, speculative decoding, and memory management in TensorRT-LLM. A 405B dense model on H200 costs \$1.00 per million tokens; a 400B MoE model on B200 in NVFP4 costs \$0.05.
+
+<Figure image={blackwellCost} />
+
+<Button
+  to="https://deepinfra.com/blog/nvidia-blackwell-efficient-ai-inference"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+### Benchmarking NVIDIA's Vera CPU for agents
+
+We benchmarked NVIDIA's Vera CPU against x86 chips on agentic workloads. Vera ran orchestration steps 2.2x faster than Sapphire Rapids and held 1.33–1.6x more sandboxed agents per core under a strict latency SLO. We also measured what microVM isolation actually costs.
+
+<Figure image={veraBenchmark} />
+
+<Button
+  to="https://deepinfra.com/blog/nvidia-vera-cpu-benchmark"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+### Serving frontier models on NVIDIA's inference stack
+
+We serve frontier open models on B300 GPUs using TensorRT-LLM, NVIDIA Dynamo for distributed serving, and NVFP4 quantization. With this setup, one B300 does the work of four H200s on DeepSeek V4.
+
+<Figure image={optimizationStack} />
+
+<Button
+  to="https://deepinfra.com/blog/deepinfra-nvidia-inference-stack"
+  color="light"
+  className="self-center"
+>
+  <BookIcon />
+  Read the post
+</Button>
+
+</section>
+
+<section>
+
+<Image image={presentation} className="max-h-150 self-center" />
+
+</section>
+
+<section>
+
+## What our team says
+
+<div className="grid grid-cols-2 gap-4 max-md:grid-cols-1">
+
+<Quote name="Pernekhan Utemuratov">
+  I've found the rare place that passes Charlie Munger's career test: I believe
+  in what we build at DeepInfra, I admire the people leading it, and I enjoy
+  working with this team.
+</Quote>
+
+<Quote name="Boyka Nacheva">
+  Working at a fast-moving startup like DeepInfra means wearing many hats and
+  learning something new every day, and I love that challenge. Being surrounded
+  by smart, inspiring people makes it fun, too.
+</Quote>
+
+</div>
+
+</section>
