@@ -13,7 +13,7 @@ type Props = {
   show?: "image" | "video";
   // whether to loop video
   loop?: boolean;
-  // play automatically, muted, with no controls, like a gif
+  // play automatically, muted
   autoPlay?: boolean;
   // class on image/video element
   className?: string;

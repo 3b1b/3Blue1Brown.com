@@ -8,6 +8,7 @@ export const partners: [string, ...string[]] = [
   "FEI",
   "doppel",
   "matx",
+  "luminal",
   "beam",
   "oklo",
   "exa",
