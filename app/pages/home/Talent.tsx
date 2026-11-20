@@ -2,7 +2,14 @@ import { href } from "react-router";
 import { ArrowRightIcon } from "@phosphor-icons/react";
 import Button from "~/components/Button";
 import { H1 } from "~/components/Heading";
+import Marquee from "~/components/Marquee";
 import TriangleGrid from "~/components/TriangleGrid";
+import { partners } from "~/pages/talent/Gallery";
+import {
+  getPartner,
+  getWordmark,
+  getWordmarkDark,
+} from "~/pages/talent/Partner";
 
 export default function Talent() {
   return (
@@ -21,6 +28,20 @@ export default function Talent() {
         Explore Opportunities
         <ArrowRightIcon />
       </Button>
+
+      <Marquee className="z-100 mt-8 w-screen self-center opacity-50 brightness-200 grayscale">
+        {partners.map((id, index) => {
+          const wordmark = getWordmarkDark(id) ?? getWordmark(id);
+          const name = getPartner(id)?.frontmatter.name ?? id;
+          return wordmark ? (
+            <img key={index} src={wordmark} alt={name} className="h-10" />
+          ) : (
+            <span key={id} className="font-sans text-lg font-medium">
+              {name}
+            </span>
+          );
+        })}
+      </Marquee>
     </section>
   );
 }
