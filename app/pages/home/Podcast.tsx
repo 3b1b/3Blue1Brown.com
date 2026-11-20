@@ -20,8 +20,7 @@ export default function Podcast() {
 
         <div className="flex flex-col gap-8 self-center">
           <p className="text-center text-balance">
-            Conversations about mathematics, AI, and the future of human
-            understanding.
+            Conversations about mathematics.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Platforms />
