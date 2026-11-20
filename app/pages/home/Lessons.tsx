@@ -1,7 +1,5 @@
-import type { Remote } from "comlink";
 import type { TopicId } from "~/pages/lessons/topics";
-import type * as FuzzyAPI from "./fuzzy";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { href, useLocation } from "react-router";
 import {
   ArrowLeftIcon,
@@ -16,6 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import { useDebounce } from "@reactuses/core";
 import clsx from "clsx";
+import { FuseWorker } from "fuse.js/worker";
 import { useAtom, useAtomValue } from "jotai";
 import { event as analyticsEvent } from "~/components/Analytics";
 import Button from "~/components/Button";
@@ -29,9 +28,7 @@ import { byDate, getLesson } from "~/pages/lessons/lessons";
 import { topics } from "~/pages/lessons/topics";
 import { atomWithQuery, getAtom, setAtom } from "~/util/atom";
 import { preserveScroll, scrollTo } from "~/util/dom";
-import { useWorker } from "~/util/hooks";
 import { mergeSearch } from "~/util/url";
-import FuzzyWorker from "./fuzzy?worker";
 
 const limit = 20;
 
@@ -86,35 +83,52 @@ export function Search({ dialog = false, close = () => {} }) {
   );
 
   // current search
-  const [search, setSearch] = useAtom(searchAtom);
-  const debouncedSearch = useDebounce(search.trim(), 300);
+  const [_search, setSearch] = useAtom(searchAtom);
+  const search = useDebounce(_search.trim(), 300);
 
   // other filters
   const [interactive, setInteractive] = useState(false);
   const [readable, setReadable] = useState(false);
 
-  // search results
-  let [results = []] = useWorker(
-    FuzzyWorker,
-    useCallback(
-      async (worker: Remote<typeof FuzzyAPI>) => {
-        // track analytics event
-        analyticsEvent("lesson_search", { search: debouncedSearch });
-        // filter by free text search
-        let results = (await worker.search(lessons, debouncedSearch, [
-          "id",
-          "title",
-          "description",
-        ])) as typeof lessons;
-        // filter by other filters
-        if (readable) results = results.filter((lesson) => lesson.readable);
-        if (interactive)
-          results = results.filter((lesson) => lesson.interactive);
-        return results;
-      },
-      [lessons, debouncedSearch, interactive, readable],
-    ),
+  // make fuzzy search worker
+  const searcher = useMemo(
+    () =>
+      new FuseWorker(lessons, {
+        keys: ["title", "author", "description"],
+        threshold: 0.2,
+        ignoreLocation: true,
+      }),
+    [lessons],
   );
+
+  // search results
+  let [results, setResults] = useState<typeof lessons>([]);
+
+  useEffect(() => {
+    let latest = true;
+
+    (async () => {
+      // track analytics event
+      analyticsEvent("lesson_search", { search });
+
+      // filter by free text search
+      let results = (await searcher.search(search)).map(
+        (result) => result.item,
+      );
+      // if stale, ignore result
+      if (!latest) return;
+
+      // filter by other filters
+      if (readable) results = results.filter((lesson) => lesson.readable);
+      if (interactive) results = results.filter((lesson) => lesson.interactive);
+
+      setResults(results);
+    })();
+
+    return () => {
+      latest = false;
+    };
+  }, [searcher, search, readable, interactive]);
 
   // display certain topics in reverse order
   if (topicId === "all") results = results.toReversed();
@@ -138,7 +152,7 @@ export function Search({ dialog = false, close = () => {} }) {
         <TextBox
           ref={searchBox}
           icon={<MagnifyingGlassIcon />}
-          value={search}
+          value={_search}
           onChange={setSearch}
           className="grow text-lg"
           placeholder="Search lessons..."
