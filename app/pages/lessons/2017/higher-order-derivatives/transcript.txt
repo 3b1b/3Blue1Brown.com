@@ -26,7 +26,7 @@
 	- Given some movement along a line, suppose you have some function that records distance traveled vs. time, and maybe its graph looks something like this, steadily increasing over time.
 	- Then its derivative tells you velocity at each point in time, right?  For the example, the graph might look like this bump, increasing to some maximum, then decreasing back to 0.
 	- So its second derivative tells you the rate of change for velocity, the acceleration at each point in time.
-	- In the example, the second derivative is positive for the first half of the journey, which indicates indicates speeding up.  That's sensation of being pushed back into your car seat with a constant force.  Or rather, having the car seat push you with a constant force.
+	- In the example, the second derivative is positive for the first half of the journey, which indicates speeding up.  That's sensation of being pushed back into your car seat with a constant force.  Or rather, having the car seat push you with a constant force.
 	- A negative second derivative indicates slowing down, negative acceleration.
 	- The third derivative, and this is not a joke, is called jerk.  So if the jerk is not zero, it means the strength of the acceleration itself is changing.
 - Next video
